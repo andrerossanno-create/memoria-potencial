@@ -246,6 +246,23 @@ function toggleFlash(id){
   el.style.display = (el.style.display === "block") ? "none" : "block";
 }
 </script>
+<div class="card">
+  <h2>🫀 Aortopatia – Modo Prova Interativo</h2>
+  <p>Clique no tema da figura para testar sua memória.</p>
 
+  <div class="mapa-wrap">
+    <img src="orto1.png" alt="Aortopatia e Turner" class="mapa-img">
+
+    <button class="hotspot hs-degenerativo" onclick="mostrarResposta('degenerativo')">Degenerativo</button>
+    <button class="hotspot hs-bicuspide" onclick="mostrarResposta('bicuspide')">VAB</button>
+    <button class="hotspot hs-marfan" onclick="mostrarResposta('marfan')">Marfan</button>
+    <button class="hotspot hs-loeys" onclick="mostrarResposta('loeys')">Loeys-Dietz</button>
+    <button class="hotspot hs-turner" onclick="mostrarResposta('turner')">Turner</button>
+  </div>
+
+  <div id="respostaMapa" class="resultado-mapa">
+    Clique em um marcador da imagem.
+  </div>
+</div>
 </body>
 </html>
