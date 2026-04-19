@@ -139,6 +139,30 @@ function toggleFlash(id){
     el.style.display = (el.style.display === "block") ? "none" : "block";
 }
 </script>
+<div class="card">
+<h2>🎯 Modo Prova</h2>
+<p>Paciente com dor torácica súbita, hipotenso, mediastino alargado.</p>
 
+<p><strong>A dissecção envolve a aorta ascendente?</strong></p>
+
+<button class="btn-sim" onclick="prova(true)">SIM</button>
+<button class="btn-nao" onclick="prova(false)">NÃO</button>
+
+<div id="feedback" class="result"></div>
+</div>
+
+<script>
+function prova(resposta){
+    let fb = document.getElementById("feedback");
+
+    if(resposta === true){
+        fb.innerHTML = "✅ CORRETO → STANFORD A → CIRURGIA";
+        fb.style.color = "#22c55e";
+    } else {
+        fb.innerHTML = "❌ ERRO → Pegou ascendente = é A!";
+        fb.style.color = "#ef4444";
+    }
+}
+</script>
 </body>
 </html>
