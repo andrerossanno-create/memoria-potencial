@@ -1,31 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stanford na Mão</title>
+<title>Stanford Interativo</title>
 
 <style>
 body{
     margin:0;
+    font-family:Arial, sans-serif;
     background:#0b0f1a;
     color:white;
-    font-family:Arial, sans-serif;
     text-align:center;
 }
 
 h1{
-    margin-top:20px;
-    font-size:28px;
+    margin:20px;
+}
+
+.container{
+    padding:20px;
 }
 
 img{
     width:95%;
     max-width:900px;
-    margin-top:20px;
     border-radius:16px;
-    box-shadow:0 0 20px rgba(0,0,0,0.6);
+    margin-top:10px;
+}
+
+.card{
+    background:#11182a;
+    padding:20px;
+    border-radius:12px;
+    margin:15px auto;
+    max-width:800px;
+}
+
+button{
+    padding:15px 25px;
+    margin:10px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.btn-sim{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-nao{
+    background:#dc2626;
+    color:white;
+}
+
+.result{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.flashcard{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    background:#1f2937;
+    border-radius:10px;
+}
+
+.toggle{
+    background:#2563eb;
+    color:white;
+    margin-top:10px;
 }
 </style>
 
@@ -33,9 +81,64 @@ img{
 
 <body>
 
-<h1>🫀 Stanford na Mão</h1>
+<h1>🫀 Stanford Interativo</h1>
 
-<img src="stanford_na_mao.png" alt="Stanford">
+<div class="container">
+
+<img src="stanford_na_mao.png">
+
+<div class="card">
+<h2>🔥 Pergunta que decide tudo</h2>
+<p>Envolve a aorta ascendente?</p>
+
+<button class="btn-sim" onclick="responder('A')">SIM</button>
+<button class="btn-nao" onclick="responder('B')">NÃO</button>
+
+<div id="resultado" class="result"></div>
+</div>
+
+<div class="card">
+<h2>🧠 Flashcards</h2>
+
+<button class="toggle" onclick="toggleFlash('f1')">Mostrar Regra de Ouro</button>
+<div id="f1" class="flashcard">
+👉 Pegou a ascendente = SEMPRE Stanford A
+</div>
+
+<button class="toggle" onclick="toggleFlash('f2')">Mostrar Conduta</button>
+<div id="f2" class="flashcard">
+A = Cirurgia imediata<br>
+B = Clínico / Endovascular
+</div>
+
+<button class="toggle" onclick="toggleFlash('f3')">Mostrar Pegadinha</button>
+<div id="f3" class="flashcard">
+Stanford NÃO liga pra extensão<br>
+👉 Só importa a ascendente
+</div>
+
+</div>
+
+</div>
+
+<script>
+function responder(tipo){
+    let r = document.getElementById("resultado");
+
+    if(tipo === "A"){
+        r.innerHTML = "💥 STANFORD A → CIRURGIA IMEDIATA";
+        r.style.color = "#22c55e";
+    } else {
+        r.innerHTML = "🧠 STANFORD B → TRATAMENTO CLÍNICO / TEVAR";
+        r.style.color = "#38bdf8";
+    }
+}
+
+function toggleFlash(id){
+    let el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>
 
 </body>
 </html>
