@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Síndrome de Turner – Modo Prova</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0b0f1a;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    padding:20px;
+}
+
+.card{
+    background:#111827;
+    margin:20px;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.4);
+}
+
+button{
+    padding:15px 25px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.sim{
+    background:#22c55e;
+    color:white;
+}
+
+.nao{
+    background:#ef4444;
+    color:white;
+}
+
+.alerta{
+    background:#f59e0b;
+    color:black;
+}
+
+.voltar{
+    background:#374151;
+    color:white;
+    margin-top:20px;
+}
+
+.hidden{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧬 Síndrome de Turner – Modo Prova</h1>
+
+<!-- PERGUNTA CENTRAL -->
+<div class="card">
+<h2>🔥 Pergunta que decide a prova</h2>
+<p>Qual critério você usa para cirurgia da aorta?</p>
+
+<button class="sim" onclick="respostaErrada()">3,5 cm</button>
+<button class="nao" onclick="respostaCorreta()">Índice 2,5 cm/m²</button>
+
+<div id="resultado" class="hidden"></div>
+</div>
+
+<!-- EXPLICAÇÃO -->
+<div class="card hidden" id="explicacao">
+<h2>🧠 Regra de Ouro</h2>
+<p>👉 Em Turner, NÃO use valor absoluto isolado</p>
+<p>👉 Use índice: <b>2,5 cm/m²</b></p>
+
+<p style="color:#f59e0b;">
+💀 Pegadinha clássica: aula fala 3,5 cm → PROVA cobra índice
+</p>
+</div>
+
+<!-- PALÁCIO DA MEMÓRIA -->
+<div class="card">
+<h2>🏰 Palácio da Memória</h2>
+
+<p>
+Imagine uma <b>princesa Turner</b> 🧬
+</p>
+
+<p>
+Ela é pequena (baixa estatura)  
+→ então tudo nela é <b>indexado ao tamanho corporal</b>
+</p>
+
+<p>
+Ela segura uma régua quebrada com “3,5 cm” ❌  
+e joga fora…
+</p>
+
+<p style="color:#22c55e;">
+E pega uma régua verde escrita:
+👉 2,5 cm/m² ✔
+</p>
+
+</div>
+
+<!-- ALGORITMO -->
+<div class="card">
+<h2>⚡ Algoritmo Relâmpago</h2>
+
+<p>Paciente com Turner → avaliar aorta</p>
+
+<p>
+👉 Índice ≥ 2,5 cm/m² ?
+</p>
+
+<button class="sim" onclick="cirurgia()">SIM → CIRURGIA</button>
+<button class="nao" onclick="clinico()">NÃO → ACOMPANHAR</button>
+
+<div id="conduta" class="hidden"></div>
+
+</div>
+
+<!-- FLASHCARDS -->
+<div class="card">
+<h2>🧠 Flashcards</h2>
+
+<button onclick="mostrarFlash()">Mostrar</button>
+
+<div id="flash" class="hidden">
+<p>📌 Turner usa valor absoluto? → NÃO</p>
+<p>📌 Corte cirúrgico? → 2,5 cm/m²</p>
+<p>📌 Pegadinha? → 3,5 cm NÃO é padrão</p>
+</div>
+
+</div>
+
+<!-- BOTÃO VOLTAR -->
+<a href="index.html">
+<button class="voltar">⬅ Voltar ao Menu</button>
+</a>
+
+</div>
+
+<script>
+
+function respostaErrada(){
+    let r = document.getElementById("resultado");
+    r.classList.remove("hidden");
+    r.innerHTML = "❌ ERRADO! Isso é armadilha de aula!";
+}
+
+function respostaCorreta(){
+    let r = document.getElementById("resultado");
+    r.classList.remove("hidden");
+    r.innerHTML = "✅ CORRETO! Turner usa índice corporal!";
+    document.getElementById("explicacao").classList.remove("hidden");
+}
+
+function cirurgia(){
+    let c = document.getElementById("conduta");
+    c.classList.remove("hidden");
+    c.innerHTML = "🚨 Indicar cirurgia!";
+}
+
+function clinico(){
+    let c = document.getElementById("conduta");
+    c.classList.remove("hidden");
+    c.innerHTML = "🩺 Seguimento clínico!";
+}
+
+function mostrarFlash(){
+    document.getElementById("flash").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
