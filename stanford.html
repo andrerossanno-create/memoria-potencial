@@ -1,394 +1,251 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dissecção de Aorta - Stanford | Aula Interativa</title>
-  <style>
-    :root{
-      --bg:#07111f;
-      --panel:#0d1b2f;
-      --panel-2:#12243d;
-      --text:#eef4ff;
-      --muted:#a9b8d4;
-      --red:#ff5f6d;
-      --red2:#ff8a80;
-      --blue:#58a6ff;
-      --blue2:#7dd3fc;
-      --yellow:#ffd166;
-      --green:#70e1a1;
-      --shadow:0 12px 30px rgba(0,0,0,.28);
-      --radius:22px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(circle at top, #102644 0%, var(--bg) 52%, #040914 100%);color:var(--text);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;scroll-behavior:smooth}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      display:flex;gap:10px;align-items:center;justify-content:space-between;
-      padding:12px 18px;background:rgba(4,11,24,.76);backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.08)
-    }
-    .brand{font-weight:800;letter-spacing:.4px}
-    .brand span{color:var(--yellow)}
-    .nav{display:flex;gap:8px;flex-wrap:wrap}
-    .nav a{
-      color:var(--text);text-decoration:none;padding:10px 12px;border-radius:999px;
-      background:rgba(255,255,255,.06);font-size:.92rem;border:1px solid rgba(255,255,255,.08)
-    }
-    .nav a:hover{background:rgba(255,255,255,.12)}
-    .container{width:min(1180px,92vw);margin:0 auto;padding:28px 0 70px}
-    .hero{
-      position:relative;overflow:hidden;background:linear-gradient(135deg, rgba(255,95,109,.15), rgba(88,166,255,.12));
-      border:1px solid rgba(255,255,255,.08);border-radius:30px;padding:36px;box-shadow:var(--shadow)
-    }
-    .hero::after{
-      content:"";position:absolute;inset:auto -80px -120px auto;width:320px;height:320px;border-radius:50%;
-      background:radial-gradient(circle, rgba(255,209,102,.22), rgba(255,209,102,0));
-      pointer-events:none
-    }
-    h1{margin:0 0 10px;font-size:clamp(2rem,4vw,3.5rem);line-height:1.03}
-    .subtitle{font-size:1.08rem;color:var(--muted);max-width:900px}
-    .hero-grid{display:grid;grid-template-columns:1.2fr .9fr;gap:22px;margin-top:24px}
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)
-    }
-    .question-box{
-      display:flex;align-items:center;justify-content:center;min-height:220px;text-align:center;
-      font-weight:900;font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.15;
-      background:linear-gradient(135deg, rgba(255,95,109,.18), rgba(88,166,255,.15));
-      border:1px solid rgba(255,255,255,.08);border-radius:26px;padding:24px
-    }
-    .question-box .accent{color:var(--yellow)}
-    .section-title{
-      margin:34px 0 14px;font-size:1.4rem;font-weight:850;display:flex;align-items:center;gap:10px
-    }
-    .dual{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .typeA,.typeB{position:relative;overflow:hidden}
-    .typeA{border:1px solid rgba(255,95,109,.35);background:linear-gradient(180deg, rgba(255,95,109,.18), rgba(255,255,255,.03))}
-    .typeB{border:1px solid rgba(88,166,255,.35);background:linear-gradient(180deg, rgba(88,166,255,.16), rgba(255,255,255,.03))}
-    .pill{
-      display:inline-block;padding:8px 12px;border-radius:999px;font-weight:800;font-size:.86rem;letter-spacing:.2px
-    }
-    .pill.red{background:rgba(255,95,109,.18);color:#ffd0d5;border:1px solid rgba(255,95,109,.28)}
-    .pill.blue{background:rgba(88,166,255,.18);color:#d6ebff;border:1px solid rgba(88,166,255,.28)}
-    .pill.yellow{background:rgba(255,209,102,.18);color:#ffe9b0;border:1px solid rgba(255,209,102,.28)}
-    .pill.green{background:rgba(112,225,161,.18);color:#d8ffe9;border:1px solid rgba(112,225,161,.28)}
-    ul{margin:14px 0 0 18px;padding:0}
-    li{margin:8px 0;color:var(--text)}
-    .muted{color:var(--muted)}
-    .memory{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:14px
-    }
-    .finger{
-      min-height:170px;text-align:center;padding:18px;border-radius:20px;border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03))
-    }
-    .finger .emoji{font-size:2rem;display:block;margin-bottom:12px}
-    .finger h4{margin:0 0 8px;font-size:1.05rem}
-    .finger p{margin:0;color:var(--muted)}
-    .pegadinha{
-      border-left:6px solid var(--yellow);
-      background:linear-gradient(90deg, rgba(255,209,102,.18), rgba(255,255,255,.03));
-      padding:20px;border-radius:18px
-    }
-    .algorithm{display:grid;gap:16px}
-    .flow{
-      display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center
-    }
-    .flow .box{
-      min-height:110px;padding:18px;border-radius:18px;background:var(--panel);border:1px solid rgba(255,255,255,.08);
-      display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800
-    }
-    .arrow{font-size:2rem;color:var(--yellow);text-align:center}
-    .decision{
-      display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px
-    }
-    .decision .yes,.decision .no{
-      padding:20px;border-radius:20px;border:1px solid rgba(255,255,255,.08);font-weight:800
-    }
-    .yes{background:linear-gradient(180deg, rgba(255,95,109,.2), rgba(255,255,255,.03))}
-    .no{background:linear-gradient(180deg, rgba(88,166,255,.2), rgba(255,255,255,.03))}
-    .flashcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .fc{
-      perspective:1000px;height:220px;cursor:pointer
-    }
-    .fc-inner{
-      position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d
-    }
-    .fc.flipped .fc-inner{transform:rotateY(180deg)}
-    .fc-face{
-      position:absolute;inset:0;border-radius:20px;padding:22px;backface-visibility:hidden;
-      display:flex;flex-direction:column;justify-content:center;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow)
-    }
-    .fc-front{background:linear-gradient(135deg, rgba(255,209,102,.18), rgba(255,255,255,.03))}
-    .fc-back{background:linear-gradient(135deg, rgba(112,225,161,.18), rgba(255,255,255,.03));transform:rotateY(180deg)}
-    .review{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .review .mini{padding:20px;border-radius:20px;background:var(--panel);border:1px solid rgba(255,255,255,.08)}
-    .footer-phrase{
-      margin-top:30px;text-align:center;padding:24px;border-radius:24px;
-      background:linear-gradient(135deg, rgba(255,95,109,.16), rgba(255,209,102,.16), rgba(88,166,255,.14));
-      border:1px solid rgba(255,255,255,.08);font-size:1.25rem;font-weight:900
-    }
-    .small{font-size:.92rem}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aorta Interativa – Stanford + Aneurisma</title>
 
-    .image-card{text-align:center;padding:24px}
-    .main-figure{
-      width:100%;
-      max-width:980px;
-      border-radius:24px;
-      box-shadow:0 22px 48px rgba(0,0,0,.38);
-      border:1px solid rgba(255,255,255,.10);
-      transition:transform .35s ease, box-shadow .35s ease;
-    }
-    .main-figure:hover{
-      transform:scale(1.01);
-      box-shadow:0 28px 60px rgba(0,0,0,.45);
-    }
-    .legend{
-      margin:16px auto 4px;
-      max-width:900px;
-      color:var(--muted);
-      font-size:1rem;
-      line-height:1.5;
-    }
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0b0f1a;
+    color:white;
+    text-align:center;
+}
 
-    .signature{margin-top:12px;text-align:right;color:rgba(255,255,255,.5);font-style:italic}
-    @media (max-width: 900px){
-      .hero-grid,.dual,.memory,.flashcards,.review,.decision,.flow{grid-template-columns:1fr}
-      .arrow{transform:rotate(90deg)}
-      .flow .box{min-height:80px}
-      .nav{display:none}
+.container{
+    padding:20px;
+    max-width:1100px;
+    margin:auto;
+}
+
+h1{
+    margin:20px 0 10px;
+    font-size:30px;
+}
+
+.sub{
+    color:#aab6c8;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#111827;
+    margin:20px 0;
+    padding:24px;
+    border-radius:18px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.35);
+}
+
+.section-title{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+button{
+    padding:14px 22px;
+    margin:8px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.green{background:#22c55e;color:white;}
+.red{background:#ef4444;color:white;}
+.blue{background:#3b82f6;color:white;}
+.orange{background:#f59e0b;color:black;}
+.gray{background:#374151;color:white;}
+.purple{background:#7c3aed;color:white;}
+
+.result{
+    margin-top:18px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.hidden{
+    display:none;
+}
+
+img{
+    width:95%;
+    max-width:900px;
+    border-radius:14px;
+    margin-top:14px;
+}
+
+.flash{
+    display:none;
+    background:#1f2937;
+    padding:14px;
+    border-radius:12px;
+    margin-top:12px;
+}
+
+.grid2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+@media(max-width:800px){
+    .grid2{
+        grid-template-columns:1fr;
     }
-  </style>
+}
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="brand">🫀 Stanford <span>Interativo</span></div>
-    <div class="nav">
-      <a href="#conceito">Conceito</a>
-      <a href="#comparacao">A vs B</a>
-      <a href="#figura-central">Figura</a>
-      <a href="#mnemonico">Mnemônico</a>
-      <a href="#pegadinha">Pegadinha</a>
-      <a href="#algoritmo">Algoritmo</a>
-      <a href="#flashcards">Flashcards</a>
-      <a href="#revisao">Revisão</a>
+
+<div class="container">
+
+<h1>🫀 Aorta Interativa</h1>
+<p class="sub">Dissecção (Stanford) + Intervenção no aneurisma em uma mesma tela</p>
+
+<div class="grid2">
+
+  <!-- BLOCO STANFORD -->
+  <div class="card">
+    <div class="section-title">🔥 Stanford</div>
+
+    <img src="stanford_na_mao.png" alt="Stanford">
+
+    <p><strong>Pergunta que decide tudo:</strong></p>
+    <p>Envolve a aorta ascendente?</p>
+
+    <button class="green" onclick="stanford('A')">SIM</button>
+    <button class="red" onclick="stanford('B')">NÃO</button>
+
+    <div id="resultadoStanford" class="result"></div>
+
+    <button class="blue" onclick="toggleFlash('flashStanford')">Mostrar flashcard</button>
+    <div id="flashStanford" class="flash">
+      Pegou a ascendente = <strong>Stanford A</strong> → cirurgia imediata.
     </div>
   </div>
 
-  <main class="container">
-    <section class="hero" id="conceito">
-      <h1>Dissecção de Aorta<br>Classificação de Stanford</h1>
-      <p class="subtitle">
-        A pergunta que manda no plantão e na prova: <strong>envolve a aorta ascendente?</strong>
-        Se sim, o cenário acende em vermelho cirúrgico. Se não, a rota costuma ser clínica.
-      </p>
+  <!-- BLOCO ANEURISMA -->
+  <div class="card">
+    <div class="section-title">⚡ Intervenção – Aneurisma</div>
 
-      <div class="hero-grid">
-        <div class="question-box">
-          <div>
-            ❓ <span class="accent">PERGUNTA QUE DECIDE TUDO</span><br><br>
-            ENVOLVE A<br>AORTA ASCENDENTE?
-          </div>
-        </div>
+    <p><strong>Pergunta 1:</strong></p>
+    <p>Tem síndrome genética?</p>
 
-        <div class="card">
-          <span class="pill yellow">Essência da classificação</span>
-          <ul>
-            <li><strong>Stanford A</strong> = envolve a <strong>aorta ascendente</strong></li>
-            <li><strong>Stanford B</strong> = <strong>não</strong> envolve a ascendente</li>
-          </ul>
-          <p class="muted">
-            A classificação não quer saber se a dissecção é “grande”, “longa” ou “dramática”.
-            Ela quer saber se o fogo entrou no andar nobre da aorta.
-          </p>
-        </div>
-      </div>
-      <div class="signature">André Rossanno</div>
-    </section>
-
-
-    <section id="figura-central">
-      <div class="section-title">🖼️ Figura central de memorização</div>
-      <div class="card image-card">
-        <img src="stanford_na_mao.png" alt="Stanford na mão" class="main-figure">
-        <p class="legend">
-          <strong>Stanford na mão:</strong> o 1º e o 2º dedos representam o território do <strong>tipo A</strong>,
-          porque envolvem a <strong>aorta ascendente</strong>. O 3º dedo (3A) e o 4º dedo (3B) representam o universo
-          do <strong>tipo B</strong>, em que a ascendente fica de fora. É uma figura-mestra para gravar a regra da prova:
-          <strong>pegou a ascendente, é A</strong>.
-        </p>
-      </div>
-    </section>
-
-
-    <section id="comparacao">
-      <div class="section-title">⚖️ Comparação lado a lado</div>
-      <div class="dual">
-        <article class="card typeA">
-          <span class="pill red">🔴 STANFORD A</span>
-          <h3>Envolve a aorta ascendente</h3>
-          <ul>
-            <li><strong>Definição:</strong> ascendente comprometida, com ou sem outros segmentos</li>
-            <li><strong>Riscos:</strong> ruptura, tamponamento, insuficiência aórtica aguda</li>
-            <li><strong>Conduta clássica:</strong> <strong>cirurgia imediata</strong></li>
-          </ul>
-          <p class="muted small">A ascendente é o salão do trono. Quando a dissecção pisa ali, a urgência ganha espada.</p>
-        </article>
-
-        <article class="card typeB">
-          <span class="pill blue">🔵 STANFORD B</span>
-          <h3>Não envolve a aorta ascendente</h3>
-          <ul>
-            <li><strong>Definição:</strong> comprometimento da aorta descendente, sem ascendente</li>
-            <li><strong>Riscos:</strong> malperfusão, progressão, isquemia visceral</li>
-            <li><strong>Conduta clássica:</strong> <strong>controle clínico</strong> ± tratamento endovascular</li>
-          </ul>
-          <p class="muted small">Aqui o castelo ainda não foi invadido pela porta principal. Primeiro entra o controle hemodinâmico.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="mnemonico">
-      <div class="section-title">🖐️ Mnemônico navegável: regra dos dedos</div>
-      <div class="memory">
-        <div class="finger">
-          <span class="emoji">👍</span>
-          <h4>Polegar</h4>
-          <p><strong>A total</strong><br>Se pega a ascendente, virou Stanford A.</p>
-        </div>
-        <div class="finger">
-          <span class="emoji">☝️</span>
-          <h4>Indicador</h4>
-          <p><strong>A</strong><br>Os dois primeiros dedos são o território da cirurgia.</p>
-        </div>
-        <div class="finger">
-          <span class="emoji">✌️</span>
-          <h4>Médio</h4>
-          <p><strong>B parcial</strong><br>Sem ascendente, entra no reino clínico.</p>
-        </div>
-        <div class="finger">
-          <span class="emoji">🤟</span>
-          <h4>Anelar</h4>
-          <p><strong>B extenso</strong><br>Extensão não muda a letra se a ascendente ficou de fora.</p>
-        </div>
-      </div>
-      <div class="card" style="margin-top:14px">
-        <span class="pill green">Frase de fixação</span>
-        <p style="font-size:1.15rem;font-weight:800;margin:14px 0 0">
-          “Os dois primeiros dedos mandam abrir o tórax. Os outros deixam controlar.”
-        </p>
-      </div>
-    </section>
-
-    <section id="pegadinha">
-      <div class="section-title">💣 Pegadinha de prova</div>
-      <div class="pegadinha">
-        <p style="font-size:1.2rem;font-weight:900;margin:0 0 8px">Erro clássico:</p>
-        <p style="margin:0 0 10px">
-          Achar que uma dissecção muito extensa automaticamente vira <strong>Stanford A</strong>.
-        </p>
-        <p style="margin:0;font-weight:800">
-          ✅ Correto: <strong>Stanford não classifica pela extensão.</strong> Classifica pela presença ou ausência de <strong>aorta ascendente</strong>.
-        </p>
-      </div>
-    </section>
-
-    <section id="algoritmo">
-      <div class="section-title">⚡ Algoritmo clínico</div>
-      <div class="algorithm">
-        <div class="flow">
-          <div class="box">Paciente com suspeita de dissecção</div>
-          <div class="arrow">➜</div>
-          <div class="box">Realizar angioTC<br><span class="muted small">(ou eco transesofágico se instável)</span></div>
-          <div class="arrow">➜</div>
-          <div class="box">Pergunta final:<br><strong>tem ascendente?</strong></div>
-        </div>
-
-        <div class="decision">
-          <div class="yes">
-            🔴 <strong>SIM</strong><br><br>
-            Stanford A<br>
-            <span class="muted">Cirurgia urgente</span>
-          </div>
-          <div class="no">
-            🔵 <strong>NÃO</strong><br><br>
-            Stanford B<br>
-            <span class="muted">Controle clínico ± TEVAR</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="flashcards">
-      <div class="section-title">🎯 Flashcards interativos</div>
-      <div class="flashcards">
-        <div class="fc" onclick="this.classList.toggle('flipped')">
-          <div class="fc-inner">
-            <div class="fc-face fc-front">
-              <span class="pill yellow">Pergunta</span>
-              <h3>O que define Stanford A?</h3>
-              <p class="muted">Toque para virar</p>
-            </div>
-            <div class="fc-face fc-back">
-              <span class="pill green">Resposta</span>
-              <h3>Envolvimento da aorta ascendente</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="fc" onclick="this.classList.toggle('flipped')">
-          <div class="fc-inner">
-            <div class="fc-face fc-front">
-              <span class="pill yellow">Pergunta</span>
-              <h3>Qual a conduta clássica no tipo A?</h3>
-              <p class="muted">Toque para virar</p>
-            </div>
-            <div class="fc-face fc-back">
-              <span class="pill green">Resposta</span>
-              <h3>Cirurgia imediata</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="fc" onclick="this.classList.toggle('flipped')">
-          <div class="fc-inner">
-            <div class="fc-face fc-front">
-              <span class="pill yellow">Pergunta</span>
-              <h3>Stanford considera extensão?</h3>
-              <p class="muted">Toque para virar</p>
-            </div>
-            <div class="fc-face fc-back">
-              <span class="pill green">Resposta</span>
-              <h3>Não. Só importa a ascendente.</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="revisao">
-      <div class="section-title">⏱️ Revisão ultrarrápida</div>
-      <div class="review">
-        <div class="mini">
-          <span class="pill red">10 segundos</span>
-          <p><strong>Ascendente = A = cirurgia.</strong></p>
-        </div>
-        <div class="mini">
-          <span class="pill blue">30 segundos</span>
-          <p><strong>A</strong> opera. <strong>B</strong> controla. Extensão não manda.</p>
-        </div>
-        <div class="mini">
-          <span class="pill yellow">1 minuto</span>
-          <p>Na suspeita de dissecção, pense em imagem e faça a pergunta soberana: <strong>há ascendente?</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer-phrase">
-      “Na dúvida, procure a ascendente. É ela que decide quem vai para o centro cirúrgico.”
+    <div id="step1">
+      <button class="green" onclick="genetico(true)">SIM</button>
+      <button class="red" onclick="genetico(false)">NÃO</button>
     </div>
-  </main>
+
+    <div id="step2" class="hidden">
+      <p><strong>Qual síndrome?</strong></p>
+      <button class="blue" onclick="aneurisma('marfan')">Marfan</button>
+      <button class="purple" onclick="aneurisma('loeys')">Loeys-Dietz</button>
+      <button class="orange" onclick="aneurisma('turner')">Turner</button>
+      <button class="gray" onclick="aneurisma('bicuspide')">Valva bicúspide</button>
+    </div>
+
+    <div id="resultadoAneurisma" class="result"></div>
+
+    <button class="blue" onclick="toggleFlash('flashAneurisma')">Mostrar flashcard</button>
+    <div id="flashAneurisma" class="flash">
+      Regra mental: <strong>5,5 → 5,0 → 4,5 → 4,0 → 2,5</strong><br><br>
+      Geral 5,5 • risco 5,0 • cirurgia valvar 4,5 • Loeys 4,0–4,5 • Turner 2,5 cm/m²
+    </div>
+  </div>
+
+</div>
+
+<!-- BLOCO PEGADINHAS -->
+<div class="card">
+  <div class="section-title">💀 Pegadinhas de Prova</div>
+  <p>1. Stanford não liga para extensão. Liga para a <strong>ascendente</strong>.</p>
+  <p>2. Turner não usa só cm absoluto. Usa <strong>cm/m²</strong>.</p>
+  <p>3. Loeys-Dietz opera mais cedo que Marfan.</p>
+  <p>4. Valva bicúspide muda o corte se houver fator de risco.</p>
+</div>
+
+<!-- BLOCO PALÁCIO -->
+<div class="card">
+  <div class="section-title">🏰 Palácio da Memória</div>
+  <p>
+    Imagine um corredor da aorta com duas portas:
+  </p>
+  <p>
+    🚪 Porta 1 = <strong>Dissecção</strong> → pergunta: pegou ascendente?
+  </p>
+  <p>
+    🚪 Porta 2 = <strong>Aneurisma</strong> → pergunta: qual o contexto e qual o corte?
+  </p>
+  <p>
+    No fundo do corredor há uma escada numérica:
+    <strong>5,5 → 5,0 → 4,5 → 4,0 → 2,5</strong>
+  </p>
+</div>
+
+<a href="index.html">
+  <button class="gray">⬅ Voltar ao menu</button>
+</a>
+
+</div>
+
+<script>
+function stanford(tipo){
+  const r = document.getElementById("resultadoStanford");
+  if(tipo === "A"){
+    r.innerHTML = "✅ STANFORD A → CIRURGIA IMEDIATA";
+    r.style.color = "#22c55e";
+  } else {
+    r.innerHTML = "🧠 STANFORD B → CLÍNICO / ENDOVASCULAR";
+    r.style.color = "#58a6ff";
+  }
+}
+
+function genetico(sim){
+  const step1 = document.getElementById("step1");
+  const step2 = document.getElementById("step2");
+  const r = document.getElementById("resultadoAneurisma");
+
+  step1.classList.add("hidden");
+
+  if(sim){
+    step2.classList.remove("hidden");
+    r.innerHTML = "";
+  } else {
+    step2.classList.add("hidden");
+    r.innerHTML = "👉 SEM síndrome genética: cirurgia se ≥ 5,5 cm";
+    r.style.color = "#22c55e";
+  }
+}
+
+function aneurisma(tipo){
+  const r = document.getElementById("resultadoAneurisma");
+
+  if(tipo === "marfan"){
+    r.innerHTML = "🧬 MARFAN → 5,0 cm (ou 4,5 cm se fatores de risco)";
+    r.style.color = "#58a6ff";
+  }
+  else if(tipo === "loeys"){
+    r.innerHTML = "⚠️ LOEYS-DIETZ → 4,0–4,5 cm";
+    r.style.color = "#f59e0b";
+  }
+  else if(tipo === "turner"){
+    r.innerHTML = "🧬 TURNER → 2,5 cm/m²";
+    r.style.color = "#22c55e";
+  }
+  else if(tipo === "bicuspide"){
+    r.innerHTML = "🫀 VALVA BICÚSPIDE → 5,5 cm (ou 5,0 cm se fatores de risco)";
+    r.style.color = "#ef4444";
+  }
+}
+
+function toggleFlash(id){
+  const el = document.getElementById(id);
+  el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+</script>
+
 </body>
 </html>
