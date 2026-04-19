@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stanford Interativo</title>
+<title>Atlas Mental André Rossanno</title>
 
 <style>
 body{
@@ -15,154 +15,88 @@ body{
 }
 
 h1{
-    margin:20px;
+    margin:30px 0 10px;
+    font-size:28px;
 }
 
-.container{
+p{
+    color:#aaa;
+    margin-bottom:30px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
     padding:20px;
-}
-
-img{
-    width:95%;
-    max-width:900px;
-    border-radius:16px;
-    margin-top:10px;
 }
 
 .card{
-    background:#11182a;
-    padding:20px;
-    border-radius:12px;
-    margin:15px auto;
-    max-width:800px;
-}
-
-button{
-    padding:15px 25px;
-    margin:10px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-.btn-sim{
-    background:#16a34a;
+    padding:30px;
+    border-radius:15px;
+    text-decoration:none;
     color:white;
-}
-
-.btn-nao{
-    background:#dc2626;
-    color:white;
-}
-
-.result{
-    margin-top:20px;
-    font-size:20px;
     font-weight:bold;
+    font-size:16px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.4);
+    transition:0.2s;
 }
 
-.flashcard{
-    display:none;
-    margin-top:15px;
-    padding:15px;
-    background:#1f2937;
-    border-radius:10px;
+.card:hover{
+    transform:scale(1.05);
 }
 
-.toggle{
-    background:#2563eb;
-    color:white;
-    margin-top:10px;
+.stanford{
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
 }
+
+.turner{
+    background:linear-gradient(45deg,#7c3aed,#4f46e5);
+}
+
+.iam{
+    background:linear-gradient(45deg,#f7971e,#ffd200);
+}
+
+.fa{
+    background:linear-gradient(45deg,#00c6ff,#0072ff);
+}
+
+.choque{
+    background:linear-gradient(45deg,#11998e,#38ef7d);
+}
+
 </style>
-
 </head>
 
 <body>
 
-<h1>🫀 Stanford Interativo</h1>
+<h1>🧠 Atlas Mental Interativo</h1>
+<p>Clique no tema para entrar no modo prova</p>
 
-<div class="container">
+<div class="grid">
 
-<img src="stanford_na_mao.png">
+<a href="stanford.html" class="card stanford">
+🫀 Dissecção de Aorta (Stanford)
+</a>
 
-<div class="card">
-<h2>🔥 Pergunta que decide tudo</h2>
-<p>Envolve a aorta ascendente?</p>
+<a href="turner.html" class="card turner">
+🧬 Síndrome de Turner
+</a>
 
-<button class="btn-sim" onclick="responder('A')">SIM</button>
-<button class="btn-nao" onclick="responder('B')">NÃO</button>
+<a href="#" class="card iam">
+🔥 Infarto (em breve)
+</a>
 
-<div id="resultado" class="result"></div>
-</div>
+<a href="#" class="card fa">
+⚡ Fibrilação Atrial (em breve)
+</a>
 
-<div class="card">
-<h2>🧠 Flashcards</h2>
-
-<button class="toggle" onclick="toggleFlash('f1')">Mostrar Regra de Ouro</button>
-<div id="f1" class="flashcard">
-👉 Pegou a ascendente = SEMPRE Stanford A
-</div>
-
-<button class="toggle" onclick="toggleFlash('f2')">Mostrar Conduta</button>
-<div id="f2" class="flashcard">
-A = Cirurgia imediata<br>
-B = Clínico / Endovascular
-</div>
-
-<button class="toggle" onclick="toggleFlash('f3')">Mostrar Pegadinha</button>
-<div id="f3" class="flashcard">
-Stanford NÃO liga pra extensão<br>
-👉 Só importa a ascendente
-</div>
+<a href="#" class="card choque">
+🚑 Choque (em breve)
+</a>
 
 </div>
 
-</div>
-
-<script>
-function responder(tipo){
-    let r = document.getElementById("resultado");
-
-    if(tipo === "A"){
-        r.innerHTML = "💥 STANFORD A → CIRURGIA IMEDIATA";
-        r.style.color = "#22c55e";
-    } else {
-        r.innerHTML = "🧠 STANFORD B → TRATAMENTO CLÍNICO / TEVAR";
-        r.style.color = "#38bdf8";
-    }
-}
-
-function toggleFlash(id){
-    let el = document.getElementById(id);
-    el.style.display = (el.style.display === "block") ? "none" : "block";
-}
-</script>
-<div class="card">
-<h2>🎯 Modo Prova</h2>
-<p>Paciente com dor torácica súbita, hipotenso, mediastino alargado.</p>
-
-<p><strong>A dissecção envolve a aorta ascendente?</strong></p>
-
-<button class="btn-sim" onclick="prova(true)">SIM</button>
-<button class="btn-nao" onclick="prova(false)">NÃO</button>
-
-<div id="feedback" class="result"></div>
-</div>
-
-<script>
-function prova(resposta){
-    let fb = document.getElementById("feedback");
-
-    if(resposta === true){
-        fb.innerHTML = "✅ CORRETO → STANFORD A → CIRURGIA";
-        fb.style.color = "#22c55e";
-    } else {
-        fb.innerHTML = "❌ ERRO → Pegou ascendente = é A!";
-        fb.style.color = "#ef4444";
-    }
-}
-</script>
 </body>
 </html>
