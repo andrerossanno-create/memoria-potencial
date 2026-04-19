@@ -6,98 +6,7 @@
 <title>Aorta Interativa – Stanford + Aneurisma</title>
 
 <style>
- .mapa-wrap{
-    position:relative;
-    width:100%;
-    max-width:1100px;
-    margin:20px auto;
-}
-
-.mapa-img{
-    width:100%;
-    border-radius:20px;
-    display:block;
-    box-shadow:0 0 25px rgba(0,0,0,0.35);
-}
-
-.hotspot{
-    position:absolute;
-    border:none;
-    border-radius:999px;
-    padding:10px 14px;
-    font-size:14px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 6px 18px rgba(0,0,0,0.35);
-    color:white;
-}
-
-.hs-degenerativo{
-    top:18%;
-    right:8%;
-    background:#2563eb;
-}
-
-.hs-bicuspide{
-    top:28%;
-    right:9%;
-    background:#f59e0b;
-    color:black;
-}
-
-.hs-marfan{
-    top:46%;
-    right:17%;
-    background:#a855f7;
-}
-
-.hs-loeys{
-    top:61%;
-    right:14%;
-    background:#22c55e;
-    color:black;
-}
-
-.hs-turner{
-    top:77%;
-    right:10%;
-    background:#ef4444;
-}
-
-.resultado-mapa{
-    margin-top:20px;
-    background:#1f2937;
-    padding:18px;
-    border-radius:16px;
-    font-size:20px;
-    font-weight:bold;
-    min-height:70px;<script>
-function mostrarResposta(tipo){
-    const box = document.getElementById("respostaMapa");
-
-    if(tipo === "degenerativo"){
-        box.innerHTML = "✅ Aneurisma degenerativo → intervenção em geral se ≥ 5,5 cm";
-        box.style.color = "#60a5fa";
-    }
-    else if(tipo === "bicuspide"){
-        box.innerHTML = "🫀 Valva aórtica bicúspide → 5,5 cm. Se fatores de risco, 5,0 cm. Se já vai trocar válvula, 4,5 cm.";
-        box.style.color = "#fbbf24";
-    }
-    else if(tipo === "marfan"){
-        box.innerHTML = "🧬 Marfan → 5,0 cm sem fatores de risco. Com fatores de risco, 4,5 cm.";
-        box.style.color = "#d8b4fe";
-    }
-    else if(tipo === "loeys"){
-        box.innerHTML = "⚠️ Loeys-Dietz → mais agressivo. Intervenção em torno de 4,0–4,5 cm.";
-        box.style.color = "#4ade80";
-    }
-    else if(tipo === "turner"){
-        box.innerHTML = "💀 Turner = pegadinha clássica. O principal é índice aórtico ≥ 2,5 cm/m², não só diâmetro absoluto.";
-        box.style.color = "#f87171";
-    }
-}
-</script>
-}body{
+body{
     margin:0;
     font-family:Arial, sans-serif;
     background:#0b0f1a;
@@ -182,6 +91,74 @@ img{
     gap:18px;
 }
 
+.mapa-wrap{
+    position:relative;
+    width:100%;
+    max-width:1100px;
+    margin:20px auto;
+}
+
+.mapa-img{
+    width:100%;
+    border-radius:20px;
+    display:block;
+    box-shadow:0 0 25px rgba(0,0,0,0.35);
+}
+
+.hotspot{
+    position:absolute;
+    border:none;
+    border-radius:999px;
+    padding:10px 14px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    color:white;
+}
+
+.hs-degenerativo{
+    top:18%;
+    right:8%;
+    background:#2563eb;
+}
+
+.hs-bicuspide{
+    top:28%;
+    right:9%;
+    background:#f59e0b;
+    color:black;
+}
+
+.hs-marfan{
+    top:46%;
+    right:17%;
+    background:#a855f7;
+}
+
+.hs-loeys{
+    top:61%;
+    right:14%;
+    background:#22c55e;
+    color:black;
+}
+
+.hs-turner{
+    top:77%;
+    right:10%;
+    background:#ef4444;
+}
+
+.resultado-mapa{
+    margin-top:20px;
+    background:#1f2937;
+    padding:18px;
+    border-radius:16px;
+    font-size:20px;
+    font-weight:bold;
+    min-height:70px;
+}
+
 @media(max-width:800px){
     .grid2{
         grid-template-columns:1fr;
@@ -198,7 +175,6 @@ img{
 
 <div class="grid2">
 
-  <!-- BLOCO STANFORD -->
   <div class="card">
     <div class="section-title">🔥 Stanford</div>
 
@@ -218,7 +194,6 @@ img{
     </div>
   </div>
 
-  <!-- BLOCO ANEURISMA -->
   <div class="card">
     <div class="section-title">⚡ Intervenção – Aneurisma</div>
 
@@ -249,7 +224,6 @@ img{
 
 </div>
 
-<!-- BLOCO PEGADINHAS -->
 <div class="card">
   <div class="section-title">💀 Pegadinhas de Prova</div>
   <p>1. Stanford não liga para extensão. Liga para a <strong>ascendente</strong>.</p>
@@ -258,22 +232,33 @@ img{
   <p>4. Valva bicúspide muda o corte se houver fator de risco.</p>
 </div>
 
-<!-- BLOCO PALÁCIO -->
 <div class="card">
   <div class="section-title">🏰 Palácio da Memória</div>
-  <p>
-    Imagine um corredor da aorta com duas portas:
-  </p>
-  <p>
-    🚪 Porta 1 = <strong>Dissecção</strong> → pergunta: pegou ascendente?
-  </p>
-  <p>
-    🚪 Porta 2 = <strong>Aneurisma</strong> → pergunta: qual o contexto e qual o corte?
-  </p>
-  <p>
-    No fundo do corredor há uma escada numérica:
+  <p>Imagine um corredor da aorta com duas portas:</p>
+  <p>🚪 Porta 1 = <strong>Dissecção</strong> → pergunta: pegou ascendente?</p>
+  <p>🚪 Porta 2 = <strong>Aneurisma</strong> → pergunta: qual o contexto e qual o corte?</p>
+  <p>No fundo do corredor há uma escada numérica:
     <strong>5,5 → 5,0 → 4,5 → 4,0 → 2,5</strong>
   </p>
+</div>
+
+<div class="card">
+  <h2>🫀 Aortopatia – Modo Prova Interativo</h2>
+  <p>Clique no tema da figura para testar sua memória.</p>
+
+  <div class="mapa-wrap">
+    <img src="orto1.png" alt="Aortopatia e Turner" class="mapa-img">
+
+    <button class="hotspot hs-degenerativo" onclick="mostrarResposta('degenerativo')">Degenerativo</button>
+    <button class="hotspot hs-bicuspide" onclick="mostrarResposta('bicuspide')">VAB</button>
+    <button class="hotspot hs-marfan" onclick="mostrarResposta('marfan')">Marfan</button>
+    <button class="hotspot hs-loeys" onclick="mostrarResposta('loeys')">Loeys-Dietz</button>
+    <button class="hotspot hs-turner" onclick="mostrarResposta('turner')">Turner</button>
+  </div>
+
+  <div id="respostaMapa" class="resultado-mapa">
+    Clique em um marcador da imagem.
+  </div>
 </div>
 
 <a href="index.html">
@@ -336,24 +321,32 @@ function toggleFlash(id){
   const el = document.getElementById(id);
   el.style.display = (el.style.display === "block") ? "none" : "block";
 }
+
+function mostrarResposta(tipo){
+  const box = document.getElementById("respostaMapa");
+
+  if(tipo === "degenerativo"){
+    box.innerHTML = "🔵 Degenerativo → ≥ 5,5 cm";
+    box.style.color = "#60a5fa";
+  }
+  else if(tipo === "bicuspide"){
+    box.innerHTML = "🟡 VAB → 5,5 cm | 5,0 com risco | 4,5 se cirurgia";
+    box.style.color = "#fbbf24";
+  }
+  else if(tipo === "marfan"){
+    box.innerHTML = "🟣 Marfan → 5,0 | 4,5 com risco";
+    box.style.color = "#d8b4fe";
+  }
+  else if(tipo === "loeys"){
+    box.innerHTML = "🟢 Loeys → 4,0–4,5 (mais agressivo)";
+    box.style.color = "#4ade80";
+  }
+  else if(tipo === "turner"){
+    box.innerHTML = "🔴 Turner → ≥ 2,5 cm/m² (PEGADINHA)";
+    box.style.color = "#f87171";
+  }
+}
 </script>
-<div class="card">
-  <h2>🫀 Aortopatia – Modo Prova Interativo</h2>
-  <p>Clique no tema da figura para testar sua memória.</p>
 
-  <div class="mapa-wrap">
-    <img src="orto1.png" alt="Aortopatia e Turner" class="mapa-img">
-
-    <button class="hotspot hs-degenerativo" onclick="mostrarResposta('degenerativo')">Degenerativo</button>
-    <button class="hotspot hs-bicuspide" onclick="mostrarResposta('bicuspide')">VAB</button>
-    <button class="hotspot hs-marfan" onclick="mostrarResposta('marfan')">Marfan</button>
-    <button class="hotspot hs-loeys" onclick="mostrarResposta('loeys')">Loeys-Dietz</button>
-    <button class="hotspot hs-turner" onclick="mostrarResposta('turner')">Turner</button>
-  </div>
-
-  <div id="respostaMapa" class="resultado-mapa">
-    Clique em um marcador da imagem.
-  </div>
-</div>
 </body>
 </html>
