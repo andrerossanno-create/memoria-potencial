@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Síndrome de Turner – Modo Prova</title>
+<title>Turner 2.0 – Modo Prova</title>
 
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial;
     background:#0b0f1a;
     color:white;
     text-align:center;
@@ -21,44 +21,39 @@ body{
 .card{
     background:#111827;
     margin:20px;
-    padding:25px;
+    padding:20px;
     border-radius:15px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.4);
+}
+
+img{
+    width:95%;
+    border-radius:10px;
+    margin-top:10px;
 }
 
 button{
-    padding:15px 25px;
+    padding:12px 20px;
     margin:10px;
     border:none;
     border-radius:10px;
-    font-size:16px;
     font-weight:bold;
     cursor:pointer;
 }
 
-.sim{
-    background:#22c55e;
-    color:white;
-}
+.verde{background:#22c55e;color:white;}
+.vermelho{background:#ef4444;color:white;}
+.azul{background:#3b82f6;color:white;}
+.voltar{background:#374151;color:white;}
 
-.nao{
-    background:#ef4444;
-    color:white;
-}
+.hidden{display:none;}
 
-.alerta{
-    background:#f59e0b;
-    color:black;
+.highlight{
+    color:#22c55e;
+    font-size:20px;
+    font-weight:bold;
 }
-
-.voltar{
-    background:#374151;
-    color:white;
-    margin-top:20px;
-}
-
-.hidden{
-    display:none;
+.alert{
+    color:#f59e0b;
 }
 </style>
 </head>
@@ -67,121 +62,136 @@ button{
 
 <div class="container">
 
-<h1>🧬 Síndrome de Turner – Modo Prova</h1>
+<h1>🧬 Síndrome de Turner – Nível Prova</h1>
 
-<!-- PERGUNTA CENTRAL -->
+<!-- IMAGEM FENÓTIPO -->
 <div class="card">
-<h2>🔥 Pergunta que decide a prova</h2>
-<p>Qual critério você usa para cirurgia da aorta?</p>
-
-<button class="sim" onclick="respostaErrada()">3,5 cm</button>
-<button class="nao" onclick="respostaCorreta()">Índice 2,5 cm/m²</button>
-
-<div id="resultado" class="hidden"></div>
+<h2>👁️ Fenótipo Clássico</h2>
+<img src="stanford_na_mao.png"> <!-- pode trocar depois -->
+<p>
+Baixa estatura • Pescoço alado • Tórax em escudo  
+Coarctação • Valva bicúspide
+</p>
 </div>
 
-<!-- EXPLICAÇÃO -->
-<div class="card hidden" id="explicacao">
+<!-- CONCEITO CENTRAL -->
+<div class="card">
 <h2>🧠 Regra de Ouro</h2>
-<p>👉 Em Turner, NÃO use valor absoluto isolado</p>
-<p>👉 Use índice: <b>2,5 cm/m²</b></p>
+<p>
+Turner NÃO usa valor absoluto isolado
+</p>
 
-<p style="color:#f59e0b;">
-💀 Pegadinha clássica: aula fala 3,5 cm → PROVA cobra índice
+<p class="highlight">
+👉 Usa índice: 2,5 cm/m²
 </p>
 </div>
 
-<!-- PALÁCIO DA MEMÓRIA -->
+<!-- PEGADINHA -->
 <div class="card">
-<h2>🏰 Palácio da Memória</h2>
+<h2>💀 Pegadinha de Prova</h2>
 
-<p>
-Imagine uma <b>princesa Turner</b> 🧬
+<p class="alert">
+Aula pode falar: 3,5 cm ❌
 </p>
 
 <p>
-Ela é pequena (baixa estatura)  
-→ então tudo nela é <b>indexado ao tamanho corporal</b>
+Mas prova gosta de:
 </p>
 
-<p>
-Ela segura uma régua quebrada com “3,5 cm” ❌  
-e joga fora…
+<p class="highlight">
+2,5 cm/m² ✔
 </p>
+</div>
 
-<p style="color:#22c55e;">
-E pega uma régua verde escrita:
-👉 2,5 cm/m² ✔
-</p>
+<!-- MODO PROVA -->
+<div class="card">
+<h2>🔥 Modo Prova</h2>
 
+<p>Qual critério correto na Turner?</p>
+
+<button class="vermelho" onclick="errado()">3,5 cm</button>
+<button class="verde" onclick="certo()">2,5 cm/m²</button>
+
+<div id="resposta" class="hidden"></div>
 </div>
 
 <!-- ALGORITMO -->
 <div class="card">
-<h2>⚡ Algoritmo Relâmpago</h2>
+<h2>⚡ Decisão Clínica</h2>
 
-<p>Paciente com Turner → avaliar aorta</p>
+<p>Índice ≥ 2,5 cm/m²?</p>
 
-<p>
-👉 Índice ≥ 2,5 cm/m² ?
-</p>
-
-<button class="sim" onclick="cirurgia()">SIM → CIRURGIA</button>
-<button class="nao" onclick="clinico()">NÃO → ACOMPANHAR</button>
+<button class="verde" onclick="cirurgia()">SIM</button>
+<button class="azul" onclick="seguimento()">NÃO</button>
 
 <div id="conduta" class="hidden"></div>
-
 </div>
 
 <!-- FLASHCARDS -->
 <div class="card">
 <h2>🧠 Flashcards</h2>
 
-<button onclick="mostrarFlash()">Mostrar</button>
+<button class="azul" onclick="flash()">Mostrar</button>
 
 <div id="flash" class="hidden">
-<p>📌 Turner usa valor absoluto? → NÃO</p>
-<p>📌 Corte cirúrgico? → 2,5 cm/m²</p>
-<p>📌 Pegadinha? → 3,5 cm NÃO é padrão</p>
+<p>Turner usa valor absoluto? → NÃO</p>
+<p>Corte clássico → 2,5 cm/m²</p>
+<p>Pegadinha → 3,5 cm não é padrão</p>
 </div>
+</div>
+
+<!-- PALÁCIO -->
+<div class="card">
+<h2>🏰 Palácio da Memória</h2>
+
+<p>
+Imagine uma princesa pequena segurando uma régua gigante…
+</p>
+
+<p>
+Ela joga fora a régua de 3,5 ❌
+</p>
+
+<p class="highlight">
+E usa a régua verde 2,5 cm/m² ✔
+</p>
 
 </div>
 
-<!-- BOTÃO VOLTAR -->
+<!-- VOLTAR -->
 <a href="index.html">
-<button class="voltar">⬅ Voltar ao Menu</button>
+<button class="voltar">⬅ Voltar</button>
 </a>
 
 </div>
 
 <script>
 
-function respostaErrada(){
-    let r = document.getElementById("resultado");
+function errado(){
+    let r = document.getElementById("resposta");
     r.classList.remove("hidden");
-    r.innerHTML = "❌ ERRADO! Isso é armadilha de aula!";
+    r.innerHTML = "❌ Pegadinha clássica!";
 }
 
-function respostaCorreta(){
-    let r = document.getElementById("resultado");
+function certo(){
+    let r = document.getElementById("resposta");
     r.classList.remove("hidden");
-    r.innerHTML = "✅ CORRETO! Turner usa índice corporal!";
-    document.getElementById("explicacao").classList.remove("hidden");
+    r.innerHTML = "✅ Correto!";
 }
 
 function cirurgia(){
     let c = document.getElementById("conduta");
     c.classList.remove("hidden");
-    c.innerHTML = "🚨 Indicar cirurgia!";
+    c.innerHTML = "🚨 Indicar cirurgia";
 }
 
-function clinico(){
+function seguimento(){
     let c = document.getElementById("conduta");
     c.classList.remove("hidden");
-    c.innerHTML = "🩺 Seguimento clínico!";
+    c.innerHTML = "🩺 Seguimento";
 }
 
-function mostrarFlash(){
+function flash(){
     document.getElementById("flash").classList.remove("hidden");
 }
 
