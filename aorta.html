@@ -6,7 +6,98 @@
 <title>Aorta Interativa – Stanford + Aneurisma</title>
 
 <style>
-body{
+ .mapa-wrap{
+    position:relative;
+    width:100%;
+    max-width:1100px;
+    margin:20px auto;
+}
+
+.mapa-img{
+    width:100%;
+    border-radius:20px;
+    display:block;
+    box-shadow:0 0 25px rgba(0,0,0,0.35);
+}
+
+.hotspot{
+    position:absolute;
+    border:none;
+    border-radius:999px;
+    padding:10px 14px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    color:white;
+}
+
+.hs-degenerativo{
+    top:18%;
+    right:8%;
+    background:#2563eb;
+}
+
+.hs-bicuspide{
+    top:28%;
+    right:9%;
+    background:#f59e0b;
+    color:black;
+}
+
+.hs-marfan{
+    top:46%;
+    right:17%;
+    background:#a855f7;
+}
+
+.hs-loeys{
+    top:61%;
+    right:14%;
+    background:#22c55e;
+    color:black;
+}
+
+.hs-turner{
+    top:77%;
+    right:10%;
+    background:#ef4444;
+}
+
+.resultado-mapa{
+    margin-top:20px;
+    background:#1f2937;
+    padding:18px;
+    border-radius:16px;
+    font-size:20px;
+    font-weight:bold;
+    min-height:70px;<script>
+function mostrarResposta(tipo){
+    const box = document.getElementById("respostaMapa");
+
+    if(tipo === "degenerativo"){
+        box.innerHTML = "✅ Aneurisma degenerativo → intervenção em geral se ≥ 5,5 cm";
+        box.style.color = "#60a5fa";
+    }
+    else if(tipo === "bicuspide"){
+        box.innerHTML = "🫀 Valva aórtica bicúspide → 5,5 cm. Se fatores de risco, 5,0 cm. Se já vai trocar válvula, 4,5 cm.";
+        box.style.color = "#fbbf24";
+    }
+    else if(tipo === "marfan"){
+        box.innerHTML = "🧬 Marfan → 5,0 cm sem fatores de risco. Com fatores de risco, 4,5 cm.";
+        box.style.color = "#d8b4fe";
+    }
+    else if(tipo === "loeys"){
+        box.innerHTML = "⚠️ Loeys-Dietz → mais agressivo. Intervenção em torno de 4,0–4,5 cm.";
+        box.style.color = "#4ade80";
+    }
+    else if(tipo === "turner"){
+        box.innerHTML = "💀 Turner = pegadinha clássica. O principal é índice aórtico ≥ 2,5 cm/m², não só diâmetro absoluto.";
+        box.style.color = "#f87171";
+    }
+}
+</script>
+}body{
     margin:0;
     font-family:Arial, sans-serif;
     background:#0b0f1a;
