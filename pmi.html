@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMI Perioperatório | TEC Preparatório</title>
+  <meta property="og:title" content="🫀 PMI Perioperatório – TEC Preparatório">
+  <meta property="og:description" content="Infarto perioperatório: conceito, diagnóstico, algoritmo, pegadinhas e quiz estilo TEC.">
+  <meta property="og:url" content="https://memoria-potencial.vercel.app/pmi.html">
+  <style>
+    :root {
+      --bg1: #071226;
+      --bg2: #0d1f3a;
+      --panel: rgba(12,22,42,0.78);
+      --panel-2: rgba(255,255,255,0.06);
+      --line: rgba(255,255,255,0.12);
+      --text: #eef4ff;
+      --muted: #a8b8d8;
+      --blue: #4db6ff;
+      --pink: #ff3f8e;
+      --violet: #8f6bff;
+      --green: #37d39a;
+      --yellow: #ffd166;
+      --red: #ff5d73;
+      --shadow: 0 16px 40px rgba(0,0,0,0.35);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(77,182,255,0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,63,142,0.20), transparent 35%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+    }
+
+    .grid-bg::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(1280px, calc(100% - 28px));
+      margin: 18px auto 40px;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(13,31,58,0.88), rgba(31,13,58,0.88));
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 520px; height: 520px;
+      right: -180px; top: -180px;
+      background: radial-gradient(circle, rgba(255,63,142,0.25), transparent 60%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.05;
+      margin: 14px 0 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--muted);
+      max-width: 900px;
+      line-height: 1.7;
+    }
+
+    .signature {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .mini {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 130px;
+    }
+
+    .mini .kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--blue);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .mini strong { display: block; font-size: 20px; margin-bottom: 8px; }
+    .mini span { color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      margin: 16px 0 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(9,16,32,0.85);
+      backdrop-filter: blur(18px);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-wrap {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .nav a:hover {
+      transform: translateY(-2px);
+      background: rgba(77,182,255,0.12);
+      border-color: rgba(77,182,255,0.28);
+    }
+
+    /* SECTIONS */
+    section {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .section-head {
+      padding: 24px 24px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 32px);
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 10px 0 0;
+    }
+
+    .section-body { padding: 24px; }
+
+    .two-col { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three-col { display: grid; gap: 16px; grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    .card {
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .card h3 { margin: 0 0 12px; font-size: 18px; }
+    .card p, .card li { color: var(--muted); line-height: 1.7; font-size: 15px; }
+    .card ul { margin: 0; padding-left: 18px; }
+
+    .callout {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid transparent;
+      margin-top: 14px;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .c-blue   { background: rgba(77,182,255,0.11);  border-color: rgba(77,182,255,0.24);  color: #b8dcff; }
+    .c-pink   { background: rgba(255,63,142,0.10);  border-color: rgba(255,63,142,0.24);  color: #ffb3d0; }
+    .c-green  { background: rgba(55,211,154,0.11);  border-color: rgba(55,211,154,0.24);  color: #a0f0d8; }
+    .c-yellow { background: rgba(255,209,102,0.10); border-color: rgba(255,209,102,0.24); color: #ffe099; }
+    .c-red    { background: rgba(255,93,115,0.11);  border-color: rgba(255,93,115,0.24);  color: #ffb3bb; }
+    .c-violet { background: rgba(143,107,255,0.12); border-color: rgba(143,107,255,0.24); color: #cfc0ff; }
+
+    /* SCENE */
+    .scene {
+      position: relative;
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(77,182,255,0.08), rgba(255,63,142,0.08));
+    }
+
+    .scene p {
+      position: relative;
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.9;
+      color: #f0f4ff;
+    }
+
+    /* MEMORY PALACE */
+    .memory-palace {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .room {
+      padding: 22px;
+      border-radius: 24px;
+      min-height: 200px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .room .num {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      box-shadow: 0 8px 22px rgba(77,182,255,0.18);
+    }
+
+    .room h3 { font-size: 16px; margin-bottom: 10px; }
+    .room p  { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+    /* FLOW */
+    .flow { display: grid; gap: 14px; }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .flow-step .dot {
+      width: 56px; height: 56px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      background: linear-gradient(135deg, rgba(77,182,255,0.22), rgba(143,107,255,0.22));
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .flow-step strong { font-size: 15px; display: block; margin-bottom: 6px; }
+    .flow-step p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 0; }
+
+    /* ALGORITHM */
+    .algorithm { display: grid; gap: 14px; }
+
+    .algo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .node {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      min-width: 160px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .node.n-red    { border-color: rgba(255,93,115,0.4);  background: rgba(255,93,115,0.12);  }
+    .node.n-blue   { border-color: rgba(77,182,255,0.4);  background: rgba(77,182,255,0.12);  }
+    .node.n-green  { border-color: rgba(55,211,154,0.4);  background: rgba(55,211,154,0.12);  }
+    .node.n-violet { border-color: rgba(143,107,255,0.4); background: rgba(143,107,255,0.12); }
+    .node.n-pink   { border-color: rgba(255,63,142,0.4);  background: rgba(255,63,142,0.12);  }
+
+    .arrow { font-size: 24px; color: var(--blue); }
+
+    /* DANGER LIST */
+    .danger-list { display: grid; gap: 12px; }
+
+    .danger-item {
+      border-radius: 18px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,93,115,0.25);
+      background: rgba(255,93,115,0.07);
+    }
+
+    .danger-item strong { display: inline-block; margin-bottom: 8px; color: #ffb3bb; }
+    .danger-item div { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+    /* FLASHCARDS */
+    .flash-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .flashcard { perspective: 1000px; min-height: 180px; }
+
+    .flash-inner {
+      position: relative;
+      width: 100%; min-height: 180px;
+      transition: transform .7s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .flashcard.flipped .flash-inner { transform: rotateY(180deg); }
+
+    .flash-face {
+      position: absolute; inset: 0;
+      padding: 22px;
+      border-radius: 24px;
+      backface-visibility: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .flash-face.back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, rgba(77,182,255,0.14), rgba(255,63,142,0.14));
+    }
+
+    .flash-face .tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--yellow);
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .flash-face strong { font-size: 20px; line-height: 1.35; margin-bottom: 10px; display: block; }
+    .flash-face p { color: var(--muted); line-height: 1.7; margin: 0; font-size: 14px; }
+
+    /* QA */
+    .qa { display: grid; gap: 14px; }
+
+    details {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    summary { cursor: pointer; font-weight: 700; line-height: 1.5; font-size: 15px; }
+    details p { color: var(--muted); line-height: 1.8; margin: 12px 0 0; font-size: 14px; }
+
+    /* REVIEW BAR */
+    .review-bar { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .quiz-progress { font-size: 14px; color: var(--muted); }
+
+    .quiz-score {
+      background: rgba(77,182,255,0.15);
+      border: 1px solid rgba(77,182,255,0.3);
+      color: var(--blue);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .quiz-question {
+      background: rgba(77,182,255,0.08);
+      border-left: 4px solid var(--blue);
+      padding: 18px 20px;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #e8f4f8;
+      line-height: 1.7;
+    }
+
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+
+    .quiz-option {
+      background: rgba(255,255,255,0.04);
+      border: 2px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 1.5;
+    }
+
+    .quiz-option:hover:not(:disabled) {
+      border-color: rgba(77,182,255,0.5);
+      background: rgba(77,182,255,0.10);
+      color: white;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correta {
+      border-color: var(--green);
+      background: rgba(55,211,154,0.12);
+      color: var(--green);
+    }
+
+    .quiz-option.errada {
+      border-color: var(--red);
+      background: rgba(255,93,115,0.12);
+      color: var(--red);
+    }
+
+    .quiz-option:disabled { cursor: not-allowed; }
+
+    .quiz-feedback {
+      padding: 14px 18px;
+      border-radius: 14px;
+      margin-top: 8px;
+      font-size: 14px;
+      line-height: 1.7;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; animation: fadeIn 0.3s ease; }
+    .quiz-feedback.acerto { background: rgba(55,211,154,0.10); border-left: 4px solid var(--green); color: #a0f0d8; }
+    .quiz-feedback.erro   { background: rgba(255,93,115,0.10); border-left: 4px solid var(--red);   color: #ffb3bb; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 16px;
+    }
+
+    .btn-quiz {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+    }
+
+    .btn-quiz:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(59,130,246,0.3); }
+    .btn-quiz.green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+    .quiz-resultado {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .quiz-resultado .nota {
+      font-size: 3.5em;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .quiz-resultado p { color: var(--muted); font-size: 16px; margin-bottom: 20px; }
+
+    .hidden { display: none !important; }
+
+    /* FOOTER */
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover { background: rgba(77,182,255,0.12); color: white; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1050px) {
+      .hero-cards, .three-col, .memory-palace, .flash-wrap { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 20px; }
+      .section-head, .section-body { padding: 18px; }
+      .hero-cards, .three-col, .memory-palace, .flash-wrap { grid-template-columns: 1fr; }
+      .flow-step { grid-template-columns: 1fr; }
+      .node { min-width: unset; width: 100%; }
+      .arrow { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="shell">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="badge">🫀 Aula navegável • PMI perioperatório • TEC 2025</div>
+    <h1>Infarto perioperatório:<br>sem drama, sem neblina, sem esquecimento</h1>
+    <p class="lead">Conceito central, história cinematográfica, palácio da memória, algoritmo clínico, pegadinhas, flashcards, questões e quiz estilo TEC.</p>
+    <div class="signature">André Rossanno</div>
+
+    <div class="hero-cards">
+      <div class="mini">
+        <div class="kicker">Ideia central</div>
+        <strong>PMI é silencioso</strong>
+        <span>Na maioria das vezes, o paciente não vai gritar dor torácica. Quem fala é a troponina.</span>
+      </div>
+      <div class="mini">
+        <div class="kicker">Marcador-chave</div>
+        <strong>Troponina</strong>
+        <span>Monitorar no pré-op e no D1 e D2 do pós-op em pacientes de risco.</span>
+      </div>
+      <div class="mini">
+        <div class="kicker">Pegadinha clássica</div>
+        <strong>Nem toda elevação é tipo 1</strong>
+        <span>Tipo 2, por desequilíbrio oferta-demanda, é o monarca do perioperatório.</span>
+      </div>
+      <div class="mini">
+        <div class="kicker">Conduta-mãe</div>
+        <strong>Tratar a causa</strong>
+        <span>Anemia, taquiarritmia, hipotensão, sepse e IC entram no palco primeiro.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-wrap">
+      <a href="#conceito">Conceito</a>
+      <a href="#historia">História</a>
+      <a href="#palacio">Palácio</a>
+      <a href="#diagnostico">Diagnóstico</a>
+      <a href="#algoritmo">Algoritmo</a>
+      <a href="#pegadinhas">Pegadinhas</a>
+      <a href="#tratamento">Tratamento</a>
+      <a href="#flashcards">Flashcards</a>
+      <a href="#questoes">Questões</a>
+      <a href="#quiz">Quiz TEC</a>
+      <a href="#revisao">Revisão</a>
+    </div>
+  </nav>
+
+  <!-- CONCEITO -->
+  <section id="conceito">
+    <div class="section-head">
+      <h2>🎯 Conceito central</h2>
+      <p>O infarto ou injúria miocárdica perioperatória é traiçoeiro. O paciente operou, está sedado, analgesiando, com dor incisional, e o coração pode estar sofrendo sem o clássico teatro do IAM.</p>
+    </div>
+    <div class="section-body two-col">
+      <div class="card">
+        <h3>Definição tatuada na memória</h3>
+        <p><strong>PMI</strong> é a injúria miocárdica detectada no período perioperatório, identificada por elevação de troponina com dinâmica compatível, frequentemente na ausência de dor típica.</p>
+        <div class="callout c-blue"><strong>Frase-âncora:</strong> no perioperatório, o paciente pode ficar mudo. A troponina não.</div>
+      </div>
+      <div class="card">
+        <h3>O que mais cai no TEC</h3>
+        <ul>
+          <li>É frequentemente <strong>silencioso</strong>.</li>
+          <li>O marcador mais importante é a <strong>troponina</strong>.</li>
+          <li>ECG ajuda, mas não é o único farol.</li>
+          <li><strong>IAM tipo 2</strong> é mais comum que tipo 1 no perioperatório.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTÓRIA -->
+  <section id="historia">
+    <div class="section-head">
+      <h2>🎬 História cinematográfica</h2>
+      <p>Use essa cena mental antes da prova. Ela organiza todo o raciocínio e transforma fisiopatologia em imagem viva.</p>
+    </div>
+    <div class="section-body">
+      <div class="scene">
+        <p>O centro cirúrgico se apaga. O paciente chega ao pós-operatório em silêncio. A analgesia cobre a dor, a incisão distrai o examinador, a anestesia apaga a narrativa. Enquanto isso, a hemoglobina cai, a frequência sobe, a pressão balança e a coronária entra em dívida. No palco não há peito apertando, não há grito, não há gesto clássico. Só um laboratório pequeno e preciso levanta a mão no escuro: <strong>troponina</strong>. Ela é a testemunha ocular do crime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALÁCIO -->
+  <section id="palacio">
+    <div class="section-head">
+      <h2>🏰 Palácio da memória</h2>
+      <p>Visualize três salas. Caminhar por elas é praticamente revisar a aula inteira sem olhar papel.</p>
+    </div>
+    <div class="section-body">
+      <div class="memory-palace">
+        <div class="room">
+          <div class="num">1</div>
+          <h3>Sala do pré-operatório</h3>
+          <p>Paciente de risco entrando na cirurgia. Na porta há um tubo brilhando: <strong>troponina basal</strong>.</p>
+          <div class="callout c-violet" style="margin-top:12px; font-size:13px;">Pré-op: colher troponina e ECG nos pacientes de risco em cirurgia não cardíaca de risco intermediário/alto.</div>
+        </div>
+        <div class="room">
+          <div class="num">2</div>
+          <h3>Sala do pós-operatório</h3>
+          <p>Dois relógios pendurados: <strong>D1</strong> e <strong>D2</strong>. Em cada um, nova coleta de troponina e novo ECG.</p>
+          <div class="callout c-blue" style="margin-top:12px; font-size:13px;">A monitorização seriada é o detector de incêndio que toca antes da fumaça clínica aparecer.</div>
+        </div>
+        <div class="room">
+          <div class="num">3</div>
+          <h3>Sala do detetive</h3>
+          <p>Uma lupa enorme: <strong>delta absoluto + valor acima do percentil 99</strong>.</p>
+          <div class="callout c-pink" style="margin-top:12px; font-size:13px;">Sem dor não exclui. Sem supra não exclui. A prova ama essa pegadinha.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section id="diagnostico">
+    <div class="section-head">
+      <h2>🧪 Diagnóstico e monitorização</h2>
+      <p>A troponina reina, mas contexto e dinâmica decidem o sentido do achado.</p>
+    </div>
+    <div class="section-body two-col">
+      <div class="card">
+        <h3>Monitorização no perioperatório</h3>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="dot">🩺</div>
+            <div><strong>1. Identifique quem merece vigilância</strong><p>Pacientes de risco intermediário ou alto em cirurgia não cardíaca de risco intermediário/alto.</p></div>
+          </div>
+          <div class="flow-step">
+            <div class="dot">🔬</div>
+            <div><strong>2. Colha troponina</strong><p>Pré-operatório, primeiro e segundo dia do pós-operatório.</p></div>
+          </div>
+          <div class="flow-step">
+            <div class="dot">📈</div>
+            <div><strong>3. Faça ECG</strong><p>Pré-op, D1 e D2, interpretando no contexto clínico e metabólico do pós-op.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Como pensar o diagnóstico</h3>
+        <ul>
+          <li>Pesquisar <strong>variação absoluta da troponina</strong>.</li>
+          <li>Verificar se há pelo menos um valor <strong>acima do percentil 99</strong>.</li>
+          <li>Ausência de valor basal não destrói o diagnóstico.</li>
+          <li>Usar sintomas, ECG, Hb, eco e contexto para distinguir <strong>tipo 1</strong>, <strong>tipo 2</strong> e causas não coronarianas.</li>
+        </ul>
+        <div class="callout c-yellow"><strong>Detalhe de prova:</strong> o diagnóstico perioperatório é mais fisiológico do que dramático. Menos narrativa de dor, mais leitura objetiva do dano miocárdico.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALGORITMO -->
+  <section id="algoritmo">
+    <div class="section-head">
+      <h2>🚦 Algoritmo clínico mental</h2>
+      <p>Fluxo simplificado para memorizar e aplicar rapidamente.</p>
+    </div>
+    <div class="section-body">
+      <div class="algorithm">
+        <div class="algo-row">
+          <div class="node n-red">Troponina subiu<br>no perioperatório</div>
+          <div class="arrow">→</div>
+          <div class="node n-blue">Avaliar clínica,<br>ECG e hemoglobina</div>
+        </div>
+        <div class="algo-row">
+          <div class="node n-pink">Supra de ST, infra com angina<br>ou quadro compatível?</div>
+          <div class="arrow">→</div>
+          <div class="node n-red">Pensar IAM tipo 1</div>
+          <div class="arrow">→</div>
+          <div class="node">Estratégia invasiva +<br>antitrombótico s/ risco sangramento</div>
+        </div>
+        <div class="algo-row">
+          <div class="node n-violet">Sem quadro claro de tipo 1?</div>
+          <div class="arrow">→</div>
+          <div class="node">Buscar causa não cardíaca<br>ou cardíaca não coronariana</div>
+        </div>
+        <div class="algo-row">
+          <div class="node">Taquiarritmia</div>
+          <div class="node">IC aguda</div>
+          <div class="node">Anemia</div>
+          <div class="node">Hipotensão / Sepse</div>
+        </div>
+        <div class="algo-row">
+          <div class="node n-green">Corrigir causa base<br>e otimizar clínica</div>
+          <div class="arrow">→</div>
+          <div class="node">Estatina + individualizar<br>investigação coronariana</div>
+        </div>
+      </div>
+      <div class="callout c-green" style="margin-top:18px;"><strong>Regra de bolso:</strong> no perioperatório, primeiro pergunte se é <strong>placa rompida</strong> ou <strong>coração sofrendo por desequilíbrio oferta-demanda</strong>.</div>
+    </div>
+  </section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas">
+    <div class="section-head">
+      <h2>💣 Pegadinhas de prova</h2>
+      <p>Aqui mora a banca. Essas frases se vestem de verdade elegante, mas tropeçam na lógica clínica.</p>
+    </div>
+    <div class="section-body">
+      <div class="danger-list">
+        <div class="danger-item"><strong>"Sem dor torácica, então não é infarto."</strong><div>Errado. O IAM perioperatório costuma ser silencioso por analgesia, anestesia e dor incisional.</div></div>
+        <div class="danger-item"><strong>"Troponina alta sempre significa IAM tipo 1."</strong><div>Errado. No perioperatório, tipo 2 e outras causas de injúria podem ser mais prováveis.</div></div>
+        <div class="danger-item"><strong>"ECG sem alteração exclui infarto."</strong><div>Errado. O ECG pode ser pouco sensível e sofrer ruído de taquicardia e distúrbios do pós-operatório.</div></div>
+        <div class="danger-item"><strong>"A conduta inicial é sempre dar antiplaquetário."</strong><div>Errado. Há contexto cirúrgico e risco de sangramento. P2Y12 pode ser melhor definido após anatomia coronariana.</div></div>
+        <div class="danger-item"><strong>"Anemia no pós-op é detalhe de laboratório."</strong><div>Errado. Em PMI, anemia participa do desequilíbrio oferta-demanda. Hb &lt; 8 g/dL puxa transfusão visando Hb &gt; 8 g/dL.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRATAMENTO -->
+  <section id="tratamento">
+    <div class="section-head">
+      <h2>💊 Tratamento e raciocínio prático</h2>
+      <p>O tratamento depende da cara do inimigo. Nem todo PMI veste a armadura de síndrome coronariana tipo 1.</p>
+    </div>
+    <div class="section-body three-col">
+      <div class="card">
+        <h3>🔴 Quando pensar em tipo 1</h3>
+        <ul>
+          <li>Supra de ST.</li>
+          <li>Infra de ST com quadro isquêmico convincente.</li>
+          <li>Maior suspeita de ruptura de placa e trombose.</li>
+        </ul>
+        <div class="callout c-red">Estratégia mais invasiva, com cateterismo e terapia antitrombótica conforme equilíbrio isquemia/sangramento.</div>
+      </div>
+      <div class="card">
+        <h3>🔵 Quando pensar em tipo 2</h3>
+        <ul>
+          <li>Anemia.</li>
+          <li>Taquiarritmia.</li>
+          <li>Hipotensão.</li>
+          <li>Sepse / inflamação sistêmica.</li>
+          <li>Insuficiência cardíaca aguda.</li>
+        </ul>
+        <div class="callout c-blue">O centro da conduta é corrigir a causa. Não adianta caçar trombo se o coração está seco de oferta.</div>
+      </div>
+      <div class="card">
+        <h3>🟡 Pérolas do perioperatório</h3>
+        <ul>
+          <li>Estatina entra cedo como otimização.</li>
+          <li>Clopidogrel pode ser preferível entre P2Y12 em alguns contextos.</li>
+          <li>P2Y12 pode ser melhor individualizado após o cateterismo.</li>
+          <li>Investigação não invasiva pode ser feita antes da alta ou ambulatorial, conforme estabilidade.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards">
+    <div class="section-head">
+      <h2>🧠 Flashcards interativos</h2>
+      <p>Toque nos cartões para virar. Revisão rápida antes da prova.</p>
+    </div>
+    <div class="section-body">
+      <div class="flash-wrap">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face front"><div class="tag">Flashcard 1</div><strong>Qual é o principal marcador do PMI?</strong><p>Toque para ver.</p></div>
+            <div class="flash-face back"><div class="tag">Resposta</div><strong>Troponina</strong><p>Monitorização seriada no pré-op, D1 e D2 do pós-op, nos pacientes de maior risco.</p></div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face front"><div class="tag">Flashcard 2</div><strong>O IAM perioperatório costuma dar dor típica?</strong><p>Toque para ver.</p></div>
+            <div class="flash-face back"><div class="tag">Resposta</div><strong>Na maioria das vezes, não</strong><p>É frequentemente silencioso por analgesia, anestesia e confusão clínica do pós-op.</p></div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face front"><div class="tag">Flashcard 3</div><strong>Qual tipo de IAM é mais comum no perioperatório?</strong><p>Toque para ver.</p></div>
+            <div class="flash-face back"><div class="tag">Resposta</div><strong>IAM tipo 2</strong><p>Predomina o desequilíbrio entre oferta e demanda de O₂, não ruptura de placa.</p></div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face front"><div class="tag">Flashcard 4</div><strong>Quais causas devem ser perseguidas primeiro no tipo 2?</strong><p>Toque para ver.</p></div>
+            <div class="flash-face back"><div class="tag">Resposta</div><strong>Anemia, taquiarritmia, IC aguda, hipotensão e sepse</strong><p>São os motores do tipo 2 no perioperatório.</p></div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face front"><div class="tag">Flashcard 5</div><strong>Quando considerar transfusão no PMI?</strong><p>Toque para ver.</p></div>
+            <div class="flash-face back"><div class="tag">Resposta</div><strong>Hb &lt; 8 g/dL</strong><p>Transfundir visando Hb &gt; 8 g/dL, quando anemia for causa contributiva do desequilíbrio isquêmico.</p></div>
+          </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flash-inner">
+            <div class="flash-face front"><div class="tag">Flashcard 6</div><strong>ECG normal exclui PMI?</strong><p>Toque para ver.</p></div>
+            <div class="flash-face back"><div class="tag">Resposta</div><strong>Não</strong><p>O ECG ajuda, mas não é soberano. A troponina seriada e o contexto pesam muito mais.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes">
+    <div class="section-head">
+      <h2>❓ Questões comentadas</h2>
+      <p>Tente responder mentalmente antes de abrir o gabarito.</p>
+    </div>
+    <div class="section-body">
+      <div class="qa">
+        <details><summary>1. Paciente de 72 anos, D1 de pós-op de cirurgia abdominal, sem dor torácica, troponina elevada, ECG sem supra. Qual é a melhor atitude inicial?</summary><p><strong>Resposta:</strong> investigar causa e otimizar clínica. Não presumir IAM tipo 1 de saída. No perioperatório, tipo 2 e outras causas são muito prevalentes.</p></details>
+        <details><summary>2. Em paciente de risco intermediário ou alto em cirurgia não cardíaca de risco intermediário/alto, quando monitorar troponina?</summary><p><strong>Resposta:</strong> no pré-operatório, no primeiro e segundo dia do pós-operatório.</p></details>
+        <details><summary>3. Qual alternativa melhor representa o IAM tipo 2 perioperatório?</summary><p><strong>Resposta:</strong> desequilíbrio entre oferta e demanda de O₂, com gatilhos como anemia, taquiarritmia, hipotensão, sepse ou IC.</p></details>
+        <details><summary>4. O que mais pesa a favor de IAM tipo 1 no perioperatório?</summary><p><strong>Resposta:</strong> quadro mais francamente isquêmico, supra de ST ou alta suspeita de ruptura de placa, lembrando do risco de sangramento.</p></details>
+        <details><summary>5. Pós-op com troponina elevada, taquiarritmia e Hb 7,2 g/dL. Qual o raciocínio?</summary><p><strong>Resposta:</strong> pensar fortemente em mecanismo tipo 2 e corrigir as causas precipitantes: controle do ritmo/frequência e correção da anemia.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ TEC -->
+  <section id="quiz">
+    <div class="section-head">
+      <h2>🧠 Quiz TEC – PMI Perioperatório</h2>
+      <p>8 questões no estilo real do TEC. Escolha a alternativa e veja o feedback imediato.</p>
+    </div>
+    <div class="section-body">
+
+      <div id="quizArea">
+        <div class="quiz-header">
+          <span class="quiz-progress" id="quizProgresso">Questão 1 de 8</span>
+          <span class="quiz-score" id="quizPlacar">✅ 0 &nbsp; ❌ 0</span>
+        </div>
+        <div class="quiz-question" id="quizPergunta"></div>
+        <div class="quiz-options" id="quizOpcoes"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div class="quiz-nav">
+          <button class="btn-quiz hidden" id="btnProxima" onclick="proximaQuestao()">Próxima →</button>
+        </div>
+      </div>
+
+      <div id="quizResultado" class="quiz-resultado hidden">
+        <div class="nota" id="notaFinal"></div>
+        <p id="mensagemFinal"></p>
+        <button class="btn-quiz green" onclick="reiniciarQuiz()">🔄 Refazer Quiz</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REVISÃO -->
+  <section id="revisao">
+    <div class="section-head">
+      <h2>⚡ Revisão de 10 segundos</h2>
+      <p>Lê uma vez e fecha como quem fecha um bisturi após corte limpo.</p>
+    </div>
+    <div class="section-body">
+      <div class="review-bar">
+        <div class="pill">PMI é frequentemente silencioso</div>
+        <div class="pill">Troponina é o farol principal</div>
+        <div class="pill">Monitorar pré-op, D1 e D2</div>
+        <div class="pill">Tipo 2 costuma ser mais comum</div>
+        <div class="pill">ECG ajuda, mas não exclui</div>
+        <div class="pill">Corrigir anemia, arritmia, IC, hipotensão, sepse</div>
+        <div class="pill">Tipo 1 exige estratégia mais invasiva</div>
+        <div class="pill">P2Y12 deve respeitar risco de sangramento</div>
+      </div>
+      <div class="callout c-pink" style="margin-top:18px;">
+        <strong>Frase final:</strong> no perioperatório, o infarto não costuma bater na porta. Ele passa pelos fundos, em silêncio, e a troponina acende a luz do corredor.
+      </div>
+      <p class="footer-note" style="margin-top:24px;">
+        <a href="index.html" class="back-btn">⬅️ Voltar ao Menu TEC</a>
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const questoes = [
+    {
+      p: 'Paciente de 68 anos, D1 de pós-operatório de cirurgia vascular periférica, assintomático, com troponina elevada. ECG sem supra de ST. Qual é a hipótese mais provável?',
+      ops: ['IAM tipo 1 por ruptura de placa', 'IAM tipo 2 por desequilíbrio oferta-demanda', 'Embolia pulmonar como causa única', 'Resultado falso-positivo, não investigar'],
+      correta: 1,
+      exp: '✅ No perioperatório, IAM tipo 2 é mais prevalente. Antes de pensar em ruptura de placa, buscar anemia, taquiarritmia, hipotensão e sepse como causas do desequilíbrio.'
+    },
+    {
+      p: 'Em quais momentos deve-se dosar troponina em paciente de risco intermediário submetido a cirurgia abdominal de risco intermediário?',
+      ops: ['Apenas no pré-operatório', 'D1 e D2 do pós-operatório apenas', 'Pré-operatório, D1 e D2 do pós-operatório', 'Somente se houver sintomas'],
+      correta: 2,
+      exp: '✅ A monitorização correta é: pré-operatório + D1 + D2. Isso permite identificar dinâmica de troponina mesmo na ausência de sintomas, que são frequentemente ausentes no PMI.'
+    },
+    {
+      p: 'O que caracteriza o IAM perioperatório como "silencioso"?',
+      ops: ['Ausência de alteração de troponina', 'Ausência de dor torácica típica na maioria dos casos', 'ECG sempre normal', 'Ocorre apenas em cirurgias cardíacas'],
+      correta: 1,
+      exp: '✅ O PMI é silencioso porque analgesia, anestesia e dor incisional mascaram a apresentação clínica clássica. A troponina é quem revela o evento.'
+    },
+    {
+      p: 'Paciente no D2 pós-op com troponina elevada, Hb 7,1 g/dL e FC 118 bpm. Qual a prioridade?',
+      ops: ['Iniciar dupla antiagregação imediatamente', 'Encaminhar para hemodinâmica de urgência', 'Corrigir anemia e controlar frequência cardíaca', 'Aguardar ecocardiograma antes de qualquer conduta'],
+      correta: 2,
+      exp: '✅ Anemia e taquicardia são causas clássicas de IAM tipo 2. A prioridade é corrigir os gatilhos. Transfusão visando Hb > 8 g/dL e controle da FC fazem parte do arsenal inicial.'
+    },
+    {
+      p: 'Qual achado NO pós-operatório imediato deve levantar a suspeita de IAM tipo 1?',
+      ops: ['Troponina levemente elevada sem ECG alterado', 'Anemia com Hb 7,5 g/dL', 'Supra de ST novo associado a troponina com curva ascendente', 'Taquicardia sinusal isolada'],
+      correta: 2,
+      exp: '✅ Supra de ST novo + curva ascendente de troponina = forte suspeita de tipo 1. Nesses casos, estratégia invasiva deve ser considerada balanceando risco de sangramento cirúrgico.'
+    },
+    {
+      p: 'Quanto ao ECG no diagnóstico de PMI, qual afirmação está CORRETA?',
+      ops: ['ECG normal exclui o diagnóstico de PMI', 'O ECG é o único exame necessário', 'O ECG ajuda, mas não é soberano: troponina e contexto pesam mais', 'ECG só tem valor se realizado nas primeiras 2 horas'],
+      correta: 2,
+      exp: '✅ O ECG é uma ferramenta importante, mas pode ser pouco sensível no perioperatório por distúrbios eletrolíticos, taquicardia e outras condições. A troponina seriada é o marcador central.'
+    },
+    {
+      p: 'Sobre o uso de P2Y12 no PMI perioperatório, qual afirmação é mais adequada?',
+      ops: ['Deve ser iniciado em todos os casos de troponina elevada', 'Pode ser individualizado após a anatomia coronariana, respeitando o risco de sangramento', 'Está contraindicado no perioperatório em qualquer cenário', 'Deve ser iniciado antes mesmo da troponina pico'],
+      correta: 1,
+      exp: '✅ O P2Y12 deve respeitar o contexto cirúrgico e o risco de sangramento. Em muitos casos, é mais prudente definir a anatomia coronariana antes de escolher o antiagregante ideal.'
+    },
+    {
+      p: 'Qual é o papel da estatina no manejo do PMI?',
+      ops: ['Não tem papel no perioperatório', 'Deve ser suspensa no período pós-operatório imediato', 'Entra cedo como parte da otimização, independentemente do tipo de IAM', 'Só está indicada se houver tipo 1 confirmado'],
+      correta: 2,
+      exp: '✅ A estatina entra cedo no manejo do PMI, independente do tipo. Ela faz parte da otimização cardiovascular e não deve ser adiada sem motivo clínico específico.'
+    }
+  ];
+
+  let qAtual = 0, acertos = 0, erros = 0;
+
+  function carregarQuestao() {
+    const q = questoes[qAtual];
+    document.getElementById('quizProgresso').textContent = `Questão ${qAtual + 1} de ${questoes.length}`;
+    document.getElementById('quizPlacar').innerHTML = `✅ ${acertos} &nbsp; ❌ ${erros}`;
+    document.getElementById('quizPergunta').textContent = q.p;
+    document.getElementById('quizFeedback').className = 'quiz-feedback';
+    document.getElementById('quizFeedback').innerHTML = '';
+    document.getElementById('btnProxima').classList.add('hidden');
+
+    const opcDiv = document.getElementById('quizOpcoes');
+    opcDiv.innerHTML = '';
+    q.ops.forEach((op, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.textContent = `${String.fromCharCode(65+i)}) ${op}`;
+      btn.onclick = () => responder(i);
+      opcDiv.appendChild(btn);
+    });
+  }
+
+  function responder(idx) {
+    const q = questoes[qAtual];
+    const btns = document.querySelectorAll('.quiz-option');
+    const feedback = document.getElementById('quizFeedback');
+
+    btns.forEach(b => b.disabled = true);
+    btns[idx].classList.add(idx === q.correta ? 'correta' : 'errada');
+    btns[q.correta].classList.add('correta');
+
+    if (idx === q.correta) {
+      acertos++;
+      feedback.className = 'quiz-feedback acerto show';
+    } else {
+      erros++;
+      feedback.className = 'quiz-feedback erro show';
+    }
+    feedback.innerHTML = q.exp;
+
+    document.getElementById('quizPlacar').innerHTML = `✅ ${acertos} &nbsp; ❌ ${erros}`;
+    document.getElementById('btnProxima').classList.remove('hidden');
+  }
+
+  function proximaQuestao() {
+    qAtual++;
+    if (qAtual < questoes.length) {
+      carregarQuestao();
+    } else {
+      mostrarResultado();
+    }
+  }
+
+  function mostrarResultado() {
+    document.getElementById('quizArea').classList.add('hidden');
+    const res = document.getElementById('quizResultado');
+    res.classList.remove('hidden');
+    const pct = Math.round((acertos / questoes.length) * 100);
+    document.getElementById('notaFinal').textContent = `${acertos}/${questoes.length} (${pct}%)`;
+    let msg = pct >= 80 ? '🏆 Excelente! Você tá pronto pra arrasar no TEC!' :
+              pct >= 60 ? '👍 Bom! Revise os pontos errados e vai arrasar!' :
+                          '📚 Revise o conteúdo e tente novamente. Você consegue!';
+    document.getElementById('mensagemFinal').textContent = msg;
+  }
+
+  function reiniciarQuiz() {
+    qAtual = 0; acertos = 0; erros = 0;
+    document.getElementById('quizArea').classList.remove('hidden');
+    document.getElementById('quizResultado').classList.add('hidden');
+    carregarQuestao();
+  }
+
+  carregarQuestao();
+</script>
+</body>
+</html>
