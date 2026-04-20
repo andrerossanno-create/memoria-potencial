@@ -68,6 +68,15 @@
       font-weight: 700;
     }
 
+    .card img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      display: block;
+    }
+
     button {
       padding: 12px 24px;
       margin: 8px 6px;
@@ -282,7 +291,24 @@
     }
 
     .hotspot-loeys {
-< truncated lines 285-302 >
+      top: 61%;
+      right: 14%;
+      background: #22c55e;
+      color: #1a1a1a;
+    }
+
+    .hotspot-turner {
+      top: 77%;
+      right: 10%;
+      background: #ef4444;
+      color: white;
+    }
+
+    .resposta-mapa {
+      background: rgba(3, 64, 120, 0.4);
+      border-left: 4px solid #1282A2;
+      padding: 20px;
+      border-radius: 10px;
       margin-top: 20px;
       min-height: 70px;
       display: flex;
@@ -330,6 +356,10 @@
         padding: 10px 16px;
         font-size: 0.9em;
       }
+
+      .card img {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -348,6 +378,8 @@
     <div class="card">
       <div class="section-title">🔥 Dissecção Aórtica</div>
 
+      <img src="stanford_na_mao.png" alt="Stanford na mão" onerror="this.style.display='none';">
+
       <p><strong>A pergunta que decide TUDO:</strong></p>
       <p style="font-size: 1.1em; color: #fbbf24;">Pegou a <strong>aorta ascendente?</strong></p>
 
@@ -365,6 +397,8 @@
 
     <div class="card">
       <div class="section-title">⚡ Aneurisma Aórtico</div>
+
+      <img src="orto1.png" alt="Turner e Aortopatia" onerror="this.style.display='none';">
 
       <p><strong>Pergunta 1:</strong></p>
       <p style="color: #fbbf24;">Tem síndrome genética?</p>
