@@ -1,4 +1,626 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🫀 Aorta Interativa – Stanford + Aneurisma</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0B2545 0%, #0f3a52 100%);
+      color: #ecf0f1;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header { text-align: center; margin-bottom: 40px; padding: 30px 0; }
+
+    h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #1282A2, #034078);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sub { color: #aab6c8; margin-bottom: 20px; }
+
+    .card {
+      background: rgba(11, 37, 69, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(18, 130, 162, 0.3);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      margin: 24px 0;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(18, 130, 162, 0.6);
+      box-shadow: 0 16px 48px rgba(18, 130, 162, 0.15);
+    }
+
+    .section-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: #1282A2;
+      font-weight: 700;
+    }
+
+    .card img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      display: block;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 8px 6px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+
+    .btn-success { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+    .btn-danger  { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+    .btn-info    { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+    .btn-warning { background: linear-gradient(135deg, #f59e0b, #d97706); color: #1a1a1a; font-weight: 700; }
+    .btn-purple  { background: linear-gradient(135deg, #a855f7, #7c3aed); color: white; }
+
+    .result-box {
+      background: rgba(3,64,120,0.4);
+      border-left: 4px solid #1282A2;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 24px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #b8d9e8;
+      text-align: center;
+    }
+
+    .result-box.success { border-left-color: #22c55e; background: rgba(34,197,94,0.1); color: #4ade80; }
+    .result-box.info    { border-left-color: #3b82f6; background: rgba(59,130,246,0.1); color: #60a5fa; }
+    .result-box.warning { border-left-color: #f59e0b; background: rgba(245,158,11,0.1); color: #fbbf24; }
+    .result-box.danger  { border-left-color: #ef4444; background: rgba(239,68,68,0.1);  color: #f87171; }
+
+    .flashcard {
+      display: none;
+      background: rgba(31,41,55,0.6);
+      border: 1px dashed rgba(18,130,162,0.4);
+      border-radius: 10px;
+      padding: 18px;
+      margin-top: 16px;
+      font-size: 0.95em;
+      line-height: 1.8;
+      color: #d0dce2;
+    }
+
+    .flashcard.active { display: block; animation: slideIn 0.3s ease; }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden { display: none !important; }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .pegadinha {
+      background: rgba(239,68,68,0.08);
+      border-left: 4px solid #ef4444;
+      padding: 14px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #fecaca;
+    }
+
+    .pegadinha strong { color: #fca5a5; font-weight: 700; }
+
+    .memoria-box {
+      background: rgba(168,85,247,0.08);
+      border-left: 4px solid #a855f7;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 12px 0;
+      color: #d8b4fe;
+      font-size: 0.98em;
+      line-height: 1.8;
+    }
+
+    .door { font-weight: 700; color: #e9d5ff; margin: 12px 0 8px 0; }
+
+    .ladder {
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      color: #a78bfa;
+      margin-top: 16px;
+      font-size: 1.1em;
+      letter-spacing: 4px;
+      text-align: center;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .quiz-progress {
+      font-size: 0.9em;
+      color: #a8c5d6;
+    }
+
+    .quiz-score {
+      background: rgba(18,130,162,0.2);
+      border: 1px solid rgba(18,130,162,0.4);
+      color: #1282A2;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9em;
+    }
+
+    .quiz-question {
+      background: rgba(3,64,120,0.4);
+      border-left: 4px solid #1282A2;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #e8f4f8;
+      line-height: 1.6;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-option {
+      background: rgba(11,37,69,0.5);
+      border: 2px solid rgba(18,130,162,0.3);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-size: 1em;
+      color: #c5d3db;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .quiz-option:hover {
+      border-color: rgba(18,130,162,0.7);
+      background: rgba(18,130,162,0.15);
+      color: white;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correta {
+      border-color: #22c55e;
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+    }
+
+    .quiz-option.errada {
+      border-color: #ef4444;
+      background: rgba(239,68,68,0.15);
+      color: #f87171;
+    }
+
+    .quiz-option:disabled {
+      cursor: not-allowed;
+    }
+
+    .quiz-feedback {
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-top: 8px;
+      font-size: 0.95em;
+      line-height: 1.7;
+      display: none;
+    }
+
+    .quiz-feedback.show { display: block; animation: slideIn 0.3s ease; }
+
+    .quiz-feedback.acerto {
+      background: rgba(34,197,94,0.1);
+      border-left: 4px solid #22c55e;
+      color: #4ade80;
+    }
+
+    .quiz-feedback.erro {
+      background: rgba(239,68,68,0.1);
+      border-left: 4px solid #ef4444;
+      color: #fca5a5;
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .quiz-resultado {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .quiz-resultado .nota {
+      font-size: 3em;
+      font-weight: 700;
+      color: #1282A2;
+      margin-bottom: 12px;
+    }
+
+    .quiz-resultado p {
+      color: #c5d3db;
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 60px;
+      border-top: 1px solid rgba(18,130,162,0.2);
+      color: #6b8fa3;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 900px) {
+      .grid2 { grid-template-columns: 1fr; }
+      h1 { font-size: 2em; }
+      .card { padding: 24px; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6em; }
+      .card { padding: 18px; }
+      button { padding: 10px 16px; font-size: 0.9em; }
+      .card img { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>🫀 Aorta Interativa</h1>
+    <p class="sub">Dissecção (Stanford) + Aneurisma em uma mesma tela</p>
+    <p class="sub">Atlas Mental para TEC • Pegadinhas incluídas</p>
+  </header>
+
+  <div class="grid2">
+
+    <!-- STANFORD -->
+    <div class="card">
+      <div class="section-title">🔥 Dissecção Aórtica</div>
+      <img src="stanford_na_mao.png" alt="Stanford na mão" onerror="this.style.display='none';">
+      <p><strong>A pergunta que decide TUDO:</strong></p>
+      <p style="font-size: 1.1em; color: #fbbf24;">Pegou a <strong>aorta ascendente?</strong></p>
+      <button class="btn-success" onclick="decideStanford('A')">✅ SIM</button>
+      <button class="btn-danger"  onclick="decideStanford('B')">❌ NÃO</button>
+      <div id="resultStanford" class="result-box hidden"></div>
+      <button class="btn-info" style="margin-top:16px;width:100%;" onclick="toggleFlash('flashStanford')">📝 Mostrar flashcard</button>
+      <div id="flashStanford" class="flashcard">
+        <strong>Stanford A:</strong> Envolve ascendente → <span style="color:#4ade80;font-weight:700;">CIRURGIA IMEDIATA</span><br><br>
+        <strong>Stanford B:</strong> Ascendente intacta → <span style="color:#60a5fa;font-weight:700;">Manejo clínico/endovascular</span>
+      </div>
+    </div>
+
+    <!-- ANEURISMA -->
+    <div class="card">
+      <div class="section-title">⚡ Aneurisma Aórtico</div>
+      <img src="orto1.png" alt="Turner e Aortopatia" onerror="this.style.display='none';">
+      <p><strong>Pergunta 1:</strong></p>
+      <p style="color:#fbbf24;">Tem síndrome genética?</p>
+      <div id="step1Aneurisma">
+        <button class="btn-success" onclick="temSindrome(true)">SIM</button>
+        <button class="btn-danger"  onclick="temSindrome(false)">NÃO</button>
+      </div>
+      <div id="step2Aneurisma" class="hidden" style="margin-top:20px;">
+        <p><strong>Qual síndrome?</strong></p>
+        <button class="btn-info"    onclick="escolherSindrome('marfan')">Marfan</button>
+        <button class="btn-purple"  onclick="escolherSindrome('loeys')">Loeys-Dietz</button>
+        <button class="btn-warning" onclick="escolherSindrome('turner')">Turner</button>
+        <button class="btn-danger"  onclick="escolherSindrome('bicuspide')">Bicúspide</button>
+      </div>
+      <div id="resultAneurisma" class="result-box hidden"></div>
+      <button class="btn-info" style="margin-top:16px;width:100%;" onclick="toggleFlash('flashAneurisma')">📝 Mostrar flashcard</button>
+      <div id="flashAneurisma" class="flashcard">
+        <strong>Escada de Cortes:</strong><br>
+        5,5 cm (geral) → 5,0 cm (risco) → 4,5 cm (valvar) → 4,0–4,5 cm (Loeys) → <span style="color:#f87171;">2,5 cm/m² (Turner)</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PEGADINHAS -->
+  <div class="card">
+    <div class="section-title">💀 Pegadinhas TEC</div>
+    <div class="pegadinha"><strong>1. Stanford ≠ Extensão</strong><br>Stanford não pergunta "até onde vai". Pergunta <strong>"pegou a ascendente?"</strong> Se pegou = A (cirurgia). Se não = B (clínico).</div>
+    <div class="pegadinha"><strong>2. Turner em cm/m²</strong><br>Marfan, Loeys, Bicúspide = cm absoluto. <strong>Turner = cm/m²</strong>. Corte é 2,5 cm/m². Prova adora essa.</div>
+    <div class="pegadinha"><strong>3. Loeys mais agressivo que Marfan</strong><br>Marfan → 5,0 cm. Loeys → 4,0–4,5 cm. <strong>Loeys opera mais cedo.</strong></div>
+    <div class="pegadinha"><strong>4. Bicúspide muda com contexto</strong><br>Sem risco = 5,5 cm. Com risco = 5,0 cm. Cirurgia valvar = 4,5 cm.</div>
+    <div class="pegadinha"><strong>5. Dissecção vs Aneurisma</strong><br>Stanford A = <strong>já pegou ascendente.</strong> Aneurisma = <strong>risco de pegar</strong> se atingir corte.</div>
+  </div>
+
+  <!-- PALÁCIO DA MEMÓRIA -->
+  <div class="card">
+    <div class="section-title">🏰 Palácio da Memória</div>
+    <div class="memoria-box">
+      <p><strong>Cenário:</strong> Você entra num <span style="color:#e9d5ff;">corredor da aorta</span>. Tem duas portas.</p>
+      <div class="door">🚪 Porta 1 – Dissecção (Stanford)</div>
+      <p>Pergunta: <strong>"Pegou a ascendente?"</strong><br>→ SIM = cirurgia (A) &nbsp;|&nbsp; NÃO = clínico (B)</p>
+      <div class="door">🚪 Porta 2 – Aneurisma</div>
+      <p>Pergunta: <strong>"Qual o corte para essa genética?"</strong><br>
+      → Geral: 5,5 cm &nbsp;|&nbsp; Marfan: 5,0 cm &nbsp;|&nbsp; Loeys: 4,0–4,5 cm &nbsp;|&nbsp; Turner: 2,5 cm/m²</p>
+      <div class="ladder">5,5 → 5,0 → 4,5 → 4,0 → 2,5</div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="card">
+    <div class="section-title">🧠 Quiz TEC – Modo Prova</div>
+    <p style="color:#a8c5d6; margin-bottom:20px;">Questões no estilo real do TEC. Escolha a alternativa correta.</p>
+
+    <div class="quiz-header">
+      <span class="quiz-progress" id="quizProgresso">Questão 1 de 8</span>
+      <span class="quiz-score" id="quizPlacar">✅ 0 &nbsp; ❌ 0</span>
+    </div>
+
+    <div id="quizArea">
+      <div class="quiz-question" id="quizPergunta"></div>
+      <div class="quiz-options" id="quizOpcoes"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <div class="quiz-nav">
+        <span></span>
+        <button class="btn-info hidden" id="btnProxima" onclick="proximaQuestao()">Próxima →</button>
+      </div>
+    </div>
+
+    <div id="quizResultado" class="quiz-resultado hidden">
+      <div class="nota" id="notaFinal"></div>
+      <p id="mensagemFinal"></p>
+      <button class="btn-success" onclick="reiniciarQuiz()">🔄 Refazer Quiz</button>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:40px;">
+    <button class="btn-info" onclick="location.href='index.html'">⬅️ Voltar ao Menu</button>
+  </div>
+
+</div>
+
+<footer>
+  <p>🫀 Atlas Mental Interativo • Cardiopatia • TEC 2025</p>
+  <p style="margin-top:8px;font-size:0.85em;">Desenvolvido para médicos e especialistas</p>
+</footer>
+
+<script>
+  // ===== STANFORD =====
+  function decideStanford(tipo) {
+    const box = document.getElementById('resultStanford');
+    box.classList.remove('hidden','success','danger','info');
+    if (tipo === 'A') {
+      box.innerHTML = '✅ STANFORD A<br><strong>Cirurgia cardiotorácica imediata</strong>';
+      box.classList.add('success');
+    } else {
+      box.innerHTML = '🧠 STANFORD B<br><strong>Manejo clínico/endovascular</strong>';
+      box.classList.add('info');
+    }
+  }
+
+  // ===== ANEURISMA =====
+  function temSindrome(sim) {
+    const step1  = document.getElementById('step1Aneurisma');
+    const step2  = document.getElementById('step2Aneurisma');
+    const result = document.getElementById('resultAneurisma');
+    step1.classList.add('hidden');
+    if (sim) {
+      step2.classList.remove('hidden');
+      result.classList.add('hidden');
+    } else {
+      step2.classList.add('hidden');
+      result.classList.remove('hidden','success','danger','info','warning','purple');
+      result.innerHTML = '👉 Sem síndrome genética<br><strong>Corte: 5,5 cm</strong>';
+      result.classList.add('info');
+    }
+  }
+
+  function escolherSindrome(tipo) {
+    const result = document.getElementById('resultAneurisma');
+    result.classList.remove('hidden','success','danger','info','warning','purple');
+    const dados = {
+      marfan:   { txt: '🧬 Marfan<br><strong>5,0 cm (ou 4,5 com fatores de risco)</strong>', cls: 'info' },
+      loeys:    { txt: '⚠️ Loeys-Dietz<br><strong>4,0–4,5 cm (mais agressivo)</strong>', cls: 'warning' },
+      turner:   { txt: '🧬 Turner<br><strong>2,5 cm/m² (PEGADINHA – indexar pela altura!)</strong>', cls: 'danger' },
+      bicuspide:{ txt: '🫀 Valva Bicúspide<br><strong>5,5 cm (ou 5,0 com risco, 4,5 se cirurgia valvar)</strong>', cls: 'danger' }
+    };
+    result.innerHTML = dados[tipo].txt;
+    result.classList.add(dados[tipo].cls);
+  }
+
+  function toggleFlash(id) {
+    document.getElementById(id).classList.toggle('active');
+  }
+
+  // ===== QUIZ =====
+  const questoes = [
+    {
+      p: 'Paciente com dissecção aórtica aguda. A TC mostra acometimento da aorta ascendente e descendente. Qual é o manejo correto?',
+      ops: ['Tratamento clínico com betabloqueador', 'Cirurgia cardiotorácica de emergência', 'TEVAR (endovascular)', 'Observação e repetir exame em 24h'],
+      correta: 1,
+      exp: '✅ Stanford A = qualquer acometimento da ascendente → CIRURGIA IMEDIATA. Independente de quantos outros segmentos estejam envolvidos.'
+    },
+    {
+      p: 'Síndrome de Marfan com aneurisma de aorta ascendente assintomático. Qual o diâmetro que indica cirurgia profilática sem fatores de risco adicionais?',
+      ops: ['≥ 4,0 cm', '≥ 4,5 cm', '≥ 5,0 cm', '≥ 5,5 cm'],
+      correta: 2,
+      exp: '✅ Marfan sem fatores de risco = cirurgia com ≥ 5,0 cm. Com fatores de risco (hist. familiar, crescimento rápido, regurgitação) = 4,5 cm.'
+    },
+    {
+      p: 'Síndrome de Turner com aneurisma aórtico. Qual o critério correto para indicação cirúrgica?',
+      ops: ['≥ 4,5 cm absoluto', '≥ 5,0 cm absoluto', '≥ 5,5 cm absoluto', '≥ 2,5 cm/m² (indexado pela superfície corporal)'],
+      correta: 3,
+      exp: '✅ PEGADINHA CLÁSSICA do TEC! Turner usa cm/m² (índice aórtico), não cm absoluto. Corte = 2,5 cm/m². Atenção: se > 3,5 cm absoluto, também considerar.'
+    },
+    {
+      p: 'Dissecção aórtica tipo B de Stanford. Paciente hemodinamicamente estável, sem isquemia de órgão-alvo. Qual é o tratamento de escolha?',
+      ops: ['Cirurgia aberta imediata', 'TEVAR (endovascular) imediato', 'Tratamento clínico: controle da dor e da PA', 'Trombólise'],
+      correta: 2,
+      exp: '✅ Stanford B sem complicações = manejo CLÍNICO. Betabloqueador + controle de PA. TEVAR fica para casos complicados (isquemia, expansão rápida).'
+    },
+    {
+      p: 'Síndrome de Loeys-Dietz com aneurisma de aorta. Qual o diâmetro para indicação cirúrgica?',
+      ops: ['≥ 5,5 cm', '≥ 5,0 cm', '≥ 4,5 cm', '4,0–4,5 cm'],
+      correta: 3,
+      exp: '✅ Loeys-Dietz opera MAIS CEDO que Marfan. Corte = 4,0–4,5 cm. Genótipo mais agressivo, maior risco de dissecção em diâmetros menores.'
+    },
+    {
+      p: 'Valva aórtica bicúspide com aneurisma de aorta ascendente. Paciente com histórico familiar de dissecção aórtica. Qual o corte cirúrgico?',
+      ops: ['≥ 5,5 cm', '≥ 5,0 cm', '≥ 4,5 cm', '≥ 4,0 cm'],
+      correta: 1,
+      exp: '✅ Valva bicúspide COM fator de risco (hist. familiar, crescimento > 3mm/ano) = cirurgia com ≥ 5,0 cm. Sem fatores = 5,5 cm.'
+    },
+    {
+      p: 'Paciente vai fazer cirurgia de troca valvar aórtica por estenose grave. Na TC pré-op, a aorta ascendente mede 4,6 cm. O que fazer com a aorta?',
+      ops: ['Ignorar, focar só na valva', 'Operar só se > 5,5 cm', 'Aproveitar e substituir a aorta ascendente também (corte = 4,5 cm)', 'Adiar cirurgia e repetir TC em 6 meses'],
+      correta: 2,
+      exp: '✅ Quando vai fazer cirurgia valvar de qualquer forma, o corte para a aorta cai para 4,5 cm. "Aproveita a abertura" e já trata a aorta dilatada.'
+    },
+    {
+      p: 'O que define se uma dissecção é Stanford A ou Stanford B?',
+      ops: ['A extensão total da dissecção', 'O acometimento da aorta descendente', 'O acometimento da aorta ascendente', 'O número de segmentos acometidos'],
+      correta: 2,
+      exp: '✅ PEGADINHA! Stanford NÃO liga para extensão. A ÚNICA pergunta é: "pegou a ascendente?". Se sim = A (cirurgia). Se não = B (clínico). Simples assim.'
+    }
+  ];
+
+  let qAtual = 0, acertos = 0, erros = 0;
+
+  function carregarQuestao() {
+    const q = questoes[qAtual];
+    document.getElementById('quizProgresso').textContent = `Questão ${qAtual + 1} de ${questoes.length}`;
+    document.getElementById('quizPlacar').innerHTML = `✅ ${acertos} &nbsp; ❌ ${erros}`;
+    document.getElementById('quizPergunta').textContent = q.p;
+    document.getElementById('quizFeedback').className = 'quiz-feedback';
+    document.getElementById('quizFeedback').innerHTML = '';
+    document.getElementById('btnProxima').classList.add('hidden');
+
+    const opcDiv = document.getElementById('quizOpcoes');
+    opcDiv.innerHTML = '';
+    q.ops.forEach((op, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-option';
+      btn.textContent = `${String.fromCharCode(65+i)}) ${op}`;
+      btn.onclick = () => responder(i);
+      opcDiv.appendChild(btn);
+    });
+  }
+
+  function responder(idx) {
+    const q = questoes[qAtual];
+    const btns = document.querySelectorAll('.quiz-option');
+    const feedback = document.getElementById('quizFeedback');
+
+    btns.forEach(b => b.disabled = true);
+    btns[idx].classList.add(idx === q.correta ? 'correta' : 'errada');
+    btns[q.correta].classList.add('correta');
+
+    if (idx === q.correta) {
+      acertos++;
+      feedback.className = 'quiz-feedback acerto show';
+      feedback.innerHTML = q.exp;
+    } else {
+      erros++;
+      feedback.className = 'quiz-feedback erro show';
+      feedback.innerHTML = `❌ Incorreto. ${q.exp}`;
+    }
+
+    document.getElementById('quizPlacar').innerHTML = `✅ ${acertos} &nbsp; ❌ ${erros}`;
+    document.getElementById('btnProxima').classList.remove('hidden');
+  }
+
+  function proximaQuestao() {
+    qAtual++;
+    if (qAtual < questoes.length) {
+      carregarQuestao();
+    } else {
+      mostrarResultado();
+    }
+  }
+
+  function mostrarResultado() {
+    document.getElementById('quizArea').classList.add('hidden');
+    const res = document.getElementById('quizResultado');
+    res.classList.remove('hidden');
+    const pct = Math.round((acertos / questoes.length) * 100);
+    document.getElementById('notaFinal').textContent = `${acertos}/${questoes.length} (${pct}%)`;
+
+    let msg = '';
+    if (pct >= 80) msg = '🏆 Excelente! Você tá pronto pra bombar no TEC!';
+    else if (pct >= 60) msg = '👍 Bom! Revise os pontos errados e vai arrasar!';
+    else msg = '📚 Revise o conteúdo e tente novamente. Você consegue!';
+    document.getElementById('mensagemFinal').textContent = msg;
+  }
+
+  function reiniciarQuiz() {
+    qAtual = 0; acertos = 0; erros = 0;
+    document.getElementById('quizArea').classList.remove('hidden');
+    document.getElementById('quizResultado').classList.add('hidden');
+    carregarQuestao();
+  }
+
+  carregarQuestao();
+</script>
+
+</body>
+</html> html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
