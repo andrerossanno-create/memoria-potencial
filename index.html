@@ -1,577 +1,502 @@
-<!DOCTYPE html>  <html lang="pt-BR">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>🫀 Aorta Interativa – Stanford + Aneurisma</title>  
-  <script>  
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };  
-  </script>  
-  <script defer src="/_vercel/insights/script.js"></script>  
-  <style>  
-    * {  
-      margin: 0;  
-      padding: 0;  
-      box-sizing: border-box;  
-    }  body {  
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;  
-  background: linear-gradient(135deg, #0B2545 0%, #0f3a52 100%);  
-  color: #ecf0f1;  
-  min-height: 100vh;  
-  padding: 20px;  
-}  
-
-.container {  
-  max-width: 1200px;  
-  margin: 0 auto;  
-}  
-
-header {  
-  text-align: center;  
-  margin-bottom: 40px;  
-  padding: 30px 0;  
-}  
-
-h1 {  
-  font-size: 2.8em;  
-  font-weight: 700;  
-  margin-bottom: 8px;  
-  background: linear-gradient(135deg, #1282A2, #034078);  
-  -webkit-background-clip: text;  
-  -webkit-text-fill-color: transparent;  
-  background-clip: text;  
-}  
-
-.sub {  
-  color: #aab6c8;  
-  margin-bottom: 20px;  
-}  
-
-.card {  
-  background: rgba(11, 37, 69, 0.7);  
-  backdrop-filter: blur(10px);  
-  border: 1px solid rgba(18, 130, 162, 0.3);  
-  border-radius: 16px;  
-  padding: 32px;  
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);  
-  margin: 24px 0;  
-  transition: all 0.3s ease;  
-}  
-
-.card:hover {  
-  border-color: rgba(18, 130, 162, 0.6);  
-  box-shadow: 0 16px 48px rgba(18, 130, 162, 0.15);  
-}  
-
-.section-title {  
-  font-size: 1.8em;  
-  margin-bottom: 20px;  
-  color: #1282A2;  
-  font-weight: 700;  
-}  
-
-.card img {  
-  width: 100%;  
-  max-width: 600px;  
-  border-radius: 12px;  
-  margin: 20px 0;  
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);  
-  display: block;  
-}  
-
-button {  
-  padding: 12px 24px;  
-  margin: 8px 6px;  
-  border: none;  
-  border-radius: 10px;  
-  font-size: 1em;  
-  font-weight: 600;  
-  cursor: pointer;  
-  transition: all 0.2s ease;  
-  text-transform: uppercase;  
-  letter-spacing: 0.5px;  
-}  
-
-button:hover {  
-  transform: translateY(-2px);  
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);  
-}  
-
-.btn-success {  
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);  
-  color: white;  
-}  
-
-.btn-danger {  
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);  
-  color: white;  
-}  
-
-.btn-info {  
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);  
-  color: white;  
-}  
-
-.btn-warning {  
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);  
-  color: #1a1a1a;  
-  font-weight: 700;  
-}  
-
-.btn-purple {  
-  background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);  
-  color: white;  
-}  
-
-.result-box {  
-  background: rgba(3, 64, 120, 0.4);  
-  border-left: 4px solid #1282A2;  
-  padding: 20px;  
-  border-radius: 10px;  
-  margin-top: 24px;  
-  min-height: 60px;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  font-size: 1.2em;  
-  font-weight: 600;  
-  color: #b8d9e8;  
-  text-align: center;  
-}  
-
-.result-box.success {  
-  border-left-color: #22c55e;  
-  background: rgba(34, 197, 94, 0.1);  
-  color: #4ade80;  
-}  
-
-.result-box.info {  
-  border-left-color: #3b82f6;  
-  background: rgba(59, 130, 246, 0.1);  
-  color: #60a5fa;  
-}  
-
-.flashcard {  
-  display: none;  
-  background: rgba(31, 41, 55, 0.6);  
-  border: 1px dashed rgba(18, 130, 162, 0.4);  
-  border-radius: 10px;  
-  padding: 18px;  
-  margin-top: 16px;  
-  font-size: 0.95em;  
-  line-height: 1.8;  
-  color: #d0dce2;  
-}  
-
-.flashcard.active {  
-  display: block;  
-  animation: slideIn 0.3s ease;  
-}  
-
-@keyframes slideIn {  
-  from {  
-    opacity: 0;  
-    transform: translateY(-10px);  
-  }  
-  to {  
-    opacity: 1;  
-    transform: translateY(0);  
-  }  
-}  
-
-.hidden {  
-  display: none !important;  
-}  
-
-.grid2 {  
-  display: grid;  
-  grid-template-columns: 1fr 1fr;  
-  gap: 24px;  
-  margin-bottom: 40px;  
-}  
-
-.pegadinha {  
-  background: rgba(239, 68, 68, 0.08);  
-  border-left: 4px solid #ef4444;  
-  padding: 14px;  
-  border-radius: 8px;  
-  margin: 10px 0;  
-  font-size: 0.95em;  
-  line-height: 1.7;  
-  color: #fecaca;  
-}  
-
-.pegadinha strong {  
-  color: #fca5a5;  
-  font-weight: 700;  
-}  
-
-.memoria-box {  
-  background: rgba(168, 85, 247, 0.08);  
-  border-left: 4px solid #a855f7;  
-  padding: 20px;  
-  border-radius: 10px;  
-  margin: 12px 0;  
-  color: #d8b4fe;  
-  font-size: 0.98em;  
-  line-height: 1.8;  
-}  
-
-.door {  
-  font-weight: 700;  
-  color: #e9d5ff;  
-  margin: 12px 0 8px 0;  
-}  
-
-.ladder {  
-  font-family: 'Courier New', monospace;  
-  font-weight: 700;  
-  color: #a78bfa;  
-  margin-top: 16px;  
-  font-size: 1.1em;  
-  letter-spacing: 4px;  
-  text-align: center;  
-}  
-
-.mapa-container {  
-  position: relative;  
-  width: 100%;  
-  margin: 24px 0;  
-  background: rgba(31, 41, 55, 0.5);  
-  border-radius: 12px;  
-  overflow: hidden;  
-}  
-
-.mapa-placeholder {  
-  width: 100%;  
-  min-height: 500px;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  background: linear-gradient(135deg, rgba(11, 37, 69, 0.8), rgba(3, 64, 120, 0.6));  
-  border: 2px dashed rgba(18, 130, 162, 0.5);  
-  border-radius: 10px;  
-  font-size: 3em;  
-  color: rgba(18, 130, 162, 0.5);  
-}  
-
-.hotspot {  
-  position: absolute;  
-  padding: 10px 16px;  
-  border: none;  
-  border-radius: 50px;  
-  font-size: 0.85em;  
-  font-weight: 700;  
-  cursor: pointer;  
-  transition: all 0.2s ease;  
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);  
-}  
-
-.hotspot:hover {  
-  transform: scale(1.08);  
-}  
-
-.hotspot-degenerativo {  
-  top: 18%;  
-  right: 8%;  
-  background: #2563eb;  
-  color: white;  
-}  
-
-.hotspot-bicuspide {  
-  top: 28%;  
-  right: 9%;  
-  background: #f59e0b;  
-  color: #1a1a1a;  
-}  
-
-.hotspot-marfan {  
-  top: 46%;  
-  right: 17%;  
-  background: #a855f7;  
-  color: white;  
-}  
-
-.hotspot-loeys {  
-  top: 61%;  
-  right: 14%;  
-  background: #22c55e;  
-  color: #1a1a1a;  
-}  
-
-.hotspot-turner {  
-  top: 77%;  
-  right: 10%;  
-  background: #ef4444;  
-  color: white;  
-}  
-
-.resposta-mapa {  
-  background: rgba(3, 64, 120, 0.4);  
-  border-left: 4px solid #1282A2;  
-  padding: 20px;  
-  border-radius: 10px;  
-  margin-top: 20px;  
-  min-height: 70px;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  font-size: 1.15em;  
-  font-weight: 600;  
-  color: #b8d9e8;  
-  text-align: center;  
-}  
-
-footer {  
-  text-align: center;  
-  padding: 30px 0;  
-  margin-top: 60px;  
-  border-top: 1px solid rgba(18, 130, 162, 0.2);  
-  color: #6b8fa3;  
-  font-size: 0.9em;  
-}  
-
-@media (max-width: 900px) {  
-  .grid2 {  
-    grid-template-columns: 1fr;  
-  }  
-
-  h1 {  
-    font-size: 2em;  
-  }  
-
-  .card {  
-    padding: 24px;  
-  }  
-}  
-
-@media (max-width: 600px) {  
-  h1 {  
-    font-size: 1.6em;  
-  }  
-
-  .card {  
-    padding: 18px;  
-  }  
-
-  button {  
-    padding: 10px 16px;  
-    font-size: 0.9em;  
-  }  
-
-  .card img {  
-    max-width: 100%;  
-  }  
-}
-
-  </style>  
-</head>  
-<body>  <div class="container">    <header>  
-    <h1>🫀 Aorta Interativa</h1>  
-    <p class="sub">Dissecção (Stanford) + Aneurisma em uma mesma tela</p>  
-    <p class="sub">Atlas Mental para TEC/REVALIDA • Pegadinhas incluídas</p>  
-  </header>    <div class="grid2">  <div class="card">  
-  <div class="section-title">🔥 Dissecção Aórtica</div>  
-
-  <img src="stanford_na_mao.png" alt="Stanford na mão" onerror="this.style.display='none';">  
-
-  <p><strong>A pergunta que decide TUDO:</strong></p>  
-  <p style="font-size: 1.1em; color: #fbbf24;">Pegou a <strong>aorta ascendente?</strong></p>  
-
-  <button class="btn-success" onclick="decideStanford('A')">✅ SIM</button>  
-  <button class="btn-danger" onclick="decideStanford('B')">❌ NÃO</button>  
-
-  <div id="resultStanford" class="result-box hidden"></div>  
-
-  <button class="btn-info" style="margin-top: 16px; width: 100%;" onclick="toggleFlash('flashStanford')">📝 Mostrar flashcard</button>  
-  <div id="flashStanford" class="flashcard">  
-    <strong>Stanford A:</strong> Envolve ascendente → <span style="color: #4ade80; font-weight: 700;">CIRURGIA IMEDIATA</span><br><br>  
-    <strong>Stanford B:</strong> Ascendente intacta → <span style="color: #60a5fa; font-weight: 700;">Manejo clínico/endovascular</span>  
-  </div>  
-</div>  
-
-<div class="card">  
-  <div class="section-title">⚡ Aneurisma Aórtico</div>  
-
-  <img src="orto1.png" alt="Turner e Aortopatia" onerror="this.style.display='none';">  
-
-  <p><strong>Pergunta 1:</strong></p>  
-  <p style="color: #fbbf24;">Tem síndrome genética?</p>  
-
-  <div id="step1Aneurisma">  
-    <button class="btn-success" onclick="temSindrome(true)">SIM</button>  
-    <button class="btn-danger" onclick="temSindrome(false)">NÃO</button>  
-  </div>  
-
-  <div id="step2Aneurisma" class="hidden" style="margin-top: 20px;">  
-    <p><strong>Qual síndrome?</strong></p>  
-    <button class="btn-info" onclick="escolherSindrome('marfan')">Marfan</button>  
-    <button class="btn-purple" onclick="escolherSindrome('loeys')">Loeys-Dietz</button>  
-    <button class="btn-warning" onclick="escolherSindrome('turner')">Turner</button>  
-    <button class="btn-danger" onclick="escolherSindrome('bicuspide')">Bicúspide</button>  
-  </div>  
-
-  <div id="resultAneurisma" class="result-box hidden"></div>  
-
-  <button class="btn-info" style="margin-top: 16px; width: 100%;" onclick="toggleFlash('flashAneurisma')">📝 Mostrar flashcard</button>  
-  <div id="flashAneurisma" class="flashcard">  
-    <strong>Escada de Cortes:</strong><br>  
-    5,5 cm (geral) → 5,0 cm (risco) → 4,5 cm (valvar) → 4,0–4,5 cm (Loeys) → <span style="color: #f87171;">2,5 cm/m² (Turner)</span>  
-  </div>  
-</div>
-
-  </div>    <div class="card">  
-    <div class="section-title">💀 Pegadinhas de Prova (TEC/REVALIDA)</div>  <div class="pegadinha">  
-  <strong>1. Stanford ≠ Extensão</strong><br>  
-  Stanford não pergunta "até onde vai". Pergunta <strong>"pegou a ascendente?"</strong> Ponto. Se pegou = A (cirurgia). Se não pegou = B (clínico).  
-</div>  
-
-<div class="pegadinha">  
-  <strong>2. Turner em cm/m²</strong><br>  
-  Marfan, Loeys, Bicúspide = cm absoluto. <strong>Turner = cm dividido pela altura ao quadrado</strong>. Corte é 2,5 cm/m². Prova adora essa.  
-</div>  
-
-<div class="pegadinha">  
-  <strong>3. Loeys mais agressivo que Marfan</strong><br>  
-  Marfan → 5,0 cm. Loeys → 4,0–4,5 cm. <strong>Loeys é genótipo pior</strong>, vai pra cirurgia mais cedo.  
-</div>  
-
-<div class="pegadinha">  
-  <strong>4. Bicúspide muda com contexto</strong><br>  
-  Sem fatores de risco = 5,5 cm. Com hipertensão/dilatação = 5,0 cm. Se vai fazer cirurgia valvar = 4,5 cm (aproveita a aorta).  
-</div>  
-
-<div class="pegadinha">  
-  <strong>5. "Pegou" vs "vai pegar"</strong><br>  
-  Stanford A = <strong>já pegou ascendente</strong> (dissecção aguda). Aneurisma = <strong>risco de pegar</strong> se atingir corte. Contextos diferentes, perguntas diferentes.  
-</div>
-
-  </div>    <div class="card">  
-    <div class="section-title">🏰 Palácio da Memória</div>  <div class="memoria-box">  
-  <p><strong>Cenário:</strong> Você entra em um <span style="color: #e9d5ff;">corredor da aorta</span> (em forma de tubo). Tem duas portas.</p>  
-
-  <div class="door">🚪 Porta 1 – Dissecção (Stanford)</div>  
-  <p>Você pergunta ao porteiro: <strong>"Pegou a porta de entrada (ascendente)?"</strong><br>  
-  → SIM = sai para a sala de cirurgia (Stanford A)<br>  
-  → NÃO = sai para a UTI clínica (Stanford B)</p>  
-
-  <div class="door">🚪 Porta 2 – Aneurisma</div>  
-  <p>Você pergunta: <strong>"Qual é o tamanho crítico para essa genética?"</strong><br>  
-  → Geral: 5,5 cm<br>  
-  → Marfan: 5,0 cm<br>  
-  → Loeys: 4,0–4,5 cm<br>  
-  → Turner: 2,5 cm/m²</p>  
-
-  <div class="ladder">5,5 → 5,0 → 4,5 → 4,0 → 2,5</div>  
-</div>
-
-  </div>    <div class="card">  
-    <div class="section-title">🗺️ Modo Prova Interativo</div>  
-    <p>Clique nos botões para testar sua memória em tempo real.</p>  <div class="mapa-container">  
-  <div class="mapa-placeholder">📊 Imagem da Aorta</div>  
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🫀 Atlas Mental Interativo – Medicina</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0B2545 0%, #0f3a52 100%);
+      color: #ecf0f1;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(18, 130, 162, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(3, 64, 120, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      margin-bottom: 50px;
+    }
+
+    .logo {
+      font-size: 4em;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #1282A2, #034078);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.2em;
+      color: #a8c5d6;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #6b8fa3;
+      font-size: 0.95em;
+      margin-top: 12px;
+    }
+
+    .hero {
+      background: rgba(11, 37, 69, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(18, 130, 162, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 50px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      color: #c5d3db;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: rgba(11, 37, 69, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(18, 130, 162, 0.3);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(18, 130, 162, 0.6);
+      box-shadow: 0 16px 48px rgba(18, 130, 162, 0.2);
+    }
+
+    .card-icon {
+      font-size: 3em;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: #1282A2;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      color: #c5d3db;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(18, 130, 162, 0.2);
+    }
+
+    .tag {
+      background: rgba(18, 130, 162, 0.2);
+      color: #a8c5d6;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tag.new {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+    }
+
+    .tag.featured {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .card-btn {
+      margin-top: auto;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #1282A2 0%, #034078 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.95em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(18, 130, 162, 0.3);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .stat-box {
+      background: rgba(11, 37, 69, 0.6);
+      border: 1px solid rgba(18, 130, 162, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #1282A2;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #a8c5d6;
+      font-size: 0.9em;
+    }
+
+    footer {
+      border-top: 1px solid rgba(18, 130, 162, 0.2);
+      padding: 40px 20px;
+      text-align: center;
+      color: #6b8fa3;
+    }
+
+    .footer-title {
+      color: #1282A2;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1.1em;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #a8c5d6;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #1282A2;
+    }
+
+    .footer-text {
+      font-size: 0.85em;
+      margin-top: 20px;
+      color: #6b8fa3;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .tagline {
+        font-size: 1em;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 40px 20px 30px;
+      }
+
+      .hero {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 2.5em;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
+
+      .tagline {
+        font-size: 0.95em;
+      }
+
+      .card {
+        padding: 24px;
+        min-height: auto;
+      }
+
+      .card-title {
+        font-size: 1.3em;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      right: 16px;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="logo">🫀</div>
+    <h1>Atlas Mental Interativo</h1>
+    <p class="tagline">Transformando Medicina Complexa em Memória Duradoura</p>
+    <p class="subtitle">TEC • REVALIDA • Residência • Prática Clínica</p>
+  </header>
+
+  <div class="hero">
+    <p>
+      <strong>Bem-vindo ao seu ambiente de estudo interativo.</strong> 
+      Aqui você encontra técnicas de alto rendimento com foco em raciocínio clínico, 
+      provas e prática médica. Conteúdo gratuito para acadêmicos e médicos.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Módulos Interativos</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Pegadinhas de Prova</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Acesso Gratuito</div>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+
+    <a href="aorta.html" class="card">
+      <div class="badge">NEW</div>
+      <div class="card-icon">🔥</div>
+      <div>
+        <div class="card-title">Aorta Interativa</div>
+        <p class="card-desc">
+          Dissecção (Stanford) + Aneurisma em uma mesma tela. Pegadinhas incluídas. 
+          Palácio da Memória + Modo Prova.
+        </p>
+      </div>
+      <div class="card-tags">
+        <span class="tag new">Novo</span>
+        <span class="tag featured">Destaque</span>
+        <span class="tag">Cardio</span>
+      </div>
+      <button class="card-btn">Abrir →</button>
+    </a>
+
+    <a href="#" class="card" style="opacity: 0.6; cursor: not-allowed;">
+      <div class="card-icon">📍</div>
+      <div>
+        <div class="card-title">Pericardite Aguda</div>
+        <p class="card-desc">
+          ECG nos 4 estágios. Diagnóstico diferencial. Tratamento e monitoramento.
+        </p>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Cardio</span>
+        <span class="tag">Em breve</span>
+      </div>
+      <button class="card-btn" disabled>Em Breve</button>
+    </a>
+
+    <a href="#" class="card" style="opacity: 0.6; cursor: not-allowed;">
+      <div class="card-icon">💎</div>
+      <div>
+        <div class="card-title">Amiloidose Cardíaca</div>
+        <p class="card-desc">
+          Red flags de apresentação. Diagnóstico por ressonância e biopsia. 
+          Prognóstico e tratamento.
+        </p>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Cardio</span>
+        <span class="tag">Em breve</span>
+      </div>
+      <button class="card-btn" disabled>Em Breve</button>
+    </a>
+
+    <a href="#" class="card" style="opacity: 0.6; cursor: not-allowed;">
+      <div class="card-icon">🤰</div>
+      <div>
+        <div class="card-title">Cardiomiopatia Peripartum</div>
+        <p class="card-desc">
+          Fisiopatologia. Apresentação clínica. Bromocriptina vs Cabergolina. 
+          Prognóstico gestacional.
+        </p>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Cardio</span>
+        <span class="tag">Obstetrícia</span>
+        <span class="tag">Em breve</span>
+      </div>
+      <button class="card-btn" disabled>Em Breve</button>
+    </a>
+
+    <a href="#" class="card" style="opacity: 0.6; cursor: not-allowed;">
+      <div class="card-icon">🧠</div>
+      <div>
+        <div class="card-title">AVC Agudo</div>
+        <p class="card-desc">
+          Protocolo AHA/ASA 2026. Trombólise e trombectomia. Pegadinhas de TEC/REVALIDA.
+        </p>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Neurologia</span>
+        <span class="tag">Emergência</span>
+        <span class="tag">Em breve</span>
+      </div>
+      <button class="card-btn" disabled>Em Breve</button>
+    </a>
+
+    <a href="#" class="card" style="opacity: 0.6; cursor: not-allowed;">
+      <div class="card-icon">⚡</div>
+      <div>
+        <div class="card-title">Síndrome Coronária Aguda</div>
+        <p class="card-desc">
+          Killers First. Troponina e ECG. Dupla antiagregação. Estratégia invasiva.
+        </p>
+      </div>
+      <div class="card-tags">
+        <span class="tag">Cardio</span>
+        <span class="tag">Emergência</span>
+        <span class="tag">Em breve</span>
+      </div>
+      <button class="card-btn" disabled>Em Breve</button>
+    </a>
+
+  </div>
+
+  <footer>
+    <div class="footer-title">🫀 Atlas Mental Interativo</div>
     
-  <button class="hotspot hotspot-degenerativo" onclick="respostaMapa('degenerativo')">Degenerativo</button>  
-  <button class="hotspot hotspot-bicuspide" onclick="respostaMapa('bicuspide')">Bicúspide</button>  
-  <button class="hotspot hotspot-marfan" onclick="respostaMapa('marfan')">Marfan</button>  
-  <button class="hotspot hotspot-loeys" onclick="respostaMapa('loeys')">Loeys</button>  
-  <button class="hotspot hotspot-turner" onclick="respostaMapa('turner')">Turner</button>  
-</div>  
+    <div class="footer-links">
+      <a href="https://github.com/andrerossanno-create/memoria-potencial" target="_blank">GitHub</a>
+      <a href="mailto:andré@undb.edu.br">Contato</a>
+      <a href="#faq">FAQ</a>
+      <a href="#sobre">Sobre</a>
+    </div>
 
-<div id="respostaMapa" class="resposta-mapa">  
-  Clique em um marcador para revelar o corte de cirurgia.  
+    <p class="footer-text">
+      <strong>Desenvolvido por:</strong> Prof. Dr. André Rossanno Mendes Almeida
+      <br>
+      Intensivista • Educador Médico • UNDB
+    </p>
+
+    <p class="footer-text" style="margin-top: 30px; color: #6b8fa3; font-size: 0.8em;">
+      © 2026 Atlas Mental. Conteúdo gratuito para fins educacionais.<br>
+      Técnicas de memória com foco em raciocínio clínico.
+    </p>
+  </footer>
+
 </div>
 
-  </div>    <div style="text-align: center; margin-top: 40px;">  
-    <button class="btn-info" onclick="location.href='index.html'">⬅️ Voltar ao Menu</button>  
-  </div>  </div>  <footer>  
-  <p>🫀 Atlas Mental Interativo • Cardiopatia • TEC/REVALIDA Preparatório</p>  
-  <p style="margin-top: 8px; font-size: 0.85em;">Desenvolvido para estudantes de medicina e residentes</p>  
-</footer>  <script>  
-  function decideStanford(tipo) {  
-    const box = document.getElementById('resultStanford');  
-    box.classList.remove('hidden', 'success', 'danger', 'info');  
-      
-    if (tipo === 'A') {  
-      box.innerHTML = '✅ STANFORD A<br><strong>Cirurgia cardiotorácica imediata</strong>';  
-      box.classList.add('success');  
-    } else {  
-      box.innerHTML = '🧠 STANFORD B<br><strong>Manejo clínico/endovascular</strong>';  
-      box.classList.add('info');  
-    }  
-  }  
-  
-  function temSindrome(sim) {  
-    const step1 = document.getElementById('step1Aneurisma');  
-    const step2 = document.getElementById('step2Aneurisma');  
-    const result = document.getElementById('resultAneurisma');  
-  
-    step1.classList.add('hidden');  
-  
-    if (sim) {  
-      step2.classList.remove('hidden');  
-      result.classList.add('hidden');  
-    } else {  
-      step2.classList.add('hidden');  
-      result.classList.remove('hidden', 'success', 'danger', 'info', 'warning', 'purple');  
-      result.innerHTML = '👉 Sem síndrome genética<br><strong>Corte: 5,5 cm</strong>';  
-      result.classList.add('info');  
-    }  
-  }  
-  
-  function escolherSindrome(tipo) {  
-    const result = document.getElementById('resultAneurisma');  
-    result.classList.remove('hidden', 'success', 'danger', 'info', 'warning', 'purple');  
-  
-    if (tipo === 'marfan') {  
-      result.innerHTML = '🧬 Síndrome de Marfan<br><strong>Corte: 5,0 cm (ou 4,5 com fatores de risco)</strong>';  
-      result.classList.add('info');  
-    } else if (tipo === 'loeys') {  
-      result.innerHTML = '⚠️ Loeys-Dietz<br><strong>Corte: 4,0–4,5 cm (mais agressivo)</strong>';  
-      result.classList.add('warning');  
-    } else if (tipo === 'turner') {  
-      result.innerHTML = '🧬 Síndrome de Turner<br><strong>Corte: 2,5 cm/m² (PEGADINHA – indexar pela altura!)</strong>';  
-      result.classList.add('danger');  
-    } else if (tipo === 'bicuspide') {  
-      result.innerHTML = '🫀 Valva Aórtica Bicúspide<br><strong>Corte: 5,5 cm (ou 5,0 com risco, 4,5 se cirurgia valvar)</strong>';  
-      result.classList.add('danger');  
-    }  
-  }  
-  
-  function toggleFlash(id) {  
-    const el = document.getElementById(id);  
-    el.classList.toggle('active');  
-  }  
-  
-  function respostaMapa(tipo) {  
-    const box = document.getElementById('respostaMapa');  
-    box.className = 'resposta-mapa';  
-  
-    const respostas = {  
-      degenerativo: {  
-        text: '🔵 Degenerativo<br><strong>5,5 cm</strong>',  
-        color: '#60a5fa'  
-      },  
-      bicuspide: {  
-        text: '🟡 Valva Bicúspide<br><strong>5,5 cm</strong> (5,0 com risco, 4,5 se cirurgia)',  
-        color: '#fbbf24'  
-      },  
-      marfan: {  
-        text: '🟣 Marfan<br><strong>5,0 cm</strong> (4,5 com risco)',  
-        color: '#d8b4fe'  
-      },  
-      loeys: {  
-        text: '🟢 Loeys-Dietz<br><strong>4,0–4,5 cm</strong> (mais agressivo)',  
-        color: '#4ade80'  
-      },  
-      turner: {  
-        text: '🔴 Turner<br><strong>2,5 cm/m²</strong> (PEGADINHA)',  
-        color: '#f87171'  
-      }  
-    };  
-  
-    if (respostas[tipo]) {  
-      box.innerHTML = respostas[tipo].text;  
-      box.style.color = respostas[tipo].color;  
-    }  
-  }  
-</script>  </body>  
-</html/
+</body>
+</html>
