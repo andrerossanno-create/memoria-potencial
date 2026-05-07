@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloqueio Sinoatrial | Método André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B2545;
+  --teal: #1282A2;
+  --deep: #034078;
+  --gold: #F4B942;
+  --red: #E63946;
+  --green: #2DC653;
+  --white: #F0F4F8;
+  --muted: #8BA7C0;
+  --card-bg: rgba(18,130,162,0.08);
+  --border: rgba(18,130,162,0.25);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'IBM Plex Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; min-height: 100vh; }
+
+#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold)); width: 0%; z-index: 9999; transition: width 0.1s; }
+
+#sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 220px; background: rgba(3,64,120,0.95); backdrop-filter: blur(12px); border-right: 1px solid var(--border); z-index: 100; overflow-y: auto; padding: 24px 0; transform: translateX(-220px); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+#sidebar.open { transform: translateX(0); }
+#sidebar-toggle { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: var(--teal); border: none; color: white; width: 28px; height: 56px; cursor: pointer; z-index: 101; border-radius: 0 8px 8px 0; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+#sidebar-toggle.open { left: 220px; }
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 13px; color: var(--gold); padding: 0 16px 20px; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+.nav-item { display: block; padding: 10px 16px; color: var(--muted); font-size: 12px; font-family: 'IBM Plex Mono', monospace; text-decoration: none; cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent; }
+.nav-item:hover, .nav-item.active { color: var(--white); border-left-color: var(--gold); background: rgba(244,185,66,0.08); }
+
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden; background: radial-gradient(ellipse at 30% 50%, rgba(18,130,162,0.3) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(3,64,120,0.4) 0%, transparent 50%), var(--navy); text-align: center; padding: 80px 20px 60px; }
+.hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(18,130,162,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(18,130,162,0.08) 1px, transparent 1px); background-size: 40px 40px; animation: gridMove 20s linear infinite; }
+@keyframes gridMove { 0%{background-position:0 0} 100%{background-position:40px 40px} }
+.hero-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--teal); text-transform: uppercase; margin-bottom: 16px; position: relative; }
+.hero h1 { font-family: 'Syne', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 6vw, 5rem); line-height: 1.05; position: relative; background: linear-gradient(135deg, var(--white) 0%, var(--teal) 60%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+.hero h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--muted); position: relative; margin-bottom: 24px; }
+.hero-badge { display: inline-flex; gap: 8px; align-items: center; background: rgba(244,185,66,0.12); border: 1px solid rgba(244,185,66,0.3); border-radius: 100px; padding: 6px 18px; font-size: 12px; color: var(--gold); margin-bottom: 40px; position: relative; }
+.ecg-container { width: 100%; max-width: 600px; height: 80px; position: relative; overflow: hidden; margin-bottom: 40px; }
+svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; animation: ecgScroll 3s linear infinite; }
+@keyframes ecgScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+.section { max-width: 960px; margin: 0 auto; padding: 80px 24px; opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
+.section-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--teal); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.section-kicker::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+.section h2 { font-family: 'Syne', sans-serif; font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.8rem); margin-bottom: 24px; line-height: 1.1; }
+.section-deco { width: 60px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--teal), var(--gold)); margin: 0 0 24px; }
+
+.case-box { background: linear-gradient(135deg, rgba(230,57,70,0.1), rgba(3,64,120,0.3)); border: 1px solid rgba(230,57,70,0.3); border-radius: 16px; padding: 32px; position: relative; overflow: hidden; margin-bottom: 40px; }
+.case-box::before { content: '🚨'; position: absolute; right: 24px; top: 24px; font-size: 48px; opacity: 0.3; }
+.case-box h3 { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--red); margin-bottom: 12px; font-size: 1.1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.case-box p { font-size: 1rem; line-height: 1.7; color: var(--white); }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+.card:hover { transform: translateY(-4px); border-color: var(--teal); }
+.card-icon { font-size: 2rem; margin-bottom: 12px; }
+.card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; color: var(--gold); }
+.card p { font-size: 0.88rem; line-height: 1.6; color: var(--muted); }
+
+.castle-section { background: linear-gradient(135deg, rgba(3,64,120,0.5), rgba(11,37,69,0.8)); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; margin-bottom: 32px; text-align: center; }
+.messenger-path { display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center; }
+.arrow-path { width: 60px; height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold)); position: relative; flex-shrink: 0; }
+.arrow-path::after { content: '▶'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 12px; }
+.castle-legend { font-size: 0.82rem; color: var(--muted); font-family: 'IBM Plex Mono', monospace; margin-top: 8px; line-height: 1.5; }
+
+.compare-table { width: 100%; border-collapse: collapse; background: rgba(3,64,120,0.2); border-radius: 12px; overflow: hidden; margin: 24px 0; font-size: 0.85rem; }
+.compare-table th { background: rgba(18,130,162,0.3); padding: 14px 16px; text-align: left; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+.compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; color: var(--white); }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr:hover td { background: rgba(18,130,162,0.1); }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+.badge-red { background: rgba(230,57,70,0.2); color: var(--red); border: 1px solid rgba(230,57,70,0.4); }
+.badge-green { background: rgba(45,198,83,0.2); color: var(--green); border: 1px solid rgba(45,198,83,0.4); }
+.badge-gold { background: rgba(244,185,66,0.2); color: var(--gold); border: 1px solid rgba(244,185,66,0.4); }
+.badge-blue { background: rgba(18,130,162,0.2); color: var(--teal); border: 1px solid rgba(18,130,162,0.4); }
+
+.tipo1-visual { display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding: 40px 0 20px; flex-wrap: wrap; }
+.impulse-col { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.impulse-node { width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle, #F4B942, #c48d00); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #0B2545; flex-shrink: 0; }
+.impulse-bar { width: 4px; background: linear-gradient(to bottom, var(--gold), var(--teal)); border-radius: 2px; }
+.impulse-p { width: 40px; height: 40px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 16px; box-shadow: 0 0 15px rgba(45,198,83,0.5); }
+.impulse-blocked { width: 40px; height: 40px; border-radius: 50%; background: rgba(230,57,70,0.2); border: 2px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.ms-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--gold); margin-top: 4px; }
+.pp-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.ecg-strip { background: #fff8e8; border-radius: 8px; padding: 12px; margin: 24px 0; overflow: hidden; }
+.ecg-strip svg { width: 100%; height: 80px; display: block; }
+
+.palace-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 24px 0; }
+.palace-room { background: linear-gradient(135deg, rgba(3,64,120,0.4), rgba(11,37,69,0.6)); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; cursor: default; position: relative; overflow: hidden; }
+.palace-room:hover { border-color: var(--gold); background: linear-gradient(135deg, rgba(244,185,66,0.08), rgba(3,64,120,0.5)); transform: translateY(-3px); }
+.palace-room .room-num { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 2rem; color: rgba(244,185,66,0.3); position: absolute; top: 8px; right: 12px; }
+.palace-room .room-icon { font-size: 2rem; margin-bottom: 8px; }
+.palace-room h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--gold); margin-bottom: 6px; }
+.palace-room p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+.mnemonic-box { background: linear-gradient(135deg, rgba(244,185,66,0.1), rgba(3,64,120,0.3)); border: 2px solid rgba(244,185,66,0.4); border-radius: 16px; padding: 28px; margin: 24px 0; position: relative; }
+.mnemonic-box::before { content: '💡'; position: absolute; top: 20px; right: 20px; font-size: 24px; }
+.mnemonic-box h3 { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.mnemonic-box p { font-size: 1rem; line-height: 1.7; color: var(--white); font-style: italic; }
+.mnemonic-box strong { color: var(--gold); font-style: normal; }
+
+.pega-box { background: linear-gradient(135deg, rgba(244,185,66,0.08), rgba(11,37,69,0.5)); border: 1px solid rgba(244,185,66,0.3); border-radius: 12px; padding: 20px 24px; margin: 12px 0; display: flex; gap: 16px; align-items: flex-start; }
+.pega-num { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 1.5rem; color: rgba(244,185,66,0.4); flex-shrink: 0; line-height: 1; }
+.pega-content h4 { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; }
+.pega-content p { font-size: 0.88rem; line-height: 1.6; color: var(--white); }
+
+.quiz-section { background: linear-gradient(135deg, rgba(3,64,120,0.4), rgba(11,37,69,0.7)); border: 1px solid var(--border); border-radius: 20px; padding: 40px; margin: 40px 0; }
+.quiz-question { display: none; }
+.quiz-question.active { display: block; }
+.quiz-counter { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 16px; }
+.quiz-q-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; line-height: 1.5; margin-bottom: 24px; color: var(--white); }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-opt { background: rgba(18,130,162,0.1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; cursor: pointer; transition: all 0.25s; font-size: 0.9rem; color: var(--white); display: flex; gap: 12px; align-items: center; text-align: left; }
+.quiz-opt:hover:not(.locked) { border-color: var(--teal); background: rgba(18,130,162,0.2); transform: translateX(4px); }
+.quiz-opt.correct { border-color: var(--green); background: rgba(45,198,83,0.15); color: var(--green); }
+.quiz-opt.wrong { border-color: var(--red); background: rgba(230,57,70,0.1); color: var(--red); }
+.quiz-opt.locked { cursor: default; }
+.opt-letter { font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 11px; color: var(--teal); flex-shrink: 0; }
+.quiz-feedback { margin-top: 20px; padding: 16px 20px; border-radius: 10px; font-size: 0.88rem; line-height: 1.6; display: none; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct-fb { background: rgba(45,198,83,0.15); border: 1px solid rgba(45,198,83,0.3); color: var(--green); }
+.quiz-feedback.wrong-fb { background: rgba(230,57,70,0.1); border: 1px solid rgba(230,57,70,0.3); color: #ff8a8a; }
+.quiz-nav { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.btn { padding: 10px 24px; border-radius: 8px; border: none; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.05em; font-weight: 500; transition: all 0.2s; }
+.btn-primary { background: linear-gradient(135deg, var(--teal), var(--deep)); color: white; }
+.btn-primary:hover { filter: brightness(1.2); transform: translateY(-2px); }
+.btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.btn-secondary:hover { border-color: var(--teal); color: var(--white); }
+.quiz-score { text-align: center; padding: 32px; display: none; }
+.quiz-score.show { display: block; }
+.score-num { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 4rem; color: var(--gold); }
+
+.flip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+.flip-card { height: 160px; perspective: 1000px; cursor: pointer; }
+.flip-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s; }
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+.flip-front { background: linear-gradient(135deg, rgba(3,64,120,0.6), rgba(11,37,69,0.8)); border: 1px solid var(--border); }
+.flip-back { background: linear-gradient(135deg, rgba(18,130,162,0.3), rgba(3,64,120,0.6)); border: 1px solid var(--teal); transform: rotateY(180deg); }
+.flip-front p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+.flip-front .flip-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.flip-back p { font-size: 0.88rem; color: var(--white); line-height: 1.6; font-weight: 500; }
+.flip-hint { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--teal); letter-spacing: 0.15em; margin-top: 8px; }
+
+.causes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 24px 0; }
+.cause-tag { background: rgba(3,64,120,0.3); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 0.83rem; color: var(--white); display: flex; gap: 8px; align-items: center; transition: all 0.2s; }
+.cause-tag:hover { border-color: var(--teal); background: rgba(18,130,162,0.1); }
+.cause-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+.algo-steps { display: flex; flex-direction: column; gap: 0; margin: 24px 0; position: relative; }
+.algo-step { display: flex; gap: 16px; align-items: flex-start; position: relative; padding-bottom: 24px; }
+.algo-step::before { content: ''; position: absolute; left: 18px; top: 40px; width: 2px; height: calc(100% - 16px); background: linear-gradient(to bottom, var(--teal), transparent); }
+.algo-step:last-child::before { display: none; }
+.algo-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--deep)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 900; font-size: 14px; color: white; flex-shrink: 0; box-shadow: 0 0 15px rgba(18,130,162,0.4); }
+.algo-text h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
+.algo-text p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+
+.signature-section { text-align: center; padding: 60px 24px 80px; border-top: 1px solid var(--border); }
+.signature-name { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--gold); margin-bottom: 4px; }
+.signature-role { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.1em; }
+.final-phrase { max-width: 700px; margin: 32px auto 0; font-size: 1rem; line-height: 1.8; color: var(--muted); font-style: italic; padding: 24px; border: 1px solid var(--border); border-radius: 12px; background: rgba(18,130,162,0.05); }
+.final-phrase strong { color: var(--gold); font-style: normal; }
+
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 40px 0; }
+.highlight { color: var(--teal); font-weight: 600; }
+.highlight-gold { color: var(--gold); font-weight: 600; }
+.highlight-red { color: var(--red); font-weight: 600; }
+.highlight-green { color: var(--green); font-weight: 600; }
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.tipo2-visual { display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding: 32px 0 16px; flex-wrap: wrap; }
+.info-p { font-size: 0.95rem; line-height: 1.8; color: rgba(240,244,248,0.85); margin-bottom: 16px; }
+
+/* ═══ NOVO: CORREDOR DO REI ═══ */
+.corredor-wrap {
+  background: linear-gradient(135deg, rgba(3,64,120,0.5), rgba(11,37,69,0.8));
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px 32px; margin-bottom: 24px;
+}
+.corredor-canvas-wrap {
+  background: #030e1c; border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 14px; padding: 24px 16px 16px; margin: 24px 0;
+}
+.corredor-canvas-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  letter-spacing: 2px; color: var(--muted); text-transform: uppercase;
+  text-align: center; margin-bottom: 16px;
+}
+canvas#corridorCanvas { width: 100%; height: 200px; display: block; }
+.corridor-legend {
+  display: flex; gap: 16px; justify-content: center;
+  flex-wrap: wrap; margin-top: 14px;
+}
+.cl-item {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted);
+}
+.cl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.cl-line { width: 20px; height: 2px; border-radius: 1px; flex-shrink: 0; }
+.corredor-speed {
+  text-align: center; margin-top: 14px;
+}
+.speed-pill {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(18,130,162,0.08); border: 1px solid var(--border);
+  border-radius: 40px; padding: 9px 18px;
+}
+.speed-pill span { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); }
+input#corridorSpeed {
+  -webkit-appearance: none; width: 130px; height: 4px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--teal) 50%, rgba(18,130,162,0.2) 50%); outline: none;
+}
+input#corridorSpeed::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--gold); cursor: pointer; box-shadow: 0 0 8px rgba(244,185,66,0.5);
+}
+
+/* data table dentro do corredor */
+.corridor-table {
+  width: 100%; border-collapse: collapse;
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px; margin: 20px 0;
+}
+.corridor-table th {
+  text-align: left; padding: 8px 12px; color: var(--muted);
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.corridor-table td { padding: 10px 12px; border-bottom: 1px solid rgba(18,130,162,0.1); }
+.corridor-table tr:last-child td { border-bottom: none; }
+.corridor-table tr.ct-active td { background: rgba(18,130,162,0.1); }
+.ct-gold { color: var(--gold); font-weight: 600; }
+.ct-teal { color: #34c4e8; font-weight: 600; }
+.ct-red  { color: var(--red); }
+.ct-green { color: var(--green); font-weight: 600; }
+.ct-muted { color: var(--muted); }
+
+/* insight / pega dentro do corredor */
+.cor-insight {
+  background: rgba(18,130,162,0.08); border: 1px solid rgba(18,130,162,0.28);
+  border-left: 3px solid var(--teal); border-radius: 10px;
+  padding: 16px 20px; margin-top: 16px; font-size: 14px; line-height: 1.75;
+}
+.cor-insight-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 2px; color: var(--teal); text-transform: uppercase; margin-bottom: 8px;
+}
+.cor-pega {
+  background: rgba(230,57,70,0.07); border: 1px solid rgba(230,57,70,0.25);
+  border-left: 3px solid var(--red); border-radius: 10px;
+  padding: 16px 20px; margin-top: 14px; font-size: 14px; line-height: 1.75;
+}
+.cor-pega-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 2px; color: var(--red); text-transform: uppercase; margin-bottom: 8px;
+}
+.cor-analogy {
+  background: rgba(244,185,66,0.06); border: 1px solid rgba(244,185,66,0.22);
+  border-left: 3px solid var(--gold); border-radius: 10px;
+  padding: 16px 20px; margin-top: 14px; font-size: 14px; line-height: 1.75;
+}
+.cor-analogy-label {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
+}
+.cor-filosofica {
+  background: linear-gradient(135deg, rgba(18,130,162,0.1), rgba(3,64,120,0.6));
+  border: 1px solid rgba(18,130,162,0.3); border-radius: 14px;
+  padding: 32px; text-align: center; margin-top: 20px; position: relative; overflow: hidden;
+}
+.cor-filosofica::before {
+  content: '\201C'; position: absolute; top: -10px; left: 16px;
+  font-family: 'Syne', sans-serif; font-size: 120px;
+  color: rgba(18,130,162,0.08); line-height: 1; pointer-events: none;
+}
+.cor-filosofica p {
+  font-family: 'Syne', sans-serif; font-size: clamp(15px,2.2vw,19px);
+  font-weight: 700; line-height: 1.5; color: var(--white);
+  max-width: 600px; margin: 0 auto 20px; position: relative; z-index: 1;
+}
+.cor-filosofica p em { color: #34c4e8; font-style: normal; }
+.cor-filosofica p strong { color: var(--gold); }
+.cor-assinatura {
+  font-family: 'Dancing Script', cursive; font-size: 20px; color: var(--muted);
+}
+
+/* OBJETIVO DA SEÇÃO */
+.obj-box {
+  background: linear-gradient(135deg, rgba(45,198,83,0.07), rgba(3,64,120,0.3));
+  border: 1px solid rgba(45,198,83,0.3);
+  border-left: 4px solid var(--green);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+.obj-box-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--green); text-transform: uppercase; margin-bottom: 8px;
+}
+.obj-box strong { color: var(--white); }
+.obj-box em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+@media (max-width: 640px) {
+  .tipo1-visual, .tipo2-visual { gap: 4px; }
+  .impulse-node { width: 40px; height: 40px; font-size: 9px; }
+  .impulse-p { width: 32px; height: 32px; font-size: 12px; }
+  .ms-label { font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+<nav id="sidebar">
+  <div class="nav-logo">BLOQUEIO SINOATRIAL<br>TEC 2026</div>
+  <a class="nav-item" onclick="navTo('hero')">Início</a>
+  <a class="nav-item" onclick="navTo('conceito')">Conceito Central</a>
+  <a class="nav-item" onclick="navTo('mecanismo')">Castelo Elétrico</a>
+  <a class="nav-item" onclick="navTo('bsa1')">BSA 1º Grau</a>
+  <a class="nav-item" onclick="navTo('corredor')" style="color:var(--gold)">★ O Corredor do Rei</a>
+  <a class="nav-item" onclick="navTo('tipos')">Tipos de Bloqueio</a>
+  <a class="nav-item" onclick="navTo('tipo1')">2º Grau Tipo I</a>
+  <a class="nav-item" onclick="navTo('tipo2')">2º Grau Tipo II</a>
+  <a class="nav-item" onclick="navTo('pausa')">Pausa Sinusal</a>
+  <a class="nav-item" onclick="navTo('doenca')">Doença do Nó</a>
+  <a class="nav-item" onclick="navTo('causas')">Causas Reversíveis</a>
+  <a class="nav-item" onclick="navTo('palace')">Palácio da Memória</a>
+  <a class="nav-item" onclick="navTo('pegadinhas')">Pegadinhas TEC</a>
+  <a class="nav-item" onclick="navTo('flashcards')">Flashcards</a>
+  <a class="nav-item" onclick="navTo('quiz')">Quiz</a>
+  <a class="nav-item" onclick="navTo('algoritmo')">Algoritmo Clínico</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-kicker">TEC 2026 · CARDIOLOGIA · ARRITMOLOGIA</div>
+  <h1>Bloqueio Sinoatrial</h1>
+  <h2>& Doença do Nó Sinusal</h2>
+  <div class="hero-badge">⚡ Método André Rossanno de Memorização Médica</div>
+  <div class="ecg-container">
+    <svg class="ecg-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <polyline fill="none" stroke="#1282A2" stroke-width="2.5"
+        points="0,40 60,40 70,40 80,20 90,60 100,40 130,40 140,40 150,15 160,55 170,40 200,40 210,40 220,10 230,50 240,40 270,40 280,40 290,40 310,40 350,40 360,40 370,40 380,20 390,55 400,40 430,40 440,40 450,15 460,55 470,40 500,40 510,40 520,10 530,50 540,40 570,40 580,40 590,40 610,40 650,40 660,40 670,40 680,20 690,55 700,40 730,40"/>
+      <polyline fill="none" stroke="#1282A2" stroke-width="2.5"
+        points="600,40 660,40 670,40 680,20 690,60 700,40 730,40 740,40 750,15 760,55 770,40 800,40 810,40 820,10 830,50 840,40 870,40 880,40 890,40 910,40 950,40 960,40 970,40 980,20 990,55 1000,40 1030,40 1040,40 1050,15 1060,55 1070,40 1100,40 1110,40 1120,10 1130,50 1140,40 1170,40 1180,40 1190,40 1200,40"/>
+    </svg>
+  </div>
+  <p style="font-size:0.95rem;color:var(--muted);max-width:500px;line-height:1.7;">
+    O nó sinusal pode falhar de duas formas: <span class="highlight-red">não fabrica o impulso</span>
+    ou <span class="highlight-gold">fabrica mas o impulso não sai</span>.
+    Essa diferença é o coração da aula.
+  </p>
+</section>
+
+<!-- CASO ABERTURA -->
+<section id="conceito" class="section">
+  <div class="section-kicker">N6 · Emoção · Caso Dramático</div>
+  <h2>O Rei que Falhou</h2>
+  <div class="section-deco"></div>
+  <div class="obj-box reveal">
+    <div class="obj-box-label">🎯 Objetivo desta seção</div>
+    Este caso clínico existe para que você entenda <strong>o que é a disfunção do nó sinusal na prática</strong>: um paciente que apresenta <em>bradicardia sintomática com pausas</em> — o coração desacelera ou para por instantes, causando tontura ou síncope. Toda esta aula parte daqui: o nó sinusal está falhando, seja porque <em>não fabricou o impulso</em>, seja porque <em>fabricou mas não conseguiu entregá-lo</em>. Você vai aprender a distinguir essas duas situações.
+  </div>
+
+  <div class="case-box reveal">
+    <h3>🚨 Caso Clínico de Abertura</h3>
+    <p>Dona Margarida, 68 anos, diz ao Dr. André: <em>"Doutor, de repente o mundo gira, eu quase caio, e depois parece que o coração simplesmente <strong>parou por um segundo</strong>."</em> Ela ainda conta: <em>"Às vezes meu coração dispara igual louco, e quando para, é que venho abaixo."</em><br><br>O ECG mostra pausas longas, com ondas P que somem do nada. O Holter confirma: o nó sinusal está falhando. O rei-relógio do coração está dormindo, ou pior — está mandando ordens que ninguém consegue entregar.</p>
+  </div>
+  <div class="mnemonic-box reveal">
+    <h3>Conceito Central</h3>
+    <p><strong>Doença do nó sinusal</strong> = incapacidade do nó sinusal de <strong>gerar</strong> ou <strong>conduzir</strong> impulsos adequados para manter FC compatível com a necessidade do corpo. Mecanismo: fibrose, degeneração ou fatores reversíveis que reduzem o automatismo ou bloqueiam a saída do estímulo para o átrio.</p>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card">
+      <div class="card-icon">👑</div>
+      <h3>O Rei-Relógio</h3>
+      <p>O nó sinusal dispara regularmente, gerando um impulso a cada ciclo cardíaco. Ele é o marcapasso natural do coração.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📜</div>
+      <h3>O Mensageiro (Onda P)</h3>
+      <p>O ECG <strong>não vê o rei pensando</strong>. Só vê quando o mensageiro sai do castelo e ativa o átrio, gerando a onda P.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>O Corredor Invisível</h3>
+      <p>Entre o nó sinusal e o átrio existe uma zona que o ECG não detecta. Isso explica o bloqueio SA de 1º grau.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASTELO ELÉTRICO -->
+<section id="mecanismo" class="section">
+  <div class="section-kicker">N3 · Palácio Clínico · Castelo Elétrico</div>
+  <h2>O Castelo Elétrico</h2>
+  <div class="section-deco"></div>
+
+  <div class="obj-box reveal">
+    <div class="obj-box-label">🎯 Objetivo desta seção</div>
+    Antes de falar em bloqueio, você precisa entender <strong>como o impulso elétrico nasce e é entregue</strong>. O nó sinusal <em>fabrica</em> o impulso internamente — mas isso é invisível no ECG. Para que o coração responda, esse impulso precisa <em>sair de dentro do próprio nó</em>, atravessar o corredor sinoatrial e chegar ao átrio. Só então o ECG registra a onda P. <strong>Bloqueio sinoatrial</strong> acontece exatamente nesse corredor de saída — o nó fabricou, mas a entrega falhou.
+  </div>
+
+  <div class="castle-section reveal">
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:24px;">Imagine o átrio direito como um castelo medieval. O que acontece dentro dele determina o que o ECG consegue enxergar.</p>
+    <div class="messenger-path">
+      <div style="text-align:center">
+        <div style="width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,#F4B942,#c48d00);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 30px rgba(244,185,66,0.4);">
+          <span style="font-size:22px">👑</span><span style="font-size:9px;font-weight:700;margin-top:2px;color:#0B2545">NÓ SINUSAL</span>
+        </div>
+        <div class="castle-legend">Rei-Relógio<br>Gera o impulso</div>
+      </div>
+      <div class="arrow-path" style="margin-bottom:40px"></div>
+      <div style="text-align:center">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(18,130,162,0.3),rgba(3,64,120,0.5));border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;">
+          <span style="font-size:20px">🏰</span><span style="font-size:8px;color:var(--muted);margin-top:2px;font-family:'IBM Plex Mono',monospace;">ZONA INVISÍVEL</span>
+        </div>
+        <div class="castle-legend">Corredor SA<br><span style="color:var(--red)">ECG não vê aqui</span></div>
+      </div>
+      <div class="arrow-path" style="margin-bottom:40px"></div>
+      <div style="text-align:center">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--deep));display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 20px rgba(18,130,162,0.4);">
+          <span style="font-size:20px">🚪</span><span style="font-size:8px;color:white;margin-top:2px;font-weight:700;">PORTÃO</span>
+        </div>
+        <div class="castle-legend">Saída para o Átrio</div>
+      </div>
+      <div class="arrow-path" style="margin-bottom:40px"></div>
+      <div style="text-align:center">
+        <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--green),#1a8c3a);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 20px rgba(45,198,83,0.4);">
+          <span style="font-size:2.5rem;font-weight:900;color:white">P</span>
+        </div>
+        <div class="castle-legend">Onda P no ECG<br><span style="color:var(--green)">ECG vê aqui ✓</span></div>
+      </div>
+    </div>
+    <div class="mnemonic-box" style="margin-top:24px;">
+      <h3>Macete Definitivo</h3>
+      <p><strong>"O ECG não vê o rei pensando. Só vê o mensageiro saindo do castelo."</strong><br>Rei = nó sinusal. Mensageiro = onda P. Castelo = átrio direito.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     NOVA SEÇÃO: O CORREDOR DO REI
+     ════════════════════════════════════════════════ -->
+<!-- BSA 1º GRAU -->
+<section id="bsa1" class="section">
+  <div class="section-kicker">N1 · Elaborative Encoding · Primeiro Bloqueio</div>
+  <h2>Bloqueio Sinoatrial <span style="color:var(--teal)">1º Grau</span></h2>
+  <div class="section-deco"></div>
+
+  <div class="obj-box reveal">
+    <div class="obj-box-label">🎯 Objetivo desta seção</div>
+    Agora que você entende o castelo — fabricação + corredor + entrega — vamos ao <strong>primeiro bloqueio</strong>: o corredor existe, o impulso é fabricado, mas <em>demora mais do que deveria para atravessar</em>. Ele chega. Só chega atrasado. O objetivo aqui é entender por que isso é <em>invisível no ECG de superfície</em> e o que significa clinicamente.
+  </div>
+
+  <div class="castle-section reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:20px;">O corredor com ferrugem leve — impulso chega, mas atrasado</h3>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card" style="border-color:rgba(244,185,66,0.4);">
+        <div class="card-icon">👑</div>
+        <h3>O Rei dispara — normal</h3>
+        <p>O nó sinusal fabrica o impulso no seu ritmo habitual. Sem falha na geração. O problema <strong>não está aqui</strong>.</p>
+      </div>
+      <div class="card" style="border-color:rgba(230,57,70,0.4);">
+        <div class="card-icon">🏰</div>
+        <h3>O corredor tem ferrugem</h3>
+        <p>O impulso entra no corredor sinoatrial e <strong>demora mais do que o normal</strong> para atravessá-lo. Esse atraso existe, é fixo, mas o impulso <em>sempre consegue sair</em>.</p>
+      </div>
+      <div class="card" style="border-color:rgba(45,198,83,0.4);">
+        <div class="card-icon">🚩</div>
+        <h3>A onda P chega — sempre</h3>
+        <p>O mensageiro sai do corredor e ativa o átrio normalmente. <strong>Toda batida gera uma onda P.</strong> O ritmo parece perfeito no ECG.</p>
+      </div>
+    </div>
+
+    <div class="mnemonic-box" style="margin-bottom:0;">
+      <h3>Por que é invisível no ECG?</h3>
+      <p>
+        O ECG só enxerga <strong>a partir do momento que o mensageiro sai do corredor</strong> e ativa o átrio (onda P). O atraso acontece <em>dentro do corredor</em> — zona invisível. Como toda batida ainda gera uma onda P, o ECG parece completamente normal.<br><br>
+        <strong>"O rei atrasou a entrega, mas entregou. O ECG não viu o atraso — só viu a entrega."</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="castle-section reveal" style="margin-top:0;">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">Como diagnosticar então?</h3>
+    <div class="algo-steps" style="margin:0;">
+      <div class="algo-step">
+        <div class="algo-num">1</div>
+        <div class="algo-text">
+          <h4>ECG de superfície: normal</h4>
+          <p>PP regular, PR normal, sem pausas. Nada sugere bloqueio. O médico não vê nada.</p>
+        </div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-num">2</div>
+        <div class="algo-text">
+          <h4>Estudo eletrofisiológico invasivo</h4>
+          <p>Cateter dentro do átrio mede diretamente o tempo de condução sinoatrial (TCSA). Só assim o atraso do corredor é detectado.</p>
+        </div>
+      </div>
+      <div class="algo-step" style="padding-bottom:0;">
+        <div class="algo-num">3</div>
+        <div class="algo-text">
+          <h4>Importância clínica</h4>
+          <p>O BSA 1º grau isolado raramente causa sintomas. Seu valor é como <em>sinal de alerta</em>: o corredor já tem ferrugem — pode progredir para 2º ou 3º grau.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pega-box reveal">
+    <div class="pega-num">!</div>
+    <div class="pega-content">
+      <h4>🎯 Pegadinha TEC — BSA 1º Grau</h4>
+      <p>A prova pergunta: <strong>"Qual bloqueio sinoatrial NÃO é diagnosticado pelo ECG de superfície?"</strong> Resposta: <span class="highlight-gold">1º grau</span>. O ECG é normal — o atraso está escondido no corredor invisível.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CORREDOR DO REI — BSA 2º GRAU TIPO I -->
+<section id="corredor" class="section">
+  <div class="section-kicker">N2 · Dual Coding · O Paradoxo do PP</div>
+  <h2>O Corredor do Rei — <span style="color:var(--teal)">Por que o PP diminui?</span></h2>
+  <div class="section-deco"></div>
+
+  <div class="obj-box reveal">
+    <div class="obj-box-label">🎯 Objetivo desta seção — BSA 2º Grau Tipo I</div>
+    No 1º grau o corredor tinha ferrugem, mas o impulso sempre chegava. Agora a ferrugem <strong>piora progressivamente a cada ciclo</strong> — e em algum momento um impulso <em>não consegue mais sair</em>. Entramos no <em>BSA 2º grau Tipo I</em>. O objetivo aqui é entender o paradoxo central: <strong>se o bloqueio está piorando, por que o PP diminui antes da pausa?</strong>
+  </div>
+
+  <p class="info-p reveal">Esta é a questão que mais confunde no BSA 2º grau Tipo I. Se o bloqueio está <em>piorando</em>, por que o PP <em>diminui</em>? A resposta está no corredor invisível entre o rei e o portão.</p>
+
+  <!-- Os dois tempos -->
+  <div class="corredor-wrap reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:20px;">O Rei tem dois tempos distintos</h3>
+    <div class="card-grid" style="margin-bottom:0;">
+      <div class="card" style="border-color:rgba(244,185,66,0.4);">
+        <div class="card-icon">⏰</div>
+        <h3>Tempo de Disparar</h3>
+        <p><strong style="color:var(--gold)">Fixo. Invariável.</strong> O rei bate o relógio a cada 1000ms. O bloqueio <em>não toca nisso</em>. Este tempo é totalmente invisível no ECG.</p>
+      </div>
+      <div class="card" style="border-color:rgba(230,57,70,0.4);">
+        <div class="card-icon">🏰</div>
+        <h3>Tempo de Sair do Corredor</h3>
+        <p><strong style="color:var(--red)">Este está doente.</strong> O mensageiro demora cada vez mais para atravessar o corredor e chegar ao átrio. É o atraso de saída sinoatrial.</p>
+      </div>
+    </div>
+
+    <div class="cor-insight" style="margin-top:20px;">
+      <div class="cor-insight-label">// Chave</div>
+      Você <strong style="color:#34c4e8">nunca vê o rei disparando no ECG</strong>. Você só vê a onda P — que é quando o mensageiro <em>chegou ao portão</em>. O corredor é completamente invisível.
+    </div>
+  </div>
+
+  <!-- Tabela de atrasos -->
+  <div class="corredor-wrap reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:8px;">O atraso cresce — mas seus incrementos encolhem</h3>
+    <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px;">O mensageiro demora mais a cada ciclo — mas demora cada vez <em>um pouquinho menos a mais</em>:</p>
+
+    <table class="corridor-table">
+      <thead>
+        <tr><th>Ciclo</th><th>Atraso absoluto (corredor)</th><th>Incremento</th><th>Intervalo PP</th></tr>
+      </thead>
+      <tbody>
+        <tr id="ct0"><td class="ct-muted">1→2</td><td class="ct-gold">80→130ms</td><td class="ct-red">+50ms</td><td class="ct-teal">1050ms</td></tr>
+        <tr id="ct1"><td class="ct-muted">2→3</td><td class="ct-gold">130→160ms</td><td class="ct-red">+30ms ↓</td><td class="ct-teal">1030ms ↓</td></tr>
+        <tr id="ct2"><td class="ct-muted">3→4</td><td class="ct-gold">160→175ms</td><td class="ct-red">+15ms ↓</td><td class="ct-teal">1015ms ↓</td></tr>
+        <tr><td class="ct-muted">4→5</td><td class="ct-gold">∞</td><td class="ct-red">bloqueio</td><td class="ct-red">PAUSA</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cor-insight">
+      <div class="cor-insight-label">// Por que o PP diminui?</div>
+      <strong style="color:#34c4e8">PP = ritmo interno fixo + (atraso novo − atraso anterior).</strong> Como essa diferença encolhe a cada ciclo, o PP diminui — mesmo o atraso absoluto crescendo sempre.
+    </div>
+  </div>
+
+  <!-- Canvas animado -->
+  <div class="corredor-wrap reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:8px;">Visualização: Rei, Corredor e Onda P</h3>
+    <p style="font-size:0.83rem;color:var(--muted);margin-bottom:4px;">Acompanhe o rei disparando (fixo), o mensageiro percorrendo o corredor (crescendo) e a onda P chegando ao ECG (cada vez mais próxima).</p>
+
+    <div class="corredor-canvas-wrap">
+      <div class="corredor-canvas-label">// rei · corredor · onda P</div>
+      <canvas id="corridorCanvas"></canvas>
+      <div class="corridor-legend">
+        <div class="cl-item"><div class="cl-dot" style="border:2px solid rgba(244,185,66,0.5);background:rgba(244,185,66,0.1);"></div>Disparo interno (invisível)</div>
+        <div class="cl-item"><div class="cl-line" style="background:var(--gold);"></div>Corredor — atraso absoluto (↑ cresce sempre)</div>
+        <div class="cl-item"><div class="cl-line" style="background:var(--green);"></div>Onda P visível no ECG</div>
+        <div class="cl-item"><div class="cl-line" style="background:#34c4e8;"></div>Intervalo PP (↓ diminui)</div>
+      </div>
+      <div class="corredor-speed">
+        <div class="speed-pill">
+          <span>VELOCIDADE</span>
+          <input type="range" id="corridorSpeed" min="600" max="3500" value="1800" step="100">
+          <span id="corridorSpeedVal">1.8s</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analogias na linguagem do castelo -->
+  <div class="corredor-wrap reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">As analogias que grudam</h3>
+
+    <div class="cor-analogy">
+      <div class="cor-analogy-label">// Analogia 1 — O Portão com Ferrugem Crescente</div>
+      O mensageiro precisa empurrar um portão que vai enferrujando a cada passagem. Na 1ª tentativa empurra devagar, demora. Na 2ª antecipa, empurra mais cedo — chega mais rápido. Na 3ª mais cedo ainda. Na 4ª — <strong style="color:var(--red)">portão completamente travado. Pausa.</strong><br><br>
+      O mensageiro está <em>antecipando a saída</em> tentando compensar a ferrugem crescente. Por isso o PP encurta — não porque o corredor melhorou.
+    </div>
+
+    <div class="cor-analogy" style="margin-top:14px;">
+      <div class="cor-analogy-label">// Analogia 2 — A Dívida do Corredor</div>
+      O corredor acumula dívida (atraso) a cada ciclo. Mas as parcelas são cada vez menores: +50ms, +30ms, +15ms... A dívida <strong style="color:var(--red)">ainda cresce</strong> a cada mês — mas em parcelas menores. A dívida não diminuiu. Apenas o ritmo do crescimento desacelerou. Até travar.
+    </div>
+
+    <div class="cor-analogy" style="margin-top:14px;">
+      <div class="cor-analogy-label">// Analogia 3 — A Sombra e o Fenômeno</div>
+      Você estava olhando para a <strong style="color:var(--gold)">sombra</strong> do fenômeno (o PP), não o fenômeno em si (o atraso no corredor). A sombra parecia melhorar. O corredor estava piorando o tempo todo. <em>Atrasou para o rei. Adiantou para você.</em>
+    </div>
+  </div>
+
+  <!-- O paradoxo resolvido -->
+  <div class="corredor-wrap reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">O paradoxo resolvido — atrasou para o rei, adiantou para você</h3>
+
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:16px;">O rei dispara a cada 1000ms — fixo. O corredor vai crescendo:</p>
+
+    <table class="corridor-table">
+      <thead><tr><th>Disparo do Rei</th><th>+ Corredor</th><th>Onda P aparece em</th></tr></thead>
+      <tbody>
+        <tr><td class="ct-muted">t = 1000ms</td><td class="ct-gold">+80ms</td><td class="ct-teal">1080ms</td></tr>
+        <tr><td class="ct-muted">t = 2000ms</td><td class="ct-gold">+130ms</td><td class="ct-teal">2130ms</td></tr>
+        <tr><td class="ct-muted">t = 3000ms</td><td class="ct-gold">+160ms</td><td class="ct-teal">3160ms</td></tr>
+        <tr><td class="ct-muted">t = 4000ms</td><td class="ct-gold">+175ms</td><td class="ct-teal">4175ms</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.88rem;color:var(--muted);margin:16px 0 8px;">PP resultantes: <strong style="color:#34c4e8">1050 → 1030 → 1015ms</strong> — diminuindo.</p>
+
+    <div class="cor-insight">
+      <div class="cor-insight-label">// Resolução</div>
+      A onda P chegou <strong style="color:#34c4e8">mais cedo que a anterior</strong> — mas chegou <strong style="color:var(--gold)">mais tarde que o disparo do rei</strong>.<br><br>
+      <strong style="color:var(--white);font-size:15px;">Atrasou para o rei. Adiantou para você.</strong>
+    </div>
+
+    <div class="cor-insight" style="margin-top:14px;border-left-color:var(--green);">
+      <div class="cor-insight-label" style="color:var(--green);">// A frase que resolve tudo</div>
+      <strong style="color:var(--green);font-size:15px;">Ele continua atrasando — só que menos atrasado que antes.</strong><br><br>
+      O cérebro lê "menos atrasado" e interpreta "melhorando". Mas o atraso absoluto do corredor só cresce. Ele apenas cresce mais devagar. E quando o incremento chega a zero — o portão trava.
+    </div>
+
+    <div class="cor-pega">
+      <div class="cor-pega-label">⚠ Pegadinha TEC 2026 — O Corredor</div>
+      <strong style="color:#fcc;">"PP diminuindo = condução sinoatrial melhorando."</strong><br><br>
+      <span style="color:var(--red);font-weight:700;">❌ ERRADO.</span> O PP diminui porque os <em style="color:var(--gold);font-style:normal;font-weight:600;">incrementos do atraso do corredor estão encolhendo</em> — não porque o atraso diminuiu. O corredor está piorando até a pausa.
+    </div>
+
+    <div class="cor-filosofica">
+      <p>"O coração que ainda tenta nos engana com sua <em>pressa</em> —<br>pois o que parece aceleração é apenas o eco de um esforço<br>que já não consegue <strong>crescer</strong>."</p>
+      <div class="cor-assinatura">Dr. André Rossanno</div>
+    </div>
+  </div>
+</section>
+<!-- ════════ FIM: CORREDOR DO REI ════════ -->
+
+<!-- TIPOS DE BLOQUEIO -->
+<section id="tipos" class="section">
+  <div class="section-kicker">N1 · Elaborative Encoding · Grande Divisão</div>
+  <h2>A Pergunta-Mãe</h2>
+  <div class="section-deco"></div>
+  <div class="mnemonic-box reveal" style="text-align:center;font-size:1.2rem;">
+    <h3>Pergunta-Mãe de Toda Aula</h3>
+    <p style="font-size:1.3rem;font-style:normal;font-weight:700;color:var(--gold);">"O nó sinusal disparou ou não disparou?"</p>
+  </div>
+  <div class="card-grid reveal">
+    <div class="card" style="border-color:rgba(230,57,70,0.4);background:linear-gradient(135deg,rgba(230,57,70,0.08),rgba(11,37,69,0.5));">
+      <div style="font-size:2rem;margin-bottom:12px">😴</div>
+      <h3 style="color:var(--red)">Pausa Sinusal</h3>
+      <p>O rei dormiu. <strong>Não nasceu impulso.</strong> Nenhum mensageiro. Nenhuma onda P. ECG: silêncio sem padrão matemático.</p>
+    </div>
+    <div class="card" style="border-color:rgba(244,185,66,0.4);background:linear-gradient(135deg,rgba(244,185,66,0.08),rgba(11,37,69,0.5));">
+      <div style="font-size:2rem;margin-bottom:12px">🔒</div>
+      <h3 style="color:var(--gold)">Bloqueio Sinoatrial</h3>
+      <p>O rei mandou o mensageiro, <strong>mas o corredor fechou.</strong> O nó disparou, porém o impulso ficou preso. A pausa tem relação matemática com o PP.</p>
+    </div>
+  </div>
+  <div class="reveal">
+    <table class="compare-table">
+      <thead><tr><th>Diagnóstico</th><th>Nó Disparou?</th><th>Saiu do Corredor?</th><th>ECG — Chave</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Pausa Sinusal</strong></td><td><span class="badge badge-red">NÃO</span></td><td><span class="badge badge-red">NÃO TEM</span></td><td>Pausa <strong>não múltipla</strong> do PP</td></tr>
+        <tr><td><strong>BSA 1º Grau</strong></td><td><span class="badge badge-green">SIM</span></td><td><span class="badge badge-gold">ATRASADO</span></td><td><span class="badge badge-red">Invisível no ECG</span></td></tr>
+        <tr><td><strong>BSA 2º Tipo I</strong></td><td><span class="badge badge-green">SIM</span></td><td>Cada vez mais atrasado</td><td><strong>PP encurta</strong> antes da pausa</td></tr>
+        <tr><td><strong>BSA 2º Tipo II</strong></td><td><span class="badge badge-green">SIM</span></td><td>Um bloqueia subitamente</td><td>PP constante, pausa <strong>múltipla</strong></td></tr>
+        <tr><td><strong>BSA 3º Grau</strong></td><td>Teoricamente sim</td><td><span class="badge badge-red">NENHUM SAI</span></td><td>Sem P sinusal — escape assume</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TIPO I -->
+<section id="tipo1" class="section">
+  <div class="section-kicker">N2 · Dual Coding · Wenckebach Sinoatrial</div>
+  <h2>Bloqueio SA 2º Grau Tipo I</h2>
+  <div class="section-deco"></div>
+  <p class="info-p reveal">O mais traiçoeiro. O corredor vai fechando progressivamente — cada mensageiro chega com menos antecedência que o anterior, até um ficar preso. O PP <span class="highlight-gold">encurta</span> antes da pausa. É o <em>Wenckebach do nó sinusal</em>.</p>
+  <div class="castle-section reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;color:var(--gold);">Visualização: Atrasos Progressivos no Corredor</h3>
+    <p style="font-size:0.83rem;color:var(--muted);margin-bottom:24px;">O rei dispara a cada 1000ms. O corredor alonga até um mensageiro não conseguir sair.</p>
+    <div class="tipo1-visual">
+      <div class="impulse-col"><div class="impulse-node">👑<br><span style="font-size:8px">t=0</span></div><div class="impulse-bar" style="height:40px"></div><div class="impulse-p">P</div><div class="ms-label">200ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:24px;height:2px;background:var(--border);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);white-space:nowrap">PP=1100</span></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑<br><span style="font-size:8px">t=1000</span></div><div class="impulse-bar" style="height:60px"></div><div class="impulse-p">P</div><div class="ms-label">300ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:24px;height:2px;background:var(--border);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);white-space:nowrap">PP=1050</span></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑<br><span style="font-size:8px">t=2000</span></div><div class="impulse-bar" style="height:75px"></div><div class="impulse-p">P</div><div class="ms-label">350ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:24px;height:2px;background:var(--border);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);white-space:nowrap">PP=1025</span></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑<br><span style="font-size:8px">t=3000</span></div><div class="impulse-bar" style="height:82px"></div><div class="impulse-p">P</div><div class="ms-label">375ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:24px;height:2px;background:var(--border)"></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑<br><span style="font-size:8px">t=4000</span></div><div class="impulse-bar" style="height:20px;background:rgba(230,57,70,0.3)"></div><div class="impulse-blocked">🔒</div><div class="ms-label" style="color:var(--red)">BLOQUEIO</div><div class="pp-label" style="color:var(--red)">sem P</div></div>
+    </div>
+    <div class="ecg-strip">
+      <svg viewBox="0 0 900 80" preserveAspectRatio="none">
+        <rect width="900" height="80" fill="#fff8e8"/>
+        <g stroke="#e8d8a0" stroke-width="0.5" opacity="0.7"><line x1="0" y1="20" x2="900" y2="20"/><line x1="0" y1="40" x2="900" y2="40"/><line x1="0" y1="60" x2="900" y2="60"/></g>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="0,40 50,40 55,35 60,40 70,40 75,10 80,55 85,40 100,40 105,35 110,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="165,40 170,35 175,40 185,40 190,10 195,55 200,40 215,40 220,35 225,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="265,40 270,35 275,40 285,40 290,10 295,55 300,40 315,40 320,35 325,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="350,40 355,35 360,40 370,40 375,10 380,55 385,40 400,40 405,35 410,40"/>
+        <line x1="410" y1="40" x2="620" y2="40" stroke="#c43a3a" stroke-width="1.5"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="620,40 625,35 630,40 640,40 645,10 650,55 655,40 700,40 705,35 710,40 720,40 725,10 730,55 735,40 770,40"/>
+        <text x="130" y="15" font-family="monospace" font-size="10" fill="#666">PP↓1100</text>
+        <text x="235" y="15" font-family="monospace" font-size="10" fill="#666">PP↓1050</text>
+        <text x="335" y="15" font-family="monospace" font-size="10" fill="#666">PP↓1025</text>
+        <text x="460" y="25" font-family="monospace" font-size="12" fill="#c43a3a" font-weight="bold">PAUSA</text>
+        <text x="5" y="75" font-family="monospace" font-size="9" fill="#999">BSA 2° Grau Tipo I</text>
+      </svg>
+    </div>
+    <div class="mnemonic-box" style="margin-top:8px;">
+      <h3>Macete Tipo I</h3>
+      <p><strong>"O corredor vai fechando — os mensageiros chegam cada vez mais rápido, até o último não conseguir sair."</strong><br>Frase de prova: <strong>PP encurta progressivamente antes da pausa.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- TIPO II -->
+<section id="tipo2" class="section">
+  <div class="section-kicker">N2 · Dual Coding · Guilhotina Sinoatrial</div>
+  <h2>Bloqueio SA 2º Grau Tipo II</h2>
+  <div class="section-deco"></div>
+  <p class="info-p reveal">O portão guilhotina. Tudo regular, certinho, até um mensageiro cair de repente num buraco. PP constante antes da pausa, e a pausa é <span class="highlight-gold">múltipla exata</span> do PP basal.</p>
+  <div class="castle-section reveal">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:24px;color:var(--gold);">Portão Guilhotina: PP Constante → Pausa 2×PP</h3>
+    <div class="tipo2-visual">
+      <div class="impulse-col"><div class="impulse-node">👑</div><div class="impulse-bar" style="height:50px"></div><div class="impulse-p">P</div><div class="ms-label">1000ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:20px;height:2px;background:var(--border);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal);white-space:nowrap">PP=1000</span></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑</div><div class="impulse-bar" style="height:50px"></div><div class="impulse-p">P</div><div class="ms-label">1000ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:20px;height:2px;background:var(--border);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal);white-space:nowrap">PP=1000</span></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑</div><div class="impulse-bar" style="height:50px"></div><div class="impulse-p">P</div><div class="ms-label">1000ms</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:20px;height:2px;background:var(--border)"></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑</div><div class="impulse-bar" style="height:15px;background:rgba(230,57,70,0.3)"></div><div class="impulse-blocked">🔒</div><div class="ms-label" style="color:var(--red)">BLOQUEIO</div></div>
+      <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:20px;height:2px;background:rgba(244,185,66,0.3);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);white-space:nowrap">2×PP</span></div></div>
+      <div class="impulse-col"><div class="impulse-node">👑</div><div class="impulse-bar" style="height:50px"></div><div class="impulse-p">P</div><div class="ms-label">retorno</div></div>
+    </div>
+    <div class="ecg-strip">
+      <svg viewBox="0 0 900 80" preserveAspectRatio="none">
+        <rect width="900" height="80" fill="#fff8e8"/>
+        <g stroke="#e8d8a0" stroke-width="0.5" opacity="0.7"><line x1="0" y1="40" x2="900" y2="40"/></g>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="0,40 40,40 45,35 50,40 60,40 65,10 70,55 75,40 110,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="165,40 170,35 175,40 185,40 190,10 195,55 200,40 235,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="290,40 295,35 300,40 310,40 315,10 320,55 325,40 360,40"/>
+        <line x1="360" y1="40" x2="600" y2="40" stroke="#c43a3a" stroke-width="1.5"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="600,40 605,35 610,40 620,40 625,10 630,55 635,40 700,40 705,35 710,40 720,40 725,10 730,55 735,40 780,40"/>
+        <line x1="360" y1="55" x2="600" y2="55" stroke="#F4B942" stroke-width="1" stroke-dasharray="4,2"/>
+        <text x="440" y="70" font-family="monospace" font-size="10" fill="#F4B942" font-weight="bold">= 2 × PP</text>
+        <text x="5" y="75" font-family="monospace" font-size="9" fill="#999">BSA 2° Grau Tipo II</text>
+      </svg>
+    </div>
+    <div class="mnemonic-box" style="margin-top:8px;">
+      <h3>Macete Tipo II</h3>
+      <p><strong>"Dois tempos certinhos, depois buraco matemático."</strong><br>Frase de prova: <strong>PP constante e pausa múltipla do PP.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- PAUSA SINUSAL -->
+<section id="pausa" class="section">
+  <div class="section-kicker">N4 · Testing Effect · Pausa vs Bloqueio</div>
+  <h2>Pausa Sinusal: O Rei Dormiu</h2>
+  <div class="section-deco"></div>
+  <p class="info-p reveal">Na pausa sinusal, o nó simplesmente <strong>falha em disparar</strong>. Não nasce impulso, não há onda P, e a pausa <span class="highlight-red">não é múltipla do PP</span> — não há matemática porque o rei nem tocou o relógio.</p>
+  <div class="castle-section reveal">
+    <div class="ecg-strip">
+      <svg viewBox="0 0 900 80" preserveAspectRatio="none">
+        <rect width="900" height="80" fill="#fff8e8"/>
+        <g stroke="#e8d8a0" stroke-width="0.5" opacity="0.7"><line x1="0" y1="40" x2="900" y2="40"/></g>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="0,40 40,40 45,35 50,40 60,40 65,10 70,55 75,40 140,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="180,40 185,35 190,40 200,40 205,10 210,55 215,40 280,40"/>
+        <line x1="280" y1="40" x2="560" y2="40" stroke="#c43a3a" stroke-width="1.5"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="560,40 568,40 573,35 578,40 587,40 591,10 596,55 601,40 660,40"/>
+        <polyline fill="none" stroke="#c43a3a" stroke-width="1.5" points="700,40 705,35 710,40 720,40 725,10 730,55 735,40 800,40"/>
+        <line x1="280" y1="60" x2="560" y2="60" stroke="#E63946" stroke-width="1" stroke-dasharray="4,2"/>
+        <text x="340" y="75" font-family="monospace" font-size="10" fill="#E63946">NÃO múltipla do PP</text>
+        <text x="5" y="75" font-family="monospace" font-size="9" fill="#999">Pausa Sinusal</text>
+      </svg>
+    </div>
+    <div class="mnemonic-box" style="margin-top:16px;">
+      <h3>Macete Supremo — A Pergunta Criminal</h3>
+      <p><strong>"P não apareceu: pergunte se nasceu ou se ficou preso no corredor."</strong><br>Não nasceu = <span style="color:var(--red)">pausa sinusal</span>.<br>Nasceu e ficou preso = <span style="color:var(--gold)">bloqueio sinoatrial</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOENÇA DO NÓ SINUSAL -->
+<section id="doenca" class="section">
+  <div class="section-kicker">N5 · Interleaving · Diagnóstico Clínico</div>
+  <h2>Doença do Nó Sinusal</h2>
+  <div class="section-deco"></div>
+  <div class="card-grid reveal">
+    <div class="card" style="border-color:rgba(18,130,162,0.5);">
+      <div class="card-icon">⚡</div>
+      <h3>Disfunção do Nó Sinusal</h3>
+      <p>Alteração elétrica isolada, <strong>pode ser assintomática</strong>. Inclui: bradicardia sinusal, pausas, bloqueios SA, síndrome bradi-taqui, incompetência cronotrópica.</p>
+    </div>
+    <div class="card" style="border-color:rgba(230,57,70,0.5);">
+      <div class="card-icon">🏥</div>
+      <h3 style="color:var(--red);">Doença do Nó Sinusal</h3>
+      <p>Disfunção elétrica <strong>+ sintomas</strong>. Esse é o nome clínico que exige tratamento. Sem sintoma = sem "doença".</p>
+    </div>
+  </div>
+  <div class="case-box reveal" style="border-color:rgba(244,185,66,0.4);background:linear-gradient(135deg,rgba(244,185,66,0.08),rgba(3,64,120,0.3));">
+    <h3 style="color:var(--gold);">🎼 Síndrome Bradi-Taqui</h3>
+    <p>O maestro cansado que alterna <strong>silêncio demais</strong> com <strong>orquestra disparada</strong>. Paciente com FA paroxística → termina a FA → nó sinusal demora a reassumir → <span class="highlight-red">pausa pós-conversão → síncope</span>.<br><br><span class="highlight-gold">Pegadinha de prova:</span> O remédio antiarrítmico ou betabloqueador piora a bradicardia. Primeiro: marcapasso para proteger. Depois: tratar a taquiarritmia com segurança.</p>
+  </div>
+  <div class="mnemonic-box reveal">
+    <h3>Macete — Sintoma Dá Sobrenome</h3>
+    <p><strong>"Sem sintoma = disfunção. Com sintoma = doença do nó sinusal."</strong><br>E sobre marcapasso: <strong>melhora sintomas e qualidade de vida, mas não aumenta sobrevida.</strong></p>
+  </div>
+</section>
+
+<!-- CAUSAS REVERSÍVEIS -->
+<section id="causas" class="section">
+  <div class="section-kicker">N5 · Interleaving · Antes do Marcapasso</div>
+  <h2>Causas Reversíveis — Procure Antes do MP</h2>
+  <div class="section-deco"></div>
+  <p class="info-p reveal">Antes de indicar marcapasso definitivo, investigue o que pode ser <strong>corrigido</strong>.</p>
+  <div class="causes-grid reveal">
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--red)"></span>Isquemia / IAM</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--gold)"></span>Hipercalemia / Hipocalemia</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--gold)"></span>Betabloqueadores</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--gold)"></span>Verapamil / Diltiazem</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--gold)"></span>Digoxina / Antiarrítmicos</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--muted)"></span>Lítio / Metildopa / Risperidona</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--teal)"></span>Hipotermia</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--teal)"></span>Hipervagotonia</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--teal)"></span>Apneia do sono / Hipóxia</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--teal)"></span>Hipoglicemia / Hipotireoidismo</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--red)"></span>Pós-operatório cardíaco / Chagas</div>
+    <div class="cause-tag"><span class="cause-dot" style="background:var(--red)"></span>Organofosforados</div>
+  </div>
+  <div class="mnemonic-box reveal" style="border-color:rgba(244,185,66,0.6);">
+    <h3>☠️ Pegadinha Clínica — Colírio de Timolol</h3>
+    <p>Betabloqueador ocular usado em glaucoma pode causar bradicardia importante por absorção sistêmica.<br><strong>"O olho pinga, o nó sinusal chora."</strong></p>
+  </div>
+</section>
+
+<!-- PALÁCIO DA MEMÓRIA -->
+<section id="palace" class="section">
+  <div class="section-kicker">N3 · Palácio Evolutivo · Rota do Plantão</div>
+  <h2>Palácio da Memória</h2>
+  <div class="section-deco"></div>
+  <p class="info-p reveal">Navegue pelos aposentos do Castelo Elétrico. Passe o mouse para revelar o conceito.</p>
+  <div class="palace-grid reveal">
+    <div class="palace-room"><span class="room-num">1</span><div class="room-icon">⏰</div><h4>Torre do Rei-Relógio</h4><p>Nó sinusal dispara fixo a cada ciclo. Invisível no ECG.</p></div>
+    <div class="palace-room"><span class="room-num">2</span><div class="room-icon">🏰</div><h4>O Corredor Invisível</h4><p>Zona sinoatrial que o ECG não enxerga. Todo o drama do Tipo I acontece aqui.</p></div>
+    <div class="palace-room"><span class="room-num">3</span><div class="room-icon">🚩</div><h4>Portão do Átrio</h4><p>Mensageiro sai e levanta a bandeira P. ECG só vê daqui para frente.</p></div>
+    <div class="palace-room"><span class="room-num">4</span><div class="room-icon">🦾</div><h4>Portão com Ferrugem</h4><p>Mensageiro demora, mas sai. BSA 1º grau — invisível no ECG comum.</p></div>
+    <div class="palace-room"><span class="room-num">5</span><div class="room-icon">🏃</div><h4>Corredor Fechando Aos Poucos</h4><p>Mensageiros chegam mais perto — PP encurta — até um ficar preso. BSA 2º Tipo I.</p></div>
+    <div class="palace-room"><span class="room-num">6</span><div class="room-icon">⚔️</div><h4>Portão Guilhotina</h4><p>Tudo regular até um mensageiro cair de repente. Pausa = 2×PP. BSA 2º Tipo II.</p></div>
+    <div class="palace-room"><span class="room-num">7</span><div class="room-icon">🔒</div><h4>Castelo Lacrado</h4><p>Todos os portões fechados. Cavaleiro de escape assume o trono. BSA 3º grau.</p></div>
+    <div class="palace-room"><span class="room-num">8</span><div class="room-icon">😴</div><h4>Rei Dormindo</h4><p>O rei nem toca o relógio. Pausa sinusal — sem impulso, sem P, sem matemática.</p></div>
+  </div>
+</section>
+
+<!-- PEGADINHAS -->
+<section id="pegadinhas" class="section">
+  <div class="section-kicker">N4 · Testing Effect · Armadilhas TEC 2026</div>
+  <h2>Pegadinhas de Prova</h2>
+  <div class="section-deco"></div>
+  <div class="pega-box reveal"><div class="pega-num">01</div><div class="pega-content"><h4>🎯 BSA 1º Grau no ECG</h4><p>Bloqueio sinoatrial de <strong>1º grau NÃO aparece no ECG de superfície</strong>. O atraso é no corredor invisível. Diagnóstico: estudo eletrofisiológico.</p></div></div>
+  <div class="pega-box reveal"><div class="pega-num">02</div><div class="pega-content"><h4>🎯 Tipo I — O Corredor que Engana</h4><p>O atraso do corredor <strong>aumenta</strong>, mas o PP <strong>encurta</strong>. Parece contraditório. É a assinatura do Tipo I. O incremento do atraso é cada vez menor — os mensageiros chegam mais próximos antes de desaparecer.</p></div></div>
+  <div class="pega-box reveal"><div class="pega-num">03</div><div class="pega-content"><h4>🎯 PP Diminuindo ≠ Melhorando</h4><p>PP diminuindo <strong>não significa que o corredor melhorou</strong>. O atraso absoluto continua crescendo. Você vê a sombra, não o corredor.</p></div></div>
+  <div class="pega-box reveal"><div class="pega-num">04</div><div class="pega-content"><h4>🎯 Pausa Múltipla = Bloqueio</h4><p>Pausa <strong>matematicamente múltipla</strong> do PP (2×, 3×) → pense imediatamente em <span class="highlight-gold">bloqueio sinoatrial Tipo II</span>.</p></div></div>
+  <div class="pega-box reveal"><div class="pega-num">05</div><div class="pega-content"><h4>🎯 Pausa Sinusal ≠ Matemática</h4><p>O rei nem disparou. Não há relação matemática com o PP anterior. É um <strong>acidente aleatório</strong>.</p></div></div>
+  <div class="pega-box reveal"><div class="pega-num">06</div><div class="pega-content"><h4>🎯 Marcapasso ≠ Sobrevida</h4><p>MP na doença do nó sinusal <strong>melhora sintomas</strong>, não aumenta sobrevida. Diferente do CDI em prevenção de morte súbita.</p></div></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section id="flashcards" class="section">
+  <div class="section-kicker">N4 · Forward Testing Effect · Flashcards Flip</div>
+  <h2>Flashcards 3D</h2>
+  <div class="section-deco"></div>
+  <p style="color:var(--muted);font-size:0.85rem;margin-bottom:24px;">Passe o mouse (ou toque) para revelar a resposta.</p>
+  <div class="flip-grid">
+    <div class="flip-card reveal"><div class="flip-card-inner"><div class="flip-front"><div class="flip-icon">❓</div><p>O ECG vê diretamente o disparo do nó sinusal?</p><div class="flip-hint">HOVER ↗</div></div><div class="flip-back"><p>❌ <strong>Não.</strong> O ECG só vê a <strong>onda P</strong>. O disparo interno é invisível — como o rei pensando.</p></div></div></div>
+    <div class="flip-card reveal"><div class="flip-card-inner"><div class="flip-front"><div class="flip-icon">❓</div><p>Por que o PP diminui no Tipo I se o atraso cresce?</p><div class="flip-hint">HOVER ↗</div></div><div class="flip-back"><p>✅ Os <strong>incrementos do atraso encolhem</strong>. PP = ritmo interno + (novo − anterior atraso). Essa diferença diminui → PP diminui.</p></div></div></div>
+    <div class="flip-card reveal"><div class="flip-card-inner"><div class="flip-front"><div class="flip-icon">❓</div><p>BSA 1º grau aparece no ECG de superfície?</p><div class="flip-hint">HOVER ↗</div></div><div class="flip-back"><p>❌ <strong>Não.</strong> Atraso é no corredor invisível. Precisa de <strong>estudo eletrofisiológico</strong>.</p></div></div></div>
+    <div class="flip-card reveal"><div class="flip-card-inner"><div class="flip-front"><div class="flip-icon">❓</div><p>Qual BSA tem pausa múltipla exata do PP?</p><div class="flip-hint">HOVER ↗</div></div><div class="flip-back"><p>✅ <strong>2º grau Tipo II</strong> — portão guilhotina. PP constante antes; pausa = 2× ou 3× PP.</p></div></div></div>
+    <div class="flip-card reveal"><div class="flip-card-inner"><div class="flip-front"><div class="flip-icon">❓</div><p>Doença do nó sinusal exige sintomas?</p><div class="flip-hint">HOVER ↗</div></div><div class="flip-back"><p>✅ <strong>Sim.</strong> Sem sintoma = disfunção. Com sintoma = doença.</p></div></div></div>
+    <div class="flip-card reveal"><div class="flip-card-inner"><div class="flip-front"><div class="flip-icon">❓</div><p>O que fazer antes do MP definitivo?</p><div class="flip-hint">HOVER ↗</div></div><div class="flip-back"><p>✅ Investigar <strong>causas reversíveis</strong>: drogas, eletrólitos, isquemia, TSH, hipóxia, apneia.</p></div></div></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="section">
+  <div class="section-kicker">N4 · Quiz · Questões Estilo TEC 2026</div>
+  <h2>Quiz — 4 Questões</h2>
+  <div class="section-deco"></div>
+  <div class="quiz-section">
+    <div class="quiz-question active" data-q="0">
+      <div class="quiz-counter">QUESTÃO 01 / 04</div>
+      <p class="quiz-q-text">Paciente de 72 anos com tontura recorrente. ECG mostra ritmo sinusal com intervalos PP progressivamente menores antes de uma pausa. Qual o diagnóstico mais provável?</p>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQuiz(this,false,0)"><span class="opt-letter">A</span>Pausa sinusal</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,0)"><span class="opt-letter">B</span>Bloqueio sinoatrial de 1º grau</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,true,0)"><span class="opt-letter">C</span>Bloqueio sinoatrial de 2º grau tipo I</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,0)"><span class="opt-letter">D</span>Bloqueio AV Mobitz II</div>
+      </div>
+      <div class="quiz-feedback" id="fb-0"></div>
+      <div class="quiz-nav"><button class="btn btn-primary" onclick="nextQ(1)" id="next-0" style="display:none">Próxima →</button></div>
+    </div>
+    <div class="quiz-question" data-q="1">
+      <div class="quiz-counter">QUESTÃO 02 / 04</div>
+      <p class="quiz-q-text">PP basal = 1000ms, pausa = 2000ms. Os PP antes da pausa eram constantes. Diagnóstico?</p>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQuiz(this,false,1)"><span class="opt-letter">A</span>Pausa sinusal</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,true,1)"><span class="opt-letter">B</span>Bloqueio sinoatrial 2º grau tipo II</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,1)"><span class="opt-letter">C</span>Bloqueio sinoatrial 1º grau</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,1)"><span class="opt-letter">D</span>Arritmia sinusal respiratória</div>
+      </div>
+      <div class="quiz-feedback" id="fb-1"></div>
+      <div class="quiz-nav"><button class="btn btn-primary" onclick="nextQ(2)" id="next-1" style="display:none">Próxima →</button></div>
+    </div>
+    <div class="quiz-question" data-q="2">
+      <div class="quiz-counter">QUESTÃO 03 / 04</div>
+      <p class="quiz-q-text">Qual bloqueio sinoatrial NÃO pode ser diagnosticado pelo ECG de superfície?</p>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQuiz(this,true,2)"><span class="opt-letter">A</span>1º grau</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,2)"><span class="opt-letter">B</span>2º grau tipo I</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,2)"><span class="opt-letter">C</span>2º grau tipo II</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,2)"><span class="opt-letter">D</span>3º grau com escape</div>
+      </div>
+      <div class="quiz-feedback" id="fb-2"></div>
+      <div class="quiz-nav"><button class="btn btn-primary" onclick="nextQ(3)" id="next-2" style="display:none">Próxima →</button></div>
+    </div>
+    <div class="quiz-question" data-q="3">
+      <div class="quiz-counter">QUESTÃO 04 / 04</div>
+      <p class="quiz-q-text">Idosa com síncope, Holter com pausas sinusais de 5s. Sem causa reversível identificada. Conduta?</p>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="answerQuiz(this,false,3)"><span class="opt-letter">A</span>Apenas observar</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,3)"><span class="opt-letter">B</span>Amiodarona</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,true,3)"><span class="opt-letter">C</span>Marcapasso definitivo</div>
+        <div class="quiz-opt" onclick="answerQuiz(this,false,3)"><span class="opt-letter">D</span>Cardioversão elétrica</div>
+      </div>
+      <div class="quiz-feedback" id="fb-3"></div>
+      <div class="quiz-nav"><button class="btn btn-primary" onclick="showScore()" id="next-3" style="display:none">Ver Resultado →</button></div>
+    </div>
+    <div class="quiz-score" id="quiz-score">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:0.15em;margin-bottom:12px;">RESULTADO FINAL</div>
+      <div class="score-num" id="score-display">0/4</div>
+      <p id="score-msg" style="color:var(--muted);margin-top:12px;font-size:0.9rem;"></p>
+      <button class="btn btn-primary" onclick="resetQuiz()" style="margin-top:24px">Refazer Quiz ↺</button>
+    </div>
+  </div>
+</section>
+
+<!-- ALGORITMO -->
+<section id="algoritmo" class="section">
+  <div class="section-kicker">N7 · Spacing · Algoritmo Clínico</div>
+  <h2>Algoritmo Clínico</h2>
+  <div class="section-deco"></div>
+  <div class="algo-steps reveal">
+    <div class="algo-step"><div class="algo-num">1</div><div class="algo-text"><h4>Suspeita Clínica</h4><p>Tontura, síncope, fadiga, palpitação. "Apago do nada", "coração para depois da taquicardia".</p></div></div>
+    <div class="algo-step"><div class="algo-num">2</div><div class="algo-text"><h4>ECG e Monitorização</h4><p>ECG de repouso + Holter. Correlacionar sintoma com ritmo. Teste ergométrico para incompetência cronotrópica.</p></div></div>
+    <div class="algo-step"><div class="algo-num">3</div><div class="algo-text"><h4>Procurar Causas Reversíveis</h4><p>Eletrólitos, TSH, drogas bradicardizantes, isquemia, hipóxia, apneia, colírio de timolol!</p></div></div>
+    <div class="algo-step"><div class="algo-num">4</div><div class="algo-text"><h4>Corrigir Causa Reversível</h4><p>Suspender droga, tratar hipotireoidismo, hipercalemia, isquemia, hipóxia. Reavaliação após correção.</p></div></div>
+    <div class="algo-step"><div class="algo-num">5</div><div class="algo-text"><h4>Marcapasso se Sintomático e Não Reversível</h4><p>Indicação de MP definitivo. Na síndrome bradi-taqui: proteger com MP antes de tratar a taquiarritmia.</p></div></div>
+  </div>
+  <div class="mnemonic-box reveal" style="margin-top:32px;">
+    <h3>🏆 Frase Final de Fixação</h3>
+    <p><strong>"Se a onda P sumiu, descubra o crime: o rei não disparou é pausa sinusal; o rei disparou e o corredor prendeu é bloqueio sinoatrial. Tipo I o corredor vai fechando, Tipo II guilhotina, terceiro grau entrega o trono ao escape."</strong></p>
+  </div>
+</section>
+
+<!-- ASSINATURA -->
+<div class="signature-section">
+  <div class="signature-name">Dr. André Rossanno</div>
+  <div class="signature-role">Intensivista · Educação Médica · TEC 2026</div>
+  <div class="final-phrase">
+    <strong>"O coração que ainda tenta nos engana com sua pressa —<br>pois o que parece aceleração é apenas o eco de um esforço que já não consegue crescer."</strong>
+    <br><br>
+    Método André Rossanno de Memorização Médica — Nó sinusal, bloqueios sinoatriais, doença do nó sinusal.
+  </div>
+</div>
+
+<script>
+// PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const p=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progress-bar').style.width=p+'%';
+});
+
+// SIDEBAR
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar'),t=document.getElementById('sidebar-toggle');
+  sb.classList.toggle('open'); t.classList.toggle('open');
+  t.textContent=sb.classList.contains('open')?'✕':'☰';
+}
+function navTo(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+
+// REVEAL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+document.querySelectorAll('.section,.reveal').forEach(el=>obs.observe(el));
+
+// QUIZ
+let scores=[null,null,null,null];
+const fbs=[
+  {c:"✅ Correto! PP encurtando progressivamente antes da pausa é a assinatura do BSA 2º grau Tipo I (Wenckebach sinoatrial). O corredor vai fechando — incremento decrescente.",w:"❌ PP encurtando progressivamente → Tipo I. A pausa sinusal não tem esse padrão; o 1º grau é invisível; o Mobitz II é bloqueio atrioventricular."},
+  {c:"✅ Correto! Pausa = 2×PP com PP prévio constante = BSA 2º grau Tipo II. Pausa matemática é a marca do bloqueio de saída tipo II.",w:"❌ Na pausa sinusal a pausa não é múltipla do PP. No 1º grau é invisível. Resposta: Tipo II."},
+  {c:"✅ Correto! BSA 1º grau é o único invisível no ECG de superfície. O atraso ocorre no corredor sinoatrial — zona que o ECG não detecta.",w:"❌ O 1º grau é invisível no ECG — clássica pegadinha. Tipo I e Tipo II têm padrões identificáveis."},
+  {c:"✅ Correto! DNS sintomática sem causa reversível = marcapasso definitivo.",w:"❌ Observar ignora o risco de nova síncope. Amiodarona piora a bradicardia. Cardioversão é para taquiarritmias instáveis. Resposta: MP."}
+];
+function answerQuiz(el,correct,qi){
+  const q=el.closest('.quiz-question'),opts=q.querySelectorAll('.quiz-opt');
+  if(opts[0].classList.contains('locked'))return;
+  opts.forEach(o=>o.classList.add('locked'));
+  el.classList.add(correct?'correct':'wrong');
+  opts.forEach(o=>{if(o.onclick.toString().includes(',true,'))o.classList.add('correct');});
+  scores[qi]=correct;
+  const fb=document.getElementById('fb-'+qi);
+  fb.classList.add('show',correct?'correct-fb':'wrong-fb');
+  fb.textContent=correct?fbs[qi].c:fbs[qi].w;
+  document.getElementById('next-'+qi).style.display='inline-block';
+}
+function nextQ(n){ document.querySelectorAll('.quiz-question').forEach(q=>q.classList.remove('active')); document.querySelector('[data-q="'+n+'"]').classList.add('active'); }
+function showScore(){
+  document.querySelectorAll('.quiz-question').forEach(q=>q.classList.remove('active'));
+  const c=scores.filter(Boolean).length;
+  document.getElementById('score-display').textContent=c+'/4';
+  const m=['Continue estudando! Reveja os conceitos.','Bom! Revise as pegadinhas.','Muito bom! Quase lá.','Excelente! Domínio completo!'];
+  document.getElementById('score-msg').textContent=m[c]||'';
+  document.getElementById('quiz-score').classList.add('show');
+}
+function resetQuiz(){
+  scores=[null,null,null,null];
+  document.getElementById('quiz-score').classList.remove('show');
+  document.querySelectorAll('.quiz-question').forEach((q,i)=>{
+    q.classList.remove('active');
+    q.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('correct','wrong','locked'));
+    const fb=document.getElementById('fb-'+i); if(fb){fb.classList.remove('show','correct-fb','wrong-fb');fb.textContent='';}
+    const nx=document.getElementById('next-'+i); if(nx)nx.style.display='none';
+  });
+  document.querySelector('[data-q="0"]').classList.add('active');
+}
+
+// ═══ CANVAS — CORREDOR DO REI ═══
+const canvas=document.getElementById('corridorCanvas');
+const ctx=canvas.getContext('2d');
+let W=0;
+
+const CYCLE=1000, delays=[80,130,160,175];
+const pTimes=delays.map((d,i)=>CYCLE*(i+1)+d);
+const ppIntervals=pTimes.slice(1).map((t,i)=>t-pTimes[i]);
+const intTimes=[1,2,3,4,5].map(i=>CYCLE*i);
+const totalMs=CYCLE*5+350;
+
+function resizeCanvas(){
+  const dpr=window.devicePixelRatio||1, rect=canvas.getBoundingClientRect();
+  canvas.width=rect.width*dpr; canvas.height=200*dpr; ctx.scale(dpr,dpr); W=rect.width;
+}
+resizeCanvas(); window.addEventListener('resize',resizeCanvas);
+
+function msToX(ms){return 14+(ms/totalMs)*(W-28);}
+
+let progress=0, speed=1800, lastTs=null, running=true;
+
+function drawCorridor(e){
+  ctx.clearRect(0,0,W,200); ctx.fillStyle='#030e1c'; ctx.fillRect(0,0,W,200);
+  // row separators
+  ctx.setLineDash([2,5]); ctx.strokeStyle='rgba(18,130,162,0.12)'; ctx.lineWidth=1;
+  [66,122].forEach(y=>{ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();});
+  ctx.setLineDash([]);
+  // labels
+  ctx.font='9px IBM Plex Mono,monospace'; ctx.fillStyle='#4a7a92'; ctx.textAlign='left';
+  ctx.fillText('REI DISPARA',4,38); ctx.fillText('CORREDOR (atraso)',4,96); ctx.fillText('ONDA P  (ECG)',4,148);
+
+  const el=Math.min(e,totalMs);
+
+  // King beats
+  intTimes.forEach((t,i)=>{
+    if(t>el)return;
+    const x=msToX(t);
+    ctx.beginPath(); ctx.arc(x,44,7,0,Math.PI*2);
+    ctx.strokeStyle='rgba(244,185,66,0.55)'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.fillStyle='rgba(244,185,66,0.15)'; ctx.fill();
+    ctx.fillStyle='rgba(244,185,66,0.5)'; ctx.font='8px IBM Plex Mono'; ctx.textAlign='center';
+    ctx.fillText('👑',x,30);
+  });
+
+  // Corridor arrows
+  delays.forEach((d,i)=>{
+    const t0=intTimes[i], tp=pTimes[i];
+    if(t0>el)return;
+    const ap=Math.min(1,(el-t0)/(d*(speed/1800)));
+    const x0=msToX(t0), x1=msToX(tp), xc=x0+(x1-x0)*ap;
+    const g=ctx.createLinearGradient(x0,0,xc,0);
+    g.addColorStop(0,'rgba(244,185,66,0.2)'); g.addColorStop(1,'rgba(244,185,66,0.9)');
+    ctx.beginPath(); ctx.moveTo(x0,96); ctx.lineTo(xc,96);
+    ctx.strokeStyle=g; ctx.lineWidth=2.5; ctx.stroke();
+    if(ap>0.88){ctx.beginPath();ctx.moveTo(xc,96);ctx.lineTo(xc-7,90);ctx.lineTo(xc-7,102);ctx.fillStyle='rgba(244,185,66,0.9)';ctx.fill();}
+    if(ap>0.5){ctx.font='9px IBM Plex Mono';ctx.fillStyle='rgba(244,185,66,0.85)';ctx.textAlign='center';ctx.fillText(d+'ms',(x0+xc)/2,82);}
+  });
+
+  // P waves
+  pTimes.forEach((t,i)=>{
+    if(t>el)return;
+    const x=msToX(t);
+    ctx.fillStyle='#2DC653'; ctx.fillRect(x-2,130,4,26);
+    ctx.font='9px IBM Plex Mono'; ctx.fillStyle='#2DC653'; ctx.textAlign='center'; ctx.fillText('P',x,125);
+  });
+
+  // Blocked 5th
+  if(intTimes[4]<=el){
+    const x=msToX(intTimes[4]);
+    ctx.beginPath();ctx.arc(x,44,10,0,Math.PI*2);ctx.strokeStyle='rgba(230,57,70,0.55)';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x-5,39);ctx.lineTo(x+5,49);ctx.moveTo(x+5,39);ctx.lineTo(x-5,49);
+    ctx.strokeStyle='rgba(230,57,70,0.85)';ctx.lineWidth=2;ctx.stroke();
+    ctx.font='8px IBM Plex Mono';ctx.fillStyle='rgba(230,57,70,0.75)';ctx.textAlign='center';ctx.fillText('BLOQUEIO',x,26);
+  }
+
+  // PP brackets
+  ppIntervals.forEach((pp,i)=>{
+    const x1=msToX(pTimes[i]), x2=msToX(pTimes[i+1]);
+    if(pTimes[i+1]>el)return;
+    const y=172;
+    ctx.beginPath();ctx.moveTo(x1,y);ctx.lineTo(x2,y);ctx.strokeStyle='rgba(52,196,232,0.75)';ctx.lineWidth=1.5;ctx.stroke();
+    [x1,x2].forEach(x=>{ctx.beginPath();ctx.moveTo(x,y-4);ctx.lineTo(x,y+4);ctx.strokeStyle='rgba(52,196,232,0.75)';ctx.stroke();});
+    ctx.font='9px IBM Plex Mono';ctx.fillStyle='#34c4e8';ctx.textAlign='center';ctx.fillText('PP='+pp+'ms',(x1+x2)/2,y-8);
+  });
+
+  // Highlight active table row
+  const ai=pTimes.findIndex(t=>t>progress);
+  ['ct0','ct1','ct2'].forEach((id,i)=>{
+    const row=document.getElementById(id);
+    if(row)row.classList.toggle('ct-active',i===(ai===-1?3:ai-1));
+  });
+}
+
+function animCorridor(ts){
+  if(!lastTs)lastTs=ts;
+  const dt=ts-lastTs; lastTs=ts;
+  if(running){
+    progress+=dt/speed*totalMs;
+    if(progress>=totalMs){progress=totalMs;running=false;setTimeout(()=>{progress=0;lastTs=null;running=true;},2200);}
+  }
+  drawCorridor(progress);
+  requestAnimationFrame(animCorridor);
+}
+requestAnimationFrame(animCorridor);
+
+// Slider
+const spSlider=document.getElementById('corridorSpeed');
+const spVal=document.getElementById('corridorSpeedVal');
+spSlider.addEventListener('input',()=>{
+  speed=parseInt(spSlider.value);
+  spVal.textContent=(speed/1000).toFixed(1)+'s';
+  const pct=(spSlider.value-spSlider.min)/(spSlider.max-spSlider.min)*100;
+  spSlider.style.background=`linear-gradient(90deg,var(--teal) ${pct}%,rgba(18,130,162,0.2) ${pct}%)`;
+});
+</script>
+</body>
+</html>
