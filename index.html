@@ -1,467 +1,655 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://memoria-potencial.vercel.app/">
-  <meta property="og:title" content="🫀 Preparatório TEC 2026 – Cardiopatia">
-  <meta property="og:description" content="Atlas Mental Interativo para o TEC 2026. Pegadinhas, Palácio da Memória e Quiz estilo prova. Gratuito.">
-  <meta property="og:image" content="https://memoria-potencial.vercel.app/stanford_na_mao.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="🫀 Preparatório TEC 2026 – Cardiopatia">
-  <meta name="twitter:description" content="Atlas Mental Interativo para o TEC 2026. Gratuito.">
-  <meta name="twitter:image" content="https://memoria-potencial.vercel.app/stanford_na_mao.png">
-  <title>🫀 Preparatório TEC 2026</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Mental Interativo | Dr. André Rossanno</title>
+<meta name="description" content="Atlas Mental Interativo — Método André Rossanno de Memorização Médica. Cardiologia TEC 2026 e Aulas Clínicas.">
+<meta property="og:title" content="Atlas Mental Interativo | Dr. André Rossanno">
+<meta property="og:description" content="Transformando medicina complexa em memória duradoura. TEC 2026.">
+<meta property="og:url" content="https://memoriapotencial.com.br">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B2545;
+  --teal: #1282A2;
+  --gold: #F4B942;
+  --red: #E63946;
+  --green: #2DC653;
+  --white: #F0F4F8;
+  --gray: #8899AA;
+  --border: rgba(18,130,162,0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy);
+  color:var(--white);
+  font-family:'IBM Plex Sans',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 15%, rgba(18,130,162,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 70% at 85% 85%, rgba(244,185,66,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(11,37,69,0.5) 0%, transparent 70%);
+  pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(18,130,162,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,130,162,0.04) 1px, transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;z-index:0;
+}
 
-    body {
-      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0B2545 0%, #0f3a52 100%);
-      color: #ecf0f1;
-      min-height: 100vh;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
+/* HERO */
+.hero{
+  position:relative;z-index:1;
+  padding:80px 40px 60px;
+  max-width:1100px;
+  margin:0 auto;
+  text-align:center;
+}
+.hero-kicker{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.7rem;
+  text-transform:uppercase;
+  letter-spacing:0.2em;
+  color:var(--teal);
+  margin-bottom:20px;
+  opacity:0;
+  animation:fadeUp 0.6s ease forwards;
+}
+.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem, 6vw, 4.5rem);
+  font-weight:900;
+  line-height:1.05;
+  color:var(--white);
+  margin-bottom:16px;
+  opacity:0;
+  animation:fadeUp 0.6s ease 0.1s forwards;
+}
+.hero-title span{
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:1.05rem;
+  color:var(--gray);
+  max-width:560px;
+  margin:0 auto 40px;
+  line-height:1.7;
+  font-weight:300;
+  opacity:0;
+  animation:fadeUp 0.6s ease 0.2s forwards;
+}
+.hero-badges{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:60px;
+  opacity:0;
+  animation:fadeUp 0.6s ease 0.3s forwards;
+}
+.badge{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.68rem;
+  padding:5px 12px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  color:var(--gray);
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+.badge-teal{border-color:rgba(18,130,162,0.5);color:var(--teal);background:rgba(18,130,162,0.08);}
+.badge-gold{border-color:rgba(244,185,66,0.5);color:var(--gold);background:rgba(244,185,66,0.08);}
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(18,130,162,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(3,64,120,0.1) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: -1;
-    }
+/* SECTIONS */
+.section{
+  position:relative;z-index:1;
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 40px 80px;
+}
+.section-header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:32px;
+}
+.section-icon{
+  width:48px;height:48px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;
+  flex-shrink:0;
+}
+.icon-cardio{background:rgba(230,57,70,0.15);border:1px solid rgba(230,57,70,0.3);}
+.icon-aulas{background:rgba(18,130,162,0.15);border:1px solid rgba(18,130,162,0.3);}
+.section-title-wrap{}
+.section-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  text-transform:uppercase;
+  letter-spacing:0.15em;
+  color:var(--gray);
+  margin-bottom:4px;
+}
+.section-name{
+  font-family:'Syne',sans-serif;
+  font-size:1.5rem;
+  font-weight:900;
+  color:var(--white);
+}
+.section-name span{
+  font-size:0.85rem;
+  font-weight:400;
+  color:var(--teal);
+  font-family:'IBM Plex Mono',monospace;
+  margin-left:10px;
+  vertical-align:middle;
+}
+.divider{
+  height:1px;
+  background:linear-gradient(90deg, var(--teal), transparent);
+  margin-bottom:32px;
+  opacity:0.4;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
+/* CARDS GRID */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  gap:20px;
+}
 
-    header {
-      text-align: center;
-      padding: 60px 20px 40px;
-      margin-bottom: 50px;
-    }
+/* MODULE CARD */
+.card{
+  border-radius:16px;
+  padding:28px;
+  border:1px solid var(--border);
+  background:rgba(18,130,162,0.05);
+  text-decoration:none;
+  color:var(--white);
+  display:block;
+  transition:all 0.3s ease;
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg, var(--teal), var(--gold));
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+.card:hover{
+  border-color:rgba(18,130,162,0.5);
+  background:rgba(18,130,162,0.1);
+  transform:translateY(-3px);
+}
+.card:hover::before{opacity:1;}
+.card-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  padding:3px 8px;
+  border-radius:4px;
+  display:inline-block;
+  margin-bottom:14px;
+}
+.tag-cardio{background:rgba(230,57,70,0.15);color:var(--red);border:1px solid rgba(230,57,70,0.3);}
+.tag-aula{background:rgba(18,130,162,0.15);color:var(--teal);border:1px solid rgba(18,130,162,0.3);}
+.tag-breve{background:rgba(136,153,170,0.1);color:var(--gray);border:1px solid rgba(136,153,170,0.2);}
+.card-title{
+  font-family:'Syne',sans-serif;
+  font-size:1.15rem;
+  font-weight:900;
+  line-height:1.2;
+  margin-bottom:8px;
+  color:var(--white);
+}
+.card-desc{
+  font-size:0.83rem;
+  color:var(--gray);
+  line-height:1.6;
+  margin-bottom:18px;
+}
+.card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.card-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.chip{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;
+  padding:3px 8px;
+  border-radius:4px;
+  background:rgba(18,130,162,0.1);
+  border:1px solid rgba(18,130,162,0.2);
+  color:var(--gray);
+}
+.card-arrow{
+  font-size:1.2rem;
+  color:var(--teal);
+  transition:transform 0.3s;
+}
+.card:hover .card-arrow{transform:translateX(4px);}
 
-    .logo {
-      font-size: 4em;
-      margin-bottom: 20px;
-      animation: pulse 2s ease-in-out infinite;
-    }
+/* COMING SOON CARD */
+.card-soon{
+  opacity:0.5;
+  cursor:default;
+  pointer-events:none;
+}
+.card-soon:hover{transform:none;}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+/* TRM PAIR */
+.card-pair{
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:rgba(18,130,162,0.05);
+  overflow:hidden;
+  transition:all 0.3s ease;
+  position:relative;
+}
+.card-pair::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg, var(--teal), var(--gold));
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+.card-pair:hover{border-color:rgba(18,130,162,0.5);background:rgba(18,130,162,0.1);}
+.card-pair:hover::before{opacity:1;}
+.card-pair-header{
+  padding:24px 28px 16px;
+}
+.card-pair-title{
+  font-family:'Syne',sans-serif;
+  font-size:1.15rem;
+  font-weight:900;
+  margin-bottom:6px;
+}
+.card-pair-desc{
+  font-size:0.83rem;
+  color:var(--gray);
+  line-height:1.6;
+  margin-bottom:16px;
+}
+.card-pair-links{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--border);
+}
+.pair-link{
+  padding:14px 20px;
+  text-decoration:none;
+  color:var(--white);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.75rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:background 0.2s;
+  border-right:1px solid var(--border);
+}
+.pair-link:last-child{border-right:none;}
+.pair-link:hover{background:rgba(18,130,162,0.15);}
+.pair-link .pl-label{color:var(--teal);}
+.pair-link .pl-arrow{color:var(--gold);}
 
-    h1 {
-      font-size: 2.8em;
-      font-weight: 700;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #1282A2, #034078);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+/* FOOTER */
+.footer{
+  position:relative;z-index:1;
+  max-width:1100px;
+  margin:0 auto;
+  padding:40px 40px 60px;
+  border-top:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-sig{
+  font-family:'Dancing Script',cursive;
+  font-size:1.6rem;
+  color:var(--teal);
+}
+.footer-info{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  color:var(--gray);
+  text-align:right;
+  line-height:1.8;
+}
+.footer-info a{color:var(--teal);text-decoration:none;}
 
-    .tagline {
-      font-size: 1.2em;
-      color: #a8c5d6;
-      margin-bottom: 8px;
-    }
+/* METHOD STRIP */
+.method-strip{
+  position:relative;z-index:1;
+  max-width:1100px;
+  margin:0 auto 60px;
+  padding:0 40px;
+}
+.method-box{
+  background:linear-gradient(135deg, rgba(18,130,162,0.08), rgba(244,185,66,0.04));
+  border:1px solid rgba(18,130,162,0.3);
+  border-radius:16px;
+  padding:32px 40px;
+  display:flex;
+  align-items:flex-start;
+  gap:32px;
+  flex-wrap:wrap;
+}
+.method-title{
+  font-family:'Syne',sans-serif;
+  font-size:1rem;
+  font-weight:900;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+.method-desc{
+  font-size:0.84rem;
+  color:var(--gray);
+  line-height:1.7;
+  max-width:500px;
+}
+.method-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+}
+.method-pill{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.65rem;
+  padding:4px 10px;
+  border-radius:4px;
+  background:rgba(18,130,162,0.1);
+  border:1px solid rgba(18,130,162,0.25);
+  color:var(--teal);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
 
-    .subtitle {
-      color: #6b8fa3;
-      font-size: 0.95em;
-      margin-top: 12px;
-    }
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.fade-in{
+  opacity:0;
+  animation:fadeUp 0.5s ease forwards;
+}
 
-    .hero {
-      background: rgba(11,37,69,0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(18,130,162,0.3);
-      border-radius: 16px;
-      padding: 40px;
-      margin-bottom: 50px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-
-    .hero p {
-      font-size: 1.1em;
-      color: #c5d3db;
-      line-height: 1.8;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-
-    .stat-box {
-      background: rgba(11,37,69,0.6);
-      border: 1px solid rgba(18,130,162,0.3);
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.2em;
-      font-weight: 700;
-      color: #1282A2;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      color: #a8c5d6;
-      font-size: 0.9em;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-      margin-bottom: 50px;
-    }
-
-    .card {
-      background: rgba(11,37,69,0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(18,130,162,0.3);
-      border-radius: 16px;
-      padding: 32px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 320px;
-      position: relative;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(18,130,162,0.6);
-      box-shadow: 0 16px 48px rgba(18,130,162,0.2);
-    }
-
-    .badge {
-      position: absolute;
-      top: -12px;
-      right: 16px;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.75em;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .badge.novo {
-      background: linear-gradient(135deg, #1282A2, #034078);
-    }
-
-    .card-icon {
-      font-size: 3em;
-      margin-bottom: 16px;
-    }
-
-    .card-title {
-      font-size: 1.6em;
-      font-weight: 700;
-      color: #1282A2;
-      margin-bottom: 12px;
-    }
-
-    .card-desc {
-      color: #c5d3db;
-      font-size: 0.95em;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(18,130,162,0.2);
-    }
-
-    .tag {
-      background: rgba(18,130,162,0.2);
-      color: #a8c5d6;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.75em;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .tag.new {
-      background: rgba(34,197,94,0.2);
-      color: #4ade80;
-      border: 1px solid rgba(34,197,94,0.4);
-    }
-
-    .tag.featured {
-      background: rgba(245,158,11,0.2);
-      color: #fbbf24;
-      border: 1px solid rgba(245,158,11,0.4);
-    }
-
-    .card-btn {
-      margin-top: auto;
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #1282A2, #034078);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 0.95em;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .card-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(18,130,162,0.3);
-    }
-
-    footer {
-      border-top: 1px solid rgba(18,130,162,0.2);
-      padding: 40px 20px;
-      text-align: center;
-      color: #6b8fa3;
-    }
-
-    .footer-title {
-      color: #1282A2;
-      font-weight: 700;
-      margin-bottom: 12px;
-      font-size: 1.1em;
-    }
-
-    .footer-text {
-      font-size: 0.85em;
-      margin-top: 20px;
-      color: #6b8fa3;
-    }
-
-    @media (max-width: 900px) {
-      h1 { font-size: 2em; }
-      .tagline { font-size: 1em; }
-      .cards-grid { grid-template-columns: 1fr; }
-      header { padding: 40px 20px 30px; }
-      .hero { padding: 30px; }
-    }
-
-    @media (max-width: 600px) {
-      .logo { font-size: 2.5em; }
-      h1 { font-size: 1.6em; }
-      .card { padding: 24px; min-height: auto; }
-      .card-title { font-size: 1.3em; }
-      .stats { grid-template-columns: 1fr; }
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{padding:60px 24px 40px;}
+  .section{padding:0 24px 60px;}
+  .method-strip{padding:0 24px;}
+  .footer{padding:40px 24px 60px;flex-direction:column;align-items:flex-start;}
+  .footer-info{text-align:left;}
+  .cards-grid{grid-template-columns:1fr;}
+  .card-pair-links{grid-template-columns:1fr;}
+  .pair-link{border-right:none;border-bottom:1px solid var(--border);}
+  .pair-link:last-child{border-bottom:none;}
+}
+</style>
 </head>
 <body>
 
-<div class="container">
-
-  <header>
-    <div class="logo">🫀</div>
-    <h1>Preparatório TEC 2026</h1>
-    <p class="tagline">Cardiopatia – Atlas Mental Interativo</p>
-    <p class="subtitle">Assuntos que caem na prova • Pegadinhas incluídas • TEC 2026</p>
-  </header>
-
-  <div class="hero">
-    <p>
-      <strong>Bem-vindo ao seu preparatório focado em TEC 2026.</strong>
-      Aqui você encontra os assuntos que realmente caem na prova,
-      técnicas de memória e pegadinhas clássicas. Conteúdo gratuito.
-    </p>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-kicker">Atlas Mental Interativo · Método André Rossanno</div>
+  <h1 class="hero-title">Medicina complexa em<br><span>memória duradoura</span></h1>
+  <p class="hero-sub">Casos clínicos, mnemônicos absurdos, flashcards interativos e quizzes com feedback imediato — para o TEC 2026 e além.</p>
+  <div class="hero-badges">
+    <span class="badge badge-teal">TEC 2026</span>
+    <span class="badge badge-gold">Método N1–N7</span>
+    <span class="badge badge-teal">Casos antes da teoria</span>
+    <span class="badge badge-gold">Acesso gratuito</span>
   </div>
+</header>
 
-  <div class="stats">
-    <div class="stat-box">
-      <div class="stat-number">3</div>
-      <div class="stat-label">Módulos Ativos</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-number">100+</div>
-      <div class="stat-label">Pegadinhas TEC</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-number">∞</div>
-      <div class="stat-label">Acesso Gratuito</div>
+<!-- METHOD STRIP -->
+<div class="method-strip">
+  <div class="method-box">
+    <div>
+      <div class="method-title">Protocolo Fixo de Memorização</div>
+      <div class="method-desc">Cada módulo segue a mesma arquitetura cognitiva: caso dramático → vilão/herói → tabela dual-code → pegadinha TEC → frase-síntese → quiz com feedback → mnemônico absurdo.</div>
+      <div class="method-pills">
+        <span class="method-pill">N1 Elaboração</span>
+        <span class="method-pill">N2 Dual Coding</span>
+        <span class="method-pill">N3 Loci Clínico</span>
+        <span class="method-pill">N4 Testing Effect</span>
+        <span class="method-pill">N5 Interleaving</span>
+        <span class="method-pill">N6 Emoção</span>
+        <span class="method-pill">N7 Espaçamento</span>
+      </div>
     </div>
   </div>
+</div>
 
+<!-- CARDIOLOGIA -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon icon-cardio">🫀</div>
+    <div class="section-title-wrap">
+      <div class="section-label">Especialidade</div>
+      <div class="section-name">Cardiologia <span>TEC 2026</span></div>
+    </div>
+  </div>
+  <div class="divider"></div>
   <div class="cards-grid">
 
-    <!-- AORTA -->
-    <a href="aorta.html" class="card">
-      <div class="badge">ATIVO</div>
-      <div class="card-icon">🔥</div>
-      <div>
-        <div class="card-title">Dissecção Aórtica</div>
-        <p class="card-desc">
-          Stanford A vs B. Aneurisma aórtico. Cortes cirúrgicos por síndrome.
-          Palácio da Memória + Quiz TEC.
-        </p>
+    <a href="aorta.html" class="card fade-in" style="animation-delay:0.1s">
+      <span class="card-tag tag-cardio">Cardiologia</span>
+      <div class="card-title">Dissecção Aórtica</div>
+      <div class="card-desc">Classificação de Stanford, diagnóstico diferencial, manejo hemodinâmico e as pegadinhas clássicas do TEC.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">Stanford</span>
+          <span class="chip">Diagnóstico</span>
+          <span class="chip">Manejo</span>
+        </div>
+        <span class="card-arrow">→</span>
       </div>
-      <div class="card-tags">
-        <span class="tag new">Ativo</span>
-        <span class="tag featured">Destaque</span>
-        <span class="tag">Cardio</span>
-      </div>
-      <button class="card-btn">Estudar →</button>
     </a>
 
-    <!-- PMI -->
-    <a href="pmi.html" class="card">
-      <div class="badge">ATIVO</div>
-      <div class="card-icon">🔬</div>
-      <div>
-        <div class="card-title">PMI Perioperatório</div>
-        <p class="card-desc">
-          Infarto perioperatório silencioso. Troponina. Tipo 1 vs Tipo 2.
-          Algoritmo clínico + Quiz TEC 2026.
-        </p>
+    <a href="bsa.html" class="card fade-in" style="animation-delay:0.15s">
+      <span class="card-tag tag-cardio">Cardiologia</span>
+      <div class="card-title">Bloqueio Sinoatrial</div>
+      <div class="card-desc">Classificação dos bloqueios SA, critérios eletrocardiográficos, diferenciação das pausas e conduta.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">ECG</span>
+          <span class="chip">Arritmia</span>
+          <span class="chip">Conduta</span>
+        </div>
+        <span class="card-arrow">→</span>
       </div>
-      <div class="card-tags">
-        <span class="tag new">Ativo</span>
-        <span class="tag">Cardio</span>
-        <span class="tag">Cirurgia</span>
-      </div>
-      <button class="card-btn">Estudar →</button>
     </a>
 
-    <!-- BSA — NOVO -->
-    <a href="bsa.html" class="card">
-      <div class="badge novo">NOVO</div>
-      <div class="card-icon">⚡</div>
-      <div>
-        <div class="card-title">Bloqueio Sinoatrial</div>
-        <p class="card-desc">
-          Bloqueio Sinoatrial e Doença do Nó Sinusal. Do castelo elétrico ao corredor invisível: entenda por que o PP diminui no BSA 2º grau Tipo I, diferencie pausa sinusal de bloqueio e domine as pegadinhas de prova.
-        </p>
+    <a href="pmi.html" class="card fade-in" style="animation-delay:0.2s">
+      <span class="card-tag tag-cardio">Cardiologia</span>
+      <div class="card-title">IAM Perioperatório</div>
+      <div class="card-desc">Infarto no contexto cirúrgico: definição, fisiopatologia, monitorização e estratégias de prevenção.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">Perioperatório</span>
+          <span class="chip">Risco Cirúrgico</span>
+        </div>
+        <span class="card-arrow">→</span>
       </div>
-      <div class="card-tags">
-        <span class="tag new">Novo</span>
-        <span class="tag featured">Destaque</span>
-        <span class="tag">Cardio</span>
-        <span class="tag">Arritmia</span>
-      </div>
-      <button class="card-btn">Estudar →</button>
     </a>
 
-    <!-- FIBRILAÇÃO ATRIAL -->
-    <a href="#" class="card" style="opacity:0.6; cursor:not-allowed;">
-      <div class="card-icon">🫀</div>
-      <div>
-        <div class="card-title">Fibrilação Atrial</div>
-        <p class="card-desc">
-          CHA₂DS₂-VA. Anticoagulação. Controle de ritmo vs frequência. Ablação. SBC 2025. Pegadinhas TEC.
-        </p>
+    <!-- Em breve -->
+    <div class="card card-soon fade-in" style="animation-delay:0.25s">
+      <span class="card-tag tag-breve">Em breve</span>
+      <div class="card-title">Fibrilação Atrial</div>
+      <div class="card-desc">SBC 2025: CHA₂DS₂-VA, janela de 24h, anticoagulação, pill-in-the-pocket e ablação.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">SBC 2025</span>
+          <span class="chip">Anticoagulação</span>
+        </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">Cardio</span>
-        <span class="tag">Arritmia</span>
-        <span class="tag">Em breve</span>
-      </div>
-      <button class="card-btn" disabled>Em Breve</button>
-    </a>
+    </div>
 
-    <!-- INSUFICIÊNCIA AÓRTICA -->
-    <a href="#" class="card" style="opacity:0.6; cursor:not-allowed;">
-      <div class="card-icon">💧</div>
-      <div>
-        <div class="card-title">Insuficiência Aórtica</div>
-        <p class="card-desc">
-          Quando indicar cirurgia. Dimensões ventriculares críticas. Assintomático vs sintomático.
-        </p>
+    <div class="card card-soon fade-in" style="animation-delay:0.3s">
+      <span class="card-tag tag-breve">Em breve</span>
+      <div class="card-title">Taquiarritmias</div>
+      <div class="card-desc">TSV, TRNAV, WPW, Flutter, TV, Torsades, FV — Vaughan Williams e ACLS completo.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">ACLS</span>
+          <span class="chip">ECG</span>
+          <span class="chip">Vaughan Williams</span>
+        </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">Cardio</span>
-        <span class="tag">Valvopatia</span>
-        <span class="tag">Em breve</span>
-      </div>
-      <button class="card-btn" disabled>Em Breve</button>
-    </a>
+    </div>
 
-    <!-- ESTENOSE MITRAL -->
-    <a href="#" class="card" style="opacity:0.6; cursor:not-allowed;">
-      <div class="card-icon">💔</div>
-      <div>
-        <div class="card-title">Estenose Mitral</div>
-        <p class="card-desc">
-          Gradientes e área valvar. Comissurotomia vs troca. Fibrilação atrial. Anticoagulação.
-        </p>
+    <div class="card card-soon fade-in" style="animation-delay:0.35s">
+      <span class="card-tag tag-breve">Em breve</span>
+      <div class="card-title">Hipocalemia</div>
+      <div class="card-desc">4 pilares de causação, Bartter/Gitelman/Liddle, paralisia periódica e escada do ECG.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">Distúrbios</span>
+          <span class="chip">ECG</span>
+          <span class="chip">Tubular</span>
+        </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">Cardio</span>
-        <span class="tag">Valvopatia</span>
-        <span class="tag">Em breve</span>
-      </div>
-      <button class="card-btn" disabled>Em Breve</button>
-    </a>
+    </div>
 
-    <!-- MIOCARDITE -->
-    <a href="#" class="card" style="opacity:0.6; cursor:not-allowed;">
-      <div class="card-icon">🧬</div>
-      <div>
-        <div class="card-title">Miocardite</div>
-        <p class="card-desc">
-          Diagnóstico (troponina, CMR, biópsia). PET-CT. Tratamento. Fulminante vs crônica.
-        </p>
+    <div class="card card-soon fade-in" style="animation-delay:0.4s">
+      <span class="card-tag tag-breve">Em breve</span>
+      <div class="card-title">Hipertensão Arterial</div>
+      <div class="card-desc">SBC/SBH/SBN 2025: LOA, escore PREVENT, HAS resistente/refratária, continuum cardiovascular.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">SBC 2025</span>
+          <span class="chip">LOA</span>
+          <span class="chip">Tratamento</span>
+        </div>
       </div>
-      <div class="card-tags">
-        <span class="tag">Cardio</span>
-        <span class="tag">Em breve</span>
-      </div>
-      <button class="card-btn" disabled>Em Breve</button>
-    </a>
+    </div>
 
   </div>
+</section>
 
-  <footer>
-    <div class="footer-title">🫀 Preparatório TEC 2026</div>
-    <p class="footer-text">
-      <strong>André Rossanno</strong>
-    </p>
-    <p class="footer-text" style="margin-top:16px; font-size:0.8em;">
-      © 2026 • Conteúdo gratuito para fins educacionais.<br>
-      Técnicas de memória com foco em raciocínio clínico para TEC.
-    </p>
-  </footer>
+<!-- AULAS CLÍNICAS -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-icon icon-aulas">🧠</div>
+    <div class="section-title-wrap">
+      <div class="section-label">Teoria · Prática · Memorização</div>
+      <div class="section-name">Aulas Clínicas</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="cards-grid">
 
-</div>
+    <!-- TRM como par -->
+    <div class="card-pair fade-in" style="animation-delay:0.1s">
+      <div class="card-pair-header">
+        <span class="card-tag tag-aula">Neurologia · Trauma</span>
+        <div class="card-pair-title">Trauma Raquimedular</div>
+        <div class="card-pair-desc">Bases fisiopatológicas, classificação ASIA, ATLS, NEXUS, imagem e tratamento completo — do impacto à UTI.</div>
+        <div class="card-chips">
+          <span class="chip">ASIA/AIS</span>
+          <span class="chip">NEXUS</span>
+          <span class="chip">O-P-A-T-T-N</span>
+          <span class="chip">TC vs RNM</span>
+        </div>
+      </div>
+      <div class="card-pair-links">
+        <a href="trm-parte1.html" class="pair-link">
+          <span class="pl-label">Parte 1 — Bases & Classificação</span>
+          <span class="pl-arrow">→</span>
+        </a>
+        <a href="trm-parte2.html" class="pair-link">
+          <span class="pl-label">Parte 2 — Imagem & Tratamento</span>
+          <span class="pl-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Em breve aulas -->
+    <div class="card card-soon fade-in" style="animation-delay:0.15s">
+      <span class="card-tag tag-breve">Em breve</span>
+      <div class="card-title">Dor Torácica na Emergência</div>
+      <div class="card-desc">HEART, GRACE, Wells, ADD-RS — do protocolo ABCDE ao diagnóstico diferencial dos killers.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">Escores</span>
+          <span class="chip">SCA</span>
+          <span class="chip">TEP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-soon fade-in" style="animation-delay:0.2s">
+      <span class="card-tag tag-breve">Em breve</span>
+      <div class="card-title">Amiloidose Cardíaca</div>
+      <div class="card-desc">Red flags, diagnóstico por imagem, cintilografia e tratamento — o mimetizador que o TEC ama cobrar.</div>
+      <div class="card-footer">
+        <div class="card-chips">
+          <span class="chip">Diagnóstico</span>
+          <span class="chip">Red Flags</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-sig">Dr. André Rossanno</div>
+  <div class="footer-info">
+    Atlas Mental Interativo · Conteúdo gratuito<br>
+    Método André Rossanno de Memorização Médica<br>
+    <a href="https://memoriapotencial.com.br">memoriapotencial.com.br</a>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer para animações
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.animationPlayState = 'running';
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.fade-in').forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+</script>
 </body>
 </html>
