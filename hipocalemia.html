@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hipopotassemia | Aula Completa</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy: #0a1628;
+    --navy2: #0f2044;
+    --teal: #00c9b1;
+    --teal2: #00f5d9;
+    --mint: #e0faf6;
+    --gold: #f5c842;
+    --red: #e8405a;
+    --green: #27c483;
+    --yellow: #f5a623;
+    --white: #f4f7fb;
+    --gray: #8899b0;
+    --card: #131f38;
+    --border: rgba(0,201,177,0.18);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  /* ── TOP BAR ── */
+  #topbar {
+    position: fixed; top:0; left:0; right:0; z-index:999;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    height: 58px;
+  }
+  #topbar .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--teal);
+    white-space: nowrap;
+    letter-spacing: .03em;
+  }
+  #topbar nav {
+    display: flex; align-items: center; gap: 0.2rem;
+    overflow-x: auto; flex:1;
+    scrollbar-width: none;
+  }
+  #topbar nav::-webkit-scrollbar { display:none; }
+  #topbar nav a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all .2s;
+    letter-spacing: .02em;
+  }
+  #topbar nav a:hover, #topbar nav a.active {
+    color: var(--teal);
+    background: rgba(0,201,177,0.1);
+  }
+  #topbar .btn-top {
+    background: var(--teal);
+    color: var(--navy);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  #topbar .btn-top:hover { background: var(--teal2); }
+
+  /* ── MAIN LAYOUT ── */
+  main { padding-top: 58px; }
+
+  /* ── SECTION BASE ── */
+  section {
+    min-height: 100vh;
+    padding: 80px 5vw 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1.5px solid var(--border);
+    position: relative;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    background: linear-gradient(135deg, #0a1628 0%, #0d2040 55%, #08332b 100%);
+    min-height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,201,177,0.12);
+    border: 1.5px solid var(--teal);
+    color: var(--teal);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: .08em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero-title span { color: var(--teal); }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--gray);
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: .7rem;
+  }
+  .pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    color: var(--gray);
+    font-weight: 500;
+  }
+  .pill .icon { margin-right: 4px; }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+    max-width: 700px; margin-top: 2.5rem;
+  }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--teal);
+  }
+  .stat-box .lbl { font-size: 0.78rem; color: var(--gray); margin-top: 2px; }
+
+  /* ── SECTION TITLES ── */
+  .sec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .sec-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .sec-intro {
+    color: var(--gray);
+    max-width: 800px;
+    font-size: 1.02rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,201,177,0.12);
+  }
+  .card-icon { font-size: 1.8rem; margin-bottom: .7rem; }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: .5rem;
+  }
+  .card-body { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ── SEVERITY BOXES ── */
+  .sev-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-bottom: 2rem; }
+  .sev-box {
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    border: 2px solid;
+  }
+  .sev-leve { background: rgba(39,196,131,0.08); border-color: var(--green); }
+  .sev-mod  { background: rgba(245,166,35,0.08); border-color: var(--yellow); }
+  .sev-grave{ background: rgba(232,64,90,0.08);  border-color: var(--red); }
+  .sev-box .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+  }
+  .sev-leve .label  { color: var(--green); }
+  .sev-mod  .label  { color: var(--yellow); }
+  .sev-grave .label { color: var(--red); }
+  .sev-box .value {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: .3rem;
+  }
+  .sev-leve .value  { color: var(--green); }
+  .sev-mod  .value  { color: var(--yellow); }
+  .sev-grave .value { color: var(--red); }
+  .sev-box .desc { font-size: 0.85rem; color: var(--gray); }
+
+  /* ── TABLE ── */
+  .t-wrap { overflow-x:auto; margin: 1.5rem 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  thead th {
+    background: var(--navy2);
+    color: var(--teal);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  tbody td {
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--gray);
+    vertical-align: top;
+  }
+  tbody tr:hover td { background: rgba(0,201,177,0.04); color: var(--white); }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 1rem 0;
+    border-left: 4px solid;
+    font-size: 0.92rem;
+  }
+  .alert-danger { background: rgba(232,64,90,0.1); border-color: var(--red); color: #ffb3bf; }
+  .alert-warn   { background: rgba(245,166,35,0.1); border-color: var(--yellow); color: #ffe0a0; }
+  .alert-info   { background: rgba(0,201,177,0.08); border-color: var(--teal); color: var(--mint); }
+  .alert-tip    { background: rgba(39,196,131,0.08); border-color: var(--green); color: #a8f0d0; }
+  .alert strong { font-weight: 700; }
+
+  /* ── ECG VISUAL ── */
+  .ecg-wave-block {
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    padding: 28px;
+    margin: 1.5rem 0;
+  }
+  .ecg-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .ecg-svg-wrap { text-align: center; margin: 1rem 0; }
+  svg.ecg-svg { max-width: 100%; height: auto; }
+  .ecg-labels { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+  .ecg-tag {
+    background: rgba(232,64,90,0.12);
+    border: 1px solid rgba(232,64,90,0.4);
+    color: #ffb3bf;
+    font-size: 0.8rem;
+    padding: 4px 13px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── ALGORITHM FLOW ── */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    max-width: 700px;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+  }
+  .flow-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .flow-dot {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .flow-connector {
+    width: 2px;
+    flex: 1;
+    min-height: 28px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+    margin: 4px auto;
+  }
+  .flow-content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+  .flow-content .fc-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+  }
+  .flow-content .fc-body { font-size: 0.87rem; color: var(--gray); }
+
+  /* ── BRANCH FLOW ── */
+  .branch-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .branch-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .branch-card.left  { border: 1.5px solid var(--green); }
+  .branch-card.right { border: 1.5px solid var(--red); }
+  .branch-card .bh {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: .5rem;
+  }
+  .branch-card.left .bh  { color: var(--green); }
+  .branch-card.right .bh { color: var(--red); }
+  .branch-card ul { padding-left: 1.2rem; }
+  .branch-card li { font-size: 0.85rem; color: var(--gray); margin-bottom: 3px; }
+
+  /* ── TREATMENT BLOCKS ── */
+  .tx-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+  .tx-block {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    border: 2px solid;
+  }
+  .tx-block.leve  { border-color: var(--green); }
+  .tx-block.grave { border-color: var(--red); }
+  .tx-block .tx-h {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: .4rem;
+  }
+  .tx-block.leve .tx-h  { color: var(--green); }
+  .tx-block.grave .tx-h { color: var(--red); }
+  .tx-block .tx-sub { font-size: 0.8rem; color: var(--gray); margin-bottom: 1rem; font-family: 'DM Mono', monospace; letter-spacing: .04em; }
+  .tx-item {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: .7rem;
+    font-size: 0.88rem;
+    color: var(--white);
+    border-left: 3px solid transparent;
+  }
+  .tx-block.leve  .tx-item { border-color: var(--green); }
+  .tx-block.grave .tx-item { border-color: var(--red); }
+
+  /* ── IMPACT QUOTE ── */
+  .impact-quote {
+    background: linear-gradient(135deg, rgba(232,64,90,0.12) 0%, rgba(10,22,40,0) 60%);
+    border: 2px solid var(--red);
+    border-radius: 18px;
+    padding: 36px 40px;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .impact-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10rem;
+    color: rgba(232,64,90,0.08);
+    line-height: 1;
+  }
+  .impact-quote p {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-weight: 700;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    line-height: 1.3;
+  }
+  .impact-quote span { color: var(--red); }
+
+  /* ── DILUTION TABLE ── */
+  .dil-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 1.2rem;
+  }
+  .dil-h {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--teal);
+    margin-bottom: .3rem;
+  }
+  .dil-sub { font-size: 0.82rem; color: var(--gray); margin-bottom: 1rem; }
+  .dil-formula {
+    font-family: 'DM Mono', monospace;
+    background: rgba(0,201,177,0.08);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    color: var(--teal2);
+    margin-bottom: .7rem;
+    display: inline-block;
+    width: 100%;
+  }
+
+  /* ── QUIZ ── */
+  #quiz section { min-height: auto; border-bottom: none; padding: 0; }
+  .quiz-progress {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    height: 6px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  .quiz-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--teal2));
+    border-radius: 8px;
+    transition: width .4s ease;
+  }
+  .quiz-q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal);
+    letter-spacing: .08em;
+    margin-bottom: .5rem;
+  }
+  .quiz-question {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.35;
+  }
+  .quiz-opts { display: flex; flex-direction: column; gap: .7rem; }
+  .quiz-opt {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-size: 0.93rem;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all .2s;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .quiz-opt .opt-letter {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--navy2);
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+    color: var(--teal);
+    transition: all .2s;
+  }
+  .quiz-opt:hover {
+    border-color: var(--teal);
+    color: var(--white);
+    transform: translateX(4px);
+  }
+  .quiz-opt:hover .opt-letter { background: var(--teal); color: var(--navy); }
+  .quiz-opt.correct  { background: rgba(39,196,131,0.12); border-color: var(--green); color: #a8f0d0; pointer-events: none; }
+  .quiz-opt.wrong    { background: rgba(232,64,90,0.1);  border-color: var(--red);   color: #ffb3bf; pointer-events: none; }
+  .quiz-opt.correct .opt-letter { background: var(--green); color: var(--navy); border-color: var(--green); }
+  .quiz-opt.wrong    .opt-letter { background: var(--red);   color: var(--white); border-color: var(--red); }
+  .quiz-opt.disabled { pointer-events: none; opacity: 0.55; }
+
+  .quiz-feedback {
+    margin-top: 1.2rem;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    display: none;
+    animation: fadeIn .3s ease;
+  }
+  .quiz-feedback.correct { background: rgba(39,196,131,0.1); border: 1px solid var(--green); color: #a8f0d0; }
+  .quiz-feedback.wrong   { background: rgba(232,64,90,0.1); border: 1px solid var(--red);   color: #ffb3bf; }
+  .quiz-nav { display: flex; gap: 1rem; margin-top: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--teal);
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-ghost:hover { background: rgba(0,201,177,0.1); }
+  .quiz-score-block {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+  .quiz-score-block .score-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--teal);
+  }
+  .quiz-score-block .score-txt { font-size: 1.1rem; color: var(--gray); margin-top: .5rem; }
+
+  /* ── PEGA DINHAS ── */
+  .pega-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+  .pega-card {
+    background: rgba(245,200,66,0.06);
+    border: 1.5px solid rgba(245,200,66,0.35);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .pega-card .pega-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+  .pega-card .pega-h {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: .4rem;
+  }
+  .pega-card .pega-b { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+  /* ── CLINICAL CASES ── */
+  .case-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    margin-bottom: 1.2rem;
+  }
+  .case-tag {
+    display: inline-block;
+    background: rgba(0,201,177,0.1);
+    border: 1px solid var(--border);
+    color: var(--teal);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    letter-spacing: .06em;
+    margin-bottom: .8rem;
+  }
+  .case-q {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .case-toggle {
+    background: transparent;
+    color: var(--teal);
+    border: 1.5px solid var(--teal);
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .case-toggle:hover { background: rgba(0,201,177,0.08); }
+  .case-answer {
+    display: none;
+    margin-top: 1rem;
+    background: rgba(0,201,177,0.07);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    color: var(--mint);
+    line-height: 1.7;
+    animation: fadeIn .3s ease;
+  }
+
+  /* ── RESUMO FINAL ── */
+  .resumo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .resumo-item {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .resumo-item .ri-icon { font-size: 2rem; margin-bottom: .5rem; }
+  .resumo-item .ri-h {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 0.85rem;
+    margin-bottom: .3rem;
+  }
+  .resumo-item .ri-b { font-size: 0.82rem; color: var(--gray); }
+
+  /* ── MIND MAP ── */
+  .mindmap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  .mm-root {
+    background: var(--teal);
+    color: var(--navy);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 50px;
+    padding: 14px 30px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .mm-branch {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    color: var(--gray);
+  }
+  .mm-branch strong { color: var(--white); display: block; font-weight: 600; margin-bottom: 4px; font-family: 'Syne', sans-serif; font-size: 0.9rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: none; } }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ── SPECIAL SECTIONS ── */
+  #fisiopato { background: linear-gradient(180deg, var(--navy) 0%, #0d2040 100%); }
+  #ecg { background: linear-gradient(180deg, #0a1628 0%, #0a1f0f 100%); }
+  #quiz-sec { background: linear-gradient(180deg, var(--navy) 0%, #1a0a2e 100%); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 60px; height: 3px;
+    background: var(--teal);
+    border-radius: 2px;
+    margin: 1rem 0 2rem;
+  }
+
+  /* ── 2-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  /* ── SPECIAL TAGS ── */
+  .tag-ev {
+    font-family: 'DM Mono', monospace;
+    background: rgba(232,64,90,0.1);
+    color: #ffb3bf;
+    border: 1px solid rgba(232,64,90,0.3);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    display: inline-block;
+    margin-left: .4rem;
+  }
+
+  /* ── SPEED BOX ── */
+  .speed-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1rem 0; }
+  .speed-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+  }
+  .speed-box .sp-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: .3rem;
+  }
+  .speed-box .sp-lbl { font-size: 0.8rem; color: var(--gray); }
+  .speed-box.ok  .sp-val { color: var(--green); }
+  .speed-box.warn .sp-val { color: var(--yellow); }
+  .speed-box.danger .sp-val { color: var(--red); }
+
+  /* ── SIST CARD ── */
+  .sist-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+  .sist-card {
+    background: var(--card);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    padding: 22px;
+  }
+  .sist-card .sh {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: .7rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .sist-card ul { padding-left: 1.2rem; }
+  .sist-card li { font-size: 0.85rem; color: var(--gray); margin-bottom: 4px; }
+
+  @media (max-width: 768px) {
+    .sev-row { grid-template-columns: 1fr; }
+    .tx-row { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .branch-box { grid-template-columns: 1fr; }
+    .speed-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div class="logo">K⁺ Hipocalemia</div>
+  <nav>
+    <a href="#conceito">Conceito</a>
+    <a href="#classificacao">Classificação</a>
+    <a href="#fisiopato">Fisiopatologia</a>
+    <a href="#causas">Causas</a>
+    <a href="#clinica">Quadro Clínico</a>
+    <a href="#ecg">ECG</a>
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#tratamento">Tratamento</a>
+    <a href="#diluicao">Diluição</a>
+    <a href="#casos">Casos Clínicos</a>
+    <a href="#pegadinhas">Pegadinhas</a>
+    <a href="#macetes">🧠 Macetes</a>
+    <a href="#quiz-sec">Quiz</a>
+    <a href="#resumo">Resumo</a>
+  </nav>
+  <button class="btn-top" onclick="scrollToTop()">↑ Topo</button>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="hero-badge">📚 MÓDULO HIDROELETROLÍTICO</div>
+    <h1 class="hero-title">Hipopo<span>tassemia</span><br><span style="font-size:0.7em;opacity:.7">(Hipocalemia)</span></h1>
+    <p class="hero-sub">Diagnóstico, causas, ECG, reposição e pegadinhas de prova — da fisiopatologia à beira do leito.</p>
+    <div style="display:inline-flex;align-items:center;gap:.7rem;background:rgba(0,201,177,0.07);border:1px solid var(--border);border-radius:12px;padding:10px 20px;margin-bottom:1.2rem;">
+      <span style="font-size:1.3rem;">👨‍⚕️</span>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--white);font-size:0.95rem;">Prof. Dr. André Rossanno Mendes Almeida</div>
+        <div style="font-size:0.75rem;color:var(--teal);font-family:'DM Mono',monospace;letter-spacing:.04em;">Intensivista · Educação Médica · Para Acadêmicos de Medicina</div>
+      </div>
+    </div>
+    <div class="hero-pills">
+      <span class="pill"><span class="icon">⚡</span> Arritmias</span>
+      <span class="pill"><span class="icon">💊</span> Reposição EV</span>
+      <span class="pill"><span class="icon">🫀</span> ECG clássico</span>
+      <span class="pill"><span class="icon">🧪</span> Diluição segura</span>
+      <span class="pill"><span class="icon">🎯</span> Quiz interativo</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="num">3,5</div><div class="lbl">mEq/L — limite inferior normal</div></div>
+      <div class="stat-box"><div class="num">98%</div><div class="lbl">do K⁺ está intracelular</div></div>
+      <div class="stat-box"><div class="num">&lt;2,5</div><div class="lbl">mEq/L = grave, risco vital</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEITO -->
+<section id="conceito">
+  <div class="sec-label">01 — CONCEITO</div>
+  <h2 class="sec-title">O que é hipocalemia?</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">
+    Hipopotassemia ou hipocalemia é a redução do potássio sérico abaixo de <strong>3,5 mEq/L</strong>. É um dos distúrbios hidroeletrolíticos mais relevantes da prática clínica.
+  </p>
+  <div class="cards-grid fade-in">
+    <div class="card">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">Potássio sérico normal</div>
+      <div class="card-body">3,5 a 5,0 mEq/L no plasma. Representa apenas <strong>2%</strong> do potássio corporal total.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">💉</div>
+      <div class="card-title">Por que é importante?</div>
+      <div class="card-body">O potássio determina o potencial de repouso da membrana. Pequenas variações provocam grandes efeitos elétricos — especialmente no coração.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚠️</div>
+      <div class="card-title">Risco cardiovascular</div>
+      <div class="card-body">Hipocalemia pode causar arritmias fatais, especialmente em cardiopatas e em pacientes em uso de digoxina.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧪</div>
+      <div class="card-title">O número sérico engana</div>
+      <div class="card-body">K⁺ sérico = 3,0 mEq/L → déficit corporal de 200–400 mEq. K⁺ sérico = 2,0 mEq/L → déficit &gt; 600 mEq. O plasma mostra pouco do todo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSIFICAÇÃO -->
+<section id="classificacao">
+  <div class="sec-label">02 — CLASSIFICAÇÃO</div>
+  <h2 class="sec-title">Graus de gravidade</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">A gravidade orienta a urgência da reposição e a via preferencial.</p>
+  <div class="sev-row fade-in">
+    <div class="sev-box sev-leve">
+      <div class="label">🟢 LEVE</div>
+      <div class="value">3,0–3,5</div>
+      <div class="desc">mEq/L<br>Via oral preferencial<br>Frequentemente assintomático</div>
+    </div>
+    <div class="sev-box sev-mod">
+      <div class="label">🟡 MODERADA</div>
+      <div class="value">2,5–2,9</div>
+      <div class="desc">mEq/L<br>Sintomas neuromusculares<br>Avaliar reposição EV</div>
+    </div>
+    <div class="sev-box sev-grave">
+      <div class="label">🔴 GRAVE</div>
+      <div class="value">&lt; 2,5</div>
+      <div class="desc">mEq/L<br>Risco de arritmia e paralisia<br>EV com monitoração obrigatória</div>
+    </div>
+  </div>
+  <div class="alert alert-warn fade-in">
+    <strong>⚠️ Atenção:</strong> Hipocalemia leve pode se tornar grave rapidamente se o paciente estiver em uso de diuréticos, corticoides, beta-agonistas ou com perdas gastrointestinais contínuas.
+  </div>
+</section>
+
+<!-- FISIOPATOLOGIA -->
+<section id="fisiopato">
+  <div class="sec-label">03 — FISIOPATOLOGIA</div>
+  <h2 class="sec-title">Quatro mecanismos centrais</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">Todo caso de hipocalemia pode ser explicado por um ou mais desses mecanismos.</p>
+  <div class="cards-grid fade-in">
+    <div class="card" style="border-left: 3px solid var(--green);">
+      <div class="card-icon">🥦</div>
+      <div class="card-title">1. Aporte insuficiente</div>
+      <div class="card-body">Desnutrição, jejum prolongado, dieta pobre em potássio. Menos frequente como causa isolada — o rim consegue conservar K⁺ com eficiência.</div>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--yellow);">
+      <div class="card-icon">🫁</div>
+      <div class="card-title">2. Perdas gastrointestinais</div>
+      <div class="card-body">Vômitos, diarreia, fístulas, aspiração nasogástrica. A hipocalemia por vômitos ocorre <em>via rim</em>, mediada por alcalose + aldosterona.</div>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--teal);">
+      <div class="card-icon">🔄</div>
+      <div class="card-title">3. Redistribuição celular</div>
+      <div class="card-body">Insulina, beta-agonistas, alcalose — empurram K⁺ para dentro das células. Não há perda corporal total. Reversível.</div>
+    </div>
+    <div class="card" style="border-left: 3px solid var(--red);">
+      <div class="card-icon">🫘</div>
+      <div class="card-title">4. Perda renal</div>
+      <div class="card-body">Diuréticos, aldosterona elevada, tubulopatias. O rim secreta K⁺ ativamente pelo canal ROMK no néfron distal.</div>
+    </div>
+  </div>
+  <div class="alert alert-info fade-in" style="margin-top: 2rem;">
+    <strong>💡 Mecanismo molecular:</strong> A aldosterona ativa o ENaC (canal epitelial de sódio) → Na⁺ entra → lúmen fica eletronegativo → ROMK secreta K⁺ passivamente. <strong>Entra sódio, sai potássio.</strong>
+  </div>
+  <div class="alert alert-tip fade-in">
+    <strong>🎯 Ponto-chave do magnésio:</strong> O Mg²⁺ intracelular funciona como bloqueador físico do canal ROMK. Sem magnésio → ROMK aberto permanentemente → hipocalemia refratária. <strong>Corrija o magnésio antes do potássio!</strong>
+  </div>
+</section>
+
+<!-- CAUSAS -->
+<section id="causas">
+  <div class="sec-label">04 — CAUSAS</div>
+  <h2 class="sec-title">Etiologia organizada</h2>
+  <div class="divider"></div>
+  <div class="t-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>Grupo</th>
+          <th>Exemplos</th>
+          <th>Mecanismo</th>
+          <th>K⁺ urinário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🥦 Baixo aporte</strong></td>
+          <td>Desnutrição, jejum, pós-operatório</td>
+          <td>Ingesta insuficiente</td>
+          <td style="color:var(--green);">&lt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>🤢 Perdas GI</strong></td>
+          <td>Diarreia, fístulas, ileostomia</td>
+          <td>Perda direta de K⁺</td>
+          <td style="color:var(--green);">&lt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>🤮 Vômitos</strong></td>
+          <td>Vômitos persistentes, bulimia</td>
+          <td>Alcalose → perda renal</td>
+          <td style="color:var(--red);">&gt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>🔄 Redistribuição</strong></td>
+          <td>Insulina, beta-2 agonistas, alcalose</td>
+          <td>Desvio intracelular</td>
+          <td style="color:var(--green);">&lt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>💊 Diuréticos</strong></td>
+          <td>Furosemida, hidroclorotiazida, clortalidona</td>
+          <td>Entrega distal de Na⁺ → secreção K⁺</td>
+          <td style="color:var(--red);">&gt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>🏥 Drogas</strong></td>
+          <td>Anfotericina B, aminoglicosídeos, corticoides</td>
+          <td>Lesão tubular / efeito mineralocorticoide</td>
+          <td style="color:var(--red);">&gt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>🧬 Tubulopatias</strong></td>
+          <td>Bartter, Gitelman, Liddle</td>
+          <td>Mutações em transportadores renais</td>
+          <td style="color:var(--red);">&gt; 20 mEq/L</td>
+        </tr>
+        <tr>
+          <td><strong>🩺 Endócrino</strong></td>
+          <td>Hiperaldosteronismo primário, Cushing, Graves</td>
+          <td>Excesso de mineralocorticoide</td>
+          <td style="color:var(--red);">&gt; 20 mEq/L</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--teal);margin:2rem 0 1rem;">🧬 Tubulopatias hereditárias — diferencial</h3>
+  <div class="t-wrap fade-in">
+    <table>
+      <thead>
+        <tr><th>Síndrome</th><th>Mutação</th><th>Simula</th><th>PA</th><th>Marcador</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Bartter</strong></td>
+          <td>NKCC2 (alça de Henle)</td>
+          <td>Furosemida contínua</td>
+          <td style="color:var(--green);">Normal/baixa</td>
+          <td>Alcalose + hipocalemia + calciúria elevada</td>
+        </tr>
+        <tr>
+          <td><strong>Gitelman</strong></td>
+          <td>NCC (TCD)</td>
+          <td>Tiazídico contínuo</td>
+          <td style="color:var(--green);">Normal/baixa</td>
+          <td>Hipocalemia + <strong>hipomagnesemia + hipocalciúria</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Liddle</strong></td>
+          <td>Ganho de função ENaC</td>
+          <td>Aldosterona "falsa"</td>
+          <td style="color:var(--red);">Hipertensão grave</td>
+          <td>Renina e aldosterona <strong>baixas</strong>. Tratar com amilorida.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- QUADRO CLÍNICO -->
+<section id="clinica">
+  <div class="sec-label">05 — QUADRO CLÍNICO</div>
+  <h2 class="sec-title">Manifestações por sistema</h2>
+  <div class="divider"></div>
+  <div class="sist-row fade-in">
+    <div class="sist-card">
+      <div class="sh" style="color:var(--red);">🫀 Cardiovascular</div>
+      <ul>
+        <li>Arritmias (taquicardia, extrassístoles)</li>
+        <li>Maior risco com digitálicos</li>
+        <li>Predisposição a fibrilação ventricular</li>
+        <li>Alterações no ECG (ver seção seguinte)</li>
+      </ul>
+    </div>
+    <div class="sist-card">
+      <div class="sh" style="color:var(--yellow);">🦾 Neuromuscular</div>
+      <ul>
+        <li>Fraqueza muscular, astenia</li>
+        <li>Câimbras, parestesias</li>
+        <li>Redução da excitabilidade</li>
+        <li>Paralisia flácida (graves)</li>
+        <li>Comprometimento respiratório (muito grave)</li>
+      </ul>
+    </div>
+    <div class="sist-card">
+      <div class="sh" style="color:var(--teal);">🫁 Digestivo</div>
+      <ul>
+        <li>Náuseas, constipação</li>
+        <li>Distensão abdominal</li>
+        <li>Íleo paralítico</li>
+        <li>Piora pós-operatória</li>
+      </ul>
+    </div>
+    <div class="sist-card">
+      <div class="sh" style="color:var(--green);">🫘 Renal</div>
+      <ul>
+        <li>Diabetes insípidus nefrogênico</li>
+        <li>Lesão tubular crônica</li>
+        <li>Fibrose intersticial</li>
+        <li>Relação com DRC em casos crônicos</li>
+      </ul>
+    </div>
+    <div class="sist-card">
+      <div class="sh" style="color:var(--gold);">⚗️ Metabólico</div>
+      <ul>
+        <li>Redução da liberação de aldosterona</li>
+        <li>Resistência à insulina (associada a diuréticos)</li>
+        <li>Alcalose metabólica associada</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ECG -->
+<section id="ecg">
+  <div class="sec-label">06 — ECG</div>
+  <h2 class="sec-title">Alterações eletrocardiográficas</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">O ECG é o exame à beira do leito mais importante para estimar a urgência da reposição.</p>
+
+  <div class="ecg-wave-block fade-in">
+    <div class="ecg-title">🩺 ECG clássico da hipocalemia</div>
+    <div class="ecg-svg-wrap">
+      <svg class="ecg-svg" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="background:rgba(0,0,0,0.2);border-radius:10px;">
+        <!-- grid lines -->
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,201,177,0.06)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="900" height="200" fill="url(#grid)"/>
+        <!-- baseline -->
+        <line x1="0" y1="100" x2="900" y2="100" stroke="rgba(0,201,177,0.2)" stroke-width="1" stroke-dasharray="4,4"/>
+        <!-- ECG trace hypokalaemia: flat T, prominent U, ST depression -->
+        <polyline points="
+          0,100 30,100 40,90 50,100
+          60,100 80,100
+          85,40 90,100
+          95,108 120,108 140,106
+          145,98 160,99 175,100
+          185,112 200,114 215,112
+          220,100 230,100
+          240,100 250,90 260,100
+          270,100 290,100
+          295,40 300,100
+          305,108 330,108 350,106
+          355,98 370,99 385,100
+          395,112 410,114 425,112
+          430,100 440,100
+          450,100 460,90 470,100
+          480,100 500,100
+          505,40 510,100
+          515,108 540,108 560,106
+          565,98 580,99 595,100
+          605,112 620,114 635,112
+          640,100 650,100
+          660,100 670,90 680,100
+          690,100 710,100
+          715,40 720,100
+          725,108 750,108 770,106
+          775,98 790,99 805,100
+          815,112 830,114 845,112
+          850,100 860,100 900,100
+        " fill="none" stroke="#00c9b1" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- annotations -->
+        <text x="135" y="125" fill="#f5a623" font-size="12" font-family="DM Mono" text-anchor="middle">ST↓</text>
+        <line x1="135" y1="108" x2="135" y2="118" stroke="#f5a623" stroke-width="1.5"/>
+        <text x="200" y="135" fill="#e8405a" font-size="12" font-family="DM Mono" text-anchor="middle">onda U</text>
+        <line x1="205" y1="114" x2="205" y2="128" stroke="#e8405a" stroke-width="1.5"/>
+        <text x="88" y="28" fill="#8899b0" font-size="11" font-family="DM Mono">QRS</text>
+        <text x="356" y="88" fill="#8899b0" font-size="11" font-family="DM Mono">T ↓</text>
+      </svg>
+    </div>
+    <div class="ecg-labels">
+      <span class="ecg-tag">Depressão do segmento ST</span>
+      <span class="ecg-tag">Achatamento/inversão da onda T</span>
+      <span class="ecg-tag">Onda U proeminente</span>
+      <span class="ecg-tag">Aumento do QT aparente</span>
+      <span class="ecg-tag">Extrassístoles ventriculares</span>
+      <span class="ecg-tag">Alargamento do QRS (graves)</span>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--white);margin:2rem 0 1rem;font-size:1.1rem;">⚡ Comparação rápida: hipo × hipercalemia</h3>
+  <div class="t-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>Achado no ECG</th>
+          <th style="color:var(--green);">Hipocalemia (K⁺ baixo)</th>
+          <th style="color:var(--red);">Hipercalemia (K⁺ alto)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Onda T</td><td style="color:var(--green);">Achatada / invertida</td><td style="color:var(--red);">Apiculada ("em tenda")</td></tr>
+        <tr><td>Segmento ST</td><td style="color:var(--green);">Deprimido</td><td style="color:var(--red);">Pode estar alterado</td></tr>
+        <tr><td>Onda U</td><td style="color:var(--green);">Proeminente ✓</td><td style="color:var(--red);">Ausente</td></tr>
+        <tr><td>Intervalo PR</td><td style="color:var(--green);">Normal</td><td style="color:var(--red);">Prolongado</td></tr>
+        <tr><td>QRS</td><td style="color:var(--green);">Normal (alarga em graves)</td><td style="color:var(--red);">Alargado (sino-ventricular)</td></tr>
+        <tr><td>Risco</td><td style="color:var(--green);">FV, torsades</td><td style="color:var(--red);">Assistolia, FV</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert alert-danger fade-in">
+    <strong>🚨 Pegadinha clássica:</strong> Onda U proeminente → pensar em HIPOCALEMIA. Onda T apiculada → pensar em HIPERCALEMIA. Não confunda!
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div class="sec-label">07 — DIAGNÓSTICO</div>
+  <h2 class="sec-title">Algoritmo diagnóstico</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">A chave diagnóstica é o potássio urinário — ele distingue perda renal de extrarrenal.</p>
+
+  <div class="flow fade-in">
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">1</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Confirmar hipocalemia</div>
+        <div class="fc-body">K⁺ sérico &lt; 3,5 mEq/L. Descartar pseudohipocalemia (hemólise, leucocitose extrema). Solicitar gasometria e Mg²⁺.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">2</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Avaliar redistribuição celular</div>
+        <div class="fc-body">Uso de insulina, beta-2 agonistas, alcalose metabólica, paralisia periódica hipocalêmica. Se sim → tratar causa.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">3</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <div class="fc-title">Dosar K⁺ urinário</div>
+        <div class="fc-body">Exame fundamental para distinguir a via da perda. Coletar amostra isolada de urina.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot" style="background:var(--gray);">→</div></div>
+      <div class="flow-content" style="padding:0;background:transparent;border:none;">
+        <div class="branch-box">
+          <div class="branch-card left">
+            <div class="bh">✅ K⁺ urinário &lt; 20 mEq/L<br>Perda EXTRARRENAL</div>
+            <ul>
+              <li>Diarreia</li>
+              <li>Fístulas digestivas</li>
+              <li>Ileostomia de alto débito</li>
+              <li>Baixo aporte / jejum</li>
+              <li>Redistribuição celular</li>
+            </ul>
+          </div>
+          <div class="branch-card right">
+            <div class="bh">🚨 K⁺ urinário &gt; 20 mEq/L<br>Perda RENAL</div>
+            <ul>
+              <li>Diuréticos (furosemida, tiazídicos)</li>
+              <li>Hiperaldosteronismo</li>
+              <li>Vômitos (via rim)</li>
+              <li>Bartter / Gitelman / Liddle</li>
+              <li>Anfotericina B, aminoglicosídeos</li>
+              <li>Acidose tubular renal</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-tip fade-in" style="margin-top:1.5rem;">
+    <strong>🎯 Lembrete diagnóstico:</strong> Vômitos → K⁺ urinário &gt; 20 mEq/L (perda é renal, via alcalose + aldosterona). Diarreia → K⁺ urinário &lt; 20 mEq/L (perda é intestinal direta).
+  </div>
+</section>
+
+<!-- TRATAMENTO -->
+<section id="tratamento">
+  <div class="sec-label">08 — TRATAMENTO</div>
+  <h2 class="sec-title">Reposição por gravidade</h2>
+  <div class="divider"></div>
+
+  <div class="tx-row fade-in">
+    <div class="tx-block leve">
+      <div class="tx-h">🟢 Hipocalemia leve</div>
+      <div class="tx-sub">3,0 – 3,5 mEq/L · Via oral preferencial</div>
+      <div class="tx-item">
+        <strong>Xarope de KCl 6%</strong><br>
+        15 mL = 12 mEq<br>
+        Fazer 10–20 mL após as refeições, 3–4x/dia
+      </div>
+      <div class="tx-item">
+        <strong>KCl comprimido</strong><br>
+        1 comprimido = 6 mEq<br>
+        Fazer 2 comprimidos após refeições, 3–4x/dia
+      </div>
+      <div class="tx-item">
+        ✅ Via oral é preferencial quando paciente está estável e sem alteração eletrocardiográfica significativa
+      </div>
+    </div>
+    <div class="tx-block grave">
+      <div class="tx-h">🔴 Hipocalemia grave</div>
+      <div class="tx-sub">&lt; 2,5 mEq/L · Reposição endovenosa</div>
+      <div class="tx-item">
+        <strong>Ampola KCl 10%</strong> (10 mL) = <strong>13 mEq</strong> de K⁺<br>
+        A apresentação mais comum no Brasil
+      </div>
+      <div class="tx-item">
+        <strong>Ampola KCl 19,1%</strong> (10 mL) = <strong>25 mEq</strong> de K⁺<br>
+        Não confundir as concentrações!
+      </div>
+      <div class="tx-item">
+        ⚠️ Sempre em bomba de infusão<br>
+        Monitoração cardíaca contínua<br>
+        Corrigir magnésio antes!
+      </div>
+    </div>
+  </div>
+
+  <div class="impact-quote fade-in">
+    <p>"Potássio não mata só pela dose. Mata pela <span>concentração</span> e pela <span>velocidade</span>."</p>
+  </div>
+
+  <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--white);margin:2rem 0 1rem;font-size:1.1rem;">⚡ Velocidade de infusão EV</h3>
+  <div class="speed-grid fade-in">
+    <div class="speed-box ok">
+      <div class="sp-val">10–20</div>
+      <div class="sp-lbl">mEq/h · Periférico<br>Seguro, padrão</div>
+    </div>
+    <div class="speed-box warn">
+      <div class="sp-val">até 40</div>
+      <div class="sp-lbl">mEq/h · Central / UTI<br>Monitoração obrigatória</div>
+    </div>
+    <div class="speed-box danger">
+      <div class="sp-val">&gt; 40</div>
+      <div class="sp-lbl">mEq/h · CONTRAINDICADO<br>Risco de FV</div>
+    </div>
+  </div>
+</section>
+
+<!-- DILUIÇÃO -->
+<section id="diluicao">
+  <div class="sec-label">09 — DILUIÇÃO E CONCENTRAÇÃO</div>
+  <h2 class="sec-title">Como diluir com segurança</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">A concentração da solução é tão importante quanto a dose. Concentrações altas em acesso periférico causam flebite e vasoespasmo.</p>
+
+  <div class="dil-card fade-in">
+    <div class="dil-h">📌 Referência: KCl 10% (padrão hospitalar)</div>
+    <div class="dil-sub">1 ampola de 10 mL = 13 mEq de potássio</div>
+    <div class="dil-formula">3 ampolas de KCl 10% = 39 mEq de potássio</div>
+  </div>
+
+  <div class="t-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>Volume do diluente</th>
+          <th>Ampolas KCl 10%</th>
+          <th>mEq adicionados</th>
+          <th>Concentração final</th>
+          <th>Via recomendada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1000 mL SF ou SG</td>
+          <td>3 ampolas</td>
+          <td>~39 mEq</td>
+          <td style="color:var(--green);font-weight:600;">~40 mEq/L</td>
+          <td style="color:var(--green);">✅ Periférico — seguro</td>
+        </tr>
+        <tr>
+          <td>500 mL SF ou SG</td>
+          <td>3 ampolas</td>
+          <td>~39 mEq</td>
+          <td style="color:var(--yellow);font-weight:600;">~78 mEq/L</td>
+          <td style="color:var(--yellow);">⚠️ Preferencialmente central</td>
+        </tr>
+        <tr>
+          <td>470 mL (ex: SF 500–30mL)</td>
+          <td>3 ampolas</td>
+          <td>~39 mEq</td>
+          <td style="color:var(--red);font-weight:600;">~83 mEq/L</td>
+          <td style="color:var(--red);">🚨 Central / UTI monitorada</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards-grid fade-in" style="grid-template-columns: repeat(auto-fill, minmax(250px,1fr));">
+    <div class="card" style="border-left:3px solid var(--green)">
+      <div class="card-title" style="color:var(--green);">✅ Periférico</div>
+      <div class="card-body">Concentração até <strong>40 mEq/L</strong>. Velocidade 10–20 mEq/h. Mais seguro para a maioria dos pacientes.</div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--yellow)">
+      <div class="card-title" style="color:var(--yellow);">⚠️ Concentrado (central)</div>
+      <div class="card-body">Concentrações &gt; 40 mEq/L exigem acesso venoso central e monitoração cardíaca contínua.</div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red)">
+      <div class="card-title" style="color:var(--red);">🚨 Nunca em bolus</div>
+      <div class="card-body">Potássio concentrado em bolus causa <strong>fibrilação ventricular imediata</strong>. Sempre em bomba de infusão.</div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--teal)">
+      <div class="card-title" style="color:var(--teal);">💡 KCl 19,1% ≠ KCl 10%</div>
+      <div class="card-body">KCl 19,1% (10 mL) = <strong>25 mEq</strong>. KCl 10% (10 mL) = <strong>13 mEq</strong>. Não confunda as apresentações!</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS CLÍNICOS -->
+<section id="casos">
+  <div class="sec-label">10 — CASOS CLÍNICOS</div>
+  <h2 class="sec-title">Estilo prova</h2>
+  <div class="divider"></div>
+
+  <div class="case-card fade-in">
+    <span class="case-tag">CASO 01 · ECG</span>
+    <div class="case-q">Paciente em uso de furosemida há 3 meses apresenta fraqueza, câimbras e ECG com segmento ST deprimido, onda T achatada e onda U proeminente em V4-V5. K⁺ sérico = 2,8 mEq/L. Qual o diagnóstico e conduta?</div>
+    <button class="case-toggle" onclick="toggleCase(this)">🔍 Ver resposta</button>
+    <div class="case-answer">
+      <strong>Diagnóstico:</strong> Hipocalemia moderada por perda renal induzida por diurético de alça, com alterações eletrocardiográficas típicas. <br><br>
+      <strong>Conduta:</strong> Suspender ou reduzir furosemida se possível. Iniciar reposição EV com KCl diluído (máx. 40 mEq/L em acesso periférico, 10–20 mEq/h). Dosar Mg²⁺ — hipomagnesemia concomitante é comum com diuréticos de alça e causará hipocalemia refratária se não corrigida. Monitoração cardíaca contínua. Investigar causa base.
+    </div>
+  </div>
+
+  <div class="case-card fade-in">
+    <span class="case-tag">CASO 02 · PÓS-OPERATÓRIO</span>
+    <div class="case-q">Paciente no 2º dia pós-operatório de cirurgia abdominal. Está em jejum, em uso de soro glicosado 5% 2000 mL/dia e com SNG aberta com débito de 800 mL/24h. K⁺ = 2,6 mEq/L, pH = 7,52. Qual o mecanismo principal da hipocalemia?</div>
+    <button class="case-toggle" onclick="toggleCase(this)">🔍 Ver resposta</button>
+    <div class="case-answer">
+      <strong>Mecanismo:</strong> Múltiplo e simultâneo — (1) Jejum: aporte zero de potássio; (2) Soro glicosado: libera insulina endógena → desvio intracelular de K⁺; (3) Aspiração nasogástrica: perda de HCl → alcalose metabólica (pH 7,52) → ativa SRAA → perda renal de K⁺; (4) Alcalose: H⁺ sai das células em troca de K⁺ que entra → K⁺ sérico cai.<br><br>
+      <strong>Conduta:</strong> Reposição EV de KCl; corrigir Mg²⁺; evitar soro glicosado sem K⁺; considerar solução polieletrolítica.
+    </div>
+  </div>
+
+  <div class="case-card fade-in">
+    <span class="case-tag">CASO 03 · ANFOTERICINA B</span>
+    <div class="case-q">Paciente com candidemia em uso de anfotericina B convencional há 10 dias. K⁺ = 2,4 mEq/L, Mg²⁺ = 1,2 mg/dL. A reposição de potássio não está surtindo efeito. Por quê?</div>
+    <button class="case-toggle" onclick="toggleCase(this)">🔍 Ver resposta</button>
+    <div class="case-answer">
+      <strong>Mecanismo:</strong> A anfotericina B forma poros não seletivos nas células tubulares → K⁺ e Mg²⁺ escapam continuamente para o lúmen. Com hipomagnesemia (Mg²⁺ baixo), o canal ROMK perde seu bloqueio fisiológico pelo Mg²⁺ intracelular → fica permanentemente aberto → todo K⁺ reposto é imediatamente perdido pela urina.<br><br>
+      <strong>Conduta:</strong> Corrigir hipomagnesemia PRIMEIRO (sulfato de magnésio EV). Considerar troca para anfotericina B lipossomal (menor nefrotoxicidade). Monitorar K⁺ e Mg²⁺ diariamente.
+    </div>
+  </div>
+
+  <div class="case-card fade-in">
+    <span class="case-tag">CASO 04 · ADDISON — PEGADINHA</span>
+    <div class="case-q">Questão de prova: "Paciente com insuficiência adrenal primária (Doença de Addison) em crise adrenal apresenta hipocalemia?" Verdadeiro ou falso?</div>
+    <button class="case-toggle" onclick="toggleCase(this)">🔍 Ver resposta</button>
+    <div class="case-answer">
+      <strong>FALSO — pegadinha clássica!</strong><br><br>
+      A doença de Addison cursa com <strong>HIPERPOTASSEMIA</strong> (e hiponatremia), não com hipocalemia. A deficiência de aldosterona reduz a secreção renal de K⁺ → K⁺ acumula no plasma. O contrário ocorre no hiperaldosteronismo (Conn) → excesso de aldosterona → hipocalemia + hipertensão + alcalose.
+    </div>
+  </div>
+
+  <div class="case-card fade-in">
+    <span class="case-tag">CASO 05 · BETA-AGONISTA</span>
+    <div class="case-q">Criança de 8 anos em crise asmática grave recebe salbutamol em nebulização contínua por 4 horas. No 5° controle, K⁺ = 2,9 mEq/L. Houve erros de conduta?</div>
+    <button class="case-toggle" onclick="toggleCase(this)">🔍 Ver resposta</button>
+    <div class="case-answer">
+      <strong>Não necessariamente erro, mas risco esperado:</strong> Beta-2 agonistas estimulam a Na⁺/K⁺-ATPase via AMPc/PKA → K⁺ entra nas células → hipocalemia de redistribuição. Em nebulização contínua, a queda pode ser de 0,5–1,5 mEq/L. É uma complicação conhecida, não uma perda corporal real. <br><br>
+      <strong>Conduta:</strong> Monitorar K⁺ a cada 4–6h em nebulização contínua. Repor via oral se &lt; 3,0 mEq/L e paciente estiver sem alteração grave. Evitar uso concomitante de diuréticos.
+    </div>
+  </div>
+
+  <div class="case-card fade-in">
+    <span class="case-tag">CASO 06 · DIGITÁLICO</span>
+    <div class="case-q">Paciente com FA crônica em uso de digoxina e furosemida há 2 meses. Vem com K⁺ = 2,7 mEq/L e ECG com extrassístoles ventriculares. Qual o maior risco e por quê?</div>
+    <button class="case-toggle" onclick="toggleCase(this)">🔍 Ver resposta</button>
+    <div class="case-answer">
+      <strong>Risco:</strong> Toxicidade digitálica grave.<br><br>
+      A digoxina inibe a Na⁺/K⁺-ATPase. Com hipocalemia, há menos K⁺ competindo pelo sítio da bomba → a inibição pela digoxina fica potencializada mesmo em doses terapêuticas. O resultado é arritmia grave com risco de taquicardia ventricular ou fibrilação. <br><br>
+      <strong>Conduta:</strong> Suspender digoxina temporariamente. Repor K⁺ com urgência (EV monitorado). Manter K⁺ sérico &gt; 4,0 mEq/L em pacientes em uso de digitálicos.
+    </div>
+  </div>
+</section>
+
+<!-- PEGADINHAS -->
+<section id="pegadinhas">
+  <div class="sec-label">11 — PEGADINHAS DE PROVA</div>
+  <h2 class="sec-title">Não caia nessas armadilhas</h2>
+  <div class="divider"></div>
+  <div class="pega-grid fade-in">
+    <div class="pega-card">
+      <div class="pega-icon">⚡</div>
+      <div class="pega-h">Onda U → hipocalemia</div>
+      <div class="pega-b">Onda U proeminente no ECG é o sinal clássico de hipocalemia. Não confundir com onda T bífida.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">📈</div>
+      <div class="pega-h">T apiculada → hipercalemia</div>
+      <div class="pega-b">Onda T "em tenda" ou apiculada indica hipercalemia — o oposto da hipocalemia.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">🚫</div>
+      <div class="pega-h">Addison → HIPERcalemia</div>
+      <div class="pega-b">Insuficiência adrenal primária cursa com hiperpotassemia + hiponatremia. NÃO causa hipocalemia.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">🔵</div>
+      <div class="pega-h">Betabloqueador → não piora hipocalemia</div>
+      <div class="pega-b">Beta-bloqueadores bloqueiam receptores beta-2 → tendem a elevar K⁺ (hipercalemia leve). O oposto do beta-agonista.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">💉</div>
+      <div class="pega-h">Vômitos → perda RENAL de K⁺</div>
+      <div class="pega-b">O suco gástrico tem apenas 5–10 mEq/L. A hipocalemia dos vômitos é indireta: alcalose → SRAA → perda renal. K⁺ urinário &gt; 20 mEq/L.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">🧲</div>
+      <div class="pega-h">Hipomagnesemia → hipocalemia refratária</div>
+      <div class="pega-b">Sem magnésio, o ROMK fica aberto. Todo K⁺ reposto será perdido pela urina. Corrija o Mg²⁺ primeiro!</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">⚖️</div>
+      <div class="pega-h">KCl 10% ≠ KCl 19,1%</div>
+      <div class="pega-b">KCl 10% (10 mL) = 13 mEq. KCl 19,1% (10 mL) = 25 mEq. Erro de dose pode ser fatal.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">📏</div>
+      <div class="pega-h">mEq ≠ mg</div>
+      <div class="pega-b">Reposição de potássio é sempre expressa em mEq, não em mg. Não converta incorretamente nas prescrições.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">🩺</div>
+      <div class="pega-h">Liddle → espironolactona NÃO funciona</div>
+      <div class="pega-b">Na síndrome de Liddle, o ENaC funciona sem aldosterona. Espironolactona é ineficaz. Tratamento: amilorida (bloqueia ENaC diretamente).</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">🧬</div>
+      <div class="pega-h">Gitelman = hipocalciúria</div>
+      <div class="pega-b">Diferencial de Bartter vs Gitelman: Gitelman tem hipocalciúria (NCC inativo aumenta reabsorção de Ca²⁺). Bartter tem calciúria normal/elevada.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">💊</div>
+      <div class="pega-h">Acetazolamida e acidose tubular</div>
+      <div class="pega-b">Acetazolamida inibe anidrase carbônica → acidose tubular tipo 2 → bicarbonatúria → arrasta K⁺ → hipocalemia.</div>
+    </div>
+    <div class="pega-card">
+      <div class="pega-icon">⚡</div>
+      <div class="pega-h">Potássio EV nunca em bolus</div>
+      <div class="pega-b">Potássio endovenoso em bolus provoca fibrilação ventricular imediata. Sempre diluído e em bomba de infusão.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MACETES -->
+<section id="macetes" style="background:linear-gradient(160deg,#0a1628 0%,#0f2a1a 100%);">
+  <div class="sec-label">🧠 MACETES DO PROF. ANDRÉ</div>
+  <h2 class="sec-title">Memorize de vez</h2>
+  <div class="divider"></div>
+  <p class="sec-intro">Macetes criados para fixar os mecanismos mais cobrados em provas. Não decore — entenda a lógica e nunca mais esqueça.</p>
+
+  <!-- MACETE 1: ALDOSTERONA -->
+  <div style="background:var(--card);border:2px solid var(--teal);border-radius:20px;padding:32px;margin-bottom:1.5rem;" class="fade-in">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+      <div style="background:var(--teal);color:var(--navy);font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">01</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--teal);">Aldosterona = "Dona do Sódio"</div>
+    </div>
+    <div style="background:rgba(0,201,177,0.07);border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:1.2rem;">
+      <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--white);margin-bottom:.5rem;">
+        💡 "Aldosterona <span style="color:var(--teal)">capta sódio</span> e <span style="color:var(--red)">joga potássio fora</span>"
+      </p>
+      <p style="color:var(--gray);font-size:0.92rem;">
+        Toda vez que você pensar em <strong style="color:var(--white)">K⁺ baixo (hipocalemia)</strong>, pense:<br>
+        <em>Aldosterona alta → Na⁺ entra na célula → K⁺ sai para a urina.</em><br>
+        A aldosterona é a dona do sódio: onde ela manda, o sódio entra, e o potássio paga o preço.
+      </p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;">
+      <div style="background:rgba(0,201,177,0.12);border:1px solid var(--teal);border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:160px;">
+        <div style="font-size:1.6rem;margin-bottom:.3rem;">🔼</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--teal);font-size:.9rem;">Aldosterona ALTA</div>
+        <div style="color:var(--gray);font-size:.8rem;">ENaC ativo → Na⁺ entra</div>
+      </div>
+      <div style="font-size:2rem;color:var(--gray);">→</div>
+      <div style="background:rgba(232,64,90,0.1);border:1px solid var(--red);border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:160px;">
+        <div style="font-size:1.6rem;margin-bottom:.3rem;">🔽</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--red);font-size:.9rem;">K⁺ BAIXO</div>
+        <div style="color:var(--gray);font-size:.8rem;">ROMK secreta K⁺ → urina</div>
+      </div>
+      <div style="font-size:2rem;color:var(--gray);">→</div>
+      <div style="background:rgba(39,196,131,0.08);border:1px solid var(--green);border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:160px;">
+        <div style="font-size:1.6rem;margin-bottom:.3rem;">📈</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--green);font-size:.9rem;">Na⁺ ALTO</div>
+        <div style="color:var(--gray);font-size:.8rem;">Sódio retido, volume sobe</div>
+      </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:1.2rem;">
+      <strong>🎯 Regra de ouro:</strong> K⁺ baixo + Na⁺ alto + hipertensão → excesso de aldosterona (Conn, Cushing, renovascular). K⁺ alto + Na⁺ baixo + hipotensão → falta de aldosterona (Addison).
+    </div>
+  </div>
+
+  <!-- MACETE 2: TUBULOPATIAS -->
+  <div style="background:var(--card);border:2px solid var(--gold);border-radius:20px;padding:32px;margin-bottom:1.5rem;" class="fade-in">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+      <div style="background:var(--gold);color:var(--navy);font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">02</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--gold);">Bartter, Gitelman e Liddle — o trio das tubulopatias</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:1.2rem;">
+      <div style="background:rgba(232,64,90,0.08);border:1.5px solid rgba(232,64,90,0.4);border-radius:14px;padding:22px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#ffb3bf;margin-bottom:.6rem;">🔴 Bartter = "Irmão da Furosemida"</div>
+        <div style="font-size:0.87rem;color:var(--gray);line-height:1.7;">
+          <strong style="color:var(--white);">BArtter → BA de BAte-fura</strong><br>
+          Funciona como furosemida contínua — sem tomar remédio.<br>
+          Mutação no <strong style="color:var(--white)">NKCC2</strong> (alça de Henle).<br><br>
+          PA: <strong style="color:var(--green)">normal/baixa</strong><br>
+          Calciúria: <strong style="color:var(--red)">elevada ↑</strong><br>
+          Mg²⁺: normal
+        </div>
+      </div>
+      <div style="background:rgba(245,166,35,0.08);border:1.5px solid rgba(245,166,35,0.4);border-radius:14px;padding:22px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:#ffe0a0;margin-bottom:.6rem;">🟡 Gitelman = "Irmão do Tiazídico"</div>
+        <div style="font-size:0.87rem;color:var(--gray);line-height:1.7;">
+          <strong style="color:var(--white);">GITelman → GIT de tiazídico</strong><br>
+          Funciona como tiazídico contínuo — sem tomar remédio.<br>
+          Mutação no <strong style="color:var(--white)">NCC</strong> (TCD).<br><br>
+          PA: <strong style="color:var(--green)">normal/baixa</strong><br>
+          <strong style="color:#ffe0a0;">Mg²⁺: BAIXO ↓↓ (o diferencial!)</strong><br>
+          Calciúria: <strong style="color:var(--green)">baixa ↓</strong>
+        </div>
+      </div>
+      <div style="background:rgba(0,201,177,0.07);border:1.5px solid rgba(0,201,177,0.35);border-radius:14px;padding:22px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--teal2);margin-bottom:.6rem;">🔵 Liddle = "Aldosterona Falsa"</div>
+        <div style="font-size:0.87rem;color:var(--gray);line-height:1.7;">
+          <strong style="color:var(--white);">LiDDle → 2 D's:</strong><br>
+          1️⃣ ENaC <strong style="color:var(--white)">D</strong>escontrolado<br>
+          2️⃣ Aldosterona <strong style="color:var(--white)">D</strong>errubada (baixa)<br><br>
+          PA: <strong style="color:var(--red)">HIPERTENSÃO</strong><br>
+          Renina e aldosterona: <strong style="color:var(--green)">baixas ↓</strong><br>
+          Tratar com <strong style="color:var(--teal)">amilorida</strong>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(0,0,0,0.2);border-radius:14px;padding:18px;border:1px solid rgba(245,200,66,0.2);">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:.8rem;font-size:.9rem;">⚡ Tabela comparativa — memorize assim:</div>
+      <div class="t-wrap">
+        <table style="font-size:.83rem;">
+          <thead>
+            <tr><th>Síndrome</th><th>Macete</th><th>PA</th><th>Mg²⁺</th><th>Ca²⁺ urina</th><th>Aldosterona</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:#ffb3bf;">Bartter</strong></td>
+              <td>Furosemida</td>
+              <td style="color:var(--green);">Normal/baixa</td>
+              <td style="color:var(--gray);">Normal</td>
+              <td style="color:var(--red);">Alta ↑</td>
+              <td style="color:var(--red);">Alta (2ária)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#ffe0a0;">Gitelman</strong></td>
+              <td>Tiazídico + Magnésio</td>
+              <td style="color:var(--green);">Normal/baixa</td>
+              <td style="color:var(--red);">Baixo ↓↓</td>
+              <td style="color:var(--green);">Baixa ↓</td>
+              <td style="color:var(--red);">Alta (2ária)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--teal2);">Liddle</strong></td>
+              <td>2 D's: ENaC + Aldost.</td>
+              <td style="color:var(--red);">HIPERTENSÃO</td>
+              <td style="color:var(--gray);">Normal</td>
+              <td style="color:var(--gray);">Normal</td>
+              <td style="color:var(--green);">BAIXA ↓↓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MACETE 3: MAGNÉSIO -->
+  <div style="background:var(--card);border:2px solid var(--green);border-radius:20px;padding:32px;margin-bottom:1.5rem;" class="fade-in">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+      <div style="background:var(--green);color:var(--navy);font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">03</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--green);">Magnésio = "A Fechadura do ROMK"</div>
+    </div>
+    <div style="background:rgba(39,196,131,0.07);border-left:4px solid var(--green);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:1rem;">
+      <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:.5rem;">
+        💡 "Sem a chave (Mg²⁺), a porta (ROMK) fica aberta — e o K⁺ escapa sem parar."
+      </p>
+      <p style="color:var(--gray);font-size:.9rem;line-height:1.7;">
+        O Mg²⁺ bloqueia fisicamente o canal ROMK por dentro. É a fechadura.<br>
+        Sem magnésio → ROMK destrancado → K⁺ escoa para a urina → reposição é inútil.<br>
+        <strong style="color:var(--green);">Resultado: hipocalemia refratária.</strong>
+      </p>
+    </div>
+    <div class="alert alert-tip">
+      <strong>🔑 Regra dos 3 passos:</strong>&nbsp;
+      1️⃣ Dosar Mg²⁺ &nbsp;→&nbsp;
+      2️⃣ Corrigir Mg²⁺ PRIMEIRO &nbsp;→&nbsp;
+      3️⃣ Repor K⁺ (agora ele fica!)
+    </div>
+  </div>
+
+  <!-- MACETE 4: VÔMITO -->
+  <div style="background:var(--card);border:2px solid var(--yellow);border-radius:20px;padding:32px;margin-bottom:1.5rem;" class="fade-in">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+      <div style="background:var(--yellow);color:var(--navy);font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">04</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--yellow);">Vômito — "Perde pelo Rim, não pelo Estômago"</div>
+    </div>
+    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem;">O suco gástrico tem só 5–10 mEq/L de K⁺. A perda real de K⁺ nos vômitos é indireta — mediada pelo rim via alcalose + aldosterona.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-bottom:1rem;">
+      <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:14px 18px;text-align:center;">🤮<br><span style="font-size:.78rem;color:var(--gray);">Perde HCl<br>(não K⁺)</span></div>
+      <div style="color:var(--gray);">→</div>
+      <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:14px 18px;text-align:center;">⚗️<br><span style="font-size:.78rem;color:var(--gray);">Alcalose<br>+ Hipovolemia</span></div>
+      <div style="color:var(--gray);">→</div>
+      <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:14px 18px;text-align:center;">🧪<br><span style="font-size:.78rem;color:var(--gray);">SRAA ativado<br>Aldosterona ↑</span></div>
+      <div style="color:var(--gray);">→</div>
+      <div style="background:rgba(232,64,90,0.1);border:1px solid rgba(232,64,90,.3);border-radius:10px;padding:14px 18px;text-align:center;">🫘<br><span style="font-size:.78rem;color:#ffb3bf;"><strong>Rim perde K⁺</strong><br>K⁺ urinário &gt;20</span></div>
+    </div>
+    <div class="alert alert-warn">
+      <strong>⚠️ Na prova:</strong> Vômitos → K⁺ urinário <strong>&gt; 20 mEq/L</strong>. Diarreia → K⁺ urinário <strong>&lt; 20 mEq/L</strong>.
+    </div>
+  </div>
+
+  <!-- MACETE 5: BETA -->
+  <div style="background:var(--card);border:2px solid #a78bfa;border-radius:20px;padding:32px;margin-bottom:1.5rem;" class="fade-in">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+      <div style="background:#a78bfa;color:var(--navy);font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">05</div>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:#c4b5fd;">Beta-agonista baixa K⁺. Beta-bloqueador sobe K⁺.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:rgba(232,64,90,0.08);border:1.5px solid rgba(232,64,90,0.3);border-radius:12px;padding:18px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:#ffb3bf;margin-bottom:.5rem;">🫁 Beta-2 AGONISTA → K⁺ BAIXO</div>
+        <div style="font-size:.87rem;color:var(--gray);">Salbutamol, fenoterol, terbutalina<br>Ativa Na⁺/K⁺-ATPase → K⁺ entra nas células → K⁺ sérico cai → <strong style="color:var(--white)">hipocalemia</strong></div>
+      </div>
+      <div style="background:rgba(39,196,131,0.08);border:1.5px solid rgba(39,196,131,0.3);border-radius:12px;padding:18px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;color:#a8f0d0;margin-bottom:.5rem;">❤️ Beta-BLOQUEADOR → K⁺ ALTO</div>
+        <div style="font-size:.87rem;color:var(--gray);">Propranolol, atenolol, metoprolol<br>Bloqueia receptor beta-2 → K⁺ não entra nas células → K⁺ sérico sobe → <strong style="color:var(--white)">hipercalemia leve</strong></div>
+      </div>
+    </div>
+    <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.3);border-radius:10px;padding:14px;margin-top:1rem;font-size:.88rem;color:#c4b5fd;">
+      🎯 "Beta-2 aGOnista → K⁺ GOa para dentro da célula e some do sangue."
+    </div>
+  </div>
+
+  <!-- FRASE FINAL -->
+  <div style="background:linear-gradient(135deg,rgba(0,201,177,0.15) 0%,rgba(10,22,40,0.5) 100%);border:2px solid var(--teal);border-radius:20px;padding:36px;text-align:center;" class="fade-in">
+    <div style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--teal);letter-spacing:.1em;margin-bottom:1rem;">🧠 A FRASE QUE RESUME TUDO</div>
+    <p style="font-family:'Syne',sans-serif;font-size:clamp(1rem,2.5vw,1.4rem);font-weight:800;color:var(--white);line-height:1.6;margin-bottom:1.2rem;">
+      "Aldosterona capta Na⁺ e descarta K⁺ —<br>
+      <span style="color:var(--teal)">K⁺ baixo = Na⁺ alto.</span><br>
+      Bartter é furosemida. Gitelman é tiazídico <span style="color:#ffe0a0;">mais magnésio baixo</span>.<br>
+      <span style="color:var(--gold)">Liddle tem 2 D's: ENaC Descontrolado, Aldosterona Derrubada.</span><br>
+      Sem Mg²⁺, a porta do K⁺ fica aberta — corrija o magnésio primeiro."
+    </p>
+    <div style="font-size:.82rem;color:var(--gray);font-family:'DM Mono',monospace;">— Prof. Dr. André Rossanno Mendes Almeida</div>
+  </div>
+
+</section>
+
+<!-- QUIZ -->
+<section id="quiz-sec">
+  <div class="sec-label">12 — QUIZ INTERATIVO</div>
+  <h2 class="sec-title">Teste seus conhecimentos</h2>
+  <div class="divider"></div>
+
+  <div id="quiz-container">
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar" style="width:0%"></div></div>
+    <div id="quiz-body">
+      <!-- JS injeta aqui -->
+    </div>
+    <div class="quiz-score-block" id="quiz-score">
+      <div class="score-num" id="score-num">0/8</div>
+      <div class="score-txt" id="score-txt">Parabéns!</div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn-primary" onclick="restartQuiz()">🔄 Refazer quiz</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMO -->
+<section id="resumo">
+  <div class="sec-label">13 — RESUMO FINAL</div>
+  <h2 class="sec-title">Hipocalemia em 10 segundos</h2>
+  <div class="divider"></div>
+
+  <div class="resumo-grid fade-in">
+    <div class="resumo-item">
+      <div class="ri-icon">🟢</div>
+      <div class="ri-h">Leve (3,0–3,5)</div>
+      <div class="ri-b">Via oral: xarope KCl ou comprimido. Estável, sem arritmia.</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">🔴</div>
+      <div class="ri-h">Grave (&lt;2,5)</div>
+      <div class="ri-b">Reposição EV com bomba. Monitoração cardíaca. Sempre diluído.</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">🫀</div>
+      <div class="ri-h">ECG clássico</div>
+      <div class="ri-b">ST baixo, T achatada, onda U. Alerta para arritmia.</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">🫁</div>
+      <div class="ri-h">Causas principais</div>
+      <div class="ri-b">GI, renal, redistribuição, baixa ingestão. K⁺ urinário diferencia.</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">🧲</div>
+      <div class="ri-h">Lembrar do Mg²⁺</div>
+      <div class="ri-b">Hipomagnesemia → hipocalemia refratária. Corrigir Mg²⁺ antes!</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">⚡</div>
+      <div class="ri-h">Velocidade importa</div>
+      <div class="ri-b">Máx. 20 mEq/h periférico. Máx. 40 mEq/h central/UTI. Nunca bolus.</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">🧪</div>
+      <div class="ri-h">Concentração importa</div>
+      <div class="ri-b">Até 40 mEq/L em acesso periférico. Acima disso: acesso central.</div>
+    </div>
+    <div class="resumo-item">
+      <div class="ri-icon">🚫</div>
+      <div class="ri-h">Addison ≠ hipocalemia</div>
+      <div class="ri-b">Addison → hipercalemia. Hiperaldosteronismo → hipocalemia.</div>
+    </div>
+  </div>
+
+  <!-- MIND MAP -->
+  <div style="margin-top:3rem;">
+    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--teal);margin-bottom:1rem;font-size:1.1rem;">🗺️ Mapa mental relâmpago</h3>
+    <div class="mindmap">
+      <div class="mm-root">HIPOCALEMIA</div>
+      <div class="mm-branch"><strong>Redistribuição</strong>Insulina · Beta-2 · Alcalose</div>
+      <div class="mm-branch"><strong>Perda GI</strong>Diarreia · Fístula · Ileostomia<br><span style="font-size:.75rem;color:var(--teal)">K⁺ urinário &lt; 20</span></div>
+      <div class="mm-branch"><strong>Perda renal</strong>Diuréticos · Aldost. · Tubulopatia<br><span style="font-size:.75rem;color:var(--red)">K⁺ urinário &gt; 20</span></div>
+      <div class="mm-branch"><strong>ECG</strong>ST↓ · T achatada · Onda U</div>
+      <div class="mm-branch"><strong>Tratamento leve</strong>Xarope KCl 6% · Comp. 6 mEq</div>
+      <div class="mm-branch"><strong>Tratamento grave</strong>KCl 10% EV · Bomba · Monitor.</div>
+      <div class="mm-branch"><strong>Diluição segura</strong>≤ 40 mEq/L periférico<br>&gt; 40 mEq/L → central</div>
+      <div class="mm-branch"><strong>Magnésio!</strong>Corrigir Mg²⁺ antes<br>ROMK fica aberto sem Mg²⁺</div>
+      <div class="mm-branch"><strong>Pegadinhas</strong>Addison → hipercalemia<br>Vômito → perda renal<br>Liddle → amilorida</div>
+    </div>
+  </div>
+
+  <div class="alert alert-tip" style="margin-top:2rem;text-align:center;font-size:1rem;">
+    <strong>🎓 Resumo final:</strong> Hipocalemia é comum, reversível e perigosa se ignorada. Avalie a via da perda, corrija o magnésio, respeite a velocidade de infusão e sempre monitore o ECG em casos graves.
+  </div>
+</section>
+
+</main>
+
+<script>
+// === SCROLL TOP ===
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// === ACTIVE NAV ===
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('#topbar nav a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`#topbar nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
+
+// === FADE IN ===
+const fadeEls = document.querySelectorAll('.fade-in');
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => fadeObs.observe(el));
+
+// === CASE TOGGLE ===
+function toggleCase(btn) {
+  const answer = btn.nextElementSibling;
+  if (answer.style.display === 'block') {
+    answer.style.display = 'none';
+    btn.textContent = '🔍 Ver resposta';
+  } else {
+    answer.style.display = 'block';
+    btn.textContent = '🔼 Ocultar resposta';
+  }
+}
+
+// === QUIZ ===
+const quizData = [
+  {
+    q: "Qual é o achado eletrocardiográfico MAIS característico da hipocalemia?",
+    opts: ["Onda T apiculada (em tenda)", "Prolongamento do intervalo PR", "Onda U proeminente e achatamento da onda T", "Bloqueio de ramo direito"],
+    answer: 2,
+    feedback: "A onda U proeminente associada ao achatamento ou inversão da onda T e à depressão do segmento ST é o padrão clássico da hipocalemia. A onda T apiculada é típica da HIPERCALEMIA."
+  },
+  {
+    q: "Uma paciente com bulimia há 2 anos apresenta K⁺ = 2,6 mEq/L e pH = 7,54. O K⁺ urinário é de 35 mEq/L. Qual o mecanismo predominante?",
+    opts: ["Perda direta de K⁺ pelo vômito", "Redistribuição celular por insulina", "Perda renal mediada por alcalose metabólica e ativação do SRAA", "Baixa ingestão alimentar"],
+    answer: 2,
+    feedback: "O suco gástrico contém apenas 5–10 mEq/L de K⁺. A hipocalemia dos vômitos é INDIRETA: perda de HCl → alcalose metabólica → hipovolemia → SRAA ativado → aldosterona → perda RENAL de K⁺. Por isso K⁺ urinário > 20 mEq/L."
+  },
+  {
+    q: "Paciente com hipocalemia refratária a múltiplas reposições de K⁺. Qual eletrólito deve ser dosado e corrigido PRIMEIRO?",
+    opts: ["Cálcio", "Sódio", "Fósforo", "Magnésio"],
+    answer: 3,
+    feedback: "O Mg²⁺ intracelular funciona como bloqueador físico do canal ROMK. Sem magnésio, o ROMK fica constitutivamente aberto → todo K⁺ reposto é eliminado pela urina. Corrija o magnésio ANTES do potássio."
+  },
+  {
+    q: "Qual a via preferencial para reposição de hipocalemia LEVE (3,0–3,5 mEq/L) em paciente estável?",
+    opts: ["Endovenosa periférica, 20 mEq/h", "Endovenosa central em UTI", "Via oral (xarope KCl ou comprimido)", "Subcutânea"],
+    answer: 2,
+    feedback: "Hipocalemia leve em paciente estável sem alteração de ECG deve ser tratada por via oral: xarope KCl 6% (15 mL = 12 mEq) ou comprimido de KCl (1 comp = 6 mEq), 3–4x/dia após as refeições."
+  },
+  {
+    q: "Qual a concentração MÁXIMA de KCl segura para acesso venoso PERIFÉRICO?",
+    opts: ["20 mEq/L", "40 mEq/L", "80 mEq/L", "100 mEq/L"],
+    answer: 1,
+    feedback: "A concentração máxima recomendada para acesso periférico é 40 mEq/L. Concentrações maiores causam flebite, dor e vasoespasmo, e exigem acesso venoso central com monitoração."
+  },
+  {
+    q: "A doença de Addison (insuficiência adrenal primária) cursa com:",
+    opts: ["Hipocalemia e hipertensão", "Hipercalemia e hiponatremia", "Hipocalemia e hiponatremia", "Hipercalemia e hipertensão"],
+    answer: 1,
+    feedback: "PEGADINHA CLÁSSICA! Addison = deficiência de aldosterona e cortisol → sem aldosterona → rim NÃO secreta K⁺ → HIPERCALEMIA + HIPONATREMIA. Quem causa hipocalemia é o EXCESSO de aldosterona (Conn, Cushing, renovascular)."
+  },
+  {
+    q: "Na síndrome de Liddle, por que a espironolactona NÃO funciona?",
+    opts: ["Porque a aldosterona está muito elevada e supera o efeito", "Porque o ENaC funciona constitutivamente sem depender de aldosterona", "Porque há bloqueio do canal ROMK concomitante", "Porque é uma síndrome com alcalose grave"],
+    answer: 1,
+    feedback: "Na síndrome de Liddle, mutações de GANHO DE FUNÇÃO no ENaC impedem sua degradação → ENaC fica na membrana permanentemente ativo, INDEPENDENTE de aldosterona. Espironolactona bloqueia o receptor mineralocorticoide, mas aqui o ENaC não precisa de aldosterona para funcionar. O tratamento correto é amilorida (bloqueia o ENaC diretamente)."
+  },
+  {
+    q: "Qual a quantidade de mEq contida em 1 ampola de KCl 10% (10 mL)?",
+    opts: ["6 mEq", "10 mEq", "13 mEq", "25 mEq"],
+    answer: 2,
+    feedback: "1 ampola de KCl 10% (10 mL) = 13 mEq de potássio. Já 1 ampola de KCl 19,1% (10 mL) = 25 mEq. Não confundir as duas apresentações! O erro pode ser fatal."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function renderQuestion() {
+  answered = false;
+  const q = quizData[currentQ];
+  const pct = (currentQ / quizData.length) * 100;
+  document.getElementById('quiz-bar').style.width = pct + '%';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  let optsHTML = q.opts.map((opt, i) => `
+    <button class="quiz-opt" onclick="selectAnswer(this, ${i}, ${q.answer})">
+      <span class="opt-letter">${letters[i]}</span>
+      ${opt}
+    </button>
+  `).join('');
+
+  document.getElementById('quiz-body').innerHTML = `
+    <div class="quiz-q-num">PERGUNTA ${currentQ + 1} DE ${quizData.length}</div>
+    <div class="quiz-question">${q.q}</div>
+    <div class="quiz-opts">${optsHTML}</div>
+    <div class="quiz-feedback" id="qfeedback"></div>
+    <div class="quiz-nav">
+      <button class="btn-primary" onclick="nextQuestion()" id="btn-next" style="display:none;">
+        ${currentQ < quizData.length - 1 ? 'Próxima pergunta →' : 'Ver resultado 🏆'}
+      </button>
+    </div>
+  `;
+}
+
+function selectAnswer(btn, selected, correct) {
+  if (answered) return;
+  answered = true;
+  const opts = document.querySelectorAll('.quiz-opt');
+  const feedback = document.getElementById('qfeedback');
+
+  opts.forEach((opt, i) => {
+    if (i === correct) opt.classList.add('correct');
+    else if (i === selected && selected !== correct) opt.classList.add('wrong');
+    else opt.classList.add('disabled');
+  });
+
+  if (selected === correct) {
+    score++;
+    feedback.className = 'quiz-feedback correct';
+    feedback.innerHTML = '✅ <strong>Correto!</strong> ' + quizData[currentQ].feedback;
+  } else {
+    feedback.className = 'quiz-feedback wrong';
+    feedback.innerHTML = '❌ <strong>Incorreto.</strong> ' + quizData[currentQ].feedback;
+  }
+  feedback.style.display = 'block';
+  document.getElementById('btn-next').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= quizData.length) {
+    showScore();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showScore() {
+  document.getElementById('quiz-bar').style.width = '100%';
+  document.getElementById('quiz-body').style.display = 'none';
+  const scoreBlock = document.getElementById('quiz-score');
+  scoreBlock.style.display = 'block';
+  document.getElementById('score-num').textContent = `${score}/${quizData.length}`;
+  const pct = (score / quizData.length) * 100;
+  let msg = '';
+  if (pct === 100) msg = '🏆 Perfeito! Você domina hipocalemia.';
+  else if (pct >= 75) msg = '🎯 Ótimo desempenho! Revise os erros.';
+  else if (pct >= 50) msg = '📚 Bom esforço. Revise as pegadinhas!';
+  else msg = '🔄 Revise o material e tente novamente.';
+  document.getElementById('score-txt').textContent = msg;
+}
+
+function restartQuiz() {
+  currentQ = 0; score = 0; answered = false;
+  document.getElementById('quiz-body').style.display = 'block';
+  document.getElementById('quiz-score').style.display = 'none';
+  renderQuestion();
+}
+
+// Init quiz
+renderQuestion();
+</script>
+</body>
+</html>
