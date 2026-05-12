@@ -16,6 +16,8 @@ html{scroll-behavior:smooth;}
 body{background:var(--navy);color:var(--white);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 15% 15%,rgba(18,130,162,0.2) 0%,transparent 55%),radial-gradient(ellipse 50% 70% at 85% 85%,rgba(244,185,66,0.07) 0%,transparent 55%);pointer-events:none;z-index:0;}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(18,130,162,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(18,130,162,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+/* HERO */
 .hero{position:relative;z-index:1;padding:80px 40px 60px;max-width:1100px;margin:0 auto;text-align:center;}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--teal);margin-bottom:20px;opacity:0;animation:fadeUp 0.6s ease forwards;}
 .hero-title{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:16px;opacity:0;animation:fadeUp 0.6s ease 0.1s forwards;}
@@ -25,12 +27,16 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .badge{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;padding:5px 12px;border-radius:20px;border:1px solid var(--border);letter-spacing:0.08em;text-transform:uppercase;}
 .badge-teal{border-color:rgba(18,130,162,0.5);color:var(--teal);background:rgba(18,130,162,0.08);}
 .badge-gold{border-color:rgba(244,185,66,0.5);color:var(--gold);background:rgba(244,185,66,0.08);}
+
+/* METHOD */
 .method-strip{position:relative;z-index:1;max-width:1100px;margin:0 auto 60px;padding:0 40px;}
 .method-box{background:linear-gradient(135deg,rgba(18,130,162,0.08),rgba(244,185,66,0.04));border:1px solid rgba(18,130,162,0.3);border-radius:16px;padding:32px 40px;}
 .method-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--gold);margin-bottom:10px;}
 .method-desc{font-size:0.84rem;color:var(--gray);line-height:1.7;max-width:600px;}
 .method-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
 .method-pill{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;padding:4px 10px;border-radius:4px;background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.25);color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;}
+
+/* SECTION */
 .section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 40px 80px;}
 .section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
 .section-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
@@ -41,6 +47,8 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .section-name span{font-size:0.85rem;font-weight:400;color:var(--teal);font-family:'IBM Plex Mono',monospace;margin-left:10px;vertical-align:middle;}
 .divider{height:1px;background:linear-gradient(90deg,var(--teal),transparent);margin-bottom:32px;opacity:0.4;}
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+
+/* CARD */
 .card{border-radius:16px;padding:28px;border:1px solid var(--border);background:rgba(18,130,162,0.05);text-decoration:none;color:var(--white);display:block;transition:all 0.3s ease;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));opacity:0;transition:opacity 0.3s ease;}
 .card:hover{border-color:rgba(18,130,162,0.5);background:rgba(18,130,162,0.1);transform:translateY(-3px);}
@@ -57,7 +65,23 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .card-arrow{font-size:1.2rem;color:var(--teal);transition:transform 0.3s;}
 .card:hover .card-arrow{transform:translateX(4px);}
 .card-soon{opacity:0.5;cursor:default;pointer-events:none;}
-.card-soon:hover{transform:none;}
+
+/* CARD TRIO (TCE) */
+.card-trio{border-radius:16px;border:1px solid var(--border);background:rgba(18,130,162,0.05);overflow:hidden;transition:all 0.3s ease;position:relative;}
+.card-trio::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));opacity:0;transition:opacity 0.3s ease;}
+.card-trio:hover{border-color:rgba(18,130,162,0.5);background:rgba(18,130,162,0.1);}
+.card-trio:hover::before{opacity:1;}
+.card-trio-header{padding:24px 28px 16px;}
+.card-trio-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:900;margin-bottom:6px;}
+.card-trio-desc{font-size:0.83rem;color:var(--gray);line-height:1.6;margin-bottom:16px;}
+.card-trio-links{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border);}
+.trio-link{padding:14px 16px;text-decoration:none;color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:0.7rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.2s;border-right:1px solid var(--border);}
+.trio-link:last-child{border-right:none;}
+.trio-link:hover{background:rgba(18,130,162,0.15);}
+.trio-link .tl-label{color:var(--teal);}
+.trio-link .tl-arrow{color:var(--gold);margin-left:6px;flex-shrink:0;}
+
+/* CARD PAIR (TRM) */
 .card-pair{border-radius:16px;border:1px solid var(--border);background:rgba(18,130,162,0.05);overflow:hidden;transition:all 0.3s ease;position:relative;}
 .card-pair::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));opacity:0;transition:opacity 0.3s ease;}
 .card-pair:hover{border-color:rgba(18,130,162,0.5);background:rgba(18,130,162,0.1);}
@@ -71,12 +95,16 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .pair-link:hover{background:rgba(18,130,162,0.15);}
 .pair-link .pl-label{color:var(--teal);}
 .pair-link .pl-arrow{color:var(--gold);}
+
+/* FOOTER */
 .footer{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:40px 40px 60px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
 .footer-sig{font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--teal);}
 .footer-info{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--gray);text-align:right;line-height:1.8;}
 .footer-info a{color:var(--teal);text-decoration:none;}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .fade-in{opacity:0;animation:fadeUp 0.5s ease forwards;}
+
 @media(max-width:768px){
   .hero{padding:60px 24px 40px;}
   .section{padding:0 24px 60px;}
@@ -85,6 +113,9 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
   .footer{padding:40px 24px 60px;flex-direction:column;align-items:flex-start;}
   .footer-info{text-align:left;}
   .cards-grid{grid-template-columns:1fr;}
+  .card-trio-links{grid-template-columns:1fr;}
+  .trio-link{border-right:none;border-bottom:1px solid var(--border);}
+  .trio-link:last-child{border-bottom:none;}
   .card-pair-links{grid-template-columns:1fr;}
   .pair-link{border-right:none;border-bottom:1px solid var(--border);}
   .pair-link:last-child{border-bottom:none;}
@@ -215,7 +246,37 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
   <div class="divider"></div>
   <div class="cards-grid">
 
-    <div class="card-pair fade-in" style="animation-delay:0.1s">
+    <!-- TCE TRIO -->
+    <div class="card-trio fade-in" style="animation-delay:0.1s">
+      <div class="card-trio-header">
+        <span class="card-tag tag-aula">Neurologia · Trauma</span>
+        <div class="card-trio-title">Trauma Cranioencefálico</div>
+        <div class="card-trio-desc">Fisiopatologia, classificação, manejo clínico e cirúrgico — do impacto à leitura sistemática da TC com o método LUCAS.</div>
+        <div class="card-chips">
+          <span class="chip">TCE</span>
+          <span class="chip">TC Crânio</span>
+          <span class="chip">LUCAS</span>
+          <span class="chip">Hipertensão Intracraniana</span>
+        </div>
+      </div>
+      <div class="card-trio-links">
+        <a href="tce123.html" class="trio-link">
+          <span class="tl-label">Módulos 1–2–3</span>
+          <span class="tl-arrow">→</span>
+        </a>
+        <a href="tce456.html" class="trio-link">
+          <span class="tl-label">Módulos 4–5–6</span>
+          <span class="tl-arrow">→</span>
+        </a>
+        <a href="tcelucas.html" class="trio-link">
+          <span class="tl-label">LUCAS — TC</span>
+          <span class="tl-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- TRM PAIR -->
+    <div class="card-pair fade-in" style="animation-delay:0.15s">
       <div class="card-pair-header">
         <span class="card-tag tag-aula">Neurologia · Trauma</span>
         <div class="card-pair-title">Trauma Raquimedular</div>
@@ -236,7 +297,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       </div>
     </div>
 
-    <div class="card card-soon fade-in" style="animation-delay:0.15s">
+    <div class="card card-soon fade-in" style="animation-delay:0.2s">
       <span class="card-tag tag-breve">Em breve</span>
       <div class="card-title">Dor Torácica na Emergência</div>
       <div class="card-desc">HEART, GRACE, Wells, ADD-RS — do protocolo ABCDE ao diagnóstico diferencial dos killers.</div>
@@ -245,7 +306,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       </div>
     </div>
 
-    <div class="card card-soon fade-in" style="animation-delay:0.2s">
+    <div class="card card-soon fade-in" style="animation-delay:0.25s">
       <span class="card-tag tag-breve">Em breve</span>
       <div class="card-title">Amiloidose Cardíaca</div>
       <div class="card-desc">Red flags, diagnóstico por imagem, cintilografia e tratamento — o mimetizador que o TEC ama cobrar.</div>
