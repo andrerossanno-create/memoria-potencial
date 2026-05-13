@@ -4,100 +4,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TCE — Módulos 1, 2, 3 | Dr. André Rossanno</title>
-<meta property="og:title" content="TCE Neurotrauma — Módulos 1, 2, 3">
-<meta property="og:description" content="Fisiopatologia, Semiologia e Imagem no TCE. Método Dr. André Rossanno.">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#0B2545;--teal:#1282A2;--gold:#F4B942;
-  --red:#E63946;--green:#2DC653;--yellow:#FFD166;
-  --white:#F0F4F8;--gray:#8899AA;
-  --card-bg:rgba(18,130,162,0.08);--border:rgba(18,130,162,0.25);
-}
+:root{--navy:#0B2545;--teal:#1282A2;--gold:#F4B942;--red:#E63946;--green:#2DC653;--yellow:#FFD166;--white:#F0F4F8;--gray:#8899AA;--card-bg:rgba(18,130,162,0.08);--border:rgba(18,130,162,0.25);}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--navy);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.72;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 10% 20%,rgba(18,130,162,0.18) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 90% 80%,rgba(11,37,69,0.9) 0%,transparent 70%);pointer-events:none;z-index:0;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 10% 20%,rgba(18,130,162,0.18) 0%,transparent 60%);pointer-events:none;z-index:0;}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(18,130,162,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(18,130,162,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-
-/* PROGRESS */
-#pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:1000;transition:width .1s;}
-
-/* NAV */
+#pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:1000;}
 .tnav{position:fixed;top:3px;left:0;right:0;background:rgba(11,37,69,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;}
 .nbrand{font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;}
 .ntabs{display:flex;gap:4px;}
-.ntab{padding:6px 16px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--gray);font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;transition:all .2s;text-decoration:none;}
+.ntab{padding:6px 16px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--gray);font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;transition:all .2s;}
 .ntab:hover,.ntab.active{background:rgba(18,130,162,0.2);color:var(--white);border-color:var(--teal);}
-.nlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);text-decoration:none;padding:6px 14px;border:1px solid rgba(244,185,66,0.4);border-radius:4px;transition:all .2s;}
-.nlink:hover{background:rgba(244,185,66,0.1);}
-
-/* LAYOUT */
+.nlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);text-decoration:none;padding:6px 14px;border:1px solid rgba(244,185,66,0.4);border-radius:4px;}
 .layout{display:flex;min-height:100vh;padding-top:59px;}
-
-/* SIDEBAR */
 .sb{position:fixed;top:59px;left:0;bottom:0;width:210px;background:rgba(11,37,69,0.95);border-right:1px solid var(--border);overflow-y:auto;padding:16px 0;z-index:50;}
 .sb-t{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:.12em;text-transform:uppercase;padding:8px 18px 4px;}
 .sb-l{display:block;padding:6px 18px;color:var(--gray);text-decoration:none;font-size:12px;transition:all .2s;border-left:2px solid transparent;line-height:1.4;}
-.sb-l:hover,.sb-l.active{color:var(--white);border-left-color:var(--gold);background:rgba(18,130,162,0.08);}
-
-/* MAIN */
+.sb-l:hover{color:var(--white);border-left-color:var(--gold);background:rgba(18,130,162,0.08);}
 .main{margin-left:210px;flex:1;padding:40px 48px 80px;max-width:calc(100% - 210px);position:relative;z-index:1;}
-.mpanel{display:none;}
-.mpanel.active{display:block;}
-
-/* HERO */
+.mpanel{display:none;}.mpanel.active{display:block;}
 .hero{padding:56px 0 36px;border-bottom:1px solid var(--border);margin-bottom:44px;}
 .kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
 .htitle{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,60px);font-weight:900;line-height:1.05;margin-bottom:14px;color:var(--white);}
 .htitle span{color:var(--teal);}
 .hsub{font-size:17px;color:var(--gray);font-style:italic;margin-bottom:20px;}
-
-/* SECTION HEADINGS */
 .sh{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:44px 0 18px;display:flex;align-items:center;gap:10px;}
 .sh::after{content:'';flex:1;height:1px;background:var(--border);}
 .ssh{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--teal);margin:28px 0 12px;}
 p{color:var(--white);margin-bottom:14px;opacity:.9;}
-
-/* CARDS */
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:22px;margin:18px 0;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
-.cd{background:rgba(230,57,70,0.08);border-color:rgba(230,57,70,0.3);}
-.cd::before{background:linear-gradient(90deg,var(--red),transparent);}
-.cg{background:rgba(45,198,83,0.08);border-color:rgba(45,198,83,0.3);}
-.cg::before{background:linear-gradient(90deg,var(--green),transparent);}
-.cw{background:rgba(255,209,102,0.07);border-color:rgba(255,209,102,0.3);}
-.cw::before{background:linear-gradient(90deg,var(--yellow),transparent);}
-
-/* QUOTE */
+.cd{background:rgba(230,57,70,0.08);border-color:rgba(230,57,70,0.3);}.cd::before{background:linear-gradient(90deg,var(--red),transparent);}
+.cg{background:rgba(45,198,83,0.08);border-color:rgba(45,198,83,0.3);}.cg::before{background:linear-gradient(90deg,var(--green),transparent);}
+.cw{background:rgba(255,209,102,0.07);border-color:rgba(255,209,102,0.3);}.cw::before{background:linear-gradient(90deg,var(--yellow),transparent);}
 .fq{background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(11,37,69,0.5));border:1px solid var(--teal);border-left:4px solid var(--teal);border-radius:12px;padding:26px 30px;margin:28px 0;font-style:italic;font-size:16px;line-height:1.65;}
 .fq footer{margin-top:10px;font-family:'Dancing Script',cursive;font-size:22px;color:var(--teal);font-style:normal;}
-
-/* TAGS */
 .tag{display:inline-block;padding:3px 10px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;margin:2px;}
 .td{background:rgba(230,57,70,0.15);color:var(--red);border:1px solid rgba(230,57,70,0.4);}
 .tg{background:rgba(45,198,83,0.15);color:var(--green);border:1px solid rgba(45,198,83,0.4);}
 .tw{background:rgba(255,209,102,0.15);color:var(--yellow);border:1px solid rgba(255,209,102,0.4);}
 .ti{background:rgba(18,130,162,0.2);color:var(--teal);border:1px solid rgba(18,130,162,0.4);}
-
-/* TABLE */
 .tw2{overflow-x:auto;margin:20px 0;}
 table{width:100%;border-collapse:collapse;font-size:13.5px;}
 thead tr{background:rgba(18,130,162,0.15);}
 thead th{padding:11px 14px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid var(--border);}
-tbody tr{border-bottom:1px solid rgba(18,130,162,0.1);transition:background .2s;}
-tbody tr:hover{background:rgba(18,130,162,0.06);}
+tbody tr{border-bottom:1px solid rgba(18,130,162,0.1);}
 tbody td{padding:10px 14px;opacity:.88;}
-
-/* GCS */
 .gg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0;}
 .gc{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
-.gch{padding:11px 14px;background:rgba(18,130,162,0.2);font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:var(--teal);display:flex;align-items:center;gap:8px;}
+.gch{padding:11px 14px;background:rgba(18,130,162,0.2);font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:var(--teal);}
 .gs{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:var(--teal);min-width:26px;}
 .gi{display:flex;align-items:flex-start;gap:10px;padding:9px 13px;border-bottom:1px solid var(--border);font-size:13px;}
 .gi:last-child{border:none;}
-
-/* SEVERITY */
 .sv{display:grid;grid-template-columns:repeat(3,1fr);border-radius:12px;overflow:hidden;margin:18px 0;border:1px solid var(--border);}
 .svc{padding:18px;text-align:center;}
 .sv-l{background:rgba(45,198,83,0.1);border-right:1px solid var(--border);}
@@ -105,86 +66,61 @@ tbody td{padding:10px 14px;opacity:.88;}
 .sv-g{background:rgba(230,57,70,0.09);}
 .svn{font-family:'Syne',sans-serif;font-size:26px;font-weight:900;margin-bottom:4px;}
 .svl{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray);letter-spacing:.08em;}
-
-/* MNEMONIC */
 .mn{background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(244,185,66,0.05));border:1px solid rgba(18,130,162,0.4);border-radius:12px;padding:22px 26px;margin:22px 0;position:relative;}
-.mn::before{content:'MNEMÔNICO';font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:.12em;color:var(--teal);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
-.mn-t{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.mn::before{content:'MNEMÔNICO';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--teal);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
 .mn-w{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold);letter-spacing:.08em;margin:12px 0;text-align:center;}
-.ml{list-style:none;}
-.ml li{padding:5px 0;border-bottom:1px solid var(--border);font-size:14px;}
-.ml li:last-child{border:none;}
-.ml li strong{color:var(--teal);}
-
-/* PEGADINHA */
+.ml{list-style:none;}.ml li{padding:5px 0;border-bottom:1px solid var(--border);font-size:14px;}.ml li:last-child{border:none;}.ml li strong{color:var(--teal);}
 .pg{background:rgba(255,209,102,0.08);border:1px solid rgba(255,209,102,0.4);border-radius:12px;padding:18px 22px;margin:18px 0;position:relative;}
-.pg::before{content:'💛 PEGADINHA TEC';font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:.12em;color:var(--yellow);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
-.pg p{color:var(--white);margin:0;line-height:1.7;}
-
-/* FORMULA */
+.pg::before{content:'💛 PEGADINHA TEC';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--yellow);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
+.pg p{color:var(--white);margin:0;line-height:1.7;font-size:.9rem;}
 .fb{background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.4);border-radius:12px;padding:22px;text-align:center;margin:22px 0;}
 .fm{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:900;margin-bottom:10px;}
 .fm span{color:var(--teal);}
 .fms{font-size:12px;color:var(--gray);}
-
-/* ANCHOR */
 .anchor{background:linear-gradient(135deg,rgba(244,185,66,0.12),rgba(244,185,66,0.06));border:1px solid rgba(244,185,66,0.4);border-radius:10px;padding:18px 24px;margin:20px 0;text-align:center;font-size:1.05rem;font-weight:600;color:var(--gold);}
-
-/* FLASHCARDS */
 .fcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:22px 0;}
 .fc{height:180px;perspective:1000px;cursor:pointer;}
-.fci{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(0.4,0,0.2,1);}
+.fci{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s;}
 .fc.flipped .fci{transform:rotateY(180deg);}
 .fcf,.fcb{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
 .fcf{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(11,37,69,0.8));border:1px solid var(--border);}
 .fcb{background:linear-gradient(135deg,rgba(18,130,162,0.25),rgba(11,37,69,0.9));border:1px solid var(--teal);transform:rotateY(180deg);}
-.fcf p{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;}
-.fcb p{font-size:13px;color:var(--gold);font-weight:600;line-height:1.6;}
-.fch{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray);margin-top:10px;text-transform:uppercase;letter-spacing:.1em;}
-
-/* QUIZ */
-.qs{background:rgba(11,37,69,0.6);border:1px solid var(--border);border-radius:12px;padding:28px;margin:36px 0;}
-.qt{font-family:'Syne',sans-serif;font-size:18px;font-weight:900;margin-bottom:22px;color:var(--teal);}
-.qq{margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid var(--border);}
-.qq:last-child{border:none;margin:0;padding:0;}
-.qn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);margin-bottom:5px;letter-spacing:.1em;}
-.qtx{font-size:0.95rem;font-weight:500;margin-bottom:12px;line-height:1.6;color:var(--white);}
-.opts{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.opt{padding:12px 16px;background:rgba(18,130,162,0.06);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;font-size:13.5px;display:flex;align-items:flex-start;gap:10px;}
-.opt:hover:not(.dis){background:rgba(18,130,162,0.15);border-color:var(--teal);}
-.opt.ok{background:rgba(45,198,83,0.15);border-color:var(--green);color:var(--green);}
-.opt.ng{background:rgba(230,57,70,0.15);border-color:var(--red);color:var(--red);}
-.opt.dis{cursor:not-allowed;}
-.ol{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;color:var(--teal);min-width:16px;}
-.opt.ok .ol{color:var(--green);}
-.opt.ng .ol{color:var(--red);}
-.fb2{margin-top:9px;padding:12px 16px;border-radius:8px;font-size:13px;display:none;line-height:1.6;}
-.fb2.show{display:block;}
-.fb2.ok2{background:rgba(45,198,83,0.1);color:var(--white);border:1px solid rgba(45,198,83,0.3);}
-.fb2.ng2{background:rgba(230,57,70,0.08);color:var(--white);border:1px solid rgba(230,57,70,0.3);}
-
-/* LUCAS GRID */
+.fc-icon{font-size:1.8rem;margin-bottom:10px;}
+.fc-q{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--white);line-height:1.4;}
+.fc-a{font-size:.88rem;line-height:1.7;color:var(--white);}
+.fc-a strong{color:var(--gold);}
+.fc-hint{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--gray);margin-top:8px;text-transform:uppercase;}
+.quiz-q{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:20px;}
+.q-num{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+.q-text{font-size:.95rem;font-weight:500;line-height:1.6;margin-bottom:16px;color:var(--white);}
+.q-opts{display:flex;flex-direction:column;gap:10px;}
+.q-opt{background:rgba(18,130,162,0.06);border:1px solid var(--border);border-radius:8px;padding:12px 16px;cursor:pointer;transition:all .2s;font-size:.88rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+.q-opt:hover{background:rgba(18,130,162,0.15);border-color:var(--teal);}
+.q-opt.correct{background:rgba(45,198,83,0.15);border-color:var(--green);color:var(--green);}
+.q-opt.wrong{background:rgba(230,57,70,0.15);border-color:var(--red);color:var(--red);}
+.q-opt.disabled{cursor:default;}
+.opt-letter{font-family:'IBM Plex Mono',monospace;font-weight:500;min-width:20px;color:var(--teal);}
+.q-opt.correct .opt-letter{color:var(--green);}
+.q-opt.wrong .opt-letter{color:var(--red);}
+.q-feedback{margin-top:14px;padding:14px 18px;border-radius:8px;font-size:.85rem;line-height:1.7;display:none;}
+.q-feedback.show{display:block;}
+.correct-fb{background:rgba(45,198,83,0.1);border:1px solid rgba(45,198,83,0.3);color:var(--white);}
+.wrong-fb{background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.3);color:var(--white);}
 .lg{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin:22px 0;}
 .lc{background:var(--card-bg);padding:18px 12px;text-align:center;}
 .ll{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:900;color:var(--teal);margin-bottom:6px;}
 .lw{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase;}
 .ld{font-size:11px;color:var(--gray);line-height:1.4;}
-
-/* MARSHALL */
 .mg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0;}
 .mc{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px;}
 .mn2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);margin-bottom:3px;}
 .mname{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.08em;margin-bottom:8px;text-transform:uppercase;}
 .md{font-size:12px;opacity:.8;}
-
-/* LESION MAP */
 .lm{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0;}
 .lcard{background:var(--card-bg);border-radius:12px;padding:14px;border:1px solid var(--border);}
 .li{font-size:26px;margin-bottom:8px;}
 .ln{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--teal);margin-bottom:5px;}
 .ldd{font-size:11px;color:var(--gray);line-height:1.4;}
-
-/* PUPIL */
 .pd{display:flex;gap:18px;margin:18px 0;flex-wrap:wrap;}
 .pcase{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;flex:1;min-width:130px;}
 .peyes{display:flex;gap:10px;justify-content:center;margin:10px 0;}
@@ -192,43 +128,21 @@ tbody td{padding:10px 14px;opacity:.88;}
 .pupil{background:#000;border-radius:50%;}
 .plbl{font-size:11px;color:var(--gray);margin-top:6px;}
 .ptit{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal);margin-bottom:3px;text-transform:uppercase;letter-spacing:.08em;}
-
-/* BULLET */
 .bl{list-style:none;margin:10px 0;}
 .bl li{padding:5px 0 5px 18px;position:relative;font-size:13.5px;opacity:.88;}
 .bl li::before{content:'—';position:absolute;left:0;color:var(--teal);}
-
-/* DENSITY */
 .dr{display:flex;gap:10px;margin:7px 0;align-items:center;}
 .ds{width:36px;height:36px;border-radius:5px;flex-shrink:0;border:1px solid rgba(255,255,255,.1);}
-
-/* SYNTHESIS */
-.synthesis{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(11,37,69,0.5));border:1px solid var(--teal);border-radius:12px;padding:20px 28px;margin:24px 0;text-align:center;font-size:1rem;font-style:italic;}
-
-/* SIGNATURE */
 .sig{text-align:right;padding:48px 0 16px;border-top:1px solid var(--border);margin-top:56px;}
 .sname{font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--teal);}
 .ssub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray);margin-top:7px;letter-spacing:.1em;}
-
-/* REVEAL */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;}
 .rv.vs{opacity:1;transform:translateY(0);}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .sb{display:none;}
-  .main{margin-left:0;max-width:100%;padding:24px 18px 60px;}
-  .gg{grid-template-columns:1fr;}
-  .mg{grid-template-columns:repeat(2,1fr);}
-  .lg{grid-template-columns:repeat(2,1fr);}
-  .lm{grid-template-columns:repeat(2,1fr);}
-  .ntabs{display:none;}
-}
+@media(max-width:900px){.sb{display:none;}.main{margin-left:0;max-width:100%;padding:24px 18px 60px;}.gg{grid-template-columns:1fr;}.mg{grid-template-columns:repeat(2,1fr);}.lg{grid-template-columns:repeat(2,1fr);}.lm{grid-template-columns:repeat(2,1fr);}.ntabs{display:none;}}
 </style>
 </head>
 <body>
 <div id="pb"></div>
-
 <nav class="tnav">
   <div class="nbrand">TCE — Neurotrauma</div>
   <div class="ntabs">
@@ -238,12 +152,10 @@ tbody td{padding:10px 14px;opacity:.88;}
   </div>
   <a href="tce456.html" class="nlink">Parte 2 →</a>
 </nav>
-
 <div class="layout">
 <aside class="sb" id="sb"></aside>
 <main class="main">
-
-<!-- ==================== MÓDULO 1 ==================== -->
+  <!-- ===== MÓDULO 1 ===== -->
 <div class="mpanel active" id="m1">
 <div class="hero rv">
   <div class="kicker">Módulo 01 · TEC 2026</div>
@@ -251,12 +163,10 @@ tbody td{padding:10px 14px;opacity:.88;}
   <p class="hsub">"O cérebro dentro do castelo que não expande"</p>
   <span class="tag ti">Monro-Kellie</span><span class="tag td">Lesão Secundária</span><span class="tag tg">PPC = PAM − PIC</span><span class="tag tw">Herniação</span>
 </div>
-
 <div class="rv">
 <div class="fq">"No traumatismo cranioencefálico, a pancada abre a tragédia, mas é a fisiologia negligenciada que escreve o final."<footer>Dr. André Rossanno</footer></div>
 <div class="card cd"><p style="font-family:'Syne',sans-serif;font-size:18px;font-weight:900;color:var(--red);margin-bottom:6px;">A frase que governa o TCE:</p><p style="font-size:16px;font-style:italic;">"No TCE, a pancada inicial machuca; a <strong style="color:var(--red)">lesão secundária</strong> mata."</p></div>
 </div>
-
 <h2 class="sh rv">Lesão Primária vs. Lesão Secundária</h2>
 <div class="rv">
 <p class="ssh">⚡ Lesão Primária — o raio que já caiu</p>
@@ -267,14 +177,11 @@ tbody td{padding:10px 14px;opacity:.88;}
   <div class="lcard"><div class="li">🔥</div><div class="ln">Contusão Cerebral</div><div class="ldd">Brasas hemorrágicas no parênquima</div></div>
   <div class="lcard"><div class="li">💫</div><div class="ln">Lesão Axonal Difusa</div><div class="ldd">Fios rompidos — TC pode ser normal</div></div>
 </div>
-<div class="card cd" style="text-align:center;"><p style="font-style:italic;">O cérebro é uma gelatina nobre dentro de uma caixa de pedra. Quando a caixa freia bruscamente, a gelatina continua viajando — bate, torce, rasga fibras e acende microincêndios.</p></div>
 </div>
-
 <div class="rv">
 <p class="ssh">🔥 Lesão Secundária — o incêndio que o médico pode apagar</p>
 <p>Começa minutos, horas ou dias após o trauma. <strong>Aqui o médico pode intervir.</strong></p>
 <div class="mn">
-  <div class="mn-t">⚡ Mnemônico Supremo</div>
   <div class="mn-w">HIPO-FECHA o cérebro</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
     <div><p style="color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-bottom:8px;">HIPO =</p>
@@ -284,10 +191,9 @@ tbody td{padding:10px 14px;opacity:.88;}
   </div>
 </div>
 </div>
-
 <h2 class="sh rv">Doutrina de Monro-Kellie</h2>
 <div class="rv">
-<p>O crânio adulto é uma <strong>caixa rígida</strong>. Volume total fixo. Três moradores competem por espaço — quando entra o hematoma, alguém precisa sair.</p>
+<p>O crânio adulto é uma <strong>caixa rígida</strong>. Volume total fixo. Três moradores competem por espaço.</p>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;">
   <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">👑</div><div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:900;color:var(--teal);">Parênquima</div><div style="font-size:11px;color:var(--gray);">~80% do volume</div></div>
   <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">🌊</div><div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:900;color:var(--teal);">Sangue</div><div style="font-size:11px;color:var(--gray);">~10% do volume</div></div>
@@ -295,28 +201,23 @@ tbody td{padding:10px 14px;opacity:.88;}
 </div>
 <div class="card cw"><p><strong style="color:var(--yellow);">Fase compensada:</strong> sai líquor, reduz sangue venoso, PIC sobe pouco.</p><p style="margin-top:8px;"><strong style="color:var(--red);">Fase descompensada:</strong> sem espaço, PIC dispara, PPC cai, herniação.</p><p style="margin-top:8px;font-style:italic;">"Primeiro o crânio negocia. Depois ele cobra com juros."</p></div>
 </div>
-
 <h2 class="sh rv">A Fórmula que Governa o TCE</h2>
 <div class="rv">
 <div class="fb"><div class="fm"><span>PPC</span> = <span>PAM</span> − <span>PIC</span></div><div class="fms">Pressão de Perfusão Cerebral = Pressão Arterial Média − Pressão Intracraniana</div></div>
-<div class="mn"><div class="mn-w">"PPC é o pedágio do cérebro"</div><p style="font-size:13px;color:var(--gray);text-align:center;">PAM empurra o carro pelo portão. PIC é o portão. PPC é quem consegue passar. Se PAM cai ou PIC sobe → cérebro apaga.</p></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
   <div class="card cd"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);margin-bottom:7px;">HIPOTENSÃO</p><p>PAM cai → PPC cai → isquemia cerebral.</p></div>
-  <div class="card cd"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);margin-bottom:7px;">HIPÓXIA</p><p>Sem ATP → falha bomba Na⁺/K⁺ → edema citotóxico → mais PIC → menos PPC → catástrofe.</p></div>
+  <div class="card cd"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);margin-bottom:7px;">HIPÓXIA</p><p>Sem ATP → falha bomba Na⁺/K⁺ → edema citotóxico → mais PIC → catástrofe.</p></div>
 </div>
 </div>
-
 <h2 class="sh rv">CO₂ — O Botão dos Vasos Cerebrais</h2>
 <div class="rv">
 <div class="mn"><div class="mn-w">"CO₂ é o controle remoto do vaso"</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;">
-  <div class="card cd" style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--red);">CO₂ ↑</div><div style="font-size:12px;margin-top:6px;">Vasodilatação → PIC ↑</div></div>
-  <div class="card" style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--teal);">CO₂ ↓↓</div><div style="font-size:12px;margin-top:6px;">Vasoconstrição → reduz PIC, mas pode causar <strong style="color:var(--yellow);">isquemia</strong></div></div>
+  <div class="card cd" style="text-align:center;margin:0;"><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--red);">CO₂ ↑</div><div style="font-size:12px;margin-top:6px;">Vasodilatação → PIC ↑</div></div>
+  <div class="card" style="text-align:center;margin:0;"><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--teal);">CO₂ ↓↓</div><div style="font-size:12px;margin-top:6px;">Vasoconstrição → reduz PIC, mas pode causar <strong style="color:var(--yellow);">isquemia</strong></div></div>
+</div></div>
+<div class="pg"><p><strong>Hiperventilação profilática prolongada = ERRADO.</strong> Use apenas como <em>ponte curta</em> em herniação iminente.</p></div>
 </div>
-</div>
-<div class="pg"><p><strong>Hiperventilação profilática prolongada = ERRADO.</strong> Reduz fluxo cerebral em cérebro vulnerável. Use apenas como <em>ponte curta</em> em herniação iminente.</p></div>
-</div>
-
 <h2 class="sh rv">Edema, Herniação e Tríade de Cushing</h2>
 <div class="rv">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;">
@@ -324,71 +225,48 @@ tbody td{padding:10px 14px;opacity:.88;}
   <div class="card"><p class="ssh" style="margin-top:0;">Edema Vasogênico</p><p>Barreira hematoencefálica rompe → plasma extravasa para interstício.</p></div>
 </div>
 <div class="card cd"><p style="font-family:'Syne',sans-serif;font-size:17px;font-weight:900;color:var(--red);margin-bottom:10px;">Tríade de Cushing</p><div><span class="tag td">Hipertensão Arterial</span><span class="tag td">Bradicardia</span><span class="tag td">Alteração Respiratória</span></div><p style="margin-top:10px;font-style:italic;font-size:13px;color:var(--gray);">"Tríade de Cushing é sirene de castelo já invadido, não alarme precoce." Ela é TARDIA.</p></div>
-<div class="mn"><div class="mn-w">"3 Hs que matam o cérebro traumatizado"</div><ul class="ml"><li><strong>H</strong>ipóxia — tira oxigênio</li><li><strong>H</strong>ipotensão — tira pressão</li><li><strong>H</strong>ipertensão intracraniana — bloqueia entrada de sangue</li></ul></div>
 </div>
-
-<h2 class="sh rv">Tabela — Vilões da Lesão Secundária</h2>
-<div class="rv">
-<div class="tw2"><table><thead><tr><th>Vilão</th><th>O que faz</th><th>Resultado</th><th>Correção</th></tr></thead><tbody>
-<tr><td><span class="tag td">Hipóxia</span></td><td>Reduz O₂</td><td>Falha energética</td><td>Oxigenar</td></tr>
-<tr><td><span class="tag td">Hipotensão</span></td><td>Reduz PAM</td><td>Reduz PPC</td><td>Restaurar circulação</td></tr>
-<tr><td><span class="tag td">Hipercapnia</span></td><td>Vasodilata</td><td>Aumenta PIC</td><td>Ventilar adequadamente</td></tr>
-<tr><td><span class="tag tw">Hipocapnia excessiva</span></td><td>Vasoconstrição</td><td>Isquemia cerebral</td><td>Evitar hiperventilação prolongada</td></tr>
-<tr><td><span class="tag tw">Febre</span></td><td>Aumenta metabolismo</td><td>Maior consumo O₂</td><td>Normotermia</td></tr>
-<tr><td><span class="tag tw">Hiponatremia</span></td><td>Favorece edema</td><td>Aumenta PIC</td><td>Evitar soluções hipotônicas</td></tr>
-<tr><td><span class="tag td">Convulsão</span></td><td>Aumenta consumo cerebral</td><td>Piora hipóxia local</td><td>Tratar crise</td></tr>
-</tbody></table></div>
-</div>
-
 <h2 class="sh rv">Pegadinhas de Prova</h2>
 <div class="rv">
 <div class="pg"><p><strong>"TC normal exclui lesão cerebral grave."</strong> → ERRADO. LAD pode ter TC inicial normal.</p></div>
-<div class="pg"><p><strong>"Corticoide reduz edema cerebral no TCE."</strong> → ERRADO. CRASH trial mostrou aumento de mortalidade. NÃO usar corticoide no TCE moderado/grave.</p></div>
-<div class="pg"><p><strong>"Hiperventilar todo TCE grave é neuroproteção."</strong> → ERRADO. Ponte curta em herniação — não rotina de ventilador.</p></div>
+<div class="pg"><p><strong>"Corticoide reduz edema cerebral no TCE."</strong> → ERRADO. CRASH trial: aumento de mortalidade. NÃO usar.</p></div>
+<div class="pg"><p><strong>"Hiperventilar todo TCE grave é neuroproteção."</strong> → ERRADO. Ponte curta em herniação apenas.</p></div>
 </div>
-
 <h2 class="sh rv">Flashcards — Módulo 1</h2>
 <div class="fcg rv">
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Quais são os três componentes do volume intracraniano de Monro-Kellie?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Parênquima cerebral, Sangue intracraniano e Líquor</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Fórmula da pressão de perfusão cerebral?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>PPC = PAM − PIC</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>CO₂ alto → o que acontece com a PIC?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Vasodilatação → volume sanguíneo intracraniano ↑ → PIC ↑</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Tríade de Cushing: componentes e timing?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Hipertensão + Bradicardia + Alteração respiratória — SINAL TARDIO</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Corticoide é recomendado no TCE grave?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>NÃO. CRASH trial: aumento de mortalidade com metilprednisolona em alta dose.</p></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🧠</div><div class="fc-q">Quais são os três componentes do volume intracraniano de Monro-Kellie?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Parênquima cerebral, <strong>Sangue</strong> intracraniano e <strong>Líquor</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🔢</div><div class="fc-q">Fórmula da pressão de perfusão cerebral?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>PPC = PAM − PIC</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🌬️</div><div class="fc-q">CO₂ alto → o que acontece com a PIC?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Vasodilatação → volume sanguíneo ↑ → <strong>PIC ↑</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🚨</div><div class="fc-q">Tríade de Cushing: componentes e timing?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Hipertensão + Bradicardia + Alteração respiratória — <strong>SINAL TARDIO</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">💊</div><div class="fc-q">Corticoide é recomendado no TCE grave?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>NÃO.</strong> CRASH trial: aumento de mortalidade.</div></div></div></div>
 </div>
-
 <h2 class="sh rv">Quiz — Módulo 1</h2>
-<div class="qs rv">
-<div class="qt">🧠 Teste seu conhecimento</div>
-<div class="qq"><div class="qn">QUESTÃO 01</div><div class="qtx">No TCE grave, qual combinação representa maior risco de lesão secundária?</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','q1')"><span class="ol">A</span>Hipertensão arterial e bradicardia isoladas</li><li class="opt" onclick="ans(this,'ok','q1')"><span class="ol">B</span>Hipóxia e hipotensão</li><li class="opt" onclick="ans(this,'ng','q1')"><span class="ol">C</span>Cefaleia e náusea sem alteração neurológica</li><li class="opt" onclick="ans(this,'ng','q1')"><span class="ol">D</span>Fratura linear sem perda de consciência</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> Hipóxia reduz oferta de O₂ e hipotensão reduz perfusão cerebral — juntas formam o duo mais letal da lesão secundária.</div>
-<div class="fb2 ng2">❌ Resposta: B. Hipóxia e hipotensão são os principais vetores de lesão secundária no TCE.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 02</div><div class="qtx">A fórmula correta da pressão de perfusão cerebral é:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','q2')"><span class="ol">A</span>PPC = PIC − PAM</li><li class="opt" onclick="ans(this,'ok','q2')"><span class="ol">B</span>PPC = PAM − PIC</li><li class="opt" onclick="ans(this,'ng','q2')"><span class="ol">C</span>PPC = PAM + PIC</li><li class="opt" onclick="ans(this,'ng','q2')"><span class="ol">D</span>PPC = FC × PIC</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> PAM empurra o sangue; PIC resiste. PPC é o resultado líquido que chega ao cérebro.</div>
-<div class="fb2 ng2">❌ Resposta: B. PPC = PAM − PIC.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 03</div><div class="qtx">A hiperventilação no TCE grave deve ser usada:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','q3')"><span class="ol">A</span>De rotina por 48h em todos os casos</li><li class="opt" onclick="ans(this,'ng','q3')"><span class="ol">B</span>Nunca — é contraindicada</li><li class="opt" onclick="ans(this,'ok','q3')"><span class="ol">C</span>Temporariamente como ponte em herniação iminente</li><li class="opt" onclick="ans(this,'ng','q3')"><span class="ol">D</span>Substituindo neurocirurgia</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> Ponte curta em herniação — reduz PIC por vasoconstrição, mas uso prolongado causa isquemia.</div>
-<div class="fb2 ng2">❌ Resposta: C. Hiperventilação tem papel temporário apenas em herniação iminente.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 04</div><div class="qtx">A Doutrina de Monro-Kellie afirma que:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','q4')"><span class="ol">A</span>O crânio adulto expande para acomodar hematomas</li><li class="opt" onclick="ans(this,'ok','q4')"><span class="ol">B</span>O volume intracraniano é fixo — seus componentes competem por espaço</li><li class="opt" onclick="ans(this,'ng','q4')"><span class="ol">C</span>A PIC não se altera no trauma craniano</li><li class="opt" onclick="ans(this,'ng','q4')"><span class="ol">D</span>O líquor é o principal componente volumétrico</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> Crânio rígido = volume fixo. Hematoma entra → alguém sai → quando acaba compensação, PIC dispara.</div>
-<div class="fb2 ng2">❌ Resposta: B. Volume intracraniano fixo — base de toda fisiopatologia do TCE.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 05</div><div class="qtx">Corticosteroide no TCE moderado/grave:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','q5')"><span class="ol">A</span>Reduz mortalidade — recomendado de rotina</li><li class="opt" onclick="ans(this,'ng','q5')"><span class="ol">B</span>Reduz edema sem alterar mortalidade</li><li class="opt" onclick="ans(this,'ng','q5')"><span class="ol">C</span>Indicado se GCS &lt; 8</li><li class="opt" onclick="ans(this,'ok','q5')"><span class="ol">D</span>Não recomendado — metilprednisolona em alta dose aumenta mortalidade (CRASH trial)</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> CRASH trial mostrou aumento de mortalidade. Corticoide é armadilha no TCE.</div>
-<div class="fb2 ng2">❌ Resposta: D. CRASH trial: corticoide aumenta mortalidade no TCE.</div></div>
+<div class="rv">
+<div class="quiz-q"><div class="q-num">Questão 01</div><div class="q-text">No TCE grave, qual combinação representa maior risco de lesão secundária?</div>
+<div class="q-opts" id="q1"><div class="q-opt" onclick="answer('q1','A','B')"><span class="opt-letter">A</span>Hipertensão arterial e bradicardia isoladas</div><div class="q-opt" onclick="answer('q1','B','B')"><span class="opt-letter">B</span>Hipóxia e hipotensão</div><div class="q-opt" onclick="answer('q1','C','B')"><span class="opt-letter">C</span>Cefaleia e náusea sem alteração neurológica</div><div class="q-opt" onclick="answer('q1','D','B')"><span class="opt-letter">D</span>Fratura linear sem perda de consciência</div></div>
+<div class="q-feedback correct-fb" id="q1-fb-correct">✅ <strong>Correto!</strong> Hipóxia + hipotensão = duo mais letal da lesão secundária.</div>
+<div class="q-feedback wrong-fb" id="q1-fb-wrong">❌ Resposta: B. Hipóxia e hipotensão são os principais vetores de lesão secundária.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 02</div><div class="q-text">A fórmula correta da pressão de perfusão cerebral é:</div>
+<div class="q-opts" id="q2"><div class="q-opt" onclick="answer('q2','A','B')"><span class="opt-letter">A</span>PPC = PIC − PAM</div><div class="q-opt" onclick="answer('q2','B','B')"><span class="opt-letter">B</span>PPC = PAM − PIC</div><div class="q-opt" onclick="answer('q2','C','B')"><span class="opt-letter">C</span>PPC = PAM + PIC</div><div class="q-opt" onclick="answer('q2','D','B')"><span class="opt-letter">D</span>PPC = FC × PIC</div></div>
+<div class="q-feedback correct-fb" id="q2-fb-correct">✅ <strong>Correto!</strong> PAM empurra o sangue; PIC resiste.</div>
+<div class="q-feedback wrong-fb" id="q2-fb-wrong">❌ Resposta: B. PPC = PAM − PIC.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 03</div><div class="q-text">A hiperventilação no TCE grave deve ser usada:</div>
+<div class="q-opts" id="q3"><div class="q-opt" onclick="answer('q3','A','C')"><span class="opt-letter">A</span>De rotina por 48h</div><div class="q-opt" onclick="answer('q3','B','C')"><span class="opt-letter">B</span>Nunca — é contraindicada</div><div class="q-opt" onclick="answer('q3','C','C')"><span class="opt-letter">C</span>Temporariamente como ponte em herniação iminente</div><div class="q-opt" onclick="answer('q3','D','C')"><span class="opt-letter">D</span>Substituindo neurocirurgia</div></div>
+<div class="q-feedback correct-fb" id="q3-fb-correct">✅ <strong>Correto!</strong> Ponte curta em herniação — uso prolongado causa isquemia.</div>
+<div class="q-feedback wrong-fb" id="q3-fb-wrong">❌ Resposta: C. Apenas em herniação iminente, temporariamente.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 04</div><div class="q-text">A Doutrina de Monro-Kellie afirma que:</div>
+<div class="q-opts" id="q4"><div class="q-opt" onclick="answer('q4','A','B')"><span class="opt-letter">A</span>O crânio adulto expande para acomodar hematomas</div><div class="q-opt" onclick="answer('q4','B','B')"><span class="opt-letter">B</span>O volume intracraniano é fixo — seus componentes competem por espaço</div><div class="q-opt" onclick="answer('q4','C','B')"><span class="opt-letter">C</span>A PIC não se altera no trauma craniano</div><div class="q-opt" onclick="answer('q4','D','B')"><span class="opt-letter">D</span>O líquor é o principal componente volumétrico</div></div>
+<div class="q-feedback correct-fb" id="q4-fb-correct">✅ <strong>Correto!</strong> Crânio rígido = volume fixo. Quando acaba compensação, PIC dispara.</div>
+<div class="q-feedback wrong-fb" id="q4-fb-wrong">❌ Resposta: B. Volume intracraniano fixo — base de toda fisiopatologia do TCE.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 05</div><div class="q-text">Corticosteroide no TCE moderado/grave:</div>
+<div class="q-opts" id="q5"><div class="q-opt" onclick="answer('q5','A','D')"><span class="opt-letter">A</span>Reduz mortalidade — recomendado de rotina</div><div class="q-opt" onclick="answer('q5','B','D')"><span class="opt-letter">B</span>Reduz edema sem alterar mortalidade</div><div class="q-opt" onclick="answer('q5','C','D')"><span class="opt-letter">C</span>Indicado se GCS &lt; 8</div><div class="q-opt" onclick="answer('q5','D','D')"><span class="opt-letter">D</span>Não recomendado — aumenta mortalidade (CRASH trial)</div></div>
+<div class="q-feedback correct-fb" id="q5-fb-correct">✅ <strong>Correto!</strong> CRASH trial: corticoide aumenta mortalidade no TCE.</div>
+<div class="q-feedback wrong-fb" id="q5-fb-wrong">❌ Resposta: D. CRASH trial: corticoide aumenta mortalidade no TCE.</div></div>
 </div>
-
-<div class="sig"><div class="sname">Dr. André Rossanno</div><div class="ssub">Base: Brain Trauma Foundation · NICE NG232 · Neurointensivismo moderno</div></div>
+<div class="sig"><div class="sname">Dr. André Rossanno</div><div class="ssub">Brain Trauma Foundation · NICE NG232 · Neurointensivismo moderno</div></div>
 </div><!-- /m1 -->
 
-<!-- ==================== MÓDULO 2 ==================== -->
+<!-- ===== MÓDULO 2 ===== -->
 <div class="mpanel" id="m2">
 <div class="hero rv">
   <div class="kicker">Módulo 02 · TEC 2026</div>
@@ -396,15 +274,12 @@ tbody td{padding:10px 14px;opacity:.88;}
   <p class="hsub">"O exame que enxerga o cérebro antes da tomografia"</p>
   <span class="tag ti">GCS</span><span class="tag td">Pupilas</span><span class="tag tw">Lateralização</span><span class="tag tg">Herniação Uncal</span>
 </div>
-
 <div class="fq rv">"No TCE, examinar não é apenas observar o paciente: é escutar o cérebro antes que a tomografia fale."<footer>Dr. André Rossanno</footer></div>
-
 <h2 class="sh rv">Escala de Coma de Glasgow — GCS</h2>
 <div class="rv">
 <p>Avalia <strong>três respostas</strong>. Sempre registre os três componentes separados — o número total não conta a história sozinho.</p>
 <div class="fb"><div class="fm">GCS = <span>E</span> + <span>V</span> + <span>M</span></div><div class="fms">Ocular + Verbal + Motor — máximos: 4 + 5 + 6 = 15</div></div>
-<div class="mn"><div class="mn-w">"Olho 4, Voz 5, Motor 6"</div><p style="font-size:13px;color:var(--gray);text-align:center;">4-5-6: o cérebro está vivo no serviço. Total máximo = 15.</p></div>
-
+<div class="mn"><div class="mn-w">"Olho 4, Voz 5, Motor 6"</div><p style="font-size:13px;color:var(--gray);text-align:center;">Total máximo = 15. Registre sempre E+V+M separados.</p></div>
 <div class="gg">
 <div class="gc">
   <div class="gch">Abertura Ocular (E) — máx 4</div>
@@ -432,45 +307,40 @@ tbody td{padding:10px 14px;opacity:.88;}
   <div class="gi"><span class="gs" style="color:var(--red);">1</span><div><strong>Ausente</strong></div></div>
 </div>
 </div>
-
 <div class="sv">
-  <div class="svc sv-l"><div class="svn" style="color:var(--green);">13–15</div><div class="svl">TCE LEVE</div></div>
-  <div class="svc sv-m"><div class="svn" style="color:var(--yellow);">9–12</div><div class="svl">TCE MODERADO</div></div>
-  <div class="svc sv-g"><div class="svn" style="color:var(--red);">3–8</div><div class="svl">TCE GRAVE</div></div>
+  <div class="svc sv-l"><div class="svn" style="color:var(--green);">13–15</div><div class="svl">TCE LEVE</div><div style="font-size:11px;color:var(--gray);margin-top:6px;">Corredor aceso — mas pode ter armadilha</div></div>
+  <div class="svc sv-m"><div class="svn" style="color:var(--yellow);">9–12</div><div class="svl">TCE MODERADO</div><div style="font-size:11px;color:var(--gray);margin-top:6px;">Luz piscando — risco real</div></div>
+  <div class="svc sv-g"><div class="svn" style="color:var(--red);">3–8</div><div class="svl">TCE GRAVE</div><div style="font-size:11px;color:var(--gray);margin-top:6px;">Apagão neurológico</div></div>
 </div>
 </div>
-
 <h2 class="sh rv">Pupilas — A Lanterna do Tronco Cerebral</h2>
 <div class="rv">
-<div class="mn"><div class="mn-w">"2 vê, 3 fecha"</div><p style="font-size:13px;color:var(--gray);text-align:center;">II par (óptico) → capta a luz | III par (oculomotor) → contrai a pupila via parassimpático</p></div>
+<div class="mn"><div class="mn-w">"2 vê, 3 fecha"</div><p style="font-size:13px;color:var(--gray);text-align:center;">II par (óptico) → capta a luz | III par (oculomotor) → contrai a pupila</p></div>
 <div class="pd">
   <div class="pcase"><div class="ptit">Normal</div><div class="peyes"><div class="eye"><div class="pupil" style="width:20px;height:20px;"></div></div><div class="eye"><div class="pupil" style="width:20px;height:20px;"></div></div></div><div class="plbl">Isocóricas · Fotorreagentes</div></div>
   <div class="pcase" style="border-color:rgba(230,57,70,.3);"><div class="ptit" style="color:var(--red);">Anisocoria (herniação uncal)</div><div class="peyes"><div class="eye"><div class="pupil" style="width:34px;height:34px;background:#111;"></div></div><div class="eye"><div class="pupil" style="width:16px;height:16px;"></div></div></div><div class="plbl" style="color:var(--red);">Midríase ipsilateral · III par comprimido</div></div>
   <div class="pcase" style="border-color:rgba(255,209,102,.3);"><div class="ptit" style="color:var(--yellow);">Midríase bilateral fixa</div><div class="peyes"><div class="eye"><div class="pupil" style="width:38px;height:38px;background:#000;"></div></div><div class="eye"><div class="pupil" style="width:38px;height:38px;background:#000;"></div></div></div><div class="plbl" style="color:var(--yellow);">Sofrimento grave de tronco</div></div>
   <div class="pcase"><div class="ptit">Puntiformes</div><div class="peyes"><div class="eye"><div class="pupil" style="width:5px;height:5px;"></div></div><div class="eye"><div class="pupil" style="width:5px;height:5px;"></div></div></div><div class="plbl">Opioides · Lesão pontina</div></div>
 </div>
-<div class="card cd"><p style="font-family:'Syne',sans-serif;font-size:16px;font-weight:900;margin-bottom:8px;">Herniação Uncal</p><p>Hematoma temporal → uncus empurra mesencéfalo → comprime III par → <strong style="color:var(--red);">midríase ipsilateral</strong> → rebaixamento + hemiparesia contralateral.</p><div class="anchor" style="margin-top:12px;">"Pupila abriu, uncus bateu. Pupila grande do lado do trauma."</div></div>
+<div class="card cd"><p style="font-family:'Syne',sans-serif;font-size:16px;font-weight:900;margin-bottom:8px;">Herniação Uncal — Mecanismo</p><p>Hematoma temporal → uncus empurra mesencéfalo → comprime III par → <strong style="color:var(--red);">midríase ipsilateral</strong> → rebaixamento + hemiparesia contralateral.</p><div class="anchor" style="margin-top:12px;padding:12px;">"Pupila abriu, uncus bateu. Pupila grande do lado do trauma."</div></div>
 </div>
-
 <h2 class="sh rv">Lateralização & Posturas Anormais</h2>
 <div class="rv">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;">
   <div class="card"><p class="ssh" style="margin-top:0;">Decorticação (M3)</p><p>Flexão anormal. Lesão acima do núcleo rubro — hemisférica ou diencefálica.</p></div>
   <div class="card cd"><p class="ssh" style="margin-top:0;color:var(--red);">Descerebração (M2)</p><p>Extensão anormal. Acometimento de mesencéfalo/ponte alta. Geralmente mais grave.</p></div>
 </div>
-<div class="pg"><p><strong>Fenômeno de Kernohan:</strong> Em herniações, o pedúnculo cerebral <em>contralateral</em> pode ser comprimido → sinal motor aparentemente do <em>mesmo lado</em> da lesão. Falso localizador! Armadilha clássica.</p></div>
+<div class="pg"><p><strong>Fenômeno de Kernohan:</strong> Pedúnculo cerebral <em>contralateral</em> comprimido → sinal motor aparentemente do <em>mesmo lado</em> da lesão. Falso localizador! Armadilha clássica.</p></div>
 </div>
-
 <h2 class="sh rv">Red Flags — "15 não é fim"</h2>
 <div class="rv">
-<div class="mn"><div class="mn-w">"15 não é fim"</div><p style="font-size:13px;color:var(--gray);text-align:center;">GCS 15 não dá alta se houver red flags. É porta aberta — não atestado de segurança.</p></div>
+<div class="mn"><div class="mn-w">"15 não é fim"</div><p style="font-size:13px;color:var(--gray);text-align:center;">GCS 15 não dá alta se houver red flags.</p></div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;">
-  <div class="card cd" style="padding:14px;"><div class="tag td" style="margin-bottom:8px;">ALTO RISCO</div><ul class="bl"><li>Anticoagulação</li><li>Convulsão pós-trauma</li><li>Déficit focal</li></ul></div>
-  <div class="card cw" style="padding:14px;"><div class="tag tw" style="margin-bottom:8px;">RISCO INTERMEDIÁRIO</div><ul class="bl"><li>Vômitos repetidos</li><li>Cefaleia progressiva</li><li>Perda de consciência</li></ul></div>
-  <div class="card" style="padding:14px;"><div class="tag ti" style="margin-bottom:8px;">ATENÇÃO</div><ul class="bl"><li>Idade avançada</li><li>Mecanismo grave</li><li>Intoxicação</li></ul></div>
+  <div class="card cd" style="padding:14px;"><div class="tag td" style="margin-bottom:8px;">ALTO RISCO</div><ul class="bl"><li>Anticoagulação</li><li>Antiagregante relevante</li><li>Convulsão pós-trauma</li><li>Déficit focal</li></ul></div>
+  <div class="card cw" style="padding:14px;"><div class="tag tw" style="margin-bottom:8px;">RISCO INTERMEDIÁRIO</div><ul class="bl"><li>Vômitos repetidos</li><li>Cefaleia progressiva</li><li>Perda de consciência</li><li>Amnésia</li></ul></div>
+  <div class="card" style="padding:14px;"><div class="tag ti" style="margin-bottom:8px;">ATENÇÃO</div><ul class="bl"><li>Idade avançada</li><li>Mecanismo grave</li><li>Suspeita de fratura</li><li>Intoxicação</li></ul></div>
 </div>
 </div>
-
 <h2 class="sh rv">Fratura de Base do Crânio</h2>
 <div class="rv">
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;">
@@ -480,7 +350,6 @@ tbody td{padding:10px 14px;opacity:.88;}
 </div>
 <div class="pg"><p>Em suspeita de fratura de base: <strong>evite via nasotraqueal ou sonda nasogástrica às cegas.</strong> Prefira via oral.</p></div>
 </div>
-
 <h2 class="sh rv">Pegadinhas de Prova</h2>
 <div class="rv">
 <div class="pg"><p><strong>"Paciente intubado = V1."</strong> → ERRADO. Use <strong>Vt</strong>. O tubo silencia a voz — não o neurônio.</p></div>
@@ -488,39 +357,39 @@ tbody td{padding:10px 14px;opacity:.88;}
 <div class="pg"><p><strong>"Tríade de Cushing = diagnóstico de herniação."</strong> → CUIDADO. É sinal TARDIO. Não espere a tríade completa para agir.</p></div>
 <div class="pg"><p><strong>"GCS 14 com álcool pode ir embora."</strong> → PERIGOSO. Intoxicação mascara o exame neurológico.</p></div>
 </div>
-
 <h2 class="sh rv">Flashcards — Módulo 2</h2>
 <div class="fcg rv">
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Paciente abre olhos ao chamado, confuso, obedece comandos. GCS?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>E3 V4 M6 = GCS 13 — TCE leve, avaliar red flags</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Qual nervo VÊ a luz e qual FECHA a pupila?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>II par vê (óptico) · III par fecha (oculomotor) — "2 vê, 3 fecha"</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Midríase ipsilateral no TCE com rebaixamento sugere?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Herniação uncal com compressão do III par craniano</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Paciente intubado: como registrar resposta verbal?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Vt — nunca V1. O tubo silencia a voz, não o neurônio.</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>M3 (decorticação) vs M2 (descerebração) — qual é mais grave?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>M2 (descerebração) — compromete tronco encefálico</p></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🧮</div><div class="fc-q">Paciente abre olhos ao chamado, confuso, obedece comandos. GCS?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>E3 V4 M6 = GCS 13</strong> — TCE leve, avaliar red flags</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">👁</div><div class="fc-q">Qual nervo VÊ a luz e qual FECHA a pupila?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>II par</strong> vê · <strong>III par</strong> fecha — "2 vê, 3 fecha"</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🔴</div><div class="fc-q">Midríase ipsilateral no TCE com rebaixamento sugere?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Herniação uncal com compressão do <strong>III par craniano</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🏥</div><div class="fc-q">Paciente intubado: como registrar resposta verbal?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>Vt</strong> — nunca V1. O tubo silencia a voz, não o neurônio.</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">⚡</div><div class="fc-q">M3 (decorticação) vs M2 (descerebração) — qual é mais grave?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>M2 (descerebração)</strong> — compromete tronco encefálico</div></div></div></div>
 </div>
-
 <h2 class="sh rv">Quiz — Módulo 2</h2>
-<div class="qs rv">
-<div class="qt">🧠 Teste seu conhecimento</div>
-<div class="qq"><div class="qn">QUESTÃO 01</div><div class="qtx">Paciente não abre olhos, emite sons incompreensíveis, localiza dor. Qual o GCS?</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','m2q1')"><span class="ol">A</span>E1 V1 M5 = 7</li><li class="opt" onclick="ans(this,'ok','m2q1')"><span class="ol">B</span>E1 V2 M5 = 8</li><li class="opt" onclick="ans(this,'ng','m2q1')"><span class="ol">C</span>E2 V2 M5 = 9</li><li class="opt" onclick="ans(this,'ng','m2q1')"><span class="ol">D</span>E1 V3 M5 = 9</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> E1 + V2 + M5 = GCS 8. TCE grave. Via aérea, TC urgente.</div>
-<div class="fb2 ng2">❌ Não abre olhos=E1, sons=V2, localiza=M5. Total: 8.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 02</div><div class="qtx">Qual achado sugere herniação uncal no TCE com rebaixamento?</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','m2q2')"><span class="ol">A</span>Pupilas puntiformes bilaterais</li><li class="opt" onclick="ans(this,'ok','m2q2')"><span class="ol">B</span>Midríase ipsilateral associada a rebaixamento</li><li class="opt" onclick="ans(this,'ng','m2q2')"><span class="ol">C</span>Febre isolada</li><li class="opt" onclick="ans(this,'ng','m2q2')"><span class="ol">D</span>Bradicardia sem alteração pupilar</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> Midríase ipsilateral = compressão do III par pelo uncus herniado. Emergência neurológica.</div>
-<div class="fb2 ng2">❌ Midríase ipsilateral + rebaixamento = herniação uncal até prova em contrário.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 03</div><div class="qtx">A Tríade de Cushing é:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','m2q4')"><span class="ol">A</span>Sinal precoce — agir só ao completar a tríade</li><li class="opt" onclick="ans(this,'ok','m2q4')"><span class="ol">B</span>Sinal tardio — não esperar ela completar para agir</li><li class="opt" onclick="ans(this,'ng','m2q4')"><span class="ol">C</span>Obrigatória para diagnóstico de herniação</li><li class="opt" onclick="ans(this,'ng','m2q4')"><span class="ol">D</span>Exclusiva do hematoma epidural</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> "Cushing chegou tarde." Quando completa, o castelo já está desabando. Agir antes.</div>
-<div class="fb2 ng2">❌ Tríade de Cushing é sinal TARDIO. Não espere a orquestra terminar o acorde.</div></div>
+<div class="rv">
+<div class="quiz-q"><div class="q-num">Questão 01</div><div class="q-text">Paciente não abre olhos, emite sons incompreensíveis, localiza dor. Qual o GCS?</div>
+<div class="q-opts" id="m2q1"><div class="q-opt" onclick="answer('m2q1','A','B')"><span class="opt-letter">A</span>E1 V1 M5 = 7</div><div class="q-opt" onclick="answer('m2q1','B','B')"><span class="opt-letter">B</span>E1 V2 M5 = 8</div><div class="q-opt" onclick="answer('m2q1','C','B')"><span class="opt-letter">C</span>E2 V2 M5 = 9</div><div class="q-opt" onclick="answer('m2q1','D','B')"><span class="opt-letter">D</span>E1 V3 M5 = 9</div></div>
+<div class="q-feedback correct-fb" id="m2q1-fb-correct">✅ <strong>Correto!</strong> E1 + V2 + M5 = GCS 8. TCE grave.</div>
+<div class="q-feedback wrong-fb" id="m2q1-fb-wrong">❌ Não abre olhos=E1, sons=V2, localiza=M5. Total: 8.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 02</div><div class="q-text">Qual achado sugere herniação uncal no TCE com rebaixamento?</div>
+<div class="q-opts" id="m2q2"><div class="q-opt" onclick="answer('m2q2','A','B')"><span class="opt-letter">A</span>Pupilas puntiformes bilaterais</div><div class="q-opt" onclick="answer('m2q2','B','B')"><span class="opt-letter">B</span>Midríase ipsilateral associada a rebaixamento</div><div class="q-opt" onclick="answer('m2q2','C','B')"><span class="opt-letter">C</span>Febre isolada</div><div class="q-opt" onclick="answer('m2q2','D','B')"><span class="opt-letter">D</span>Bradicardia sem alteração pupilar</div></div>
+<div class="q-feedback correct-fb" id="m2q2-fb-correct">✅ <strong>Correto!</strong> Midríase ipsilateral = compressão do III par pelo uncus. Emergência neurológica.</div>
+<div class="q-feedback wrong-fb" id="m2q2-fb-wrong">❌ Midríase ipsilateral + rebaixamento = herniação uncal até prova em contrário.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 03</div><div class="q-text">Paciente intubado, abre olhos à dor, localiza dor. Registro correto:</div>
+<div class="q-opts" id="m2q3"><div class="q-opt" onclick="answer('m2q3','A','B')"><span class="opt-letter">A</span>E2 V1 M5 = 8</div><div class="q-opt" onclick="answer('m2q3','B','B')"><span class="opt-letter">B</span>E2 Vt M5</div><div class="q-opt" onclick="answer('m2q3','C','B')"><span class="opt-letter">C</span>E1 V0 M5</div><div class="q-opt" onclick="answer('m2q3','D','B')"><span class="opt-letter">D</span>E2 V5 M5</div></div>
+<div class="q-feedback correct-fb" id="m2q3-fb-correct">✅ <strong>Correto!</strong> Intubado = Vt. O tubo impede a fala — não é ausência neurológica.</div>
+<div class="q-feedback wrong-fb" id="m2q3-fb-wrong">❌ Resposta B. Paciente intubado recebe Vt, não V1.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 04</div><div class="q-text">A Tríade de Cushing é:</div>
+<div class="q-opts" id="m2q4"><div class="q-opt" onclick="answer('m2q4','A','B')"><span class="opt-letter">A</span>Sinal precoce — agir só ao completar a tríade</div><div class="q-opt" onclick="answer('m2q4','B','B')"><span class="opt-letter">B</span>Sinal tardio — não esperar ela completar para agir</div><div class="q-opt" onclick="answer('m2q4','C','B')"><span class="opt-letter">C</span>Obrigatória para diagnóstico de herniação</div><div class="q-opt" onclick="answer('m2q4','D','B')"><span class="opt-letter">D</span>Exclusiva do hematoma epidural</div></div>
+<div class="q-feedback correct-fb" id="m2q4-fb-correct">✅ <strong>Correto!</strong> "Cushing chegou tarde." Quando completa, o castelo já está desabando.</div>
+<div class="q-feedback wrong-fb" id="m2q4-fb-wrong">❌ Tríade de Cushing é sinal TARDIO.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 05</div><div class="q-text">Paciente alcoolizado com TCE e GCS 14. Conduta mais adequada:</div>
+<div class="q-opts" id="m2q5"><div class="q-opt" onclick="answer('m2q5','A','C')"><span class="opt-letter">A</span>Alta — álcool justifica o rebaixamento</div><div class="q-opt" onclick="answer('m2q5','B','C')"><span class="opt-letter">B</span>Alta com orientação de retorno se piorar</div><div class="q-opt" onclick="answer('m2q5','C','C')"><span class="opt-letter">C</span>Avaliação estruturada — intoxicação não protege contra hematoma</div><div class="q-opt" onclick="answer('m2q5','D','C')"><span class="opt-letter">D</span>Manitol profilático</div></div>
+<div class="q-feedback correct-fb" id="m2q5-fb-correct">✅ <strong>Correto!</strong> Álcool não protege contra hematoma. Ele só atrapalha o exame.</div>
+<div class="q-feedback wrong-fb" id="m2q5-fb-wrong">❌ Álcool mascara o exame neurológico. TCE + intoxicação = avaliar, não dispensar.</div></div>
 </div>
-
-<div class="sig"><div class="sname">Dr. André Rossanno</div><div class="ssub">Base: Brain Trauma Foundation · NICE NG232 · Neurointensivismo moderno</div></div>
-</div><!-- /m2 -->
-
-<!-- ==================== MÓDULO 3 ==================== -->
+<div class="sig"><div class="sname">Dr. André Rossanno</div><div class="ssub">Brain Trauma Foundation · NICE NG232 · Neurointensivismo moderno</div></div>
+</div><!-- /m2 --><!-- ===== MÓDULO 3 ===== -->
 <div class="mpanel" id="m3">
 <div class="hero rv">
   <div class="kicker">Módulo 03 · TEC 2026</div>
@@ -528,7 +397,6 @@ tbody td{padding:10px 14px;opacity:.88;}
   <p class="hsub">"A tomografia é o mapa do castelo invadido"</p>
   <span class="tag ti">LUCAS</span><span class="tag td">HED · HSD</span><span class="tag tw">Contusão · HSA</span><span class="tag tg">Marshall · LAD</span>
 </div>
-
 <div class="fq rv">"Na tomografia do TCE, o sangue chama atenção; mas são a linha média, as cisternas e os sulcos que revelam se o cérebro ainda tem espaço para sobreviver."<footer>Dr. André Rossanno</footer></div>
 
 <h2 class="sh rv">Protocolo LUCAS — Leitura Sistemática da TC</h2>
@@ -541,7 +409,6 @@ tbody td{padding:10px 14px;opacity:.88;}
   <div class="lc"><div class="ll">A</div><div class="lw">Arquitetura</div><div class="ld">Sulcos apagados? Ventrículos comprimidos? Edema difuso?</div></div>
   <div class="lc"><div class="ll">S</div><div class="lw">Skull/Seios</div><div class="ld">Fratura? Pneumoencéfalo? Hemossinus? Base?</div></div>
 </div>
-
 <p class="ssh">A Regra das Densidades</p>
 <div class="dr"><div class="ds" style="background:white;"></div><div><strong>Branco (hiperdenso)</strong> → Sangue agudo, osso, calcificação</div></div>
 <div class="dr"><div class="ds" style="background:#999;"></div><div><strong>Cinza (isodenso)</strong> → Parênquima cerebral normal</div></div>
@@ -558,11 +425,11 @@ tbody td{padding:10px 14px;opacity:.88;}
   </div>
   <div class="card">
     <p class="ssh" style="margin-top:0;">Indicação Cirúrgica</p>
-    <div class="card cd" style="text-align:center;margin:0 0 10px;"><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--red);">EPI 30 corta</div><div style="font-size:12px;color:var(--gray);">HED &gt;30cm³ → cirurgia independente do GCS</div></div>
-    <p style="font-size:12px;">Observação só se: &lt;15mm + desvio &lt;5mm + GCS&gt;8 + sem déficit + centro neurocirúrgico.</p>
+    <div class="card cd" style="margin:0;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--red);">EPI 30 corta</div><div style="font-size:12px;color:var(--gray);">HED &gt;30cm³ → cirurgia independente do GCS</div></div>
+    <p style="font-size:12px;margin-top:10px;">Observação só se: &lt;15mm + desvio &lt;5mm + GCS&gt;8 + sem déficit.</p>
   </div>
 </div>
-<div class="pg"><p><strong>Desvio &lt;5mm não exclui cirurgia se volume &gt;30cm³.</strong> Intervalo lúcido não precisa ocorrer para o diagnóstico.</p></div>
+<div class="pg"><p><strong>Desvio &lt;5mm não exclui cirurgia se volume &gt;30cm³.</strong> Intervalo lúcido não é obrigatório para o diagnóstico.</p></div>
 </div>
 
 <h2 class="sh rv">Hematoma Subdural — A Foice que Abraça</h2>
@@ -575,8 +442,8 @@ tbody td{padding:10px 14px;opacity:.88;}
 <div class="card cw">
   <p class="ssh" style="margin-top:0;color:var(--yellow);">"SUB 10 ou 5" — Indicação Cirúrgica</p>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
-    <div class="card cd" style="text-align:center;margin:0;"><div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);">Espessura &gt;10mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
-    <div class="card cd" style="text-align:center;margin:0;"><div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);">Desvio &gt;5mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
+    <div class="card cd" style="margin:0;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);">Espessura &gt;10mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
+    <div class="card cd" style="margin:0;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);">Desvio &gt;5mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
   </div>
 </div>
 <div class="pg"><p><strong>Fantasma Cinza:</strong> Idoso anticoagulado + queda há semanas + confusão + TC "quase normal": suspeite de HSD subagudo isodenso. Os <em>móveis arrastados</em> denunciam: sulcos apagados unilateralmente, desvio discreto.</p></div>
@@ -586,7 +453,7 @@ tbody td{padding:10px 14px;opacity:.88;}
 <div class="rv">
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0;">
   <div class="card cd" style="padding:16px;"><div style="font-size:24px;margin-bottom:8px;">🔥</div><div class="ln">Contusão</div><p style="font-size:12px;margin-bottom:8px;">Focos hemorrágicos no parênquima. Frontal/temporal. Coup e contrecoup.</p><div class="anchor" style="padding:8px;font-size:12px;">"Flor de hematoma: pode abrir em 24-72h"</div></div>
-  <div class="card" style="padding:16px;"><div style="font-size:24px;margin-bottom:8px;">🖌</div><div class="ln">HSA Traumática</div><p style="font-size:12px;margin-bottom:8px;">Sangue em sulcos e cisternas. Contexto de trauma.</p><div class="anchor" style="padding:8px;font-size:12px;">"Tinta nos sulcos"</div></div>
+  <div class="card" style="padding:16px;"><div style="font-size:24px;margin-bottom:8px;">🖌</div><div class="ln">HSA Traumática</div><p style="font-size:12px;margin-bottom:8px;">Sangue em sulcos e cisternas. Diferente da HSA aneurismática.</p><div class="anchor" style="padding:8px;font-size:12px;">"Tinta nos sulcos"</div></div>
   <div class="card cw" style="padding:16px;"><div style="font-size:24px;margin-bottom:8px;">💡</div><div class="ln">LAD</div><p style="font-size:12px;margin-bottom:8px;">TC pode ser normal! Focos puntiformes em substância branca, corpo caloso, tronco. RM com SWI/DWI/FLAIR é mais sensível.</p><div class="anchor" style="padding:8px;font-size:12px;">"Fio rompido dentro da parede"</div></div>
 </div>
 <div class="tw2"><table><thead><tr><th>Grau LAD</th><th>Localização</th><th>Gravidade</th></tr></thead><tbody>
@@ -594,7 +461,7 @@ tbody td{padding:10px 14px;opacity:.88;}
 <tr><td>Grau II</td><td>Corpo caloso</td><td><span class="tag td">Grave</span></td></tr>
 <tr><td>Grau III</td><td>Tronco encefálico</td><td><span class="tag td">Muito grave</span></td></tr>
 </tbody></table></div>
-<div class="pg"><p><strong>Coma desproporcional à TC?</strong> Pense em LAD. TC limpa não significa cérebro ileso — pode ser fio rompido dentro da parede.</p></div>
+<div class="pg"><p><strong>Coma desproporcional à TC?</strong> Pense em LAD. TC limpa não significa cérebro ileso.</p></div>
 </div>
 
 <h2 class="sh rv">Classificação de Marshall</h2>
@@ -603,12 +470,12 @@ tbody td{padding:10px 14px;opacity:.88;}
 <div class="mg">
   <div class="mc"><div class="mn2">I</div><div class="mname">DIFUSA I</div><div class="md">TC normal. Castelo aparentemente intacto.</div></div>
   <div class="mc"><div class="mn2">II</div><div class="mname">DIFUSA II</div><div class="md">Cisternas presentes, desvio 0-5mm, sem lesão &gt;25mL.</div></div>
-  <div class="mc" style="border-color:rgba(255,209,102,.3);"><div class="mn2" style="color:var(--yellow);">III</div><div class="mname">SWELLING</div><div class="md">Cisternas <strong>comprimidas/ausentes</strong>, desvio 0-5mm. Fosso secou.</div></div>
+  <div class="mc" style="border-color:rgba(255,209,102,.3);"><div class="mn2" style="color:var(--yellow);">III</div><div class="mname">SWELLING</div><div class="md">Cisternas <strong>comprimidas/ausentes</strong>, desvio 0-5mm.</div></div>
   <div class="mc" style="border-color:rgba(244,185,66,.3);"><div class="mn2" style="color:var(--gold);">IV</div><div class="mname">SHIFT</div><div class="md">Desvio <strong>&gt;5mm</strong>. O mastro entortou.</div></div>
   <div class="mc" style="border-color:rgba(230,57,70,.3);"><div class="mn2" style="color:var(--red);">V</div><div class="mname">MASSA EVACUADA</div><div class="md">Lesão expansiva cirurgicamente evacuada.</div></div>
   <div class="mc" style="border-color:rgba(230,57,70,.4);"><div class="mn2" style="color:var(--red);">VI</div><div class="mname">MASSA NÃO EVACUADA</div><div class="md">Lesão hiperdensa ou mista &gt;25mL não evacuada.</div></div>
 </div>
-<div class="pg"><p><strong>Marshall III ≠ desvio grande.</strong> Marshall III: cisternas apagadas + desvio 0-5mm (swelling). Desvio &gt;5mm = Marshall IV (shift). Não confunda!</p></div>
+<div class="pg"><p><strong>Marshall III ≠ desvio grande.</strong> Marshall III: cisternas apagadas + desvio 0-5mm. Desvio &gt;5mm = Marshall IV. Não confunda!</p></div>
 </div>
 
 <h2 class="sh rv">Mapa Visual das Lesões</h2>
@@ -626,41 +493,45 @@ tbody td{padding:10px 14px;opacity:.88;}
 
 <h2 class="sh rv">Pegadinhas de Prova</h2>
 <div class="rv">
-<div class="pg"><p><strong>"Epidural sempre cruza suturas."</strong> → ERRADO. Geralmente NÃO cruza — a dura é aderida nas suturas.</p></div>
-<div class="pg"><p><strong>"Marshall III = desvio grande."</strong> → ERRADO. Marshall III tem cisternas apagadas com desvio 0-5mm. Desvio &gt;5mm = Marshall IV.</p></div>
+<div class="pg"><p><strong>"Epidural sempre cruza suturas."</strong> → ERRADO. Geralmente NÃO cruza.</p></div>
+<div class="pg"><p><strong>"Marshall III = desvio grande."</strong> → ERRADO. Marshall III: cisternas apagadas + desvio 0-5mm. Desvio &gt;5mm = Marshall IV.</p></div>
 <div class="pg"><p><strong>"TC sem hematoma = sem lesão grave."</strong> → ERRADO. LAD pode ter TC normal.</p></div>
-<div class="pg"><p><strong>"Subdural é benigno por ser venoso."</strong> → ERRADO. HSD agudo frequentemente tem lesão cerebral associada.</p></div>
+<div class="pg"><p><strong>"Subdural é benigno por ser venoso."</strong> → ERRADO. HSD agudo tem lesão cerebral associada frequente.</p></div>
 </div>
 
 <h2 class="sh rv">Flashcards — Módulo 3</h2>
 <div class="fcg rv">
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Forma clássica do hematoma epidural na TC?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Biconvexo/lentiforme — "EPI é LENTE"</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Marshall III vs IV — qual a diferença-chave?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>III: cisternas apagadas + desvio 0-5mm | IV: desvio &gt;5mm</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>Coma profundo + TC quase normal. Suspeitar de quê?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Lesão Axonal Difusa — solicitar RM com SWI/DWI/FLAIR</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>O que denuncia subdural isodenso (subagudo)?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Sulcos apagados unilateralmente + desvio discreto + assimetria — "os móveis arrastados"</p></div></div></div>
-  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><p>HED com volume &gt;30cm³ — conduta?</p><span class="fch">toque para ver</span></div><div class="fcb"><p>Cirurgia independentemente do GCS — "EPI 30 corta"</p></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">🩸</div><div class="fc-q">Forma clássica do hematoma epidural na TC?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Biconvexo/lentiforme — <strong>"EPI é LENTE"</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">📊</div><div class="fc-q">Marshall III vs IV — qual a diferença-chave?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>III:</strong> cisternas apagadas + desvio 0-5mm<br><strong>IV:</strong> desvio &gt;5mm</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">😴</div><div class="fc-q">Coma profundo + TC quase normal. Suspeitar de quê?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Lesão Axonal Difusa — solicitar <strong>RM com SWI/DWI/FLAIR</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">👻</div><div class="fc-q">O que denuncia subdural isodenso (subagudo)?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Sulcos apagados unilateralmente + desvio discreto + assimetria — <strong>"os móveis arrastados"</strong></div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-icon">⚔️</div><div class="fc-q">HED com volume &gt;30cm³ — conduta?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Cirurgia independentemente do GCS — <strong>"EPI 30 corta"</strong></div></div></div></div>
 </div>
 
 <h2 class="sh rv">Quiz — Módulo 3</h2>
-<div class="qs rv">
-<div class="qt">🧠 Teste seu conhecimento</div>
-<div class="qq"><div class="qn">QUESTÃO 01</div><div class="qtx">TC mostra coleção hiperdensa biconvexa temporoparietal com fratura temporal. Diagnóstico:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','m3q1')"><span class="ol">A</span>Hematoma subdural agudo</li><li class="opt" onclick="ans(this,'ok','m3q1')"><span class="ol">B</span>Hematoma epidural</li><li class="opt" onclick="ans(this,'ng','m3q1')"><span class="ol">C</span>Hemorragia subaracnóidea</li><li class="opt" onclick="ans(this,'ng','m3q1')"><span class="ol">D</span>Lesão axonal difusa</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> Biconvexo + fratura temporal = Epidural clássico. Artéria meníngea média.</div>
-<div class="fb2 ng2">❌ Biconvexo = epidural. Subdural é crescente/foice e pode cruzar suturas.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 02</div><div class="qtx">Na Marshall, cisternas comprimidas com desvio de 3mm corresponde a:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','m3q2')"><span class="ol">A</span>Marshall I</li><li class="opt" onclick="ans(this,'ng','m3q2')"><span class="ol">B</span>Marshall II</li><li class="opt" onclick="ans(this,'ok','m3q2')"><span class="ol">C</span>Marshall III</li><li class="opt" onclick="ans(this,'ng','m3q2')"><span class="ol">D</span>Marshall IV</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> Marshall III = cisternas comprimidas/ausentes + desvio 0-5mm. O fosso secou — mastro ainda não entortou muito.</div>
-<div class="fb2 ng2">❌ Marshall III: cisternas apagadas + desvio ≤5mm. Marshall IV: desvio &gt;5mm.</div></div>
-
-<div class="qq"><div class="qn">QUESTÃO 03</div><div class="qtx">No LUCAS, a letra "S" representa:</div>
-<ul class="opts"><li class="opt" onclick="ans(this,'ng','m3q5')"><span class="ol">A</span>Sedação do paciente</li><li class="opt" onclick="ans(this,'ok','m3q5')"><span class="ol">B</span>Skull, suturas e seios paranasais</li><li class="opt" onclick="ans(this,'ng','m3q5')"><span class="ol">C</span>Sangue intraventricular</li><li class="opt" onclick="ans(this,'ng','m3q5')"><span class="ol">D</span>Saturação de oxigênio</li></ul>
-<div class="fb2 ok2">✅ <strong>Correto!</strong> S = Skull/Suturas/Seios. Sempre trocar para janela óssea ao final da leitura.</div>
-<div class="fb2 ng2">❌ S = Skull/Suturas/Seios. A janela óssea complementa a leitura do parênquima.</div></div>
+<div class="rv">
+<div class="quiz-q"><div class="q-num">Questão 01</div><div class="q-text">TC mostra coleção hiperdensa biconvexa temporoparietal com fratura temporal. Diagnóstico:</div>
+<div class="q-opts" id="m3q1"><div class="q-opt" onclick="answer('m3q1','A','B')"><span class="opt-letter">A</span>Hematoma subdural agudo</div><div class="q-opt" onclick="answer('m3q1','B','B')"><span class="opt-letter">B</span>Hematoma epidural</div><div class="q-opt" onclick="answer('m3q1','C','B')"><span class="opt-letter">C</span>Hemorragia subaracnóidea</div><div class="q-opt" onclick="answer('m3q1','D','B')"><span class="opt-letter">D</span>Lesão axonal difusa</div></div>
+<div class="q-feedback correct-fb" id="m3q1-fb-correct">✅ <strong>Correto!</strong> Biconvexo + fratura temporal = Epidural clássico. Artéria meníngea média.</div>
+<div class="q-feedback wrong-fb" id="m3q1-fb-wrong">❌ Biconvexo = epidural. Subdural é crescente/foice.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 02</div><div class="q-text">Na Marshall, cisternas comprimidas com desvio de 3mm corresponde a:</div>
+<div class="q-opts" id="m3q2"><div class="q-opt" onclick="answer('m3q2','A','C')"><span class="opt-letter">A</span>Marshall I</div><div class="q-opt" onclick="answer('m3q2','B','C')"><span class="opt-letter">B</span>Marshall II</div><div class="q-opt" onclick="answer('m3q2','C','C')"><span class="opt-letter">C</span>Marshall III</div><div class="q-opt" onclick="answer('m3q2','D','C')"><span class="opt-letter">D</span>Marshall IV</div></div>
+<div class="q-feedback correct-fb" id="m3q2-fb-correct">✅ <strong>Correto!</strong> Marshall III = cisternas comprimidas/ausentes + desvio 0-5mm.</div>
+<div class="q-feedback wrong-fb" id="m3q2-fb-wrong">❌ Marshall III: cisternas apagadas + desvio ≤5mm. Marshall IV: desvio &gt;5mm.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 03</div><div class="q-text">Coma após trauma de alta energia, TC sem hematoma, focos puntiformes no corpo caloso. Suspeita:</div>
+<div class="q-opts" id="m3q3"><div class="q-opt" onclick="answer('m3q3','A','B')"><span class="opt-letter">A</span>Hematoma epidural pequeno</div><div class="q-opt" onclick="answer('m3q3','B','B')"><span class="opt-letter">B</span>Lesão axonal difusa</div><div class="q-opt" onclick="answer('m3q3','C','B')"><span class="opt-letter">C</span>HSA aneurismática</div><div class="q-opt" onclick="answer('m3q3','D','B')"><span class="opt-letter">D</span>Edema vasogênico puro</div></div>
+<div class="q-feedback correct-fb" id="m3q3-fb-correct">✅ <strong>Correto!</strong> Coma + TC quase normal + focos no corpo caloso = LAD. RM com SWI.</div>
+<div class="q-feedback wrong-fb" id="m3q3-fb-wrong">❌ Coma + TC quase normal = LAD. O fio rompeu dentro da parede.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 04</div><div class="q-text">Achado indireto que sugere subdural isodenso (subagudo):</div>
+<div class="q-opts" id="m3q4"><div class="q-opt" onclick="answer('m3q4','A','B')"><span class="opt-letter">A</span>Sulcos simétricos e ventrículos normais</div><div class="q-opt" onclick="answer('m3q4','B','B')"><span class="opt-letter">B</span>Apagamento unilateral de sulcos e desvio discreto sem lesão evidente</div><div class="q-opt" onclick="answer('m3q4','C','B')"><span class="opt-letter">C</span>Cisternas basais amplas bilateralmente</div><div class="q-opt" onclick="answer('m3q4','D','B')"><span class="opt-letter">D</span>Calcificação fisiológica da pineal</div></div>
+<div class="q-feedback correct-fb" id="m3q4-fb-correct">✅ <strong>Correto!</strong> Os "móveis arrastados": sulcos apagados unilateralmente, desvio discreto, assimetria.</div>
+<div class="q-feedback wrong-fb" id="m3q4-fb-wrong">❌ HSD isodenso: sinais indiretos são sulcos apagados unilateralmente + desvio discreto.</div></div>
+<div class="quiz-q"><div class="q-num">Questão 05</div><div class="q-text">No LUCAS, a letra "S" representa:</div>
+<div class="q-opts" id="m3q5"><div class="q-opt" onclick="answer('m3q5','A','B')"><span class="opt-letter">A</span>Sedação do paciente</div><div class="q-opt" onclick="answer('m3q5','B','B')"><span class="opt-letter">B</span>Skull, suturas e seios paranasais</div><div class="q-opt" onclick="answer('m3q5','C','B')"><span class="opt-letter">C</span>Sangue intraventricular</div><div class="q-opt" onclick="answer('m3q5','D','B')"><span class="opt-letter">D</span>Saturação de oxigênio</div></div>
+<div class="q-feedback correct-fb" id="m3q5-fb-correct">✅ <strong>Correto!</strong> S = Skull/Suturas/Seios. Sempre trocar para janela óssea ao final.</div>
+<div class="q-feedback wrong-fb" id="m3q5-fb-wrong">❌ S = Skull/Suturas/Seios. A janela óssea complementa a leitura do parênquima.</div></div>
 </div>
-
-<div class="sig"><div class="sname">Dr. André Rossanno</div><div class="ssub">Base: Brain Trauma Foundation · NICE NG232 · Neuroimagem em TCE · Neurointensivismo moderno</div></div>
+<div class="sig"><div class="sname">Dr. André Rossanno</div><div class="ssub">Brain Trauma Foundation · NICE NG232 · Neuroimagem em TCE</div></div>
 </div><!-- /m3 -->
 
 </main>
@@ -669,10 +540,8 @@ tbody td{padding:10px 14px;opacity:.88;}
 <script>
 window.addEventListener('scroll',()=>{
   const el=document.documentElement;
-  const p=el.scrollTop/(el.scrollHeight-el.clientHeight)*100;
-  document.getElementById('pb').style.width=p+'%';
+  document.getElementById('pb').style.width=(el.scrollTop/(el.scrollHeight-el.clientHeight)*100)+'%';
 });
-
 const answered={};
 function showM(id,btn){
   document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
@@ -683,13 +552,11 @@ function showM(id,btn){
   buildSB(id);
   setTimeout(triggerRv,50);
 }
-
 const sbData={
-  m1:[{t:'Fisiopatologia',ls:['Conceito Central','Lesão Primária vs Secundária','Monro-Kellie','PPC = PAM − PIC','CO₂ e Vasos','Edema e Herniação','Pegadinhas','Quiz']}],
-  m2:[{t:'Semiologia',ls:['GCS','Abertura Ocular','Resposta Verbal','Resposta Motora','Classificação','Pupilas','Lateralização','Red Flags','Pegadinhas','Quiz']}],
-  m3:[{t:'Imagem',ls:['Protocolo LUCAS','Densidades na TC','Hematoma Epidural','Hematoma Subdural','Contusão / HSA / LAD','Marshall','Mapa das Lesões','Pegadinhas','Quiz']}]
+  m1:[{t:'Fisiopatologia',ls:['Lesão Primária vs Secundária','Monro-Kellie','PPC = PAM − PIC','CO₂ e Vasos','Edema e Herniação','Pegadinhas','Flashcards','Quiz']}],
+  m2:[{t:'Semiologia',ls:['GCS Completo','Abertura Ocular','Resposta Verbal','Resposta Motora','Classificação Gravidade','Pupilas','Lateralização','Red Flags','Fratura de Base','Pegadinhas','Flashcards','Quiz']}],
+  m3:[{t:'Imagem',ls:['Protocolo LUCAS','Densidades na TC','Hematoma Epidural','Hematoma Subdural','Contusão / HSA / LAD','Classificação Marshall','Mapa das Lesões','Pegadinhas','Flashcards','Quiz']}]
 };
-
 function buildSB(mid){
   const sb=document.getElementById('sb');
   sb.innerHTML='';
@@ -699,7 +566,6 @@ function buildSB(mid){
     sb.appendChild(d);
   });
 }
-
 function triggerRv(){
   const items=document.querySelectorAll('.mpanel.active .rv');
   const obs=new IntersectionObserver(entries=>{
@@ -707,25 +573,24 @@ function triggerRv(){
   },{threshold:0.06});
   items.forEach(r=>{r.classList.remove('vs');obs.observe(r);});
 }
-
-function ans(el,result,qid){
+function answer(qid,chosen,correct){
   if(answered[qid])return;
   answered[qid]=true;
-  const par=el.closest('.qq');
-  par.querySelectorAll('.opt').forEach(o=>o.classList.add('dis'));
-  el.classList.add(result==='ok'?'ok':'ng');
-  const okfb=par.querySelector('.fb2.ok2');
-  const ngfb=par.querySelector('.fb2.ng2');
-  if(result==='ok'){okfb.classList.add('show');}
-  else{
-    ngfb.classList.add('show');
-    par.querySelectorAll('.opt').forEach(o=>{
-      const oc=o.getAttribute('onclick')||'';
-      if(oc.includes("'ok'"))o.classList.add('ok');
-    });
+  const opts=document.querySelectorAll('#'+qid+' .q-opt');
+  const letters=['A','B','C','D'];
+  opts.forEach((o,i)=>{
+    o.classList.add('disabled');
+    if(letters[i]===correct)o.classList.add('correct');
+    else if(letters[i]===chosen&&chosen!==correct)o.classList.add('wrong');
+  });
+  if(chosen===correct){
+    const fb=document.getElementById(qid+'-fb-correct');
+    if(fb)fb.classList.add('show');
+  }else{
+    const fb=document.getElementById(qid+'-fb-wrong');
+    if(fb)fb.classList.add('show');
   }
 }
-
 buildSB('m1');
 triggerRv();
 </script>
