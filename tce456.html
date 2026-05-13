@@ -7,355 +7,258 @@
 <meta name="description" content="TCE Parte 2: Conduta, Casos Integradores e Cenários OSCE para TEC 2026 — Método André Rossanno">
 <meta property="og:title" content="TCE Parte 2 — Conduta, Casos & OSCE | Dr. André Rossanno">
 <meta property="og:description" content="Material TEC 2026 de alta performance sobre Traumatismo Cranioencefálico — Conduta, Casos Clínicos e Simulação OSCE">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0B2545;--teal:#1282A2;--ocean:#034078;
-  --red:#E63946;--amber:#F4A261;--green:#2DC653;
-  --gold:#F4C543;--white:#F0F4F8;--muted:#8899AA;
-  --card:#0D2B52;--border:rgba(18,130,162,.25);
-  --accent-em:#FF6B6B;--accent-osce:#C77DFF;
-  --font-display:'Syne',sans-serif;
-  --font-body:'IBM Plex Sans',sans-serif;
-  --font-mono:'IBM Plex Mono',monospace;
-  --font-sig:'Dancing Script',cursive;
+  --navy:#0B2545;--teal:#1282A2;--gold:#F4B942;
+  --red:#E63946;--green:#2DC653;--yellow:#FFD166;
+  --white:#F0F4F8;--gray:#8899AA;
+  --card-bg:rgba(18,130,162,0.08);--border:rgba(18,130,162,.25);
+  --osce:#C77DFF;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
 body{
   background:var(--navy);color:var(--white);
-  font-family:var(--font-body);line-height:1.7;
+  font-family:'IBM Plex Sans',sans-serif;line-height:1.7;
   background-image:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(18,130,162,.12) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 80% at 80% 90%,rgba(3,64,120,.18) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 90%,rgba(11,37,69,.18) 0%,transparent 60%),
     repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(18,130,162,.04) 40px),
     repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(18,130,162,.04) 40px);
   min-height:100vh;
 }
-/* READING PROGRESS */
-#pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--red),var(--amber),var(--teal));z-index:9999;transition:width .1s linear}
-/* TOP NAV */
+#pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:9999;transition:width .1s linear}
 #topnav{
   position:fixed;top:3px;left:0;right:0;z-index:900;
-  background:rgba(11,37,69,.95);backdrop-filter:blur(12px);
+  background:rgba(11,37,69,.96);backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:0;padding:0 1rem;
-  height:52px;
+  display:flex;align-items:center;gap:0;padding:0 1rem;height:52px;
 }
-.nav-logo{font-family:var(--font-display);font-size:.8rem;font-weight:900;color:var(--teal);letter-spacing:.08em;margin-right:auto;white-space:nowrap}
+.nav-logo{font-family:'Syne',sans-serif;font-size:.8rem;font-weight:900;color:var(--teal);letter-spacing:.08em;margin-right:auto;white-space:nowrap}
 .nav-tabs{display:flex;gap:4px}
 .nav-tab{
   padding:.4rem .85rem;border-radius:6px;font-size:.78rem;font-weight:600;
-  font-family:var(--font-mono);letter-spacing:.04em;cursor:pointer;
-  border:1px solid transparent;transition:all .2s;text-decoration:none;color:var(--muted);
+  font-family:'IBM Plex Mono',monospace;letter-spacing:.04em;cursor:pointer;
+  border:1px solid transparent;transition:all .2s;text-decoration:none;color:var(--gray);background:transparent;
 }
 .nav-tab:hover,.nav-tab.active{background:rgba(18,130,162,.18);border-color:var(--teal);color:var(--white)}
-.nav-tab.osce{color:var(--accent-osce)}
-.nav-tab.osce:hover,.nav-tab.osce.active{background:rgba(199,125,255,.12);border-color:var(--accent-osce);color:var(--accent-osce)}
+.nav-tab.osce{color:var(--osce)}
+.nav-tab.osce:hover,.nav-tab.osce.active{background:rgba(199,125,255,.12);border-color:var(--osce);color:var(--osce)}
 .nav-part{
   margin-left:.75rem;padding:.3rem .7rem;border-radius:5px;
-  font-size:.72rem;font-family:var(--font-mono);font-weight:500;
-  border:1px solid var(--border);color:var(--muted);text-decoration:none;
+  font-size:.72rem;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  border:1px solid var(--border);color:var(--gray);text-decoration:none;
   transition:all .2s;white-space:nowrap;
 }
 .nav-part:hover{color:var(--teal);border-color:var(--teal)}
-/* SIDEBAR */
 #sb{
   position:fixed;left:0;top:52px;bottom:0;width:220px;
   overflow-y:auto;padding:1.2rem .8rem;z-index:800;
-  background:rgba(11,37,69,.85);border-right:1px solid var(--border);
-  scrollbar-width:thin;scrollbar-color:var(--teal) transparent;
+  background:rgba(11,37,69,.92);border-right:1px solid var(--border);
 }
 .sb-section{margin-bottom:1.2rem}
-.sb-title{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.5rem;padding-left:.25rem}
-.sb-link{
-  display:block;padding:.32rem .6rem;border-radius:5px;font-size:.75rem;
-  color:var(--muted);text-decoration:none;transition:all .18s;border-left:2px solid transparent;
-  line-height:1.3;
-}
+.sb-title{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--gray);text-transform:uppercase;margin-bottom:.5rem;padding-left:.25rem}
+.sb-link{display:block;padding:.32rem .6rem;border-radius:5px;font-size:.75rem;color:var(--gray);text-decoration:none;transition:all .18s;border-left:2px solid transparent;line-height:1.3}
 .sb-link:hover{color:var(--white);background:rgba(18,130,162,.12)}
 .sb-link.gold{border-left-color:var(--gold);color:var(--gold)}
-.sb-link.osce-link{color:var(--accent-osce)}
+.sb-link.osce-link{color:var(--osce)}
 .sb-link.osce-link:hover{background:rgba(199,125,255,.1)}
-/* MAIN */
 #main{margin-left:220px;padding-top:52px}
 .module{display:none;padding:2rem 2.5rem 4rem}
 .module.active{display:block}
-/* HERO */
 .hero{
   position:relative;overflow:hidden;border-radius:16px;
   padding:3.5rem 2.5rem;margin-bottom:3rem;
-  background:linear-gradient(135deg,rgba(3,64,120,.9) 0%,rgba(11,37,69,.95) 100%);
+  background:linear-gradient(135deg,rgba(18,130,162,.15) 0%,rgba(11,37,69,.95) 100%);
   border:1px solid var(--border);
 }
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 85% 50%,rgba(18,130,162,.18) 0%,transparent 60%);
-}
-.hero-kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.75rem;position:relative}
-.hero-title{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.1;margin-bottom:1rem;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 50%,rgba(18,130,162,.18) 0%,transparent 60%)}
+.hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.75rem;position:relative}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.1;margin-bottom:1rem;position:relative}
 .hero-title .accent{color:var(--teal)}
 .hero-title .danger{color:var(--red)}
-.hero-title .osce-col{color:var(--accent-osce)}
-.hero-quote{
-  font-size:1rem;font-style:italic;color:rgba(240,244,248,.75);
-  border-left:3px solid var(--teal);padding-left:1rem;max-width:700px;
-  position:relative;line-height:1.6;margin-top:1.2rem;
-}
+.hero-title .osce-col{color:var(--osce)}
+.hero-quote{font-size:1rem;font-style:italic;color:rgba(240,244,248,.75);border-left:3px solid var(--teal);padding-left:1rem;max-width:700px;position:relative;line-height:1.6;margin-top:1.2rem}
 .hero-quote.red-border{border-left-color:var(--red)}
-.hero-quote.osce-border{border-left-color:var(--accent-osce)}
-/* SECTION TITLES */
+.hero-quote.osce-border{border-left-color:var(--osce)}
 .sec{margin-bottom:3rem}
-.sec-kicker{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.4rem}
-.sec-title{font-family:var(--font-display);font-size:1.5rem;font-weight:900;margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:.5rem}
+.sec-kicker{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;color:var(--teal);text-transform:uppercase;margin-bottom:.4rem}
+.sec-title{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;margin-bottom:1rem;border-bottom:1px solid var(--border);padding-bottom:.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
 .sec-title .red{color:var(--red)}
 .sec-title .green{color:var(--green)}
-.sec-title .amber{color:var(--amber)}
 .sec-title .gold{color:var(--gold)}
-.sec-title .osce{color:var(--accent-osce)}
-/* CARDS GRID */
+.sec-title .osce{color:var(--osce)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:12px;padding:1.25rem;transition:transform .2s,border-color .2s;
-}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.25rem;transition:transform .2s,border-color .2s}
 .card:hover{transform:translateY(-2px);border-color:var(--teal)}
 .card.danger{border-top:3px solid var(--red)}
 .card.protect{border-top:3px solid var(--green)}
 .card.trap{border-top:3px solid var(--gold)}
-.card.osce-card{border-top:3px solid var(--accent-osce)}
-.card h4{font-family:var(--font-display);font-size:1rem;font-weight:800;margin-bottom:.5rem}
+.card.osce-card{border-top:3px solid var(--osce)}
+.card h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;margin-bottom:.5rem}
 .card h4 .r{color:var(--red)}
 .card h4 .g{color:var(--green)}
-.card h4 .a{color:var(--amber)}
-.card h4 .t{color:var(--gold)}
-.card h4 .o{color:var(--accent-osce)}
+.card h4 .a,.card h4 .t{color:var(--gold)}
+.card h4 .o{color:var(--osce)}
 .card p,.card li{font-size:.875rem;color:rgba(240,244,248,.85);line-height:1.55}
 .card ul{padding-left:1.1rem}
-/* METAS TABLE */
 .meta-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem}
-.meta-table th{background:rgba(18,130,162,.2);color:var(--teal);padding:.6rem 1rem;text-align:left;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;border:1px solid var(--border)}
+.meta-table th{background:rgba(18,130,162,.2);color:var(--teal);padding:.6rem 1rem;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;border:1px solid var(--border)}
 .meta-table td{padding:.55rem 1rem;border:1px solid var(--border);color:rgba(240,244,248,.88)}
 .meta-table tr:nth-child(even) td{background:rgba(255,255,255,.03)}
-.meta-table .val{font-family:var(--font-mono);color:var(--teal);font-weight:600}
-.meta-table .warn{color:var(--amber)}
+.meta-table .val{font-family:'IBM Plex Mono',monospace;color:var(--teal);font-weight:600}
+.meta-table .warn{color:var(--gold)}
 .meta-table .danger-cell{color:var(--red);font-weight:600}
-/* STAIRCASE PIC */
 .staircase{display:flex;flex-direction:column;gap:.5rem;margin:1.5rem 0}
-.stair{
-  display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;
-  border-radius:10px;border:1px solid var(--border);position:relative;
-  transition:all .2s;cursor:default;
-}
+.stair{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:10px;border:1px solid var(--border);transition:all .2s;cursor:default}
 .stair:hover{transform:translateX(6px)}
-.stair-num{
-  font-family:var(--font-display);font-size:1.5rem;font-weight:900;
-  min-width:2.5rem;text-align:center;
-}
-.stair-body h4{font-family:var(--font-display);font-size:.95rem;font-weight:800;margin-bottom:.2rem}
+.stair-num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;min-width:2.5rem;text-align:center}
+.stair-body h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:900;margin-bottom:.2rem}
 .stair-body p{font-size:.82rem;color:rgba(240,244,248,.78);line-height:1.4}
 .stair.s1{background:rgba(18,130,162,.1);margin-left:0}
-.stair.s2{background:rgba(244,162,97,.08);margin-left:1.5rem}
+.stair.s2{background:rgba(244,185,66,.08);margin-left:1.5rem}
 .stair.s3{background:rgba(230,57,70,.1);margin-left:3rem}
 .stair.s4{background:rgba(230,57,70,.2);margin-left:4.5rem;border-color:var(--red)}
 .stair.s1 .stair-num{color:var(--teal)}
-.stair.s2 .stair-num{color:var(--amber)}
+.stair.s2 .stair-num{color:var(--gold)}
 .stair.s3 .stair-num,.stair.s4 .stair-num{color:var(--red)}
-/* MNEMONIC BOX */
 .mnem{
-  background:linear-gradient(135deg,rgba(3,64,120,.6),rgba(18,130,162,.1));
-  border:1px solid rgba(18,130,162,.4);border-left:4px solid var(--teal);
-  border-radius:10px;padding:1.25rem 1.5rem;margin:1.2rem 0;
+  background:linear-gradient(135deg,rgba(18,130,162,.12),rgba(244,185,66,.05));
+  border:1px solid rgba(18,130,162,.4);border-radius:12px;padding:1.25rem 1.5rem;margin:1.2rem 0;
+  position:relative;
 }
-.mnem.red-mnem{border-left-color:var(--red);background:linear-gradient(135deg,rgba(230,57,70,.08),rgba(11,37,69,.6))}
-.mnem.gold-mnem{border-left-color:var(--gold);background:linear-gradient(135deg,rgba(244,197,67,.08),rgba(11,37,69,.6))}
-.mnem.green-mnem{border-left-color:var(--green);background:linear-gradient(135deg,rgba(45,198,83,.08),rgba(11,37,69,.6))}
-.mnem.osce-mnem{border-left-color:var(--accent-osce);background:linear-gradient(135deg,rgba(199,125,255,.08),rgba(11,37,69,.6))}
-.mnem-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;color:var(--teal)}
+.mnem::before{content:'MNEMÔNICO';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--teal);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px}
+.mnem.red-mnem{border-left:4px solid var(--red);background:linear-gradient(135deg,rgba(230,57,70,.08),rgba(11,37,69,.6))}
+.mnem.red-mnem::before{color:var(--red)}
+.mnem.gold-mnem{border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(244,185,66,.08),rgba(11,37,69,.6))}
+.mnem.gold-mnem::before{color:var(--gold)}
+.mnem.green-mnem{border-left:4px solid var(--green);background:linear-gradient(135deg,rgba(45,198,83,.08),rgba(11,37,69,.6))}
+.mnem.green-mnem::before{color:var(--green)}
+.mnem.osce-mnem{border-left:4px solid var(--osce);background:linear-gradient(135deg,rgba(199,125,255,.08),rgba(11,37,69,.6))}
+.mnem.osce-mnem::before{color:var(--osce)}
+.mnem-label{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem;color:var(--teal)}
 .mnem-label.red-l{color:var(--red)}
 .mnem-label.gold-l{color:var(--gold)}
 .mnem-label.green-l{color:var(--green)}
-.mnem-label.osce-l{color:var(--accent-osce)}
+.mnem-label.osce-l{color:var(--osce)}
 .mnem p{font-size:.95rem;line-height:1.6}
 .mnem strong{color:var(--teal)}
 .mnem.red-mnem strong{color:var(--red)}
 .mnem.gold-mnem strong{color:var(--gold)}
 .mnem.green-mnem strong{color:var(--green)}
-.mnem.osce-mnem strong{color:var(--accent-osce)}
-/* ACCORDION */
+.mnem.osce-mnem strong{color:var(--osce)}
 .acc{margin:1rem 0}
 .acc-item{border:1px solid var(--border);border-radius:10px;margin-bottom:.5rem;overflow:hidden}
-.acc-hdr{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 1.25rem;cursor:pointer;font-weight:600;font-size:.9rem;
-  background:rgba(255,255,255,.03);transition:background .2s;
-  user-select:none;
-}
+.acc-hdr{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;cursor:pointer;font-weight:600;font-size:.9rem;background:rgba(255,255,255,.03);transition:background .2s;user-select:none}
 .acc-hdr:hover{background:rgba(18,130,162,.1)}
 .acc-hdr.open{background:rgba(18,130,162,.15);color:var(--teal)}
 .acc-hdr.red-hdr.open{background:rgba(230,57,70,.12);color:var(--red)}
-.acc-hdr.gold-hdr.open{background:rgba(244,197,67,.1);color:var(--gold)}
-.acc-hdr.osce-hdr.open{background:rgba(199,125,255,.12);color:var(--accent-osce)}
+.acc-hdr.gold-hdr.open{background:rgba(244,185,66,.1);color:var(--gold)}
+.acc-hdr.osce-hdr.open{background:rgba(199,125,255,.12);color:var(--osce)}
 .acc-arrow{font-size:1.1rem;transition:transform .25s;flex-shrink:0}
 .acc-hdr.open .acc-arrow{transform:rotate(180deg)}
 .acc-body{display:none;padding:1rem 1.25rem;font-size:.875rem;line-height:1.65;color:rgba(240,244,248,.85)}
 .acc-body.show{display:block}
-/* SCENARIO BANNER */
-.scene-banner{
-  position:relative;overflow:hidden;border-radius:14px;
-  padding:2.5rem 2rem;margin-bottom:2rem;
-  background:linear-gradient(135deg,rgba(230,57,70,.15),rgba(11,37,69,.95));
-  border:1px solid rgba(230,57,70,.3);
-}
-.scene-banner.osce-scene{
-  background:linear-gradient(135deg,rgba(199,125,255,.12),rgba(11,37,69,.95));
-  border-color:rgba(199,125,255,.3);
-}
-.scene-banner::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 90% 10%,rgba(230,57,70,.12),transparent 60%);
-}
-.scene-banner.osce-scene::before{
-  background:radial-gradient(circle at 90% 10%,rgba(199,125,255,.12),transparent 60%);
-}
-.scene-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:.5rem;position:relative}
-.scene-banner.osce-scene .scene-label{color:var(--accent-osce)}
-.scene-title{font-family:var(--font-display);font-size:1.4rem;font-weight:900;position:relative;line-height:1.2;margin-bottom:.75rem}
-.scene-desc{font-size:.9rem;color:rgba(240,244,248,.8);position:relative;line-height:1.6}
-/* VITALS GRID */
+.scene-banner{position:relative;overflow:hidden;border-radius:14px;padding:2.5rem 2rem;margin-bottom:2rem;background:linear-gradient(135deg,rgba(230,57,70,.15),rgba(11,37,69,.95));border:1px solid rgba(230,57,70,.3)}
+.scene-banner.osce-scene{background:linear-gradient(135deg,rgba(199,125,255,.12),rgba(11,37,69,.95));border-color:rgba(199,125,255,.3)}
+.scene-label{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:.5rem}
+.scene-banner.osce-scene .scene-label{color:var(--osce)}
+.scene-title{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;line-height:1.2;margin-bottom:.75rem}
+.scene-desc{font-size:.9rem;color:rgba(240,244,248,.8);line-height:1.6}
 .vitals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:1.25rem 0}
-.vital{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:10px;padding:.9rem 1rem;text-align:center;
-}
+.vital{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;text-align:center}
 .vital.ok{border-top:3px solid var(--green)}
-.vital.warn{border-top:3px solid var(--amber)}
+.vital.warn{border-top:3px solid var(--gold)}
 .vital.crit{border-top:3px solid var(--red)}
-.vital-label{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
-.vital-val{font-family:var(--font-display);font-size:1.4rem;font-weight:900}
+.vital-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:.25rem}
+.vital-val{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900}
 .vital.ok .vital-val{color:var(--green)}
-.vital.warn .vital-val{color:var(--amber)}
+.vital.warn .vital-val{color:var(--gold)}
 .vital.crit .vital-val{color:var(--red)}
-.vital-sub{font-size:.7rem;color:var(--muted);margin-top:.15rem}
-/* TIMELINE */
+.vital-sub{font-size:.7rem;color:var(--gray);margin-top:.15rem}
 .timeline{display:flex;flex-direction:column;gap:.75rem;margin:1.25rem 0;position:relative}
 .timeline::before{content:'';position:absolute;left:1.1rem;top:1.5rem;bottom:1.5rem;width:2px;background:linear-gradient(to bottom,var(--teal),var(--red));opacity:.4}
 .tl-item{display:flex;gap:1rem;align-items:flex-start}
-.tl-dot{
-  min-width:2.2rem;height:2.2rem;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-mono);font-size:.6rem;font-weight:700;
-  flex-shrink:0;border:2px solid;
-}
+.tl-dot{min-width:2.2rem;height:2.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:700;flex-shrink:0;border:2px solid}
 .tl-dot.safe{background:rgba(18,130,162,.2);border-color:var(--teal);color:var(--teal)}
-.tl-dot.warn{background:rgba(244,162,97,.15);border-color:var(--amber);color:var(--amber)}
+.tl-dot.warn{background:rgba(244,185,66,.15);border-color:var(--gold);color:var(--gold)}
 .tl-dot.crit{background:rgba(230,57,70,.2);border-color:var(--red);color:var(--red)}
 .tl-content h5{font-weight:700;font-size:.9rem;margin-bottom:.25rem}
 .tl-content p{font-size:.82rem;color:rgba(240,244,248,.78);line-height:1.45}
-/* CHECKLIST */
 .checklist{margin:1.25rem 0}
-.ck-item{
-  display:flex;align-items:flex-start;gap:.85rem;
-  padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;
-  margin-bottom:.4rem;cursor:pointer;transition:all .2s;
-  background:rgba(255,255,255,.02);
-}
+.ck-item{display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:.4rem;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.02)}
 .ck-item:hover{background:rgba(18,130,162,.08)}
 .ck-item.checked{background:rgba(45,198,83,.07);border-color:rgba(45,198,83,.3)}
-.ck-box{
-  width:1.3rem;height:1.3rem;min-width:1.3rem;border-radius:4px;
-  border:2px solid var(--border);display:flex;align-items:center;
-  justify-content:center;transition:all .2s;margin-top:.1rem;
-}
+.ck-box{width:1.3rem;height:1.3rem;min-width:1.3rem;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:.1rem}
 .ck-item.checked .ck-box{background:var(--green);border-color:var(--green)}
 .ck-check{display:none;font-size:.85rem;color:white}
 .ck-item.checked .ck-check{display:block}
 .ck-text{font-size:.875rem;line-height:1.45}
-.ck-pts{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);margin-left:auto;flex-shrink:0;padding-top:.15rem}
-.score-display{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:1.25rem;text-align:center;margin-top:1rem;
-}
-.score-num{font-family:var(--font-display);font-size:2.5rem;font-weight:900;margin:.25rem 0}
+.ck-pts{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--gray);margin-left:auto;flex-shrink:0;padding-top:.15rem}
+.score-display{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center;margin-top:1rem}
+.score-num{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:900;margin:.25rem 0}
 .score-num.high{color:var(--green)}
-.score-num.mid{color:var(--amber)}
+.score-num.mid{color:var(--gold)}
 .score-num.low{color:var(--red)}
-.score-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;color:var(--muted)}
-/* FLASHCARDS */
+.score-label{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:var(--gray)}
+.score-bar{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin:1rem 0}
+.score-fill{height:100%;border-radius:4px;transition:width .4s ease,background .4s ease}
 .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1rem 0}
-.fc{perspective:1000px;cursor:pointer;min-height:160px}
-.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s}
-.fc:hover .fc-inner,.fc.flip .fc-inner{transform:rotateY(180deg)}
-.fc-front,.fc-back{
-  position:absolute;inset:0;backface-visibility:hidden;
-  border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;justify-content:center;
-}
-.fc-front{background:var(--card);border:1px solid var(--border)}
-.fc-back{background:linear-gradient(135deg,rgba(3,64,120,.9),rgba(18,130,162,.2));transform:rotateY(180deg);border:1px solid var(--teal)}
-.fc-front .fc-q{font-size:.9rem;font-weight:600;line-height:1.45}
+.fc{perspective:1000px;cursor:pointer;min-height:170px}
+.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.fc.flip .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;justify-content:center}
+.fc-front{background:linear-gradient(135deg,rgba(18,130,162,.15),rgba(11,37,69,.8));border:1px solid var(--border)}
+.fc-back{background:linear-gradient(135deg,rgba(18,130,162,.25),rgba(11,37,69,.9));transform:rotateY(180deg);border:1px solid var(--teal)}
+.fc-front .fc-q{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;line-height:1.45}
 .fc-back .fc-a{font-size:.85rem;line-height:1.5;color:rgba(240,244,248,.9)}
-.fc-hint{font-family:var(--font-mono);font-size:.6rem;color:var(--muted);letter-spacing:.08em;margin-top:.5rem}
-/* QUIZ */
+.fc-back .fc-a strong{color:var(--gold)}
+.fc-hint{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--gray);letter-spacing:.08em;margin-top:.5rem}
 .quiz{margin:2rem 0}
-.q-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
-.q-num{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;color:var(--teal);margin-bottom:.5rem}
-.q-text{font-size:.95rem;font-weight:600;margin-bottom:1rem;line-height:1.5}
+.q-item{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
+.q-num{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--teal);margin-bottom:.5rem}
+.q-text{font-size:.95rem;font-weight:600;margin-bottom:1rem;line-height:1.5;color:var(--white)}
 .q-opts{display:flex;flex-direction:column;gap:.5rem}
-.q-opt{
-  padding:.75rem 1rem;border-radius:8px;border:1px solid var(--border);
-  cursor:pointer;font-size:.875rem;transition:all .2s;
-  background:rgba(255,255,255,.03);display:flex;gap:.75rem;align-items:flex-start;
-}
+.q-opt{padding:.75rem 1rem;border-radius:8px;border:1px solid var(--border);cursor:pointer;font-size:.875rem;transition:all .2s;background:rgba(255,255,255,.03);display:flex;gap:.75rem;align-items:flex-start}
 .q-opt:hover:not(.answered){background:rgba(18,130,162,.12);border-color:var(--teal)}
-.q-opt.correct{background:rgba(45,198,83,.1);border-color:var(--green);color:var(--green)}
-.q-opt.wrong{background:rgba(230,57,70,.1);border-color:var(--red);color:var(--red)}
+.q-opt.correct{background:rgba(45,198,83,.15);border-color:var(--green);color:var(--green)}
+.q-opt.wrong{background:rgba(230,57,70,.15);border-color:var(--red);color:var(--red)}
 .q-opt.reveal{background:rgba(45,198,83,.06);border-color:rgba(45,198,83,.3)}
-.q-letter{font-family:var(--font-mono);font-weight:700;min-width:1.25rem;flex-shrink:0}
+.q-letter{font-family:'IBM Plex Mono',monospace;font-weight:700;min-width:1.25rem;flex-shrink:0;color:var(--teal)}
+.q-opt.correct .q-letter{color:var(--green)}
+.q-opt.wrong .q-letter{color:var(--red)}
 .q-feedback{display:none;margin-top:1rem;padding:.85rem 1rem;border-radius:8px;font-size:.85rem;line-height:1.5}
 .q-feedback.ok{background:rgba(45,198,83,.1);border:1px solid rgba(45,198,83,.3);color:rgba(240,244,248,.9)}
 .q-feedback.ng{background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);color:rgba(240,244,248,.9)}
-.q-trap{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:6px;font-size:.8rem;background:rgba(244,197,67,.08);border:1px solid rgba(244,197,67,.25);color:var(--gold)}
-/* COMPARE TABLE */
+.q-trap{display:none;margin-top:.6rem;padding:.65rem .9rem;border-radius:6px;font-size:.8rem;background:rgba(244,185,66,.08);border:1px solid rgba(244,185,66,.25);color:var(--gold)}
 .comp-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.85rem}
-.comp-table th{padding:.7rem 1rem;text-align:left;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.08em;border:1px solid var(--border)}
+.comp-table th{padding:.7rem 1rem;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;border:1px solid var(--border)}
 .comp-table td{padding:.6rem 1rem;border:1px solid var(--border);color:rgba(240,244,248,.85)}
 .comp-table tr:nth-child(even) td{background:rgba(255,255,255,.025)}
 .comp-table .th-hed{background:rgba(230,57,70,.15);color:var(--red)}
-.comp-table .th-lad{background:rgba(199,125,255,.12);color:var(--accent-osce)}
+.comp-table .th-lad{background:rgba(199,125,255,.12);color:var(--osce)}
 .comp-table .th-crit{background:rgba(18,130,162,.15);color:var(--teal)}
-/* PEGADINHAS */
 .peg-list{display:flex;flex-direction:column;gap:.75rem;margin:1rem 0}
-.peg-item{
-  background:rgba(244,197,67,.06);border:1px solid rgba(244,197,67,.25);
-  border-left:3px solid var(--gold);border-radius:8px;padding:.9rem 1.1rem;
-  font-size:.875rem;line-height:1.5;
-}
+.peg-item{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.25);border-left:3px solid var(--gold);border-radius:8px;padding:.9rem 1.1rem;font-size:.875rem;line-height:1.5}
 .peg-item strong{color:var(--gold)}
-/* REVIEW */
 .review-steps{counter-reset:step;display:flex;flex-direction:column;gap:.6rem;margin:1rem 0}
-.review-step{
-  display:flex;align-items:flex-start;gap:.9rem;
-  padding:.85rem 1rem;background:rgba(255,255,255,.03);
-  border:1px solid var(--border);border-radius:8px;
-}
-.review-step::before{
-  counter-increment:step;content:counter(step);
-  font-family:var(--font-display);font-size:1.2rem;font-weight:900;
-  color:var(--teal);min-width:1.8rem;text-align:center;flex-shrink:0;line-height:1;
-}
+.review-step{display:flex;align-items:flex-start;gap:.9rem;padding:.85rem 1rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px}
+.review-step::before{counter-increment:step;content:counter(step);font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:900;color:var(--teal);min-width:1.8rem;text-align:center;flex-shrink:0;line-height:1}
 .review-step p{font-size:.875rem;color:rgba(240,244,248,.85);line-height:1.45}
-/* SIGNATURE */
-.sname{font-family:var(--font-sig);font-size:1.6rem;color:var(--teal);margin:2rem 0 .25rem}
+.case-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:2rem}
+.case-header{padding:1.5rem 1.5rem 1rem;background:linear-gradient(135deg,rgba(18,130,162,.15),rgba(11,37,69,.95));border-bottom:1px solid var(--border)}
+.case-num{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:.4rem}
+.case-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:900;margin-bottom:.5rem}
+.case-body{padding:1.25rem 1.5rem}
+.case-scenario{font-style:italic;color:rgba(240,244,248,.82);line-height:1.6;border-left:2px solid var(--red);padding-left:.9rem;margin-bottom:1rem;font-size:.9rem}
+.sname{font-family:'Dancing Script',cursive;font-size:1.6rem;color:var(--teal);margin:2rem 0 .25rem}
 .sig-block{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
-.sig-block p{font-size:.78rem;color:var(--muted);font-family:var(--font-mono)}
-/* ANIMATIONS */
+.sig-block p{font-size:.78rem;color:var(--gray);font-family:'IBM Plex Mono',monospace}
 .rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
 .rv.vs{opacity:1;transform:translateY(0)}
-/* MOBILE */
 @media(max-width:768px){
   #sb{display:none}
   #main{margin-left:0}
@@ -366,36 +269,13 @@ body{
   .stair.s2{margin-left:.75rem}
   .stair.s3{margin-left:1.5rem}
   .stair.s4{margin-left:2.25rem}
-  #topnav{gap:2px;padding:0 .5rem}
   .nav-logo{display:none}
   .nav-tab{padding:.35rem .6rem;font-size:.7rem}
 }
-/* CASE CARDS */
-.case-card{
-  background:var(--card);border:1px solid var(--border);border-radius:14px;
-  overflow:hidden;margin-bottom:2rem;
-}
-.case-header{
-  padding:1.5rem 1.5rem 1rem;
-  background:linear-gradient(135deg,rgba(3,64,120,.8),rgba(11,37,69,.95));
-  border-bottom:1px solid var(--border);
-}
-.case-num{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:.4rem}
-.case-title{font-family:var(--font-display);font-size:1.15rem;font-weight:900;margin-bottom:.5rem}
-.case-body{padding:1.25rem 1.5rem}
-.case-scenario{
-  font-style:italic;color:rgba(240,244,248,.82);line-height:1.6;
-  border-left:2px solid var(--red);padding-left:.9rem;margin-bottom:1rem;font-size:.9rem;
-}
-/* CHECKLIST SCORE BAR */
-.score-bar{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin:1rem 0}
-.score-fill{height:100%;border-radius:4px;transition:width .4s ease,background .4s ease}
 </style>
 </head>
 <body>
 <div id="pb"></div>
-
-<!-- TOP NAV -->
 <nav id="topnav">
   <span class="nav-logo">TCE · PARTE 2</span>
   <div class="nav-tabs">
@@ -404,77 +284,49 @@ body{
     <button class="nav-tab osce" onclick="showMod('osce1',this)">OSCE 1</button>
     <button class="nav-tab osce" onclick="showMod('osce2',this)">OSCE 2</button>
   </div>
-  <a class="nav-part" href="tce_modulos_123.html">← Parte 1</a>
+  <a class="nav-part" href="tce123.html">← Parte 1</a>
 </nav>
-
-<!-- SIDEBAR -->
 <aside id="sb"></aside>
-
-<!-- MAIN CONTENT -->
 <main id="main">
 
-<!-- ══════════════════════════════════════════ MÓDULO 4 ══ -->
+<!-- ══ MÓDULO 4 ══ -->
 <section id="m4" class="module active">
 <div class="hero">
   <div class="hero-kicker">Módulo 4 · TEC 2026</div>
   <h1 class="hero-title">Conduta no TCE:<br><span class="danger">Proteger</span> o que ainda <span class="accent">pode ser salvo</span></h1>
   <p class="hero-quote red-border">"No TCE, a conduta não começa no bisturi nem na tomografia; começa quando o médico protege oxigênio, pressão e espaço antes que o cérebro perca a voz."</p>
 </div>
-
-<!-- ABCDE -->
 <div class="sec rv">
   <div class="sec-kicker">Protocolo Primário</div>
   <h2 class="sec-title">ABCDE no TCE: <span class="red">Cada Letra Salva</span></h2>
-  <div class="acc" id="abcde-acc">
+  <div class="acc">
     <div class="acc-item">
       <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔴 A — Airway com proteção cervical <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <p><strong>Intubar se GCS ≤ 8</strong> — sem exceção. Laringoscopia direta com pressão cricoide. EVITE hiperextensão (colar cervical mantido até radiografia excluir lesão).</p>
-        <p style="margin-top:.5rem"><strong>Sequência rápida de intubação:</strong> Etomidato 0,3 mg/kg + Succinilcolina 1,5 mg/kg (ou Rocurônio 1,2 mg/kg se contraindicação). <em>Fentanil 2 µg/kg 3 min antes</em> atenua pico de PIC.</p>
-        <div class="mnem red-mnem" style="margin-top:.75rem"><div class="mnem-label red-l">Pegadinha TEC 2026</div><p>Cetamina era <em>contraindicada</em> por elevar PIC — <strong>revisado!</strong> Hoje aceita em dose única para IOT no trauma. Não caia na resposta "cetamina é proibida no TCE".</p></div>
-      </div>
+      <div class="acc-body"><p><strong>Intubar se GCS ≤ 8</strong> — sem exceção. Laringoscopia direta com pressão cricoide. EVITE hiperextensão.</p><p style="margin-top:.5rem"><strong>SRI:</strong> Etomidato 0,3 mg/kg + Succinilcolina 1,5 mg/kg (ou Rocurônio 1,2 mg/kg). Fentanil 2 µg/kg 3 min antes atenua pico de PIC.</p><div class="mnem red-mnem" style="margin-top:.75rem"><div class="mnem-label red-l">Pegadinha TEC 2026</div><p>Cetamina era <em>contraindicada</em> por elevar PIC — <strong>revisado!</strong> Hoje aceita em dose única para IOT no trauma. Não caia em "cetamina proibida no TCE".</p></div></div>
     </div>
     <div class="acc-item">
       <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🌬️ B — Breathing: O₂ e ventilação <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <p><strong>Meta SpO₂ ≥ 95%</strong> (idealmente 98-100%). Hipóxia &lt;90% × 30 s = lesão secundária catastrófica.</p>
-        <p style="margin-top:.5rem"><strong>PaCO₂ alvo: 35–40 mmHg.</strong> Hipocapnia <em>voluntária</em> (30–35 mmHg) apenas como <em>ponte</em> durante herniação iminente.</p>
-        <div class="mnem" style="margin-top:.75rem"><div class="mnem-label">Mnemônico</div><p><strong>CO₂ = Controle Remoto do Vaso</strong><br>Baixa CO₂ → vasoconstrição → ↓ FSC → ↓ PIC (mas ↓ perfusão!)<br>Alta CO₂ → vasodilatação → ↑ FSC → ↑ PIC</p></div>
-      </div>
+      <div class="acc-body"><p><strong>Meta SpO₂ ≥ 95%.</strong> Hipóxia &lt;90% × 30 s = lesão secundária catastrófica.</p><p style="margin-top:.5rem"><strong>PaCO₂ alvo: 35–40 mmHg.</strong> Hipocapnia voluntária (30–35 mmHg) apenas como <em>ponte</em> durante herniação iminente.</p><div class="mnem" style="margin-top:.75rem"><div class="mnem-label">Mnemônico</div><p><strong>CO₂ = Controle Remoto do Vaso</strong><br>Baixa CO₂ → vasoconstrição → ↓ PIC (mas ↓ perfusão!)<br>Alta CO₂ → vasodilatação → ↑ PIC</p></div></div>
     </div>
     <div class="acc-item">
       <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">💉 C — Circulation: PA e volemia <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <p><strong>PAS ≥ 110 mmHg</strong> em adulto com TCE grave (PAM &gt; 80 mmHg se PIC monitorada).</p>
-        <p style="margin-top:.5rem">Reposição com <strong>SF 0,9%</strong> — NUNCA soluções hipotônicas (Ringer Lactato em volumes altos eleva osmolaridade e piora edema). Coloides: sem evidência de benefício.</p>
-        <div class="mnem red-mnem" style="margin-top:.75rem"><div class="mnem-label red-l">Mnemônico</div><p><strong>Hipotensão no TCE = Segundo Assassino</strong><br>Cada episódio de PAS &lt;90 mmHg dobra a mortalidade. Corrija antes da TC.</p></div>
-      </div>
+      <div class="acc-body"><p><strong>PAS ≥ 110 mmHg</strong> em adulto com TCE grave (PAM &gt; 80 mmHg se PIC monitorada).</p><p style="margin-top:.5rem">Reposição com <strong>SF 0,9%</strong> — NUNCA soluções hipotônicas.</p><div class="mnem red-mnem" style="margin-top:.75rem"><div class="mnem-label red-l">Mnemônico</div><p><strong>Hipotensão no TCE = Segundo Assassino</strong><br>Cada episódio de PAS &lt;90 mmHg dobra a mortalidade. Corrija antes da TC.</p></div></div>
     </div>
     <div class="acc-item">
       <div class="acc-hdr" onclick="toggleAcc(this)">🧠 D — Disability: Exame neurológico rápido <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <p>GCS (registrar antes e após analgesia/sedação), pupilas, reflexos. AVDI se GCS rápido indisponível.</p>
-        <p style="margin-top:.5rem"><strong>Glicemia:</strong> Alvo 140–180 mg/dL. Hipoglicemia &lt;60 = lesão neuronal imediata. Hiperglicemia &gt;180 = piora edema.</p>
-      </div>
+      <div class="acc-body"><p>GCS (registrar antes e após analgesia/sedação), pupilas, reflexos.</p><p style="margin-top:.5rem"><strong>Glicemia:</strong> Alvo 140–180 mg/dL. Hipoglicemia &lt;60 = lesão neuronal imediata.</p></div>
     </div>
     <div class="acc-item">
-      <div class="acc-hdr" onclick="toggleAcc(this)">🌡️ E — Exposure: Temperatura e outros <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <p><strong>Temperatura ≤ 37,5°C.</strong> Cada 1°C de febre = +10% de consumo metabólico cerebral. Tratar agressivamente com dipirona/paracetamol ± resfriamento físico.</p>
-        <p style="margin-top:.5rem">Hipertermia terapêutica (33–36°C) — <strong>não indicada rotineiramente</strong> (TTM trial). Só em parada seguida de TCE em contextos específicos.</p>
-      </div>
+      <div class="acc-hdr" onclick="toggleAcc(this)">🌡️ E — Exposure: Temperatura <span class="acc-arrow">▼</span></div>
+      <div class="acc-body"><p><strong>Temperatura ≤ 37,5°C.</strong> Cada 1°C de febre = +10% consumo metabólico cerebral. Tratar com dipirona/paracetamol ± resfriamento físico.</p><p style="margin-top:.5rem">Hipotermia terapêutica — <strong>não indicada rotineiramente</strong> (TTM trial).</p></div>
     </div>
   </div>
 </div>
-
-<!-- METAS FISIOLÓGICAS -->
 <div class="sec rv">
   <div class="sec-kicker">Monitorização</div>
   <h2 class="sec-title">Metas <span class="green">Fisiológicas</span> no TCE Grave</h2>
   <table class="meta-table">
-    <thead>
-      <tr><th>Parâmetro</th><th>Meta</th><th>Alerta</th></tr>
-    </thead>
+    <thead><tr><th>Parâmetro</th><th>Meta</th><th>Alerta</th></tr></thead>
     <tbody>
       <tr><td>PIC</td><td class="val">&lt; 20 mmHg</td><td class="warn">&gt; 22 mmHg = tratar</td></tr>
       <tr><td>PPC (PAM − PIC)</td><td class="val">60–70 mmHg</td><td class="danger-cell">&lt; 50 mmHg = isquemia</td></tr>
@@ -487,1138 +339,361 @@ body{
     </tbody>
   </table>
 </div>
-
-<!-- ESCADA PIC -->
 <div class="sec rv">
   <div class="sec-kicker">Hipertensão Intracraniana</div>
   <h2 class="sec-title">Escada Terapêutica da <span class="red">PIC</span></h2>
   <div class="staircase">
-    <div class="stair s1">
-      <div class="stair-num">1</div>
-      <div class="stair-body">
-        <h4>Medidas Básicas (SEMPRE)</h4>
-        <p>Cabeceira 30°, pescoço em posição neutra, analgesia, normoglicemia, normotermia, controle de PAS, sedação leve se agitado</p>
-      </div>
-    </div>
-    <div class="stair s2">
-      <div class="stair-num">2</div>
-      <div class="stair-body">
-        <h4>Osmoterapia</h4>
-        <p><strong>Manitol 20%:</strong> 0,25–1 g/kg IV em bolus (não em infusão contínua). Ou <strong>NaCl 3%:</strong> 150–250 mL. Meta Na⁺ 145–155. Osmolaridade ≤320.</p>
-      </div>
-    </div>
-    <div class="stair s3">
-      <div class="stair-num">3</div>
-      <div class="stair-body">
-        <h4>Hiperventilação Controlada</h4>
-        <p>PaCO₂ 30–35 mmHg — <em>apenas</em> como ponte para cirurgia. Não usar &gt;30 min sem refratariedade confirmada.</p>
-      </div>
-    </div>
-    <div class="stair s4">
-      <div class="stair-num">4</div>
-      <div class="stair-body">
-        <h4>Terapia de Salvamento</h4>
-        <p>Barbitúricos (tiopental), descompressão cirúrgica, hipotermia moderada — somente UTI especializada, PIC refratária documentada</p>
-      </div>
-    </div>
+    <div class="stair s1"><div class="stair-num">1</div><div class="stair-body"><h4>Medidas Básicas (SEMPRE)</h4><p>Cabeceira 30°, pescoço neutro, analgesia, normoglicemia, normotermia, controle de PAS, sedação leve</p></div></div>
+    <div class="stair s2"><div class="stair-num">2</div><div class="stair-body"><h4>Osmoterapia</h4><p><strong>Manitol 20%:</strong> 0,25–1 g/kg IV bolus. Ou <strong>NaCl 3%:</strong> 150–250 mL. Meta Na⁺ 145–155. Osmolaridade ≤320.</p></div></div>
+    <div class="stair s3"><div class="stair-num">3</div><div class="stair-body"><h4>Hiperventilação Controlada</h4><p>PaCO₂ 30–35 mmHg — <em>apenas</em> como ponte para cirurgia. Não usar &gt;30 min.</p></div></div>
+    <div class="stair s4"><div class="stair-num">4</div><div class="stair-body"><h4>Terapia de Salvamento</h4><p>Barbitúricos, descompressão cirúrgica, hipotermia moderada — UTI especializada, PIC refratária documentada</p></div></div>
   </div>
-  <div class="mnem red-mnem rv">
-    <div class="mnem-label red-l">Mnemônico N7</div>
-    <p><strong>BOSH</strong> — a escada em 4 degraus:<br>
-    <strong>B</strong>ásico (cabeceira + sedação) → <strong>O</strong>smoterapia (manitol/NaCl3%) → <strong>S</strong>oprar (hiperventilação ponte) → <strong>H</strong>eroico (barbitúrico + cirurgia)</p>
-  </div>
+  <div class="mnem red-mnem rv"><div class="mnem-label red-l">Mnemônico N7</div><p><strong>BOSH</strong> — a escada em 4 degraus:<br><strong>B</strong>ásico → <strong>O</strong>smoterapia → <strong>S</strong>oprar (hiperventilação ponte) → <strong>H</strong>eroico (barbitúrico + cirurgia)</p></div>
 </div>
-
-<!-- INDICAÇÕES NEUROCIRÚRGICAS -->
 <div class="sec rv">
   <div class="sec-kicker">Cirurgia</div>
   <h2 class="sec-title">Indicações <span class="red">Neurocirúrgicas</span></h2>
   <div class="grid2">
-    <div class="card danger">
-      <h4 class="r">Hematoma Epidural (HED)</h4>
-      <ul>
-        <li>Volume <strong>&gt; 30 cm³</strong> → cirurgia independente do GCS</li>
-        <li>Espessura &gt; 15 mm <em>ou</em> desvio linha média &gt; 5 mm com GCS &lt; 9</li>
-        <li>Deterioração neurológica progressiva</li>
-        <li><em>Intervalo lúcido → queda → cirurgia EMERGÊNCIA</em></li>
-      </ul>
-    </div>
-    <div class="card danger">
-      <h4 class="r">Hematoma Subdural (HSD)</h4>
-      <ul>
-        <li>Espessura <strong>&gt; 10 mm</strong> → cirurgia</li>
-        <li>Desvio linha média <strong>&gt; 5 mm</strong> → cirurgia</li>
-        <li>GCS caindo &gt; 2 pontos entre cenas</li>
-        <li>PIC &gt; 20 mmHg refratária</li>
-      </ul>
-    </div>
-    <div class="card protect">
-      <h4 class="g">Contusão Hemorrágica</h4>
-      <ul>
-        <li>Volume &gt; 20 cm³ em lobo temporal ou frontal c/ efeito de massa</li>
-        <li>GCS 6–8 + cisterna comprimida + desvio &gt; 5 mm</li>
-        <li>Deterioração clínica progressiva</li>
-      </ul>
-    </div>
-    <div class="card protect">
-      <h4 class="g">HSA Traumática / LAD</h4>
-      <ul>
-        <li>HSA traumática isolada: conservador (exceto hidrocefalia)</li>
-        <li>LAD graus I-II: conservador</li>
-        <li>LAD grau III (corpo caloso + tronco): UTI, sem cirurgia</li>
-      </ul>
-    </div>
+    <div class="card danger"><h4><span class="r">Hematoma Epidural (HED)</span></h4><ul><li>Volume <strong>&gt; 30 cm³</strong> → cirurgia independente do GCS</li><li>Espessura &gt; 15 mm ou desvio &gt; 5 mm com GCS &lt; 9</li><li>Deterioração neurológica progressiva</li><li><em>Intervalo lúcido → queda → EMERGÊNCIA</em></li></ul></div>
+    <div class="card danger"><h4><span class="r">Hematoma Subdural (HSD)</span></h4><ul><li>Espessura <strong>&gt; 10 mm</strong></li><li>Desvio linha média <strong>&gt; 5 mm</strong></li><li>GCS caindo &gt; 2 pontos</li><li>PIC &gt; 20 mmHg refratária</li></ul></div>
+    <div class="card protect"><h4><span class="g">Contusão Hemorrágica</span></h4><ul><li>Volume &gt; 20 cm³ em lobo temporal/frontal com efeito de massa</li><li>GCS 6–8 + cisterna comprimida + desvio &gt; 5 mm</li></ul></div>
+    <div class="card protect"><h4><span class="g">HSA Traumática / LAD</span></h4><ul><li>HSA traumática isolada: conservador</li><li>LAD graus I-II: conservador</li><li>LAD grau III: UTI, sem cirurgia</li></ul></div>
   </div>
-  <div class="mnem gold-mnem rv">
-    <div class="mnem-label gold-l">Pegadinha TEC 2026</div>
-    <p>A cirurgia no HED não espera GCS: <strong>EPI 30 corta</strong> — volume &gt;30 cm³ é indicação absoluta mesmo com paciente acordado. A banca adora oferecer "observar com GCS 14" como pegadinha.</p>
-  </div>
+  <div class="mnem gold-mnem rv"><div class="mnem-label gold-l">Pegadinha TEC 2026</div><p>A cirurgia no HED não espera GCS: <strong>EPI 30 corta</strong> — volume &gt;30 cm³ é indicação absoluta mesmo com paciente acordado.</p></div>
 </div>
-
-<!-- OSMOTERAPIA -->
 <div class="sec rv">
   <div class="sec-kicker">Farmacologia</div>
   <h2 class="sec-title">Osmoterapia, <span class="red">Corticoide</span> e Anticonvulsivantes</h2>
   <div class="grid3">
-    <div class="card danger">
-      <h4 class="r">Manitol 20%</h4>
-      <p><strong>Dose:</strong> 0,25–1 g/kg bolus IV em 15–20 min<br>
-      <strong>Repetir?</strong> A cada 6–8h se Osm &lt;320<br>
-      <strong>Cuidado:</strong> Hipotensão e hipovolemia</p>
-      <div class="mnem red-mnem" style="margin-top:.75rem;padding:.75rem"><div class="mnem-label red-l" style="font-size:.6rem">Mnemônico</div><p style="font-size:.8rem"><strong>"Choque salgado; seco não manitola"</strong><br>Se chocado: NaCl 3% antes. Manitol piora hipotensão.</p></div>
-    </div>
-    <div class="card protect">
-      <h4 class="g">NaCl 3%</h4>
-      <p><strong>Dose:</strong> 150–250 mL bolus<br>
-      <strong>Vantagem:</strong> Expande volemia + reduz PIC<br>
-      <strong>Meta Na⁺:</strong> 145–155 mEq/L<br>
-      <strong>Preferir</strong> em hipotensão associada</p>
-    </div>
-    <div class="card trap">
-      <h4 class="t">⚠️ Corticoide</h4>
-      <p><strong>CONTRAINDICADO</strong> no TCE (CRASH trial 2004).<br>
-      Dexametasona aumentou mortalidade em 14 dias.<br>
-      <em>Não confundir com CRASH-2</em> (ácido tranexâmico no trauma hemorrágico).</p>
-    </div>
+    <div class="card danger"><h4><span class="r">Manitol 20%</span></h4><p><strong>Dose:</strong> 0,25–1 g/kg bolus IV em 15–20 min<br><strong>Repetir?</strong> A cada 6–8h se Osm &lt;320<br><strong>Cuidado:</strong> Hipotensão e hipovolemia</p><div class="mnem red-mnem" style="margin-top:.75rem;padding:.75rem"><div class="mnem-label red-l" style="font-size:.6rem">Mnemônico</div><p style="font-size:.8rem"><strong>"Choque salgado; seco não manitola"</strong><br>Se chocado: NaCl 3% antes. Manitol piora hipotensão.</p></div></div>
+    <div class="card protect"><h4><span class="g">NaCl 3%</span></h4><p><strong>Dose:</strong> 150–250 mL bolus<br><strong>Vantagem:</strong> Expande volemia + reduz PIC<br><strong>Meta Na⁺:</strong> 145–155 mEq/L<br><strong>Preferir</strong> em hipotensão associada</p></div>
+    <div class="card trap"><h4><span class="t">⚠️ Corticoide</span></h4><p><strong>CONTRAINDICADO</strong> no TCE (CRASH trial 2004).<br>Dexametasona aumentou mortalidade em 14 dias.<br><em>Não confundir com CRASH-2</em> (ácido tranexâmico).</p></div>
   </div>
-  <div class="card rv" style="margin-top:1rem">
-    <h4>Anticonvulsivantes Profiláticos</h4>
-    <p>Indicados em TCE <strong>grave</strong> (GCS ≤ 8): fenitoína 15–20 mg/kg ataque IV ou levetiracetam 1000 mg/dia por <strong>7 dias</strong>.</p>
-    <p style="margin-top:.5rem">⚠️ <em>Não prolongar além de 7 dias</em> — sem evidência de benefício após este período (só previne convulsões precoces, não tardias).</p>
-  </div>
+  <div class="card rv" style="margin-top:1rem"><h4>Anticonvulsivantes Profiláticos</h4><p>Indicados em TCE <strong>grave</strong> (GCS ≤ 8): fenitoína 15–20 mg/kg ataque IV ou levetiracetam 1000 mg/dia por <strong>7 dias</strong>.</p><p style="margin-top:.5rem">⚠️ <em>Não prolongar além de 7 dias</em> — sem evidência de benefício após este período.</p></div>
 </div>
-
-<!-- QUIZ M4 -->
 <div class="sec rv">
   <div class="sec-kicker">N4 Testing Effect</div>
   <h2 class="sec-title">Quiz: <span class="green">Conduta TEC 2026</span></h2>
-  <div class="quiz" id="quiz-m4">
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 01 / M4</div>
-      <p class="q-text">Paciente com TCE grave (GCS 6), PAS 85 mmHg e PIC 28 mmHg na chegada. Qual é a conduta PRIORITÁRIA?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Manitol 20% 1g/kg imediato</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','b')"><span class="q-letter">B</span> Restaurar PAS ≥110 mmHg com SF 0,9% antes da osmoterapia</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','c')"><span class="q-letter">C</span> Hiperventilação com PaCO₂ 28 mmHg</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Dexametasona 10 mg IV imediato</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> PPC = PAM − PIC. Com PAS 85 e PIC 28, a PPC é crítica. Manitol em hipotensão piora a situação. Primeiro: volemia. NaCl 3% pode ser a osmoterapia de escolha nesse cenário por não causar hipotensão.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> "Choque salgado; seco não manitola." Com PAS 85 mmHg, o manitol pode provocar colapso. A prioridade é restaurar a pressão de perfusão cerebral.</div>
-      <div class="q-trap">⚠️ <strong>Pegadinha:</strong> Corticoide está CONTRAINDICADO no TCE (CRASH trial). Não confunda com CRASH-2 (ácido tranexâmico).</div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 02 / M4</div>
-      <p class="q-text">TC revela HED de 32 cm³ com GCS 14 e sem déficits focais. Conduta correta?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Observação com TC seriada, pois GCS é bom</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','b')"><span class="q-letter">B</span> Craniotomia imediata — volume &gt;30 cm³ indica cirurgia independente do GCS</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','c')"><span class="q-letter">C</span> Manitol e aguardar piora neurológica</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Cirurgia somente se GCS cair abaixo de 9</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto! "EPI 30 corta"</strong> — volume &gt;30 cm³ é indicação absoluta de craniotomia, mesmo com GCS preservado. O intervalo lúcido engana; deterioração pode ser súbita e fatal.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> Volume &gt;30 cm³ no HED é indicação cirúrgica independente do estado neurológico. Não espere o GCS cair para agir.</div>
-      <div class="q-trap">⚠️ <strong>Pegadinha clássica:</strong> GCS bom com HED grande = falsa segurança. É a essência do intervalo lúcido.</div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 03 / M4</div>
-      <p class="q-text">Sobre os anticonvulsivantes profiláticos no TCE grave, é CORRETO afirmar que:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Devem ser mantidos por 6 meses para prevenir epilepsia tardia</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Valproato é preferível à fenitoína por menor sedação</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Previnem convulsões precoces (&lt;7 dias), sem benefício para epilepsia tardia</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> São indicados em todos os TCEs, independente da gravidade</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> Fenitoína ou levetiracetam por 7 dias previnem convulsões precoces, mas não alteram o risco de epilepsia pós-traumática tardia. A profilaxia se restringe ao TCE grave.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> A profilaxia anticonvulsivante (7 dias) previne crises precoces, não tardias. Uso prolongado sem evidência de benefício adicional.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 04 / M4</div>
-      <p class="q-text">Em relação à ventilação no TCE grave intubado, a hiperventilação com PaCO₂ 30–32 mmHg deve ser utilizada:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> De rotina para manter PIC abaixo de 20 mmHg</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Nas primeiras 24h para reduzir edema cerebral</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Apenas como ponte para herniação iminente, não de rotina</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Contraindicada em qualquer situação no TCE</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> A hiperventilação reduz PIC via vasoconstrição, mas causa isquemia cerebral se prolongada. Usar APENAS como medida de resgate na herniação iminente enquanto se prepara cirurgia ou outra terapêutica definitiva.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> Hiperventilação de rotina está associada a piora de desfechos (isquemia por vasoconstrição excessiva). Só na emergência de herniação.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 05 / M4</div>
-      <p class="q-text">Um paciente com TCE grave recebe dexametasona 10 mg IV pela equipe de trauma. Sua conduta correta é:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Manter o corticoide, pois reduz edema vasogênico</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Substituir por metilprednisolona, que tem melhor penetração cerebral</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Suspender imediatamente — corticoide é contraindicado no TCE (aumenta mortalidade)</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Manter apenas se houver edema pericontusional na TC</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> O CRASH trial demonstrou aumento de mortalidade em 14 dias com corticoide no TCE. Suspender imediatamente. Não há subtipo de TCE que se beneficie.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> CRASH trial: corticoide no TCE aumenta mortalidade. Contraindicado em qualquer cenário de TCE agudo.</div>
-      <div class="q-trap">⚠️ <strong>Atenção:</strong> Não confunda CRASH trial (dexametasona no TCE = ruim) com CRASH-2 (ácido tranexâmico no trauma hemorrágico = potencialmente benéfico).</div>
-    </div>
+  <div class="quiz">
+    <div class="q-item"><div class="q-num">QUESTÃO 01 / M4</div><p class="q-text">Paciente com TCE grave (GCS 6), PAS 85 mmHg e PIC 28 mmHg na chegada. Qual é a conduta PRIORITÁRIA?</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>Manitol 20% 1g/kg imediato</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">B</span>Restaurar PAS ≥110 mmHg com SF 0,9% antes da osmoterapia</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">C</span>Hiperventilação com PaCO₂ 28 mmHg</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>Dexametasona 10 mg IV imediato</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto!</strong> PPC = PAM − PIC. Com PAS 85 e PIC 28, a PPC é crítica. Manitol em hipotensão piora. Primeiro: volemia. NaCl 3% pode ser a osmoterapia de escolha nesse cenário.</div>
+    <div class="q-feedback ng">❌ <strong>Incorreto.</strong> "Choque salgado; seco não manitola." Com PAS 85 mmHg, o manitol pode provocar colapso.</div>
+    <div class="q-trap">⚠️ <strong>Pegadinha:</strong> Corticoide está CONTRAINDICADO no TCE (CRASH trial). Não confunda com CRASH-2.</div></div>
+
+    <div class="q-item"><div class="q-num">QUESTÃO 02 / M4</div><p class="q-text">TC revela HED de 32 cm³ com GCS 14 e sem déficits focais. Conduta correta?</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>Observação com TC seriada, pois GCS é bom</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">B</span>Craniotomia imediata — volume &gt;30 cm³ indica cirurgia independente do GCS</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">C</span>Manitol e aguardar piora neurológica</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>Cirurgia somente se GCS cair abaixo de 9</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto! "EPI 30 corta"</strong> — volume &gt;30 cm³ é indicação absoluta de craniotomia, mesmo com GCS preservado.</div>
+    <div class="q-feedback ng">❌ <strong>Incorreto.</strong> Volume &gt;30 cm³ no HED é indicação cirúrgica independente do estado neurológico.</div>
+    <div class="q-trap">⚠️ GCS bom com HED grande = falsa segurança. É a essência do intervalo lúcido.</div></div>
+
+    <div class="q-item"><div class="q-num">QUESTÃO 03 / M4</div><p class="q-text">Sobre os anticonvulsivantes profiláticos no TCE grave, é CORRETO afirmar:</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>Devem ser mantidos por 6 meses para prevenir epilepsia tardia</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">B</span>Valproato é preferível à fenitoína</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">C</span>Previnem convulsões precoces (&lt;7 dias), sem benefício para epilepsia tardia</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>São indicados em todos os TCEs independente da gravidade</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto!</strong> Fenitoína ou levetiracetam por 7 dias previnem convulsões precoces, mas não alteram o risco de epilepsia pós-traumática tardia.</div>
+    <div class="q-feedback ng">❌ A profilaxia (7 dias) previne crises precoces, não tardias. Uso prolongado sem evidência.</div>
+    <div class="q-trap"></div></div>
+
+    <div class="q-item"><div class="q-num">QUESTÃO 04 / M4</div><p class="q-text">Um paciente com TCE grave recebe dexametasona 10 mg IV. Sua conduta correta é:</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>Manter o corticoide, pois reduz edema vasogênico</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">B</span>Substituir por metilprednisolona</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">C</span>Suspender imediatamente — corticoide é contraindicado no TCE</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>Manter apenas se houver edema pericontusional na TC</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto!</strong> CRASH trial: aumento de mortalidade em 14 dias com corticoide no TCE. Suspender imediatamente.</div>
+    <div class="q-feedback ng">❌ CRASH trial: corticoide no TCE aumenta mortalidade. Contraindicado em qualquer cenário.</div>
+    <div class="q-trap">⚠️ Não confunda CRASH trial (dexametasona no TCE = ruim) com CRASH-2 (ácido tranexâmico no trauma hemorrágico).</div></div>
   </div>
-  <div class="sig-block">
-    <div class="sname">Dr. André Rossanno</div>
-    <p>Módulo 4 · TCE — Conduta · TEC 2026</p>
-  </div>
+  <div class="sig-block"><div class="sname">Dr. André Rossanno</div><p>Módulo 4 · TCE — Conduta · TEC 2026</p></div>
 </div>
 </section>
 
-<!-- ══════════════════════════════════════════ MÓDULO 5 ══ -->
+<!-- ══ MÓDULO 5 ══ -->
 <section id="m5" class="module">
 <div class="hero">
   <div class="hero-kicker">Módulo 5 · TEC 2026</div>
   <h1 class="hero-title">Casos <span class="accent">Integradores</span>:<br>Do Caos à <span class="danger">Decisão</span></h1>
   <p class="hero-quote">"Conhecer o TCE em partes forma o raciocínio; integrar cada parte no caos da emergência forma o médico."</p>
 </div>
-
-<!-- CASO 1 -->
 <div class="case-card rv">
-  <div class="case-header">
-    <div class="case-num">Caso 01 · TCE Leve</div>
-    <div class="case-title">O Anticoagulado que Não Pode Errar</div>
-    <p class="case-scenario">Homem, 74 anos, em uso de rivaroxabana 20 mg/dia para FA. Queda da própria altura, bateu a cabeça. GCS 15, sem perda de consciência, sem déficits focais. TC de crânio sem contraste: normal. O plantonista decide alta.</p>
-  </div>
+  <div class="case-header"><div class="case-num">Caso 01 · TCE Leve</div><div class="case-title">O Anticoagulado que Não Pode Errar</div><p class="case-scenario">Homem, 74 anos, em uso de rivaroxabana 20 mg/dia para FA. Queda da própria altura, bateu a cabeça. GCS 15, sem perda de consciência, sem déficits focais. TC crânio: normal. O plantonista decide alta.</p></div>
   <div class="case-body">
-    <div class="acc" id="caso1-acc">
-      <div class="acc-item">
-        <div class="acc-hdr" onclick="toggleAcc(this)">🔍 Análise Crítica da Conduta <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p>Alta imediata é <strong>perigosa</strong>. Anticoagulados com TCE têm risco de sangramento tardio mesmo com TC normal. A janela de sangramento pode ser de 24–72h.</p>
-          <p style="margin-top:.5rem"><strong>Conduta correta:</strong> Considerar reversão se sangramento (andexanet alfa para anti-Xa; idarucizumabe para dabigatrana). Observação mínima 6–24h. Repetir TC em 6–12h ou na mínima piora clínica. Neurocirurgia alertada.</p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha TEC 2026 <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p class="peg-item"><strong>"TC normal = alta segura"</strong> é errada no anticoagulado. O hematoma pode se formar horas após o trauma. A banca vai oferecer esta opção como resposta errada atraente.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mnem gold-mnem" style="margin-top:1rem">
-      <div class="mnem-label gold-l">Síntese — N1 Elaborative Encoding</div>
-      <p><strong>"Anticoagulado + TCE = TC certa, mas tempo incerto."</strong> O crânio pode estar limpo agora e cheio de sangue amanhã.</p>
-    </div>
+    <div class="acc"><div class="acc-item"><div class="acc-hdr" onclick="toggleAcc(this)">🔍 Análise Crítica da Conduta <span class="acc-arrow">▼</span></div><div class="acc-body"><p>Alta imediata é <strong>perigosa</strong>. Anticoagulados com TCE têm risco de sangramento tardio mesmo com TC normal. A janela de sangramento pode ser de 24–72h.</p><p style="margin-top:.5rem"><strong>Conduta correta:</strong> Reversão se sangramento (andexanet alfa para anti-Xa). Observação mínima 6–24h. Repetir TC em 6–12h ou na mínima piora clínica.</p></div></div>
+    <div class="acc-item"><div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha TEC 2026 <span class="acc-arrow">▼</span></div><div class="acc-body"><p class="peg-item"><strong>"TC normal = alta segura"</strong> é errada no anticoagulado. O hematoma pode se formar horas após o trauma.</p></div></div></div>
+    <div class="mnem gold-mnem" style="margin-top:1rem"><div class="mnem-label gold-l">Síntese — N1 Elaborative Encoding</div><p><strong>"Anticoagulado + TCE = TC certa, mas tempo incerto."</strong> O crânio pode estar limpo agora e cheio de sangue amanhã.</p></div>
   </div>
 </div>
-
-<!-- CASO 2 -->
 <div class="case-card rv">
-  <div class="case-header">
-    <div class="case-num">Caso 02 · HED Clássico</div>
-    <div class="case-title">O Jovem que Acordou e Dormiu para Sempre</div>
-    <p class="case-scenario">Homem, 22 anos, ciclista, capacete parcial. Colisão com carro. No local: GCS 12. Durante transporte, abre os olhos, fala. Na triagem: GCS 15, reclama de cefaleia. 40 minutos depois: GCS 8, anisocoria direita, decorticação esquerda.</p>
-  </div>
+  <div class="case-header"><div class="case-num">Caso 02 · HED Clássico</div><div class="case-title">O Jovem que Acordou e Dormiu para Sempre</div><p class="case-scenario">Homem, 22 anos, ciclista. Colisão com carro. No local: GCS 12. Na triagem: GCS 15. 40 minutos depois: GCS 8, anisocoria direita, decorticação esquerda.</p></div>
   <div class="case-body">
-    <div class="acc" id="caso2-acc">
-      <div class="acc-item">
-        <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔍 Diagnóstico e Conduta <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p><strong>HED arterial com intervalo lúcido.</strong> Ruptura da artéria meníngea média. TC (se tempo): biconvexo hiperdensa à direita.</p>
-          <p style="margin-top:.5rem"><strong>Conduta:</strong> IOT imediata (GCS 8), manitol ou NaCl 3%, <em>não espere TC se deterioração rápida</em>, craniotomia de emergência.</p>
-          <p style="margin-top:.5rem">Anisocoria direita = nervo oculomotor direito comprimido = herniação uncal direita = hematoma à <strong>direita</strong>.</p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinhas deste Caso <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <div class="peg-list">
-            <div class="peg-item"><strong>Pegadinha 1:</strong> "GCS 15 = sem urgência." Errado — o intervalo lúcido é a assinatura do HED arterial.</div>
-            <div class="peg-item"><strong>Pegadinha 2:</strong> "Anisocoria = hematoma contralateral." Errado — a pupila dilata ipsilateral ao hematoma (compressão ipsilateral do III par).</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="acc"><div class="acc-item"><div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔍 Diagnóstico e Conduta <span class="acc-arrow">▼</span></div><div class="acc-body"><p><strong>HED arterial com intervalo lúcido.</strong> Ruptura da artéria meníngea média. TC: biconvexo hiperdensa à direita.</p><p style="margin-top:.5rem"><strong>Conduta:</strong> IOT imediata (GCS 8), manitol ou NaCl 3%, craniotomia de emergência.</p><p style="margin-top:.5rem">Anisocoria direita = herniação uncal direita = hematoma à <strong>direita</strong>.</p></div></div>
+    <div class="acc-item"><div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinhas deste Caso <span class="acc-arrow">▼</span></div><div class="acc-body"><div class="peg-list"><div class="peg-item"><strong>Pegadinha 1:</strong> "GCS 15 = sem urgência." Errado — o intervalo lúcido é a assinatura do HED arterial.</div><div class="peg-item"><strong>Pegadinha 2:</strong> "Anisocoria = hematoma contralateral." Errado — a pupila dilata ipsilateral ao hematoma.</div></div></div></div></div>
   </div>
 </div>
-
-<!-- CASO 3 -->
 <div class="case-card rv">
-  <div class="case-header">
-    <div class="case-num">Caso 03 · HSD Subagudo</div>
-    <div class="case-title">O Idoso "Esquecido" que a TC Quase Perdeu</div>
-    <p class="case-scenario">Mulher, 82 anos, anticoagulada. Filhos trazem com "confusão progressiva há 10 dias". Nenhum relato de trauma claro. GCS 13. TC crânio: área isoatenuante ao parênquima, com leve desvio de linha média à direita de 4 mm.</p>
-  </div>
+  <div class="case-header"><div class="case-num">Caso 03 · HSD Subagudo</div><div class="case-title">O Idoso "Esquecido" que a TC Quase Perdeu</div><p class="case-scenario">Mulher, 82 anos, anticoagulada. Confusão progressiva há 10 dias. GCS 13. TC crânio: área isoatenuante ao parênquima, desvio de linha média 4 mm à direita.</p></div>
   <div class="case-body">
-    <div class="acc" id="caso3-acc">
-      <div class="acc-item">
-        <div class="acc-hdr" onclick="toggleAcc(this)">🔍 Por que a TC "quase" perdeu? <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p><strong>HSD subagudo isodenso</strong> — fase 3–21 dias. A densidade do coágulo em evolução iguala-se ao parênquima cerebral na janela padrão. O <em>desvio de linha média</em> e o <em>apagamento de sulcos</em> são as pistas.</p>
-          <p style="margin-top:.5rem"><strong>Solução:</strong> TC com contraste (realce da membrana) ou RM (FLAIR/T2 distingue). Janela estreita (SDH window).</p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p class="peg-item"><strong>"TC normal em idoso confuso = causa metabólica."</strong> Errado! HSD subagudo isodenso mimetiza TC normal para olhos despreparados. O desvio de linha média delata.</p>
-        </div>
-      </div>
-    </div>
+    <div class="acc"><div class="acc-item"><div class="acc-hdr" onclick="toggleAcc(this)">🔍 Por que a TC "quase" perdeu? <span class="acc-arrow">▼</span></div><div class="acc-body"><p><strong>HSD subagudo isodenso</strong> — fase 3–21 dias. A densidade do coágulo iguala-se ao parênquima. O <em>desvio de linha média</em> e o <em>apagamento de sulcos</em> são as pistas.</p><p style="margin-top:.5rem"><strong>Solução:</strong> TC com contraste ou RM (FLAIR/T2). Janela estreita (SDH window).</p></div></div>
+    <div class="acc-item"><div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha <span class="acc-arrow">▼</span></div><div class="acc-body"><p class="peg-item"><strong>"TC normal em idoso confuso = causa metabólica."</strong> Errado! HSD subagudo isodenso mimetiza TC normal. O desvio de linha média delata.</p></div></div></div>
   </div>
 </div>
-
-<!-- CASO 4 -->
 <div class="case-card rv">
-  <div class="case-header">
-    <div class="case-num">Caso 04 · Herniação em Andamento</div>
-    <div class="case-title">A Tríade que Não Pode Esperar</div>
-    <p class="case-scenario">Homem, 55 anos. TCE grave em politrauma. Na UTI: PIC 38 mmHg, PA 180/100, FC 48 bpm, respiração irregular. Última TC (3h atrás): HSD 8 mm com desvio 4 mm.</p>
-  </div>
+  <div class="case-header"><div class="case-num">Caso 04 · Herniação em Andamento</div><div class="case-title">A Tríade que Não Pode Esperar</div><p class="case-scenario">Homem, 55 anos. TCE grave em politrauma. UTI: PIC 38 mmHg, PA 180/100, FC 48 bpm, respiração irregular. Última TC (3h atrás): HSD 8 mm com desvio 4 mm.</p></div>
   <div class="case-body">
-    <div class="acc" id="caso4-acc">
-      <div class="acc-item">
-        <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔍 Tríade de Cushing + Conduta Imediata <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p><strong>Tríade de Cushing:</strong> Hipertensão + Bradicardia + Respiração irregular = herniação em andamento = emergência absoluta.</p>
-          <p style="margin-top:.5rem"><strong>Conduta sequencial:</strong><br>
-          1. IOT se ainda não feita<br>
-          2. Hiperventilação ponte (PaCO₂ 30–35)<br>
-          3. Manitol 1g/kg ou NaCl 3%<br>
-          4. Neurocirurgia: TC emergência + cirurgia imediata se indicação<br>
-          5. Cabeceira 30°, sedação profunda</p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p class="peg-item"><strong>"HSD 8 mm não tem indicação cirúrgica."</strong> Verdade 3h atrás. Mas a Tríade de Cushing muda tudo — o HSD pode ter crescido (repetir TC) e a clínica de herniação exige ação imediata independente da espessura anterior.</p>
-        </div>
-      </div>
-    </div>
+    <div class="acc"><div class="acc-item"><div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔍 Tríade de Cushing + Conduta Imediata <span class="acc-arrow">▼</span></div><div class="acc-body"><p><strong>Tríade de Cushing:</strong> Hipertensão + Bradicardia + Respiração irregular = herniação em andamento = emergência absoluta.</p><p style="margin-top:.5rem"><strong>Conduta:</strong> 1. IOT → 2. Hiperventilação ponte → 3. Manitol 1g/kg ou NaCl 3% → 4. Neurocirurgia + TC emergência → 5. Cabeceira 30°, sedação</p></div></div>
+    <div class="acc-item"><div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha <span class="acc-arrow">▼</span></div><div class="acc-body"><p class="peg-item"><strong>"HSD 8 mm não tem indicação cirúrgica."</strong> Verdade 3h atrás. Mas a Tríade de Cushing muda tudo — o HSD pode ter crescido.</p><p class="peg-item"><strong>NÃO trate a hipertensão</strong> com anti-hipertensivo — é mecanismo compensatório. Abolir = desastre.</p></div></div></div>
   </div>
 </div>
-
-<!-- CASO 5 -->
 <div class="case-card rv">
-  <div class="case-header">
-    <div class="case-num">Caso 05 · LAD</div>
-    <div class="case-title">A TC "Normal" com Paciente em Coma</div>
-    <p class="case-scenario">Jovem, 19 anos, motociclista em alta velocidade. GCS 5 desde o acidente. TC de crânio: "sem lesões focais visíveis, sem desvio de linha média, cisternas pérvias." A residente pergunta: "como pode GCS 5 com TC normal?"</p>
-  </div>
+  <div class="case-header"><div class="case-num">Caso 05 · LAD</div><div class="case-title">A TC "Normal" com Paciente em Coma</div><p class="case-scenario">Jovem, 19 anos, motociclista em alta velocidade. GCS 5 desde o acidente. TC crânio: "sem lesões focais visíveis, sem desvio de linha média, cisternas pérvias."</p></div>
   <div class="case-body">
-    <div class="acc" id="caso5-acc">
-      <div class="acc-item">
-        <div class="acc-hdr" onclick="toggleAcc(this)">🔍 LAD — A Lesão Invisível <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p><strong>Lesão Axonal Difusa (LAD)</strong> — forças de aceleração-desaceleração rompem axônios em regiões específicas. TC inicial frequentemente normal ou com microhemorragias punctiformes difíceis de ver.</p>
-          <p style="margin-top:.5rem"><strong>Diagnóstico:</strong> RM (sequências de difusão/suscetibilidade magnética) — detecta microhemorragias e edema axonal.<br>
-          <strong>Conduta:</strong> UTI, metas fisiológicas, neuroprotecção. Sem cirurgia específica.</p>
-          <p style="margin-top:.5rem"><strong>Prognóstico:</strong> Grau I (substância branca) → melhor. Grau III (tronco) → pior, alta mortalidade.</p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha clássica <span class="acc-arrow">▼</span></div>
-        <div class="acc-body">
-          <p class="peg-item"><strong>"TC normal + GCS 5 = diagnóstico de exclusão ou dissimulação."</strong> Nunca! GCS gravemente comprometido + TC sem lesões focais = suspeitar imediatamente de LAD. Solicitar RM urgente.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mnem" style="margin-top:1rem">
-      <div class="mnem-label">Síntese LAD — N6 Emoção/Narrativa</div>
-      <p><strong>"A TC é inocente; o axônio não."</strong><br>No LAD, a imagem pode mentir. O clínico que acredita cegamente no laudo normal e ignora o coma profundo está cometendo erro diagnóstico fatal.</p>
-    </div>
+    <div class="acc"><div class="acc-item"><div class="acc-hdr" onclick="toggleAcc(this)">🔍 LAD — A Lesão Invisível <span class="acc-arrow">▼</span></div><div class="acc-body"><p><strong>Lesão Axonal Difusa (LAD)</strong> — forças de aceleração-desaceleração rompem axônios. TC inicial frequentemente normal.</p><p style="margin-top:.5rem"><strong>Diagnóstico:</strong> RM SWI/DWI/FLAIR. Grau I (SB) → melhor prognóstico. Grau III (tronco) → pior.</p></div></div>
+    <div class="acc-item"><div class="acc-hdr gold-hdr" onclick="toggleAcc(this)">⚠️ Pegadinha clássica <span class="acc-arrow">▼</span></div><div class="acc-body"><p class="peg-item"><strong>"TC normal + GCS 5 = diagnóstico de exclusão."</strong> Nunca! GCS gravemente comprometido + TC sem lesões focais = LAD até prova em contrário. Solicitar RM urgente.</p></div></div></div>
+    <div class="mnem" style="margin-top:1rem"><div class="mnem-label">Síntese LAD — N6 Emoção/Narrativa</div><p><strong>"A TC é inocente; o axônio não."</strong><br>No LAD, a imagem pode mentir. O coma profundo com TC "limpa" é a assinatura do fio rompido dentro da parede.</p></div>
   </div>
 </div>
-
-<!-- PEGADINHAS GERAIS M5 -->
-<div class="sec rv">
-  <div class="sec-kicker">N5 Interleaving</div>
-  <h2 class="sec-title">Tabela das <span class="amber">Pegadinhas</span> dos Casos</h2>
-  <div class="peg-list">
-    <div class="peg-item"><strong>Caso 1:</strong> TC normal em anticoagulado ≠ alta segura. Sangramento tardio é o inimigo.</div>
-    <div class="peg-item"><strong>Caso 2:</strong> Intervalo lúcido = HED arterial até prova em contrário. Anisocoria = ipsilateral ao hematoma.</div>
-    <div class="peg-item"><strong>Caso 3:</strong> HSD subagudo isodenso. TC "normal" em idoso confuso com desvio de linha média = erro de interpretação.</div>
-    <div class="peg-item"><strong>Caso 4:</strong> Tríade de Cushing invalida parâmetros anteriores. Herniação exige ação em minutos.</div>
-    <div class="peg-item"><strong>Caso 5:</strong> GCS profundo + TC sem lesão focal = LAD. Pedir RM, não repetir a TC.</div>
-  </div>
-</div>
-
-<!-- QUIZ M5 -->
 <div class="sec rv">
   <div class="sec-kicker">N4 Testing Effect</div>
   <h2 class="sec-title">Quiz: <span class="green">Casos Integradores</span></h2>
-  <div class="quiz" id="quiz-m5">
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 01 / M5</div>
-      <p class="q-text">Sobre o Caso 2 (jovem ciclista com intervalo lúcido), a localização do hematoma e o lado da anisocoria são, respectivamente:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Esquerdo; anisocoria esquerda</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Esquerdo; anisocoria direita (sinal de Kernohan)</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Direito; anisocoria direita (herniação uncal ipsilateral)</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Direito; anisocoria esquerda (sinal cruzado)</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> A herniação uncal comprime o III par oculomotor <em>ipsilateral</em> ao hematoma. Midríase direita = compressão do III par direito = hematoma à direita.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> A anisocoria na herniação uncal é ipsilateral ao hematoma — o uncus comprime o nervo oculomotor do mesmo lado. Sinal de Kernohan (déficit motor ipsilateral) é diferente.</div>
-      <div class="q-trap">⚠️ <strong>Pegadinha:</strong> Kernohan é déficit MOTOR ipsilateral (falso localizador), não pupila.</div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 02 / M5</div>
-      <p class="q-text">No Caso 3 (idosa confusa, TC com área isoatenuante), qual é o melhor exame para confirmar o diagnóstico de HSD subagudo?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Repetir TC de crânio sem contraste com maior dose de radiação</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','b')"><span class="q-letter">B</span> RM de crânio (FLAIR/T2) ou TC com contraste</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','c')"><span class="q-letter">C</span> PET-CT cerebral</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> EEG para excluir encefalopatia</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> A RM é superior para HSD isodenso — sequências T2/FLAIR detectam o coágulo em evolução. TC com contraste também pode revelar realce da membrana do HSD.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> TC simples repetida não resolve o problema da isodensidade. RM ou TC com contraste são os exames adequados.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 03 / M5</div>
-      <p class="q-text">No Caso 5 (LAD), qual sequência de RM é MAIS sensível para detectar microhemorragias axonais?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> T1 ponderado com gadolínio</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> FLAIR</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> SWI (Susceptibility Weighted Imaging) ou GRE T2*</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> DWI (Diffusion Weighted Imaging)</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> SWI é a sequência mais sensível para microhemorragias — detecta depósitos de hemossiderina/desoxi-hemoglobina invisíveis em outras sequências. GRE T2* é equivalente mais antigo.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> SWI/GRE T2* detectam susceptibilidade magnética das microhemorragias do LAD com muito maior sensibilidade que outras sequências.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 04 / M5</div>
-      <p class="q-text">No Caso 4 (Tríade de Cushing), a sequência correta de ações imediatas é:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> TC imediata → esperar resultado → discutir com neurocirurgia</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Manitol → TC → IOT</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> IOT → hiperventilação ponte → osmoterapia → neurocirurgia + TC urgência</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Anti-hipertensivos → IOT → TC</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> A sequência é: via aérea segura primeiro (IOT), depois hiperventilação de resgate, depois osmoterapia, enquanto neurocirurgia é acionada em paralelo. A hipertensão da Tríade de Cushing NÃO deve ser tratada com anti-hipertensivo — ela é reflexo compensatório para manter PPC!</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> A hipertensão na Tríade de Cushing é um mecanismo compensatório do organismo para manter perfusão cerebral — NÃO trate com anti-hipertensivo!</div>
-      <div class="q-trap">⚠️ <strong>Pegadinha:</strong> Tratar a hipertensão da Tríade de Cushing com anti-hipertensivo = abolir a última defesa cerebral = desastre.</div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 05 / M5</div>
-      <p class="q-text">Paciente com TCE leve em uso de warfarina, INR 3,2 na chegada. TC normal. A conduta mais adequada é:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Alta com orientação para retornar se piorar</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Suspender warfarina e observar por 2h</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Reverter coagulopatia (vitamina K + CCP ou PFC), observação 24h, repetir TC em 6–12h</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Aguardar INR espontaneamente abaixo de 2 antes de qualquer decisão</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> INR 3,2 com TCE = reverter coagulopatia mesmo com TC normal. Concentrado de complexo protrombínico (CCP) é mais rápido que PFC. Vitamina K concomitante. Observação prolongada com TC de controle.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> Anticoagulado + TCE com TC normal ainda tem risco de sangramento tardio. Reverter coagulopatia, observar e repetir TC.</div>
-      <div class="q-trap"></div>
-    </div>
+  <div class="quiz">
+    <div class="q-item"><div class="q-num">QUESTÃO 01 / M5</div><p class="q-text">No Caso 2 (jovem ciclista), a localização do hematoma e o lado da anisocoria são:</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>Esquerdo; anisocoria esquerda</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">B</span>Esquerdo; anisocoria direita (sinal de Kernohan)</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">C</span>Direito; anisocoria direita (herniação uncal ipsilateral)</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>Direito; anisocoria esquerda (sinal cruzado)</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto!</strong> A herniação uncal comprime o III par oculomotor ipsilateral ao hematoma. Midríase direita = hematoma à direita.</div>
+    <div class="q-feedback ng">❌ A anisocoria na herniação uncal é ipsilateral ao hematoma — o uncus comprime o nervo oculomotor do mesmo lado.</div>
+    <div class="q-trap">⚠️ Kernohan = déficit MOTOR ipsilateral (falso localizador), não pupilar.</div></div>
+
+    <div class="q-item"><div class="q-num">QUESTÃO 02 / M5</div><p class="q-text">No Caso 5 (LAD), qual sequência de RM é MAIS sensível para microhemorragias axonais?</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>T1 ponderado com gadolínio</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">B</span>FLAIR</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">C</span>SWI (Susceptibility Weighted Imaging) ou GRE T2*</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>DWI</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto!</strong> SWI é a sequência mais sensível para microhemorragias — detecta depósitos de hemossiderina invisíveis em outras sequências.</div>
+    <div class="q-feedback ng">❌ SWI/GRE T2* detectam susceptibilidade magnética das microhemorragias com muito maior sensibilidade.</div>
+    <div class="q-trap"></div></div>
+
+    <div class="q-item"><div class="q-num">QUESTÃO 03 / M5</div><p class="q-text">No Caso 4 (Tríade de Cushing), a sequência correta de ações imediatas é:</p>
+    <div class="q-opts"><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">A</span>TC imediata → esperar resultado → discutir com neurocirurgia</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">B</span>Manitol → TC → IOT</div><div class="q-opt" onclick="answerQ(this,'correct')"><span class="q-letter">C</span>IOT → hiperventilação ponte → osmoterapia → neurocirurgia + TC urgência</div><div class="q-opt" onclick="answerQ(this,'wrong')"><span class="q-letter">D</span>Anti-hipertensivos → IOT → TC</div></div>
+    <div class="q-feedback ok">✅ <strong>Correto!</strong> Via aérea primeiro, hiperventilação de resgate, osmoterapia, neurocirurgia em paralelo. A hipertensão da Tríade NÃO deve ser tratada com anti-hipertensivo!</div>
+    <div class="q-feedback ng">❌ A hipertensão na Tríade de Cushing é compensatória — NÃO trate com anti-hipertensivo!</div>
+    <div class="q-trap">⚠️ Tratar a hipertensão da Tríade = abolir a última defesa cerebral = desastre.</div></div>
   </div>
-  <div class="sig-block">
-    <div class="sname">Dr. André Rossanno</div>
-    <p>Módulo 5 · TCE — Casos Integradores · TEC 2026</p>
-  </div>
+  <div class="sig-block"><div class="sname">Dr. André Rossanno</div><p>Módulo 5 · TCE — Casos Integradores · TEC 2026</p></div>
 </div>
 </section>
 
-<!-- ══════════════════════════════════════════ OSCE 1 ══ -->
+<!-- ══ OSCE 1 ══ -->
 <section id="osce1" class="module">
 <div class="hero">
   <div class="hero-kicker">OSCE · Cenário 1 · TEC 2026</div>
   <h1 class="hero-title"><span class="osce-col">O Jovem da Moto</span><br>e a <span class="danger">Lente Mortal</span></h1>
   <p class="hero-quote osce-border">"O caso clínico é o tribunal do conhecimento: nele, a GCS depõe, a pupila acusa, a TC mostra a arma e a conduta decide se o cérebro ainda terá futuro."</p>
 </div>
-
-<!-- APRESENTAÇÃO -->
 <div class="sec rv">
   <div class="sec-kicker">Cenário Inicial</div>
   <h2 class="sec-title"><span class="osce">Apresentação</span> do Caso</h2>
   <div class="scene-banner osce-scene">
     <div class="scene-label">🚨 Sala de Trauma — 23h47</div>
     <div class="scene-title">Motociclista · 24 anos · Colisão frontal a 80 km/h</div>
-    <p class="scene-desc">Capacete sem viseira. SAMU relata: encontrado consciente no local (GCS 14), vomitou 2×, cefaleia intensa. Durante transporte: "ficou mais quieto." Na chegada à sala de trauma: abre os olhos ao chamado, fala palavras inapropriadas, retira ao estímulo doloroso.</p>
+    <p class="scene-desc">No local: GCS 14, vomitou 2×. Durante transporte: "ficou mais quieto." Na chegada: abre olhos ao chamado, fala palavras inapropriadas, retira ao estímulo doloroso.</p>
   </div>
-  <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:800;margin-bottom:1rem;color:var(--muted)">Sinais Vitais na Chegada</h3>
   <div class="vitals-grid">
-    <div class="vital warn">
-      <div class="vital-label">GCS</div>
-      <div class="vital-val">9</div>
-      <div class="vital-sub">E2V3M4</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">PAS/PAD</div>
-      <div class="vital-val">138/82</div>
-      <div class="vital-sub">mmHg</div>
-    </div>
-    <div class="vital ok">
-      <div class="vital-label">FC</div>
-      <div class="vital-val">98</div>
-      <div class="vital-sub">bpm</div>
-    </div>
-    <div class="vital ok">
-      <div class="vital-label">SpO₂</div>
-      <div class="vital-val">96%</div>
-      <div class="vital-sub">AA</div>
-    </div>
-    <div class="vital crit">
-      <div class="vital-label">Pupila D</div>
-      <div class="vital-val">6mm</div>
-      <div class="vital-sub">↓ fotorreação</div>
-    </div>
-    <div class="vital ok">
-      <div class="vital-label">Pupila E</div>
-      <div class="vital-val">3mm</div>
-      <div class="vital-sub">fotorreativo</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">Temp</div>
-      <div class="vital-val">37.2°C</div>
-      <div class="vital-sub">axilar</div>
-    </div>
-    <div class="vital ok">
-      <div class="vital-label">Glicemia</div>
-      <div class="vital-val">142</div>
-      <div class="vital-sub">mg/dL</div>
-    </div>
+    <div class="vital warn"><div class="vital-label">GCS</div><div class="vital-val">9</div><div class="vital-sub">E2V3M4</div></div>
+    <div class="vital warn"><div class="vital-label">PAS/PAD</div><div class="vital-val">138/82</div><div class="vital-sub">mmHg</div></div>
+    <div class="vital ok"><div class="vital-label">FC</div><div class="vital-val">98</div><div class="vital-sub">bpm</div></div>
+    <div class="vital ok"><div class="vital-label">SpO₂</div><div class="vital-val">96%</div><div class="vital-sub">AA</div></div>
+    <div class="vital crit"><div class="vital-label">Pupila D</div><div class="vital-val">6mm</div><div class="vital-sub">↓ fotorreação</div></div>
+    <div class="vital ok"><div class="vital-label">Pupila E</div><div class="vital-val">3mm</div><div class="vital-sub">fotorreativo</div></div>
+    <div class="vital warn"><div class="vital-label">Temp</div><div class="vital-val">37.2°C</div><div class="vital-sub">axilar</div></div>
+    <div class="vital ok"><div class="vital-label">Glicemia</div><div class="vital-val">142</div><div class="vital-sub">mg/dL</div></div>
   </div>
 </div>
-
-<!-- TIMELINE -->
 <div class="sec rv">
   <div class="sec-kicker">N6 Emoção/Narrativa</div>
   <h2 class="sec-title">Linha do <span class="danger">Tempo</span></h2>
   <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot safe">T0</div>
-      <div class="tl-content">
-        <h5>No local do acidente</h5>
-        <p>GCS 14 — fala, abre olhos espontaneamente. Capacete retirado. Vômitos 2×. Queixa cefaleia 8/10.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot warn">+15'</div>
-      <div class="tl-content">
-        <h5>Transporte — deterioração</h5>
-        <p>SAMU relata: "paciente ficou mais quieto, não responde mais direito." GCS estimado 11.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot warn">+25'</div>
-      <div class="tl-content">
-        <h5>Triagem — chegada ao hospital</h5>
-        <p>GCS 9 (E2V3M4). Anisocoria descoberta. Pupila D 6mm, arreativa. Equipe alarmada.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot crit">+30'</div>
-      <div class="tl-content">
-        <h5>🚨 Janela crítica</h5>
-        <p>Sem IOT e sem TC: GCS cai para 6. Decorticação direita. Pupila E começa a dilatar. Herniação em andamento.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot crit">Decisão</div>
-      <div class="tl-content">
-        <h5>Intervalo de ouro = 30 minutos</h5>
-        <p>IOT imediata + manitol + TC emergência + neurocirurgia na linha = único caminho possível.</p>
-      </div>
-    </div>
+    <div class="tl-item"><div class="tl-dot safe">T0</div><div class="tl-content"><h5>No local do acidente</h5><p>GCS 14. Vômitos 2×. Cefaleia 8/10.</p></div></div>
+    <div class="tl-item"><div class="tl-dot warn">+15'</div><div class="tl-content"><h5>Transporte — deterioração</h5><p>GCS estimado 11. "Ficou mais quieto."</p></div></div>
+    <div class="tl-item"><div class="tl-dot warn">+25'</div><div class="tl-content"><h5>Chegada — GCS 9</h5><p>Anisocoria descoberta. Pupila D 6mm arreativa.</p></div></div>
+    <div class="tl-item"><div class="tl-dot crit">+30'</div><div class="tl-content"><h5>🚨 Janela crítica</h5><p>Sem IOT: GCS cai para 6. Decorticação direita. Herniação em andamento.</p></div></div>
+    <div class="tl-item"><div class="tl-dot crit">Decisão</div><div class="tl-content"><h5>Intervalo de ouro = 30 minutos</h5><p>IOT + manitol + TC emergência + neurocirurgia = único caminho.</p></div></div>
   </div>
 </div>
-
-<!-- TC SIMULADA -->
-<div class="sec rv">
-  <div class="sec-kicker">Imagem</div>
-  <h2 class="sec-title">TC de <span class="osce">Crânio Simulada</span></h2>
-  <div class="acc" id="tc-osce1-acc">
-    <div class="acc-item">
-      <div class="acc-hdr osce-hdr" onclick="toggleAcc(this)">🖥️ Descreva o que você vê antes de revelar <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <div class="grid2">
-          <div>
-            <p><strong>Achados esperados no HED temporal direito:</strong></p>
-            <ul style="margin-top:.5rem;padding-left:1.1rem;font-size:.875rem;line-height:1.7">
-              <li>Hiperdensidade biconvexa (lenticular) temporal direita</li>
-              <li>Desvio de linha média &gt; 5 mm para a esquerda</li>
-              <li>Compressão do corno temporal direito</li>
-              <li>Cisternas basais comprimidas ou obliteradas</li>
-              <li>Fratura temporal direita (possível na janela óssea)</li>
-            </ul>
-          </div>
-          <div>
-            <p><strong>Protocolo LUCAS aplicado:</strong></p>
-            <ul style="margin-top:.5rem;padding-left:1.1rem;font-size:.875rem;line-height:1.7">
-              <li><strong>L</strong>inha média: DESVIADA &gt;5mm ← esquerda</li>
-              <li><strong>U</strong>ncus/Cisternas: COMPRIMIDAS</li>
-              <li><strong>C</strong>oleções: BICONVEXA hiperdensa D</li>
-              <li><strong>A</strong>rquitetura: ventrículo D comprimido</li>
-              <li><strong>S</strong>kull: verificar fratura temporal</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mnem osce-mnem" style="margin-top:1rem">
-          <div class="mnem-label osce-l">Diagnóstico</div>
-          <p><strong>HED temporal direito com herniação uncal.</strong> Volume estimado &gt;30 cm³. Indicação cirúrgica absoluta: craniotomia descompressiva de emergência.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CONDUTA ESPERADA -->
 <div class="sec rv">
   <div class="sec-kicker">Performance OSCE</div>
   <h2 class="sec-title">Conduta <span class="green">Esperada</span> vs Erros <span class="danger">Críticos</span></h2>
-  <div class="acc" id="conduta-osce1-acc">
-    <div class="acc-item">
-      <div class="acc-hdr" onclick="toggleAcc(this)">✅ Conduta Correta Passo a Passo <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <div class="review-steps">
-          <div class="review-step"><p>Reconhecer deterioração neurológica (GCS caindo + anisocoria = herniação iminente)</p></div>
-          <div class="review-step"><p>IOT imediata com sequência rápida (etomidato + succinilcolina ou rocurônio)</p></div>
-          <div class="review-step"><p>O₂ 100%, SpO₂ alvo ≥ 95%, PaCO₂ 30–35 mmHg como ponte</p></div>
-          <div class="review-step"><p>Manitol 1 g/kg bolus IV OU NaCl 3% 250 mL</p></div>
-          <div class="review-step"><p>Acionamento IMEDIATO da neurocirurgia (não esperar TC)</p></div>
-          <div class="review-step"><p>TC emergência em paralelo (se estável o suficiente)</p></div>
-          <div class="review-step"><p>Craniotomia temporal direita descompressiva (hematoma &gt;30 cm³)</p></div>
-          <div class="review-step"><p>Monitorar PIC no pós-operatório + metas fisiológicas UTI</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">❌ Erros Críticos que Reprovam no OSCE <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <div class="peg-list">
-          <div class="peg-item"><strong>Erro fatal 1:</strong> Aguardar TC antes de intubar com GCS ≤ 8 + herniação</div>
-          <div class="peg-item"><strong>Erro fatal 2:</strong> Não reconhecer anisocoria como sinal de herniação uncal</div>
-          <div class="peg-item"><strong>Erro fatal 3:</strong> Prescrever dexametasona (corticoide contraindicado no TCE)</div>
-          <div class="peg-item"><strong>Erro fatal 4:</strong> Tratar hipertensão com anti-hipertensivo (é mecanismo compensatório)</div>
-          <div class="peg-item"><strong>Erro fatal 5:</strong> Não acionar neurocirurgia com urgência ou transferir sem estabilização</div>
-        </div>
-      </div>
-    </div>
+  <div class="acc">
+    <div class="acc-item"><div class="acc-hdr" onclick="toggleAcc(this)">✅ Conduta Correta Passo a Passo <span class="acc-arrow">▼</span></div>
+    <div class="acc-body"><div class="review-steps">
+      <div class="review-step"><p>Reconhecer deterioração neurológica + anisocoria = herniação iminente</p></div>
+      <div class="review-step"><p>IOT imediata com SRI (etomidato + succinilcolina ou rocurônio)</p></div>
+      <div class="review-step"><p>O₂ 100%, SpO₂ ≥ 95%, PaCO₂ 30–35 mmHg como ponte</p></div>
+      <div class="review-step"><p>Manitol 1 g/kg bolus IV OU NaCl 3% 250 mL</p></div>
+      <div class="review-step"><p>Acionamento IMEDIATO da neurocirurgia (não esperar TC)</p></div>
+      <div class="review-step"><p>TC emergência em paralelo (se estável o suficiente)</p></div>
+      <div class="review-step"><p>Craniotomia temporal direita descompressiva (hematoma &gt;30 cm³)</p></div>
+      <div class="review-step"><p>Monitorar PIC no pós-operatório + metas fisiológicas UTI</p></div>
+    </div></div></div>
+    <div class="acc-item"><div class="acc-hdr red-hdr" onclick="toggleAcc(this)">❌ Erros Críticos que Reprovam no OSCE <span class="acc-arrow">▼</span></div>
+    <div class="acc-body"><div class="peg-list">
+      <div class="peg-item"><strong>Erro fatal 1:</strong> Aguardar TC antes de intubar com GCS ≤ 8 + herniação</div>
+      <div class="peg-item"><strong>Erro fatal 2:</strong> Não reconhecer anisocoria como sinal de herniação uncal</div>
+      <div class="peg-item"><strong>Erro fatal 3:</strong> Prescrever dexametasona (contraindicado no TCE)</div>
+      <div class="peg-item"><strong>Erro fatal 4:</strong> Tratar hipertensão com anti-hipertensivo</div>
+      <div class="peg-item"><strong>Erro fatal 5:</strong> Não acionar neurocirurgia com urgência</div>
+    </div></div></div>
   </div>
 </div>
-
-<!-- CHECKLIST OSCE 1 -->
 <div class="sec rv">
   <div class="sec-kicker">Avaliação</div>
   <h2 class="sec-title">Checklist do <span class="osce">Avaliador</span></h2>
-  <p style="font-size:.875rem;color:var(--muted);margin-bottom:1rem">Marque os itens realizados pelo candidato. Pontuação mínima para aprovação: <strong>14/20 pontos</strong>.</p>
+  <p style="font-size:.875rem;color:var(--gray);margin-bottom:1rem">Pontuação mínima para aprovação: <strong>14/20 pontos</strong>.</p>
   <div class="checklist" id="ck-osce1">
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Identifica deterioração neurológica (GCS caindo) e nomeia herniação iminente</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Solicita IOT com sequência rápida (cita agente indutor + bloqueador)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,1)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Estabelece meta de SpO₂ ≥ 95% e PaCO₂ 30–35 mmHg como ponte</div>
-      <div class="ck-pts">1 pt</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Prescreve manitol 1g/kg bolus OU NaCl 3% corretamente</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Aciona neurocirurgia imediatamente (sem esperar TC)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,1)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Solicita TC de crânio urgência em paralelo</div>
-      <div class="ck-pts">1 pt</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Interpreta TC: cita biconvexa, desvio linha média, compressão cisternas</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Indica craniotomia descompressiva com justificativa (volume &gt;30 cm³)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">NÃO prescreve corticoide — se questionado, justifica (CRASH trial)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,1)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Cita metas de UTI pós-operatória (PPC 60–70, PIC &lt;20)</div>
-      <div class="ck-pts">1 pt</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,1)">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Comunicação clara com examinador — explica raciocínio em voz alta</div>
-      <div class="ck-pts">1 pt</div>
-    </div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Identifica deterioração neurológica e nomeia herniação iminente</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Solicita IOT com SRI (cita agente indutor + bloqueador)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Estabelece meta SpO₂ ≥ 95% e PaCO₂ 30–35 mmHg como ponte</div><div class="ck-pts" data-pts="1">1 pt</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Prescreve manitol 1g/kg bolus OU NaCl 3% corretamente</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Aciona neurocirurgia imediatamente (sem esperar TC)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Solicita TC de crânio urgência em paralelo</div><div class="ck-pts" data-pts="1">1 pt</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Interpreta TC: cita biconvexa, desvio linha média, compressão cisternas</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Indica craniotomia descompressiva (volume &gt;30 cm³)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">NÃO prescreve corticoide — justifica (CRASH trial)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Cita metas de UTI pós-operatória (PPC 60–70, PIC &lt;20)</div><div class="ck-pts" data-pts="1">1 pt</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce1')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Comunicação clara com examinador</div><div class="ck-pts" data-pts="1">1 pt</div></div>
   </div>
-  <div class="score-display">
-    <div class="score-label">PONTUAÇÃO</div>
-    <div class="score-num" id="sc-osce1">0/20</div>
-    <div class="score-bar"><div class="score-fill" id="sf-osce1" style="width:0%"></div></div>
-    <div class="score-label" id="sl-osce1">Selecione os itens acima</div>
-  </div>
+  <div class="score-display"><div class="score-label">PONTUAÇÃO</div><div class="score-num" id="sc-osce1">0/20</div><div class="score-bar"><div class="score-fill" id="sf-osce1" style="width:0%"></div></div><div class="score-label" id="sl-osce1">Selecione os itens acima</div></div>
 </div>
-
-<!-- FLASHCARDS OSCE 1 -->
 <div class="sec rv">
   <div class="sec-kicker">N7 Spaced Repetition</div>
   <h2 class="sec-title">Flashcards: <span class="osce">HED</span></h2>
   <div class="fc-grid">
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Qual é a artéria mais comumente lesada no HED e qual osso está fraturado na maioria dos casos?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a"><strong>Artéria meníngea média</strong> (ramo da maxilar interna). Fratura do osso <strong>temporal</strong> (região pterional). O vaso está no sulco ósseo temporal — uma fissura libera sangue arterial de alta pressão rapidamente.</div></div>
-      </div>
-    </div>
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Qual é o "gatilho" que define indicação cirúrgica no HED independente do GCS?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a"><strong>Volume &gt; 30 cm³</strong> → cirurgia INDEPENDENTE do GCS. Mnemônico: <strong>"EPI 30 CORTA"</strong>. Adicionalmente: espessura &gt;15mm ou desvio &gt;5mm com GCS &lt;9.</div></div>
-      </div>
-    </div>
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Por que a anisocoria no HED é IPSILATERAL ao hematoma (e não contralateral)?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a">O uncus temporal hernia ipsilateralmente e comprime o <strong>nervo oculomotor III</strong> do mesmo lado → midríase e ptose ipsilaterais. O sinal cruzado (Kernohan) é déficit <em>motor</em> ipsilateral, não pupilar.</div></div>
-      </div>
-    </div>
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Defina intervalo lúcido e seu significado fisiopatológico no HED arterial.</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a"><strong>Intervalo lúcido:</strong> período de lucidez entre a perda inicial de consciência e a deterioração secundária. No HED arterial, o cérebro "aguenta" a expansão inicial; quando o hematoma supera a capacidade de compensação de Monroe-Kellie, a deterioração é súbita e fatal se não operada.</div></div>
-      </div>
-    </div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-inner"><div class="fc-front"><div class="fc-q">Qual artéria é mais comumente lesada no HED e qual osso está fraturado?</div><div class="fc-hint">clique para ver</div></div><div class="fc-back"><div class="fc-a"><strong>Artéria meníngea média</strong> (ramo da maxilar interna). Fratura do osso <strong>temporal</strong> (região pterional).</div></div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-inner"><div class="fc-front"><div class="fc-q">Qual é o gatilho cirúrgico no HED independente do GCS?</div><div class="fc-hint">clique para ver</div></div><div class="fc-back"><div class="fc-a"><strong>Volume &gt; 30 cm³</strong> → cirurgia INDEPENDENTE do GCS.<br>Mnemônico: <strong>"EPI 30 CORTA"</strong></div></div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-inner"><div class="fc-front"><div class="fc-q">Por que a anisocoria no HED é IPSILATERAL ao hematoma?</div><div class="fc-hint">clique para ver</div></div><div class="fc-back"><div class="fc-a">O uncus hernia ipsilateralmente e comprime o <strong>III par</strong> do mesmo lado → midríase e ptose ipsilaterais.</div></div></div></div>
+    <div class="fc" onclick="this.classList.toggle('flip')"><div class="fc-inner"><div class="fc-front"><div class="fc-q">Defina intervalo lúcido e sua fisiopatologia no HED.</div><div class="fc-hint">clique para ver</div></div><div class="fc-back"><div class="fc-a">Período de lucidez entre a perda inicial de consciência e deterioração secundária. O cérebro "aguenta" a expansão inicial; quando supera Monro-Kellie, a deterioração é súbita.</div></div></div></div>
   </div>
-  <div class="sig-block">
-    <div class="sname">Dr. André Rossanno</div>
-    <p>OSCE Cenário 1 · HED · TEC 2026</p>
-  </div>
+  <div class="sig-block"><div class="sname">Dr. André Rossanno</div><p>OSCE Cenário 1 · HED · TEC 2026</p></div>
 </div>
 </section>
 
-<!-- ══════════════════════════════════════════ OSCE 2 ══ -->
+<!-- ══ OSCE 2 ══ -->
 <section id="osce2" class="module">
 <div class="hero">
   <div class="hero-kicker">OSCE · Cenário 2 · TEC 2026</div>
   <h1 class="hero-title"><span class="osce-col">O Politrauma Silencioso</span><br>TC quase normal, <span class="danger">cérebro em apagão</span></h1>
   <p class="hero-quote osce-border">"Dentro do crânio, não há espaço para descuido: quando oxigênio, pressão e perfusão falham, o silêncio do cérebro vira sentença."</p>
 </div>
-
-<!-- APRESENTAÇÃO OSCE 2 -->
 <div class="sec rv">
   <div class="sec-kicker">Cenário Inicial</div>
   <h2 class="sec-title"><span class="osce">Apresentação</span> do Caso</h2>
   <div class="scene-banner osce-scene">
-    <div class="scene-label">🚑 Politrauma · Chegada via SAMU · 02h15</div>
-    <div class="scene-title">Motociclista · 21 anos · Colisão frontal com caminhão a 100 km/h</div>
-    <p class="scene-desc">Capacete preservado mas deformado. No local: GCS 8, PA 90/60. SAMU intubu no campo. Chegada: IOT em posição, sedado (midazolam + fentanil), em ventilação mecânica. TC de crânio: "microhemorragia punctiforme na junção substância branca/cinzenta frontal bilateral, sem desvio de linha média, cisternas basais pérvias." TC total body: sem pneumotórax, fratura de fêmur direito, contusão pulmonar leve.</p>
+    <div class="scene-label">🚑 Politrauma · 02h15</div>
+    <div class="scene-title">Motociclista · 21 anos · Colisão frontal a 100 km/h</div>
+    <p class="scene-desc">Capacete deformado. GCS 8 no local — SAMU intubou no campo. TC crânio: "microhemorragia punctiforme na junção SB/SC frontal bilateral, sem desvio, cisternas pérvias." TC body: fratura de fêmur direito, contusão pulmonar leve.</p>
   </div>
-  <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:800;margin-bottom:1rem;color:var(--muted)">Parâmetros na Chegada à UTI</h3>
   <div class="vitals-grid">
-    <div class="vital crit">
-      <div class="vital-label">PAS</div>
-      <div class="vital-val">88</div>
-      <div class="vital-sub">mmHg</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">FC</div>
-      <div class="vital-val">118</div>
-      <div class="vital-sub">bpm</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">SpO₂</div>
-      <div class="vital-val">91%</div>
-      <div class="vital-sub">FiO₂ 50%</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">PaCO₂</div>
-      <div class="vital-val">44</div>
-      <div class="vital-sub">mmHg</div>
-    </div>
-    <div class="vital crit">
-      <div class="vital-label">PPC*</div>
-      <div class="vital-val">~38</div>
-      <div class="vital-sub">mmHg estimado</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">Temp</div>
-      <div class="vital-val">35.8°C</div>
-      <div class="vital-sub">hipotermia leve</div>
-    </div>
-    <div class="vital warn">
-      <div class="vital-label">Glicemia</div>
-      <div class="vital-val">198</div>
-      <div class="vital-sub">mg/dL</div>
-    </div>
-    <div class="vital crit">
-      <div class="vital-label">Lactato</div>
-      <div class="vital-val">4.2</div>
-      <div class="vital-sub">mmol/L</div>
-    </div>
+    <div class="vital crit"><div class="vital-label">PAS</div><div class="vital-val">88</div><div class="vital-sub">mmHg</div></div>
+    <div class="vital warn"><div class="vital-label">FC</div><div class="vital-val">118</div><div class="vital-sub">bpm</div></div>
+    <div class="vital warn"><div class="vital-label">SpO₂</div><div class="vital-val">91%</div><div class="vital-sub">FiO₂ 50%</div></div>
+    <div class="vital warn"><div class="vital-label">PaCO₂</div><div class="vital-val">44</div><div class="vital-sub">mmHg</div></div>
+    <div class="vital crit"><div class="vital-label">PPC*</div><div class="vital-val">~38</div><div class="vital-sub">mmHg estimado</div></div>
+    <div class="vital warn"><div class="vital-label">Temp</div><div class="vital-val">35.8°C</div><div class="vital-sub">hipotermia leve</div></div>
+    <div class="vital warn"><div class="vital-label">Glicemia</div><div class="vital-val">198</div><div class="vital-sub">mg/dL</div></div>
+    <div class="vital crit"><div class="vital-label">Lactato</div><div class="vital-val">4.2</div><div class="vital-sub">mmol/L</div></div>
   </div>
-  <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">*PPC estimada sem monitorização direta de PIC; baseada em PAS e PPC = PAM − PIC assumida de 20 mmHg.</p>
 </div>
-
-<!-- ANÁLISE DO CASO -->
 <div class="sec rv">
-  <div class="sec-kicker">Raciocínio Diagnóstico</div>
+  <div class="sec-kicker">Raciocínio</div>
   <h2 class="sec-title">Por que este é <span class="osce">LAD</span> e não "trauma leve"?</h2>
   <div class="grid2">
-    <div class="card osce-card">
-      <h4 class="o">TC "Quase Normal"</h4>
-      <p>Microhemorragias punctiformes na junção SB/SC = <strong>assinatura do LAD grau II</strong>. A ausência de hematoma focal e desvio não significa lesão leve — significa lesão difusa.</p>
-    </div>
-    <div class="card danger">
-      <h4 class="r">GCS 8 Pré-sedação</h4>
-      <p>GCS 8 registrado antes da sedação = TCE grave. Sedação não "causa" coma — ela pode mascarar a melhora. O GCS real é o pré-sedação.</p>
-    </div>
-    <div class="card danger">
-      <h4 class="r">Choque Hemorrágico Concomitante</h4>
-      <p>PAS 88 + FC 118 + lactato 4,2 = choque hemorrágico classe III. Fratura de fêmur direito pode perder 1–2L. A hipotensão está matando o cérebro.</p>
-    </div>
-    <div class="card osce-card">
-      <h4 class="o">Diagnóstico Final</h4>
-      <p><strong>LAD grau II</strong> + choque hemorrágico classe III por fratura de fêmur. A PPC estimada em ~38 mmHg está abaixo do limiar de isquemia (mínimo 50 mmHg).</p>
-    </div>
+    <div class="card osce-card"><h4><span class="o">TC "Quase Normal"</span></h4><p>Microhemorragias punctiformes na junção SB/SC = <strong>assinatura do LAD grau II</strong>. Ausência de hematoma focal não significa lesão leve.</p></div>
+    <div class="card danger"><h4><span class="r">GCS 8 Pré-sedação</span></h4><p>GCS 8 registrado antes da sedação = TCE grave. O GCS real é o pré-sedação.</p></div>
+    <div class="card danger"><h4><span class="r">Choque Hemorrágico</span></h4><p>PAS 88 + FC 118 + lactato 4,2 = choque classe III. Fratura de fêmur pode perder 1–2L.</p></div>
+    <div class="card osce-card"><h4><span class="o">Diagnóstico Final</span></h4><p><strong>LAD grau II</strong> + choque hemorrágico classe III. PPC estimada ~38 mmHg — abaixo do limiar de isquemia.</p></div>
   </div>
 </div>
-
-<!-- ARMADILHA DO MANITOL -->
 <div class="sec rv">
   <div class="sec-kicker">Pegadinha TEC 2026</div>
   <h2 class="sec-title">A Armadilha do <span class="danger">Manitol no Choque</span></h2>
-  <div class="acc" id="manitol-trap-acc">
-    <div class="acc-item">
-      <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">⚠️ Por que NÃO dar manitol neste caso? <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <p>O manitol <strong>piora a hipotensão</strong> por sua ação osmótica (expansão intravascular seguida de diurese intensa). Em paciente com PAS 88 mmHg, o manitol pode colapsar a pressão e reduzir ainda mais a PPC.</p>
-        <p style="margin-top:.75rem"><strong>Conduta correta:</strong></p>
-        <ul style="padding-left:1.1rem;font-size:.875rem;line-height:1.7;margin-top:.4rem">
-          <li><strong>NaCl 3%</strong> — preferível pois expande volemia E reduz osmolaridade cerebral</li>
-          <li>Reposição volémica com SF 0,9% para PAM &gt; 80 mmHg</li>
-          <li>Vasopressor (norepinefrina) se volemia insuficiente</li>
-          <li>Hemotransfusão se Hb &lt; 7 (ou &lt;10 com TCE grave)</li>
-        </ul>
-        <div class="mnem red-mnem" style="margin-top:1rem">
-          <div class="mnem-label red-l">Mnemônico</div>
-          <p><strong>"Choque salgado; seco não manitola"</strong><br>Hipotensão → NaCl 3%. Normotenso ou hipertenso → manitol.</p>
-        </div>
-      </div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔴 Quais "vilões fisiológicos" estão ativos neste caso? <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <div class="grid2" style="margin-top:.5rem">
-          <div class="card danger"><h4 class="r">Hipotensão</h4><p>PAS 88 → PPC crítica → isquemia em andamento</p></div>
-          <div class="card danger"><h4 class="r">Hipóxia</h4><p>SpO₂ 91% → abaixo do limiar de lesão secundária</p></div>
-          <div class="card danger"><h4 class="r">Hipercapnia relativa</h4><p>PaCO₂ 44 → vasodilatação → ↑PIC</p></div>
-          <div class="card danger"><h4 class="r">Hiperglicemia</h4><p>198 mg/dL → piora edema e isquemia neuronal</p></div>
-        </div>
-      </div>
-    </div>
+  <div class="acc">
+    <div class="acc-item"><div class="acc-hdr red-hdr" onclick="toggleAcc(this)">⚠️ Por que NÃO dar manitol neste caso? <span class="acc-arrow">▼</span></div>
+    <div class="acc-body"><p>O manitol causa <strong>diurese osmótica intensa</strong> → reduz volemia → piora hipotensão → reduz PPC → agrava isquemia cerebral.</p><p style="margin-top:.75rem"><strong>Conduta correta:</strong></p><ul style="padding-left:1.1rem;font-size:.875rem;line-height:1.7;margin-top:.4rem"><li><strong>NaCl 3%</strong> — expande volemia + reduz osmolaridade cerebral</li><li>SF 0,9% para PAM &gt; 80 mmHg</li><li>Vasopressor (norepinefrina) se necessário</li><li>Hemotransfusão se Hb &lt; 10 (TCE grave)</li></ul>
+    <div class="mnem red-mnem" style="margin-top:1rem"><div class="mnem-label red-l">Mnemônico</div><p><strong>"Choque salgado; seco não manitola"</strong><br>Hipotensão → NaCl 3%. Normotenso → manitol.</p></div></div></div>
+    <div class="acc-item"><div class="acc-hdr red-hdr" onclick="toggleAcc(this)">🔴 Vilões fisiológicos ativos neste caso <span class="acc-arrow">▼</span></div>
+    <div class="acc-body"><div class="grid2" style="margin-top:.5rem">
+      <div class="card danger"><h4><span class="r">Hipotensão</span></h4><p>PAS 88 → PPC crítica → isquemia em andamento</p></div>
+      <div class="card danger"><h4><span class="r">Hipóxia</span></h4><p>SpO₂ 91% → abaixo do limiar de lesão secundária</p></div>
+      <div class="card danger"><h4><span class="r">Hipercapnia</span></h4><p>PaCO₂ 44 → vasodilatação → ↑PIC</p></div>
+      <div class="card danger"><h4><span class="r">Hiperglicemia</span></h4><p>198 mg/dL → piora edema e isquemia neuronal</p></div>
+    </div></div></div>
   </div>
 </div>
-
-<!-- CONDUTA OSCE 2 -->
 <div class="sec rv">
   <div class="sec-kicker">Performance OSCE</div>
   <h2 class="sec-title">Conduta <span class="green">Correta</span> Passo a Passo</h2>
-  <div class="acc" id="conduta-osce2-acc">
-    <div class="acc-item">
-      <div class="acc-hdr" onclick="toggleAcc(this)">✅ Sequência de Prioridades <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <div class="review-steps">
-          <div class="review-step"><p>Confirmar IOT e posição do TOT (capnografia + ausculta bilateral)</p></div>
-          <div class="review-step"><p>Ajustar ventilador: FiO₂ 100%, PEEP 5–8, VC 6 mL/kg, FR para PaCO₂ 35–40</p></div>
-          <div class="review-step"><p>Corrigir choque: SF 0,9% 500 mL bolus + avaliar resposta. Se persistir: norepinefrina. Meta PAM &gt;80 mmHg.</p></div>
-          <div class="review-step"><p>NaCl 3% 150–250 mL se suspeita de PIC elevada (NÃO manitol no choque)</p></div>
-          <div class="review-step"><p>Hemotransfusão se Hb &lt; 10 g/dL no TCE grave (limiar mais generoso)</p></div>
-          <div class="review-step"><p>Ortopedia: estabilização do fêmur (tração/fixação externa) para controle de sangramento</p></div>
-          <div class="review-step"><p>Solicitar RM urgência: SWI para quantificar microhemorragias e classificar LAD</p></div>
-          <div class="review-step"><p>Anticonvulsivante profilático: levetiracetam 1000 mg/dia × 7 dias</p></div>
-          <div class="review-step"><p>Cabeceira 30°, temperatura normal, glicemia 140–180, Na⁺ 140–155</p></div>
-          <div class="review-step"><p>Monitorização neurológica contínua (PIC se disponível), família informada</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="acc-item">
-      <div class="acc-hdr red-hdr" onclick="toggleAcc(this)">❌ Erros Críticos — OSCE 2 <span class="acc-arrow">▼</span></div>
-      <div class="acc-body">
-        <div class="peg-list">
-          <div class="peg-item"><strong>Erro 1:</strong> Considerar LAD como "TCE leve" por ausência de hematoma na TC</div>
-          <div class="peg-item"><strong>Erro 2:</strong> Prescrever manitol em paciente com PAS &lt; 90 mmHg</div>
-          <div class="peg-item"><strong>Erro 3:</strong> Não corrigir a SpO₂ (91% = lesão secundária ativa)</div>
-          <div class="peg-item"><strong>Erro 4:</strong> Ignorar PaCO₂ 44 — hipercapnia aumenta PIC por vasodilatação</div>
-          <div class="peg-item"><strong>Erro 5:</strong> Não solicitar RM — repetir TC sem contraste não adiciona informação no LAD</div>
-        </div>
-      </div>
-    </div>
+  <div class="review-steps">
+    <div class="review-step"><p>Confirmar IOT e posição do TOT (capnografia + ausculta bilateral)</p></div>
+    <div class="review-step"><p>Ajustar ventilador: FiO₂ 100%, PEEP 5–8, VC 6 mL/kg, FR para PaCO₂ 35–40</p></div>
+    <div class="review-step"><p>Corrigir choque: SF 0,9% 500 mL bolus. Se persistir: norepinefrina. Meta PAM &gt;80 mmHg.</p></div>
+    <div class="review-step"><p>NaCl 3% 150–250 mL (NÃO manitol no choque)</p></div>
+    <div class="review-step"><p>Hemotransfusão se Hb &lt; 10 g/dL (limiar mais liberal no TCE grave)</p></div>
+    <div class="review-step"><p>Ortopedia: estabilização do fêmur para controle de sangramento</p></div>
+    <div class="review-step"><p>Solicitar RM urgência: SWI para classificar LAD</p></div>
+    <div class="review-step"><p>Anticonvulsivante profilático: levetiracetam 1000 mg/dia × 7 dias</p></div>
+    <div class="review-step"><p>Cabeceira 30°, temperatura normal, glicemia 140–180, Na⁺ 140–155</p></div>
+    <div class="review-step"><p>Monitorização neurológica contínua, família informada</p></div>
   </div>
 </div>
-
-<!-- CHECKLIST OSCE 2 -->
 <div class="sec rv">
   <div class="sec-kicker">Avaliação</div>
   <h2 class="sec-title">Checklist do <span class="osce">Avaliador</span></h2>
-  <p style="font-size:.875rem;color:var(--muted);margin-bottom:1rem">Pontuação mínima para aprovação: <strong>14/20 pontos</strong>.</p>
   <div class="checklist" id="ck-osce2">
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Identifica LAD e classifica como TCE grave (não "trauma leve" pela TC)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Ajusta ventilador para metas (SpO₂ ≥95%, PaCO₂ 35–40)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Trata choque com SF + vasopressor (sem manitol em hipotensão)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Usa NaCl 3% (não manitol) como osmoterapia no contexto de choque</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Solicita RM (sequência SWI) para classificar LAD</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,1,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Cita anticonvulsivante profilático 7 dias</div>
-      <div class="ck-pts">1 pt</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Aciona ortopedia para controle do sangramento no fêmur</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,1,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Cita todas as metas fisiológicas: glicemia, temperatura, Na⁺, PPC</div>
-      <div class="ck-pts">1 pt</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">NÃO prescreve corticoide; justifica se questionado</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
-    <div class="ck-item" onclick="toggleCk(this,2,'osce2')">
-      <div class="ck-box"><span class="ck-check">✓</span></div>
-      <div class="ck-text">Explica fisiopatologia do LAD (forças de aceleração, ruptura axonal)</div>
-      <div class="ck-pts">2 pts</div>
-    </div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Identifica LAD como TCE grave (não "leve" pela TC)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Ajusta ventilador para metas (SpO₂ ≥95%, PaCO₂ 35–40)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Trata choque com SF + vasopressor (sem manitol em hipotensão)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Usa NaCl 3% como osmoterapia no choque</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Solicita RM (SWI) para classificar LAD</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Cita anticonvulsivante profilático 7 dias</div><div class="ck-pts" data-pts="1">1 pt</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Aciona ortopedia para controle do sangramento</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Cita todas as metas fisiológicas: glicemia, temperatura, Na⁺, PPC</div><div class="ck-pts" data-pts="1">1 pt</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">NÃO prescreve corticoide; justifica se questionado</div><div class="ck-pts" data-pts="2">2 pts</div></div>
+    <div class="ck-item" onclick="toggleCk(this,'osce2')"><div class="ck-box"><span class="ck-check">✓</span></div><div class="ck-text">Explica fisiopatologia do LAD (forças de aceleração, ruptura axonal)</div><div class="ck-pts" data-pts="2">2 pts</div></div>
   </div>
-  <div class="score-display">
-    <div class="score-label">PONTUAÇÃO</div>
-    <div class="score-num" id="sc-osce2">0/20</div>
-    <div class="score-bar"><div class="score-fill" id="sf-osce2" style="width:0%"></div></div>
-    <div class="score-label" id="sl-osce2">Selecione os itens acima</div>
-  </div>
+  <div class="score-display"><div class="score-label">PONTUAÇÃO</div><div class="score-num" id="sc-osce2">0/20</div><div class="score-bar"><div class="score-fill" id="sf-osce2" style="width:0%"></div></div><div class="score-label" id="sl-osce2">Selecione os itens acima</div></div>
 </div>
-
-<!-- FLASHCARDS OSCE 2 -->
-<div class="sec rv">
-  <div class="sec-kicker">N7 Spaced Repetition</div>
-  <h2 class="sec-title">Flashcards: <span class="osce">LAD & Choque</span></h2>
-  <div class="fc-grid">
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Quais são os três graus do LAD e suas localizações anatômicas características?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a"><strong>Grau I:</strong> Substância branca hemisférica (lobos frontais, coroa radiada)<br><strong>Grau II:</strong> + Junção corpo caloso<br><strong>Grau III:</strong> + Tronco encefálico dorsolateral → maior mortalidade e sequela</div></div>
-      </div>
-    </div>
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Por que o manitol está contraindicado no contexto de choque hemorrágico + TCE?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a">O manitol causa <strong>diurese osmótica intensa</strong> → reduz volemia → piora hipotensão → reduz PPC → agrava isquemia cerebral. No choque: <strong>NaCl 3%</strong> é preferível (expande volemia + reduz PIC).</div></div>
-      </div>
-    </div>
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Qual sequência de RM é mais sensível para detectar microhemorragias no LAD?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a"><strong>SWI (Susceptibility Weighted Imaging)</strong> — detecta depósitos de hemossiderina/desoxi-hemoglobina. Muito superior à TC e às sequências convencionais de RM para microhemorragias punctiformes.</div></div>
-      </div>
-    </div>
-    <div class="fc" onclick="this.classList.toggle('flip')">
-      <div class="fc-inner">
-        <div class="fc-front"><div class="fc-q">Qual é o limiar de hemoglobina para transfusão no TCE grave (diferente do trauma isolado)?</div><div class="fc-hint">hover para revelar</div></div>
-        <div class="fc-back"><div class="fc-a">No TCE grave: transfundir se <strong>Hb &lt; 10 g/dL</strong> (limiar mais liberal que o trauma isolado, onde aceita-se 7 g/dL). O cérebro lesado tem maior demanda de oferta de O₂ — não tolera anemia.</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TABELA COMPARATIVA -->
 <div class="sec rv">
   <div class="sec-kicker">N5 Interleaving</div>
   <h2 class="sec-title">Comparativo: <span class="danger">HED</span> vs <span class="osce">LAD</span></h2>
   <table class="comp-table">
-    <thead>
-      <tr>
-        <th class="th-crit">Critério</th>
-        <th class="th-hed">HED — Cenário 1</th>
-        <th class="th-lad">LAD — Cenário 2</th>
-      </tr>
-    </thead>
+    <thead><tr><th class="th-crit">Critério</th><th class="th-hed">HED — Cenário 1</th><th class="th-lad">LAD — Cenário 2</th></tr></thead>
     <tbody>
       <tr><td><strong>Mecanismo</strong></td><td>Impacto focal, aceleração moderada</td><td>Aceleração-desaceleração intensa</td></tr>
-      <tr><td><strong>TC</strong></td><td>Biconvexa hiperdensa, desvio, compressão</td><td>Quase normal ou microhemorragias punctiformes</td></tr>
+      <tr><td><strong>TC</strong></td><td>Biconvexa hiperdensa, desvio</td><td>Quase normal ou microhemorragias punctiformes</td></tr>
       <tr><td><strong>GCS</strong></td><td>Intervalo lúcido → deterioração súbita</td><td>Coma imediato sem intervalo lúcido</td></tr>
-      <tr><td><strong>Pupila</strong></td><td>Anisocoria ipsilateral (III par)</td><td>Pupilas normais ou simétricas inicialmente</td></tr>
+      <tr><td><strong>Pupila</strong></td><td>Anisocoria ipsilateral (III par)</td><td>Pupilas normais/simétricas inicialmente</td></tr>
       <tr><td><strong>Cirurgia?</strong></td><td>Sim — craniotomia (se &gt;30 cm³)</td><td>Não — tratamento clínico / UTI</td></tr>
       <tr><td><strong>Osmoterapia</strong></td><td>Manitol (se normotenso) ou NaCl 3%</td><td>NaCl 3% (choque concomitante frequente)</td></tr>
       <tr><td><strong>Exame confirmador</strong></td><td>TC crânio (biconvexo)</td><td>RM SWI (microhemorragias axonais)</td></tr>
-      <tr><td><strong>Prognóstico</strong></td><td>Bom se operado a tempo</td><td>Variável: Grau I melhor; Grau III pior</td></tr>
+      <tr><td><strong>Prognóstico</strong></td><td>Bom se operado a tempo</td><td>Grau I melhor; Grau III pior</td></tr>
     </tbody>
   </table>
 </div>
-
-<!-- QUIZ FINAL OSCE -->
-<div class="sec rv">
-  <div class="sec-kicker">N4 Testing Effect — Questões Integradoras</div>
-  <h2 class="sec-title">Quiz Final: <span class="osce">OSCE Integrado</span></h2>
-  <div class="quiz" id="quiz-osce">
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 01 / OSCE Final</div>
-      <p class="q-text">Paciente com TCE grave + PAS 82 mmHg. A equipe decide dar manitol 1g/kg para tratar "sinais de herniação." Qual é o erro desta conduta?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> A dose está incorreta; deveria ser 0,25 g/kg</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','b')"><span class="q-letter">B</span> Manitol em hipotensão agrava a PPC por causar diurese e reduzir mais a PA</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','c')"><span class="q-letter">C</span> Correta — o benefício cerebral supera o risco hemodinâmico</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> A via de administração deveria ser intramuscular</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> Mnemônico: "Choque salgado; seco não manitola." Com PAS 82, o NaCl 3% é a osmoterapia de escolha — expande volemia e reduz PIC simultaneamente.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> Manitol em hipotensão causa diurese osmótica que reduz ainda mais a volemia, colapsa a PA e piora dramaticamente a PPC.</div>
-      <div class="q-trap">⚠️ <strong>Pegadinha:</strong> "Sinais de herniação" não legitimam manitol em choque. Primeiro a PA, depois o cérebro.</div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 02 / OSCE Final</div>
-      <p class="q-text">Sobre a fórmula PPC = PAM − PIC, é CORRETO afirmar que:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> PPC abaixo de 70 mmHg indica isquemia cerebral imediata</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Reduzir a PAM é uma estratégia eficaz para reduzir PIC</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> A meta de PPC no TCE grave é 60–70 mmHg, abaixo disso há risco de isquemia</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> PIC normal exclui necessidade de monitorar PAM</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> PPC 60–70 mmHg é a meta no TCE grave. Abaixo de 50 = isquemia definitiva. Acima de 70 pode aumentar vasodilatação e piorar PIC (vasodilatação-cascata).</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> PPC = PAM − PIC. Reduzir PAM reduz PPC. A meta é 60–70 mmHg — manter PAM e reduzir PIC, nunca sacrificar a PA.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 03 / OSCE Final</div>
-      <p class="q-text">Sobre o CRASH trial (2004) e o TCE, qual afirmativa é VERDADEIRA?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Demonstrou redução de mortalidade com metilprednisolona no TCE grave</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Avaliou o uso de ácido tranexâmico no trauma hemorrágico</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Demonstrou aumento de mortalidade em 14 dias com corticoide no TCE</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Suporta uso de corticoide em TCE moderado (GCS 9–12)</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> CRASH trial: corticoide no TCE → aumento de mortalidade absoluta em 14 dias. Contraindicado em qualquer TCE. Não confundir com CRASH-2 (ácido tranexâmico no trauma hemorrágico com choque).</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> CRASH trial 2004: dexametasona aumentou mortalidade no TCE. CRASH-2: ácido tranexâmico no trauma hemorrágico (assunto diferente).</div>
-      <div class="q-trap">⚠️ <strong>Pegadinha clássica TEC 2026:</strong> CRASH ≠ CRASH-2. São estudos completamente diferentes.</div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 04 / OSCE Final</div>
-      <p class="q-text">Qual é a principal diferença no mecanismo de lesão entre HED e LAD que explica as diferentes apresentações clínicas?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> HED acomete vasos venosos; LAD acomete artérias cerebrais</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','b')"><span class="q-letter">B</span> HED é lesão focal por impacto; LAD é lesão difusa por forças de aceleração-desaceleração em tecidos de densidades diferentes</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','c')"><span class="q-letter">C</span> HED ocorre apenas em jovens; LAD é exclusivo de idosos</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> LAD sempre apresenta hematoma na TC enquanto HED pode ser isodenso</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> HED: impacto focal → sangramento arterial localizado (biconvexo). LAD: forças de torção entre substância branca e cinzenta de densidades diferentes → ruptura axonal difusa → TC quase normal com coma profundo.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> HED = artéria meníngea média por impacto direto. LAD = forças de cisalhamento por aceleração-desaceleração que rompem axônios nas interfaces de tecidos de densidades diferentes.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 05 / OSCE Final</div>
-      <p class="q-text">Em relação à hipotermia terapêutica no TCE grave, qual é a posição atual das diretrizes?</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Indicada em todos os TCE graves nas primeiras 6h</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','b')"><span class="q-letter">B</span> Meta de 32°C por 48h demonstrou redução de mortalidade</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','c')"><span class="q-letter">C</span> Não recomendada de rotina — sem benefício comprovado em ensaios clínicos</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Indicada apenas em crianças com TCE</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> Ensaios clínicos (incluindo EUROTHERM, POLAR) não demonstraram benefício da hipotermia terapêutica no TCE grave. Controle de febre (≤37,5°C) é recomendado, mas indução de hipotermia ativa não tem indicação rotineira.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> Hipotermia terapêutica no TCE não mostrou benefício em grandes ensaios clínicos. Prevenir hipertermia sim; induzir hipotermia não.</div>
-      <div class="q-trap"></div>
-    </div>
-    <div class="q-item">
-      <div class="q-num">QUESTÃO 06 / OSCE Final</div>
-      <p class="q-text">Um estudante afirma: "TC sem desvio de linha média e cisternas pérvias exclui TCE grave." Esta afirmação é:</p>
-      <div class="q-opts">
-        <div class="q-opt" onclick="answerQ(this,'wrong','a')"><span class="q-letter">A</span> Verdadeira — estes achados confirmam TCE leve</div>
-        <div class="q-opt" onclick="answerQ(this,'correct','b')"><span class="q-letter">B</span> Falsa — LAD grau III pode apresentar TC quase normal com coma profundo</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','c')"><span class="q-letter">C</span> Verdadeira apenas se o GCS for maior que 8</div>
-        <div class="q-opt" onclick="answerQ(this,'wrong','d')"><span class="q-letter">D</span> Depende da escala de Marshall aplicada</div>
-      </div>
-      <div class="q-feedback ok">✅ <strong>Correto!</strong> LAD é a prova definitiva que TC "normal" não exclui TCE grave. A gravidade clínica (GCS) deve sempre prevalecer sobre o laudo tomográfico. TC quase normal + GCS 5 = LAD até prova em contrário.</div>
-      <div class="q-feedback ng">❌ <strong>Incorreto.</strong> LAD pode ter TC quase normal. O GCS pré-sedação é o melhor indicador de gravidade quando a TC não mostra lesão focal. Nunca deixe a TC dominar o raciocínio clínico.</div>
-      <div class="q-trap">⚠️ <strong>Mnemônico:</strong> "A TC é inocente; o axônio não." No LAD, a imagem pode enganar.</div>
-    </div>
-  </div>
-</div>
-
-<!-- REVISÃO 10 SEGUNDOS -->
 <div class="sec rv">
   <div class="sec-kicker">N7 Spaced Repetition</div>
-  <h2 class="sec-title">Revisão de <span class="green">10 Segundos</span> — TCE Completo</h2>
+  <h2 class="sec-title">Revisão de <span class="green">10 Segundos</span></h2>
   <div class="review-steps">
-    <div class="review-step"><p><strong>Lesão primária</strong> (impacto) + <strong>lesão secundária</strong> (hipóxia, hipotensão, hipertermia, hiperglicemia, hiperCO₂) — a segunda mata mais devagar mas com mais vítimas</p></div>
-    <div class="review-step"><p><strong>GCS</strong> estratifica (leve 13-15, moderado 9-12, grave ≤8) — intube se ≤8</p></div>
-    <div class="review-step"><p><strong>Protocolo LUCAS na TC:</strong> Linha média, Uncus, Coleções, Arquitetura, Skull — em ordem</p></div>
-    <div class="review-step"><p><strong>HED:</strong> biconvexo, artéria meníngea média, intervalo lúcido, cirurgia se &gt;30 cm³ (EPI 30 CORTA)</p></div>
-    <div class="review-step"><p><strong>HSD:</strong> côncavo-convexo, veia-ponte, idoso, cirurgia se &gt;10mm ou desvio &gt;5mm</p></div>
-    <div class="review-step"><p><strong>LAD:</strong> TC quase normal + coma = LAD. RM SWI para confirmar. Sem cirurgia.</p></div>
-    <div class="review-step"><p><strong>PPC = PAM − PIC</strong> → meta 60–70 mmHg. Hipotensão mata PPC. Prioridade: volemia.</p></div>
+    <div class="review-step"><p><strong>Lesão primária</strong> (impacto) + <strong>lesão secundária</strong> (hipóxia, hipotensão, hipertermia, hiperglicemia) — a segunda mata mais devagar mas com mais vítimas</p></div>
+    <div class="review-step"><p><strong>GCS:</strong> leve 13-15, moderado 9-12, grave ≤8 — intubar se ≤8</p></div>
+    <div class="review-step"><p><strong>LUCAS na TC:</strong> Linha média, Uncus, Coleções, Arquitetura, Skull</p></div>
+    <div class="review-step"><p><strong>HED:</strong> biconvexo, artéria meníngea média, intervalo lúcido. EPI 30 CORTA</p></div>
+    <div class="review-step"><p><strong>HSD:</strong> côncavo-convexo, veia-ponte. Cirurgia se &gt;10mm ou desvio &gt;5mm</p></div>
+    <div class="review-step"><p><strong>LAD:</strong> TC quase normal + coma = LAD. RM SWI. Sem cirurgia.</p></div>
+    <div class="review-step"><p><strong>PPC = PAM − PIC</strong> → meta 60–70 mmHg. Prioridade: volemia.</p></div>
     <div class="review-step"><p><strong>Manitol em choque:</strong> NÃO. "Choque salgado; seco não manitola." → NaCl 3%</p></div>
     <div class="review-step"><p><strong>Corticoide no TCE:</strong> NUNCA. CRASH trial = aumento de mortalidade.</p></div>
-    <div class="review-step"><p><strong>Anticonvulsivante:</strong> profilático 7 dias no TCE grave. Não prolonga além disso.</p></div>
+    <div class="review-step"><p><strong>Anticonvulsivante:</strong> profilático 7 dias no TCE grave. Não prolonga.</p></div>
   </div>
-</div>
-
-<!-- ASSINATURA FINAL -->
-<div class="sec rv">
-  <div class="sig-block">
-    <div class="sname">Dr. André Rossanno</div>
-    <p>TCE Completo · Módulos 4, 5 & OSCE · TEC 2026</p>
-    <p style="margin-top:.35rem;font-size:.72rem;color:rgba(136,153,170,.6)">Método André Rossanno de Memorização Médica · N1–N7</p>
-  </div>
+  <div class="sig-block"><div class="sname">Dr. André Rossanno</div><p>TCE Completo · Módulos 4, 5 & OSCE · TEC 2026</p><p style="margin-top:.35rem;font-size:.72rem;color:rgba(136,153,170,.6)">Método André Rossanno de Memorização Médica · N1–N7</p></div>
 </div>
 </section>
 </main>
 
 <script>
-// ── MODULE NAV ──────────────────────────────
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('pb').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100+'%';
+});
 function showMod(id,btn){
   document.querySelectorAll('.module').forEach(m=>m.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -1627,104 +702,70 @@ function showMod(id,btn){
   buildSB(id);
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-// ── SIDEBAR ─────────────────────────────────
 function buildSB(modId){
-  const sb=document.getElementById('sb');
-  sb.innerHTML='';
+  const sb=document.getElementById('sb');sb.innerHTML='';
   const mod=document.getElementById(modId);
-  const secs=mod.querySelectorAll('.sec');
-  if(!secs.length)return;
-  const wrap=document.createElement('div');
-  wrap.className='sb-section';
-  const t=document.createElement('div');
-  t.className='sb-title';
-  t.textContent='Seções';
-  wrap.appendChild(t);
+  const secs=mod.querySelectorAll('.sec');if(!secs.length)return;
+  const wrap=document.createElement('div');wrap.className='sb-section';
+  const t=document.createElement('div');t.className='sb-title';t.textContent='Seções';wrap.appendChild(t);
   let idx=0;
   secs.forEach(sec=>{
-    const h2=sec.querySelector('.sec-title');
-    if(!h2)return;
-    idx++;
-    const id='sec-anc-'+idx;
-    sec.id=id;
+    const h2=sec.querySelector('.sec-title');if(!h2)return;idx++;
+    const id='sec-anc-'+idx;sec.id=id;
     const a=document.createElement('a');
     a.className='sb-link'+(modId==='osce1'||modId==='osce2'?' osce-link':'');
     a.href='#'+id;
-    a.textContent=h2.textContent.slice(0,32).replace(/\s+/g,' ');
+    a.textContent=h2.textContent.replace(/[▼✓]/g,'').trim().slice(0,30);
     wrap.appendChild(a);
   });
   sb.appendChild(wrap);
 }
-
-// ── READING PROGRESS ────────────────────────
-window.addEventListener('scroll',()=>{
-  const d=document.documentElement;
-  const pct=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
-  document.getElementById('pb').style.width=pct+'%';
-});
-
-// ── ACCORDION ───────────────────────────────
 function toggleAcc(hdr){
   const body=hdr.nextElementSibling;
   const isOpen=hdr.classList.contains('open');
   hdr.classList.toggle('open',!isOpen);
   body.classList.toggle('show',!isOpen);
 }
-
-// ── QUIZ ────────────────────────────────────
-function answerQ(opt,result,letter){
+function answerQ(opt,result){
   const item=opt.closest('.q-item');
   if(item.dataset.answered)return;
   item.dataset.answered='true';
-  const opts=item.querySelectorAll('.q-opt');
-  opts.forEach(o=>{
+  item.querySelectorAll('.q-opt').forEach(o=>{
     o.classList.add('answered');
-    if(o===opt){o.classList.add(result==='correct'?'correct':'wrong')}
-    else if(result==='wrong'&&o.onclick&&o.onclick.toString().includes("'correct'")){o.classList.add('reveal')}
+    if(o===opt)o.classList.add(result==='correct'?'correct':'wrong');
+    else if(result==='wrong'&&o.getAttribute('onclick')&&o.getAttribute('onclick').includes("'correct'"))o.classList.add('reveal');
   });
-  const fb=item.querySelector('.q-feedback.'+( result==='correct'?'ok':'ng'));
+  const fb=item.querySelector('.q-feedback.'+(result==='correct'?'ok':'ng'));
   if(fb)fb.style.display='block';
   const trap=item.querySelector('.q-trap');
   if(trap&&trap.textContent.trim())trap.style.display='block';
 }
-
-// ── CHECKLIST / SCORE ───────────────────────
-function toggleCk(item,pts,ckId){
+function toggleCk(item,ckId){
   item.classList.toggle('checked');
-  updateScore(item.closest('.checklist').id);
+  updateScore(ckId);
 }
-
-function updateScore(listId){
-  const list=document.getElementById(listId);
-  if(!listId)return;
+function updateScore(ckId){
+  const list=document.getElementById('ck-'+ckId);if(!list)return;
   let total=0,max=0;
   list.querySelectorAll('.ck-item').forEach(item=>{
-    const ptsTxt=item.querySelector('.ck-pts').textContent;
-    const pts=parseInt(ptsTxt)||0;
-    max+=pts;
-    if(item.classList.contains('checked'))total+=pts;
+    const pts=parseInt(item.querySelector('.ck-pts').dataset.pts)||0;
+    max+=pts;if(item.classList.contains('checked'))total+=pts;
   });
-  const suffix=listId==='ck-osce1'?'osce1':'osce2';
-  const scEl=document.getElementById('sc-'+suffix);
-  const sfEl=document.getElementById('sf-'+suffix);
-  const slEl=document.getElementById('sl-'+suffix);
+  const pct=(total/max)*100;
+  const scEl=document.getElementById('sc-'+ckId);
+  const sfEl=document.getElementById('sf-'+ckId);
+  const slEl=document.getElementById('sl-'+ckId);
   if(!scEl)return;
   scEl.textContent=total+'/'+max;
-  const pct=(total/max)*100;
   sfEl.style.width=pct+'%';
   scEl.className='score-num '+(pct>=70?'high':pct>=50?'mid':'low');
-  sfEl.style.background=pct>=70?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
-  slEl.textContent=pct>=70?'✅ Aprovado — excelente performance!':pct>=50?'⚠️ Abaixo do mínimo — revisar pontos perdidos':'❌ Reprovar — rever o módulo completo';
+  sfEl.style.background=pct>=70?'var(--green)':pct>=50?'var(--gold)':'var(--red)';
+  slEl.textContent=pct>=70?'✅ Aprovado!':pct>=50?'⚠️ Abaixo do mínimo':'❌ Reprovar — rever o módulo';
 }
-
-// ── INTERSECTION OBSERVER (scroll reveals) ──
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')});
 },{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-// ── INIT ─────────────────────────────────────
 buildSB('m4');
 </script>
 </body>
