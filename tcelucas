@@ -1,1 +1,384 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUCAS — Leitura Sistemática da TC no TCE | Dr. André Rossanno</title>
+<meta property="og:title" content="LUCAS — TC no TCE | Dr. André Rossanno">
+<meta property="og:description" content="Método LUCAS de leitura sistemática da tomografia de crânio no TCE. TEC 2026.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B2545;--teal:#1282A2;--gold:#F4B942;--red:#E63946;--green:#2DC653;--yellow:#FFD166;--white:#F0F4F8;--gray:#8899AA;--card-bg:rgba(18,130,162,0.08);--border:rgba(18,130,162,0.25);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'IBM Plex Sans',sans-serif;line-height:1.7;min-height:100vh;
+background-image:radial-gradient(ellipse 80% 60% at 10% 20%,rgba(18,130,162,0.18) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 90% 80%,rgba(11,37,69,0.9) 0%,transparent 70%);overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(18,130,162,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(18,130,162,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+#pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--teal),var(--gold));z-index:1000;}
+
+/* NAV */
+.tnav{position:fixed;top:3px;left:0;right:0;background:rgba(11,37,69,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;}
+.nbrand{font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;}
+.nlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);text-decoration:none;padding:6px 14px;border:1px solid rgba(244,185,66,0.4);border-radius:4px;transition:all .2s;}
+.nlink:hover{background:rgba(244,185,66,0.1);}
+
+/* MAIN */
+.main{padding:80px 40px 80px;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+
+/* LUCAS WRAP */
+.lucas-wrap{margin:0 auto;padding:34px;border-radius:24px;background:radial-gradient(circle at top right,rgba(18,130,162,0.16),transparent 30%),linear-gradient(180deg,rgba(8,25,42,0.98),rgba(11,37,69,0.96));border:1px solid rgba(18,130,162,0.22);box-shadow:0 18px 55px rgba(0,0,0,0.35);color:#F0F4F8;font-family:'IBM Plex Sans',sans-serif;}
+.lucas-top{display:grid;grid-template-columns:1.2fr 0.9fr;gap:28px;align-items:center;margin-bottom:34px;}
+.lucas-kicker{margin:0 0 10px;font-size:0.74rem;letter-spacing:0.20em;text-transform:uppercase;color:var(--teal);font-family:'IBM Plex Mono',monospace;}
+.lucas-title{margin:0 0 10px;font-size:3rem;line-height:1;font-weight:900;font-family:'Syne',sans-serif;color:#fff;}
+.lucas-subtitle{margin:0 0 18px;font-size:1rem;line-height:1.7;color:rgba(240,244,248,0.76);max-width:720px;}
+.lucas-pill-row{display:flex;flex-wrap:wrap;gap:10px;}
+.lucas-pill{padding:8px 14px;border-radius:999px;background:rgba(18,130,162,0.10);border:1px solid rgba(18,130,162,0.28);color:#cfeef7;font-size:0.84rem;line-height:1.4;}
+.lucas-ct-box{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:24px;text-align:center;}
+.lucas-ct-circle{width:300px;height:300px;margin:0 auto 16px;border-radius:50%;position:relative;background:radial-gradient(circle at center,rgba(150,150,150,0.50) 0 35%,rgba(75,75,75,0.55) 36% 54%,#111 55% 100%);border:6px solid rgba(220,220,220,0.18);box-shadow:inset 0 0 25px rgba(255,255,255,0.05);}
+.lucas-midline{position:absolute;top:12%;bottom:12%;left:50%;width:2px;background:rgba(255,255,255,0.22);transform:translateX(-50%);border-radius:4px;}
+.lucas-lesion{position:absolute;top:34%;right:14%;width:72px;height:110px;border-radius:55% 40% 40% 55%;background:rgba(255,235,150,0.82);box-shadow:0 0 18px rgba(255,220,120,0.32);}
+.lucas-ventricles{position:absolute;top:39%;left:39%;width:64px;height:38px;border-radius:50%;background:rgba(20,20,40,0.68);box-shadow:-16px 0 0 rgba(20,20,40,0.72),16px 0 0 rgba(20,20,40,0.72);}
+.lucas-label{position:absolute;padding:6px 10px;background:rgba(6,24,40,0.88);border:1px solid rgba(18,130,162,0.24);border-radius:10px;font-size:0.72rem;color:#eaf8fc;}
+.lucas-label.l1{top:12px;left:18px;}
+.lucas-label.l2{top:112px;right:-8px;}
+.lucas-label.l3{bottom:18px;left:20px;}
+.lucas-ct-caption{margin:0;color:rgba(240,244,248,0.72);font-size:0.92rem;line-height:1.6;}
+.lucas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:28px;}
+.lucas-card{position:relative;background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.025));border:1px solid rgba(18,130,162,0.15);border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(0,0,0,0.16);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+.lucas-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.24);border-color:rgba(18,130,162,0.34);}
+.lucas-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.lucas-letter{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);line-height:1;}
+.lucas-icon{font-size:1.5rem;opacity:0.95;}
+.lucas-card h3{margin:0 0 10px;font-size:1.12rem;font-weight:800;color:#fff;}
+.lucas-card p{margin:0;line-height:1.7;color:rgba(240,244,248,0.82);font-size:0.95rem;}
+.lucas-mini{margin-top:14px;padding:14px 16px;border-radius:14px;background:rgba(0,0,0,0.16);border-left:4px solid var(--teal);}
+.lucas-mini strong{display:block;margin-bottom:8px;color:var(--gold);}
+.lucas-mini ul{margin:0;padding-left:18px;color:rgba(240,244,248,0.8);line-height:1.7;font-size:0.92rem;}
+.lucas-memory{margin-top:14px !important;color:var(--gold) !important;font-size:0.92rem;}
+.lucas-how{display:grid;grid-template-columns:1.2fr 0.8fr;gap:18px;margin-bottom:24px;}
+.lucas-how-box{padding:22px;border-radius:20px;background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.20);}
+.lucas-how-box.gold{background:rgba(244,185,66,0.10);border-color:rgba(244,185,66,0.26);}
+.lucas-how-box h3{margin:0 0 12px;font-size:1.05rem;color:#fff;}
+.lucas-how-box ol{margin:0;padding-left:20px;line-height:1.9;color:rgba(240,244,248,0.88);font-size:0.95rem;}
+.lucas-how-box p{margin:0;line-height:1.9;color:rgba(240,244,248,0.88);font-size:0.98rem;}
+.lucas-quote{margin:0;padding:22px 24px;border-left:4px solid var(--gold);border-radius:14px;background:rgba(244,185,66,0.08);color:rgba(240,244,248,0.94);font-style:italic;line-height:1.8;}
+.lucas-quote footer{margin-top:10px;color:var(--gold);font-style:normal;font-weight:700;font-family:'Dancing Script',cursive;font-size:1.4rem;}
+
+/* DENSITY SECTION */
+.sh{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:44px 0 18px;display:flex;align-items:center;gap:10px;}
+.sh::after{content:'';flex:1;height:1px;background:var(--border);}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:22px;margin:18px 0;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
+.cd{background:rgba(230,57,70,0.08);border-color:rgba(230,57,70,0.3);}.cd::before{background:linear-gradient(90deg,var(--red),transparent);}
+.cw{background:rgba(255,209,102,0.07);border-color:rgba(255,209,102,0.3);}.cw::before{background:linear-gradient(90deg,var(--yellow),transparent);}
+.mn{background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(244,185,66,0.05));border:1px solid rgba(18,130,162,0.4);border-radius:12px;padding:22px 26px;margin:22px 0;position:relative;}
+.mn::before{content:'MNEMÔNICO';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--teal);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
+.mn-w{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold);letter-spacing:.08em;margin:12px 0;text-align:center;}
+.pg{background:rgba(255,209,102,0.08);border:1px solid rgba(255,209,102,0.4);border-radius:12px;padding:18px 22px;margin:18px 0;position:relative;}
+.pg::before{content:'💛 PEGADINHA TEC';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--yellow);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
+.pg p{color:var(--white);margin:0;line-height:1.7;font-size:.9rem;}
+.dr{display:flex;gap:10px;margin:7px 0;align-items:center;}
+.ds{width:36px;height:36px;border-radius:5px;flex-shrink:0;border:1px solid rgba(255,255,255,.1);}
+.tag{display:inline-block;padding:3px 10px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;margin:2px;}
+.td{background:rgba(230,57,70,0.15);color:var(--red);border:1px solid rgba(230,57,70,0.4);}
+.tg{background:rgba(45,198,83,0.15);color:var(--green);border:1px solid rgba(45,198,83,0.4);}
+.tw{background:rgba(255,209,102,0.15);color:var(--yellow);border:1px solid rgba(255,209,102,0.4);}
+.ti{background:rgba(18,130,162,0.2);color:var(--teal);border:1px solid rgba(18,130,162,0.4);}
+
+/* FLASHCARDS */
+.fcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:22px 0;}
+.fc{height:180px;perspective:1000px;cursor:pointer;}
+.fci{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s;}
+.fc.flipped .fci{transform:rotateY(180deg);}
+.fcf,.fcb{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.fcf{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(11,37,69,0.8));border:1px solid var(--border);}
+.fcb{background:linear-gradient(135deg,rgba(18,130,162,0.25),rgba(11,37,69,0.9));border:1px solid var(--teal);transform:rotateY(180deg);}
+.fc-q{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--white);line-height:1.4;}
+.fc-a{font-size:.88rem;line-height:1.7;color:var(--white);}
+.fc-a strong{color:var(--gold);}
+.fc-hint{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--gray);margin-top:8px;text-transform:uppercase;}
+
+/* QUIZ */
+.quiz-q{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:20px;}
+.q-num{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+.q-text{font-size:.95rem;font-weight:500;line-height:1.6;margin-bottom:16px;color:var(--white);}
+.q-opts{display:flex;flex-direction:column;gap:10px;}
+.q-opt{background:rgba(18,130,162,0.06);border:1px solid var(--border);border-radius:8px;padding:12px 16px;cursor:pointer;transition:all .2s;font-size:.88rem;line-height:1.5;display:flex;align-items:flex-start;gap:10px;}
+.q-opt:hover{background:rgba(18,130,162,0.15);border-color:var(--teal);}
+.q-opt.correct{background:rgba(45,198,83,0.15);border-color:var(--green);color:var(--green);}
+.q-opt.wrong{background:rgba(230,57,70,0.15);border-color:var(--red);color:var(--red);}
+.q-opt.disabled{cursor:default;}
+.opt-letter{font-family:'IBM Plex Mono',monospace;font-weight:500;min-width:20px;color:var(--teal);}
+.q-opt.correct .opt-letter{color:var(--green);}
+.q-opt.wrong .opt-letter{color:var(--red);}
+.q-feedback{margin-top:14px;padding:14px 18px;border-radius:8px;font-size:.85rem;line-height:1.7;display:none;}
+.q-feedback.show{display:block;}
+.correct-fb{background:rgba(45,198,83,0.1);border:1px solid rgba(45,198,83,0.3);color:var(--white);}
+.wrong-fb{background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.3);color:var(--white);}
+
+/* SIG */
+.sig{text-align:right;padding:48px 0 16px;border-top:1px solid var(--border);margin-top:56px;}
+.sname{font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--teal);}
+.ssub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray);margin-top:7px;letter-spacing:.1em;}
+
+/* NAV LINKS */
+.nav-links{display:flex;gap:12px;justify-content:center;margin:40px 0;flex-wrap:wrap;}
+.nav-btn{font-family:'IBM Plex Mono',monospace;font-size:.78rem;padding:10px 20px;border-radius:8px;border:1px solid var(--border);color:var(--gray);text-decoration:none;transition:all .2s;}
+.nav-btn:hover{border-color:var(--teal);color:var(--white);background:rgba(18,130,162,0.1);}
+.nav-btn.active{border-color:var(--teal);color:var(--teal);background:rgba(18,130,162,0.1);}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s;}
+.rv.vs{opacity:1;transform:translateY(0);}
+
+@media(max-width:980px){.lucas-top,.lucas-how{grid-template-columns:1fr;}.lucas-ct-circle{width:260px;height:260px;}}
+@media(max-width:640px){.lucas-wrap{padding:22px;border-radius:18px;}.lucas-title{font-size:2.3rem;}.lucas-ct-circle{width:220px;height:220px;}.lucas-grid{grid-template-columns:1fr;}.lucas-label{font-size:.64rem;}.main{padding:80px 20px 60px;}}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+
+<nav class="tnav">
+  <div class="nbrand">TCE — LUCAS</div>
+  <div style="display:flex;gap:8px;">
+    <a href="tce123.html" class="nlink">← Parte 1</a>
+    <a href="tce456.html" class="nlink">Parte 2 →</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- NAV TRIO -->
+<div class="nav-links rv">
+  <a href="tce123.html" class="nav-btn">M1 · Fisiopatologia</a>
+  <a href="tce123.html" class="nav-btn">M2 · Semiologia</a>
+  <a href="tce123.html" class="nav-btn">M3 · Imagem</a>
+  <a href="tcelucas.html" class="nav-btn active">LUCAS · TC Crânio</a>
+  <a href="tce456.html" class="nav-btn">M4 · Conduta</a>
+  <a href="tce456.html" class="nav-btn">M5 · Casos</a>
+</div>
+
+<!-- LUCAS PREMIUM -->
+<section class="lucas-wrap rv">
+  <div class="lucas-top">
+    <div class="lucas-top-text">
+      <p class="lucas-kicker">LEITURA SISTEMÁTICA DA TC NO TCE · TEC 2026</p>
+      <h2 class="lucas-title">LUCAS</h2>
+      <p class="lucas-subtitle">Método rápido, visual e seguro para interpretar a tomografia de crânio no traumatismo cranioencefálico. Antes de procurar apenas "sangue", o LUCAS obriga o aluno a avaliar pressão, espaço, massa, edema e osso.</p>
+      <div class="lucas-pill-row">
+        <span class="lucas-pill">L — Linha média</span>
+        <span class="lucas-pill">U — Uncus / cisternas</span>
+        <span class="lucas-pill">C — Coleções</span>
+        <span class="lucas-pill">A — Arquitetura cerebral</span>
+        <span class="lucas-pill">S — Skull / Suturas / Seios</span>
+      </div>
+    </div>
+    <div class="lucas-ct-box">
+      <div class="lucas-ct-circle">
+        <div class="lucas-midline"></div>
+        <div class="lucas-lesion"></div>
+        <div class="lucas-ventricles"></div>
+        <div class="lucas-label l1">Linha média</div>
+        <div class="lucas-label l2">Coleção</div>
+        <div class="lucas-label l3">Cisternas</div>
+      </div>
+      <p class="lucas-ct-caption">🧠 Leitura sistemática: do centro do cérebro até a muralha óssea.</p>
+    </div>
+  </div>
+
+  <div class="lucas-grid">
+    <div class="lucas-card">
+      <div class="lucas-card-head"><span class="lucas-letter">L</span><span class="lucas-icon">📍</span></div>
+      <h3>Linha média</h3>
+      <p>Veja se o cérebro está <strong>centrado</strong>. Desvio da linha média sugere <strong>efeito de massa</strong>, compressão intracraniana e risco de deterioração neurológica.</p>
+      <div class="lucas-mini"><strong>O que procurar:</strong><ul><li>desvio do septo pelúcido;</li><li>compressão ventricular;</li><li>assimetria dos hemisférios;</li><li>empurrão do parênquima por hematoma ou edema.</li></ul></div>
+      <p class="lucas-memory">🧠 <strong>Imagem mental:</strong> o <strong>mastro</strong> do cérebro entortou.</p>
+    </div>
+    <div class="lucas-card">
+      <div class="lucas-card-head"><span class="lucas-letter">U</span><span class="lucas-icon">🚨</span></div>
+      <h3>Uncus e cisternas</h3>
+      <p>Observe as <strong>cisternas basais</strong>, o espaço ao redor do tronco e sinais de <strong>herniação uncal</strong>. Cisternas apagadas significam que o cérebro está ficando sem espaço.</p>
+      <div class="lucas-mini"><strong>O que procurar:</strong><ul><li>cisternas basais comprimidas ou ausentes;</li><li>apagamento perimesencefálico;</li><li>assimetria ao redor do tronco;</li><li>sinais indiretos de herniação uncal.</li></ul></div>
+      <p class="lucas-memory">🧠 <strong>Imagem mental:</strong> o <strong>fosso</strong> ao redor do tronco secou.</p>
+    </div>
+    <div class="lucas-card">
+      <div class="lucas-card-head"><span class="lucas-letter">C</span><span class="lucas-icon">🩸</span></div>
+      <h3>Coleções</h3>
+      <p>Procure sangue e identifique o compartimento. A pergunta não é só "tem sangue?", mas <strong>onde está o sangue e quanto espaço ele ocupa?</strong></p>
+      <div class="lucas-mini"><strong>O que procurar:</strong><ul><li><strong>epidural:</strong> biconvexo / lenticular;</li><li><strong>subdural:</strong> crescente / foice;</li><li><strong>HSA traumática:</strong> sangue em sulcos e cisternas;</li><li><strong>contusão:</strong> focos hemorrágicos no parênquima;</li><li><strong>intraventricular:</strong> sangue nos ventrículos.</li></ul></div>
+      <p class="lucas-memory">🧠 <strong>Imagem mental:</strong> onde está o <strong>invasor vermelho</strong>?</p>
+    </div>
+    <div class="lucas-card">
+      <div class="lucas-card-head"><span class="lucas-letter">A</span><span class="lucas-icon">🏰</span></div>
+      <h3>Arquitetura cerebral</h3>
+      <p>Avalie se a arquitetura interna está preservada. Edema, sulcos apagados e ventrículos comprimidos mostram que o cérebro está inchando dentro de uma caixa rígida.</p>
+      <div class="lucas-mini"><strong>O que procurar:</strong><ul><li>edema difuso;</li><li>sulcos apagados;</li><li>ventrículos pequenos ou comprimidos;</li><li>perda da diferenciação córtico-subcortical;</li><li>apagamento de espaços liquóricos.</li></ul></div>
+      <p class="lucas-memory">🧠 <strong>Imagem mental:</strong> o <strong>castelo</strong> está inchando por dentro.</p>
+    </div>
+    <div class="lucas-card">
+      <div class="lucas-card-head"><span class="lucas-letter">S</span><span class="lucas-icon">🦴</span></div>
+      <h3>Skull / Suturas / Seios</h3>
+      <p>Depois do parênquima, passe para a <strong>janela óssea</strong>. Procure fraturas, pneumoencéfalo, hemossinus e sinais de fratura de base.</p>
+      <div class="lucas-mini"><strong>O que procurar:</strong><ul><li>fratura linear;</li><li>afundamento craniano;</li><li>fratura temporal;</li><li>fratura de base;</li><li>hemossinus;</li><li>pneumoencéfalo.</li></ul></div>
+      <p class="lucas-memory">🧠 <strong>Imagem mental:</strong> olhar a <strong>muralha</strong> do castelo.</p>
+    </div>
+  </div>
+
+  <div class="lucas-how">
+    <div class="lucas-how-box">
+      <h3>📌 Como usar o LUCAS na prática</h3>
+      <ol>
+        <li><strong>L</strong> — Primeiro olhe a <strong>linha média</strong>: está centrada ou desviou?</li>
+        <li><strong>U</strong> — Depois observe <strong>uncus e cisternas</strong>: estão abertas ou apagadas?</li>
+        <li><strong>C</strong> — Procure <strong>coleções hemorrágicas</strong>: onde está o sangue?</li>
+        <li><strong>A</strong> — Analise a <strong>arquitetura cerebral</strong>: há edema, sulcos apagados ou ventrículos comprimidos?</li>
+        <li><strong>S</strong> — Por fim, examine o <strong>osso</strong>: há fratura, hemossinus ou pneumoencéfalo?</li>
+      </ol>
+    </div>
+    <div class="lucas-how-box gold">
+      <h3>⚡ Versão ultra-rápida</h3>
+      <p><strong>L</strong> — Linha média: <em>desviou?</em><br><strong>U</strong> — Uncus/cisternas: <em>apagou?</em><br><strong>C</strong> — Coleções: <em>sangrou onde?</em><br><strong>A</strong> — Arquitetura: <em>inchou?</em><br><strong>S</strong> — Skull/suturas/seios: <em>fraturou?</em></p>
+    </div>
+  </div>
+
+  <blockquote class="lucas-quote">
+    "Na TC do TCE, LUCAS procura: o mastro, o fosso, o sangue, o inchaço e a muralha."
+    <footer>Dr. André Rossanno</footer>
+  </blockquote>
+</section><!-- DENSIDADES -->
+<h2 class="sh rv">A Regra das Densidades na TC</h2>
+<div class="rv">
+<p style="color:var(--gray);margin-bottom:16px;">Antes de identificar lesões, você precisa dominar a linguagem da TC: as densidades.</p>
+<div class="dr"><div class="ds" style="background:white;"></div><div><strong>Branco (hiperdenso)</strong> → Sangue agudo, osso, calcificação</div></div>
+<div class="dr"><div class="ds" style="background:#999;"></div><div><strong>Cinza (isodenso)</strong> → Parênquima cerebral normal</div></div>
+<div class="dr"><div class="ds" style="background:#2a2a4a;border:1px solid rgba(255,255,255,.2);"></div><div><strong>Preto (hipodenso)</strong> → Ar, líquor, edema, lesão crônica</div></div>
+<div class="mn"><div class="mn-w">"Sangue novo brilha; sangue velho escurece."</div><p style="font-size:13px;color:var(--gray);text-align:center;">Subdural: agudo=branco | subagudo=cinza (armadilha!) | crônico=preto</p></div>
+<div class="pg"><p><strong>Subdural subagudo isodenso:</strong> a densidade iguala-se ao parênquima e o hematoma "desaparece" na TC. Os "móveis arrastados" denunciam: sulcos apagados unilateralmente, desvio discreto da linha média, assimetria hemisférica.</p></div>
+</div>
+
+<!-- PADRÕES TOMOGRÁFICOS -->
+<h2 class="sh rv">Padrões Tomográficos no TCE</h2>
+<div class="rv">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0;">
+  <div class="card cd" style="padding:20px;">
+    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--red);margin-bottom:8px;">🩸 Hematoma Epidural</p>
+    <p style="font-size:.88rem;margin-bottom:10px;">Biconvexo entre osso e dura. Artéria meníngea média. Não cruza suturas. Intervalo lúcido clássico.</p>
+    <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:8px;padding:10px;text-align:center;"><strong style="color:var(--red);font-size:1.1rem;">EPI 30 corta</strong><br><span style="font-size:.78rem;color:var(--gray);">Volume &gt;30cm³ = cirurgia independente do GCS</span></div>
+  </div>
+  <div class="card" style="padding:20px;">
+    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--teal);margin-bottom:8px;">🌙 Hematoma Subdural</p>
+    <p style="font-size:.88rem;margin-bottom:10px;">Crescente/foice entre dura e aracnoide. Veias-ponte. Pode cruzar suturas. Idosos e anticoagulados.</p>
+    <div style="background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.3);border-radius:8px;padding:10px;text-align:center;"><strong style="color:var(--yellow);font-size:1rem;">SUB 10 ou 5</strong><br><span style="font-size:.78rem;color:var(--gray);">Espessura &gt;10mm ou desvio &gt;5mm = cirurgia</span></div>
+  </div>
+  <div class="card" style="padding:20px;">
+    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:8px;">🔥 Contusão Cerebral</p>
+    <p style="font-size:.88rem;margin-bottom:10px;">Focos hemorrágicos no parênquima. Frontal/temporal. Coup e contrecoup. Pode "florescer" em 24-72h.</p>
+    <div class="pg" style="padding:10px;margin:0;"><p style="font-size:.78rem;">"Flor de hematoma" — TC de controle em 24h se instabilidade clínica.</p></div>
+  </div>
+  <div class="card" style="padding:20px;">
+    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--teal);margin-bottom:8px;">🖌 HSA Traumática</p>
+    <p style="font-size:.88rem;margin-bottom:10px;">Sangue em sulcos e cisternas. Contexto de trauma. Diferente da HSA aneurismática (cisternas basais exuberantes).</p>
+    <p style="font-size:.82rem;color:var(--gold);margin:0;">"Tinta nos sulcos"</p>
+  </div>
+  <div class="card cw" style="padding:20px;">
+    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:8px;">💡 LAD — Lesão Axonal Difusa</p>
+    <p style="font-size:.88rem;margin-bottom:10px;">TC pode ser NORMAL! Microhemorragias punctiformes em SB, corpo caloso, tronco. RM SWI é muito mais sensível.</p>
+    <div class="pg" style="padding:10px;margin:0;"><p style="font-size:.78rem;">Coma desproporcional à TC = LAD até prova em contrário. Solicitar RM urgente.</p></div>
+  </div>
+</div>
+</div>
+
+<!-- MARSHALL -->
+<h2 class="sh rv">Classificação de Marshall</h2>
+<div class="rv">
+<div class="mn"><div class="mn-w">"Fosso, Mastro, Massa"</div>
+<p style="font-size:13px;color:var(--gray);text-align:center;margin-top:8px;"><strong style="color:var(--teal);">Fosso apagou</strong> (cisternas comprimidas) = III · <strong style="color:var(--gold);">Mastro entortou</strong> (desvio &gt;5mm) = IV · <strong style="color:var(--red);">Massa:</strong> evacuada=V | não evacuada=VI</p></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0;">
+  <div class="card" style="padding:16px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);">I</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">DIFUSA I</div><p style="font-size:12px;">TC normal. Castelo aparentemente intacto.</p></div>
+  <div class="card" style="padding:16px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);">II</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">DIFUSA II</div><p style="font-size:12px;">Cisternas presentes, desvio 0-5mm, sem lesão &gt;25mL.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(255,209,102,.3);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--yellow);">III</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">SWELLING</div><p style="font-size:12px;">Cisternas <strong>comprimidas/ausentes</strong>, desvio 0-5mm.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(244,185,66,.3);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);">IV</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">SHIFT</div><p style="font-size:12px;">Desvio <strong>&gt;5mm</strong>. O mastro entortou.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(230,57,70,.3);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--red);">V</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">MASSA EVACUADA</div><p style="font-size:12px;">Lesão expansiva cirurgicamente evacuada.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(230,57,70,.4);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--red);">VI</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">MASSA NÃO EVACUADA</div><p style="font-size:12px;">Lesão hiperdensa ou mista &gt;25mL não evacuada.</p></div>
+</div>
+<div class="pg"><p><strong>Marshall III ≠ desvio grande.</strong> Marshall III: cisternas apagadas + desvio 0-5mm (swelling). Desvio &gt;5mm = Marshall IV (shift). Não confunda!</p></div>
+</div>
+
+<!-- FLASHCARDS -->
+<h2 class="sh rv">Flashcards — LUCAS</h2>
+<div class="fcg rv">
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-q">O que avalia o "L" do LUCAS?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>Linha média</strong> — desvio do septo pelúcido, assimetria hemisférica. Desvio &gt;5mm = efeito de massa significativo.</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-q">Cisternas apagadas na TC indicam o quê?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a">Pressão intracraniana elevada e <strong>risco de herniação</strong>. O fosso ao redor do tronco secou — Marshall III.</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-q">Forma biconvexa na TC — qual o diagnóstico?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>Hematoma Epidural</strong> — "EPI é LENTE". Entre osso e dura. Artéria meníngea média. Não cruza suturas.</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-q">GCS 5 + TC quase normal. O que suspeitar?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>LAD (Lesão Axonal Difusa)</strong> — TC pode ser normal no LAD. Solicitar RM com SWI/DWI. "A TC é inocente; o axônio não."</div></div></div></div>
+  <div class="fc" onclick="this.classList.toggle('flipped')"><div class="fci"><div class="fcf"><div class="fc-q">Marshall III vs IV — diferença principal?</div><span class="fc-hint">toque para revelar</span></div><div class="fcb"><div class="fc-a"><strong>III:</strong> cisternas apagadas + desvio ≤5mm (fosso secou)<br><strong>IV:</strong> desvio &gt;5mm (mastro entortou)</div></div></div></div>
+</div>
+
+<!-- QUIZ -->
+<h2 class="sh rv">Quiz — LUCAS e Imagem</h2>
+<div class="rv">
+<div class="quiz-q"><div class="q-num">Questão 01</div><div class="q-text">Ao aplicar o LUCAS, qual é a primeira estrutura a avaliar?</div>
+<div class="q-opts" id="lq1"><div class="q-opt" onclick="answer('lq1','A','A')"><span class="opt-letter">A</span>Linha média — verificar se está centrada ou desviou</div><div class="q-opt" onclick="answer('lq1','B','A')"><span class="opt-letter">B</span>Coleções hemorrágicas — procurar sangue primeiro</div><div class="q-opt" onclick="answer('lq1','C','A')"><span class="opt-letter">C</span>Skull — verificar fraturas na janela óssea</div><div class="q-opt" onclick="answer('lq1','D','A')"><span class="opt-letter">D</span>Arquitetura cerebral — avaliar edema difuso</div></div>
+<div class="q-feedback correct-fb" id="lq1-fb-correct">✅ <strong>Correto!</strong> O L de LUCAS é sempre o primeiro passo. A linha média orienta toda a leitura — desvio indica efeito de massa e prioriza a busca pela lesão.</div>
+<div class="q-feedback wrong-fb" id="lq1-fb-wrong">❌ No LUCAS, a ordem é L-U-C-A-S. Primeiro a linha média, depois cisternas, depois coleções, arquitetura e por último o osso.</div></div>
+
+<div class="quiz-q"><div class="q-num">Questão 02</div><div class="q-text">TC mostra cisternas basais apagadas com desvio de linha média de 3mm. Classificação de Marshall:</div>
+<div class="q-opts" id="lq2"><div class="q-opt" onclick="answer('lq2','A','C')"><span class="opt-letter">A</span>Marshall II</div><div class="q-opt" onclick="answer('lq2','B','C')"><span class="opt-letter">B</span>Marshall IV</div><div class="q-opt" onclick="answer('lq2','C','C')"><span class="opt-letter">C</span>Marshall III</div><div class="q-opt" onclick="answer('lq2','D','C')"><span class="opt-letter">D</span>Marshall V</div></div>
+<div class="q-feedback correct-fb" id="lq2-fb-correct">✅ <strong>Correto!</strong> Marshall III = cisternas apagadas + desvio 0-5mm. O "fosso" ao redor do tronco secou, mas o "mastro" ainda não entortou muito.</div>
+<div class="q-feedback wrong-fb" id="lq2-fb-wrong">❌ Cisternas apagadas + desvio ≤5mm = Marshall III (swelling). Desvio &gt;5mm seria Marshall IV (shift).</div></div>
+
+<div class="quiz-q"><div class="q-num">Questão 03</div><div class="q-text">TC mostra coleção hiperdensa em forma de crescente acompanhando o contorno cerebral. Diagnóstico:</div>
+<div class="q-opts" id="lq3"><div class="q-opt" onclick="answer('lq3','A','B')"><span class="opt-letter">A</span>Hematoma epidural</div><div class="q-opt" onclick="answer('lq3','B','B')"><span class="opt-letter">B</span>Hematoma subdural agudo</div><div class="q-opt" onclick="answer('lq3','C','B')"><span class="opt-letter">C</span>HSA traumática</div><div class="q-opt" onclick="answer('lq3','D','B')"><span class="opt-letter">D</span>LAD</div></div>
+<div class="q-feedback correct-fb" id="lq3-fb-correct">✅ <strong>Correto!</strong> Crescente/foice = subdural. "SUB é SABRE". O epidural é biconvexo (lenticular). O subdural acompanha o contorno cerebral e pode cruzar suturas.</div>
+<div class="q-feedback wrong-fb" id="lq3-fb-wrong">❌ Crescente = subdural. Biconvexo = epidural. "EPI é LENTE, SUB é SABRE".</div></div>
+
+<div class="quiz-q"><div class="q-num">Questão 04</div><div class="q-text">No "S" do LUCAS, qual janela tomográfica deve ser utilizada?</div>
+<div class="q-opts" id="lq4"><div class="q-opt" onclick="answer('lq4','A','B')"><span class="opt-letter">A</span>Janela de parênquima cerebral</div><div class="q-opt" onclick="answer('lq4','B','B')"><span class="opt-letter">B</span>Janela óssea</div><div class="q-opt" onclick="answer('lq4','C','B')"><span class="opt-letter">C</span>Janela de tecidos moles</div><div class="q-opt" onclick="answer('lq4','D','B')"><span class="opt-letter">D</span>Janela pulmonar</div></div>
+<div class="q-feedback correct-fb" id="lq4-fb-correct">✅ <strong>Correto!</strong> O S (Skull/Suturas/Seios) exige janela óssea. É um erro comum terminar a leitura da TC sem trocar para a janela óssea — fraturas lineares e de base podem ser invisíveis na janela de parênquima.</div>
+<div class="q-feedback wrong-fb" id="lq4-fb-wrong">❌ Para avaliar osso no LUCAS, a janela óssea é obrigatória. A janela de parênquima não permite identificar fraturas lineares.</div></div>
+
+<div class="quiz-q"><div class="q-num">Questão 05</div><div class="q-text">Idoso com queda, confusão progressiva há 2 semanas. TC mostra área isoatenuante ao parênquima com leve desvio de linha média. Diagnóstico provável:</div>
+<div class="q-opts" id="lq5"><div class="q-opt" onclick="answer('lq5','A','C')"><span class="opt-letter">A</span>Hematoma epidural agudo</div><div class="q-opt" onclick="answer('lq5','B','C')"><span class="opt-letter">B</span>LAD grau III</div><div class="q-opt" onclick="answer('lq5','C','C')"><span class="opt-letter">C</span>Hematoma subdural subagudo isodenso</div><div class="q-opt" onclick="answer('lq5','D','C')"><span class="opt-letter">D</span>HSA aneurismática</div></div>
+<div class="q-feedback correct-fb" id="lq5-fb-correct">✅ <strong>Correto!</strong> HSD subagudo isodenso — o "fantasma cinza". Fase 3-21 dias: densidade iguala-se ao parênquima. Os "móveis arrastados" denunciam: sulcos apagados unilateralmente + desvio discreto + assimetria hemisférica.</div>
+<div class="q-feedback wrong-fb" id="lq5-fb-wrong">❌ Isodenso em idoso com queda semanas atrás = HSD subagudo. A isodensidade é a armadilha clássica. O desvio de linha média é a pista que delata o "fantasma cinza".</div></div>
+</div>
+
+<!-- ASSINATURA -->
+<div class="sig">
+  <div class="sname">Dr. André Rossanno</div>
+  <div class="ssub">LUCAS · TC no TCE · TEC 2026 · Método André Rossanno de Memorização Médica · N1–N7</div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+window.addEventListener('scroll',()=>{
+  const el=document.documentElement;
+  document.getElementById('pb').style.width=(el.scrollTop/(el.scrollHeight-el.clientHeight)*100)+'%';
+});
+const answered={};
+function answer(qid,chosen,correct){
+  if(answered[qid])return;
+  answered[qid]=true;
+  const opts=document.querySelectorAll('#'+qid+' .q-opt');
+  const letters=['A','B','C','D'];
+  opts.forEach((o,i)=>{
+    o.classList.add('disabled');
+    if(letters[i]===correct)o.classList.add('correct');
+    else if(letters[i]===chosen&&chosen!==correct)o.classList.add('wrong');
+  });
+  if(chosen===correct){
+    const fb=document.getElementById(qid+'-fb-correct');
+    if(fb)fb.classList.add('show');
+  }else{
+    const fb=document.getElementById(qid+'-fb-wrong');
+    if(fb)fb.classList.add('show');
+  }
+}
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vs')});
+},{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
