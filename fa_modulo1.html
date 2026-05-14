@@ -1212,6 +1212,7 @@ footer {
   <a class="sidebar-link" onclick="scrollTo('ecg')">ECG na FA</a>
   <a class="sidebar-link" onclick="scrollTo('resposta-ventricular')">Resposta Ventricular</a>
   <a class="sidebar-link" onclick="scrollTo('caracterizacao')">Caracterização</a>
+  <a class="sidebar-link" onclick="scrollTo('substrato')">Substrato e Carga</a>
   <a class="sidebar-link" onclick="scrollTo('sintomas-ehra')">Sintomas e EHRA</a>
   <a class="sidebar-link" onclick="scrollTo('evolucao')">Evolução Natural</a>
   <a class="sidebar-link" onclick="scrollTo('flutter')">FA vs Flutter</a>
@@ -1346,7 +1347,7 @@ footer {
     <div class="section-icon">🏛️</div>
     <div>
       <div class="section-label">Pilar Central · ESC 2025</div>
-      <h2 class="section-title" style="font-family:'Playfair Display',serif;">Integrated AF-CARE</h2>
+      <h2 class="section-title" style="font-family:'Georgia','Times New Roman',serif; font-weight:700; letter-spacing:-0.5px;">Integrated AF-CARE</h2>
     </div>
   </div>
 
@@ -2038,6 +2039,222 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
+     SUBSTRATO E CARGA DE FA
+══════════════════════════════════════ -->
+<section class="section" id="substrato">
+  <div class="section-header">
+    <div class="section-icon">🔥</div>
+    <div>
+      <div class="section-label">N2 · Mecanismo + N3 · Visual</div>
+      <h2 class="section-title">Substrato e Carga de FA: quando a faísca vira incêndio</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    A FA não é apenas um evento elétrico isolado — é uma <strong style="color:var(--white);">doença progressiva do átrio</strong>. Em fases iniciais predominam os gatilhos elétricos, frequentemente nas veias pulmonares. Com o tempo surgem remodelamento elétrico, dilatação atrial, fibrose e heterogeneidade de condução. A partir desse ponto, o <strong style="color:var(--red-light);">substrato passa a sustentar a arritmia</strong> independentemente dos gatilhos.
+  </p>
+
+  <!-- Gráfico Trigger vs Substrate -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:16px; padding:28px; margin-bottom:28px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:20px;">Gatilho vs Substrato ao longo da duração da FA</div>
+
+    <!-- SVG Chart -->
+    <div style="position:relative; height:160px; margin-bottom:16px;">
+      <svg width="100%" height="160" viewBox="0 0 600 160" preserveAspectRatio="none">
+        <!-- Background bands -->
+        <defs>
+          <linearGradient id="triggerGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1282A2" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#1282A2" stop-opacity="0.05"/>
+          </linearGradient>
+          <linearGradient id="substrateGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C0392B" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="#C0392B" stop-opacity="0.4"/>
+          </linearGradient>
+        </defs>
+        <!-- Trigger curve (high left, low right) -->
+        <path d="M 0,20 C 100,25 200,60 300,100 C 400,130 500,148 600,155" fill="none" stroke="#1282A2" stroke-width="2.5" stroke-dasharray="none"/>
+        <path d="M 0,20 C 100,25 200,60 300,100 C 400,130 500,148 600,155 L 600,160 L 0,160 Z" fill="url(#triggerGrad)"/>
+        <!-- Substrate curve (low left, high right) -->
+        <path d="M 0,155 C 100,148 200,130 300,100 C 400,60 500,25 600,20" fill="none" stroke="#C0392B" stroke-width="2.5"/>
+        <path d="M 0,155 C 100,148 200,130 300,100 C 400,60 500,25 600,20 L 600,160 L 0,160 Z" fill="url(#substrateGrad)"/>
+        <!-- Center cross -->
+        <circle cx="300" cy="100" r="6" fill="#C9A84C" opacity="0.8"/>
+        <!-- Labels top -->
+        <text x="60" y="18" font-family="IBM Plex Mono" font-size="11" fill="#1282A2" text-anchor="middle">GATILHO</text>
+        <text x="540" y="18" font-family="IBM Plex Mono" font-size="11" fill="#e74c3c" text-anchor="middle">SUBSTRATO</text>
+        <!-- Phase labels -->
+        <text x="80" y="145" font-family="IBM Plex Mono" font-size="9" fill="#8ba3c7" text-anchor="middle">Paroxística</text>
+        <text x="300" y="145" font-family="IBM Plex Mono" font-size="9" fill="#8ba3c7" text-anchor="middle">Persistente</text>
+        <text x="520" y="145" font-family="IBM Plex Mono" font-size="9" fill="#8ba3c7" text-anchor="middle">Permanente</text>
+        <!-- Duration arrow -->
+        <line x1="20" y1="155" x2="580" y2="155" stroke="#8ba3c7" stroke-width="1" opacity="0.4"/>
+        <polygon points="580,152 587,155 580,158" fill="#8ba3c7" opacity="0.4"/>
+        <text x="300" y="168" font-family="IBM Plex Mono" font-size="9" fill="#8ba3c7" text-anchor="middle">Duração da FA →</text>
+      </svg>
+    </div>
+
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--teal);">
+        <div style="width:20px; height:2px; background:var(--teal);"></div> Importância do gatilho
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--red-light);">
+        <div style="width:20px; height:2px; background:var(--red-light);"></div> Importância do substrato
+      </div>
+      <div style="display:flex; align-items:center; gap:6px; font-size:11px; color:var(--gold);">
+        <div style="width:8px; height:8px; border-radius:50%; background:var(--gold);"></div> Fatores moduladores
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela classificação por duração SBC 2025 -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:28px;">
+    <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(3,64,120,0.4)); border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:4px;">SBC 2025 · Arq Bras Cardiol</div>
+      <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--white);">Classificação da FA por Duração</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr style="border-bottom:1px solid var(--glass-border);">
+            <th style="padding:12px 16px; text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:2px; text-transform:uppercase;">Tipo</th>
+            <th style="padding:12px 16px; text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:2px; text-transform:uppercase;">Definição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(18,130,162,0.08);">
+            <td style="padding:14px 16px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--teal-light); white-space:nowrap;">FA Paroxística</td>
+            <td style="padding:14px 16px; font-size:13px; color:var(--text);">FA com menos de 7 dias de duração, independentemente da forma de reversão.</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(18,130,162,0.08);">
+            <td style="padding:14px 16px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold); white-space:nowrap;">FA Persistente</td>
+            <td style="padding:14px 16px; font-size:13px; color:var(--text);">FA com mais de 7 dias e menos de 1 ano de duração.</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(18,130,162,0.08);">
+            <td style="padding:14px 16px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold-light); white-space:nowrap;">FA Persistente longa duração</td>
+            <td style="padding:14px 16px; font-size:13px; color:var(--text);">FA com mais de 1 ano de duração, quando ainda se tenta restaurar/manter ritmo sinusal.</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(18,130,162,0.08);">
+            <td style="padding:14px 16px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light); white-space:nowrap;">FA Permanente</td>
+            <td style="padding:14px 16px; font-size:13px; color:var(--text);">FA na qual médico e paciente decidiram não tentar restabelecer o ritmo sinusal, independentemente do tempo de instalação.</td>
+          </tr>
+          <tr style="background:rgba(192,57,43,0.06); border:1px solid rgba(192,57,43,0.25);">
+            <td style="padding:14px 16px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:#ff6b6b; white-space:nowrap;">
+              FA Pós-ablação
+              <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--gold); font-weight:400; margin-top:2px;">⚠ NOVIDADE SBC 2025</span>
+            </td>
+            <td style="padding:14px 16px; font-size:13px; color:var(--text);">Paciente submetido a ablação por cateter ou cirúrgica da FA que evolui <strong style="color:var(--white);">sem recorrência</strong> da arritmia. Ainda deve ser seguido como paciente com história de FA.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Gatilho vs Substrato cards -->
+  <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">Gatilho vs Substrato por Tipo de FA</div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:28px;">
+
+    <div style="background:rgba(18,130,162,0.08); border:1px solid rgba(18,130,162,0.3); border-top:3px solid var(--teal); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--teal-light); margin-bottom:12px;">🌩️ FA Paroxística</div>
+      <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--text-muted);">
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--teal);">●</span> Gatilho dominante</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--teal);">●</span> Menos fibrose/dilatação</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--teal);">●</span> VPs como fonte principal</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--green-light);">●</span> Melhor resposta à ablação</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.3); border-top:3px solid var(--gold); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold); margin-bottom:12px;">🔥 FA Persistente</div>
+      <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--text-muted);">
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--gold);">●</span> Gatilho + substrato</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--gold);">●</span> Maior dilatação atrial</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--gold);">●</span> Mais circuitos de reentrada</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--gold);">●</span> Ablação mais complexa</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(192,57,43,0.08); border:1px solid rgba(192,57,43,0.3); border-top:3px solid var(--red-light); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light); margin-bottom:12px;">🏠 FA Permanente</div>
+      <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--text-muted);">
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--red-light);">●</span> Substrato dominante</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--red-light);">●</span> Fibrose/dilatação avançadas</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--red-light);">●</span> Ritmo sinusal difícil de manter</div>
+        <div style="display:flex; align-items:center; gap:6px;"><span style="color:var(--text-muted);">●</span> Decisão de aceitar FA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conceito de Burden -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Conceito Clínico</div>
+    <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:10px;">Carga de FA — <em style="color:var(--teal); font-style:italic;">Burden</em></div>
+    <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin-bottom:16px;">
+      Carga de FA, ou <em>burden</em>, é o tempo ou proporção em que o paciente permanece em fibrilação atrial durante um período de monitorização. Quanto maior a carga, maior tende a ser o impacto clínico, sintomático e potencialmente tromboembólico — especialmente quando associada a fatores de risco.
+    </p>
+    <div style="padding:14px 18px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); border-left:3px solid var(--gold); border-radius:10px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+      <strong style="color:var(--gold);">⚠ Atenção:</strong> "Burden não substitui o raciocínio clínico." A carga de FA ajuda a caracterizar o paciente — especialmente na FA subclínica — mas a <strong style="color:var(--white);">decisão de anticoagulação será aprofundada no Módulo 2.</strong>
+    </div>
+  </div>
+
+  <!-- Frases de fixação -->
+  <div class="quote-block">
+    <p>"A FA começa como faísca, vira incêndio elétrico e, se o terreno continuar inflamado, passa a morar no átrio."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Na FA inicial, procure a faísca; na FA avançada, procure o terreno queimado."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+  <!-- Pegadinhas -->
+  <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin:20px 0 12px;">⚠ Pegadinhas TEC — Substrato e Carga</div>
+  <div class="trap-grid">
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA paroxística também emboliza</strong></div>
+      <div class="trap-why">A classificação temporal não define o risco embólico. Toda FA — independente do tipo — pode gerar trombo.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA permanente não é FA incurável</strong></div>
+      <div class="trap-why">É uma decisão terapêutica de não tentar ritmo sinusal. Se a decisão mudar, reclassifica para persistente longa duração.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Classificação temporal não define anticoagulação</strong></div>
+      <div class="trap-why">O padrão temporal da FA (paroxística, persistente, permanente) não deve ser usado isoladamente para indicar ou suspender anticoagulação.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Burden ajuda, mas não substitui estratificação</strong></div>
+      <div class="trap-why">Alta carga de FA em dispositivo não indica automaticamente anticoagulação — o raciocínio clínico e os escores de risco são indispensáveis.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Pós-ablação sem recorrência não apaga a história</strong></div>
+      <div class="trap-why">O paciente pós-ablação sem recorrência ainda tem história de FA e deve ser seguido como tal — inclusive quanto ao risco tromboembólico.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Mais substrato = menor sucesso isolado da ablação das VPs</strong></div>
+      <div class="trap-why">Quanto maior a fibrose e dilatação atrial, menor a eficácia do isolamento das veias pulmonares como estratégia única.</div>
+    </div>
+  </div>
+
+  <!-- Frase de transição para Módulo 2 -->
+  <div style="background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(11,37,69,0.7)); border:1px solid rgba(192,57,43,0.3); border-radius:14px; padding:24px 28px; margin-top:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Transição → Módulo 2</div>
+    <p style="font-size:14px; font-style:italic; color:var(--white); line-height:1.7; margin-bottom:10px;">
+      "Agora que sabemos reconhecer a tempestade elétrica e medir sua carga, precisamos descobrir se há um dragão-coágulo dormindo no apêndice atrial esquerdo."
+    </p>
+    <div style="font-family:'Dancing Script',cursive; font-size:17px; color:var(--gold);">— Dr. André Rossanno</div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
      SINTOMAS, IMPACTO E EHRA
 ══════════════════════════════════════ -->
 <section class="section" id="sintomas-ehra">
@@ -2121,790 +2338,4 @@ footer {
 
       <div style="padding:16px; background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-left:3px solid var(--gold); border-radius:10px;">
         <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold-light); margin-bottom:6px;">FA Subclínica (AHRE)</div>
-        <div style="font-size:12px; color:var(--text-muted); line-height:1.7;">Episódio sugestivo de atividade atrial rápida detectado por <strong style="color:var(--white);">dispositivo cardíaco eletrônico implantável</strong> (marcapasso, CDI, monitor implantável), geralmente sem ECG convencional confirmatório no momento do achado.</div>
-      </div>
-
-      <div style="padding:16px; background:rgba(184,134,11,0.06); border:1px solid rgba(184,134,11,0.2); border-left:3px solid var(--yellow-light); border-radius:10px;">
-        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold); margin-bottom:6px;">Wearables (Smartwatch)</div>
-        <div style="font-size:12px; color:var(--text-muted); line-height:1.7;">
-          Se fornece traçado eletrocardiográfico de qualidade, com duração adequada e <strong style="color:var(--white);">interpretação médica</strong> → pode ajudar a documentar FA clínica.<br>
-          Se é apenas alerta por fotopletismografia ou ritmo irregular sem traçado validado → permanece como <strong style="color:var(--red-light);">suspeita e exige confirmação</strong>.
-        </div>
-      </div>
-    </div>
-
-    <div class="quote-block" style="margin-top:20px;">
-      <p>"Dispositivo suspeita, traçado documenta, médico confirma."</p>
-      <div class="author">— Dr. André Rossanno</div>
-    </div>
-  </div>
-
-  <!-- Escore EHRA -->
-  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:24px;">
-    <div style="padding:20px 24px; background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(3,64,120,0.4)); border-bottom:1px solid var(--glass-border);">
-      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:6px;">Classificação de Sintomas</div>
-      <div style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:var(--white);">Escore EHRA Modificado</div>
-      <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">European Heart Rhythm Association — Quanto a FA rouba do dia do paciente</div>
-    </div>
-
-    <div style="padding:8px 0;">
-      <!-- EHRA 1 -->
-      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
-        <div style="min-width:80px; padding:16px 20px; text-align:center;">
-          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--green-light);">1</div>
-        </div>
-        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
-        <div style="flex:1; padding:16px 20px;">
-          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--green-light); margin-bottom:4px;">Sem sintomas</div>
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">A FA não causa sintomas perceptíveis ao paciente.</div>
-        </div>
-        <div style="padding:16px; font-size:20px;">😌</div>
-      </div>
-
-      <!-- EHRA 2a -->
-      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
-        <div style="min-width:80px; padding:16px 20px; text-align:center;">
-          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--teal-light);">2a</div>
-        </div>
-        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
-        <div style="flex:1; padding:16px 20px;">
-          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--teal-light); margin-bottom:4px;">Sintomas leves</div>
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:var(--white);">não é afetada</strong>. O paciente não se incomoda com os sintomas.</div>
-        </div>
-        <div style="padding:16px; font-size:20px;">🙂</div>
-      </div>
-
-      <!-- EHRA 2b -->
-      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
-        <div style="min-width:80px; padding:16px 20px; text-align:center;">
-          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--gold);">2b</div>
-        </div>
-        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
-        <div style="flex:1; padding:16px 20px;">
-          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold); margin-bottom:4px;">Sintomas moderados</div>
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:var(--white);">não é afetada</strong>, mas o paciente <strong style="color:var(--white);">se incomoda</strong> com os sintomas.</div>
-        </div>
-        <div style="padding:16px; font-size:20px;">😟</div>
-      </div>
-
-      <!-- EHRA 3 -->
-      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
-        <div style="min-width:80px; padding:16px 20px; text-align:center;">
-          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--red-light);">3</div>
-        </div>
-        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
-        <div style="flex:1; padding:16px 20px;">
-          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light); margin-bottom:4px;">Sintomas graves</div>
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:var(--red-light);">é afetada</strong> pelos sintomas da FA.</div>
-        </div>
-        <div style="padding:16px; font-size:20px;">😰</div>
-      </div>
-
-      <!-- EHRA 4 -->
-      <div style="display:flex; align-items:center; gap:0; transition:background 0.2s;" onmouseover="this.style.background='rgba(192,57,43,0.06)'" onmouseout="this.style.background='transparent'">
-        <div style="min-width:80px; padding:16px 20px; text-align:center;">
-          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:#ff4444;">4</div>
-        </div>
-        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
-        <div style="flex:1; padding:16px 20px;">
-          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:#ff4444; margin-bottom:4px;">Sintomas incapacitantes</div>
-          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:#ff4444;">é interrompida ou impossível</strong> por causa dos sintomas.</div>
-        </div>
-        <div style="padding:16px; font-size:20px;">😩</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="quote-block">
-    <p>"EHRA mede quanto a FA rouba do dia do paciente: de zero incômodo até vida interrompida."</p>
-    <div class="author">— Dr. André Rossanno</div>
-  </div>
-
-</section>
-
-<!-- ══════════════════════════════════════
-     EVOLUÇÃO NATURAL DA FA
-══════════════════════════════════════ -->
-<section class="section" id="evolucao">
-  <div class="section-header">
-    <div class="section-icon">📈</div>
-    <div>
-      <div class="section-label">N2 · Mecanismo + N3 · Visual</div>
-      <h2 class="section-title">Linha Evolutiva da FA</h2>
-    </div>
-  </div>
-
-  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
-    A FA pode ser detectada em fases diferentes. Alguns pacientes chegam ao diagnóstico com episódios subclínicos ou paroxísticos; outros já com FA persistente. Em geral, quanto maior a carga de FA e o remodelamento atrial, maior a chance de progressão para formas mais avançadas. <strong style="color:var(--white);">A progressão não é obrigatória nem igual em todos os pacientes.</strong>
-  </p>
-
-  <!-- Linha evolutiva visual -->
-  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:16px; padding:28px; margin-bottom:24px; overflow-x:auto;">
-    <div style="display:flex; align-items:stretch; gap:0; min-width:600px;">
-
-      <div style="flex:1; text-align:center; padding:16px 8px;">
-        <div style="font-size:24px; margin-bottom:8px;">⚡</div>
-        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Terreno</div>
-        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Fatores de risco e comorbidades</div>
-      </div>
-
-      <div style="display:flex; align-items:center; color:var(--teal); font-size:20px; padding:0 4px;">→</div>
-
-      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(18,130,162,0.05); border-radius:10px;">
-        <div style="font-size:24px; margin-bottom:8px;">📡</div>
-        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Subclínica</div>
-        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">AHRE detectada por dispositivo</div>
-      </div>
-
-      <div style="display:flex; align-items:center; color:var(--teal); font-size:20px; padding:0 4px;">→</div>
-
-      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(18,130,162,0.08); border-radius:10px;">
-        <div style="font-size:24px; margin-bottom:8px;">🌩️</div>
-        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--teal-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Paroxística</div>
-        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Reverte espontaneamente ≤7 dias</div>
-      </div>
-
-      <div style="display:flex; align-items:center; color:var(--gold); font-size:20px; padding:0 4px;">→</div>
-
-      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(201,168,76,0.06); border-radius:10px;">
-        <div style="font-size:24px; margin-bottom:8px;">🔥</div>
-        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Persistente</div>
-        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Não reverte sem intervenção</div>
-      </div>
-
-      <div style="display:flex; align-items:center; color:var(--red-light); font-size:20px; padding:0 4px;">→</div>
-
-      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(192,57,43,0.08); border-radius:10px;">
-        <div style="font-size:24px; margin-bottom:8px;">🏠</div>
-        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--red-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Permanente</div>
-        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Decisão terapêutica — FA "mora" no átrio</div>
-      </div>
-
-    </div>
-
-    <!-- Nota importante -->
-    <div style="margin-top:20px; padding:14px 18px; background:rgba(26,122,74,0.08); border:1px solid rgba(26,122,74,0.25); border-radius:10px; font-size:12px; color:var(--text-muted); line-height:1.6;">
-      <strong style="color:var(--green-light);">✅ Importante:</strong> O controle de fatores de risco pode <strong style="color:var(--white);">reduzir carga, recorrência e progressão</strong> da FA. A seta não é obrigatória — é uma tendência, não um destino certo.
-    </div>
-  </div>
-
-  <div class="quote-block">
-    <p>"A FA começa como faísca, vira incêndio elétrico e, se o terreno continuar inflamado, passa a morar no átrio."</p>
-    <div class="author">— Dr. André Rossanno</div>
-  </div>
-
-</section>
-
-<!-- ══════════════════════════════════════
-     FA vs FLUTTER
-══════════════════════════════════════ -->
-<section class="section" id="flutter">
-  <div class="section-header">
-    <div class="section-icon">⚡</div>
-    <div>
-      <div class="section-label">N4 · Pegadinha + N7 · Mnemônico</div>
-      <h2 class="section-title">FA versus Flutter Atrial</h2>
-    </div>
-  </div>
-
-  <div class="mnemonic-card">
-    <div class="mnemonic-label">Frase de Fixação</div>
-    <div class="mnemonic-text"><span class="key">FA</span> é tempestade. <span style="color:var(--gold);">Flutter</span> é carrossel.</div>
-    <div class="mnemonic-author">— Dr. André Rossanno</div>
-  </div>
-
-  <div style="overflow-x:auto; margin-top: 20px;">
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>Característica</th>
-          <th class="fa-col">FA</th>
-          <th class="flutter-col">Flutter Atrial Típico</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="row-fa">
-          <td>Mecanismo</td>
-          <td>Múltiplos circuitos de micro-reentrada</td>
-          <td>Macro-reentrada única</td>
-        </tr>
-        <tr>
-          <td>Local principal</td>
-          <td style="color:var(--teal-light);">Veias pulmonares / Átrio esquerdo</td>
-          <td style="color:var(--gold-light);">Istmo cavo-tricuspídeo (átrio direito)</td>
-        </tr>
-        <tr>
-          <td>ECG — ondas</td>
-          <td style="color:var(--teal-light);">Ondas f irregulares, pequenas, caóticas</td>
-          <td style="color:var(--gold-light);">Ondas F em serrote (D2, D3, aVF)</td>
-        </tr>
-        <tr>
-          <td>Ritmo ventricular</td>
-          <td style="color:var(--teal-light);">Irregularmente irregular</td>
-          <td style="color:var(--gold-light);">Regular (2:1, 3:1) ou irregular</td>
-        </tr>
-        <tr>
-          <td>FC atrial</td>
-          <td style="color:var(--teal-light);">350–600 bpm</td>
-          <td style="color:var(--gold-light);">~300 bpm</td>
-        </tr>
-        <tr>
-          <td>FC ventricular (2:1)</td>
-          <td style="color:var(--teal-light);">Variável</td>
-          <td style="color:var(--gold-light);">~150 bpm ← ARMADILHA</td>
-        </tr>
-        <tr>
-          <td>Alvo de ablação</td>
-          <td style="color:var(--teal-light);">Isolamento das veias pulmonares</td>
-          <td style="color:var(--gold-light);">Ablação do istmo cavo-tricuspídeo</td>
-        </tr>
-        <tr>
-          <td>Imagem mental</td>
-          <td style="color:var(--teal-light);">Tempestade elétrica</td>
-          <td style="color:var(--gold-light);">Carrossel elétrico</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     SAHOS
-══════════════════════════════════════ -->
-<section class="section" id="sahos">
-  <div class="section-header">
-    <div class="section-icon">🌙</div>
-    <div>
-      <div class="section-label">N2 · Vilão + N4 · Pegadinha</div>
-      <h2 class="section-title">SAHOS — A Noite que Fibrila o Átrio</h2>
-    </div>
-  </div>
-
-  <div class="sahos-flow">
-    <p style="font-size:13px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
-      A apneia obstrutiva do sono (SAHOS) é um fator de risco modificável com evidência <strong style="color:var(--gold)">Classe IIb / Nível B</strong> para redução de FA com CPAP. A lógica fisiopatológica é clara — mas a evidência clínica para redução de FA é limitada.
-    </p>
-
-    <div class="sahos-steps">
-      <div class="sahos-item">
-        <div class="sahos-icon">😴</div>
-        <div class="sahos-text">Obstrução de via aérea no sono</div>
-      </div>
-      <div class="sahos-arrow">→</div>
-      <div class="sahos-item">
-        <div class="sahos-icon">📉</div>
-        <div class="sahos-text">Hipoxemia intermitente</div>
-      </div>
-      <div class="sahos-arrow">→</div>
-      <div class="sahos-item">
-        <div class="sahos-icon">⚡</div>
-        <div class="sahos-text">Hiperatividade simpática</div>
-      </div>
-      <div class="sahos-arrow">→</div>
-      <div class="sahos-item">
-        <div class="sahos-icon">📈</div>
-        <div class="sahos-text">Picos pressóricos noturnos</div>
-      </div>
-      <div class="sahos-arrow">→</div>
-      <div class="sahos-item">
-        <div class="sahos-icon">🫀</div>
-        <div class="sahos-text">Estiramento atrial esquerdo</div>
-      </div>
-      <div class="sahos-arrow">→</div>
-      <div class="sahos-item">
-        <div class="sahos-icon">🧱</div>
-        <div class="sahos-text">Fibrose e remodelamento atrial</div>
-      </div>
-      <div class="sahos-arrow">→</div>
-      <div class="sahos-item" style="background: rgba(192,57,43,0.1); border-radius:10px; padding:12px; border:1px solid rgba(192,57,43,0.3);">
-        <div class="sahos-icon">💥</div>
-        <div class="sahos-text" style="color:var(--red-light); font-weight:600;">Fibrilação Atrial</div>
-      </div>
-    </div>
-
-    <div class="care-note" style="margin-top:24px;">
-      <strong>Por que Classe IIb e não I?</strong><br>
-      Não existe ensaio clínico randomizado de grande porte demonstrando que o CPAP reduz significativamente a recorrência de FA. O benefício é biológico e plausível, mas não comprovado por desfechos clínicos robustos. O CPAP trata um <em>fábrica de gatilhos</em>, não o substrato em si.
-    </div>
-  </div>
-
-  <div class="mnemonic-card" style="margin-top:20px;">
-    <div class="mnemonic-label">Frase de Fixação — N5</div>
-    <div class="mnemonic-text">"CPAP não é <span class="key">antiarrítmico</span> mágico:<br>ele trata uma fábrica de gatilhos."</div>
-    <div class="mnemonic-author">— Dr. André Rossanno</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     ALGORITMO
-══════════════════════════════════════ -->
-<section class="section" id="algoritmo">
-  <div class="section-header">
-    <div class="section-icon">🗺️</div>
-    <div>
-      <div class="section-label">N3 · Fluxo Visual</div>
-      <h2 class="section-title">Algoritmo do Módulo 1</h2>
-    </div>
-  </div>
-
-  <div class="algo-flow">
-    <div class="algo-step" style="border-color: rgba(18,130,162,0.5); background: rgba(18,130,162,0.1);">
-      <div class="algo-label">ENTRADA</div>
-      <strong style="color:var(--white);">Paciente com palpitações, dispneia, fadiga, tontura ou pulso irregular</strong>
-    </div>
-    <div class="algo-connector">↓</div>
-    <div class="algo-step">
-      <strong style="color:var(--teal);">→ Fazer ECG de 12 derivações</strong><br>
-      <span style="font-size:12px;color:var(--text-muted);">Monitorização contínua se disponível</span>
-    </div>
-    <div class="algo-connector">↓</div>
-    <div class="algo-step">
-      <strong>Procurar onda P organizada + avaliar regularidade do RR</strong>
-    </div>
-    <div class="algo-connector">↓</div>
-    <div class="algo-branch">
-      <div class="algo-step algo-yes">
-        <div class="algo-label" style="color:var(--green-light);">SEM onda P + RR irregular</div>
-        <strong style="color:var(--white);">FA Provável</strong><br>
-        <span style="font-size:12px;color:var(--text-muted);">Confirmar documentação ≥30s com interpretação médica</span>
-      </div>
-      <div class="algo-step algo-no">
-        <div class="algo-label" style="color:var(--red-light);">Outra possibilidade</div>
-        <strong>Flutter? TSV? Outras</strong><br>
-        <span style="font-size:12px;color:var(--text-muted);">FC ~150 bpm regular → descartar flutter 2:1</span>
-      </div>
-    </div>
-    <div class="algo-connector">↓</div>
-    <div class="algo-step">
-      <strong>Diferenciar FA clínica vs FA subclínica (AHRE)</strong><br>
-      <span style="font-size:12px;color:var(--text-muted);">Smartwatch: sugere. ECG: confirma. Médico: interpreta.</span>
-    </div>
-    <div class="algo-connector">↓</div>
-    <div class="algo-step">
-      <strong>Investigar gatilhos e comorbidades → Exames iniciais</strong><br>
-      <span style="font-size:12px;color:var(--text-muted);">ECG, eletrólitos, função renal, TSH, ecocardiograma, Holter se paroxística</span>
-    </div>
-    <div class="algo-connector">↓</div>
-    <div class="algo-branch">
-      <div class="algo-step" style="border-color:rgba(192,57,43,0.4);background:rgba(192,57,43,0.06);">
-        <div class="algo-label" style="color:var(--red-light);">→ Módulo 2</div>
-        <strong>Risco tromboembólico</strong><br>
-        <span style="font-size:12px;color:var(--text-muted);">CHA₂DS₂-VA, anticoagulação</span>
-      </div>
-      <div class="algo-step" style="border-color:rgba(26,122,74,0.4);background:rgba(26,122,74,0.06);">
-        <div class="algo-label" style="color:var(--green-light);">→ Módulo 3</div>
-        <strong>Controle de sintomas</strong><br>
-        <span style="font-size:12px;color:var(--text-muted);">Frequência vs ritmo</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     PALÁCIO DA MEMÓRIA
-══════════════════════════════════════ -->
-<section class="section" id="palacio">
-  <div class="section-header">
-    <div class="section-icon">🏛️</div>
-    <div>
-      <div class="section-label">N7 · Mnemônico Visual</div>
-      <h2 class="section-title">Palácio da Memória — Templo CARE</h2>
-    </div>
-  </div>
-
-  <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">
-    Imagine um templo grego com 4 colunas. Cada coluna é um pilar do CARE. Você caminha pelo templo e em cada coluna há uma cena visual marcante.
-  </p>
-
-  <div class="palace-grid">
-    <div class="palace-room" style="border-color:rgba(18,130,162,0.3);">
-      <div class="palace-letter" style="color:var(--teal);">C</div>
-      <div class="palace-icon">🧱</div>
-      <div class="palace-title">Coluna C — O Átrio Rachando</div>
-      <div class="palace-desc">Imagine a coluna C com rachaduras se abrindo: HAS, obesidade, SAHOS, álcool, diabetes. Cada comorbidade é uma nova fissura no mármore. O CPAP é um reparador de fissuras, mas não reconstrói a coluna.</div>
-      <div class="palace-module-ref">● Aprofundado neste módulo</div>
-    </div>
-    <div class="palace-room" style="border-color:rgba(192,57,43,0.3);">
-      <div class="palace-letter" style="color:var(--red-light);">A</div>
-      <div class="palace-icon">🩸</div>
-      <div class="palace-title">Coluna A — O Dragão-Coágulo</div>
-      <div class="palace-desc">No apêndice atrial esquerdo dorme um dragão-coágulo vermelho. Se não anticoagulado, ele acorda e vai para o cérebro. CHA₂DS₂-VA é o alarme que decide quando o caçador (anticoagulante) entra.</div>
-      <div class="palace-module-ref" style="color:var(--red-light);">→ Detalhado no Módulo 2</div>
-    </div>
-    <div class="palace-room" style="border-color:rgba(26,122,74,0.3);">
-      <div class="palace-letter" style="color:var(--green-light);">R</div>
-      <div class="palace-icon">⚔️</div>
-      <div class="palace-title">Coluna R — Frequência vs Ritmo</div>
-      <div class="palace-desc">Dois guerreiros: Freio (controle de frequência) e Bússola (controle de ritmo). Dependendo do cenário clínico, um entra em combate. Às vezes os dois lutam juntos.</div>
-      <div class="palace-module-ref" style="color:var(--green-light);">→ Detalhado no Módulo 3</div>
-    </div>
-    <div class="palace-room" style="border-color:rgba(201,168,76,0.3);">
-      <div class="palace-letter" style="color:var(--gold);">E</div>
-      <div class="palace-icon">⏰</div>
-      <div class="palace-title">Coluna E — O Relógio Giratório</div>
-      <div class="palace-desc">No topo do templo há um relógio que nunca para. A cada 6 meses, depois ao menos anual: reavalie risco tromboembólico, sintomas, sangramento e comorbidades. A FA muda com o tempo.</div>
-      <div class="palace-module-ref" style="color:var(--gold);">→ Transversal a todos os módulos</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     PEGADINHAS
-══════════════════════════════════════ -->
-<section class="section" id="pegadinhas">
-  <div class="section-header">
-    <div class="section-icon">⚠️</div>
-    <div>
-      <div class="section-label">N4 · Armadilhas de Prova</div>
-      <h2 class="section-title">Pegadinhas TEC 2026</h2>
-    </div>
-  </div>
-
-  <div class="trap-grid">
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>FA pode ter frequência baixa</strong></div>
-      <div class="trap-why">Bloqueio AV avançado + FA = RR irregular, mas FC pode ser &lt; 60. A irregularidade é o sinal, não a taquicardia.</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>Flutter 2:1 ≈ TSV regular a ~150 bpm</strong></div>
-      <div class="trap-why">FC de 150 bpm regular = flutter 2:1 até prova em contrário. Faça manobra vagal ou adenosina para desmascarar ondas F.</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>Smartwatch não fecha diagnóstico de FA</strong></div>
-      <div class="trap-why">Sugere, mas o diagnóstico exige ECG de 12 derivações ou traçado ≥30s com interpretação médica.</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>FA paroxística também emboliza</strong></div>
-      <div class="trap-why">A prova tenta fazer você pensar que só FA persistente/permanente tem risco tromboembólico. Errado — o risco existe em todos os tipos.</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>FA permanente é decisão, não diagnóstico fisiopatológico</strong></div>
-      <div class="trap-why">Permanente = médico e paciente decidiram não tentar mais reversão. Pode mudar. Não é "FA incurável".</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>CPAP é Classe IIb — não Classe I</strong></div>
-      <div class="trap-why">SAHOS é fator de risco importante, mas CPAP não tem evidência robusta de reduzir recorrência de FA. Evidência limitada (Nível B).</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>Ausência de onda P isolada não basta</strong></div>
-      <div class="trap-why">Precisa de RR irregularmente irregular E ausência de onda P organizada. Linha tremida pode ser artefato muscular.</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>FA e flutter têm alvos de ablação diferentes</strong></div>
-      <div class="trap-why">FA: isolamento das veias pulmonares (átrio esquerdo). Flutter típico: ablação do istmo cavo-tricuspídeo (átrio direito). Não confundir os alvos.</div>
-    </div>
-    <div class="trap-card">
-      <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>SGLT2i e FA — não confundir o papel</strong></div>
-      <div class="trap-why">SGLT2i fazem parte do manejo das comorbidades, especialmente em pacientes com insuficiência cardíaca associada, mas não devem ser apresentados como antiarrítmicos nem como terapia específica para reduzir carga de FA em todo paciente diabético.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     EXAMES INICIAIS
-══════════════════════════════════════ -->
-<section class="section" id="exames">
-  <div class="section-header">
-    <div class="section-icon">🧪</div>
-    <div>
-      <div class="section-label">Investigação</div>
-      <h2 class="section-title">Exames Iniciais</h2>
-    </div>
-  </div>
-  <div class="exam-grid">
-    <div class="exam-item"><div class="exam-icon">📊</div>ECG 12 derivações</div>
-    <div class="exam-item"><div class="exam-icon">🧂</div>Eletrólitos (K⁺, Mg²⁺)</div>
-    <div class="exam-item"><div class="exam-icon">🩸</div>Função renal</div>
-    <div class="exam-item"><div class="exam-icon">🔬</div>Hemograma</div>
-    <div class="exam-item"><div class="exam-icon">🦋</div>TSH / T4L (se indicado)</div>
-    <div class="exam-item"><div class="exam-icon">❤️</div>Troponina (se dor/instab.)</div>
-    <div class="exam-item"><div class="exam-icon">💧</div>BNP/NT-proBNP (se IC)</div>
-    <div class="exam-item"><div class="exam-icon">🫀</div>Ecocardiograma</div>
-    <div class="exam-item"><div class="exam-icon">⏱️</div>Holter / Monitor de eventos</div>
-    <div class="exam-item"><div class="exam-icon">😴</div>Investigar SAHOS (se indicado)</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     QUIZ
-══════════════════════════════════════ -->
-<section class="section" id="quiz">
-  <div class="section-header">
-    <div class="section-icon">🎯</div>
-    <div>
-      <div class="section-label">N6 · Quiz Interativo</div>
-      <h2 class="section-title">Simulado — Módulo 1</h2>
-    </div>
-  </div>
-
-  <div class="quiz-container">
-    <div class="quiz-header">
-      <div class="quiz-title">4 Questões Estilo TEC</div>
-      <div class="score-display">Score: <span id="score">0</span> / <span id="total">4</span></div>
-    </div>
-
-    <!-- Q1 -->
-    <div class="question-card active" id="q1">
-      <div class="question-num">QUESTÃO 01 / 04</div>
-      <div class="question-text">Paciente de 68 anos, hipertenso, obeso, chega ao PS com palpitações há 2 horas. O ECG mostra ausência de onda P organizada, linha de base irregularmente irregular e QRS estreito com RR completamente irregular. Qual o diagnóstico mais provável?</div>
-      <div class="options">
-        <button class="option" onclick="answer(this, false, 'q1')"><span class="option-letter">A</span> Flutter atrial típico com bloqueio 2:1</button>
-        <button class="option" onclick="answer(this, true, 'q1')"><span class="option-letter">B</span> Fibrilação atrial</button>
-        <button class="option" onclick="answer(this, false, 'q1')"><span class="option-letter">C</span> Taquicardia supraventricular paroxística</button>
-        <button class="option" onclick="answer(this, false, 'q1')"><span class="option-letter">D</span> Taquicardia ventricular polimórfica</button>
-      </div>
-      <div class="feedback" id="fb1">
-        <strong>✅ Correto — B.</strong> FA = ausência de onda P organizada + RR irregularmente irregular + QRS estreito. O flutter 2:1 teria RR regular (~150 bpm). TSV teria P' visível e RR regular. TV polimórfica teria QRS alargado e instabilidade hemodinâmica.
-      </div>
-    </div>
-
-    <!-- Q2 -->
-    <div class="question-card" id="q2">
-      <div class="question-num">QUESTÃO 02 / 04</div>
-      <div class="question-text">Paciente com FA paroxística recorrente, IMC 38, ronco intenso e hipersonolência diurna. A polissonografia confirma SAHOS grave. A prescrição do CPAP para reduzir recorrência de FA tem qual grau de recomendação pela ESC 2020?</div>
-      <div class="options">
-        <button class="option" onclick="answer(this, false, 'q2')"><span class="option-letter">A</span> Classe I, nível A — fortemente recomendada</button>
-        <button class="option" onclick="answer(this, false, 'q2')"><span class="option-letter">B</span> Classe I, nível B — recomendada</button>
-        <button class="option" onclick="answer(this, false, 'q2')"><span class="option-letter">C</span> Classe IIa, nível B — razoável considerar</button>
-        <button class="option" onclick="answer(this, true, 'q2')"><span class="option-letter">D</span> Classe IIb, nível B — pode ser considerada</button>
-      </div>
-      <div class="feedback" id="fb2">
-        <strong>✅ Correto — D.</strong> Classe IIb, nível B. O CPAP remove um gatilho (hipoxemia, estiramento atrial noturno), mas não age diretamente no substrato arrítmico. Não há ensaio clínico randomizado robusto demonstrando redução consistente de recorrência de FA com CPAP. A prova adora colocar isso como Classe I.
-      </div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="question-card" id="q3">
-      <div class="question-num">QUESTÃO 03 / 04</div>
-      <div class="question-text">Paciente dá entrada no PS com taquicardia regular de 148 bpm, QRS estreito. Não há sintomas de instabilidade. O ECG inicial é interpretado como "TSV". Qual manobra ou medicamento ajudaria a diferenciar esta arritmia de um flutter 2:1?</div>
-      <div class="options">
-        <button class="option" onclick="answer(this, false, 'q3')"><span class="option-letter">A</span> Amiodarona intravenosa em bolus</button>
-        <button class="option" onclick="answer(this, false, 'q3')"><span class="option-letter">B</span> Cardioversão elétrica sincronizada imediata</button>
-        <button class="option" onclick="answer(this, true, 'q3')"><span class="option-letter">C</span> Manobra vagal ou adenosina para desmascarar as ondas F</button>
-        <button class="option" onclick="answer(this, false, 'q3')"><span class="option-letter">D</span> Holter de 24 horas</button>
-      </div>
-      <div class="feedback" id="fb3">
-        <strong>✅ Correto — C.</strong> Taquicardia regular de ~150 bpm = flutter 2:1 até prova em contrário. A manobra vagal ou adenosina aumenta o bloqueio AV transitoriamente, desmascarando as ondas F em serrote. A CVE seria indicada se houver instabilidade — não para diagnóstico. Holter não tem lugar na emergência.
-      </div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="question-card" id="q4">
-      <div class="question-num">QUESTÃO 04 / 04</div>
-      <div class="question-text">Paciente de 55 anos com palpitações ocasionais há 6 meses. O smartwatch detectou "ritmo irregular sugestivo de fibrilação atrial" em 3 ocasiões. O ECG de 12 derivações realizado no consultório é normal, em ritmo sinusal. A conduta mais adequada é:</div>
-      <div class="options">
-        <button class="option" onclick="answer(this, false, 'q4')"><span class="option-letter">A</span> Iniciar anticoagulação baseada na detecção do smartwatch</button>
-        <button class="option" onclick="answer(this, false, 'q4')"><span class="option-letter">B</span> Descartar FA pois o ECG foi normal</button>
-        <button class="option" onclick="answer(this, true, 'q4')"><span class="option-letter">C</span> Solicitar monitorização prolongada (Holter ou monitor de eventos) para documentação</button>
-        <button class="option" onclick="answer(this, false, 'q4')"><span class="option-letter">D</span> Repetir o ECG em 30 dias</button>
-      </div>
-      <div class="feedback" id="fb4">
-        <strong>✅ Correto — C.</strong> O smartwatch <em>sugere</em>, mas não confirma FA. O diagnóstico exige ECG de 12 derivações ou traçado de pelo menos 30 segundos com interpretação médica. ECG normal durante ritmo sinusal não exclui FA paroxística. Holter ou monitor de eventos por 30 dias é a estratégia correta para documentação da arritmia paroxística.
-      </div>
-    </div>
-
-    <div class="quiz-nav">
-      <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
-      <div class="question-counter" id="q-counter">Questão 1 de 4</div>
-      <button class="btn-quiz" id="btn-next" onclick="nextQuestion()">Próxima →</button>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     REVISÃO RÁPIDA
-══════════════════════════════════════ -->
-<section class="section" id="revisao">
-  <div class="section-header">
-    <div class="section-icon">⚡</div>
-    <div>
-      <div class="section-label">N5 · Síntese Final</div>
-      <h2 class="section-title">Revisão Ultrarrápida</h2>
-    </div>
-  </div>
-
-  <div class="accordion-hint">
-    <span class="blink">▼</span>
-    Clique no tempo desejado para ver o resumo
-  </div>
-
-  <div class="review-tabs">
-    <div class="review-tab active" onclick="setReview(this, 'r10')">⚡ 10 segundos</div>
-    <div class="review-tab" onclick="setReview(this, 'r30')">🕐 30 segundos</div>
-    <div class="review-tab" onclick="setReview(this, 'r60')">⏱️ 1 minuto</div>
-  </div>
-
-  <div class="review-content active" id="r10">
-    <strong>FA</strong> = sem onda P organizada + RR irregularmente irregular.<br>
-    <strong>"P sumiu, RR fugiu."</strong>
-  </div>
-  <div class="review-content" id="r30">
-    FA nasce de <strong>gatilhos</strong> (principalmente nas veias pulmonares) sobre um <strong>átrio vulnerável</strong> por idade, HAS, IC, obesidade, SAHOS, álcool, diabetes e doença valvar. O ECG mostra ausência de onda P organizada e RR irregularmente irregular. Diferenciar de flutter (regular, ondas F, ~150 bpm = 2:1). CPAP é <strong>Classe IIb</strong> — não Classe I.
-  </div>
-  <div class="review-content" id="r60">
-    O Módulo 1 começa pelo <strong>CARE</strong>. O <strong>C</strong> é o terreno — tratar HAS (I/A), IC (I/A), diabetes com SGLT2i (I/A), obesidade (I/B), álcool (I/B), exercício (I/B) e SAHOS com CPAP (<strong>IIb/B — pegadinha!</strong>). O diagnóstico exige ECG ou traçado ≥30s com interpretação médica — smartwatch apenas sugere. FA paroxística <strong>também emboliza</strong>. FA permanente é <strong>decisão terapêutica</strong>, não fisiopatológica. Diferenciar FA (tempestade, veias pulmonares, RR irregular) de flutter (carrossel, istmo cavo-tricuspídeo, RR regular ~150 bpm no 2:1). SAHOS → fisiopatologia clara, mas evidência de redução de FA com CPAP é fraca. Anticoagulação vai para o Módulo 2. Ritmo/frequência vai para o Módulo 3.
-  </div>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-brand">Dr. André Rossanno</div>
-  <div class="footer-text">
-    Método André Rossanno de Memorização Médica<br>
-    Atlas Mental Interativo · memoria-potencial.com.br<br>
-    Conteúdo educacional para TEC 2026 · Baseado em ESC 2025 e Diretriz Brasileira de Fibrilação Atrial 2025
-  </div>
-</footer>
-
-<script>
-// ── PROGRESS BAR
-window.addEventListener('scroll', () => {
-  const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  document.getElementById('progress-bar').style.width = scrolled + '%';
-});
-
-// ── SIDEBAR
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
-document.addEventListener('click', (e) => {
-  const sidebar = document.getElementById('sidebar');
-  const toggle = document.getElementById('menu-toggle');
-  if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
-    sidebar.classList.remove('open');
-  }
-});
-
-// ── SCROLL TO
-function scrollTo(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    document.getElementById('sidebar').classList.remove('open');
-  }
-}
-
-// ── INTERSECTION OBSERVER
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      // update sidebar active
-      const id = e.target.id;
-      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-      const link = document.querySelector(`.sidebar-link[onclick*="${id}"]`);
-      if (link) link.classList.add('active');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '-80px 0px -20% 0px' });
-
-document.querySelectorAll('.section').forEach(s => observer.observe(s));
-
-// ── CARE ACCORDION
-function toggleCare(header) {
-  const body = header.nextElementSibling;
-  const isOpen = body.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.care-body').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.care-header').forEach(h => h.classList.remove('open'));
-  // Open clicked if was closed
-  if (!isOpen) {
-    body.classList.add('open');
-    header.classList.add('open');
-  }
-}
-
-// ── QUIZ
-let currentQ = 1;
-let score = 0;
-let answered = [false, false, false, false];
-
-function answer(btn, isCorrect, qId) {
-  const qNum = parseInt(qId.replace('q', ''));
-  if (answered[qNum - 1]) return;
-  answered[qNum - 1] = true;
-
-  const options = btn.parentElement.querySelectorAll('.option');
-  options.forEach(o => o.disabled = true);
-
-  const fb = document.getElementById('fb' + qNum);
-
-  if (isCorrect) {
-    btn.classList.add('correct');
-    fb.classList.add('correct-fb', 'show');
-    score++;
-    document.getElementById('score').textContent = score;
-  } else {
-    btn.classList.add('wrong');
-    fb.classList.add('wrong-fb', 'show');
-    // Highlight correct
-    options.forEach(o => {
-      if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
-    });
-  }
-}
-
-function nextQuestion() {
-  if (currentQ < 4) {
-    document.getElementById('q' + currentQ).classList.remove('active');
-    currentQ++;
-    document.getElementById('q' + currentQ).classList.add('active');
-    document.getElementById('q-counter').textContent = `Questão ${currentQ} de 4`;
-    if (currentQ === 4) document.getElementById('btn-next').textContent = 'Finalizar ✓';
-  } else {
-    // Show result
-    const container = document.querySelector('.quiz-container');
-    const result = document.createElement('div');
-    result.style.cssText = 'margin-top:20px; padding:24px; background:rgba(18,130,162,0.12); border:1px solid rgba(18,130,162,0.3); border-radius:14px; text-align:center;';
-    result.innerHTML = `
-      <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:900;color:${score >= 3 ? 'var(--green-light)' : 'var(--gold)'};">${score} / 4</div>
-      <div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score === 4 ? '🏆 Perfeito! Módulo 1 dominado.' : score >= 3 ? '✅ Muito bem! Revise os erros.' : '📖 Revise o módulo antes de avançar.'}</div>
-    `;
-    document.getElementById('btn-next').style.display = 'none';
-    container.appendChild(result);
-  }
-}
-
-function resetQuiz() {
-  currentQ = 1;
-  score = 0;
-  answered = [false, false, false, false];
-  document.getElementById('score').textContent = '0';
-  document.getElementById('q-counter').textContent = 'Questão 1 de 4';
-  document.getElementById('btn-next').textContent = 'Próxima →';
-  document.getElementById('btn-next').style.display = '';
-  document.querySelectorAll('.question-card').forEach((q, i) => {
-    q.classList.toggle('active', i === 0);
-    q.querySelectorAll('.option').forEach(o => {
-      o.disabled = false;
-      o.classList.remove('correct', 'wrong');
-    });
-    const fb = q.querySelector('.feedback');
-    if (fb) { fb.classList.remove('show', 'correct-fb', 'wrong-fb'); }
-  });
-  const extra = document.querySelector('.quiz-container > div:last-child');
-  if (extra && extra.style.background) extra.remove();
-}
-
-// ── REVIEW TABS
-function setReview(tab, id) {
-  document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.review-content').forEach(c => c.classList.remove('active'));
-  tab.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-</script>
-
-</body>
-</html>
+        <div style="font-size:12px; colo
