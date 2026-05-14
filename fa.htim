@@ -1,0 +1,2541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FA — Módulo 1 | Atlas Mental Interativo | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B2545;
+  --navy-light: #0f2f5a;
+  --teal: #1282A2;
+  --teal-light: #1a9cbf;
+  --mint: #034078;
+  --gold: #C9A84C;
+  --gold-light: #e8c66a;
+  --red: #C0392B;
+  --red-light: #e74c3c;
+  --green: #1a7a4a;
+  --green-light: #27ae60;
+  --yellow: #b8860b;
+  --yellow-light: #f0c040;
+  --white: #f0f4f8;
+  --text: #d4e1f7;
+  --text-muted: #8ba3c7;
+  --glass: rgba(18, 130, 162, 0.08);
+  --glass-border: rgba(18, 130, 162, 0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(18,130,162,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 85% 80%, rgba(11,37,69,0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #0B2545 0%, #060f1e 100%);
+  z-index: -2;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(18,130,162,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,130,162,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  z-index: 1000;
+  transition: width 0.1s;
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  position: fixed;
+  left: 0; top: 0;
+  width: 260px;
+  height: 100vh;
+  background: rgba(6,15,30,0.95);
+  border-right: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  z-index: 900;
+  overflow-y: auto;
+  padding: 24px 0 40px;
+  transform: translateX(-260px);
+  transition: transform 0.3s ease;
+}
+#sidebar.open { transform: translateX(0); }
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+.sidebar-logo {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 16px;
+}
+.sidebar-logo .brand { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 800; color: var(--teal); letter-spacing: 3px; text-transform: uppercase; }
+.sidebar-logo .title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+.sidebar-section { padding: 8px 20px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+
+.sidebar-link {
+  display: block;
+  padding: 10px 20px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+.sidebar-link:hover { color: var(--white); background: rgba(18,130,162,0.1); }
+.sidebar-link.active { color: var(--gold); border-left-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+.sidebar-module {
+  display: block;
+  padding: 12px 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.sidebar-module.current { color: var(--teal); }
+.sidebar-module.locked { opacity: 0.4; }
+
+/* ── MENU TOGGLE ── */
+#menu-toggle {
+  position: fixed;
+  top: 16px; left: 16px;
+  width: 44px; height: 44px;
+  background: rgba(6,15,30,0.9);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 950;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 5px;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s;
+}
+#menu-toggle:hover { border-color: var(--teal); }
+#menu-toggle span { width: 20px; height: 2px; background: var(--text); border-radius: 1px; transition: all 0.3s; }
+
+/* ── MAIN ── */
+main { max-width: 900px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0 60px;
+  position: relative;
+}
+
+.hero-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18,130,162,0.15);
+  border: 1px solid rgba(18,130,162,0.3);
+  border-radius: 20px;
+  padding: 6px 16px;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.hero-badge span { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--teal-light); }
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 8vw, 72px);
+  font-weight: 900;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+.hero-title .highlight { color: var(--teal); }
+.hero-title .accent { color: var(--gold); }
+
+.hero-subtitle {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.5s forwards;
+}
+
+.hero-quote {
+  background: linear-gradient(135deg, rgba(18,130,162,0.12), rgba(11,37,69,0.6));
+  border: 1px solid rgba(18,130,162,0.25);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 40px;
+  max-width: 700px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+}
+.hero-quote p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.hero-quote .author {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  color: var(--gold);
+  font-style: normal;
+}
+
+/* ── PROTOCOL N1-N7 ── */
+.protocol-banner {
+  background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(3,64,120,0.3));
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+}
+.protocol-banner h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.protocol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+.protocol-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(6,15,30,0.4);
+  border-radius: 8px;
+  border: 1px solid rgba(201,168,76,0.15);
+}
+.protocol-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--gold);
+  min-width: 24px;
+  padding-top: 1px;
+}
+.protocol-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ── MODULE NAV ── */
+.module-nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 80px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.8s forwards;
+}
+@media(max-width: 600px) { .module-nav { grid-template-columns: 1fr; } }
+
+.module-card {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--teal), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.module-card:hover::before { opacity: 0.08; }
+.module-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+.module-card.active-module { border-color: var(--teal); background: rgba(18,130,162,0.12); }
+.module-card.active-module::before { opacity: 0.1; }
+.module-card.locked-module { opacity: 0.5; cursor: default; }
+.module-card.locked-module:hover { transform: none; }
+
+.module-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.module-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.module-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+.module-status {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+.status-active { background: rgba(18,130,162,0.2); color: var(--teal-light); border: 1px solid rgba(18,130,162,0.4); }
+.status-soon { background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+
+/* ── CLICK HINT ── */
+.click-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-bottom: 32px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+}
+.click-hint .pulse {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* ── SECTION ── */
+.section {
+  margin-bottom: 80px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section.visible { opacity: 1; transform: translateY(0); }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--glass-border);
+}
+.section-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--teal), var(--mint));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+/* ── CARE BLOCK ── */
+.care-container { display: flex; flex-direction: column; gap: 16px; }
+
+.care-card {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.care-card:hover { border-color: var(--teal); }
+
+.care-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  user-select: none;
+}
+.care-letter {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+.care-c { background: linear-gradient(135deg, #1282A2, #034078); color: white; }
+.care-a { background: linear-gradient(135deg, #C0392B, #7b1a12); color: white; }
+.care-r { background: linear-gradient(135deg, #1a7a4a, #0d4028); color: white; }
+.care-e { background: linear-gradient(135deg, #b8860b, #6b4e07); color: white; }
+
+.care-info { flex: 1; }
+.care-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.care-tagline { font-size: 13px; color: var(--text-muted); }
+.care-chevron { color: var(--text-muted); font-size: 18px; transition: transform 0.3s; }
+.care-header.open .care-chevron { transform: rotate(180deg); }
+
+.care-module-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.badge-mod1 { background: rgba(18,130,162,0.2); color: var(--teal-light); border: 1px solid rgba(18,130,162,0.4); }
+.badge-mod2 { background: rgba(192,57,43,0.2); color: #e74c3c; border: 1px solid rgba(192,57,43,0.4); }
+.badge-mod3 { background: rgba(26,122,74,0.2); color: #27ae60; border: 1px solid rgba(26,122,74,0.4); }
+.badge-mod4 { background: rgba(184,134,11,0.2); color: var(--gold-light); border: 1px solid rgba(184,134,11,0.4); }
+
+.care-body {
+  display: none;
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--glass-border);
+}
+.care-body.open { display: block; }
+
+/* Evidence table */
+.evidence-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.evidence-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+.evidence-table td {
+  padding: 12px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(18,130,162,0.08);
+  vertical-align: middle;
+}
+.evidence-table tr:last-child td { border-bottom: none; }
+.evidence-table tr:hover td { background: rgba(18,130,162,0.05); }
+
+.ev-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.ev-green { background: rgba(26,122,74,0.2); color: #27ae60; border: 1px solid rgba(26,122,74,0.3); }
+.ev-yellow { background: rgba(184,134,11,0.2); color: var(--gold-light); border: 1px solid rgba(184,134,11,0.3); }
+.ev-red { background: rgba(192,57,43,0.2); color: #e74c3c; border: 1px solid rgba(192,57,43,0.3); }
+
+.trap-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 6px;
+}
+
+.care-note {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.care-note strong { color: var(--gold); }
+
+.care-redirect {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: rgba(6,15,30,0.5);
+  border: 1px dashed var(--glass-border);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.care-redirect .arrow { color: var(--teal); font-size: 18px; }
+
+/* ── FISIOPATOLOGIA ── */
+.fisio-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.fisio-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(6,15,30,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  margin-bottom: 0;
+  position: relative;
+  transition: all 0.3s;
+}
+.fisio-step:hover { border-color: var(--teal); background: rgba(18,130,162,0.08); }
+
+.fisio-connector {
+  text-align: center;
+  color: var(--teal);
+  font-size: 20px;
+  padding: 4px 0;
+  line-height: 1;
+}
+
+.fisio-num {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--teal), var(--mint));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  flex-shrink: 0;
+}
+.fisio-content { flex: 1; }
+.fisio-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.fisio-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ── EPIDEMIO ── */
+.epi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+@media(max-width: 600px) { .epi-grid { grid-template-columns: 1fr; } }
+
+.epi-column {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.epi-col-header {
+  padding: 14px 16px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.epi-intrinseco { background: linear-gradient(135deg, rgba(11,37,69,0.8), rgba(18,130,162,0.3)); color: var(--teal-light); border-bottom: 1px solid rgba(18,130,162,0.3); }
+.epi-ambiental { background: linear-gradient(135deg, rgba(184,134,11,0.3), rgba(11,37,69,0.8)); color: var(--gold-light); border-bottom: 1px solid rgba(201,168,76,0.3); }
+.epi-comorbidade { background: linear-gradient(135deg, rgba(192,57,43,0.3), rgba(11,37,69,0.8)); color: #e74c3c; border-bottom: 1px solid rgba(192,57,43,0.3); }
+
+.epi-items { padding: 16px; }
+.epi-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  font-size: 12px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(18,130,162,0.06);
+}
+.epi-item:last-child { border-bottom: none; }
+.epi-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot-blue { background: var(--teal); }
+.dot-gold { background: var(--gold); }
+.dot-red { background: var(--red-light); }
+
+.epi-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+@media(max-width: 600px) { .epi-stat-grid { grid-template-columns: 1fr 1fr; } }
+
+.stat-card {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.stat-card:hover { border-color: var(--teal); }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+/* ── ECG SECTION ── */
+.ecg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.ecg-card {
+  background: rgba(6,15,30,0.7);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.ecg-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+
+.ecg-display {
+  background: #0a1a0a;
+  padding: 20px;
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+}
+
+/* Animated ECG lines */
+.ecg-fa-line {
+  position: absolute;
+  top: 50%; left: 0;
+  width: 200%;
+  height: 2px;
+  animation: ecgFA 3s linear infinite;
+}
+@keyframes ecgFA {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ecg-flutter-line {
+  animation: ecgFlutter 2s linear infinite;
+}
+@keyframes ecgFlutter {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ecg-info {
+  padding: 20px;
+}
+.ecg-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ecg-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.ecg-criteria { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.ecg-criteria li { margin-bottom: 4px; padding-left: 12px; position: relative; }
+.ecg-criteria li::before { content: '→'; position: absolute; left: 0; color: var(--teal); font-size: 10px; top: 1px; }
+
+/* SVG ECG drawing */
+.ecg-svg { width: 100%; height: 80px; }
+
+/* ── COMPARISON TABLE ── */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.compare-table th {
+  padding: 14px 16px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 2px solid var(--glass-border);
+}
+.compare-table th:first-child { color: var(--text-muted); }
+.compare-table th.fa-col { color: var(--teal); }
+.compare-table th.flutter-col { color: var(--gold); }
+.compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(18,130,162,0.08);
+  color: var(--text);
+  vertical-align: top;
+}
+.compare-table tr:hover td { background: rgba(18,130,162,0.04); }
+.compare-table td:first-child { color: var(--text-muted); font-size: 12px; font-weight: 500; }
+.compare-table .row-fa td:nth-child(2) { color: var(--teal-light); }
+.compare-table .row-flutter td:nth-child(3) { color: var(--gold-light); }
+
+/* ── SAHOS ── */
+.sahos-flow {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 28px;
+}
+.sahos-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+}
+.sahos-item {
+  text-align: center;
+  padding: 12px 10px;
+  min-width: 100px;
+  flex: 1;
+}
+.sahos-icon { font-size: 24px; margin-bottom: 6px; }
+.sahos-text { font-size: 11px; color: var(--text); line-height: 1.4; }
+.sahos-arrow { color: var(--teal); font-size: 20px; flex-shrink: 0; }
+
+/* ── DIAGNOSTIC ALGO ── */
+.algo-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.algo-step {
+  background: rgba(6,15,30,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--text);
+  transition: all 0.3s;
+  position: relative;
+}
+.algo-step:hover { border-color: var(--teal); }
+.algo-connector { text-align: center; color: var(--teal); font-size: 18px; padding: 2px 0; }
+.algo-branch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.algo-yes { border-color: rgba(26,122,74,0.4); background: rgba(26,122,74,0.08); }
+.algo-no { border-color: rgba(192,57,43,0.3); background: rgba(192,57,43,0.06); }
+.algo-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+/* ── MEMORY PALACE ── */
+.palace-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media(max-width: 600px) { .palace-grid { grid-template-columns: 1fr; } }
+
+.palace-room {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.palace-room::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.palace-room:hover::before { opacity: 1; }
+.palace-room:hover { border-color: var(--teal); transform: translateY(-2px); }
+
+.palace-icon { font-size: 36px; margin-bottom: 12px; }
+.palace-letter {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  position: absolute;
+  right: 20px; top: 16px;
+  opacity: 0.08;
+}
+.palace-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.palace-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.palace-module-ref {
+  margin-top: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+}
+
+/* ── MNEMONIC ── */
+.mnemonic-card {
+  background: linear-gradient(135deg, rgba(18,130,162,0.15), rgba(3,64,120,0.3));
+  border: 1px solid rgba(18,130,162,0.3);
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: center;
+  margin: 20px 0;
+}
+.mnemonic-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.mnemonic-text {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.mnemonic-text .key { color: var(--teal); }
+.mnemonic-author {
+  font-family: 'Dancing Script', cursive;
+  font-size: 16px;
+  color: var(--gold);
+}
+
+/* ── PEGADINHAS ── */
+.trap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+.trap-card {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid rgba(192,57,43,0.25);
+  border-left: 3px solid var(--red-light);
+  border-radius: 12px;
+  padding: 16px 18px;
+  transition: all 0.3s;
+}
+.trap-card:hover { border-color: rgba(192,57,43,0.5); background: rgba(192,57,43,0.06); }
+.trap-icon { font-size: 16px; margin-bottom: 8px; }
+.trap-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+.trap-why { margin-top: 8px; font-size: 11px; color: var(--text-muted); }
+
+/* ── QUIZ ── */
+.quiz-container {
+  background: rgba(6,15,30,0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 32px;
+}
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.quiz-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+.score-display {
+  background: rgba(18,130,162,0.15);
+  border: 1px solid rgba(18,130,162,0.3);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  color: var(--teal-light);
+}
+.score-display span { color: var(--white); font-weight: 500; }
+
+.question-card {
+  background: rgba(6,15,30,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+  display: none;
+}
+.question-card.active { display: block; }
+
+.question-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.question-text {
+  font-size: 15px;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option {
+  background: rgba(18,130,162,0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  transition: all 0.2s;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.option:hover:not(:disabled) { border-color: var(--teal); color: var(--white); background: rgba(18,130,162,0.12); }
+.option.correct { border-color: var(--green-light); background: rgba(26,122,74,0.15); color: var(--white); }
+.option.wrong { border-color: var(--red-light); background: rgba(192,57,43,0.12); color: var(--white); }
+.option-letter {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--teal);
+  min-width: 20px;
+  font-weight: 500;
+  padding-top: 1px;
+}
+
+.feedback {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  display: none;
+}
+.feedback.show { display: block; }
+.feedback.correct-fb { background: rgba(26,122,74,0.15); border: 1px solid rgba(26,122,74,0.3); color: var(--white); }
+.feedback.wrong-fb { background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.3); color: var(--white); }
+
+.quiz-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-quiz {
+  background: linear-gradient(135deg, var(--teal), var(--mint));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-quiz:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-quiz:disabled { opacity: 0.4; cursor: default; transform: none; }
+.btn-reset {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-reset:hover { border-color: var(--teal); color: var(--white); }
+
+.question-counter {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── QUICK REVIEW ── */
+.review-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.review-tab {
+  padding: 8px 20px;
+  background: rgba(6,15,30,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.review-tab.active { background: rgba(18,130,162,0.2); border-color: var(--teal); color: var(--teal-light); }
+.review-content {
+  background: rgba(6,15,30,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 24px;
+  display: none;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.review-content.active { display: block; }
+.review-content strong { color: var(--teal); }
+
+/* ── QUOTE BLOCK ── */
+.quote-block {
+  background: linear-gradient(135deg, rgba(18,130,162,0.08), rgba(11,37,69,0.5));
+  border: 1px solid rgba(18,130,162,0.2);
+  border-left: 4px solid var(--teal);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.quote-block p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.quote-block .author {
+  font-family: 'Dancing Script', cursive;
+  font-size: 17px;
+  color: var(--gold);
+}
+
+/* ── EXAMS GRID ── */
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+.exam-item {
+  background: rgba(6,15,30,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text);
+  transition: all 0.2s;
+}
+.exam-item:hover { border-color: var(--teal); }
+.exam-icon { font-size: 18px; flex-shrink: 0; }
+
+/* ── FOOTER ── */
+footer {
+  margin-top: 80px;
+  padding: 40px 20px;
+  border-top: 1px solid var(--glass-border);
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.footer-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); line-height: 1.8; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ACCORDION CLICK HINT ── */
+.accordion-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.accordion-hint .blink { animation: pulse 1.5s infinite; }
+
+/* ── MOBILE ── */
+@media(max-width: 768px) {
+  .epi-grid { grid-template-columns: 1fr; }
+  .epi-stat-grid { grid-template-columns: 1fr 1fr; }
+  .protocol-grid { grid-template-columns: 1fr; }
+  .sahos-steps { flex-direction: column; }
+  .sahos-arrow { transform: rotate(90deg); }
+  .algo-branch { grid-template-columns: 1fr; }
+  .palace-grid { grid-template-columns: 1fr; }
+  .module-nav { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- MENU TOGGLE -->
+<button id="menu-toggle" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Atlas Mental</div>
+    <div class="title">memoria-potencial.com.br</div>
+  </div>
+
+  <div class="sidebar-section">Módulos FA</div>
+  <a class="sidebar-module current" onclick="scrollTo('hero')">● M1 — O Átrio Sem Maestro</a>
+  <a class="sidebar-module locked" title="Em breve">○ M2 — O Trono do Trombo</a>
+  <a class="sidebar-module locked" title="Em breve">○ M3 — O Freio e a Bússola</a>
+  <a class="sidebar-module locked" title="Em breve">○ M4 — A Sala de Choque</a>
+
+  <div class="sidebar-section" style="margin-top:16px">Seções M1</div>
+  <a class="sidebar-link" onclick="scrollTo('protocolo')">Protocolo N1–N7</a>
+  <a class="sidebar-link" onclick="scrollTo('care')">CARE — Pilar C</a>
+  <a class="sidebar-link" onclick="scrollTo('fisiopatologia')">Fisiopatologia</a>
+  <a class="sidebar-link" onclick="scrollTo('epidemiologia')">Epidemiologia</a>
+  <a class="sidebar-link" onclick="scrollTo('ecg')">ECG na FA</a>
+  <a class="sidebar-link" onclick="scrollTo('caracterizacao')">Caracterização</a>
+  <a class="sidebar-link" onclick="scrollTo('flutter')">FA vs Flutter</a>
+  <a class="sidebar-link" onclick="scrollTo('sahos')">SAHOS</a>
+  <a class="sidebar-link" onclick="scrollTo('algoritmo')">Algoritmo</a>
+  <a class="sidebar-link" onclick="scrollTo('palacio')">Palácio da Memória</a>
+  <a class="sidebar-link" onclick="scrollTo('pegadinhas')">Pegadinhas TEC</a>
+  <a class="sidebar-link" onclick="scrollTo('quiz')">Simulado</a>
+  <a class="sidebar-link" onclick="scrollTo('revisao')">Revisão Rápida</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero" id="hero">
+
+  <div class="hero-kicker">Atlas Mental Interativo · Método André Rossanno</div>
+
+  <div class="hero-badge">
+    <span>● MÓDULO 1 DE 4 · FIBRILAÇÃO ATRIAL · TEC 2026</span>
+  </div>
+
+  <h1 class="hero-title">
+    <span class="highlight">Fibrilação</span><br>
+    <span class="accent">Atrial</span>
+  </h1>
+  <h2 class="hero-subtitle">O Átrio Sem Maestro</h2>
+
+  <div class="hero-quote">
+    <p>"Na FA, o átrio perde o maestro, as veias pulmonares acendem faíscas, o nó AV vira porteiro, o ECG perde a onda P e o cérebro cobra o preço se o trombo for esquecido."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+  <!-- Module navigation -->
+  <div class="click-hint">
+    <div class="pulse"></div>
+    ← Clique no menu para navegar entre seções
+  </div>
+
+  <div class="module-nav">
+    <div class="module-card active-module" onclick="scrollTo('care')">
+      <div class="module-status status-active">● ATIVO</div>
+      <div class="module-num">MÓDULO 01</div>
+      <div class="module-name">O Átrio Sem Maestro</div>
+      <div class="module-desc">Diagnóstico, fisiopatologia, CARE-C, epidemiologia, ECG e flutter</div>
+    </div>
+    <div class="module-card locked-module">
+      <div class="module-status status-soon">EM BREVE</div>
+      <div class="module-num">MÓDULO 02</div>
+      <div class="module-name">O Trono do Trombo</div>
+      <div class="module-desc">AVC, CHA₂DS₂-VA, anticoagulação, DOAC vs varfarina</div>
+    </div>
+    <div class="module-card locked-module">
+      <div class="module-status status-soon">EM BREVE</div>
+      <div class="module-num">MÓDULO 03</div>
+      <div class="module-name">O Freio e a Bússola</div>
+      <div class="module-desc">Controle de frequência vs ritmo, antiarrítmicos, ablação</div>
+    </div>
+    <div class="module-card locked-module">
+      <div class="module-status status-soon">EM BREVE</div>
+      <div class="module-num">MÓDULO 04</div>
+      <div class="module-name">A Sala de Choque</div>
+      <div class="module-desc">Emergência, CVE, cardioversão química, flutter</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROTOCOLO N1-N7
+══════════════════════════════════════ -->
+<section class="section" id="protocolo">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div>
+      <div class="section-label">Método de Estudo</div>
+      <h2 class="section-title">Protocolo N1–N7</h2>
+    </div>
+  </div>
+
+  <div class="protocol-banner">
+    <h3>⚙ Como este material foi construído</h3>
+    <p style="font-size:13px; color: var(--text-muted); margin-bottom: 20px; line-height:1.6;">
+      Todo o conteúdo segue o <strong style="color:var(--gold)">Método André Rossanno de Memorização Médica</strong> — 7 camadas pedagógicas para fixação profunda e performance em prova.
+    </p>
+    <div class="protocol-grid">
+      <div class="protocol-item">
+        <div class="protocol-num">N1</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Caso clínico dramático</strong><br>Abertura que ativa contexto e emoção</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">N2</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Vilão e herói</strong><br>Personificação do mecanismo patológico</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">N3</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Duplo código</strong><br>Infográfico visual + texto simultâneos</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">N4</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Pegadinha TEC</strong><br>Armadilha de prova sinalizada em amarelo</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">N5</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Frase de síntese</strong><br>Uma linha para fixar o conceito central</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">N6</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Quiz com feedback</strong><br>Questão interativa com comentário corretivo</div>
+      </div>
+      <div class="protocol-item">
+        <div class="protocol-num">N7</div>
+        <div class="protocol-desc"><strong style="color:var(--white)">Mnemônico absurdo</strong><br>Imagem memorável e diferencial integrado</div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; padding: 12px 16px; background: rgba(6,15,30,0.4); border-radius: 8px; border: 1px solid rgba(201,168,76,0.2);">
+      <p style="font-size: 12px; color: var(--text-muted);"><strong style="color:var(--gold)">Código de cores:</strong> &nbsp;
+        <span style="color:var(--red-light)">■ Vermelho = perigo</span> &nbsp;·&nbsp;
+        <span style="color:var(--green-light)">■ Verde = proteção</span> &nbsp;·&nbsp;
+        <span style="color:var(--gold-light)">■ Amarelo = pegadinha de prova</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CARE
+══════════════════════════════════════ -->
+<section class="section" id="care">
+  <div class="section-header">
+    <div class="section-icon">🏛️</div>
+    <div>
+      <div class="section-label">Pilar Central · ESC 2020</div>
+      <h2 class="section-title">Integrated AF-CARE</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom: 20px; line-height:1.7;">
+    O CARE é o modelo de manejo integrado da FA da ESC. Cada letra representa um pilar de tratamento. <strong style="color:var(--white)">Neste Módulo 1, aprofundamos o C.</strong> Os demais serão detalhados nos módulos seguintes.
+  </p>
+
+  <div class="accordion-hint">
+    <span class="blink">▼</span>
+    Clique em cada letra CARE para expandir o conteúdo
+  </div>
+
+  <div class="care-container">
+
+    <!-- C -->
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="care-letter care-c">C</div>
+        <div class="care-info">
+          <div class="care-name">Comorbidity &amp; Risk Factor Management</div>
+          <div class="care-tagline">Controle das comorbidades e fatores de risco — <strong style="color:var(--teal)">APROFUNDADO AQUI</strong></div>
+        </div>
+        <div class="care-module-badge badge-mod1">Módulo 1</div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <p style="font-size:13px; color:var(--text-muted); margin: 16px 0; line-height:1.6;">
+          Tratar comorbidades não elimina a FA, mas reduz sua carga, melhora resposta às terapias e diminui hospitalizações. A evidência varia — e a prova cobra isso.
+        </p>
+
+        <table class="evidence-table">
+          <thead>
+            <tr>
+              <th>Intervenção</th>
+              <th>Classe ESC</th>
+              <th>Nível</th>
+              <th>Semáforo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Controle da hipertensão arterial</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">A</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>Tratamento da insuficiência cardíaca (diuréticos, HFrEF)</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">A</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>Controle glicêmico no diabetes</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">B</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>SGLT2 inibidores (gliflozinas)</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">A</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>Perda de peso (meta: ≥10% do peso corporal)</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">B</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>Exercício físico supervisionado</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">B</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>Redução do álcool (≤3 doses/semana)</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">B</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>Identificar e tratar outras comorbidades</td>
+              <td><span class="ev-dot ev-green">Classe I</span></td>
+              <td style="color:var(--text-muted);">B</td>
+              <td><span style="font-size:18px;">🟢</span></td>
+            </tr>
+            <tr>
+              <td>
+                Tratamento do SAHOS (CPAP)
+                <span class="trap-flag">⚠ PEGADINHA TEC</span>
+              </td>
+              <td><span class="ev-dot ev-yellow">Classe IIb</span></td>
+              <td style="color:var(--text-muted);">B</td>
+              <td><span style="font-size:18px;">🟡</span></td>
+            </tr>
+            <tr>
+              <td>
+                Cirurgia bariátrica (se obeso + controle de ritmo)
+                <span class="trap-flag">⚠ PEGADINHA TEC</span>
+              </td>
+              <td><span class="ev-dot ev-yellow">Classe IIb</span></td>
+              <td style="color:var(--text-muted);">C</td>
+              <td><span style="font-size:18px;">🟡</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="care-note">
+          <strong>⚠ Por que o CPAP é Classe IIb?</strong><br>
+          O CPAP trata a hipoxemia e o estiramento atrial noturno, mas não existe ensaio clínico randomizado robusto demonstrando que ele reduz recorrência de FA de forma consistente. Ele <em>remove um gatilho</em>, não age diretamente no substrato. A prova gosta de cobrar isso como se fosse Classe I.
+        </div>
+
+        <div class="mnemonic-card" style="margin-top:20px;">
+          <div class="mnemonic-label">Mnemônico N7</div>
+          <div class="mnemonic-text">"CPAP não é <span class="key">antiarrítmico</span> mágico:<br>ele trata uma fábrica de gatilhos."</div>
+          <div class="mnemonic-author">— Dr. André Rossanno</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A -->
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="care-letter care-a">A</div>
+        <div class="care-info">
+          <div class="care-name">Avoid Stroke &amp; Thromboembolism</div>
+          <div class="care-tagline">Prevenção do AVC e tromboembolismo</div>
+        </div>
+        <div class="care-module-badge badge-mod2">→ Módulo 2</div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <div class="care-redirect">
+          <span class="arrow">🩸</span>
+          <div>
+            <strong style="color:var(--red-light)">Conteúdo aprofundado no Módulo 2 — O Trono do Trombo</strong><br>
+            <span style="font-size:12px;">CHA₂DS₂-VA, HAS-BLED, DOAC vs varfarina, FA valvar, anticoagulação peri-cardioversão e oclusão do apêndice atrial esquerdo.</span>
+          </div>
+        </div>
+        <div class="care-note" style="margin-top:16px;">
+          <strong>Mapa rápido do A (ESC):</strong> Avaliar risco tromboembólico → usar escore CHA₂DS₂-VA → escolher anticoagulante (DOAC preferencial) → avaliar risco de sangramento → prevenir sangramento. Padrão temporal da FA <strong style="color:var(--red-light)">não é relevante</strong> para indicar anticoagulação (Classe III — não usar isso como critério).
+        </div>
+      </div>
+    </div>
+
+    <!-- R -->
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="care-letter care-r">R</div>
+        <div class="care-info">
+          <div class="care-name">Reduce Symptoms by Rate &amp; Rhythm Control</div>
+          <div class="care-tagline">Redução de sintomas por controle de frequência ou ritmo</div>
+        </div>
+        <div class="care-module-badge badge-mod3">→ Módulo 3</div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <div class="care-redirect">
+          <span class="arrow">💊</span>
+          <div>
+            <strong style="color:var(--green-light)">Conteúdo aprofundado no Módulo 3 — O Freio e a Bússola</strong><br>
+            <span style="font-size:12px;">Betabloqueadores, bloqueadores de canal de cálcio, digoxina, amiodarona, cardioversão elétrica, ablação das veias pulmonares.</span>
+          </div>
+        </div>
+        <div class="care-note" style="margin-top:16px;">
+          <strong>Mapa rápido do R:</strong> FA first-diagnosed → paroxística → persistente → permanente. Em cada cenário, pesar: controle de frequência (freio) vs controle de ritmo (bússola). Considerar ablação, cardioversão, antiarrítmicos, ablação endoscópica/híbrida e ablação do nó AV.
+        </div>
+      </div>
+    </div>
+
+    <!-- E -->
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="care-letter care-e">E</div>
+        <div class="care-info">
+          <div class="care-name">Evaluation &amp; Dynamic Reassessment</div>
+          <div class="care-tagline">Reavaliação dinâmica e contínua</div>
+        </div>
+        <div class="care-module-badge badge-mod4">→ Módulo 4</div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <div class="care-redirect">
+          <span class="arrow">🔄</span>
+          <div>
+            <strong style="color:var(--gold-light)">Aplicado transversalmente em todos os módulos</strong><br>
+            <span style="font-size:12px;">Reavaliar a cada episódio de FA e internação por causa não-FA. Revisão programada: 6 meses após apresentação, depois ao menos anual.</span>
+          </div>
+        </div>
+        <div class="care-note" style="margin-top:16px;">
+          <strong>O que avaliar no E (Classe I em todos):</strong> Novos fatores de risco e comorbidades · Estratificar risco de AVC e tromboembolismo · Impacto dos sintomas antes e após tratamento · Fatores de sangramento modificáveis · Manter anticoagulação mesmo se controle de ritmo atingido (se risco for alto).
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end care-container -->
+
+  <div class="quote-block" style="margin-top:28px;">
+    <p>"A FA não é só uma arritmia elétrica; é a cicatriz clínica de um átrio adoecido."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FISIOPATOLOGIA
+══════════════════════════════════════ -->
+<section class="section" id="fisiopatologia">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div>
+      <div class="section-label">N1 · Caso + N2 · Mecanismo</div>
+      <h2 class="section-title">Fisiopatologia</h2>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"O átrio virou uma feira elétrica; o nó AV é o segurança da porta."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="fisio-flow" style="margin-top:24px;">
+    <div class="fisio-step">
+      <div class="fisio-num">1</div>
+      <div class="fisio-content">
+        <div class="fisio-title">Fatores de risco e comorbidades</div>
+        <div class="fisio-desc">HAS, obesidade, IC, diabetes, valvopatia, SAHOS, álcool, idade avançada → inflamação sistêmica e sobrecarga hemodinâmica crônica.</div>
+      </div>
+    </div>
+    <div class="fisio-connector">↓</div>
+    <div class="fisio-step">
+      <div class="fisio-num">2</div>
+      <div class="fisio-content">
+        <div class="fisio-title">Remodelamento atrial</div>
+        <div class="fisio-desc">Aumento de pressão → dilatação → fibrose → inflamação → heterogeneidade elétrica do átrio esquerdo. "O prédio envelhece, os fios ficam tortos."</div>
+      </div>
+    </div>
+    <div class="fisio-connector">↓</div>
+    <div class="fisio-step">
+      <div class="fisio-num">3</div>
+      <div class="fisio-content">
+        <div class="fisio-title">Gatilhos ectópicos — Veias Pulmonares</div>
+        <div class="fisio-desc">Focos ectópicos, principalmente nas veias pulmonares (VP), disparam impulsos irregulares. Na FA paroxística: mais gatilho. Na persistente: gatilho + substrato. Na permanente: substrato domina.</div>
+      </div>
+    </div>
+    <div class="fisio-connector">↓</div>
+    <div class="fisio-step">
+      <div class="fisio-num">4</div>
+      <div class="fisio-content">
+        <div class="fisio-title">Micro-reentradas e condução fragmentada</div>
+        <div class="fisio-desc">Múltiplos circuitos de reentrada simultâneos → ativação atrial caótica → frequência atrial 350–600 bpm. Não há despolarização atrial organizada.</div>
+      </div>
+    </div>
+    <div class="fisio-connector">↓</div>
+    <div class="fisio-step">
+      <div class="fisio-num">5</div>
+      <div class="fisio-content">
+        <div class="fisio-title">Nó AV — O porteiro filtrador</div>
+        <div class="fisio-desc">O período refratário do nó AV protege os ventrículos. Filtra impulsos de forma variável → resultado: RR irregularmente irregular no ECG.</div>
+      </div>
+    </div>
+    <div class="fisio-connector">↓</div>
+    <div class="fisio-step">
+      <div class="fisio-num">6</div>
+      <div class="fisio-content">
+        <div class="fisio-title">Perda da contração atrial efetiva</div>
+        <div class="fisio-desc">Átrio não contrai de forma organizada → estase sanguínea, especialmente no apêndice atrial esquerdo (AAE) → risco de formação de trombo.</div>
+      </div>
+    </div>
+    <div class="fisio-connector">↓</div>
+    <div class="fisio-step" style="border-color: rgba(192,57,43,0.4); background: rgba(192,57,43,0.06);">
+      <div class="fisio-num" style="background: linear-gradient(135deg, var(--red), #7b1a12);">7</div>
+      <div class="fisio-content">
+        <div class="fisio-title" style="color:var(--red-light);">Risco tromboembólico → AVC</div>
+        <div class="fisio-desc">Trombo formado no AAE → emboliza para circulação sistêmica → AVC isquêmico cardioembólico. Este é o desfecho mais temido e mais cobrado em prova.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     EPIDEMIOLOGIA
+══════════════════════════════════════ -->
+<section class="section" id="epidemiologia">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <div>
+      <div class="section-label">N3 · Duplo Código</div>
+      <h2 class="section-title">Epidemiologia e Fatores de Risco</h2>
+    </div>
+  </div>
+
+  <div class="epi-stat-grid" style="margin-bottom:28px;">
+    <div class="stat-card">
+      <div class="stat-num">3–4%</div>
+      <div class="stat-label">da população adulta mundial com FA</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">37M</div>
+      <div class="stat-label">casos estimados mundialmente</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5×</div>
+      <div class="stat-label">maior risco de AVC vs sem FA</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2×</div>
+      <div class="stat-label">maior mortalidade associada</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">70%</div>
+      <div class="stat-label">dos pacientes têm FA detectada após os 65 anos</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">30%</div>
+      <div class="stat-label">são assintomáticos ao diagnóstico</div>
+    </div>
+  </div>
+
+  <div class="epi-grid">
+    <div class="epi-column">
+      <div class="epi-col-header epi-intrinseco">🧬 Fatores Intrínsecos</div>
+      <div class="epi-items">
+        <div class="epi-item"><div class="epi-dot dot-blue"></div>Sexo masculino</div>
+        <div class="epi-item"><div class="epi-dot dot-blue"></div>Idade avançada</div>
+        <div class="epi-item"><div class="epi-dot dot-blue"></div>Raça/ancestralidade</div>
+        <div class="epi-item"><div class="epi-dot dot-blue"></div>Genética</div>
+      </div>
+    </div>
+    <div class="epi-column">
+      <div class="epi-col-header epi-ambiental">🌿 Fatores Ambientais</div>
+      <div class="epi-items">
+        <div class="epi-item"><div class="epi-dot dot-gold"></div>Obesidade</div>
+        <div class="epi-item"><div class="epi-dot dot-gold"></div>Sedentarismo</div>
+        <div class="epi-item"><div class="epi-dot dot-gold"></div>Tabagismo</div>
+        <div class="epi-item"><div class="epi-dot dot-gold"></div>Álcool</div>
+        <div class="epi-item"><div class="epi-dot dot-gold"></div>Má qualidade do sono</div>
+      </div>
+    </div>
+    <div class="epi-column">
+      <div class="epi-col-header epi-comorbidade">🏥 Comorbidades</div>
+      <div class="epi-items">
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Hipertensão arterial</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Diabetes mellitus</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Hipertireoidismo</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Dislipidemia</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Doença valvar</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Defeito septal interatrial</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Insuficiência renal crônica</div>
+        <div class="epi-item"><div class="epi-dot dot-red"></div>Refluxo gastroesofágico</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top:24px;">
+    <p>"A FA é um incêndio elétrico em uma cidade velha: os fios envelhecem, os prédios incham, a pressão sobe, o sono falta, o álcool joga gasolina e os sensores modernos finalmente enxergam a fumaça."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ECG
+══════════════════════════════════════ -->
+<section class="section" id="ecg">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <div>
+      <div class="section-label">N5 · Frase de Síntese</div>
+      <h2 class="section-title">ECG na Fibrilação Atrial</h2>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mnemônico Central</div>
+    <div class="mnemonic-text"><span class="key">P sumiu,</span> RR fugiu.</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="ecg-grid">
+    <!-- FA clássica -->
+    <div class="ecg-card">
+      <div class="ecg-display">
+        <svg class="ecg-svg" viewBox="0 0 400 80" preserveAspectRatio="none">
+          <!-- FA baseline irregular -->
+          <polyline fill="none" stroke="#00ff88" stroke-width="1.5" points="
+            0,40 8,38 12,42 18,39 22,41 28,38 
+            35,40 42,8 46,72 50,40 
+            58,39 62,42 68,37 72,41 
+            80,40 86,9 90,71 94,40
+            102,38 108,41 112,39 118,42
+            126,40 132,10 136,70 140,40
+            148,41 152,38 158,42 162,39
+            170,40 176,11 180,71 184,40
+            192,39 198,42 204,38 210,41
+            218,40 224,9 228,72 232,40
+            240,41 246,38 252,42 258,39
+            266,40 272,10 276,70 280,40
+            288,38 294,41 300,42 306,38
+            314,40 320,9 324,71 328,40
+            336,39 342,42 348,38 354,41
+            362,40 368,10 372,70 376,40
+            384,41 390,38 396,42 400,40
+          "/>
+        </svg>
+      </div>
+      <div class="ecg-info">
+        <div class="ecg-label">ECG 01 · FA Clássica</div>
+        <div class="ecg-name">Fibrilação Atrial</div>
+        <ul class="ecg-criteria">
+          <li>Ausência de onda P organizada</li>
+          <li>Linha de base irregularmente irregular (ondas f)</li>
+          <li>Intervalos RR irregularmente irregulares</li>
+          <li>QRS geralmente estreito</li>
+          <li>FC ventricular variável</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Flutter típico -->
+    <div class="ecg-card">
+      <div class="ecg-display">
+        <svg class="ecg-svg" viewBox="0 0 400 80" preserveAspectRatio="none">
+          <!-- Flutter serrote -->
+          <polyline fill="none" stroke="#f0c040" stroke-width="1.5" points="
+            0,55 10,20 20,55 30,20 40,55 50,20 60,55 70,20 
+            80,55 90,8 94,72 98,40
+            100,55 110,20 120,55 130,20 140,55 150,20 160,55 170,20
+            180,55 190,8 194,72 198,40
+            200,55 210,20 220,55 230,20 240,55 250,20 260,55 270,20
+            280,55 290,8 294,72 298,40
+            300,55 310,20 320,55 330,20 340,55 350,20 360,55 370,20
+            380,55 390,8 394,72 398,40 400,55
+          "/>
+        </svg>
+      </div>
+      <div class="ecg-info">
+        <div class="ecg-label">ECG 02 · Flutter Típico</div>
+        <div class="ecg-name">Flutter Atrial</div>
+        <ul class="ecg-criteria">
+          <li>Ondas F em serrote (D2, D3, aVF)</li>
+          <li>Frequência atrial ~300 bpm</li>
+          <li>Bloqueio AV 2:1, 3:1 ou 4:1</li>
+          <li>RR regular (clássico 2:1)</li>
+          <li>Macro-reentrada: istmo cavo-tricuspídeo</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Flutter 2:1 -->
+    <div class="ecg-card" style="grid-column: 1 / -1;">
+      <div class="ecg-display">
+        <svg class="ecg-svg" viewBox="0 0 400 80" preserveAspectRatio="none">
+          <polyline fill="none" stroke="#1282A2" stroke-width="1.5" points="
+            0,55 10,20 20,55 30,20 40,55 50,8 54,72 58,40 60,55
+            70,20 80,55 90,20 100,55 110,8 114,72 118,40 120,55
+            130,20 140,55 150,20 160,55 170,8 174,72 178,40 180,55
+            190,20 200,55 210,20 220,55 230,8 234,72 238,40 240,55
+            250,20 260,55 270,20 280,55 290,8 294,72 298,40 300,55
+            310,20 320,55 330,20 340,55 350,8 354,72 358,40 360,55
+            370,20 380,55 390,20 400,55
+          "/>
+        </svg>
+      </div>
+      <div class="ecg-info">
+        <div class="ecg-label">ECG 03 · Armadilha Clássica</div>
+        <div class="ecg-name">Flutter 2:1 — Taquicardia Regular ~150 bpm</div>
+        <ul class="ecg-criteria">
+          <li>FC ventricular ~150 bpm → sempre pensar em flutter 2:1</li>
+          <li>Ondas F podem estar escondidas no QRS ou onda T</li>
+          <li>Manobra vagal ou adenosina: desmascarar as ondas F</li>
+          <li>Pode simular TSV regular — diferenciação fundamental</li>
+        </ul>
+        <div style="margin-top:10px; padding:8px 12px; background: rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold);">
+          ⚠ TEC: Taquicardia regular de ~150 bpm = flutter 2:1 até prova em contrário
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top:24px;">
+    <p>"Relógio sugere. ECG confirma. Médico interpreta."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CARACTERIZAÇÃO
+══════════════════════════════════════ -->
+<section class="section" id="caracterizacao">
+  <div class="section-header">
+    <div class="section-icon">🔬</div>
+    <div>
+      <div class="section-label">N3 · Duplo Código</div>
+      <h2 class="section-title">Caracterização e Substrato da FA</h2>
+    </div>
+  </div>
+
+  <div class="accordion-hint">
+    <span class="blink">▼</span>
+    Clique nos tipos de FA para expandir detalhes
+  </div>
+
+  <div class="care-container">
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="fisio-num" style="width:48px;height:48px;font-size:14px;border-radius:10px;">1ª vez</div>
+        <div class="care-info">
+          <div class="care-name">FA Diagnosticada pela Primeira Vez</div>
+          <div class="care-tagline">First-diagnosed AF — independente de duração ou sintomas</div>
+        </div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Qualquer FA detectada pela primeira vez, independentemente de quanto tempo durou, se já houve episódio anterior não documentado ou se o paciente é sintomático. Pode ser qualquer tipo subjacente.</p>
+      </div>
+    </div>
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="fisio-num" style="width:48px;height:48px;font-size:11px;border-radius:10px;">Parox</div>
+        <div class="care-info">
+          <div class="care-name">FA Paroxística</div>
+          <div class="care-tagline">Termina espontaneamente em ≤ 7 dias — geralmente &lt; 48h</div>
+        </div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Episódios que revertem espontaneamente, geralmente em menos de 48 horas. Pode durar até 7 dias por definição. Gatilho das veias pulmonares é predominante. <strong style="color:var(--red-light)">Também emboliza — não ignore o risco tromboembólico!</strong></p>
+        <div class="care-note" style="border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.06);">
+          <strong>⚠ Pegadinha:</strong> FA paroxística com ECG normal no PS não exclui FA. Se suspeita, monitorar e solicitar Holter ou monitor de eventos.
+        </div>
+      </div>
+    </div>
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="fisio-num" style="width:48px;height:48px;font-size:11px;border-radius:10px;">Pers</div>
+        <div class="care-info">
+          <div class="care-name">FA Persistente</div>
+          <div class="care-tagline">Dura mais de 7 dias ou necessita cardioversão</div>
+        </div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Não termina espontaneamente. Requer intervenção (cardioversão elétrica ou farmacológica) para reversão. Substrato atrial mais desenvolvido que na paroxística. FA persistente longa-duração: persistente por ≥ 12 meses quando se decide pelo controle de ritmo.</p>
+      </div>
+    </div>
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="fisio-num" style="width:48px;height:48px;font-size:11px;border-radius:10px;">Perm</div>
+        <div class="care-info">
+          <div class="care-name">FA Permanente</div>
+          <div class="care-tagline">Decisão clínica — não terapêutica!</div>
+        </div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Médico e paciente decidem <strong style="color:var(--white)">não tentar</strong> mais reversão do ritmo. É uma decisão terapêutica — não quer dizer que a FA é "incurável". Se a decisão mudar, reclassifica para persistente longa-duração.</p>
+        <div class="care-note" style="border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.06);">
+          <strong>⚠ Pegadinha TEC:</strong> FA permanente NÃO é um diagnóstico fisiopatológico — é uma decisão terapêutica conjunta médico-paciente. A prova gosta de misturar isso.
+        </div>
+      </div>
+    </div>
+    <div class="care-card">
+      <div class="care-header" onclick="toggleCare(this)">
+        <div class="fisio-num" style="width:48px;height:48px;font-size:11px;border-radius:10px;background:linear-gradient(135deg,#b8860b,#6b4e07);">Sub</div>
+        <div class="care-info">
+          <div class="care-name">FA Subclínica / AHRE</div>
+          <div class="care-tagline">Detectada por dispositivo — Atrial High Rate Episode</div>
+        </div>
+        <div class="care-chevron">▼</div>
+      </div>
+      <div class="care-body">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Detectada por marcapasso, CDI, loop recorder ou wearable, sem ECG confirmatório interpretado por médico. O smartwatch <strong style="color:var(--white)">sugere</strong>, mas não confirma. Necessita de ECG de 12 derivações ou traçado de pelo menos 30 segundos com interpretação médica.</p>
+        <div class="mnemonic-card" style="margin-top:16px; padding:16px;">
+          <div class="mnemonic-text" style="font-size:18px;">"Relógio sugere. ECG confirma. Médico interpreta."</div>
+          <div class="mnemonic-author">— Dr. André Rossanno</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FA vs FLUTTER
+══════════════════════════════════════ -->
+<section class="section" id="flutter">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div>
+      <div class="section-label">N4 · Pegadinha + N7 · Mnemônico</div>
+      <h2 class="section-title">FA versus Flutter Atrial</h2>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Frase de Fixação</div>
+    <div class="mnemonic-text"><span class="key">FA</span> é tempestade. <span style="color:var(--gold);">Flutter</span> é carrossel.</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div style="overflow-x:auto; margin-top: 20px;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th class="fa-col">FA</th>
+          <th class="flutter-col">Flutter Atrial Típico</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-fa">
+          <td>Mecanismo</td>
+          <td>Múltiplos circuitos de micro-reentrada</td>
+          <td>Macro-reentrada única</td>
+        </tr>
+        <tr>
+          <td>Local principal</td>
+          <td style="color:var(--teal-light);">Veias pulmonares / Átrio esquerdo</td>
+          <td style="color:var(--gold-light);">Istmo cavo-tricuspídeo (átrio direito)</td>
+        </tr>
+        <tr>
+          <td>ECG — ondas</td>
+          <td style="color:var(--teal-light);">Ondas f irregulares, pequenas, caóticas</td>
+          <td style="color:var(--gold-light);">Ondas F em serrote (D2, D3, aVF)</td>
+        </tr>
+        <tr>
+          <td>Ritmo ventricular</td>
+          <td style="color:var(--teal-light);">Irregularmente irregular</td>
+          <td style="color:var(--gold-light);">Regular (2:1, 3:1) ou irregular</td>
+        </tr>
+        <tr>
+          <td>FC atrial</td>
+          <td style="color:var(--teal-light);">350–600 bpm</td>
+          <td style="color:var(--gold-light);">~300 bpm</td>
+        </tr>
+        <tr>
+          <td>FC ventricular (2:1)</td>
+          <td style="color:var(--teal-light);">Variável</td>
+          <td style="color:var(--gold-light);">~150 bpm ← ARMADILHA</td>
+        </tr>
+        <tr>
+          <td>Alvo de ablação</td>
+          <td style="color:var(--teal-light);">Isolamento das veias pulmonares</td>
+          <td style="color:var(--gold-light);">Ablação do istmo cavo-tricuspídeo</td>
+        </tr>
+        <tr>
+          <td>Imagem mental</td>
+          <td style="color:var(--teal-light);">Tempestade elétrica</td>
+          <td style="color:var(--gold-light);">Carrossel elétrico</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SAHOS
+══════════════════════════════════════ -->
+<section class="section" id="sahos">
+  <div class="section-header">
+    <div class="section-icon">🌙</div>
+    <div>
+      <div class="section-label">N2 · Vilão + N4 · Pegadinha</div>
+      <h2 class="section-title">SAHOS — A Noite que Fibrila o Átrio</h2>
+    </div>
+  </div>
+
+  <div class="sahos-flow">
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+      A apneia obstrutiva do sono (SAHOS) é um fator de risco modificável com evidência <strong style="color:var(--gold)">Classe IIb / Nível B</strong> para redução de FA com CPAP. A lógica fisiopatológica é clara — mas a evidência clínica para redução de FA é limitada.
+    </p>
+
+    <div class="sahos-steps">
+      <div class="sahos-item">
+        <div class="sahos-icon">😴</div>
+        <div class="sahos-text">Obstrução de via aérea no sono</div>
+      </div>
+      <div class="sahos-arrow">→</div>
+      <div class="sahos-item">
+        <div class="sahos-icon">📉</div>
+        <div class="sahos-text">Hipoxemia intermitente</div>
+      </div>
+      <div class="sahos-arrow">→</div>
+      <div class="sahos-item">
+        <div class="sahos-icon">⚡</div>
+        <div class="sahos-text">Hiperatividade simpática</div>
+      </div>
+      <div class="sahos-arrow">→</div>
+      <div class="sahos-item">
+        <div class="sahos-icon">📈</div>
+        <div class="sahos-text">Picos pressóricos noturnos</div>
+      </div>
+      <div class="sahos-arrow">→</div>
+      <div class="sahos-item">
+        <div class="sahos-icon">🫀</div>
+        <div class="sahos-text">Estiramento atrial esquerdo</div>
+      </div>
+      <div class="sahos-arrow">→</div>
+      <div class="sahos-item">
+        <div class="sahos-icon">🧱</div>
+        <div class="sahos-text">Fibrose e remodelamento atrial</div>
+      </div>
+      <div class="sahos-arrow">→</div>
+      <div class="sahos-item" style="background: rgba(192,57,43,0.1); border-radius:10px; padding:12px; border:1px solid rgba(192,57,43,0.3);">
+        <div class="sahos-icon">💥</div>
+        <div class="sahos-text" style="color:var(--red-light); font-weight:600;">Fibrilação Atrial</div>
+      </div>
+    </div>
+
+    <div class="care-note" style="margin-top:24px;">
+      <strong>Por que Classe IIb e não I?</strong><br>
+      Não existe ensaio clínico randomizado de grande porte demonstrando que o CPAP reduz significativamente a recorrência de FA. O benefício é biológico e plausível, mas não comprovado por desfechos clínicos robustos. O CPAP trata um <em>fábrica de gatilhos</em>, não o substrato em si.
+    </div>
+  </div>
+
+  <div class="mnemonic-card" style="margin-top:20px;">
+    <div class="mnemonic-label">Frase de Fixação — N5</div>
+    <div class="mnemonic-text">"CPAP não é <span class="key">antiarrítmico</span> mágico:<br>ele trata uma fábrica de gatilhos."</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ALGORITMO
+══════════════════════════════════════ -->
+<section class="section" id="algoritmo">
+  <div class="section-header">
+    <div class="section-icon">🗺️</div>
+    <div>
+      <div class="section-label">N3 · Fluxo Visual</div>
+      <h2 class="section-title">Algoritmo do Módulo 1</h2>
+    </div>
+  </div>
+
+  <div class="algo-flow">
+    <div class="algo-step" style="border-color: rgba(18,130,162,0.5); background: rgba(18,130,162,0.1);">
+      <div class="algo-label">ENTRADA</div>
+      <strong style="color:var(--white);">Paciente com palpitações, dispneia, fadiga, tontura ou pulso irregular</strong>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong style="color:var(--teal);">→ Fazer ECG de 12 derivações</strong><br>
+      <span style="font-size:12px;color:var(--text-muted);">Monitorização contínua se disponível</span>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong>Procurar onda P organizada + avaliar regularidade do RR</strong>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-branch">
+      <div class="algo-step algo-yes">
+        <div class="algo-label" style="color:var(--green-light);">SEM onda P + RR irregular</div>
+        <strong style="color:var(--white);">FA Provável</strong><br>
+        <span style="font-size:12px;color:var(--text-muted);">Confirmar documentação ≥30s com interpretação médica</span>
+      </div>
+      <div class="algo-step algo-no">
+        <div class="algo-label" style="color:var(--red-light);">Outra possibilidade</div>
+        <strong>Flutter? TSV? Outras</strong><br>
+        <span style="font-size:12px;color:var(--text-muted);">FC ~150 bpm regular → descartar flutter 2:1</span>
+      </div>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong>Diferenciar FA clínica vs FA subclínica (AHRE)</strong><br>
+      <span style="font-size:12px;color:var(--text-muted);">Smartwatch: sugere. ECG: confirma. Médico: interpreta.</span>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong>Investigar gatilhos e comorbidades → Exames iniciais</strong><br>
+      <span style="font-size:12px;color:var(--text-muted);">ECG, eletrólitos, função renal, TSH, ecocardiograma, Holter se paroxística</span>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-branch">
+      <div class="algo-step" style="border-color:rgba(192,57,43,0.4);background:rgba(192,57,43,0.06);">
+        <div class="algo-label" style="color:var(--red-light);">→ Módulo 2</div>
+        <strong>Risco tromboembólico</strong><br>
+        <span style="font-size:12px;color:var(--text-muted);">CHA₂DS₂-VA, anticoagulação</span>
+      </div>
+      <div class="algo-step" style="border-color:rgba(26,122,74,0.4);background:rgba(26,122,74,0.06);">
+        <div class="algo-label" style="color:var(--green-light);">→ Módulo 3</div>
+        <strong>Controle de sintomas</strong><br>
+        <span style="font-size:12px;color:var(--text-muted);">Frequência vs ritmo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PALÁCIO DA MEMÓRIA
+══════════════════════════════════════ -->
+<section class="section" id="palacio">
+  <div class="section-header">
+    <div class="section-icon">🏛️</div>
+    <div>
+      <div class="section-label">N7 · Mnemônico Visual</div>
+      <h2 class="section-title">Palácio da Memória — Templo CARE</h2>
+    </div>
+  </div>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">
+    Imagine um templo grego com 4 colunas. Cada coluna é um pilar do CARE. Você caminha pelo templo e em cada coluna há uma cena visual marcante.
+  </p>
+
+  <div class="palace-grid">
+    <div class="palace-room" style="border-color:rgba(18,130,162,0.3);">
+      <div class="palace-letter" style="color:var(--teal);">C</div>
+      <div class="palace-icon">🧱</div>
+      <div class="palace-title">Coluna C — O Átrio Rachando</div>
+      <div class="palace-desc">Imagine a coluna C com rachaduras se abrindo: HAS, obesidade, SAHOS, álcool, diabetes. Cada comorbidade é uma nova fissura no mármore. O CPAP é um reparador de fissuras, mas não reconstrói a coluna.</div>
+      <div class="palace-module-ref">● Aprofundado neste módulo</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(192,57,43,0.3);">
+      <div class="palace-letter" style="color:var(--red-light);">A</div>
+      <div class="palace-icon">🩸</div>
+      <div class="palace-title">Coluna A — O Dragão-Coágulo</div>
+      <div class="palace-desc">No apêndice atrial esquerdo dorme um dragão-coágulo vermelho. Se não anticoagulado, ele acorda e vai para o cérebro. CHA₂DS₂-VA é o alarme que decide quando o caçador (anticoagulante) entra.</div>
+      <div class="palace-module-ref" style="color:var(--red-light);">→ Detalhado no Módulo 2</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(26,122,74,0.3);">
+      <div class="palace-letter" style="color:var(--green-light);">R</div>
+      <div class="palace-icon">⚔️</div>
+      <div class="palace-title">Coluna R — Frequência vs Ritmo</div>
+      <div class="palace-desc">Dois guerreiros: Freio (controle de frequência) e Bússola (controle de ritmo). Dependendo do cenário clínico, um entra em combate. Às vezes os dois lutam juntos.</div>
+      <div class="palace-module-ref" style="color:var(--green-light);">→ Detalhado no Módulo 3</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(201,168,76,0.3);">
+      <div class="palace-letter" style="color:var(--gold);">E</div>
+      <div class="palace-icon">⏰</div>
+      <div class="palace-title">Coluna E — O Relógio Giratório</div>
+      <div class="palace-desc">No topo do templo há um relógio que nunca para. A cada 6 meses, depois ao menos anual: reavalie risco tromboembólico, sintomas, sangramento e comorbidades. A FA muda com o tempo.</div>
+      <div class="palace-module-ref" style="color:var(--gold);">→ Transversal a todos os módulos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PEGADINHAS
+══════════════════════════════════════ -->
+<section class="section" id="pegadinhas">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <div>
+      <div class="section-label">N4 · Armadilhas de Prova</div>
+      <h2 class="section-title">Pegadinhas TEC 2026</h2>
+    </div>
+  </div>
+
+  <div class="trap-grid">
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA pode ter frequência baixa</strong></div>
+      <div class="trap-why">Bloqueio AV avançado + FA = RR irregular, mas FC pode ser &lt; 60. A irregularidade é o sinal, não a taquicardia.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Flutter 2:1 ≈ TSV regular a ~150 bpm</strong></div>
+      <div class="trap-why">FC de 150 bpm regular = flutter 2:1 até prova em contrário. Faça manobra vagal ou adenosina para desmascarar ondas F.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Smartwatch não fecha diagnóstico de FA</strong></div>
+      <div class="trap-why">Sugere, mas o diagnóstico exige ECG de 12 derivações ou traçado ≥30s com interpretação médica.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA paroxística também emboliza</strong></div>
+      <div class="trap-why">A prova tenta fazer você pensar que só FA persistente/permanente tem risco tromboembólico. Errado — o risco existe em todos os tipos.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA permanente é decisão, não diagnóstico fisiopatológico</strong></div>
+      <div class="trap-why">Permanente = médico e paciente decidiram não tentar mais reversão. Pode mudar. Não é "FA incurável".</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>CPAP é Classe IIb — não Classe I</strong></div>
+      <div class="trap-why">SAHOS é fator de risco importante, mas CPAP não tem evidência robusta de reduzir recorrência de FA. Evidência limitada (Nível B).</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Ausência de onda P isolada não basta</strong></div>
+      <div class="trap-why">Precisa de RR irregularmente irregular E ausência de onda P organizada. Linha tremida pode ser artefato muscular.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA e flutter têm alvos de ablação diferentes</strong></div>
+      <div class="trap-why">FA: isolamento das veias pulmonares (átrio esquerdo). Flutter típico: ablação do istmo cavo-tricuspídeo (átrio direito). Não confundir os alvos.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>SGLT2i agora têm evidência Classe I para FA</strong></div>
+      <div class="trap-why">Novidade TEC 2026: gliflozinas têm indicação Classe I na redução de carga de FA em diabéticos com FA.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     EXAMES INICIAIS
+══════════════════════════════════════ -->
+<section class="section" id="exames">
+  <div class="section-header">
+    <div class="section-icon">🧪</div>
+    <div>
+      <div class="section-label">Investigação</div>
+      <h2 class="section-title">Exames Iniciais</h2>
+    </div>
+  </div>
+  <div class="exam-grid">
+    <div class="exam-item"><div class="exam-icon">📊</div>ECG 12 derivações</div>
+    <div class="exam-item"><div class="exam-icon">🧂</div>Eletrólitos (K⁺, Mg²⁺)</div>
+    <div class="exam-item"><div class="exam-icon">🩸</div>Função renal</div>
+    <div class="exam-item"><div class="exam-icon">🔬</div>Hemograma</div>
+    <div class="exam-item"><div class="exam-icon">🦋</div>TSH / T4L (se indicado)</div>
+    <div class="exam-item"><div class="exam-icon">❤️</div>Troponina (se dor/instab.)</div>
+    <div class="exam-item"><div class="exam-icon">💧</div>BNP/NT-proBNP (se IC)</div>
+    <div class="exam-item"><div class="exam-icon">🫀</div>Ecocardiograma</div>
+    <div class="exam-item"><div class="exam-icon">⏱️</div>Holter / Monitor de eventos</div>
+    <div class="exam-item"><div class="exam-icon">😴</div>Investigar SAHOS (se indicado)</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     QUIZ
+══════════════════════════════════════ -->
+<section class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div>
+      <div class="section-label">N6 · Quiz Interativo</div>
+      <h2 class="section-title">Simulado — Módulo 1</h2>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <div class="quiz-title">4 Questões Estilo TEC</div>
+      <div class="score-display">Score: <span id="score">0</span> / <span id="total">4</span></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-card active" id="q1">
+      <div class="question-num">QUESTÃO 01 / 04</div>
+      <div class="question-text">Paciente de 68 anos, hipertenso, obeso, chega ao PS com palpitações há 2 horas. O ECG mostra ausência de onda P organizada, linha de base irregularmente irregular e QRS estreito com RR completamente irregular. Qual o diagnóstico mais provável?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this, false, 'q1')"><span class="option-letter">A</span> Flutter atrial típico com bloqueio 2:1</button>
+        <button class="option" onclick="answer(this, true, 'q1')"><span class="option-letter">B</span> Fibrilação atrial</button>
+        <button class="option" onclick="answer(this, false, 'q1')"><span class="option-letter">C</span> Taquicardia supraventricular paroxística</button>
+        <button class="option" onclick="answer(this, false, 'q1')"><span class="option-letter">D</span> Taquicardia ventricular polimórfica</button>
+      </div>
+      <div class="feedback" id="fb1">
+        <strong>✅ Correto — B.</strong> FA = ausência de onda P organizada + RR irregularmente irregular + QRS estreito. O flutter 2:1 teria RR regular (~150 bpm). TSV teria P' visível e RR regular. TV polimórfica teria QRS alargado e instabilidade hemodinâmica.
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card" id="q2">
+      <div class="question-num">QUESTÃO 02 / 04</div>
+      <div class="question-text">Paciente com FA paroxística recorrente, IMC 38, ronco intenso e hipersonolência diurna. A polissonografia confirma SAHOS grave. A prescrição do CPAP para reduzir recorrência de FA tem qual grau de recomendação pela ESC 2020?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this, false, 'q2')"><span class="option-letter">A</span> Classe I, nível A — fortemente recomendada</button>
+        <button class="option" onclick="answer(this, false, 'q2')"><span class="option-letter">B</span> Classe I, nível B — recomendada</button>
+        <button class="option" onclick="answer(this, false, 'q2')"><span class="option-letter">C</span> Classe IIa, nível B — razoável considerar</button>
+        <button class="option" onclick="answer(this, true, 'q2')"><span class="option-letter">D</span> Classe IIb, nível B — pode ser considerada</button>
+      </div>
+      <div class="feedback" id="fb2">
+        <strong>✅ Correto — D.</strong> Classe IIb, nível B. O CPAP remove um gatilho (hipoxemia, estiramento atrial noturno), mas não age diretamente no substrato arrítmico. Não há ensaio clínico randomizado robusto demonstrando redução consistente de recorrência de FA com CPAP. A prova adora colocar isso como Classe I.
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card" id="q3">
+      <div class="question-num">QUESTÃO 03 / 04</div>
+      <div class="question-text">Paciente dá entrada no PS com taquicardia regular de 148 bpm, QRS estreito. Não há sintomas de instabilidade. O ECG inicial é interpretado como "TSV". Qual manobra ou medicamento ajudaria a diferenciar esta arritmia de um flutter 2:1?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this, false, 'q3')"><span class="option-letter">A</span> Amiodarona intravenosa em bolus</button>
+        <button class="option" onclick="answer(this, false, 'q3')"><span class="option-letter">B</span> Cardioversão elétrica sincronizada imediata</button>
+        <button class="option" onclick="answer(this, true, 'q3')"><span class="option-letter">C</span> Manobra vagal ou adenosina para desmascarar as ondas F</button>
+        <button class="option" onclick="answer(this, false, 'q3')"><span class="option-letter">D</span> Holter de 24 horas</button>
+      </div>
+      <div class="feedback" id="fb3">
+        <strong>✅ Correto — C.</strong> Taquicardia regular de ~150 bpm = flutter 2:1 até prova em contrário. A manobra vagal ou adenosina aumenta o bloqueio AV transitoriamente, desmascarando as ondas F em serrote. A CVE seria indicada se houver instabilidade — não para diagnóstico. Holter não tem lugar na emergência.
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card" id="q4">
+      <div class="question-num">QUESTÃO 04 / 04</div>
+      <div class="question-text">Paciente de 55 anos com palpitações ocasionais há 6 meses. O smartwatch detectou "ritmo irregular sugestivo de fibrilação atrial" em 3 ocasiões. O ECG de 12 derivações realizado no consultório é normal, em ritmo sinusal. A conduta mais adequada é:</div>
+      <div class="options">
+        <button class="option" onclick="answer(this, false, 'q4')"><span class="option-letter">A</span> Iniciar anticoagulação baseada na detecção do smartwatch</button>
+        <button class="option" onclick="answer(this, false, 'q4')"><span class="option-letter">B</span> Descartar FA pois o ECG foi normal</button>
+        <button class="option" onclick="answer(this, true, 'q4')"><span class="option-letter">C</span> Solicitar monitorização prolongada (Holter ou monitor de eventos) para documentação</button>
+        <button class="option" onclick="answer(this, false, 'q4')"><span class="option-letter">D</span> Repetir o ECG em 30 dias</button>
+      </div>
+      <div class="feedback" id="fb4">
+        <strong>✅ Correto — C.</strong> O smartwatch <em>sugere</em>, mas não confirma FA. O diagnóstico exige ECG de 12 derivações ou traçado de pelo menos 30 segundos com interpretação médica. ECG normal durante ritmo sinusal não exclui FA paroxística. Holter ou monitor de eventos por 30 dias é a estratégia correta para documentação da arritmia paroxística.
+      </div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+      <div class="question-counter" id="q-counter">Questão 1 de 4</div>
+      <button class="btn-quiz" id="btn-next" onclick="nextQuestion()">Próxima →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     REVISÃO RÁPIDA
+══════════════════════════════════════ -->
+<section class="section" id="revisao">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div>
+      <div class="section-label">N5 · Síntese Final</div>
+      <h2 class="section-title">Revisão Ultrarrápida</h2>
+    </div>
+  </div>
+
+  <div class="accordion-hint">
+    <span class="blink">▼</span>
+    Clique no tempo desejado para ver o resumo
+  </div>
+
+  <div class="review-tabs">
+    <div class="review-tab active" onclick="setReview(this, 'r10')">⚡ 10 segundos</div>
+    <div class="review-tab" onclick="setReview(this, 'r30')">🕐 30 segundos</div>
+    <div class="review-tab" onclick="setReview(this, 'r60')">⏱️ 1 minuto</div>
+  </div>
+
+  <div class="review-content active" id="r10">
+    <strong>FA</strong> = sem onda P organizada + RR irregularmente irregular.<br>
+    <strong>"P sumiu, RR fugiu."</strong>
+  </div>
+  <div class="review-content" id="r30">
+    FA nasce de <strong>gatilhos</strong> (principalmente nas veias pulmonares) sobre um <strong>átrio vulnerável</strong> por idade, HAS, IC, obesidade, SAHOS, álcool, diabetes e doença valvar. O ECG mostra ausência de onda P organizada e RR irregularmente irregular. Diferenciar de flutter (regular, ondas F, ~150 bpm = 2:1). CPAP é <strong>Classe IIb</strong> — não Classe I.
+  </div>
+  <div class="review-content" id="r60">
+    O Módulo 1 começa pelo <strong>CARE</strong>. O <strong>C</strong> é o terreno — tratar HAS (I/A), IC (I/A), diabetes com SGLT2i (I/A), obesidade (I/B), álcool (I/B), exercício (I/B) e SAHOS com CPAP (<strong>IIb/B — pegadinha!</strong>). O diagnóstico exige ECG ou traçado ≥30s com interpretação médica — smartwatch apenas sugere. FA paroxística <strong>também emboliza</strong>. FA permanente é <strong>decisão terapêutica</strong>, não fisiopatológica. Diferenciar FA (tempestade, veias pulmonares, RR irregular) de flutter (carrossel, istmo cavo-tricuspídeo, RR regular ~150 bpm no 2:1). SAHOS → fisiopatologia clara, mas evidência de redução de FA com CPAP é fraca. Anticoagulação vai para o Módulo 2. Ritmo/frequência vai para o Módulo 3.
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Dr. André Rossanno</div>
+  <div class="footer-text">
+    Método André Rossanno de Memorização Médica<br>
+    Atlas Mental Interativo · memoria-potencial.com.br<br>
+    Conteúdo educacional para TEC 2026 · Baseado em ESC 2020, SBC 2024/2025
+  </div>
+</footer>
+
+<script>
+// ── PROGRESS BAR
+window.addEventListener('scroll', () => {
+  const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+
+// ── SIDEBAR
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+document.addEventListener('click', (e) => {
+  const sidebar = document.getElementById('sidebar');
+  const toggle = document.getElementById('menu-toggle');
+  if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+    sidebar.classList.remove('open');
+  }
+});
+
+// ── SCROLL TO
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('sidebar').classList.remove('open');
+  }
+}
+
+// ── INTERSECTION OBSERVER
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // update sidebar active
+      const id = e.target.id;
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.sidebar-link[onclick*="${id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '-80px 0px -20% 0px' });
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+// ── CARE ACCORDION
+function toggleCare(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.care-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.care-header').forEach(h => h.classList.remove('open'));
+  // Open clicked if was closed
+  if (!isOpen) {
+    body.classList.add('open');
+    header.classList.add('open');
+  }
+}
+
+// ── QUIZ
+let currentQ = 1;
+let score = 0;
+let answered = [false, false, false, false];
+
+function answer(btn, isCorrect, qId) {
+  const qNum = parseInt(qId.replace('q', ''));
+  if (answered[qNum - 1]) return;
+  answered[qNum - 1] = true;
+
+  const options = btn.parentElement.querySelectorAll('.option');
+  options.forEach(o => o.disabled = true);
+
+  const fb = document.getElementById('fb' + qNum);
+
+  if (isCorrect) {
+    btn.classList.add('correct');
+    fb.classList.add('correct-fb', 'show');
+    score++;
+    document.getElementById('score').textContent = score;
+  } else {
+    btn.classList.add('wrong');
+    fb.classList.add('wrong-fb', 'show');
+    // Highlight correct
+    options.forEach(o => {
+      if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+    });
+  }
+}
+
+function nextQuestion() {
+  if (currentQ < 4) {
+    document.getElementById('q' + currentQ).classList.remove('active');
+    currentQ++;
+    document.getElementById('q' + currentQ).classList.add('active');
+    document.getElementById('q-counter').textContent = `Questão ${currentQ} de 4`;
+    if (currentQ === 4) document.getElementById('btn-next').textContent = 'Finalizar ✓';
+  } else {
+    // Show result
+    const container = document.querySelector('.quiz-container');
+    const result = document.createElement('div');
+    result.style.cssText = 'margin-top:20px; padding:24px; background:rgba(18,130,162,0.12); border:1px solid rgba(18,130,162,0.3); border-radius:14px; text-align:center;';
+    result.innerHTML = `
+      <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:900;color:${score >= 3 ? 'var(--green-light)' : 'var(--gold)'};">${score} / 4</div>
+      <div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score === 4 ? '🏆 Perfeito! Módulo 1 dominado.' : score >= 3 ? '✅ Muito bem! Revise os erros.' : '📖 Revise o módulo antes de avançar.'}</div>
+    `;
+    document.getElementById('btn-next').style.display = 'none';
+    container.appendChild(result);
+  }
+}
+
+function resetQuiz() {
+  currentQ = 1;
+  score = 0;
+  answered = [false, false, false, false];
+  document.getElementById('score').textContent = '0';
+  document.getElementById('q-counter').textContent = 'Questão 1 de 4';
+  document.getElementById('btn-next').textContent = 'Próxima →';
+  document.getElementById('btn-next').style.display = '';
+  document.querySelectorAll('.question-card').forEach((q, i) => {
+    q.classList.toggle('active', i === 0);
+    q.querySelectorAll('.option').forEach(o => {
+      o.disabled = false;
+      o.classList.remove('correct', 'wrong');
+    });
+    const fb = q.querySelector('.feedback');
+    if (fb) { fb.classList.remove('show', 'correct-fb', 'wrong-fb'); }
+  });
+  const extra = document.querySelector('.quiz-container > div:last-child');
+  if (extra && extra.style.background) extra.remove();
+}
+
+// ── REVIEW TABS
+function setReview(tab, id) {
+  document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.review-content').forEach(c => c.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
