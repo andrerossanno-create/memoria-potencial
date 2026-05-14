@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FA — Módulo 1 | Atlas Mental Interativo | Dr. André Rossanno</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #0B2545;
@@ -1210,7 +1210,10 @@ footer {
   <a class="sidebar-link" onclick="scrollTo('fisiopatologia')">Fisiopatologia</a>
   <a class="sidebar-link" onclick="scrollTo('epidemiologia')">Epidemiologia</a>
   <a class="sidebar-link" onclick="scrollTo('ecg')">ECG na FA</a>
+  <a class="sidebar-link" onclick="scrollTo('resposta-ventricular')">Resposta Ventricular</a>
   <a class="sidebar-link" onclick="scrollTo('caracterizacao')">Caracterização</a>
+  <a class="sidebar-link" onclick="scrollTo('sintomas-ehra')">Sintomas e EHRA</a>
+  <a class="sidebar-link" onclick="scrollTo('evolucao')">Evolução Natural</a>
   <a class="sidebar-link" onclick="scrollTo('flutter')">FA vs Flutter</a>
   <a class="sidebar-link" onclick="scrollTo('sahos')">SAHOS</a>
   <a class="sidebar-link" onclick="scrollTo('algoritmo')">Algoritmo</a>
@@ -1342,8 +1345,8 @@ footer {
   <div class="section-header">
     <div class="section-icon">🏛️</div>
     <div>
-      <div class="section-label">Pilar Central · ESC 2020</div>
-      <h2 class="section-title">Integrated AF-CARE</h2>
+      <div class="section-label">Pilar Central · ESC 2025</div>
+      <h2 class="section-title" style="font-family:'Playfair Display',serif;">Integrated AF-CARE</h2>
     </div>
   </div>
 
@@ -1524,7 +1527,7 @@ footer {
           <div class="care-name">Evaluation &amp; Dynamic Reassessment</div>
           <div class="care-tagline">Reavaliação dinâmica e contínua</div>
         </div>
-        <div class="care-module-badge badge-mod4">→ Módulo 4</div>
+        <div class="care-module-badge badge-mod4">Transversal aos módulos 1–4</div>
         <div class="care-chevron">▼</div>
       </div>
       <div class="care-body">
@@ -1647,7 +1650,7 @@ footer {
       <div class="stat-label">casos estimados mundialmente</div>
     </div>
     <div class="stat-card">
-      <div class="stat-num">5×</div>
+      <div class="stat-num">≈4–5×</div>
       <div class="stat-label">maior risco de AVC vs sem FA</div>
     </div>
     <div class="stat-card">
@@ -1663,6 +1666,7 @@ footer {
       <div class="stat-label">são assintomáticos ao diagnóstico</div>
     </div>
   </div>
+  <p style="font-size:11px; color:var(--text-muted); font-style:italic; margin-bottom:20px;">* Valores epidemiológicos aproximados, variáveis conforme população estudada e método diagnóstico.</p>
 
   <div class="epi-grid">
     <div class="epi-column">
@@ -1755,7 +1759,7 @@ footer {
         <div class="ecg-name">Fibrilação Atrial</div>
         <ul class="ecg-criteria">
           <li>Ausência de onda P organizada</li>
-          <li>Linha de base irregularmente irregular (ondas f)</li>
+          <li>Linha de base irregular/ondulante, com intervalos RR irregularmente irregulares</li>
           <li>Intervalos RR irregularmente irregulares</li>
           <li>QRS geralmente estreito</li>
           <li>FC ventricular variável</li>
@@ -1831,6 +1835,113 @@ footer {
 </section>
 
 <!-- ══════════════════════════════════════
+     RESPOSTA VENTRICULAR
+══════════════════════════════════════ -->
+<section class="section" id="resposta-ventricular">
+  <div class="section-header">
+    <div class="section-icon">🎚️</div>
+    <div>
+      <div class="section-label">N3 · Duplo Código + N4 · Pegadinha</div>
+      <h2 class="section-title">Resposta Ventricular e Cálculo da FC na FA</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    Na FA, a frequência atrial é geralmente <strong style="color:var(--white);">acima de 350 ativações por minuto</strong>, mas a frequência ventricular depende de quantos impulsos conseguem atravessar o nó AV. O nó AV funciona como filtro protetor — seu período refratário impede que todos os estímulos atriais cheguem aos ventrículos.
+  </p>
+
+  <!-- Classificação da resposta ventricular -->
+  <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-bottom:28px;">
+    <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.35); border-radius:14px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">🔴</div>
+      <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light); margin-bottom:6px;">ALTA RESPOSTA</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:700; color:var(--white);">&gt; 100 bpm</div>
+      <div style="font-size:11px; color:var(--text-muted); margin-top:6px;">Nó AV filtra pouco — muitos impulsos passam</div>
+    </div>
+    <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.35); border-radius:14px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">🟢</div>
+      <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--green-light); margin-bottom:6px;">CONTROLADA</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:700; color:var(--white);">60–100 bpm</div>
+      <div style="font-size:11px; color:var(--text-muted); margin-top:6px;">Aceita até &lt;110 bpm na estratégia leniente</div>
+    </div>
+    <div style="background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.35); border-radius:14px; padding:20px; text-align:center;">
+      <div style="font-size:28px; margin-bottom:8px;">🟡</div>
+      <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold-light); margin-bottom:6px;">BAIXA RESPOSTA</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:700; color:var(--white);">&lt; 60 bpm</div>
+      <div style="font-size:11px; color:var(--text-muted); margin-top:6px;">Nó AV bloqueia muito — poucos impulsos passam</div>
+    </div>
+  </div>
+
+  <!-- QRS -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">QRS na FA</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div style="padding:14px 16px; background:rgba(26,122,74,0.08); border:1px solid rgba(26,122,74,0.25); border-radius:10px;">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--green-light); margin-bottom:6px;">✅ QRS Estreito (usual)</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Ativação ventricular pelo sistema His-Purkinje, característica de arritmia supraventricular.</div>
+      </div>
+      <div style="padding:14px 16px; background:rgba(192,57,43,0.08); border:1px solid rgba(192,57,43,0.25); border-radius:10px;">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light); margin-bottom:6px;">⚠ QRS Largo (causas)</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Bloqueio de ramo · Aberrância de condução · Ritmo de marcapasso · Pré-excitação (WPW)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cálculo da FC -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">Como calcular a FC na FA</div>
+    <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin-bottom:16px;">
+      Como os intervalos RR são irregulares, <strong style="color:var(--white);">não use apenas 2 QRS</strong> para calcular a FC. O método correto é usar uma tira longa (DII longo de 10 segundos):
+    </p>
+    <div style="background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(3,64,120,0.3)); border:1px solid rgba(18,130,162,0.3); border-radius:12px; padding:20px; text-align:center; margin-bottom:16px;">
+      <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--white); margin-bottom:8px;">
+        Nº de QRS em 10s <span style="color:var(--teal);">×</span> 6 <span style="color:var(--teal);">=</span> FC (bpm)
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--text-muted);">Exemplo: 19 QRS em 10s → 19 × 6 = <strong style="color:var(--gold);">114 bpm</strong></div>
+      <div style="margin-top:8px; font-size:12px; color:var(--red-light);">→ FA com alta resposta ventricular</div>
+    </div>
+
+    <!-- Nota ondas f/F -->
+    <div style="padding:12px 16px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:10px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+      <strong style="color:var(--gold);">Correção visual importante:</strong><br>
+      Na FA → <strong style="color:var(--teal);">ondas f</strong> minúsculas (fibrilação, caótica, pequena).<br>
+      No flutter → <strong style="color:var(--gold);">ondas F</strong> maiúsculas (flutter, organizada, em serrote).
+    </div>
+  </div>
+
+  <!-- Frase de fixação -->
+  <div class="quote-block">
+    <p>"Na FA, o átrio dispara como metralhadora elétrica, mas o nó AV decide quantos tiros chegam ao ventrículo."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+  <!-- Card visual FA não é frequência -->
+  <div style="background:linear-gradient(135deg,rgba(11,37,69,0.8),rgba(18,130,162,0.12)); border:2px solid rgba(18,130,162,0.4); border-radius:16px; padding:28px 32px; margin-top:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">⚠ Card Visual — Pegadinha TEC</div>
+    <div style="font-family:'Syne',sans-serif; font-size:clamp(18px,4vw,26px); font-weight:900; color:var(--white); margin-bottom:20px;">
+      "FA não é uma <span style="color:var(--red-light);">frequência</span>.<br>FA é um <span style="color:var(--teal);">ritmo</span>."
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--teal); flex-shrink:0;">→</span>
+        O diagnóstico vem do <strong style="color:var(--white);">padrão</strong>: sem onda P organizada + RR irregularmente irregular.
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--teal); flex-shrink:0;">→</span>
+        A frequência ventricular apenas <strong style="color:var(--white);">classifica a resposta</strong>: alta, controlada ou baixa.
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--red-light); flex-shrink:0;">→</span>
+        <strong style="color:var(--red-light);">Não descarte FA porque a FC está normal ou baixa.</strong>
+      </div>
+    </div>
+    <div style="font-family:'Dancing Script',cursive; font-size:17px; color:var(--gold);">
+      "FA é bagunça de ritmo; a frequência é só o volume da bagunça." — Dr. André Rossanno
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
      CARACTERIZAÇÃO
 ══════════════════════════════════════ -->
 <section class="section" id="caracterizacao">
@@ -1895,7 +2006,7 @@ footer {
         <div class="fisio-num" style="width:48px;height:48px;font-size:11px;border-radius:10px;">Perm</div>
         <div class="care-info">
           <div class="care-name">FA Permanente</div>
-          <div class="care-tagline">Decisão clínica — não terapêutica!</div>
+          <div class="care-tagline">Decisão terapêutica compartilhada, não diagnóstico fisiopatológico.</div>
         </div>
         <div class="care-chevron">▼</div>
       </div>
@@ -1924,6 +2035,264 @@ footer {
       </div>
     </div>
   </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SINTOMAS, IMPACTO E EHRA
+══════════════════════════════════════ -->
+<section class="section" id="sintomas-ehra">
+  <div class="section-header">
+    <div class="section-icon">🩺</div>
+    <div>
+      <div class="section-label">N1 · Caso + N3 · Duplo Código</div>
+      <h2 class="section-title">Sintomas, Impacto Clínico e Escore EHRA</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    A FA pode ser <strong style="color:var(--white);">sintomática ou completamente silenciosa</strong>. A ausência de sintomas não significa ausência de risco. Muitos pacientes são diagnosticados por ECG de rotina, monitorização ambulatorial, dispositivo implantável ou wearable com traçado confirmado.
+  </p>
+
+  <!-- Card FA silenciosa também morde -->
+  <div style="background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(11,37,69,0.7)); border:2px solid rgba(192,57,43,0.35); border-radius:16px; padding:28px 32px; margin-bottom:28px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">⚠ Card Visual — N4 Pegadinha TEC</div>
+    <div style="font-family:'Syne',sans-serif; font-size:clamp(18px,4vw,26px); font-weight:900; color:var(--white); margin-bottom:16px;">
+      "FA silenciosa também <span style="color:var(--red-light);">morde</span>."
+    </div>
+    <p style="font-size:13px; color:var(--text); line-height:1.7; margin-bottom:16px;">
+      A FA pode não dar palpitação, mas ainda pode gerar trombo, insuficiência cardíaca, hospitalização e declínio funcional. <strong style="color:var(--red-light);">Assintomático não é sinônimo de sem risco.</strong>
+    </p>
+    <div style="font-family:'Dancing Script',cursive; font-size:17px; color:var(--gold);">
+      "Na FA, o silêncio dos sintomas não significa silêncio do risco." — Dr. André Rossanno
+    </div>
+  </div>
+
+  <!-- Dois grids: sintomas + impactos -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px;">
+
+    <!-- Sintomas -->
+    <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden;">
+      <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(3,64,120,0.4)); border-bottom:1px solid var(--glass-border);">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--teal-light);">🫀 Sintomas da FA</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Palpitações</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Fadiga</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Dispneia</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Intolerância ao esforço</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Dor torácica</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Tontura</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Pré-síncope ou síncope</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Ansiedade</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Piora do sono</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--teal);">→</span> Redução da qualidade de vida</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impactos -->
+    <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden;">
+      <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(192,57,43,0.2),rgba(11,37,69,0.5)); border-bottom:1px solid var(--glass-border);">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light);">💥 Impactos Clínicos Associados</div>
+      </div>
+      <div style="padding:16px 20px;">
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--red-light);">→</span> Maior risco de AVC <span style="font-size:10px; color:var(--text-muted);">(→ Módulo 2)</span></div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--red-light);">→</span> Maior risco de insuficiência cardíaca</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--red-light);">→</span> Hospitalizações recorrentes</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--red-light);">→</span> Declínio cognitivo e demência vascular</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--red-light);">→</span> Piora da qualidade de vida</div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text);"><span style="color:var(--red-light);">→</span> Aumento de mortalidade</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FA clínica vs subclínica refinada -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:28px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">FA Clínica vs Subclínica vs Wearable</div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+
+      <div style="padding:16px; background:rgba(18,130,162,0.08); border:1px solid rgba(18,130,162,0.25); border-left:3px solid var(--teal); border-radius:10px;">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--teal-light); margin-bottom:6px;">FA Clínica</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.7;">FA <strong style="color:var(--white);">sintomática ou assintomática</strong> documentada em ECG de 12 derivações ou em traçado eletrocardiográfico de uma derivação com duração <strong style="color:var(--white);">≥30 segundos</strong>, avaliado e confirmado por médico capacitado.</div>
+      </div>
+
+      <div style="padding:16px; background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-left:3px solid var(--gold); border-radius:10px;">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold-light); margin-bottom:6px;">FA Subclínica (AHRE)</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.7;">Episódio sugestivo de atividade atrial rápida detectado por <strong style="color:var(--white);">dispositivo cardíaco eletrônico implantável</strong> (marcapasso, CDI, monitor implantável), geralmente sem ECG convencional confirmatório no momento do achado.</div>
+      </div>
+
+      <div style="padding:16px; background:rgba(184,134,11,0.06); border:1px solid rgba(184,134,11,0.2); border-left:3px solid var(--yellow-light); border-radius:10px;">
+        <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold); margin-bottom:6px;">Wearables (Smartwatch)</div>
+        <div style="font-size:12px; color:var(--text-muted); line-height:1.7;">
+          Se fornece traçado eletrocardiográfico de qualidade, com duração adequada e <strong style="color:var(--white);">interpretação médica</strong> → pode ajudar a documentar FA clínica.<br>
+          Se é apenas alerta por fotopletismografia ou ritmo irregular sem traçado validado → permanece como <strong style="color:var(--red-light);">suspeita e exige confirmação</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:20px;">
+      <p>"Dispositivo suspeita, traçado documenta, médico confirma."</p>
+      <div class="author">— Dr. André Rossanno</div>
+    </div>
+  </div>
+
+  <!-- Escore EHRA -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:24px;">
+    <div style="padding:20px 24px; background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(3,64,120,0.4)); border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:6px;">Classificação de Sintomas</div>
+      <div style="font-family:'Syne',sans-serif; font-size:18px; font-weight:800; color:var(--white);">Escore EHRA Modificado</div>
+      <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">European Heart Rhythm Association — Quanto a FA rouba do dia do paciente</div>
+    </div>
+
+    <div style="padding:8px 0;">
+      <!-- EHRA 1 -->
+      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
+        <div style="min-width:80px; padding:16px 20px; text-align:center;">
+          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--green-light);">1</div>
+        </div>
+        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
+        <div style="flex:1; padding:16px 20px;">
+          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--green-light); margin-bottom:4px;">Sem sintomas</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">A FA não causa sintomas perceptíveis ao paciente.</div>
+        </div>
+        <div style="padding:16px; font-size:20px;">😌</div>
+      </div>
+
+      <!-- EHRA 2a -->
+      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
+        <div style="min-width:80px; padding:16px 20px; text-align:center;">
+          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--teal-light);">2a</div>
+        </div>
+        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
+        <div style="flex:1; padding:16px 20px;">
+          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--teal-light); margin-bottom:4px;">Sintomas leves</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:var(--white);">não é afetada</strong>. O paciente não se incomoda com os sintomas.</div>
+        </div>
+        <div style="padding:16px; font-size:20px;">🙂</div>
+      </div>
+
+      <!-- EHRA 2b -->
+      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
+        <div style="min-width:80px; padding:16px 20px; text-align:center;">
+          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--gold);">2b</div>
+        </div>
+        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
+        <div style="flex:1; padding:16px 20px;">
+          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--gold); margin-bottom:4px;">Sintomas moderados</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:var(--white);">não é afetada</strong>, mas o paciente <strong style="color:var(--white);">se incomoda</strong> com os sintomas.</div>
+        </div>
+        <div style="padding:16px; font-size:20px;">😟</div>
+      </div>
+
+      <!-- EHRA 3 -->
+      <div style="display:flex; align-items:center; gap:0; border-bottom:1px solid rgba(18,130,162,0.08); transition:background 0.2s;" onmouseover="this.style.background='rgba(18,130,162,0.05)'" onmouseout="this.style.background='transparent'">
+        <div style="min-width:80px; padding:16px 20px; text-align:center;">
+          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:var(--red-light);">3</div>
+        </div>
+        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
+        <div style="flex:1; padding:16px 20px;">
+          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:var(--red-light); margin-bottom:4px;">Sintomas graves</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:var(--red-light);">é afetada</strong> pelos sintomas da FA.</div>
+        </div>
+        <div style="padding:16px; font-size:20px;">😰</div>
+      </div>
+
+      <!-- EHRA 4 -->
+      <div style="display:flex; align-items:center; gap:0; transition:background 0.2s;" onmouseover="this.style.background='rgba(192,57,43,0.06)'" onmouseout="this.style.background='transparent'">
+        <div style="min-width:80px; padding:16px 20px; text-align:center;">
+          <div style="font-family:'Syne',sans-serif; font-size:22px; font-weight:900; color:#ff4444;">4</div>
+        </div>
+        <div style="width:1px; background:var(--glass-border); align-self:stretch;"></div>
+        <div style="flex:1; padding:16px 20px;">
+          <div style="font-family:'Syne',sans-serif; font-size:13px; font-weight:700; color:#ff4444; margin-bottom:4px;">Sintomas incapacitantes</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Atividade diária normal <strong style="color:#ff4444;">é interrompida ou impossível</strong> por causa dos sintomas.</div>
+        </div>
+        <div style="padding:16px; font-size:20px;">😩</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"EHRA mede quanto a FA rouba do dia do paciente: de zero incômodo até vida interrompida."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     EVOLUÇÃO NATURAL DA FA
+══════════════════════════════════════ -->
+<section class="section" id="evolucao">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <div>
+      <div class="section-label">N2 · Mecanismo + N3 · Visual</div>
+      <h2 class="section-title">Linha Evolutiva da FA</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    A FA pode ser detectada em fases diferentes. Alguns pacientes chegam ao diagnóstico com episódios subclínicos ou paroxísticos; outros já com FA persistente. Em geral, quanto maior a carga de FA e o remodelamento atrial, maior a chance de progressão para formas mais avançadas. <strong style="color:var(--white);">A progressão não é obrigatória nem igual em todos os pacientes.</strong>
+  </p>
+
+  <!-- Linha evolutiva visual -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:16px; padding:28px; margin-bottom:24px; overflow-x:auto;">
+    <div style="display:flex; align-items:stretch; gap:0; min-width:600px;">
+
+      <div style="flex:1; text-align:center; padding:16px 8px;">
+        <div style="font-size:24px; margin-bottom:8px;">⚡</div>
+        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Terreno</div>
+        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Fatores de risco e comorbidades</div>
+      </div>
+
+      <div style="display:flex; align-items:center; color:var(--teal); font-size:20px; padding:0 4px;">→</div>
+
+      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(18,130,162,0.05); border-radius:10px;">
+        <div style="font-size:24px; margin-bottom:8px;">📡</div>
+        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Subclínica</div>
+        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">AHRE detectada por dispositivo</div>
+      </div>
+
+      <div style="display:flex; align-items:center; color:var(--teal); font-size:20px; padding:0 4px;">→</div>
+
+      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(18,130,162,0.08); border-radius:10px;">
+        <div style="font-size:24px; margin-bottom:8px;">🌩️</div>
+        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--teal-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Paroxística</div>
+        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Reverte espontaneamente ≤7 dias</div>
+      </div>
+
+      <div style="display:flex; align-items:center; color:var(--gold); font-size:20px; padding:0 4px;">→</div>
+
+      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(201,168,76,0.06); border-radius:10px;">
+        <div style="font-size:24px; margin-bottom:8px;">🔥</div>
+        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Persistente</div>
+        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Não reverte sem intervenção</div>
+      </div>
+
+      <div style="display:flex; align-items:center; color:var(--red-light); font-size:20px; padding:0 4px;">→</div>
+
+      <div style="flex:1; text-align:center; padding:16px 8px; background:rgba(192,57,43,0.08); border-radius:10px;">
+        <div style="font-size:24px; margin-bottom:8px;">🏠</div>
+        <div style="font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--red-light); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Permanente</div>
+        <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">Decisão terapêutica — FA "mora" no átrio</div>
+      </div>
+
+    </div>
+
+    <!-- Nota importante -->
+    <div style="margin-top:20px; padding:14px 18px; background:rgba(26,122,74,0.08); border:1px solid rgba(26,122,74,0.25); border-radius:10px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+      <strong style="color:var(--green-light);">✅ Importante:</strong> O controle de fatores de risco pode <strong style="color:var(--white);">reduzir carga, recorrência e progressão</strong> da FA. A seta não é obrigatória — é uma tendência, não um destino certo.
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"A FA começa como faísca, vira incêndio elétrico e, se o terreno continuar inflamado, passa a morar no átrio."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
 </section>
 
 <!-- ══════════════════════════════════════
@@ -2234,8 +2603,8 @@ footer {
     </div>
     <div class="trap-card">
       <div class="trap-icon">🔴</div>
-      <div class="trap-text"><strong>SGLT2i agora têm evidência Classe I para FA</strong></div>
-      <div class="trap-why">Novidade TEC 2026: gliflozinas têm indicação Classe I na redução de carga de FA em diabéticos com FA.</div>
+      <div class="trap-text"><strong>SGLT2i e FA — não confundir o papel</strong></div>
+      <div class="trap-why">SGLT2i fazem parte do manejo das comorbidades, especialmente em pacientes com insuficiência cardíaca associada, mas não devem ser apresentados como antiarrítmicos nem como terapia específica para reduzir carga de FA em todo paciente diabético.</div>
     </div>
   </div>
 </section>
@@ -2394,7 +2763,7 @@ footer {
   <div class="footer-text">
     Método André Rossanno de Memorização Médica<br>
     Atlas Mental Interativo · memoria-potencial.com.br<br>
-    Conteúdo educacional para TEC 2026 · Baseado em ESC 2020, SBC 2024/2025
+    Conteúdo educacional para TEC 2026 · Baseado em ESC 2025 e Diretriz Brasileira de Fibrilação Atrial 2025
   </div>
 </footer>
 
