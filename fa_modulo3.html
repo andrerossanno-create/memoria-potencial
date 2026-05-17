@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FA — Módulo 3 | O Freio e a Bússola | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B2545;
+  --teal: #1282A2;
+  --teal-light: #1a9cbf;
+  --mint: #034078;
+  --gold: #C9A84C;
+  --gold-light: #e8c66a;
+  --red: #C0392B;
+  --red-light: #e74c3c;
+  --green: #1a7a4a;
+  --green-light: #27ae60;
+  --yellow: #b8860b;
+  --yellow-light: #f0c040;
+  --white: #f0f4f8;
+  --text: #d4e1f7;
+  --text-muted: #8ba3c7;
+  --glass-border: rgba(18,130,162,0.2);
+  --emerald: #0d7a5f;
+  --emerald-light: #10b981;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'IBM Plex Sans',sans-serif;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(18,130,162,0.15) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 85% 80%,rgba(13,122,95,0.1) 0%,transparent 70%),radial-gradient(ellipse 100% 100% at 50% 50%,#0B2545 0%,#060f1e 100%);z-index:-2}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(18,130,162,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(18,130,162,0.03) 1px,transparent 1px);background-size:40px 40px;z-index:-1}
+
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--emerald-light),var(--gold));z-index:1000;transition:width 0.1s}
+
+/* SIDEBAR */
+#sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;background:rgba(6,15,30,0.95);border-right:1px solid var(--glass-border);backdrop-filter:blur(20px);z-index:900;overflow-y:auto;padding:24px 0 40px;transform:translateX(-260px);transition:transform 0.3s ease}
+#sidebar.open{transform:translateX(0)}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:var(--emerald-light);border-radius:2px}
+.sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--glass-border);margin-bottom:16px}
+.sidebar-logo .brand{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase}
+.sidebar-logo .title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px}
+.sidebar-section{padding:8px 20px 4px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.sidebar-link{display:block;padding:9px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--text-muted);text-decoration:none;transition:all 0.2s;border-left:2px solid transparent;cursor:pointer}
+.sidebar-link:hover{color:var(--white);background:rgba(13,122,95,0.1)}
+.sidebar-link.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,0.08)}
+.sidebar-module{display:block;padding:11px 20px;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.sidebar-module.done{color:var(--teal)}
+.sidebar-module.current{color:var(--emerald-light)}
+.sidebar-module.locked{opacity:0.4}
+
+#menu-toggle{position:fixed;top:16px;left:16px;width:44px;height:44px;background:rgba(6,15,30,0.9);border:1px solid var(--glass-border);border-radius:8px;cursor:pointer;z-index:950;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backdrop-filter:blur(10px);transition:all 0.2s}
+#menu-toggle:hover{border-color:var(--emerald-light)}
+#menu-toggle span{width:20px;height:2px;background:var(--text);border-radius:1px}
+
+main{max-width:900px;margin:0 auto;padding:0 20px 80px}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px}
+.hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--emerald-light);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(13,122,95,0.15);border:1px solid rgba(13,122,95,0.3);border-radius:20px;padding:6px 16px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
+.hero-badge span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--emerald-light)}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:1.0;color:var(--white);margin-bottom:8px;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
+.hero-title .highlight{color:var(--emerald-light)}
+.hero-title .accent{color:var(--gold)}
+.hero-subtitle{font-family:'Syne',sans-serif;font-size:clamp(16px,3.5vw,24px);font-weight:600;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+.hero-quote{background:linear-gradient(135deg,rgba(13,122,95,0.12),rgba(11,37,69,0.6));border:1px solid rgba(13,122,95,0.25);border-left:4px solid var(--emerald-light);border-radius:12px;padding:28px 32px;margin-bottom:40px;max-width:700px;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards}
+.hero-quote p{font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:12px}
+.hero-quote .author{font-family:'Dancing Script',cursive;font-size:18px;color:var(--gold)}
+
+/* MODULE NAV */
+.module-nav{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:80px;opacity:0;animation:fadeUp 0.8s ease 0.8s forwards}
+@media(max-width:600px){.module-nav{grid-template-columns:1fr}}
+.module-card{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:block;position:relative;overflow:hidden}
+.module-card:hover{border-color:var(--teal);transform:translateY(-2px)}
+.module-card.active-module{border-color:var(--emerald-light);background:rgba(13,122,95,0.12)}
+.module-card.done-module{border-color:var(--teal);background:rgba(18,130,162,0.08)}
+.module-card.locked-module{opacity:0.5;cursor:default}
+.module-card.locked-module:hover{transform:none}
+.module-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;margin-bottom:6px}
+.module-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.module-desc{font-size:11px;color:var(--text-muted);line-height:1.5}
+.module-status{position:absolute;top:16px;right:16px;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 8px;border-radius:10px}
+.status-done{background:rgba(18,130,162,0.2);color:var(--teal-light);border:1px solid rgba(18,130,162,0.4)}
+.status-active{background:rgba(13,122,95,0.2);color:var(--emerald-light);border:1px solid rgba(13,122,95,0.4)}
+.status-soon{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.3)}
+
+/* SECTION */
+.section{margin-bottom:80px;opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.section.visible{opacity:1;transform:translateY(0)}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--glass-border)}
+.section-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--emerald),var(--mint));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(22px,4vw,32px);font-weight:800;color:var(--white);line-height:1.1}
+
+/* QUOTE */
+.quote-block{background:linear-gradient(135deg,rgba(13,122,95,0.08),rgba(11,37,69,0.5));border:1px solid rgba(13,122,95,0.2);border-left:4px solid var(--emerald-light);border-radius:12px;padding:24px 28px;margin:24px 0}
+.quote-block p{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:10px}
+.quote-block .author{font-family:'Dancing Script',cursive;font-size:17px;color:var(--gold)}
+
+/* MNEMONIC */
+.mnemonic-card{background:linear-gradient(135deg,rgba(13,122,95,0.15),rgba(11,37,69,0.5));border:1px solid rgba(13,122,95,0.3);border-radius:16px;padding:28px 32px;text-align:center;margin:20px 0}
+.mnemonic-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.mnemonic-text{font-family:'Syne',sans-serif;font-size:clamp(16px,3.5vw,26px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.3}
+.mnemonic-text .key{color:var(--emerald-light)}
+.mnemonic-text .key2{color:var(--gold)}
+.mnemonic-author{font-family:'Dancing Script',cursive;font-size:16px;color:var(--gold)}
+
+/* TRAP */
+.trap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.trap-card{background:rgba(6,15,30,0.6);border:1px solid rgba(192,57,43,0.25);border-left:3px solid var(--red-light);border-radius:12px;padding:16px 18px;transition:all 0.3s}
+.trap-card:hover{border-color:rgba(192,57,43,0.5);background:rgba(192,57,43,0.06)}
+.trap-icon{font-size:16px;margin-bottom:8px}
+.trap-text{font-size:13px;color:var(--text);line-height:1.5}
+.trap-why{margin-top:8px;font-size:11px;color:var(--text-muted)}
+
+/* QUIZ */
+.quiz-container{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:20px;padding:32px}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.quiz-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--white)}
+.score-display{background:rgba(13,122,95,0.15);border:1px solid rgba(13,122,95,0.3);border-radius:10px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--emerald-light)}
+.score-display span{color:var(--white);font-weight:500}
+.question-card{background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:14px;padding:24px;margin-bottom:16px;display:none}
+.question-card.active{display:block}
+.question-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:2px;margin-bottom:10px}
+.question-text{font-size:15px;color:var(--white);line-height:1.6;margin-bottom:20px;font-weight:500}
+.options{display:flex;flex-direction:column;gap:10px}
+.option{background:rgba(13,122,95,0.06);border:1px solid var(--glass-border);border-radius:10px;padding:14px 18px;cursor:pointer;font-size:13px;color:var(--text);transition:all 0.2s;text-align:left;display:flex;align-items:flex-start;gap:10px}
+.option:hover:not(:disabled){border-color:var(--emerald-light);color:var(--white);background:rgba(13,122,95,0.12)}
+.option.correct{border-color:var(--green-light);background:rgba(26,122,74,0.15);color:var(--white)}
+.option.wrong{border-color:var(--red-light);background:rgba(192,57,43,0.12);color:var(--white)}
+.option-letter{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--emerald-light);min-width:20px;font-weight:500;padding-top:1px}
+.feedback{margin-top:16px;padding:16px 18px;border-radius:10px;font-size:13px;line-height:1.6;display:none}
+.feedback.show{display:block}
+.feedback.correct-fb{background:rgba(26,122,74,0.15);border:1px solid rgba(26,122,74,0.3);color:var(--white)}
+.feedback.wrong-fb{background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);color:var(--white)}
+.quiz-nav{display:flex;gap:12px;margin-top:20px;justify-content:space-between;align-items:center}
+.btn-quiz{background:linear-gradient(135deg,var(--emerald),var(--mint));color:white;border:none;border-radius:10px;padding:12px 24px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s}
+.btn-quiz:hover{opacity:0.85;transform:translateY(-1px)}
+.btn-reset{background:transparent;color:var(--text-muted);border:1px solid var(--glass-border);border-radius:10px;padding:12px 24px;font-family:'Syne',sans-serif;font-size:13px;cursor:pointer;transition:all 0.2s}
+.btn-reset:hover{border-color:var(--emerald-light);color:var(--white)}
+.question-counter{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-muted)}
+
+/* REVIEW */
+.review-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.review-tab{padding:8px 20px;background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:20px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+.review-tab.active{background:rgba(13,122,95,0.2);border-color:var(--emerald-light);color:var(--emerald-light)}
+.review-content{background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:14px;padding:24px;display:none;font-size:14px;line-height:1.8;color:var(--text)}
+.review-content.active{display:block}
+.review-content strong{color:var(--emerald-light)}
+
+/* FLASHCARD */
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.flashcard{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:12px;padding:18px;cursor:pointer;transition:all 0.3s;min-height:100px}
+.flashcard:hover{border-color:rgba(13,122,95,0.4)}
+.flashcard .fc-q{font-size:13px;color:var(--text);font-weight:500;line-height:1.5}
+.flashcard .fc-a{font-size:12px;color:var(--emerald-light);margin-top:10px;padding-top:10px;border-top:1px solid var(--glass-border);display:none;line-height:1.5}
+.flashcard.revealed .fc-a{display:block}
+.flashcard .fc-hint{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-muted);margin-top:8px}
+
+/* ALGO */
+.algo-flow{display:flex;flex-direction:column;gap:0}
+.algo-step{background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:10px;padding:14px 18px;font-size:13px;color:var(--text);transition:all 0.3s}
+.algo-step:hover{border-color:rgba(13,122,95,0.4)}
+.algo-connector{text-align:center;color:var(--emerald-light);font-size:18px;padding:2px 0}
+.algo-branch{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.algo-yes{border-color:rgba(26,122,74,0.4);background:rgba(26,122,74,0.08)}
+.algo-no{border-color:rgba(192,57,43,0.3);background:rgba(192,57,43,0.06)}
+.algo-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--text-muted);letter-spacing:2px;margin-bottom:4px}
+@media(max-width:600px){.algo-branch{grid-template-columns:1fr}}
+
+/* N-LEVELS */
+.n-grid{display:flex;flex-direction:column;gap:12px}
+.n-item{background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:all 0.3s}
+.n-item:hover{border-color:rgba(13,122,95,0.3)}
+.n-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:900;min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;flex-shrink:0}
+.n-content .n-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.n-content .n-desc{font-size:12px;color:var(--text-muted);line-height:1.6}
+
+/* DRUG CARDS */
+.drug-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}
+.drug-card{border-radius:16px;padding:24px;position:relative;overflow:hidden;transition:all 0.3s}
+.drug-card:hover{transform:translateY(-3px)}
+.drug-card.propa{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(3,64,120,0.3));border:2px solid rgba(18,130,162,0.4)}
+.drug-card.amio{background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(11,37,69,0.5));border:2px solid rgba(184,134,11,0.4)}
+.drug-card.sota{background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(11,37,69,0.5));border:2px solid rgba(192,57,43,0.3)}
+.drug-letter{font-family:'Syne',sans-serif;font-size:56px;font-weight:900;position:absolute;right:16px;top:12px;opacity:0.1;line-height:1}
+.drug-name-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.drug-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:14px}
+.drug-items{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.drug-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text-muted)}
+.drug-item .ok{color:var(--green-light)}
+.drug-item .no{color:var(--red-light)}
+.drug-frase{font-size:11px;font-style:italic;color:var(--text-muted);margin-top:10px;padding-top:10px;border-top:1px solid rgba(18,130,162,0.1)}
+
+/* FREQ DRUG CARDS */
+.freq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:600px){.freq-grid{grid-template-columns:1fr}}
+.freq-card{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:20px;transition:all 0.3s}
+.freq-card:hover{border-color:rgba(13,122,95,0.3);transform:translateY(-2px)}
+.freq-icon{font-size:32px;margin-bottom:10px}
+.freq-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px}
+.freq-items{display:flex;flex-direction:column;gap:6px}
+.freq-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text-muted)}
+
+/* TABLE */
+.comp-table{width:100%;border-collapse:collapse;font-size:12px}
+.comp-table th{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;padding:12px 10px;text-align:left;border-bottom:1px solid var(--glass-border)}
+.comp-table td{padding:11px 10px;border-bottom:1px solid rgba(18,130,162,0.08);color:var(--text);vertical-align:top}
+.comp-table tr:hover td{background:rgba(13,122,95,0.04)}
+.comp-table tr:last-child td{border-bottom:none}
+.yes-pill{display:inline-block;padding:2px 8px;background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;font-size:10px;font-family:'IBM Plex Mono',monospace}
+.no-pill{display:inline-block;padding:2px 8px;background:rgba(192,57,43,0.2);color:var(--red-light);border:1px solid rgba(192,57,43,0.3);border-radius:8px;font-size:10px;font-family:'IBM Plex Mono',monospace}
+.maybe-pill{display:inline-block;padding:2px 8px;background:rgba(184,134,11,0.2);color:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:8px;font-size:10px;font-family:'IBM Plex Mono',monospace}
+
+/* WPW */
+.wpw-forest{background:linear-gradient(135deg,rgba(11,37,69,0.9),rgba(6,15,30,0.95));border:1px solid rgba(192,57,43,0.3);border-radius:20px;padding:32px;position:relative;overflow:hidden;margin-bottom:24px}
+.wpw-forest::before{content:'🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲';position:absolute;bottom:0;left:0;right:0;font-size:28px;opacity:0.1;letter-spacing:4px;text-align:center}
+
+/* FEVE BRIDGE */
+.feve-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:600px){.feve-grid{grid-template-columns:1fr}}
+
+/* FRASES FILOSOFICAS */
+.frases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.frase-card{background:rgba(6,15,30,0.6);border:1px solid rgba(13,122,95,0.2);border-left:3px solid var(--emerald-light);border-radius:12px;padding:20px 22px}
+.frase-card p{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:10px}
+.frase-card .author{font-family:'Dancing Script',cursive;font-size:15px;color:var(--gold)}
+
+/* TRÊTA CARD */
+.treta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:16px 0}
+.treta-item{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:12px;padding:16px;text-align:center;transition:all 0.3s}
+.treta-item:hover{border-color:rgba(184,134,11,0.4)}
+.treta-letter{font-family:'Syne',sans-serif;font-size:32px;font-weight:900;color:var(--gold);margin-bottom:6px}
+.treta-word{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--white);font-weight:600;margin-bottom:4px}
+.treta-detail{font-size:11px;color:var(--text-muted);line-height:1.4}
+
+/* FAÍSCA */
+.faisca-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
+.faisca-item{background:rgba(6,15,30,0.5);border:1px solid rgba(192,57,43,0.2);border-radius:12px;padding:14px;text-align:center}
+.faisca-letter{font-family:'Syne',sans-serif;font-size:22px;font-weight:900;color:var(--red-light);margin-bottom:4px}
+.faisca-word{font-size:11px;color:var(--text);font-weight:600;margin-bottom:3px}
+.faisca-detail{font-size:10px;color:var(--text-muted)}
+
+/* CLICK HINT */
+.click-hint{display:inline-flex;align-items:center;gap:8px;background:rgba(13,122,95,0.1);border:1px solid rgba(13,122,95,0.3);border-radius:20px;padding:8px 16px;margin-bottom:32px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--emerald-light)}
+.click-hint .pulse{width:8px;height:8px;background:var(--emerald-light);border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+
+footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border);text-align:center}
+.footer-brand{font-family:'Dancing Script',cursive;font-size:22px;color:var(--gold);margin-bottom:8px}
+.footer-text{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);line-height:1.8}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.drug-grid{grid-template-columns:1fr}.feve-grid{grid-template-columns:1fr}.frases-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<button id="menu-toggle" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Atlas Mental</div>
+    <div class="title">memoriapotencial.com.br</div>
+  </div>
+  <div class="sidebar-section">Módulos FA</div>
+  <a class="sidebar-module done" onclick="window.location.href='fa_modulo1.html'">✓ M1 — O Átrio Sem Maestro</a>
+  <a class="sidebar-module done" onclick="window.location.href='fa_modulo2.html'">✓ M2 — O Trono do Trombo</a>
+  <a class="sidebar-module current" onclick="scrollTo('hero')">● M3 — O Freio e a Bússola</a>
+  <a class="sidebar-module locked">○ M4 — A Sala de Choque</a>
+  <div class="sidebar-section" style="margin-top:16px">Seções M3</div>
+  <a class="sidebar-link" onclick="scrollTo('escada')">Escada N1–N7</a>
+  <a class="sidebar-link" onclick="scrollTo('conceito')">O Freio e a Bússola</a>
+  <a class="sidebar-link" onclick="scrollTo('gatilho')">Antes do Antiarrítmico</a>
+  <a class="sidebar-link" onclick="scrollTo('ritmo')">Controle de Ritmo</a>
+  <a class="sidebar-link" onclick="scrollTo('trombo')">Cardioversão e Trombo</a>
+  <a class="sidebar-link" onclick="scrollTo('guardioes')">Os 3 Guardiões do Ritmo</a>
+  <a class="sidebar-link" onclick="scrollTo('terreno')">O Terreno Manda</a>
+  <a class="sidebar-link" onclick="scrollTo('frequencia')">Controle de Frequência</a>
+  <a class="sidebar-link" onclick="scrollTo('chaves')">As 4 Chaves do Freio</a>
+  <a class="sidebar-link" onclick="scrollTo('feve')">FEVE 40 — A Ponte</a>
+  <a class="sidebar-link" onclick="scrollTo('ablacao-nav')">Ablação do Nó AV</a>
+  <a class="sidebar-link" onclick="scrollTo('wpw')">FA com WPW</a>
+  <a class="sidebar-link" onclick="scrollTo('tabela')">Tabela Comparativa</a>
+  <a class="sidebar-link" onclick="scrollTo('pegadinhas')">Pegadinhas TEC</a>
+  <a class="sidebar-link" onclick="scrollTo('algoritmo')">Algoritmo Clínico</a>
+  <a class="sidebar-link" onclick="scrollTo('flashcards')">Flashcards</a>
+  <a class="sidebar-link" onclick="scrollTo('frases')">Frases Filosóficas</a>
+  <a class="sidebar-link" onclick="scrollTo('quiz')">Simulado</a>
+  <a class="sidebar-link" onclick="scrollTo('revisao')">Revisão Rápida</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-kicker">Atlas Mental Interativo · Método André Rossanno</div>
+  <div class="hero-badge"><span>● MÓDULO 3 DE 4 · FIBRILAÇÃO ATRIAL · TEC 2026</span></div>
+  <h1 class="hero-title">
+    <span class="highlight">O Freio</span><br>
+    <span class="accent">e a Bússola</span>
+  </h1>
+  <h2 class="hero-subtitle">Controle de Ritmo, Frequência e Antiarrítmicos</h2>
+  <div class="hero-quote">
+    <p>"Quando o átrio perde o maestro, o médico precisa decidir: frear a tempestade ou devolver a bússola ao coração."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+  <div class="click-hint"><div class="pulse"></div>← Clique no menu para navegar entre seções</div>
+  <div class="module-nav">
+    <div class="module-card done-module" onclick="window.location.href='fa_modulo1.html'">
+      <div class="module-status status-done">✓ CONCLUÍDO</div>
+      <div class="module-num">MÓDULO 01</div>
+      <div class="module-name">O Átrio Sem Maestro</div>
+      <div class="module-desc">Diagnóstico, fisiopatologia, CARE-C, ECG</div>
+    </div>
+    <div class="module-card done-module" onclick="window.location.href='fa_modulo2.html'">
+      <div class="module-status status-done">✓ CONCLUÍDO</div>
+      <div class="module-num">MÓDULO 02</div>
+      <div class="module-name">O Trono do Trombo</div>
+      <div class="module-desc">AVC, CHA₂DS₂-VA, DOAC vs varfarina</div>
+    </div>
+    <div class="module-card active-module">
+      <div class="module-status status-active">● ATIVO</div>
+      <div class="module-num">MÓDULO 03</div>
+      <div class="module-name">O Freio e a Bússola</div>
+      <div class="module-desc">Controle de ritmo, frequência, antiarrítmicos</div>
+    </div>
+    <div class="module-card locked-module">
+      <div class="module-status status-soon">EM BREVE</div>
+      <div class="module-num">MÓDULO 04</div>
+      <div class="module-name">A Sala de Choque</div>
+      <div class="module-desc">Emergência, CVE, flutter agudo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ESCADA N1-N7 -->
+<section class="section" id="escada">
+  <div class="section-header">
+    <div class="section-icon">🧠</div>
+    <div>
+      <div class="section-label">Protocolo Cognitivo</div>
+      <h2 class="section-title">Escada N1–N7 da Memorização</h2>
+    </div>
+  </div>
+  <div class="n-grid">
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,var(--emerald),var(--mint));color:white;">N1</div>
+      <div class="n-content">
+        <div class="n-title">Conceito Nuclear</div>
+        <div class="n-desc">Controle de <strong style="color:var(--emerald-light)">frequência</strong> = frear o nó AV para reduzir sintomas e evitar taquicardiomiopatia. Controle de <strong style="color:var(--gold)">ritmo</strong> = tentar restaurar/manter ritmo sinusal. A decisão depende de sintomas, duração, FEVE, cardiopatia estrutural e preferência do paciente.</div>
+      </div>
+    </div>
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,var(--teal),var(--mint));color:white;">N2</div>
+      <div class="n-content">
+        <div class="n-title">Mecanismo Fisiopatológico</div>
+        <div class="n-desc">FA → resposta ventricular rápida → palpitações, dispneia, piora da IC → <strong style="color:var(--red-light)">taquicardiomiopatia</strong> se persistente. Controle de FC reduz agressão hemodinâmica. Controle de ritmo recupera sincronia atrial, mas exige segurança contra trombo.</div>
+      </div>
+    </div>
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,var(--gold),#b8860b);color:white;">N3</div>
+      <div class="n-content">
+        <div class="n-title">Dupla Codificação Visual</div>
+        <div class="n-desc">🛑 <strong style="color:var(--emerald-light)">Freio</strong> = controle de frequência &nbsp;|&nbsp; 🧭 <strong style="color:var(--gold)">Bússola</strong> = controle de ritmo &nbsp;|&nbsp; 🌉 <strong style="color:var(--teal)">FEVE 40%</strong> = ponte levadiça das drogas &nbsp;|&nbsp; 🐉 <strong style="color:var(--red-light)">Portão do trombo</strong> = anticoagulação antes de cardioverter &nbsp;|&nbsp; 🐺 <strong style="color:var(--red-light)">WPW</strong> = lobo da via acessória</div>
+      </div>
+    </div>
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,var(--red),#8B0000);color:white;">N4</div>
+      <div class="n-content">
+        <div class="n-title">Pegadinhas de Prova</div>
+        <div class="n-desc">Sotalol e digoxina <strong style="color:var(--red-light)">não revertem</strong> FA · Propafenona <strong style="color:var(--red-light)">proibida</strong> em cardiopatia estrutural/isquemia/IC · Verapamil/diltiazem <strong style="color:var(--red-light)">não</strong> se FEVE ≤40% · Digoxina falha no esforço · Amiodarona pode reverter — cuidado em FA >24h sem anticoagulação · FA + WPW: <strong style="color:var(--red-light)">não bloquear nó AV</strong></div>
+      </div>
+    </div>
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,#0d7a5f,var(--mint));color:white;">N5</div>
+      <div class="n-content">
+        <div class="n-title">Algoritmo Clínico</div>
+        <div class="n-desc">Instável → CVE imediata. Estável → avaliar sintomas, FEVE, duração da FA, trombo e cardiopatia estrutural → decidir Freio ou Bússola → escolher droga pelo terreno → se falha: ablação do nó AV. Ver seção 15.</div>
+      </div>
+    </div>
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,#7b1a12,#C0392B);color:white;">N6</div>
+      <div class="n-content">
+        <div class="n-title">História Cinematográfica</div>
+        <div class="n-desc">O coração é uma cidade elétrica. O átrio virou praça em tumulto. A frequência ventricular é uma carruagem desgovernada. O médico carrega dois instrumentos: o <strong style="color:var(--emerald-light)">Freio</strong> para controlar a velocidade e a <strong style="color:var(--gold)">Bússola</strong> para devolver o caminho original. Mas antes de usar a Bússola, é preciso olhar o mapa do trombo.</div>
+      </div>
+    </div>
+    <div class="n-item">
+      <div class="n-num" style="background:linear-gradient(135deg,#b8860b,#C9A84C);color:white;">N7</div>
+      <div class="n-content">
+        <div class="n-title">Mnemônicos Absurdos</div>
+        <div class="n-desc">
+          🛑 <strong style="color:var(--emerald-light)">"FREIO 110/80"</strong>: 110 = estável, 80 = sintomático ou FEVE piorando<br>
+          🌉 <strong style="color:var(--teal)">"FEVE 40 fecha a porta do cálcio"</strong><br>
+          💊 <strong style="color:var(--teal)">"PROPA só em coração POP"</strong> (Puro, Organizado, Preservado)<br>
+          📏 <strong style="color:var(--gold)">"SOTALOL: só talo no ritmo, não vira a chave"</strong><br>
+          🔪 <strong style="color:var(--gold)">"AMIO é canivete de UTI: corta muito, cobra nos órgãos"</strong><br>
+          🐺 <strong style="color:var(--red-light)">"WPW: fecha o AV, o lobo corre pelo atalho"</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEITO CENTRAL -->
+<section class="section" id="conceito">
+  <div class="section-header">
+    <div class="section-icon">🧭</div>
+    <div>
+      <div class="section-label">N1 · Conceito Nuclear</div>
+      <h2 class="section-title">O Freio e a Bússola</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">
+    Na FA existem duas estratégias para reduzir sintomas. <strong style="color:var(--white)">Controle de frequência</strong> não tenta acabar com a FA — apenas impede que o ventrículo dispare rápido demais. <strong style="color:var(--white)">Controle de ritmo</strong> tenta restaurar ou manter ritmo sinusal, mas exige análise de trombo, cardiopatia estrutural e risco de pró-arritmia.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px;">
+    <div style="background:rgba(13,122,95,0.1);border:2px solid rgba(13,122,95,0.35);border-radius:16px;padding:24px;text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">🛑</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--emerald-light);margin-bottom:8px;">FREIO</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:10px;">Controle de Frequência</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Reduz resposta ventricular · Alivia sintomas · Previne taquicardiomiopatia · FA permanece presente</div>
+    </div>
+    <div style="background:rgba(201,168,76,0.1);border:2px solid rgba(201,168,76,0.35);border-radius:16px;padding:24px;text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">🧭</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;">BÚSSOLA</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:10px;">Controle de Ritmo</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Restaura/mantém ritmo sinusal · Exige análise de trombo · Exige escolha do antiarrítmico certo · Ablação como opção</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;">
+    <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:24px;margin-bottom:6px;">🛡️</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">Escudo</div>
+      <div style="font-size:10px;color:var(--text-muted);">Anticoagulação quando indicada</div>
+    </div>
+    <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:24px;margin-bottom:6px;">🗺️</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">Mapa</div>
+      <div style="font-size:10px;color:var(--text-muted);">Reavaliação dinâmica</div>
+    </div>
+    <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:24px;margin-bottom:6px;">🌉</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;">FEVE 40%</div>
+      <div style="font-size:10px;color:var(--text-muted);">Ponte levadiça das drogas</div>
+    </div>
+    <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
+      <div style="font-size:24px;margin-bottom:6px;">🐉</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--red-light);margin-bottom:4px;">Trombo</div>
+      <div style="font-size:10px;color:var(--text-muted);">Olhar antes de cardioverter</div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Frequência é velocidade; ritmo é direção. Na FA, tratar bem é saber quando frear e quando devolver a estrada."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ANTES DO ANTIARRÍTMICO -->
+<section class="section" id="gatilho">
+  <div class="section-header">
+    <div class="section-icon">🔥</div>
+    <div>
+      <div class="section-label">N2 · Mecanismo</div>
+      <h2 class="section-title">Antes do Antiarrítmico, procure o incêndio</h2>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(6,15,30,0.8));border:1px solid rgba(192,57,43,0.3);border-radius:16px;padding:24px;margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">ANTES DE QUALQUER ANTIARRÍTMICO CRÔNICO</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Checar causas reversíveis</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Corrigir eletrólitos</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Investigar hipertireoidismo</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Tratar infecção, hipóxia, dor</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Anemia, isquemia</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Descompensação de IC</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Álcool, estimulantes, apneia</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">→</span>Recomendar MEV</div>
+    </div>
+  </div>
+
+  <!-- Mnemônico FAÍSCA -->
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:22px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;">Mnemônico — Procure a FAÍSCA</div>
+    <div class="faisca-grid">
+      <div class="faisca-item"><div class="faisca-letter">F</div><div class="faisca-word">Febre/Infecção</div></div>
+      <div class="faisca-item"><div class="faisca-letter">A</div><div class="faisca-word">Álcool/Apneia</div></div>
+      <div class="faisca-item"><div class="faisca-letter">Í</div><div class="faisca-word">Íons alterados</div></div>
+      <div class="faisca-item"><div class="faisca-letter">S</div><div class="faisca-word">Stress/Hipóxia</div></div>
+      <div class="faisca-item"><div class="faisca-letter">C</div><div class="faisca-word">Coronária/Isquemia</div></div>
+      <div class="faisca-item"><div class="faisca-letter">A</div><div class="faisca-word">Anemia/Acidose</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-left:3px solid var(--gold);border-radius:10px;padding:16px 20px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;">⚠ CARD ESPECIAL</div>
+    <div style="font-size:13px;color:var(--text);line-height:1.7;">FA revertida após <strong style="color:var(--white)">causa pontual</strong> (libação alcoólica, crise tireotóxica) <strong style="color:var(--red-light)">não significa automaticamente antiarrítmico crônico</strong>. Procure a faísca, corrija-a e reavalie.</div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Antiarrítmico sem procurar gatilho é apagar fumaça sem entrar na cozinha."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- CONTROLE DE RITMO -->
+<section class="section" id="ritmo">
+  <div class="section-header">
+    <div class="section-icon">🧭</div>
+    <div>
+      <div class="section-label">N6 · Narrativa Clínica</div>
+      <h2 class="section-title">Controle de Ritmo — Devolver o Maestro</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">
+    Controle de ritmo significa tentar <strong style="color:var(--white)">restaurar ou manter o ritmo sinusal</strong>. Pode ser feito com cardioversão elétrica, cardioversão farmacológica, drogas antiarrítmicas para manutenção, ablação por cateter ou cirurgia em cenários selecionados.
+  </p>
+
+  <div style="background:rgba(6,15,30,0.6);border:1px solid rgba(13,122,95,0.3);border-radius:14px;padding:22px;margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;margin-bottom:14px;">INDICAÇÕES QUE FAVORECEM CONTROLE DE RITMO</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Paciente sintomático apesar de controle de FC</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Primeiro episódio ou FA recente</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Paciente jovem</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Taquicardiomiopatia</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>IC relacionada à FA</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Dificuldade de controlar FC</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Preferência do paciente</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span style="color:var(--emerald-light)">✅</span>Piora de FEVE atribuída à FA</div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(13,122,95,0.08),rgba(6,15,30,0.7));border:1px solid rgba(13,122,95,0.25);border-radius:12px;padding:18px 22px;margin-bottom:20px;">
+    <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--white);">"Ritmo não é estética de ECG. Ritmo é sintoma, função ventricular e qualidade de vida."</div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Restaurar ritmo não é arrumar desenho no papel; é tentar devolver mecânica ao coração cansado."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- CARDIOVERSÃO E TROMBO -->
+<section class="section" id="trombo">
+  <div class="section-header">
+    <div class="section-icon">🐉</div>
+    <div>
+      <div class="section-label">N4 · Pegadinha Central</div>
+      <h2 class="section-title">Antes do Choque, olhe o Apêndice</h2>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mnemônico Central</div>
+    <div class="mnemonic-text">"<span class="key">24 horas</span> acende a lanterna.<br>Antes de virar o ritmo, procure o <span class="key2">trombo escondido</span>."</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+    <div style="background:rgba(26,122,74,0.1);border:2px solid rgba(26,122,74,0.3);border-radius:14px;padding:20px;">
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:12px;">🟢 FA ≤ 24h e baixo risco</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Menor risco de trombo consolidado. Avaliar contexto clínico e risco individual. Anticoagulação periprocedimento conforme protocolo.</div>
+    </div>
+    <div style="background:rgba(192,57,43,0.1);border:2px solid rgba(192,57,43,0.35);border-radius:14px;padding:20px;">
+      <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:12px;">🔴 FA &gt; 24h ou início incerto</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Alto risco de trombo. Estratégia segura: ACO efetiva ≥3 semanas antes <strong style="color:var(--white)">OU</strong> excluir trombo com ECOTE <strong style="color:var(--white)">OU</strong> angioTC conforme protocolo local.</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:20px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:3px;margin-bottom:14px;">APÓS CARDIOVERSÃO</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);"><span style="color:var(--teal)">→</span>Manter anticoagulação por pelo menos <strong style="color:var(--white)">4 semanas</strong> em muitos cenários</div>
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);"><span style="color:var(--teal)">→</span>Continuar <strong style="color:var(--white)">indefinidamente</strong> se risco tromboembólico indicar (CHA₂DS₂-VA ≥2)</div>
+      <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--red-light);"><span style="color:var(--red-light)">→</span><strong>SEMPRE</strong> reavaliar anticoagulação após cardioversão — ritmo sinusal não apaga o risco!</div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Cardioverter sem procurar trombo é abrir o portão do castelo sem saber se há dragão na torre."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- OS 3 GUARDIÕES DO RITMO -->
+<section class="section" id="guardioes">
+  <div class="section-header">
+    <div class="section-icon">⚔️</div>
+    <div>
+      <div class="section-label">N7 · Mnemônico Visual</div>
+      <h2 class="section-title">Os Três Guardiões do Ritmo</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">Drogas disponíveis no Brasil para manutenção do ritmo sinusal: propafenona, amiodarona e sotalol. Cada uma tem seu terreno certo e suas contraindicações.</p>
+
+  <div class="drug-grid">
+
+    <!-- PROPAFENONA -->
+    <div class="drug-card propa">
+      <div class="drug-letter" style="color:var(--teal)">P</div>
+      <div class="drug-name-label" style="color:var(--teal)">Classe IC · Van Williams</div>
+      <div class="drug-title">Propafenona</div>
+      <div style="background:rgba(18,130,162,0.15);border:1px solid rgba(18,130,162,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--teal-light);margin-bottom:14px;">PROPA só em coração POP</div>
+      <div class="drug-items">
+        <div class="drug-item"><span class="ok">✅</span><span>Reverte e mantém ritmo sinusal</span></div>
+        <div class="drug-item"><span class="ok">✅</span><span>1ª escolha em coração estruturalmente normal (POP: Puro, Organizado, Preservado)</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>Cardiopatia estrutural</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>Isquemia / DAC</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>Insuficiência cardíaca</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>Asma</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>HVE significativa</span></div>
+      </div>
+      <div class="drug-frase">"Propafenona é flecha fina: voa bem no coração normal, mas quebra parede rachada." — Dr. André Rossanno</div>
+    </div>
+
+    <!-- AMIODARONA -->
+    <div class="drug-card amio">
+      <div class="drug-letter" style="color:var(--gold)">A</div>
+      <div class="drug-name-label" style="color:var(--gold-light)">Multicanal · Classe III e outros</div>
+      <div class="drug-title">Amiodarona</div>
+      <div style="background:rgba(184,134,11,0.15);border:1px solid rgba(184,134,11,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--gold-light);margin-bottom:14px;">AMIO é canivete de UTI</div>
+      <div class="drug-items">
+        <div class="drug-item"><span class="ok">✅</span><span>Mais eficaz para manter ritmo sinusal entre os clássicos</span></div>
+        <div class="drug-item"><span class="ok">✅</span><span>Pode reverter para ritmo sinusal</span></div>
+        <div class="drug-item"><span class="ok">✅</span><span>Pode ser usada na IC e cardiopatia estrutural</span></div>
+        <div class="drug-item"><span style="color:var(--gold)">⚠</span><span>Aumenta QT — torsades raro (aumento homogêneo da repolarização)</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>Muitos efeitos colaterais — exige TRÊTA</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>NÃO é 1ª escolha de rotina</span></div>
+      </div>
+
+      <!-- TRÊTA -->
+      <div style="background:rgba(184,134,11,0.08);border:1px solid rgba(184,134,11,0.2);border-radius:10px;padding:14px;margin-top:12px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;">🔬 MNEMÔNICO TRÊTA — Monitorização</div>
+        <div class="treta-grid">
+          <div class="treta-item"><div class="treta-letter">T</div><div class="treta-word">TSH</div><div class="treta-detail">Antes e a cada 6 meses</div></div>
+          <div class="treta-item"><div class="treta-letter">R</div><div class="treta-word">RX/Espiro</div><div class="treta-detail">RX tórax + espirometria basal e seguimento</div></div>
+          <div class="treta-item"><div class="treta-letter">Ê</div><div class="treta-word">ECG</div><div class="treta-detail">Antes e periodicamente — QT</div></div>
+          <div class="treta-item"><div class="treta-letter">T</div><div class="treta-word">Transaminases</div><div class="treta-detail">Antes e a cada 6 meses</div></div>
+          <div class="treta-item"><div class="treta-letter">A</div><div class="treta-word">Avaliação Oftalmo</div><div class="treta-detail">Se sintomas visuais</div></div>
+        </div>
+      </div>
+
+      <div class="drug-frase" style="margin-top:12px;">"Amiodarona é remédio de respeito: salva ritmo, mas exige pedágio nos órgãos." — Dr. André Rossanno</div>
+    </div>
+
+    <!-- SOTALOL -->
+    <div class="drug-card sota">
+      <div class="drug-letter" style="color:var(--red-light)">S</div>
+      <div class="drug-name-label" style="color:var(--red-light)">Classe III + Beta</div>
+      <div class="drug-title">Sotalol</div>
+      <div style="background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--red-light);margin-bottom:14px;">Só talo no ritmo, não vira a chave</div>
+      <div class="drug-items">
+        <div class="drug-item"><span class="ok">✅</span><span>Manutenção do ritmo sinusal</span></div>
+        <div class="drug-item"><span class="ok">✅</span><span>Pode ser considerado em DAC conforme contexto</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>NÃO reverte FA — não serve para cardioversão química</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>NÃO combinar com betabloqueador (já tem ação beta)</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>Insuficiência cardíaca</span></div>
+        <div class="drug-item"><span class="no">⛔</span><span>HVE importante</span></div>
+        <div class="drug-item"><span style="color:var(--gold)">⚠</span><span>Aumenta QTc — vigilância obrigatória</span></div>
+      </div>
+      <div class="drug-frase">"Sotalol segura a velocidade, mas estica o QT como corda fina: se puxar demais, arrebenta." — Dr. André Rossanno</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- O TERRENO MANDA -->
+<section class="section" id="terreno">
+  <div class="section-header">
+    <div class="section-icon">🗺️</div>
+    <div>
+      <div class="section-label">N5 · Algoritmo</div>
+      <h2 class="section-title">O Terreno Manda na Droga</h2>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:24px;">
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Terreno Clínico</th>
+            <th>Preferir</th>
+            <th>Evitar</th>
+            <th>Pegadinha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--emerald-light);font-weight:600;">Coração normal</td>
+            <td><span class="yes-pill">Propafenona</span><br><span class="yes-pill" style="margin-top:4px;display:inline-block">Sotalol</span></td>
+            <td><span class="no-pill">Amiodarona de rotina</span></td>
+            <td style="font-size:11px;color:var(--gold);">PROPA só em coração POP</td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold);font-weight:600;">DAC / Isquemia</td>
+            <td><span class="maybe-pill">Sotalol (conforme contexto)</span></td>
+            <td><span class="no-pill">Propafenona</span></td>
+            <td style="font-size:11px;color:var(--gold);">Isquemia aumenta risco pró-arrítmico</td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold);font-weight:600;">HVE ≥14-15 mm</td>
+            <td><span class="yes-pill">Amiodarona</span></td>
+            <td><span class="no-pill">Propafenona</span><br><span class="no-pill" style="margin-top:4px;display:inline-block">Sotalol (cautela)</span></td>
+            <td style="font-size:11px;color:var(--gold);">Parede grossa muda o jogo</td>
+          </tr>
+          <tr>
+            <td style="color:var(--red-light);font-weight:600;">IC / FEVE reduzida</td>
+            <td><span class="yes-pill">Amiodarona</span><br><span class="maybe-pill" style="margin-top:4px;display:inline-block">Ablação em selecionados</span></td>
+            <td><span class="no-pill">Propafenona</span><br><span class="no-pill" style="margin-top:4px;display:inline-block">Verapamil/Diltiazem</span></td>
+            <td style="font-size:11px;color:var(--gold);">IC não combina com depressor de contratilidade</td>
+          </tr>
+          <tr>
+            <td style="color:var(--teal-light);font-weight:600;">FA por causa reversível</td>
+            <td><span class="yes-pill">Corrigir causa + reavaliar</span></td>
+            <td><span class="no-pill">Antiarrítmico crônico automático</span></td>
+            <td style="font-size:11px;color:var(--gold);">FA revertida não é casamento com antiarrítmico</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Na arritmia, a droga não escolhe o paciente; o terreno elétrico escolhe a droga."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- CONTROLE DE FREQUÊNCIA -->
+<section class="section" id="frequencia">
+  <div class="section-header">
+    <div class="section-icon">🛑</div>
+    <div>
+      <div class="section-label">N3 · Dupla Codificação</div>
+      <h2 class="section-title">Controle de Frequência — O Freio do Nó AV</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;">
+    Controle de frequência reduz sintomas e previne taquicardiomiopatia. <strong style="color:var(--white)">Não tenta restaurar ritmo sinusal.</strong> A meta depende dos sintomas e da função ventricular.
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
+    <div style="background:rgba(26,122,74,0.1);border:2px solid rgba(26,122,74,0.3);border-radius:14px;padding:22px;text-align:center;">
+      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:900;color:var(--green-light);margin-bottom:6px;">&lt;110</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green-light);margin-bottom:8px;">CONTROLE LENIENTE</div>
+      <div style="font-size:12px;color:var(--text-muted);">Paciente estável e <strong style="color:var(--white)">assintomático</strong> — aceitável, sem necessidade de apertar demais</div>
+    </div>
+    <div style="background:rgba(184,134,11,0.1);border:2px solid rgba(184,134,11,0.35);border-radius:14px;padding:22px;text-align:center;">
+      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:900;color:var(--gold);margin-bottom:6px;">~80</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:8px;">CONTROLE RIGOROSO</div>
+      <div style="font-size:12px;color:var(--text-muted);"><strong style="color:var(--white)">Sintomático</strong> ou FEVE piorando ou suspeita de taquicardiomiopatia — apertar o freio</div>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mnemônico — FREIO 110/80</div>
+    <div class="mnemonic-text"><span class="key">110</span> sem drama · <span class="key2">80</span> se incomoda</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Na FA, o ventrículo não precisa dançar bonito o tempo todo; mas não pode correr uma maratona dentro do peito."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- AS 4 CHAVES DO FREIO -->
+<section class="section" id="chaves">
+  <div class="section-header">
+    <div class="section-icon">🔑</div>
+    <div>
+      <div class="section-label">N3 · Visual + N7 · Mnemônico</div>
+      <h2 class="section-title">As Quatro Chaves do Freio</h2>
+    </div>
+  </div>
+
+  <div class="freq-grid">
+
+    <div class="freq-card" style="border-color:rgba(18,130,162,0.3);">
+      <div class="freq-icon">💊</div>
+      <div class="freq-title" style="color:var(--teal-light);">Betabloqueador</div>
+      <div class="freq-items">
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>1ª escolha na maioria dos pacientes</span></div>
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>Útil na hiperadrenergia, DAC, IC (com BB indicados para IC)</span></div>
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>Reduz resposta ventricular bem</span></div>
+        <div class="freq-item"><span style="color:var(--red-light)">⛔</span><span>Cuidado em broncoespasmo, bradicardia, choque</span></div>
+      </div>
+      <div style="margin-top:10px;padding:8px 12px;background:rgba(18,130,162,0.08);border-radius:8px;font-size:11px;font-style:italic;color:var(--text-muted);">"Beta bloqueia o grito adrenérgico."</div>
+    </div>
+
+    <div class="freq-card" style="border-color:rgba(184,134,11,0.3);">
+      <div class="freq-icon">🌡️</div>
+      <div class="freq-title" style="color:var(--gold);">Verapamil / Diltiazem</div>
+      <div class="freq-items">
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>BCC não di-hidropiridínicos — úteis se FEVE preservada</span></div>
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>FEVE &gt;40% → podem passar pela ponte levadiça</span></div>
+        <div class="freq-item"><span style="color:var(--red-light)">⛔</span><span>FEVE ≤40% — risco de piorar IC por efeito inotrópico negativo</span></div>
+      </div>
+      <div style="margin-top:10px;padding:8px 12px;background:rgba(184,134,11,0.08);border-radius:8px;font-size:11px;font-style:italic;color:var(--text-muted);">"Vera e Diltia só passam se a FEVE deixar. FEVE 40 é a ponte levadiça."</div>
+    </div>
+
+    <div class="freq-card" style="border-color:rgba(13,122,95,0.3);">
+      <div class="freq-icon">🐌</div>
+      <div class="freq-title" style="color:var(--emerald-light);">Digoxina</div>
+      <div class="freq-items">
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>Controla FC em <strong style="color:var(--white)">repouso</strong></span></div>
+        <div class="freq-item"><span style="color:var(--emerald-light)">✅</span><span>Útil em pacientes sedentários, IC, hipotensão</span></div>
+        <div class="freq-item"><span style="color:var(--red-light)">⛔</span><span>Pouco eficaz no esforço físico</span></div>
+        <div class="freq-item"><span style="color:var(--gold)">⚠</span><span>Monitorar toxicidade — idoso, mulher, disfunção renal, hipocalemia</span></div>
+      </div>
+      <div style="margin-top:10px;padding:8px 12px;background:rgba(13,122,95,0.08);border-radius:8px;font-size:11px;font-style:italic;color:var(--text-muted);">"DIGO descansa, mas não corre." — D=descanso, I=idoso cuidado, G=grau renal, O=olho no nível</div>
+    </div>
+
+    <div class="freq-card" style="border-color:rgba(192,57,43,0.25);">
+      <div class="freq-icon">⚠️</div>
+      <div class="freq-title" style="color:var(--red-light);">Amiodarona</div>
+      <div class="freq-items">
+        <div class="freq-item"><span style="color:var(--gold)">⚠</span><span>Controla FC em cenários selecionados — UTI, disfunção VE importante</span></div>
+        <div class="freq-item"><span style="color:var(--gold)">⚠</span><span>Pode <strong style="color:var(--white)">reverter ritmo</strong> — cuidado em FA &gt;24h sem anticoagulação</span></div>
+        <div class="freq-item"><span style="color:var(--red-light)">⛔</span><span>Não é 1ª escolha para controle de FC de rotina</span></div>
+      </div>
+      <div style="margin-top:10px;padding:8px 12px;background:rgba(192,57,43,0.06);border-radius:8px;font-size:11px;font-style:italic;color:var(--text-muted);">"Amio freia, mas também vira o volante." — Cuidado com reversão não planejada.</div>
+    </div>
+
+  </div>
+
+  <div class="quote-block">
+    <p>"Digoxina freia o repouso; beta-bloqueador freia o susto; verapamil freia com FEVE boa; amiodarona freia quando a UTI vira tabuleiro."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- FEVE 40 — A PONTE LEVADIÇA -->
+<section class="section" id="feve">
+  <div class="section-header">
+    <div class="section-icon">🌉</div>
+    <div>
+      <div class="section-label">N4 · Pegadinha Visual</div>
+      <h2 class="section-title">FEVE 40% — A Ponte Levadiça</h2>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mnemônico Visual</div>
+    <div class="mnemonic-text">"<span class="key">Quarenta</span> para baixo,<br><span class="key2">Vera e Diltia não passam</span>."</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="feve-grid">
+    <div style="background:rgba(26,122,74,0.1);border:2px solid rgba(26,122,74,0.3);border-radius:16px;padding:22px;">
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:900;color:var(--green-light);margin-bottom:14px;">🌉 FEVE &gt; 40%</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green-light);letter-spacing:2px;margin-bottom:10px;">PONTE ABERTA — PODE CONSIDERAR</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="yes-pill">✓</span> Betabloqueador</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="yes-pill">✓</span> Verapamil / Diltiazem</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="maybe-pill">~</span> Digoxina em cenários selecionados</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="maybe-pill">~</span> Amiodarona em cenários selecionados</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(192,57,43,0.1);border:2px solid rgba(192,57,43,0.35);border-radius:16px;padding:22px;">
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:900;color:var(--red-light);margin-bottom:14px;">🔒 FEVE ≤ 40%</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red-light);letter-spacing:2px;margin-bottom:10px;">PONTE FECHADA</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="yes-pill">✓</span> BB indicados para IC</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="yes-pill">✓</span> Digoxina</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="maybe-pill">~</span> Amiodarona em cenários selecionados</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="no-pill">✗</span> Verapamil — PROIBIDO</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="no-pill">✗</span> Diltiazem — PROIBIDO</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="no-pill">✗</span> Propafenona — PROIBIDA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top:20px;">
+    <p>"Quando a FEVE cai, a ponte levadiça sobe: nem toda droga atravessa o coração fraco."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ABLAÇÃO DO NÓ AV -->
+<section class="section" id="ablacao-nav">
+  <div class="section-header">
+    <div class="section-icon">🔥</div>
+    <div>
+      <div class="section-label">N5 · Algoritmo</div>
+      <h2 class="section-title">Ablação do Nó AV — Quando o Freio Falha</h2>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:24px;margin-bottom:20px;">
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;">
+      Se controle de frequência falha apesar de tratamento adequado ou há intolerância às drogas, considerar <strong style="color:var(--white)">ablação do nó AV</strong>. Lembrar que o paciente ficará <strong style="color:var(--red-light)">dependente de estimulação</strong> — escolher estratégia de estimulação adequada para evitar dissincronia. Em cenários apropriados, estimulação fisiológica pode ser considerada.
+    </p>
+    <div style="padding:14px 18px;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:10px;font-size:13px;color:var(--text);">
+      <strong style="color:var(--red-light);">⚠ Importante:</strong> A ablação do nó AV <strong style="color:var(--white)">não cura a FA</strong>. Ela silencia a passagem para proteger o ventrículo. Anticoagulação deve ser mantida conforme risco tromboembólico.
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mnemônico</div>
+    <div class="mnemonic-text">"Queimou a <span class="key">ponte AV</span>,<br>precisa de <span class="key2">estrada elétrica nova</span>."</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- FA COM WPW -->
+<section class="section" id="wpw">
+  <div class="section-header">
+    <div class="section-icon">🐺</div>
+    <div>
+      <div class="section-label">N6 · Narrativa · N4 · Pegadinha</div>
+      <h2 class="section-title">FA com WPW — O Lobo da Via Acessória</h2>
+    </div>
+  </div>
+
+  <div class="wpw-forest">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red-light);letter-spacing:3px;margin-bottom:16px;">🌲 A FLORESTA ELÉTRICA</div>
+    <p style="font-size:14px;color:var(--text);line-height:1.7;margin-bottom:16px;">
+      O <strong style="color:var(--white)">nó AV</strong> é o portão principal da floresta. A <strong style="color:var(--red-light)">via acessória</strong> é uma trilha secreta paralela. Na FA comum, o médico fecha o portão principal (nó AV) para controlar a frequência. <strong style="color:var(--red-light)">Na FA com WPW, fechar o portão principal pode soltar o lobo pela trilha secreta</strong> — o impulso desce pela via acessória em alta velocidade direto para o ventrículo, podendo degener para FV.
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+      <div style="background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);border-radius:12px;padding:16px;">
+        <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--red-light);margin-bottom:10px;">🐺 EVITAR no cenário agudo</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-muted);">
+          <div>⛔ Adenosina</div>
+          <div>⛔ Betabloqueador</div>
+          <div>⛔ Verapamil</div>
+          <div>⛔ Diltiazem</div>
+          <div>⛔ Digoxina</div>
+          <div>⚠ Amiodarona IV — controversa/desencorajada em FA pré-excitada em muitas diretrizes</div>
+        </div>
+      </div>
+      <div style="background:rgba(26,122,74,0.1);border:1px solid rgba(26,122,74,0.3);border-radius:12px;padding:16px;">
+        <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--green-light);margin-bottom:10px;">✅ CONDUTA</div>
+        <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-muted);">
+          <div>🔴 Se instável → CVE sincronizada imediata</div>
+          <div>🟡 Se estável → avaliação especializada + estratégia segura</div>
+          <div>🔵 Após estabilização → ablação da via acessória</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mnemônico do Lobo</div>
+    <div class="mnemonic-text">"WPW: <span class="key">não feche o AV</span>,<br>ou o lobo corre <span class="key2">pelo atalho</span>."</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Na FA comum, freio o nó AV; na FA com WPW, bloquear o nó AV pode soltar o lobo pela trilha acessória."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- TABELA COMPARATIVA SUPREMA -->
+<section class="section" id="tabela">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <div>
+      <div class="section-label">N3 · Dupla Codificação</div>
+      <h2 class="section-title">Tabela Comparativa Suprema</h2>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;">
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Droga</th>
+            <th>Reversão?</th>
+            <th>Mantém ritmo?</th>
+            <th>Controle FC?</th>
+            <th>Pode na IC?</th>
+            <th>Principal Pegadinha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--teal-light);font-weight:700;">Propafenona</td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td><span class="no-pill">Não é foco</span></td>
+            <td><span class="no-pill">Não</span></td>
+            <td style="color:var(--gold);font-size:11px;">Só coração normal (POP)</td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold);font-weight:700;">Amiodarona</td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td><span class="yes-pill">Sim — mais eficaz</span></td>
+            <td><span class="maybe-pill">Em cenários selecionados</span></td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td style="color:var(--gold);font-size:11px;">Muitos efeitos colaterais — TRÊTA</td>
+          </tr>
+          <tr>
+            <td style="color:var(--red-light);font-weight:700;">Sotalol</td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td><span class="maybe-pill">Reduz FC (ação beta)</span></td>
+            <td><span class="no-pill">Evitar IC</span></td>
+            <td style="color:var(--gold);font-size:11px;">Aumenta QTc · Não reverte</td>
+          </tr>
+          <tr>
+            <td style="color:var(--emerald-light);font-weight:700;">Digoxina</td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="maybe-pill">Repouso apenas</span></td>
+            <td><span class="yes-pill">Pode ajudar</span></td>
+            <td style="color:var(--gold);font-size:11px;">Falha no esforço</td>
+          </tr>
+          <tr>
+            <td style="color:var(--teal-light);font-weight:700;">Betabloqueador</td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td><span class="yes-pill">Sim (se para IC)</span></td>
+            <td style="color:var(--gold);font-size:11px;">Cuidado: broncoespasmo, bradicardia, choque</td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold);font-weight:700;">Verapamil / Diltiazem</td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="no-pill">Não</span></td>
+            <td><span class="yes-pill">Sim</span></td>
+            <td><span class="no-pill">Não se FEVE ≤40%</span></td>
+            <td style="color:var(--gold);font-size:11px;">Inotrópico negativo — FEVE 40 fecha a ponte</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PEGADINHAS -->
+<section class="section" id="pegadinhas">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <div>
+      <div class="section-label">N4 · Armadilhas de Prova</div>
+      <h2 class="section-title">Pegadinhas TEC 2026</h2>
+    </div>
+  </div>
+
+  <div class="trap-grid">
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA revertida = antiarrítmico crônico automático?</strong></div>
+      <div class="trap-why">NÃO. Procurar causa reversível (álcool, tireotóxica, etc.) e reavaliar. Não é casamento eterno com a droga.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Sotalol reverte FA?</strong></div>
+      <div class="trap-why">NÃO. Pode reduzir sintomas por abaixar FC (ação beta), mas não é agente de cardioversão química.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Digoxina reverte FA?</strong></div>
+      <div class="trap-why">NÃO. Controla FC em repouso. Não serve para cardioversão química.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Propafenona em IC ou cardiopatia estrutural?</strong></div>
+      <div class="trap-why">NÃO. Risco de depressão miocárdica e arritmias ventriculares. PROPA só em coração POP.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Amiodarona aumenta QT → muito torsades?</strong></div>
+      <div class="trap-why">NÃO. Aumenta QT, mas o aumento tende a ser homogêneo na repolarização, tornando torsades raro — diferente de outros que aumentam QT de forma dispersa.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Amiodarona para todo mundo?</strong></div>
+      <div class="trap-why">NÃO. É eficaz, mas cobra em tireoide, pulmão, fígado, olho e ECG. Usar quando alternativa segura não existe.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Verapamil/Diltiazem com FEVE 35%?</strong></div>
+      <div class="trap-why">NÃO. FEVE ≤40% fecha a ponte levadiça. Esses BCC têm efeito inotrópico negativo e podem piorar IC.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA com WPW: dar betabloqueador ou verapamil?</strong></div>
+      <div class="trap-why">NÃO. Bloquear o nó AV pode favorecer condução pela via acessória e degenerar para FV. O lobo corre pelo atalho.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Assintomático sempre precisa FC &lt;80?</strong></div>
+      <div class="trap-why">NÃO. Controle leniente (&lt;110 bpm) pode ser aceitável em estável e assintomático. "80 se incomoda."</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Sintomático com FC 105 está ok?</strong></div>
+      <div class="trap-why">TALVEZ NÃO. Sintoma manda apertar o freio — considerar controle mais rigoroso e investigar taquicardiomiopatia.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ALGORITMO CLÍNICO -->
+<section class="section" id="algoritmo">
+  <div class="section-header">
+    <div class="section-icon">🗺️</div>
+    <div>
+      <div class="section-label">N5 · Fluxo Visual</div>
+      <h2 class="section-title">Algoritmo Clínico — Módulo 3</h2>
+    </div>
+  </div>
+
+  <div class="algo-flow">
+    <div class="algo-step" style="border-color:rgba(13,122,95,0.5);background:rgba(13,122,95,0.1);">
+      <div class="algo-label">ENTRADA</div>
+      <strong style="color:var(--white);">Paciente com FA confirmada</strong>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step"><strong>Está instável? (hipotensão, choque, EAP)</strong></div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-branch">
+      <div class="algo-step algo-yes">
+        <div class="algo-label" style="color:var(--red-light);">SIM</div>
+        <strong style="color:var(--white);">Cardioversão Elétrica Sincronizada</strong><br>
+        <span style="font-size:11px;color:var(--text-muted);">Imediata — instabilidade não espera</span>
+      </div>
+      <div class="algo-step algo-no">
+        <div class="algo-label" style="color:var(--green-light);">NÃO</div>
+        <strong>Avaliar sintomas, FEVE, duração, cardiopatia e trombo</strong>
+      </div>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step"><strong>Objetivo principal: restaurar ritmo OU reduzir FC?</strong></div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-branch">
+      <div class="algo-step" style="border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.06);">
+        <div class="algo-label" style="color:var(--gold);">BÚSSOLA — Controle de Ritmo</div>
+        <strong>Cardioversão + Antiarrítmico + Ablação</strong><br>
+        <span style="font-size:11px;color:var(--text-muted);">Antes: avaliar trombo + anticoagulação<br>FA &gt;24h ou início incerto → ACO 3 sem ou ECOTE</span>
+      </div>
+      <div class="algo-step" style="border-color:rgba(13,122,95,0.4);background:rgba(13,122,95,0.06);">
+        <div class="algo-label" style="color:var(--emerald-light);">FREIO — Controle de Frequência</div>
+        <strong>FEVE &gt;40% → BB ou Vera/Diltia</strong><br>
+        <strong>FEVE ≤40% → BB para IC, digoxina, amio selecionado</strong><br>
+        <span style="font-size:11px;color:var(--text-muted);">Alvo: &lt;110 leniente / ~80 se sintomático</span>
+      </div>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step"><strong>Escolher antiarrítmico pelo TERRENO</strong><br>
+      <span style="font-size:11px;color:var(--text-muted);">Coração normal → propafenona · DAC → sotalol (conforme contexto) · HVE / IC → amiodarona</span>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step"><strong>FA com WPW?</strong></div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-branch">
+      <div class="algo-step algo-yes">
+        <div class="algo-label" style="color:var(--red-light);">SIM — WPW</div>
+        <strong style="color:var(--red-light);">Não bloquear nó AV!</strong><br>
+        <span style="font-size:11px;color:var(--text-muted);">Instável → CVE · Estável → avaliação especializada · Após estabilização → ablação da via acessória</span>
+      </div>
+      <div class="algo-step algo-no">
+        <div class="algo-label" style="color:var(--green-light);">NÃO</div>
+        <strong>Se falha no controle de FC</strong><br>
+        <span style="font-size:11px;color:var(--text-muted);">Considerar ablação do nó AV com estratégia de estimulação adequada</span>
+      </div>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step" style="border-color:rgba(18,130,162,0.4);background:rgba(18,130,162,0.06);">
+      <div class="algo-label" style="color:var(--teal);">SEMPRE — REAVALIAÇÃO DINÂMICA</div>
+      <strong>Anticoagulação, sintomas, FEVE, gatilhos e MEV</strong>
+    </div>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards">
+  <div class="section-header">
+    <div class="section-icon">🃏</div>
+    <div>
+      <div class="section-label">N4 · Testing Effect</div>
+      <h2 class="section-title">Flashcards — Toque para revelar</h2>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-bottom:20px;">Toque no card para ver a resposta.</p>
+  <div class="flashcard-grid">
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Diferença entre controle de ritmo e controle de frequência?</div><div class="fc-a">Ritmo: restaura/mantém ritmo sinusal. Frequência: apenas reduz resposta ventricular — FA continua presente.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Meta leniente de FC na FA estável e assintomática?</div><div class="fc-a">Em torno de &lt;110 bpm em repouso.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Quando buscar controle mais rigoroso de FC?</div><div class="fc-a">Sintomas, piora da FEVE ou suspeita de taquicardiomiopatia — alvo próximo de 80 bpm.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Quais drogas mantêm ritmo sinusal?</div><div class="fc-a">Propafenona, amiodarona e sotalol.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Sotalol reverte FA?</div><div class="fc-a">NÃO. Serve para manutenção do ritmo sinusal, não para cardioversão química.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Digoxina reverte FA?</div><div class="fc-a">NÃO. Controla FC em repouso apenas. Não é agente de cardioversão.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Quando evitar propafenona?</div><div class="fc-a">Cardiopatia estrutural, isquemia, IC, HVE significativa e asma.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Antiarrítmico mais eficaz para manutenção do ritmo sinusal entre os clássicos?</div><div class="fc-a">Amiodarona — mas não é 1ª escolha de rotina pelos efeitos colaterais.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Mnemônico da monitorização da amiodarona?</div><div class="fc-a">TRÊTA: TSH, RX/espirometria, ECG, Transaminases, Avaliação oftalmo se sintomas.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Qual corte de FEVE fecha a porta para verapamil/diltiazem?</div><div class="fc-a">FEVE ≤40%. "Quarenta para baixo, Vera e Diltia não passam."</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">O que fazer se controle medicamentoso de FC falha?</div><div class="fc-a">Considerar ablação do nó AV com estratégia adequada de estimulação — paciente ficará dependente de marca-passo.</div><div class="fc-hint">↓ toque para revelar</div></div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="fc-q">Por que evitar bloqueadores do nó AV na FA com WPW?</div><div class="fc-a">Podem favorecer condução pela via acessória em alta velocidade e degenerar para FV — o lobo corre pelo atalho.</div><div class="fc-hint">↓ toque para revelar</div></div>
+  </div>
+</section>
+
+<!-- FRASES FILOSÓFICAS -->
+<section class="section" id="frases">
+  <div class="section-header">
+    <div class="section-icon">💬</div>
+    <div>
+      <div class="section-label">N6 · Emoção + Narrativa</div>
+      <h2 class="section-title">Frases Filosóficas</h2>
+    </div>
+  </div>
+  <div class="frases-grid">
+    <div class="frase-card"><p>"Frequência é velocidade; ritmo é direção. Na FA, tratar bem é saber quando frear e quando devolver a estrada."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Antiarrítmico sem procurar gatilho é apagar fumaça sem entrar na cozinha."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Cardioverter sem procurar trombo é abrir o portão do castelo sem saber se há dragão na torre."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Propafenona é flecha fina: voa bem no coração normal, mas quebra parede rachada."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Amiodarona é remédio de respeito: salva ritmo, mas exige pedágio nos órgãos."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Quando a amiodarona entra, o ECG sorri, mas tireoide, pulmão e fígado pedem ata de reunião."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Sotalol segura a velocidade, mas estica o QT como corda fina: se puxar demais, arrebenta."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Quando a FEVE cai, a ponte levadiça sobe: nem toda droga atravessa o coração fraco."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Na FA comum, freio o nó AV; na FA com WPW, bloquear o nó AV pode soltar o lobo pela trilha acessória."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"A ablação do nó AV não cura a FA; ela silencia a passagem para proteger o ventrículo."</p><div class="author">— Dr. André Rossanno</div></div>
+    <div class="frase-card"><p>"Na arritmia, a droga não escolhe o paciente; o terreno elétrico escolhe a droga."</p><div class="author">— Dr. André Rossanno</div></div>
+  </div>
+
+  <!-- Frase final grande -->
+  <div style="background:linear-gradient(135deg,rgba(13,122,95,0.15),rgba(6,15,30,0.8));border:2px solid rgba(13,122,95,0.3);border-radius:20px;padding:32px;margin-top:24px;text-align:center;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:16px;">FRASE GUIA DO MÓDULO</div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(15px,3vw,20px);font-weight:700;color:var(--white);line-height:1.6;margin-bottom:16px;">
+      "O bom médico não trata apenas a arritmia:<br>ele lê o terreno, mede o risco, escolhe o freio e aponta a bússola."
+    </div>
+    <div style="font-family:'Dancing Script',cursive;font-size:22px;color:var(--gold);">Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div>
+      <div class="section-label">N6 · Quiz Interativo</div>
+      <h2 class="section-title">Simulado — Módulo 3</h2>
+    </div>
+  </div>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <div class="quiz-title">6 Questões Estilo TEC</div>
+      <div class="score-display">Score: <span id="score">0</span> / <span id="total">6</span></div>
+    </div>
+
+    <div class="question-card active" id="q1">
+      <div class="question-num">QUESTÃO 01 / 06</div>
+      <div class="question-text">Paciente com FA paroxística revertida após libação alcoólica. Assintomático depois, sem recorrência documentada. Conduta mais correta:</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q1')"><span class="option-letter">A</span>Antiarrítmico crônico automático para prevenir recorrência</button>
+        <button class="option" onclick="answer(this,true,'q1')"><span class="option-letter">B</span>Corrigir o gatilho (álcool), recomendar MEV e reavaliar</button>
+        <button class="option" onclick="answer(this,false,'q1')"><span class="option-letter">C</span>Sotalol para reversão se recorrer</button>
+        <button class="option" onclick="answer(this,false,'q1')"><span class="option-letter">D</span>Digoxina para manter ritmo sinusal</button>
+      </div>
+      <div class="feedback" id="fb1">✅ <strong>Correto — B.</strong> FA revertida após causa reversível não significa antiarrítmico crônico automático. Corrija a faísca (álcool), institua MEV e reavalie. Sotalol não serve para reversão. Digoxina não mantém ritmo sinusal.</div>
+    </div>
+
+    <div class="question-card" id="q2">
+      <div class="question-num">QUESTÃO 02 / 06</div>
+      <div class="question-text">Paciente com FA, FEVE 35%, precisa controle de FC. Qual droga evitar?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q2')"><span class="option-letter">A</span>Betabloqueador apropriado para IC</button>
+        <button class="option" onclick="answer(this,false,'q2')"><span class="option-letter">B</span>Digoxina</button>
+        <button class="option" onclick="answer(this,true,'q2')"><span class="option-letter">C</span>Diltiazem</button>
+        <button class="option" onclick="answer(this,false,'q2')"><span class="option-letter">D</span>Amiodarona em cenário selecionado</button>
+      </div>
+      <div class="feedback" id="fb2">✅ <strong>Correto — C.</strong> FEVE 35% ≤ 40% — a ponte levadiça está fechada para verapamil e diltiazem. Efeito inotrópico negativo pode piorar a IC. BB para IC, digoxina e amiodarona em cenários selecionados podem ser usados.</div>
+    </div>
+
+    <div class="question-card" id="q3">
+      <div class="question-num">QUESTÃO 03 / 06</div>
+      <div class="question-text">Homem 58 anos, FA paroxística, coração estruturalmente normal, sem DAC, sem IC. Antiarrítmico possível para reversão e manutenção:</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,true,'q3')"><span class="option-letter">A</span>Propafenona</button>
+        <button class="option" onclick="answer(this,false,'q3')"><span class="option-letter">B</span>Digoxina</button>
+        <button class="option" onclick="answer(this,false,'q3')"><span class="option-letter">C</span>Verapamil como manutenção de ritmo</button>
+        <button class="option" onclick="answer(this,false,'q3')"><span class="option-letter">D</span>Adenosina</button>
+      </div>
+      <div class="feedback" id="fb3">✅ <strong>Correto — A.</strong> Coração POP (Puro, Organizado, Preservado) → propafenona pode entrar. É Classe IC e pode reverter e manter RS. Digoxina não mantém ritmo. Verapamil não é antiarrítmico de manutenção. Adenosina é para TSV aguda.</div>
+    </div>
+
+    <div class="question-card" id="q4">
+      <div class="question-num">QUESTÃO 04 / 06</div>
+      <div class="question-text">Paciente com FA em uso de sotalol. Qual é a principal vigilância?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q4')"><span class="option-letter">A</span>Encurtamento do QT</button>
+        <button class="option" onclick="answer(this,true,'q4')"><span class="option-letter">B</span>Aumento do QTc</button>
+        <button class="option" onclick="answer(this,false,'q4')"><span class="option-letter">C</span>Hipercalcemia</button>
+        <button class="option" onclick="answer(this,false,'q4')"><span class="option-letter">D</span>Supressão de TSH obrigatória</button>
+      </div>
+      <div class="feedback" id="fb4">✅ <strong>Correto — B.</strong> Sotalol prolonga o QTc — principal risco é torsades de pointes. Monitorar QTc antes e durante o tratamento. TSH é monitorização da amiodarona, não do sotalol.</div>
+    </div>
+
+    <div class="question-card" id="q5">
+      <div class="question-num">QUESTÃO 05 / 06</div>
+      <div class="question-text">Paciente com FA e pré-excitação (WPW), alta resposta ventricular, hemodinamicamente estável. Qual é a pegadinha mais importante?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q5')"><span class="option-letter">A</span>Usar digoxina para controlar FC</button>
+        <button class="option" onclick="answer(this,false,'q5')"><span class="option-letter">B</span>Usar verapamil por ser seguro na FA</button>
+        <button class="option" onclick="answer(this,true,'q5')"><span class="option-letter">C</span>Bloquear o nó AV pode favorecer condução pela via acessória e degenerar para FV</button>
+        <button class="option" onclick="answer(this,false,'q5')"><span class="option-letter">D</span>Betabloqueador é sempre a primeira linha no WPW</button>
+      </div>
+      <div class="feedback" id="fb5">✅ <strong>Correto — C.</strong> Na FA com WPW, bloquear o nó AV (adenosina, betabloqueador, verapamil, diltiazem, digoxina) pode soltar o lobo pela trilha acessória — condução rápida pela via acessória pode degenerar para FV. CVE se instável; avaliação especializada se estável.</div>
+    </div>
+
+    <div class="question-card" id="q6">
+      <div class="question-num">QUESTÃO 06 / 06</div>
+      <div class="question-text">Qual mnemônico resume a monitorização obrigatória da amiodarona?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q6')"><span class="option-letter">A</span>ARDE</button>
+        <button class="option" onclick="answer(this,true,'q6')"><span class="option-letter">B</span>TRÊTA</button>
+        <button class="option" onclick="answer(this,false,'q6')"><span class="option-letter">C</span>API pede 2</button>
+        <button class="option" onclick="answer(this,false,'q6')"><span class="option-letter">D</span>FAÍSCA</button>
+      </div>
+      <div class="feedback" id="fb6">✅ <strong>Correto — B.</strong> TRÊTA: TSH (antes e 6/6 meses) · RX/Espirometria (basal e seguimento) · ECG (antes e periódico — QT) · Transaminases (antes e 6/6 meses) · Avaliação Oftalmológica (se sintomas visuais).</div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+      <div class="question-counter" id="q-counter">Questão 1 de 6</div>
+      <button class="btn-quiz" id="btn-next" onclick="nextQuestion()">Próxima →</button>
+    </div>
+  </div>
+</section>
+
+<!-- REVISÃO RÁPIDA -->
+<section class="section" id="revisao">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div>
+      <div class="section-label">N5 · Síntese Final</div>
+      <h2 class="section-title">Revisão Ultrarrápida</h2>
+    </div>
+  </div>
+
+  <div class="review-tabs">
+    <div class="review-tab active" onclick="setReview(this,'r10')">⚡ 10 segundos</div>
+    <div class="review-tab" onclick="setReview(this,'r30')">🕐 30 segundos</div>
+    <div class="review-tab" onclick="setReview(this,'r60')">⏱️ 1 minuto</div>
+  </div>
+
+  <div class="review-content active" id="r10">
+    Na FA, <strong>frequência é freio</strong> e <strong>ritmo é bússola</strong>. <strong>FEVE, sintomas, trombo e terreno</strong> decidem a estratégia.
+  </div>
+
+  <div class="review-content" id="r30">
+    Controle de FC alivia sintomas e previne taquicardiomiopatia. Alvo leniente <strong>&lt;110</strong> se estável e assintomático; mais rigoroso <strong>~80</strong> se sintomático ou FEVE piorando. Controle de ritmo usa cardioversão, antiarrítmico ou ablação, mas antes <strong>avaliar trombo e anticoagulação</strong> se FA &gt;24h.
+  </div>
+
+  <div class="review-content" id="r60">
+    <strong>Propafenona</strong>: reverte e mantém, mas só em coração POP (normal). <strong>Amiodarona</strong>: mais eficaz para manter RS, pode usar na IC, mas exige <strong>TRÊTA</strong> (TSH, RX/espiro, ECG, transaminases, oftalmo se sintomas). <strong>Sotalol</strong>: não reverte, aumenta QTc, evitar na IC. <strong>Digoxina</strong>: não reverte, funciona melhor em repouso. <strong>FEVE 40%</strong> é a ponte levadiça: abaixo disso, verapamil e diltiazem não passam. Na <strong>FA com WPW</strong>, bloquear nó AV é soltar o lobo pela via acessória — CVE se instável, avaliação especializada se estável, ablação da via acessória depois.
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(13,122,95,0.12),rgba(6,15,30,0.8));border:1px solid rgba(13,122,95,0.3);border-radius:16px;padding:24px;margin-top:24px;text-align:center;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">FRASE FINAL</div>
+    <div style="font-family:'Syne',sans-serif;font-size:clamp(13px,2.5vw,17px);font-weight:700;color:var(--white);line-height:1.6;margin-bottom:12px;">
+      "Frequência é o freio. Ritmo é a bússola.<br>Trombo é o dragão escondido antes da virada."
+    </div>
+    <div style="font-family:'Dancing Script',cursive;font-size:20px;color:var(--gold);">Dr. André Rossanno</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">Dr. André Rossanno</div>
+  <div class="footer-text">
+    Método André Rossanno de Memorização Médica<br>
+    Atlas Mental Interativo · Módulo 3 — O Freio e a Bússola<br>
+    memoriapotencial.com.br<br>
+    Base educacional: ESC 2024, SBC 2025 e conteúdo de aula Mentoria TEC 2026.
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const s=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progress-bar').style.width=s+'%';
+  document.querySelectorAll('.section').forEach(sec=>{
+    const r=sec.getBoundingClientRect();
+    if(r.top<window.innerHeight*0.85)sec.classList.add('visible');
+  });
+});
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.section').forEach(sec=>{
+    const r=sec.getBoundingClientRect();
+    if(r.top<window.innerHeight*0.85)sec.classList.add('visible');
+  });
+});
+
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+document.addEventListener('click',(e)=>{
+  const sb=document.getElementById('sidebar'),tg=document.getElementById('menu-toggle');
+  if(sb.classList.contains('open')&&!sb.contains(e.target)&&!tg.contains(e.target))sb.classList.remove('open');
+});
+
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('sidebar').classList.remove('open');}
+}
+
+let currentQ=1,score=0,answered=[false,false,false,false,false,false];
+function answer(btn,isCorrect,qId){
+  const qNum=parseInt(qId.replace('q',''));
+  if(answered[qNum-1])return;
+  answered[qNum-1]=true;
+  const options=btn.parentElement.querySelectorAll('.option');
+  options.forEach(o=>o.disabled=true);
+  const fb=document.getElementById('fb'+qNum);
+  if(isCorrect){btn.classList.add('correct');fb.classList.add('correct-fb','show');score++;document.getElementById('score').textContent=score;}
+  else{btn.classList.add('wrong');fb.classList.add('wrong-fb','show');options.forEach(o=>{if(o.getAttribute('onclick').includes('true'))o.classList.add('correct');});}
+}
+function nextQuestion(){
+  if(currentQ<6){
+    document.getElementById('q'+currentQ).classList.remove('active');
+    currentQ++;
+    document.getElementById('q'+currentQ).classList.add('active');
+    document.getElementById('q-counter').textContent=`Questão ${currentQ} de 6`;
+    if(currentQ===6)document.getElementById('btn-next').textContent='Finalizar ✓';
+  } else {
+    const container=document.querySelector('.quiz-container');
+    const result=document.createElement('div');
+    result.style.cssText='margin-top:20px;padding:24px;background:rgba(13,122,95,0.12);border:1px solid rgba(13,122,95,0.3);border-radius:14px;text-align:center;';
+    result.innerHTML=`<div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:900;color:${score>=5?'var(--green-light)':'var(--gold)'};">${score}/6</div><div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score===6?'🏆 Perfeito! Módulo 3 dominado.':score>=5?'✅ Muito bem! Revise os erros.':'📖 Revise o módulo antes de avançar.'}</div>`;
+    document.getElementById('btn-next').style.display='none';
+    container.appendChild(result);
+  }
+}
+function resetQuiz(){
+  currentQ=1;score=0;answered=[false,false,false,false,false,false];
+  document.getElementById('score').textContent='0';
+  document.getElementById('q-counter').textContent='Questão 1 de 6';
+  document.getElementById('btn-next').textContent='Próxima →';
+  document.getElementById('btn-next').style.display='';
+  document.querySelectorAll('.question-card').forEach((q,i)=>{
+    q.classList.toggle('active',i===0);
+    q.querySelectorAll('.option').forEach(o=>{o.disabled=false;o.classList.remove('correct','wrong');});
+    const fb=q.querySelector('.feedback');
+    if(fb)fb.classList.remove('show','correct-fb','wrong-fb');
+  });
+  const extra=document.querySelector('.quiz-container>div:last-child');
+  if(extra&&extra.style.background)extra.remove();
+}
+function setReview(tab,id){
+  document.querySelectorAll('.review-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.review-content').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

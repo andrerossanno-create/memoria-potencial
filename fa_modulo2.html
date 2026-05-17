@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FA — Módulo 2 | O Trono do Trombo | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B2545;
+  --navy-light: #0f2f5a;
+  --teal: #1282A2;
+  --teal-light: #1a9cbf;
+  --mint: #034078;
+  --gold: #C9A84C;
+  --gold-light: #e8c66a;
+  --red: #C0392B;
+  --red-light: #e74c3c;
+  --green: #1a7a4a;
+  --green-light: #27ae60;
+  --yellow: #b8860b;
+  --yellow-light: #f0c040;
+  --blood: #8B0000;
+  --blood-light: #c0392b;
+  --white: #f0f4f8;
+  --text: #d4e1f7;
+  --text-muted: #8ba3c7;
+  --glass: rgba(18,130,162,0.08);
+  --glass-border: rgba(18,130,162,0.2);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(192,57,43,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 85% 80%, rgba(11,37,69,0.8) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #0B2545 0%, #060f1e 100%);
+  z-index:-2;
+}
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(192,57,43,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,130,162,0.03) 1px, transparent 1px);
+  background-size:40px 40px;
+  z-index:-1;
+}
+
+#progress-bar {
+  position:fixed; top:0; left:0;
+  height:3px; width:0%;
+  background:linear-gradient(90deg, var(--red-light), var(--gold));
+  z-index:1000; transition:width 0.1s;
+}
+
+/* SIDEBAR */
+#sidebar {
+  position:fixed; left:0; top:0;
+  width:260px; height:100vh;
+  background:rgba(6,15,30,0.95);
+  border-right:1px solid var(--glass-border);
+  backdrop-filter:blur(20px);
+  z-index:900; overflow-y:auto;
+  padding:24px 0 40px;
+  transform:translateX(-260px);
+  transition:transform 0.3s ease;
+}
+#sidebar.open { transform:translateX(0); }
+#sidebar::-webkit-scrollbar { width:4px; }
+#sidebar::-webkit-scrollbar-thumb { background:var(--red-light); border-radius:2px; }
+
+.sidebar-logo { padding:0 20px 20px; border-bottom:1px solid var(--glass-border); margin-bottom:16px; }
+.sidebar-logo .brand { font-family:'Syne',sans-serif; font-size:11px; font-weight:800; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; }
+.sidebar-logo .title { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-muted); margin-top:4px; }
+.sidebar-section { padding:8px 20px 4px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; }
+.sidebar-link { display:block; padding:10px 20px; font-family:'IBM Plex Sans',sans-serif; font-size:12px; color:var(--text-muted); text-decoration:none; transition:all 0.2s; border-left:2px solid transparent; cursor:pointer; }
+.sidebar-link:hover { color:var(--white); background:rgba(192,57,43,0.1); }
+.sidebar-link.active { color:var(--gold); border-left-color:var(--gold); background:rgba(201,168,76,0.08); }
+.sidebar-module { display:block; padding:12px 20px; font-family:'Syne',sans-serif; font-size:11px; font-weight:700; color:var(--text-muted); text-decoration:none; letter-spacing:1px; text-transform:uppercase; transition:all 0.2s; cursor:pointer; }
+.sidebar-module.current { color:var(--red-light); }
+.sidebar-module.locked { opacity:0.4; }
+.sidebar-module.done { color:var(--teal); }
+
+#menu-toggle {
+  position:fixed; top:16px; left:16px;
+  width:44px; height:44px;
+  background:rgba(6,15,30,0.9);
+  border:1px solid var(--glass-border);
+  border-radius:8px; cursor:pointer;
+  z-index:950; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:5px;
+  backdrop-filter:blur(10px); transition:all 0.2s;
+}
+#menu-toggle:hover { border-color:var(--red-light); }
+#menu-toggle span { width:20px; height:2px; background:var(--text); border-radius:1px; }
+
+main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  justify-content:center; padding:80px 0 60px; position:relative;
+}
+.hero-kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red-light); letter-spacing:4px; text-transform:uppercase; margin-bottom:20px; opacity:0; animation:fadeUp 0.8s ease 0.2s forwards; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3); border-radius:20px; padding:6px 16px; margin-bottom:32px; opacity:0; animation:fadeUp 0.8s ease 0.3s forwards; }
+.hero-badge span { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#e74c3c; }
+.hero-title { font-family:'Syne',sans-serif; font-size:clamp(36px,8vw,72px); font-weight:900; line-height:1.0; color:var(--white); margin-bottom:8px; opacity:0; animation:fadeUp 0.8s ease 0.4s forwards; }
+.hero-title .highlight { color:var(--red-light); }
+.hero-title .accent { color:var(--gold); }
+.hero-subtitle { font-family:'Syne',sans-serif; font-size:clamp(18px,4vw,28px); font-weight:600; color:var(--text-muted); margin-bottom:40px; opacity:0; animation:fadeUp 0.8s ease 0.5s forwards; }
+.hero-quote { background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(11,37,69,0.6)); border:1px solid rgba(192,57,43,0.25); border-left:4px solid var(--red-light); border-radius:12px; padding:28px 32px; margin-bottom:40px; max-width:700px; opacity:0; animation:fadeUp 0.8s ease 0.6s forwards; }
+.hero-quote p { font-family:'IBM Plex Sans',sans-serif; font-size:16px; font-style:italic; line-height:1.7; color:var(--white); margin-bottom:12px; }
+.hero-quote .author { font-family:'Dancing Script',cursive; font-size:18px; color:var(--gold); }
+
+/* MODULE NAV */
+.module-nav { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:80px; opacity:0; animation:fadeUp 0.8s ease 0.8s forwards; }
+@media(max-width:600px) { .module-nav { grid-template-columns:1fr; } }
+.module-card { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:12px; padding:20px; cursor:pointer; transition:all 0.3s; text-decoration:none; display:block; position:relative; overflow:hidden; }
+.module-card:hover { border-color:var(--teal); transform:translateY(-2px); }
+.module-card.active-module { border-color:var(--red-light); background:rgba(192,57,43,0.12); }
+.module-card.done-module { border-color:var(--teal); background:rgba(18,130,162,0.08); }
+.module-card.locked-module { opacity:0.5; cursor:default; }
+.module-card.locked-module:hover { transform:none; }
+.module-num { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:2px; margin-bottom:6px; }
+.module-name { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.module-desc { font-size:11px; color:var(--text-muted); line-height:1.5; }
+.module-status { position:absolute; top:16px; right:16px; font-family:'IBM Plex Mono',monospace; font-size:9px; padding:3px 8px; border-radius:10px; }
+.status-active { background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.4); }
+.status-done { background:rgba(18,130,162,0.2); color:var(--teal-light); border:1px solid rgba(18,130,162,0.4); }
+.status-soon { background:rgba(201,168,76,0.1); color:var(--gold); border:1px solid rgba(201,168,76,0.3); }
+
+.click-hint { display:inline-flex; align-items:center; gap:8px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.3); border-radius:20px; padding:8px 16px; margin-bottom:32px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red-light); }
+.click-hint .pulse { width:8px; height:8px; background:var(--red-light); border-radius:50%; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+
+/* SECTION */
+.section { margin-bottom:80px; opacity:0; transform:translateY(30px); transition:opacity 0.6s ease,transform 0.6s ease; }
+.section.visible { opacity:1; transform:translateY(0); }
+.section-header { display:flex; align-items:center; gap:16px; margin-bottom:32px; padding-bottom:16px; border-bottom:1px solid var(--glass-border); }
+.section-icon { width:48px; height:48px; background:linear-gradient(135deg,var(--red),var(--blood)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.section-label { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; }
+.section-title { font-family:'Syne',sans-serif; font-size:clamp(22px,4vw,32px); font-weight:800; color:var(--white); line-height:1.1; }
+
+/* QUOTE */
+.quote-block { background:linear-gradient(135deg,rgba(192,57,43,0.08),rgba(11,37,69,0.5)); border:1px solid rgba(192,57,43,0.2); border-left:4px solid var(--red-light); border-radius:12px; padding:24px 28px; margin:24px 0; }
+.quote-block p { font-family:'IBM Plex Sans',sans-serif; font-size:15px; font-style:italic; line-height:1.7; color:var(--white); margin-bottom:10px; }
+.quote-block .author { font-family:'Dancing Script',cursive; font-size:17px; color:var(--gold); }
+
+/* ACCORDION */
+.care-container { display:flex; flex-direction:column; gap:16px; }
+.care-card { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:16px; overflow:hidden; transition:all 0.3s; }
+.care-card:hover { border-color:rgba(192,57,43,0.4); }
+.care-header { display:flex; align-items:center; gap:16px; padding:20px 24px; cursor:pointer; user-select:none; }
+.care-chevron { color:var(--text-muted); font-size:18px; transition:transform 0.3s; margin-left:auto; }
+.care-header.open .care-chevron { transform:rotate(180deg); }
+.care-body { display:none; padding:0 24px 24px; border-top:1px solid var(--glass-border); }
+.care-body.open { display:block; }
+.care-note { margin-top:16px; padding:14px 16px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:10px; font-size:12px; color:var(--text-muted); line-height:1.6; }
+.care-note strong { color:var(--gold); }
+
+/* ACCORDION HINT */
+.accordion-hint { display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); margin-bottom:12px; }
+.accordion-hint .blink { animation:pulse 1.5s infinite; }
+
+/* TRAP CARDS */
+.trap-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; }
+.trap-card { background:rgba(6,15,30,0.6); border:1px solid rgba(192,57,43,0.25); border-left:3px solid var(--red-light); border-radius:12px; padding:16px 18px; transition:all 0.3s; }
+.trap-card:hover { border-color:rgba(192,57,43,0.5); background:rgba(192,57,43,0.06); }
+.trap-icon { font-size:16px; margin-bottom:8px; }
+.trap-text { font-size:13px; color:var(--text); line-height:1.5; }
+.trap-why { margin-top:8px; font-size:11px; color:var(--text-muted); }
+
+/* MNEMONIC CARD */
+.mnemonic-card { background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(11,37,69,0.5)); border:1px solid rgba(192,57,43,0.3); border-radius:16px; padding:28px 32px; text-align:center; margin:20px 0; }
+.mnemonic-label { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; }
+.mnemonic-text { font-family:'Syne',sans-serif; font-size:clamp(18px,4vw,28px); font-weight:900; color:var(--white); margin-bottom:12px; }
+.mnemonic-text .key { color:var(--red-light); }
+.mnemonic-text .key2 { color:var(--gold); }
+.mnemonic-author { font-family:'Dancing Script',cursive; font-size:16px; color:var(--gold); }
+
+/* QUIZ */
+.quiz-container { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:20px; padding:32px; }
+.quiz-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+.quiz-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; color:var(--white); }
+.score-display { background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3); border-radius:10px; padding:8px 16px; font-family:'IBM Plex Mono',monospace; font-size:14px; color:#e74c3c; }
+.score-display span { color:var(--white); font-weight:500; }
+.question-card { background:rgba(6,15,30,0.5); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:16px; display:none; }
+.question-card.active { display:block; }
+.question-num { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); letter-spacing:2px; margin-bottom:10px; }
+.question-text { font-size:15px; color:var(--white); line-height:1.6; margin-bottom:20px; font-weight:500; }
+.options { display:flex; flex-direction:column; gap:10px; }
+.option { background:rgba(192,57,43,0.06); border:1px solid var(--glass-border); border-radius:10px; padding:14px 18px; cursor:pointer; font-size:13px; color:var(--text); transition:all 0.2s; text-align:left; display:flex; align-items:flex-start; gap:10px; }
+.option:hover:not(:disabled) { border-color:var(--red-light); color:var(--white); background:rgba(192,57,43,0.12); }
+.option.correct { border-color:var(--green-light); background:rgba(26,122,74,0.15); color:var(--white); }
+.option.wrong { border-color:var(--red-light); background:rgba(192,57,43,0.12); color:var(--white); }
+.option-letter { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red-light); min-width:20px; font-weight:500; padding-top:1px; }
+.feedback { margin-top:16px; padding:16px 18px; border-radius:10px; font-size:13px; line-height:1.6; display:none; }
+.feedback.show { display:block; }
+.feedback.correct-fb { background:rgba(26,122,74,0.15); border:1px solid rgba(26,122,74,0.3); color:var(--white); }
+.feedback.wrong-fb { background:rgba(192,57,43,0.12); border:1px solid rgba(192,57,43,0.3); color:var(--white); }
+.quiz-nav { display:flex; gap:12px; margin-top:20px; justify-content:space-between; align-items:center; }
+.btn-quiz { background:linear-gradient(135deg,var(--red),var(--blood)); color:white; border:none; border-radius:10px; padding:12px 24px; font-family:'Syne',sans-serif; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; }
+.btn-quiz:hover { opacity:0.85; transform:translateY(-1px); }
+.btn-reset { background:transparent; color:var(--text-muted); border:1px solid var(--glass-border); border-radius:10px; padding:12px 24px; font-family:'Syne',sans-serif; font-size:13px; cursor:pointer; transition:all 0.2s; }
+.btn-reset:hover { border-color:var(--red-light); color:var(--white); }
+.question-counter { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-muted); }
+
+/* REVIEW TABS */
+.review-tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.review-tab { padding:8px 20px; background:rgba(6,15,30,0.5); border:1px solid var(--glass-border); border-radius:20px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-muted); cursor:pointer; transition:all 0.2s; }
+.review-tab.active { background:rgba(192,57,43,0.2); border-color:var(--red-light); color:#e74c3c; }
+.review-content { background:rgba(6,15,30,0.5); border:1px solid var(--glass-border); border-radius:14px; padding:24px; display:none; font-size:14px; line-height:1.8; color:var(--text); }
+.review-content.active { display:block; }
+.review-content strong { color:var(--red-light); }
+
+/* PALACE GRID */
+.palace-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+@media(max-width:600px) { .palace-grid { grid-template-columns:1fr; } }
+.palace-room { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:16px; padding:24px; transition:all 0.3s; position:relative; overflow:hidden; }
+.palace-room:hover { border-color:rgba(192,57,43,0.4); transform:translateY(-2px); }
+.palace-icon { font-size:36px; margin-bottom:12px; }
+.palace-letter { font-family:'Syne',sans-serif; font-size:48px; font-weight:900; position:absolute; right:20px; top:16px; opacity:0.08; }
+.palace-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px; }
+.palace-desc { font-size:12px; color:var(--text-muted); line-height:1.6; }
+
+/* DOAC CARDS */
+.doac-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:28px; }
+@media(max-width:600px) { .doac-grid { grid-template-columns:1fr; } }
+
+.doac-card {
+  border-radius:16px; padding:24px; position:relative; overflow:hidden;
+  transition:all 0.3s;
+}
+.doac-card:hover { transform:translateY(-3px); }
+.doac-card.api { background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(3,64,120,0.3)); border:2px solid rgba(18,130,162,0.4); }
+.doac-card.riva { background:linear-gradient(135deg,rgba(26,122,74,0.15),rgba(11,37,69,0.5)); border:2px solid rgba(26,122,74,0.4); }
+.doac-card.dabi { background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(11,37,69,0.5)); border:2px solid rgba(192,57,43,0.4); }
+.doac-card.edo { background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(11,37,69,0.5)); border:2px solid rgba(184,134,11,0.4); }
+
+.doac-letter {
+  font-family:'Syne',sans-serif; font-size:56px; font-weight:900;
+  position:absolute; right:16px; top:12px; opacity:0.12; line-height:1;
+}
+.doac-name { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
+.doac-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:900; color:var(--white); margin-bottom:16px; }
+.doac-mantra { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; padding:8px 14px; border-radius:20px; display:inline-block; margin-bottom:16px; }
+.api .doac-mantra { background:rgba(18,130,162,0.2); color:var(--teal-light); border:1px solid rgba(18,130,162,0.3); }
+.riva .doac-mantra { background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); }
+.dabi .doac-mantra { background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); }
+.edo .doac-mantra { background:rgba(184,134,11,0.2); color:var(--gold-light); border:1px solid rgba(184,134,11,0.3); }
+
+.doac-items { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+.doac-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-muted); }
+.doac-item .letter { font-family:'Syne',sans-serif; font-weight:900; font-size:15px; min-width:20px; }
+.api .doac-item .letter { color:var(--teal-light); }
+.riva .doac-item .letter { color:var(--green-light); }
+.dabi .doac-item .letter { color:#e74c3c; }
+.edo .doac-item .letter { color:var(--gold-light); }
+
+.doac-dose-table { width:100%; border-collapse:collapse; margin-bottom:12px; }
+.doac-dose-table td { padding:6px 10px; font-size:11px; border-bottom:1px solid rgba(18,130,162,0.08); }
+.doac-dose-table tr:last-child td { border-bottom:none; }
+.doac-dose-table .dose-label { color:var(--text-muted); }
+.doac-dose-table .dose-val { color:var(--white); font-family:'IBM Plex Mono',monospace; font-weight:500; }
+
+.doac-frase { font-size:11px; font-style:italic; color:var(--text-muted); margin-top:10px; padding-top:10px; border-top:1px solid rgba(18,130,162,0.1); }
+
+/* SEMAPHORE TABLE */
+.semaphore-table { width:100%; border-collapse:collapse; }
+.semaphore-table th { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-muted); letter-spacing:2px; text-transform:uppercase; padding:10px 12px; text-align:left; border-bottom:1px solid var(--glass-border); }
+.semaphore-table td { padding:12px; font-size:13px; border-bottom:1px solid rgba(18,130,162,0.08); vertical-align:middle; }
+.semaphore-table tr:last-child td { border-bottom:none; }
+.semaphore-table tr:hover td { background:rgba(18,130,162,0.04); }
+
+.ev-dot { display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; padding:3px 10px; border-radius:8px; font-weight:500; }
+.ev-green { background:rgba(26,122,74,0.2); color:#27ae60; border:1px solid rgba(26,122,74,0.3); }
+.ev-yellow { background:rgba(184,134,11,0.2); color:var(--gold-light); border:1px solid rgba(184,134,11,0.3); }
+.ev-red { background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); }
+
+/* FLASHCARD GRID */
+.flashcard-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+.flashcard { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:12px; padding:18px; cursor:pointer; transition:all 0.3s; position:relative; min-height:100px; }
+.flashcard:hover { border-color:rgba(192,57,43,0.4); }
+.flashcard .fc-q { font-size:13px; color:var(--text); font-weight:500; line-height:1.5; }
+.flashcard .fc-a { font-size:12px; color:var(--teal-light); margin-top:10px; padding-top:10px; border-top:1px solid var(--glass-border); display:none; line-height:1.5; }
+.flashcard.revealed .fc-a { display:block; }
+.flashcard .fc-hint { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-muted); margin-top:8px; }
+
+/* VIRCHOW FLOW */
+.virchow-flow { display:flex; flex-direction:column; gap:0; }
+.virchow-step { display:flex; align-items:flex-start; gap:16px; padding:16px 20px; background:rgba(6,15,30,0.5); border:1px solid var(--glass-border); border-radius:12px; transition:all 0.3s; }
+.virchow-step:hover { border-color:rgba(192,57,43,0.4); background:rgba(192,57,43,0.06); }
+.virchow-connector { text-align:center; color:var(--red-light); font-size:20px; padding:4px 0; }
+.virchow-num { width:36px; height:36px; background:linear-gradient(135deg,var(--red),var(--blood)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; color:white; flex-shrink:0; }
+.virchow-content { flex:1; }
+.virchow-title { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.virchow-desc { font-size:12px; color:var(--text-muted); line-height:1.5; }
+
+/* PGP SECTION */
+.pgp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+@media(max-width:600px) { .pgp-grid { grid-template-columns:1fr; } }
+
+/* ALGO FLOW */
+.algo-flow { display:flex; flex-direction:column; gap:0; }
+.algo-step { background:rgba(6,15,30,0.5); border:1px solid var(--glass-border); border-radius:10px; padding:14px 18px; font-size:13px; color:var(--text); transition:all 0.3s; }
+.algo-step:hover { border-color:rgba(192,57,43,0.4); }
+.algo-connector { text-align:center; color:var(--red-light); font-size:18px; padding:2px 0; }
+.algo-branch { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.algo-yes { border-color:rgba(26,122,74,0.4); background:rgba(26,122,74,0.08); }
+.algo-no { border-color:rgba(192,57,43,0.3); background:rgba(192,57,43,0.06); }
+.algo-label { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-muted); letter-spacing:2px; margin-bottom:4px; }
+@media(max-width:600px) { .algo-branch { grid-template-columns:1fr; } }
+
+footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-border); text-align:center; }
+.footer-brand { font-family:'Dancing Script',cursive; font-size:22px; color:var(--gold); margin-bottom:8px; }
+.footer-text { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-muted); line-height:1.8; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@media(max-width:768px) { .doac-grid{grid-template-columns:1fr} .palace-grid{grid-template-columns:1fr} .pgp-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<button id="menu-toggle" onclick="toggleSidebar()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Atlas Mental</div>
+    <div class="title">memoriapotencial.com.br</div>
+  </div>
+  <div class="sidebar-section">Módulos FA</div>
+  <a class="sidebar-module done" onclick="window.location.href='fa_modulo1.html'">✓ M1 — O Átrio Sem Maestro</a>
+  <a class="sidebar-module current" onclick="scrollTo('hero')">● M2 — O Trono do Trombo</a>
+  <a class="sidebar-module locked">○ M3 — O Freio e a Bússola</a>
+  <a class="sidebar-module locked">○ M4 — A Sala de Choque</a>
+  <div class="sidebar-section" style="margin-top:16px">Seções M2</div>
+  <a class="sidebar-link" onclick="scrollTo('abertura')">Abertura Cinematográfica</a>
+  <a class="sidebar-link" onclick="scrollTo('virchow')">Tríade de Virchow</a>
+  <a class="sidebar-link" onclick="scrollTo('fluxo-care')">Fluxo A do CARE</a>
+  <a class="sidebar-link" onclick="scrollTo('castelo')">Castelo do Trombo</a>
+  <a class="sidebar-link" onclick="scrollTo('cha2ds2')">CHA₂DS₂-VA</a>
+  <a class="sidebar-link" onclick="scrollTo('hasbled')">HAS-BLED</a>
+  <a class="sidebar-link" onclick="scrollTo('varfarina-doac')">Varfarina vs DOAC</a>
+  <a class="sidebar-link" onclick="scrollTo('arde')">ARDE — Os 4 DOACs</a>
+  <a class="sidebar-link" onclick="scrollTo('pgp')">P-gp: O Porteiro</a>
+  <a class="sidebar-link" onclick="scrollTo('subclinica')">FA Subclínica</a>
+  <a class="sidebar-link" onclick="scrollTo('algoritmo')">Algoritmo Clínico</a>
+  <a class="sidebar-link" onclick="scrollTo('pegadinhas')">Pegadinhas TEC</a>
+  <a class="sidebar-link" onclick="scrollTo('flashcards')">Flashcards</a>
+  <a class="sidebar-link" onclick="scrollTo('quiz')">Simulado</a>
+  <a class="sidebar-link" onclick="scrollTo('revisao')">Revisão Rápida</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-kicker">Atlas Mental Interativo · Método André Rossanno</div>
+  <div class="hero-badge"><span>● MÓDULO 2 DE 4 · FIBRILAÇÃO ATRIAL · TEC 2026</span></div>
+  <h1 class="hero-title">
+    <span class="highlight">O Trono</span><br>
+    <span class="accent">do Trombo</span>
+  </h1>
+  <h2 class="hero-subtitle">FA, AVC e Anticoagulação</h2>
+  <div class="hero-quote">
+    <p>"No Módulo 1, reconhecemos a tempestade elétrica. Agora entramos no castelo escuro onde o trombo espera em silêncio: o apêndice atrial esquerdo."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+  <div class="click-hint"><div class="pulse"></div>← Clique no menu para navegar entre seções</div>
+  <div class="module-nav">
+    <div class="module-card done-module" onclick="window.location.href='fa_modulo1.html'">
+      <div class="module-status status-done">✓ CONCLUÍDO</div>
+      <div class="module-num">MÓDULO 01</div>
+      <div class="module-name">O Átrio Sem Maestro</div>
+      <div class="module-desc">Diagnóstico, fisiopatologia, CARE-C, ECG e flutter</div>
+    </div>
+    <div class="module-card active-module">
+      <div class="module-status status-active">● ATIVO</div>
+      <div class="module-num">MÓDULO 02</div>
+      <div class="module-name">O Trono do Trombo</div>
+      <div class="module-desc">AVC, CHA₂DS₂-VA, anticoagulação, DOAC vs varfarina</div>
+    </div>
+    <div class="module-card locked-module">
+      <div class="module-status status-soon">EM BREVE</div>
+      <div class="module-num">MÓDULO 03</div>
+      <div class="module-name">O Freio e a Bússola</div>
+      <div class="module-desc">Controle de frequência vs ritmo, antiarrítmicos, ablação</div>
+    </div>
+    <div class="module-card locked-module">
+      <div class="module-status status-soon">EM BREVE</div>
+      <div class="module-num">MÓDULO 04</div>
+      <div class="module-name">A Sala de Choque</div>
+      <div class="module-desc">Emergência, CVE, cardioversão química, flutter</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABERTURA CINEMATOGRÁFICA -->
+<section class="section" id="abertura">
+  <div class="section-header">
+    <div class="section-icon">🏰</div>
+    <div>
+      <div class="section-label">N6 · Narrativa + N3 · Visual</div>
+      <h2 class="section-title">O Castelo Cardíaco</h2>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(139,0,0,0.15),rgba(6,15,30,0.8)); border:1px solid rgba(192,57,43,0.3); border-radius:20px; padding:32px; margin-bottom:28px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:20px;">🎬 Cena de Abertura</div>
+    <p style="font-size:14px; color:var(--text); line-height:1.8; margin-bottom:20px;">
+      Imagine um <strong style="color:var(--white);">castelo cardíaco</strong>. No salão principal, o átrio esquerdo virou uma sala abandonada. O maestro sumiu. As paredes estão rachadas por hipertensão, idade, diabetes, obesidade, apneia do sono e inflamação.
+    </p>
+    <p style="font-size:14px; color:var(--text); line-height:1.8; margin-bottom:20px;">
+      No fundo do castelo existe uma pequena torre curva: o <strong style="color:var(--red-light);">apêndice atrial esquerdo</strong>. Ali mora o <strong style="color:var(--gold);">dragão-coágulo</strong>.
+    </p>
+    <p style="font-size:14px; color:var(--text); line-height:1.8; margin-bottom:24px;">
+      Ele nasce de três sombras:
+    </p>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px;">
+      <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:16px; text-align:center;">
+        <div style="font-size:28px; margin-bottom:8px;">🌊</div>
+        <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">ESTASE</div>
+        <div style="font-size:11px; color:var(--text-muted);">O sangue vira pântano</div>
+      </div>
+      <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:16px; text-align:center;">
+        <div style="font-size:28px; margin-bottom:8px;">🧱</div>
+        <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">ENDOTÉLIO FERIDO</div>
+        <div style="font-size:11px; color:var(--text-muted);">A parede do castelo descasca</div>
+      </div>
+      <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:16px; text-align:center;">
+        <div style="font-size:28px; margin-bottom:8px;">⚔️</div>
+        <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">HIPERCOAGULABILIDADE</div>
+        <div style="font-size:11px; color:var(--text-muted);">Soldados plaquetários hiperativos</div>
+      </div>
+    </div>
+    <p style="font-size:14px; color:var(--text); line-height:1.8;">
+      Então chega o médico com três instrumentos: <strong style="color:var(--teal);">CHA₂DS₂-VA</strong> — o alarme do trombo. <strong style="color:var(--gold);">HAS-BLED</strong> — o mapa dos pisos que sangram. <strong style="color:var(--red-light);">ARDE</strong> — o arsenal dos DOACs.
+    </p>
+  </div>
+
+  <div class="quote-block">
+    <p>"O trombo nasce no silêncio do apêndice; o escore acusa, o HAS-BLED ajusta, e o ARDE escolhe o DOAC."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- TRÍADE DE VIRCHOW -->
+<section class="section" id="virchow">
+  <div class="section-header">
+    <div class="section-icon">🩸</div>
+    <div>
+      <div class="section-label">N2 · Mecanismo + N3 · Visual</div>
+      <h2 class="section-title">Tríade de Virchow na FA</h2>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"Na FA, Virchow senta no apêndice atrial esquerdo: o sangue para, o endotélio sofre e a coagulação arma o golpe."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+
+  <div class="virchow-flow" style="margin-top:24px;">
+    <div class="virchow-step">
+      <div class="virchow-num">1</div>
+      <div class="virchow-content">
+        <div class="virchow-title">FA → Perda da contração atrial efetiva</div>
+        <div class="virchow-desc">O átrio fibrilante não bombeia de forma organizada. O fluxo sangüíneo no átrio esquerdo e no apêndice atrial esquerdo torna-se lento e turbulento.</div>
+      </div>
+    </div>
+    <div class="virchow-connector">↓</div>
+    <div class="virchow-step">
+      <div class="virchow-num" style="background:linear-gradient(135deg,#b8860b,#6b4e07);">2</div>
+      <div class="virchow-content">
+        <div class="virchow-title">🌊 Estase — O sangue vira pântano</div>
+        <div class="virchow-desc">Sangue parado no átrio esquerdo e no AAE. Quanto mais tempo parado, mais favorável para formação de trombo. <strong style="color:var(--red-light);">90% dos trombos na FA se originam no AAE.</strong></div>
+      </div>
+    </div>
+    <div class="virchow-connector">+</div>
+    <div class="virchow-step">
+      <div class="virchow-num" style="background:linear-gradient(135deg,#b8860b,#6b4e07);">3</div>
+      <div class="virchow-content">
+        <div class="virchow-title">🧱 Lesão Endotelial — A parede descasca</div>
+        <div class="virchow-desc">Dilatação atrial crônica → fibrose → inflamação → lesão do endotélio atrial → citocinas pró-inflamatórias, adesão plaquetária e aumento do fator de von Willebrand.</div>
+      </div>
+    </div>
+    <div class="virchow-connector">+</div>
+    <div class="virchow-step">
+      <div class="virchow-num" style="background:linear-gradient(135deg,#b8860b,#6b4e07);">4</div>
+      <div class="virchow-content">
+        <div class="virchow-title">⚔️ Hipercoagulabilidade — Os soldados armados</div>
+        <div class="virchow-desc">Obesidade, sedentarismo, inflamação crônica, diabetes → estado pró-trombótico sistêmico. Plaquetas ativadas + coagulação aumentada = terreno ideal para o trombo.</div>
+      </div>
+    </div>
+    <div class="virchow-connector">↓</div>
+    <div class="virchow-step" style="border-color:rgba(192,57,43,0.5); background:rgba(192,57,43,0.08);">
+      <div class="virchow-num">5</div>
+      <div class="virchow-content">
+        <div class="virchow-title" style="color:var(--red-light);">🐉 Formação do trombo → Embolização → AVC</div>
+        <div class="virchow-desc">Trombo no AAE → emboliza para circulação sistêmica → AVC isquêmico cardioembólico. Geralmente mais grave que AVC lacunar. <strong style="color:var(--red-light);">Desfecho mais temido e mais cobrado em prova.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:20px; margin-top:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">⚠ Outras fontes de êmbolo — Diferencial</div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+      <div style="padding:6px 14px; background:rgba(18,130,162,0.1); border:1px solid rgba(18,130,162,0.25); border-radius:20px; font-size:12px; color:var(--text-muted);">Infarto agudo do miocárdio</div>
+      <div style="padding:6px 14px; background:rgba(18,130,162,0.1); border:1px solid rgba(18,130,162,0.25); border-radius:20px; font-size:12px; color:var(--text-muted);">Doença de Chagas</div>
+      <div style="padding:6px 14px; background:rgba(18,130,162,0.1); border:1px solid rgba(18,130,162,0.25); border-radius:20px; font-size:12px; color:var(--text-muted);">Mixoma atrial</div>
+      <div style="padding:6px 14px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:20px; font-size:12px; color:var(--red-light);">FA — principal causa ←</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLUXO A DO CARE -->
+<section class="section" id="fluxo-care">
+  <div class="section-header">
+    <div class="section-icon">🅐</div>
+    <div>
+      <div class="section-label">ESC 2024 · Pilar A do CARE</div>
+      <h2 class="section-title">Avoid Stroke — Fluxo Clínico</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    O pilar <strong style="color:var(--red-light);">A do CARE</strong> da ESC 2024 segue um fluxo sequencial: avaliar risco → escolher anticoagulante → avaliar sangramento → prevenir sangramento.
+  </p>
+
+  <div style="display:flex; flex-direction:column; gap:0; margin-bottom:28px;">
+
+    <!-- Step 1 -->
+    <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.3); border-radius:12px; padding:18px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--green-light); letter-spacing:2px; margin-bottom:8px;">PASSO 1 — RISCO DE TROMBOEMBOLISMO</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe I</span>
+          <span style="font-size:13px; color:var(--text);">Iniciar anticoagulação oral</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe III</span>
+          <span style="font-size:13px; color:var(--text);">Padrão temporal da FA <strong style="color:var(--red-light);">não é relevante</strong> — não usar para decidir anticoagulação</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe III</span>
+          <span style="font-size:13px; color:var(--text);">Antiagregante <strong style="color:var(--red-light);">não é alternativa</strong> à anticoagulação</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; color:var(--red-light); font-size:20px; padding:4px 0;">↓</div>
+
+    <!-- Step 2 -->
+    <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.3); border-radius:12px; padding:18px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--green-light); letter-spacing:2px; margin-bottom:8px;">PASSO 2 — ESCORE CHA₂DS₂-VA</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe I</span>
+          <span style="font-size:13px; color:var(--text);">ACO se CHA₂DS₂-VA ≥ 2</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(184,134,11,0.2); color:var(--gold-light); border:1px solid rgba(184,134,11,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe IIa</span>
+          <span style="font-size:13px; color:var(--text);">ACO se CHA₂DS₂-VA = 1 (considerar)</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; color:var(--red-light); font-size:20px; padding:4px 0;">↓</div>
+
+    <!-- Step 3 -->
+    <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.3); border-radius:12px; padding:18px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--green-light); letter-spacing:2px; margin-bottom:8px;">PASSO 3 — ESCOLHA DO ANTICOAGULANTE</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe I</span>
+          <span style="font-size:13px; color:var(--text);">DOAC preferencial — exceto prótese mecânica ou estenose mitral mod/grave</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe I</span>
+          <span style="font-size:13px; color:var(--text);">Se VKA: alvo INR 2,0–3,0 e &gt;70% no intervalo terapêutico</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; color:var(--red-light); font-size:20px; padding:4px 0;">↓</div>
+
+    <!-- Step 4 -->
+    <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.3); border-radius:12px; padding:18px 20px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--green-light); letter-spacing:2px; margin-bottom:8px;">PASSO 4 — RISCO DE SANGRAMENTO</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe I</span>
+          <span style="font-size:13px; color:var(--text);">Avaliar e manejar fatores modificáveis de sangramento</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe III</span>
+          <span style="font-size:13px; color:var(--text);"><strong style="color:var(--red-light);">Não usar</strong> escore de sangramento para negar anticoagulação quando indicada</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); padding:2px 10px; border-radius:8px; font-family:'IBM Plex Mono',monospace; font-size:10px;">Classe III</span>
+          <span style="font-size:13px; color:var(--text);"><strong style="color:var(--red-light);">Não combinar</strong> antiagregante + ACO para prevenção de AVC na FA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Mantra do Fluxo</div>
+    <div class="mnemonic-text"><span class="key">CHA₂DS₂-VA</span> acende o alarme do trombo;<br><span class="key2">HAS-BLED</span> mostra onde o chão sangra.</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- PALÁCIO DA MEMÓRIA — CASTELO DO TROMBO -->
+<section class="section" id="castelo">
+  <div class="section-header">
+    <div class="section-icon">🏰</div>
+    <div>
+      <div class="section-label">N7 · Palácio da Memória</div>
+      <h2 class="section-title">O Castelo do Trombo</h2>
+    </div>
+  </div>
+
+  <p style="font-size:13px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    Imagine caminhar por um castelo cardíaco. Cada sala guarda um conceito fundamental do Módulo 2. Entre e não esqueça mais.
+  </p>
+
+  <div class="palace-grid">
+    <div class="palace-room" style="border-color:rgba(192,57,43,0.3);">
+      <div class="palace-letter" style="color:var(--red-light);">🚪</div>
+      <div class="palace-icon">🏰</div>
+      <div class="palace-title">Entrada — FA Confirmada</div>
+      <div class="palace-desc">Você entra no castelo após confirmar FA pelo ECG (≥30s com interpretação médica). O maestro sumiu, o átrio virou sala abandonada. A primeira pergunta é: há dragão aqui dentro?</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(192,57,43,0.4);">
+      <div class="palace-letter" style="color:var(--red-light);">AAE</div>
+      <div class="palace-icon">🐉</div>
+      <div class="palace-title">Torre Esquerda — O Ninho do Dragão</div>
+      <div class="palace-desc">O apêndice atrial esquerdo é a torre curva no fundo do castelo. Ali mora o dragão-coágulo. Sangue parado + endotélio ferido + hipercoagulabilidade = ovo do dragão chocando.</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(18,130,162,0.3);">
+      <div class="palace-letter" style="color:var(--teal);">CHA</div>
+      <div class="palace-icon">⚖️</div>
+      <div class="palace-title">Sala do Juiz — CHA₂DS₂-VA</div>
+      <div class="palace-desc">O juiz do castelo. Ele lê o escore e decide se o caçador (anticoagulante) entra ou não. Score 0 = dragão dormindo. Score 1 = considerar. Score ≥2 = caçador entra na torre.</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(201,168,76,0.3);">
+      <div class="palace-letter" style="color:var(--gold);">HAS</div>
+      <div class="palace-icon">🔧</div>
+      <div class="palace-title">Sala do Encanador — HAS-BLED</div>
+      <div class="palace-desc">O encanador mapeia os pisos que sangram. HAS-BLED ≥3 não proíbe o caçador de entrar — ele indica quais torneiras conserta antes: PA, álcool, AINE, INR instável, função renal.</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(192,57,43,0.3);">
+      <div class="palace-letter" style="color:var(--red-light);">🗡️</div>
+      <div class="palace-icon">⚔️</div>
+      <div class="palace-title">Arsenal ARDE — Os 4 Cavaleiros</div>
+      <div class="palace-desc"><strong style="color:var(--teal);">A</strong>pixabana — API pede 2. <strong style="color:var(--green-light);">R</strong>ivaroxabana — RIVA pede rim. <strong style="color:var(--red-light);">D</strong>abigatrana — DABI é rim, velho e barriga. <strong style="color:var(--gold);">E</strong>doxabana — EDO pede 1.</div>
+    </div>
+    <div class="palace-room" style="border-color:rgba(184,134,11,0.3);">
+      <div class="palace-letter" style="color:var(--gold);">VKA</div>
+      <div class="palace-icon">🔐</div>
+      <div class="palace-title">Portão da Varfarina — Território Exclusivo</div>
+      <div class="palace-desc">Prótese mecânica e estenose mitral moderada/importante. Nesse portão, DOAC não entra. RE-ALIGN e PROACT Xa são os cemitérios dessa tentativa. Aqui só entra varfarina.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHA2DS2-VA -->
+<section class="section" id="cha2ds2">
+  <div class="section-header">
+    <div class="section-icon">⚖️</div>
+    <div>
+      <div class="section-label">N3 · Duplo Código + N4 · Pegadinha</div>
+      <h2 class="section-title">CHA₂DS₂-VA — O Alarme do Trombo</h2>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--text-muted); margin-bottom:24px; line-height:1.7;">
+    A ESC 2024 utiliza o <strong style="color:var(--white);">CHA₂DS₂-VA</strong>, removendo o sexo feminino como item de pontuação isolado. A SBC 2025 ainda apresenta o CHA₂DS₂-VASc mas com lógica decisional semelhante.
+  </p>
+
+  <!-- Tabela CHA2DS2-VA -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:24px;">
+    <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(3,64,120,0.4)); border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:4px;">SBC 2025 · Arq Bras Cardiol</div>
+      <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--white);">Tabela CHA₂DS₂-VA</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="semaphore-table">
+        <thead>
+          <tr><th>Letra</th><th>Critério</th><th>Pontos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">C</td><td>Insuficiência cardíaca / disfunção ventricular esquerda</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">H</td><td>Hipertensão arterial</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--red-light);">A₂</td><td>Idade ≥ 75 anos</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--red-light); font-weight:700;">2</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">D</td><td>Diabetes mellitus</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--red-light);">S₂</td><td>AVC / AIT / embolia sistêmica prévia</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--red-light); font-weight:700;">2</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">V</td><td>Doença vascular (IAM, DAP, placa aórtica)</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">A</td><td>Idade 65–74 anos</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Semáforo de decisão -->
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px;">
+    <div style="background:rgba(26,122,74,0.1); border:2px solid rgba(26,122,74,0.3); border-radius:14px; padding:20px; text-align:center;">
+      <div style="font-family:'Syne',sans-serif; font-size:36px; font-weight:900; color:var(--green-light); margin-bottom:8px;">0</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--green-light); margin-bottom:6px;">BAIXO RISCO</div>
+      <div style="font-size:12px; color:var(--text-muted);">Geralmente sem anticoagulação (I/A)</div>
+    </div>
+    <div style="background:rgba(184,134,11,0.1); border:2px solid rgba(184,134,11,0.3); border-radius:14px; padding:20px; text-align:center;">
+      <div style="font-family:'Syne',sans-serif; font-size:36px; font-weight:900; color:var(--gold); margin-bottom:8px;">1</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); margin-bottom:6px;">INTERMEDIÁRIO</div>
+      <div style="font-size:12px; color:var(--text-muted);">Considerar/preferir ACO (IIa/B)</div>
+    </div>
+    <div style="background:rgba(192,57,43,0.1); border:2px solid rgba(192,57,43,0.4); border-radius:14px; padding:20px; text-align:center;">
+      <div style="font-family:'Syne',sans-serif; font-size:36px; font-weight:900; color:var(--red-light); margin-bottom:8px;">≥2</div>
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red-light); margin-bottom:6px;">ALTO RISCO</div>
+      <div style="font-size:12px; color:var(--text-muted);">Anticoagulação indicada (I/A)</div>
+    </div>
+  </div>
+
+  <!-- Situações especiais -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid rgba(192,57,43,0.3); border-radius:14px; padding:20px; margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">⚠ Situações Especiais — Anticoagulação Independente do Escore</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--red-light); flex-shrink:0; font-size:16px;">●</span>
+        <div><strong style="color:var(--white);">Prótese mecânica / Estenose mitral mod-grave</strong> → Varfarina independente do escore</div>
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--red-light); flex-shrink:0; font-size:16px;">●</span>
+        <div><strong style="color:var(--white);">Miocardiopatia hipertrófica com FA</strong> → ACO recomendada independente do CHA₂DS₂-VA (ESC 2024)</div>
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--red-light); flex-shrink:0; font-size:16px;">●</span>
+        <div><strong style="color:var(--white);">Amiloidose cardíaca com FA</strong> → ACO recomendada independente do CHA₂DS₂-VA (ESC 2024)</div>
+      </div>
+      <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--text);">
+        <span style="color:var(--gold); flex-shrink:0; font-size:16px;">●</span>
+        <div><strong style="color:var(--white);">Hipertireoidismo</strong> → Trate como gatilho/contexto. Decisão de ACO considera risco tromboembólico, duração e carga de FA. <em style="color:var(--gold);">Não é anticoagulação automática independente do escore.</em></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"FA paroxística não é trombo de brinquedo: se o escore grita, anticoagula."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- HAS-BLED -->
+<section class="section" id="hasbled">
+  <div class="section-header">
+    <div class="section-icon">🔧</div>
+    <div>
+      <div class="section-label">N4 · Pegadinha Central</div>
+      <h2 class="section-title">HAS-BLED — Painel de Alerta</h2>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,rgba(184,134,11,0.12),rgba(6,15,30,0.7)); border:2px solid rgba(201,168,76,0.3); border-radius:16px; padding:24px 28px; margin-bottom:24px;">
+    <div style="font-family:'Syne',sans-serif; font-size:clamp(18px,4vw,24px); font-weight:900; color:var(--white); margin-bottom:12px;">
+      "HAS-BLED <span style="color:var(--gold);">não é freio de mão</span> da anticoagulação;<br>é painel de alerta para <span style="color:var(--teal);">consertar o carro</span> antes da viagem."
+    </div>
+    <div style="font-family:'Dancing Script',cursive; font-size:17px; color:var(--gold);">— Dr. André Rossanno</div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:24px;">
+    <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(6,15,30,0.6)); border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--gold);">Tabela HAS-BLED</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="semaphore-table">
+        <thead>
+          <tr><th>Letra</th><th>Significado</th><th>Detalhe clínico</th><th>Pts</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">H</td><td>Hypertension</td><td style="font-size:12px;color:var(--text-muted);">PAS &gt;160 mmHg → modificável!</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">A</td><td>Abnormal renal/liver</td><td style="font-size:12px;color:var(--text-muted);">ClCr ≤50 ou creat ≥2,26 / bilirrubina ≥2x VN + TGO/TGP ≥3x</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1 ou 2</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">S</td><td>Stroke</td><td style="font-size:12px;color:var(--text-muted);">AVC prévio</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">B</td><td>Bleeding</td><td style="font-size:12px;color:var(--text-muted);">Sangramento prévio ou predisposição</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">L</td><td>Labile INRs</td><td style="font-size:12px;color:var(--text-muted);">INR instável ou &lt;60% do tempo na faixa terapêutica</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">E</td><td>Elderly</td><td style="font-size:12px;color:var(--text-muted);">Idade &gt;65 anos</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">D</td><td>Drugs/alcohol</td><td style="font-size:12px;color:var(--text-muted);">AINE, antiagregante, álcool &gt;20U/semana → modificável!</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1 ou 2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); border-left:3px solid var(--gold); border-radius:10px; padding:16px 20px; margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:2px; margin-bottom:8px;">DICA TEC</div>
+    <div style="font-size:13px; color:var(--text); line-height:1.7;">
+      <strong style="color:var(--gold);">HAS-BLED ≥ 3</strong> = risco aumentado de sangramento → vigiar, corrigir fatores modificáveis, acompanhar mais de perto. <strong style="color:var(--white);">NÃO significa "não anticoagular".</strong> A diretriz SBC 2025 reforça que escores altos de sangramento <strong style="color:var(--red-light);">não devem ser usados isoladamente para negar anticoagulação</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- VARFARINA VS DOAC -->
+<section class="section" id="varfarina-doac">
+  <div class="section-header">
+    <div class="section-icon">🔐</div>
+    <div>
+      <div class="section-label">N4 · Pegadinha + N5 · Síntese</div>
+      <h2 class="section-title">Varfarina versus DOAC</h2>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Regra de Ouro</div>
+    <div class="mnemonic-text"><span class="key">Prótese mecânica</span> e <span class="key">estenose mitral</span> mod/grave<br>são território da varfarina. <span class="key2">DOAC não atravessa esse portão.</span></div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+    <div style="background:rgba(192,57,43,0.1); border:2px solid rgba(192,57,43,0.35); border-radius:14px; padding:22px;">
+      <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--red-light); margin-bottom:14px;">🔐 Território da Varfarina</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text);">
+        <div style="display:flex;gap:8px;"><span style="color:var(--red-light);">●</span> Prótese valvar mecânica</div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--red-light);">●</span> Estenose mitral moderada a grave/importante</div>
+      </div>
+      <div style="margin-top:14px; padding:10px 14px; background:rgba(192,57,43,0.1); border-radius:8px; font-size:11px; color:var(--text-muted);">
+        <strong style="color:var(--gold);">RE-ALIGN:</strong> dabigatrana em prótese mecânica → mais eventos + mais sangramentos que varfarina<br>
+        <strong style="color:var(--gold);">PROACT Xa:</strong> apixabana em válvula mecânica On-X → interrompido precocemente por mais trombose valvar/eventos tromboembólicos que varfarina
+      </div>
+    </div>
+    <div style="background:rgba(18,130,162,0.1); border:2px solid rgba(18,130,162,0.35); border-radius:14px; padding:22px;">
+      <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--teal-light); margin-bottom:14px;">✅ Território do DOAC</div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text);">
+        <div style="display:flex;gap:8px;"><span style="color:var(--teal);">●</span> FA comum (não valvar) elegível</div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--teal);">●</span> FA com maioria das valvopatias não mecânicas</div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);">●</span> Bioprótese mitral selecionada (ver RIVER)</div>
+      </div>
+      <div style="margin-top:14px; padding:10px 14px; background:rgba(18,130,162,0.08); border-radius:8px; font-size:11px; color:var(--text-muted);">
+        <strong style="color:var(--teal);">RIVER Trial:</strong> rivaroxabana não inferior à varfarina em pacientes selecionados com FA/flutter e bioprótese mitral<br>
+        <strong style="color:var(--gold);">Bioprótese ≠ mecânica</strong> — são territórios diferentes!
+      </div>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:20px; margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Se usar Varfarina — Metas</div>
+    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+      <div style="padding:12px 16px; background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.25); border-radius:10px; font-size:13px; color:var(--text);">
+        <strong style="color:var(--green-light);">FA comum em VKA:</strong> alvo INR 2,0–3,0 (Classe I)
+      </div>
+      <div style="padding:12px 16px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.25); border-radius:10px; font-size:13px; color:var(--text);">
+        <strong style="color:var(--gold);">&gt;70% no intervalo terapêutico</strong> (Classe IIa)
+      </div>
+      <div style="padding:12px 16px; background:rgba(18,130,162,0.1); border:1px solid rgba(18,130,162,0.25); border-radius:10px; font-size:13px; color:var(--text);">
+        Se não atingir &gt;70% → <strong style="color:var(--teal);">trocar para DOAC</strong> (Classe I)
+      </div>
+    </div>
+    <div style="padding:12px 16px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:10px; font-size:13px; color:var(--text);">
+      <strong style="color:var(--red-light);">Prótese mecânica:</strong> INR varia por tipo e posição — mecânica mitral geralmente alvo 3,0 (faixa 2,5–3,5)
+    </div>
+  </div>
+</section>
+
+<!-- ARDE OS 4 DOACs -->
+<section class="section" id="arde">
+  <div class="section-header">
+    <div class="section-icon">⚔️</div>
+    <div>
+      <div class="section-label">N7 · Mnemônico + N3 · Visual</div>
+      <h2 class="section-title" style="font-family:'Georgia','Times New Roman',serif; font-weight:800;">ARDE OS 4 DOACs</h2>
+    </div>
+  </div>
+
+  <!-- Mantra principal -->
+  <div style="background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(6,15,30,0.8)); border:2px solid rgba(192,57,43,0.4); border-radius:16px; padding:24px; margin-bottom:28px; text-align:center;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">Mantra Principal</div>
+    <div style="font-family:'Syne',sans-serif; font-size:clamp(14px,3.5vw,22px); font-weight:900; color:var(--white); line-height:1.4; margin-bottom:16px;">
+      <span style="color:var(--teal);">API pede 2.</span> &nbsp;
+      <span style="color:var(--green-light);">RIVA pede rim.</span> &nbsp;
+      <span style="color:var(--red-light);">DABI é rim, velho e barriga.</span> &nbsp;
+      <span style="color:var(--gold);">EDO pede 1.</span>
+    </div>
+    <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px;">
+      <div style="padding:8px 16px; background:rgba(18,130,162,0.15); border:1px solid rgba(18,130,162,0.3); border-radius:20px; font-size:12px; color:var(--teal-light);">Se tem X → age no Xa: apiXabana · rivaroXabana · edoXabana</div>
+      <div style="padding:8px 16px; background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3); border-radius:20px; font-size:12px; color:var(--red-light);">DABI tem BI → age no IIa (trombina)</div>
+    </div>
+    <div style="margin-top:16px; font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--gold);">Não reduza DOAC por medo. Reduza por critério.</div>
+  </div>
+
+  <!-- 4 DOACs -->
+  <div class="doac-grid">
+
+    <!-- APIXABANA -->
+    <div class="doac-card api">
+      <div class="doac-letter" style="color:var(--teal);">A</div>
+      <div class="doac-name" style="color:var(--teal);">Inibidor do Xa</div>
+      <div class="doac-title">Apixabana</div>
+      <div class="doac-mantra">API pede 2</div>
+      <div class="doac-items">
+        <div class="doac-item"><span class="letter">A</span><span>Age / Idade ≥ 80 anos</span></div>
+        <div class="doac-item"><span class="letter">P</span><span>Peso ≤ 60 kg</span></div>
+        <div class="doac-item"><span class="letter">I</span><span>Insuficiência renal / creatinina ≥ 1,5 mg/dL</span></div>
+      </div>
+      <table class="doac-dose-table">
+        <tr><td class="dose-label">Habitual</td><td class="dose-val">5 mg 12/12h</td></tr>
+        <tr><td class="dose-label">Reduzida (2 de 3)</td><td class="dose-val">2,5 mg 12/12h</td></tr>
+      </table>
+      <div class="doac-frase">⚠ 1 critério isolado NÃO basta. Apixabana exige dois.<br>"Apixabana é ciumenta: não reduz por um motivo só."</div>
+    </div>
+
+    <!-- RIVAROXABANA -->
+    <div class="doac-card riva">
+      <div class="doac-letter" style="color:var(--green-light);">R</div>
+      <div class="doac-name" style="color:var(--green-light);">Inibidor do Xa</div>
+      <div class="doac-title">Rivaroxabana</div>
+      <div class="doac-mantra">RIVA pede rim</div>
+      <div class="doac-items">
+        <div class="doac-item"><span class="letter">R</span><span>Rim: ajuste conforme ClCr</span></div>
+        <div class="doac-item"><span class="letter">I</span><span>Ingestão: tomar com alimento (15 e 20 mg)</span></div>
+        <div class="doac-item"><span class="letter">V</span><span>Vigilância: ClCr 15–50 → reduzir</span></div>
+        <div class="doac-item"><span class="letter">A</span><span>Atenção: rim abaixo de 50, desce para 15</span></div>
+      </div>
+      <table class="doac-dose-table">
+        <tr><td class="dose-label">ClCr &gt;50</td><td class="dose-val">20 mg 1x/dia c/ alimento</td></tr>
+        <tr><td class="dose-label">ClCr 15–50</td><td class="dose-val">15 mg 1x/dia c/ alimento</td></tr>
+      </table>
+      <div class="doac-frase">"RIVA janta com o rim." · "15 e 20 mg devem ser tomadas com alimento."</div>
+    </div>
+
+    <!-- DABIGATRANA -->
+    <div class="doac-card dabi">
+      <div class="doac-letter" style="color:#e74c3c;">D</div>
+      <div class="doac-name" style="color:#e74c3c;">Inibidor do IIa (trombina)</div>
+      <div class="doac-title">Dabigatrana</div>
+      <div class="doac-mantra">dABIgaTrana</div>
+      <div class="doac-items">
+        <div class="doac-item"><span class="letter">A</span><span>Age ≥ 80 anos</span></div>
+        <div class="doac-item"><span class="letter">B</span><span>Barriga: dispepsia, gastrite, refluxo</span></div>
+        <div class="doac-item"><span class="letter">I</span><span>Insuficiência renal</span></div>
+        <div class="doac-item"><span class="letter">T</span><span>Trinta: ClCr &lt;30 = TRAVA</span></div>
+      </div>
+      <table class="doac-dose-table">
+        <tr><td class="dose-label">Habitual</td><td class="dose-val">150 mg 12/12h</td></tr>
+        <tr><td class="dose-label">Selecionados</td><td class="dose-val">110 mg 12/12h</td></tr>
+        <tr><td class="dose-label">ClCr &lt;30</td><td class="dose-val" style="color:var(--red-light);">Evitar / contraindicada</td></tr>
+      </table>
+      <div class="doac-frase">"T de Trinta; menor que 30, trava." · "Verapamil derruba o porteiro. Dabigatrana entra demais."</div>
+    </div>
+
+    <!-- EDOXABANA -->
+    <div class="doac-card edo">
+      <div class="doac-letter" style="color:var(--gold-light);">E</div>
+      <div class="doac-name" style="color:var(--gold-light);">Inibidor do Xa</div>
+      <div class="doac-title">Edoxabana</div>
+      <div class="doac-mantra">eDOXABAna — EDO pede 1</div>
+      <div class="doac-items">
+        <div class="doac-item"><span class="letter">DO</span><span>Depuração renal 15–50 mL/min</span></div>
+        <div class="doac-item"><span class="letter">X</span><span>Xa (alvo)</span></div>
+        <div class="doac-item"><span class="letter">ABA</span><span>ABAixo de 60 kg</span></div>
+        <div class="doac-item"><span class="letter">NA</span><span>NA presença de inibidores P-gp relevantes, conforme bula/localidade</span></div>
+      </div>
+      <table class="doac-dose-table">
+        <tr><td class="dose-label">Habitual</td><td class="dose-val">60 mg 1x/dia</td></tr>
+        <tr><td class="dose-label">Reduzida (1 critério)</td><td class="dose-val">30 mg 1x/dia</td></tr>
+      </table>
+      <div class="doac-frase">"EDO é econômico: achou 1 problema, corta pela metade." · "Apixa exige dupla prova. Edo aceita uma pista só."</div>
+    </div>
+  </div>
+
+  <!-- Tabela comparativa -->
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-top:24px;">
+    <div style="padding:16px 20px; border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white);">Tabela Comparativa ARDE</div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="semaphore-table">
+        <thead>
+          <tr><th>DOAC</th><th>Alvo</th><th>Dose habitual</th><th>Redução</th><th>Pegadinha</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--teal-light); font-weight:700;">Apixabana</td>
+            <td>Xa</td>
+            <td style="font-family:'IBM Plex Mono',monospace; font-size:12px;">5 mg 12/12h</td>
+            <td style="font-size:12px;">2 de 3 → 2,5 mg 12/12h</td>
+            <td style="font-size:11px; color:var(--gold);">1 critério isolado NÃO basta</td>
+          </tr>
+          <tr>
+            <td style="color:var(--green-light); font-weight:700;">Rivaroxabana</td>
+            <td>Xa</td>
+            <td style="font-family:'IBM Plex Mono',monospace; font-size:12px;">20 mg 1x/dia c/ alimento</td>
+            <td style="font-size:12px;">ClCr 15–50 → 15 mg 1x/dia</td>
+            <td style="font-size:11px; color:var(--gold);">15 e 20 mg com alimento</td>
+          </tr>
+          <tr>
+            <td style="color:#e74c3c; font-weight:700;">Dabigatrana</td>
+            <td>IIa</td>
+            <td style="font-family:'IBM Plex Mono',monospace; font-size:12px;">150 mg 12/12h</td>
+            <td style="font-size:12px;">110 mg em selecionados · ClCr &lt;30 = trava</td>
+            <td style="font-size:11px; color:var(--gold);">T de Trinta</td>
+          </tr>
+          <tr>
+            <td style="color:var(--gold-light); font-weight:700;">Edoxabana</td>
+            <td>Xa</td>
+            <td style="font-family:'IBM Plex Mono',monospace; font-size:12px;">60 mg 1x/dia</td>
+            <td style="font-size:12px;">1 critério → 30 mg 1x/dia</td>
+            <td style="font-size:11px; color:var(--gold);">EDO pede 1, diferente da API</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- P-GP: O PORTEIRO -->
+<section class="section" id="pgp">
+  <div class="section-header">
+    <div class="section-icon">🚪</div>
+    <div>
+      <div class="section-label">N7 · Mnemônico Absurdo</div>
+      <h2 class="section-title">P-gp — O Porteiro dos DOACs</h2>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">O que é P-gp?</div>
+    <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin-bottom:16px;">
+      P-gp = <strong style="color:var(--white);">glicoproteína P</strong>. É uma proteína transportadora que funciona como uma catraca farmacológica em intestino, rim e fígado. Ela expulsa parte do DOAC para fora do organismo, controlando quanto chega ao sangue.
+    </p>
+    <div style="font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:var(--gold); text-align:center;">"P-gp não se dosa. P-gp se caça na prescrição."</div>
+  </div>
+
+  <div class="pgp-grid">
+    <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.25); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--green-light); margin-bottom:8px;">🟢 P-gp Funcionando</div>
+      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Expulsa parte do DOAC → menos DOAC no sangue → efeito normal</div>
+    </div>
+    <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:8px;">🔴 P-gp Bloqueada (inibidor)</div>
+      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Menos DOAC expulso → mais DOAC no sangue → maior risco de sangramento</div>
+    </div>
+    <div style="background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.25); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--gold); margin-bottom:8px;">🟡 P-gp Induzida (indutor)</div>
+      <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Mais DOAC expulso → menos DOAC no sangue → maior risco de falha/trombose</div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;">
+    <div style="background:rgba(6,15,30,0.6); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:10px;">🚫 Inibidores de P-gp</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Verapamil</span>
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Amiodarona</span>
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Dronedarona</span>
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Cetoconazol</span>
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Ritonavir</span>
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Ciclosporina</span>
+        <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Eritromicina</span>
+      </div>
+    </div>
+    <div style="background:rgba(6,15,30,0.6); border:1px solid rgba(184,134,11,0.25); border-radius:12px; padding:18px;">
+      <div style="font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--gold); margin-bottom:10px;">⚡ Indutores de P-gp</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        <span style="padding:3px 10px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Rifampicina</span>
+        <span style="padding:3px 10px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Carbamazepina</span>
+        <span style="padding:3px 10px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Fenitoína</span>
+        <span style="padding:3px 10px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Erva-de-são-joão</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top:20px;">
+    <p>"Porteiro bom expulsa remédio; porteiro dopado deixa sangrar; porteiro turbinado deixa trombar."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- FA SUBCLÍNICA -->
+<section class="section" id="subclinica">
+  <div class="section-header">
+    <div class="section-icon">📡</div>
+    <div>
+      <div class="section-label">N4 · Pegadinha Moderna</div>
+      <h2 class="section-title">FA Subclínica — A Sombra no Corredor</h2>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">AHRE — Atrial High Rate Episode</div>
+    <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin-bottom:16px;">
+      FA subclínica ou AHRE <strong style="color:var(--white);">não é automaticamente igual</strong> à FA clínica. O risco costuma depender de <strong style="color:var(--white);">carga arrítmica, duração dos episódios, idade, comorbidades e risco basal</strong>.
+    </p>
+    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:16px;">
+      <div style="padding:12px 16px; background:rgba(18,130,162,0.08); border:1px solid rgba(18,130,162,0.2); border-left:3px solid var(--teal); border-radius:8px; font-size:12px; color:var(--text-muted);">
+        <strong style="color:var(--teal);">ARTESiA:</strong> apixabana reduziu AVC/embolia sistêmica vs aspirina, mas aumentou sangramento maior
+      </div>
+      <div style="padding:12px 16px; background:rgba(184,134,11,0.08); border:1px solid rgba(184,134,11,0.2); border-left:3px solid var(--gold); border-radius:8px; font-size:12px; color:var(--text-muted);">
+        <strong style="color:var(--gold);">NOAH-AFNET 6:</strong> edoxabana não reduziu significativamente o composto de morte CV/AVC/embolia, mas aumentou morte + sangramento maior
+      </div>
+    </div>
+    <div style="padding:14px 18px; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); border-radius:10px; font-size:12px; color:var(--text-muted);">
+      <strong style="color:var(--gold);">⚠ Na prova:</strong> Não escreva "AHRE = anticoagula todo mundo." Escreva: <strong style="color:var(--white);">"decisão individualizada, ponderando risco embólico, carga arrítmica, risco de sangramento e preferência do paciente."</strong>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>"FA subclínica é sombra no corredor: às vezes é dragão, às vezes é ruído. Antes da espada, acenda a lanterna."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ALGORITMO CLÍNICO -->
+<section class="section" id="algoritmo">
+  <div class="section-header">
+    <div class="section-icon">🗺️</div>
+    <div>
+      <div class="section-label">N3 · Fluxo Visual</div>
+      <h2 class="section-title">Algoritmo Clínico — Módulo 2</h2>
+    </div>
+  </div>
+
+  <div class="algo-flow">
+    <div class="algo-step" style="border-color:rgba(192,57,43,0.5); background:rgba(192,57,43,0.1);">
+      <div class="algo-label">ENTRADA</div>
+      <strong style="color:var(--white);">Paciente com FA confirmada (ECG ≥30s + interpretação médica)</strong>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong>Prótese mecânica ou Estenose mitral moderada/importante?</strong>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-branch">
+      <div class="algo-step algo-yes">
+        <div class="algo-label" style="color:var(--red-light);">SIM</div>
+        <strong style="color:var(--white);">Varfarina</strong><br>
+        <span style="font-size:12px; color:var(--text-muted);">INR conforme tipo/posição da prótese; mecânica mitral: alvo 3,0 (faixa 2,5–3,5)</span>
+      </div>
+      <div class="algo-step algo-no">
+        <div class="algo-label" style="color:var(--green-light);">NÃO</div>
+        <strong>Calcular CHA₂DS₂-VA / CHA₂DS₂-VASc</strong>
+      </div>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+      <div class="algo-step" style="border-color:rgba(26,122,74,0.4); background:rgba(26,122,74,0.08); text-align:center;">
+        <div class="algo-label" style="color:var(--green-light);">Score = 0</div>
+        <strong>Sem ACO</strong><br><span style="font-size:11px; color:var(--text-muted);">(I/A)</span>
+      </div>
+      <div class="algo-step" style="border-color:rgba(184,134,11,0.4); background:rgba(184,134,11,0.08); text-align:center;">
+        <div class="algo-label" style="color:var(--gold);">Score = 1</div>
+        <strong>Considerar ACO</strong><br><span style="font-size:11px; color:var(--text-muted);">(IIa/B)</span>
+      </div>
+      <div class="algo-step" style="border-color:rgba(192,57,43,0.4); background:rgba(192,57,43,0.08); text-align:center;">
+        <div class="algo-label" style="color:var(--red-light);">Score ≥ 2</div>
+        <strong>ACO Indicada</strong><br><span style="font-size:11px; color:var(--text-muted);">(I/A)</span>
+      </div>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong>Avaliar HAS-BLED</strong><br>
+      <span style="font-size:12px; color:var(--text-muted);">Corrigir PA, álcool, AINE, INR instável, função renal/hepática. HAS-BLED ≥3 = mais vigilância, não contra-indicação.</span>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step">
+      <strong>DOAC preferencial → ARDE</strong><br>
+      <span style="font-size:12px; color:var(--text-muted);">API pede 2 · RIVA pede rim · DABI é rim, velho e barriga · EDO pede 1 · Caçar P-gp na prescrição</span>
+    </div>
+    <div class="algo-connector">↓</div>
+    <div class="algo-step" style="border-color:rgba(18,130,162,0.4); background:rgba(18,130,162,0.08);">
+      <div class="algo-label" style="color:var(--teal);">REAVALIAR PERIODICAMENTE</div>
+      <strong>Novos fatores de risco · Carga de FA · Risco de sangramento</strong><br>
+      <span style="font-size:12px; color:var(--text-muted);">Contraindicação absoluta? Considerar oclusão do AAE</span>
+    </div>
+  </div>
+</section>
+
+<!-- PEGADINHAS -->
+<section class="section" id="pegadinhas">
+  <div class="section-header">
+    <div class="section-icon">⚠️</div>
+    <div>
+      <div class="section-label">N4 · Armadilhas de Prova</div>
+      <h2 class="section-title">Pegadinhas TEC 2026</h2>
+    </div>
+  </div>
+
+  <div class="trap-grid">
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>FA paroxística não anticoagula?</strong></div>
+      <div class="trap-why">ERRADO. FA paroxística também emboliza. O padrão temporal não define anticoagulação. O escore clínico manda.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>HAS-BLED alto contraindica anticoagulação?</strong></div>
+      <div class="trap-why">ERRADO. HAS-BLED ≥3 indica risco aumentado e necessidade de corrigir fatores modificáveis. Não é botão de desligar anticoagulação.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>AAS substitui anticoagulante na FA?</strong></div>
+      <div class="trap-why">ERRADO. Antiagregante isolado ou combinado NÃO substitui ACO para prevenção de AVC na FA quando há indicação. ESC 2024: Classe III.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>DOAC em prótese mecânica?</strong></div>
+      <div class="trap-why">ERRADO. RE-ALIGN (dabigatrana) e PROACT Xa (apixabana) são os cemitérios dessa ideia. Prótese mecânica = varfarina.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Todo sopro valvar vira varfarina?</strong></div>
+      <div class="trap-why">NÃO. Apenas prótese mecânica e estenose mitral moderada/importante. Estenose aórtica, insuficiência mitral, bioprótese — avaliar caso a caso.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Bioprótese = prótese mecânica?</strong></div>
+      <div class="trap-why">NÃO. Bioprótese é outro terreno. Em cenários selecionados (RIVER), DOAC pode ser considerado. Não confundir os territórios.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Apixabana reduz dose com 1 critério?</strong></div>
+      <div class="trap-why">NÃO. API pede 2. Peso baixo isolado não basta. Idade isolada não basta. Creatinina isolada não basta. Apixabana é ciumenta — exige dois critérios.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Hipertireoidismo = anticoagulação automática?</strong></div>
+      <div class="trap-why">CUIDADO. Trate como gatilho de FA e contexto clínico. A decisão de anticoagular considera risco tromboembólico, duração e carga de FA. Não é automático.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Todo AHRE recebe DOAC?</strong></div>
+      <div class="trap-why">NÃO. FA subclínica exige decisão individualizada — risco embólico, carga arrítmica, risco de sangramento e preferência do paciente. ARTESiA e NOAH-AFNET 6 mostram nuances importantes.</div>
+    </div>
+    <div class="trap-card">
+      <div class="trap-icon">🔴</div>
+      <div class="trap-text"><strong>Dabigatrana com ClCr 25 — usar dose reduzida?</strong></div>
+      <div class="trap-why">T de Trinta: ClCr &lt;30 = TRAVA. Dabigatrana geralmente contraindicada abaixo de 30 mL/min para FA. Não é "reduz" — é "evita/contraindica".</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards">
+  <div class="section-header">
+    <div class="section-icon">🃏</div>
+    <div>
+      <div class="section-label">N4 · Testing Effect</div>
+      <h2 class="section-title">Flashcards — Toque para revelar</h2>
+    </div>
+  </div>
+  <p style="font-size:12px; color:var(--text-muted); margin-bottom:20px;">Toque no card para ver a resposta.</p>
+
+  <div class="flashcard-grid">
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Onde se formam 90% dos trombos na FA?</div>
+      <div class="fc-a">Apêndice atrial esquerdo (AAE).</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Qual tríade explica trombose na FA?</div>
+      <div class="fc-a">Tríade de Virchow: estase, lesão endotelial e hipercoagulabilidade.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">FA paroxística pode embolizar?</div>
+      <div class="fc-a">Sim. O padrão temporal não define risco tromboembólico sozinho.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">HAS-BLED ≥3 contraindica anticoagulação?</div>
+      <div class="fc-a">Não. Indica risco aumentado e necessidade de corrigir fatores modificáveis.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Quando usar varfarina em vez de DOAC?</div>
+      <div class="fc-a">Prótese mecânica e estenose mitral moderada/importante.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Qual estudo condenou dabigatrana em prótese mecânica?</div>
+      <div class="fc-a">RE-ALIGN. Mais eventos tromboembólicos e sangramentos que varfarina.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Apixabana reduz com 1 critério isolado?</div>
+      <div class="fc-a">Não. API pede 2 de 3 critérios (Age ≥80, Peso ≤60kg, Creat ≥1,5).</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Dabigatrana age em qual fator?</div>
+      <div class="fc-a">IIa (trombina). DABI tem BI → age no IIa.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">Verapamil com dabigatrana — qual o risco?</div>
+      <div class="fc-a">Verapamil inibe P-gp → mais dabigatrana no sangue → maior risco de sangramento.</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+    <div class="flashcard" onclick="this.classList.toggle('revealed')">
+      <div class="fc-q">CHA₂DS₂-VA =0 → conduta?</div>
+      <div class="fc-a">Geralmente sem anticoagulação (Classe I / Nível A).</div>
+      <div class="fc-hint">↓ toque para revelar</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div>
+      <div class="section-label">N6 · Quiz Interativo</div>
+      <h2 class="section-title">Simulado — Módulo 2</h2>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <div class="quiz-title">5 Questões Estilo TEC</div>
+      <div class="score-display">Score: <span id="score">0</span> / <span id="total">5</span></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-card active" id="q1">
+      <div class="question-num">QUESTÃO 01 / 05</div>
+      <div class="question-text">Paciente com FA paroxística, hipertensão arterial, diabetes e 68 anos. ECG atual em ritmo sinusal. Sobre anticoagulação, a conduta correta é:</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q1')"><span class="option-letter">A</span>Não anticoagular porque a FA é paroxística</button>
+        <button class="option" onclick="answer(this,true,'q1')"><span class="option-letter">B</span>Anticoagular conforme escore de risco — FA paroxística também emboliza</button>
+        <button class="option" onclick="answer(this,false,'q1')"><span class="option-letter">C</span>Usar AAS isolado como alternativa à anticoagulação</button>
+        <button class="option" onclick="answer(this,false,'q1')"><span class="option-letter">D</span>Anticoagular apenas se FA durar mais de 7 dias</button>
+      </div>
+      <div class="feedback" id="fb1">✅ <strong>Correto — B.</strong> A classificação temporal não define risco isoladamente. O escore clínico (CHA₂DS₂-VA) manda. FA paroxística também emboliza — é pegadinha clássica. AAS não substitui ACO (ESC 2024: Classe III).</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card" id="q2">
+      <div class="question-num">QUESTÃO 02 / 05</div>
+      <div class="question-text">Paciente com FA e prótese valvar mecânica mitral. CHA₂DS₂-VA = 1. Melhor anticoagulante:</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q2')"><span class="option-letter">A</span>Apixabana 5 mg 12/12h</button>
+        <button class="option" onclick="answer(this,false,'q2')"><span class="option-letter">B</span>Rivaroxabana 20 mg/dia</button>
+        <button class="option" onclick="answer(this,false,'q2')"><span class="option-letter">C</span>Dabigatrana 150 mg 12/12h</button>
+        <button class="option" onclick="answer(this,true,'q2')"><span class="option-letter">D</span>Varfarina com INR-alvo conforme tipo e posição da prótese</button>
+      </div>
+      <div class="feedback" id="fb2">✅ <strong>Correto — D.</strong> Prótese mecânica é território exclusivo da varfarina. O INR-alvo depende do tipo e da posição da prótese — em prótese mecânica mitral, costuma-se mirar INR 3,0 (faixa 2,5–3,5). RE-ALIGN (dabigatrana) e PROACT Xa (apixabana) reforçaram que DOAC não deve atravessar esse portão.</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card" id="q3">
+      <div class="question-num">QUESTÃO 03 / 05</div>
+      <div class="question-text">Paciente com FA e HAS-BLED = 4. Qual a melhor interpretação clínica?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q3')"><span class="option-letter">A</span>Anticoagulação proibida pelo alto risco de sangramento</button>
+        <button class="option" onclick="answer(this,false,'q3')"><span class="option-letter">B</span>HAS-BLED substitui CHA₂DS₂-VA na decisão</button>
+        <button class="option" onclick="answer(this,true,'q3')"><span class="option-letter">C</span>Risco aumentado de sangramento — corrigir fatores modificáveis e acompanhar de perto</button>
+        <button class="option" onclick="answer(this,false,'q3')"><span class="option-letter">D</span>Indicar AAS como alternativa mais segura</button>
+      </div>
+      <div class="feedback" id="fb3">✅ <strong>Correto — C.</strong> HAS-BLED é painel de alerta, não botão de desligar anticoagulação. Corrigir PA, álcool, AINE, INR instável. A diretriz SBC 2025 reforça que escore alto de sangramento não deve negar ACO quando indicada.</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card" id="q4">
+      <div class="question-num">QUESTÃO 04 / 05</div>
+      <div class="question-text">Paciente com FA em uso de apixabana tem 82 anos, pesa 72 kg e creatinina = 1,1 mg/dL. Deve reduzir a dose para 2,5 mg 12/12h?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q4')"><span class="option-letter">A</span>Sim — idade ≥80 anos é critério suficiente</button>
+        <button class="option" onclick="answer(this,false,'q4')"><span class="option-letter">B</span>Sim — todo idoso usa dose reduzida de apixabana</button>
+        <button class="option" onclick="answer(this,true,'q4')"><span class="option-letter">C</span>Não — apixabana exige 2 de 3 critérios e este paciente tem apenas 1</button>
+        <button class="option" onclick="answer(this,false,'q4')"><span class="option-letter">D</span>Trocar para AAS por ser idoso com risco de queda</button>
+      </div>
+      <div class="feedback" id="fb4">✅ <strong>Correto — C.</strong> API pede 2 de 3: Age ≥80, Peso ≤60 kg, Creatinina ≥1,5 mg/dL. Este paciente tem apenas 1 critério (idade). 1 critério isolado NÃO basta. Apixabana é ciumenta.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card" id="q5">
+      <div class="question-num">QUESTÃO 05 / 05</div>
+      <div class="question-text">Paciente com FA subclínica detectada por dispositivo (AHRE), 70 anos, HAS e alto risco de sangramento. A melhor conduta é:</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false,'q5')"><span class="option-letter">A</span>Todo AHRE deve receber DOAC imediatamente</button>
+        <button class="option" onclick="answer(this,false,'q5')"><span class="option-letter">B</span>AHRE nunca indica anticoagulação</button>
+        <button class="option" onclick="answer(this,true,'q5')"><span class="option-letter">C</span>Decisão individualizada — risco embólico, carga arrítmica, sangramento e preferência do paciente</button>
+        <button class="option" onclick="answer(this,false,'q5')"><span class="option-letter">D</span>Usar varfarina sempre em AHRE</button>
+      </div>
+      <div class="feedback" id="fb5">✅ <strong>Correto — C.</strong> FA subclínica exige nuance. ARTESiA e NOAH-AFNET 6 mostram que não é simples anticoagular todos. A decisão deve considerar carga arrítmica, risco embólico, risco de sangramento e preferência do paciente.</div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn-reset" onclick="resetQuiz()">↺ Reiniciar</button>
+      <div class="question-counter" id="q-counter">Questão 1 de 5</div>
+      <button class="btn-quiz" id="btn-next" onclick="nextQuestion()">Próxima →</button>
+    </div>
+  </div>
+</section>
+
+<!-- REVISÃO RÁPIDA -->
+<section class="section" id="revisao">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div>
+      <div class="section-label">N5 · Síntese Final</div>
+      <h2 class="section-title">Revisão Ultrarrápida</h2>
+    </div>
+  </div>
+
+  <div class="review-tabs">
+    <div class="review-tab active" onclick="setReview(this,'r10')">⚡ 10 segundos</div>
+    <div class="review-tab" onclick="setReview(this,'r30')">🕐 30 segundos</div>
+    <div class="review-tab" onclick="setReview(this,'r60')">⏱️ 1 minuto</div>
+  </div>
+
+  <div class="review-content active" id="r10">
+    FA emboliza porque o sangue para no apêndice atrial esquerdo.<br>
+    <strong>CHA₂DS₂-VA</strong> decide trombo. <strong>HAS-BLED</strong> corrige sangramento. <strong>ARDE</strong> escolhe DOAC.
+  </div>
+
+  <div class="review-content" id="r30">
+    FA paroxística também emboliza — o padrão temporal <strong>não define</strong> anticoagulação. Se CHA₂DS₂-VA ≥2 → anticoagule. HAS-BLED ≥3 aumenta risco de sangramento, mas <strong>não veta</strong> anticoagulação. DOAC é preferido, exceto <strong>prótese mecânica</strong> e <strong>estenose mitral mod-grave</strong> → varfarina. Para DOAC: API pede 2, RIVA pede rim, DABI é rim/velho/barriga, EDO pede 1.
+  </div>
+
+  <div class="review-content" id="r60">
+    O Módulo 2 é o <strong>A do CARE</strong>: evitar AVC e tromboembolismo. A FA gera trombo por <strong>Virchow</strong> dentro do apêndice atrial esquerdo — estase, endotélio lesionado, hipercoagulabilidade. O risco é estratificado por <strong>CHA₂DS₂-VA</strong>: 0 = sem ACO, 1 = considerar, ≥2 = anticoagular. <strong>HAS-BLED</strong> não desliga anticoagulação — ele mostra o que corrigir. DOACs são preferidos nos elegíveis, mas prótese mecânica e estenose mitral mod-grave pertencem à <strong>varfarina</strong> (RE-ALIGN e PROACT Xa mostram perigo de DOAC aqui). Para DOAC, use <strong>ARDE</strong>: API pede 2 de 3 (age/peso/creat) · RIVA pede rim (15 ou 20 mg com alimento) · DABI é rim/velho/barriga (T de Trinta — &lt;30 trava) · EDO pede 1 critério. <strong>P-gp é porteiro</strong>: não se dosa, se caça na prescrição. Verapamil e amiodarona inibem P-gp, rifampicina induz. FA subclínica = decisão individualizada.
+  </div>
+
+  <!-- Frase final -->
+  <div style="background:linear-gradient(135deg,rgba(139,0,0,0.15),rgba(6,15,30,0.8)); border:1px solid rgba(192,57,43,0.3); border-radius:16px; padding:28px 32px; margin-top:32px; text-align:center;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">Frase Final de Fixação</div>
+    <div style="font-family:'Syne',sans-serif; font-size:clamp(14px,3vw,18px); font-weight:700; color:var(--white); line-height:1.6; margin-bottom:16px;">
+      "Na FA, o trombo mora no silêncio do apêndice atrial esquerdo;<br>
+      o CHA₂DS₂-VA acende o alarme, o HAS-BLED conserta o terreno<br>
+      e o ARDE escolhe a espada."
+    </div>
+    <div style="font-family:'Dancing Script',cursive; font-size:22px; color:var(--gold);">Dr. André Rossanno</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">Dr. André Rossanno</div>
+  <div class="footer-text">
+    Método André Rossanno de Memorização Médica<br>
+    Atlas Mental Interativo · memoriapotencial.com.br<br>
+    Conteúdo educacional para TEC 2026 · Baseado em ESC 2024 e Diretriz Brasileira de FA SBC 2025
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const s=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progress-bar').style.width=s+'%';
+});
+
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+document.addEventListener('click',(e)=>{
+  const sb=document.getElementById('sidebar'),tg=document.getElementById('menu-toggle');
+  if(sb.classList.contains('open')&&!sb.contains(e.target)&&!tg.contains(e.target))sb.classList.remove('open');
+});
+
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('sidebar').classList.remove('open');}
+}
+
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const id=e.target.id;
+      document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+      const link=document.querySelector(`.sidebar-link[onclick*="${id}"]`);
+      if(link)link.classList.add('active');
+    }
+  });
+},{threshold:0.1,rootMargin:'-80px 0px -20% 0px'});
+document.querySelectorAll('.section').forEach(s=>observer.observe(s));
+
+function toggleCare(header){
+  const body=header.nextElementSibling;
+  const isOpen=body.classList.contains('open');
+  document.querySelectorAll('.care-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.care-header').forEach(h=>h.classList.remove('open'));
+  if(!isOpen){body.classList.add('open');header.classList.add('open');}
+}
+
+let currentQ=1,score=0,answered=[false,false,false,false,false];
+
+function answer(btn,isCorrect,qId){
+  const qNum=parseInt(qId.replace('q',''));
+  if(answered[qNum-1])return;
+  answered[qNum-1]=true;
+  const options=btn.parentElement.querySelectorAll('.option');
+  options.forEach(o=>o.disabled=true);
+  const fb=document.getElementById('fb'+qNum);
+  if(isCorrect){btn.classList.add('correct');fb.classList.add('correct-fb','show');score++;document.getElementById('score').textContent=score;}
+  else{btn.classList.add('wrong');fb.classList.add('wrong-fb','show');options.forEach(o=>{if(o.getAttribute('onclick').includes('true'))o.classList.add('correct');});}
+}
+
+function nextQuestion(){
+  if(currentQ<5){
+    document.getElementById('q'+currentQ).classList.remove('active');
+    currentQ++;
+    document.getElementById('q'+currentQ).classList.add('active');
+    document.getElementById('q-counter').textContent=`Questão ${currentQ} de 5`;
+    if(currentQ===5)document.getElementById('btn-next').textContent='Finalizar ✓';
+  } else {
+    const container=document.querySelector('.quiz-container');
+    const result=document.createElement('div');
+    result.style.cssText='margin-top:20px;padding:24px;background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);border-radius:14px;text-align:center;';
+    result.innerHTML=`<div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:900;color:${score>=4?'var(--green-light)':'var(--gold)'};">${score}/5</div><div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score===5?'🏆 Perfeito! Módulo 2 dominado.':score>=4?'✅ Muito bem! Revise os erros.':'📖 Revise o módulo antes de avançar.'}</div>`;
+    document.getElementById('btn-next').style.display='none';
+    container.appendChild(result);
+  }
+}
+
+function resetQuiz(){
+  currentQ=1;score=0;answered=[false,false,false,false,false];
+  document.getElementById('score').textContent='0';
+  document.getElementById('q-counter').textContent='Questão 1 de 5';
+  document.getElementById('btn-next').textContent='Próxima →';
+  document.getElementById('btn-next').style.display='';
+  document.querySelectorAll('.question-card').forEach((q,i)=>{
+    q.classList.toggle('active',i===0);
+    q.querySelectorAll('.option').forEach(o=>{o.disabled=false;o.classList.remove('correct','wrong');});
+    const fb=q.querySelector('.feedback');
+    if(fb)fb.classList.remove('show','correct-fb','wrong-fb');
+  });
+  const extra=document.querySelector('.quiz-container>div:last-child');
+  if(extra&&extra.style.background)extra.remove();
+}
+
+function setReview(tab,id){
+  document.querySelectorAll('.review-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.review-content').forEach(c=>c.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
