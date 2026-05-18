@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FA — Módulo 3B | A Sala de Ablação | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B2545;--teal:#1282A2;--teal-light:#1a9cbf;--mint:#034078;--gold:#C9A84C;--gold-light:#e8c66a;--red:#C0392B;--red-light:#e74c3c;--green:#1a7a4a;--green-light:#27ae60;--white:#f0f4f8;--text:#d4e1f7;--text-muted:#8ba3c7;--glass-border:rgba(18,130,162,0.2);--emerald:#0d7a5f;--emerald-light:#10b981;--purple:#7c3aed;--purple-light:#a78bfa;}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'IBM Plex Sans',sans-serif;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(124,58,237,0.12) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 85% 80%,rgba(13,122,95,0.1) 0%,transparent 70%),radial-gradient(ellipse 100% 100% at 50% 50%,#0B2545 0%,#060f1e 100%);z-index:-2}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(124,58,237,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.03) 1px,transparent 1px);background-size:40px 40px;z-index:-1}
+#progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--purple-light),var(--gold));z-index:1000;transition:width 0.1s}
+#sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;background:rgba(6,15,30,0.95);border-right:1px solid var(--glass-border);backdrop-filter:blur(20px);z-index:900;overflow-y:auto;padding:24px 0 40px;transform:translateX(-260px);transition:transform 0.3s ease}
+#sidebar.open{transform:translateX(0)}
+#sidebar::-webkit-scrollbar{width:4px}#sidebar::-webkit-scrollbar-thumb{background:var(--purple-light);border-radius:2px}
+.sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--glass-border);margin-bottom:16px}
+.sidebar-logo .brand{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:800;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase}
+.sidebar-logo .title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px}
+.sidebar-section{padding:8px 20px 4px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.sidebar-link{display:block;padding:9px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--text-muted);text-decoration:none;transition:all 0.2s;border-left:2px solid transparent;cursor:pointer}
+.sidebar-link:hover{color:var(--white);background:rgba(124,58,237,0.1)}
+.sidebar-module{display:block;padding:11px 20px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.sidebar-module.done{color:var(--teal)}.sidebar-module.current{color:var(--purple-light)}
+#menu-toggle{position:fixed;top:16px;left:16px;width:44px;height:44px;background:rgba(6,15,30,0.9);border:1px solid var(--glass-border);border-radius:8px;cursor:pointer;z-index:950;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backdrop-filter:blur(10px);transition:all 0.2s}
+#menu-toggle:hover{border-color:var(--purple-light)}
+#menu-toggle span{width:20px;height:2px;background:var(--text);border-radius:1px}
+main{max-width:900px;margin:0 auto;padding:0 20px 80px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px}
+.hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple-light);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:20px;padding:6px 16px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
+.hero-badge span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple-light)}
+.hero-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:1.0;color:var(--white);margin-bottom:8px;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
+.hero-title .highlight{color:var(--purple-light)}.hero-title .accent{color:var(--gold)}
+.hero-subtitle{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(16px,3.5vw,24px);font-weight:600;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+.hero-quote{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(11,37,69,0.6));border:1px solid rgba(124,58,237,0.25);border-left:4px solid var(--purple-light);border-radius:12px;padding:28px 32px;margin-bottom:40px;max-width:700px;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards}
+.hero-quote p{font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:12px}
+.hero-quote .author{font-family:'Dancing Script',cursive;font-size:18px;color:var(--gold)}
+.module-nav{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:80px;opacity:0;animation:fadeUp 0.8s ease 0.8s forwards}
+@media(max-width:600px){.module-nav{grid-template-columns:1fr}}
+.module-card{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.3s;text-decoration:none;display:block;position:relative}
+.module-card:hover{border-color:var(--teal);transform:translateY(-2px)}
+.module-card.active-module{border-color:var(--purple-light);background:rgba(124,58,237,0.1)}
+.module-card.done-module{border-color:var(--teal)}
+.module-card.locked-module{opacity:0.5;cursor:default;pointer-events:none}
+.module-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;margin-bottom:6px}
+.module-name{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.module-desc{font-size:11px;color:var(--text-muted)}
+.module-status{position:absolute;top:14px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 8px;border-radius:10px}
+.status-done{background:rgba(18,130,162,0.2);color:var(--teal-light);border:1px solid rgba(18,130,162,0.4)}
+.status-active{background:rgba(124,58,237,0.2);color:var(--purple-light);border:1px solid rgba(124,58,237,0.4)}
+.status-soon{background:rgba(201,168,76,0.1);color:var(--gold);border:1px solid rgba(201,168,76,0.3)}
+.section{margin-bottom:80px;opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.section.visible{opacity:1;transform:translateY(0)}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--glass-border)}
+.section-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--purple),var(--mint));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.section-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(22px,4vw,32px);font-weight:800;color:var(--white);line-height:1.1}
+.quote-block{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(11,37,69,0.5));border:1px solid rgba(124,58,237,0.2);border-left:4px solid var(--purple-light);border-radius:12px;padding:24px 28px;margin:24px 0}
+.quote-block p{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:10px}
+.quote-block .author{font-family:'Dancing Script',cursive;font-size:17px;color:var(--gold)}
+.mnemonic-card{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(11,37,69,0.5));border:1px solid rgba(124,58,237,0.3);border-radius:16px;padding:28px 32px;text-align:center;margin:20px 0}
+.mnemonic-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.mnemonic-text{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(16px,3vw,24px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.4}
+.mnemonic-author{font-family:'Dancing Script',cursive;font-size:16px;color:var(--gold)}
+.trap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.trap-card{background:rgba(6,15,30,0.6);border:1px solid rgba(192,57,43,0.25);border-left:3px solid var(--red-light);border-radius:12px;padding:16px 18px;transition:all 0.3s}
+.trap-card:hover{border-color:rgba(192,57,43,0.5);background:rgba(192,57,43,0.06)}
+.trap-text{font-size:13px;color:var(--text);line-height:1.5;font-weight:600;margin-bottom:6px}
+.trap-why{font-size:11px;color:var(--text-muted);line-height:1.5}
+.castle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:28px}
+.castle-room{border-radius:16px;padding:24px;transition:transform 0.3s}
+.castle-room:hover{transform:translateY(-4px)}
+.room-number{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.room-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px}
+.room-image{font-size:32px;margin-bottom:10px}
+.room-desc{font-size:12px;line-height:1.6;color:var(--text-muted)}
+.room-phrase{font-size:11px;font-style:italic;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1)}
+.master-table{width:100%;border-collapse:collapse}
+.master-table th{padding:12px 14px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;background:rgba(6,15,30,0.8);color:var(--purple-light);border-bottom:1px solid var(--glass-border)}
+.master-table td{padding:12px 14px;font-size:12px;color:var(--text);border-bottom:1px solid rgba(18,130,162,0.06);line-height:1.5}
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.flashcard{background:rgba(6,15,30,0.7);border:1px solid var(--glass-border);border-radius:14px;padding:20px;cursor:pointer;transition:all 0.3s;min-height:120px;position:relative}
+.flashcard:hover{border-color:var(--purple-light);transform:translateY(-2px)}
+.fc-question{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple-light);letter-spacing:1px;margin-bottom:10px}
+.fc-front{font-size:13px;color:var(--white);line-height:1.5;font-weight:600}
+.fc-back{font-size:12px;color:var(--emerald-light);line-height:1.6;display:none}
+.fc-hint{font-size:10px;color:var(--text-muted);position:absolute;bottom:12px;right:16px;font-family:'IBM Plex Mono',monospace}
+.flashcard.flipped .fc-front{display:none}.flashcard.flipped .fc-back{display:block}
+.flashcard.flipped{border-color:var(--emerald-light);background:rgba(13,122,95,0.08)}
+.quiz-container{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:20px;padding:32px}
+.quiz-progress-text{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:24px}
+.quiz-question{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:24px;line-height:1.4}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:10px;padding:14px 18px;cursor:pointer;font-size:13px;color:var(--text);transition:all 0.2s;text-align:left}
+.quiz-option:hover{border-color:var(--purple-light);background:rgba(124,58,237,0.08)}
+.quiz-option.correct{border-color:var(--emerald-light);background:rgba(13,122,95,0.15);color:var(--emerald-light)}
+.quiz-option.wrong{border-color:var(--red-light);background:rgba(192,57,43,0.1);color:var(--red-light)}
+.quiz-feedback{margin-top:16px;padding:14px 18px;border-radius:10px;font-size:13px;line-height:1.6;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:rgba(13,122,95,0.15);border:1px solid rgba(13,122,95,0.3);color:var(--emerald-light)}
+.quiz-feedback.wrong-fb{background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);color:var(--red-light)}
+.quiz-next{margin-top:20px;background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.4);border-radius:10px;padding:12px 28px;color:var(--purple-light);font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s;display:none}
+.quiz-next.show{display:block}.quiz-next:hover{background:rgba(124,58,237,0.35)}
+.quiz-score{text-align:center;padding:32px;display:none}
+.quiz-score-num{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:56px;font-weight:900;color:var(--gold)}
+.quiz-restart{margin-top:20px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:12px 28px;color:var(--gold);font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:13px;cursor:pointer}
+.revision-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.rev-tab{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:8px;padding:8px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);cursor:pointer;transition:all 0.2s}
+.rev-tab.active{border-color:var(--purple-light);color:var(--purple-light);background:rgba(124,58,237,0.1)}
+.rev-content{display:none;background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:24px;font-size:14px;line-height:1.8;color:var(--text)}
+.rev-content.active{display:block}
+.palace-sala{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:16px;padding:24px;margin-bottom:16px;transition:all 0.3s}
+.palace-sala:hover{border-color:var(--purple-light)}
+.palace-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.palace-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:800;color:var(--white);margin-bottom:10px}
+.palace-desc{font-size:13px;color:var(--text);line-height:1.7}
+.palace-represents{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,0.2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<button id="menu-toggle" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="brand">Atlas Mental</div>
+    <div class="title">Dr. André Rossanno · TEC 2026</div>
+  </div>
+  <div class="sidebar-section">Módulos FA</div>
+  <a class="sidebar-module done" href="fa_modulo1.html">M1 — O Átrio Sem Maestro</a>
+  <a class="sidebar-module done" href="fa_modulo2.html">M2 — O Trono do Trombo</a>
+  <a class="sidebar-module done" href="fa_modulo3.html">M3 — O Freio e a Bússola</a>
+  <a class="sidebar-module current" href="#">M3B — A Sala de Ablação</a>
+  <a class="sidebar-module" href="#">M4 — FA na Emergência</a>
+  <div class="sidebar-section" style="margin-top:16px">Seções</div>
+  <a class="sidebar-link" onclick="scrollToId('salas')">🏰 Castelo das 5 Salas</a>
+  <a class="sidebar-link" onclick="scrollToId('vps')">⚡ Ablação das VPs</a>
+  <a class="sidebar-link" onclick="scrollToId('nodav')">🌉 Ablação do Nó AV</a>
+  <a class="sidebar-link" onclick="scrollToId('coxmaze')">🌀 Cox-Maze</a>
+  <a class="sidebar-link" onclick="scrollToId('hibrida')">🤝 Ablação Híbrida</a>
+  <a class="sidebar-link" onclick="scrollToId('watchman')">🛡️ Oclusão do AAE</a>
+  <a class="sidebar-link" onclick="scrollToId('tabela')">📊 Tabela Mestra</a>
+  <a class="sidebar-link" onclick="scrollToId('palacio')">🏛️ Palácio da Memória</a>
+  <a class="sidebar-link" onclick="scrollToId('pegadinhas')">🔴 Pegadinhas</a>
+  <a class="sidebar-link" onclick="scrollToId('flashcards')">📇 Flashcards</a>
+  <a class="sidebar-link" onclick="scrollToId('quiz')">🧩 Quiz</a>
+  <a class="sidebar-link" onclick="scrollToId('revisao')">⚡ Revisão</a>
+  <a class="sidebar-link" onclick="scrollToId('filosofia')">💬 Filosofia</a>
+</nav>
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kicker">Módulo 3B · FA · TEC 2026</div>
+  <div class="hero-badge"><span>⚡ A Sala de Ablação</span></div>
+  <h1 class="hero-title">A Sala de<br><span class="highlight">Ablação</span></h1>
+  <p class="hero-subtitle">Portas, Pontes, Labirintos e Tampas</p>
+  <div class="hero-quote">
+    <p>"Na Sala de Ablação, o médico aprende que a FA não tem uma única porta: às vezes fecha a veia, às vezes corta a ponte, às vezes desenha labirinto, às vezes tampa o ninho do trombo."</p>
+    <div class="author">— Dr. André Rossanno</div>
+  </div>
+  <div class="module-nav">
+    <a href="fa_modulo3.html" class="module-card done-module">
+      <span class="module-status status-done">✓ concluído</span>
+      <div class="module-num">M3</div>
+      <div class="module-name">O Freio e a Bússola</div>
+      <div class="module-desc">Controle de ritmo e frequência</div>
+    </a>
+    <div class="module-card active-module">
+      <span class="module-status status-active">● atual</span>
+      <div class="module-num">M3B</div>
+      <div class="module-name">A Sala de Ablação</div>
+      <div class="module-desc">VPs · Nó AV · Cox-Maze · Watchman</div>
+    </div>
+    <a href="fa_modulo1.html" class="module-card done-module">
+      <span class="module-status status-done">✓ concluído</span>
+      <div class="module-num">M1</div>
+      <div class="module-name">O Átrio Sem Maestro</div>
+      <div class="module-desc">Fisiopatologia e diagnóstico</div>
+    </a>
+    <div class="module-card locked-module">
+      <span class="module-status status-soon">em breve</span>
+      <div class="module-num">M4</div>
+      <div class="module-name">FA na Emergência</div>
+      <div class="module-desc">CVE · Emergência · Flutter agudo</div>
+    </div>
+  </div>
+</section>
+
+<div class="mnemonic-card" style="margin-bottom:60px;">
+  <div class="mnemonic-label">Frase-Mãe do M3B</div>
+  <div class="mnemonic-text">"<span style="color:var(--purple-light);">Cateter fecha portas</span>; <span style="color:var(--gold);">Cox-Maze redesenha ruas</span>; <span style="color:var(--emerald-light);">Híbrida junta os dois exércitos</span>."</div>
+  <div class="mnemonic-author">— Dr. André Rossanno</div>
+</div>
+
+<!-- CASTELO DAS 5 SALAS -->
+<section class="section" id="salas">
+  <div class="section-header">
+    <div class="section-icon">🏰</div>
+    <div><div class="section-label">Visão Geral</div><h2 class="section-title">O Castelo das 5 Salas</h2></div>
+  </div>
+  <div class="castle-grid">
+    <div class="castle-room" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,15,30,0.8));border:1px solid rgba(124,58,237,0.3);">
+      <div class="room-image">⚡</div><div class="room-number" style="color:var(--purple-light);">Sala 1</div>
+      <div class="room-title" style="color:var(--purple-light);">Ablação das VPs</div>
+      <div class="room-desc">Boate dos gatilhos. Isola eletricamente as VPs. <strong style="color:var(--white);">Controle de ritmo.</strong></div>
+      <div class="room-phrase" style="color:var(--purple-light);">"VP caça gatilho."</div>
+    </div>
+    <div class="castle-room" style="background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(6,15,30,0.8));border:1px solid rgba(192,57,43,0.3);">
+      <div class="room-image">🌉</div><div class="room-number" style="color:var(--red-light);">Sala 2</div>
+      <div class="room-title" style="color:var(--red-light);">Ablação do Nó AV</div>
+      <div class="room-desc">Ponte queimada. <strong style="color:var(--white);">Controle de frequência.</strong> Exige dispositivo permanente.</div>
+      <div class="room-phrase" style="color:var(--red-light);">"AV corta estrada."</div>
+    </div>
+    <div class="castle-room" style="background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(6,15,30,0.8));border:1px solid rgba(18,130,162,0.3);">
+      <div class="room-image">🌀</div><div class="room-number" style="color:var(--teal-light);">Sala 3</div>
+      <div class="room-title" style="color:var(--teal-light);">Cox-Maze</div>
+      <div class="room-desc">Labirinto cirúrgico. Cicatrizes transmurais. <strong style="color:var(--white);">Especialmente cirurgia mitral.</strong></div>
+      <div class="room-phrase" style="color:var(--teal-light);">"Maze redesenha ruas."</div>
+    </div>
+    <div class="castle-room" style="background:linear-gradient(135deg,rgba(13,122,95,0.15),rgba(6,15,30,0.8));border:1px solid rgba(13,122,95,0.3);">
+      <div class="room-image">🤝</div><div class="room-number" style="color:var(--emerald-light);">Sala 4</div>
+      <div class="room-title" style="color:var(--emerald-light);">Ablação Híbrida</div>
+      <div class="room-desc">Cirurgião por fora + eletrofisiologista por dentro. Casos refratários complexos.</div>
+      <div class="room-phrase" style="color:var(--emerald-light);">"Dois exércitos, um mapa."</div>
+    </div>
+    <div class="castle-room" style="background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(6,15,30,0.8));border:1px solid rgba(201,168,76,0.3);">
+      <div class="room-image">🛡️</div><div class="room-number" style="color:var(--gold);">Sala 5</div>
+      <div class="room-title" style="color:var(--gold);">Oclusão do AAE</div>
+      <div class="room-desc">Tampa do ninho do dragão. 90% dos trombos nascem ali. Quando ACO é impossível.</div>
+      <div class="room-phrase" style="color:var(--gold);">"Fecha o ninho, não zera o risco."</div>
+    </div>
+  </div>
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Técnica dos 3 Verbos</div>
+    <div class="mnemonic-text"><span style="color:var(--purple-light);">Cateter → Fecha</span> &nbsp;|&nbsp; <span style="color:var(--teal-light);">Maze → Redesenha</span> &nbsp;|&nbsp; <span style="color:var(--emerald-light);">Híbrida → Combina</span></div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- VPs -->
+<section class="section" id="vps">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div><div class="section-label">Sala 1 · Controle de Ritmo</div><h2 class="section-title">Ablação das Veias Pulmonares</h2></div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(6,15,30,0.85));border:1px solid rgba(124,58,237,0.3);border-radius:20px;padding:28px;margin-bottom:24px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">🎬 A Boate Clandestina · Marco: Michel Haïssaguerre 1998</div>
+    <p style="font-size:13px;color:var(--text);line-height:1.8;">As <strong style="color:var(--purple-light);">veias pulmonares</strong> viraram uma <strong style="color:var(--gold);">boate clandestina</strong>. Faíscas ectópicas dançam sem licença. O eletrofisiologista chega com <strong style="color:var(--red-light);">fogo</strong>, <strong style="color:var(--teal);">gelo</strong> ou <strong style="color:var(--gold);">raio pulsado</strong> e constrói uma muralha circular na porta da boate.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+    <div style="background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);border-radius:14px;padding:18px;text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">🔥</div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);">Radiofrequência</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Calor → cicatriz. Técnica padrão.</div>
+    </div>
+    <div style="background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.3);border-radius:14px;padding:18px;text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">🧊</div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);">Crioablação</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Resfriamento → gelo sela.</div>
+    </div>
+    <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:18px;text-align:center;">
+      <div style="font-size:32px;margin-bottom:8px;">⚡</div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--gold);">PFA</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Campo pulsado. <strong style="color:var(--gold);">Emergente.</strong></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
+    <div style="padding:14px 18px;background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(3,64,120,0.4));border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);">SBC 2025 · Arq Bras Cardiol 2025;122(9):e20250618</div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-top:4px;">Indicações — Ablação de VPs na FA</div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;">
+      <thead><tr style="border-bottom:1px solid var(--glass-border);">
+        <th style="padding:10px 14px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);">Indicação</th>
+        <th style="padding:10px 14px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);">Classe</th>
+        <th style="padding:10px 14px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);">Prova</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:rgba(26,122,74,0.04);"><td colspan="3" style="padding:8px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green-light);">✅ CLASSE I</td></tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--text);">FA paroxística ou persistente sintomática — refratária/intolerante a AA Classe I ou III</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">I / A</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--gold);">Indicação clássica</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--text);">FA paroxística sintomática — 1ª linha conforme escolha do paciente</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">I / B</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--gold);">Não precisa tentar droga antes!</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--text);">ICFEr com FA → taquicardiomiopatia — independente de sintomas</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">I / B</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--gold);">Mesmo sem sintoma!</td>
+        </tr>
+        <tr style="background:rgba(184,134,11,0.04);"><td colspan="3" style="padding:8px 14px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);">⚡ CLASSE IIa</td></tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--text);">FA paroxística/persistente — refratária/intolerante a betabloqueador</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(184,134,11,0.2);color:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIa / B</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--text-muted);">Sem precisar tentar AA I/III</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--text);">FA paroxística com pausas prolongadas — evitar MP definitivo</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(184,134,11,0.2);color:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIa / C</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--gold);">Pode evitar marca-passo!</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--text);">FA persistente sintomática — 1ª linha conforme escolha do paciente</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(184,134,11,0.2);color:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIa / B</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--text-muted);">Persistente = IIa, paroxística = I</td>
+        </tr>
+        <tr style="background:rgba(192,57,43,0.06);">
+          <td style="padding:11px 14px;font-size:12px;color:var(--white);font-weight:600;">⭐ ICFEr — ablação 1ª linha visando mortalidade e hospitalização por IC (CASTLE-AF)</td>
+          <td style="padding:11px 14px;text-align:center;"><span style="background:rgba(192,57,43,0.3);color:#ff8080;border:1px solid rgba(192,57,43,0.5);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIa / A</span></td>
+          <td style="padding:11px 14px;font-size:11px;color:var(--red-light);font-weight:600;">🔴 CAI MUITO!</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+    <div style="padding:14px 16px;background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.2);border-left:3px solid var(--teal);border-radius:10px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">CABANA — JAMA 2019</div>
+      <div style="font-size:12px;color:var(--text-muted);">Melhora de sintomas vs antiarrítmicos. Desfecho primário ITT sem vitória limpa — <strong style="color:var(--gold);">nuance importante!</strong></div>
+    </div>
+    <div style="padding:14px 16px;background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-left:3px solid var(--green-light);border-radius:10px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:4px;">CASTLE-AF — NEJM 2018</div>
+      <div style="font-size:12px;color:var(--text-muted);">FA+IC FE≤35%+CDI/TRC → ablação reduziu morte+hospitalização (HR 0,62; p=0,007). <strong style="color:var(--white);">Referência do IIa/A.</strong></div>
+    </div>
+    <div style="padding:14px 16px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-left:3px solid var(--gold);border-radius:10px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">RAFT-AF — ACC 2021 · PFA — Single Shot Champion 2025</div>
+      <div style="font-size:12px;color:var(--text-muted);">RAFT-AF: p=0,066 — não atingiu significância. PFA: recorrência ~37% vs ~50% crioablação — evidência emergente.</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <div style="background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-radius:12px;padding:16px;text-align:center;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:28px;font-weight:900;color:var(--green-light);">80–90%</div>
+      <div style="font-size:12px;color:var(--text-muted);">FA paroxística em 12 meses</div>
+    </div>
+    <div style="background:rgba(184,134,11,0.08);border:1px solid rgba(184,134,11,0.2);border-radius:12px;padding:16px;text-align:center;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:28px;font-weight:900;color:var(--gold);">50–60%</div>
+      <div style="font-size:12px;color:var(--text-muted);">FA persistente em 12 meses</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:12px;padding:16px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">⚠ Pós-Ablação ESC 2024</div>
+      <div style="font-size:12px;color:var(--text);line-height:1.7;">ACO <strong style="color:var(--white);">≥2 meses</strong> — independente do CHA₂DS₂-VA e do "ECG bonito".</div>
+    </div>
+    <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:12px;padding:16px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">🚫 Sem ACO = PROSCRITO</div>
+      <div style="font-size:12px;color:var(--text);line-height:1.7;">Paciente que não pode anticoagular → <strong style="color:var(--red-light);">procedimento PROSCRITO.</strong></div>
+    </div>
+  </div>
+
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">N7 · Mnemônicos das VPs</div>
+    <div style="display:flex;flex-direction:column;gap:8px;text-align:left;">
+      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"VP é <span style="color:var(--gold);">boate de gatilho</span>; ablação põe <span style="color:var(--purple-light);">segurança na porta</span>."</div>
+      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Átrio <span style="color:var(--green-light);">jovem</span> = gatilho fácil; átrio <span style="color:var(--red-light);">velho</span> = cicatriz manda no jogo."</div>
+      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Assintomático? <span style="color:var(--red-light);">'Esqueça'</span> ablação de VPs — exceção: taquicardiomiopatia."</div>
+    </div>
+    <div class="mnemonic-author" style="margin-top:12px;">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- NÓ AV -->
+<section class="section" id="nodav">
+  <div class="section-header">
+    <div class="section-icon">🌉</div>
+    <div><div class="section-label">Sala 2 · Controle de Frequência</div><h2 class="section-title">Ablação do Nó AV</h2></div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(192,57,43,0.1),rgba(6,15,30,0.85));border:1px solid rgba(192,57,43,0.3);border-radius:20px;padding:24px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">🎬 A Ponte Queimada</div>
+    <p style="font-size:13px;color:var(--text);line-height:1.8;">O nó AV é a <strong style="color:var(--red-light);">ponte</strong> entre o átrio rebelde e o ventrículo cansado. A ablação <strong style="color:var(--white);">explode a ponte</strong> — o átrio continua fibrilando. Uma estrada nova precisa ser construída: MP, TRC ou estimulação fisiológica.</p>
+    <div style="margin-top:14px;padding:10px 14px;background:rgba(192,57,43,0.1);border-radius:8px;font-size:13px;color:var(--red-light);font-weight:700;">⚠ Ablação do nó AV = controle de FREQUÊNCIA — não cura FA!</div>
+  </div>
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
+    <div style="padding:14px 18px;background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(6,15,30,0.6));border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);">Indicações SBC 2025 — Ablação do Nó AV</div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;">
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:12px 14px;font-size:12px;color:var(--text);">CDI + terapias inapropriadas por FA/flutter — não candidato à ablação de VP</td>
+          <td style="padding:12px 14px;text-align:center;white-space:nowrap;"><span style="background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">I / B</span></td>
+          <td style="padding:12px 14px;font-size:11px;color:var(--gold);">CDI com choques inapropriados!</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:12px 14px;font-size:12px;color:var(--text);">TRC + baixa taxa de estimulação por FA/flutter — não candidato à ablação de VP</td>
+          <td style="padding:12px 14px;text-align:center;white-space:nowrap;"><span style="background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">I / B</span></td>
+          <td style="padding:12px 14px;font-size:11px;color:var(--gold);">FA compromete TRC!</td>
+        </tr>
+        <tr>
+          <td style="padding:12px 14px;font-size:12px;color:var(--text);">MP definitivo + falha/intolerância a controle de ritmo ou frequência</td>
+          <td style="padding:12px 14px;text-align:center;white-space:nowrap;"><span style="background:rgba(184,134,11,0.2);color:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIa / B</span></td>
+          <td style="padding:12px 14px;font-size:11px;color:var(--text-muted);">Última alternativa com MP implantado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <div style="background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-radius:12px;padding:16px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:8px;">✅ Vantagens</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ Controle definitivo da FC<br>→ Elimina terapias inapropriadas do CDI<br>→ Otimiza estimulação do TRC</div>
+    </div>
+    <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:12px;padding:16px;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">⚠ Desvantagens</div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--white);">→ Dependência permanente de dispositivo</strong><br>→ VD isolado → dissincronia<br>→ Solução: estimulação fisiológica</div>
+    </div>
+  </div>
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">N7 · Mnemônico</div>
+    <div class="mnemonic-text">"Queimou a ponte AV, precisa de <span style="color:var(--gold);">estrada elétrica nova</span>."</div>
+    <div class="mnemonic-author" style="margin-top:10px;">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- COX-MAZE -->
+<section class="section" id="coxmaze">
+  <div class="section-header">
+    <div class="section-icon">🌀</div>
+    <div><div class="section-label">Sala 3 · Cirurgia de Ritmo</div><h2 class="section-title">Cox-Maze — O Labirinto Cirúrgico</h2></div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(6,15,30,0.85));border:1px solid rgba(18,130,162,0.3);border-radius:20px;padding:24px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">🎬 O Engenheiro da Cidade Elétrica</div>
+    <p style="font-size:13px;color:var(--text);line-height:1.8;">O cirurgião não fecha só portas — ele <strong style="color:var(--teal-light);">reconstrói as ruas</strong>, cria muros e barreiras. A FA entra no labirinto e não encontra mais caminho para girar.</p>
+  </div>
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:20px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Evolução Histórica</div>
+    <div style="display:flex;gap:14px;align-items:center;margin-bottom:10px;">
+      <div style="background:rgba(18,130,162,0.2);border:1px solid rgba(18,130,162,0.3);border-radius:8px;padding:4px 12px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal-light);white-space:nowrap;">1987</div>
+      <div style="font-size:12px;color:var(--text);">Dr. <strong style="color:var(--white);">James Cox</strong> — primeiro procedimento cirúrgico para FA</div>
+    </div>
+    <div style="display:flex;gap:14px;align-items:center;">
+      <div style="background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:4px 12px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);white-space:nowrap;">IV ⭐</div>
+      <div style="font-size:12px;color:var(--text);"><strong style="color:var(--white);">Cox-Maze IV</strong> — RF bipolar + crioenergia. <strong style="color:var(--gold);">Padrão-ouro cirúrgico atual.</strong></div>
+    </div>
+  </div>
+  <div class="mnemonic-card" style="margin-bottom:20px;">
+    <div class="mnemonic-label">N7 · COX-MAZE IV</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;text-align:left;margin-bottom:12px;">
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">C</span> — Cicatrizes</div>
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">O</span> — Organizam o átrio</div>
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">X</span> — Xô reentrada</div>
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">M</span> — Muros elétricos</div>
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">A</span> — Átrio menos excitável</div>
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">Z</span> — Zera corredores da FA</div>
+      <div style="padding:8px 12px;background:rgba(18,130,162,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--teal-light);font-weight:700;">E</span> — Evita perpetuação</div>
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.15);border-radius:8px;font-size:12px;"><span style="color:var(--gold);font-weight:700;">IV</span> — Versão moderna consagrada</div>
+    </div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
+    <div style="padding:14px 18px;background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(6,15,30,0.6));border-bottom:1px solid var(--glass-border);">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);">Indicações SBC 2025</div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;">
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(18,130,162,0.06);">
+          <td style="padding:12px 14px;font-size:12px;color:var(--text);">FA sintomática refratária + <strong style="color:var(--gold);">cirurgia mitral concomitante</strong></td>
+          <td style="padding:12px 14px;text-align:center;white-space:nowrap;"><span style="background:rgba(26,122,74,0.2);color:var(--green-light);border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">I / B</span></td>
+          <td style="padding:12px 14px;font-size:11px;color:var(--gold);">Mitral = palco clássico!</td>
+        </tr>
+        <tr>
+          <td style="padding:12px 14px;font-size:12px;color:var(--text);">FA + outra cirurgia cardíaca (não mitral)</td>
+          <td style="padding:12px 14px;text-align:center;white-space:nowrap;"><span style="background:rgba(184,134,11,0.2);color:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:3px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIa</span></td>
+          <td style="padding:12px 14px;font-size:11px;color:var(--text-muted);">Se já vai abrir o tórax</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">Macete de Indicação</div>
+    <div class="mnemonic-text">"Se já vai abrir, <span style="color:var(--gold);">aproveite para ablar.</span>"</div>
+    <div class="mnemonic-author" style="margin-top:10px;">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- HÍBRIDA -->
+<section class="section" id="hibrida">
+  <div class="section-header">
+    <div class="section-icon">🤝</div>
+    <div><div class="section-label">Sala 4 · Substrato Complexo</div><h2 class="section-title">Ablação Híbrida</h2></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+    <div style="background:rgba(13,122,95,0.1);border:1px solid rgba(13,122,95,0.25);border-radius:14px;padding:20px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:8px;">🏗️</div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--emerald-light);margin-bottom:6px;">Cirurgião</div>
+      <div style="font-size:12px;color:var(--text-muted);">Ablação epicárdica por fora. Fecha o telhado.</div>
+    </div>
+    <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:14px;padding:20px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:8px;">⚡</div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px;">Eletrofisiologista</div>
+      <div style="font-size:12px;color:var(--text-muted);">Ablação endocárdica por dentro. Confere a fiação.</div>
+    </div>
+  </div>
+  <div style="background:rgba(6,15,30,0.6);border:1px solid rgba(184,134,11,0.25);border-left:3px solid var(--gold);border-radius:12px;padding:16px 20px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Indicação SBC 2025</div>
+    <div style="font-size:13px;color:var(--text);line-height:1.7;">FA sintomática refratária a AA E ablação endocárdica isolada. Heart Team obrigatório. <span style="background:rgba(184,134,11,0.2);color:var(--gold);border:1px solid rgba(184,134,11,0.3);border-radius:6px;padding:2px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;">IIb</span></div>
+  </div>
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">N7 · Mnemônico HÍBRIDA</div>
+    <div class="mnemonic-text">"<span style="color:var(--emerald-light);">Dois lados</span>, <span style="color:var(--gold);">duas mãos</span>, duas técnicas."</div>
+    <div class="mnemonic-author" style="margin-top:10px;">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- WATCHMAN -->
+<section class="section" id="watchman">
+  <div class="section-header">
+    <div class="section-icon">🛡️</div>
+    <div><div class="section-label">Sala 5 · Prevenção Embólica</div><h2 class="section-title">Oclusão do Apêndice Atrial Esquerdo</h2></div>
+  </div>
+  <div style="background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(6,15,30,0.85));border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:24px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;">🎬 A Tampa do Ninho do Dragão</div>
+    <p style="font-size:13px;color:var(--text);line-height:1.8;"><strong style="color:var(--white);">90% dos trombos na FA nascem no AAE.</strong> O Watchman é uma tampa metálica que sela a entrada quando o anticoagulante não pode ser usado.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+    <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:16px;text-align:center;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:32px;font-weight:900;color:var(--gold);">90%</div>
+      <div style="font-size:11px;color:var(--text-muted);">dos trombos originam no AAE</div>
+    </div>
+    <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:12px;padding:16px;text-align:center;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--red-light);">SBC: IIa</div>
+      <div style="font-size:11px;color:var(--text-muted);">FA alto risco + contraindicação à ACO</div>
+    </div>
+    <div style="background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.2);border-radius:12px;padding:16px;text-align:center;">
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--teal-light);">ESC: IIb</div>
+      <div style="font-size:11px;color:var(--text-muted);">Recomendação europeia</div>
+    </div>
+  </div>
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:20px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Indicações</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="padding:10px 14px;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:8px;font-size:12px;color:var(--text);"><strong style="color:var(--red-light);">1.</strong> Contraindicação absoluta à ACO oral</div>
+      <div style="padding:10px 14px;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:8px;font-size:12px;color:var(--text);"><strong style="color:var(--red-light);">2.</strong> Evento embólico <strong style="color:var(--white);">apesar</strong> de ACO adequada</div>
+    </div>
+  </div>
+  <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:20px;margin-bottom:20px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Pós-implante obrigatório</div>
+    <div style="font-size:12px;color:var(--text-muted);">Protocolo PROTECT-AF: <strong style="color:var(--white);">Varfarina + AAS 45 dias → DAPT 6 meses → AAS isolado.</strong> Eco para leak peri-dispositivo obrigatório.</div>
+  </div>
+  <div class="mnemonic-card">
+    <div class="mnemonic-label">N7 · Mnemônico TAMPA</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;text-align:left;margin-bottom:12px;">
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--gold);font-weight:700;">T</span> — Trombo nasce no apêndice</div>
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--gold);font-weight:700;">A</span> — Anticoagulação é padrão</div>
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--gold);font-weight:700;">M</span> — Mecanismo por cateter/transeptal</div>
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--gold);font-weight:700;">P</span> — Período antitrombótico pós</div>
+      <div style="padding:8px 12px;background:rgba(201,168,76,0.1);border-radius:8px;font-size:12px;"><span style="color:var(--gold);font-weight:700;">A</span> — Avaliar leak por eco</div>
+    </div>
+    <div class="mnemonic-text" style="font-size:16px;">"A TAMPA fecha o ninho, mas o eco confere a fresta."</div>
+    <div class="mnemonic-author">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- TABELA MESTRA -->
+<section class="section" id="tabela">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <div><div class="section-label">Comparação Suprema</div><h2 class="section-title">Tabela-Mestra do M3B</h2></div>
+  </div>
+  <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--glass-border);">
+    <table class="master-table">
+      <thead><tr><th>Técnica</th><th>Alvo</th><th>Objetivo</th><th>Paciente típico</th><th>Pegadinha</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color:var(--purple-light);">⚡ VPs</strong></td><td>Gatilhos ectópicos</td><td><span style="color:var(--green-light);">Ritmo</span></td><td>FA paroxística, jovem, AE menor</td><td style="color:var(--gold);">Não suspende ACO automaticamente</td></tr>
+        <tr><td><strong style="color:var(--red-light);">🌉 Nó AV</strong></td><td>Condução AV</td><td><span style="color:var(--teal-light);">Frequência</span></td><td>Idoso refratário, CDI/TRC</td><td style="color:var(--gold);">Não cura FA + exige dispositivo permanente</td></tr>
+        <tr><td><strong style="color:var(--teal-light);">🌀 Cox-Maze</strong></td><td>Substrato/reentradas</td><td><span style="color:var(--green-light);">Ritmo</span></td><td>FA + cirurgia cardíaca (mitral)</td><td style="color:var(--gold);">Não é 1ª linha universal</td></tr>
+        <tr><td><strong style="color:var(--emerald-light);">🤝 Híbrida</strong></td><td>Substrato complexo</td><td><span style="color:var(--green-light);">Ritmo</span></td><td>Refratário a AA e ablação endocárdica</td><td style="color:var(--gold);">IIb — precisa Heart Team</td></tr>
+        <tr><td><strong style="color:var(--gold);">🛡️ AAE</strong></td><td>Trombo do apêndice</td><td><span style="color:var(--teal-light);">Embolia</span></td><td>Contraindicação à ACO ou evento apesar de ACO</td><td style="color:var(--gold);">Não substitui ACO; não zera risco</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top:16px;padding:14px 18px;background:rgba(6,15,30,0.6);border:1px solid rgba(192,57,43,0.25);border-left:3px solid var(--red-light);border-radius:12px;font-size:13px;color:var(--white);font-weight:700;">
+    🔴 <span style="color:var(--gold);">M3B = engenharia elétrica eletiva.</span> <span style="color:var(--red-light);">M4 = FA na emergência.</span>
+  </div>
+</section>
+
+<!-- PALÁCIO DA MEMÓRIA -->
+<section class="section" id="palacio">
+  <div class="section-header">
+    <div class="section-icon">🏛️</div>
+    <div><div class="section-label">N3 · Palácio da Memória</div><h2 class="section-title">O Castelo da Ablação</h2></div>
+  </div>
+  <div class="palace-sala"><div class="palace-num">Sala 1</div><div class="palace-title">⚡ A Boate das Veias Pulmonares</div><div class="palace-desc">Quatro portas brilhantes soltam faíscas. O eletrofisiologista coloca seguranças com fogo, gelo ou raio pulsado.</div><div class="palace-represents">Representa: isolamento das VPs → controle de ritmo</div></div>
+  <div class="palace-sala"><div class="palace-num">Sala 2</div><div class="palace-title">🌉 A Ponte AV em Chamas</div><div class="palace-desc">A ablação explode a ponte — mas uma estrada luminosa artificial aparece (MP, TRC, estimulação fisiológica).</div><div class="palace-represents">Representa: ablação do nó AV → controle de frequência → dependência de dispositivo</div></div>
+  <div class="palace-sala"><div class="palace-num">Sala 3</div><div class="palace-title">🌀 O Labirinto de Cox</div><div class="palace-desc">Estátua do Dr. James Cox com placa "1987". No chão, linhas cortando o átrio. O Cox-Maze IV brilha em ouro.</div><div class="palace-represents">Representa: Cox-Maze → labirinto cirúrgico → especialmente cirurgia mitral</div></div>
+  <div class="palace-sala"><div class="palace-num">Sala 4</div><div class="palace-title">🤝 A Sala de Dois Exércitos</div><div class="palace-desc">Cirurgião: "Eu fecho por fora." Eletrofisiologista: "Eu testo e completo por dentro."</div><div class="palace-represents">Representa: ablação híbrida → epicárdica + endocárdica → Heart Team</div></div>
+  <div class="palace-sala"><div class="palace-num">Sala 5</div><div class="palace-title">🛡️ O Ninho do Dragão Tampado</div><div class="palace-desc">Caverna curva com ovos vermelhos de trombo. O Watchman sela a entrada. Dragão com placa: "CHA₂DS₂-VA manda em mim."</div><div class="palace-represents">Representa: oclusão do AAE → 90% dos trombos → ACO segue risco clínico</div></div>
+</section>
+
+<!-- PEGADINHAS -->
+<section class="section" id="pegadinhas">
+  <div class="section-header">
+    <div class="section-icon">🔴</div>
+    <div><div class="section-label">N4 · Pegadinhas TEC 2026</div><h2 class="section-title">Armadilhas da Sala de Ablação</h2></div>
+  </div>
+  <div class="trap-grid">
+    <div class="trap-card"><div class="trap-text">Ablação do nó AV = controle de ritmo?</div><div class="trap-why">NÃO. É controle de FREQUÊNCIA. O átrio continua fibrilando!</div></div>
+    <div class="trap-card"><div class="trap-text">Ablação do nó AV cura FA?</div><div class="trap-why">NÃO. Apenas impede a condução caótica ao ventrículo.</div></div>
+    <div class="trap-card"><div class="trap-text">Cox-Maze = só isolamento de VPs?</div><div class="trap-why">NÃO. Cria lesões transmurais, reduz tecido excitável e interrompe reentradas.</div></div>
+    <div class="trap-card"><div class="trap-text">Ablação das VPs = suspender ACO?</div><div class="trap-why">NÃO. ACO ≥2 meses pós-ablação. Longo prazo segue CHA₂DS₂-VA, não o "ECG bonito".</div></div>
+    <div class="trap-card"><div class="trap-text">Watchman substitui ACO para todos?</div><div class="trap-why">NÃO. ACO continua sendo padrão. Watchman é alternativa quando ACO é contraindicada ou falha.</div></div>
+    <div class="trap-card"><div class="trap-text">Watchman = risco embólico zero?</div><div class="trap-why">NÃO. Reduz significativamente, mas não zera. Precisa fase antitrombótica e eco pós-implante.</div></div>
+    <div class="trap-card"><div class="trap-text">CABANA provou superioridade em mortalidade?</div><div class="trap-why">NÃO de forma limpa. Desfecho primário ITT sem vitória limpa. Benefício em sintomas e QV.</div></div>
+    <div class="trap-card"><div class="trap-text">Cox-Maze é emergência?</div><div class="trap-why">NÃO. Estratégia eletiva. Emergência = M4 — FA na Emergência.</div></div>
+    <div class="trap-card"><div class="trap-text">Sem ACO → ablação VPs para evitar anticoagulante?</div><div class="trap-why">NÃO. Procedimento PROSCRITO. Ablação exige ACO pós-procedimento obrigatoriamente.</div></div>
+    <div class="trap-card"><div class="trap-text">Ablação híbrida = só cirurgia?</div><div class="trap-why">NÃO. Epicárdica (cirurgião) + endocárdica (eletrofisiologista). Dois exércitos, um mapa.</div></div>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="section" id="flashcards">
+  <div class="section-header">
+    <div class="section-icon">📇</div>
+    <div><div class="section-label">N4 · Testing Effect</div><h2 class="section-title">Flashcards Q&A — 15 Essenciais</h2></div>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-bottom:20px;font-family:'IBM Plex Mono',monospace;">Toque para revelar a resposta.</p>
+  <div class="flashcard-grid" id="fc-grid"></div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-icon">🧩</div>
+    <div><div class="section-label">N4 · Quiz Interativo</div><h2 class="section-title">Quiz — Sala de Ablação</h2></div>
+  </div>
+  <div class="quiz-container">
+    <div id="quiz-main">
+      <div class="quiz-progress-text" id="quiz-prog">Questão 1 de 6</div>
+      <div class="quiz-question" id="quiz-q"></div>
+      <div class="quiz-options" id="quiz-opts"></div>
+      <div class="quiz-feedback" id="quiz-fb"></div>
+      <button class="quiz-next" id="quiz-next" onclick="nextQuestion()">Próxima →</button>
+    </div>
+    <div class="quiz-score" id="quiz-score">
+      <div class="quiz-score-num" id="score-num"></div>
+      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;color:var(--text);margin-top:8px;" id="score-msg"></div>
+      <button class="quiz-restart" onclick="restartQuiz()">Refazer quiz</button>
+    </div>
+  </div>
+</section>
+
+<!-- REVISÃO -->
+<section class="section" id="revisao">
+  <div class="section-header">
+    <div class="section-icon">⚡</div>
+    <div><div class="section-label">N7 · Revisão Ultrarrápida</div><h2 class="section-title">M3B em 10s · 30s · 1min</h2></div>
+  </div>
+  <div class="revision-tabs">
+    <button class="rev-tab active" onclick="showTab('r10',event)">10 segundos</button>
+    <button class="rev-tab" onclick="showTab('r30',event)">30 segundos</button>
+    <button class="rev-tab" onclick="showTab('r60',event)">1 minuto</button>
+  </div>
+  <div class="rev-content active" id="r10"><strong style="color:var(--purple-light);">M3B:</strong> VP fecha gatilho → Nó AV corta ponte → Maze redesenha labirinto → Híbrida une dois exércitos → Watchman tampa o ninho do dragão.</div>
+  <div class="rev-content" id="r30">
+    <strong style="color:var(--purple-light);">VPs:</strong> ritmo, isola gatilhos, paroxística jovem. ACO ≥2 meses pós obrigatória. Proscrito sem ACO.<br><br>
+    <strong style="color:var(--red-light);">Nó AV:</strong> frequência, não cura FA, exige dispositivo, risco dissincronia VD.<br><br>
+    <strong style="color:var(--teal-light);">Cox-Maze IV:</strong> labirinto cirúrgico, I/B cirurgia mitral.<br><br>
+    <strong style="color:var(--emerald-light);">Híbrida:</strong> cirurgião + eletrofisiologista, IIb, Heart Team.<br><br>
+    <strong style="color:var(--gold);">AAE:</strong> 90% trombos, SBC IIa / ESC IIb, quando ACO impossível ou falhou.
+  </div>
+  <div class="rev-content" id="r60">
+    <strong style="color:var(--purple-light);">VPs (Haïssaguerre 1998):</strong> I/A refratário AA; I/B paroxística 1ª linha e taquicardiomiopatia; IIa/A ICFEr (CASTLE-AF). ACO ≥2 meses pós.<br><br>
+    <strong style="color:var(--red-light);">Nó AV:</strong> I/B CDI terapias inapropriadas; I/B TRC baixa estimulação; IIa/B MP+falha. Exige dispositivo permanente.<br><br>
+    <strong style="color:var(--teal-light);">Cox-Maze IV (Cox 1987):</strong> RF bipolar + crioenergia. I/B mitral. IIa outras cirurgias.<br><br>
+    <strong style="color:var(--emerald-light);">Híbrida:</strong> FA refratária a AA e ablação endocárdica isolada. IIb. Heart Team.<br><br>
+    <strong style="color:var(--gold);">AAE:</strong> Watchman/Amulet. SBC IIa, ESC IIb. PROTECT-AF: varfarina+AAS 45d → DAPT 6m → AAS. Eco para leak.
+  </div>
+</section>
+
+<!-- FILOSOFIA -->
+<section class="section" id="filosofia">
+  <div class="section-header">
+    <div class="section-icon">💬</div>
+    <div><div class="section-label">N6 · Frases Filosóficas</div><h2 class="section-title">Filosofia do Castelo Elétrico</h2></div>
+  </div>
+  <div class="quote-block"><p>"Cateter fecha portas; Cox-Maze redesenha ruas; Híbrida junta os dois exércitos para que a FA não encontre mais caminho."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"Veia pulmonar é a boate dos gatilhos; a ablação põe segurança na porta."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"A ablação do nó AV não cura a FA; ela silencia a passagem para proteger o ventrículo."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"Maze é labirinto: cria paredes elétricas para a FA se perder."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"Anticoagulação é o escudo padrão; oclusão do AAE é a porta blindada quando o escudo não pode ser usado."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"O ECG bonito depois da ablação não é salvo-conduto contra trombo."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"Queimar o nó AV sem pensar no marcapasso é derrubar uma ponte sem construir estrada."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div class="quote-block"><p>"Quando o átrio envelhece em cicatriz, a ablação deixa de caçar faísca e passa a lutar contra floresta queimada."</p><div class="author">— Dr. André Rossanno</div></div>
+  <div style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(6,15,30,0.7));border:2px solid rgba(124,58,237,0.3);border-radius:20px;padding:32px;text-align:center;margin-top:32px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px;">Frase Final do M3B</div>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(14px,2.5vw,18px);font-style:italic;line-height:1.8;color:var(--white);margin-bottom:16px;">"Na Sala de Ablação, o médico aprende que a FA não tem uma única porta: às vezes fecha a veia, às vezes corta a ponte, às vezes desenha labirinto, às vezes tampa o ninho do trombo."</p>
+    <div style="font-family:'Dancing Script',cursive;font-size:22px;color:var(--gold);">— Dr. André Rossanno</div>
+  </div>
+</section>
+
+<footer style="text-align:center;padding:40px 0;border-top:1px solid var(--glass-border);margin-top:40px;">
+  <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Atlas Mental André Rossanno</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:4px;">Módulo 3B — A Sala de Ablação · VPs · Nó AV · Cox-Maze · Híbrida · AAE</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:8px;">memoriapotencial.com.br</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px;">Base educacional: ESC 2024, SBC 2025 e conteúdo de aula Mentoria TEC 2026.</div>
+</footer>
+</main>
+
+<script>
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+document.addEventListener('click',function(e){
+  const sb=document.getElementById('sidebar'),btn=document.getElementById('menu-toggle');
+  if(sb.classList.contains('open')&&!sb.contains(e.target)&&!btn.contains(e.target))sb.classList.remove('open');
+});
+function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});document.getElementById('sidebar').classList.remove('open');}
+window.addEventListener('scroll',function(){
+  const h=document.documentElement;
+  document.getElementById('progress-bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';
+});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
+document.querySelectorAll('.section').forEach(s=>obs.observe(s));
+function showTab(id,e){
+  document.querySelectorAll('.rev-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.rev-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(e&&e.target)e.target.classList.add('active');
+}
+const fcData=[
+  {q:'Qual o alvo da ablação das VPs?',a:'Isolar eletricamente os gatilhos ectópicos das VPs impedindo que disparem FA no átrio esquerdo.'},
+  {q:'Ablação das VPs é controle de ritmo ou frequência?',a:'Controle de RITMO.'},
+  {q:'Ablação do nó AV é controle de ritmo ou frequência?',a:'Controle de FREQUÊNCIA. O átrio continua fibrilando — não confundir!'},
+  {q:'Ablação do nó AV cura FA?',a:'NÃO. Apenas impede a condução caótica ao ventrículo.'},
+  {q:'O que significa "ablate and pace"?',a:'Ablar o nó AV e manter ventrículo com MP, TRC ou estimulação fisiológica.'},
+  {q:'Qual paciente responde melhor à ablação de VPs?',a:'Jovem, FA paroxística, AE menor, pouca fibrose, fatores de risco controlados.'},
+  {q:'Pai do Cox-Maze e quando?',a:'Dr. James Cox — 1987. Cox-Maze IV (RF bipolar + crioenergia) é a versão moderna consagrada.'},
+  {q:'Quando indicar ablação cirúrgica concomitante?',a:'"Se o tórax já vai abrir, aproveite para ablar." Cirurgia mitral: Classe I/B — SBC 2025.'},
+  {q:'O que é ablação híbrida?',a:'Epicárdica (cirurgião) + endocárdica (eletrofisiologista). FA refratária a AA e ablação endocárdica isolada. IIb.'},
+  {q:'Por que 90% dos trombos na FA se formam no AAE?',a:'O apêndice tem fluxo lento — estase favorece coagulação durante a FA.'},
+  {q:'Indicações para oclusão do AAE?',a:'1) Contraindicação absoluta à ACO. 2) Evento embólico apesar de ACO adequada.'},
+  {q:'Após Watchman, o que é obrigatório?',a:'PROTECT-AF: varfarina+AAS 45d → DAPT 6m → AAS. Eco para leak peri-dispositivo.'},
+  {q:'CASTLE-AF: o que mostrou e qual a classe?',a:'FA+IC FE≤35%+CDI/TRC → ablação reduziu morte+hospitalização (HR 0,62). Gerou IIa/A para ICFEr.'},
+  {q:'Grande desvantagem da ablação do nó AV?',a:'Dependência permanente de dispositivo. VD isolado → dissincronia → piora de função.'},
+  {q:'Frase-resumo das 5 técnicas?',a:'"VP caça gatilho. AV corta estrada. Maze redesenha ruas. Híbrida combina. Watchman tampa o ninho."'},
+];
+const fcGrid=document.getElementById('fc-grid');
+fcData.forEach((f,i)=>{
+  fcGrid.innerHTML+=`<div class="flashcard" onclick="this.classList.toggle('flipped')">
+    <div class="fc-question">Q${i+1}</div>
+    <div class="fc-front">${f.q}</div>
+    <div class="fc-back">${f.a}</div>
+    <div class="fc-hint">toque →</div>
+  </div>`;
+});
+const quizData=[
+  {q:'Paciente com CDI recebe choques por FA. Não candidato à ablação de VPs. Conduta?',opts:['Aumentar amiodarona','Ablação do nó AV','Cardioversão elétrica de urgência','Digoxina'],ans:1,fb:'Ablação do nó AV. Indicação Classe I/B para CDI com terapias inapropriadas não candidato à ablação de VP.'},
+  {q:'FA paroxística sintomática, jovem, sem cardiopatia, prefere procedimento. Indicação SBC 2025?',opts:['IIa/B — após falha de antiarrítmico','I/B — 1ª linha conforme escolha do paciente','I/A — sempre antes de qualquer droga','IIb — só casos selecionados'],ans:1,fb:'I/B — ablação como 1ª linha em FA paroxística sintomática conforme escolha do paciente. Não obriga tentar droga antes!'},
+  {q:'Homem 68a, cirurgia mitral programada, FA sintomática persistente refratária a amiodarona. Conduta sobre FA?',opts:['Manter amiodarona e operar só a valva','Ablação de VPs antes da cirurgia','Ablação cirúrgica concomitante (Cox-Maze) durante a cirurgia mitral','Oclusão do AAE no mesmo tempo'],ans:2,fb:'Ablação cirúrgica concomitante: Classe I/B. "Se o tórax já vai abrir, aproveite para ablar."'},
+  {q:'Após ablação de VPs, ECG sinusal. CHA₂DS₂-VA = 0. Como fica a anticoagulação?',opts:['Suspender — ritmo sinusal','Reduzir dose pela metade','Manter ACO por pelo menos 2 meses independente do resultado','Substituir por AAS'],ans:2,fb:'ACO obrigatória ≥2 meses pós-ablação, independente do CHA₂DS₂-VA e do "ECG bonito".'},
+  {q:'FA com contraindicação absoluta à ACO. CHA₂DS₂-VA = 3. Indicação de oclusão do AAE pela SBC 2025?',opts:['Classe III','Classe IIb','Classe IIa','Classe I/A'],ans:2,fb:'Classe IIa — SBC 2025 (ESC = IIb). Não substitui ACO para todos e não zera risco embólico.'},
+  {q:'Qual afirmação sobre ablação do nó AV é CORRETA?',opts:['Restaura ritmo sinusal eliminando FA','É controle de ritmo de 1ª linha','Exige dispositivo de estimulação permanente','Tem as mesmas indicações da ablação de VPs'],ans:2,fb:'Ablação do nó AV = controle de FREQUÊNCIA. O átrio continua fibrilando. Exige dispositivo permanente.'},
+];
+let curQ=0,score=0,answered=false;
+function loadQuestion(){
+  const q=quizData[curQ];
+  document.getElementById('quiz-prog').textContent=`Questão ${curQ+1} de ${quizData.length}`;
+  document.getElementById('quiz-q').textContent=q.q;
+  const opts=document.getElementById('quiz-opts');
+  opts.innerHTML='';
+  q.opts.forEach((o,i)=>{opts.innerHTML+=`<button class="quiz-option" onclick="answerQ(${i})">${String.fromCharCode(65+i)}. ${o}</button>`;});
+  document.getElementById('quiz-fb').className='quiz-feedback';
+  document.getElementById('quiz-fb').textContent='';
+  document.getElementById('quiz-next').className='quiz-next';
+  answered=false;
+}
+function answerQ(i){
+  if(answered)return;answered=true;
+  const q=quizData[curQ];
+  document.querySelectorAll('.quiz-option')[i].classList.add(i===q.ans?'correct':'wrong');
+  if(i!==q.ans)document.querySelectorAll('.quiz-option')[q.ans].classList.add('correct');
+  if(i===q.ans)score++;
+  const fb=document.getElementById('quiz-fb');
+  fb.className='quiz-feedback show '+(i===q.ans?'correct-fb':'wrong-fb');
+  fb.textContent=(i===q.ans?'✅ Correto! ':'❌ Incorreto. ')+q.fb;
+  document.getElementById('quiz-next').className='quiz-next show';
+}
+function nextQuestion(){curQ++;if(curQ<quizData.length)loadQuestion();else showScore();}
+function showScore(){
+  document.getElementById('quiz-main').style.display='none';
+  document.getElementById('quiz-score').style.display='block';
+  document.getElementById('score-num').textContent=`${score}/${quizData.length}`;
+  const msgs=['Continue estudando!','Bom progresso!','Muito bem!','Excelente!','Perfeito!'];
+  const pct=score/quizData.length;
+  document.getElementById('score-msg').textContent=pct<0.5?msgs[0]:pct<0.7?msgs[1]:pct<0.9?msgs[2]:pct<1?msgs[3]:msgs[4];
+}
+function restartQuiz(){curQ=0;score=0;answered=false;document.getElementById('quiz-main').style.display='block';document.getElementById('quiz-score').style.display='none';loadQuestion();}
+loadQuestion();
+</script>
+</body>
+</html>
