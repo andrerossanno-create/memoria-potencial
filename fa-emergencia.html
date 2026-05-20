@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M4 — A Sala de Choque | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B2545;--teal:#1282A2;--mint:#22D3EE;--gold:#F4B942;--red:#E63946;--green:#2ecc71;--dark:#060f1e;--glass:rgba(18,130,162,0.10);--glass2:rgba(244,185,66,0.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--dark);color:#dde6f0;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(18,130,162,0.18) 0%,transparent 60%),linear-gradient(160deg,#060f1e 0%,#0B2545 50%,#0a1e3a 100%);z-index:-1}
+header{background:linear-gradient(90deg,#080f20 0%,#0d2645 40%,#112f50 100%);border-bottom:2px solid var(--gold);padding:1.8rem 1.5rem 1.4rem;text-align:center;position:sticky;top:0;z-index:200;box-shadow:0 4px 32px rgba(0,0,0,0.5)}
+header .badge{display:inline-block;background:var(--red);color:#fff;font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:20px;margin-bottom:0.7rem}
+header h1{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,5vw,2.5rem);font-weight:900;color:#fff;text-shadow:0 0 40px rgba(18,130,162,0.5);line-height:1.1;margin-bottom:0.3rem}
+header h1 span{color:var(--mint)}
+header .sub{color:var(--mint);font-size:0.88rem;font-weight:500;margin-bottom:0.7rem}
+header .hq{font-style:italic;color:var(--gold);font-size:0.8rem;max-width:680px;margin:0 auto;border-top:1px solid rgba(244,185,66,0.3);padding-top:0.7rem}
+nav{background:rgba(6,15,30,0.97);border-bottom:1px solid rgba(18,130,162,0.3);padding:0.6rem 0.8rem;display:flex;gap:0.35rem;flex-wrap:wrap;justify-content:center;position:sticky;top:120px;z-index:199;backdrop-filter:blur(10px)}
+nav button{background:transparent;border:1px solid rgba(18,130,162,0.5);color:rgba(34,211,238,0.8);padding:0.42rem 0.85rem;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.4px;transition:all .25s;white-space:nowrap}
+nav button:hover{background:var(--teal);color:var(--navy);border-color:var(--teal)}
+nav button.active{background:var(--gold);color:var(--navy);border-color:var(--gold);box-shadow:0 0 16px rgba(244,185,66,0.35)}
+.wrap{max-width:980px;margin:0 auto;padding:1.8rem 1.2rem}
+.sec{display:none;animation:fadeUp .4s ease}
+.sec.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.3rem,4vw,1.9rem);font-weight:800;color:var(--mint);margin-bottom:1.4rem;padding-bottom:0.7rem;border-bottom:2px solid var(--gold);display:flex;align-items:center;gap:0.5rem}
+h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin:1.6rem 0 0.7rem}
+h4{font-size:0.93rem;font-weight:700;color:var(--mint);margin-bottom:0.4rem}
+p{margin:.45rem 0;font-size:.92rem}
+ul,ol{margin-left:1.3rem}
+li{margin:.35rem 0;font-size:.92rem}
+strong{color:#f0f4f8}
+.card{background:var(--glass);border:1px solid rgba(18,130,162,0.25);border-left:4px solid var(--gold);border-radius:8px;padding:1.1rem 1.3rem;margin:1rem 0;backdrop-filter:blur(4px)}
+.card.red{border-left-color:var(--red);background:rgba(230,57,70,0.08);border-color:rgba(230,57,70,0.2)}
+.card.green{border-left-color:var(--green);background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2)}
+.card.teal{border-left-color:var(--mint);background:rgba(34,211,238,0.06)}
+.card.gold{border-left-color:var(--gold);background:var(--glass2)}
+.phil{background:linear-gradient(90deg,rgba(244,185,66,0.12),rgba(244,185,66,0.03));border-left:3px solid var(--gold);border-radius:6px;padding:1rem 1.3rem;margin:1.4rem 0;font-style:italic;color:var(--gold);font-size:.93rem}
+.phil strong{display:block;margin-top:.4rem;font-size:.78rem;color:rgba(244,185,66,0.7);font-style:normal}
+.palace-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.9rem;margin:1.4rem 0}
+.pd{background:linear-gradient(135deg,var(--teal),rgba(34,211,238,0.7));border-radius:10px;padding:1.1rem .8rem;text-align:center;color:var(--navy);font-weight:700;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 16px rgba(0,0,0,0.3)}
+.pd:hover{transform:translateY(-5px);box-shadow:0 10px 24px rgba(18,130,162,0.4)}
+.pd .di{font-size:2rem;margin-bottom:.35rem}
+.pd .dl{font-size:.82rem;font-weight:800;margin-bottom:.25rem}
+.pd .dc{font-size:.75rem;line-height:1.3}
+.relogio{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.9rem;margin:1.2rem 0}
+.rc{border-radius:8px;padding:.9rem;text-align:center;font-size:.83rem}
+.rc.r1{background:rgba(46,204,113,0.15);border:1px solid rgba(46,204,113,0.4)}
+.rc.r2{background:rgba(244,185,66,0.15);border:1px solid rgba(244,185,66,0.4)}
+.rc.r3{background:rgba(230,57,70,0.15);border:1px solid rgba(230,57,70,0.4)}
+.rc.r4{background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.4)}
+.rc .rt{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;margin-bottom:.3rem}
+.rc.r1 .rt{color:var(--green)}.rc.r2 .rt{color:var(--gold)}.rc.r3 .rt{color:var(--red)}.rc.r4 .rt{color:#9b59b6}
+.algo{background:rgba(244,185,66,0.06);border:1px solid rgba(244,185,66,0.3);border-radius:10px;padding:1.3rem;margin:1.1rem 0}
+.as{background:rgba(11,37,69,0.8);border-left:3px solid var(--gold);border-radius:4px;padding:.65rem .9rem;margin:.55rem 0;font-size:.9rem}
+.as strong{color:var(--gold)}
+.aa{text-align:center;color:var(--gold);font-size:1.1rem;margin:.15rem 0}
+.ozasco{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.7rem;margin:1.1rem 0}
+.oz{background:linear-gradient(135deg,rgba(18,130,162,0.3),rgba(18,130,162,0.1));border:1px solid rgba(18,130,162,0.4);border-radius:8px;padding:.9rem .7rem;text-align:center}
+.ozl{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1}
+.ozw{font-size:.72rem;font-weight:700;color:var(--mint);margin:.18rem 0}
+.ozd{font-size:.68rem;color:#aaa;line-height:1.3}
+.escada{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:.9rem;margin:1.1rem 0}
+.ec{background:rgba(11,37,69,0.8);border:1px solid rgba(18,130,162,0.3);border-radius:10px;padding:1.1rem;border-top:3px solid var(--teal)}
+.ec.e1{border-top-color:#9b59b6}.ec.e2{border-top-color:var(--teal)}.ec.e3{border-top-color:#3498db}.ec.e4{border-top-color:#1abc9c}
+.eci{font-size:1.4rem;margin-bottom:.3rem}
+.ecd{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;color:var(--mint)}
+.ecds{font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--gold);margin:.25rem 0}
+.ecm{font-size:.79rem;font-style:italic;color:#bbb}
+.cinco-d{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem;margin:1.1rem 0}
+.dc2{background:rgba(230,57,70,0.12);border:1px solid rgba(230,57,70,0.35);border-radius:8px;padding:.9rem;text-align:center}
+.di2{font-size:1.6rem;margin-bottom:.25rem}
+.dn{font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;color:var(--red)}
+.dd{font-size:.73rem;color:#bbb;margin-top:.18rem}
+.tbl-wrap{overflow-x:auto;margin:1.1rem 0;border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(90deg,var(--teal),var(--mint))}
+thead th{color:var(--navy);padding:.65rem .75rem;font-weight:700;text-align:left;white-space:nowrap}
+tbody tr{border-bottom:1px solid rgba(18,130,162,0.2);transition:background .2s}
+tbody tr:hover{background:rgba(18,130,162,0.12)}
+tbody td{padding:.55rem .75rem;vertical-align:top}
+tbody td:first-child{font-weight:700;color:var(--mint);white-space:nowrap}
+.mnemo{background:linear-gradient(90deg,rgba(11,37,69,0.9),rgba(13,46,86,0.7));border-left:3px solid var(--mint);border-radius:6px;padding:1.1rem 1.3rem;margin:.9rem 0;font-family:'IBM Plex Mono',monospace;font-size:.86rem}
+.mnemo .mt{color:var(--gold);font-weight:700;font-size:.92rem;margin-bottom:.55rem;font-family:'Syne',sans-serif}
+.mnemo .ml{color:#dde;margin:.22rem 0}
+.mnemo .ml span{color:var(--mint);font-weight:600}
+.peg-list{list-style:none;margin:0}
+.peg-list li{background:rgba(230,57,70,0.08);border:1px solid rgba(230,57,70,0.25);border-left:3px solid var(--red);border-radius:5px;padding:.65rem .9rem;margin:.55rem 0;font-size:.88rem}
+.peg-list li strong{color:var(--red)}
+.quiz-item{background:rgba(11,37,69,0.7);border:1px solid rgba(18,130,162,0.3);border-radius:10px;padding:1.1rem;margin:1.1rem 0}
+.qn{font-size:.7rem;color:var(--mint);font-weight:700;letter-spacing:1px;margin-bottom:.4rem}
+.qq{font-size:.93rem;font-weight:600;margin-bottom:.9rem}
+.opts{display:flex;flex-direction:column;gap:.45rem}
+.ob{background:transparent;border:1px solid rgba(18,130,162,0.4);border-radius:6px;padding:.55rem .85rem;text-align:left;color:#dde;font-size:.86rem;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:all .2s}
+.ob:hover{background:rgba(18,130,162,0.2);border-color:var(--teal)}
+.ob.right{background:rgba(46,204,113,0.2);border-color:var(--green);color:var(--green)}
+.ob.wrong{background:rgba(230,57,70,0.12);border-color:var(--red);color:#f88;opacity:.7}
+.qfb{display:none;margin-top:.7rem;padding:.65rem .9rem;border-radius:6px;font-size:.86rem;font-weight:500}
+.qfb.show{display:block}
+.qfb.ok{background:rgba(46,204,113,0.15);border-left:3px solid var(--green);color:var(--green)}
+.qfb.no{background:rgba(230,57,70,0.12);border-left:3px solid var(--red);color:#f88}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.9rem;margin:1.4rem 0}
+.fc{background:linear-gradient(135deg,var(--teal),rgba(34,211,238,0.6));border-radius:10px;min-height:105px;display:flex;align-items:center;justify-content:center;text-align:center;padding:.9rem;cursor:pointer;font-weight:700;color:var(--navy);font-size:.85rem;transition:all .3s;box-shadow:0 4px 12px rgba(0,0,0,0.3);user-select:none}
+.fc:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(18,130,162,0.35)}
+.fc.flip{background:linear-gradient(135deg,var(--gold),#e0952a)}
+.rev-block{background:rgba(244,185,66,0.06);border:1px dashed rgba(244,185,66,0.4);border-radius:8px;padding:1.1rem 1.3rem;margin:.9rem 0}
+.rev-block .rt2{font-family:'Syne',sans-serif;font-weight:800;color:var(--gold);font-size:.95rem;margin-bottom:.55rem}
+.rev-block p{font-style:italic;line-height:1.65;border-left:2px solid var(--gold);padding-left:.75rem}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent);margin:1.8rem 0}
+footer{background:rgba(6,15,30,0.97);border-top:2px solid var(--gold);padding:1.8rem;text-align:center;margin-top:3rem;color:var(--mint);font-size:.83rem}
+footer .sig{font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--gold);margin:.7rem 0}
+@media(max-width:600px){header{padding:1.1rem .9rem .9rem;position:sticky;top:0}nav{top:105px}.palace-grid{grid-template-columns:repeat(2,1fr)}.ozasco{grid-template-columns:repeat(3,1fr)}.escada{grid-template-columns:1fr 1fr}.relogio{grid-template-columns:1fr 1fr}.fc-grid{grid-template-columns:repeat(2,1fr)}.cinco-d{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">M4 · TEC 2026 · Método André Rossanno</div>
+  <h1>⚡ A Sala de <span>Choque</span></h1>
+  <p class="sub">FA em Emergência — Cardioversão · Frequência · Flutter · Decisões Críticas</p>
+  <p class="hq">"Na sala de emergência, a FA não pergunta se o médico decorou a diretriz. Ela pergunta se ele sabe proteger o ventrículo, o cérebro e o paciente." — <em>Dr. André Rossanno</em></p>
+</header>
+
+<nav>
+  <button class="nb active" data-s="intro">🏥 Intro</button>
+  <button class="nb" data-s="palacio">🏛️ Palácio</button>
+  <button class="nb" data-s="cve">⚡ CVE</button>
+  <button class="nb" data-s="sedacao">💉 Sedação</button>
+  <button class="nb" data-s="freq">🎛️ Frequência</button>
+  <button class="nb" data-s="flutter">🌊 Flutter</button>
+  <button class="nb" data-s="especiais">🔴 Especiais</button>
+  <button class="nb" data-s="quiz">❓ Quiz</button>
+  <button class="nb" data-s="flash">🎴 Flashcards</button>
+  <button class="nb" data-s="rev">⚡ Revisão</button>
+</nav>
+
+<div class="wrap">
+
+<!-- INTRO -->
+<div class="sec on" id="intro">
+  <h2 class="sec-title">🏥 O Caos da Sala de Choque</h2>
+  <div class="card red">
+    <h4>🎬 Cena de Abertura</h4>
+    <p><strong>Senhor 72 anos.</strong> Chega com palpitações há 4 horas. Suando frio, não completa frases. PA 78×50 mmHg. Pulmão alando — EAP franco. Monitor: FA com FC 180 bpm.</p>
+    <p style="margin-top:.7rem;">Este não é o momento de calcular CHA₂DS₂-VA. Não é o momento de debater guideline. <strong>É o momento de sincronizar a tempestade.</strong></p>
+  </div>
+  <div class="phil">"Na FA estável, o médico calcula. Na FA instável, o médico sincroniza."<strong>— Dr. André Rossanno</strong></div>
+  <h3>👨‍⚕️ Dr. Sincro — O Guia da Sala Vermelha</h3>
+  <div class="card gold">
+    <p>🔦 <strong>Lanterna dos 5D</strong> — identifica instabilidade hemodinâmica causada pela FA</p>
+    <p>⏰ <strong>Relógio do Trombo</strong> — define timing: &lt;24h / 24–48h / &gt;48h / incerto</p>
+    <p>⚡ <strong>Pá Sincronizada</strong> — cardioversão elétrica quando a FA é a vilã</p>
+  </div>
+  <h3>🔦 Os 5D da Instabilidade</h3>
+  <p>A pergunta central: <strong>A FA está causando a instabilidade ou só acompanhando outro desastre?</strong></p>
+  <p style="font-size:.83rem;color:#999;margin-top:.2rem;">Sepse, HDA, TEP, tireotoxicose, hipovolemia podem estar chicoteando o ventrículo.</p>
+  <div class="cinco-d">
+    <div class="dc2"><div class="di2">💔</div><div class="dn">DOR</div><div class="dd">Torácica anginosa</div></div>
+    <div class="dc2"><div class="di2">🌊</div><div class="dn">DISPNEIA</div><div class="dd">Grave / EAP</div></div>
+    <div class="dc2"><div class="di2">😵</div><div class="dn">DESMAIO</div><div class="dd">Síncope / pré-síncope</div></div>
+    <div class="dc2"><div class="di2">🧠</div><div class="dn">DESMENTE</div><div class="dd">Rebaixamento / confusão</div></div>
+    <div class="dc2"><div class="di2">📉</div><div class="dn">DESPRESSÃO</div><div class="dd">Hipotensão / choque</div></div>
+  </div>
+  <div class="card teal">
+    <h4>N1 — Conceito Bruto</h4>
+    <p><strong>FA na emergência é classificada pela resposta ventricular, não pela frequência atrial.</strong></p>
+    <ul style="margin-top:.6rem;">
+      <li><strong>Baixa resposta:</strong> FC &lt;50–60 bpm</li>
+      <li><strong>Controlada:</strong> FC 50–100 bpm</li>
+      <li><strong>Alta resposta:</strong> FC &gt;100 bpm</li>
+      <li><strong>FC &gt;150:</strong> aumenta chance de a taquiarritmia ser a causa da instabilidade</li>
+    </ul>
+    <p style="margin-top:.7rem;font-style:italic;color:var(--gold);">"Na FA, o átrio grita; quem decide a urgência é o ventrículo."</p>
+  </div>
+  <div class="phil">"O médico bom não trata número. Trata a história que o número está contando."<strong>— Dr. André Rossanno</strong></div>
+</div>
+
+<!-- PALÁCIO -->
+<div class="sec" id="palacio">
+  <h2 class="sec-title">🏛️ Palácio da Memória</h2>
+  <p style="margin-bottom:1rem;">A <strong>Sala de Choque do Dr. Sincro</strong>. Cinco portas. Cada uma guarda um segredo que salva vida:</p>
+  <div class="palace-grid">
+    <div class="pd"><div class="di">🫀</div><div class="dl">Porta 1</div><div class="dc">O Ventrículo Decide<br>FC &lt;50 / 50–100 / &gt;100 / &gt;150</div></div>
+    <div class="pd"><div class="di">⏰</div><div class="dl">Porta 2</div><div class="dc">Relógio do Trombo<br>&lt;24h / 24–48h / &gt;48h / incerto</div></div>
+    <div class="pd"><div class="di">⚡</div><div class="dl">Porta 3</div><div class="dc">Botão SYNC<br>"NUNCA CHOQUE SEM SYNC"</div></div>
+    <div class="pd"><div class="di">💊</div><div class="dl">Porta 4</div><div class="dc">Energias<br>Flutter 50–100 J<br>FA 120–200 J bifásico</div></div>
+    <div class="pd"><div class="di">🚪</div><div class="dl">Porta 5 — Saída</div><div class="dc">4 semanas ACO pós-CVE (independente do score)</div></div>
+  </div>
+  <h3>⏰ Relógio do Trombo</h3>
+  <div class="relogio">
+    <div class="rc r1"><div class="rt">&lt;24h</div><p>Baixo risco: pode cardioverter sem ACO prévia</p></div>
+    <div class="rc r2"><div class="rt">24–48h</div><p>Cuidado: alto risco embólico. Heparina se possível antes.</p></div>
+    <div class="rc r3"><div class="rt">&gt;48h</div><p>ACO 3 semanas antes OU EcoTE sem trombo</p></div>
+    <div class="rc r4"><div class="rt">Incerto</div><p>Tratar como &gt;48h. EcoTE ou ACO 3 semanas</p></div>
+  </div>
+  <div class="card green"><h4>✅ Pós-Cardioversão</h4><p><strong>4 semanas de anticoagulação, independente do CHA₂DS₂-VA.</strong> Atordoamento atrial: o átrio pode estar em choque mecânico mesmo após retorno ao sinusal.</p></div>
+  <div class="phil">"Antes da cardioversão, olhe o relógio; depois da cardioversão, respeite o trombo atordoado."<strong>— Dr. André Rossanno</strong></div>
+</div>
+
+<!-- CVE -->
+<div class="sec" id="cve">
+  <h2 class="sec-title">⚡ Cardioversão Elétrica Sincronizada</h2>
+  <div class="card teal"><h4>N1 — Conceito</h4><p>Choque aplicado <strong>exatamente no QRS</strong> para interromper taquiarritmia organizada sem cair no fenômeno R sobre T.</p><p style="margin-top:.4rem;"><strong>Objetivo:</strong> reorganizar caos elétrico → salvar perfusão → impedir PCR.</p></div>
+  <div class="card red"><h4>💀 A Armadilha da Onda T</h4><p>Se o choque cair na onda T: <strong>R sobre T → TV Polimórfica → FV → PCR</strong></p><p style="margin-top:.55rem;font-weight:700;color:var(--red);font-size:.98rem;">Dr. Sincro grita: "SINCRONIZA PRIMEIRO!"</p><p style="margin-top:.4rem;">O botão SYNC faz a máquina mirar apenas o QRS: organizado, seguro, preciso.</p></div>
+  <div class="phil">"SYNC ligado salva ritmo. SYNC esquecido libera o caos."<strong>— Dr. André Rossanno</strong></div>
+  <h3>🔢 O Protocolo O-ZASCO</h3>
+  <div class="ozasco">
+    <div class="oz"><div class="ozl">O</div><div class="ozw">Oxigênio</div><div class="ozd">"Toda taquiarritmia pode virar apneia"</div></div>
+    <div class="oz"><div class="ozl">Z</div><div class="ozw">Sedação</div><div class="ozd">Fenta + Eto ou Propo + Mida</div></div>
+    <div class="oz"><div class="ozl">A</div><div class="ozw">Aparelho</div><div class="ozd">Monitor, desfibrilador, pás</div></div>
+    <div class="oz"><div class="ozl">S</div><div class="ozw">SYNC</div><div class="ozd">Botão vermelho piscando</div></div>
+    <div class="oz"><div class="ozl">C</div><div class="ozw">Carga</div><div class="ozd">Flutter 50–100 J<br>FA 120–200 J</div></div>
+    <div class="oz"><div class="ozl">O</div><div class="ozw">OUT! Choque</div><div class="ozd">Afasta todos. Dispara.</div></div>
+  </div>
+  <div class="card"><h4>📋 Protocolo CVE Completo</h4>
+    <ul>
+      <li><strong>Monitoração:</strong> PA, ECG, oximetria</li>
+      <li><strong>O₂:</strong> sempre ofertar</li>
+      <li><strong>Heparina:</strong> NF 60–70 U/kg (máx 4.000–5.000 U) se não anticoagulado</li>
+      <li><strong>CVE sincronizada:</strong> Flutter 50 J | FA 120–200 J bifásico</li>
+      <li><strong>Falha:</strong> até 360 J monofásico ou 200 J bifásico</li>
+      <li><strong>Amiodarona refratário:</strong> 150–300 mg IV; +150 mg após 15 min</li>
+      <li><strong>Manutenção:</strong> 1 mg/min × 6h, depois 0,5 mg/min × 18h</li>
+      <li><strong>Pós-CVE:</strong> 4 semanas ACO</li>
+    </ul>
+  </div>
+  <h3>☠️ Pegadinhas</h3>
+  <ul class="peg-list">
+    <li><strong>CVE ≠ Desfibrilação.</strong> CVE: sincronizada no QRS. Desfibrilação: não sincronizada (FV/TVSP).</li>
+    <li><strong>Instável → não espera anticoagulação.</strong> Instabilidade mata antes do trombo.</li>
+    <li><strong>FC &gt;150 ≠ prova de causalidade.</strong> Sepse, TEP, dor, hipovolemia podem conduzir.</li>
+    <li><strong>Propofol</strong> derruba PA. <strong>Etomidato</strong> é cardioestável — primeira escolha no instável.</li>
+  </ul>
+  <div class="phil">"O ventrículo não espera guideline quando a pressão está caindo."<strong>— Dr. André Rossanno</strong></div>
+</div>
+
+<!-- SEDAÇÃO -->
+<div class="sec" id="sedacao">
+  <h2 class="sec-title">💉 A Escada do Sono Seguro</h2>
+  <div class="card teal"><h4>N1 — Conceito</h4><p>Na cardioversão, a sedação precisa fazer o paciente <strong>dormir rápido</strong>, sem derrubar a pressão nem comprometer a via aérea.</p></div>
+  <div class="escada">
+    <div class="ec e1"><div class="eci">🗡️</div><div class="ecd">Fentanil</div><div class="ecds">1–2 mcg/kg</div><div class="ecm">"Fino: dose em micro." Ninja cortando a dor sem derrubar pressão.</div></div>
+    <div class="ec e2"><div class="eci">🛡️</div><div class="ecd">Etomidato</div><div class="ecds">0,2–0,3 mg/kg</div><div class="ecm">"ETO é estável: 0,2 é o eixo." Guardião da pressão arterial.</div></div>
+    <div class="ec e3"><div class="eci">🌊</div><div class="ecd">Propofol</div><div class="ecds">0,5–1 mg/kg</div><div class="ecm">"PROPO cai: metade ou inteiro." Cuidado com hipotensão!</div></div>
+    <div class="ec e4"><div class="eci">🧠</div><div class="ecd">Midazolam</div><div class="ecds">1–2 mg (até 3–5)</div><div class="ecm">"MIDA apaga o filme da CVE." Amnésia garantida.</div></div>
+  </div>
+  <div class="mnemo"><div class="mt">🎵 Frase Cantada</div><div class="ml"><span>Fenta</span> é micro, <span>Eto</span> é 0,2, <span>Propo</span> é meio a um, <span>Mida</span> vai de um a cinco.</div></div>
+  <div class="card gold"><h4>💡 Dica Prática</h4><p>1 ml Fentanil + 1 ml Etomidato para cada <strong>10 kg</strong> de peso. Paciente 70 kg → 7 ml de cada.</p><p style="margin-top:.4rem;">Com Propofol: iniciar 0,5–1 ml a cada 10 kg.</p></div>
+  <div class="divider"></div>
+  <h3>⚗️ Amiodarona IV — O Mago</h3>
+  <div class="card">
+    <ul>
+      <li><strong>Indicação:</strong> refratário à CVE ou controle de frequência em IC/disfunção ventricular</li>
+      <li><strong>Ataque:</strong> 150–300 mg IV</li>
+      <li><strong>Repetição:</strong> +150 mg após 15 min se necessário</li>
+      <li><strong>Manutenção:</strong> 1 mg/min × 6h → depois 0,5 mg/min × 18h</li>
+    </ul>
+  </div>
+  <div class="mnemo"><div class="mt">🔢 AMIO 1-6, Meio-18</div><div class="ml">1 mg/min por <span>6</span> horas → 0,5 mg/min por <span>18</span> horas</div><div class="ml" style="margin-top:.4rem;color:var(--red);">⚠️ Pode reverter ritmo! Cuidado se FA &gt;24h/incerto sem ACO prévia.</div></div>
+</div>
+
+<!-- FREQUÊNCIA -->
+<div class="sec" id="freq">
+  <h2 class="sec-title">🎛️ Controle de Frequência no PS</h2>
+  <div class="phil">"O átrio faz barulho, mas o ventrículo derruba a casa."<strong>— Dr. André Rossanno</strong></div>
+  <h3>📊 Algoritmo de Decisão</h3>
+  <div class="algo">
+    <div class="as"><strong>1. Instável?</strong> (5D + FA como causa provável)</div>
+    <div class="aa">↓ SIM → CVE IMEDIATA</div>
+    <div class="aa">↓ NÃO → continua</div>
+    <div class="as"><strong>2. Investigar gatilho:</strong> sepse, dor, hipovolemia, TEP, tireotoxicose, anemia, abstinência</div>
+    <div class="aa">↓</div>
+    <div class="as"><strong>3. Avaliar FEVE</strong> — ela define a droga</div>
+    <div class="aa">↓</div>
+    <div class="as"><strong>Meta leniente:</strong> FC &lt;110 bpm (RACE II)</div>
+  </div>
+  <h3>💊 Escolha pelo Terreno</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Drogas de escolha</th><th>Evitar</th></tr></thead>
+      <tbody>
+        <tr><td>Sem comorbidades / HAS / IC FEP</td><td>Beta-bloqueador, Verapamil, Diltiazem</td><td>Hipotensão, BAV</td></tr>
+        <tr><td>IC FEr (FEVE ≤40%)</td><td>Beta (carvedilol, metoprolol, bisoprolol VO), Deslanosídeo, Amiodarona</td><td><strong>Diltiazem / Verapamil</strong></td></tr>
+        <tr><td>Asma / DPOC broncoespasmo</td><td>Diltiazem, Verapamil, Digitálicos</td><td>Beta não seletivo</td></tr>
+        <tr><td>WPW / Pré-excitação</td><td>CVE se instável; antiarrítmico conforme protocolo</td><td><strong>Beta, Diltiazem, Verapamil, Digoxina, Adenosina</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>💉 Doses</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Droga</th><th>Dose EV</th><th>Macete</th></tr></thead>
+      <tbody>
+        <tr><td>Metoprolol</td><td>5 mg em 2–5 min; máx 15 mg</td><td>"Metro 5,5,5: três estações e para"</td></tr>
+        <tr><td>Esmolol</td><td>0,5 mg/kg bolus; 50–300 mcg/kg/min</td><td>"Elástico: entra rápido, solta rápido"</td></tr>
+        <tr><td>Verapamil</td><td>5 mg em 2 min; rep 10 mg após 30 min</td><td>"VERA vem devagar: 5 em 2"</td></tr>
+        <tr><td>Diltiazem</td><td>15–20 mg em 2 min; manutenção 5–10 mg/h</td><td>"DILTA desce de 20 em 2"</td></tr>
+        <tr><td>Deslanosídeo</td><td>1–4 ampolas 0,4 mg IV bolus</td><td>"Digital sussurra, não corre"</td></tr>
+        <tr><td>Amiodarona</td><td>150–300 mg IV (ver aba Sedação)</td><td>"Bombeiro, não perfume"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mnemo">
+    <div class="mt">🎯 VENTRÍCULO MANDA</div>
+    <div class="ml"><span>V</span>er se está instável</div>
+    <div class="ml"><span>E</span>scolher droga pelo terreno</div>
+    <div class="ml"><span>N</span>ó AV é o alvo</div>
+    <div class="ml"><span>T</span>aquicardia pode ser causa ou consequência</div>
+    <div class="ml"><span>R</span>emover gatilhos</div>
+    <div class="ml"><span>Í</span>nvestigar FEVE</div>
+    <div class="ml"><span>C</span>uidado com WPW</div>
+    <div class="ml"><span>U</span>sar anticoagulação quando indicada</div>
+    <div class="ml"><span>L</span>embrar da alta segura</div>
+    <div class="ml"><span>O</span>bservar resposta clínica</div>
+  </div>
+  <h3>☠️ Pegadinhas</h3>
+  <ul class="peg-list">
+    <li><strong>FC &gt;150 ≠ prova de causalidade.</strong> Sepse, dor, hipovolemia, TEP podem estar conduzindo o incêndio.</li>
+    <li><strong>WPW: bloquear nó AV pode ser fatal.</strong> Via acessória vira estrada livre para o ventrículo.</li>
+    <li><strong>Diltiazem/Verapamil não são amigos da FEVE ≤40%.</strong> Podem precipitar IC.</li>
+    <li><strong>Digoxina falha no hiperadrenérgico do PS.</strong> Funciona melhor em repouso.</li>
+    <li><strong>Amiodarona pode reverter ritmo.</strong> Cuidado se FA &gt;24h/incerto sem ACO.</li>
+  </ul>
+  <div class="phil">"Alta segura não começa na receita. Começa quando o médico sabe o que pode voltar a matar."<strong>— Dr. André Rossanno</strong></div>
+</div>
+
+<!-- FLUTTER -->
+<div class="sec" id="flutter">
+  <h2 class="sec-title">🌊 Flutter Atrial: O Serrote</h2>
+  <div class="card teal"><h4>N1 — Conceito</h4><p><strong>Macro-reentrada atrial</strong> no átrio direito (istmo cavo-tricuspídeo).</p><ul style="margin-top:.55rem;"><li>Ondas F em <strong>serrote</strong> — D2, D3, aVF, V1</li><li>Frequência atrial: <strong>250–350 bpm</strong></li><li>Conduz 2:1 → FC ventricular ~150 bpm</li><li>RR pode ser regular ou variável</li></ul></div>
+  <div class="card red"><h4>🎯 Pegadinha de Ouro</h4><p><strong>Taquicardia regular de QRS estreito com FC ~150 = Flutter 2:1 até prova contrária.</strong></p><p style="margin-top:.5rem;font-size:.84rem;">As ondas F em D2/D3/aVF/V1 denunciam o serrote.</p><p style="margin-top:.5rem;color:var(--gold);"><strong>Flutter OBRIGATORIAMENTE tem FC 150? NÃO.</strong> Pode conduzir 3:1, 4:1 etc.</p></div>
+  <div class="phil">"Flutter é serrote elétrico. FA é tempestade sem maestro."<strong>— Dr. André Rossanno</strong></div>
+  <div class="card"><h4>📋 Diagnóstico</h4><ul><li>Olhar D2, D3, aVF e V1</li><li>Ausência de linha isoelétrica: ondas F contínuas</li><li>Manobra vagal / Adenosina: aumenta bloqueio AV transitório, <strong>revela ondas F, mas geralmente NÃO reverte</strong></li></ul></div>
+  <div class="mnemo">
+    <div class="mt">🪚 SERROTE 150</div>
+    <div class="ml"><span>S</span>errilhado (ondas F)</div>
+    <div class="ml"><span>E</span>streito (QRS geralmente)</div>
+    <div class="ml"><span>R</span>egular muitas vezes</div>
+    <div class="ml"><span>R</span>eentrada macro</div>
+    <div class="ml"><span>O</span>ndas F em serrote</div>
+    <div class="ml"><span>T</span>ricúspide / istmo cavo-tricuspídeo</div>
+    <div class="ml"><span>E</span>nergia baixa na CVE (50–100 J)</div>
+  </div>
+  <h3>⚡ Conduta</h3>
+  <div class="algo">
+    <div class="as"><strong>Instável?</strong> → CVE sincronizada 50–100 J. Flutter responde MUITO bem à cardioversão.</div>
+    <div class="as"><strong>Estável?</strong> → Controle de frequência (mesma lógica da FA) ou cardioversão planejada</div>
+    <div class="as"><strong>Recorrente?</strong> → Ablação do istmo cavo-tricuspídeo: &gt;90% eficácia. Mais simples que ablação de FA.</div>
+    <div class="as"><strong>⚠️ Propafenona?</strong> NÃO sem beta-bloqueador ou BCC antes — risco de flutter 1:1 com FC 300 bpm.</div>
+  </div>
+  <h3>📊 Flutter vs FA</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Critério</th><th>FA</th><th>Flutter</th></tr></thead>
+      <tbody>
+        <tr><td>Mecanismo</td><td>Micro-reentradas</td><td>Macro-reentrada</td></tr>
+        <tr><td>Local</td><td>Átrio esquerdo</td><td>Átrio direito (típico)</td></tr>
+        <tr><td>ECG</td><td>Irregularmente irregular</td><td>Ondas F em serrote</td></tr>
+        <tr><td>FC atrial</td><td>&gt;350 bpm</td><td>250–350 bpm</td></tr>
+        <tr><td>Ablação</td><td>Mais complexa</td><td>&gt;90% eficácia, mais simples</td></tr>
+        <tr><td>Anticoagulação</td><td>Pelo risco embólico</td><td><strong>Mesma lógica da FA</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card green"><h4>✅ Anticoagulação em Flutter</h4><p><strong>Tudo que vale para FA vale para flutter.</strong> Não caia na armadilha de achar que "flutter não emboliza".</p></div>
+</div>
+
+<!-- ESPECIAIS -->
+<div class="sec" id="especiais">
+  <h2 class="sec-title">🔴 Condições Especiais</h2>
+  <div class="phil">"Condição especial muda a regra do jogo. Mas o princípio não muda: proteger o paciente vem antes."<strong>— Dr. André Rossanno</strong></div>
+
+  <h3>1️⃣ FA + BAVT</h3>
+  <div class="card red">
+    <h4>Pista: FA irregular que ficou regular demais</h4>
+    <p><strong>Cena:</strong> Paciente com FA conhecida chega com pulso lento e <em>regular</em>.</p>
+    <p style="margin-top:.5rem;"><strong>ECG:</strong> atividade fibrilatória + QRS regular lento + ritmo de escape.</p>
+    <p style="margin-top:.5rem;"><strong>Conduta:</strong> avaliar instabilidade → suspender drogas bradicardizantes → corrigir causas → marcapasso se refratário.</p>
+  </div>
+  <div class="mnemo"><div class="ml">"Quando a FA fica lenta e regular, desconfie: <span>o AV fechou a ponte</span>."</div><div class="ml" style="margin-top:.4rem;">O átrio grita no andar de cima. O nó AV fecha o elevador. O ventrículo desce pela escada de emergência, lento e regular.</div></div>
+  <div class="divider"></div>
+
+  <h3>2️⃣ FA em Pós-op Cardíaco</h3>
+  <div class="card">
+    <p><strong>Macete:</strong> "PO tem fogo: dor, volume, hipóxia, eletrólito e inflamação."</p>
+    <ul style="margin-top:.55rem;">
+      <li>Comum após cirurgia cardíaca — até 55% conforme tipo</li>
+      <li>Pico até ~6º dia PO</li>
+      <li>Aumenta internação e risco de AVC</li>
+      <li>Muitas vezes reverte espontaneamente</li>
+      <li>Corrigir gatilhos + avaliar anticoagulação</li>
+    </ul>
+    <div class="phil" style="margin-top:.9rem;font-size:.83rem;">"No pós-operatório, a FA nem sempre é doença nova. Às vezes é o coração inflamado reclamando da cirurgia."<strong>— Dr. André Rossanno</strong></div>
+  </div>
+  <div class="divider"></div>
+
+  <h3>3️⃣ FA na Gestação</h3>
+  <div class="card">
+    <h4>GESTA não aceita DOAC</h4>
+    <ul style="margin-top:.55rem;">
+      <li><strong>G</strong>estante com FA geralmente tem cardiopatia associada</li>
+      <li><strong>E</strong>stabilidade materna vem primeiro</li>
+      <li><strong>S</strong>incronizar se instável — <strong>CVE segura em todos os trimestres quando indicada</strong></li>
+      <li><strong>T</strong>ratar sem DOAC (evitar)</li>
+      <li><strong>A</strong>nticoagulação: heparina LMWH é base; evitar amiodarona (exceto caso grave)</li>
+    </ul>
+    <div class="phil" style="margin-top:.9rem;font-size:.83rem;">"Na gestante, o choque bem indicado pode ser mais seguro que a hesitação. O primeiro paciente é a mãe viva."<strong>— Dr. André Rossanno</strong></div>
+  </div>
+  <div class="divider"></div>
+
+  <h3>4️⃣ FA e AVC Cardioembólico</h3>
+  <div class="card red">
+    <h4>Cérebro infartado não gosta de pressa anticoagulante</h4>
+    <ul style="margin-top:.55rem;">
+      <li><strong>NÃO</strong> anticoagular automaticamente nas primeiras 48h</li>
+      <li>Imagem cerebral (TC/RM) + avaliar extensão + transformação hemorrágica</li>
+      <li>Decisão multidisciplinar (neurologia + cardiologia + UTI)</li>
+      <li><strong>AVC pequeno:</strong> anticoagulação pode voltar mais cedo</li>
+      <li><strong>AVC grande:</strong> anticoagulação espera mais</li>
+      <li><strong>Hemorragia intracraniana:</strong> decisão tardia e individualizada</li>
+    </ul>
+    <div class="phil" style="margin-top:.9rem;font-size:.83rem;">"Anticoagulação salva cérebro, mas no minuto errado pode acender a hemorragia."<strong>— Dr. André Rossanno</strong></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="sec" id="quiz">
+  <h2 class="sec-title">❓ Quiz TEC 2026</h2>
+  <p style="margin-bottom:1.4rem;font-size:.88rem;color:#aaa;">8 questões pegadinha. Clique na resposta e veja o feedback imediato.</p>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 1 — ESTABILIDADE</div>
+    <div class="qq">Paciente com FA, FC 145 bpm, PA normal, sem dor, sem dispneia, sem rebaixamento. Conduta inicial?</div>
+    <div class="opts">
+      <button class="ob" data-q="1" data-a="A">A) Cardioversão elétrica imediata obrigatória</button>
+      <button class="ob" data-q="1" data-a="B">B) Controle de frequência e investigar gatilho</button>
+      <button class="ob" data-q="1" data-a="C">C) Desfibrilação não sincronizada</button>
+    </div>
+    <div class="qfb" data-q="1"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 2 — FEVE REDUZIDA</div>
+    <div class="qq">FA com FEVE 30%. Qual droga deve ser EVITADA no controle de frequência?</div>
+    <div class="opts">
+      <button class="ob" data-q="2" data-a="A">A) Diltiazem</button>
+      <button class="ob" data-q="2" data-a="B">B) Digoxina</button>
+      <button class="ob" data-q="2" data-a="C">C) Beta-bloqueador se compensado</button>
+    </div>
+    <div class="qfb" data-q="2"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 3 — FLUTTER</div>
+    <div class="qq">Taquicardia regular de QRS estreito com FC 150. O que não pode esquecer?</div>
+    <div class="opts">
+      <button class="ob" data-q="3" data-a="A">A) Pensar em flutter 2:1</button>
+      <button class="ob" data-q="3" data-a="B">B) Diagnosticar sempre taquicardia sinusal</button>
+      <button class="ob" data-q="3" data-a="C">C) Ignorar D2, D3 e aVF</button>
+    </div>
+    <div class="qfb" data-q="3"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 4 — ADENOSINA NO FLUTTER</div>
+    <div class="qq">Manobra vagal ou adenosina revertem flutter atrial?</div>
+    <div class="opts">
+      <button class="ob" data-q="4" data-a="A">A) Sim, sempre revertem</button>
+      <button class="ob" data-q="4" data-a="B">B) Não geralmente; podem revelar ondas F</button>
+      <button class="ob" data-q="4" data-a="C">C) São proibidas no flutter</button>
+    </div>
+    <div class="qfb" data-q="4"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 5 — BAVT</div>
+    <div class="qq">Paciente com FA conhecida chega com pulso bradicárdico e regular. O que pensar?</div>
+    <div class="opts">
+      <button class="ob" data-q="5" data-a="A">A) FA bem controlada</button>
+      <button class="ob" data-q="5" data-a="B">B) FA + BAVT</button>
+      <button class="ob" data-q="5" data-a="C">C) Flutter 2:1</button>
+    </div>
+    <div class="qfb" data-q="5"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 6 — GESTAÇÃO</div>
+    <div class="qq">Gestante instável com FA. Cardioversão elétrica:</div>
+    <div class="opts">
+      <button class="ob" data-q="6" data-a="A">A) É sempre proibida</button>
+      <button class="ob" data-q="6" data-a="B">B) Pode ser realizada se indicada</button>
+      <button class="ob" data-q="6" data-a="C">C) Só no terceiro trimestre</button>
+    </div>
+    <div class="qfb" data-q="6"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 7 — AVC</div>
+    <div class="qq">Paciente com AVC isquêmico por FA. Anticoagulação:</div>
+    <div class="opts">
+      <button class="ob" data-q="7" data-a="A">A) Começa imediatamente em todos</button>
+      <button class="ob" data-q="7" data-a="B">B) Depende de imagem, extensão e risco hemorrágico</button>
+      <button class="ob" data-q="7" data-a="C">C) Nunca mais poderá ser usada</button>
+    </div>
+    <div class="qfb" data-q="7"></div>
+  </div>
+
+  <div class="quiz-item">
+    <div class="qn">QUESTÃO 8 — WPW</div>
+    <div class="qq">FA com WPW. Qual droga pode ser perigosa?</div>
+    <div class="opts">
+      <button class="ob" data-q="8" data-a="A">A) Procainamida</button>
+      <button class="ob" data-q="8" data-a="B">B) Verapamil</button>
+      <button class="ob" data-q="8" data-a="C">C) Propafenona IV</button>
+    </div>
+    <div class="qfb" data-q="8"></div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="sec" id="flash">
+  <h2 class="sec-title">🎴 Flashcards</h2>
+  <p style="margin-bottom:1.4rem;font-size:.88rem;color:var(--mint);">Clique para virar e ver a resposta 👇</p>
+  <div class="fc-grid">
+    <div class="fc"><div class="ff">Quem manda na emergência?</div><div class="fb" style="display:none">O Ventrículo 🫀</div></div>
+    <div class="fc"><div class="ff">FC 150 regular + QRS estreito?</div><div class="fb" style="display:none">Flutter 2:1 até prova contrária</div></div>
+    <div class="fc"><div class="ff">Evitar em FEVE ≤40%?</div><div class="fb" style="display:none">Diltiazem / Verapamil</div></div>
+    <div class="fc"><div class="ff">Digoxina falha em quê?</div><div class="fb" style="display:none">Hiperadrenérgico no PS</div></div>
+    <div class="fc"><div class="ff">FA + pulso lento regular?</div><div class="fb" style="display:none">FA + BAVT até prova contrária</div></div>
+    <div class="fc"><div class="ff">Flutter gira onde?</div><div class="fb" style="display:none">Istmo cavo-tricuspídeo, átrio direito</div></div>
+    <div class="fc"><div class="ff">Energia inicial no flutter?</div><div class="fb" style="display:none">50–100 J</div></div>
+    <div class="fc"><div class="ff">Gestante + FA instável: CVE?</div><div class="fb" style="display:none">Sim. Segura se indicada ✅</div></div>
+    <div class="fc"><div class="ff">DOAC na gestação?</div><div class="fb" style="display:none">Evitar / Não usar ❌</div></div>
+    <div class="fc"><div class="ff">AVC por FA: anticoagular já?</div><div class="fb" style="display:none">Não. Avaliar imagem + extensão ⏱️</div></div>
+  </div>
+</div>
+
+<!-- REVISÃO -->
+<div class="sec" id="rev">
+  <h2 class="sec-title">⚡ Revisão Rápida</h2>
+  <div class="rev-block"><div class="rt2">⏱️ 10 Segundos</div><p>Instável? Sincroniza. Estável? Controla frequência, escolhe droga pelo terreno, não esquece anticoagulação.</p></div>
+  <div class="rev-block"><div class="rt2">⏱️ 30 Segundos</div><p>Controle: FEVE preservada aceita beta, diltiazem ou verapamil. FEVE reduzida evita diltiazem/verapamil. Flutter: serrote, átrio direito, FC atrial 250–350, pode ser 2:1 a 150. Especiais: FA regular lenta é BAVT; gestante evita DOAC; AVC não anticoagula no reflexo.</p></div>
+  <div class="rev-block"><div class="rt2">⏱️ 60 Segundos</div><p>M4 é emergência prática. O médico não olha o ECG antes de olhar o paciente. Instabilidade + FA = CVE sincronizada imediata. Estabilidade = controle + investigação de gatilhos. Droga segue terreno: beta (hiperadrenérgico), diltiazem/verapamil (FEVE preservada), digoxina (repouso), amiodarona (crítico). Flutter: macro-reentrada, serrote, 2:1, CVE 50–100 J, ablação &gt;90%. Especiais: BAVT em FA lenta/regular, pós-op corrige gatilhos, gestação protege mãe, AVC pede timing fino. A humanidade vence: o paciente não é número. É uma vida.</p></div>
+  <div class="divider"></div>
+  <div class="card gold" style="text-align:center;padding:1.8rem;">
+    <p style="font-style:italic;font-size:.98rem;color:var(--gold);line-height:1.55;">"Na emergência da FA, o segredo não é decorar todas as drogas. É saber quem está mandando no caos: o ventrículo, o trombo, o terreno clínico ou o tempo."</p>
+    <p style="margin-top:1rem;font-family:'Dancing Script',cursive;font-size:1.35rem;color:var(--gold);">— Dr. André Rossanno</p>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <p>Método André Rossanno de Memorização Médica</p>
+  <p style="font-size:.73rem;color:#555;margin-top:.25rem;">N1–N7 · Ética · Humanidade · Técnica</p>
+  <div class="sig">Dr. André Rossanno</div>
+  <p style="font-size:.73rem;color:#444;">TEC 2026 · Medicina + Memória + Humanidade</p>
+</footer>
+
+<script>
+const nbs=document.querySelectorAll('.nb');
+const secs=document.querySelectorAll('.sec');
+nbs.forEach(b=>{b.addEventListener('click',()=>{nbs.forEach(x=>x.classList.remove('active'));secs.forEach(x=>x.classList.remove('on'));b.classList.add('active');document.getElementById(b.dataset.s).classList.add('on');window.scrollTo({top:0,behavior:'smooth'});});});
+
+const qa={'1':{ans:'B',exp:'Estável → controlar frequência + investigar gatilho + avaliar anticoagulação.'},'2':{ans:'A',exp:'Diltiazem/Verapamil pioram IC sistólica. Evitar em FEVE ≤40%.'},'3':{ans:'A',exp:'Flutter 2:1 frequentemente FC ~150 bpm. Olhar D2/D3/aVF/V1.'},'4':{ans:'B',exp:'Aumentam bloqueio AV transitório, revelando melhor as ondas F, mas geralmente não revertem flutter.'},'5':{ans:'B',exp:'FA costuma ser irregular. Regularidade lenta = BAVT com ritmo de escape.'},'6':{ans:'B',exp:'Estabilização materna é prioridade. CVE é segura em todos os trimestres quando indicada.'},'7':{ans:'B',exp:'Timing depende de imagem, extensão e risco de transformação hemorrágica.'},'8':{ans:'B',exp:'Verapamil bloqueia o nó AV. Em WPW, toda excitação vai pela via acessória → pode causar FV.'}};
+
+document.querySelectorAll('.ob').forEach(btn=>{btn.addEventListener('click',function(){const q=this.dataset.q,a=this.dataset.a,{ans,exp}=qa[q],fb=document.querySelector(`.qfb[data-q="${q}"]`);document.querySelectorAll(`.ob[data-q="${q}"]`).forEach(b=>{b.disabled=true;if(b.dataset.a===ans)b.classList.add('right');else if(b.dataset.a===a)b.classList.add('wrong');});fb.classList.add('show',a===ans?'ok':'no');fb.textContent=(a===ans?'✅ Correto! ':'❌ Resposta: '+ans+'. ')+exp;});});
+
+document.querySelectorAll('.fc').forEach(fc=>{fc.addEventListener('click',function(){this.classList.toggle('flip');const ff=this.querySelector('.ff'),fb=this.querySelector('.fb');if(this.classList.contains('flip')){ff.style.display='none';fb.style.display='block';}else{ff.style.display='block';fb.style.display='none';}});});
+</script>
+</body>
+</html>
