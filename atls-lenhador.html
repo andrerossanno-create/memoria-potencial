@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSCE Supremo — Lenhador Politraumatizado | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:  #0B2545;
+  --navy2: #0d2e55;
+  --teal:  #1282A2;
+  --teal2: #0e6f8c;
+  --mint:  #D4F1F4;
+  --gold:  #F2A900;
+  --red:   #C0392B;
+  --red2:  #e74c3c;
+  --green: #1B6B3A;
+  --green2:#27ae60;
+  --white: #ffffff;
+  --off:   #f4f8fb;
+  --gray:  #8494a7;
+  --lgray: #e8edf4;
+  --border:#d0dce8;
+  --body:  #2C3E50;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'IBM Plex Sans',sans-serif;
+  background:var(--navy);
+  color:var(--white);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:linear-gradient(rgba(18,130,162,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(18,130,162,.05) 1px,transparent 1px);
+  background-size:44px 44px;
+  pointer-events:none;z-index:0;
+}
+
+/* ── READING PROGRESS ── */
+#readProgress{
+  position:fixed;top:0;left:0;width:0%;height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  z-index:1000;transition:width .1s;
+}
+
+/* ── SIDEBAR NAV ── */
+#sidebar{
+  position:fixed;top:0;left:0;height:100vh;width:260px;
+  background:rgba(9,22,46,.97);
+  border-right:1px solid rgba(18,130,162,.2);
+  z-index:500;padding:28px 0;
+  overflow-y:auto;
+  transform:translateX(-100%);
+  transition:transform .3s ease;
+}
+#sidebar.open{transform:translateX(0)}
+#sidebarLogo{
+  padding:0 24px 24px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:16px;
+}
+#sidebarLogo .logo-title{
+  font-family:'Syne',sans-serif;font-size:16px;font-weight:900;
+  color:var(--gold);margin-bottom:4px;
+}
+#sidebarLogo .logo-sub{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--gray);letter-spacing:2px;
+}
+.nav-section{
+  padding:6px 24px;
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:3px;color:var(--teal);text-transform:uppercase;
+  margin-top:12px;
+}
+.nav-link{
+  display:block;padding:9px 24px;font-size:13px;
+  color:rgba(255,255,255,.65);text-decoration:none;
+  border-left:3px solid transparent;
+  transition:all .2s;
+}
+.nav-link:hover,.nav-link.active{
+  color:var(--white);
+  border-left-color:var(--gold);
+  background:rgba(255,255,255,.04);
+}
+#menuToggle{
+  position:fixed;top:16px;left:16px;z-index:600;
+  background:rgba(11,37,69,.9);border:1px solid rgba(18,130,162,.4);
+  color:var(--white);width:42px;height:42px;border-radius:8px;
+  cursor:pointer;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+}
+#overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:499;backdrop-filter:blur(2px);
+}
+#overlay.show{display:block}
+
+/* ── MAIN ── */
+.page{
+  position:relative;z-index:10;
+  max-width:860px;margin:0 auto;
+  padding:0 28px 120px;
+}
+
+/* ── COVER ── */
+.cover{
+  text-align:center;
+  padding:80px 20px 60px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(18,130,162,.22) 0%,transparent 70%);
+  margin-bottom:0;
+}
+.cover-badge{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  letter-spacing:3px;color:var(--gold);text-transform:uppercase;
+  border:1px solid rgba(242,169,0,.35);
+  padding:5px 18px;border-radius:2px;margin-bottom:22px;
+}
+.cover h1{
+  font-family:'Syne',sans-serif;font-weight:900;
+  font-size:clamp(32px,7vw,64px);line-height:1;
+  color:var(--white);margin-bottom:10px;
+}
+.cover h1 span{color:var(--gold)}
+.cover .cover-sub{
+  font-size:15px;color:rgba(255,255,255,.55);
+  max-width:520px;margin:0 auto 6px;line-height:1.6;
+}
+.cover-chips{
+  display:flex;flex-wrap:wrap;gap:8px;
+  justify-content:center;margin:20px 0 28px;
+}
+.chip{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  padding:4px 12px;border-radius:20px;
+  border:1px solid rgba(18,130,162,.5);
+  color:rgba(255,255,255,.65);background:rgba(18,130,162,.1);
+}
+.cover-sig{
+  font-family:'Dancing Script',cursive;
+  font-size:26px;color:var(--gold);
+}
+.cover-role{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--gray);letter-spacing:2px;margin-top:4px;
+}
+
+/* ── QUOTE BANNER ── */
+.quote-banner{
+  background:linear-gradient(135deg,rgba(18,130,162,.15),rgba(11,37,69,.6));
+  border:1px solid rgba(18,130,162,.3);
+  border-left:4px solid var(--gold);
+  border-radius:10px;
+  padding:22px 28px;
+  margin:32px 0;
+  font-size:16px;
+  font-style:italic;
+  color:rgba(255,255,255,.85);
+  line-height:1.7;
+}
+.quote-banner span{
+  display:block;margin-top:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  font-style:normal;color:var(--gold);letter-spacing:2px;
+}
+
+/* ── SECTION TITLE ── */
+.sec-title{
+  margin:52px 0 24px;
+  display:flex;align-items:center;gap:14px;
+}
+.sec-title .icon{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(18,130,162,.2);border:1px solid rgba(18,130,162,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.sec-title h2{
+  font-family:'Syne',sans-serif;font-weight:900;
+  font-size:clamp(20px,4vw,30px);color:var(--white);
+  line-height:1.1;
+}
+.sec-title h2 small{
+  display:block;font-family:'IBM Plex Mono',monospace;
+  font-size:11px;font-weight:400;color:var(--teal);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;
+}
+.divider{
+  height:1px;background:linear-gradient(90deg,var(--teal),transparent);
+  margin:0 0 28px;opacity:.4;
+}
+
+/* ── CARDS ── */
+.card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+  padding:26px 28px;
+  margin-bottom:18px;
+}
+.card-header{
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  color:var(--teal);text-transform:uppercase;letter-spacing:2px;
+  margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.card p,.card li{
+  font-size:15px;line-height:1.75;
+  color:rgba(255,255,255,.82);
+}
+.card ul,.card ol{padding-left:20px;margin-top:8px}
+.card li{margin-bottom:6px}
+.card strong{color:var(--white)}
+
+/* ── VITALS GRID ── */
+.vitals-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;margin-top:14px;
+}
+.vital{
+  background:rgba(18,130,162,.1);
+  border:1px solid rgba(18,130,162,.25);
+  border-radius:10px;padding:14px 16px;
+}
+.vital-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;
+}
+.vital-val{
+  font-family:'Syne',sans-serif;font-weight:900;font-size:22px;
+  color:var(--white);line-height:1;margin-bottom:4px;
+}
+.vital-val.danger{color:#ff6b6b}
+.vital-val.warn{color:var(--gold)}
+.vital-val.ok{color:#6dd98d}
+.vital-note{font-size:11px;color:var(--gray);line-height:1.4}
+
+/* ── TIMELINE ── */
+.timeline{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;margin:20px 0 6px;
+  position:relative;
+}
+.timeline::before{
+  content:'';position:absolute;top:20px;left:10%;right:10%;
+  height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));
+}
+.tl-item{text-align:center;position:relative;padding-top:0}
+.tl-dot{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--navy2));
+  border:2px solid var(--gold);
+  margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;position:relative;z-index:2;
+}
+.tl-time{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:var(--gold);font-weight:700;margin-bottom:5px;
+}
+.tl-desc{font-size:11px;color:rgba(255,255,255,.6);line-height:1.45;padding:0 4px}
+
+/* ── ALERT ── */
+.alert{
+  border-radius:8px;padding:16px 20px;
+  margin:14px 0;font-size:14px;line-height:1.65;
+}
+.alert strong{display:inline-block;margin-bottom:2px}
+.alert-red{background:rgba(192,57,43,.18);border-left:4px solid var(--red2);color:#ffb3ae}
+.alert-gold{background:rgba(242,169,0,.12);border-left:4px solid var(--gold);color:#ffe9a0}
+.alert-teal{background:rgba(18,130,162,.15);border-left:4px solid var(--teal);color:#a8e8f7}
+.alert-green{background:rgba(27,107,58,.18);border-left:4px solid var(--green2);color:#a8f5c0}
+
+/* ── TABLE ── */
+.tbl-wrap{overflow-x:auto;margin:14px 0}
+table.dt{
+  width:100%;border-collapse:collapse;font-size:13.5px;
+}
+table.dt th{
+  background:rgba(18,130,162,.25);
+  color:var(--teal);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:12px 14px;text-align:left;
+  border-bottom:1px solid rgba(18,130,162,.3);
+}
+table.dt td{
+  padding:11px 14px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  color:rgba(255,255,255,.82);line-height:1.55;
+  vertical-align:top;
+}
+table.dt tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+table.dt tr:hover td{background:rgba(18,130,162,.07)}
+.tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  padding:2px 8px;border-radius:3px;font-weight:700;letter-spacing:1px;
+}
+.tag-red{background:rgba(192,57,43,.25);color:#ff8080;border:1px solid rgba(192,57,43,.4)}
+.tag-gold{background:rgba(242,169,0,.18);color:var(--gold);border:1px solid rgba(242,169,0,.4)}
+.tag-teal{background:rgba(18,130,162,.2);color:#6dd9f0;border:1px solid rgba(18,130,162,.4)}
+.tag-green{background:rgba(27,107,58,.25);color:#80ff80;border:1px solid rgba(27,107,58,.4)}
+
+/* ── FIO2 FORMULA BOX ── */
+.formula-box{
+  background:linear-gradient(135deg,rgba(18,130,162,.2),rgba(11,37,69,.7));
+  border:1.5px solid rgba(18,130,162,.5);
+  border-radius:12px;padding:28px;text-align:center;margin:18px 0;
+}
+.formula-main{
+  font-family:'IBM Plex Mono',monospace;font-size:clamp(16px,3vw,24px);
+  font-weight:700;color:var(--white);margin-bottom:10px;
+}
+.formula-main span{color:var(--gold)}
+.formula-sub{font-size:13px;color:var(--gray);margin-top:6px}
+
+/* ── STEP BOX ── */
+.steps{list-style:none;counter-reset:steps;padding:0;margin:10px 0}
+.steps li{
+  counter-increment:steps;
+  display:flex;gap:14px;align-items:flex-start;
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:14px;color:rgba(255,255,255,.82);line-height:1.6;
+}
+.steps li:last-child{border-bottom:none}
+.steps li::before{
+  content:counter(steps);
+  min-width:28px;height:28px;
+  border-radius:50%;background:var(--teal);
+  color:var(--white);font-weight:700;font-size:13px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+
+/* ── TRIADA MORTE ── */
+.triada{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0;
+}
+.triada-item{
+  background:rgba(192,57,43,.12);
+  border:1px solid rgba(192,57,43,.35);
+  border-radius:10px;padding:18px 14px;text-align:center;
+}
+.triada-icon{font-size:28px;margin-bottom:8px}
+.triada-title{
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  color:#ff8080;margin-bottom:8px;
+}
+.triada-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* ── LÓGICA BOX ── */
+.logic-chain{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:8px;margin:14px 0;padding:18px 20px;
+  background:rgba(192,57,43,.1);border:1px solid rgba(192,57,43,.25);
+  border-radius:10px;
+}
+.logic-item{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
+  color:rgba(255,255,255,.85);
+}
+.logic-arrow{color:var(--red2);font-size:16px}
+
+/* ── ════════ INTERACTIVE SECTIONS ════════ ── */
+
+/* FLASHCARDS */
+.fc-wrap{perspective:1200px;cursor:pointer;user-select:none;margin:20px 0}
+.fc{
+  position:relative;width:100%;
+  transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
+  border-radius:14px;min-height:240px;
+}
+.fc.flipped{transform:rotateY(180deg)}
+.fc-face{
+  width:100%;border-radius:14px;padding:32px 28px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  position:absolute;top:0;left:0;
+}
+.fc-front{
+  background:linear-gradient(135deg,rgba(18,130,162,.22),rgba(11,37,69,.85));
+  border:1.5px solid rgba(18,130,162,.4);
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:240px;
+}
+.fc-back{
+  background:linear-gradient(135deg,rgba(27,107,58,.2),rgba(11,37,69,.85));
+  border:1.5px solid rgba(39,174,96,.4);
+  transform:rotateY(180deg);
+  min-height:240px;
+}
+.fc-cat{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.fc-front .fc-cat{color:var(--teal)}
+.fc-back .fc-cat{color:var(--green2)}
+.fc-q{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(16px,3vw,22px);color:var(--white);
+  line-height:1.35;flex:1;
+}
+.fc-a{font-size:14px;color:rgba(255,255,255,.88);line-height:1.7}
+.fc-trap-box{
+  margin-top:14px;padding:10px 14px;
+  background:rgba(192,57,43,.2);border-left:3px solid var(--red2);
+  border-radius:4px;font-size:13px;color:#ffb0a8;line-height:1.5;
+}
+.fc-trap-box strong{color:var(--red2)}
+.fc-hint{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,.3);text-align:right;margin-top:18px;
+}
+.fc-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:14px;
+}
+.fc-nav button{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
+  color:var(--white);padding:9px 22px;border-radius:6px;
+  cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:14px;
+  transition:all .2s;
+}
+.fc-nav button:hover{background:var(--teal);border-color:var(--teal)}
+.fc-counter{
+  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--gray);
+}
+
+/* QUIZ */
+.quiz-score-bar{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;padding:20px 24px;margin-bottom:24px;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.qs-num{
+  font-family:'Syne',sans-serif;font-weight:900;font-size:44px;
+  color:var(--gold);line-height:1;
+}
+.qs-label{font-size:12px;color:var(--gray);margin-top:4px}
+.qs-bars{flex:1;min-width:180px}
+.qs-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12px}
+.qs-bar-bg{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.qs-fill-c{height:100%;background:var(--green2);border-radius:3px;transition:width .5s}
+.qs-fill-w{height:100%;background:var(--red2);border-radius:3px;transition:width .5s}
+.qs-cnt{font-family:'IBM Plex Mono',monospace;font-size:11px;min-width:20px;text-align:right}
+
+.quiz-item{
+  background:rgba(255,255,255,.03);
+  border:1.5px solid rgba(255,255,255,.09);
+  border-radius:12px;padding:28px;margin-bottom:16px;
+  transition:border-color .3s;
+}
+.quiz-item.correct{border-color:var(--green2)}
+.quiz-item.wrong{border-color:var(--red2)}
+.quiz-num-label{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;
+}
+.quiz-q{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(15px,2.5vw,18px);color:var(--white);
+  line-height:1.4;margin-bottom:18px;
+}
+.quiz-opts{display:flex;flex-direction:column;gap:9px}
+.quiz-opt{
+  background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:13px 16px;
+  cursor:pointer;font-size:14px;color:rgba(255,255,255,.78);
+  line-height:1.5;text-align:left;
+  display:flex;gap:12px;align-items:flex-start;
+  transition:all .18s;
+}
+.quiz-opt:hover:not(.locked){
+  background:rgba(18,130,162,.15);border-color:var(--teal);color:var(--white);
+}
+.quiz-opt.opt-correct{background:rgba(27,107,58,.22);border-color:var(--green2);color:#a8ffbf}
+.quiz-opt.opt-wrong{background:rgba(192,57,43,.18);border-color:var(--red2);color:#ffb3ae}
+.quiz-opt.locked{cursor:default}
+.opt-letter{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;
+  color:var(--teal);min-width:16px;margin-top:1px;
+}
+.opt-correct .opt-letter{color:var(--green2)}
+.opt-wrong .opt-letter{color:var(--red2)}
+.quiz-fb{
+  margin-top:14px;padding:13px 16px;border-radius:7px;
+  font-size:13.5px;line-height:1.65;display:none;
+}
+.quiz-fb.show{display:block}
+.quiz-fb.fb-c{background:rgba(27,107,58,.18);border-left:3px solid var(--green2);color:#c8ffd4}
+.quiz-fb.fb-w{background:rgba(192,57,43,.14);border-left:3px solid var(--red2);color:#ffd0cc}
+.quiz-fb.fb-t{background:rgba(242,169,0,.1);border-left:3px solid var(--gold);color:#ffe9a0;margin-top:8px}
+
+/* ── RESULT MODAL ── */
+.modal-wrap{
+  display:none;position:fixed;inset:0;
+  background:rgba(9,22,46,.93);z-index:900;
+  align-items:center;justify-content:center;
+  padding:24px;backdrop-filter:blur(10px);
+}
+.modal-wrap.show{display:flex}
+.modal-box{
+  background:var(--navy2);border:1.5px solid rgba(18,130,162,.4);
+  border-radius:16px;padding:44px 36px;
+  max-width:480px;width:100%;text-align:center;
+}
+.modal-emoji{font-size:60px;margin-bottom:18px}
+.modal-title{
+  font-family:'Syne',sans-serif;font-weight:900;font-size:28px;
+  margin-bottom:8px;
+}
+.modal-score{
+  font-family:'Syne',sans-serif;font-size:68px;font-weight:900;
+  color:var(--gold);margin:14px 0;
+}
+.modal-msg{font-size:15px;color:rgba(255,255,255,.7);line-height:1.65;margin-bottom:28px}
+.modal-quote{
+  font-style:italic;font-size:13px;
+  color:rgba(255,255,255,.45);margin-bottom:28px;line-height:1.6;
+}
+.modal-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-p{
+  background:var(--teal);border:none;color:var(--white);
+  padding:12px 28px;border-radius:8px;cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;
+  transition:background .2s;
+}
+.btn-p:hover{background:var(--teal2)}
+.btn-g{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+  color:var(--white);padding:12px 28px;border-radius:8px;cursor:pointer;
+  font-family:'IBM Plex Sans',sans-serif;font-size:14px;
+  transition:background .2s;
+}
+.btn-g:hover{background:rgba(255,255,255,.13)}
+
+/* ── PEGADINHAS ACCORDION ── */
+.peg-item{
+  border:1.5px solid rgba(192,57,43,.3);
+  border-radius:10px;margin-bottom:12px;overflow:hidden;
+}
+.peg-header{
+  background:rgba(192,57,43,.12);
+  padding:16px 20px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;
+}
+.peg-header h4{
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:800;
+  color:#ff8080;line-height:1.35;
+}
+.peg-chevron{
+  color:var(--red2);font-size:18px;transition:transform .3s;
+  flex-shrink:0;
+}
+.peg-item.open .peg-chevron{transform:rotate(180deg)}
+.peg-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease;
+}
+.peg-item.open .peg-body{max-height:600px}
+.peg-inner{padding:18px 20px;border-top:1px solid rgba(192,57,43,.2)}
+.peg-correct{
+  padding:12px 16px;background:rgba(27,107,58,.18);
+  border-left:3px solid var(--green2);border-radius:5px;
+  font-size:14px;color:#c8ffd4;line-height:1.65;margin-bottom:10px;
+}
+.peg-trap{
+  padding:12px 16px;background:rgba(242,169,0,.1);
+  border-left:3px solid var(--gold);border-radius:5px;
+  font-size:13px;color:#ffe9a0;line-height:1.6;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .page{padding:0 16px 80px}
+  .timeline{grid-template-columns:repeat(2,1fr)}
+  .timeline::before{display:none}
+  .triada{grid-template-columns:1fr}
+  .vitals-grid{grid-template-columns:repeat(2,1fr)}
+  .fc-face{padding:22px 18px}
+  .quiz-item{padding:20px 16px}
+}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.card,.fc-wrap,.quiz-item,.peg-item,.quote-banner{
+  animation:fadeUp .4s ease both;
+}
+</style>
+</head>
+<body>
+
+<div id="readProgress"></div>
+
+<!-- SIDEBAR -->
+<button id="menuToggle" onclick="toggleMenu()">☰</button>
+<div id="overlay" onclick="toggleMenu()"></div>
+<nav id="sidebar">
+  <div id="sidebarLogo">
+    <div class="logo-title">🪓 OSCE Supremo</div>
+    <div class="logo-sub">Lenhador · Dr. André Rossanno</div>
+  </div>
+  <div class="nav-section">Caso Clínico</div>
+  <a class="nav-link" href="#caso" onclick="toggleMenu()">📖 Cenário e Linha do Tempo</a>
+  <a class="nav-link" href="#sinais" onclick="toggleMenu()">📊 Sinais Vitais</a>
+  <a class="nav-link" href="#raciocinio" onclick="toggleMenu()">🧠 Raciocínio Central</a>
+  <div class="nav-section">ABCDE do ATLS</div>
+  <a class="nav-link" href="#mov" onclick="toggleMenu()">🏥 MOV</a>
+  <a class="nav-link" href="#fio2" onclick="toggleMenu()">🫁 FiO₂ e Oxigênio</a>
+  <a class="nav-link" href="#airway" onclick="toggleMenu()">🅰️ Airway</a>
+  <a class="nav-link" href="#breathing" onclick="toggleMenu()">🅱️ Breathing</a>
+  <a class="nav-link" href="#circulation" onclick="toggleMenu()">🅲 Circulation</a>
+  <a class="nav-link" href="#exames" onclick="toggleMenu()">🧪 Exames</a>
+  <a class="nav-link" href="#txa" onclick="toggleMenu()">💊 TXA</a>
+  <a class="nav-link" href="#disability" onclick="toggleMenu()">🅳 Disability</a>
+  <a class="nav-link" href="#exposure" onclick="toggleMenu()">🅴 Exposure · Tríade da Morte</a>
+  <a class="nav-link" href="#exposure" onclick="toggleMenu()" style="padding-left:36px;font-size:12px;opacity:.75">↳ Prevenir · Tratar · Damage Control</a>
+  <div class="nav-section">Complicações</div>
+  <a class="nav-link" href="#rabdo" onclick="toggleMenu()">💪 Rabdomiólise</a>
+  <a class="nav-link" href="#hiperk" onclick="toggleMenu()">⚡ Hipercalemia</a>
+  <a class="nav-link" href="#compartimento" onclick="toggleMenu()">🦵 Sínd. Compartimental</a>
+  <a class="nav-link" href="#svd" onclick="toggleMenu()">🩺 SVD</a>
+  <a class="nav-link" href="#tc" onclick="toggleMenu()">🖥️ TC e Transporte</a>
+  <div class="nav-section">Treino Ativo</div>
+  <a class="nav-link" href="#flashcards" onclick="toggleMenu()">🃏 Flashcards</a>
+  <a class="nav-link" href="#quiz" onclick="toggleMenu()">🎯 Quiz</a>
+  <a class="nav-link" href="#pegs" onclick="toggleMenu()">⚠️ Pegadinhas</a>
+</nav>
+
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">🪓 OSCE Supremo · Material de Estudo Completo</div>
+  <h1>Lenhador<br><span>Politraumatizado</span></h1>
+  <p class="cover-sub">Síndrome do Esmagamento · Choque Hemorrágico · Rabdomiólise · Hipercalemia · Tríade da Morte</p>
+  <div class="cover-chips">
+    <span class="chip">ATLS 10ª Ed.</span>
+    <span class="chip">Choque Classe III</span>
+    <span class="chip">FiO₂ Calculada</span>
+    <span class="chip">TXA – Janela 3h</span>
+    <span class="chip">L.A.V.E.</span>
+    <span class="chip">Sínd. Compartimental</span>
+  </div>
+  <div class="cover-sig">Dr. André Rossanno</div>
+  <div class="cover-role">Intensivista · Educação Médica</div>
+</div>
+
+<div class="quote-banner">
+  "Não existe nenhum vento favorável para quem não sabe para onde vai — na medicina de emergência, a sequência é o mapa. Quem perde a sequência, perde o paciente."
+  <span>— Adaptado de Sêneca · Princípio do ATLS</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- CASO CLÍNICO -->
+<!-- ══════════════════════════════════════════ -->
+<div id="caso">
+<div class="sec-title">
+  <div class="icon">📖</div>
+  <h2><small>Cenário Clínico</small>O Caso do Lenhador</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">👤 Identificação e Mecanismo</div>
+  <p>Paciente masculino, <strong>41 anos, lenhador rural</strong>, sem comorbidades conhecidas. Durante trabalho de derrubada de árvore em área de difícil acesso, sofreu <strong>esmagamento do tronco inferior e membros inferiores por tronco de grande porte</strong>. Trazido por colega de trabalho que presenciou o acidente.</p>
+</div>
+
+<div class="card">
+  <div class="card-header">⏱️ Linha do Tempo — Dados do Acompanhante</div>
+  <p style="margin-bottom:16px;font-size:14px;color:rgba(255,255,255,.6);">O colega de trabalho que acompanhou o paciente informou os seguintes dados. <strong>O acompanhante é fonte de história clínica crítica — sempre interrogar!</strong></p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">🌲</div>
+      <div class="tl-time">09h00 — Hora 0</div>
+      <div class="tl-desc">Árvore cai. Esmagamento imediato de MMII. Paciente preso sob o tronco.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🔍</div>
+      <div class="tl-time">+1h — 10h00</div>
+      <div class="tl-desc">Colegas encontram o paciente. 1 hora preso até ser localizado.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🪚</div>
+      <div class="tl-time">+2h — 11h00</div>
+      <div class="tl-desc">Árvore cortada. Paciente resgatado. 2 horas totais com membros esmagados.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🏥</div>
+      <div class="tl-time">+3h — 12h00</div>
+      <div class="tl-desc">Chegada à emergência. 1 hora de transporte. <strong>Exatamente 3h do evento.</strong></div>
+    </div>
+  </div>
+  <div class="alert alert-gold" style="margin-top:16px">
+    <strong>⚠️ Dado crítico:</strong> Do acidente (09h00) até a chegada (12h00) = <strong>3 horas exatas</strong>. A janela terapêutica do TXA é de até 3 horas. O paciente está no <strong>limite absoluto</strong>. O TXA deve ser administrado IMEDIATAMENTE — sem atrasos.
+  </div>
+</div>
+
+<div id="sinais" class="card">
+  <div class="card-header">📊 Sinais Vitais na Chegada</div>
+  <div class="vitals-grid">
+    <div class="vital">
+      <div class="vital-label">PA</div>
+      <div class="vital-val danger">86/52</div>
+      <div class="vital-note">mmHg — Hipotensão grave<br>→ Choque confirmado</div>
+    </div>
+    <div class="vital">
+      <div class="vital-label">FC</div>
+      <div class="vital-val danger">128</div>
+      <div class="vital-note">bpm — Taquicardia significativa<br>→ Classe III</div>
+    </div>
+    <div class="vital">
+      <div class="vital-label">FR</div>
+      <div class="vital-val warn">28</div>
+      <div class="vital-note">irpm — Taquipneia<br>→ dor + acidose + ansiedade</div>
+    </div>
+    <div class="vital">
+      <div class="vital-label">SatO₂</div>
+      <div class="vital-val danger">89%</div>
+      <div class="vital-note">Cateter nasal 5 L/min<br>→ Insatisfatória. Trocar!</div>
+    </div>
+    <div class="vital">
+      <div class="vital-label">Temperatura</div>
+      <div class="vital-val warn">35,2°C</div>
+      <div class="vital-note">Hipotermia leve<br>→ Risco tríade da morte</div>
+    </div>
+    <div class="vital">
+      <div class="vital-label">Glasgow</div>
+      <div class="vital-val ok">15/15</div>
+      <div class="vital-note">Consciente e orientado<br>→ IOT não indicada agora</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🩺 Exame Físico Dirigido</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Região</th><th>Achados</th></tr></thead>
+    <tbody>
+      <tr><td>Pescoço</td><td>Colar cervical mantido. Jugulares <strong>planas</strong> — compatível com hipovolemia. (Distensão jugular sugeriria pneumotórax hipertensivo ou tamponamento).</td></tr>
+      <tr><td>Tórax</td><td>Expansão simétrica. MV presente bilateralmente. Sem crepitações costais. Sem enfisema subcutâneo. Sem sinais de pneumotórax ou hemotórax.</td></tr>
+      <tr><td>Abdome</td><td>Flácido, dor difusa à palpação. Sem rigidez. FAST à beira leito: avaliar líquido livre em janelas periesplenética, perihepática e pélvica.</td></tr>
+      <tr><td>Pelve</td><td>Sem instabilidade ao comprimido lateral (sem fratura em livro aberto). <strong>Hematoma volumoso em região glúteo-trocantérica direita</strong> — pode sequestrar 1–2 litros de sangue.</td></tr>
+      <tr><td>MID <span class="tag tag-red">CRÍTICO</span></td><td>Edema intenso. Compartimentos <strong>TENSOS</strong> à palpação. Dor desproporcional. Parestesia em pé direito. Pulso palpável (sinal precoce — não espere sumir).</td></tr>
+      <tr><td>MIE</td><td>Edema moderado. Sensibilidade preservada.</td></tr>
+      <tr><td>Urina</td><td>Coloração <strong>marrom-escura ("Coca-Cola")</strong> — mioglobinúria confirmada macroscopicamente.</td></tr>
+      <tr><td>Extremidades</td><td>Frias, pegajosas. TEC &gt; 3 segundos. Pele sudorética — sinais de hipoperfusão periférica.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div id="raciocinio" class="card">
+  <div class="card-header">🧠 Raciocínio Central do Caso</div>
+  <p>Este paciente possui <strong>5 problemas simultâneos</strong> que se retroalimentam:</p>
+  <ol class="steps">
+    <li><strong>Choque Hemorrágico Classe III</strong> — por sangramento muscular oculto e hematoma de quadril.</li>
+    <li><strong>Síndrome do Esmagamento</strong> — 2 horas de compressão → destruição muscular maciça.</li>
+    <li><strong>Rabdomiólise Grave</strong> — liberação de mioglobina, K⁺, CK e ácido úrico.</li>
+    <li><strong>Hipercalemia Potencialmente Fatal</strong> — K liberado da célula muscular destruída.</li>
+    <li><strong>Risco de Tríade da Morte</strong> — hipotermia (35,2°C) + coagulopatia nascente + acidose metabólica.</li>
+  </ol>
+</div>
+</div><!-- /caso -->
+
+<div class="quote-banner">
+  "O médico que só age quando tem certeza chega tarde demais. A medicina de emergência exige agir com a informação disponível — e isso se aprende com estudo, repetição e amor ao paciente."
+  <span>— Dr. André Rossanno</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- MOV -->
+<!-- ══════════════════════════════════════════ -->
+<div id="mov">
+<div class="sec-title">
+  <div class="icon">🏥</div>
+  <h2><small>Pré-ABCDE · Primeiros 60 segundos</small>MOV — Monitor, Oxigênio, Veia</div>
+</div>
+<div class="divider"></div>
+
+<div class="alert alert-red">
+  <strong>CONCEITO FUNDAMENTAL:</strong> MOV não é parte do ABCDE — é o <strong>pré-ABCDE</strong>. Realizado simultaneamente à chegada do paciente, nos primeiros 60 segundos, em paralelo pela equipe.
+</div>
+
+<div class="card">
+  <div class="card-header">📋 M · O · V — Detalhamento</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Letra</th><th>Medida</th><th>Detalhe no Lenhador</th></tr></thead>
+    <tbody>
+      <tr><td><strong>M</strong></td><td>Monitor</td><td>ECG contínuo (detectar hipercalemia), oximetria com curva de pulso, PA não-invasiva a cada 5 min, capnografia se IOT</td></tr>
+      <tr><td><strong>O</strong></td><td>Oxigênio</td><td>SatO₂ 89% em cateter 5 L/min → trocar para Máscara de Venturi 50% imediatamente (ver Seção FiO₂)</td></tr>
+      <tr><td><strong>V</strong></td><td>Veia</td><td>2 acessos periféricos 14G ou 16G em fossas antecubitais. Coleta simultânea: hemograma, lactato, CK, K⁺, gasometria, coagulograma, urina tipo I, tipagem sanguínea.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🩸 Acesso Venoso no Trauma — Detalhes</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Item</th><th>Conduta</th></tr></thead>
+    <tbody>
+      <tr><td>Quantidade</td><td>2 acessos venosos periféricos simultâneos</td></tr>
+      <tr><td>Calibre ideal</td><td>14G ou 16G — quanto maior o número, menor o calibre. O sangue passa melhor pelo menor número.</td></tr>
+      <tr><td>Localização</td><td>Fossas antecubitais. Evitar MMII em trauma abdominal/pélvico.</td></tr>
+      <tr><td>Alternativa se falhar</td><td>Acesso intraósseo (IO) em &lt;2 tentativas frustradas — mesmo fluxo que EV periférico calibroso</td></tr>
+      <tr><td>Coleta simultânea</td><td>Hemograma, lactato, CK, K⁺, gasometria arterial, coagulograma, creatinina, ureia, urina tipo I, tipagem + prova cruzada</td></tr>
+      <tr><td>Início imediato</td><td>Cristaloide 500 mL como ponte + solicitar sangue O negativo se tipo desconhecido</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div><!-- /mov -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- FiO2 -->
+<!-- ══════════════════════════════════════════ -->
+<div id="fio2">
+<div class="sec-title">
+  <div class="icon">🫁</div>
+  <h2><small>Oxigenioterapia</small>Cálculo de FiO₂ e Decisão de Dispositivo</h2>
+</div>
+<div class="divider"></div>
+
+<div class="alert alert-red">
+  <strong>Situação do paciente:</strong> SatO₂ = 89% em cateter nasal a 5 L/min. Este é o fluxo <strong>MÁXIMO</strong> do cateter nasal. A FiO₂ calculada é 41% — e ainda assim satura apenas 89%. É obrigatório trocar o dispositivo.
+</div>
+
+<div class="formula-box">
+  <div class="formula-main">FiO₂ (%) = <span>21%</span> + (fluxo L/min × <span>4%</span>)</div>
+  <div class="formula-sub">21% = ar ambiente &nbsp;|&nbsp; 4% = incremento por litro de O₂ no cateter nasal</div>
+  <div style="margin-top:16px;padding:14px 20px;background:rgba(11,37,69,.5);border-radius:8px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:#ffe9a0;text-align:left">
+    Cálculo do nosso paciente:<br>
+    FiO₂ = 21 + (5 × 4) = 21 + 20 = <strong style="color:var(--gold);font-size:18px">41%</strong><br>
+    <span style="color:#ff8080;font-size:12px">SatO₂ = 89% com FiO₂ 41% → INSATISFATÓRIO → Trocar dispositivo!</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🎭 Dispositivos de O₂ — Comparativo Completo</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Dispositivo</th><th>Fluxo Máximo</th><th>FiO₂</th><th>Indicação</th></tr></thead>
+    <tbody>
+      <tr><td>Cateter nasal <span class="tag tag-red">LIMITADO</span></td><td>5 L/min</td><td>25–41%</td><td>Hipoxemia leve. Paciente cooperativo.</td></tr>
+      <tr><td>Máscara simples</td><td>10 L/min</td><td>40–60%</td><td>Hipoxemia moderada. Mín. 5 L/min (lavar CO₂).</td></tr>
+      <tr><td>Máscara de Venturi <span class="tag tag-green">ESCOLHA AQUI</span></td><td>4–15 L/min</td><td>24–50% controlada</td><td>Quando precisa FiO₂ exata. Nosso paciente: conector azul 50%, 12 L/min.</td></tr>
+      <tr><td>Máscara c/ reservatório (NR)</td><td>15 L/min</td><td>80–90%</td><td>Hipoxemia grave. Pré-IOT.</td></tr>
+      <tr><td>CPAP / VNI</td><td>Titulável</td><td>Titulável</td><td>Insuf. resp. sem indicação de IOT.</td></tr>
+      <tr><td>IOT + VM <span class="tag tag-red">ÚLTIMO RECURSO</span></td><td>Titulável</td><td>21–100%</td><td>Glasgow ≤8, falência, refratário a todos acima.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-teal" style="margin-top:12px">
+    <strong>Decisão para o lenhador:</strong> Máscara de Venturi com conector <strong>azul (FiO₂ 50%, 12 L/min)</strong>. Reavaliar em 5 minutos. Se SatO₂ ainda &lt;94%: máscara não-reinalante 15 L/min. Se refratário: IOT com ISR (etomidato + succinilcolina).
+  </div>
+</div>
+</div><!-- /fio2 -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- AIRWAY -->
+<!-- ══════════════════════════════════════════ -->
+<div id="airway">
+<div class="sec-title">
+  <div class="icon">🅰️</div>
+  <h2><small>ATLS — Airway</small>Via Aérea e Proteção Cervical</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🔎 Semiologia da Via Aérea no Trauma</div>
+  <p>Pergunte: <em>"Qual é o seu nome?"</em></p>
+  <ul>
+    <li><strong>Responde com frases completas</strong> → via aérea provavelmente pérvia.</li>
+    <li><strong>Rouquidão</strong> → trauma laríngeo ou edema.</li>
+    <li><strong>Gorgolejo</strong> → sangue ou secreção → aspirar.</li>
+    <li><strong>Estridor</strong> → obstrução parcial → risco de oclusão total.</li>
+    <li><strong>Ausência de sons</strong> → obstrução total → IOT ou cricotireotomia de emergência.</li>
+  </ul>
+  <div class="alert alert-teal" style="margin-top:14px">
+    <strong>Colar cervical:</strong> Todo politraumatizado tem lesão cervical até prova contrária. Manter colar. Evitar hiperextensão. Estabilização bimanual se necessário mobilizar.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">⚡ Critérios de IOT no Trauma</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Critério</th><th>Justificativa</th></tr></thead>
+    <tbody>
+      <tr><td>Glasgow ≤ 8</td><td>Perda do reflexo de proteção da via aérea</td></tr>
+      <tr><td>Queda progressiva do Glasgow (≥ 2 pontos)</td><td>Risco iminente de perda da via aérea</td></tr>
+      <tr><td>Hipoxemia refratária (SatO₂ &lt;90% com máscara NR)</td><td>Insuficiência respiratória grave</td></tr>
+      <tr><td>FR &gt;35 ou &lt;8 irpm</td><td>Fadiga ou apneia</td></tr>
+      <tr><td>Trauma de face com sangramento ativo</td><td>Risco de obstrução progressiva</td></tr>
+      <tr><td>Edema de vias aéreas progressivo (inalação)</td><td>Pode ocluir rapidamente</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-gold" style="margin-top:12px">
+    <strong>Lenhador agora:</strong> Glasgow 15, fala frases completas, via aérea pérvia. <strong>IOT NÃO indicada neste momento.</strong> Escalonar O₂ com Venturi. Monitorar continuamente.
+  </div>
+</div>
+</div><!-- /airway -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- BREATHING -->
+<!-- ══════════════════════════════════════════ -->
+<div id="breathing">
+<div class="sec-title">
+  <div class="icon">🅱️</div>
+  <h2><small>ATLS — Breathing</small>Avaliação Respiratória</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🔎 Semiologia Respiratória Completa no Trauma</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Etapa</th><th>O que observar</th><th>Significado</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Inspeção</strong></td><td>Expansão simétrica? Tiragem intercostal? Desvio de traqueia? Cianose?</td><td>Assimetria → pneumo/hemotórax. Tiragem → esforço respiratório.</td></tr>
+      <tr><td><strong>Palpação</strong></td><td>Dor à compressão costal? Crepitação? Enfisema subcutâneo?</td><td>Crepitação → fratura costal. Enfisema subcutâneo → pneumotórax.</td></tr>
+      <tr><td><strong>Percussão</strong></td><td>Hipertimpanismo? Macicez?</td><td>Hipertimpanismo → pneumotórax. Macicez → hemotórax.</td></tr>
+      <tr><td><strong>Ausculta</strong></td><td>MV abolido unilateral?</td><td>→ pneumotórax ou hemotórax. Bilateral abolido → obstrução ou intubação seletiva.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🚨 Pneumotórax Hipertensivo — Diagnóstico e Conduta</div>
+  <p>Tríade clínica: <strong>hipotensão + hipoxemia + MV abolido unilateral</strong>. Pode ter desvio de traqueia (sinal tardio) e jugulares ingurgitadas.</p>
+  <div class="alert alert-red" style="margin-top:12px">
+    <strong>⚠️ Regra absoluta:</strong> Não espere RX. Se pneumotórax hipertensivo → <strong>descompressão imediata</strong> no 2° espaço intercostal, linha hemiclavicular, com agulha 14G. Depois drenagem.
+  </div>
+  <div class="alert alert-teal" style="margin-top:8px">
+    <strong>Lenhador:</strong> MV presente bilateralmente, sem sinais de pneumotórax ou hemotórax. Esta ameaça está afastada neste momento.
+  </div>
+</div>
+</div><!-- /breathing -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- CIRCULATION -->
+<!-- ══════════════════════════════════════════ -->
+<div id="circulation">
+<div class="sec-title">
+  <div class="icon">🅲</div>
+  <h2><small>ATLS — Circulation</small>Choque Hemorrágico e Reposição</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🔎 Semiologia do Choque</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Sistema</th><th>Sinal</th><th>Interpretação</th></tr></thead>
+    <tbody>
+      <tr><td>Pele</td><td>Fria, pegajosa, sudorética</td><td>Vasoconstricção periférica compensatória</td></tr>
+      <tr><td>Perfusão</td><td>TEC &gt; 3 segundos</td><td>Hipoperfusão periférica</td></tr>
+      <tr><td>Mental</td><td>Agitação → confusão → sonolência</td><td>Hipoperfusão cerebral progressiva</td></tr>
+      <tr><td>Cardiovascular</td><td>Taquicardia + hipotensão</td><td>Compensação simpática seguida de descompensação</td></tr>
+      <tr><td>Jugulares</td><td>Planas (hipovolemia)</td><td>Distingue de pneumotórax hipertensivo (jugular cheias)</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🩸 Classes de Hemorragia — ATLS 10ª Ed.</div>
+  <div class="alert alert-gold" style="margin-bottom:14px">
+    <strong>🧠 Macete:</strong> "15 – 30 – 40 – MORREU" = porcentagens de perda por classe (I, II, III, IV)
+  </div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Classe</th><th>Perda (mL)</th><th>%</th><th>FC</th><th>PA</th><th>Conduta</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>&lt;750</td><td>&lt;15%</td><td>Normal</td><td>Normal</td><td>Cristaloide</td></tr>
+      <tr><td>II</td><td>750–1.500</td><td>15–30%</td><td>&gt;100</td><td>Normal</td><td>Cristaloide ± sangue</td></tr>
+      <tr><td><strong>III ← nosso paciente</strong></td><td>1.500–2.000</td><td>30–40%</td><td>&gt;120</td><td>↓</td><td><span class="tag tag-red">SANGUE OBRIGATÓRIO</span></td></tr>
+      <tr><td>IV</td><td>&gt;2.000</td><td>&gt;40%</td><td>&gt;140</td><td>↓↓</td><td>Protocolo maciço</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-red" style="margin-top:12px">
+    <strong>Por que Classe III?</strong> FC 128 + PA 86/52 + hematoma glúteo (pode sequestrar 1–2 L) + esmagamento bilateral de MMII (sangramento intramuscular oculto). Total estimado: 30–40% da volemia.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">💉 Protocolo de Reposição Volêmica</div>
+  <ol class="steps">
+    <li><strong>2 acessos 14G</strong> em fossas antecubitais. Coleta de exames simultânea.</li>
+    <li><strong>Cristaloide 500 mL</strong> (Ringer Lactato ou SF 0,9%) — apenas como ponte para o sangue.</li>
+    <li><strong>Concentrado de hemácias + plasma + plaquetas na proporção 1:1:1</strong> (damage control resuscitation). Sangue O negativo se tipagem desconhecida.</li>
+    <li><strong>TXA 1g EV em 10 min</strong> — administrar IMEDIATAMENTE (3h exatas do trauma).</li>
+    <li><strong>Meta pressórica</strong>: PAS 80–90 mmHg até controle cirúrgico ("hipotensão permissiva").</li>
+    <li><strong>Fluidos aquecidos + cobertor térmico</strong> — temperatura 35,2°C, risco de hipotermia.</li>
+  </ol>
+  <div class="alert alert-red" style="margin-top:12px">
+    <strong>⚠️ Cristaloide em excesso é prejudicial:</strong> Dilui fatores de coagulação (coagulopatia dilucional) + resfria o paciente (hipotermia) + não carrega oxigênio. Resultado: piora a tríade da morte.
+  </div>
+</div>
+</div><!-- /circulation -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- EXAMES -->
+<!-- ══════════════════════════════════════════ -->
+<div id="exames">
+<div class="sec-title">
+  <div class="icon">🧪</div>
+  <h2><small>Laboratório</small>Por que o Hemograma pode estar Normal?</h2>
+</div>
+<div class="divider"></div>
+
+<div class="alert alert-red">
+  <strong>ARMADILHA CLÁSSICA:</strong> O hemograma precoce pode mostrar Hb 14 g/dL e Ht 42% com hemorragia Classe III. O diagnóstico de choque é <strong>CLÍNICO</strong>. Confiar no hemograma precoce e descartar hemorragia é erro letal.
+</div>
+
+<div class="card">
+  <div class="card-header">🧠 Fisiopatologia — Por que o Hemograma Mente?</div>
+  <p>Na hemorragia aguda, há perda <strong>proporcional</strong> de hemácias E plasma — a concentração de Hb não cai imediatamente. A hemodiluição fisiológica (redistribuição de fluido intersticial para o intravascular) demora <strong>2 a 6 horas</strong> para ocorrer. O hemograma só vai refletir a perda real horas depois.</p>
+  <div class="alert alert-teal" style="margin-top:12px">
+    <strong>O melhor marcador em tempo real:</strong> Lactato sérico. &gt;2 mmol/L = hipoperfusão. &gt;4 mmol/L = choque grave. Clearance de lactato (queda ≥10% em 2h) = boa resposta à ressuscitação.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">📋 Painel de Exames — Resultados Esperados</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Exame</th><th>Resultado Esperado</th><th>Interpretação</th></tr></thead>
+    <tbody>
+      <tr><td>Hemograma (precoce)</td><td>Hb pode ser NORMAL</td><td><span class="tag tag-red">Enganoso!</span> Diagnóstico é clínico.</td></tr>
+      <tr><td>Lactato</td><td>&gt;4–6 mmol/L</td><td>Hipoperfusão grave. Alvo pós-ressuscitação: &lt;2.</td></tr>
+      <tr><td>Gasometria arterial</td><td>pH 7,20–7,25 / HCO₃ &lt;18 / BE negativo</td><td>Acidose metabólica por hipoperfusão.</td></tr>
+      <tr><td>K⁺</td><td>&gt;5,5–6,5 mEq/L</td><td>Hipercalemia por rabdomiólise.</td></tr>
+      <tr><td>CK</td><td>&gt;5.000–40.000 UI/L</td><td>Rabdomiólise grave. Normal &lt;200 UI/L.</td></tr>
+      <tr><td>Creatinina</td><td>Elevada ou ascendente</td><td>Lesão renal aguda em instalação.</td></tr>
+      <tr><td>Coagulograma</td><td>TP/INR/TTPa aumentados</td><td>Coagulopatia do trauma.</td></tr>
+      <tr><td>Urina tipo I (EAS)</td><td>"Sangue" positivo SEM hemácias</td><td><span class="tag tag-gold">Mioglobinúria!</span> Não é hematúria.</td></tr>
+      <tr><td>Tipagem + prova cruzada</td><td>—</td><td>Urgência absoluta antes da transfusão.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div><!-- /exames -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TXA -->
+<!-- ══════════════════════════════════════════ -->
+<div id="txa">
+<div class="sec-title">
+  <div class="icon">💊</div>
+  <h2><small>Ácido Tranexâmico</small>TXA — Salva o Coágulo</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🔬 Mecanismo de Ação</div>
+  <p>No trauma grave, o organismo ativa fibrinólise precoce — dissolve coágulos recém-formados como resposta ao estresse. O TXA bloqueia a conversão de <strong>plasminogênio → plasmina</strong>, que é a enzima que destrói o coágulo.</p>
+  <div class="alert alert-green" style="margin-top:12px">
+    Resultado: coágulo mais estável → menos fibrinólise → menos sangramento → menos morte. Estudo CRASH-2 (2010): redução de mortalidade por sangramento com NNT de ~67.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">💉 Prescrição e Protocolo</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Item</th><th>Detalhe</th></tr></thead>
+    <tbody>
+      <tr><td>Ataque</td><td>Ácido tranexâmico 1 g diluído em 100 mL SF 0,9% → EV em <strong>10 minutos</strong></td></tr>
+      <tr><td>Manutenção</td><td>Ácido tranexâmico 1 g em 500 mL SF 0,9% → EV em <strong>8 horas</strong> (infusão contínua)</td></tr>
+      <tr><td>Janela terapêutica</td><td><span class="tag tag-red">ATÉ 3 HORAS do trauma</span> — após esse tempo, pode aumentar eventos tromboembólicos</td></tr>
+      <tr><td>Nosso paciente</td><td><span class="tag tag-gold">LIMITE EXATO — 3h! Administrar AGORA sem demora</span></td></tr>
+      <tr><td>Contraindicações</td><td>Histórico de trombose, CID estabelecida, &gt;3h do trauma</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-red" style="margin-top:12px">
+    <strong>Atenção ao horário:</strong> O acidente foi às 09h00. Chegada às 12h00. São exatamente 3 horas. O TXA deve ser administrado <strong>nos primeiros minutos da chegada</strong> — qualquer atraso coloca o paciente fora da janela.
+  </div>
+</div>
+</div><!-- /txa -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- DISABILITY -->
+<!-- ══════════════════════════════════════════ -->
+<div id="disability">
+<div class="sec-title">
+  <div class="icon">🅳</div>
+  <h2><small>ATLS — Disability</small>Avaliação Neurológica</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">📊 Escala de Coma de Glasgow</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Componente</th><th>Resposta</th><th>Pontos</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="4"><strong>Abertura Ocular</strong></td><td>Espontânea (sistema reticular preservado)</td><td>4</td></tr>
+      <tr><td>À voz (rebaixamento leve)</td><td>3</td></tr>
+      <tr><td>À dor (disfunção cortical importante)</td><td>2</td></tr>
+      <tr><td>Ausente (coma profundo)</td><td>1</td></tr>
+      <tr><td rowspan="5"><strong>Resposta Verbal</strong></td><td>Orientado</td><td>5</td></tr>
+      <tr><td>Confuso</td><td>4</td></tr>
+      <tr><td>Palavras inapropriadas</td><td>3</td></tr>
+      <tr><td>Sons incompreensíveis</td><td>2</td></tr>
+      <tr><td>Ausente</td><td>1</td></tr>
+      <tr><td rowspan="6"><strong>Resposta Motora</strong></td><td>Obedece comandos</td><td>6</td></tr>
+      <tr><td>Localiza dor</td><td>5</td></tr>
+      <tr><td>Retirada</td><td>4</td></tr>
+      <tr><td>Decorticação (flexão) → lesão acima do tronco</td><td>3</td></tr>
+      <tr><td>Descerebração (extensão) → lesão de tronco</td><td>2</td></tr>
+      <tr><td>Ausente</td><td>1</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-teal" style="margin-top:12px">
+    <strong>Lenhador:</strong> Glasgow 15 = AO4 + V5 + M6. Sem indicação neurológica de IOT. Mas Glasgow 15 não significa paciente seguro — ele pode morrer de choque com Glasgow 15.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">👁️ Semiologia Pupilar</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Achado</th><th>Interpretação</th></tr></thead>
+    <tbody>
+      <tr><td>Isocóricas e fotorreativas (normal)</td><td>Sem lesão de tronco ou nervo oculomotor</td></tr>
+      <tr><td>Midríase fixa <strong>unilateral</strong></td><td>Compressão III par → <span class="tag tag-red">herniação uncal — emergência neurocirúrgica</span></td></tr>
+      <tr><td>Midríase fixa bilateral</td><td>PCR, hipóxia grave ou morte encefálica</td></tr>
+      <tr><td>Miose bilateral (puntiforme)</td><td>Opioide ou lesão de ponte</td></tr>
+      <tr><td>Anisocoria (&gt;1 mm de diferença)</td><td>Lesão intracraniana até prova contrária</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div><!-- /disability -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- EXPOSURE / TRIADA -->
+<!-- ══════════════════════════════════════════ -->
+<div id="exposure">
+<div class="sec-title">
+  <div class="icon">🅴</div>
+  <h2><small>ATLS — Exposure</small>Exposição e Tríade da Morte</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🔎 Por que Despir Totalmente?</div>
+  <p>O trauma mata escondido. Lesões em dorso, períneo, axilas e couro cabeludo são perdidas sem exposição total. Técnica: cortar roupa com tesoura, realizar log-roll com equipe de 4 (um controla coluna cervical), inspecionar dorso e períneo. <strong>Imediatamente após: cobrir com cobertor térmico</strong>.</p>
+</div>
+
+<div class="card">
+  <div class="card-header">🔥 Tríade da Morte — Fisiopatologia do Ciclo Vicioso</div>
+  <div class="triada">
+    <div class="triada-item">
+      <div class="triada-icon">❄️</div>
+      <div class="triada-title">Hipotermia</div>
+      <div class="triada-desc">Exposição prolongada + fluidos frios + vasodilatação do choque. Abaixo de 35°C: enzimas de coagulação perdem atividade. Abaixo de 32°C: coagulopatia grave, arritmias.</div>
+    </div>
+    <div class="triada-item">
+      <div class="triada-icon">🩸</div>
+      <div class="triada-title">Coagulopatia</div>
+      <div class="triada-desc">Consumo de fatores pelo sangramento + diluição por cristaloide + inativação pelo frio + fibrinólise precoce. O coágulo não se forma — o sangramento não cessa.</div>
+    </div>
+    <div class="triada-item">
+      <div class="triada-icon">💀</div>
+      <div class="triada-title">Acidose</div>
+      <div class="triada-desc">Hipoperfusão → metabolismo anaeróbico → lactato → pH cai. Acidose inativa enzimas de coagulação e reduz contratilidade miocárdica. pH &lt;7,1 = colapso.</div>
+    </div>
+  </div>
+  <div class="logic-chain">
+    <span class="logic-item">Hemorragia</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Hipoperfusão</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Acidose + Hipotermia</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Coagulopatia</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Mais sangramento</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Morte</span>
+  </div>
+  <div class="alert alert-red" style="margin-top:14px">
+    <strong>Regra de ouro:</strong> Cada elemento da tríade potencializa os outros dois. Hipotermia piora a coagulopatia. Coagulopatia perpetua a hipoperfusão. Acidose agrava tudo. Só se sai desse ciclo quebrando os três ao mesmo tempo.
+  </div>
+</div>
+
+<!-- PREVENÇÃO -->
+<div class="card">
+  <div class="card-header">🛡️ Prevenção da Tríade — Medidas Ativas Desde a Chegada</div>
+  <p style="margin-bottom:16px;font-size:14px;color:rgba(255,255,255,.65)">A prevenção começa no segundo 1 do atendimento — não após a instalação. Muito mais fácil prevenir do que reverter.</p>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Elemento</th><th>Medida Preventiva</th><th>Quando Iniciar</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="5"><strong>❄️ Hipotermia</strong></td><td>Manta aluminizada (metalizada) — reflete o calor corporal, impede irradiação</td><td>Imediatamente após exposição/exame</td></tr>
+      <tr><td>Cobertor de ar quente (warm air blanket / Bair Hugger®) — sopra ar aquecido sobre o corpo</td><td>Assim que disponível</td></tr>
+      <tr><td>Fluidos IV aquecidos a 39–40°C — usar aquecedor de fluidos (Level 1®, enFlow®)</td><td>Antes da infusão de qualquer cristaloide ou hemocomponente</td></tr>
+      <tr><td>Hemocomponentes aquecidos — sangue frio causa hipotermia e hemólise</td><td>Antes de transfundir</td></tr>
+      <tr><td>Ambiente aquecido — aumentar temperatura da sala de emergência se possível</td><td>Desde a chegada</td></tr>
+      <tr><td rowspan="4"><strong>🩸 Coagulopatia</strong></td><td>Minimizar cristaloide — usar apenas 500 mL como ponte, evitar diluição de fatores</td><td>Decisão imediata</td></tr>
+      <tr><td>Hemocomponentes 1:1:1 — hemácias + plasma + plaquetas repostas proporcionalmente</td><td>Classe III em diante</td></tr>
+      <tr><td>TXA (Transamin) — bloqueia fibrinólise precoce, salva o coágulo</td><td>Até 3 horas do trauma</td></tr>
+      <tr><td>Fibrinogênio (Crioprecipitado) — se fibrinogênio &lt;1,5 g/L</td><td>Se coagulograma alterado</td></tr>
+      <tr><td rowspan="4"><strong>💀 Acidose</strong></td><td>Controle do sangramento — a acidose só cede quando a perfusão for restaurada</td><td>Prioridade absoluta</td></tr>
+      <tr><td>Ressuscitação volêmica eficaz — sangue carrega oxigênio, cristaloide não</td><td>Imediato</td></tr>
+      <tr><td>Bicarbonato de sódio — se pH &lt;7,1 ou HCO₃ &lt;10 mEq/L (use com critério — não corrige a causa)</td><td>Quando pH crítico</td></tr>
+      <tr><td>Vasopressores se hipotensão refratária — noradrenalina para manter perfusão mínima</td><td>Se choque refratário à volemia</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- TRATAMENTO POR ELEMENTO -->
+<div class="card">
+  <div class="card-header">❄️ Tratamento da Hipotermia — Passo a Passo</div>
+  <div class="alert alert-teal" style="margin-bottom:14px">
+    <strong>Meta:</strong> Temperatura ≥ 36°C. Abaixo de 35°C = hipotermia clínica. Abaixo de 32°C = hipotermia grave com risco de FV.
+  </div>
+  <ol class="steps">
+    <li><strong>Remover roupas úmidas e molhadas imediatamente</strong> — roupa molhada conduz calor 25× mais que o ar seco.</li>
+    <li><strong>Manta aluminizada (space blanket / manta de resgate)</strong> — camada prateada reflete até 90% do calor irradiado pelo corpo. Barata, leve, eficaz. Deve cobrir cabeça também (30% da perda de calor é pelo escalpo).</li>
+    <li><strong>Cobertor de ar aquecido (Bair Hugger®)</strong> — sopra ar a 43°C sobre a superfície corporal. Reaquecimento externo ativo mais eficaz disponível na emergência.</li>
+    <li><strong>Fluidos IV aquecidos (39–40°C)</strong> — cada litro de SF a temperatura ambiente resfria o core em ~0,25°C. Usar aquecedor de linha (Level 1®, enFlow®) ou banho-maria improvisado.</li>
+    <li><strong>Hemocomponentes aquecidos</strong> — banco de sangue aquece a 37°C antes de transfundir. Nunca transfundir sangue gelado em volume.</li>
+    <li><strong>Monitorar temperatura central</strong> — temperatura retal ou esofágica é mais precisa que axilar.</li>
+    <li><strong>Casos graves (&lt;32°C com instabilidade)</strong>: considerar lavagem peritoneal com SF aquecido, ECMO ou bypass cardiopulmonar em centros de referência.</li>
+  </ol>
+  <div class="alert alert-gold" style="margin-top:12px">
+    <strong>Macete da manta:</strong> "Expõe para examinar → cobre para salvar." A sequência é E (Exposure) justamente para lembrar: expor COM responsabilidade — e cobrir imediatamente após.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🩸 Tratamento da Coagulopatia — Damage Control Resuscitation</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Medida</th><th>Racional / Dose</th></tr></thead>
+    <tbody>
+      <tr><td>Transfusão balanceada 1:1:1</td><td>Hemácias (O₂) + Plasma (fatores) + Plaquetas (tampão primário). Repor o que foi perdido na mesma proporção do sangue total.</td></tr>
+      <tr><td>TXA (Ácido Tranexâmico)</td><td>Bloqueia plasminogênio → plasmina → salva o coágulo. 1g EV em 10 min + 1g EV em 8h. Até 3h do trauma.</td></tr>
+      <tr><td>Plasma Fresco Congelado (PFC)</td><td>Repõe todos os fatores de coagulação. 10–15 mL/kg. Descongela em ~30 min — pedir precocemente ao banco de sangue.</td></tr>
+      <tr><td>Crioprecipitado</td><td>Rico em fibrinogênio, fator VIII e XIII. Indicado se fibrinogênio &lt;1,5 g/L. 10 unidades EV.</td></tr>
+      <tr><td>Concentrado de plaquetas</td><td>Se plaquetas &lt;50.000 com sangramento ativo. Uma unidade aumenta ~5.000–10.000/µL.</td></tr>
+      <tr><td>Gluconato de cálcio</td><td>Transfusões maciças consomem cálcio (citrato do preservante quelata Ca²⁺). 1 g EV a cada 4 unidades de CH.</td></tr>
+      <tr><td>Evitar hipotermia e acidose</td><td>Enzimas de coagulação perdem 50% da atividade abaixo de 33°C. Tratar as três juntas.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">💀 Tratamento da Acidose Metabólica no Trauma</div>
+  <div class="alert alert-red" style="margin-bottom:14px">
+    <strong>Princípio fundamental:</strong> A acidose do trauma é consequência da hipoperfusão — não tem solução química enquanto o sangramento não for controlado. Tratar a causa é mais eficaz do que tamponar o pH.
+  </div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Medida</th><th>Racional</th><th>Limitação</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Controle do sangramento</strong> <span class="tag tag-green">PRINCIPAL</span></td><td>Restaura perfusão → células voltam ao metabolismo aeróbico → lactato cai → pH sobe.</td><td>Requer cirurgia ou intervenção definitiva.</td></tr>
+      <tr><td><strong>Sangue (não cristaloide)</strong></td><td>Restaura capacidade de transporte de O₂. Cristaloide não carrega oxigênio e dilui tampões.</td><td>Depende de estoque disponível.</td></tr>
+      <tr><td><strong>Vasopressores</strong> (noradrenalina)</td><td>Se hipotensão refratária após volemia: manter PAM ≥65 mmHg para perfusão mínima de órgãos.</td><td>Não trata a causa — ganha tempo.</td></tr>
+      <tr><td><strong>Bicarbonato de sódio</strong></td><td>Indicado apenas se pH &lt;7,1 ou HCO₃ &lt;10 mEq/L. Dose: 1–2 mEq/kg EV lento.</td><td>Gera CO₂ → piora acidose intracelular se ventilação inadequada. Uso criterioso.</td></tr>
+      <tr><td><strong>Otimizar ventilação</strong></td><td>Se intubado: ajustar FR para manter pCO₂ 35–40 mmHg. Hipercapnia piora pH.</td><td>—</td></tr>
+      <tr><td><strong>Monitorar lactato seriado</strong></td><td>Queda ≥10% em 2h = boa resposta. Lactato persistente = hipoperfusão não controlada.</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- DAMAGE CONTROL SURGERY -->
+<div class="card" style="border-color:rgba(242,169,0,.35);background:rgba(242,169,0,.04)">
+  <div class="card-header" style="color:var(--gold)">⚔️ Damage Control Surgery — Quando a Cirurgia Entra na Tríade</div>
+  <p>Quando o paciente está na tríade da morte, <strong>a cirurgia definitiva (longa, complexa) mata</strong>. O conceito de <em>damage control</em> preconiza:</p>
+  <ol class="steps">
+    <li><strong>Cirurgia abreviada (1ª fase)</strong> — controlar hemorragia (clampar, tamponar, comprimir) e contaminação (ligar alça intestinal). Fechar temporariamente o abdome com bolsa de Bogotá ou wound VAC. Duração: &lt;90 minutos.</li>
+    <li><strong>UTI (2ª fase)</strong> — ressuscitar: corrigir hipotermia, acidose e coagulopatia. Estabilizar por 24–48h.</li>
+    <li><strong>Cirurgia definitiva (3ª fase)</strong> — apenas quando temperatura &gt;36°C, pH &gt;7,3, coagulograma normalizado.</li>
+  </ol>
+  <div class="alert alert-gold" style="margin-top:12px">
+    <strong>Macete:</strong> "Não conserta o carro com o motor pegando fogo. Apaga o fogo primeiro." — Damage control = apagar a tríade antes de operar definitivamente.
+  </div>
+</div>
+
+<!-- RESUMO VISUAL: 3 VS 3 -->
+<div class="card">
+  <div class="card-header">📋 Resumo — Prevenir vs. Tratar: 3 Inimigos, 3 Estratégias</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Inimigo</th><th>Como Prevenir</th><th>Como Tratar se Instalada</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>❄️ Hipotermia</strong></td>
+        <td>Manta aluminizada imediata · Fluidos aquecidos · Hemocomponentes aquecidos · Ambiente aquecido · Cobrir a cabeça</td>
+        <td>Bair Hugger® · Lavagem peritoneal com SF quente · ECMO em extremos</td>
+      </tr>
+      <tr>
+        <td><strong>🩸 Coagulopatia</strong></td>
+        <td>TXA até 3h · Cristaloide mínimo · Sangue 1:1:1 desde o início · Tratar hipotermia e acidose</td>
+        <td>PFC · Crioprecipitado · Plaquetas · Cálcio a cada 4 unidades de CH · Damage control cirúrgico</td>
+      </tr>
+      <tr>
+        <td><strong>💀 Acidose</strong></td>
+        <td>Controlar sangramento · Sangue (não cristaloide) · Evitar hipoperfusão prolongada</td>
+        <td>Controle cirúrgico do sangramento · Vasopressores · Bicarbonato se pH &lt;7,1 · Lactato seriado</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-green" style="margin-top:14px">
+    <strong>Frase de ouro:</strong> "A manta salva vidas tão concretamente quanto o bisturi — mas custa centavos e está disponível em qualquer emergência. Usá-la é obrigação, não opção."
+  </div>
+</div>
+</div><!-- /exposure -->
+
+<div class="quote-banner">
+  "Salvar uma vida é o ato mais grandioso que um ser humano pode praticar. Mas só salva quem estudou quando ninguém estava olhando."
+  <span>— Dr. André Rossanno · Intensivista</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- RABDOMIÓLISE -->
+<!-- ══════════════════════════════════════════ -->
+<div id="rabdo">
+<div class="sec-title">
+  <div class="icon">💪</div>
+  <h2><small>Complicação Central</small>Rabdomiólise</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🔬 Fisiopatologia Simplificada</div>
+  <div class="logic-chain">
+    <span class="logic-item">Esmagamento muscular</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Destruição de fibras</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Liberação: mioglobina + K⁺ + CK + fósforo + ácido úrico</span>
+  </div>
+  <div class="logic-chain" style="margin-top:8px">
+    <span class="logic-item">Mioglobina chega ao rim</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">Obstrução tubular + vasoconstrição renal + toxicidade direta</span>
+    <span class="logic-arrow">→</span>
+    <span class="logic-item">LRA (Lesão Renal Aguda)</span>
+  </div>
+  <div class="alert alert-gold" style="margin-top:12px">
+    <strong>Urina Coca-Cola:</strong> A mioglobina na urina causa coloração marrom-escura macroscopicamente. No EAS (urina tipo I): "sangue positivo" SEM hemácias ao microscópio. Não confundir com hematúria!
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🧪 Diagnóstico</div>
+  <ul>
+    <li><strong>CK &gt;5× o limite superior</strong> (normal &lt;200 UI/L; rabdomiólise grave pode chegar a 40.000+)</li>
+    <li><strong>Urina marrom-escura</strong> com EAS+ para sangue mas SEM hemácias ao microscópio</li>
+    <li><strong>Hipercalemia</strong> (K &gt;5,5 mEq/L)</li>
+    <li><strong>Creatinina elevada</strong> ou em ascensão</li>
+    <li><strong>Contexto clínico</strong>: esmagamento por 2 horas</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="card-header">🚰 Protocolo L.A.V.E. — Proteção Renal</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Letra</th><th>Medida</th><th>Como</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag tag-teal">L</span></td><td>Líquido vigoroso</td><td>SF 0,9% em 200–400 mL/h. Diluir e lavar a mioglobina dos túbulos renais.</td></tr>
+      <tr><td><span class="tag tag-teal">A</span></td><td>Alcalinizar a urina</td><td>Bicarbonato 150 mEq (3 amp.) em 1L SG5% a 100–150 mL/h. Meta: pH urina &gt;6,5. Mioglobina precipita em pH ácido.</td></tr>
+      <tr><td><span class="tag tag-teal">V</span></td><td>Vigiar diurese</td><td>Meta: ≥200–300 mL/h. SVD obrigatória para medir com precisão. Ajustar hidratação pela diurese.</td></tr>
+      <tr><td><span class="tag tag-teal">E</span></td><td>Evitar nefrotóxicos</td><td>AINE, contraste iodado, aminoglicosídeos, vancomicina sem monitoramento.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-red" style="margin-top:12px">
+    <strong>Indicação de diálise:</strong> K⁺ refratário + acidose grave + oligúria persistente + sobrecarga volêmica. Acionar precocemente se sem resposta à hidratação.
+  </div>
+</div>
+</div><!-- /rabdo -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HIPERCALEMIA -->
+<!-- ══════════════════════════════════════════ -->
+<div id="hiperk">
+<div class="sec-title">
+  <div class="icon">⚡</div>
+  <h2><small>Complicação Letal</small>Hipercalemia</h2>
+</div>
+<div class="divider"></div>
+
+<div class="alert alert-red">
+  <strong>PONTO MAIS COBRADO:</strong> Gluconato de cálcio <strong>NÃO baixa o potássio</strong>. Apenas protege o coração. Para baixar o K são necessárias outras medidas.
+</div>
+
+<div class="card">
+  <div class="card-header">📊 ECG na Hipercalemia — Progressão</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Nível de K⁺</th><th>Achado no ECG</th></tr></thead>
+    <tbody>
+      <tr><td>5,5–6,0 mEq/L</td><td>Ondas T altas, simétricas, apiculadas ("em tenda")</td></tr>
+      <tr><td>6,0–6,5 mEq/L</td><td>Alargamento do QRS, PR prolongado</td></tr>
+      <tr><td>6,5–7,0 mEq/L</td><td>Onda P achatada ou ausente</td></tr>
+      <tr><td>&gt;7,0 mEq/L</td><td>QRS muito alargado, padrão sinusoidal</td></tr>
+      <tr><td>&gt;8,0 mEq/L</td><td>Fibrilação ventricular, assistolia</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">💉 Sequência de Tratamento da Hipercalemia</div>
+  <ol class="steps">
+    <li><strong>Gluconato de cálcio 10% — 10 mL EV lento (5 min):</strong> Estabiliza membrana miocárdica. NÃO baixa K. Ação em 1–3 min. Duração 30–60 min.</li>
+    <li><strong>Insulina Regular 10 UI + Glicose 50% 50 mL EV:</strong> Internaliza K via Na/K ATPase. Ação em 15–30 min.</li>
+    <li><strong>Salbutamol inalatório 10–20 mg:</strong> Ativa receptor β₂ → K para dentro da célula. Ação em 30–60 min.</li>
+    <li><strong>Bicarbonato de sódio EV</strong> (se pH &lt;7,2): Corrige acidose → K retorna para célula. 50–100 mEq EV.</li>
+    <li><strong>Furosemida 40 mg EV</strong>: Elimina K pela urina se função renal preservada.</li>
+    <li><strong>Hemodiálise</strong>: Remove K definitivamente se refratário ou LRA grave.</li>
+  </ol>
+</div>
+</div><!-- /hiperk -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- COMPARTIMENTO -->
+<!-- ══════════════════════════════════════════ -->
+<div id="compartimento">
+<div class="sec-title">
+  <div class="icon">🦵</div>
+  <h2><small>Emergência Cirúrgica</small>Síndrome Compartimental</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">🩺 4 P's da Síndrome Compartimental</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Sinal</th><th>Detalhe</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pain</strong> (Dor)</td><td>Desproporcional ao trauma. Piora ao alongamento passivo do músculo (patognomônico).</td></tr>
+      <tr><td><strong>Pressure</strong> (Pressão)</td><td>Compartimento tenso à palpação. Pressão &gt;30 mmHg ou dentro de 30 mmHg da PA diastólica = fasciotomia.</td></tr>
+      <tr><td><strong>Paresthesia</strong></td><td>Hipoestesia ou parestesia distal — compressão nervosa.</td></tr>
+      <tr><td><strong>Paralysis</strong></td><td>Fraqueza ou paralisia — compressão neuromuscular avançada.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="alert alert-red" style="margin-top:12px">
+    <strong>⚠️ Ausência de pulso é sinal TARDIO.</strong> Não espere o pulso sumir para indicar fasciotomia. A dor desproporcional + compartimento tenso já indicam a cirurgia. Quando o pulso some, a necrose já está em curso.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">⚔️ Fasciotomia</div>
+  <p>Incisão longitudinal de toda a extensão do compartimento. Deixar aberto. Fechamento após 48–72h quando o edema regredir. <strong>Indicar cirurgia AGORA</strong> — o lenhador tem dor desproporcional + compartimento tenso + parestesia em pé direito.</p>
+</div>
+</div><!-- /compartimento -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SVD -->
+<!-- ══════════════════════════════════════════ -->
+<div id="svd">
+<div class="sec-title">
+  <div class="icon">🩺</div>
+  <h2><small>Monitoramento</small>SVD — Sondagem Vesical de Demora</h2>
+</div>
+<div class="divider"></div>
+
+<div class="card">
+  <div class="card-header">📋 Indicação, Técnica e Contraindicações</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Item</th><th>Detalhe</th></tr></thead>
+    <tbody>
+      <tr><td>Indicação principal</td><td>Monitorar diurese horária com precisão — obrigatório na rabdomiólise (meta ≥200 mL/h)</td></tr>
+      <tr><td>Indicação secundária</td><td>Observar coloração da urina (mioglobinúria), guiar reposição volêmica</td></tr>
+      <tr><td>Técnica</td><td>Posição supina, assepsia rigorosa, sonda Foley 14–16 Fr, sistema coletor fechado</td></tr>
+      <tr><td><span class="tag tag-red">CONTRAINDICAÇÃO</span></td><td>Sangue no meato uretral + hematoma perineal extenso = suspeita de ruptura uretral → NÃO sondar. Uretrocistografia retrógrada ou urologia.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">🚰 Metas de Diurese</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Diurese</th><th>Interpretação</th></tr></thead>
+    <tbody>
+      <tr><td>&lt;30 mL/h</td><td>Oligúria — ressuscitação insuficiente ou LRA instalada</td></tr>
+      <tr><td>30–50 mL/h</td><td>Aceitável para adulto geral, mas <strong>insuficiente na rabdomiólise</strong></td></tr>
+      <tr><td>≥200–300 mL/h</td><td><span class="tag tag-green">META na rabdomiólise</span> — necessária para lavar a mioglobina</td></tr>
+      <tr><td>Urina clara ≥200 mL/h</td><td>Meta atingida. Manter hidratação e monitorar eletrólitos.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div><!-- /svd -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TC / TRANSPORTE -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tc">
+<div class="sec-title">
+  <div class="icon">🖥️</div>
+  <h2><small>Diagnóstico por Imagem</small>TC e Transporte — Quando e Como</h2>
+</div>
+<div class="divider"></div>
+
+<div class="quote-banner" style="margin-top:0">
+  "Paciente instável não passeia no hospital. O corredor entre a emergência e o TC é o lugar mais perigoso para um politraumatizado."
+  <span>— Princípio do ATLS</span>
+</div>
+
+<div class="card">
+  <div class="card-header">📋 Critérios para TC vs. FAST</div>
+  <div class="tbl-wrap">
+  <table class="dt">
+    <thead><tr><th>Situação</th><th>Conduta</th></tr></thead>
+    <tbody>
+      <tr><td>PA instável (&lt;90 mmHg sem resposta)</td><td><span class="tag tag-red">NÃO vai para TC</span> → FAST à beira do leito</td></tr>
+      <tr><td>PA estabilizada e responsiva</td><td><span class="tag tag-green">Pode ir para TC</span> com monitorização completa</td></tr>
+      <tr><td>Hipoxemia não controlada</td><td><span class="tag tag-red">NÃO vai para TC</span></td></tr>
+      <tr><td>SatO₂ ≥94% estável</td><td><span class="tag tag-green">Pode ir com O₂ portátil</span></td></tr>
+      <tr><td>Sem equipe médica disponível</td><td><span class="tag tag-red">NÃO vai</span></td></tr>
+      <tr><td>Médico + monitor + drogas de emergência</td><td><span class="tag tag-green">Pode ir</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">✅ Checklist Pré-Transporte</div>
+  <ul>
+    <li>Monitor cardíaco ligado com alarmes ativos</li>
+    <li>Oxímetro posicionado e funcionando</li>
+    <li>O₂ portátil com carga suficiente para ida + volta</li>
+    <li>Acessos venosos pérvios e fixos com curativo</li>
+    <li>Adrenalina, atropina e ambu disponíveis no carrinho</li>
+    <li>Médico ou intensivista acompanhando pessoalmente</li>
+    <li>TC avisada e leito disponível (sem espera no corredor)</li>
+  </ul>
+</div>
+</div><!-- /tc -->
+
+<div class="quote-banner">
+  "O conhecimento é a única riqueza que ninguém pode te tirar. Cada hora de estudo é um depósito no banco da competência — e a vida dos seus pacientes é o juros."
+  <span>— Dr. André Rossanno</span>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- FLASHCARDS -->
+<!-- ══════════════════════════════════════════ -->
+<div id="flashcards">
+<div class="sec-title">
+  <div class="icon">🃏</div>
+  <h2><small>Treino Ativo · Técnica de Memorização</small>Flashcards — Flip para Resposta</h2>
+</div>
+<div class="divider"></div>
+<div class="alert alert-teal">
+  <strong>Como usar:</strong> Tente responder mentalmente ANTES de virar o cartão. A geração ativa da resposta fixa 3× mais do que leitura passiva. Isso é o Método André Rossanno em ação.
+</div>
+
+<div class="fc-wrap" onclick="flipCard()">
+  <div class="fc" id="flashcard">
+    <div class="fc-face fc-front">
+      <div>
+        <div class="fc-cat" id="fc-cat">CATEGORIA</div>
+        <div class="fc-q" id="fc-q">Carregando...</div>
+      </div>
+      <div class="fc-hint">← toque para revelar a resposta →</div>
+    </div>
+    <div class="fc-face fc-back">
+      <div class="fc-cat" id="fc-cat-b">RESPOSTA</div>
+      <div class="fc-a" id="fc-a"></div>
+      <div class="fc-trap-box" id="fc-trap" style="display:none"><strong>⚠️ Pegadinha:</strong> <span id="fc-trap-txt"></span></div>
+    </div>
+  </div>
+</div>
+<div class="fc-nav">
+  <button onclick="prevCard()">← Anterior</button>
+  <span class="fc-counter" id="fc-ctr">1 / 20</span>
+  <button onclick="nextCard()">Próximo →</button>
+</div>
+</div><!-- /flashcards -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- QUIZ -->
+<!-- ══════════════════════════════════════════ -->
+<div id="quiz" style="margin-top:52px">
+<div class="sec-title">
+  <div class="icon">🎯</div>
+  <h2><small>Questionário Interativo</small>Quiz — 20 Questões com Gabarito</h2>
+</div>
+<div class="divider"></div>
+<div class="alert alert-teal" style="margin-bottom:20px">
+  <strong>Testing Effect:</strong> Responder questões ativa a memória muito mais do que reler o material. Cada erro é um acelerador de aprendizado — leia o feedback com atenção.
+</div>
+
+<div class="quiz-score-bar">
+  <div>
+    <div class="qs-num" id="scoreNum">0</div>
+    <div class="qs-label">pontos de <span id="scoreOf">20</span></div>
+  </div>
+  <div class="qs-bars">
+    <div class="qs-row">
+      <span style="color:var(--green2);font-size:12px;">✓ Corretas</span>
+      <div class="qs-bar-bg"><div class="qs-fill-c" id="fillC" style="width:0%"></div></div>
+      <span class="qs-cnt" id="cntC">0</span>
+    </div>
+    <div class="qs-row">
+      <span style="color:var(--red2);font-size:12px;">✗ Erradas</span>
+      <div class="qs-bar-bg"><div class="qs-fill-w" id="fillW" style="width:0%"></div></div>
+      <span class="qs-cnt" id="cntW">0</span>
+    </div>
+  </div>
+</div>
+
+<div id="quizWrap"></div>
+<div style="text-align:center;margin-top:28px">
+  <button class="btn-p" onclick="resetQuiz()">🔄 Recomeçar Quiz</button>
+</div>
+</div><!-- /quiz -->
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PEGADINHAS -->
+<!-- ══════════════════════════════════════════ -->
+<div id="pegs" style="margin-top:52px">
+<div class="sec-title">
+  <div class="icon">⚠️</div>
+  <h2><small>Interleaving · Diagnóstico Diferencial</small>Pegadinhas — As 8 que Reprovam</h2>
+</div>
+<div class="divider"></div>
+<div class="alert alert-gold" style="margin-bottom:20px">
+  <strong>Método André Rossanno:</strong> A pegadinha não existe para te enganar — existe para revelar o raciocínio superficial. Clique para expandir cada uma.
+</div>
+<div id="pegsWrap"></div>
+</div><!-- /pegs -->
+
+<!-- RESPOSTA IDEAL -->
+<div style="margin-top:52px">
+<div class="sec-title">
+  <div class="icon">🏆</div>
+  <h2><small>Síntese Final</small>Resposta Ideal do Aluno no OSCE</h2>
+</div>
+<div class="divider"></div>
+<div class="card" style="border-color:rgba(242,169,0,.4);background:rgba(242,169,0,.05)">
+  <div class="card-header" style="color:var(--gold)">🎯 Fala Esperada — Palavra por Palavra</div>
+  <p style="font-style:italic;color:rgba(255,255,255,.88)">
+    "Paciente masculino, 41 anos, lenhador, com politrauma por esmagamento de 2 horas de evolução mais 1 hora de transporte — totalizando 3 horas do evento. Inicio com MOV: monitorizacão contínua, troca do cateter nasal (FiO₂ 41% insuficiente — SatO₂ 89%) para Máscara de Venturi 50%, e dois acessos venosos 14G com coleta de exames.
+  </p>
+  <p style="font-style:italic;color:rgba(255,255,255,.88);margin-top:12px">
+    No ABCDE: via aérea pérvia com colar cervical mantido, sem sinais de pneumotórax. Reconheço Choque Hemorrágico Classe III pelo FC 128 + hipotensão + sangramento oculto muscular. Administro TXA 1g EV IMEDIATAMENTE — estamos no limite exato de 3 horas. Inicio transfusão de hemácias + plasma + plaquetas 1:1:1. Cristaloide apenas 500 mL como ponte.
+  </p>
+  <p style="font-style:italic;color:rgba(255,255,255,.88);margin-top:12px">
+    Instalo SVD para monitorar diurese com meta ≥200 mL/h pela rabdomiólise. Trato hipercalemia: gluconato de cálcio 10 mL EV (protege coração, NÃO baixa K) + insulina + glicose + salbutamol. Inicio SF vigoroso 300 mL/h + bicarbonato para alcalinizar urina.
+  </p>
+  <p style="font-style:italic;color:rgba(255,255,255,.88);margin-top:12px">
+    MID com compartimentos tensos, dor desproporcional e parestesia → aciono cirurgia para fasciotomia urgente. Somente após estabilização hemodinâmica, com equipe e monitorização completa, realizo TC de crânio, tórax, abdome e pelve."
+  </p>
+</div>
+</div>
+
+<!-- ASSINATURA -->
+<div style="text-align:right;margin-top:52px;padding:28px 0;border-top:1px solid rgba(18,130,162,.25)">
+  <div style="font-family:'Dancing Script',cursive;font-size:30px;color:var(--gold)">Dr. André Rossanno</div>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray);letter-spacing:2px;margin-top:6px">Intensivista · Educação Médica</div>
+</div>
+
+</div><!-- /page -->
+
+<!-- RESULT MODAL -->
+<div class="modal-wrap" id="modal">
+  <div class="modal-box">
+    <div class="modal-emoji" id="mEmoji">🏆</div>
+    <div class="modal-title" id="mTitle">Resultado</div>
+    <div class="modal-score" id="mScore">0/20</div>
+    <div class="modal-msg" id="mMsg"></div>
+    <div class="modal-quote" id="mQuote"></div>
+    <div class="modal-btns">
+      <button class="btn-p" onclick="closeModal()">Ver Respostas</button>
+      <button class="btn-g" onclick="resetQuiz()">Tentar Novamente</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══ DATA ══════════════════════════════════════════════
+
+const cards = [
+  {cat:"MOV",q:"O que é MOV e quando é realizado em relação ao ABCDE?",a:"MOV = Monitor + Oxigênio + Veia. É o PRÉ-ABCDE, realizado nos primeiros 60 segundos, em paralelo pela equipe, ANTES da avaliação primária formal. M = ECG, oximetria, PA. O = escolher dispositivo pela SatO₂. V = 2 acessos 14–16G.",trap:"MOV não substitui o ABCDE. São complementares. Realizá-los em paralelo, não sequencialmente."},
+  {cat:"FiO₂",q:"Qual a FiO₂ do cateter nasal a 5 L/min? E o que fazer quando está insuficiente?",a:"FiO₂ = 21 + (5×4) = 41%. Este é o limite máximo do cateter nasal. Com SatO₂ 89%, está insatisfatório. Próximo passo: Máscara de Venturi 50% (conector azul, 12 L/min). Se ainda insuficiente: máscara não-reinalante 15 L/min. Se refratário: IOT.",trap:"Aumentar o cateter nasal além de 5 L/min NÃO aumenta a FiO₂. Apenas irrita a mucosa nasal. Trocar o dispositivo."},
+  {cat:"TXA",q:"O acidente foi às 09h00. Chegada às 12h00. Você pode e deve dar TXA?",a:"Janela do TXA = até 3 horas do trauma. O paciente está no LIMITE EXATO de 3 horas. Administrar IMEDIATAMENTE: 1g EV em 10 min (ataque) + 1g EV em 8h (manutenção). Qualquer atraso coloca o paciente fora da janela.",trap:"Após 3h, o TXA pode ser pró-trombótico e prejudicial. Sempre perguntar ao acompanhante o horário exato do acidente — dado crítico!"},
+  {cat:"Choque",q:"Por que o lenhador é Choque Hemorrágico Classe III e qual a conduta?",a:"FC 128 + PA 86/52 + extremidades frias + hematoma glúteo (1–2L) + esmagamento de MMII = 30–40% da volemia perdida. Macete: '15–30–40–MORREU'. Classe III = sangue obrigatório: hemácias + plasma + plaquetas 1:1:1.",trap:"Cristaloide em excesso piora a tríade da morte: dilui fatores (coagulopatia) + resfria (hipotermia). Sangue, não soro."},
+  {cat:"Exames",q:"Por que o hemograma precoce pode mostrar Hb normal com hemorragia Classe III?",a:"Hemorragia aguda causa perda proporcional de hemácias E plasma — a concentração não cai imediatamente. A hemodiluição fisiológica demora 2–6 horas. O diagnóstico de choque é CLÍNICO: FC, PA, perfusão, lactato.",trap:"Confiar no hemograma precoce e descartar hemorragia = erro letal e clássico de OSCE. O lactato reflete hipoperfusão em tempo real."},
+  {cat:"Exames",q:"Qual é o melhor marcador de hipoperfusão tecidual em tempo real?",a:"Lactato sérico. Normal: <2 mmol/L. Hipoperfusão: >2. Choque grave: >4. O clearance de lactato (redução ≥10% em 2 horas após ressuscitação) indica boa resposta ao tratamento.",trap:"O lactato não substitui a clínica — é complementar. Um lactato 'aceitável' com instabilidade clínica ainda é choque."},
+  {cat:"Rabdomiólise",q:"Qual é a tríade diagnóstica da rabdomiólise e a pegadinha do EAS?",a:"1) CK >5× o limite superior (>5.000 UI/L, pode chegar a 40.000+). 2) Urina marrom 'Coca-Cola' com EAS+ para sangue mas SEM hemácias ao microscópio (mioglobinúria). 3) Hipercalemia + creatinina em ascensão.",trap:"O EAS marca 'sangue positivo' sem hemácias porque a mioglobina reage ao reagente. Não é hematúria. Não investigar urologia — tratar rabdomiólise com LAVE."},
+  {cat:"Rabdomiólise",q:"O que é o protocolo L.A.V.E. e qual a meta de diurese na rabdomiólise?",a:"L=Líquido vigoroso (SF 200–400 mL/h). A=Alcalinizar urina (bicarbonato, pH urina >6,5). V=Vigiar diurese (meta ≥200 mL/h — SVD obrigatória). E=Evitar nefrotóxicos (AINE, contraste, aminoglicosídeos).",trap:"Meta de diurese na rabdomiólise é 200–300 mL/h — muito acima dos 30–50 mL/h habituais. Sem SVD é impossível medir com precisão."},
+  {cat:"Hipercalemia",q:"O gluconato de cálcio baixa o potássio? Qual é o seu papel real?",a:"NÃO. O gluconato de cálcio APENAS PROTEGE O CORAÇÃO ao estabilizar a membrana miocárdica contra arritmias. Ação em 1–3 min. Para BAIXAR o K: insulina+glicose, salbutamol, bicarbonato (se acidose), furosemida, diálise.",trap:"Esta é a pegadinha número 1 de potássio em qualquer prova. Memorize: cálcio protege o coração. Não baixa potássio. Repita antes de dormir."},
+  {cat:"Hipercalemia",q:"Qual a sequência completa de tratamento da hipercalemia com K=6,4?",a:"1° Gluconato cálcio 10% 10mL EV lento (protege coração). 2° Insulina Regular 10UI + Glicose 50% 50mL (internaliza K). 3° Salbutamol 10–20mg inalatório (β₂ → K para célula). 4° Bicarbonato se pH<7,2. 5° Furosemida/resina/diálise (remove K do corpo).",trap:"A sequência importa: primeiro proteger o coração, depois internalizar K, por último remover. Inverter a ordem atrasa a proteção cardíaca."},
+  {cat:"SVD",q:"Por que instalar SVD no lenhador? Qual a contraindicação absoluta?",a:"Monitorar diurese horária com precisão (meta ≥200 mL/h na rabdomiólise) e observar coloração da urina. Contraindicação: SANGUE NO MEATO URETRAL ou hematoma perineal extenso = suspeita de ruptura uretral = STOP. Avaliar urologista antes.",trap:"Sondar à força com ruptura uretral causa fístulas uretrais permanentes. Sangue no meato uretral é questão de concurso e OSCE."},
+  {cat:"Compartimental",q:"Quais os 4 P's da síndrome compartimental e quando indicar fasciotomia?",a:"Pain (dor desproporcional, piora ao alongamento passivo), Pressure (compartimento tenso), Paresthesia (hipoestesia distal), Paralysis (fraqueza). Fasciotomia: pressão >30 mmHg ou dentro de 30 mmHg da PA diastólica.",trap:"Ausência de pulso é sinal TARDIO. Diagnosticar pelos sinais precoces. Quando o pulso some, a necrose já está instalada e a perda pode ser irreversível."},
+  {cat:"Tríade",q:"O que é a tríade da morte, como se forma o ciclo vicioso e como quebrar cada elemento?",a:"Hipotermia + Coagulopatia + Acidose. Ciclo: hemorragia → hipoperfusão → acidose → hipotermia inativa fatores → coagulopatia → mais sangramento. QUEBRAR: ❄️ Hipotermia: manta aluminizada, fluidos aquecidos, Bair Hugger®, hemocomponentes aquecidos. 🩸 Coagulopatia: TXA até 3h, sangue 1:1:1, PFC, crioprecipitado, evitar cristaloide. 💀 Acidose: controlar sangramento (causa), sangue, vasopressores, bicarbonato se pH<7,1.",trap:"Cristaloide em excesso CONTRIBUI para as três: dilui fatores (coagulopatia), resfria (hipotermia), não carrega O₂ (acidose persiste). Sangue, não soro."},
+  {cat:"Airway",q:"Quando indicar IOT no trauma? O lenhador precisa agora?",a:"IOT: Glasgow ≤8, queda progressiva de Glasgow, hipoxemia refratária a máscara NR, FR <8 ou >35, trauma de face com sangramento, edema progressivo. Lenhador: Glasgow 15, fala preservada. NÃO indicar IOT agora. Escalonar O₂.",trap:"IOT tem riscos reais: hipotensão por indução, barotrauma, pneumotórax. Indicar com critério, não por protocolo ou ansiedade do médico."},
+  {cat:"Neurológico",q:"O que significa midríase fixa unilateral no trauma cranioencefálico?",a:"Compressão do nervo oculomotor (III par) ipsilateral por herniação uncal — o uncus do lobo temporal comprime o III par ao deslocar pelo tentório. É emergência neurocirúrgica. Acionar neurocirurgia imediatamente.",trap:"Midríase bilateral fixa é diferente: PCR, hipóxia grave ou morte encefálica. Não confundir. A lateralidade define a conduta."},
+  {cat:"Transporte",q:"O paciente está com PA 82/50 mmHg após 500 mL de cristaloide. Pode ir para TC?",a:"NÃO. Paciente hemodinamicamente instável não vai para TC. Usar FAST (ultrassom) à beira do leito para avaliar líquido livre abdominal. TC somente após PA estabilizada com monitorização completa e médico acompanhando.",trap:"'Paciente instável não passeia no hospital.' O corredor é o lugar mais perigoso. Sem monitor completo, sem equipe, longe dos recursos de emergência."},
+  {cat:"Breathing",q:"Como diferenciar pneumotórax hipertensivo de hemotórax à percussão?",a:"Pneumotórax: MV abolido + HIPERTIMPANISMO + desvio de traqueia contralateral + jugulares cheias + hipotensão. Hemotórax: MV abolido + MACICEZ + jugulares planas (hipovolemia) + sem desvio. Conduta no pneumotórax: descompressão SEM esperar RX.",trap:"No pneumotórax hipertensivo o RX é para quem está estável — não para quem está morrendo. Trate pela clínica, imediatamente."},
+  {cat:"Exames",q:"Por que pedir tipagem sanguínea e prova cruzada é urgência absoluta?",a:"Antes de qualquer transfusão, tipagem é necessária. Se desconhecida: usar sangue O negativo (doador universal). A prova cruzada leva mais tempo — enquanto aguarda, transfundir O negativo se o paciente estiver em choque grave.",trap:"Atrasar transfusão para aguardar prova cruzada em choque Classe III = morte evitável. O negativo é a escolha certa na emergência."},
+  {cat:"FiO₂",q:"Qual a diferença entre máscara simples e máscara de Venturi?",a:"Máscara simples: FiO₂ variável (40–60%) dependendo do fluxo e padrão respiratório do paciente. Mínimo 5 L/min para lavar CO₂ da máscara. Venturi: FiO₂ CONTROLADA e precisa (24, 28, 31, 35, 40 ou 50%) independente do padrão respiratório.",trap:"Use Venturi quando precisar de FiO₂ exata (ex: DPOC, quando não quer hipercapnia). Use quando o controle fino importa — como no nosso paciente."},
+  {cat:"Síntese",q:"Qual a resposta ideal completa do aluno no OSCE deste caso?",a:"MOV → Venturi 50% (cateter insuficiente) → ABCDE → TXA 1g EV URGENTE (3h exatas!) → sangue 1:1:1 → SVD meta 200 mL/h → gluconato cálcio → insulina+glicose → SF+bicarbonato → fasciotomia MID → TC só após estabilizar.",trap:"Os 4 erros que reprovam no OSCE: (1) esquecer TXA, (2) não indicar sangue no Classe III, (3) não instalar SVD, (4) levar instável para TC."},
+];
+
+const quizQ = [
+  {q:"Qual a FiO₂ que o paciente está recebendo com cateter nasal a 5 L/min?",opts:["21%","41%","60%","90%"],c:1,fb:"FiO₂ = 21 + (5×4) = 41%. Cateter nasal: máximo 5 L/min = máximo 41% de FiO₂.",trap:"Aumentar além de 5 L/min NÃO aumenta a FiO₂. Trocar o dispositivo."},
+  {q:"SatO₂ 89% com cateter nasal no limite. Qual dispositivo escolher?",opts:["Cateter nasal 8 L/min","Máscara simples 6 L/min","Máscara de Venturi FiO₂ 50% (12 L/min)","IOT imediata"],c:2,fb:"Venturi 50% é a próxima escolha racional. IOT só se Glasgow ≤8, falência ou refratário a todos os dispositivos.",trap:"IOT tem indicações precisas. Glasgow 15 com via aérea pérvia não é indicação."},
+  {q:"Acidente 09h00, chegada 12h00. Você pode administrar TXA?",opts:["Não, passou o prazo","Sim — limite exato de 3h. Administrar IMEDIATAMENTE","Sim, ainda tem 1h de janela","TXA é contraindicado em rabdomiólise"],c:1,fb:"Exatamente 3 horas = limite da janela. Administrar agora: 1g EV em 10 min + 1g em 8h.",trap:"Após 3h o TXA pode ser pró-trombótico. Sempre confirmar horário com o acompanhante."},
+  {q:"Hemograma precoce: Hb 14 g/dL, Ht 42%. Como interpretar?",opts:["Descarta hemorragia grave","Confirma choque distributivo","Hemograma precoce é enganoso — choque é diagnóstico clínico","Indica Classe I no máximo"],c:2,fb:"Hemodiluição demora 2–6h. Hemograma precoce não reflete a hemorragia aguda. Diagnóstico = clínica + lactato.",trap:"Confiar no hemograma precoce e descartar hemorragia é erro letal e clássico de OSCE."},
+  {q:"Por que o lenhador é Choque Classe III?",opts:["Porque tem urina Coca-Cola","Porque FC>120 + hipotensão + sangramento oculto estimado em 30–40% da volemia","Porque Glasgow caiu para 12","Porque tem hipotermia e acidose"],c:1,fb:"Classe III: perda de 30–40%. FC 128 + PA 86/52 + hematoma glúteo (1–2L) + esmagamento de MMII.",trap:"Macete: '15–30–40–MORREU'. Classe III = sangue obrigatório."},
+  {q:"Conduta imediata para hipercalemia com K⁺ = 6,4 mEq/L?",opts:["Furosemida 40mg EV","Gluconato de Cálcio 10% 10mL EV lento","Hemodiálise urgente","Reposição de magnésio"],c:1,fb:"Primeiro: gluconato de cálcio para proteger o coração. Depois: insulina+glicose, salbutamol, bicarbonato. Por último: remover K.",trap:"O gluconato de cálcio NÃO baixa o potássio. Protege apenas a membrana miocárdica."},
+  {q:"O gluconato de cálcio foi dado. O potássio vai baixar?",opts:["Sim, em 5–10 minutos","Não — protege o coração; outras medidas baixam o K","Sim, parcialmente ~1 mEq/L","Depende da dose"],c:1,fb:"Gluconato de cálcio estabiliza a membrana miocárdica. Não tem efeito sobre o nível sérico de K.",trap:"Repetindo porque cai sempre: cálcio protege, não baixa K."},
+  {q:"EAS mostra 'sangue positivo' mas sem hemácias ao microscópio. O que significa?",opts:["Erro de coleta","Hematúria microscópica","Mioglobinúria — mioglobina reage ao reagente simulando hematúria","Hemoglobinúria por hemólise"],c:2,fb:"Na rabdomiólise, mioglobina reage ao peroxidase do reagente → sangue falso-positivo. Sem hemácias = mioglobinúria.",trap:"Confundir com hematúria leva à investigação errada (urologia) ao invés do LAVE."},
+  {q:"Por que instalar SVD no lenhador?",opts:["Para facilitar higiene","Para monitorar diurese horária — meta ≥200 mL/h na rabdomiólise","Para urocultura urgente","Protocolo obrigatório em todo politrauma"],c:1,fb:"Na rabdomiólise a meta é 200–300 mL/h — muito acima do habitual de 30–50 mL/h. Só com SVD é possível medir com precisão.",trap:"SVD tem contraindicação: sangue no meato uretral = suspeita de ruptura uretral = STOP."},
+  {q:"PA 82/50 após 500 mL cristaloide. Pode ir para TC?",opts:["Sim, TC é necessária","Não — FAST na beira do leito","Sim, com médico acompanhando","Sim, se TC com contraste oral"],c:1,fb:"Paciente instável NÃO vai para TC. FAST avalia líquido livre sem transporte.",trap:"'Paciente instável não passeia no hospital.' O corredor é o lugar mais perigoso."},
+  {q:"Qual é a tríade da morte e qual a medida mais importante para prevenir a hipotermia na emergência?",opts:["Dor + taquicardia + hipotensão — usar analgesia","Hipotermia + coagulopatia + acidose — manta aluminizada imediata após exposição","Hipóxia + hipercapnia + acidose — usar O₂ alto fluxo","Anemia + hipotensão + taquicardia — transfundir"],c:1,fb:"Tríade = hipotermia + coagulopatia + acidose. A manta aluminizada (space blanket) reflete até 90% do calor irradiado, é barata e disponível em qualquer emergência. Fluidos aquecidos e hemocomponentes aquecidos completam a prevenção.",trap:"Expor o paciente para exame é obrigatório (E do ABCDE) — mas cobrir imediatamente após é igualmente obrigatório. 'Expõe para examinar → cobre para salvar.'"},
+  {q:"Compartimento tenso + dor desproporcional + parestesia no pé. Pulso presente. O que fazer?",opts:["Aguardar — pulso descarta síndrome compartimental","Analgesia e observar 6h","Fasciotomia urgente — sinais precoces presentes","Doppler vascular antes de decidir"],c:2,fb:"Dor desproporcional + compartimento tenso + parestesia = síndrome compartimental. Fasciotomia URGENTE.",trap:"Ausência de pulso = sinal tardio. Aguardar = necrose irreversível."},
+  {q:"Glasgow 15, fala frases completas. IOT indicada agora?",opts:["Sim — todo Classe III exige IOT","Não — via aérea pérvia + Glasgow 15 não justificam","Sim — FR 28 é indicação absoluta","Sim — hipotensão indica IOT no trauma"],c:1,fb:"IOT: Glasgow ≤8, hipoxemia refratária a NR, insuficiência progressiva. Escalonar O₂ com Venturi.",trap:"IOT tem riscos. Indicar com critério, não por protocolo."},
+  {q:"O que é o protocolo L.A.V.E.?",opts:["Lactato, Analgesia, Venopunção, ECG","Líquido vigoroso, Alcalinizar urina, Vigiar diurese, Evitar nefrotóxicos","Lavagem gástrica, Antiemético, Ventilação, Eletrólitos","Lactato, Alcalose, Volume, Eletrólitos"],c:1,fb:"L.A.V.E.: Líquido (SF 200–400 mL/h), Alcalinizar (bicarb, pH urina >6,5), Vigiar diurese (≥200 mL/h com SVD), Evitar nefrotóxicos.",trap:"Meta de diurese na rabdomiólise é 200 mL/h — 4× a meta habitual do adulto."},
+  {q:"Qual o papel do bicarbonato na rabdomiólise?",opts:["Reduzir K diretamente","Aumentar PA","Alcalinizar urina (pH>6,5) impedindo precipitação de mioglobina nos túbulos","Reverter acidose respiratória"],c:2,fb:"Bicarbonato alcaliniza a urina → mioglobina mais solúvel → menos obstrução tubular. Também corrige acidose metabólica.",trap:"Bicarbonato NÃO é tratamento primário da hipercalemia — é adjuvante se pH<7,2."},
+  {q:"Qual o ECG esperado com K⁺ = 6,4 mEq/L?",opts:["Ondas Q profundas e inversão de T","Ondas T altas, simétricas, apiculadas ('em tenda')","Supradesnivelamento de ST generalizado","QRS estreito com FA"],c:1,fb:"K 5,5–6,5 mEq/L = ondas T altas, simétricas, apiculadas. Progressão: PR longo → P achatada → QRS alargado → FV.",trap:"Monitorização contínua obrigatória. A progressão pode ser rápida e fatal."},
+  {q:"O acompanhante informa: acidente 09h, chegada 12h. Qual dado clínico crítico isso gera?",opts:["Descarta rabdomiólise","Janela do TXA está no limite exato de 3h — administrar imediatamente","Indica que Glasgow pode ser irreal","Sugere que não há sínd. compartimental"],c:1,fb:"3 horas exatas = limite da janela do TXA. O acompanhante é fonte de história clínica crítica — sempre interrogar!",trap:"Sem o horário do acidente, você poderia perder a janela ou administrar fora do tempo seguro."},
+  {q:"Por que cristaloide em excesso no Classe III é prejudicial?",opts:["Causa hipernatremia","Dilui fatores de coagulação + resfria o paciente + não carrega O₂","Aumenta risco de pneumotórax","Inibe o TXA"],c:1,fb:"Cristaloide em excesso: (1) coagulopatia dilucional, (2) hipotermia, (3) não carrega O₂. Piora a tríade da morte.",trap:"Damage control resuscitation: sangue 1:1:1 + cristaloide mínimo. Não soro livre."},
+  {q:"Midríase fixa unilateral no trauma = ?",opts:["Uso de opioide","Herniação uncal — compressão do III par — emergência neurocirúrgica","Morte encefálica","Lesão de ponte"],c:1,fb:"Uncus do lobo temporal comprime o III par ao deslocar pelo tentório. Acionar neurocirurgia imediatamente.",trap:"Midríase bilateral = PCR/hipóxia/morte encefálica. A lateralidade é crucial para o diagnóstico."},
+  {q:"Resposta ideal completa no OSCE — qual a sequência correta?",opts:["TC de corpo inteiro → definir conduta","MOV → Venturi 50% → ABCDE → TXA urgente → sangue 1:1:1 → SVD → tratar hipercalemia → fasciotomia → TC após estabilizar","IOT → hemodiálise","2L cristaloide → observar"],c:1,fb:"A resposta integra MOV + ABCDE + TXA na janela exata + controle de hemorragia + rabdomiólise + hipercalemia + compartimental + TC condicionada.",trap:"4 erros fatais no OSCE: esquecer TXA, não indicar sangue, não instalar SVD, levar instável para TC."},
+];
+
+const pegsData = [
+  {title:"Hemograma precoce normal = sem hemorragia",correct:"ERRADO. Hemograma precoce NÃO detecta hemorragia aguda. A hemodiluição demora 2–6h. O diagnóstico de choque é CLÍNICO: FC, PA, perfusão, lactato.",trap:"Confiar no hemograma e descartar choque causa morte evitável. O lactato é o marcador real em tempo real."},
+  {title:"Gluconato de cálcio vai baixar o potássio",correct:"ERRADO. Gluconato de cálcio protege o coração estabilizando a membrana miocárdica. Não remove e não baixa o potássio. Para baixar K: insulina+glicose, salbutamol, bicarbonato, furosemida, diálise.",trap:"A pegadinha número 1 de potássio em qualquer prova. Memorize para sempre: cálcio protege, não baixa."},
+  {title:"Cateter nasal a 5 L/min — aumentar para 8 L/min",correct:"ERRADO. Cateter nasal tem fluxo MÁXIMO de 5 L/min, fornecendo FiO₂ máxima de 41%. Acima disso, não há incremento de FiO₂ — apenas desconforto e ressecamento de mucosa. Trocar o dispositivo.",trap:"Fórmula: FiO₂ = 21 + (L×4). Máximo cateter = 5L = 41%. Qualquer fluxo acima não funciona."},
+  {title:"Paciente instável com PA 82/50 → pedir TC de corpo inteiro",correct:"ERRADO. Paciente instável NÃO vai para TC. FAST (ultrassom à beira leito) avalia líquido livre abdominal sem transporte. TC somente após PA estabilizada.",trap:"'Paciente instável não passeia no hospital.' O corredor entre emergência e TC é o lugar mais perigoso."},
+  {title:"TXA administrado 4h após o trauma",correct:"ERRADO. TXA deve ser administrado até 3 horas do trauma. Após esse período pode ser pró-trombótico e prejudicial. Sempre confirmar horário do acidente com o acompanhante.",trap:"Neste caso: acidente 09h, chegada 12h = exatamente 3h. Administrar nos primeiros minutos. Cada minuto conta."},
+  {title:"EAS com 'sangue positivo' = hematúria → investigar urologia",correct:"ERRADO. Na rabdomiólise, a mioglobina reage ao reagente da fita, dando 'sangue falso-positivo'. Sem hemácias ao microscópio = MIOGLOBINÚRIA. Conduta: LAVE, não uretrocistografia.",trap:"Confundir com hematúria leva à investigação errada e atrasa a proteção renal pelo protocolo LAVE."},
+  {title:"Pulso presente = exclui síndrome compartimental",correct:"ERRADO. Ausência de pulso é sinal TARDIO da síndrome compartimental. Diagnosticar pelos sinais PRECOCES: dor desproporcional + compartimento tenso + parestesia. Fasciotomia não espera o pulso desaparecer.",trap:"Quando o pulso some, a necrose já está em curso. Dor desproporcional = emergência cirúrgica imediata."},
+  {title:"2 litros de cristaloide no choque Classe III",correct:"ERRADO. Cristaloide em excesso no Classe III causa coagulopatia dilucional + hipotermia + não carrega oxigênio. Piora a tríade da morte. Cristaloide = apenas 500 mL como ponte. Sangue = tratamento definitivo.",trap:"Damage control resuscitation: hemácias + plasma + plaquetas 1:1:1. Cristaloide mínimo."},
+];
+
+// ══ STATE ══
+let curCard=0, flipped=false;
+let ans=new Array(quizQ.length).fill(null), score=0, answered=0;
+
+// ══ SIDEBAR ══
+function toggleMenu(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+// ══ READING PROGRESS ══
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  const pct=(doc.scrollTop)/(doc.scrollHeight-doc.clientHeight)*100;
+  document.getElementById('readProgress').style.width=pct+'%';
+  // sidebar active
+  document.querySelectorAll('.nav-link').forEach(a=>{
+    const id=a.getAttribute('href').slice(1);
+    const el=document.getElementById(id);
+    if(!el) return;
+    const r=el.getBoundingClientRect();
+    if(r.top<=150&&r.bottom>0) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+});
+
+// ══ FLASHCARDS ══
+function renderCard(){
+  const d=cards[curCard];
+  document.getElementById('fc-cat').textContent=d.cat.toUpperCase();
+  document.getElementById('fc-cat-b').textContent='✓ RESPOSTA — '+d.cat.toUpperCase();
+  document.getElementById('fc-q').textContent=d.q;
+  document.getElementById('fc-a').textContent=d.a;
+  const tb=document.getElementById('fc-trap');
+  const tt=document.getElementById('fc-trap-txt');
+  if(d.trap){tb.style.display='block';tt.textContent=d.trap;}
+  else tb.style.display='none';
+  document.getElementById('fc-ctr').textContent=(curCard+1)+' / '+cards.length;
+  document.getElementById('flashcard').classList.remove('flipped');
+  flipped=false;
+}
+function flipCard(){
+  flipped=!flipped;
+  document.getElementById('flashcard').classList.toggle('flipped',flipped);
+}
+function nextCard(){if(curCard<cards.length-1){curCard++;renderCard();}}
+function prevCard(){if(curCard>0){curCard--;renderCard();}}
+
+// ══ QUIZ ══
+function renderQuiz(){
+  const wrap=document.getElementById('quizWrap');
+  wrap.innerHTML='';
+  const L=['A','B','C','D'];
+  quizQ.forEach((q,qi)=>{
+    const done=ans[qi]!==null;
+    const ok=ans[qi]===q.c;
+    const item=document.createElement('div');
+    item.className='quiz-item'+(done?(ok?' correct':' wrong'):'');
+    item.innerHTML=`<div class="quiz-num-label">QUESTÃO ${qi+1} DE ${quizQ.length}</div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-opts"></div>`;
+    const optsWrap=item.querySelector('.quiz-opts');
+    q.opts.forEach((o,oi)=>{
+      const btn=document.createElement('button');
+      btn.className='quiz-opt'+(done?' locked':'');
+      if(done){
+        if(oi===q.c) btn.classList.add('opt-correct');
+        else if(oi===ans[qi]&&!ok) btn.classList.add('opt-wrong');
+      }
+      btn.innerHTML=`<span class="opt-letter">${L[oi]}</span><span>${o}</span>`;
+      if(!done) btn.onclick=()=>answerQ(qi,oi);
+      optsWrap.appendChild(btn);
+    });
+    if(done){
+      const fb=document.createElement('div');
+      fb.className='quiz-fb show '+(ok?'fb-c':'fb-w');
+      fb.textContent=(ok?'✅ ':'❌ ')+q.fb;
+      item.appendChild(fb);
+      if(q.trap){
+        const tr=document.createElement('div');
+        tr.className='quiz-fb show fb-t';
+        tr.innerHTML='<strong>⚠️ Pegadinha:</strong> '+q.trap;
+        item.appendChild(tr);
+      }
+    }
+    wrap.appendChild(item);
+  });
+}
+
+function answerQ(qi,oi){
+  if(ans[qi]!==null) return;
+  ans[qi]=oi; answered++;
+  if(oi===quizQ[qi].c) score++;
+  updateScore();
+  renderQuiz();
+  if(answered===quizQ.length) setTimeout(showModal,700);
+  setTimeout(()=>{
+    const items=document.querySelectorAll('.quiz-item');
+    const next=ans.findIndex((a,i)=>i>qi&&a===null);
+    if(next>=0&&items[next]) items[next].scrollIntoView({behavior:'smooth',block:'center'});
+  },300);
+}
+
+function updateScore(){
+  const total=quizQ.length, wrong=answered-score;
+  document.getElementById('scoreNum').textContent=score;
+  document.getElementById('fillC').style.width=(score/total*100)+'%';
+  document.getElementById('fillW').style.width=(wrong/total*100)+'%';
+  document.getElementById('cntC').textContent=score;
+  document.getElementById('cntW').textContent=wrong;
+}
+
+function showModal(){
+  const total=quizQ.length, pct=Math.round(score/total*100);
+  const data=[
+    {e:'🏆',t:'Excelente!',m:'Você domina o caso do lenhador. Pronto para o OSCE real.',q:'"A excelência não é um ato, é um hábito." — Aristóteles'},
+    {e:'💪',t:'Muito bom!',m:'Boa performance. Revise gluconato de cálcio e hemograma precoce.',q:'"Todo especialista já foi um iniciante que não desistiu." — Anônimo'},
+    {e:'📚',t:'Continue!',m:'Refaça os flashcards antes de tentar novamente.',q:'"Estudar é plantar; atender é colher. Plante bem." — Dr. André Rossanno'},
+    {e:'🔄',t:'Recomeçar!',m:'Volte ao material, leia com calma e tente novamente.',q:'"O erro é o professor mais honesto que existe." — Dr. André Rossanno'},
+  ];
+  const d=pct>=90?data[0]:pct>=70?data[1]:pct>=50?data[2]:data[3];
+  document.getElementById('mEmoji').textContent=d.e;
+  document.getElementById('mTitle').textContent=d.t;
+  document.getElementById('mScore').textContent=score+'/'+total;
+  document.getElementById('mMsg').textContent=d.m;
+  document.getElementById('mQuote').textContent=d.q;
+  document.getElementById('modal').classList.add('show');
+}
+
+function closeModal(){document.getElementById('modal').classList.remove('show');}
+
+function resetQuiz(){
+  ans=new Array(quizQ.length).fill(null);
+  score=0; answered=0;
+  updateScore(); renderQuiz(); closeModal();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+}
+
+// ══ PEGADINHAS ══
+function renderPegs(){
+  const wrap=document.getElementById('pegsWrap');
+  pegsData.forEach((p,i)=>{
+    const item=document.createElement('div');
+    item.className='peg-item';
+    item.innerHTML=`<div class="peg-header" onclick="togglePeg(${i})">
+      <h4>⚠️ PEGADINHA ${i+1}: "${p.title}"</h4>
+      <span class="peg-chevron">▼</span>
+    </div>
+    <div class="peg-body">
+      <div class="peg-inner">
+        <div class="peg-correct"><strong>✅ Correto:</strong> ${p.correct}</div>
+        <div class="peg-trap"><strong>⚠️ Por que cai em prova:</strong> ${p.trap}</div>
+      </div>
+    </div>`;
+    wrap.appendChild(item);
+  });
+}
+
+function togglePeg(i){
+  const items=document.querySelectorAll('.peg-item');
+  items[i].classList.toggle('open');
+}
+
+// ══ INIT ══
+renderCard();
+renderQuiz();
+renderPegs();
+</script>
+</body>
+</html>

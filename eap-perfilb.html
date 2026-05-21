@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIMULAÇÃO — Edema Agudo Pulmonar Perfil B | Dr. André Rossanno</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #0B2545;
+  --navy2:  #071A30;
+  --teal:   #1282A2;
+  --mint:   #034078;
+  --red:    #C0392B;
+  --red2:   #8B0000;
+  --amber:  #E67E22;
+  --green:  #1A7A4A;
+  --gold:   #F4C430;
+  --white:  #FFFFFF;
+  --offwh:  #E8EEF6;
+  --gray:   #8FA3B8;
+  --purple: #6C3483;
+  --border: rgba(18,130,162,0.25);
+  --sidebar-w: 220px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--navy2);
+  font-family:'IBM Plex Sans',sans-serif;
+  color:var(--offwh);
+  min-height:100vh;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────── */
+.sidebar{
+  position:fixed;
+  left:0; top:0; bottom:0;
+  width:var(--sidebar-w);
+  background:rgba(7,26,48,0.97);
+  border-right:1px solid var(--border);
+  z-index:200;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.sidebar-logo{
+  padding:18px 16px 14px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sidebar-logo .sl-title{
+  font-family:'Syne',sans-serif;
+  font-size:11px;
+  font-weight:800;
+  color:var(--teal);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  line-height:1.3;
+}
+.sidebar-logo .sl-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:var(--gray);
+  margin-top:4px;
+  letter-spacing:0.5px;
+}
+.sidebar-progress{
+  flex:1;
+  overflow-y:auto;
+  padding:12px 0;
+}
+.sidebar-progress::-webkit-scrollbar{width:3px;}
+.sidebar-progress::-webkit-scrollbar-track{background:transparent;}
+.sidebar-progress::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px;}
+
+/* Overall progress bar */
+.overall-bar{
+  margin:0 14px 14px;
+  background:rgba(255,255,255,0.08);
+  border-radius:4px;
+  height:4px;
+  overflow:hidden;
+}
+.overall-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  border-radius:4px;
+  transition:width 0.4s ease;
+  width:0%;
+}
+.overall-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:var(--gray);
+  margin:0 14px 10px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.sn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 14px;
+  cursor:pointer;
+  transition:all 0.2s;
+  border-left:3px solid transparent;
+  position:relative;
+}
+.sn:hover{background:rgba(18,130,162,0.1);border-left-color:var(--teal);}
+.sn.active{background:rgba(18,130,162,0.15);border-left-color:var(--gold);}
+.sn.done{border-left-color:var(--green);}
+.sn-dot{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.06);
+  border:1.5px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--gray);
+  transition:all 0.2s;
+}
+.sn.active .sn-dot{background:var(--teal);border-color:var(--teal);color:#fff;}
+.sn.done .sn-dot{background:var(--green);border-color:var(--green);color:#fff;font-size:12px;}
+.sn-info{flex:1;min-width:0;}
+.sn-label{
+  font-family:'Syne',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  color:var(--offwh);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  transition:color 0.2s;
+}
+.sn.active .sn-label{color:var(--gold);}
+.sn.done .sn-label{color:var(--gray);}
+.sn-time{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:var(--gray);
+  margin-top:1px;
+}
+.sn.active .sn-time{color:var(--teal);}
+
+.sidebar-footer{
+  padding:12px 14px;
+  border-top:1px solid var(--border);
+  flex-shrink:0;
+}
+.sidebar-footer p{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  color:var(--gray);
+  line-height:1.6;
+}
+.sidebar-footer strong{color:var(--teal);}
+
+/* ── LAYOUT ───────────────────────────────────────── */
+.layout{margin-left:var(--sidebar-w);}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,#071A30 0%,#0B2545 55%,#034078 100%);
+  padding:48px 48px 40px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:3px solid var(--teal);
+}
+.hero::before{
+  content:'';position:absolute;top:-100px;right:-100px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(18,130,162,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.badge{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:3px;
+}
+.badge-red   {background:var(--red);color:#fff;}
+.badge-teal  {background:var(--teal);color:#fff;}
+.badge-gold  {background:var(--gold);color:var(--navy2);}
+.badge-purple{background:var(--purple);color:#fff;}
+.badge-green {background:var(--green);color:#fff;}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(26px,4vw,48px);
+  font-weight:800;color:var(--white);
+  line-height:1.1;letter-spacing:-1px;margin-bottom:6px;
+}
+.hero h1 span{color:var(--teal);}
+.hero-sub{font-size:14px;color:var(--gray);margin-bottom:24px;font-weight:300;letter-spacing:0.5px;}
+
+/* Anasarca alert */
+.anasarca-alert{
+  background:linear-gradient(135deg,rgba(192,57,43,0.2),rgba(139,0,0,0.15));
+  border:2px solid var(--red);border-radius:10px;
+  padding:18px 22px;margin-bottom:20px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.anasarca-alert .aa-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.anasarca-alert h3{
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  color:var(--white);margin-bottom:6px;letter-spacing:0.3px;
+}
+.anasarca-alert p{font-size:12.5px;line-height:1.65;color:var(--offwh);}
+.anasarca-alert strong{color:var(--gold);}
+
+.caso-card{
+  background:rgba(18,130,162,0.1);
+  border:1px solid rgba(18,130,162,0.35);
+  border-left:4px solid var(--teal);
+  border-radius:8px;padding:18px 22px;margin-bottom:20px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+@media(max-width:900px){.caso-card{grid-template-columns:1fr 1fr;}}
+.caso-item label{
+  display:block;font-family:'IBM Plex Mono',monospace;
+  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:3px;
+}
+.caso-item .val{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--white);}
+.caso-item .val.red{color:#E74C3C;}
+.caso-item .val.gold{color:var(--gold);}
+.caso-item .val.green{color:#2ECC71;}
+
+.metodologia{
+  background:rgba(108,52,131,0.15);
+  border:1px solid rgba(108,52,131,0.35);
+  border-left:4px solid var(--purple);
+  border-radius:8px;padding:16px 20px;margin-bottom:16px;
+}
+.metodologia h3{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  color:#BB8FCE;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;
+}
+.metodologia p{font-size:12.5px;line-height:1.7;color:var(--offwh);font-weight:300;}
+.metodologia p strong{color:var(--gold);font-weight:600;}
+
+.autor-line{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray);
+  letter-spacing:0.8px;padding-top:14px;border-top:1px solid var(--border);
+}
+.autor-line span{color:var(--teal);}
+
+/* ── MAIN ────────────────────────────────────────── */
+.main{padding:40px 48px 100px;}
+
+/* ── FASE BLOCK ──────────────────────────────────── */
+.fase{margin-bottom:60px;scroll-margin-top:24px;}
+.fase-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap;}
+.fase-num{
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;color:var(--navy2);
+  background:var(--teal);padding:5px 12px;border-radius:3px;white-space:nowrap;
+}
+.fase-num.red   {background:var(--red);color:#fff;}
+.fase-num.gold  {background:var(--gold);color:var(--navy2);}
+.fase-num.green {background:var(--green);color:#fff;}
+.fase-num.purple{background:var(--purple);color:#fff;}
+.fase-num.amber {background:var(--amber);color:var(--navy2);}
+.fase-title{
+  font-family:'Syne',sans-serif;font-size:clamp(17px,2.5vw,24px);
+  font-weight:700;color:var(--white);line-height:1.2;
+}
+.fase-time{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--teal);background:rgba(18,130,162,0.1);
+  padding:4px 10px;border:1px solid rgba(18,130,162,0.3);border-radius:20px;white-space:nowrap;
+}
+.fase-time.red{color:var(--red);background:rgba(192,57,43,0.1);border-color:rgba(192,57,43,0.3);}
+
+/* ── GRID ───────────────────────────────────────── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+@media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* ── CARD ───────────────────────────────────────── */
+.card{
+  background:rgba(11,37,69,0.6);border:1px solid var(--border);
+  border-radius:10px;padding:18px;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:var(--teal);
+}
+.card.red::before   {background:var(--red);}
+.card.gold::before  {background:var(--gold);}
+.card.green::before {background:var(--green);}
+.card.purple::before{background:var(--purple);}
+.card.amber::before {background:var(--amber);}
+.card h4{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  color:var(--teal);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px;
+}
+.card.red h4   {color:#E74C3C;}
+.card.gold h4  {color:var(--gold);}
+.card.green h4 {color:#2ECC71;}
+.card.purple h4{color:#BB8FCE;}
+.card.amber h4 {color:var(--amber);}
+
+/* ── CHECKLIST ──────────────────────────────────── */
+.checklist{list-style:none;}
+.checklist li{
+  display:flex;align-items:flex-start;gap:9px;
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:13px;line-height:1.5;color:var(--offwh);
+}
+.checklist li:last-child{border-bottom:none;}
+.checklist li .ico{
+  flex-shrink:0;width:20px;height:20px;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;margin-top:1px;
+}
+.ico-check {background:var(--teal);color:#fff;}
+.ico-warn  {background:var(--red);color:#fff;}
+.ico-gold  {background:var(--gold);color:var(--navy2);}
+.ico-green {background:var(--green);color:#fff;}
+.checklist li strong{color:var(--white);font-weight:600;}
+.checklist li .sub{display:block;font-size:11px;color:var(--gray);margin-top:2px;font-style:italic;}
+
+/* ── DESTAQUE ───────────────────────────────────── */
+.destaque{border-radius:8px;padding:14px 18px;margin:14px 0;border-left:4px solid;}
+.destaque.red   {background:rgba(192,57,43,0.12);border-color:var(--red);}
+.destaque.gold  {background:rgba(244,196,48,0.08);border-color:var(--gold);}
+.destaque.teal  {background:rgba(18,130,162,0.1);border-color:var(--teal);}
+.destaque.green {background:rgba(26,122,74,0.12);border-color:var(--green);}
+.destaque.purple{background:rgba(108,52,131,0.12);border-color:var(--purple);}
+.destaque p{font-size:12.5px;line-height:1.65;}
+.destaque strong{font-weight:600;}
+.destaque.red strong   {color:#E74C3C;}
+.destaque.gold strong  {color:var(--gold);}
+.destaque.teal strong  {color:var(--teal);}
+.destaque.green strong {color:#2ECC71;}
+.destaque.purple strong{color:#BB8FCE;}
+.destaque .label{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;display:block;
+}
+
+/* ── FORMULA ────────────────────────────────────── */
+.formula-box{
+  background:var(--navy2);border:1px solid var(--teal);
+  border-radius:8px;padding:14px 18px;
+  font-family:'IBM Plex Mono',monospace;text-align:center;margin:12px 0;
+}
+.formula-box .formula{font-size:16px;color:var(--white);margin-bottom:5px;}
+.formula-box .formula span{color:var(--gold);font-weight:700;}
+.formula-box .exemplo{font-size:11px;color:var(--gray);}
+.formula-box .resultado{font-size:12px;color:var(--teal);margin-top:3px;}
+
+/* ── TABELA ─────────────────────────────────────── */
+.tabela-wrap{overflow-x:auto;margin:12px 0;}
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{
+  background:var(--mint);color:var(--white);
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:0.8px;text-transform:uppercase;padding:9px 12px;text-align:left;
+}
+td{
+  padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.05);
+  color:var(--offwh);vertical-align:top;line-height:1.5;
+}
+tr:nth-child(even) td{background:rgba(255,255,255,0.03);}
+td strong{color:var(--white);font-weight:600;}
+td .ok  {color:#2ECC71;font-weight:700;}
+td .nok {color:var(--red);font-weight:700;}
+td .warn{color:var(--gold);font-weight:600;}
+td .mono{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--teal);}
+
+/* ── ANCORA ─────────────────────────────────────── */
+.ancora{
+  background:rgba(244,196,48,0.07);border:1px solid rgba(244,196,48,0.2);
+  border-radius:8px;padding:12px 16px;margin:14px 0;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.ancora-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.ancora p{font-size:12px;line-height:1.65;color:var(--offwh);}
+.ancora strong{color:var(--gold);}
+
+/* ── PEGADINHA ──────────────────────────────────── */
+.pegadinha{
+  background:rgba(108,52,131,0.15);border:1px solid rgba(108,52,131,0.4);
+  border-radius:8px;padding:14px 18px;margin:14px 0;
+}
+.pegadinha .peg-label{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;
+  text-transform:uppercase;color:#BB8FCE;margin-bottom:6px;display:block;
+}
+.pegadinha p{font-size:12.5px;line-height:1.6;color:var(--offwh);}
+.pegadinha strong{color:var(--gold);}
+
+/* ── RX BOX ─────────────────────────────────────── */
+.rx-box{
+  background:var(--navy2);border:1px solid var(--teal);
+  border-radius:8px;padding:16px 18px;margin:10px 0;
+  font-family:'IBM Plex Mono',monospace;
+}
+.rx-box .rx-label{
+  font-size:9px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px;display:block;
+}
+.rx-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px;
+}
+.rx-item:last-child{border-bottom:none;}
+.rx-item .drug{color:var(--white);font-weight:500;}
+.rx-item .dose{color:var(--gold);font-size:11px;}
+.rx-item .obs {color:var(--gray);font-size:10px;}
+
+/* ── SONDA ALERT ────────────────────────────────── */
+.sonda-alert{
+  background:linear-gradient(135deg,rgba(192,57,43,0.22),rgba(139,0,0,0.18));
+  border:2px solid var(--red);border-radius:10px;
+  padding:18px 22px;margin:14px 0;text-align:center;
+}
+.sonda-alert h3{
+  font-family:'Syne',sans-serif;font-size:17px;font-weight:800;
+  color:var(--white);margin-bottom:6px;
+}
+.sonda-alert p{font-size:12.5px;color:var(--offwh);line-height:1.6;}
+.sonda-alert strong{color:var(--gold);}
+
+/* ── DECISAO ────────────────────────────────────── */
+.decisao{
+  background:rgba(18,130,162,0.08);border:2px solid var(--teal);
+  border-radius:10px;padding:18px 22px;margin:14px 0;text-align:center;
+}
+.decisao h3{
+  font-family:'Syne',sans-serif;font-size:15px;font-weight:800;
+  color:var(--gold);margin-bottom:14px;
+}
+.decisao-branches{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;}
+@media(max-width:600px){.decisao-branches{grid-template-columns:1fr;}}
+.branch{border-radius:8px;padding:12px;}
+.branch.sim{background:rgba(26,122,74,0.18);border:1px solid var(--green);}
+.branch.nao{background:rgba(192,57,43,0.18);border:1px solid var(--red);}
+.branch h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;margin-bottom:6px;}
+.branch.sim h4{color:#2ECC71;}
+.branch.nao h4{color:var(--red);}
+.branch p{font-size:11.5px;color:var(--offwh);line-height:1.5;}
+.branch-arrow{font-size:22px;color:var(--gray);}
+
+/* ── FLASHCARDS ─────────────────────────────────── */
+.flashcard-section{margin:20px 0;}
+.flashcard-section h4{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;
+}
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.flashcard{
+  background:var(--navy);border:1px solid var(--border);
+  border-radius:8px;cursor:pointer;
+  perspective:1000px;height:110px;position:relative;
+}
+.fc-inner{
+  width:100%;height:100%;position:relative;
+  transform-style:preserve-3d;transition:transform 0.5s ease;
+}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-front,.fc-back{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  padding:14px;text-align:center;
+}
+.fc-front{
+  background:rgba(11,37,69,0.8);
+  border:1px solid var(--border);
+}
+.fc-back{
+  background:rgba(3,64,120,0.6);
+  border:1px solid var(--teal);
+  transform:rotateY(180deg);
+}
+.fc-front p{
+  font-size:12px;color:var(--offwh);line-height:1.5;font-weight:500;
+}
+.fc-back p{
+  font-size:11.5px;color:var(--white);line-height:1.5;
+}
+.fc-back strong{color:var(--gold);}
+.fc-hint{
+  position:absolute;bottom:6px;right:8px;
+  font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--gray);letter-spacing:1px;
+}
+
+/* ── QA INTERATIVO ──────────────────────────────── */
+.qa-block{margin:16px 0;}
+.qa-item{
+  background:rgba(11,37,69,0.6);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;margin-bottom:8px;
+}
+.qa-question{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;cursor:pointer;transition:background 0.2s;
+}
+.qa-question:hover{background:rgba(18,130,162,0.1);}
+.qa-q-icon{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--teal);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:800;flex-shrink:0;
+}
+.qa-q-text{font-size:13px;color:var(--white);font-weight:500;flex:1;}
+.qa-arrow{
+  font-size:10px;color:var(--gray);
+  transition:transform 0.3s;flex-shrink:0;
+}
+.qa-item.open .qa-arrow{transform:rotate(180deg);}
+.qa-answer{
+  max-height:0;overflow:hidden;transition:max-height 0.35s ease;
+  background:rgba(18,130,162,0.06);
+  border-top:0 solid var(--border);
+}
+.qa-item.open .qa-answer{max-height:400px;border-top-width:1px;}
+.qa-answer-inner{padding:14px 16px 14px 52px;font-size:12.5px;line-height:1.7;color:var(--offwh);}
+.qa-answer-inner strong{color:var(--gold);}
+.qa-answer-inner .ans-ok{color:#2ECC71;font-weight:700;}
+.qa-answer-inner .ans-no{color:var(--red);font-weight:700;}
+
+/* ── MNEMÔNICO APTM ─────────────────────────────── */
+.aptm-box{
+  background:linear-gradient(135deg,rgba(108,52,131,0.2),rgba(108,52,131,0.08));
+  border:1px solid rgba(108,52,131,0.4);border-radius:10px;
+  padding:20px 22px;margin:14px 0;
+}
+.aptm-title{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  color:#BB8FCE;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;
+}
+.aptm-word{
+  font-family:'Syne',sans-serif;font-size:28px;font-weight:800;
+  color:var(--white);letter-spacing:4px;margin-bottom:14px;text-align:center;
+}
+.aptm-word span{color:var(--teal);}
+.aptm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:600px){.aptm-grid{grid-template-columns:1fr 1fr;}}
+.aptm-letter{
+  background:rgba(11,37,69,0.6);border:1px solid var(--border);
+  border-radius:8px;padding:12px 10px;text-align:center;
+}
+.aptm-letter .letter{
+  font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--teal);
+  line-height:1;margin-bottom:4px;
+}
+.aptm-letter .foco{font-size:11px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.aptm-letter .local{font-size:10px;color:var(--gray);}
+.aptm-letter .achado{
+  font-size:10px;color:var(--gold);margin-top:4px;font-style:italic;
+  display:none;
+}
+
+/* ── NITRATO COMPARE ────────────────────────────── */
+.nitrato-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:700px){.nitrato-compare{grid-template-columns:1fr;}}
+.nitrato-card{
+  border-radius:10px;padding:18px;position:relative;overflow:hidden;
+}
+.nitrato-card.tridil{
+  background:rgba(18,130,162,0.12);border:2px solid var(--teal);
+}
+.nitrato-card.nipride{
+  background:rgba(230,126,34,0.1);border:2px solid var(--amber);
+}
+.nitrato-card .nc-badge{
+  font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:4px;
+}
+.nitrato-card.tridil .nc-badge{color:var(--teal);}
+.nitrato-card.nipride .nc-badge{color:var(--amber);}
+.nitrato-card .nc-name{font-size:11px;color:var(--gray);margin-bottom:12px;font-family:'IBM Plex Mono',monospace;}
+.nitrato-card .nc-row{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:12px;
+}
+.nitrato-card .nc-row:last-child{border-bottom:none;}
+.nc-row .nc-k{color:var(--gray);font-size:10px;min-width:60px;padding-top:1px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;}
+.nc-row .nc-v{color:var(--white);}
+.nc-chosen{
+  position:absolute;top:10px;right:10px;
+  font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:1px;
+  text-transform:uppercase;padding:3px 8px;border-radius:3px;
+  background:var(--green);color:#fff;
+}
+
+/* ── ALGORITMO FINAL ────────────────────────────── */
+.algo-section{
+  background:rgba(7,26,48,0.9);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;margin-top:50px;
+}
+.algo-header{
+  background:linear-gradient(90deg,var(--teal),var(--mint));
+  padding:16px 24px;
+  font-family:'Syne',sans-serif;font-size:14px;font-weight:800;
+  color:var(--white);letter-spacing:1px;text-transform:uppercase;
+}
+.algo-body{padding:28px 24px;}
+.algo-flow{display:flex;flex-direction:column;align-items:center;gap:0;}
+.algo-node{
+  width:100%;max-width:520px;border-radius:8px;padding:13px 18px;
+  text-align:center;position:relative;
+}
+.algo-node.start  {background:var(--red);border:none;}
+.algo-node.action {background:var(--mint);border:1px solid var(--teal);}
+.algo-node.check  {background:rgba(244,196,48,0.12);border:2px solid var(--gold);}
+.algo-node.ok     {background:rgba(26,122,74,0.2);border:1px solid var(--green);}
+.algo-node.escalate{background:rgba(192,57,43,0.2);border:1px solid var(--red);}
+.algo-node.end    {background:var(--green);border:none;}
+.algo-node .an-title{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:800;
+  color:var(--white);margin-bottom:2px;
+}
+.algo-node.check .an-title{color:var(--gold);}
+.algo-node .an-sub{font-size:11px;color:rgba(255,255,255,0.75);}
+.algo-arrow{
+  width:2px;height:22px;background:var(--gray);margin:0 auto;
+  position:relative;
+}
+.algo-arrow::after{
+  content:'▼';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
+  color:var(--gray);font-size:10px;
+}
+.algo-split{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:12px;
+  width:100%;max-width:560px;margin:0 auto;align-items:start;
+  padding:8px 0;
+}
+.algo-split-center{text-align:center;padding-top:4px;font-size:11px;color:var(--gray);}
+.algo-split-label{
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:6px;
+}
+.algo-split .sim .algo-split-label{color:#2ECC71;}
+.algo-split .nao .algo-split-label{color:var(--red);}
+
+/* ── FRASE FINAL ────────────────────────────────── */
+.frase-final{
+  margin-top:36px;
+  background:linear-gradient(135deg,rgba(244,196,48,0.1),rgba(244,196,48,0.04));
+  border:1px solid rgba(244,196,48,0.25);border-radius:12px;
+  padding:26px 30px;text-align:center;
+}
+.frase-final p.quote{
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:clamp(14px,2vw,18px);font-style:italic;
+  color:var(--white);line-height:1.6;margin-bottom:10px;
+}
+.frase-final p.autor{
+  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);
+}
+
+/* ── STEPS ──────────────────────────────────────── */
+.steps{position:relative;padding-left:28px;}
+.steps::before{
+  content:'';position:absolute;left:9px;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(to bottom,var(--teal),var(--mint));
+}
+.step{position:relative;margin-bottom:18px;}
+.step::before{
+  content:'';position:absolute;left:-22px;top:6px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--navy2);
+  box-shadow:0 0 0 3px rgba(18,130,162,0.25);
+}
+.step.gold::before{background:var(--gold);box-shadow:0 0 0 3px rgba(244,196,48,0.2);}
+.step-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.step-body{font-size:12.5px;color:var(--offwh);line-height:1.6;}
+.step-body strong{color:var(--gold);}
+
+/* ── DIVIDER ────────────────────────────────────── */
+hr.div{border:none;border-top:1px solid var(--border);margin:24px 0;}
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .layout{margin-left:0;}
+  .hero,.main{padding-left:24px;padding-right:24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sl-title">OSCE · EAP Perfil B</div>
+    <div class="sl-sub">Dr. André Rossanno · TEC 2026</div>
+  </div>
+
+  <div class="sidebar-progress">
+    <div class="overall-label">
+      <span>Progresso</span>
+      <span id="pct">0%</span>
+    </div>
+    <div class="overall-bar"><div class="overall-fill" id="fill"></div></div>
+
+    <div class="sn active" onclick="goTo('f0')" data-idx="0">
+      <div class="sn-dot">0</div>
+      <div class="sn-info">
+        <div class="sn-label">Chegada</div>
+        <div class="sn-time">T = 0 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f1')" data-idx="1">
+      <div class="sn-dot">1</div>
+      <div class="sn-info">
+        <div class="sn-label">O₂ + Monitor</div>
+        <div class="sn-time">T = 0–3 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f2')" data-idx="2">
+      <div class="sn-dot">2</div>
+      <div class="sn-info">
+        <div class="sn-label">ABCD</div>
+        <div class="sn-time">T = 3–8 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f3')" data-idx="3">
+      <div class="sn-dot">3</div>
+      <div class="sn-info">
+        <div class="sn-label">Exames</div>
+        <div class="sn-time">T = 5–8 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f4')" data-idx="4">
+      <div class="sn-dot">4</div>
+      <div class="sn-info">
+        <div class="sn-label">Acompanhante</div>
+        <div class="sn-time">T = 3–5 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f5')" data-idx="5">
+      <div class="sn-dot">5</div>
+      <div class="sn-info">
+        <div class="sn-label">Furosemida</div>
+        <div class="sn-time">T = 8–10 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f6')" data-idx="6">
+      <div class="sn-dot">6</div>
+      <div class="sn-info">
+        <div class="sn-label">Nitrato EV</div>
+        <div class="sn-time">T = 10–12 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f7')" data-idx="7">
+      <div class="sn-dot">7</div>
+      <div class="sn-info">
+        <div class="sn-label">Bloqueio Néfron</div>
+        <div class="sn-time">T = 30–40 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f8')" data-idx="8">
+      <div class="sn-dot">8</div>
+      <div class="sn-info">
+        <div class="sn-label">Reconciliação</div>
+        <div class="sn-time">T = 40–50 min</div>
+      </div>
+    </div>
+    <div class="sn" onclick="goTo('f9')" data-idx="9">
+      <div class="sn-dot">9</div>
+      <div class="sn-info">
+        <div class="sn-label">Encerramento</div>
+        <div class="sn-time">T = 60 min</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <p><strong>Dr. André Rossanno</strong><br>
+    Cardiologia UTI Emergência<br>
+    Técnica de Memorização Médica<br>
+    SBC 2023–2024 · TEC 2026</p>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════════
+     LAYOUT
+══════════════════════════════════════════════ -->
+<div class="layout">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="badge-row">
+    <div style="display:flex;align-items:center;gap:18px;background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.2);border-radius:10px;padding:16px 22px;margin-bottom:28px;">
+  <div style="flex-shrink:0;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1282A2,#034078);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;">AR</div>
+  <div style="flex:1;">
+    <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:2px;">Dr. André Rossanno</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#1282A2;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Cardiologia · UTI · Emergência · TEC 2026</div>
+    <div style="font-size:12px;font-style:italic;color:#E8EEF6;line-height:1.65;border-left:3px solid #F4C430;padding-left:12px;">"Quem estuda com propósito não acumula páginas — acumula decisões.<br>O conhecimento só salva vidas quando está pronto para ser lembrado em segundos."</div>
+  </div>
+    </div>
+    <span class="badge badge-red">⚡ Emergência Cardiológica</span>
+    <span class="badge badge-teal">OSCE Estruturado</span>
+    <span class="badge badge-gold">TEC 2026</span>
+    <span class="badge badge-purple">🧠 Memorização Médica</span>
+    <span class="badge badge-green">SBC 2023–2024</span>
+  </div>
+
+  <h1>Edema Agudo Pulmonar<br><span>Perfil B — Algoritmo OSCE</span></h1>
+  <p class="hero-sub">Simulação Realística · Sequência Pedagógica Fragmentada · Aplicabilidade Clínica Integrada</p>
+
+  <div class="anasarca-alert">
+    <div class="aa-icon">🫁</div>
+    <div>
+      <h3>Este paciente NÃO é apenas hipertensivo</h3>
+      <p>João é um <strong>cardiopata descompensado em anasarca</strong> — edema generalizado (maleolar 4+/6, ascite, derrame pleural) associado a congestão pulmonar aguda. O que o está matando <strong>não é só a PA elevada</strong> — é a sobrecarga de volume com redistribuição para o pulmão. A estratégia terapêutica reflete isso: <strong>vasodilatar + descongestionar</strong>, baseada no Perfil B da SBC. A PA elevada é consequência da ativação neuro-hormonal, não a causa primária do EAP neste contexto.</p>
+    </div>
+  </div>
+
+  <div class="caso-card">
+    <div class="caso-item">
+      <label>Paciente</label>
+      <div class="val">João · 70 kg</div>
+    </div>
+    <div class="caso-item">
+      <label>PA Inicial</label>
+      <div class="val red">170 × 90 mmHg</div>
+    </div>
+    <div class="caso-item">
+      <label>Perfil SBC</label>
+      <div class="val gold">Quente / Úmido · B</div>
+    </div>
+    <div class="caso-item">
+      <label>Situação</label>
+      <div class="val green">Anasarca + EAP</div>
+    </div>
+  </div>
+
+  <div class="metodologia">
+    <h3>🧠 Técnica de Memorização Médica — Aplicabilidade em Simulação Realística</h3>
+    <p>Este protocolo utiliza a <strong>fragmentação pedagógica sequencial</strong> como recurso de memorização médica aplicada à simulação realística. Cada fase representa um domínio clínico que, isoladamente, recebe atenção total do aluno — assim como no RCP, onde cada manobra é treinada antes de ser executada em conjunto. <strong>Na prática clínica real, todas as etapas ocorrem de forma integrada e simultânea.</strong> Apesar de existir um algoritmo como guia, <strong>cada paciente deve ser individualizado</strong>. O algoritmo é um mapa mental, não um protocolo rígido.</p>
+  </div>
+
+  <div class="autor-line">
+    Autor: <span>Dr. André Rossanno</span> &nbsp;|&nbsp; Cardiologia UTI Emergência &nbsp;|&nbsp; Baseado nas Diretrizes SBC 2023–2024
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ══════════════════════
+     FASE 0
+══════════════════════ -->
+<section class="fase" id="f0">
+  <div class="fase-header">
+    <span class="fase-num">Fase 0</span>
+    <h2 class="fase-title">Chegada — Impressão Inicial</h2>
+    <span class="fase-time">T = 0 min</span>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>👁 Avaliação Visual + Posicionamento</h4>
+      <ul class="checklist">
+        <li><span class="ico ico-check">✓</span><span>Franca dispneia, taquipneico, ortopneico</span></li>
+        <li><span class="ico ico-check">✓</span><span><strong>Posicionar em 90° imediatamente</strong> — reduz pré-carga por pooling venoso</span></li>
+        <li><span class="ico ico-check">✓</span><span>Responsivo — conversa brevemente</span></li>
+        <li><span class="ico ico-check">✓</span><span>Impressão geral: paciente congesto, sudoreico, ansioso</span></li>
+      </ul>
+    </div>
+    <div class="card gold">
+      <h4>💬 Conversa Inicial Rápida</h4>
+      <ul class="checklist">
+        <li><span class="ico ico-gold">?</span><span><em>"Qual é o seu nome, senhor?"</em></span></li>
+        <li><span class="ico ico-gold">?</span><span><em>"O que o senhor está sentindo?"</em></span></li>
+        <li><span class="ico ico-gold">→</span><span>Resposta: <strong>"Coração grande, estou com falta de ar"</strong></span></li>
+        <li><span class="ico ico-gold">✓</span><span>Confirma: responsivo, orientado, queixa cardíaca</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Flashcards F0 -->
+  <div class="flashcard-section" style="margin-top:18px">
+    <h4>🃏 Flashcards — clique para revelar</h4>
+    <div class="fc-grid">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>Por que sentar o paciente em 90° antes de qualquer outra coisa?</p><span class="fc-hint">toque para ver ▸</span></div>
+          <div class="fc-back"><p>Posição ortostática → <strong>pooling venoso periférico</strong> → ↓ retorno venoso → ↓ pré-carga → alívio imediato da congestão pulmonar</p></div>
+        </div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>O que caracteriza o Perfil B da SBC neste paciente?</p><span class="fc-hint">toque para ver ▸</span></div>
+          <div class="fc-back"><p><strong>Quente + Úmido</strong><br>Débito cardíaco preservado + Congestão pulmonar presente. Estratégia: vasodilatar + diurese. Inotrópico NÃO indicado.</p></div>
+        </div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>O que é anasarca e como ela se manifesta neste paciente?</p><span class="fc-hint">toque para ver ▸</span></div>
+          <div class="fc-back"><p>Edema generalizado: <strong>maleolar 4+/6</strong>, ascite, derrame pleural + congestão pulmonar. É IC descompensada avançada — não apenas HAS.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 1
+══════════════════════ -->
+<section class="fase" id="f1">
+  <div class="fase-header">
+    <span class="fase-num red">Fase 1</span>
+    <h2 class="fase-title">Suporte de O₂ + Monitorização</h2>
+    <span class="fase-time red">T = 0–3 min</span>
+  </div>
+
+  <div class="destaque red">
+    <span class="label">⚠ Princípio crítico</span>
+    <p><strong>O₂ ANTES do monitor.</strong> Hipoxemia mata antes de você ler o número na tela. O₂ → FiO₂ → Venturi → depois instalar monitor. Ação → Reação em toda intervenção.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card red">
+      <h4>1A · Cálculo da FiO₂ — Cateter Nasal</h4>
+      <div class="formula-box">
+        <div class="formula">FiO₂ = (<span>Fluxo × 4</span> + 21) ÷ 100</div>
+        <div class="exemplo">Ex: cateter 3 L/min → (3×4 + 21)/100</div>
+        <div class="resultado">→ FiO₂ = <strong style="color:var(--gold)">0,33 = 33%</strong></div>
+      </div>
+      <div class="destaque teal">
+        <span class="label">Máscara de Venturi</span>
+        <p>SpO₂ = 88% → insuficiente. Trocar para Venturi.<br>
+        Escolher válvula compatível: FiO₂ 33% → <strong>válvula 35%</strong><br>
+        Seguir o fluxo mínimo impresso na própria válvula.<br>
+        <strong>Alvo SBC 2023: SpO₂ ≥ 94–96%</strong></p>
+      </div>
+    </div>
+    <div class="card">
+      <h4>1B · Monitor (após O₂ resolvido)</h4>
+      <ul class="checklist">
+        <li><span class="ico ico-check">✓</span><span><strong>PA contínua</strong> — registrar valor inicial</span></li>
+        <li><span class="ico ico-check">✓</span><span><strong>SpO₂ contínua</strong> — confirmar melhora pós-Venturi</span></li>
+        <li><span class="ico ico-check">✓</span><span><strong>ECG contínuo</strong> — detectar arritmia precipitante</span></li>
+        <li><span class="ico ico-check">✓</span><span>2 acessos venosos calibrosos</span></li>
+      </ul>
+      <div class="ancora">
+        <span class="ancora-icon">⚡</span>
+        <p><strong>Ação → Reação sempre:</strong> instalou monitor → lê o monitor. Colocou Venturi → avalia SpO₂ em 2 min. Essa lógica se repete em todas as fases do OSCE.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QA F1 -->
+  <div class="qa-block">
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Por que O₂ vem antes do monitor neste paciente?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        A hipoxemia grave (SpO₂ 88%) representa risco imediato de falência respiratória. A monitorização é essencial, mas <strong>não altera a hipoxemia</strong> — apenas a quantifica. Corrigir o problema antes de monitorar é a prioridade. O monitor complementa, não substitui a intervenção.
+      </div></div>
+    </div>
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Qual a diferença entre cateter nasal e máscara de Venturi?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        O cateter nasal entrega FiO₂ <strong>variável e imprecisa</strong> (depende da ventilação do paciente). A máscara Venturi usa princípio de Bernoulli para entregar <strong>FiO₂ fixa e controlada</strong>, independente do padrão respiratório — ideal no EAP onde o paciente está taquipneico e irregular. Cada válvula especifica o fluxo mínimo necessário para manter a FiO₂ prometida.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 2
+══════════════════════ -->
+<section class="fase" id="f2">
+  <div class="fase-header">
+    <span class="fase-num">Fase 2</span>
+    <h2 class="fase-title">Avaliação ABCD — Fragmentada</h2>
+    <span class="fase-time">T = 3–8 min</span>
+  </div>
+
+  <div class="ancora">
+    <span class="ancora-icon">🧠</span>
+    <p><strong>Observação pedagógica:</strong> a fragmentação do ABCD é exclusivamente didática. <strong>Na prática clínica real, o ABCD é executado de forma integrada e simultânea.</strong> Cada paciente deve ser individualizado — o algoritmo é o mapa, não o destino.</p>
+  </div>
+
+  <!-- A -->
+  <div class="card" style="margin-bottom:12px">
+    <h4>A — Airway + Neurológico Rápido</h4>
+    <div class="grid-2">
+      <ul class="checklist">
+        <li><span class="ico ico-check">✓</span><span>Via aérea pérvia — fala, sem obstrução</span></li>
+        <li><span class="ico ico-check">✓</span><span>Aperta mão — <strong>força preservada, simétrica</strong></span></li>
+        <li><span class="ico ico-check">✓</span><span>Pupilas isocóricas e fotorreagentes</span></li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="ico ico-gold">?</span><span><em>"Teve febre?"</em> → <strong>Não, só cansaço</strong></span></li>
+        <li><span class="ico ico-gold">?</span><span><em>"Quando começou a falta de ar?"</em></span></li>
+        <li><span class="ico ico-check">✓</span><span>Glasgow 15 — orientado, responsivo</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="card teal" style="margin-bottom:12px">
+    <h4>B — Breathing: Pulmão PRIMEIRO, semiologia periférica depois</h4>
+    <div class="destaque teal" style="margin-bottom:14px">
+      <p><strong>No EAP, o pulmão é a urgência imediata do B.</strong> O aluno que demora a auscultar o pulmão pode ser penalizado no OSCE. Semiologia periférica vem logo após — ela confirma e quantifica a sobrecarga de volume (anasarca).</p>
+    </div>
+    <div class="grid-2">
+      <div>
+        <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px">1º · Ausculta Pulmonar</p>
+        <ul class="checklist">
+          <li><span class="ico ico-warn">!</span><span><strong>Estertores crepitantes bilaterais</strong> — predomínio em bases</span></li>
+          <li><span class="ico ico-warn">!</span><span>↓ Murmúrio vesicular bilateral</span></li>
+          <li><span class="ico ico-warn">!</span><span>Taquipneia — FR elevada</span></li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.8px">2º · Semiologia Craniocaudal (anasarca)</p>
+        <ul class="checklist">
+          <li><span class="ico ico-check">✓</span><span><strong>Turgência jugular</strong> a 45° — presente</span></li>
+          <li><span class="ico ico-check">✓</span><span><strong>Reflexo hepatojugular</strong> — positivo</span></li>
+          <li><span class="ico ico-check">✓</span><span>Percussão abdominal — hepatomegalia</span></li>
+          <li><span class="ico ico-check">✓</span><span><strong>Edema maleolar 4+/6</strong> bilateral</span></li>
+          <li><span class="ico ico-check">✓</span><span>Pulso pedioso sincrônico — presente</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- C com APTM -->
+  <div class="card green" style="margin-bottom:12px">
+    <h4>C — Circulation: Ausculta Cardíaca + Periférico</h4>
+
+    <!-- APTM mnemônico -->
+    <div class="aptm-box">
+      <div class="aptm-title">🧠 Mnemônico de Memorização — Focos de Ausculta</div>
+      <div class="aptm-word">
+        <span>A</span>PAR<span>T</span>A<span>M</span>EN<span>T</span>O
+      </div>
+      <p style="font-size:11px;color:var(--gray);text-align:center;margin-bottom:14px;font-style:italic;">"APTM" — as 4 primeiras letras = os 4 focos, na ordem de ausculta</p>
+      <div class="aptm-grid">
+        <div class="aptm-letter">
+          <div class="letter">A</div>
+          <div class="foco">Aórtico</div>
+          <div class="local">2º EID</div>
+        </div>
+        <div class="aptm-letter">
+          <div class="letter">P</div>
+          <div class="foco">Pulmonar</div>
+          <div class="local">2º EIE</div>
+        </div>
+        <div class="aptm-letter">
+          <div class="letter">T</div>
+          <div class="foco">Tricúspide</div>
+          <div class="local">4º EIE</div>
+        </div>
+        <div class="aptm-letter">
+          <div class="letter">M</div>
+          <div class="foco">Mitral</div>
+          <div class="local">5º EIE / Ictus</div>
+        </div>
+      </div>
+      <div class="destaque green" style="margin-top:12px">
+        <p><strong>Achado neste paciente: B3 mitral</strong> — galope diastólico. Indica disfunção ventricular e sobrecarga de volume. Confirma IC descompensada.</p>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:12px">
+      <ul class="checklist">
+        <li><span class="ico ico-green">✓</span><span>Enchimento capilar <strong>normal (&lt;2s)</strong> — quente</span></li>
+        <li><span class="ico ico-green">✓</span><span>Pulso radial <strong>cheio e forte</strong> (PA 170×90)</span></li>
+      </ul>
+      <div class="destaque green">
+        <p><strong>Perfil Forrester B confirmado:</strong> débito preservado + congestão. Vasodilatar + descongestionar. Inotrópico não indicado aqui.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- D -->
+  <div class="card amber">
+    <h4>D — Disability + Dados Complementares</h4>
+    <div class="grid-2">
+      <ul class="checklist">
+        <li><span class="ico ico-gold">✓</span><span>Glasgow formal: <strong>15</strong></span></li>
+        <li><span class="ico ico-gold">✓</span><span>Glicemia capilar — excluir hiper/hipoglicemia precipitante</span></li>
+      </ul>
+      <ul class="checklist">
+        <li><span class="ico ico-gold">✓</span><span>Temperatura — excluir foco infeccioso</span></li>
+        <li><span class="ico ico-gold">✓</span><span>Diurese prévia: <strong>oligúria?</strong> → orienta urgência da sonda</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- QA F2 -->
+  <div class="qa-block" style="margin-top:16px">
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Por que auscultar o pulmão ANTES da semiologia periférica no B?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        No EAP, o comprometimento pulmonar é o <strong>evento agudo que está matando</strong> o paciente naquele momento. A semiologia periférica (edema, jugular, hepatomegalia) confirma a sobrecarga crônica — importante, mas não urgente. O OSCE penaliza quem demora a auscultar o pulmão num quadro agudo respiratório.
+      </div></div>
+    </div>
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">O que significa B3 mitral e por que ele aparece neste paciente?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        B3 (terceira bulha) = som protodiastólico causado pela desaceleração abrupta do fluxo de sangue entrando num <strong>ventrículo esquerdo rígido e sobrecarregado</strong>. É o "galope de enchimento". Sua presença confirma disfunção diastólica e sobrecarga de volume — achado típico da IC descompensada. Foco mitral = 5º EIE ou ictus.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 3
+══════════════════════ -->
+<section class="fase" id="f3">
+  <div class="fase-header">
+    <span class="fase-num">Fase 3</span>
+    <h2 class="fase-title">Solicitação de Exames</h2>
+    <span class="fase-time">T = 5–8 min · em paralelo com ABCD</span>
+  </div>
+
+  <div class="ancora">
+    <span class="ancora-icon">🧠</span>
+    <p><strong>Pedagógico:</strong> exames solicitados em paralelo com o ABCD — o técnico coleta enquanto o médico continua avaliando. Aqui são apresentados separadamente para justificar cada um individualmente.</p>
+  </div>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead><tr><th>Exame</th><th>Por que solicitar</th><th>Achado esperado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hemograma</strong></td><td>Anemia precipitante; leucocitose sugere foco infeccioso</td><td>—</td></tr>
+        <tr><td><strong>Sódio</strong></td><td>Hiponatremia dilucional na IC avançada; orienta restrição hídrica</td><td>Pode estar ↓</td></tr>
+        <tr><td><strong>Potássio</strong></td><td>Furosemida causa hipocalemia → risco arritmia; guia reposição</td><td>Checar basal</td></tr>
+        <tr><td><strong>Cloro</strong></td><td>Alcalose hipoclorêmica por diuréticos crônicos; avalia ácido-base</td><td>—</td></tr>
+        <tr><td><strong>Ureia + Creatinina</strong></td><td>Função renal ANTES do diurético — define dose e reconciliação</td><td><span class="warn">Cr = 2,5 mg/dL ⚠</span></td></tr>
+        <tr><td><strong>Magnésio</strong></td><td>Hipomagnesemia → arritmias + resistência ao diurético de alça</td><td>—</td></tr>
+        <tr><td><strong>Gasometria Arterial</strong></td><td>Hipoxemia real, hipercapnia (fadiga?), pH, lactato</td><td>Hipoxemia + alcalose resp.</td></tr>
+        <tr><td><strong>proBNP</strong></td><td>Confirmar descompensação. <span class="warn">NÃO BNP</span> — paciente usa Entresto</td><td><span class="warn">Muito elevado</span></td></tr>
+        <tr><td><strong>Troponina</strong></td><td>SCA como precipitante — ECG não exclui isquemia subendocárdica</td><td>Pode estar ↑</td></tr>
+        <tr><td><strong>ECG 12 derivações</strong></td><td>Excluir SCA, sobrecarga, arritmia precipitante</td><td>Sobrecarga VE</td></tr>
+        <tr><td><strong>RX de Tórax</strong></td><td>Congestão, derrame, cardiomegalia — confirma diagnóstico</td><td>Redistribuição + Kerley B</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pegadinha">
+    <span class="peg-label">🎓 Pegadinha TEC — proBNP vs BNP</span>
+    <p>Paciente usa <strong>Entresto (sacubitril/valsartana)</strong>. O sacubitril inibe a neprilisina (NEP) → BNP não é degradado → <strong>BNP falsamente elevado</strong>, independente da função real. O correto é dosar <strong>proBNP</strong>, que não sofre influência da NEP. Dosar BNP neste paciente = erro de interpretação garantido.</p>
+  </div>
+
+  <!-- Flashcard F3 -->
+  <div class="flashcard-section">
+    <h4>🃏 Flashcards</h4>
+    <div class="fc-grid">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>Por que pedir magnésio num paciente em uso de furosemida?</p><span class="fc-hint">toque ▸</span></div>
+          <div class="fc-back"><p>Furosemida causa <strong>hipomagnesemia</strong>. Mg baixo → arritmias ventriculares + <strong>resistência ao diurético de alça</strong>. Repor antes de escalar dose.</p></div>
+        </div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>Por que pedir troponina se o ECG não mostra SCA?</p><span class="fc-hint">toque ▸</span></div>
+          <div class="fc-back"><p>Isquemia subendocárdica pode ocorrer sem supra de ST. <strong>O ECG não exclui SCA</strong> — a troponina é necessária para completar o raciocínio diagnóstico.</p></div>
+        </div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>O que o Kerley B no RX de tórax significa?</p><span class="fc-hint">toque ▸</span></div>
+          <div class="fc-back"><p>Linhas horizontais nos ângulos costofrênicos → <strong>edema intersticial</strong> por aumento da pressão capilar pulmonar. Sinal de congestão pulmonar aguda.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 4
+══════════════════════ -->
+<section class="fase" id="f4">
+  <div class="fase-header">
+    <span class="fase-num gold">Fase 4</span>
+    <h2 class="fase-title">Anamnese com Acompanhante</h2>
+    <span class="fase-time">T = 3–5 min · em paralelo com coleta</span>
+  </div>
+
+  <div class="destaque gold">
+    <p><strong>Timing estratégico:</strong> o acompanhante é chamado enquanto o técnico coleta os exames. Você precisa saber a dose domiciliar de furosemida ANTES de prescrever a dose EV.</p>
+  </div>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead><tr><th>Medicação</th><th>Dose / Frequência</th><th>Impacto na conduta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Carvedilol</strong></td><td class="mono">3,125 mg · 2×/dia</td><td>Dose baixa — estável hemodinamicamente</td></tr>
+        <tr><td><strong>Dapagliflozina</strong></td><td class="mono">10 mg · 1×/dia</td><td>Avaliar TFG — pode suspender se Cr elevada</td></tr>
+        <tr><td><strong>Entresto</strong> (sacubitril/valsartana)</td><td class="mono">Em uso</td><td>→ pedir proBNP, nunca BNP!</td></tr>
+        <tr><td><strong>Espironolactona</strong></td><td class="mono">X mg · manhã e tarde</td><td>Manter — já faz parte do bloqueio</td></tr>
+        <tr><td><strong>Furosemida</strong></td><td class="mono">40 mg manhã + 40 mg tarde</td><td><span class="warn">Total VO = 80 mg/dia → dose EV = 80 mg</span></td></tr>
+        <tr><td><del>Hidroclorotiazida</del></td><td class="mono">—</td><td>Ia comprar, nunca tomou</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 5
+══════════════════════ -->
+<section class="fase" id="f5">
+  <div class="fase-header">
+    <span class="fase-num red">Fase 5</span>
+    <h2 class="fase-title">Sonda Vesical + Furosemida EV</h2>
+    <span class="fase-time red">T = 8–10 min</span>
+  </div>
+
+  <div class="sonda-alert">
+    <h3>🚨 SONDA VESICAL — ANTES DA FUROSEMIDA</h3>
+    <p>Sem sonda = sem medição de diurese. Sem diurese medida = você não sabe se o tratamento funcionou.<br>
+    <strong>A sonda é o termômetro da sua resposta terapêutica.</strong></p>
+  </div>
+
+  <!-- Efeito vasodilatador precoce — IMPORTANTE -->
+  <div class="destaque green">
+    <span class="label">🌿 Efeito vasodilatador precoce da furosemida — SBC</span>
+    <p>A furosemida possui um <strong>efeito vasodilatador pulmonar imediato</strong> mediado por prostaglandinas, que ocorre <strong>antes da diurese</strong>. Por isso o paciente sente alívio da dispneia em minutos — não porque urinou, mas porque houve vasodilatação venosa pulmonar. <strong>A diurese vem depois</strong> (pico 20–30 min EV) e deve ser monitorizada com calma, sem escalonamento precipitado. O alívio inicial não significa que o tratamento está completo.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card red">
+      <h4>Regra SBC 2023 — Dose EV</h4>
+      <div class="formula-box">
+        <div class="formula">Dose IV ≥ <span>Dose VO Total Diária</span></div>
+        <div class="exemplo">João: 40 mg manhã + 40 mg tarde = 80 mg/dia</div>
+        <div class="resultado">→ Furosemida EV = <strong style="color:var(--gold)">80 mg</strong></div>
+      </div>
+      <div class="destaque red">
+        <p><strong>Paciente adaptado → precisa de dose cheia.</strong> Subdosar é pegadinha clássica de prova e erro frequente na prática.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>💊 Apresentação do Lasix</h4>
+      <div class="rx-box">
+        <span class="rx-label">Furosemida (Lasix) — concentração padrão</span>
+        <div class="rx-item"><span class="drug">1 mL</span><span class="dose">= 10 mg</span><span class="obs">concentração padrão</span></div>
+        <div class="rx-item"><span class="drug">1 ampola</span><span class="dose">= 2 mL = 20 mg</span><span class="obs">apresentação brasileira</span></div>
+        <div class="rx-item"><span class="drug">Para 80 mg:</span><span class="dose">4 ampolas EV</span><span class="obs">= 8 mL no total</span></div>
+      </div>
+      <div class="destaque gold" style="margin-top:10px">
+        <p><strong>Verbalizar corretamente no OSCE:</strong><br>
+        <em>"Prescrevo 4 ampolas de furosemida EV em bolus"</em><br>
+        Não apenas "80 mg" — o examinador quer saber se você conhece a apresentação real.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ancora" style="margin-top:12px">
+    <span class="ancora-icon">⏱</span>
+    <p><strong>Ação → Reação:</strong> prescreveu furosemida → aguardar 20–30 min para avaliar diurese (pico de ação EV). O alívio precoce da dispneia é pelo efeito vasodilatador — não confundir com resposta diurética. Avaliar antes do pico = escalonamento desnecessário.</p>
+  </div>
+
+  <!-- QA F5 -->
+  <div class="qa-block">
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">A furosemida vasodilata? Como isso alivia o pulmão antes da diurese?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        Sim. A furosemida estimula a síntese de <strong>prostaglandinas vasodilatadoras</strong> (PGE2, PGI2) que promovem venodilatação sistêmica e pulmonar nos primeiros minutos após a infusão EV. Isso reduz a pré-carga rapidamente, aliviando a congestão antes mesmo de qualquer efeito diurético. <strong>O pico diurético ocorre em 20–30 min</strong> — é quando a diurese deve ser avaliada.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 6
+══════════════════════ -->
+<section class="fase" id="f6">
+  <div class="fase-header">
+    <span class="fase-num">Fase 6</span>
+    <h2 class="fase-title">Nitrato EV — Tridil vs Nipride</h2>
+    <span class="fase-time">T = 10–12 min</span>
+  </div>
+
+  <div class="destaque teal">
+    <span class="label">Princípio SBC — vasodilatar primeiro</span>
+    <p>O nitrato é o <strong>primeiro pilar terapêutico</strong> do EAP cardiogênico. Vasodilatação venosa → ↓ pré-carga → ↓ congestão pulmonar rápida. A furosemida complementa pela diurese, mas o nitrato é quem age mais rápido no pulmão.</p>
+  </div>
+
+  <!-- Comparativo Tridil vs Nipride -->
+  <div class="nitrato-compare">
+    <div class="nitrato-card tridil">
+      <div class="nc-chosen">✅ ESCOLHIDO</div>
+      <div class="nc-badge">Tridil</div>
+      <div class="nc-name">Nitroglicerina (GTN)</div>
+      <div class="nc-row"><span class="nc-k">Ampola</span><span class="nc-v"><strong>10 mL</strong></span></div>
+      <div class="nc-row"><span class="nc-k">Diluição</span><span class="nc-v">10 mL em 250 mL SG5% → <strong>200 mcg/mL</strong></span></div>
+      <div class="nc-row"><span class="nc-k">Mecanismo</span><span class="nc-v"><strong>Venodilatador + coronário protetor</strong></span></div>
+      <div class="nc-row"><span class="nc-k">Efeito</span><span class="nc-v">↓ Pré-carga predominante</span></div>
+      <div class="nc-row"><span class="nc-k">Indicação</span><span class="nc-v"><strong>EAP cardiogênico — ideal</strong></span></div>
+    </div>
+    <div class="nitrato-card nipride">
+      <div class="nc-badge">Nipride</div>
+      <div class="nc-name">Nitroprussiato de Sódio</div>
+      <div class="nc-row"><span class="nc-k">Ampola</span><span class="nc-v"><strong>2 mL</strong></span></div>
+      <div class="nc-row"><span class="nc-k">Diluição</span><span class="nc-v">2 mL em 250 mL SG5% — <strong>proteger da luz</strong></span></div>
+      <div class="nc-row"><span class="nc-k">Mecanismo</span><span class="nc-v"><strong>Vasodilatador arterial + venoso</strong> (misto)</span></div>
+      <div class="nc-row"><span class="nc-k">Efeito</span><span class="nc-v">↓ Pré-carga + ↓ Pós-carga</span></div>
+      <div class="nc-row"><span class="nc-k">Indicação</span><span class="nc-v">Emergência hipertensiva pura</span></div>
+    </div>
+  </div>
+
+  <div class="pegadinha">
+    <span class="peg-label">🎓 Por que Tridil e não Nipride neste caso?</span>
+    <p>João tem <strong>componente cardiogênico</strong> (IC descompensada, B3 mitral, anasarca). O Tridil, além de venodilatador, tem <strong>efeito coronário protetor</strong> — importante num paciente com coração doente. O Nipride é mais potente anti-hipertensivo (arterial + venoso), mas sem proteção coronariana. No EAP cardiogênico, o <strong>Tridil é superior</strong>. O Nipride fica para emergências hipertensivas sem componente cardiogênico dominante.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card red">
+      <h4>✅ Checklist antes do Tridil — 3 perguntas obrigatórias</h4>
+      <ul class="checklist">
+        <li><span class="ico ico-warn">?</span><span><strong>IAM de ventrículo direito?</strong><br><span class="sub">VD depende de pré-carga — Tridil ↓ pré-carga → colapso. Contraindicado se VD infartado.</span></span></li>
+        <li><span class="ico ico-warn">?</span><span><strong>Uso de inibidor de fosfodiesterase 5?</strong> (Sildenafil / Tadalafil)<br><span class="sub">Contraindicação absoluta — sinergia perigosa → hipotensão grave.</span></span></li>
+        <li><span class="ico ico-warn">?</span><span><strong>Hipotensão?</strong> PAS &lt; 100 mmHg<br><span class="sub">Contraindicado. João tem 170×90 → liberar.</span></span></li>
+        <li><span class="ico ico-check">✓</span><span>João: <strong>PA 170×90 · sem VD · sem iPDE5 → Tridil liberado</strong></span></li>
+      </ul>
+    </div>
+
+    <div class="card gold">
+      <h4>⚙ Prescrição e Titulação — Tridil</h4>
+      <div class="rx-box">
+        <span class="rx-label">Tridil — 10 mL em 250 mL SG5% = 200 mcg/mL</span>
+        <div class="rx-item"><span class="drug">Início</span><span class="dose">7 mL/h</span><span class="obs">≈ 23 mcg/min</span></div>
+        <div class="rx-item"><span class="drug">T=20 min · reavaliar</span><span class="dose">→ 10 mL/h</span><span class="obs">≈ 33 mcg/min</span></div>
+        <div class="rx-item"><span class="drug">Se necessário</span><span class="dose">→ 15 mL/h</span><span class="obs">≈ 50 mcg/min</span></div>
+        <div class="rx-item"><span class="drug">Titular a cada</span><span class="dose">5–10 min</span><span class="obs">+ 3 mL/h por vez</span></div>
+        <div class="rx-item"><span class="drug">Limite ↓ PA</span><span class="dose">PAS &lt; 100</span><span class="obs">reduzir / suspender</span></div>
+      </div>
+      <div class="destaque gold" style="margin-top:10px">
+        <p><strong>Por que começar em 7 mL/h?</strong> Neste OSCE acadêmico, iniciamos em 7 para demonstrar titulação progressiva. A dose não é calculada por peso — é titulada pela resposta clínica e pela PA.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reavaliação T=20 -->
+  <div class="card" style="margin-top:12px">
+    <h4>🔄 Reavaliação em T = 20 min — Ação → Reação</h4>
+    <ul class="checklist">
+      <li><span class="ico ico-check">✓</span><span>Auscultar pulmão: <strong>ápices melhoraram</strong> (vasodilatação precoce furosemida + nitrato)</span></li>
+      <li><span class="ico ico-warn">!</span><span><strong>Bases ainda com subcrepitantes</strong> — congestão parcialmente mantida</span></li>
+      <li><span class="ico ico-check">✓</span><span>PA respondeu → <strong>aumentar Tridil de 7 para 10 mL/h</strong></span></li>
+      <li><span class="ico ico-check">✓</span><span>Checar diurese pela sonda → se ausente → escalar (Fase 7)</span></li>
+    </ul>
+  </div>
+
+  <!-- QA F6 -->
+  <div class="qa-block">
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Por que o Tridil é contraindicado no IAM de VD?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        O ventrículo direito infartado perde sua capacidade contrátil e passa a depender <strong>exclusivamente da pré-carga</strong> para manter o débito. O Tridil reduz a pré-carga por venodilatação → o VD colapsa → choque cardiogênico. Por isso, no IAM inferior com extensão para VD, <strong>nitratos são contraindicados</strong> e a conduta é expansão volêmica.
+      </div></div>
+    </div>
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Qual a diferença entre Tridil e Nipride em termos de mecanismo?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        <strong>Tridil (nitroglicerina):</strong> venodilatador + coronário protetor. Reduz predominantemente a pré-carga e tem efeito vasodilatador coronariano → ideal em cardiopatas.<br><br>
+        <strong>Nipride (nitroprussiato):</strong> vasodilatador arterial + venoso misto → reduz pré e pós-carga. Mais potente anti-hipertensivo, mas sem proteção coronariana. Requer proteção da luz na infusão. Usado em emergências hipertensivas puras.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 7
+══════════════════════ -->
+<section class="fase" id="f7">
+  <div class="fase-header">
+    <span class="fase-num red">Fase 7</span>
+    <h2 class="fase-title">Sem Diurese — Bloqueio Sequencial do Néfron</h2>
+    <span class="fase-time red">T = 30–40 min</span>
+  </div>
+
+  <div class="decisao">
+    <h3>❓ Paciente urinou após 20–30 min?</h3>
+    <div class="decisao-branches">
+      <div class="branch sim">
+        <h4>✅ SIM</h4>
+        <p>Manter nitrato titulado<br>
+        <strong>Alvo: &gt;0,5 mL/kg/h</strong><br>
+        = &gt;35 mL/h (70 kg)<br>
+        Reavaliar a cada 15–30 min</p>
+      </div>
+      <div class="branch-arrow">→</div>
+      <div class="branch nao">
+        <h4>🔴 NÃO</h4>
+        <p>Resistência diurética<br>
+        <strong>→ Bloqueio Sequencial</strong><br>
+        do Néfron — escalar</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ancora">
+    <span class="ancora-icon">🧠</span>
+    <p><strong>Âncora:</strong> "O rim está travado no túbulo distal → você abre a válvula final." A furosemida bloqueia a alça de Henle. O sódio que escapa continua sendo reabsorvido distalmente. O tiazídico bloqueia esse segmento — ação sinérgica e potente.</p>
+  </div>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead><tr><th>Segmento</th><th>Droga</th><th>Mecanismo</th><th>Prescrição</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Alça de Henle</strong></td><td>Furosemida (reforço)</td><td>Inibe NKCC2</td><td class="mono">+ 40–80 mg EV</td></tr>
+        <tr><td><strong>Túbulo Distal</strong></td><td><strong>Tiazídico (chave)</strong></td><td>Inibe NCC</td><td class="mono">HCTZ 25–50 mg VO<br>ou Clortalidona 25 mg</td></tr>
+        <tr><td><strong>Ducto Coletor</strong></td><td>Espironolactona</td><td>Bloqueia ENaC / aldosterona</td><td class="mono">Já em uso — manter</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2" style="margin-top:12px">
+    <div class="destaque green">
+      <span class="label">Alvo de diurese após bloqueio</span>
+      <p><strong>100–150 mL/h nas primeiras horas</strong> confirma eficácia do bloqueio e descongestão ativa.</p>
+    </div>
+    <div class="card">
+      <h4>⏱ T=60–120 min · Se necessário</h4>
+      <div class="rx-box">
+        <span class="rx-label">Furosemida infusão contínua</span>
+        <div class="rx-item"><span class="drug">Dose</span><span class="dose">10–20 mg/h EV</span><span class="obs">em bomba</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flashcard F7 -->
+  <div class="flashcard-section">
+    <h4>🃏 Flashcards — Bloqueio Sequencial</h4>
+    <div class="fc-grid">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>Por que o tiazídico é a "chave" no bloqueio sequencial?</p><span class="fc-hint">toque ▸</span></div>
+          <div class="fc-back"><p>A furosemida bloqueia a alça, mas o sódio que escapa é <strong>reabsorvido no túbulo distal</strong>. O tiazídico bloqueia o NCC distal — sinergia que <strong>potencializa dramaticamente</strong> a diurese.</p></div>
+        </div>
+      </div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="fc-inner">
+          <div class="fc-front"><p>Onde age a espironolactona no néfron?</p><span class="fc-hint">toque ▸</span></div>
+          <div class="fc-back"><p>No <strong>ducto coletor</strong> — bloqueia receptores de aldosterona → inibe ENaC → ↓ reabsorção de Na⁺. Terceiro nível do bloqueio sequencial. João já usava — manter.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 8
+══════════════════════ -->
+<section class="fase" id="f8">
+  <div class="fase-header">
+    <span class="fase-num purple">Fase 8</span>
+    <h2 class="fase-title">Exames + Reconciliação de Medicamentos</h2>
+    <span class="fase-time">T = 40–50 min</span>
+  </div>
+
+  <div class="destaque red">
+    <span class="label">⚠ Achado crítico que muda tudo</span>
+    <p><strong>Creatinina = 2,5 mg/dL</strong> — algumas medicações devem ser suspensas imediatamente. Este resultado redefine a prescrição de alta.</p>
+  </div>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead><tr><th>Medicação</th><th>Conduta</th><th>Motivo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Carvedilol 3,125 mg</strong></td><td><span class="ok">✅ Reconciliar</span></td><td>Dose baixa; estável hemodinamicamente</td></tr>
+        <tr><td><strong>Furosemida</strong></td><td><span class="ok">✅ Manter EV</span></td><td>Ainda em tratamento ativo</td></tr>
+        <tr><td><strong>Espironolactona</strong></td><td><span class="ok">✅ Manter</span></td><td>Já parte do bloqueio sequencial</td></tr>
+        <tr><td><strong>Dapagliflozina (SGLT2i)</strong></td><td><span class="nok">❌ Suspender</span></td><td>Cr elevada + fase aguda → risco de piora da TFG</td></tr>
+        <tr><td><strong>Entresto</strong></td><td><span class="nok">❌ Suspender</span></td><td>Cr 2,5 + instabilidade → fase aguda não é momento</td></tr>
+        <tr>
+          <td colspan="3" style="background:rgba(18,130,162,0.08)">
+            <strong style="color:var(--teal)">Substitutos para Entresto suspenso:</strong><br>
+            <span style="font-size:12px;color:var(--offwh)">
+              Com Cr 2,5 e Entresto suspenso, manter redução de pós-carga com:<br>
+              <strong style="color:var(--gold)">Hidralazina + Nitrato oral</strong> — alternativa clássica ao IECA/SRNI na disfunção renal significativa (SBC)
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QA F8 -->
+  <div class="qa-block">
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Por que suspender a dapagliflozina com creatinina de 2,5?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        Os SGLT2i perdem eficácia e aumentam o risco de piora renal quando a TFG está comprometida. Na fase aguda com Cr 2,5, o benefício desaparece e o risco de injúria renal aguda aumenta. <strong>Suspender na internação e reavaliar na alta</strong> quando o paciente estiver estável e a função renal melhorar.
+      </div></div>
+    </div>
+    <div class="qa-item" onclick="toggleQA(this)">
+      <div class="qa-question">
+        <div class="qa-q-icon">?</div>
+        <div class="qa-q-text">Por que Hidralazina + Nitrato como substitutos do Entresto?</div>
+        <div class="qa-arrow">▼</div>
+      </div>
+      <div class="qa-answer"><div class="qa-answer-inner">
+        IECA, BRA e SRNI (Entresto) são nefrotóxicos em disfunção renal significativa — reduzem a pressão de filtração glomerular. A combinação <strong>Hidralazina (vasodilatador arterial) + Nitrato (venodilatador)</strong> reduz pré e pós-carga sem impacto renal, sendo a alternativa recomendada pela SBC para pacientes com Cr elevada ou intolerância a IECA/BRA/SRNI.
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     FASE 9
+══════════════════════ -->
+<section class="fase" id="f9">
+  <div class="fase-header">
+    <span class="fase-num green">Fase 9</span>
+    <h2 class="fase-title">Encerramento — Prescrição + Orientação</h2>
+    <span class="fase-time">T = 60 min</span>
+  </div>
+
+  <div class="destaque green">
+    <p><strong>Status em T=60 min:</strong> paciente vasodilatado, iniciando diurese pós-bloqueio sequencial, bases pulmonares com melhora progressiva, PA controlada, hemodinamicamente estável. Perfil B em descongestão ativa.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4>📋 Prescrição Ativa Completa</h4>
+      <div class="rx-box">
+        <span class="rx-label">Prescrição em T=60 min</span>
+        <div class="rx-item"><span class="drug">O₂ Venturi 35%</span><span class="dose">conforme válvula</span><span class="obs">alvo SpO₂ ≥94%</span></div>
+        <div class="rx-item"><span class="drug">Furosemida</span><span class="dose">80 mg EV · 4 amp</span><span class="obs">bolus inicial</span></div>
+        <div class="rx-item"><span class="drug">Tridil</span><span class="dose">10 mL/250 mL · 10 mL/h</span><span class="obs">200 mcg/mL</span></div>
+        <div class="rx-item"><span class="drug">Carvedilol</span><span class="dose">3,125 mg 2×/dia</span><span class="obs">manter VO</span></div>
+        <div class="rx-item"><span class="drug">Espironolactona</span><span class="dose">dose habitual</span><span class="obs">manter</span></div>
+        <div class="rx-item"><span class="drug">Hidralazina</span><span class="dose">a prescrever</span><span class="obs">substituto Entresto</span></div>
+        <div class="rx-item"><span class="drug">Nitrato oral</span><span class="dose">a prescrever</span><span class="obs">substituto Entresto</span></div>
+        <div class="rx-item" style="color:var(--red)"><span class="drug">Dapagliflozina</span><span class="dose">SUSPENSO</span><span class="obs">Cr 2,5</span></div>
+        <div class="rx-item" style="color:var(--red)"><span class="drug">Entresto</span><span class="dose">SUSPENSO</span><span class="obs">fase aguda + Cr</span></div>
+      </div>
+    </div>
+
+    <div class="card gold">
+      <h4>👨‍👦 Orientação ao Acompanhante</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-title">Diagnóstico acessível</div>
+          <div class="step-body">"Seu pai está com o coração sobrecarregado, acumulando líquido no pulmão e no corpo — por isso a falta de ar e o inchaço. Estamos tratando para tirar esse líquido e aliviar o esforço do coração."</div>
+        </div>
+        <div class="step gold">
+          <div class="step-title">Medicações ajustadas</div>
+          <div class="step-body">"Dois remédios foram pausados porque o rim está sobrecarregado. Colocamos substitutos para proteger o coração enquanto esperamos o rim recuperar."</div>
+        </div>
+        <div class="step">
+          <div class="step-title">Próximos passos</div>
+          <div class="step-body">Internação para controle dos remédios venosos e exames. <strong>Sinais de alerta:</strong> falta de ar piora, tontura, redução de urina → chamar equipe imediatamente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════
+     ALGORITMO FINAL
+══════════════════════ -->
+<div class="algo-section" id="algo">
+  <div class="algo-header">🗺 Algoritmo Final — OSCE EAP Perfil B · João 70 kg</div>
+  <div class="algo-body">
+
+    <div class="algo-flow">
+
+      <div class="algo-node start" style="max-width:520px;width:100%">
+        <div class="an-title">⚡ EAP HIPERTENSIVO — PERFIL B</div>
+        <div class="an-sub">Cardiopata descompensado em anasarca · PA 170×90 · SpO₂ 88%</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASE 0 · Posição 90° · Conversa rápida</div>
+        <div class="an-sub">Impressão geral → responsivo → "coração grande, falta de ar"</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASE 1 · FiO₂ → Venturi 35% · Monitor</div>
+        <div class="an-sub">(Fluxo × 4 + 21)/100 · SpO₂ alvo ≥94% · PA + ECG contínuos</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASE 2 · ABCD Integrado</div>
+        <div class="an-sub">A: Glasgow 15 · B: crepitantes + anasarca · C: B3 mitral · D: glicemia/temp</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASES 3+4 · Exames + Acompanhante (paralelo)</div>
+        <div class="an-sub">Labs + ECG + RX + proBNP + troponina · Furosemida domiciliar = 80 mg/dia</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASE 5 · Sonda Vesical + Furosemida 80 mg EV (4 amp)</div>
+        <div class="an-sub">Alívio precoce = vasodilatação (prostaglandinas) · Diurese = 20–30 min · Aguardar</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASE 6 · Tridil 7 mL/h → titular para 10 mL/h</div>
+        <div class="an-sub">10 mL amp em 250 mL SG5% = 200 mcg/mL · Checar: VD? iPDE5? Hipotensão?</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node check" style="max-width:520px;width:100%">
+        <div class="an-title">T = 30 min · URINOU?</div>
+        <div class="an-sub">Verificar sonda · Auscultar pulmão · Ler monitor</div>
+      </div>
+
+      <!-- Split -->
+      <div class="algo-split">
+        <div class="sim">
+          <div class="algo-split-label">✅ SIM</div>
+          <div class="algo-node ok" style="max-width:100%;width:100%">
+            <div class="an-title">Manter estratégia</div>
+            <div class="an-sub">Alvo &gt;35 mL/h · titular nitrato · Reavaliar 15 min</div>
+          </div>
+        </div>
+        <div class="algo-split-center">→</div>
+        <div class="nao">
+          <div class="algo-split-label">🔴 NÃO</div>
+          <div class="algo-node escalate" style="max-width:100%;width:100%">
+            <div class="an-title">Bloqueio Sequencial</div>
+            <div class="an-sub">HCTZ 25–50 mg VO + Fur. reforço · Alvo 100–150 mL/h</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node action" style="max-width:520px;width:100%">
+        <div class="an-title">FASE 8 · Exames chegam · Cr = 2,5</div>
+        <div class="an-sub">Suspender Dapagliflozina + Entresto · Iniciar Hidralazina + Nitrato oral</div>
+      </div>
+      <div class="algo-arrow"></div>
+
+      <div class="algo-node end" style="max-width:520px;width:100%">
+        <div class="an-title">✅ ESTABILIZADO · T = 60 min</div>
+        <div class="an-sub">Urinando · Vasodilatado · Descongestão ativa · Orientar acompanhante</div>
+      </div>
+
+    </div><!-- /algo-flow -->
+
+    <!-- Frase final -->
+    <div class="frase-final">
+      <p class="quote">"Se não vasodilatar, não salvou o pulmão.<br>Se não mediu diurese, não sabe se tratou."</p>
+      <p class="autor">— Dr. André Rossanno · Baseado nas Diretrizes SBC 2023–2024</p>
+    </div>
+
+  </div><!-- /algo-body -->
+</div><!-- /algo-section -->
+
+</main>
+</div><!-- /layout -->
+
+<script>
+// ── SIDEBAR SCROLL TRACKING ──────────────────────
+const ids = ['f0','f1','f2','f3','f4','f5','f6','f7','f8','f9'];
+const nodes = document.querySelectorAll('.sn');
+const fill = document.getElementById('fill');
+const pct = document.getElementById('pct');
+let currentIdx = 0;
+
+function updateSidebar(idx) {
+  currentIdx = idx;
+  nodes.forEach((n, i) => {
+    n.classList.remove('active');
+    if (i < idx) n.classList.add('done');
+    else n.classList.remove('done');
+  });
+  if (nodes[idx]) nodes[idx].classList.add('active');
+  const p = Math.round((idx / (ids.length - 1)) * 100);
+  fill.style.width = p + '%';
+  pct.textContent = p + '%';
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = ids.indexOf(e.target.id);
+      if (idx >= 0) updateSidebar(idx);
+    }
+  });
+}, { threshold: 0.25, rootMargin: '-10% 0px -60% 0px' });
+
+ids.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
+});
+
+function goTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── QA ACCORDION ─────────────────────────────────
+function toggleQA(el) {
+  el.classList.toggle('open');
+}
+
+// ── MARK DONE on scroll past ──────────────────────
+// done mark is handled by updateSidebar via intersection
+</script>
+</body>
+</html>
