@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missão HAS UBS 2025 — Módulo 1 | Dr. André Rossanno</title>
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* Fontes com fallback robusto — sem letra esticada */
+:root{
+  --font-display: 'Nunito', 'Trebuchet MS', Arial, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-script: 'Dancing Script', Georgia, cursive;
+}
+
+:root {
+  --navy: #0B2545;
+  --teal: #1282A2;
+  --gold: #F4B942;
+  --red: #C0392B;
+  --green: #1A7A4A;
+  --white: #F8F9FA;
+  --light: #E8EEF4;
+  --mid: #8DA9C4;
+  --dark: #071A33;
+  --bg: #060F1E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(18,130,162,0.25) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 20% 100%, rgba(244,185,66,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 80% 80%, rgba(11,37,69,0.8) 0%, transparent 60%),
+    var(--bg);
+  z-index: 0;
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(18,130,162,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,130,162,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+.mission-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid rgba(18,130,162,0.4);
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  animation: fadeDown 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  animation: fadeDown 0.8s 0.1s ease both;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero-tagline {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--teal);
+  margin: 1.5rem 0;
+  animation: fadeDown 0.8s 0.2s ease both;
+}
+
+.hero-frase {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--mid);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto 0.5rem;
+  animation: fadeDown 0.8s 0.3s ease both;
+  line-height: 1.6;
+}
+
+.hero-assinatura {
+  font-family: var(--font-script);
+  font-size: 1.4rem;
+  color: var(--gold);
+  animation: fadeDown 0.8s 0.4s ease both;
+}
+
+.modulo-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(18,130,162,0.15);
+  border: 1px solid rgba(18,130,162,0.3);
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+  animation: fadeDown 0.8s 0.05s ease both;
+}
+
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: var(--mid); font-size: 0.7rem; font-family: var(--font-mono);
+  letter-spacing: 0.1em; animation: fadeDown 1s 0.8s ease both; cursor: pointer;
+  text-decoration: none;
+}
+.hero-scroll::after {
+  content: ''; display: block; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--teal), transparent);
+  animation: pulse 2s infinite;
+}
+
+/* ── NAV TABS ── */
+.nav-wrapper {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,15,30,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(18,130,162,0.2);
+}
+
+.nav-tabs {
+  display: flex; overflow-x: auto; gap: 0;
+  max-width: 1100px; margin: 0 auto;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  flex-shrink: 0;
+  padding: 1rem 1.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  cursor: pointer;
+  border: none; background: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-tab:hover { color: var(--white); }
+.nav-tab.active {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+
+/* ── SECTIONS ── */
+.section {
+  display: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  animation: fadeUp 0.4s ease both;
+}
+.section.active { display: block; }
+
+/* ── SECTION HEADER ── */
+.section-header {
+  margin-bottom: 2.5rem;
+}
+.section-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  line-height: 1.05;
+  color: var(--white);
+}
+.section-title span { color: var(--gold); }
+.section-subtitle {
+  margin-top: 0.8rem;
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 620px;
+}
+
+/* ── CASE CARD ── */
+.case-card {
+  background: linear-gradient(135deg, rgba(11,37,69,0.8), rgba(18,130,162,0.1));
+  border: 1px solid rgba(18,130,162,0.3);
+  border-left: 4px solid var(--teal);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.case-card::before {
+  content: 'CASO CLÍNICO';
+  position: absolute; top: 1rem; right: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  color: rgba(18,130,162,0.5);
+}
+.case-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.case-details {
+  font-size: 0.85rem;
+  color: var(--mid);
+  margin-bottom: 1.2rem;
+  font-family: var(--font-mono);
+}
+.case-vitals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.vital {
+  background: rgba(11,37,69,0.6);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 6px;
+  padding: 0.8rem;
+  text-align: center;
+}
+.vital-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--mid);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+}
+.vital-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--teal);
+}
+.vital-value.alert { color: var(--gold); }
+.vital-value.danger { color: var(--red); }
+
+.voice-box {
+  background: rgba(0,0,0,0.3);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0;
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--light);
+  font-size: 0.95rem;
+}
+.voice-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 0.3rem;
+  font-style: normal;
+  text-transform: uppercase;
+}
+.voice-box.green { border-left-color: var(--green); }
+.voice-box.red { border-left-color: var(--red); }
+
+/* ── CLASSIFICATION TABLE ── */
+.class-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+.class-table th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(18,130,162,0.2);
+}
+.class-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(11,37,69,0.5);
+  font-size: 0.9rem;
+}
+.class-table tr:hover td { background: rgba(18,130,162,0.05); }
+
+.badge-normal { color: var(--green); font-weight: 600; }
+.badge-pre { color: var(--gold); font-weight: 600; }
+.badge-has1 { color: #F4A142; font-weight: 600; }
+.badge-has2 { color: #E06C00; font-weight: 600; }
+.badge-has3 { color: var(--red); font-weight: 600; }
+
+.tag-normal { background: rgba(26,122,74,0.2); color: var(--green); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); }
+.tag-pre { background: rgba(244,185,66,0.15); color: var(--gold); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); }
+.tag-has1 { background: rgba(244,161,66,0.15); color: #F4A142; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); }
+.tag-has2 { background: rgba(224,108,0,0.15); color: #E06C00; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); }
+.tag-has3 { background: rgba(192,57,43,0.2); color: var(--red); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); }
+
+/* ── INFO CARDS ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.info-card {
+  background: rgba(11,37,69,0.5);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.info-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(18,130,162,0.4);
+}
+.info-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.info-card-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+}
+.info-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.6; }
+
+.info-card.danger { border-color: rgba(192,57,43,0.3); }
+.info-card.danger .info-card-title { color: var(--red); }
+.info-card.gold { border-color: rgba(244,185,66,0.3); }
+.info-card.gold .info-card-title { color: var(--gold); }
+.info-card.green { border-color: rgba(26,122,74,0.3); }
+.info-card.green .info-card-title { color: var(--green); }
+
+/* ── MANTRA BOX ── */
+.mantra {
+  background: linear-gradient(135deg, rgba(18,130,162,0.15), rgba(11,37,69,0.4));
+  border: 1px solid rgba(18,130,162,0.4);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+.mantra p {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--white);
+  line-height: 1.4;
+}
+.mantra small {
+  display: block;
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-top: 0.5rem;
+}
+
+.pegadinha {
+  background: rgba(244,185,66,0.08);
+  border: 1px solid rgba(244,185,66,0.3);
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.2rem 0;
+}
+.pegadinha-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.pegadinha p { font-size: 0.9rem; color: var(--light); line-height: 1.6; }
+
+.alert-box {
+  background: rgba(192,57,43,0.08);
+  border: 1px solid rgba(192,57,43,0.3);
+  border-left: 4px solid var(--red);
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.2rem 0;
+}
+.alert-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.alert-box p { font-size: 0.9rem; color: var(--light); line-height: 1.6; }
+
+.ok-box {
+  background: rgba(26,122,74,0.08);
+  border: 1px solid rgba(26,122,74,0.3);
+  border-left: 4px solid var(--green);
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.2rem 0;
+}
+.ok-box-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.ok-box p { font-size: 0.9rem; color: var(--light); line-height: 1.6; }
+
+/* ── FLUXOGRAMA ── */
+.fluxo-container { margin: 2rem 0; }
+.fluxo-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-bottom: 0;
+  position: relative;
+}
+.fluxo-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 48px;
+  width: 2px;
+  height: calc(100% + 0px);
+  background: linear-gradient(to bottom, rgba(18,130,162,0.4), rgba(18,130,162,0.1));
+}
+.fluxo-num {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  background: var(--teal);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--white);
+  z-index: 1;
+}
+.fluxo-body {
+  flex: 1;
+  background: rgba(11,37,69,0.4);
+  border: 1px solid rgba(18,130,162,0.15);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.fluxo-body h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--teal);
+  margin-bottom: 0.3rem;
+}
+.fluxo-body p { font-size: 0.88rem; color: var(--mid); line-height: 1.6; }
+
+.fluxo-fork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.fork-a, .fork-b {
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.fork-a {
+  background: rgba(26,122,74,0.1);
+  border: 1px solid rgba(26,122,74,0.3);
+}
+.fork-b {
+  background: rgba(192,57,43,0.1);
+  border: 1px solid rgba(192,57,43,0.3);
+}
+.fork-a h4 { color: var(--green); font-family: var(--font-display); font-weight: 800; margin-bottom: 0.8rem; }
+.fork-b h4 { color: var(--red); font-family: var(--font-display); font-weight: 800; margin-bottom: 0.8rem; }
+.fork-a ul, .fork-b ul { list-style: none; }
+.fork-a li, .fork-b li { font-size: 0.85rem; color: var(--light); padding: 0.25rem 0; }
+.fork-a li::before { content: '✓ '; color: var(--green); font-weight: 700; }
+.fork-b li::before { content: '⚡ '; }
+
+/* ── MAPA LOA ── */
+.loa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.loa-card {
+  background: rgba(11,37,69,0.6);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 8px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.loa-card:hover, .loa-card.open {
+  border-color: var(--red);
+  background: rgba(192,57,43,0.08);
+}
+.loa-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.loa-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.loa-body {
+  display: none;
+  margin-top: 0.8rem;
+  border-top: 1px solid rgba(18,130,162,0.2);
+  padding-top: 0.8rem;
+}
+.loa-card.open .loa-body { display: block; }
+.loa-body ul { list-style: none; }
+.loa-body li {
+  font-size: 0.82rem;
+  color: var(--mid);
+  padding: 0.2rem 0;
+}
+.loa-body li::before { content: '→ '; color: var(--red); }
+.loa-think {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold);
+}
+
+/* ── FLASH CARDS ── */
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.flashcard {
+  perspective: 1000px;
+  height: 160px;
+  cursor: pointer;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute; inset: 0;
+  border-radius: 8px;
+  padding: 1.2rem;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.flashcard-front {
+  background: rgba(11,37,69,0.7);
+  border: 1px solid rgba(18,130,162,0.3);
+}
+.flashcard-back {
+  background: linear-gradient(135deg, rgba(18,130,162,0.2), rgba(11,37,69,0.8));
+  border: 1px solid var(--teal);
+  transform: rotateY(180deg);
+}
+.flashcard-q {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.5;
+}
+.flashcard-a {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--teal);
+  line-height: 1.4;
+}
+.flashcard-hint {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(18,130,162,0.5);
+  margin-top: 0.5rem;
+}
+
+/* ── QUIZ ── */
+.quiz-card {
+  background: rgba(11,37,69,0.4);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.quiz-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--teal);
+  margin-bottom: 0.8rem;
+}
+.quiz-q {
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+.quiz-opt {
+  background: rgba(11,37,69,0.5);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 6px;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--light);
+  transition: all 0.2s;
+  text-align: left;
+}
+.quiz-opt:hover { border-color: rgba(18,130,162,0.5); background: rgba(18,130,162,0.1); }
+.quiz-opt.correct { background: rgba(26,122,74,0.2); border-color: var(--green); color: var(--green); }
+.quiz-opt.wrong { background: rgba(192,57,43,0.1); border-color: var(--red); color: var(--red); }
+.quiz-opt.disabled { pointer-events: none; }
+.quiz-feedback {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct-fb {
+  background: rgba(26,122,74,0.1);
+  border: 1px solid rgba(26,122,74,0.3);
+  color: var(--light);
+}
+.quiz-feedback.wrong-fb {
+  background: rgba(192,57,43,0.08);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: var(--light);
+}
+
+/* ── OSCE ── */
+.osce-station {
+  background: rgba(11,37,69,0.4);
+  border: 1px solid rgba(244,185,66,0.2);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.osce-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.osce-icon { font-size: 2.5rem; }
+.osce-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+.osce-subtitle { font-size: 0.85rem; color: var(--mid); }
+
+.checklist { list-style: none; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(18,130,162,0.08);
+  font-size: 0.9rem;
+  color: var(--light);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li.done { color: var(--green); text-decoration: line-through; opacity: 0.7; }
+.check-box {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  border: 2px solid rgba(18,130,162,0.4);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: all 0.2s;
+}
+.checklist li.done .check-box {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.score-bar {
+  background: rgba(11,37,69,0.6);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.score-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--mid);
+}
+.score-value {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--teal);
+}
+.score-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(18,130,162,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.score-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 3px;
+  transition: width 0.4s;
+}
+
+/* ── PALÁCIO ── */
+.palace-container { position: relative; margin: 2rem 0; }
+.palace-room {
+  background: linear-gradient(135deg, rgba(11,37,69,0.8), rgba(7,26,51,0.9));
+  border: 1px solid rgba(18,130,162,0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.palace-room::before {
+  content: attr(data-room);
+  position: absolute; top: 1rem; right: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  color: rgba(18,130,162,0.3);
+  text-transform: uppercase;
+}
+.palace-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.palace-content { font-size: 0.92rem; color: var(--light); line-height: 1.7; }
+.palace-content strong { color: var(--teal); }
+
+.staircase {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+.stair {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+.stair:hover { transform: translateX(4px); }
+.stair-n { font-family: var(--font-mono); font-size: 0.8rem; color: var(--mid); min-width: 70px; }
+.stair-bar { flex: 1; height: 2px; }
+.stair-label { font-weight: 600; font-size: 0.9rem; }
+
+.stair-0 { background: rgba(26,122,74,0.1); }
+.stair-0 .stair-bar { background: var(--green); }
+.stair-0 .stair-label { color: var(--green); }
+
+.stair-1 { background: rgba(244,185,66,0.1); }
+.stair-1 .stair-bar { background: var(--gold); }
+.stair-1 .stair-label { color: var(--gold); }
+
+.stair-2 { background: rgba(244,161,66,0.1); }
+.stair-2 .stair-bar { background: #F4A142; }
+.stair-2 .stair-label { color: #F4A142; }
+
+.stair-3 { background: rgba(224,108,0,0.1); }
+.stair-3 .stair-bar { background: #E06C00; }
+.stair-3 .stair-label { color: #E06C00; }
+
+.stair-4 { background: rgba(192,57,43,0.1); }
+.stair-4 .stair-bar { background: var(--red); }
+.stair-4 .stair-label { color: var(--red); }
+
+.sentinel-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+.sentinel {
+  background: rgba(11,37,69,0.6);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: 8px;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+.sentinel:hover {
+  border-color: var(--red);
+  background: rgba(192,57,43,0.08);
+}
+.sentinel-icon { font-size: 1.8rem; }
+.sentinel-name {
+  font-size: 0.75rem;
+  color: var(--mid);
+  margin-top: 0.3rem;
+  font-family: var(--font-mono);
+}
+
+/* ── CHECKLIST CONDUTAS ── */
+.conduta-list { list-style: none; margin: 1rem 0; }
+.conduta-list li {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.5rem 0;
+  font-size: 0.9rem; color: var(--light);
+  border-bottom: 1px solid rgba(18,130,162,0.06);
+}
+.conduta-list li::before {
+  content: '›';
+  color: var(--teal);
+  font-size: 1.2rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.do-dont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.do-list, .dont-list {
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.do-list {
+  background: rgba(26,122,74,0.08);
+  border: 1px solid rgba(26,122,74,0.2);
+}
+.dont-list {
+  background: rgba(192,57,43,0.06);
+  border: 1px solid rgba(192,57,43,0.2);
+}
+.do-list h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 0.8rem;
+}
+.dont-list h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--red);
+  margin-bottom: 0.8rem;
+}
+.do-list ul, .dont-list ul { list-style: none; }
+.do-list li, .dont-list li { font-size: 0.85rem; color: var(--light); padding: 0.25rem 0; line-height: 1.5; }
+.do-list li::before { content: '✓ '; color: var(--green); font-weight: 700; }
+.dont-list li::before { content: '✗ '; color: var(--red); font-weight: 700; }
+
+/* ── MAPA/MRPA TABLE ── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+.compare-item {
+  background: rgba(11,37,69,0.5);
+  border: 1px solid rgba(18,130,162,0.2);
+  border-radius: 8px;
+  padding: 1.2rem;
+  text-align: center;
+}
+.compare-method {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--mid);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+.compare-value {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--teal);
+}
+
+/* ── PROGRESS ── */
+.progress-row {
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.progress-label { font-size: 0.82rem; color: var(--mid); min-width: 90px; }
+.progress-track {
+  flex: 1; height: 4px;
+  background: rgba(18,130,162,0.15);
+  border-radius: 2px;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--teal), var(--gold));
+  border-radius: 2px;
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  display: flex; justify-content: center; gap: 1rem;
+  padding: 2rem 1rem 4rem;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--teal);
+  color: var(--white);
+}
+.btn-primary:hover { background: #0e9cc0; }
+.btn-outline {
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid var(--teal);
+}
+.btn-outline:hover { background: rgba(18,130,162,0.1); }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid rgba(18,130,162,0.15);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-sig {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.footer-info {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(141,169,196,0.5);
+  letter-spacing: 0.1em;
+}
+.footer-mission {
+  font-size: 0.85rem;
+  color: var(--mid);
+  margin-top: 0.3rem;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .fluxo-fork { grid-template-columns: 1fr; }
+  .do-dont { grid-template-columns: 1fr; }
+  .sentinel-grid { grid-template-columns: repeat(3, 1fr); }
+  .class-table { font-size: 0.8rem; }
+  .class-table td, .class-table th { padding: 0.6rem 0.6rem; }
+}
+
+/* Section dividers */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(18,130,162,0.3), transparent);
+  margin: 2.5rem 0;
+}
+h3.sub {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--teal);
+  margin: 1.8rem 0 1rem;
+}
+p.body { font-size: 0.93rem; color: var(--mid); line-height: 1.7; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="modulo-badge">🏥 Módulo 1A + 1B · Atenção Primária · SBC/SBH/SBN 2025</div>
+    <div class="mission-badge">MISSÃO HAS UBS 2025</div>
+    <h1>O número grita.<br><span>O órgão decide.</span></h1>
+    <div class="hero-tagline">// Capacitação para Médicos da UBS</div>
+    <p class="hero-frase">"Na hipertensão, o número abre a porta; quem decide a sala é o contexto clínico."</p>
+    <div class="hero-assinatura">Dr. André Rossanno</div>
+
+    <div style="margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;animation:fadeDown 0.8s 0.5s ease both;">
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(18,130,162,0.7);">UBS Tibiri · IESCG VIII · São Luís · MA</div>
+      <div style="background:rgba(11,37,69,0.6);border:1px solid rgba(18,130,162,0.25);border-radius:10px;padding:1rem 1.8rem;display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.5rem;">
+        <span style="font-size:0.85rem;color:var(--light)">Fabiane Almeida Pinheiro</span>
+        <span style="color:rgba(18,130,162,0.4);">·</span>
+        <span style="font-size:0.85rem;color:var(--light)">Emmanuella Bruno Alencar</span>
+        <span style="color:rgba(18,130,162,0.4);">·</span>
+        <span style="font-size:0.85rem;color:var(--light)">Josivania Monteiro de Castro</span>
+        <span style="color:rgba(18,130,162,0.4);">·</span>
+        <span style="font-size:0.85rem;color:var(--light)">Gabriela da Silva Patriota</span>
+      </div>
+    </div>
+
+  </div>
+  <a class="hero-scroll" href="#app">COMEÇAR</a>
+</section>
+
+<!-- ══ APP ══ -->
+<div id="app">
+  <nav class="nav-wrapper">
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('classificacao')">01 · Classificação</button>
+      <button class="nav-tab" onclick="showTab('medicao')">02 · Medição</button>
+      <button class="nav-tab" onclick="showTab('crise')">03 · Crise / LOA</button>
+      <button class="nav-tab" onclick="showTab('conduta')">04 · Conduta UBS</button>
+      <button class="nav-tab" onclick="showTab('flashcards')">05 · Flashcards</button>
+      <button class="nav-tab" onclick="showTab('quiz')">06 · Quiz</button>
+      <button class="nav-tab" onclick="showTab('osce')">07 · Mini-OSCE</button>
+      <button class="nav-tab" onclick="showTab('palacio')">08 · Palácio</button>
+      <button class="nav-tab" onclick="showTab('creditos')">09 · Créditos</button>
+    </div>
+  </nav>
+
+  <!-- ══ TAB 01: CLASSIFICAÇÃO ══ -->
+  <section id="tab-classificacao" class="section active">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 1A · Classificação</div>
+      <h2 class="section-title">Classificar antes<br><span>de prescrever</span></h2>
+      <p class="section-subtitle">Antes de qualquer remédio, o médico precisa saber em qual sala o paciente entrou.</p>
+    </div>
+
+    <!-- Caso Abertura -->
+    <div class="case-card">
+      <div class="case-name">Dona Raimunda</div>
+      <div class="case-details">52 anos · Agricultora · Consulta de rotina na UBS</div>
+      <div class="case-vitals">
+        <div class="vital">
+          <div class="vital-label">PA</div>
+          <div class="vital-value alert">132×84</div>
+        </div>
+        <div class="vital">
+          <div class="vital-label">FC</div>
+          <div class="vital-value">78 bpm</div>
+        </div>
+        <div class="vital">
+          <div class="vital-label">Sintomas</div>
+          <div class="vital-value" style="font-size:0.9rem">Nenhum</div>
+        </div>
+        <div class="vital">
+          <div class="vital-label">HAS Prévia</div>
+          <div class="vital-value" style="font-size:0.9rem">Não</div>
+        </div>
+      </div>
+      <div class="voice-box red">
+        <div class="voice-label">❌ Médico inexperiente</div>
+        "Está normal. Pode ir para casa."
+      </div>
+      <div class="voice-box green">
+        <div class="voice-label">✅ Médico treinado — Missão HAS</div>
+        "Isso não é HAS ainda, mas também não é normal. Pela diretriz 2025, isso é <strong>pré-hipertensão</strong>. É uma chance de prevenção."
+      </div>
+    </div>
+
+    <!-- Tabela Classificação -->
+    <h3 class="sub">Classificação da PA no adulto — SBC/SBH/SBN 2025</h3>
+    <table class="class-table">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>PAS (mmHg)</th>
+          <th>PAD (mmHg)</th>
+          <th>Na UBS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag-normal">PA Normal</span></td>
+          <td class="badge-normal">&lt;120</td>
+          <td class="badge-normal">&lt;80</td>
+          <td style="color:var(--mid);font-size:0.82rem">Casa vascular silenciosa</td>
+        </tr>
+        <tr>
+          <td><span class="tag-pre">Pré-hipertensão</span></td>
+          <td class="badge-pre">120–139</td>
+          <td class="badge-pre">80–89</td>
+          <td style="color:var(--mid);font-size:0.82rem">Alarme preventivo acendeu</td>
+        </tr>
+        <tr>
+          <td><span class="tag-has1">HAS Estágio 1</span></td>
+          <td class="badge-has1">140–159</td>
+          <td class="badge-has1">90–99</td>
+          <td style="color:var(--mid);font-size:0.82rem">Entrou no território da HAS</td>
+        </tr>
+        <tr>
+          <td><span class="tag-has2">HAS Estágio 2</span></td>
+          <td class="badge-has2">160–179</td>
+          <td class="badge-has2">100–109</td>
+          <td style="color:var(--mid);font-size:0.82rem">Maior risco, ação mais firme</td>
+        </tr>
+        <tr>
+          <td><span class="tag-has3">HAS Estágio 3</span></td>
+          <td class="badge-has3">≥180</td>
+          <td class="badge-has3">≥110</td>
+          <td style="color:var(--mid);font-size:0.82rem">Sinal avaliativo — não pânico</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mantra">
+      <p>⚖️ Vale sempre o <strong>pior número</strong></p>
+      <small>Regra de Ouro da Classificação</small>
+    </div>
+
+    <!-- Escada -->
+    <h3 class="sub">🪜 Macete da Escada Pressórica</h3>
+    <div class="staircase">
+      <div class="stair stair-0">
+        <span class="stair-n">&lt;12/8</span>
+        <div class="stair-bar"></div>
+        <span class="stair-label">🟢 PA Normal — silêncio vascular</span>
+      </div>
+      <div class="stair stair-1">
+        <span class="stair-n">12/8</span>
+        <div class="stair-bar"></div>
+        <span class="stair-label">🔔 Pré-HAS — campaninha amarela</span>
+      </div>
+      <div class="stair stair-2">
+        <span class="stair-n">14/9</span>
+        <div class="stair-bar"></div>
+        <span class="stair-label">🟠 HAS 1 — entrou no território</span>
+      </div>
+      <div class="stair stair-3">
+        <span class="stair-n">16/10</span>
+        <div class="stair-bar"></div>
+        <span class="stair-label">🔶 HAS 2 — ação mais firme</span>
+      </div>
+      <div class="stair stair-4">
+        <span class="stair-n">≥18/11</span>
+        <div class="stair-bar"></div>
+        <span class="stair-label">🔴 HAS 3 — avaliar LOA</span>
+      </div>
+    </div>
+
+    <!-- Exemplos práticos -->
+    <h3 class="sub">Exemplos práticos — regra do pior número</h3>
+    <div class="card-grid">
+      <div class="info-card gold">
+        <div class="info-card-title">PA 118×84</div>
+        <p>PAD entre 80–89 → <strong>Pré-hipertensão</strong><br>Mesmo a PAS estando abaixo de 120, a PAD manda.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">PA 138×96</div>
+        <p>PAD entre 90–99 → <strong>HAS Estágio 1</strong><br>PAD decide: ela está no território da HAS.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">PA 162×88</div>
+        <p>PAS entre 160–179 → <strong>HAS Estágio 2</strong><br>PAS decide: acima de 160.</p>
+      </div>
+      <div class="info-card danger">
+        <div class="info-card-title">PA 182×92</div>
+        <p>PAS ≥180 → <strong>HAS Estágio 3</strong><br>PAS manda. Hora de avaliar LOA.</p>
+      </div>
+    </div>
+
+    <!-- Mito 12x8 -->
+    <div class="pegadinha">
+      <div class="pegadinha-label">⚠️ Pegadinha Clássica — TEC / UBS</div>
+      <p><strong>"12 por 8 é normal"</strong> — MITO. PA normal é <em>menor que</em> 120 E menor que 80. 120×80 já é pré-hipertensão pela diretriz 2025. O 12/8 deixou de ser sofá — virou campainha. Não é incêndio. Não é para medicar. Mas é orientação e acompanhamento.</p>
+    </div>
+
+    <!-- Diagnóstico -->
+    <div class="divider"></div>
+    <h3 class="sub">O primeiro erro da UBS: diagnosticar HAS com uma medida isolada</h3>
+    <p class="body">Uma única PA elevada não fecha diagnóstico de hipertensão na maioria dos casos. A diretriz exige confirmação em pelo menos dois momentos diferentes, separados por dias ou semanas.</p>
+
+    <div class="mantra">
+      <p>"A primeira medida da pressão é uma fotografia; o diagnóstico é o álbum."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+
+    <div class="ok-box">
+      <div class="ok-box-label">✅ Quando fechar diagnóstico sem segunda medida?</div>
+      <p>Se o paciente <strong>já usa anti-hipertensivo</strong> ou tem <strong>lesão de órgão-alvo documentada</strong>, o diagnóstico pode ser confirmado mesmo com valores abaixo de 140/90 no momento da avaliação.</p>
+    </div>
+
+    <!-- MAPA/MRPA -->
+    <div class="divider"></div>
+    <h3 class="sub">📊 Consultório, MAPA e MRPA — três janelas da mesma casa</h3>
+    <div class="compare-grid">
+      <div class="compare-item">
+        <div class="compare-method">Consultório / UBS</div>
+        <div class="compare-value">≥140/90</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-method">MAPA 24h</div>
+        <div class="compare-value">≥130/80</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-method">MAPA vigília</div>
+        <div class="compare-value">≥135/85</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-method">MAPA sono</div>
+        <div class="compare-value">≥120/70</div>
+      </div>
+      <div class="compare-item">
+        <div class="compare-method">MRPA</div>
+        <div class="compare-value">≥130/80</div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="info-card gold">
+        <div class="info-card-icon">🥼</div>
+        <div class="info-card-title">Hipertensão do Avental Branco</div>
+        <p>PA alta na UBS, mas normal em casa / MAPA / MRPA. A pressão sobe quando vê o jaleco.</p>
+      </div>
+      <div class="info-card danger">
+        <div class="info-card-icon">🎭</div>
+        <div class="info-card-title">Hipertensão Mascarada</div>
+        <p>PA normal na UBS, mas alta fora. A pressão finge ser normal no consultório e mostra as garras em casa.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 02: MEDIÇÃO ══ -->
+  <section id="tab-medicao" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 1A · Medição</div>
+      <h2 class="section-title">Pressão mal medida<br><span>é fofoca hemodinâmica</span></h2>
+      <p class="section-subtitle">Antes de chamar alguém de hipertenso, a UBS precisa medir corretamente.</p>
+    </div>
+
+    <!-- Manguito -->
+    <h3 class="sub">🩺 A armadilha do manguito — inimigo invisível</h3>
+    <div class="card-grid">
+      <div class="info-card danger">
+        <div class="info-card-icon">😤</div>
+        <div class="info-card-title">Manguito Pequeno + Braço Grande</div>
+        <p><strong>O monstro inflador.</strong> Aperta demais → pressão parece <em>maior</em>. Diagnóstico falsamente positivo de HAS.</p>
+      </div>
+      <div class="info-card gold">
+        <div class="info-card-icon">👻</div>
+        <div class="info-card-title">Manguito Grande + Braço Fino</div>
+        <p><strong>O fantasma apagador.</strong> Espalha demais a força → pressão parece <em>menor</em>. Esconde HAS real.</p>
+      </div>
+    </div>
+
+    <div class="pegadinha">
+      <div class="pegadinha-label">⚠️ Regra de Bolso</div>
+      <p>"Braço grande com manguito pequeno <strong>aumenta a mentira</strong>. Braço fino com manguito grande <strong>esconde o perigo</strong>."</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Checklist técnica -->
+    <h3 class="sub">✅ Técnica correta — checklist mínimo da UBS</h3>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-card-title">Posição do paciente</div>
+        <ul class="conduta-list">
+          <li>Sentado, costas apoiadas</li>
+          <li>Pés no chão, sem cruzar as pernas</li>
+          <li>Braço apoiado na altura do coração</li>
+          <li>Bexiga preferencialmente vazia</li>
+          <li>Repouso prévio (pelo menos alguns minutos)</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Antes e durante a medida</div>
+        <ul class="conduta-list">
+          <li>Sem café, exercício ou cigarro logo antes</li>
+          <li>Sem conversa durante a medida</li>
+          <li>Manguito 2–3 cm acima da fossa cubital</li>
+          <li>Bolsa centralizada sobre a artéria braquial</li>
+          <li>Desinflar lentamente após estimativa da PAS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Hipertensão secundária -->
+    <h3 class="sub">🔍 Quando suspeitar de hipertensão secundária?</h3>
+    <p class="body">Não é todo hipertenso que precisa investigação extensa. Mas a UBS deve farejar os casos que não cheiram a hipertensão essencial comum.</p>
+
+    <div class="card-grid">
+      <div class="info-card gold">
+        <div class="info-card-title">Sinais de alerta</div>
+        <ul class="conduta-list">
+          <li>HAS antes dos 30 anos sem obesidade ou HF clara</li>
+          <li>HAS de início abrupto</li>
+          <li>HAS muito grave ou resistente</li>
+          <li>Hipocalemia espontânea ou por diurético</li>
+          <li>Piora renal após IECA/BRA</li>
+          <li>Roncos + sonolência + obesidade → apneia</li>
+          <li>Crises com palpitação + sudorese + cefaleia → feocromocitoma</li>
+          <li>Fácies cushingoide, estrias violáceas → Cushing</li>
+          <li>Sopro abdominal → doença renovascular</li>
+        </ul>
+      </div>
+      <div class="info-card danger">
+        <div class="info-card-title">Medicamentos que elevam PA</div>
+        <ul class="conduta-list">
+          <li>AINEs</li>
+          <li>Corticoides</li>
+          <li>Descongestionantes simpaticomiméticos</li>
+          <li>Anticoncepcionais combinados</li>
+          <li>Cocaína e anfetaminas</li>
+          <li>Eritropoetina, ciclosporina, tacrolimo</li>
+          <li>Alcaçuz, suplementos não declarados</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mantra">
+      <p>"Quando a pressão foge da história comum,<br>procure o <span style="color:var(--gold)">fantasma secundário</span>."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Exames iniciais -->
+    <h3 class="sub">🔬 Exames iniciais do hipertenso na UBS</h3>
+    <div class="card-grid">
+      <div class="info-card green">
+        <div class="info-card-title">Laboratoriais essenciais</div>
+        <ul class="conduta-list">
+          <li>Creatinina + TFG estimada</li>
+          <li>Potássio e Sódio</li>
+          <li>Glicemia de jejum ou HbA1c</li>
+          <li>Perfil lipídico</li>
+          <li>EAS / Urina tipo 1</li>
+          <li>Relação albumina/creatinina urinária</li>
+          <li>Ácido úrico (se diurético)</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Exame físico dirigido</div>
+        <ul class="conduta-list">
+          <li>Peso, altura, IMC, circunferência abdominal</li>
+          <li>PA em ambos os braços (1ª avaliação)</li>
+          <li>Ausculta cardíaca e pulmonar</li>
+          <li>Pulsos periféricos e edema</li>
+          <li>ECG na primeira avaliação</li>
+          <li>Fundoscopia se PA muito alta ou sintomas</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 03: CRISE / LOA ══ -->
+  <section id="tab-crise" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 1B · Crise Hipertensiva</div>
+      <h2 class="section-title">Não é o número.<br><span>É o órgão.</span></h2>
+      <p class="section-subtitle">O divisor de águas entre emergência e não emergência é lesão aguda de órgão-alvo — não o valor da PA.</p>
+    </div>
+
+    <!-- Caso Abertura 1B -->
+    <div class="case-card">
+      <div class="case-name">Seu João</div>
+      <div class="case-details">61 anos · Hipertenso · Sem losartana há 8 dias</div>
+      <div class="case-vitals">
+        <div class="vital">
+          <div class="vital-label">PA</div>
+          <div class="vital-value danger">192×108</div>
+        </div>
+        <div class="vital">
+          <div class="vital-label">FC</div>
+          <div class="vital-value">86 bpm</div>
+        </div>
+        <div class="vital">
+          <div class="vital-label">Neuro</div>
+          <div class="vital-value" style="font-size:0.85rem;color:var(--green)">Normal</div>
+        </div>
+        <div class="vital">
+          <div class="vital-label">Cardiaco</div>
+          <div class="vital-value" style="font-size:0.85rem;color:var(--green)">Sem dor</div>
+        </div>
+      </div>
+      <div class="voice-box red">
+        <div class="voice-label">❓ Técnica de triagem</div>
+        "Doutor, pressão quase 20. É emergência?"
+      </div>
+      <div class="voice-box green">
+        <div class="voice-label">✅ Raciocínio Missão HAS</div>
+        "Ainda não sei. Primeiro preciso saber se há <strong>lesão aguda de órgão-alvo</strong>."
+      </div>
+    </div>
+
+    <!-- Três personagens -->
+    <h3 class="sub">Os três personagens da UBS</h3>
+    <div class="card-grid">
+      <div class="info-card green">
+        <div class="info-card-icon">😌</div>
+        <div class="info-card-title">PA Elevada Assintomática</div>
+        <p>Ex: PA 178×96. Sem sintomas, sem LOA aguda. Ajuste oral, orientação, retorno. <strong>Não derrubar a PA.</strong></p>
+      </div>
+      <div class="info-card gold">
+        <div class="info-card-icon">⚠️</div>
+        <div class="info-card-title">Elevação Importante sem LOA</div>
+        <p>Ex: PA 190×112 sem sintomas de órgão. Redução oral gradual em 1–7 dias. Não é emergência.</p>
+      </div>
+      <div class="info-card danger">
+        <div class="info-card-icon">🚨</div>
+        <div class="info-card-title">Emergência Hipertensiva</div>
+        <p>PA alta + LOA aguda. Reconhecer → estabilizar → acionar SAMU → transferir para UTI.</p>
+      </div>
+    </div>
+
+    <div class="mantra">
+      <p>🔴 PA alta <strong style="color:var(--red)">com</strong> LOA aguda = Emergência<br>
+      🟢 PA alta <strong style="color:var(--green)">sem</strong> LOA aguda = Não é emergência</p>
+      <small>"O número grita, mas o órgão decide." — Dr. André Rossanno</small>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Mapa LOA interativo -->
+    <h3 class="sub">🗺️ Mapa da LOA — clique nos órgãos para expandir</h3>
+    <div class="loa-grid">
+      <div class="loa-card" onclick="toggleLOA(this)">
+        <div class="loa-icon">🧠</div>
+        <div class="loa-title">Cérebro</div>
+        <div style="font-size:0.75rem;color:var(--mid)">Toque para ver sinais</div>
+        <div class="loa-body">
+          <ul>
+            <li>Confusão / rebaixamento</li>
+            <li>Convulsão</li>
+            <li>Déficit focal (fraqueza, boca torta)</li>
+            <li>Alteração súbita da fala</li>
+            <li>Cefaleia intensa atípica + sinais neurológicos</li>
+            <li>Perda visual súbita</li>
+          </ul>
+          <div class="loa-think">Pensar: AVC · Encefalopatia hipertensiva · HIC</div>
+        </div>
+      </div>
+      <div class="loa-card" onclick="toggleLOA(this)">
+        <div class="loa-icon">❤️</div>
+        <div class="loa-title">Coração</div>
+        <div style="font-size:0.75rem;color:var(--mid)">Toque para ver sinais</div>
+        <div class="loa-body">
+          <ul>
+            <li>Dor torácica típica</li>
+            <li>Dispneia + crepitações</li>
+            <li>Sudorese fria + náuseas</li>
+            <li>Saturação baixa</li>
+            <li>Sinais de EAP</li>
+          </ul>
+          <div class="loa-think">Pensar: SCA · EAP · IC descompensada</div>
+        </div>
+      </div>
+      <div class="loa-card" onclick="toggleLOA(this)">
+        <div class="loa-icon">🩸</div>
+        <div class="loa-title">Aorta</div>
+        <div style="font-size:0.75rem;color:var(--mid)">Toque para ver sinais</div>
+        <div class="loa-body">
+          <ul>
+            <li>Dor torácica ou dorsal súbita</li>
+            <li>Dor em rasgo / migratória</li>
+            <li>Assimetria de pulsos</li>
+            <li>Síncope associada à dor</li>
+            <li>Déficit neuro + dor torácica</li>
+          </ul>
+          <div class="loa-think">Pensar: Dissecção aguda de aorta</div>
+        </div>
+      </div>
+      <div class="loa-card" onclick="toggleLOA(this)">
+        <div class="loa-icon">🫘</div>
+        <div class="loa-title">Rim</div>
+        <div style="font-size:0.75rem;color:var(--mid)">Toque para ver sinais</div>
+        <div class="loa-body">
+          <ul>
+            <li>Oligúria</li>
+            <li>Piora súbita de edema</li>
+            <li>Hematúria</li>
+            <li>Creatinina subindo (se exame disponível)</li>
+          </ul>
+          <div class="loa-think">Pensar: IRA associada à crise</div>
+        </div>
+      </div>
+      <div class="loa-card" onclick="toggleLOA(this)">
+        <div class="loa-icon">👁️</div>
+        <div class="loa-title">Retina</div>
+        <div style="font-size:0.75rem;color:var(--mid)">Toque para ver sinais</div>
+        <div class="loa-body">
+          <ul>
+            <li>Visão turva intensa / súbita</li>
+            <li>Perda visual importante</li>
+            <li>Papiledema (se fundoscopia disponível)</li>
+            <li>Hemorragias / exsudatos</li>
+          </ul>
+          <div class="loa-think">Pensar: Retinopatia hipertensiva grave</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pseudocrise -->
+    <div class="divider"></div>
+    <h3 class="sub">🎭 Pseudocrise hipertensiva — cuidado com o teatro do número</h3>
+    <p class="body">PA alta por gatilho sem LOA aguda. Comum na UBS. Tratar a causa, não derrubar a pressão.</p>
+
+    <div class="card-grid">
+      <div class="info-card gold">
+        <div class="info-card-title">Gatilhos comuns</div>
+        <ul class="conduta-list">
+          <li>Dor lombar / dental intensa</li>
+          <li>Crise de ansiedade</li>
+          <li>Paciente discutiu antes de entrar</li>
+          <li>Mediu a PA 5x seguidas e ficou mais ansioso</li>
+          <li>Suspendeu anti-hipertensivo</li>
+          <li>Usou AINE por dor</li>
+          <li>Bebeu muito álcool</li>
+          <li>Bexiga cheia</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <div class="info-card-title">Conduta</div>
+        <ul class="conduta-list">
+          <li>Trate a causa do gatilho</li>
+          <li>Ambiente calmo</li>
+          <li>Repita a PA após repouso</li>
+          <li>Reavalie</li>
+          <li>Não castigue com queda brusca</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mantra">
+      <p>"Quando a dor grita, a pressão responde.<br>Mas nem todo grito é <span style="color:var(--red)">lesão de órgão-alvo</span>."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 04: CONDUTA ══ -->
+  <section id="tab-conduta" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 1B · Conduta na UBS</div>
+      <h2 class="section-title">Fluxograma da<br><span>PA muito alta</span></h2>
+      <p class="section-subtitle">"O primeiro remédio da crise pressórica é raciocínio."</p>
+    </div>
+
+    <!-- Fluxo 5 passos -->
+    <div class="fluxo-container">
+      <div class="fluxo-step">
+        <div class="fluxo-num">1</div>
+        <div class="fluxo-body">
+          <h4>🛑 Pare o impulso</h4>
+          <p>Não trate número no susto. Respire. Pense. O raciocínio é o primeiro tratamento.</p>
+        </div>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">2</div>
+        <div class="fluxo-body">
+          <h4>🩺 Repita a PA corretamente</h4>
+          <p>Ambiente calmo. Paciente sentado. Manguito adequado. Braço apoiado. Repetir após 30 min de repouso se elevação importante.</p>
+        </div>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">3</div>
+        <div class="fluxo-body">
+          <h4>❓ Perguntas de órgão-alvo</h4>
+          <p>Dor no peito? Falta de ar? Fraqueza de um lado? Boca torta? Confusão? Convulsão? Dor forte nas costas? Alteração visual? Diminuiu a urina? Gestante ou puérpera?</p>
+        </div>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">4</div>
+        <div class="fluxo-body">
+          <h4>🔎 Examine o mínimo vital</h4>
+          <p>Estado geral · Nível de consciência · Ausculta pulmão + coração · Pulsos · Sat O₂ · Glicemia capilar se neuro · ECG se dor torácica disponível</p>
+        </div>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">5</div>
+        <div class="fluxo-body">
+          <h4>🔀 Separe os caminhos</h4>
+          <p>Sem LOA → Caminho A (oral, gradual, ambulatorial). Com LOA → Caminho B (emergência, SAMU, UTI).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fork -->
+    <div class="fluxo-fork">
+      <div class="fork-a">
+        <h4>✅ Caminho A — sem LOA aguda</h4>
+        <ul>
+          <li>Não reduzir PA abruptamente</li>
+          <li>Não usar nifedipina de liberação rápida</li>
+          <li>Não usar medicação EV na UBS</li>
+          <li>Ajustar tratamento oral</li>
+          <li>Checar adesão e gatilhos</li>
+          <li>Orientar retorno em 1–7 dias</li>
+          <li>Orientar sinais de alarme</li>
+        </ul>
+      </div>
+      <div class="fork-b">
+        <h4>🚨 Caminho B — com LOA aguda</h4>
+        <ul>
+          <li>Reconhecer emergência</li>
+          <li>Monitorizar se possível</li>
+          <li>O₂ se hipoxemia</li>
+          <li>Acesso venoso se disponível</li>
+          <li>ECG se suspeita cardiovascular</li>
+          <li>Acionar SAMU / transferência</li>
+          <li>Encaminhar para suporte IV + UTI</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Do / Don't -->
+    <div class="divider"></div>
+    <h3 class="sub">O que fazer e o que NÃO fazer na UBS</h3>
+    <div class="do-dont">
+      <div class="do-list">
+        <h4>✅ SEMPRE</h4>
+        <ul>
+          <li>Medir corretamente</li>
+          <li>Repetir quando vier muito alta</li>
+          <li>Classificar pelo pior número</li>
+          <li>Procurar LOA aguda</li>
+          <li>Avaliar risco cardiovascular</li>
+          <li>Checar adesão</li>
+          <li>Checar remédios que elevam PA</li>
+          <li>Orientar sinais de alarme</li>
+          <li>Registrar plano de seguimento</li>
+          <li>Linguagem que o paciente entenda</li>
+        </ul>
+      </div>
+      <div class="dont-list">
+        <h4>❌ NUNCA</h4>
+        <ul>
+          <li>Diagnosticar HAS com uma única medida</li>
+          <li>Usar nifedipina de ação rápida</li>
+          <li>Baixar PA rápido sem LOA</li>
+          <li>Ignorar dor torácica, déficit neuro, dispneia</li>
+          <li>Mandar todo PA 180/110 para hospital sem avaliação</li>
+          <li>Renovar receita sem avaliar controle</li>
+          <li>Chamar tudo de "urgência hipertensiva"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-box-label">🚫 Proscrito pela Diretriz SBC 2025</div>
+      <p><strong>Nifedipina de liberação rápida</strong> é proscrita na crise sem LOA. A queda abrupta da PA pode causar <strong>isquemia tecidual</strong> — em hipertenso crônico, a autoregulação está deslocada para valores mais altos. Derrubar rápido demais é perigoso.</p>
+    </div>
+
+    <div class="mantra">
+      <p>"Classifique pelo pior número.<br>Confirme pela boa medida.<br>Decida pelo órgão-alvo."</p>
+      <small>Mantra Final — Dr. André Rossanno</small>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 05: FLASHCARDS ══ -->
+  <section id="tab-flashcards" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Memorização · N4</div>
+      <h2 class="section-title">Flashcards<br><span>do Módulo 1</span></h2>
+      <p class="section-subtitle">Clique para revelar a resposta. Teste seu conhecimento antes de ver.</p>
+    </div>
+
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">PA 126×82 é normal?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">Não. É pré-hipertensão pela diretriz 2025.</div>
+            <div class="flashcard-hint">PAD 80–89 → pré-HAS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">PA 182×92 — qual estágio?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">HAS Estágio 3.<br>PAS ≥180 manda.</div>
+            <div class="flashcard-hint">vale sempre o pior número</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">PA 190×110 sem sintomas = emergência?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">Não obrigatoriamente. Precisa avaliar LOA aguda.</div>
+            <div class="flashcard-hint">sem LOA → elevação importante sem emergência</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">O que divide emergência de não-emergência?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">Lesão aguda e progressiva de órgão-alvo (LOA).</div>
+            <div class="flashcard-hint">não é o número da PA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">O que fazer PRIMEIRO na PA muito alta na UBS?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">Repetir a medida corretamente e procurar LOA.</div>
+            <div class="flashcard-hint">não tratar número no susto</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">Ponto de corte de HAS no consultório?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">≥140 e/ou ≥90 mmHg</div>
+            <div class="flashcard-hint">na MRPA e MAPA: ≥130/80</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">Nifedipina rápida na crise sem LOA?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">NÃO. Proscrita. Queda abrupta = risco de isquemia.</div>
+            <div class="flashcard-hint">SBC 2025: proscrita na crise sem LOA</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">PA 138×96 — qual categoria?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">HAS Estágio 1.<br>PAD 90–99 decide.</div>
+            <div class="flashcard-hint">mesmo com PAS abaixo de 140</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">Manguito pequeno em braço grande → erro?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">Superestima a PA. Falso positivo de HAS. O monstro inflador.</div>
+            <div class="flashcard-hint">braço grande exige manguito grande</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="flashcard-q">Ponto de corte da MAPA durante o sono?</div>
+            <div class="flashcard-hint">toque para revelar</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="flashcard-a">≥120 e/ou ≥70 mmHg</div>
+            <div class="flashcard-hint">MAPA vigília: ≥135/85 · 24h: ≥130/80</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="btn btn-outline" onclick="resetCards()">↺ Reiniciar todos os cartões</button>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 06: QUIZ ══ -->
+  <section id="tab-quiz" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 1 · Testing Effect · N4</div>
+      <h2 class="section-title">Quiz estilo<br><span>treinamento UBS</span></h2>
+      <p class="section-subtitle">5 questões com pegadinha. O erro aqui é aprendizado; na UBS seria paciente.</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="quiz-card" id="q1">
+      <div class="quiz-num">QUESTÃO 01 / 05</div>
+      <div class="quiz-q">Paciente de 45 anos, assintomático, PA em consulta: 128×84 mmHg. Sem comorbidades. Qual a classificação correta?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q1','wrong')">A) PA normal</button>
+        <button class="quiz-opt" onclick="answer(this,'q1','correct')">B) Pré-hipertensão</button>
+        <button class="quiz-opt" onclick="answer(this,'q1','wrong')">C) HAS estágio 1</button>
+        <button class="quiz-opt" onclick="answer(this,'q1','wrong')">D) HAS estágio 2</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q1">
+        <strong>✅ Pré-hipertensão.</strong> A PAD de 84 mmHg está entre 80–89. Mesmo a PAS parecendo "quase normal", a regra do pior número coloca esse paciente em pré-hipertensão. Orientar MEV e acompanhar — não medicar ainda.
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-card" id="q2">
+      <div class="quiz-num">QUESTÃO 02 / 05</div>
+      <div class="quiz-q">Paciente de 58 anos, PA 146×88 mmHg em uma única consulta, assintomático. Sem LOA conhecida. Melhor conduta?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q2','wrong')">A) Diagnosticar HAS definitiva e encaminhar para emergência</button>
+        <button class="quiz-opt" onclick="answer(this,'q2','wrong')">B) Fazer nifedipina de ação rápida</button>
+        <button class="quiz-opt" onclick="answer(this,'q2','correct')">C) Confirmar medida, repetir avaliação, orientar MEV e programar seguimento</button>
+        <button class="quiz-opt" onclick="answer(this,'q2','wrong')">D) Ignorar — a diastólica está normal</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q2">
+        <strong>✅ Alternativa C.</strong> Uma medida isolada raramente fecha diagnóstico definitivo. PAS em HAS estágio 1 precisa de confirmação. Orientar MEV, considerar MAPA/MRPA e programar retorno. A PAD de 88 está na pré-HAS, mas a PAS já está em território de HAS 1.
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-card" id="q3">
+      <div class="quiz-num">QUESTÃO 03 / 05</div>
+      <div class="quiz-q">Hipertenso de 63 anos, 10 dias sem medicação, PA 192×108 mmHg. Assintomático, neuro normal, sem dor torácica, sem dispneia. Interpretação?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q3','wrong')">A) Emergência hipertensiva obrigatória</button>
+        <button class="quiz-opt" onclick="answer(this,'q3','correct')">B) Elevação importante da PA sem LOA aguda</button>
+        <button class="quiz-opt" onclick="answer(this,'q3','wrong')">C) AVC até prova em contrário</button>
+        <button class="quiz-opt" onclick="answer(this,'q3','wrong')">D) Choque hipertensivo</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q3">
+        <strong>✅ Alternativa B.</strong> PA muito alta sem LOA aguda deve ser conduzida com ajuste oral, observação e reavaliação precoce. A diretriz permite condução ambulatorial com retorno em 1–7 dias conforme segurança clínica. Não reduzir abruptamente.
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-card" id="q4">
+      <div class="quiz-num">QUESTÃO 04 / 05 · 🔥 PEGADINHA</div>
+      <div class="quiz-q">Paciente com PA 164×98 mmHg, dor torácica típica, sudorese e ECG com supra de ST. Classificação clínica?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q4','wrong')">A) HAS estágio 2 sem gravidade</button>
+        <button class="quiz-opt" onclick="answer(this,'q4','wrong')">B) Pré-hipertensão complicada</button>
+        <button class="quiz-opt" onclick="answer(this,'q4','correct')">C) Emergência hipertensiva com SCA associada</button>
+        <button class="quiz-opt" onclick="answer(this,'q4','wrong')">D) Pseudocrise hipertensiva</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q4">
+        <strong>⚡ Pegadinha clássica!</strong> A PA de 164×98 nem chegou em 180/110 — mas isso não importa. A emergência hipertensiva não precisa de PA "muito alta" para existir. O que define emergência é a <strong>LOA aguda</strong>: aqui, o coração decidiu. SAMU imediato.
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-card" id="q5">
+      <div class="quiz-num">QUESTÃO 05 / 05</div>
+      <div class="quiz-q">PA 188×112, cefaleia leve após discussão familiar, neuro normal, sem vômitos, sem confusão, melhora após repouso. Melhor frase?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q5','wrong')">A) Cefaleia leve sempre define emergência hipertensiva</button>
+        <button class="quiz-opt" onclick="answer(this,'q5','wrong')">B) PA ≥180/110 sempre exige medicação EV</button>
+        <button class="quiz-opt" onclick="answer(this,'q5','correct')">C) Avaliar LOA; se ausente, não reduzir abruptamente</button>
+        <button class="quiz-opt" onclick="answer(this,'q5','wrong')">D) Baixar PA para 120/80 em 1 hora</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q5">
+        <strong>✅ Alternativa C.</strong> Sintoma inespecífico (cefaleia leve, após gatilho emocional, com melhora espontânea) sem LOA não transforma automaticamente em emergência. Avaliar com calma, repetir PA, checar gatilhos. A pseudocrise é muito mais comum do que a emergência real na UBS.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 07: OSCE ══ -->
+  <section id="tab-osce" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 1 · Mini-OSCE</div>
+      <h2 class="section-title">Estação:<br><span>Pressão alta na triagem</span></h2>
+      <p class="section-subtitle">Simule o atendimento. Marque cada item conforme for realizando.</p>
+    </div>
+
+    <div class="osce-station">
+      <div class="osce-header">
+        <div class="osce-icon">🏥</div>
+        <div>
+          <div class="osce-title">Cenário Clínico</div>
+          <div class="osce-subtitle">Paciente de 63 anos, hipertenso, chega para renovar receita. Triagem: PA 186×104 mmHg.</div>
+        </div>
+      </div>
+
+      <div class="case-vitals" style="margin-bottom:1.5rem">
+        <div class="vital"><div class="vital-label">PA Triagem</div><div class="vital-value danger">186×104</div></div>
+        <div class="vital"><div class="vital-label">Idade</div><div class="vital-value">63 anos</div></div>
+        <div class="vital"><div class="vital-label">Motivo</div><div class="vital-value" style="font-size:0.8rem">Renovar receita</div></div>
+        <div class="vital"><div class="vital-label">Histórico</div><div class="vital-value" style="font-size:0.8rem">HAS conhecida</div></div>
+      </div>
+
+      <h4 style="color:var(--gold);font-family:var(--font-display);margin-bottom:1rem;">Checklist de Atendimento — clique para marcar</h4>
+
+      <ul class="checklist" id="osce-list">
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Repetiu PA corretamente após repouso</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Verificou manguito e técnica de aferição</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Perguntou sobre sintomas de LOA neurológica</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Perguntou sobre sintomas de LOA cardiovascular</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Investigou sinais de dissecção de aorta</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Avaliou adesão ao tratamento</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Pesquisou gatilhos e medicações que elevam PA</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Evitou queda brusca sem LOA confirmada</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Orientou retorno e sinais de alarme</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Encaminharia se houvesse suspeita de emergência</li>
+      </ul>
+
+      <div class="score-bar">
+        <div class="score-label">PONTUAÇÃO</div>
+        <div class="score-value" id="osce-score">0 / 10</div>
+        <div class="score-track"><div class="score-fill" id="osce-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="ok-box">
+      <div class="ok-box-label">💡 Perguntas essenciais de LOA</div>
+      <p>Teve dor no peito? · Falta de ar? · Fraqueza de um lado? · Boca torta? · Confusão? · Convulsão? · Dor forte nas costas? · Visão alterada? · Urinando normalmente? · Tomou os remédios? · Usou anti-inflamatório? · Álcool ou estimulantes? · Dor importante em algum lugar?</p>
+    </div>
+
+  </section>
+
+  <!-- ══ TAB 08: PALÁCIO ══ -->
+  <section id="tab-palacio" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Memorização · N3 · Palácio da Memória</div>
+      <h2 class="section-title">O Castelo<br><span>da UBS</span></h2>
+      <p class="section-subtitle">Imagine a UBS como um castelo no interior do Maranhão. Cada cômodo ancora um conceito.</p>
+    </div>
+
+    <div class="palace-room" data-room="PORTÃO">
+      <div class="palace-title">🏰 O Portão</div>
+      <div class="palace-content">
+        No portão do castelo há um letreiro dourado:<br><br>
+        <em style="color:var(--gold);font-size:1.1rem">"Aqui não se trata número. Aqui se cuida de gente."</em><br><br>
+        O paciente entra segurando um papel com a PA escrita. Na mão esquerda, os números. No rosto, a história clínica inteira.
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="ESCADARIA">
+      <div class="palace-title">🪜 A Escadaria Central</div>
+      <div class="palace-content">
+        No salão principal há uma escada de 5 degraus. Cada degrau tem uma cor pintada no chão:
+      </div>
+      <div class="staircase" style="margin-top:1rem">
+        <div class="stair stair-0"><span class="stair-n">&lt;12/8</span><div class="stair-bar"></div><span class="stair-label">🟢 Silêncio — ninguém em alarme</span></div>
+        <div class="stair stair-1"><span class="stair-n">12/8</span><div class="stair-bar"></div><span class="stair-label">🔔 Campainha amarela — pré-HAS</span></div>
+        <div class="stair stair-2"><span class="stair-n">14/9</span><div class="stair-bar"></div><span class="stair-label">🟠 Porta da HAS 1</span></div>
+        <div class="stair stair-3"><span class="stair-n">16/10</span><div class="stair-bar"></div><span class="stair-label">🔶 Corredor da HAS 2</span></div>
+        <div class="stair stair-4"><span class="stair-n">≥18/11</span><div class="stair-bar"></div><span class="stair-label">🔴 Torre vermelha — HAS 3</span></div>
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="TORRE">
+      <div class="palace-title">🗼 No alto da torre — as 5 Sentinelas</div>
+      <div class="palace-content">
+        No topo da torre vermelha, cinco sentinelas guardam o castelo. O médico sábio não fica hipnotizado pelo número da escada — ele sobe e olha para as sentinelas.<br><br>
+        <strong>Se nenhuma sentinela está ferida:</strong> trata com calma, método e seguimento.<br>
+        <strong>Se uma sentinela está sangrando:</strong> reconhece emergência e aciona resgate.
+      </div>
+      <div class="sentinel-grid">
+        <div class="sentinel"><div class="sentinel-icon">🧠</div><div class="sentinel-name">Cérebro</div></div>
+        <div class="sentinel"><div class="sentinel-icon">❤️</div><div class="sentinel-name">Coração</div></div>
+        <div class="sentinel"><div class="sentinel-icon">🩸</div><div class="sentinel-name">Aorta</div></div>
+        <div class="sentinel"><div class="sentinel-icon">🫘</div><div class="sentinel-name">Rim</div></div>
+        <div class="sentinel"><div class="sentinel-icon">👁️</div><div class="sentinel-name">Retina</div></div>
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="SALÃO DOS MANGUITOS">
+      <div class="palace-title">🩺 Salão dos Manguitos</div>
+      <div class="palace-content">
+        Neste salão há dois personagens estranhos nas paredes:<br><br>
+        <strong style="color:var(--red)">O Monstro Inflador</strong> (manguito pequeno em braço grande) — ele aperta demais e faz a pressão parecer maior. Diagnostica HAS onde não existe.<br><br>
+        <strong style="color:var(--gold)">O Fantasma Apagador</strong> (manguito grande em braço fino) — ele espalha demais a força e faz a pressão parecer menor. Esconde HAS onde existe.<br><br>
+        <em>"Pressão mal medida é fofoca hemodinâmica."</em>
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="PORTA DA SAÍDA">
+      <div class="palace-title">🚪 A Porta da Saída</div>
+      <div class="palace-content">
+        Na porta da saída do castelo, o médico lê o último ensinamento antes de chamar o próximo paciente:
+      </div>
+      <div style="margin-top:1.5rem">
+        <div class="mantra" style="margin:0.8rem 0">
+          <p>"A pressão é um sinal vital; o paciente é uma vida inteira."</p>
+          <small>Dr. André Rossanno</small>
+        </div>
+        <div class="mantra" style="margin:0.8rem 0">
+          <p>"Na UBS, o bom médico não briga com o número:<br>ele conversa com o contexto."</p>
+          <small>Dr. André Rossanno</small>
+        </div>
+        <div class="mantra" style="margin:0.8rem 0">
+          <p>"A queda brusca da pressão pode ser tão imprudente<br>quanto ignorar a pressão alta."</p>
+          <small>Dr. André Rossanno</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revisão 30 seg -->
+    <div class="divider"></div>
+    <h3 class="sub">⏱️ Revisão de 30 segundos — o que não pode esquecer</h3>
+    <div class="info-card" style="background:rgba(11,37,69,0.7);border-color:rgba(18,130,162,0.4)">
+      <div class="info-card-title" style="font-size:1rem;margin-bottom:1rem">Mantra Final</div>
+      <div class="progress-row"><span class="progress-label" style="color:var(--green)">PA Normal</span><div class="progress-track"><div class="progress-fill" style="width:20%;background:var(--green)"></div></div><span style="font-size:0.8rem;color:var(--mid)">&lt;120/80</span></div>
+      <div class="progress-row"><span class="progress-label" style="color:var(--gold)">Pré-HAS</span><div class="progress-track"><div class="progress-fill" style="width:40%;background:var(--gold)"></div></div><span style="font-size:0.8rem;color:var(--mid)">120–139/80–89</span></div>
+      <div class="progress-row"><span class="progress-label" style="color:#F4A142">HAS 1</span><div class="progress-track"><div class="progress-fill" style="width:55%;background:#F4A142"></div></div><span style="font-size:0.8rem;color:var(--mid)">140–159/90–99</span></div>
+      <div class="progress-row"><span class="progress-label" style="color:#E06C00">HAS 2</span><div class="progress-track"><div class="progress-fill" style="width:70%;background:#E06C00"></div></div><span style="font-size:0.8rem;color:var(--mid)">160–179/100–109</span></div>
+      <div class="progress-row"><span class="progress-label" style="color:var(--red)">HAS 3</span><div class="progress-track"><div class="progress-fill" style="width:90%;background:var(--red)"></div></div><span style="font-size:0.8rem;color:var(--mid)">≥180/≥110</span></div>
+    </div>
+
+    <div class="mantra" style="margin-top:2rem">
+      <p style="font-size:1.1rem">Classifique pelo <span style="color:var(--gold)">pior número</span>.<br>
+      Confirme pela <span style="color:var(--teal)">boa medida</span>.<br>
+      Decida pelo <span style="color:var(--red)">órgão-alvo</span>.</p>
+      <small>Mantra Final — Missão HAS UBS 2025</small>
+    </div>
+
+  </section>
+
+  </section>
+
+  <!-- ══ TAB 09: CRÉDITOS ══ -->
+  <section id="tab-creditos" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Missão HAS UBS 2025</div>
+      <h2 class="section-title">Créditos &<br><span>equipe</span></h2>
+      <p class="section-subtitle">Um projeto construído com literatura, dedicação e vontade de mudar o cuidado na atenção primária.</p>
+    </div>
+
+    <div style="background:linear-gradient(135deg,rgba(11,37,69,0.9),rgba(18,130,162,0.08));border:1px solid rgba(18,130,162,0.25);border-radius:12px;padding:2.5rem 2rem;text-align:center;margin-bottom:2rem;">
+
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:0.5rem;">Missão HAS UBS 2025 · Módulo 1A + 1B</div>
+      <div style="font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:var(--white);margin-bottom:1.5rem;">Identificação, Classificação e Crise na UBS</div>
+
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:0.4rem;">Coordenação Científica · Curadoria de Literatura · Orientação Acadêmica</div>
+      <div style="font-family:var(--font-script);font-size:2rem;color:var(--gold);margin-bottom:2rem;">Dr. André Rossanno</div>
+
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem;">Ação Educativa · Aplicação Local</div>
+
+      <div style="background:rgba(11,37,69,0.6);border:1px solid rgba(18,130,162,0.2);border-radius:10px;padding:1.5rem 2rem;display:inline-block;margin-bottom:1.5rem;min-width:280px;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">UBS Tibiri · IESCG VIII · São Luís · MA</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="font-size:1rem;color:var(--light);font-weight:500;">Fabiane Almeida Pinheiro</div>
+          <div style="font-size:1rem;color:var(--light);font-weight:500;">Emmanuella Bruno Alencar</div>
+          <div style="font-size:1rem;color:var(--light);font-weight:500;">Josivania Monteiro de Castro</div>
+          <div style="font-size:1rem;color:var(--light);font-weight:500;">Gabriela da Silva Patriota</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(18,130,162,0.15);padding-top:1.2rem;margin-top:0.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-bottom:0.5rem;">Ferramentas de apoio declaradas</div>
+        <div style="font-size:0.82rem;color:rgba(141,169,196,0.7);line-height:1.7;">
+          ChatGPT — organização, síntese, memorização e estrutura pedagógica.<br>
+          Claude — codificação HTML interativo e interface do Atlas Mental.<br>
+          Gamma / NotebookLM — apoio visual e organização de slides.
+        </div>
+      </div>
+    </div>
+
+    <!-- Contato -->
+    <div style="background:linear-gradient(135deg,rgba(11,37,69,0.8),rgba(18,130,162,0.08));border:1px solid rgba(18,130,162,0.25);border-radius:12px;padding:2.5rem 2rem;text-align:left;">
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.6rem;">Contato & Colaboração</div>
+      <div style="font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--white);margin-bottom:1rem;">Este projeto é seu também.</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.7;margin-bottom:1.5rem;">
+        A <strong style="color:var(--white)">Missão HAS UBS 2025</strong> é um projeto sem fins lucrativos. Se você encontrou um <strong style="color:var(--gold)">erro clínico</strong>, tem uma <strong style="color:var(--gold)">sugestão de melhoria</strong>, quer solicitar um <strong style="color:var(--teal)">novo módulo</strong> ou quer <strong style="color:var(--green)">colaborar como revisor ou coautor</strong> — entre em contato. Médicos de qualquer especialidade são bem-vindos.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+        <a href="mailto:andrerossanno@gmail.com" style="display:flex;align-items:center;gap:0.8rem;background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.3);border-radius:8px;padding:1rem 1.2rem;text-decoration:none;" onmouseover="this.style.borderColor='#1282A2'" onmouseout="this.style.borderColor='rgba(18,130,162,0.3)'">
+          <span style="font-size:1.5rem">✉️</span>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--mid);letter-spacing:0.1em;margin-bottom:0.2rem">EMAIL</div>
+            <div style="font-size:0.85rem;color:var(--teal);font-weight:600">andrerossanno@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://wa.me/5598991060609" target="_blank" style="display:flex;align-items:center;gap:0.8rem;background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.25);border-radius:8px;padding:1rem 1.2rem;text-decoration:none;" onmouseover="this.style.borderColor='#1A7A4A'" onmouseout="this.style.borderColor='rgba(26,122,74,0.25)'">
+          <span style="font-size:1.5rem">📱</span>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--mid);letter-spacing:0.1em;margin-bottom:0.2rem">WHATSAPP</div>
+            <div style="font-size:0.85rem;color:var(--green);font-weight:600">(98) 99106-0609</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom-nav">
+    <button class="btn btn-outline" onclick="prevTab()">← Anterior</button>
+    <button class="btn btn-primary" onclick="nextTab()">Próximo →</button>
+  </div>
+
+  <footer class="footer">
+
+    <!-- CONTATO -->
+    <div style="
+      background: linear-gradient(135deg, rgba(11,37,69,0.8), rgba(18,130,162,0.08));
+      border: 1px solid rgba(18,130,162,0.25);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    ">
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.6rem;">Contato & Colaboração</div>
+      <div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;color:var(--white);margin-bottom:1rem;">Este projeto é seu também.</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.7;margin-bottom:1.5rem;">
+        A <strong style="color:var(--white)">Missão HAS UBS 2025</strong> é um projeto sem fins lucrativos, baseado em literatura científica atualizada, desenvolvido para médicos da atenção primária — especialmente nas regiões com menor acesso à educação médica continuada.<br><br>
+        Se você encontrou um <strong style="color:var(--gold)">erro clínico</strong>, tem uma <strong style="color:var(--gold)">sugestão de melhoria</strong>, quer solicitar um <strong style="color:var(--teal)">novo módulo</strong> ou tem interesse em <strong style="color:var(--green)">colaborar como coautor</strong> — entre em contato. Críticas fundamentadas são bem-vindas e essenciais para a qualidade do projeto.
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+        <a href="mailto:andrerossanno@gmail.com" style="
+          display:flex;align-items:center;gap:0.8rem;
+          background:rgba(18,130,162,0.1);
+          border:1px solid rgba(18,130,162,0.3);
+          border-radius:8px;padding:1rem 1.2rem;
+          text-decoration:none;transition:all 0.2s;
+        " onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='rgba(18,130,162,0.3)'">
+          <span style="font-size:1.5rem;">✉️</span>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--mid);letter-spacing:0.1em;margin-bottom:0.2rem;">EMAIL</div>
+            <div style="font-size:0.85rem;color:var(--teal);font-weight:600;">andrerossanno@gmail.com</div>
+          </div>
+        </a>
+
+        <a href="https://wa.me/5598991060609" target="_blank" style="
+          display:flex;align-items:center;gap:0.8rem;
+          background:rgba(26,122,74,0.08);
+          border:1px solid rgba(26,122,74,0.25);
+          border-radius:8px;padding:1rem 1.2rem;
+          text-decoration:none;transition:all 0.2s;
+        " onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='rgba(26,122,74,0.25)'">
+          <span style="font-size:1.5rem;">📱</span>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--mid);letter-spacing:0.1em;margin-bottom:0.2rem;">WHATSAPP</div>
+            <div style="font-size:0.85rem;color:var(--green);font-weight:600;">(98) 99106-0609</div>
+          </div>
+        </a>
+      </div>
+
+      <div style="
+        margin-top:1.5rem;
+        padding:1rem 1.2rem;
+        background:rgba(244,185,66,0.06);
+        border:1px solid rgba(244,185,66,0.2);
+        border-radius:6px;
+        font-size:0.82rem;
+        color:var(--mid);
+        line-height:1.6;
+      ">
+        💡 <strong style="color:var(--gold)">Quer fazer parte?</strong> Médicos de qualquer especialidade podem colaborar como revisores, sugerir casos clínicos, propor novos módulos ou adaptar o conteúdo para sua realidade local. O projeto cresce com a comunidade.
+      </div>
+    </div>
+
+    <!-- ASSINATURA FINAL -->
+    <div class="footer-sig">Dr. André Rossanno</div>
+    <div class="footer-mission">Missão HAS UBS 2025 · Módulo 1A + 1B</div>
+    <div class="footer-info" style="margin-top:0.5rem;">SEM FINS LUCRATIVOS · BASEADO NA DIRETRIZ SBC/SBH/SBN 2025 · MEMORIAPOTENCIAL.COM.BR</div>
+
+  </footer>
+</div>
+
+<script>
+// ── TAB SYSTEM ──
+const tabs = ['classificacao','medicao','crise','conduta','flashcards','quiz','osce','palacio','creditos'];
+let currentTab = 0;
+
+function showTab(name) {
+  tabs.forEach((t, i) => {
+    const sec = document.getElementById('tab-' + t);
+    const btn = document.querySelectorAll('.nav-tab')[i];
+    if (t === name) {
+      sec.classList.add('active');
+      btn.classList.add('active');
+      currentTab = i;
+    } else {
+      sec.classList.remove('active');
+      btn.classList.remove('active');
+    }
+  });
+  document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function nextTab() {
+  if (currentTab < tabs.length - 1) showTab(tabs[currentTab + 1]);
+}
+function prevTab() {
+  if (currentTab > 0) showTab(tabs[currentTab - 1]);
+}
+
+// ── LOA TOGGLE ──
+function toggleLOA(el) {
+  el.classList.toggle('open');
+}
+
+// ── QUIZ ──
+function answer(btn, qid, result) {
+  const card = document.getElementById(qid);
+  const opts = card.querySelectorAll('.quiz-opt');
+  const fb = document.getElementById('fb-' + qid);
+  opts.forEach(o => o.classList.add('disabled'));
+  btn.classList.add(result);
+  fb.classList.add('show');
+  fb.classList.add(result === 'correct' ? 'correct-fb' : 'wrong-fb');
+}
+
+// ── FLASHCARDS ──
+function resetCards() {
+  document.querySelectorAll('.flashcard').forEach(c => c.classList.remove('flipped'));
+}
+
+// ── OSCE CHECKLIST ──
+function toggleCheck(li) {
+  li.classList.toggle('done');
+  const checkBox = li.querySelector('.check-box');
+  checkBox.textContent = li.classList.contains('done') ? '✓' : '';
+  updateScore();
+}
+
+function updateScore() {
+  const total = document.querySelectorAll('#osce-list li').length;
+  const done = document.querySelectorAll('#osce-list li.done').length;
+  document.getElementById('osce-score').textContent = done + ' / ' + total;
+  document.getElementById('osce-fill').style.width = (done / total * 100) + '%';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missão HAS UBS 2025 — Módulo 3 | Dr. André Rossanno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-display: 'Nunito', 'Trebuchet MS', Arial, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-script: 'Dancing Script', Georgia, cursive;
+  --navy:#0B2545;--teal:#1282A2;--gold:#F4B942;--red:#C0392B;--green:#1A7A4A;
+  --white:#F8F9FA;--light:#E8EEF4;--mid:#8DA9C4;--dark:#071A33;--bg:#060F1E;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden;}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(26,122,74,0.15) 0%,transparent 65%),radial-gradient(ellipse 60% 40% at 10% 100%,rgba(18,130,162,0.15) 0%,transparent 55%),var(--bg);z-index:0;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(26,122,74,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,122,74,0.04) 1px,transparent 1px);background-size:60px 60px;z-index:0;}
+.hero-content{position:relative;z-index:1;max-width:820px;}
+.mission-badge{display:inline-block;font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);border:1px solid rgba(26,122,74,0.4);padding:0.4rem 1rem;border-radius:2px;margin-bottom:2rem;animation:fadeDown 0.8s ease both;}
+.modulo-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(26,122,74,0.1);border:1px solid rgba(26,122,74,0.25);padding:0.5rem 1.2rem;border-radius:30px;font-family:var(--font-mono);font-size:0.75rem;color:var(--green);margin-bottom:1.5rem;animation:fadeDown 0.8s 0.05s ease both;}
+.hero h1{font-family:var(--font-display);font-weight:900;font-size:clamp(2.6rem,8vw,5rem);line-height:1;color:var(--white);animation:fadeDown 0.8s 0.1s ease both;}
+.hero h1 span{color:var(--green);}
+.hero-tagline{font-family:var(--font-mono);font-size:clamp(0.85rem,2vw,1rem);color:var(--teal);margin:1.5rem 0;animation:fadeDown 0.8s 0.2s ease both;}
+.hero-frase{font-size:clamp(0.9rem,2vw,1.05rem);color:var(--mid);font-style:italic;max-width:620px;margin:0 auto 0.5rem;animation:fadeDown 0.8s 0.3s ease both;line-height:1.6;}
+.hero-assinatura{font-family:var(--font-script);font-size:1.4rem;color:var(--gold);animation:fadeDown 0.8s 0.4s ease both;}
+.hero-team{margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;animation:fadeDown 0.8s 0.5s ease both;}
+.hero-team-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(18,130,162,0.7);}
+.hero-team-names{background:rgba(11,37,69,0.6);border:1px solid rgba(18,130,162,0.25);border-radius:10px;padding:1rem 1.8rem;display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.5rem;}
+.hero-team-names span{font-size:0.85rem;color:var(--light);}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--mid);font-size:0.7rem;font-family:var(--font-mono);letter-spacing:0.1em;animation:fadeDown 1s 0.8s ease both;cursor:pointer;text-decoration:none;}
+.hero-scroll::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--green),transparent);animation:pulse 2s infinite;}
+
+/* NAV */
+.nav-wrapper{position:sticky;top:0;z-index:100;background:rgba(6,15,30,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,122,74,0.15);}
+.nav-tabs{display:flex;overflow-x:auto;max-width:1100px;margin:0 auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{flex-shrink:0;padding:1rem 1.2rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.nav-tab:hover{color:var(--white);}
+.nav-tab.active{color:var(--green);border-bottom-color:var(--green);}
+
+/* SECTIONS */
+.section{display:none;max-width:1100px;margin:0 auto;padding:3rem 1.5rem 5rem;animation:fadeUp 0.4s ease both;}
+.section.active{display:block;}
+.section-header{margin-bottom:2.5rem;}
+.section-kicker{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem;}
+.section-title{font-family:var(--font-display);font-weight:900;font-size:clamp(1.8rem,5vw,3rem);line-height:1.05;color:var(--white);}
+.section-title span{color:var(--green);}
+.section-subtitle{margin-top:0.8rem;font-size:1rem;color:var(--mid);max-width:640px;line-height:1.6;}
+
+/* CASE CARD */
+.case-card{background:linear-gradient(135deg,rgba(11,37,69,0.8),rgba(18,130,162,0.08));border:1px solid rgba(18,130,162,0.3);border-left:4px solid var(--teal);border-radius:8px;padding:2rem;margin-bottom:2rem;position:relative;}
+.case-card::before{content:'CASO CLÍNICO';position:absolute;top:1rem;right:1.2rem;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.2em;color:rgba(18,130,162,0.4);}
+.case-name{font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--gold);margin-bottom:0.3rem;}
+.case-details{font-size:0.85rem;color:var(--mid);margin-bottom:1.2rem;font-family:var(--font-mono);}
+.case-vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.8rem;margin-bottom:1.5rem;}
+.vital{background:rgba(11,37,69,0.6);border:1px solid rgba(18,130,162,0.2);border-radius:6px;padding:0.8rem;text-align:center;}
+.vital-label{font-family:var(--font-mono);font-size:0.62rem;color:var(--mid);letter-spacing:0.1em;margin-bottom:0.3rem;}
+.vital-value{font-family:var(--font-display);font-weight:900;font-size:1.2rem;color:var(--teal);}
+.vital-value.danger{color:var(--red);}
+.vital-value.sm{font-size:0.82rem;}
+.voice-box{background:rgba(0,0,0,0.3);border-left:3px solid var(--gold);padding:1rem 1.2rem;margin:0.8rem 0;border-radius:0 6px 6px 0;font-style:italic;color:var(--light);font-size:0.92rem;}
+.voice-box.green{border-left-color:var(--green);}
+.voice-box.red{border-left-color:var(--red);}
+.voice-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;color:var(--mid);margin-bottom:0.3rem;font-style:normal;text-transform:uppercase;}
+
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin:1.5rem 0;}
+.info-card{background:rgba(11,37,69,0.5);border:1px solid rgba(18,130,162,0.2);border-radius:8px;padding:1.5rem;transition:transform 0.2s,border-color 0.2s;}
+.info-card:hover{transform:translateY(-2px);border-color:rgba(18,130,162,0.4);}
+.info-card-icon{font-size:2rem;margin-bottom:0.8rem;}
+.info-card-title{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--teal);margin-bottom:0.5rem;}
+.info-card p{font-size:0.87rem;color:var(--mid);line-height:1.6;}
+.info-card.danger{border-color:rgba(192,57,43,0.25);}
+.info-card.danger .info-card-title{color:var(--red);}
+.info-card.gold{border-color:rgba(244,185,66,0.25);}
+.info-card.gold .info-card-title{color:var(--gold);}
+.info-card.green{border-color:rgba(26,122,74,0.25);}
+.info-card.green .info-card-title{color:var(--green);}
+
+/* BOXES */
+.mantra{background:linear-gradient(135deg,rgba(26,122,74,0.08),rgba(11,37,69,0.4));border:1px solid rgba(26,122,74,0.3);border-radius:8px;padding:1.5rem 2rem;text-align:center;margin:2rem 0;}
+.mantra p{font-family:var(--font-display);font-weight:800;font-size:clamp(1rem,2.5vw,1.4rem);color:var(--white);line-height:1.5;}
+.mantra small{display:block;font-family:var(--font-script);font-size:1.1rem;color:var(--gold);margin-top:0.5rem;}
+.pegadinha{background:rgba(244,185,66,0.07);border:1px solid rgba(244,185,66,0.3);border-left:4px solid var(--gold);border-radius:6px;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+.pegadinha-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.4rem;}
+.pegadinha p{font-size:0.9rem;color:var(--light);line-height:1.6;}
+.alert-box{background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.3);border-left:4px solid var(--red);border-radius:6px;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+.alert-box-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;color:var(--red);text-transform:uppercase;margin-bottom:0.4rem;}
+.alert-box p{font-size:0.9rem;color:var(--light);line-height:1.6;}
+.ok-box{background:rgba(26,122,74,0.07);border:1px solid rgba(26,122,74,0.25);border-left:4px solid var(--green);border-radius:6px;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+.ok-box-label{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;color:var(--green);text-transform:uppercase;margin-bottom:0.4rem;}
+.ok-box p{font-size:0.9rem;color:var(--light);line-height:1.6;}
+
+/* 5Cs */
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1.5rem 0;}
+.cs-card{background:rgba(11,37,69,0.6);border:1px solid rgba(26,122,74,0.2);border-radius:10px;padding:1.5rem 1rem;text-align:center;transition:transform 0.2s;}
+.cs-card:hover{transform:translateY(-3px);border-color:rgba(26,122,74,0.4);}
+.cs-letter{font-family:var(--font-display);font-weight:900;font-size:3rem;color:var(--green);line-height:1;margin-bottom:0.4rem;}
+.cs-word{font-weight:700;font-size:0.9rem;color:var(--white);margin-bottom:0.3rem;}
+.cs-desc{font-size:0.78rem;color:var(--mid);line-height:1.5;}
+
+/* MEV cards */
+.mev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin:1.5rem 0;}
+.mev-card{background:rgba(11,37,69,0.5);border:1px solid rgba(26,122,74,0.2);border-radius:10px;padding:1.5rem;transition:transform 0.2s;}
+.mev-card:hover{transform:translateY(-2px);border-color:rgba(26,122,74,0.4);}
+.mev-num{font-family:var(--font-mono);font-size:0.65rem;color:var(--green);letter-spacing:0.1em;margin-bottom:0.4rem;}
+.mev-icon{font-size:2rem;margin-bottom:0.5rem;}
+.mev-title{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--green);margin-bottom:0.5rem;}
+.mev-body{font-size:0.87rem;color:var(--mid);line-height:1.6;}
+.mev-body strong{color:var(--white);}
+.mev-frase{margin-top:0.8rem;font-style:italic;font-size:0.82rem;color:rgba(244,185,66,0.7);}
+.mev-speech{margin-top:0.8rem;}
+.speech-bad{background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.2);border-radius:6px;padding:0.8rem 1rem;margin-bottom:0.5rem;}
+.speech-good{background:rgba(26,122,74,0.07);border:1px solid rgba(26,122,74,0.2);border-radius:6px;padding:0.8rem 1rem;}
+.speech-label{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;}
+.speech-bad .speech-label{color:var(--red);}
+.speech-good .speech-label{color:var(--green);}
+.speech-text{font-size:0.83rem;color:var(--light);line-height:1.5;font-style:italic;}
+
+/* MASCA */
+.masca-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0;}
+.masca-card{background:rgba(11,37,69,0.6);border:1px solid rgba(18,130,162,0.2);border-radius:8px;padding:1.2rem;}
+.masca-letter{font-family:var(--font-display);font-weight:900;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:0.4rem;}
+.masca-word{font-weight:700;font-size:0.9rem;color:var(--white);margin-bottom:0.3rem;}
+.masca-desc{font-size:0.82rem;color:var(--mid);line-height:1.5;}
+
+/* FLUXO */
+.fluxo-container{margin:2rem 0;}
+.fluxo-step{display:flex;align-items:flex-start;gap:1.2rem;margin-bottom:0;position:relative;}
+.fluxo-step:not(:last-child)::after{content:'';position:absolute;left:19px;top:48px;width:2px;height:calc(100% + 0px);background:linear-gradient(to bottom,rgba(26,122,74,0.4),rgba(26,122,74,0.1));}
+.fluxo-num{flex-shrink:0;width:40px;height:40px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:1rem;color:var(--white);z-index:1;}
+.fluxo-body{flex:1;background:rgba(11,37,69,0.4);border:1px solid rgba(26,122,74,0.15);border-radius:8px;padding:1rem 1.2rem;margin-bottom:1rem;}
+.fluxo-body h4{font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--green);margin-bottom:0.3rem;}
+.fluxo-body p{font-size:0.88rem;color:var(--mid);line-height:1.6;}
+
+/* CONDUTA */
+.conduta-list{list-style:none;margin:1rem 0;}
+.conduta-list li{display:flex;align-items:flex-start;gap:0.8rem;padding:0.45rem 0;font-size:0.9rem;color:var(--light);border-bottom:1px solid rgba(18,130,162,0.06);}
+.conduta-list li::before{content:'›';color:var(--green);font-size:1.2rem;line-height:1.2;flex-shrink:0;}
+
+/* FLASHCARDS */
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1.5rem 0;}
+.flashcard{perspective:1000px;height:155px;cursor:pointer;}
+.flashcard-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.5s;}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+.flashcard-front,.flashcard-back{position:absolute;inset:0;border-radius:8px;padding:1.2rem;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.flashcard-front{background:rgba(11,37,69,0.7);border:1px solid rgba(26,122,74,0.2);}
+.flashcard-back{background:linear-gradient(135deg,rgba(26,122,74,0.1),rgba(11,37,69,0.8));border:1px solid var(--green);transform:rotateY(180deg);}
+.flashcard-q{font-size:0.87rem;color:var(--mid);line-height:1.5;}
+.flashcard-a{font-family:var(--font-display);font-weight:800;font-size:0.95rem;color:var(--green);line-height:1.4;}
+.flashcard-hint{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:rgba(26,122,74,0.4);margin-top:0.5rem;}
+
+/* QUIZ */
+.quiz-card{background:rgba(11,37,69,0.4);border:1px solid rgba(26,122,74,0.15);border-radius:10px;padding:2rem;margin-bottom:1.5rem;}
+.quiz-num{font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.15em;color:var(--green);margin-bottom:0.8rem;}
+.quiz-q{font-size:0.98rem;color:var(--white);line-height:1.6;margin-bottom:1.2rem;font-weight:600;}
+.quiz-options{display:flex;flex-direction:column;gap:0.6rem;}
+.quiz-opt{background:rgba(11,37,69,0.5);border:1px solid rgba(26,122,74,0.15);border-radius:6px;padding:0.9rem 1.2rem;cursor:pointer;font-size:0.88rem;color:var(--light);transition:all 0.2s;text-align:left;font-family:var(--font-body);}
+.quiz-opt:hover{border-color:rgba(26,122,74,0.35);background:rgba(26,122,74,0.05);}
+.quiz-opt.correct{background:rgba(26,122,74,0.2);border-color:var(--green);color:var(--green);}
+.quiz-opt.wrong{background:rgba(192,57,43,0.1);border-color:var(--red);color:var(--red);}
+.quiz-opt.disabled{pointer-events:none;}
+.quiz-feedback{display:none;margin-top:1rem;padding:1rem 1.2rem;border-radius:6px;font-size:0.87rem;line-height:1.6;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.correct-fb{background:rgba(26,122,74,0.1);border:1px solid rgba(26,122,74,0.3);color:var(--light);}
+.quiz-feedback.wrong-fb{background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.3);color:var(--light);}
+
+/* OSCE */
+.osce-station{background:rgba(11,37,69,0.4);border:1px solid rgba(26,122,74,0.2);border-radius:10px;padding:2rem;margin-bottom:1.5rem;}
+.osce-title{font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:var(--green);margin-bottom:0.3rem;}
+.osce-subtitle{font-size:0.85rem;color:var(--mid);margin-bottom:1.5rem;}
+.checklist{list-style:none;}
+.checklist li{display:flex;align-items:flex-start;gap:0.8rem;padding:0.6rem 0;border-bottom:1px solid rgba(18,130,162,0.08);font-size:0.88rem;color:var(--light);cursor:pointer;transition:color 0.2s;}
+.checklist li:last-child{border-bottom:none;}
+.checklist li.done{color:var(--green);text-decoration:line-through;opacity:0.7;}
+.check-box{flex-shrink:0;width:20px;height:20px;border:2px solid rgba(26,122,74,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:all 0.2s;}
+.checklist li.done .check-box{background:var(--green);border-color:var(--green);color:white;}
+.score-bar{background:rgba(11,37,69,0.6);border:1px solid rgba(26,122,74,0.15);border-radius:6px;padding:1rem 1.5rem;margin-top:1rem;display:flex;align-items:center;gap:1rem;}
+.score-label{font-family:var(--font-mono);font-size:0.72rem;color:var(--mid);}
+.score-value{font-family:var(--font-display);font-weight:900;font-size:1.5rem;color:var(--green);}
+.score-track{flex:1;height:6px;background:rgba(26,122,74,0.1);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--green);border-radius:3px;transition:width 0.4s;}
+
+/* PALACE */
+.palace-room{background:linear-gradient(135deg,rgba(11,37,69,0.8),rgba(7,26,51,0.9));border:1px solid rgba(26,122,74,0.25);border-radius:12px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+.palace-room::before{content:attr(data-room);position:absolute;top:1rem;right:1.5rem;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.2em;color:rgba(26,122,74,0.3);text-transform:uppercase;}
+.palace-title{font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--gold);margin-bottom:1rem;}
+.palace-content{font-size:0.92rem;color:var(--light);line-height:1.7;}
+.palace-content strong{color:var(--green);}
+
+/* CREDITS */
+.credits-card{background:linear-gradient(135deg,rgba(11,37,69,0.9),rgba(26,122,74,0.06));border:1px solid rgba(26,122,74,0.2);border-radius:12px;padding:2.5rem;text-align:center;}
+
+/* UTILS */
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(26,122,74,0.3),transparent);margin:2.5rem 0;}
+h3.sub{font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--green);margin:1.8rem 0 1rem;}
+p.body{font-size:0.93rem;color:var(--mid);line-height:1.7;margin-bottom:1rem;}
+
+/* NAV BOTTOM */
+.bottom-nav{display:flex;justify-content:center;gap:1rem;padding:2rem 1rem 4rem;flex-wrap:wrap;}
+.btn{padding:0.8rem 1.8rem;border-radius:6px;font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.08em;cursor:pointer;border:none;transition:all 0.2s;}
+.btn-primary{background:var(--green);color:var(--white);font-weight:700;}
+.btn-primary:hover{background:#21924f;}
+.btn-outline{background:transparent;color:var(--green);border:1px solid var(--green);}
+.btn-outline:hover{background:rgba(26,122,74,0.08);}
+
+/* FOOTER */
+.footer{border-top:1px solid rgba(26,122,74,0.12);padding:2rem 1.5rem;text-align:center;max-width:1100px;margin:0 auto;}
+.footer-sig{font-family:var(--font-script);font-size:1.6rem;color:var(--gold);margin-bottom:0.5rem;}
+.footer-mission{font-size:0.85rem;color:var(--mid);}
+.footer-info{font-family:var(--font-mono);font-size:0.65rem;color:rgba(141,169,196,0.4);letter-spacing:0.1em;margin-top:0.4rem;}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@media(max-width:640px){.masca-grid{grid-template-columns:1fr 1fr;}.cs-grid{grid-template-columns:repeat(3,1fr);}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="modulo-badge">🔄 Módulo 3 · Seguimento · SBC/SBH/SBN 2025</div>
+    <div class="mission-badge">MISSÃO HAS UBS 2025</div>
+    <h1>Acompanhar,<br><span>não só prescrever.</span></h1>
+    <div class="hero-tagline">// Adesão, Vida Real e Hipertensão Difícil</div>
+    <p class="hero-frase">"A hipertensão não se vence no dia da receita; vence-se na repetição inteligente do cuidado."</p>
+    <div class="hero-assinatura">Dr. André Rossanno</div>
+    <div class="hero-team">
+      <div class="hero-team-label">UBS Tibiri · IESCG VIII · São Luís · MA</div>
+      <div class="hero-team-names">
+        <span>Fabiane Almeida Pinheiro</span>
+        <span style="color:rgba(18,130,162,0.4)">·</span>
+        <span>Emmanuella Bruno Alencar</span>
+        <span style="color:rgba(18,130,162,0.4)">·</span>
+        <span>Josivania Monteiro de Castro</span>
+        <span style="color:rgba(18,130,162,0.4)">·</span>
+        <span>Gabriela da Silva Patriota</span>
+      </div>
+    </div>
+  </div>
+  <a class="hero-scroll" href="#app">COMEÇAR</a>
+</section>
+
+<div id="app">
+  <nav class="nav-wrapper">
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('seguimento')">01 · Seguimento</button>
+      <button class="nav-tab" onclick="showTab('mev')">02 · MEV Profundo</button>
+      <button class="nav-tab" onclick="showTab('adesao')">03 · Adesão</button>
+      <button class="nav-tab" onclick="showTab('resistente')">04 · HAS Difícil</button>
+      <button class="nav-tab" onclick="showTab('secundaria')">05 · Secundária</button>
+      <button class="nav-tab" onclick="showTab('flashcards')">06 · Flashcards</button>
+      <button class="nav-tab" onclick="showTab('quiz')">07 · Quiz</button>
+      <button class="nav-tab" onclick="showTab('osce')">08 · Mini-OSCE</button>
+      <button class="nav-tab" onclick="showTab('palacio')">09 · Palácio</button>
+      <button class="nav-tab" onclick="showTab('creditos')">10 · Créditos</button>
+    </div>
+  </nav>
+
+  <!-- TAB 01: SEGUIMENTO -->
+  <section id="tab-seguimento" class="section active">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3A · Cuidado Longitudinal</div>
+      <h2 class="section-title">A UBS não é<br><span>balcão de receita</span></h2>
+      <p class="section-subtitle">Consulta de hipertensão sem plano de retorno é receita lançada ao vento.</p>
+    </div>
+
+    <div class="case-card">
+      <div class="case-name">Seu Antônio</div>
+      <div class="case-details">64 anos · Hipertenso há 12 anos · "Renovar a receita"</div>
+      <div class="case-vitals">
+        <div class="vital"><div class="vital-label">PA triagem</div><div class="vital-value danger">166×94</div></div>
+        <div class="vital"><div class="vital-label">Medicamentos</div><div class="vital-value sm">Losartana + HCTZ</div></div>
+        <div class="vital"><div class="vital-label">Adesão</div><div class="vital-value sm danger">Irregular</div></div>
+        <div class="vital"><div class="vital-label">AINE</div><div class="vital-value sm danger">Diclofenaco</div></div>
+      </div>
+      <div class="voice-box red">
+        <div class="voice-label">❌ Médico iniciante</div>
+        "Renova a receita e tchau."
+      </div>
+      <div class="voice-box green">
+        <div class="voice-label">✅ Raciocínio Missão HAS</div>
+        "Essa consulta não é renovação de papel. É <strong>auditoria do cuidado</strong>. AINE + adesão irregular + PA descontrolada = problema estrutural, não só de remédio."
+      </div>
+    </div>
+
+    <h3 class="sub">Os 5 Cs da UBS — a linha de cuidado vascular</h3>
+    <div class="cs-grid">
+      <div class="cs-card"><div class="cs-letter">C</div><div class="cs-word">Captar</div><div class="cs-desc">Todo contato com a UBS é chance de medir PA. Adulto sem PA registrada é oportunidade perdida.</div></div>
+      <div class="cs-card"><div class="cs-letter">C</div><div class="cs-word">Confirmar</div><div class="cs-desc">Não fechar HAS com medida isolada. Técnica correta, repetição e MAPA/MRPA quando possível.</div></div>
+      <div class="cs-card"><div class="cs-letter">C</div><div class="cs-word">Classificar</div><div class="cs-desc">Normal, pré-HAS, HAS 1, 2, 3. Sempre pelo pior número.</div></div>
+      <div class="cs-card"><div class="cs-letter">C</div><div class="cs-word">Controlar</div><div class="cs-desc">Meta &lt;130/80 com segurança, adesão e mínimo de efeitos adversos.</div></div>
+      <div class="cs-card"><div class="cs-letter">C</div><div class="cs-word">Continuar</div><div class="cs-desc">HAS é doença crônica. Linha de cuidado, não consulta avulsa.</div></div>
+    </div>
+
+    <div class="mantra">
+      <p>CAPTA · CONFIRMA · CLASSIFICA · CONTROLA · <span style="color:var(--green)">CONTINUA</span></p>
+      <small>A UBS é a sentinela do castelo vascular</small>
+    </div>
+
+    <div class="divider"></div>
+    <h3 class="sub">Agenda mínima do hipertenso — o que avaliar em toda consulta</h3>
+    <div class="card-grid">
+      <div class="info-card green">
+        <div class="info-card-title">Anamnese dirigida</div>
+        <ul class="conduta-list">
+          <li>Medicamentos em uso e doses reais</li>
+          <li>Adesão real — não presumida</li>
+          <li>AINE, corticoide, descongestionante, estimulante</li>
+          <li>Sal, peso, álcool, tabaco, atividade física</li>
+          <li>Sono e suspeita de apneia</li>
+          <li>Diabetes, DRC, AVC, IAM, IC, FA</li>
+          <li>Sinais de lesão de órgão-alvo</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Exame físico essencial</div>
+        <ul class="conduta-list">
+          <li>PA correta — técnica e manguito</li>
+          <li>Peso, altura, IMC, circunferência abdominal</li>
+          <li>FC, ausculta cardíaca e pulmonar</li>
+          <li>Edema e pulsos periféricos</li>
+          <li>PA em pé em idosos e diabéticos</li>
+          <li>Sopro abdominal/carotídeo se indicado</li>
+          <li>Neuro breve se sintomas</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <div class="info-card-title">Exames de seguimento</div>
+        <ul class="conduta-list">
+          <li>Creatinina + TFGe</li>
+          <li>Potássio e Sódio</li>
+          <li>Glicemia / HbA1c</li>
+          <li>Perfil lipídico</li>
+          <li>Urina tipo 1</li>
+          <li>ECG</li>
+          <li>Albumina/creatinina urinária se disponível</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ok-box">
+      <div class="ok-box-label">📅 Periodicidade</div>
+      <p>Exames normais → repetir no <strong>mínimo anualmente</strong>. Alterações → conforme necessidade clínica. Todo hipertenso deve ter avaliação clínica e complementar mínima repetida anualmente.</p>
+    </div>
+
+    <div class="pegadinha">
+      <div class="pegadinha-label">⚠️ Frase de memorização</div>
+      <p>"A pressão é o número da porta; creatinina, potássio, urina e ECG mostram como está a casa por dentro."</p>
+    </div>
+  </section>
+
+  <!-- TAB 02: MEV -->
+  <section id="tab-mev" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3B · Não Farmacológico Profundo</div>
+      <h2 class="section-title">Os 7 remédios<br><span>invisíveis</span></h2>
+      <p class="section-subtitle">"Mudança de estilo de vida não é sermão: é prescrição sem comprimido."</p>
+    </div>
+
+    <div class="mev-grid">
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 1</div>
+        <div class="mev-icon">🧂</div>
+        <div class="mev-title">Sal — o ladrão branco</div>
+        <div class="mev-body">Meta: <strong>5 g sal/dia</strong> ≈ 2 g sódio ≈ 1 colher de chá. Cada redução de 1,15 g/dia de sódio → reduz PA em média 2,8/1,4 mmHg.</div>
+        <div class="mev-speech">
+          <div class="speech-bad"><div class="speech-label">❌ Não diga</div><div class="speech-text">"Corte o sal."</div></div>
+          <div class="speech-good"><div class="speech-label">✅ Diga</div><div class="speech-text">"Tire o sal da mesa, reduza tempero pronto, use alho, limão, cheiro-verde e ervas."</div></div>
+        </div>
+        <div class="mev-frase">"Sal rosa é fantasia cara do mesmo sódio."</div>
+      </div>
+
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 2</div>
+        <div class="mev-icon">🍌</div>
+        <div class="mev-title">Potássio — o jardineiro</div>
+        <div class="mev-body">Meta: <strong>≥3,5 g/dia</strong> por alimentos — banana, feijão, verduras, legumes, frutas. <strong>⚠️ Cuidado em DRC ou risco de hipercalemia.</strong></div>
+        <div class="mev-frase">"Potássio é jardineiro: planta saúde na artéria, mas no rim fraco pode virar matagal perigoso."</div>
+      </div>
+
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 3</div>
+        <div class="mev-icon">🥗</div>
+        <div class="mev-title">Dieta DASH — farmácia no prato</div>
+        <div class="mev-body">Redução média de <strong>8,7/4,5 mmHg</strong>. Prato simples: arroz + feijão + verdura + legume + fruta + proteína magra. Menos embutido, fritura, ultraprocessado e refrigerante.</div>
+        <div class="mev-frase">"DASH é quando o prato começa a trabalhar junto com o comprimido."</div>
+      </div>
+
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 4</div>
+        <div class="mev-icon">⚖️</div>
+        <div class="mev-title">Peso — cada quilo fala</div>
+        <div class="mev-body">1 kg perdido → reduz PAS ~1,05 mmHg e PAD ~0,92 mmHg. Circunferência: &lt;102 cm homens · &lt;88 cm mulheres.</div>
+        <div class="mev-speech">
+          <div class="speech-bad"><div class="speech-label">❌ Não diga</div><div class="speech-text">"Você precisa emagrecer."</div></div>
+          <div class="speech-good"><div class="speech-label">✅ Diga</div><div class="speech-text">"Vamos escolher uma meta pequena: perder 2 a 3 kg já pode ajudar sua pressão."</div></div>
+        </div>
+        <div class="mev-frase">"A balança não deve humilhar o paciente; deve orientar o cuidado."</div>
+      </div>
+
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 5</div>
+        <div class="mev-icon">🏃</div>
+        <div class="mev-title">Atividade física</div>
+        <div class="mev-body"><strong>150 min/semana</strong> ou 30–60 min, 3–5×/semana. Começar com 10 min se sedentário. O importante é não transformar o início em castigo.</div>
+        <div class="mev-frase">"Artéria gosta de passo. Sedentarismo é ferrugem sem barulho."</div>
+      </div>
+
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 6</div>
+        <div class="mev-icon">🚬</div>
+        <div class="mev-title">Álcool e tabaco</div>
+        <div class="mev-body">Cigarro eletrônico e narguilé entram no grupo a evitar. Sem moralismo — com proteção: "Não é bronca. É margem de segurança."</div>
+        <div class="mev-frase">"Cigarro não rouba só ar; rouba anos vasculares."</div>
+      </div>
+
+      <div class="mev-card">
+        <div class="mev-num">REMÉDIO 7</div>
+        <div class="mev-icon">😴</div>
+        <div class="mev-title">Sono e estresse</div>
+        <div class="mev-body">Pergunte: ronca alto? Pausas respiratórias? Sonolência diurna? Dorme pouco? Trabalha em turno? Vive sob estresse intenso?</div>
+        <div class="mev-frase">"Pressão também escuta o travesseiro."</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3 class="sub">📋 Receita não farmacológica — para entregar ao paciente</h3>
+    <div class="ok-box">
+      <div class="ok-box-label">✅ Prescrição de estilo de vida</div>
+      <ul class="conduta-list">
+        <li><strong>Sal:</strong> máximo 5 g/dia. Tirar da mesa. Evitar temperos prontos e ultraprocessados.</li>
+        <li><strong>Alimentação:</strong> feijão, verduras, legumes, frutas, cereais integrais e proteína magra.</li>
+        <li><strong>Peso:</strong> meta inicial de 2 a 5% do peso corporal.</li>
+        <li><strong>Atividade física:</strong> 150 minutos por semana, começando devagar.</li>
+        <li><strong>Tabaco:</strong> parar completamente — cigarro, eletrônico e narguilé.</li>
+        <li><strong>Álcool:</strong> reduzir ao máximo, evitar episódios de excesso.</li>
+        <li><strong>Sono:</strong> investigar ronco, pausas e sonolência.</li>
+        <li><strong>Retorno:</strong> trazer remédios, exames e medidas domiciliares.</li>
+      </ul>
+    </div>
+
+    <div class="mantra">
+      <p>"O comprimido baixa a pressão de hoje.<br>O hábito <span style="color:var(--green)">protege a artéria de amanhã</span>."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+  </section>
+
+  <!-- TAB 03: ADESÃO -->
+  <section id="tab-adesao" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3C · Adesão</div>
+      <h2 class="section-title">O tratamento que<br><span>existe fora da receita</span></h2>
+      <p class="section-subtitle">Cerca de 50% dos pacientes com doenças crônicas não usam os medicamentos conforme prescritos. Em DCV pode chegar a 60%.</p>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-box-label">❌ O grande erro</div>
+      <p>Médico pergunta: <em>"Está tomando o remédio?"</em> — Paciente responde: <em>"Estou."</em> — Consulta acaba. Isso não é investigação de adesão. É ilusão de cuidado.</p>
+    </div>
+
+    <h3 class="sub">Perguntas melhores para investigar adesão</h3>
+    <div class="card-grid">
+      <div class="info-card green">
+        <div class="info-card-title">Perguntas que funcionam</div>
+        <ul class="conduta-list">
+          <li>"Quantos dias na semana o senhor consegue tomar?"</li>
+          <li>"Quando acaba, quanto tempo demora para buscar?"</li>
+          <li>"Tem remédio que dá tontura, tosse, inchaço ou fraqueza?"</li>
+          <li>"Qual é o mais difícil de tomar?"</li>
+          <li>"Toma quando lembra ou tem horário fixo?"</li>
+          <li>"Ficou caro algum?"</li>
+          <li>"Alguém em casa ajuda a lembrar?"</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <div class="info-card-title">Os 6 fantasmas da má adesão</div>
+        <ul class="conduta-list">
+          <li>👻 "Só tomo quando sinto" → HAS é silenciosa</li>
+          <li>👻 "Acabou e esperei" → ACS + farmácia + retorno</li>
+          <li>👻 "Dá tontura" → hipotensão, dose, interação</li>
+          <li>👻 "Dá tosse" → trocar IECA por BRA</li>
+          <li>👻 "Inchou a perna" → anlodipino dose-dependente</li>
+          <li>👻 "São muitos comprimidos" → simplificar esquema</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mantra">
+      <p>"Adesão não se pergunta com julgamento;<br>se <span style="color:var(--green)">investiga com cuidado</span>."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+
+    <div class="pegadinha">
+      <div class="pegadinha-label">⚠️ Regra de ouro</div>
+      <p>"Quanto mais comprimidos soltos, mais o tratamento se espalha pelo chão da vida." — Preferir combinações em dose única quando disponível. Simplificar é cuidado.</p>
+    </div>
+  </section>
+
+  <!-- TAB 04: RESISTENTE -->
+  <section id="tab-resistente" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3D · HAS Não Controlada</div>
+      <h2 class="section-title">Antes de dizer<br><span>"resistente"</span></h2>
+      <p class="section-subtitle">~50% dos diagnósticos iniciais de HAS resistente são pseudo-resistência. Tire a MASCA primeiro.</p>
+    </div>
+
+    <div class="case-card">
+      <div class="case-name">Dona Lúcia</div>
+      <div class="case-details">67 anos · PA 174×96 há meses · Usa 3 medicamentos</div>
+      <div class="case-vitals">
+        <div class="vital"><div class="vital-label">PA</div><div class="vital-value danger">174×96</div></div>
+        <div class="vital"><div class="vital-label">Losartana</div><div class="vital-value sm danger">1×/dia só</div></div>
+        <div class="vital"><div class="vital-label">AINE</div><div class="vital-value sm danger">Joelho</div></div>
+        <div class="vital"><div class="vital-label">MAPA/MRPA</div><div class="vital-value sm">Nunca fez</div></div>
+      </div>
+      <div class="voice-box green">
+        <div class="voice-label">✅ Diagnóstico real</div>
+        Isso <strong>não é HAS resistente verdadeira</strong>. É hipertensão aparentemente resistente — pseudo-resistência até provar o contrário.
+      </div>
+    </div>
+
+    <div class="mantra">
+      <p>Mnemônico: <span style="color:var(--red)">M — A — S — C — A</span></p>
+      <small>Antes de chamar de resistente, tire a máscara</small>
+    </div>
+
+    <div class="masca-grid">
+      <div class="masca-card"><div class="masca-letter">M</div><div class="masca-word">Medida errada</div><div class="masca-desc">Manguito inadequado, paciente falando, braço sem apoio. Técnica ruim vira diagnóstico errado.</div></div>
+      <div class="masca-card"><div class="masca-letter">A</div><div class="masca-word">Adesão ruim</div><div class="masca-desc">Não tomou, tomou metade, acabou, esqueceu, não entendeu a dose ou o horário.</div></div>
+      <div class="masca-card"><div class="masca-letter">S</div><div class="masca-word">Sal · Substâncias · Sono</div><div class="masca-desc">Sal oculto, AINE, descongestionante, álcool, estimulantes, apneia não tratada.</div></div>
+      <div class="masca-card"><div class="masca-letter">C</div><div class="masca-word">Combinação inadequada</div><div class="masca-desc">Doses baixas, ausência de diurético, IECA + BRA, classes mal escolhidas.</div></div>
+      <div class="masca-card"><div class="masca-letter">A</div><div class="masca-word">Avental branco</div><div class="masca-desc">PA alta na UBS, normal em casa / MAPA / MRPA. A pressão finge na frente do jaleco.</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <h3 class="sub">✅ Checklist — 10 passos antes de encaminhar por resistência</h3>
+    <div class="fluxo-container">
+      <div class="fluxo-step"><div class="fluxo-num">1</div><div class="fluxo-body"><h4>Confirmar técnica de medida</h4><p>Manguito certo, posição correta, repouso prévio.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">2</div><div class="fluxo-body"><h4>Repetir PA na consulta</h4><p>Ambiente calmo, braço apoiado, sem conversa.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">3</div><div class="fluxo-body"><h4>Solicitar MRPA ou MAPA</h4><p>Descartar avental branco antes de qualquer escalada.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">4</div><div class="fluxo-body"><h4>Checar adesão com perguntas abertas</h4><p>Não "toma tudo?". Sim "quantos dias na semana consegue tomar?"</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">5</div><div class="fluxo-body"><h4>Conferir acesso ao medicamento</h4><p>O remédio existe na farmácia municipal? O paciente consegue buscar?</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">6</div><div class="fluxo-body"><h4>Procurar AINE, corticoide, estimulantes e álcool</h4><p>Sabotadores ocultos que aparecem só se você perguntar.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">7</div><div class="fluxo-body"><h4>Reduzir sal e revisar dieta</h4><p>Sal oculto em ultraprocessados, embutidos e temperos prontos.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">8</div><div class="fluxo-body"><h4>Otimizar esquema</h4><p>Trio racional: IECA ou BRA + BCC + diurético tiazídico/similar, conforme perfil.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">9</div><div class="fluxo-body"><h4>Investigar apneia</h4><p>Ronco, pausas, sonolência diurna — prevalência de até 80% em HAS resistente.</p></div></div>
+      <div class="fluxo-step"><div class="fluxo-num">10</div><div class="fluxo-body"><h4>Só então considerar encaminhamento</h4><p>Com história resumida, exames, medicamentos, adesão avaliada e motivo claro.</p></div></div>
+    </div>
+
+    <div class="ok-box">
+      <div class="ok-box-label">📋 HAS resistente verdadeira — definição</div>
+      <p>PA acima da meta apesar de <strong>3 ou mais classes em doses máximas toleradas</strong> (preferencialmente IECA/BRA + BCC + diurético tiazídico/similar) por pelo menos 30–60 dias, <strong>depois de afastada pseudo-resistência</strong>.</p>
+    </div>
+
+    <div class="mantra">
+      <p>"Antes de dizer que a pressão é rebelde,<br>descubra se o tratamento <span style="color:var(--green)">realmente chegou até ela</span>."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+  </section>
+
+  <!-- TAB 05: SECUNDÁRIA -->
+  <section id="tab-secundaria" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3E · Hipertensão Secundária</div>
+      <h2 class="section-title">Quando a HAS<br><span>corre ou grita</span></h2>
+      <p class="section-subtitle">"HAS comum anda devagar. Quando ela corre, grita ou aparece jovem demais, procure causa secundária."</p>
+    </div>
+
+    <h3 class="sub">🚨 Sinais de alerta para a UBS suspeitar</h3>
+    <div class="card-grid">
+      <div class="info-card danger">
+        <div class="info-card-title">Sinais clínicos de alerta</div>
+        <ul class="conduta-list">
+          <li>Início antes dos 30 anos sem obesidade/HF</li>
+          <li>Início abrupto</li>
+          <li>HAS estágio 3 persistente</li>
+          <li>HAS resistente após excluir pseudo-resistência</li>
+          <li>Hipocalemia espontânea ou com baixa dose de diurético</li>
+          <li>Piora da creatinina após IECA/BRA</li>
+          <li>Sopros abdominais ou assimetria de pulsos</li>
+          <li>Crises de palpitação + sudorese + cefaleia</li>
+        </ul>
+      </div>
+      <div class="info-card gold">
+        <div class="info-card-title">Pistas por causa</div>
+        <ul class="conduta-list">
+          <li>🌙 <strong>Apneia:</strong> ronco, pausas, sonolência, obesidade</li>
+          <li>⚡ <strong>Hiperaldosteronismo:</strong> hipocalemia, fraqueza, câimbras</li>
+          <li>🫘 <strong>Doença renovascular:</strong> sopro, piora renal pós-IECA</li>
+          <li>💊 <strong>Feocromocitoma:</strong> crises paroxísticas PA+palpitação+sudorese</li>
+          <li>🌀 <strong>Cushing:</strong> estrias violáceas, obesidade central, fraqueza proximal</li>
+          <li>🩺 <strong>DRC:</strong> proteinúria, creatinina elevada, edema</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-box-label">💊 Medicamentos que elevam PA</div>
+      <p>AINE · Corticoide · Descongestionante · Anticoncepcional combinado · Anabolizantes · Cocaína/anfetaminas · Eritropoetina · Ciclosporina/tacrolimo · Alguns antidepressivos · Alcaçuz e fitoterápicos não declarados</p>
+    </div>
+
+    <div class="divider"></div>
+    <h3 class="sub">📬 Quando e como encaminhar ao especialista</h3>
+
+    <div class="card-grid">
+      <div class="info-card danger">
+        <div class="info-card-title">Critérios de encaminhamento</div>
+        <ul class="conduta-list">
+          <li>Suspeita de HAS secundária</li>
+          <li>HVE, IC, FA, angina, DAC</li>
+          <li>DRC com TFGe &lt;30 mL/min ou proteinúria ≥300 mg/g</li>
+          <li>Claudicação, sopro abdominal, massa pulsátil</li>
+          <li>HAS resistente com 3 medicamentos em dose máxima</li>
+          <li>DM com HbA1c &gt;10% ou complicações</li>
+          <li>AVC sem investigação</li>
+        </ul>
+      </div>
+      <div class="info-card green">
+        <div class="info-card-title">Encaminhamento de qualidade leva</div>
+        <ul class="conduta-list">
+          <li>História resumida e clara</li>
+          <li>Medidas de PA e técnica usada</li>
+          <li>Medicamentos, doses e adesão avaliada</li>
+          <li>Exames recentes</li>
+          <li>Suspeita clínica e motivo objetivo</li>
+          <li>O que já foi tentado</li>
+          <li>Urgência do caso</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mantra">
+      <p>"Encaminhamento sem raciocínio vira bilhete.<br>Encaminhamento com história vira <span style="color:var(--green)">cuidado compartilhado</span>."</p>
+      <small>Dr. André Rossanno</small>
+    </div>
+  </section>
+
+  <!-- TAB 06: FLASHCARDS -->
+  <section id="tab-flashcards" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Memorização · N4 · Testing Effect</div>
+      <h2 class="section-title">Flashcards<br><span>Módulo 3</span></h2>
+      <p class="section-subtitle">Clique para revelar. Teste antes de ver.</p>
+    </div>
+    <div class="flashcard-grid">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Meta geral de PA na diretriz 2025?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">&lt;130/80 mmHg — se tolerado.</div><div class="flashcard-hint">em idoso frágil: menor valor tolerado</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Com que frequência repetir exames normais no hipertenso?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">No mínimo anualmente.</div><div class="flashcard-hint">se alterado: conforme necessidade clínica</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Limite prático de sal por dia?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">5 g de sal/dia ≈ 2 g de sódio ≈ 1 colher de chá.</div><div class="flashcard-hint">sal rosa = mesmo sódio</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Sal rosa é melhor para hipertenso?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">NÃO. Teor de sódio semelhante ao sal comum.</div><div class="flashcard-hint">fantasia cara do mesmo sódio</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Dieta com melhor evidência para reduzir PA?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">Dieta DASH. Redução média de 8,7/4,5 mmHg.</div><div class="flashcard-hint">farmácia no prato</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Meta prática de exercício aeróbico?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">150 min/semana ou 30–60 min, 3–5×/semana.</div><div class="flashcard-hint">começar devagar se sedentário</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">O que significa MASCA?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">Medida errada · Adesão ruim · Sal/substâncias/sono · Combinação inadequada · Avental branco.</div><div class="flashcard-hint">50% da HAS "resistente" é pseudo-resistência</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Sintoma clássico de apneia em hipertenso difícil?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">Ronco alto, pausas respiratórias e sonolência diurna.</div><div class="flashcard-hint">prevalência até 80% em HAS resistente</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Encaminhar hipertenso resistente sem checar adesão?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">NÃO. Adesão é a principal causa de pseudo-resistência.</div><div class="flashcard-hint">checar MASCA antes de encaminhar</div></div></div></div>
+      <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="flashcard-inner"><div class="flashcard-front"><div class="flashcard-q">Os 5 Cs do cuidado longitudinal?</div><div class="flashcard-hint">toque para revelar</div></div><div class="flashcard-back"><div class="flashcard-a">Captar · Confirmar · Classificar · Controlar · Continuar.</div><div class="flashcard-hint">a UBS é sentinela vascular</div></div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="btn btn-outline" onclick="document.querySelectorAll('.flashcard').forEach(c=>c.classList.remove('flipped'))">↺ Reiniciar todos</button>
+    </div>
+  </section>
+
+  <!-- TAB 07: QUIZ -->
+  <section id="tab-quiz" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3 · Testing Effect</div>
+      <h2 class="section-title">Quiz estilo<br><span>UBS real</span></h2>
+      <p class="section-subtitle">5 questões. Raciocínio clínico, não decoreba.</p>
+    </div>
+
+    <div class="quiz-card" id="q1">
+      <div class="quiz-num">QUESTÃO 01 / 05</div>
+      <div class="quiz-q">Hipertenso retorna com PA 168×94. Diz que "toma tudo certo", mas não sabe os nomes. Melhor próxima pergunta?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q1','wrong')">A) "Por que o senhor não se cuida?"</button>
+        <button class="quiz-opt" onclick="answer(this,'q1','correct')">B) "Quantos dias na semana o senhor consegue tomar?"</button>
+        <button class="quiz-opt" onclick="answer(this,'q1','wrong')">C) "Vamos aumentar tudo hoje."</button>
+        <button class="quiz-opt" onclick="answer(this,'q1','wrong')">D) "Isso é emergência."</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q1">✅ <strong>Alternativa B.</strong> Investigar adesão com pergunta aberta, sem julgamento. A pergunta "toma tudo?" não detecta adesão parcial. "Quantos dias" revela a realidade sem constranger.</div>
+    </div>
+
+    <div class="quiz-card" id="q2">
+      <div class="quiz-num">QUESTÃO 02 / 05</div>
+      <div class="quiz-q">Paciente usa 3 medicamentos e a PA segue alta. Antes de classificar como resistente, o que é obrigatório?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q2','wrong')">A) Encaminhar direto para cardiologista</button>
+        <button class="quiz-opt" onclick="answer(this,'q2','correct')">B) Excluir pseudo-resistência com MASCA</button>
+        <button class="quiz-opt" onclick="answer(this,'q2','wrong')">C) Suspender todos os remédios</button>
+        <button class="quiz-opt" onclick="answer(this,'q2','wrong')">D) Usar clonidina imediatamente</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q2">✅ <strong>Alternativa B.</strong> ~50% dos diagnósticos iniciais de HAS resistente são pseudo-resistência. Medida errada, adesão, sal, combinação inadequada e avental branco precisam ser excluídos antes.</div>
+    </div>
+
+    <div class="quiz-card" id="q3">
+      <div class="quiz-num">QUESTÃO 03 / 05</div>
+      <div class="quiz-q">Qual medida não farmacológica tem maior evidência na diretriz 2025 para reduzir PA?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q3','correct')">A) Dieta DASH e atividade física moderada</button>
+        <button class="quiz-opt" onclick="answer(this,'q3','wrong')">B) Sal rosa do Himalaia</button>
+        <button class="quiz-opt" onclick="answer(this,'q3','wrong')">C) Cortar toda fruta</button>
+        <button class="quiz-opt" onclick="answer(this,'q3','wrong')">D) Suplemento de potássio sem avaliar rim</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q3">✅ <strong>Alternativa A.</strong> DASH reduz PA em média 8,7/4,5 mmHg. Exercício aeróbico tem forte evidência. Sal rosa é mito caro. Potássio em suplemento requer avaliação renal.</div>
+    </div>
+
+    <div class="quiz-card" id="q4">
+      <div class="quiz-num">QUESTÃO 04 / 05 · 🔥 PEGADINHA</div>
+      <div class="quiz-q">Paciente hipertenso com DRC usa losartana. Quer usar sal light que viu na internet. Melhor orientação?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q4','wrong')">A) Pode usar livremente</button>
+        <button class="quiz-opt" onclick="answer(this,'q4','correct')">B) Cuidado — sal light tem potássio e pode causar hipercalemia em DRC</button>
+        <button class="quiz-opt" onclick="answer(this,'q4','wrong')">C) Sal light não interfere em nada</button>
+        <button class="quiz-opt" onclick="answer(this,'q4','wrong')">D) Trocar os remédios por sal light</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q4">⚡ <strong>Pegadinha!</strong> Sal light substitui sódio por potássio — ótimo para a maioria, mas perigoso em DRC ou uso de IECA/BRA/espironolactona. Risco de hipercalemia grave. Sempre avaliar função renal antes de recomendar.</div>
+    </div>
+
+    <div class="quiz-card" id="q5">
+      <div class="quiz-num">QUESTÃO 05 / 05</div>
+      <div class="quiz-q">Hipertenso difícil, obeso, ronco alto, esposa relata pausas respiratórias e sonolência diurna. Qual hipótese no radar?</div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="answer(this,'q5','correct')">A) Apneia obstrutiva do sono</button>
+        <button class="quiz-opt" onclick="answer(this,'q5','wrong')">B) Hipotensão essencial</button>
+        <button class="quiz-opt" onclick="answer(this,'q5','wrong')">C) HAS curada</button>
+        <button class="quiz-opt" onclick="answer(this,'q5','wrong')">D) Pseudohipertensão emocional apenas</button>
+      </div>
+      <div class="quiz-feedback" id="fb-q5">✅ <strong>Alternativa A.</strong> Apneia obstrutiva do sono tem prevalência de até 80% em HAS resistente. Ronco alto + pausas + sonolência diurna + obesidade = investigar obrigatoriamente antes de chamar de resistente.</div>
+    </div>
+  </section>
+
+  <!-- TAB 08: OSCE -->
+  <section id="tab-osce" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Módulo 3 · Mini-OSCE</div>
+      <h2 class="section-title">Estação:<br><span>Hipertenso descontrolado</span></h2>
+      <p class="section-subtitle">Simule o raciocínio completo. Marque cada item conforme realiza.</p>
+    </div>
+
+    <div class="osce-station">
+      <div class="osce-title">Cenário Clínico</div>
+      <div class="osce-subtitle">Paciente 62 anos, HAS há 8 anos, PA 172×96 mmHg. Usa losartana + HCTZ + anlodipino. Usa diclofenaco quase diariamente para joelho. Não trouxe exames. "Tomo os remédios quase todo dia."</div>
+      <div class="case-vitals" style="margin-bottom:1.5rem">
+        <div class="vital"><div class="vital-label">PA</div><div class="vital-value danger">172×96</div></div>
+        <div class="vital"><div class="vital-label">Medicamentos</div><div class="vital-value sm">3 drogas</div></div>
+        <div class="vital"><div class="vital-label">AINE</div><div class="vital-value sm danger">Diclofenaco</div></div>
+        <div class="vital"><div class="vital-label">Adesão</div><div class="vital-value sm danger">Parcial</div></div>
+      </div>
+      <h4 style="color:var(--gold);font-family:var(--font-display);margin-bottom:1rem;">Checklist — clique para marcar</h4>
+      <ul class="checklist" id="osce-list">
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Repetiu PA corretamente após repouso</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Checou adesão real com pergunta aberta</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Identificou AINE (diclofenaco) como sabotador</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Avaliou sal, álcool, sono e atividade física</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Procurou sintomas de LOA</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Checou efeitos adversos dos medicamentos</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Solicitou exames de seguimento</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Não chamou de resistente sem excluir pseudo-resistência</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Programou retorno</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"></span>Usou linguagem ética e compreensível</li>
+      </ul>
+      <div class="score-bar">
+        <div class="score-label">PONTUAÇÃO</div>
+        <div class="score-value" id="osce-score">0 / 10</div>
+        <div class="score-track"><div class="score-fill" id="osce-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 09: PALÁCIO -->
+  <section id="tab-palacio" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Memorização · N3 · Palácio da Memória</div>
+      <h2 class="section-title">O Farol<br><span>Vascular</span></h2>
+      <p class="section-subtitle">Imagine a UBS Tibiri como um farol no interior do Maranhão. Três portas, três pilares.</p>
+    </div>
+
+    <div class="palace-room" data-room="ENTRADA">
+      <div class="palace-title">🏥 A entrada do Farol</div>
+      <div class="palace-content">
+        Na entrada há um letreiro dourado:<br><br>
+        <em style="color:var(--gold);font-size:1.1rem">"A UBS não apaga incêndio apenas; ela impede que o castelo pegue fogo."</em><br><br>
+        O médico lembra que <strong>75% dos hipertensos no Brasil são tratados no SUS</strong>. Cada consulta importa mais do que parece.
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="PORTA 1">
+      <div class="palace-title">📅 Porta 1 — Seguimento</div>
+      <div class="palace-content">
+        Lá dentro, uma agenda gigante com cinco Cs pintados:<br><br>
+        <strong>Captar · Confirmar · Classificar · Controlar · Continuar</strong><br><br>
+        A pergunta na parede: <em>"Quando esse paciente volta? O que ele precisa trazer? O que vou avaliar?"</em>
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="PORTA 2">
+      <div class="palace-title">🥗 Porta 2 — Estilo de Vida</div>
+      <div class="palace-content">
+        Há uma mesa com 7 objetos: <strong>saleiro quebrado · prato colorido · tênis · balança · cigarro partido · copo de água · travesseiro</strong>.<br><br>
+        Cada objeto é um remédio invisível. O médico prescreve todos sem caneta.
+      </div>
+    </div>
+
+    <div class="palace-room" data-room="PORTA 3">
+      <div class="palace-title">🎭 Porta 3 — Pressão Difícil</div>
+      <div class="palace-content">
+        Há uma máscara no chão com as letras <strong style="color:var(--red)">M · A · S · C · A</strong>.<br><br>
+        Antes de chamar de resistente, o médico sábio se abaixa, pega a máscara e verifica cada letra. Só depois — se a máscara não explicar — ele abre o encaminhamento.
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3 class="sub">⏱️ Revisão de 30 segundos — Módulo 3</h3>
+    <div class="info-card" style="background:rgba(11,37,69,0.7);border-color:rgba(26,122,74,0.3)">
+      <ul class="conduta-list">
+        <li>75% dos hipertensos no Brasil são tratados no SUS</li>
+        <li>Todo adulto no SUS deve ter PA medida corretamente</li>
+        <li>Meta geral: &lt;130/80, se tolerado</li>
+        <li>Avaliação clínica e laboratorial mínima: anual quando normal</li>
+        <li>MEV é obrigatória: sal, DASH, exercício, peso, tabaco, álcool, sono</li>
+        <li>Sal máximo: 5 g/dia — sal rosa = mesmo sódio</li>
+        <li>Adesão precisa ser investigada, não presumida</li>
+        <li>Antes de chamar de resistente: MASCA</li>
+        <li>Encaminhamento bom leva história, exames e raciocínio</li>
+      </ul>
+    </div>
+
+    <div class="mantra" style="margin-top:2rem">
+      <p>"Medir bem, acompanhar sempre,<br>ajustar com ciência e<br><span style="color:var(--green)">educar com humanidade</span>."</p>
+      <small>Mantra Final — Missão HAS UBS 2025</small>
+    </div>
+  </section>
+
+  <!-- TAB 10: CRÉDITOS -->
+  <section id="tab-creditos" class="section">
+    <div class="section-header">
+      <div class="section-kicker">Missão HAS UBS 2025</div>
+      <h2 class="section-title">Créditos &<br><span>equipe</span></h2>
+    </div>
+
+    <div class="credits-card">
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem;">Missão HAS UBS 2025 · Módulo 3</div>
+      <div style="font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:var(--white);margin-bottom:1.5rem;">Acompanhamento, Adesão, Vida Real e HAS Difícil</div>
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:0.4rem;">Coordenação Científica · Curadoria · Orientação Acadêmica</div>
+      <div style="font-family:var(--font-script);font-size:2rem;color:var(--gold);margin-bottom:2rem;">Dr. André Rossanno</div>
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem;">Ação Educativa · Aplicação Local</div>
+      <div style="background:rgba(11,37,69,0.6);border:1px solid rgba(26,122,74,0.2);border-radius:10px;padding:1.5rem 2rem;display:inline-block;margin-bottom:1.5rem;">
+        <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">UBS Tibiri · IESCG VIII · São Luís · MA</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          <div style="font-size:1rem;color:var(--light);font-weight:600;">Fabiane Almeida Pinheiro</div>
+          <div style="font-size:1rem;color:var(--light);font-weight:600;">Emmanuella Bruno Alencar</div>
+          <div style="font-size:1rem;color:var(--light);font-weight:600;">Josivania Monteiro de Castro</div>
+          <div style="font-size:1rem;color:var(--light);font-weight:600;">Gabriela da Silva Patriota</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(18,130,162,0.15);padding-top:1.2rem;">
+        <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);margin-bottom:0.5rem;">Ferramentas declaradas</div>
+        <div style="font-size:0.82rem;color:rgba(141,169,196,0.7);line-height:1.7;">ChatGPT — organização, síntese e estrutura pedagógica.<br>Claude — codificação HTML interativo e Atlas Mental.<br>Gamma / NotebookLM — apoio visual e slides.</div>
+      </div>
+    </div>
+
+    <!-- CONTATO -->
+    <div style="background:linear-gradient(135deg,rgba(11,37,69,0.8),rgba(26,122,74,0.06));border:1px solid rgba(26,122,74,0.2);border-radius:12px;padding:2.5rem 2rem;margin-top:2rem;text-align:left;">
+      <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;color:var(--green);text-transform:uppercase;margin-bottom:0.6rem;">Contato & Colaboração</div>
+      <div style="font-family:var(--font-display);font-weight:900;font-size:1.4rem;color:var(--white);margin-bottom:1rem;">Este projeto é seu também.</div>
+      <p style="font-size:0.9rem;color:var(--mid);line-height:1.7;margin-bottom:1.5rem;">Erro clínico, sugestão, novo módulo ou interesse em colaborar — entre em contato. Médicos de qualquer especialidade são bem-vindos.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+        <a href="mailto:andrerossanno@gmail.com" style="display:flex;align-items:center;gap:0.8rem;background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.3);border-radius:8px;padding:1rem 1.2rem;text-decoration:none;" onmouseover="this.style.borderColor='#1282A2'" onmouseout="this.style.borderColor='rgba(18,130,162,0.3)'">
+          <span style="font-size:1.5rem">✉️</sp
