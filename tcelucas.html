@@ -7,7 +7,7 @@
 <title>LUCAS — Leitura Sistemática da TC no TCE | Dr. André Rossanno</title>
 <meta property="og:title" content="LUCAS — TC no TCE | Dr. André Rossanno">
 <meta property="og:description" content="Método LUCAS de leitura sistemática da tomografia de crânio no TCE. TEC 2026.">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0B2545;--teal:#1282A2;--gold:#F4B942;--red:#E63946;--green:#2DC653;--yellow:#FFD166;--white:#F0F4F8;--gray:#8899AA;--card-bg:rgba(18,130,162,0.08);--border:rgba(18,130,162,0.25);}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -19,7 +19,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 
 /* NAV */
 .tnav{position:fixed;top:3px;left:0;right:0;background:rgba(11,37,69,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;}
-.nbrand{font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;}
+.nbrand{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:900;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;}
 .nlink{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);text-decoration:none;padding:6px 14px;border:1px solid rgba(244,185,66,0.4);border-radius:4px;transition:all .2s;}
 .nlink:hover{background:rgba(244,185,66,0.1);}
 
@@ -30,7 +30,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .lucas-wrap{margin:0 auto;padding:34px;border-radius:24px;background:radial-gradient(circle at top right,rgba(18,130,162,0.16),transparent 30%),linear-gradient(180deg,rgba(8,25,42,0.98),rgba(11,37,69,0.96));border:1px solid rgba(18,130,162,0.22);box-shadow:0 18px 55px rgba(0,0,0,0.35);color:#F0F4F8;font-family:'IBM Plex Sans',sans-serif;}
 .lucas-top{display:grid;grid-template-columns:1.2fr 0.9fr;gap:28px;align-items:center;margin-bottom:34px;}
 .lucas-kicker{margin:0 0 10px;font-size:0.74rem;letter-spacing:0.20em;text-transform:uppercase;color:var(--teal);font-family:'IBM Plex Mono',monospace;}
-.lucas-title{margin:0 0 10px;font-size:3rem;line-height:1;font-weight:900;font-family:'Syne',sans-serif;color:#fff;}
+.lucas-title{margin:0 0 10px;font-size:3rem;line-height:1;font-weight:900;font-family:'IBM Plex Sans',sans-serif;color:#fff;}
 .lucas-subtitle{margin:0 0 18px;font-size:1rem;line-height:1.7;color:rgba(240,244,248,0.76);max-width:720px;}
 .lucas-pill-row{display:flex;flex-wrap:wrap;gap:10px;}
 .lucas-pill{padding:8px 14px;border-radius:999px;background:rgba(18,130,162,0.10);border:1px solid rgba(18,130,162,0.28);color:#cfeef7;font-size:0.84rem;line-height:1.4;}
@@ -48,7 +48,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .lucas-card{position:relative;background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.025));border:1px solid rgba(18,130,162,0.15);border-radius:20px;padding:24px;box-shadow:0 8px 24px rgba(0,0,0,0.16);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
 .lucas-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.24);border-color:rgba(18,130,162,0.34);}
 .lucas-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.lucas-letter{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);line-height:1;}
+.lucas-letter{font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);line-height:1;}
 .lucas-icon{font-size:1.5rem;opacity:0.95;}
 .lucas-card h3{margin:0 0 10px;font-size:1.12rem;font-weight:800;color:#fff;}
 .lucas-card p{margin:0;line-height:1.7;color:rgba(240,244,248,0.82);font-size:0.95rem;}
@@ -66,7 +66,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .lucas-quote footer{margin-top:10px;color:var(--gold);font-style:normal;font-weight:700;font-family:'Dancing Script',cursive;font-size:1.4rem;}
 
 /* DENSITY SECTION */
-.sh{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:44px 0 18px;display:flex;align-items:center;gap:10px;}
+.sh{font-family:'IBM Plex Sans',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:44px 0 18px;display:flex;align-items:center;gap:10px;}
 .sh::after{content:'';flex:1;height:1px;background:var(--border);}
 .card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:22px;margin:18px 0;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);}
@@ -74,7 +74,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .cw{background:rgba(255,209,102,0.07);border-color:rgba(255,209,102,0.3);}.cw::before{background:linear-gradient(90deg,var(--yellow),transparent);}
 .mn{background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(244,185,66,0.05));border:1px solid rgba(18,130,162,0.4);border-radius:12px;padding:22px 26px;margin:22px 0;position:relative;}
 .mn::before{content:'MNEMÔNICO';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--teal);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
-.mn-w{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold);letter-spacing:.08em;margin:12px 0;text-align:center;}
+.mn-w{font-family:'IBM Plex Sans',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold);letter-spacing:.08em;margin:12px 0;text-align:center;}
 .pg{background:rgba(255,209,102,0.08);border:1px solid rgba(255,209,102,0.4);border-radius:12px;padding:18px 22px;margin:18px 0;position:relative;}
 .pg::before{content:'💛 PEGADINHA TEC';font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;color:var(--yellow);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
 .pg p{color:var(--white);margin:0;line-height:1.7;font-size:.9rem;}
@@ -94,7 +94,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .fcf,.fcb{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
 .fcf{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(11,37,69,0.8));border:1px solid var(--border);}
 .fcb{background:linear-gradient(135deg,rgba(18,130,162,0.25),rgba(11,37,69,0.9));border:1px solid var(--teal);transform:rotateY(180deg);}
-.fc-q{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:var(--white);line-height:1.4;}
+.fc-q{font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:.95rem;color:var(--white);line-height:1.4;}
 .fc-a{font-size:.88rem;line-height:1.7;color:var(--white);}
 .fc-a strong{color:var(--gold);}
 .fc-hint{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--gray);margin-top:8px;text-transform:uppercase;}
@@ -261,27 +261,27 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 <div class="rv">
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0;">
   <div class="card cd" style="padding:20px;">
-    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--red);margin-bottom:8px;">🩸 Hematoma Epidural</p>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;font-weight:900;color:var(--red);margin-bottom:8px;">🩸 Hematoma Epidural</p>
     <p style="font-size:.88rem;margin-bottom:10px;">Biconvexo entre osso e dura. Artéria meníngea média. Não cruza suturas. Intervalo lúcido clássico.</p>
     <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:8px;padding:10px;text-align:center;"><strong style="color:var(--red);font-size:1.1rem;">EPI 30 corta</strong><br><span style="font-size:.78rem;color:var(--gray);">Volume &gt;30cm³ = cirurgia independente do GCS</span></div>
   </div>
   <div class="card" style="padding:20px;">
-    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--teal);margin-bottom:8px;">🌙 Hematoma Subdural</p>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;font-weight:900;color:var(--teal);margin-bottom:8px;">🌙 Hematoma Subdural</p>
     <p style="font-size:.88rem;margin-bottom:10px;">Crescente/foice entre dura e aracnoide. Veias-ponte. Pode cruzar suturas. Idosos e anticoagulados.</p>
     <div style="background:rgba(255,209,102,.08);border:1px solid rgba(255,209,102,.3);border-radius:8px;padding:10px;text-align:center;"><strong style="color:var(--yellow);font-size:1rem;">SUB 10 ou 5</strong><br><span style="font-size:.78rem;color:var(--gray);">Espessura &gt;10mm ou desvio &gt;5mm = cirurgia</span></div>
   </div>
   <div class="card" style="padding:20px;">
-    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:8px;">🔥 Contusão Cerebral</p>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:8px;">🔥 Contusão Cerebral</p>
     <p style="font-size:.88rem;margin-bottom:10px;">Focos hemorrágicos no parênquima. Frontal/temporal. Coup e contrecoup. Pode "florescer" em 24-72h.</p>
     <div class="pg" style="padding:10px;margin:0;"><p style="font-size:.78rem;">"Flor de hematoma" — TC de controle em 24h se instabilidade clínica.</p></div>
   </div>
   <div class="card" style="padding:20px;">
-    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--teal);margin-bottom:8px;">🖌 HSA Traumática</p>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;font-weight:900;color:var(--teal);margin-bottom:8px;">🖌 HSA Traumática</p>
     <p style="font-size:.88rem;margin-bottom:10px;">Sangue em sulcos e cisternas. Contexto de trauma. Diferente da HSA aneurismática (cisternas basais exuberantes).</p>
     <p style="font-size:.82rem;color:var(--gold);margin:0;">"Tinta nos sulcos"</p>
   </div>
   <div class="card cw" style="padding:20px;">
-    <p style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:8px;">💡 LAD — Lesão Axonal Difusa</p>
+    <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;font-weight:900;color:var(--yellow);margin-bottom:8px;">💡 LAD — Lesão Axonal Difusa</p>
     <p style="font-size:.88rem;margin-bottom:10px;">TC pode ser NORMAL! Microhemorragias punctiformes em SB, corpo caloso, tronco. RM SWI é muito mais sensível.</p>
     <div class="pg" style="padding:10px;margin:0;"><p style="font-size:.78rem;">Coma desproporcional à TC = LAD até prova em contrário. Solicitar RM urgente.</p></div>
   </div>
@@ -294,12 +294,12 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 <div class="mn"><div class="mn-w">"Fosso, Mastro, Massa"</div>
 <p style="font-size:13px;color:var(--gray);text-align:center;margin-top:8px;"><strong style="color:var(--teal);">Fosso apagou</strong> (cisternas comprimidas) = III · <strong style="color:var(--gold);">Mastro entortou</strong> (desvio &gt;5mm) = IV · <strong style="color:var(--red);">Massa:</strong> evacuada=V | não evacuada=VI</p></div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0;">
-  <div class="card" style="padding:16px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);">I</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">DIFUSA I</div><p style="font-size:12px;">TC normal. Castelo aparentemente intacto.</p></div>
-  <div class="card" style="padding:16px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);">II</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">DIFUSA II</div><p style="font-size:12px;">Cisternas presentes, desvio 0-5mm, sem lesão &gt;25mL.</p></div>
-  <div class="card" style="padding:16px;text-align:center;border-color:rgba(255,209,102,.3);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--yellow);">III</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">SWELLING</div><p style="font-size:12px;">Cisternas <strong>comprimidas/ausentes</strong>, desvio 0-5mm.</p></div>
-  <div class="card" style="padding:16px;text-align:center;border-color:rgba(244,185,66,.3);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);">IV</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">SHIFT</div><p style="font-size:12px;">Desvio <strong>&gt;5mm</strong>. O mastro entortou.</p></div>
-  <div class="card" style="padding:16px;text-align:center;border-color:rgba(230,57,70,.3);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--red);">V</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">MASSA EVACUADA</div><p style="font-size:12px;">Lesão expansiva cirurgicamente evacuada.</p></div>
-  <div class="card" style="padding:16px;text-align:center;border-color:rgba(230,57,70,.4);"><div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--red);">VI</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">MASSA NÃO EVACUADA</div><p style="font-size:12px;">Lesão hiperdensa ou mista &gt;25mL não evacuada.</p></div>
+  <div class="card" style="padding:16px;text-align:center;"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);">I</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">DIFUSA I</div><p style="font-size:12px;">TC normal. Castelo aparentemente intacto.</p></div>
+  <div class="card" style="padding:16px;text-align:center;"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--teal);">II</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">DIFUSA II</div><p style="font-size:12px;">Cisternas presentes, desvio 0-5mm, sem lesão &gt;25mL.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(255,209,102,.3);"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--yellow);">III</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">SWELLING</div><p style="font-size:12px;">Cisternas <strong>comprimidas/ausentes</strong>, desvio 0-5mm.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(244,185,66,.3);"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);">IV</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">SHIFT</div><p style="font-size:12px;">Desvio <strong>&gt;5mm</strong>. O mastro entortou.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(230,57,70,.3);"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--red);">V</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">MASSA EVACUADA</div><p style="font-size:12px;">Lesão expansiva cirurgicamente evacuada.</p></div>
+  <div class="card" style="padding:16px;text-align:center;border-color:rgba(230,57,70,.4);"><div style="font-family:'IBM Plex Sans',sans-serif;font-size:2rem;font-weight:900;color:var(--red);">VI</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:8px;text-transform:uppercase;">MASSA NÃO EVACUADA</div><p style="font-size:12px;">Lesão hiperdensa ou mista &gt;25mL não evacuada.</p></div>
 </div>
 <div class="pg"><p><strong>Marshall III ≠ desvio grande.</strong> Marshall III: cisternas apagadas + desvio 0-5mm (swelling). Desvio &gt;5mm = Marshall IV (shift). Não confunda!</p></div>
 </div>
