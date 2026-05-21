@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bloqueio Sinoatrial | Método André Rossanno</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #0B2545;
@@ -28,7 +28,7 @@ body { font-family: 'IBM Plex Sans', sans-serif; background: var(--navy); color:
 #sidebar.open { transform: translateX(0); }
 #sidebar-toggle { position: fixed; left: 0; top: 50%; transform: translateY(-50%); background: var(--teal); border: none; color: white; width: 28px; height: 56px; cursor: pointer; z-index: 101; border-radius: 0 8px 8px 0; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
 #sidebar-toggle.open { left: 220px; }
-.nav-logo { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 13px; color: var(--gold); padding: 0 16px 20px; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+.nav-logo { font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: 13px; color: var(--gold); padding: 0 16px 20px; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
 .nav-item { display: block; padding: 10px 16px; color: var(--muted); font-size: 12px; font-family: 'IBM Plex Mono', monospace; text-decoration: none; cursor: pointer; transition: all 0.2s; border-left: 3px solid transparent; }
 .nav-item:hover, .nav-item.active { color: var(--white); border-left-color: var(--gold); background: rgba(244,185,66,0.08); }
 
@@ -36,8 +36,8 @@ body { font-family: 'IBM Plex Sans', sans-serif; background: var(--navy); color:
 .hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(18,130,162,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(18,130,162,0.08) 1px, transparent 1px); background-size: 40px 40px; animation: gridMove 20s linear infinite; }
 @keyframes gridMove { 0%{background-position:0 0} 100%{background-position:40px 40px} }
 .hero-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.3em; color: var(--teal); text-transform: uppercase; margin-bottom: 16px; position: relative; }
-.hero h1 { font-family: 'Syne', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 6vw, 5rem); line-height: 1.05; position: relative; background: linear-gradient(135deg, var(--white) 0%, var(--teal) 60%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
-.hero h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--muted); position: relative; margin-bottom: 24px; }
+.hero h1 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 6vw, 5rem); line-height: 1.05; position: relative; background: linear-gradient(135deg, var(--white) 0%, var(--teal) 60%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+.hero h2 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--muted); position: relative; margin-bottom: 24px; }
 .hero-badge { display: inline-flex; gap: 8px; align-items: center; background: rgba(244,185,66,0.12); border: 1px solid rgba(244,185,66,0.3); border-radius: 100px; padding: 6px 18px; font-size: 12px; color: var(--gold); margin-bottom: 40px; position: relative; }
 .ecg-container { width: 100%; max-width: 600px; height: 80px; position: relative; overflow: hidden; margin-bottom: 40px; }
 svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; animation: ecgScroll 3s linear infinite; }
@@ -47,19 +47,19 @@ svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; an
 .section.visible { opacity: 1; transform: translateY(0); }
 .section-kicker { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--teal); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 .section-kicker::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
-.section h2 { font-family: 'Syne', sans-serif; font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.8rem); margin-bottom: 24px; line-height: 1.1; }
+.section h2 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: clamp(1.6rem, 4vw, 2.8rem); margin-bottom: 24px; line-height: 1.1; }
 .section-deco { width: 60px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--teal), var(--gold)); margin: 0 0 24px; }
 
 .case-box { background: linear-gradient(135deg, rgba(230,57,70,0.1), rgba(3,64,120,0.3)); border: 1px solid rgba(230,57,70,0.3); border-radius: 16px; padding: 32px; position: relative; overflow: hidden; margin-bottom: 40px; }
 .case-box::before { content: '🚨'; position: absolute; right: 24px; top: 24px; font-size: 48px; opacity: 0.3; }
-.case-box h3 { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--red); margin-bottom: 12px; font-size: 1.1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.case-box h3 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 800; color: var(--red); margin-bottom: 12px; font-size: 1.1rem; letter-spacing: 0.05em; text-transform: uppercase; }
 .case-box p { font-size: 1rem; line-height: 1.7; color: var(--white); }
 
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 32px; }
 .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
 .card:hover { transform: translateY(-4px); border-color: var(--teal); }
 .card-icon { font-size: 2rem; margin-bottom: 12px; }
-.card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; color: var(--gold); }
+.card h3 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; color: var(--gold); }
 .card p { font-size: 0.88rem; line-height: 1.6; color: var(--muted); }
 
 .castle-section { background: linear-gradient(135deg, rgba(3,64,120,0.5), rgba(11,37,69,0.8)); border: 1px solid var(--border); border-radius: 20px; padding: 40px 32px; margin-bottom: 32px; text-align: center; }
@@ -94,19 +94,19 @@ svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; an
 .palace-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 24px 0; }
 .palace-room { background: linear-gradient(135deg, rgba(3,64,120,0.4), rgba(11,37,69,0.6)); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; cursor: default; position: relative; overflow: hidden; }
 .palace-room:hover { border-color: var(--gold); background: linear-gradient(135deg, rgba(244,185,66,0.08), rgba(3,64,120,0.5)); transform: translateY(-3px); }
-.palace-room .room-num { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 2rem; color: rgba(244,185,66,0.3); position: absolute; top: 8px; right: 12px; }
+.palace-room .room-num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: 2rem; color: rgba(244,185,66,0.3); position: absolute; top: 8px; right: 12px; }
 .palace-room .room-icon { font-size: 2rem; margin-bottom: 8px; }
-.palace-room h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--gold); margin-bottom: 6px; }
+.palace-room h4 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--gold); margin-bottom: 6px; }
 .palace-room p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
 .mnemonic-box { background: linear-gradient(135deg, rgba(244,185,66,0.1), rgba(3,64,120,0.3)); border: 2px solid rgba(244,185,66,0.4); border-radius: 16px; padding: 28px; margin: 24px 0; position: relative; }
 .mnemonic-box::before { content: '💡'; position: absolute; top: 20px; right: 20px; font-size: 24px; }
-.mnemonic-box h3 { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.mnemonic-box h3 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 800; color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
 .mnemonic-box p { font-size: 1rem; line-height: 1.7; color: var(--white); font-style: italic; }
 .mnemonic-box strong { color: var(--gold); font-style: normal; }
 
 .pega-box { background: linear-gradient(135deg, rgba(244,185,66,0.08), rgba(11,37,69,0.5)); border: 1px solid rgba(244,185,66,0.3); border-radius: 12px; padding: 20px 24px; margin: 12px 0; display: flex; gap: 16px; align-items: flex-start; }
-.pega-num { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 1.5rem; color: rgba(244,185,66,0.4); flex-shrink: 0; line-height: 1; }
+.pega-num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: 1.5rem; color: rgba(244,185,66,0.4); flex-shrink: 0; line-height: 1; }
 .pega-content h4 { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; }
 .pega-content p { font-size: 0.88rem; line-height: 1.6; color: var(--white); }
 
@@ -114,7 +114,7 @@ svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; an
 .quiz-question { display: none; }
 .quiz-question.active { display: block; }
 .quiz-counter { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 16px; }
-.quiz-q-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; line-height: 1.5; margin-bottom: 24px; color: var(--white); }
+.quiz-q-text { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 1.1rem; line-height: 1.5; margin-bottom: 24px; color: var(--white); }
 .quiz-options { display: flex; flex-direction: column; gap: 10px; }
 .quiz-opt { background: rgba(18,130,162,0.1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; cursor: pointer; transition: all 0.25s; font-size: 0.9rem; color: var(--white); display: flex; gap: 12px; align-items: center; text-align: left; }
 .quiz-opt:hover:not(.locked) { border-color: var(--teal); background: rgba(18,130,162,0.2); transform: translateX(4px); }
@@ -134,7 +134,7 @@ svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; an
 .btn-secondary:hover { border-color: var(--teal); color: var(--white); }
 .quiz-score { text-align: center; padding: 32px; display: none; }
 .quiz-score.show { display: block; }
-.score-num { font-family: 'Syne', sans-serif; font-weight: 900; font-size: 4rem; color: var(--gold); }
+.score-num { font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: 4rem; color: var(--gold); }
 
 .flip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
 .flip-card { height: 160px; perspective: 1000px; cursor: pointer; }
@@ -157,8 +157,8 @@ svg.ecg-svg { position: absolute; top: 0; left: 0; width: 200%; height: 100%; an
 .algo-step { display: flex; gap: 16px; align-items: flex-start; position: relative; padding-bottom: 24px; }
 .algo-step::before { content: ''; position: absolute; left: 18px; top: 40px; width: 2px; height: calc(100% - 16px); background: linear-gradient(to bottom, var(--teal), transparent); }
 .algo-step:last-child::before { display: none; }
-.algo-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--deep)); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 900; font-size: 14px; color: white; flex-shrink: 0; box-shadow: 0 0 15px rgba(18,130,162,0.4); }
-.algo-text h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
+.algo-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), var(--deep)); display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Sans', sans-serif; font-weight: 900; font-size: 14px; color: white; flex-shrink: 0; box-shadow: 0 0 15px rgba(18,130,162,0.4); }
+.algo-text h4 { font-family: 'IBM Plex Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
 .algo-text p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
 
 .signature-section { text-align: center; padding: 60px 24px 80px; border-top: 1px solid var(--border); }
@@ -275,11 +275,11 @@ input#corridorSpeed::-webkit-slider-thumb {
 }
 .cor-filosofica::before {
   content: '\201C'; position: absolute; top: -10px; left: 16px;
-  font-family: 'Syne', sans-serif; font-size: 120px;
+  font-family: 'IBM Plex Sans', sans-serif; font-size: 120px;
   color: rgba(18,130,162,0.08); line-height: 1; pointer-events: none;
 }
 .cor-filosofica p {
-  font-family: 'Syne', sans-serif; font-size: clamp(15px,2.2vw,19px);
+  font-family: 'IBM Plex Sans', sans-serif; font-size: clamp(15px,2.2vw,19px);
   font-weight: 700; line-height: 1.5; color: var(--white);
   max-width: 600px; margin: 0 auto 20px; position: relative; z-index: 1;
 }
@@ -463,7 +463,7 @@ input#corridorSpeed::-webkit-slider-thumb {
   </div>
 
   <div class="castle-section reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:20px;">O corredor com ferrugem leve — impulso chega, mas atrasado</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:20px;">O corredor com ferrugem leve — impulso chega, mas atrasado</h3>
 
     <div class="card-grid" style="margin-bottom:24px;">
       <div class="card" style="border-color:rgba(244,185,66,0.4);">
@@ -493,7 +493,7 @@ input#corridorSpeed::-webkit-slider-thumb {
   </div>
 
   <div class="castle-section reveal" style="margin-top:0;">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">Como diagnosticar então?</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">Como diagnosticar então?</h3>
     <div class="algo-steps" style="margin:0;">
       <div class="algo-step">
         <div class="algo-num">1</div>
@@ -543,7 +543,7 @@ input#corridorSpeed::-webkit-slider-thumb {
 
   <!-- Os dois tempos -->
   <div class="corredor-wrap reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:20px;">O Rei tem dois tempos distintos</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:20px;">O Rei tem dois tempos distintos</h3>
     <div class="card-grid" style="margin-bottom:0;">
       <div class="card" style="border-color:rgba(244,185,66,0.4);">
         <div class="card-icon">⏰</div>
@@ -565,7 +565,7 @@ input#corridorSpeed::-webkit-slider-thumb {
 
   <!-- Tabela de atrasos -->
   <div class="corredor-wrap reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:8px;">O atraso cresce — mas seus incrementos encolhem</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:8px;">O atraso cresce — mas seus incrementos encolhem</h3>
     <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px;">O mensageiro demora mais a cada ciclo — mas demora cada vez <em>um pouquinho menos a mais</em>:</p>
 
     <table class="corridor-table">
@@ -588,7 +588,7 @@ input#corridorSpeed::-webkit-slider-thumb {
 
   <!-- Canvas animado -->
   <div class="corredor-wrap reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:8px;">Visualização: Rei, Corredor e Onda P</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:8px;">Visualização: Rei, Corredor e Onda P</h3>
     <p style="font-size:0.83rem;color:var(--muted);margin-bottom:4px;">Acompanhe o rei disparando (fixo), o mensageiro percorrendo o corredor (crescendo) e a onda P chegando ao ECG (cada vez mais próxima).</p>
 
     <div class="corredor-canvas-wrap">
@@ -612,7 +612,7 @@ input#corridorSpeed::-webkit-slider-thumb {
 
   <!-- Analogias na linguagem do castelo -->
   <div class="corredor-wrap reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">As analogias que grudam</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">As analogias que grudam</h3>
 
     <div class="cor-analogy">
       <div class="cor-analogy-label">// Analogia 1 — O Portão com Ferrugem Crescente</div>
@@ -633,7 +633,7 @@ input#corridorSpeed::-webkit-slider-thumb {
 
   <!-- O paradoxo resolvido -->
   <div class="corredor-wrap reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">O paradoxo resolvido — atrasou para o rei, adiantou para você</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;color:var(--gold);margin-bottom:16px;">O paradoxo resolvido — atrasou para o rei, adiantou para você</h3>
 
     <p style="font-size:0.88rem;color:var(--muted);margin-bottom:16px;">O rei dispara a cada 1000ms — fixo. O corredor vai crescendo:</p>
 
@@ -717,7 +717,7 @@ input#corridorSpeed::-webkit-slider-thumb {
   <div class="section-deco"></div>
   <p class="info-p reveal">O mais traiçoeiro. O corredor vai fechando progressivamente — cada mensageiro chega com menos antecedência que o anterior, até um ficar preso. O PP <span class="highlight-gold">encurta</span> antes da pausa. É o <em>Wenckebach do nó sinusal</em>.</p>
   <div class="castle-section reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:8px;color:var(--gold);">Visualização: Atrasos Progressivos no Corredor</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;margin-bottom:8px;color:var(--gold);">Visualização: Atrasos Progressivos no Corredor</h3>
     <p style="font-size:0.83rem;color:var(--muted);margin-bottom:24px;">O rei dispara a cada 1000ms. O corredor alonga até um mensageiro não conseguir sair.</p>
     <div class="tipo1-visual">
       <div class="impulse-col"><div class="impulse-node">👑<br><span style="font-size:8px">t=0</span></div><div class="impulse-bar" style="height:40px"></div><div class="impulse-p">P</div><div class="ms-label">200ms</div></div>
@@ -761,7 +761,7 @@ input#corridorSpeed::-webkit-slider-thumb {
   <div class="section-deco"></div>
   <p class="info-p reveal">O portão guilhotina. Tudo regular, certinho, até um mensageiro cair de repente num buraco. PP constante antes da pausa, e a pausa é <span class="highlight-gold">múltipla exata</span> do PP basal.</p>
   <div class="castle-section reveal">
-    <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:24px;color:var(--gold);">Portão Guilhotina: PP Constante → Pausa 2×PP</h3>
+    <h3 style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;margin-bottom:24px;color:var(--gold);">Portão Guilhotina: PP Constante → Pausa 2×PP</h3>
     <div class="tipo2-visual">
       <div class="impulse-col"><div class="impulse-node">👑</div><div class="impulse-bar" style="height:50px"></div><div class="impulse-p">P</div><div class="ms-label">1000ms</div></div>
       <div style="display:flex;align-items:center;padding-bottom:60px;"><div style="width:20px;height:2px;background:var(--border);position:relative"><span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--teal);white-space:nowrap">PP=1000</span></div></div>
