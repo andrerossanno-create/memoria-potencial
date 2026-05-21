@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TRM — Parte 2 | Dr. André Rossanno</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #0B2545;
@@ -26,7 +26,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .app{position:relative;z-index:1;display:flex;min-height:100vh;}
 .sidebar{width:260px;min-height:100vh;background:rgba(11,37,69,0.95);border-right:1px solid var(--border);padding:32px 0;position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0;}
 .sidebar-logo{padding:0 24px 24px;border-bottom:1px solid var(--border);margin-bottom:16px;}
-.sidebar-logo .title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:900;color:var(--white);line-height:1.2;}
+.sidebar-logo .title{font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;color:var(--white);line-height:1.2;}
 .sidebar-logo .subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
 .sidebar-logo .part{font-size:0.7rem;color:var(--gold);margin-top:6px;font-weight:600;}
 .nav-item{display:flex;align-items:center;gap:12px;padding:12px 24px;cursor:pointer;transition:all 0.2s;border-left:3px solid transparent;font-size:0.82rem;color:var(--gray);}
@@ -42,7 +42,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .module.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .mod-kicker{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--teal);margin-bottom:8px;}
-.mod-title{font-family:'Syne',sans-serif;font-size:2.3rem;font-weight:900;line-height:1.1;color:var(--white);margin-bottom:8px;}
+.mod-title{font-family:'Nunito',sans-serif;font-size:2.3rem;font-weight:900;line-height:1.1;color:var(--white);margin-bottom:8px;}
 .mod-subtitle{font-size:1rem;color:var(--gray);margin-bottom:40px;font-weight:300;}
 .case-block{background:rgba(230,57,70,0.08);border:1px solid rgba(230,57,70,0.3);border-radius:12px;padding:28px 32px;margin-bottom:32px;position:relative;}
 .case-block::before{content:'CASO CLÍNICO';font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--red);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
@@ -63,7 +63,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .vh-card ul li{padding:5px 0;font-size:0.88rem;line-height:1.5;}
 .vh-villain ul li::before{content:'🔴 ';font-size:0.75rem;}
 .vh-hero ul li::before{content:'🟢 ';font-size:0.75rem;}
-.section-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:32px 0 16px;display:flex;align-items:center;gap:10px;}
+.section-title{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:700;color:var(--teal);margin:32px 0 16px;display:flex;align-items:center;gap:10px;}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
 .info-box{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:20px;}
 .info-box p{line-height:1.8;margin-bottom:10px;font-size:0.92rem;}
@@ -84,7 +84,7 @@ tr:hover td{background:rgba(18,130,162,0.05);}
 .mnemonic{background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(244,185,66,0.05));border:1px solid rgba(18,130,162,0.4);border-radius:12px;padding:28px;margin:24px 0;position:relative;}
 .mnemonic::before{content:'MNEMÔNICO';font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--teal);position:absolute;top:-10px;left:20px;background:var(--navy);padding:0 8px;}
 .mnemonic p{line-height:1.8;font-size:0.9rem;margin-bottom:10px;}
-.mnem-word{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold);letter-spacing:0.08em;margin:12px 0;text-align:center;}
+.mnem-word{font-family:'Nunito',sans-serif;font-size:1.4rem;font-weight:900;color:var(--gold);letter-spacing:0.08em;margin:12px 0;text-align:center;}
 .fc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:16px;}
 .fc{height:190px;perspective:1000px;cursor:pointer;}
 .fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
@@ -93,7 +93,7 @@ tr:hover td{background:rgba(18,130,162,0.05);}
 .fc-front{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(11,37,69,0.8));border:1px solid var(--border);}
 .fc-back{background:linear-gradient(135deg,rgba(18,130,162,0.25),rgba(11,37,69,0.9));border:1px solid var(--teal);transform:rotateY(180deg);}
 .fc-front .fc-icon{font-size:1.8rem;margin-bottom:10px;}
-.fc-front .fc-q{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;line-height:1.4;}
+.fc-front .fc-q{font-family:'Nunito',sans-serif;font-weight:700;font-size:0.95rem;line-height:1.4;}
 .fc-back .fc-a{font-size:0.88rem;line-height:1.7;}
 .fc-back .fc-a strong{color:var(--gold);}
 .fc-hint{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--gray);margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;}
@@ -116,11 +116,11 @@ tr:hover td{background:rgba(18,130,162,0.05);}
 .frac-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:20px 0;}
 .frac-card{border-radius:12px;padding:22px;background:rgba(18,130,162,0.06);border:1px solid var(--border);}
 .frac-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.frac-letter{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.frac-letter{font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:900;width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .frac-red .frac-letter{background:rgba(230,57,70,0.15);color:var(--red);}
 .frac-blue .frac-letter{background:rgba(18,130,162,0.2);color:var(--teal);}
 .frac-gold .frac-letter{background:rgba(244,185,66,0.15);color:var(--gold);}
-.frac-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;line-height:1.3;}
+.frac-name{font-family:'Nunito',sans-serif;font-weight:700;font-size:0.95rem;line-height:1.3;}
 .frac-level{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--gray);}
 .frac-mech{font-size:0.82rem;color:var(--gray);margin-bottom:8px;font-style:italic;}
 .frac-key{font-size:0.82rem;line-height:1.6;margin-bottom:8px;}
@@ -132,7 +132,7 @@ tr:hover td{background:rgba(18,130,162,0.05);}
 .img-card{border-radius:12px;padding:24px;}
 .img-tc{background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.4);}
 .img-rnm{background:rgba(45,198,83,0.08);border:1px solid rgba(45,198,83,0.35);}
-.img-title{font-family:'Syne',sans-serif;font-weight:900;font-size:1.1rem;margin-bottom:6px;}
+.img-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;margin-bottom:6px;}
 .img-tc .img-title{color:var(--teal);}
 .img-rnm .img-title{color:var(--green);}
 .img-subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--gray);margin-bottom:14px;}
@@ -143,7 +143,7 @@ tr:hover td{background:rgba(18,130,162,0.05);}
 .img-q{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-top:14px;padding:10px 12px;border-radius:6px;background:rgba(11,37,69,0.5);border:1px solid var(--border);font-style:italic;color:var(--gold);}
 .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0;}
 .pkg-item{border-radius:10px;padding:18px;background:rgba(45,198,83,0.06);border:1px solid rgba(45,198,83,0.3);}
-.pkg-letter{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--green);line-height:1;}
+.pkg-letter{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--green);line-height:1;}
 .pkg-name{font-weight:700;font-size:0.9rem;margin:6px 0 8px;color:var(--white);}
 .pkg-desc{font-size:0.82rem;line-height:1.6;color:var(--gray);}
 .steroid{border-radius:12px;padding:24px 28px;margin:20px 0;background:rgba(230,57,70,0.06);border:2px dashed rgba(230,57,70,0.4);position:relative;}
@@ -152,12 +152,12 @@ tr:hover td{background:rgba(18,130,162,0.05);}
 .steroid .steroid-verdict{background:rgba(230,57,70,0.1);border-radius:8px;padding:12px 16px;font-weight:600;font-size:0.9rem;color:var(--red);margin-top:12px;text-align:center;}
 .surgery-box{border-radius:14px;padding:28px;margin:20px 0;background:linear-gradient(135deg,rgba(244,185,66,0.08),rgba(18,130,162,0.08));border:1px solid rgba(244,185,66,0.4);text-align:center;}
 .surgery-icon{font-size:3rem;margin-bottom:12px;}
-.surgery-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:10px;}
+.surgery-title{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:900;color:var(--gold);margin-bottom:10px;}
 .surgery-rule{font-size:0.95rem;line-height:1.7;margin-bottom:8px;}
 .surgery-sub{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--gray);}
 .porta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0;}
 .porta-item{border-radius:8px;padding:14px 16px;background:rgba(18,130,162,0.06);border:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;}
-.porta-letter{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;color:var(--teal);min-width:24px;}
+.porta-letter{font-family:'Nunito',sans-serif;font-size:1.4rem;font-weight:900;color:var(--teal);min-width:24px;}
 .porta-text{font-size:0.83rem;line-height:1.5;}
 .porta-text strong{color:var(--white);}
 .porta-text span{display:block;font-size:0.75rem;color:var(--gray);margin-top:3px;}

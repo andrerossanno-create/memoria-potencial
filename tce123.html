@@ -6,7 +6,7 @@
 <title>TCE — Módulos 1, 2, 3 | Dr. André Rossanno</title>
 <meta property="og:title" content="TCE Neurotrauma — Módulos 1, 2, 3">
 <meta property="og:description" content="Fisiopatologia, Semiologia e Imagem no TCE. Método Dr. André Rossanno.">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0B2545;--navy-l:#0d2d52;--teal:#1282A2;--teal-b:#16a7cb;--blue:#034078;--red:#e63946;--green:#2dc653;--yellow:#ffd166;--gold:#f4a261;--white:#f0f4f8;--gray:#8da0b3;--card:#0e2a47;--darker:#071a30}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -17,7 +17,7 @@ body::after{content:'';position:fixed;top:-20%;left:-10%;width:70%;height:70%;ba
 #pb{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--teal),var(--teal-b));z-index:1000;transition:width .1s}
 /* NAV */
 .tnav{position:fixed;top:3px;left:0;right:0;background:rgba(11,37,69,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(18,130,162,.2);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px}
-.nbrand{font-family:'Syne',sans-serif;font-size:13px;font-weight:900;color:var(--teal-b);letter-spacing:.08em;text-transform:uppercase}
+.nbrand{font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;color:var(--teal-b);letter-spacing:.08em;text-transform:uppercase}
 .ntabs{display:flex;gap:4px}
 .ntab{padding:6px 16px;border:1px solid rgba(18,130,162,.3);border-radius:4px;background:transparent;color:var(--gray);font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;transition:all .2s;text-decoration:none}
 .ntab:hover,.ntab.active{background:rgba(18,130,162,.2);color:var(--teal-b);border-color:var(--teal)}
@@ -37,12 +37,12 @@ body::after{content:'';position:fixed;top:-20%;left:-10%;width:70%;height:70%;ba
 /* HERO */
 .hero{padding:56px 0 36px;border-bottom:1px solid rgba(18,130,162,.2);margin-bottom:44px}
 .kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
-.htitle{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,60px);font-weight:900;line-height:1.05;margin-bottom:14px}
+.htitle{font-family:'Nunito',sans-serif;font-size:clamp(34px,5vw,60px);font-weight:900;line-height:1.05;margin-bottom:14px}
 .htitle span{color:var(--teal-b)}
 .hsub{font-size:17px;color:var(--gray);font-style:italic;margin-bottom:20px}
 /* HEADINGS */
-.sh{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin:44px 0 18px;padding-left:14px;border-left:3px solid var(--teal)}
-.ssh{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--teal-b);margin:28px 0 12px}
+.sh{font-family:'Nunito',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin:44px 0 18px;padding-left:14px;border-left:3px solid var(--teal)}
+.ssh{font-family:'Nunito',sans-serif;font-size:17px;font-weight:700;color:var(--teal-b);margin:28px 0 12px}
 p{color:var(--white);margin-bottom:14px;opacity:.9}
 /* CARDS */
 .card{background:var(--card);border:1px solid rgba(18,130,162,.2);border-radius:8px;padding:22px;margin:18px 0;position:relative;overflow:hidden}
@@ -70,7 +70,7 @@ tbody td{padding:10px 14px;opacity:.88}
 /* GCS */
 .gg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:22px 0}
 .gc{background:var(--card);border:1px solid rgba(18,130,162,.2);border-radius:8px;overflow:hidden}
-.gch{padding:11px 14px;background:rgba(3,64,120,.5);font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--teal-b);display:flex;align-items:center;gap:8px}
+.gch{padding:11px 14px;background:rgba(3,64,120,.5);font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--teal-b);display:flex;align-items:center;gap:8px}
 .gs{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:var(--teal-b);min-width:26px}
 .gi{display:flex;align-items:flex-start;gap:10px;padding:9px 13px;border-bottom:1px solid rgba(18,130,162,.1);font-size:13px}
 .gi:last-child{border:none}
@@ -80,12 +80,12 @@ tbody td{padding:10px 14px;opacity:.88}
 .sv-l{background:rgba(45,198,83,.1);border-right:1px solid rgba(18,130,162,.2)}
 .sv-m{background:rgba(255,209,102,.07);border-right:1px solid rgba(18,130,162,.2)}
 .sv-g{background:rgba(230,57,70,.09)}
-.svn{font-family:'Syne',sans-serif;font-size:26px;font-weight:900;margin-bottom:4px}
+.svn{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;margin-bottom:4px}
 .svl{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray);letter-spacing:.08em}
 /* MNEMONIC */
 .mn{background:linear-gradient(135deg,rgba(3,64,120,.4),rgba(11,37,69,.6));border:1px solid rgba(18,130,162,.3);border-radius:8px;padding:22px 26px;margin:22px 0}
 .mn-t{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
-.mn-w{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:var(--teal-b);margin-bottom:14px}
+.mn-w{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--teal-b);margin-bottom:14px}
 .ml{list-style:none}.ml li{padding:5px 0;border-bottom:1px solid rgba(18,130,162,.1);font-size:14px}
 .ml li:last-child{border:none}.ml li strong{color:var(--teal-b)}
 /* PEGADINHA */
@@ -94,7 +94,7 @@ tbody td{padding:10px 14px;opacity:.88}
 .pg p{color:var(--white);margin:0}
 /* FORMULA */
 .fb{background:rgba(3,64,120,.4);border:1px solid rgba(18,130,162,.4);border-radius:8px;padding:22px;text-align:center;margin:22px 0}
-.fm{font-family:'Syne',sans-serif;font-size:30px;font-weight:900;margin-bottom:10px}
+.fm{font-family:'Nunito',sans-serif;font-size:30px;font-weight:900;margin-bottom:10px}
 .fm span{color:var(--teal-b)}
 .fms{font-size:12px;color:var(--gray)}
 /* FLASHCARDS */
@@ -109,7 +109,7 @@ tbody td{padding:10px 14px;opacity:.88}
 .fch{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray);margin-top:10px}
 /* QUIZ */
 .qs{background:rgba(7,26,48,.8);border:1px solid rgba(18,130,162,.2);border-radius:12px;padding:28px;margin:36px 0}
-.qt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:8px}
+.qt{font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:8px}
 .qq{margin-bottom:26px;padding-bottom:26px;border-bottom:1px solid rgba(18,130,162,.12)}
 .qq:last-child{border:none;margin:0;padding:0}
 .qn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);margin-bottom:5px;letter-spacing:.1em}
@@ -128,20 +128,20 @@ tbody td{padding:10px 14px;opacity:.88}
 /* LUCAS GRID */
 .lg{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(18,130,162,.2);border-radius:8px;overflow:hidden;margin:22px 0}
 .lc{background:var(--card);padding:18px 12px;text-align:center}
-.ll{font-family:'Syne',sans-serif;font-size:34px;font-weight:900;color:var(--teal-b);margin-bottom:6px}
+.ll{font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:var(--teal-b);margin-bottom:6px}
 .lw{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:.06em;margin-bottom:6px}
 .ld{font-size:11px;color:var(--gray);line-height:1.4}
 /* MARSHALL */
 .mg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
 .mc{background:var(--card);border:1px solid rgba(18,130,162,.2);border-radius:8px;padding:16px}
-.mn2{font-family:'Syne',sans-serif;font-size:26px;font-weight:900;color:var(--teal-b);margin-bottom:3px}
+.mn2{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--teal-b);margin-bottom:3px}
 .mname{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:.08em;margin-bottom:8px}
 .md{font-size:12px;opacity:.8}
 /* LESION MAP */
 .lm{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
 .lcard{background:var(--card);border-radius:8px;padding:14px;border:1px solid rgba(18,130,162,.2)}
 .li{font-size:26px;margin-bottom:8px}
-.ln{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--teal-b);margin-bottom:5px}
+.ln{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--teal-b);margin-bottom:5px}
 .ldd{font-size:11px;color:var(--gray);line-height:1.4}
 /* PUPIL DEMO */
 .pd{display:flex;gap:18px;margin:18px 0;flex-wrap:wrap}
@@ -200,7 +200,7 @@ tbody td{padding:10px 14px;opacity:.88}
 <div class="fq">"No traumatismo cranioencefálico, a pancada abre a tragédia, mas é a fisiologia negligenciada que escreve o final."<footer>Dr. André Rossanno</footer></div>
 
 <div class="card cd">
-  <p style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--red);margin-bottom:6px;">A frase que governa o TCE:</p>
+  <p style="font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;color:var(--red);margin-bottom:6px;">A frase que governa o TCE:</p>
   <p style="font-size:16px;font-style:italic;">"No TCE, a pancada inicial machuca; a <strong style="color:var(--red)">lesão secundária</strong> mata."</p>
 </div>
 </div>
@@ -242,9 +242,9 @@ tbody td{padding:10px 14px;opacity:.88}
 <p>O crânio adulto é uma <strong>caixa rígida</strong>. Volume total fixo. Três moradores competem por espaço — quando entra o hematoma, alguém precisa sair. Quando a compensação acaba, a PIC dispara.</p>
 
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0;">
-  <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">👑</div><div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--teal-b);">Parênquima</div><div style="font-size:11px;color:var(--gray);">~80% do volume</div></div>
-  <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">🌊</div><div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--teal-b);">Sangue</div><div style="font-size:11px;color:var(--gray);">~10% do volume</div></div>
-  <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">💧</div><div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--teal-b);">Líquor</div><div style="font-size:11px;color:var(--gray);">~10% do volume</div></div>
+  <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">👑</div><div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--teal-b);">Parênquima</div><div style="font-size:11px;color:var(--gray);">~80% do volume</div></div>
+  <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">🌊</div><div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--teal-b);">Sangue</div><div style="font-size:11px;color:var(--gray);">~10% do volume</div></div>
+  <div class="card" style="text-align:center;padding:16px;"><div style="font-size:32px;margin-bottom:6px;">💧</div><div style="font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--teal-b);">Líquor</div><div style="font-size:11px;color:var(--gray);">~10% do volume</div></div>
 </div>
 
 <div class="card cw"><p><strong style="color:var(--yellow);">Fase compensada:</strong> sai líquor, reduz sangue venoso, PIC sobe pouco.</p><p style="margin-top:8px;"><strong style="color:var(--red);">Fase descompensada:</strong> sem espaço, PIC dispara, PPC cai, herniação.</p><p style="margin-top:8px;font-style:italic;">"Primeiro o crânio negocia. Depois ele cobra com juros."</p></div>
@@ -266,8 +266,8 @@ tbody td{padding:10px 14px;opacity:.88}
 <div class="rv">
 <div class="mn"><div class="mn-t">🎮 Mnemônico</div><div class="mn-w">"CO₂ é o controle remoto do vaso"</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;">
-  <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:13px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:var(--red);">CO₂ ↑</div><div style="font-size:12px;margin-top:6px;">Vasodilatação → volume sanguíneo cerebral ↑ → <strong style="color:var(--red);">PIC ↑</strong></div></div>
-  <div style="background:rgba(18,130,162,.1);border:1px solid rgba(18,130,162,.3);border-radius:6px;padding:13px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:var(--teal-b);">CO₂ ↓↓</div><div style="font-size:12px;margin-top:6px;">Vasoconstrição → reduz PIC, mas pode causar <strong style="color:var(--yellow);">isquemia</strong></div></div>
+  <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:13px;text-align:center;"><div style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--red);">CO₂ ↑</div><div style="font-size:12px;margin-top:6px;">Vasodilatação → volume sanguíneo cerebral ↑ → <strong style="color:var(--red);">PIC ↑</strong></div></div>
+  <div style="background:rgba(18,130,162,.1);border:1px solid rgba(18,130,162,.3);border-radius:6px;padding:13px;text-align:center;"><div style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--teal-b);">CO₂ ↓↓</div><div style="font-size:12px;margin-top:6px;">Vasoconstrição → reduz PIC, mas pode causar <strong style="color:var(--yellow);">isquemia</strong></div></div>
 </div>
 </div>
 <div class="pg"><div class="pg-l">⚠ Pegadinha TEC 2026</div><p><strong>Hiperventilação profilática prolongada = ERRADO.</strong> Reduz fluxo cerebral em cérebro vulnerável. Use apenas como <em>ponte curta</em> em herniação iminente.</p></div>
@@ -280,7 +280,7 @@ tbody td{padding:10px 14px;opacity:.88}
   <div class="card"><p class="ssh" style="margin-top:0;">Edema Vasogênico</p><p>Barreira hematoencefálica rompe → plasma extravasa para interstício. <em>A muralha vascular racha, o rio invade os corredores.</em></p></div>
 </div>
 
-<div class="card cd"><p style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--red);margin-bottom:10px;">Tríade de Cushing</p><div><span class="tag td">Hipertensão Arterial</span><span class="tag td">Bradicardia</span><span class="tag td">Alteração Respiratória</span></div><p style="margin-top:10px;font-style:italic;font-size:13px;color:var(--gray);">"Tríade de Cushing é sirene de castelo já invadido, não alarme precoce." Ela é TARDIA.</p></div>
+<div class="card cd"><p style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:var(--red);margin-bottom:10px;">Tríade de Cushing</p><div><span class="tag td">Hipertensão Arterial</span><span class="tag td">Bradicardia</span><span class="tag td">Alteração Respiratória</span></div><p style="margin-top:10px;font-style:italic;font-size:13px;color:var(--gray);">"Tríade de Cushing é sirene de castelo já invadido, não alarme precoce." Ela é TARDIA.</p></div>
 
 <div class="mn"><div class="mn-t">☠ Triângulo Negro</div><div class="mn-w">"3 Hs que matam o cérebro traumatizado"</div><ul class="ml"><li><strong>H</strong>ipóxia — tira oxigênio</li><li><strong>H</strong>ipotensão — tira pressão</li><li><strong>H</strong>ipertensão intracraniana — bloqueia entrada de sangue</li></ul></div>
 </div>
@@ -397,7 +397,7 @@ tbody td{padding:10px 14px;opacity:.88}
 <p>Avalia <strong>três respostas</strong>. Sempre registre os três componentes separados — o número total não conta a história sozinho.</p>
 
 <div class="card cw" style="text-align:center;margin:18px 0;">
-  <p style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;">GCS = <span style="color:var(--teal-b)">E</span> + <span style="color:var(--green)">V</span> + <span style="color:var(--red)">M</span></p>
+  <p style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;">GCS = <span style="color:var(--teal-b)">E</span> + <span style="color:var(--green)">V</span> + <span style="color:var(--red)">M</span></p>
   <p style="font-size:12px;color:var(--gray);">Ocular + Verbal + Motor — máximos: 4 + 5 + 6 = 15</p>
 </div>
 
@@ -452,7 +452,7 @@ tbody td{padding:10px 14px;opacity:.88}
   <div class="pcase"><div class="ptit">Puntiformes</div><div class="peyes"><div class="eye"><div class="pupil" style="width:5px;height:5px;"></div></div><div class="eye"><div class="pupil" style="width:5px;height:5px;"></div></div></div><div class="plbl">Opioides · Lesão pontina</div></div>
 </div>
 
-<div class="card cd"><p style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;margin-bottom:8px;">Herniação Uncal — Mecanismo</p><p>Hematoma temporal → pressão interna → uncus empurra mesencéfalo → comprime III par → <strong style="color:var(--red)">midríase ipsilateral</strong> → rebaixamento + hemiparesia contralateral.</p><div class="mn-w" style="font-size:15px;margin-top:10px;color:var(--red);">"Pupila abriu, uncus bateu. Pupila grande do lado do trauma."</div></div>
+<div class="card cd"><p style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;margin-bottom:8px;">Herniação Uncal — Mecanismo</p><p>Hematoma temporal → pressão interna → uncus empurra mesencéfalo → comprime III par → <strong style="color:var(--red)">midríase ipsilateral</strong> → rebaixamento + hemiparesia contralateral.</p><div class="mn-w" style="font-size:15px;margin-top:10px;color:var(--red);">"Pupila abriu, uncus bateu. Pupila grande do lado do trauma."</div></div>
 </div>
 
 <h2 class="sh rv">Lateralização & Posturas Anormais</h2>
@@ -608,7 +608,7 @@ tbody td{padding:10px 14px;opacity:.88}
   <div class="card">
     <p class="ssh" style="margin-top:0;">Indicação Cirúrgica</p>
     <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:14px;text-align:center;margin-bottom:10px;">
-      <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:900;color:var(--red);">EPI 30 corta</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--red);">EPI 30 corta</div>
       <div style="font-size:12px;color:var(--gray);">HED &gt;30cm³ → cirurgia independente do GCS</div>
     </div>
     <p style="font-size:12px;">Observação só se: &lt;15mm + desvio &lt;5mm + GCS&gt;8 + sem déficit + centro neurocirúrgico.</p>
@@ -627,8 +627,8 @@ tbody td{padding:10px 14px;opacity:.88}
 
 <div class="card cw"><p class="ssh" style="margin-top:0;color:var(--yellow);">"SUB 10 ou 5" — Indicação Cirúrgica</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
-  <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:12px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:var(--red);">Espessura &gt;10mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
-  <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:12px;text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:900;color:var(--red);">Desvio &gt;5mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
+  <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:12px;text-align:center;"><div style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--red);">Espessura &gt;10mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
+  <div style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3);border-radius:6px;padding:12px;text-align:center;"><div style="font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--red);">Desvio &gt;5mm</div><div style="font-size:12px;color:var(--gray);">Cirurgia independente do GCS</div></div>
 </div>
 </div>
 
