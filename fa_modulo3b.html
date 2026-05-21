@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FA — Módulo 3B | A Sala de Ablação | Dr. André Rossanno</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0B2545;--teal:#1282A2;--teal-light:#1a9cbf;--mint:#034078;--gold:#C9A84C;--gold-light:#e8c66a;--red:#C0392B;--red-light:#e74c3c;--green:#1a7a4a;--green-light:#27ae60;--white:#f0f4f8;--text:#d4e1f7;--text-muted:#8ba3c7;--glass-border:rgba(18,130,162,0.2);--emerald:#0d7a5f;--emerald-light:#10b981;--purple:#7c3aed;--purple-light:#a78bfa;}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
@@ -16,12 +16,12 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 #sidebar.open{transform:translateX(0)}
 #sidebar::-webkit-scrollbar{width:4px}#sidebar::-webkit-scrollbar-thumb{background:var(--purple-light);border-radius:2px}
 .sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--glass-border);margin-bottom:16px}
-.sidebar-logo .brand{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:800;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase}
+.sidebar-logo .brand{font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:800;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase}
 .sidebar-logo .title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px}
 .sidebar-section{padding:8px 20px 4px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
 .sidebar-link{display:block;padding:9px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--text-muted);text-decoration:none;transition:all 0.2s;border-left:2px solid transparent;cursor:pointer}
 .sidebar-link:hover{color:var(--white);background:rgba(124,58,237,0.1)}
-.sidebar-module{display:block;padding:11px 20px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.sidebar-module{display:block;padding:11px 20px;font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none}
 .sidebar-module.done{color:var(--teal)}.sidebar-module.current{color:var(--purple-light)}
 #menu-toggle{position:fixed;top:16px;left:16px;width:44px;height:44px;background:rgba(6,15,30,0.9);border:1px solid var(--glass-border);border-radius:8px;cursor:pointer;z-index:950;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backdrop-filter:blur(10px);transition:all 0.2s}
 #menu-toggle:hover{border-color:var(--purple-light)}
@@ -31,9 +31,9 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple-light);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3);border-radius:20px;padding:6px 16px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
 .hero-badge span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--purple-light)}
-.hero-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:1.0;color:var(--white);margin-bottom:8px;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
+.hero-title{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:1.0;color:var(--white);margin-bottom:8px;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
 .hero-title .highlight{color:var(--purple-light)}.hero-title .accent{color:var(--gold)}
-.hero-subtitle{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(16px,3.5vw,24px);font-weight:600;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+.hero-subtitle{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(16px,3.5vw,24px);font-weight:600;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
 .hero-quote{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(11,37,69,0.6));border:1px solid rgba(124,58,237,0.25);border-left:4px solid var(--purple-light);border-radius:12px;padding:28px 32px;margin-bottom:40px;max-width:700px;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards}
 .hero-quote p{font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:12px}
 .hero-quote .author{font-family:'Dancing Script',cursive;font-size:18px;color:var(--gold)}
@@ -45,7 +45,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .module-card.done-module{border-color:var(--teal)}
 .module-card.locked-module{opacity:0.5;cursor:default;pointer-events:none}
 .module-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;margin-bottom:6px}
-.module-name{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.module-name{font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
 .module-desc{font-size:11px;color:var(--text-muted)}
 .module-status{position:absolute;top:14px;right:14px;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 8px;border-radius:10px}
 .status-done{background:rgba(18,130,162,0.2);color:var(--teal-light);border:1px solid rgba(18,130,162,0.4)}
@@ -56,13 +56,13 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--glass-border)}
 .section-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--purple),var(--mint));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.section-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(22px,4vw,32px);font-weight:800;color:var(--white);line-height:1.1}
+.section-title{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(22px,4vw,32px);font-weight:800;color:var(--white);line-height:1.1}
 .quote-block{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(11,37,69,0.5));border:1px solid rgba(124,58,237,0.2);border-left:4px solid var(--purple-light);border-radius:12px;padding:24px 28px;margin:24px 0}
 .quote-block p{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:10px}
 .quote-block .author{font-family:'Dancing Script',cursive;font-size:17px;color:var(--gold)}
 .mnemonic-card{background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(11,37,69,0.5));border:1px solid rgba(124,58,237,0.3);border-radius:16px;padding:28px 32px;text-align:center;margin:20px 0}
 .mnemonic-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
-.mnemonic-text{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(16px,3vw,24px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.4}
+.mnemonic-text{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(16px,3vw,24px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.4}
 .mnemonic-author{font-family:'Dancing Script',cursive;font-size:16px;color:var(--gold)}
 .trap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .trap-card{background:rgba(6,15,30,0.6);border:1px solid rgba(192,57,43,0.25);border-left:3px solid var(--red-light);border-radius:12px;padding:16px 18px;transition:all 0.3s}
@@ -73,7 +73,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .castle-room{border-radius:16px;padding:24px;transition:transform 0.3s}
 .castle-room:hover{transform:translateY(-4px)}
 .room-number{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
-.room-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:800;margin-bottom:6px}
+.room-title{font-family:'IBM Plex Sans', sans-serif;font-size:16px;font-weight:800;margin-bottom:6px}
 .room-image{font-size:32px;margin-bottom:10px}
 .room-desc{font-size:12px;line-height:1.6;color:var(--text-muted)}
 .room-phrase{font-size:11px;font-style:italic;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1)}
@@ -91,7 +91,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .flashcard.flipped{border-color:var(--emerald-light);background:rgba(13,122,95,0.08)}
 .quiz-container{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:20px;padding:32px}
 .quiz-progress-text{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:24px}
-.quiz-question{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:24px;line-height:1.4}
+.quiz-question{font-family:'IBM Plex Sans', sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:24px;line-height:1.4}
 .quiz-options{display:flex;flex-direction:column;gap:10px}
 .quiz-option{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:10px;padding:14px 18px;cursor:pointer;font-size:13px;color:var(--text);transition:all 0.2s;text-align:left}
 .quiz-option:hover{border-color:var(--purple-light);background:rgba(124,58,237,0.08)}
@@ -101,11 +101,11 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .quiz-feedback.show{display:block}
 .quiz-feedback.correct-fb{background:rgba(13,122,95,0.15);border:1px solid rgba(13,122,95,0.3);color:var(--emerald-light)}
 .quiz-feedback.wrong-fb{background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);color:var(--red-light)}
-.quiz-next{margin-top:20px;background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.4);border-radius:10px;padding:12px 28px;color:var(--purple-light);font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s;display:none}
+.quiz-next{margin-top:20px;background:rgba(124,58,237,0.2);border:1px solid rgba(124,58,237,0.4);border-radius:10px;padding:12px 28px;color:var(--purple-light);font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.2s;display:none}
 .quiz-next.show{display:block}.quiz-next:hover{background:rgba(124,58,237,0.35)}
 .quiz-score{text-align:center;padding:32px;display:none}
-.quiz-score-num{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:56px;font-weight:900;color:var(--gold)}
-.quiz-restart{margin-top:20px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:12px 28px;color:var(--gold);font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:13px;cursor:pointer}
+.quiz-score-num{font-family:'IBM Plex Sans', sans-serif;font-size:56px;font-weight:900;color:var(--gold)}
+.quiz-restart{margin-top:20px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:12px 28px;color:var(--gold);font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:13px;cursor:pointer}
 .revision-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
 .rev-tab{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:8px;padding:8px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);cursor:pointer;transition:all 0.2s}
 .rev-tab.active{border-color:var(--purple-light);color:var(--purple-light);background:rgba(124,58,237,0.1)}
@@ -114,7 +114,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .palace-sala{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:16px;padding:24px;margin-bottom:16px;transition:all 0.3s}
 .palace-sala:hover{border-color:var(--purple-light)}
 .palace-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
-.palace-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:800;color:var(--white);margin-bottom:10px}
+.palace-title{font-family:'IBM Plex Sans', sans-serif;font-size:16px;font-weight:800;color:var(--white);margin-bottom:10px}
 .palace-desc{font-size:13px;color:var(--text);line-height:1.7}
 .palace-represents{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);margin-top:10px;padding-top:10px;border-top:1px solid rgba(201,168,76,0.2)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -254,17 +254,17 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
     <div style="background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);border-radius:14px;padding:18px;text-align:center;">
       <div style="font-size:32px;margin-bottom:8px;">🔥</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);">Radiofrequência</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);">Radiofrequência</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Calor → cicatriz. Técnica padrão.</div>
     </div>
     <div style="background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.3);border-radius:14px;padding:18px;text-align:center;">
       <div style="font-size:32px;margin-bottom:8px;">🧊</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);">Crioablação</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);">Crioablação</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Resfriamento → gelo sela.</div>
     </div>
     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:18px;text-align:center;">
       <div style="font-size:32px;margin-bottom:8px;">⚡</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--gold);">PFA</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--gold);">PFA</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Campo pulsado. <strong style="color:var(--gold);">Emergente.</strong></div>
     </div>
   </div>
@@ -272,7 +272,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
     <div style="padding:14px 18px;background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(3,64,120,0.4));border-bottom:1px solid var(--glass-border);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--purple-light);">SBC 2025 · Arq Bras Cardiol 2025;122(9):e20250618</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-top:4px;">Indicações — Ablação de VPs na FA</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-top:4px;">Indicações — Ablação de VPs na FA</div>
     </div>
     <table style="width:100%;border-collapse:collapse;">
       <thead><tr style="border-bottom:1px solid var(--glass-border);">
@@ -324,37 +324,37 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 
   <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
     <div style="padding:14px 16px;background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.2);border-left:3px solid var(--teal);border-radius:10px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">CABANA — JAMA 2019</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">CABANA — JAMA 2019</div>
       <div style="font-size:12px;color:var(--text-muted);">Melhora de sintomas vs antiarrítmicos. Desfecho primário ITT sem vitória limpa — <strong style="color:var(--gold);">nuance importante!</strong></div>
     </div>
     <div style="padding:14px 16px;background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-left:3px solid var(--green-light);border-radius:10px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:4px;">CASTLE-AF — NEJM 2018</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:4px;">CASTLE-AF — NEJM 2018</div>
       <div style="font-size:12px;color:var(--text-muted);">FA+IC FE≤35%+CDI/TRC → ablação reduziu morte+hospitalização (HR 0,62; p=0,007). <strong style="color:var(--white);">Referência do IIa/A.</strong></div>
     </div>
     <div style="padding:14px 16px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-left:3px solid var(--gold);border-radius:10px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">RAFT-AF — ACC 2021 · PFA — Single Shot Champion 2025</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">RAFT-AF — ACC 2021 · PFA — Single Shot Champion 2025</div>
       <div style="font-size:12px;color:var(--text-muted);">RAFT-AF: p=0,066 — não atingiu significância. PFA: recorrência ~37% vs ~50% crioablação — evidência emergente.</div>
     </div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
     <div style="background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-radius:12px;padding:16px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:28px;font-weight:900;color:var(--green-light);">80–90%</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:28px;font-weight:900;color:var(--green-light);">80–90%</div>
       <div style="font-size:12px;color:var(--text-muted);">FA paroxística em 12 meses</div>
     </div>
     <div style="background:rgba(184,134,11,0.08);border:1px solid rgba(184,134,11,0.2);border-radius:12px;padding:16px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:28px;font-weight:900;color:var(--gold);">50–60%</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:28px;font-weight:900;color:var(--gold);">50–60%</div>
       <div style="font-size:12px;color:var(--text-muted);">FA persistente em 12 meses</div>
     </div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
     <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:12px;padding:16px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">⚠ Pós-Ablação ESC 2024</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">⚠ Pós-Ablação ESC 2024</div>
       <div style="font-size:12px;color:var(--text);line-height:1.7;">ACO <strong style="color:var(--white);">≥2 meses</strong> — independente do CHA₂DS₂-VA e do "ECG bonito".</div>
     </div>
     <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:12px;padding:16px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">🚫 Sem ACO = PROSCRITO</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">🚫 Sem ACO = PROSCRITO</div>
       <div style="font-size:12px;color:var(--text);line-height:1.7;">Paciente que não pode anticoagular → <strong style="color:var(--red-light);">procedimento PROSCRITO.</strong></div>
     </div>
   </div>
@@ -362,9 +362,9 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   <div class="mnemonic-card">
     <div class="mnemonic-label">N7 · Mnemônicos das VPs</div>
     <div style="display:flex;flex-direction:column;gap:8px;text-align:left;">
-      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"VP é <span style="color:var(--gold);">boate de gatilho</span>; ablação põe <span style="color:var(--purple-light);">segurança na porta</span>."</div>
-      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Átrio <span style="color:var(--green-light);">jovem</span> = gatilho fácil; átrio <span style="color:var(--red-light);">velho</span> = cicatriz manda no jogo."</div>
-      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Assintomático? <span style="color:var(--red-light);">'Esqueça'</span> ablação de VPs — exceção: taquicardiomiopatia."</div>
+      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"VP é <span style="color:var(--gold);">boate de gatilho</span>; ablação põe <span style="color:var(--purple-light);">segurança na porta</span>."</div>
+      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Átrio <span style="color:var(--green-light);">jovem</span> = gatilho fácil; átrio <span style="color:var(--red-light);">velho</span> = cicatriz manda no jogo."</div>
+      <div style="padding:8px 14px;background:rgba(124,58,237,0.1);border-radius:8px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Assintomático? <span style="color:var(--red-light);">'Esqueça'</span> ablação de VPs — exceção: taquicardiomiopatia."</div>
     </div>
     <div class="mnemonic-author" style="margin-top:12px;">— Dr. André Rossanno</div>
   </div>
@@ -383,7 +383,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   </div>
   <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
     <div style="padding:14px 18px;background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(6,15,30,0.6));border-bottom:1px solid var(--glass-border);">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);">Indicações SBC 2025 — Ablação do Nó AV</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:15px;font-weight:700;color:var(--white);">Indicações SBC 2025 — Ablação do Nó AV</div>
     </div>
     <table style="width:100%;border-collapse:collapse;">
       <tbody>
@@ -407,11 +407,11 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
     <div style="background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-radius:12px;padding:16px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:8px;">✅ Vantagens</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:8px;">✅ Vantagens</div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">→ Controle definitivo da FC<br>→ Elimina terapias inapropriadas do CDI<br>→ Otimiza estimulação do TRC</div>
     </div>
     <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:12px;padding:16px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">⚠ Desvantagens</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:8px;">⚠ Desvantagens</div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.7;"><strong style="color:var(--white);">→ Dependência permanente de dispositivo</strong><br>→ VD isolado → dissincronia<br>→ Solução: estimulação fisiológica</div>
     </div>
   </div>
@@ -459,7 +459,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   </div>
   <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:20px;">
     <div style="padding:14px 18px;background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(6,15,30,0.6));border-bottom:1px solid var(--glass-border);">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);">Indicações SBC 2025</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:15px;font-weight:700;color:var(--white);">Indicações SBC 2025</div>
     </div>
     <table style="width:100%;border-collapse:collapse;">
       <tbody>
@@ -492,12 +492,12 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
     <div style="background:rgba(13,122,95,0.1);border:1px solid rgba(13,122,95,0.25);border-radius:14px;padding:20px;text-align:center;">
       <div style="font-size:36px;margin-bottom:8px;">🏗️</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--emerald-light);margin-bottom:6px;">Cirurgião</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--emerald-light);margin-bottom:6px;">Cirurgião</div>
       <div style="font-size:12px;color:var(--text-muted);">Ablação epicárdica por fora. Fecha o telhado.</div>
     </div>
     <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:14px;padding:20px;text-align:center;">
       <div style="font-size:36px;margin-bottom:8px;">⚡</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px;">Eletrofisiologista</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px;">Eletrofisiologista</div>
       <div style="font-size:12px;color:var(--text-muted);">Ablação endocárdica por dentro. Confere a fiação.</div>
     </div>
   </div>
@@ -524,15 +524,15 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
   </div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:16px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:32px;font-weight:900;color:var(--gold);">90%</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:32px;font-weight:900;color:var(--gold);">90%</div>
       <div style="font-size:11px;color:var(--text-muted);">dos trombos originam no AAE</div>
     </div>
     <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:12px;padding:16px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--red-light);">SBC: IIa</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:18px;font-weight:900;color:var(--red-light);">SBC: IIa</div>
       <div style="font-size:11px;color:var(--text-muted);">FA alto risco + contraindicação à ACO</div>
     </div>
     <div style="background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.2);border-radius:12px;padding:16px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--teal-light);">ESC: IIb</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:18px;font-weight:900;color:var(--teal-light);">ESC: IIb</div>
       <div style="font-size:11px;color:var(--text-muted);">Recomendação europeia</div>
     </div>
   </div>
@@ -643,7 +643,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
     </div>
     <div class="quiz-score" id="quiz-score">
       <div class="quiz-score-num" id="score-num"></div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;color:var(--text);margin-top:8px;" id="score-msg"></div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:18px;color:var(--text);margin-top:8px;" id="score-msg"></div>
       <button class="quiz-restart" onclick="restartQuiz()">Refazer quiz</button>
     </div>
   </div>
@@ -699,7 +699,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 </section>
 
 <footer style="text-align:center;padding:40px 0;border-top:1px solid var(--glass-border);margin-top:40px;">
-  <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Atlas Mental André Rossanno</div>
+  <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;">Atlas Mental André Rossanno</div>
   <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:4px;">Módulo 3B — A Sala de Ablação · VPs · Nó AV · Cox-Maze · Híbrida · AAE</div>
   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:8px;">memoriapotencial.com.br</div>
   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px;">Base educacional: ESC 2024, SBC 2025 e conteúdo de aula Mentoria TEC 2026.</div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FA — Módulo 2 | O Trono do Trombo | Dr. André Rossanno</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #0B2545;
@@ -83,13 +83,13 @@ body::after {
 #sidebar::-webkit-scrollbar-thumb { background:var(--red-light); border-radius:2px; }
 
 .sidebar-logo { padding:0 20px 20px; border-bottom:1px solid var(--glass-border); margin-bottom:16px; }
-.sidebar-logo .brand { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:11px; font-weight:800; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; }
+.sidebar-logo .brand { font-family:'IBM Plex Sans', sans-serif; font-size:11px; font-weight:800; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; }
 .sidebar-logo .title { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--text-muted); margin-top:4px; }
 .sidebar-section { padding:8px 20px 4px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--gold); letter-spacing:2px; text-transform:uppercase; }
 .sidebar-link { display:block; padding:10px 20px; font-family:'IBM Plex Sans',sans-serif; font-size:12px; color:var(--text-muted); text-decoration:none; transition:all 0.2s; border-left:2px solid transparent; cursor:pointer; }
 .sidebar-link:hover { color:var(--white); background:rgba(192,57,43,0.1); }
 .sidebar-link.active { color:var(--gold); border-left-color:var(--gold); background:rgba(201,168,76,0.08); }
-.sidebar-module { display:block; padding:12px 20px; font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:11px; font-weight:700; color:var(--text-muted); text-decoration:none; letter-spacing:1px; text-transform:uppercase; transition:all 0.2s; cursor:pointer; }
+.sidebar-module { display:block; padding:12px 20px; font-family:'IBM Plex Sans', sans-serif; font-size:11px; font-weight:700; color:var(--text-muted); text-decoration:none; letter-spacing:1px; text-transform:uppercase; transition:all 0.2s; cursor:pointer; }
 .sidebar-module.current { color:var(--red-light); }
 .sidebar-module.locked { opacity:0.4; }
 .sidebar-module.done { color:var(--teal); }
@@ -117,10 +117,10 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .hero-kicker { font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red-light); letter-spacing:4px; text-transform:uppercase; margin-bottom:20px; opacity:0; animation:fadeUp 0.8s ease 0.2s forwards; }
 .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3); border-radius:20px; padding:6px 16px; margin-bottom:32px; opacity:0; animation:fadeUp 0.8s ease 0.3s forwards; }
 .hero-badge span { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#e74c3c; }
-.hero-title { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(36px,8vw,72px); font-weight:900; line-height:1.0; color:var(--white); margin-bottom:8px; opacity:0; animation:fadeUp 0.8s ease 0.4s forwards; }
+.hero-title { font-family:'IBM Plex Sans', sans-serif; font-size:clamp(36px,8vw,72px); font-weight:900; line-height:1.0; color:var(--white); margin-bottom:8px; opacity:0; animation:fadeUp 0.8s ease 0.4s forwards; }
 .hero-title .highlight { color:var(--red-light); }
 .hero-title .accent { color:var(--gold); }
-.hero-subtitle { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(18px,4vw,28px); font-weight:600; color:var(--text-muted); margin-bottom:40px; opacity:0; animation:fadeUp 0.8s ease 0.5s forwards; }
+.hero-subtitle { font-family:'IBM Plex Sans', sans-serif; font-size:clamp(18px,4vw,28px); font-weight:600; color:var(--text-muted); margin-bottom:40px; opacity:0; animation:fadeUp 0.8s ease 0.5s forwards; }
 .hero-quote { background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(11,37,69,0.6)); border:1px solid rgba(192,57,43,0.25); border-left:4px solid var(--red-light); border-radius:12px; padding:28px 32px; margin-bottom:40px; max-width:700px; opacity:0; animation:fadeUp 0.8s ease 0.6s forwards; }
 .hero-quote p { font-family:'IBM Plex Sans',sans-serif; font-size:16px; font-style:italic; line-height:1.7; color:var(--white); margin-bottom:12px; }
 .hero-quote .author { font-family:'Dancing Script',cursive; font-size:18px; color:var(--gold); }
@@ -135,7 +135,7 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .module-card.locked-module { opacity:0.5; cursor:default; }
 .module-card.locked-module:hover { transform:none; }
 .module-num { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:2px; margin-bottom:6px; }
-.module-name { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.module-name { font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
 .module-desc { font-size:11px; color:var(--text-muted); line-height:1.5; }
 .module-status { position:absolute; top:16px; right:16px; font-family:'IBM Plex Mono',monospace; font-size:9px; padding:3px 8px; border-radius:10px; }
 .status-active { background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.4); }
@@ -152,7 +152,7 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .section-header { display:flex; align-items:center; gap:16px; margin-bottom:32px; padding-bottom:16px; border-bottom:1px solid var(--glass-border); }
 .section-icon { width:48px; height:48px; background:linear-gradient(135deg,var(--red),var(--blood)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
 .section-label { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:4px; }
-.section-title { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(22px,4vw,32px); font-weight:800; color:var(--white); line-height:1.1; }
+.section-title { font-family:'IBM Plex Sans', sans-serif; font-size:clamp(22px,4vw,32px); font-weight:800; color:var(--white); line-height:1.1; }
 
 /* QUOTE */
 .quote-block { background:linear-gradient(135deg,rgba(192,57,43,0.08),rgba(11,37,69,0.5)); border:1px solid rgba(192,57,43,0.2); border-left:4px solid var(--red-light); border-radius:12px; padding:24px 28px; margin:24px 0; }
@@ -186,7 +186,7 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 /* MNEMONIC CARD */
 .mnemonic-card { background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(11,37,69,0.5)); border:1px solid rgba(192,57,43,0.3); border-radius:16px; padding:28px 32px; text-align:center; margin:20px 0; }
 .mnemonic-label { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--red-light); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; }
-.mnemonic-text { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(18px,4vw,28px); font-weight:900; color:var(--white); margin-bottom:12px; }
+.mnemonic-text { font-family:'IBM Plex Sans', sans-serif; font-size:clamp(18px,4vw,28px); font-weight:900; color:var(--white); margin-bottom:12px; }
 .mnemonic-text .key { color:var(--red-light); }
 .mnemonic-text .key2 { color:var(--gold); }
 .mnemonic-author { font-family:'Dancing Script',cursive; font-size:16px; color:var(--gold); }
@@ -194,7 +194,7 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 /* QUIZ */
 .quiz-container { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:20px; padding:32px; }
 .quiz-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
-.quiz-title { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:18px; font-weight:700; color:var(--white); }
+.quiz-title { font-family:'IBM Plex Sans', sans-serif; font-size:18px; font-weight:700; color:var(--white); }
 .score-display { background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3); border-radius:10px; padding:8px 16px; font-family:'IBM Plex Mono',monospace; font-size:14px; color:#e74c3c; }
 .score-display span { color:var(--white); font-weight:500; }
 .question-card { background:rgba(6,15,30,0.5); border:1px solid var(--glass-border); border-radius:14px; padding:24px; margin-bottom:16px; display:none; }
@@ -212,9 +212,9 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .feedback.correct-fb { background:rgba(26,122,74,0.15); border:1px solid rgba(26,122,74,0.3); color:var(--white); }
 .feedback.wrong-fb { background:rgba(192,57,43,0.12); border:1px solid rgba(192,57,43,0.3); color:var(--white); }
 .quiz-nav { display:flex; gap:12px; margin-top:20px; justify-content:space-between; align-items:center; }
-.btn-quiz { background:linear-gradient(135deg,var(--red),var(--blood)); color:white; border:none; border-radius:10px; padding:12px 24px; font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; }
+.btn-quiz { background:linear-gradient(135deg,var(--red),var(--blood)); color:white; border:none; border-radius:10px; padding:12px 24px; font-family:'IBM Plex Sans', sans-serif; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; }
 .btn-quiz:hover { opacity:0.85; transform:translateY(-1px); }
-.btn-reset { background:transparent; color:var(--text-muted); border:1px solid var(--glass-border); border-radius:10px; padding:12px 24px; font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:13px; cursor:pointer; transition:all 0.2s; }
+.btn-reset { background:transparent; color:var(--text-muted); border:1px solid var(--glass-border); border-radius:10px; padding:12px 24px; font-family:'IBM Plex Sans', sans-serif; font-size:13px; cursor:pointer; transition:all 0.2s; }
 .btn-reset:hover { border-color:var(--red-light); color:var(--white); }
 .question-counter { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--text-muted); }
 
@@ -232,8 +232,8 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .palace-room { background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:16px; padding:24px; transition:all 0.3s; position:relative; overflow:hidden; }
 .palace-room:hover { border-color:rgba(192,57,43,0.4); transform:translateY(-2px); }
 .palace-icon { font-size:36px; margin-bottom:12px; }
-.palace-letter { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:48px; font-weight:900; position:absolute; right:20px; top:16px; opacity:0.08; }
-.palace-title { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px; }
+.palace-letter { font-family:'IBM Plex Sans', sans-serif; font-size:48px; font-weight:900; position:absolute; right:20px; top:16px; opacity:0.08; }
+.palace-title { font-family:'IBM Plex Sans', sans-serif; font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px; }
 .palace-desc { font-size:12px; color:var(--text-muted); line-height:1.6; }
 
 /* DOAC CARDS */
@@ -251,12 +251,12 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .doac-card.edo { background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(11,37,69,0.5)); border:2px solid rgba(184,134,11,0.4); }
 
 .doac-letter {
-  font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:56px; font-weight:900;
+  font-family:'IBM Plex Sans', sans-serif; font-size:56px; font-weight:900;
   position:absolute; right:16px; top:12px; opacity:0.12; line-height:1;
 }
 .doac-name { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
-.doac-title { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:18px; font-weight:900; color:var(--white); margin-bottom:16px; }
-.doac-mantra { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:13px; font-weight:700; padding:8px 14px; border-radius:20px; display:inline-block; margin-bottom:16px; }
+.doac-title { font-family:'IBM Plex Sans', sans-serif; font-size:18px; font-weight:900; color:var(--white); margin-bottom:16px; }
+.doac-mantra { font-family:'IBM Plex Sans', sans-serif; font-size:13px; font-weight:700; padding:8px 14px; border-radius:20px; display:inline-block; margin-bottom:16px; }
 .api .doac-mantra { background:rgba(18,130,162,0.2); color:var(--teal-light); border:1px solid rgba(18,130,162,0.3); }
 .riva .doac-mantra { background:rgba(26,122,74,0.2); color:var(--green-light); border:1px solid rgba(26,122,74,0.3); }
 .dabi .doac-mantra { background:rgba(192,57,43,0.2); color:#e74c3c; border:1px solid rgba(192,57,43,0.3); }
@@ -264,7 +264,7 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 
 .doac-items { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
 .doac-item { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--text-muted); }
-.doac-item .letter { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:900; font-size:15px; min-width:20px; }
+.doac-item .letter { font-family:'IBM Plex Sans', sans-serif; font-weight:900; font-size:15px; min-width:20px; }
 .api .doac-item .letter { color:var(--teal-light); }
 .riva .doac-item .letter { color:var(--green-light); }
 .dabi .doac-item .letter { color:#e74c3c; }
@@ -306,7 +306,7 @@ main { max-width:900px; margin:0 auto; padding:0 20px 80px; }
 .virchow-connector { text-align:center; color:var(--red-light); font-size:20px; padding:4px 0; }
 .virchow-num { width:36px; height:36px; background:linear-gradient(135deg,var(--red),var(--blood)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; color:white; flex-shrink:0; }
 .virchow-content { flex:1; }
-.virchow-title { font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.virchow-title { font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:4px; }
 .virchow-desc { font-size:12px; color:var(--text-muted); line-height:1.5; }
 
 /* PGP SECTION */
@@ -436,17 +436,17 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px;">
       <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:16px; text-align:center;">
         <div style="font-size:28px; margin-bottom:8px;">🌊</div>
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">ESTASE</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">ESTASE</div>
         <div style="font-size:11px; color:var(--text-muted);">O sangue vira pântano</div>
       </div>
       <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:16px; text-align:center;">
         <div style="font-size:28px; margin-bottom:8px;">🧱</div>
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">ENDOTÉLIO FERIDO</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">ENDOTÉLIO FERIDO</div>
         <div style="font-size:11px; color:var(--text-muted);">A parede do castelo descasca</div>
       </div>
       <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:16px; text-align:center;">
         <div style="font-size:28px; margin-bottom:8px;">⚔️</div>
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">HIPERCOAGULABILIDADE</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:4px;">HIPERCOAGULABILIDADE</div>
         <div style="font-size:11px; color:var(--text-muted);">Soldados plaquetários hiperativos</div>
       </div>
     </div>
@@ -696,7 +696,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
   <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:24px;">
     <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(3,64,120,0.4)); border-bottom:1px solid var(--glass-border);">
       <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:4px;">SBC 2025 · Arq Bras Cardiol</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:16px; font-weight:700; color:var(--white);">Tabela CHA₂DS₂-VA</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:16px; font-weight:700; color:var(--white);">Tabela CHA₂DS₂-VA</div>
     </div>
     <div style="overflow-x:auto;">
       <table class="semaphore-table">
@@ -704,13 +704,13 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
           <tr><th>Letra</th><th>Critério</th><th>Pontos</th></tr>
         </thead>
         <tbody>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">C</td><td>Insuficiência cardíaca / disfunção ventricular esquerda</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">H</td><td>Hipertensão arterial</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--red-light);">A₂</td><td>Idade ≥ 75 anos</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--red-light); font-weight:700;">2</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">D</td><td>Diabetes mellitus</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--red-light);">S₂</td><td>AVC / AIT / embolia sistêmica prévia</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--red-light); font-weight:700;">2</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">V</td><td>Doença vascular (IAM, DAP, placa aórtica)</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-weight:700; font-size:18px; color:var(--teal);">A</td><td>Idade 65–74 anos</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--teal);">C</td><td>Insuficiência cardíaca / disfunção ventricular esquerda</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--teal);">H</td><td>Hipertensão arterial</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--red-light);">A₂</td><td>Idade ≥ 75 anos</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--red-light); font-weight:700;">2</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--teal);">D</td><td>Diabetes mellitus</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--red-light);">S₂</td><td>AVC / AIT / embolia sistêmica prévia</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--red-light); font-weight:700;">2</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--teal);">V</td><td>Doença vascular (IAM, DAP, placa aórtica)</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif; font-weight:700; font-size:18px; color:var(--teal);">A</td><td>Idade 65–74 anos</td><td style="font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--white);">1</td></tr>
         </tbody>
       </table>
     </div>
@@ -719,17 +719,17 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
   <!-- Semáforo de decisão -->
   <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px;">
     <div style="background:rgba(26,122,74,0.1); border:2px solid rgba(26,122,74,0.3); border-radius:14px; padding:20px; text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:36px; font-weight:900; color:var(--green-light); margin-bottom:8px;">0</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:36px; font-weight:900; color:var(--green-light); margin-bottom:8px;">0</div>
       <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--green-light); margin-bottom:6px;">BAIXO RISCO</div>
       <div style="font-size:12px; color:var(--text-muted);">Geralmente sem anticoagulação (I/A)</div>
     </div>
     <div style="background:rgba(184,134,11,0.1); border:2px solid rgba(184,134,11,0.3); border-radius:14px; padding:20px; text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:36px; font-weight:900; color:var(--gold); margin-bottom:8px;">1</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:36px; font-weight:900; color:var(--gold); margin-bottom:8px;">1</div>
       <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold); margin-bottom:6px;">INTERMEDIÁRIO</div>
       <div style="font-size:12px; color:var(--text-muted);">Considerar/preferir ACO (IIa/B)</div>
     </div>
     <div style="background:rgba(192,57,43,0.1); border:2px solid rgba(192,57,43,0.4); border-radius:14px; padding:20px; text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:36px; font-weight:900; color:var(--red-light); margin-bottom:8px;">≥2</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:36px; font-weight:900; color:var(--red-light); margin-bottom:8px;">≥2</div>
       <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--red-light); margin-bottom:6px;">ALTO RISCO</div>
       <div style="font-size:12px; color:var(--text-muted);">Anticoagulação indicada (I/A)</div>
     </div>
@@ -775,7 +775,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
   </div>
 
   <div style="background:linear-gradient(135deg,rgba(184,134,11,0.12),rgba(6,15,30,0.7)); border:2px solid rgba(201,168,76,0.3); border-radius:16px; padding:24px 28px; margin-bottom:24px;">
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(18px,4vw,24px); font-weight:900; color:var(--white); margin-bottom:12px;">
+    <div style="font-family:'IBM Plex Sans', sans-serif; font-size:clamp(18px,4vw,24px); font-weight:900; color:var(--white); margin-bottom:12px;">
       "HAS-BLED <span style="color:var(--gold);">não é freio de mão</span> da anticoagulação;<br>é painel de alerta para <span style="color:var(--teal);">consertar o carro</span> antes da viagem."
     </div>
     <div style="font-family:'Dancing Script',cursive; font-size:17px; color:var(--gold);">— Dr. André Rossanno</div>
@@ -783,7 +783,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
 
   <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-bottom:24px;">
     <div style="padding:16px 20px; background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(6,15,30,0.6)); border-bottom:1px solid var(--glass-border);">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:16px; font-weight:700; color:var(--gold);">Tabela HAS-BLED</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:16px; font-weight:700; color:var(--gold);">Tabela HAS-BLED</div>
     </div>
     <div style="overflow-x:auto;">
       <table class="semaphore-table">
@@ -791,13 +791,13 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
           <tr><th>Letra</th><th>Significado</th><th>Detalhe clínico</th><th>Pts</th></tr>
         </thead>
         <tbody>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">H</td><td>Hypertension</td><td style="font-size:12px;color:var(--text-muted);">PAS &gt;160 mmHg → modificável!</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">A</td><td>Abnormal renal/liver</td><td style="font-size:12px;color:var(--text-muted);">ClCr ≤50 ou creat ≥2,26 / bilirrubina ≥2x VN + TGO/TGP ≥3x</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1 ou 2</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">S</td><td>Stroke</td><td style="font-size:12px;color:var(--text-muted);">AVC prévio</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">B</td><td>Bleeding</td><td style="font-size:12px;color:var(--text-muted);">Sangramento prévio ou predisposição</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">L</td><td>Labile INRs</td><td style="font-size:12px;color:var(--text-muted);">INR instável ou &lt;60% do tempo na faixa terapêutica</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">E</td><td>Elderly</td><td style="font-size:12px;color:var(--text-muted);">Idade &gt;65 anos</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
-          <tr><td style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-weight:700;font-size:16px;color:var(--gold);">D</td><td>Drugs/alcohol</td><td style="font-size:12px;color:var(--text-muted);">AINE, antiagregante, álcool &gt;20U/semana → modificável!</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1 ou 2</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">H</td><td>Hypertension</td><td style="font-size:12px;color:var(--text-muted);">PAS &gt;160 mmHg → modificável!</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">A</td><td>Abnormal renal/liver</td><td style="font-size:12px;color:var(--text-muted);">ClCr ≤50 ou creat ≥2,26 / bilirrubina ≥2x VN + TGO/TGP ≥3x</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1 ou 2</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">S</td><td>Stroke</td><td style="font-size:12px;color:var(--text-muted);">AVC prévio</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">B</td><td>Bleeding</td><td style="font-size:12px;color:var(--text-muted);">Sangramento prévio ou predisposição</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">L</td><td>Labile INRs</td><td style="font-size:12px;color:var(--text-muted);">INR instável ou &lt;60% do tempo na faixa terapêutica</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">E</td><td>Elderly</td><td style="font-size:12px;color:var(--text-muted);">Idade &gt;65 anos</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1</td></tr>
+          <tr><td style="font-family:'IBM Plex Sans', sans-serif;font-weight:700;font-size:16px;color:var(--gold);">D</td><td>Drugs/alcohol</td><td style="font-size:12px;color:var(--text-muted);">AINE, antiagregante, álcool &gt;20U/semana → modificável!</td><td style="font-family:'IBM Plex Mono',monospace;color:var(--white);">1 ou 2</td></tr>
         </tbody>
       </table>
     </div>
@@ -829,7 +829,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
 
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
     <div style="background:rgba(192,57,43,0.1); border:2px solid rgba(192,57,43,0.35); border-radius:14px; padding:22px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:14px; font-weight:700; color:var(--red-light); margin-bottom:14px;">🔐 Território da Varfarina</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:700; color:var(--red-light); margin-bottom:14px;">🔐 Território da Varfarina</div>
       <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text);">
         <div style="display:flex;gap:8px;"><span style="color:var(--red-light);">●</span> Prótese valvar mecânica</div>
         <div style="display:flex;gap:8px;"><span style="color:var(--red-light);">●</span> Estenose mitral moderada a grave/importante</div>
@@ -840,7 +840,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
       </div>
     </div>
     <div style="background:rgba(18,130,162,0.1); border:2px solid rgba(18,130,162,0.35); border-radius:14px; padding:22px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:14px; font-weight:700; color:var(--teal-light); margin-bottom:14px;">✅ Território do DOAC</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:700; color:var(--teal-light); margin-bottom:14px;">✅ Território do DOAC</div>
       <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:var(--text);">
         <div style="display:flex;gap:8px;"><span style="color:var(--teal);">●</span> FA comum (não valvar) elegível</div>
         <div style="display:flex;gap:8px;"><span style="color:var(--teal);">●</span> FA com maioria das valvopatias não mecânicas</div>
@@ -885,7 +885,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
   <!-- Mantra principal -->
   <div style="background:linear-gradient(135deg,rgba(192,57,43,0.15),rgba(6,15,30,0.8)); border:2px solid rgba(192,57,43,0.4); border-radius:16px; padding:24px; margin-bottom:28px; text-align:center;">
     <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">Mantra Principal</div>
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(14px,3.5vw,22px); font-weight:900; color:var(--white); line-height:1.4; margin-bottom:16px;">
+    <div style="font-family:'IBM Plex Sans', sans-serif; font-size:clamp(14px,3.5vw,22px); font-weight:900; color:var(--white); line-height:1.4; margin-bottom:16px;">
       <span style="color:var(--teal);">API pede 2.</span> &nbsp;
       <span style="color:var(--green-light);">RIVA pede rim.</span> &nbsp;
       <span style="color:var(--red-light);">DABI é rim, velho e barriga.</span> &nbsp;
@@ -895,7 +895,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
       <div style="padding:8px 16px; background:rgba(18,130,162,0.15); border:1px solid rgba(18,130,162,0.3); border-radius:20px; font-size:12px; color:var(--teal-light);">Se tem X → age no Xa: apiXabana · rivaroXabana · edoXabana</div>
       <div style="padding:8px 16px; background:rgba(192,57,43,0.15); border:1px solid rgba(192,57,43,0.3); border-radius:20px; font-size:12px; color:var(--red-light);">DABI tem BI → age no IIa (trombina)</div>
     </div>
-    <div style="margin-top:16px; font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:14px; font-weight:700; color:var(--gold);">Não reduza DOAC por medo. Reduza por critério.</div>
+    <div style="margin-top:16px; font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:700; color:var(--gold);">Não reduza DOAC por medo. Reduza por critério.</div>
   </div>
 
   <!-- 4 DOACs -->
@@ -981,7 +981,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
   <!-- Tabela comparativa -->
   <div style="background:rgba(6,15,30,0.6); border:1px solid var(--glass-border); border-radius:14px; overflow:hidden; margin-top:24px;">
     <div style="padding:16px 20px; border-bottom:1px solid var(--glass-border);">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:14px; font-weight:700; color:var(--white);">Tabela Comparativa ARDE</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:700; color:var(--white);">Tabela Comparativa ARDE</div>
     </div>
     <div style="overflow-x:auto;">
       <table class="semaphore-table">
@@ -1038,27 +1038,27 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
     <p style="font-size:13px; color:var(--text-muted); line-height:1.7; margin-bottom:16px;">
       P-gp = <strong style="color:var(--white);">glicoproteína P</strong>. É uma proteína transportadora que funciona como uma catraca farmacológica em intestino, rim e fígado. Ela expulsa parte do DOAC para fora do organismo, controlando quanto chega ao sangue.
     </p>
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:15px; font-weight:700; color:var(--gold); text-align:center;">"P-gp não se dosa. P-gp se caça na prescrição."</div>
+    <div style="font-family:'IBM Plex Sans', sans-serif; font-size:15px; font-weight:700; color:var(--gold); text-align:center;">"P-gp não se dosa. P-gp se caça na prescrição."</div>
   </div>
 
   <div class="pgp-grid">
     <div style="background:rgba(26,122,74,0.1); border:1px solid rgba(26,122,74,0.25); border-radius:12px; padding:18px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--green-light); margin-bottom:8px;">🟢 P-gp Funcionando</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--green-light); margin-bottom:8px;">🟢 P-gp Funcionando</div>
       <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Expulsa parte do DOAC → menos DOAC no sangue → efeito normal</div>
     </div>
     <div style="background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:18px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:8px;">🔴 P-gp Bloqueada (inibidor)</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:8px;">🔴 P-gp Bloqueada (inibidor)</div>
       <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Menos DOAC expulso → mais DOAC no sangue → maior risco de sangramento</div>
     </div>
     <div style="background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.25); border-radius:12px; padding:18px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--gold); margin-bottom:8px;">🟡 P-gp Induzida (indutor)</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--gold); margin-bottom:8px;">🟡 P-gp Induzida (indutor)</div>
       <div style="font-size:12px; color:var(--text-muted); line-height:1.6;">Mais DOAC expulso → menos DOAC no sangue → maior risco de falha/trombose</div>
     </div>
   </div>
 
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;">
     <div style="background:rgba(6,15,30,0.6); border:1px solid rgba(192,57,43,0.25); border-radius:12px; padding:18px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:10px;">🚫 Inibidores de P-gp</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--red-light); margin-bottom:10px;">🚫 Inibidores de P-gp</div>
       <div style="display:flex; flex-wrap:wrap; gap:6px;">
         <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Verapamil</span>
         <span style="padding:3px 10px; background:rgba(192,57,43,0.1); border:1px solid rgba(192,57,43,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Amiodarona</span>
@@ -1070,7 +1070,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
       </div>
     </div>
     <div style="background:rgba(6,15,30,0.6); border:1px solid rgba(184,134,11,0.25); border-radius:12px; padding:18px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:12px; font-weight:700; color:var(--gold); margin-bottom:10px;">⚡ Indutores de P-gp</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:700; color:var(--gold); margin-bottom:10px;">⚡ Indutores de P-gp</div>
       <div style="display:flex; flex-wrap:wrap; gap:6px;">
         <span style="padding:3px 10px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Rifampicina</span>
         <span style="padding:3px 10px; background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); border-radius:20px; font-size:11px; color:var(--text-muted);">Carbamazepina</span>
@@ -1435,7 +1435,7 @@ footer { margin-top:80px; padding:40px 20px; border-top:1px solid var(--glass-bo
   <!-- Frase final -->
   <div style="background:linear-gradient(135deg,rgba(139,0,0,0.15),rgba(6,15,30,0.8)); border:1px solid rgba(192,57,43,0.3); border-radius:16px; padding:28px 32px; margin-top:32px; text-align:center;">
     <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px;">Frase Final de Fixação</div>
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif; font-size:clamp(14px,3vw,18px); font-weight:700; color:var(--white); line-height:1.6; margin-bottom:16px;">
+    <div style="font-family:'IBM Plex Sans', sans-serif; font-size:clamp(14px,3vw,18px); font-weight:700; color:var(--white); line-height:1.6; margin-bottom:16px;">
       "Na FA, o trombo mora no silêncio do apêndice atrial esquerdo;<br>
       o CHA₂DS₂-VA acende o alarme, o HAS-BLED conserta o terreno<br>
       e o ARDE escolhe a espada."
@@ -1517,7 +1517,7 @@ function nextQuestion(){
     const container=document.querySelector('.quiz-container');
     const result=document.createElement('div');
     result.style.cssText='margin-top:20px;padding:24px;background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);border-radius:14px;text-align:center;';
-    result.innerHTML=`<div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:28px;font-weight:900;color:${score>=4?'var(--green-light)':'var(--gold)'};">${score}/5</div><div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score===5?'🏆 Perfeito! Módulo 2 dominado.':score>=4?'✅ Muito bem! Revise os erros.':'📖 Revise o módulo antes de avançar.'}</div>`;
+    result.innerHTML=`<div style="font-family:'IBM Plex Sans', sans-serif;font-size:28px;font-weight:900;color:${score>=4?'var(--green-light)':'var(--gold)'};">${score}/5</div><div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score===5?'🏆 Perfeito! Módulo 2 dominado.':score>=4?'✅ Muito bem! Revise os erros.':'📖 Revise o módulo antes de avançar.'}</div>`;
     document.getElementById('btn-next').style.display='none';
     container.appendChild(result);
   }

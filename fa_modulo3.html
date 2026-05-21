@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FA — Módulo 3 | O Freio e a Bússola | Dr. André Rossanno</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy: #0B2545;
@@ -40,13 +40,13 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 #sidebar::-webkit-scrollbar{width:4px}
 #sidebar::-webkit-scrollbar-thumb{background:var(--emerald-light);border-radius:2px}
 .sidebar-logo{padding:0 20px 20px;border-bottom:1px solid var(--glass-border);margin-bottom:16px}
-.sidebar-logo .brand{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:800;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase}
+.sidebar-logo .brand{font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:800;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase}
 .sidebar-logo .title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);margin-top:4px}
 .sidebar-section{padding:8px 20px 4px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
 .sidebar-link{display:block;padding:9px 20px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--text-muted);text-decoration:none;transition:all 0.2s;border-left:2px solid transparent;cursor:pointer}
 .sidebar-link:hover{color:var(--white);background:rgba(13,122,95,0.1)}
 .sidebar-link.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,0.08)}
-.sidebar-module{display:block;padding:11px 20px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.sidebar-module{display:block;padding:11px 20px;font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;cursor:pointer}
 .sidebar-module.done{color:var(--teal)}
 .sidebar-module.current{color:var(--emerald-light)}
 .sidebar-module.locked{opacity:0.4}
@@ -62,10 +62,10 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--emerald-light);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s ease 0.2s forwards}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(13,122,95,0.15);border:1px solid rgba(13,122,95,0.3);border-radius:20px;padding:6px 16px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
 .hero-badge span{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--emerald-light)}
-.hero-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:1.0;color:var(--white);margin-bottom:8px;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
+.hero-title{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(36px,8vw,72px);font-weight:900;line-height:1.0;color:var(--white);margin-bottom:8px;opacity:0;animation:fadeUp 0.8s ease 0.4s forwards}
 .hero-title .highlight{color:var(--emerald-light)}
 .hero-title .accent{color:var(--gold)}
-.hero-subtitle{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(16px,3.5vw,24px);font-weight:600;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+.hero-subtitle{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(16px,3.5vw,24px);font-weight:600;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
 .hero-quote{background:linear-gradient(135deg,rgba(13,122,95,0.12),rgba(11,37,69,0.6));border:1px solid rgba(13,122,95,0.25);border-left:4px solid var(--emerald-light);border-radius:12px;padding:28px 32px;margin-bottom:40px;max-width:700px;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards}
 .hero-quote p{font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-style:italic;line-height:1.7;color:var(--white);margin-bottom:12px}
 .hero-quote .author{font-family:'Dancing Script',cursive;font-size:18px;color:var(--gold)}
@@ -80,7 +80,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .module-card.locked-module{opacity:0.5;cursor:default}
 .module-card.locked-module:hover{transform:none}
 .module-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:2px;margin-bottom:6px}
-.module-name{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.module-name{font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
 .module-desc{font-size:11px;color:var(--text-muted);line-height:1.5}
 .module-status{position:absolute;top:16px;right:16px;font-family:'IBM Plex Mono',monospace;font-size:9px;padding:3px 8px;border-radius:10px}
 .status-done{background:rgba(18,130,162,0.2);color:var(--teal-light);border:1px solid rgba(18,130,162,0.4)}
@@ -93,7 +93,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--glass-border)}
 .section-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--emerald),var(--mint));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .section-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.section-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(22px,4vw,32px);font-weight:800;color:var(--white);line-height:1.1}
+.section-title{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(22px,4vw,32px);font-weight:800;color:var(--white);line-height:1.1}
 
 /* QUOTE */
 .quote-block{background:linear-gradient(135deg,rgba(13,122,95,0.08),rgba(11,37,69,0.5));border:1px solid rgba(13,122,95,0.2);border-left:4px solid var(--emerald-light);border-radius:12px;padding:24px 28px;margin:24px 0}
@@ -103,7 +103,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 /* MNEMONIC */
 .mnemonic-card{background:linear-gradient(135deg,rgba(13,122,95,0.15),rgba(11,37,69,0.5));border:1px solid rgba(13,122,95,0.3);border-radius:16px;padding:28px 32px;text-align:center;margin:20px 0}
 .mnemonic-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
-.mnemonic-text{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(16px,3.5vw,26px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.3}
+.mnemonic-text{font-family:'IBM Plex Sans', sans-serif;font-size:clamp(16px,3.5vw,26px);font-weight:900;color:var(--white);margin-bottom:12px;line-height:1.3}
 .mnemonic-text .key{color:var(--emerald-light)}
 .mnemonic-text .key2{color:var(--gold)}
 .mnemonic-author{font-family:'Dancing Script',cursive;font-size:16px;color:var(--gold)}
@@ -119,7 +119,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 /* QUIZ */
 .quiz-container{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:20px;padding:32px}
 .quiz-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.quiz-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:700;color:var(--white)}
+.quiz-title{font-family:'IBM Plex Sans', sans-serif;font-size:18px;font-weight:700;color:var(--white)}
 .score-display{background:rgba(13,122,95,0.15);border:1px solid rgba(13,122,95,0.3);border-radius:10px;padding:8px 16px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--emerald-light)}
 .score-display span{color:var(--white);font-weight:500}
 .question-card{background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:14px;padding:24px;margin-bottom:16px;display:none}
@@ -137,9 +137,9 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .feedback.correct-fb{background:rgba(26,122,74,0.15);border:1px solid rgba(26,122,74,0.3);color:var(--white)}
 .feedback.wrong-fb{background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);color:var(--white)}
 .quiz-nav{display:flex;gap:12px;margin-top:20px;justify-content:space-between;align-items:center}
-.btn-quiz{background:linear-gradient(135deg,var(--emerald),var(--mint));color:white;border:none;border-radius:10px;padding:12px 24px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s}
+.btn-quiz{background:linear-gradient(135deg,var(--emerald),var(--mint));color:white;border:none;border-radius:10px;padding:12px 24px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s}
 .btn-quiz:hover{opacity:0.85;transform:translateY(-1px)}
-.btn-reset{background:transparent;color:var(--text-muted);border:1px solid var(--glass-border);border-radius:10px;padding:12px 24px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;cursor:pointer;transition:all 0.2s}
+.btn-reset{background:transparent;color:var(--text-muted);border:1px solid var(--glass-border);border-radius:10px;padding:12px 24px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;cursor:pointer;transition:all 0.2s}
 .btn-reset:hover{border-color:var(--emerald-light);color:var(--white)}
 .question-counter{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-muted)}
 
@@ -175,8 +175,8 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .n-grid{display:flex;flex-direction:column;gap:12px}
 .n-item{background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:all 0.3s}
 .n-item:hover{border-color:rgba(13,122,95,0.3)}
-.n-num{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:22px;font-weight:900;min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;flex-shrink:0}
-.n-content .n-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.n-num{font-family:'IBM Plex Sans', sans-serif;font-size:22px;font-weight:900;min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:10px;flex-shrink:0}
+.n-content .n-title{font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
 .n-content .n-desc{font-size:12px;color:var(--text-muted);line-height:1.6}
 
 /* DRUG CARDS */
@@ -186,9 +186,9 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .drug-card.propa{background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(3,64,120,0.3));border:2px solid rgba(18,130,162,0.4)}
 .drug-card.amio{background:linear-gradient(135deg,rgba(184,134,11,0.15),rgba(11,37,69,0.5));border:2px solid rgba(184,134,11,0.4)}
 .drug-card.sota{background:linear-gradient(135deg,rgba(192,57,43,0.12),rgba(11,37,69,0.5));border:2px solid rgba(192,57,43,0.3)}
-.drug-letter{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:56px;font-weight:900;position:absolute;right:16px;top:12px;opacity:0.1;line-height:1}
+.drug-letter{font-family:'IBM Plex Sans', sans-serif;font-size:56px;font-weight:900;position:absolute;right:16px;top:12px;opacity:0.1;line-height:1}
 .drug-name-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
-.drug-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:14px}
+.drug-title{font-family:'IBM Plex Sans', sans-serif;font-size:18px;font-weight:900;color:var(--white);margin-bottom:14px}
 .drug-items{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .drug-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text-muted)}
 .drug-item .ok{color:var(--green-light)}
@@ -201,7 +201,7 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .freq-card{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;padding:20px;transition:all 0.3s}
 .freq-card:hover{border-color:rgba(13,122,95,0.3);transform:translateY(-2px)}
 .freq-icon{font-size:32px;margin-bottom:10px}
-.freq-title{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px}
+.freq-title{font-family:'IBM Plex Sans', sans-serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px}
 .freq-items{display:flex;flex-direction:column;gap:6px}
 .freq-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text-muted)}
 
@@ -233,14 +233,14 @@ main{max-width:900px;margin:0 auto;padding:0 20px 80px}
 .treta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:16px 0}
 .treta-item{background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:12px;padding:16px;text-align:center;transition:all 0.3s}
 .treta-item:hover{border-color:rgba(184,134,11,0.4)}
-.treta-letter{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:32px;font-weight:900;color:var(--gold);margin-bottom:6px}
+.treta-letter{font-family:'IBM Plex Sans', sans-serif;font-size:32px;font-weight:900;color:var(--gold);margin-bottom:6px}
 .treta-word{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--white);font-weight:600;margin-bottom:4px}
 .treta-detail{font-size:11px;color:var(--text-muted);line-height:1.4}
 
 /* FAÍSCA */
 .faisca-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
 .faisca-item{background:rgba(6,15,30,0.5);border:1px solid rgba(192,57,43,0.2);border-radius:12px;padding:14px;text-align:center}
-.faisca-letter{font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:22px;font-weight:900;color:var(--red-light);margin-bottom:4px}
+.faisca-letter{font-family:'IBM Plex Sans', sans-serif;font-size:22px;font-weight:900;color:var(--red-light);margin-bottom:4px}
 .faisca-word{font-size:11px;color:var(--text);font-weight:600;margin-bottom:3px}
 .faisca-detail{font-size:10px;color:var(--text-muted)}
 
@@ -427,13 +427,13 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px;">
     <div style="background:rgba(13,122,95,0.1);border:2px solid rgba(13,122,95,0.35);border-radius:16px;padding:24px;text-align:center;">
       <div style="font-size:40px;margin-bottom:12px;">🛑</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:700;color:var(--emerald-light);margin-bottom:8px;">FREIO</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:16px;font-weight:700;color:var(--emerald-light);margin-bottom:8px;">FREIO</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:10px;">Controle de Frequência</div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Reduz resposta ventricular · Alivia sintomas · Previne taquicardiomiopatia · FA permanece presente</div>
     </div>
     <div style="background:rgba(201,168,76,0.1);border:2px solid rgba(201,168,76,0.35);border-radius:16px;padding:24px;text-align:center;">
       <div style="font-size:40px;margin-bottom:12px;">🧭</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;">BÚSSOLA</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;">BÚSSOLA</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-muted);margin-bottom:10px;">Controle de Ritmo</div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Restaura/mantém ritmo sinusal · Exige análise de trombo · Exige escolha do antiarrítmico certo · Ablação como opção</div>
     </div>
@@ -442,22 +442,22 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;">
     <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">🛡️</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">Escudo</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">Escudo</div>
       <div style="font-size:10px;color:var(--text-muted);">Anticoagulação quando indicada</div>
     </div>
     <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">🗺️</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">Mapa</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">Mapa</div>
       <div style="font-size:10px;color:var(--text-muted);">Reavaliação dinâmica</div>
     </div>
     <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">🌉</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;">FEVE 40%</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:700;color:var(--gold);margin-bottom:4px;">FEVE 40%</div>
       <div style="font-size:10px;color:var(--text-muted);">Ponte levadiça das drogas</div>
     </div>
     <div style="background:rgba(6,15,30,0.5);border:1px solid var(--glass-border);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">🐉</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:11px;font-weight:700;color:var(--red-light);margin-bottom:4px;">Trombo</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:11px;font-weight:700;color:var(--red-light);margin-bottom:4px;">Trombo</div>
       <div style="font-size:10px;color:var(--text-muted);">Olhar antes de cardioverter</div>
     </div>
   </div>
@@ -545,7 +545,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   </div>
 
   <div style="background:linear-gradient(135deg,rgba(13,122,95,0.08),rgba(6,15,30,0.7));border:1px solid rgba(13,122,95,0.25);border-radius:12px;padding:18px 22px;margin-bottom:20px;">
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--white);">"Ritmo não é estética de ECG. Ritmo é sintoma, função ventricular e qualidade de vida."</div>
+    <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--white);">"Ritmo não é estética de ECG. Ritmo é sintoma, função ventricular e qualidade de vida."</div>
   </div>
 
   <div class="quote-block">
@@ -572,11 +572,11 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
     <div style="background:rgba(26,122,74,0.1);border:2px solid rgba(26,122,74,0.3);border-radius:14px;padding:20px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:12px;">🟢 FA ≤ 24h e baixo risco</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:12px;">🟢 FA ≤ 24h e baixo risco</div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Menor risco de trombo consolidado. Avaliar contexto clínico e risco individual. Anticoagulação periprocedimento conforme protocolo.</div>
     </div>
     <div style="background:rgba(192,57,43,0.1);border:2px solid rgba(192,57,43,0.35);border-radius:14px;padding:20px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:12px;">🔴 FA &gt; 24h ou início incerto</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:12px;">🔴 FA &gt; 24h ou início incerto</div>
       <div style="font-size:12px;color:var(--text-muted);line-height:1.7;">Alto risco de trombo. Estratégia segura: ACO efetiva ≥3 semanas antes <strong style="color:var(--white)">OU</strong> excluir trombo com ECOTE <strong style="color:var(--white)">OU</strong> angioTC conforme protocolo local.</div>
     </div>
   </div>
@@ -615,7 +615,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
       <div class="drug-letter" style="color:var(--teal)">P</div>
       <div class="drug-name-label" style="color:var(--teal)">Classe IC · Van Williams</div>
       <div class="drug-title">Propafenona</div>
-      <div style="background:rgba(18,130,162,0.15);border:1px solid rgba(18,130,162,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--teal-light);margin-bottom:14px;">PROPA só em coração POP</div>
+      <div style="background:rgba(18,130,162,0.15);border:1px solid rgba(18,130,162,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--teal-light);margin-bottom:14px;">PROPA só em coração POP</div>
       <div class="drug-items">
         <div class="drug-item"><span class="ok">✅</span><span>Reverte e mantém ritmo sinusal</span></div>
         <div class="drug-item"><span class="ok">✅</span><span>1ª escolha em coração estruturalmente normal (POP: Puro, Organizado, Preservado)</span></div>
@@ -633,7 +633,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
       <div class="drug-letter" style="color:var(--gold)">A</div>
       <div class="drug-name-label" style="color:var(--gold-light)">Multicanal · Classe III e outros</div>
       <div class="drug-title">Amiodarona</div>
-      <div style="background:rgba(184,134,11,0.15);border:1px solid rgba(184,134,11,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--gold-light);margin-bottom:14px;">AMIO é canivete de UTI</div>
+      <div style="background:rgba(184,134,11,0.15);border:1px solid rgba(184,134,11,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--gold-light);margin-bottom:14px;">AMIO é canivete de UTI</div>
       <div class="drug-items">
         <div class="drug-item"><span class="ok">✅</span><span>Mais eficaz para manter ritmo sinusal entre os clássicos</span></div>
         <div class="drug-item"><span class="ok">✅</span><span>Pode reverter para ritmo sinusal</span></div>
@@ -663,7 +663,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
       <div class="drug-letter" style="color:var(--red-light)">S</div>
       <div class="drug-name-label" style="color:var(--red-light)">Classe III + Beta</div>
       <div class="drug-title">Sotalol</div>
-      <div style="background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--red-light);margin-bottom:14px;">Só talo no ritmo, não vira a chave</div>
+      <div style="background:rgba(192,57,43,0.15);border:1px solid rgba(192,57,43,0.3);border-radius:20px;padding:6px 14px;display:inline-block;font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--red-light);margin-bottom:14px;">Só talo no ritmo, não vira a chave</div>
       <div class="drug-items">
         <div class="drug-item"><span class="ok">✅</span><span>Manutenção do ritmo sinusal</span></div>
         <div class="drug-item"><span class="ok">✅</span><span>Pode ser considerado em DAC conforme contexto</span></div>
@@ -758,12 +758,12 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
     <div style="background:rgba(26,122,74,0.1);border:2px solid rgba(26,122,74,0.3);border-radius:14px;padding:22px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:36px;font-weight:900;color:var(--green-light);margin-bottom:6px;">&lt;110</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:36px;font-weight:900;color:var(--green-light);margin-bottom:6px;">&lt;110</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--green-light);margin-bottom:8px;">CONTROLE LENIENTE</div>
       <div style="font-size:12px;color:var(--text-muted);">Paciente estável e <strong style="color:var(--white)">assintomático</strong> — aceitável, sem necessidade de apertar demais</div>
     </div>
     <div style="background:rgba(184,134,11,0.1);border:2px solid rgba(184,134,11,0.35);border-radius:14px;padding:22px;text-align:center;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:36px;font-weight:900;color:var(--gold);margin-bottom:6px;">~80</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:36px;font-weight:900;color:var(--gold);margin-bottom:6px;">~80</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gold);margin-bottom:8px;">CONTROLE RIGOROSO</div>
       <div style="font-size:12px;color:var(--text-muted);"><strong style="color:var(--white)">Sintomático</strong> ou FEVE piorando ou suspeita de taquicardiomiopatia — apertar o freio</div>
     </div>
@@ -865,7 +865,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
 
   <div class="feve-grid">
     <div style="background:rgba(26,122,74,0.1);border:2px solid rgba(26,122,74,0.3);border-radius:16px;padding:22px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--green-light);margin-bottom:14px;">🌉 FEVE &gt; 40%</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:18px;font-weight:900;color:var(--green-light);margin-bottom:14px;">🌉 FEVE &gt; 40%</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green-light);letter-spacing:2px;margin-bottom:10px;">PONTE ABERTA — PODE CONSIDERAR</div>
       <div style="display:flex;flex-direction:column;gap:6px;">
         <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="yes-pill">✓</span> Betabloqueador</div>
@@ -876,7 +876,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
     </div>
 
     <div style="background:rgba(192,57,43,0.1);border:2px solid rgba(192,57,43,0.35);border-radius:16px;padding:22px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:18px;font-weight:900;color:var(--red-light);margin-bottom:14px;">🔒 FEVE ≤ 40%</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:18px;font-weight:900;color:var(--red-light);margin-bottom:14px;">🔒 FEVE ≤ 40%</div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red-light);letter-spacing:2px;margin-bottom:10px;">PONTE FECHADA</div>
       <div style="display:flex;flex-direction:column;gap:6px;">
         <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text);"><span class="yes-pill">✓</span> BB indicados para IC</div>
@@ -938,7 +938,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
     </p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
       <div style="background:rgba(192,57,43,0.12);border:1px solid rgba(192,57,43,0.3);border-radius:12px;padding:16px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--red-light);margin-bottom:10px;">🐺 EVITAR no cenário agudo</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--red-light);margin-bottom:10px;">🐺 EVITAR no cenário agudo</div>
         <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-muted);">
           <div>⛔ Adenosina</div>
           <div>⛔ Betabloqueador</div>
@@ -949,7 +949,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
         </div>
       </div>
       <div style="background:rgba(26,122,74,0.1);border:1px solid rgba(26,122,74,0.3);border-radius:12px;padding:16px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--green-light);margin-bottom:10px;">✅ CONDUTA</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--green-light);margin-bottom:10px;">✅ CONDUTA</div>
         <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-muted);">
           <div>🔴 Se instável → CVE sincronizada imediata</div>
           <div>🟡 Se estável → avaliação especializada + estratégia segura</div>
@@ -985,7 +985,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <div style="background:rgba(6,15,30,0.6);border:1px solid var(--glass-border);border-radius:14px;overflow:hidden;margin-bottom:24px;">
     <div style="padding:16px 20px;background:linear-gradient(135deg,rgba(13,122,95,0.2),rgba(3,64,120,0.4));border-bottom:1px solid var(--glass-border);">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;">ESC 2024 · SBC 2025</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:16px;font-weight:700;color:var(--white);">Ablação na FA — Indicações e Classes de Recomendação</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:16px;font-weight:700;color:var(--white);">Ablação na FA — Indicações e Classes de Recomendação</div>
     </div>
     <div style="overflow-x:auto;">
       <table style="width:100%;border-collapse:collapse;">
@@ -1059,7 +1059,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Ablação vs Antiarrítmico — O que esperar?</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
       <div style="background:rgba(13,122,95,0.1);border:1px solid rgba(13,122,95,0.25);border-radius:12px;padding:16px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--emerald-light);margin-bottom:10px;">🏆 Ablação é superior em:</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--emerald-light);margin-bottom:10px;">🏆 Ablação é superior em:</div>
         <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-muted);">
           <div>→ Manutenção do ritmo sinusal</div>
           <div>→ Redução de sintomas e melhora de QV</div>
@@ -1068,7 +1068,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
         </div>
       </div>
       <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:12px;padding:16px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">⚠ Limitações da Ablação:</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">⚠ Limitações da Ablação:</div>
         <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-muted);">
           <div>→ Recorrência em ~20-40% em FA paroxística</div>
           <div>→ Até 40-50% em FA persistente (12 meses)</div>
@@ -1111,17 +1111,17 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;">
     <div style="background:rgba(192,57,43,0.1);border:1px solid rgba(192,57,43,0.3);border-radius:14px;padding:20px;text-align:center;">
       <div style="font-size:36px;margin-bottom:10px;">🔥</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--red-light);margin-bottom:6px;">Radiofrequência</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--red-light);margin-bottom:6px;">Radiofrequência</div>
       <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Calor → cicatriz transmural → isolamento das VPs. Técnica padrão há décadas.</div>
     </div>
     <div style="background:rgba(18,130,162,0.1);border:1px solid rgba(18,130,162,0.3);border-radius:14px;padding:20px;text-align:center;">
       <div style="font-size:36px;margin-bottom:10px;">🧊</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--teal-light);margin-bottom:6px;">Crioablação</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--teal-light);margin-bottom:6px;">Crioablação</div>
       <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Resfriamento → gelo sela a passagem → isolamento. Alternativa consolidada.</div>
     </div>
     <div style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:20px;text-align:center;">
       <div style="font-size:36px;margin-bottom:10px;">⚡</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px;">PFA</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px;">PFA</div>
       <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Campo pulsado → eletroporação seletiva. Tecnologia <strong style="color:var(--gold);">promissora</strong> — evidência ainda emergente.</div>
     </div>
   </div>
@@ -1131,7 +1131,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--emerald-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Indicações — Quem se beneficia mais?</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div>
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:10px;">✅ Melhores candidatos</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:10px;">✅ Melhores candidatos</div>
         <div style="display:flex;flex-direction:column;gap:6px;">
           <div style="font-size:12px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--emerald-light);">→</span>FA paroxística sintomática</div>
           <div style="font-size:12px;color:var(--text);display:flex;gap:8px;"><span style="color:var(--emerald-light);">→</span>Paciente jovem, átrio menos remodelado</div>
@@ -1142,7 +1142,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
         </div>
       </div>
       <div>
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:10px;">⚠ Menor chance de sucesso</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:10px;">⚠ Menor chance de sucesso</div>
         <div style="display:flex;flex-direction:column;gap:6px;">
           <div style="font-size:12px;color:var(--text-muted);display:flex;gap:8px;"><span style="color:var(--gold);">→</span>FA persistente de longa duração</div>
           <div style="font-size:12px;color:var(--text-muted);display:flex;gap:8px;"><span style="color:var(--gold);">→</span>Átrio muito dilatado ou fibrótico</div>
@@ -1158,15 +1158,15 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">Estudos-Chave</div>
     <div style="display:flex;flex-direction:column;gap:12px;">
       <div style="padding:14px 16px;background:rgba(18,130,162,0.08);border:1px solid rgba(18,130,162,0.2);border-left:3px solid var(--teal);border-radius:10px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">CABANA — JAMA 2019</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--teal-light);margin-bottom:4px;">CABANA — JAMA 2019</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Ablação melhorou qualidade de vida e sintomas vs antiarrítmicos. Benefício em desfechos duros (mortalidade, AVC) foi mais complexo — sem vitória limpa no desfecho primário por intenção de tratar. <strong style="color:var(--gold);">Nuance importante para a prova.</strong></div>
       </div>
       <div style="padding:14px 16px;background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.2);border-left:3px solid var(--green-light);border-radius:10px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:4px;">CASTLE-AF — NEJM 2018</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--green-light);margin-bottom:4px;">CASTLE-AF — NEJM 2018</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Em FA + IC com FE reduzida, ablação reduziu o desfecho composto de <strong style="color:var(--white);">morte ou hospitalização por piora de IC</strong> em pacientes selecionados. Estudo importante, mas em população específica.</div>
       </div>
       <div style="padding:14px 16px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-left:3px solid var(--gold);border-radius:10px;">
-        <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">PFA — Single Shot Champion 2025</div>
+        <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">PFA — Single Shot Champion 2025</div>
         <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">PFA com recorrência ~37% no 1º ano vs ~50% com crioablação. Evidência promissora, mas ainda emergente — não é padrão absoluto estabelecido.</div>
       </div>
     </div>
@@ -1175,7 +1175,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <!-- Pós-ablação + Complicações -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;">
     <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:14px;padding:20px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:12px;">⚠ Complicações</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--red-light);margin-bottom:12px;">⚠ Complicações</div>
       <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-muted);">
         <div>🔴 Tamponamento cardíaco</div>
         <div>🔴 AVC / Embolia</div>
@@ -1187,7 +1187,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
       </div>
     </div>
     <div style="background:rgba(13,122,95,0.08);border:1px solid rgba(13,122,95,0.25);border-radius:14px;padding:20px;">
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--emerald-light);margin-bottom:12px;">✅ Pós-Ablação — ESC 2024</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--emerald-light);margin-bottom:12px;">✅ Pós-Ablação — ESC 2024</div>
       <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--text-muted);">
         <div style="padding:8px 12px;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.2);border-radius:8px;color:var(--text);">ACO por <strong style="color:var(--white);">pelo menos 2 meses</strong> após ablação — independente do CHA₂DS₂-VA</div>
         <div style="padding:8px 12px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:8px;color:var(--text);">Longo prazo: ACO segue <strong style="color:var(--gold);">risco tromboembólico</strong>, não "ECG bonito"</div>
@@ -1200,10 +1200,10 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <div class="mnemonic-card">
     <div class="mnemonic-label">N7 · Mnemônicos da Ablação</div>
     <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
-      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"VP é <span style="color:var(--gold);">boate de gatilho</span>; ablação põe <span style="color:var(--emerald-light);">segurança na porta</span>."</div>
-      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"<span style="color:var(--red-light);">Fogo</span>, <span style="color:var(--teal);">gelo</span> ou <span style="color:var(--gold);">raio</span>: o objetivo é o mesmo — isolar a veia."</div>
-      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Átrio <span style="color:var(--emerald-light);">jovem</span> = gatilho preso fácil; átrio <span style="color:var(--red-light);">velho</span> = cicatriz manda no jogo."</div>
-      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Ablação melhora ritmo; <span style="color:var(--gold);">anticoagulação segue o risco</span>, não a vaidade do ECG."</div>
+      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"VP é <span style="color:var(--gold);">boate de gatilho</span>; ablação põe <span style="color:var(--emerald-light);">segurança na porta</span>."</div>
+      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"<span style="color:var(--red-light);">Fogo</span>, <span style="color:var(--teal);">gelo</span> ou <span style="color:var(--gold);">raio</span>: o objetivo é o mesmo — isolar a veia."</div>
+      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Átrio <span style="color:var(--emerald-light);">jovem</span> = gatilho preso fácil; átrio <span style="color:var(--red-light);">velho</span> = cicatriz manda no jogo."</div>
+      <div style="padding:10px 14px;background:rgba(13,122,95,0.1);border-radius:10px;font-family:'IBM Plex Sans', sans-serif;font-size:13px;font-weight:700;color:var(--white);">"Ablação melhora ritmo; <span style="color:var(--gold);">anticoagulação segue o risco</span>, não a vaidade do ECG."</div>
     </div>
     <div class="mnemonic-author" style="margin-top:14px;">— Dr. André Rossanno</div>
   </div>
@@ -1262,17 +1262,17 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;">
     <div style="background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.25);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">🚭</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--red-light);">Ablação não cura FA</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--red-light);">Ablação não cura FA</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Recorrência existe — especialmente em FA persistente</div>
     </div>
     <div style="background:rgba(13,122,95,0.08);border:1px solid rgba(13,122,95,0.25);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">⚖️</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--emerald-light);">Após ablação: MEV</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--emerald-light);">Após ablação: MEV</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Perda de peso + exercícios + SAHOS reduzem recorrência</div>
     </div>
     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px;text-align:center;">
       <div style="font-size:24px;margin-bottom:6px;">💊</div>
-      <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:12px;font-weight:700;color:var(--gold);">ACO 2-3 meses</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif;font-size:12px;font-weight:700;color:var(--gold);">ACO 2-3 meses</div>
       <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Mesmo CHA₂DS₂-VA baixo. Longo prazo segue risco clínico</div>
     </div>
   </div>
@@ -1559,7 +1559,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
   <!-- Frase final grande -->
   <div style="background:linear-gradient(135deg,rgba(13,122,95,0.15),rgba(6,15,30,0.8));border:2px solid rgba(13,122,95,0.3);border-radius:20px;padding:32px;margin-top:24px;text-align:center;">
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:16px;">FRASE GUIA DO MÓDULO</div>
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(15px,3vw,20px);font-weight:700;color:var(--white);line-height:1.6;margin-bottom:16px;">
+    <div style="font-family:'IBM Plex Sans', sans-serif;font-size:clamp(15px,3vw,20px);font-weight:700;color:var(--white);line-height:1.6;margin-bottom:16px;">
       "O bom médico não trata apenas a arritmia:<br>ele lê o terreno, mede o risco, escolhe o freio e aponta a bússola."
     </div>
     <div style="font-family:'Dancing Script',cursive;font-size:22px;color:var(--gold);">Dr. André Rossanno</div>
@@ -1691,7 +1691,7 @@ footer{margin-top:80px;padding:40px 20px;border-top:1px solid var(--glass-border
 
   <div style="background:linear-gradient(135deg,rgba(13,122,95,0.12),rgba(6,15,30,0.8));border:1px solid rgba(13,122,95,0.3);border-radius:16px;padding:24px;margin-top:24px;text-align:center;">
     <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">FRASE FINAL</div>
-    <div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:clamp(13px,2.5vw,17px);font-weight:700;color:var(--white);line-height:1.6;margin-bottom:12px;">
+    <div style="font-family:'IBM Plex Sans', sans-serif;font-size:clamp(13px,2.5vw,17px);font-weight:700;color:var(--white);line-height:1.6;margin-bottom:12px;">
       "Frequência é o freio. Ritmo é a bússola.<br>Trombo é o dragão escondido antes da virada."
     </div>
     <div style="font-family:'Dancing Script',cursive;font-size:20px;color:var(--gold);">Dr. André Rossanno</div>
@@ -1759,7 +1759,7 @@ function nextQuestion(){
     const container=document.querySelector('.quiz-container');
     const result=document.createElement('div');
     result.style.cssText='margin-top:20px;padding:24px;background:rgba(13,122,95,0.12);border:1px solid rgba(13,122,95,0.3);border-radius:14px;text-align:center;';
-    result.innerHTML=`<div style="font-family:'Syne','DM Sans','Arial Black',sans-serif;font-size:28px;font-weight:900;color:${score>=5?'var(--green-light)':'var(--gold)'};">${score}/6</div><div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score===6?'🏆 Perfeito! Módulo 3 dominado.':score>=5?'✅ Muito bem! Revise os erros.':'📖 Revise o módulo antes de avançar.'}</div>`;
+    result.innerHTML=`<div style="font-family:'IBM Plex Sans', sans-serif;font-size:28px;font-weight:900;color:${score>=5?'var(--green-light)':'var(--gold)'};">${score}/6</div><div style="font-size:14px;color:var(--text-muted);margin-top:8px;">${score===6?'🏆 Perfeito! Módulo 3 dominado.':score>=5?'✅ Muito bem! Revise os erros.':'📖 Revise o módulo antes de avançar.'}</div>`;
     document.getElementById('btn-next').style.display='none';
     container.appendChild(result);
   }
