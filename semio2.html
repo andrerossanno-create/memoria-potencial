@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palpação Abdominal | Dr. André Rossanno</title>
+<meta property="og:title" content="Palpação Abdominal | Dr. André Rossanno">
+<meta property="og:description" content="A mão que pensa não aperta: pergunta. Parte 2 — Palpação detalhada, 8 manobras, mapa 9 regiões, casos clínicos OSCE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════
+   TOKENS
+══════════════════════════════ */
+:root {
+  --navy:       #0B2545;
+  --navy-mid:   #0d2e55;
+  --teal:       #1282A2;
+  --teal-l:     #16a0c4;
+  --teal-glow:  rgba(18,130,162,.18);
+  --gold:       #F5A623;
+  --gold-dim:   rgba(245,166,35,.13);
+  --red:        #E53935;
+  --red-dim:    rgba(229,57,53,.13);
+  --green:      #2E7D32;
+  --green-dim:  rgba(46,125,50,.13);
+  --yellow:     #F9A825;
+  --yellow-dim: rgba(249,168,37,.13);
+
+  --bg:         #0B2545;
+  --bg2:        #0d2e55;
+  --surface:    rgba(13,46,85,.75);
+  --border:     rgba(18,130,162,.25);
+  --text:       #e8f0fe;
+  --muted:      #7fa4c4;
+  --progress-h: 3px;
+}
+[data-theme="light"] {
+  --bg:      #f0f6ff;
+  --bg2:     #e0eaf8;
+  --surface: rgba(255,255,255,.85);
+  --border:  rgba(18,130,162,.2);
+  --text:    #0B2545;
+  --muted:   #3a6080;
+  --navy:    #0B2545;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'IBM Plex Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  min-height:100vh;
+  transition:background .3s,color .3s;
+}
+
+/* ── BG LAYERS ── */
+.bg-layer{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 15%,rgba(18,130,162,.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 85%,rgba(11,37,69,.7) 0%,transparent 70%);
+}
+[data-theme="light"] .bg-layer{
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 15%,rgba(18,130,162,.06) 0%,transparent 60%);
+}
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(18,130,162,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(18,130,162,.04) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+
+/* ── PROGRESS ── */
+#progress-bar{
+  position:fixed;top:0;left:0;height:var(--progress-h);
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  width:0%;z-index:1000;transition:width .15s;
+  box-shadow:0 0 8px var(--teal);
+}
+
+/* ── TOPBAR ── */
+#topbar{
+  position:fixed;top:var(--progress-h);left:0;right:0;z-index:200;
+  height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+  background:rgba(11,37,69,.92);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px);
+}
+[data-theme="light"] #topbar{background:rgba(240,246,255,.94);}
+#topbar .brand{
+  font-family:'Dancing Script',cursive;
+  font-size:1rem;color:var(--gold);
+}
+#topbar .nav-pills{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;}
+#topbar .nav-pills::-webkit-scrollbar{display:none}
+.pill{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+  padding:5px 12px;border-radius:20px;border:1px solid var(--border);
+  color:var(--muted);background:transparent;cursor:pointer;
+  transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;
+}
+.pill:hover,.pill.active{color:var(--gold);border-color:var(--gold);background:var(--gold-dim);}
+#topbar .actions{display:flex;gap:8px;flex-shrink:0;}
+.icon-btn{
+  width:34px;height:34px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;
+  transition:all .2s;
+}
+.icon-btn:hover{border-color:var(--teal);color:var(--teal);}
+
+/* ── SIDEBAR ── */
+#sidebar{
+  position:fixed;left:0;top:calc(var(--progress-h)+52px);bottom:0;
+  width:200px;z-index:100;
+  background:rgba(11,37,69,.96);
+  border-right:1px solid var(--border);
+  overflow-y:auto;padding:12px 0;
+  backdrop-filter:blur(12px);
+  transition:transform .3s;
+}
+[data-theme="light"] #sidebar{background:rgba(240,246,255,.97);}
+#sidebar nav a{
+  display:block;padding:7px 18px;
+  font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  color:var(--muted);text-decoration:none;letter-spacing:.03em;
+  transition:all .2s;border-left:2px solid transparent;
+}
+#sidebar nav a:hover{color:var(--text);background:var(--teal-glow);}
+#sidebar nav a.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-dim);}
+#sidebar nav .cat{
+  font-family:'IBM Plex Mono',monospace;font-size:.58rem;
+  color:var(--teal);letter-spacing:.12em;text-transform:uppercase;
+  padding:12px 18px 3px;
+}
+#mob-toggle{
+  display:none;position:fixed;top:60px;left:10px;z-index:300;
+  width:32px;height:32px;border-radius:7px;border:1px solid var(--border);
+  background:rgba(11,37,69,.92);color:var(--muted);cursor:pointer;
+  font-size:1rem;align-items:center;justify-content:center;
+}
+
+/* ── MAIN ── */
+#main{
+  margin-left:200px;
+  padding-top:calc(var(--progress-h)+52px);
+  position:relative;z-index:1;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:calc(100vh - 55px);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:60px 40px;
+  position:relative;
+}
+.hero-kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:16px;
+}
+.hero h1{
+  font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(2.2rem,5.5vw,4.8rem);line-height:1.05;
+  background:linear-gradient(135deg,#e8f0fe 30%,var(--teal-l) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:18px;
+}
+.hero-quote{
+  font-size:1.05rem;color:var(--gold);font-style:italic;
+  margin-bottom:12px;
+}
+.hero-quote span{
+  font-family:'Dancing Script',cursive;font-size:1rem;
+}
+.hero-sub{
+  font-size:.95rem;color:var(--muted);max-width:520px;
+  margin:0 auto 36px;line-height:1.7;
+}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:36px;}
+.chip{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;
+  padding:5px 12px;border-radius:16px;border:1px solid var(--border);
+  color:var(--teal-l);background:var(--teal-glow);
+}
+.hero-scroll{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;
+  color:var(--muted);letter-spacing:.1em;animation:bounce 2s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ── SECTIONS ── */
+.section{
+  max-width:860px;margin:0 auto;padding:72px 40px;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .6s,transform .6s;
+}
+.section.visible{opacity:1;transform:none;}
+.sec-divider{height:1px;background:var(--border);max-width:860px;margin:0 auto;}
+
+/* ── HEADINGS ── */
+.mod-kicker{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px;
+}
+.sec-h{
+  font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:clamp(1.7rem,3.5vw,2.8rem);line-height:1.1;
+  color:var(--text);margin-bottom:8px;
+}
+.sec-tag{font-size:.9rem;color:var(--muted);font-style:italic;}
+.sub-h{
+  font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:1.15rem;color:var(--teal-l);
+  margin:40px 0 14px;display:flex;align-items:center;gap:10px;
+}
+.sub-h::before{content:'';display:block;width:24px;height:2px;background:var(--teal);flex-shrink:0;}
+
+/* ── HAMMER ── */
+.hammer{
+  background:linear-gradient(135deg,rgba(245,166,35,.1),rgba(11,37,69,.5));
+  border:1px solid rgba(245,166,35,.35);border-left:4px solid var(--gold);
+  border-radius:8px;padding:16px 20px;margin:18px 0;
+  font-size:.93rem;font-style:italic;color:var(--gold);line-height:1.6;
+}
+.hammer::before{content:'🔨 ';}
+
+/* ── CONTENT PROSE ── */
+.prose{line-height:1.8;color:var(--muted);margin-bottom:12px;}
+.prose strong{color:var(--text);}
+
+/* ── N-BLOCKS (expandable) ── */
+.n-block{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;margin-bottom:10px;overflow:hidden;
+  backdrop-filter:blur(6px);
+}
+.n-block-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;cursor:pointer;gap:12px;
+}
+.n-block-head:hover{background:var(--teal-glow);}
+.n-num{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;
+  color:var(--teal);opacity:.4;flex-shrink:0;
+}
+.n-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;color:var(--text);}
+.n-chevron{font-size:.75rem;color:var(--muted);transition:transform .3s;flex-shrink:0;}
+.n-block.open .n-chevron{transform:rotate(180deg);}
+.n-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease;
+}
+.n-block.open .n-body{max-height:2000px;}
+.n-inner{padding:0 22px 20px;}
+
+/* ── 9 REGION MAP ── */
+.region-map{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin:24px 0;
+}
+.region-cell{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:14px 10px;text-align:center;
+  cursor:pointer;transition:all .25s;min-height:90px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.region-cell:hover,.region-cell.active{
+  border-color:var(--teal);background:var(--teal-glow);
+  transform:scale(1.03);
+}
+.region-cell .r-name{
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;
+  color:var(--text);margin-bottom:4px;
+}
+.region-cell .r-organ{
+  font-family:'IBM Plex Mono',monospace;font-size:.6rem;
+  color:var(--muted);line-height:1.4;
+}
+#region-panel{
+  background:var(--surface);border:1px solid var(--teal);
+  border-radius:12px;padding:22px 26px;margin-top:10px;
+  display:none;
+}
+#region-panel.show{display:block;animation:fadeIn .3s;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+#region-panel .rp-title{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;
+  color:var(--teal-l);margin-bottom:12px;
+}
+#region-panel .rp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+#region-panel .rp-col h4{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:6px;
+}
+#region-panel .rp-col ul{list-style:none;}
+#region-panel .rp-col li{
+  font-size:.83rem;color:var(--muted);line-height:1.7;
+  padding-left:12px;position:relative;
+}
+#region-panel .rp-col li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:.7rem;}
+
+/* ── MANEUVER CARDS ── */
+.maneuver-cards{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.mc{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;backdrop-filter:blur(6px);
+}
+.mc-head{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 22px;cursor:pointer;transition:background .2s;
+}
+.mc-head:hover{background:rgba(18,130,162,.08);}
+.mc-num{
+  font-family:'Nunito',sans-serif;font-weight:900;
+  font-size:2rem;color:var(--teal);opacity:.3;flex-shrink:0;line-height:1;
+}
+.mc-info{flex:1;}
+.mc-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.05rem;color:var(--text);}
+.mc-sub{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--teal-l);margin-top:2px;}
+.mc-badge{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+  padding:4px 10px;border-radius:12px;flex-shrink:0;
+}
+.badge-red{background:var(--red-dim);color:#ff6b6b;border:1px solid rgba(229,57,53,.3);}
+.badge-yellow{background:var(--yellow-dim);color:var(--yellow);border:1px solid rgba(249,168,37,.3);}
+.badge-blue{background:var(--teal-glow);color:var(--teal-l);border:1px solid var(--border);}
+.badge-green{background:var(--green-dim);color:#69f0ae;border:1px solid rgba(46,125,50,.3);}
+.mc-chevron{font-size:.75rem;color:var(--muted);transition:transform .3s;flex-shrink:0;}
+.mc.open .mc-chevron{transform:rotate(180deg);}
+.mc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.mc.open .mc-body{max-height:1200px;}
+.mc-inner{padding:0 22px 22px;}
+
+.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.mc-field label{
+  display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:4px;
+}
+.mc-field p{font-size:.86rem;color:var(--muted);line-height:1.65;}
+.mc-field p strong{color:var(--text);}
+.mc-trap{
+  background:var(--yellow-dim);border:1px solid rgba(249,168,37,.25);
+  border-left:3px solid var(--yellow);border-radius:8px;
+  padding:12px 16px;font-size:.83rem;color:var(--yellow);line-height:1.6;
+}
+.mc-trap::before{content:'⚠️ PEGADINHA — ';}
+.mc-scene{
+  margin-top:12px;padding:12px 16px;
+  background:rgba(18,130,162,.1);border:1px solid var(--border);
+  border-radius:8px;font-style:italic;font-size:.85rem;color:var(--muted);
+  line-height:1.6;
+}
+.mc-scene::before{content:'🎬 ';}
+
+/* ── DEFENSE TABLE ── */
+.def-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+.def-card{
+  border-radius:10px;padding:18px;border:1px solid;text-align:center;
+}
+.def-card.vol{background:var(--green-dim);border-color:rgba(46,125,50,.3);}
+.def-card.inv{background:var(--yellow-dim);border-color:rgba(249,168,37,.3);}
+.def-card.rig{background:var(--red-dim);border-color:rgba(229,57,53,.3);}
+.def-card .def-icon{font-size:1.6rem;margin-bottom:8px;}
+.def-card .def-title{
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;
+  margin-bottom:8px;
+}
+.def-card.vol .def-title{color:#69f0ae;}
+.def-card.inv .def-title{color:var(--yellow);}
+.def-card.rig .def-title{color:#ff6b6b;}
+.def-card ul{list-style:none;text-align:left;}
+.def-card li{font-size:.8rem;color:var(--muted);line-height:1.6;}
+
+/* ── ALGORITHM BOX ── */
+.algo-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:22px 26px;margin:14px 0;
+  backdrop-filter:blur(4px);
+}
+.algo-title{
+  font-family:'Nunito',sans-serif;font-weight:800;
+  font-size:.95rem;color:var(--teal-l);margin-bottom:14px;
+}
+.algo-steps{display:flex;flex-direction:column;gap:6px;}
+.algo-step{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.85rem;color:var(--muted);line-height:1.6;
+}
+.algo-step .step-n{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;
+  color:var(--teal);background:var(--teal-glow);
+  padding:2px 7px;border-radius:10px;flex-shrink:0;margin-top:2px;
+}
+.algo-step strong{color:var(--text);}
+.algo-trap{
+  margin-top:12px;padding:10px 14px;
+  background:var(--red-dim);border:1px solid rgba(229,57,53,.25);
+  border-radius:6px;font-size:.82rem;color:#ff6b6b;
+}
+
+/* ── CASES ── */
+.case-cards{display:flex;flex-direction:column;gap:14px;margin:20px 0;}
+.case-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;backdrop-filter:blur(4px);
+}
+.case-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;cursor:pointer;
+}
+.case-head:hover{background:rgba(18,130,162,.06);}
+.case-num{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:4px;
+}
+.case-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;color:var(--text);}
+.case-chevron{font-size:.75rem;color:var(--muted);transition:transform .3s;flex-shrink:0;}
+.case-card.open .case-chevron{transform:rotate(180deg);}
+.case-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.case-card.open .case-body{max-height:1000px;}
+.case-inner{padding:0 22px 22px;}
+.case-scenario{
+  background:linear-gradient(135deg,rgba(18,130,162,.12),rgba(11,37,69,.5));
+  border:1px solid var(--teal);border-left:4px solid var(--teal);
+  border-radius:8px;padding:16px 20px;margin-bottom:14px;
+  font-size:.88rem;color:var(--text);line-height:1.75;
+}
+.case-qa{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.case-q-col h4{
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;
+}
+.case-q-col ul{list-style:none;}
+.case-q-col li{font-size:.83rem;color:var(--muted);line-height:1.65;padding-left:12px;position:relative;}
+.case-q-col li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:.7rem;}
+.case-warn{
+  background:var(--yellow-dim);border:1px solid rgba(249,168,37,.25);
+  border-radius:8px;padding:12px 16px;
+  font-size:.83rem;color:var(--yellow);line-height:1.6;
+}
+.case-warn::before{content:'⚠️ '}
+
+/* ── FLASHCARDS ── */
+.fc-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:14px;margin:16px 0;
+}
+.fc-item{perspective:800px;height:150px;cursor:pointer;}
+.fc-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;transition:transform .5s;
+}
+.fc-item.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-front,.fc-back{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border-radius:10px;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  padding:14px;text-align:center;
+}
+.fc-front{
+  background:linear-gradient(135deg,rgba(18,130,162,.18),rgba(13,46,85,.85));
+  border:1px solid var(--teal);
+}
+.fc-front .fc-n{
+  font-family:'IBM Plex Mono',monospace;font-size:.58rem;
+  letter-spacing:.12em;color:var(--teal);margin-bottom:6px;
+}
+.fc-front .fc-q{font-size:.82rem;color:var(--text);line-height:1.45;}
+.fc-back{
+  background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(11,37,69,.9));
+  border:1px solid var(--gold);transform:rotateY(180deg);
+}
+.fc-back .fc-a{font-size:.8rem;color:var(--gold);line-height:1.45;}
+.fc-hint{
+  text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.62rem;
+  color:var(--muted);letter-spacing:.08em;margin-bottom:12px;
+}
+
+/* ── TRAPS ── */
+.trap-list{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
+.trap-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--yellow-dim);border:1px solid rgba(249,168,37,.2);
+  border-radius:8px;padding:12px 16px;
+}
+.trap-item .t-num{
+  font-family:'IBM Plex Mono',monospace;font-size:.65rem;
+  color:var(--yellow);background:rgba(249,168,37,.15);
+  padding:2px 7px;border-radius:8px;flex-shrink:0;margin-top:1px;
+}
+.trap-item .t-text{font-size:.85rem;color:var(--yellow);line-height:1.6;}
+
+/* ── CHECKLIST ── */
+.checklist{display:flex;flex-direction:column;gap:6px;margin:16px 0;}
+.cl-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;border:1px solid var(--border);
+  border-radius:8px;cursor:pointer;transition:all .2s;
+}
+.cl-item:hover{border-color:var(--teal);background:var(--teal-glow);}
+.cl-item.checked{border-color:var(--green);background:var(--green-dim);}
+.cl-box{
+  width:18px;height:18px;border-radius:4px;
+  border:2px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;color:transparent;transition:all .2s;
+}
+.cl-item.checked .cl-box{
+  border-color:var(--green);background:var(--green);color:#fff;
+}
+.cl-label{font-size:.88rem;color:var(--muted);}
+.cl-item.checked .cl-label{color:#69f0ae;}
+.cl-progress{
+  margin:14px 0;height:6px;background:var(--border);
+  border-radius:3px;overflow:hidden;
+}
+.cl-progress-bar{
+  height:100%;background:linear-gradient(90deg,var(--teal),var(--green));
+  width:0%;transition:width .3s;border-radius:3px;
+}
+.cl-score{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+  color:var(--muted);text-align:center;margin-top:6px;
+}
+
+/* ── QUICK REVIEW (modal-like overlay) ── */
+#qr-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(11,37,69,.94);backdrop-filter:blur(12px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#qr-overlay.show{display:flex;}
+#qr-box{
+  max-width:560px;width:100%;
+  background:rgba(13,46,85,.95);border:1px solid var(--teal);
+  border-radius:16px;padding:32px;
+}
+#qr-box h3{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;
+  color:var(--teal-l);margin-bottom:20px;
+}
+#qr-box ul{list-style:none;}
+#qr-box li{
+  font-size:.88rem;color:var(--muted);line-height:1.7;
+  padding-left:16px;position:relative;
+}
+#qr-box li::before{content:'→';position:absolute;left:0;color:var(--teal);}
+#qr-close{
+  margin-top:20px;width:100%;padding:10px;
+  background:var(--teal);border:none;color:#fff;
+  border-radius:8px;cursor:pointer;font-size:.88rem;font-family:'IBM Plex Sans',sans-serif;
+}
+
+/* ── PALACE ── */
+.palace{
+  background:linear-gradient(135deg,rgba(11,37,69,.9),rgba(13,46,85,.7));
+  border:1px solid var(--border);border-radius:12px;
+  padding:26px 30px;margin:24px 0;position:relative;overflow:hidden;
+}
+.palace::before{
+  content:'🏛️';position:absolute;right:18px;top:14px;
+  font-size:3rem;opacity:.07;
+}
+.palace-label{
+  font-family:'IBM Plex Mono',monospace;font-size:.63rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:12px;
+}
+.palace p{font-size:.88rem;line-height:1.85;color:var(--muted);margin-bottom:8px;}
+.palace p strong{color:var(--teal-l);}
+.palace-scene{
+  margin-top:12px;padding:12px 16px;
+  background:var(--gold-dim);border:1px solid rgba(245,166,35,.2);
+  border-radius:8px;font-style:italic;color:var(--gold);font-size:.85rem;
+}
+
+/* ── FINAL HAMMER ── */
+.final-block{
+  background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(11,37,69,.7));
+  border:2px solid rgba(245,166,35,.4);border-radius:14px;
+  padding:28px 32px;margin:28px 0;text-align:center;
+}
+.final-block p{
+  font-family:'Nunito',sans-serif;font-weight:700;
+  font-size:1rem;color:var(--gold);line-height:1.65;font-style:italic;
+}
+.final-block::before{content:'🔨';font-size:1.4rem;display:block;margin-bottom:10px;}
+
+/* ── SIGNATURE ── */
+.signature{
+  text-align:center;padding:40px 20px;
+  border-top:1px solid var(--border);margin-top:50px;
+}
+.signature .method{
+  font-family:'IBM Plex Mono',monospace;font-size:.63rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;
+}
+.signature .sig{
+  font-family:'Dancing Script',cursive;font-size:2rem;color:var(--gold);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  #sidebar{transform:translateX(-100%);}
+  #sidebar.open{transform:none;}
+  #mob-toggle{display:flex;}
+  #main{margin-left:0;}
+  .section{padding:56px 20px;}
+  #region-panel .rp-grid{grid-template-columns:1fr;}
+  .case-qa{grid-template-columns:1fr;}
+  .def-grid{grid-template-columns:1fr;}
+  .mc-grid{grid-template-columns:1fr;}
+  #topbar .nav-pills{display:none;}
+}
+@media(max-width:600px){
+  .fc-grid{grid-template-columns:1fr 1fr;}
+  .region-map{gap:5px;}
+  .region-cell{padding:10px 6px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div id="progress-bar"></div>
+
+<!-- TOPBAR -->
+<header id="topbar">
+  <div class="brand">Dr. André Rossanno</div>
+  <nav class="nav-pills">
+    <a class="pill" href="#hero">Início</a>
+    <a class="pill" href="#conceito">N1-N4</a>
+    <a class="pill" href="#mapa">Mapa 9R</a>
+    <a class="pill" href="#manobras">Manobras</a>
+    <a class="pill" href="#defesa">Defesa</a>
+    <a class="pill" href="#algoritmos">Algoritmos</a>
+    <a class="pill" href="#casos">Casos</a>
+    <a class="pill" href="#flashcards">FC</a>
+    <a class="pill" href="#pegadinhas">Traps</a>
+    <a class="pill" href="#osce">OSCE</a>
+  </nav>
+  <div class="actions">
+    <button class="icon-btn" onclick="toggleQR()" title="Revisão 10s">⚡</button>
+    <button class="icon-btn" onclick="toggleTheme()" title="Modo claro/escuro" id="theme-btn">☀️</button>
+  </div>
+</header>
+
+<button id="mob-toggle" onclick="toggleSidebar()">☰</button>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <nav>
+    <div class="cat">Conteúdo</div>
+    <a href="#hero">Início</a>
+    <div class="cat">N1 — N4</div>
+    <a href="#conceito">Conceito Central</a>
+    <a href="#preparacao">Preparação</a>
+    <a href="#palace-9">Palácio 9 Salas</a>
+    <a href="#tecnica">Técnica</a>
+    <div class="cat">Mapa & Manobras</div>
+    <a href="#mapa">Mapa 9 Regiões</a>
+    <a href="#manobras">8 Manobras</a>
+    <a href="#orgaos">Palpação Órgãos</a>
+    <div class="cat">Raciocínio</div>
+    <a href="#defesa">Defesa & Rigidez</a>
+    <a href="#algoritmos">Algoritmos Clínicos</a>
+    <div class="cat">Prática</div>
+    <a href="#casos">5 Casos OSCE</a>
+    <a href="#flashcards">15 Flashcards</a>
+    <a href="#pegadinhas">12 Pegadinhas</a>
+    <a href="#osce">Checklist OSCE</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div>
+    <div class="hero-kicker">Parte 2 · Método André Rossanno · TEC 2026</div>
+    <h1>A Mão que<br>Diagnostica</h1>
+    <div class="hero-quote">
+      "A mão que pensa não aperta: pergunta."
+      <br><span>— Dr. André Rossanno</span>
+    </div>
+    <p class="hero-sub">Palpação abdominal detalhada: 9 regiões, 8 manobras, raciocínio clínico, defesa vs rigidez, 5 casos OSCE e checklist interativo.</p>
+    <div class="hero-chips">
+      <span class="chip">9 Regiões Interativas</span>
+      <span class="chip">8 Manobras</span>
+      <span class="chip">Giordano / Psoas / Obturador</span>
+      <span class="chip">5 Casos Clínicos</span>
+      <span class="chip">15 Flashcards</span>
+      <span class="chip">Checklist OSCE</span>
+    </div>
+    <div class="hero-scroll">↓ Role para explorar</div>
+  </div>
+</section>
+
+<!-- ═══════════════ N1–N4 ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="conceito">
+  <div class="mod-kicker">N1–N4 · Fundamentos</div>
+  <h2 class="sec-h">Algoritmo executado<br>com as mãos</h2>
+  <p class="sec-tag">Conceito, preparação, palácio e técnica</p>
+
+  <div class="n-block open" id="nb1">
+    <div class="n-block-head" onclick="toggleN('nb1')">
+      <div class="n-num">N1</div>
+      <div class="n-title">Conceito Central</div>
+      <div class="n-chevron">▼</div>
+    </div>
+    <div class="n-body">
+      <div class="n-inner">
+        <p class="prose">A palpação abdominal é um <strong>algoritmo executado com as mãos</strong>. A sequência mental é:</p>
+        <div class="hammer">Queixa → Região → Palpação superficial → Palpação profunda → Manobra específica → Sinal positivo → Hipótese → Conduta</div>
+        <p class="prose">A grande chave: <strong>nunca comece pela dor</strong>. Começar pela área dolorosa transforma o abdome em muralha — o paciente contrai, o exame perde valor e a semiologia vira ruído.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="n-block" id="nb2">
+    <div class="n-block-head" onclick="toggleN('nb2')">
+      <div class="n-num">N2</div>
+      <div class="n-title">Preparação — O Ritual Técnico</div>
+      <div class="n-chevron">▼</div>
+    </div>
+    <div class="n-body">
+      <div class="n-inner">
+        <p class="prose"><strong>Posição do paciente:</strong> decúbito dorsal, braços relaxados, joelhos levemente fletidos. Isso reduz tensão da parede abdominal.</p>
+        <p class="prose"><strong>Ambiente:</strong> mãos aquecidas. Mão fria é inimiga da semiologia — provoca contração reflexa e simula defesa.</p>
+        <p class="prose"><strong>Estratégia:</strong> começar longe da dor. Palpar por último a região da queixa principal.</p>
+        <p class="prose"><strong>Olhar:</strong> enquanto a mão examina, o olho observa a face. A face denuncia o abdome. O paciente pode dizer "não está doendo", mas a sobrancelha, o maxilar e a respiração fazem delação premiada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="n-block" id="nb3">
+    <div class="n-block-head" onclick="toggleN('nb3')">
+      <div class="n-num">N3</div>
+      <div class="n-title">Palácio da Memória — 9 Salas</div>
+      <div class="n-chevron">▼</div>
+    </div>
+    <div class="n-body" id="palace-9">
+      <div class="n-inner">
+        <div class="palace">
+          <div class="palace-label">🏛️ O Castelo Abdominal — 3 Andares, 9 Cômodos</div>
+          <p><strong>Andar Superior:</strong><br>
+          🏛️ <strong>Hipocôndrio D</strong> = fígado e vesícula. "Direita alta = bile e fígado."<br>
+          🏛️ <strong>Epigástrio</strong> = estômago, pâncreas e aorta. "Centro alto = fogo gástrico, pâncreas escondido e aorta pulsando."<br>
+          🏛️ <strong>Hipocôndrio E</strong> = baço e cauda do pâncreas. "Esquerda alta = baço silencioso."</p>
+          <p><strong>Andar Médio:</strong><br>
+          🏛️ <strong>Flanco D</strong> = cólon ascendente e rim D.<br>
+          🏛️ <strong>Mesogástrio</strong> = intestino delgado, cólon transverso e aorta.<br>
+          🏛️ <strong>Flanco E</strong> = cólon descendente e rim E.</p>
+          <p><strong>Andar Inferior:</strong><br>
+          🏛️ <strong>FID</strong> = apêndice, ceco, ovário/trompa D.<br>
+          🏛️ <strong>Hipogástrio</strong> = bexiga, útero, reto.<br>
+          🏛️ <strong>FIE</strong> = sigmoide, ovário/trompa E.</p>
+          <div class="palace-scene">Direita baixa = apêndice. Direita alta = vesícula. Esquerda alta = baço. Flancos/lombar = rim. Centro pulsátil = aorta.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="n-block" id="nb4">
+    <div class="n-block-head" onclick="toggleN('nb4')">
+      <div class="n-num">N4</div>
+      <div class="n-title">Técnica — Superficial, Profunda e Órgãos</div>
+      <div class="n-chevron">▼</div>
+    </div>
+    <div class="n-body" id="tecnica">
+      <div class="n-inner">
+        <p class="prose"><strong>Palpação superficial:</strong> polpas digitais, mão espalmada, pressão leve e uniforme pelas 9 regiões. Avalia dor superficial, tensão muscular, hérnias e defesa inicial.</p>
+        <p class="prose"><strong>Palpação profunda:</strong> pressão lenta e progressiva, uni ou bimanual. Avalia massas profundas, dor visceral, órgãos aumentados, plastrão inflamatório.</p>
+        <div class="hammer">Palpação profunda não é mergulho violento. É "entrar no abdome pedindo licença."</div>
+        <p class="prose"><strong>Método "Falo, Faço, Fecho":</strong> antes de cada manobra, diga mentalmente: (1) O que estou testando? (2) Onde coloco a mão? (3) Qual movimento faço? (4) Onde deve doer? (5) Qual hipótese ganha força?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MAPA 9 REGIÕES ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="mapa">
+  <div class="mod-kicker">Anatomia Interativa</div>
+  <h2 class="sec-h">Mapa das 9 Regiões</h2>
+  <p class="sec-tag">Clique em cada região para ver órgãos, diagnósticos e manobras</p>
+
+  <div class="region-map" id="region-map"></div>
+  <div id="region-panel"></div>
+</section>
+
+<!-- ═══════════════ MANOBRAS ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="manobras">
+  <div class="mod-kicker">N5 · Manobras Principais</div>
+  <h2 class="sec-h">A mão pergunta,<br>a doença responde</h2>
+  <p class="sec-tag">8 manobras com técnica, positivo, significado, pegadinha e cena mental</p>
+
+  <div class="maneuver-cards" id="mc-container"></div>
+
+  <div class="sub-h" id="orgaos">Palpação de Órgãos</div>
+  <div class="maneuver-cards" id="orgao-container"></div>
+</section>
+
+<!-- ═══════════════ DEFESA ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="defesa">
+  <div class="mod-kicker">N6 · Defesa & Rigidez</div>
+  <h2 class="sec-h">Defesa conversa;<br>rigidez sentencia</h2>
+
+  <div class="def-grid">
+    <div class="def-card vol">
+      <div class="def-icon">🟢</div>
+      <div class="def-title">Defesa Voluntária</div>
+      <ul>
+        <li>Consciente ou por ansiedade</li>
+        <li>Melhora com conversa</li>
+        <li>Cede com respiração lenta</li>
+        <li>Mão aquecida ajuda</li>
+        <li>Variável ao longo do exame</li>
+      </ul>
+    </div>
+    <div class="def-card inv">
+      <div class="def-icon">🟡</div>
+      <div class="def-title">Defesa Involuntária</div>
+      <ul>
+        <li>Contração reflexa</li>
+        <li>Não cede com distração</li>
+        <li>Persiste apesar do relaxamento</li>
+        <li>Localizada ou difusa</li>
+        <li>Sugere irritação peritoneal</li>
+      </ul>
+    </div>
+    <div class="def-card rig">
+      <div class="def-icon">🔴</div>
+      <div class="def-title">Rigidez em Tábua</div>
+      <ul>
+        <li>Difusa, involuntária, persistente</li>
+        <li>Abdome duro, sem afundar</li>
+        <li>Peritonite generalizada</li>
+        <li>Perfuração de víscera oca</li>
+        <li>Emergência cirúrgica</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="hammer">Defesa conversa; rigidez sentencia. Toda contração não é peritonite.</div>
+
+  <div class="palace">
+    <div class="palace-label">🏛️ Palácio da Defesa</div>
+    <p><strong>Voluntária</strong> = guarda assustado que abre a porta quando você conversa.</p>
+    <p><strong>Involuntária</strong> = sentinela que não negocia, mesmo quando o paciente quer relaxar.</p>
+    <p><strong>Rigidez em tábua</strong> = castelo fechado, pontes levantadas, estado de guerra declarado.</p>
+    <div class="palace-scene">O examinador experiente sabe: não é o paciente que contrai, é o peritônio que grita.</div>
+  </div>
+</section>
+
+<!-- ═══════════════ ALGORITMOS ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="algoritmos">
+  <div class="mod-kicker">N7 · Raciocínio Clínico</div>
+  <h2 class="sec-h">Algoritmo clínico<br>da palpação</h2>
+  <p class="sec-tag">Cada queixa tem um endereço anatômico e uma sequência de manobras</p>
+
+  <div class="algo-box">
+    <div class="algo-title">🔴 Dor em Fossa Ilíaca Direita</div>
+    <div class="algo-steps">
+      <div class="algo-step"><span class="step-n">1</span><span>Pensar em <strong>apendicite</strong>, doença ginecológica, ileíte, linfadenite mesentérica, cálculo ureteral.</span></div>
+      <div class="algo-step"><span class="step-n">2</span><span>Fazer: palpação superficial → profunda → <strong>Blumberg, Rovsing, Psoas, Obturador</strong>.</span></div>
+      <div class="algo-step"><span class="step-n">3</span><span>Avaliar febre, náuseas, anorexia e migração da dor periumbilical.</span></div>
+      <div class="algo-step"><span class="step-n">4</span><span>Em mulher em idade fértil: <strong>β-HCG obrigatório</strong>. Gravidez ectópica e torção ovariana passam pelo portão mental.</span></div>
+    </div>
+    <div class="algo-trap">⚠️ Dor em FID não é sempre apendicite. O abdome não sabe a especialidade do médico.</div>
+  </div>
+
+  <div class="algo-box">
+    <div class="algo-title">🟡 Dor em Hipocôndrio Direito</div>
+    <div class="algo-steps">
+      <div class="algo-step"><span class="step-n">1</span><span>Pensar em <strong>colecistite, cólica biliar, hepatite, congestão hepática, abscesso hepático, pneumonia basal D</strong>.</span></div>
+      <div class="algo-step"><span class="step-n">2</span><span>Fazer: <strong>Murphy</strong>, palpação hepática, percussão hepática.</span></div>
+      <div class="algo-step"><span class="step-n">3</span><span>Avaliar febre, icterícia, náuseas e relação com gordura.</span></div>
+    </div>
+    <div class="algo-trap">⚠️ Murphy positivo sugere colecistite. Mas colangite é outro monstro: febre + icterícia + dor em HD = tríade de Charcot.</div>
+  </div>
+
+  <div class="algo-box">
+    <div class="algo-title">🔵 Dor Lombar + Febre/Disúria</div>
+    <div class="algo-steps">
+      <div class="algo-step"><span class="step-n">1</span><span>Pensar em <strong>pielonefrite, litíase complicada, hidronefrose, abscesso perirrenal</strong>.</span></div>
+      <div class="algo-step"><span class="step-n">2</span><span>Fazer: <strong>punho-percussão lombar (Giordano)</strong>.</span></div>
+      <div class="algo-step"><span class="step-n">3</span><span>Avaliar febre, calafrios, sintomas urinários, toxemia. Solicitar EAS, urocultura.</span></div>
+    </div>
+    <div class="algo-trap">⚠️ Giordano deve ser interpretado no contexto. Dor lombar muscular também dói.</div>
+  </div>
+
+  <div class="algo-box">
+    <div class="algo-title">🔴 Dor Difusa + Abdome Rígido</div>
+    <div class="algo-steps">
+      <div class="algo-step"><span class="step-n">1</span><span>Pensar em <strong>peritonite, perfuração, isquemia, pancreatite grave, abdome cirúrgico</strong>.</span></div>
+      <div class="algo-step"><span class="step-n">2</span><span>Avaliar sinais vitais. Palpação cuidadosa. Blumberg apenas se não agravar sofrimento desnecessariamente.</span></div>
+      <div class="algo-step"><span class="step-n">3</span><span>Reconheceu abdome cirúrgico → <strong>acelere a conduta</strong>.</span></div>
+    </div>
+    <div class="algo-trap">⚠️ Paciente grave não precisa de "coleção de sinais positivos" para merecer cirurgia/imagem urgente. A clínica manda.</div>
+  </div>
+
+  <div class="algo-box">
+    <div class="algo-title">🟡 Massa Abdominal</div>
+    <div class="algo-steps">
+      <div class="algo-step"><span class="step-n">1</span><span>Caracterizar: <strong>localização, tamanho, consistência, mobilidade, dor, pulsatilidade</strong>, relação com respiração, redutibilidade.</span></div>
+      <div class="algo-step"><span class="step-n">2</span><span>Massa pulsátil epigástrica em idoso com dor abdominal/lombar: <strong>pensar em aneurisma de aorta</strong>.</span></div>
+    </div>
+    <div class="algo-trap">⚠️ Não ficar "amassando" a aorta. AAA sintomático pede avaliação urgente, não curiosidade semiológica.</div>
+  </div>
+</section>
+
+<!-- ═══════════════ CASOS ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="casos">
+  <div class="mod-kicker">Prática Clínica</div>
+  <h2 class="sec-h">5 Casos Clínicos<br>Interativos</h2>
+  <p class="sec-tag">Clique para revelar manobras, hipótese e pegadinha</p>
+  <div class="case-cards" id="cases-container"></div>
+</section>
+
+<!-- ═══════════════ FLASHCARDS ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="flashcards">
+  <div class="mod-kicker">Alta Retenção</div>
+  <h2 class="sec-h">15 Flashcards</h2>
+  <div class="fc-hint">Clique para virar e ver a resposta</div>
+  <div class="fc-grid" id="fc-container"></div>
+</section>
+
+<!-- ═══════════════ PEGADINHAS ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="pegadinhas">
+  <div class="mod-kicker">Supremas de Prova</div>
+  <h2 class="sec-h">12 Pegadinhas</h2>
+  <div class="trap-list" id="trap-list"></div>
+</section>
+
+<!-- ═══════════════ OSCE ═══════════════ -->
+<div class="sec-divider"></div>
+<section class="section" id="osce">
+  <div class="mod-kicker">Simulação</div>
+  <h2 class="sec-h">Checklist OSCE<br>Interativo</h2>
+  <p class="sec-tag">Marque cada etapa conforme realiza</p>
+
+  <div class="cl-progress"><div class="cl-progress-bar" id="cl-bar"></div></div>
+  <div class="cl-score" id="cl-score">0 / 12 etapas</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div class="final-block">
+    <p>"Na semiologia abdominal, a mão não procura dor:<br>procura significado."</p>
+  </div>
+
+  <div class="signature">
+    <div class="method">Método André Rossanno de Memorização Médica · TEC 2026</div>
+    <div class="sig">Dr. André Rossanno</div>
+  </div>
+</section>
+
+</main>
+
+<!-- QUICK REVIEW OVERLAY -->
+<div id="qr-overlay">
+  <div id="qr-box">
+    <h3>⚡ Revisão de 10 Segundos</h3>
+    <ul>
+      <li>Começar longe da dor — região dolorosa por último</li>
+      <li>Direita alta = vesícula (Murphy). Direita baixa = apêndice (Blumberg, Rovsing, Psoas, Obturador)</li>
+      <li>Lombar = rim (Giordano). Esquerda alta = baço. Centro = aorta</li>
+      <li>Blumberg = dor na SOLTURA, não na pressão</li>
+      <li>Murphy = parada INSPIRATÓRIA por dor</li>
+      <li>Rovsing = aperta FIE, dói FID</li>
+      <li>Psoas positivo = apêndice retrocecal</li>
+      <li>Obturador positivo = apêndice pélvico</li>
+      <li>Giordano = punho-percussão lombar suave = rim</li>
+      <li>Defesa voluntária conversa; involuntária não negocia</li>
+      <li>Abdome em tábua = emergência cirúrgica</li>
+      <li>Mulher jovem com dor em FID → β-HCG antes de fechar apendicite</li>
+    </ul>
+    <button id="qr-close" onclick="toggleQR()">Fechar</button>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════
+   PROGRESS BAR
+════════════════════════════════ */
+window.addEventListener('scroll',()=>{
+  const total=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress-bar').style.width=(window.scrollY/total*100)+'%';
+});
+
+/* ════════════════════════════════
+   THEME
+════════════════════════════════ */
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('theme-btn').textContent=isDark?'🌙':'☀️';
+}
+
+/* ════════════════════════════════
+   SIDEBAR
+════════════════════════════════ */
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+}
+document.addEventListener('click',e=>{
+  const sb=document.getElementById('sidebar');
+  const btn=document.getElementById('mob-toggle');
+  if(!sb.contains(e.target)&&!btn.contains(e.target)) sb.classList.remove('open');
+});
+
+/* ════════════════════════════════
+   INTERSECTION OBSERVER
+════════════════════════════════ */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      const id=e.target.id;
+      document.querySelectorAll('#sidebar nav a, .nav-pills .pill').forEach(a=>{
+        a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+      });
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.section').forEach(s=>obs.observe(s));
+
+/* ════════════════════════════════
+   N-BLOCKS TOGGLE
+════════════════════════════════ */
+function toggleN(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+/* ════════════════════════════════
+   QUICK REVIEW
+════════════════════════════════ */
+function toggleQR(){
+  const ov=document.getElementById('qr-overlay');
+  ov.classList.toggle('show');
+}
+
+/* ════════════════════════════════
+   9 REGION MAP DATA
+════════════════════════════════ */
+const regions=[
+  {
+    name:'Hipocôndrio D',organ:'Fígado · Vesícula',
+    organs:['Fígado','Vesícula biliar','Flexura hepática do cólon','Rim D (superior)'],
+    dx:['Colecistite aguda','Hepatite','Colelitíase','Abscesso hepático','Congestão hepática','Pneumonia basal D'],
+    manobras:['Murphy (colecistite)','Palpação hepática','Percussão hepática','Pesquisa de icterícia']
+  },
+  {
+    name:'Epigástrio',organ:'Estômago · Pâncreas · Aorta',
+    organs:['Estômago','Pâncreas (corpo)','Aorta abdominal','Fígado (lobo esquerdo)','Duodeno'],
+    dx:['Úlcera péptica','Pancreatite aguda','Gastrite','Aneurisma de aorta','DRGE','Síndrome dispéptica'],
+    manobras:['Auscultar sopro aórtico','Palpar aorta com cautela','Sucussão gástrica','Palpação epigástrica profunda']
+  },
+  {
+    name:'Hipocôndrio E',organ:'Baço · Cauda do pâncreas',
+    organs:['Baço','Cauda do pâncreas','Estômago (fundo)','Flexura esplênica do cólon','Rim E (superior)'],
+    dx:['Esplenomegalia','Pancreatite (cauda)','Infarto esplênico','Abscesso esplênico','Ruptura de baço'],
+    manobras:['Palpação esplênica (dec. lateral D)','Traube (percussão)','Palpação bimanual do baço','Auscultar atrito esplênico']
+  },
+  {
+    name:'Flanco D',organ:'Cólon ascendente · Rim D',
+    organs:['Cólon ascendente','Rim direito','Ureter D (superior)','Músculo psoas D'],
+    dx:['Cólica nefrética D','Pielonefrite D','Colite','Neoplasia de cólon','Doença de Crohn'],
+    manobras:['Giordano D (lombar)','Palpação bimanual renal D','Palpação de cólon ascendente']
+  },
+  {
+    name:'Mesogástrio',organ:'Intestino delgado · Aorta',
+    organs:['Intestino delgado','Cólon transverso','Aorta abdominal','Mesentério','Linfonodos mesentéricos'],
+    dx:['Obstrução intestinal','Isquemia mesentérica','Doença de Crohn','Linfadenite mesentérica','Aneurisma aórtico'],
+    manobras:['Palpar aorta com delicadeza','Palpação profunda central','Auscultar sopro aórtico','Pesquisa de massa central']
+  },
+  {
+    name:'Flanco E',organ:'Cólon descendente · Rim E',
+    organs:['Cólon descendente','Rim esquerdo','Ureter E (superior)','Músculo psoas E'],
+    dx:['Cólica nefrética E','Pielonefrite E','Diverticulite (descendente)','Colite E','Neoplasia de cólon E'],
+    manobras:['Giordano E (lombar)','Palpação bimanual renal E','Palpação de cólon descendente']
+  },
+  {
+    name:'Fossa Ilíaca D',organ:'Apêndice · Ceco · Ovário D',
+    organs:['Apêndice vermiforme','Ceco','Íleo terminal','Ovário D','Trompa D','Ureter D (inferior)'],
+    dx:['Apendicite aguda','Doença de Crohn (íleo)','Cisto ovariano D','Torção ovariana D','Gravidez ectópica D','Linfadenite mesentérica'],
+    manobras:['Blumberg','Rovsing (aperta FIE)','Psoas','Obturador','Lapinsky','Aaron']
+  },
+  {
+    name:'Hipogástrio',organ:'Bexiga · Útero · Reto',
+    organs:['Bexiga','Útero','Reto','Sigmoide (distal)','Próstata (h. masc.)'],
+    dx:['Bexigoma','Cistite','Gravidez','Endometriose','Mioma','Diverticulite de sigmoide','Prostatite'],
+    manobras:['Palpação suprapúbica','Percussão suprapúbica','Pesquisa de bexigoma','Toque retal (se indicado)']
+  },
+  {
+    name:'Fossa Ilíaca E',organ:'Sigmoide · Ovário E',
+    organs:['Sigmoide','Ovário E','Trompa E','Ureter E (inferior)'],
+    dx:['Diverticulite de sigmoide','Cisto ovariano E','Torção ovariana E','Colite E','Constipação (fecaloma)'],
+    manobras:['Rovsing (comprimir aqui → ver se FID dói)','Palpação profunda de sigmoide','Pesquisa de fecaloma']
+  },
+];
+
+const regionMap=document.getElementById('region-map');
+const regionPanel=document.getElementById('region-panel');
+let activeRegion=-1;
+
+regions.forEach((r,i)=>{
+  const cell=document.createElement('div');
+  cell.className='region-cell';
+  cell.innerHTML=`<div class="r-name">${r.name}</div><div class="r-organ">${r.organ}</div>`;
+  cell.addEventListener('click',()=>{
+    if(activeRegion===i){
+      regionPanel.classList.remove('show');
+      cell.classList.remove('active');
+      activeRegion=-1;
+      return;
+    }
+    document.querySelectorAll('.region-cell').forEach(c=>c.classList.remove('active'));
+    cell.classList.add('active');
+    activeRegion=i;
+    regionPanel.innerHTML=`
+      <div class="rp-title">${r.name}</div>
+      <div class="rp-grid">
+        <div class="rp-col">
+          <h4>Órgãos</h4>
+          <ul>${r.organs.map(o=>`<li>${o}</li>`).join('')}</ul>
+        </div>
+        <div class="rp-col">
+          <h4>Diagnósticos</h4>
+          <ul>${r.dx.map(d=>`<li>${d}</li>`).join('')}</ul>
+        </div>
+        <div class="rp-col">
+          <h4>Manobras</h4>
+          <ul>${r.manobras.map(m=>`<li>${m}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+    regionPanel.classList.add('show');
+    setTimeout(()=>regionPanel.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+  });
+  regionMap.appendChild(cell);
+});
+
+/* ════════════════════════════════
+   MANEUVER CARDS DATA
+════════════════════════════════ */
+const maneuvers=[
+  {
+    num:'1',title:'Blumberg',sub:'Irritação peritoneal — dor na soltura',badge:'badge-red',badgeText:'Peritonite',
+    pergunta:'Há irritação peritoneal?',
+    tecnica:'Comprimir lenta e profundamente a parede abdominal. Depois retirar a mão de forma <strong>rápida e súbita</strong>.',
+    positivo:'Dor intensa na <strong>descompressão</strong>, não na compressão.',
+    significado:'Irritação peritoneal. Sugere apendicite complicada, peritonite, abscesso, perfuração.',
+    trap:'Blumberg positivo não é "doeu quando apertei". É <strong>doeu quando soltei</strong>. Não fazer como primeira manobra.',
+    scene:'Você pisa lentamente numa armadilha. Nada explode. Quando tira o pé, o alarme dispara. Esse é o Blumberg: a dor mora na soltura.'
+  },
+  {
+    num:'2',title:'Murphy',sub:'Vesícula que trava a inspiração',badge:'badge-yellow',badgeText:'Colecistite',
+    pergunta:'Há colecistite aguda?',
+    tecnica:'Pressionar o ponto de Murphy: rebordo costal D na linha hemiclavicular. Pedir <strong>inspiração profunda</strong>.',
+    positivo:'Paciente <strong>interrompe subitamente a inspiração</strong> por dor.',
+    significado:'Colecistite aguda. Na inspiração, vesícula inflamada desce e bate nos dedos do examinador.',
+    trap:'Murphy não é "qualquer dor em HD". É a <strong>interrupção da inspiração</strong>. Murphy semiológico ≠ Murphy ultrassonográfico.',
+    scene:'A vesícula inflamada desce como elevador durante a inspiração. Quando bate no dedo do examinador, ela puxa o freio de emergência — travou a respiração, Murphy entrou em ação.'
+  },
+  {
+    num:'3',title:'Rovsing',sub:'Aperta à esquerda, dói à direita',badge:'badge-red',badgeText:'Apendicite',
+    pergunta:'Há apendicite aguda?',
+    tecnica:'Comprimir profundamente a <strong>fossa ilíaca esquerda</strong> ou quadrante inferior esquerdo.',
+    positivo:'Dor referida em <strong>fossa ilíaca direita</strong>.',
+    significado:'Apendicite aguda. A compressão desloca gás retrógrado, distendendo o ceco e irritando o apêndice.',
+    trap:'Você examina à <strong>esquerda</strong>, mas o sinal positivo é dor à <strong>direita</strong>. Rovsing = esquerda provoca, direita confessa.',
+    scene:'Você toca o sino na porta esquerda do castelo. Quem grita é o apêndice na torre direita.'
+  },
+  {
+    num:'4',title:'Psoas',sub:'Apêndice retrocecal escondido atrás do ceco',badge:'badge-red',badgeText:'Retrocecal',
+    pergunta:'Há apendicite retrocecal?',
+    tecnica:'<strong>Ativo:</strong> dec. dorsal, elevar perna D estendida contra resistência.<br><strong>Passivo:</strong> dec. lateral E, extensão passiva do quadril D pelo examinador.',
+    positivo:'Dor em fossa ilíaca direita.',
+    significado:'Apendicite retrocecal. O apêndice está atrás do ceco, encostado no músculo iliopsoas.',
+    trap:'Apendicite retrocecal pode ter <strong>menos dor anterior típica</strong>. O apêndice está "atrás" — por isso não grita na FID anterior.',
+    scene:'O apêndice virou ninja e se escondeu atrás do ceco. Quando o psoas se mexe, o ninja é esmagado e grita.'
+  },
+  {
+    num:'5',title:'Obturador',sub:'Apêndice pélvico que dói ao girar',badge:'badge-red',badgeText:'Pélvico',
+    pergunta:'Há apendicite pélvica?',
+    tecnica:'Dec. dorsal. Flexionar quadril e joelho D a <strong>90°</strong>. Fazer <strong>rotação interna passiva</strong> do quadril D.',
+    positivo:'Dor em <strong>hipogástrio</strong> ou FID.',
+    significado:'Apendicite pélvica. A rotação tensiona o músculo obturador interno que irrita o apêndice inflamado.',
+    trap:'Obturador positivo aponta para <strong>processo pélvico</strong>. Também pode indicar abscesso pélvico ou patologia ovariana D.',
+    scene:'O apêndice desceu para o porão pélvico. Quando você gira a perna, a porta do porão range e ele denuncia a inflamação.'
+  },
+  {
+    num:'6',title:'Lapinsky',sub:'McBurney + elevação da perna direita',badge:'badge-red',badgeText:'Apendicite',
+    pergunta:'Há apendicite (reforço de McBurney)?',
+    tecnica:'Comprimir o <strong>ponto de McBurney</strong> enquanto o paciente eleva ativamente a perna D estendida.',
+    positivo:'<strong>Piora da dor</strong> na FID ou no ponto de McBurney.',
+    significado:'Apendicite aguda. A contração da musculatura comprime a área inflamada contra a mão.',
+    trap:'Lógica parecida com o Psoas, mas aqui há <strong>compressão simultânea em McBurney</strong>. McBurney com a perna ligando o alarme.',
+    scene:'O dedo aperta o ponto suspeito enquanto a perna levanta o alarme. O apêndice não tem como se esconder.'
+  },
+  {
+    num:'7',title:'Giordano',sub:'Punho-percussão lombar — acometimento renal',badge:'badge-blue',badgeText:'Renal',
+    pergunta:'A dor vem do rim ou do trato urinário alto?',
+    tecnica:'Mão aberta no <strong>ângulo costovertebral</strong> (lombar). Percutir suavemente essa mão com a <strong>borda ulnar do punho</strong> da outra mão.',
+    positivo:'Dor lombar importante à punho-percussão.',
+    significado:'Pielonefrite, litíase urinária, obstrução urinária, hidronefrose, inflamação renal/perirrenal.',
+    trap:'<strong>Não é para socar</strong> o paciente — percussão controlada. Força excessiva = falso positivo. Giordano positivo não diagnostica pielonefrite sozinho.',
+    scene:'O rim é como uma campainha escondida na parede lombar. Você não arromba a porta — toca a campainha. Se o rim inflamado gritar, Giordano acendeu.'
+  },
+  {
+    num:'8',title:'Dunphy',sub:'Tosse que denuncia a peritonite',badge:'badge-red',badgeText:'Peritonite',
+    pergunta:'Há irritação peritoneal localizada?',
+    tecnica:'Pedir para o paciente <strong>tossir</strong>.',
+    positivo:'Piora da dor em FID ou no local inflamado durante a tosse.',
+    significado:'Apendicite com irritação peritoneal. A tosse eleva a pressão intra-abdominal e movimenta o peritônio inflamado.',
+    trap:'Não é manobra de palpação direta. Tosse dolorosa também pode ocorrer em outras peritonites localizadas. Usar com contexto.',
+    scene:'O peritônio inflamado dorme leve. A tosse chacoalha o castelo — e o apêndice não perdoa.'
+  },
+];
+
+const mcContainer=document.getElementById('mc-container');
+maneuvers.forEach((m,i)=>{
+  const id=`mc-${i}`;
+  const el=document.createElement('div');
+  el.className='mc';
+  el.id=id;
+  el.innerHTML=`
+    <div class="mc-head" onclick="toggleMC('${id}')">
+      <div class="mc-num">${m.num}</div>
+      <div class="mc-info">
+        <div class="mc-title">${m.title}</div>
+        <div class="mc-sub">${m.sub}</div>
+      </div>
+      <span class="mc-badge ${m.badge}">${m.badgeText}</span>
+      <div class="mc-chevron">▼</div>
+    </div>
+    <div class="mc-body">
+      <div class="mc-inner">
+        <div class="mc-grid">
+          <div class="mc-field"><label>Pergunta clínica</label><p>${m.pergunta}</p></div>
+          <div class="mc-field"><label>Técnica</label><p>${m.tecnica}</p></div>
+          <div class="mc-field"><label>Positivo quando</label><p>${m.positivo}</p></div>
+          <div class="mc-field"><label>Significado</label><p>${m.significado}</p></div>
+        </div>
+        <div class="mc-trap">${m.trap}</div>
+        <div class="mc-scene">${m.scene}</div>
+      </div>
+    </div>`;
+  mcContainer.appendChild(el);
+});
+
+/* ── Palpação de Órgãos ── */
+const orgaos=[
+  {
+    num:'H',title:'Palpação Hepática',sub:'Fígado desce na inspiração — espere ele vir',badge:'badge-blue',badgeText:'Hepatomegalia',
+    pergunta:'O fígado está aumentado ou doloroso?',
+    tecnica:'Mão D abaixo do rebordo costal D, dedos apontando para a cabeça. Pedir <strong>inspiração profunda</strong> e aguardar a borda hepática descer até a mão.',
+    positivo:'Borda palpável abaixo do rebordo costal.',
+    significado:'<strong>Borda lisa e mole:</strong> congestão hepática. <strong>Borda dura/irregular:</strong> cirrose ou neoplasia. <strong>Dolorosa:</strong> hepatite, abscesso, colestase.',
+    trap:'<strong>Não persiga o fígado</strong> — espere ele vir. Fígado palpável ≠ sempre hepatomegalia (ptose, DPOC, biotipo).',
+    scene:'O fígado é um leão que desce na inspiração. Você não o persegue — você estende a mão e espera.'
+  },
+  {
+    num:'B',title:'Palpação Esplênica',sub:'Baço silencioso que cresce em direção à FID',badge:'badge-blue',badgeText:'Esplenomegalia',
+    pergunta:'O baço está aumentado?',
+    tecnica:'Idealmente <strong>decúbito lateral D</strong>. Mão E sustenta o gradil costal E. Mão D palpa o hipocôndrio E durante <strong>inspiração profunda</strong>.',
+    positivo:'Borda esplênica palpável abaixo do rebordo costal E.',
+    significado:'Baço normalmente não é palpável. Se palpável: infecciosas (mono, malária), hematológicas (leucemias, linfomas), hipertensão portal.',
+    trap:'Baço aumentado deve ser palpado com <strong>delicadeza</strong>. Esplenomegalia maciça não combina com mão bruta — risco de ruptura.',
+    scene:'O baço é uma lua que só aparece quando está aumentada. Ela cresce silenciosamente em direção à FID.'
+  },
+];
+
+const orgaoContainer=document.getElementById('orgao-container');
+orgaos.forEach((m,i)=>{
+  const id=`orgao-${i}`;
+  const el=document.createElement('div');
+  el.className='mc';
+  el.id=id;
+  el.innerHTML=`
+    <div class="mc-head" onclick="toggleMC('${id}')">
+      <div class="mc-num">${m.num}</div>
+      <div class="mc-info">
+        <div class="mc-title">${m.title}</div>
+        <div class="mc-sub">${m.sub}</div>
+      </div>
+      <span class="mc-badge ${m.badge}">${m.badgeText}</span>
+      <div class="mc-chevron">▼</div>
+    </div>
+    <div class="mc-body">
+      <div class="mc-inner">
+        <div class="mc-grid">
+          <div class="mc-field"><label>Pergunta clínica</label><p>${m.pergunta}</p></div>
+          <div class="mc-field"><label>Técnica</label><p>${m.tecnica}</p></div>
+          <div class="mc-field"><label>Positivo quando</label><p>${m.positivo}</p></div>
+          <div class="mc-field"><label>Significado</label><p>${m.significado}</p></div>
+        </div>
+        <div class="mc-trap">${m.trap}</div>
+        <div class="mc-scene">${m.scene}</div>
+      </div>
+    </div>`;
+  orgaoContainer.appendChild(el);
+});
+
+function toggleMC(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+/* ════════════════════════════════
+   CASES DATA
+════════════════════════════════ */
+const cases=[
+  {
+    num:'Caso 1',title:'Dor em FID — O clássico',
+    scenario:'Paciente de 22 anos, masculino, dor iniciou periumbilical há 12h e migrou para FID. Náuseas, anorexia, febre de 37,8°C. Defesa localizada em FID.',
+    manobras:['Palpação superficial e profunda em FID','Blumberg (dor à descompressão)','Rovsing (compressão em FIE)','Psoas (elevação da perna D)','Obturador (rotação interna do quadril D)'],
+    hipotese:['Apendicite aguda','Linfadenite mesentérica','Ileíte terminal (Crohn)'],
+    trap:'Apendicite não precisa ter todos os sinais positivos. Ausência de sinal não exclui o diagnóstico.'
+  },
+  {
+    num:'Caso 2',title:'Dor em HD após gordura',
+    scenario:'Mulher de 45 anos, dor em hipocôndrio direito após churrasco, irradiando para escápula D, náuseas e febre de 38,2°C. Defesa em HD.',
+    manobras:['Murphy (ponto cístico durante inspiração profunda)','Palpação hepática (descartar hepatomegalia)','Percussão hepática','Avaliar icterícia e escleras'],
+    hipotese:['Colecistite aguda','Colelitíase com cólica','Colangite (se icterícia + febre + dor = tríade de Charcot)'],
+    trap:'Murphy é INTERRUPÇÃO DA INSPIRAÇÃO por dor — não é qualquer dor em HD. Cólica biliar pode doer, mas colecistite costuma ter dor persistente + febre + Murphy.'
+  },
+  {
+    num:'Caso 3',title:'Febre + lombalgia + disúria',
+    scenario:'Paciente de 35 anos, febre de 39°C, calafrios, dor lombar D intensa, disúria e frequência urinária há 2 dias. Estado geral comprometido.',
+    manobras:['Punho-percussão lombar D (Giordano)','Punho-percussão lombar E (comparativo)','Palpação bimanual renal D','Verificar dor suprapúbica'],
+    hipotese:['Pielonefrite aguda D','Litíase urinária complicada','Abscesso perirrenal'],
+    trap:'Giordano positivo NÃO fecha pielonefrite sozinho. Sem sintomas urinários, pode ser dor muscular ou litíase. Solicitar EAS e urocultura.'
+  },
+  {
+    num:'Caso 4',title:'Abdome em tábua — Emergência',
+    scenario:'Idoso de 68 anos, dor abdominal súbita intensa, taquicardia 118bpm, sudorese, abdome rígido e difusamente doloroso. Paciente imóvel na maca.',
+    manobras:['Avaliar sinais vitais PRIMEIRO','Inspeção (paciente imóvel = peritonite)','Palpação suave para confirmar rigidez difusa','Blumberg apenas se não agravar sofrimento'],
+    hipotese:['Peritonite generalizada','Perfuração de víscera oca (úlcera péptica, divertículo)','Isquemia mesentérica','Aneurisma de aorta roto'],
+    trap:'Não transforme esse paciente em "aula longa de manobras". Reconheceu abdome cirúrgico → acelere a conduta. A clínica manda.'
+  },
+  {
+    num:'Caso 5',title:'Dor em FID em mulher jovem — Armadilha',
+    scenario:'Mulher de 28 anos, dor em FID há 6h, náuseas, atraso menstrual de 3 semanas. Temperatura 37,3°C. Defesa discreta em FID.',
+    manobras:['β-HCG ANTES de qualquer outra conclusão','Blumberg, Rovsing, Psoas, Obturador (se excluída gravidez ectópica rota)','Palpação hipogástrica','Avaliar corrimento vaginal (DIP)'],
+    hipotese:['Gravidez ectópica (prioridade com atraso menstrual)','Torção ovariana D','Cisto ovariano roto','Apendicite aguda','DIP (doença inflamatória pélvica)'],
+    trap:'A FID tem apêndice, MAS TAMBÉM TEM ovário e trompa. O abdome não sabe a especialidade do médico. β-HCG é obrigatório antes de fechar apendicite em mulher em idade fértil.'
+  },
+];
+
+const casesContainer=document.getElementById('cases-container');
+cases.forEach((c,i)=>{
+  const id=`case-${i}`;
+  const el=document.createElement('div');
+  el.className='case-card';
+  el.id=id;
+  el.innerHTML=`
+    <div class="case-head" onclick="toggleCase('${id}')">
+      <div>
+        <div class="case-num">${c.num}</div>
+        <div class="case-title">${c.title}</div>
+      </div>
+      <div class="case-chevron">▼</div>
+    </div>
+    <div class="case-body">
+      <div class="case-inner">
+        <div class="case-scenario">${c.scenario}</div>
+        <div class="case-qa">
+          <div class="case-q-col">
+            <h4>Manobras</h4>
+            <ul>${c.manobras.map(m=>`<li>${m}</li>`).join('')}</ul>
+          </div>
+          <div class="case-q-col">
+            <h4>Hipóteses</h4>
+            <ul>${c.hipotese.map(h=>`<li>${h}</li>`).join('')}</ul>
+          </div>
+          <div class="case-q-col">
+            <h4>Pegadinha</h4>
+            <ul><li>${c.trap}</li></ul>
+          </div>
+        </div>
+        <div class="case-warn">${c.trap}</div>
+      </div>
+    </div>`;
+  casesContainer.appendChild(el);
+});
+
+function toggleCase(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+/* ════════════════════════════════
+   FLASHCARDS
+════════════════════════════════ */
+const fcData=[
+  {q:'Qual a regra de ouro antes da palpação abdominal?',a:'Começar longe da área dolorosa. Região dolorosa = sempre por último.'},
+  {q:'Blumberg positivo dói em qual momento?',a:'Na descompressão brusca — não na compressão.'},
+  {q:'Murphy positivo é apenas dor em HD?',a:'Não. É interrupção da inspiração por dor. Parada abrupta da respiração.'},
+  {q:'Rovsing é feito onde e dói onde?',a:'Comprime FIE / QIE → dói em FID / QID.'},
+  {q:'Psoas positivo sugere qual posição do apêndice?',a:'Retrocecal. O apêndice encosta no músculo iliopsoas.'},
+  {q:'Obturador positivo sugere qual posição do apêndice?',a:'Pélvica. A rotação interna tensiona o obturador interno.'},
+  {q:'Punho-percussão lombar positiva sugere o quê?',a:'Processo renal/urinário alto: pielonefrite, litíase, hidronefrose.'},
+  {q:'Defesa voluntária cede com distração?',a:'Sim, geralmente. Melhor com conversa, respiração lenta e mãos aquecidas.'},
+  {q:'Defesa involuntária sugere o quê?',a:'Irritação peritoneal. Não cede com relaxamento.'},
+  {q:'Abdome em tábua significa o quê?',a:'Peritonite generalizada / perfuração de víscera oca. Emergência cirúrgica.'},
+  {q:'Baço normal é palpável?',a:'Não, em geral não é palpável em adultos.'},
+  {q:'Fígado palpável com borda dura e irregular sugere?',a:'Cirrose ou neoplasia, conforme contexto.'},
+  {q:'Dor em HD + febre + Murphy positivo sugere?',a:'Colecistite aguda.'},
+  {q:'Dor migratória periumbilical para FID sugere?',a:'Apendicite aguda.'},
+  {q:'Qual erro comum destrói o exame abdominal?',a:'Começar pela área dolorosa — o abdome fecha as portas.'},
+];
+
+const fcContainer=document.getElementById('fc-container');
+fcData.forEach((fc,i)=>{
+  const item=document.createElement('div');
+  item.className='fc-item';
+  item.innerHTML=`
+    <div class="fc-inner">
+      <div class="fc-front">
+        <div class="fc-n">CARD ${String(i+1).padStart(2,'0')}</div>
+        <div class="fc-q">${fc.q}</div>
+      </div>
+      <div class="fc-back"><div class="fc-a">${fc.a}</div></div>
+    </div>`;
+  item.addEventListener('click',()=>item.classList.toggle('flipped'));
+  fcContainer.appendChild(item);
+});
+
+/* ════════════════════════════════
+   TRAPS
+════════════════════════════════ */
+const traps=[
+  'Blumberg é dor na SOLTURA, não na pressão.',
+  'Murphy é PARADA INSPIRATÓRIA — não qualquer dor biliar.',
+  'Rovsing: aperta à ESQUERDA e dói à DIREITA.',
+  'Psoas positivo = apêndice RETROCECAL.',
+  'Obturador positivo = apêndice PÉLVICO ou processo pélvico.',
+  'Giordano não é soco — é percussão controlada e suave.',
+  'Defesa voluntária melhora com calma; defesa involuntária persiste.',
+  'Abdome em tábua é EMERGÊNCIA, não curiosidade semiológica.',
+  'Mulher jovem com dor em FID: β-HCG antes de fechar apendicite.',
+  'Massa pulsátil epigástrica em idoso: cautela — pode ser AAA.',
+  'Baço aumentado = palpação com DELICADEZA. Risco de ruptura.',
+  'Palpação boa não é forte: é progressiva, lenta e inteligente.',
+];
+
+const trapList=document.getElementById('trap-list');
+traps.forEach((t,i)=>{
+  const item=document.createElement('div');
+  item.className='trap-item';
+  item.innerHTML=`<span class="t-num">${String(i+1).padStart(2,'0')}</span><span class="t-text">${t}</span>`;
+  trapList.appendChild(item);
+});
+
+/* ════════════════════════════════
+   CHECKLIST OSCE
+════════════════════════════════ */
+const clItems=[
+  'Higienizou as mãos antes do exame',
+  'Explicou o procedimento ao paciente',
+  'Posicionou o paciente corretamente (decúbito dorsal, joelhos fletidos)',
+  'Aqueceu as mãos antes de tocar',
+  'Começou longe da área de maior dor',
+  'Realizou palpação superficial nas 9 regiões',
+  'Realizou palpação profunda nas 9 regiões',
+  'Observou a face do paciente durante o exame',
+  'Realizou a manobra adequada à hipótese clínica',
+  'Interpretou corretamente o sinal positivo',
+  'Diferenciou defesa voluntária de involuntária',
+  'Reconheceu sinais de gravidade e priorizou conduta',
+];
+
+const checklist=document.getElementById('checklist');
+const clBar=document.getElementById('cl-bar');
+const clScore=document.getElementById('cl-score');
+let checked=0;
+
+clItems.forEach((item,i)=>{
+  const div=document.createElement('div');
+  div.className='cl-item';
+  div.id=`cl-${i}`;
+  div.innerHTML=`<div class="cl-box">✓</div><div class="cl-label">${item}</div>`;
+  div.addEventListener('click',()=>{
+    const wasChecked=div.classList.contains('checked');
+    div.classList.toggle('checked');
+    checked+=wasChecked?-1:1;
+    clBar.style.width=(checked/clItems.length*100)+'%';
+    clScore.textContent=`${checked} / ${clItems.length} etapas`;
+  });
+  checklist.appendChild(div);
+});
+</script>
+</body>
+</html>
