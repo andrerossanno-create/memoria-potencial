@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRE chama TRC, não CDI isolado | Atlas Mental Interativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ===== TOKENS ===== */
+:root{
+  --navy:#06172E;
+  --navy2:#0D2137;
+  --navy3:#112947;
+  --surface:#0F2240;
+  --surface2:#162E50;
+  --teal:#1282A2;
+  --teal2:#0FA3C8;
+  --gold:#F4B942;
+  --red:#E63946;
+  --blue:#2563EB;
+  --blue2:#3B82F6;
+  --purple:#7C3AED;
+  --purple2:#A78BFA;
+  --green:#2DC653;
+  --yellow:#FFD60A;
+  --gray:#8D99AE;
+  --border:rgba(18,130,162,0.22);
+  --text:#E8F4FD;
+  --text2:#A8C7DA;
+  --text3:#5E7D96;
+  --font:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --script:'Dancing Script',cursive;
+  --r-teal:0 0 28px rgba(18,130,162,0.45);
+  --r-red:0 0 28px rgba(230,57,70,0.45);
+  --r-gold:0 0 28px rgba(244,185,66,0.45);
+  --r-purple:0 0 28px rgba(124,58,237,0.45);
+  --r-blue:0 0 28px rgba(37,99,235,0.45);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--navy);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.65;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* ===== BG EFFECTS ===== */
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(18,130,162,0.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(18,130,162,0.035) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.bg-radials{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 10%,rgba(18,130,162,0.13) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 80%,rgba(124,58,237,0.08) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%,rgba(230,57,70,0.04) 0%,transparent 60%);
+}
+
+/* ===== ECG SVG BG ===== */
+.ecg-bg{
+  position:fixed;bottom:0;left:0;right:0;height:80px;
+  opacity:0.07;pointer-events:none;z-index:0;overflow:hidden;
+}
+.ecg-bg svg{width:200%;height:100%;animation:ecgScroll 5s linear infinite}
+@keyframes ecgScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ===== HEADER ===== */
+.hdr{
+  position:sticky;top:0;z-index:200;
+  background:rgba(6,23,46,0.92);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.hdr-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;height:62px;gap:1rem;
+}
+.hdr-logo{
+  font-family:var(--mono);font-size:0.68rem;
+  color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;
+  white-space:nowrap;flex-shrink:0;
+}
+.hdr-logo strong{color:var(--gold)}
+.hdr-nav{display:flex;gap:0.2rem;flex-wrap:wrap;justify-content:center}
+.hdr-nav a{
+  font-family:var(--mono);font-size:0.62rem;letter-spacing:0.06em;
+  padding:0.3rem 0.6rem;border-radius:4px;text-decoration:none;
+  color:var(--text3);border:1px solid transparent;transition:all 0.2s;
+}
+.hdr-nav a:hover,.hdr-nav a.active{color:var(--teal);border-color:var(--teal);background:rgba(18,130,162,0.1)}
+.hdr-modes{display:flex;gap:0.5rem;flex-shrink:0}
+.btn-m{
+  font-family:var(--mono);font-size:0.62rem;font-weight:600;letter-spacing:0.06em;
+  padding:0.32rem 0.8rem;border-radius:20px;border:1px solid;
+  cursor:pointer;transition:all 0.25s;white-space:nowrap;
+}
+.btn-rev{color:var(--green);border-color:var(--green);background:transparent}
+.btn-rev.on,.btn-rev:hover{background:var(--green);color:var(--navy)}
+.btn-prof{color:var(--gold);border-color:var(--gold);background:transparent}
+.btn-prof.on,.btn-prof:hover{background:var(--gold);color:var(--navy)}
+.btn-pega{color:var(--yellow);border-color:var(--yellow);background:transparent}
+.btn-pega.on,.btn-pega:hover{background:var(--yellow);color:var(--navy)}
+
+/* ===== PROGRESS DOTS ===== */
+.prog{
+  position:fixed;right:1.2rem;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:0.55rem;z-index:150;
+}
+.prog-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(18,130,162,0.3);
+  cursor:pointer;transition:all 0.25s;
+}
+.prog-dot.on{background:var(--teal);border-color:var(--teal);box-shadow:var(--r-teal);transform:scale(1.4)}
+.prog-dot:hover{background:var(--gold);border-color:var(--gold)}
+@media(max-width:768px){.prog{display:none}}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;z-index:1;
+  padding:5.5rem 1.5rem 4.5rem;
+  text-align:center;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(18,130,162,0.14),transparent 65%);
+}
+.hero-kicker{
+  font-family:var(--mono);font-size:0.68rem;letter-spacing:0.2em;
+  color:var(--teal);text-transform:uppercase;
+  margin-bottom:1.4rem;position:relative;z-index:1;
+  animation:fadeUp 0.7s ease both;
+}
+.hero-title{
+  font-size:clamp(2.2rem,5.5vw,4rem);font-weight:900;
+  line-height:1.08;margin-bottom:0.8rem;
+  position:relative;z-index:1;
+  animation:fadeUp 0.7s ease 0.1s both;
+}
+.hero-title .accent-red{color:var(--red)}
+.hero-title .accent-blue{color:var(--blue2)}
+.hero-title .accent-gold{color:var(--gold)}
+.hero-sub{
+  font-size:0.95rem;color:var(--text2);
+  max-width:640px;margin:0 auto 1rem;
+  position:relative;z-index:1;
+  animation:fadeUp 0.7s ease 0.2s both;
+}
+.hero-manifesto{
+  display:inline-block;
+  background:linear-gradient(135deg,rgba(230,57,70,0.12),rgba(18,130,162,0.08));
+  border:1px solid rgba(230,57,70,0.3);border-radius:12px;
+  padding:1.1rem 2rem;margin:1.2rem auto;
+  font-size:1.3rem;font-weight:900;letter-spacing:0.02em;
+  color:var(--red);position:relative;z-index:1;
+  animation:fadeUp 0.7s ease 0.3s both;
+  max-width:680px;
+}
+.hero-btns{
+  display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;
+  position:relative;z-index:1;
+  animation:fadeUp 0.7s ease 0.4s both;margin-top:1.5rem;
+}
+.hero-btn{
+  font-family:var(--mono);font-size:0.72rem;font-weight:600;
+  padding:0.65rem 1.4rem;border-radius:8px;text-decoration:none;
+  cursor:pointer;transition:all 0.25s;letter-spacing:0.08em;
+  border:1px solid;
+}
+.hb-primary{background:var(--teal);color:#fff;border-color:var(--teal)}
+.hb-primary:hover{background:var(--teal2);box-shadow:var(--r-teal)}
+.hb-outline{background:transparent;color:var(--text2);border-color:rgba(255,255,255,0.2)}
+.hb-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== SECTION WRAPPER ===== */
+.sec{
+  position:relative;z-index:1;
+  max-width:1200px;margin:0 auto;padding:3.5rem 1.5rem;
+}
+.sec-title{
+  font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;
+  margin-bottom:0.4rem;display:flex;align-items:center;gap:0.75rem;
+}
+.n-badge{
+  font-family:var(--mono);font-size:0.62rem;
+  background:var(--teal);color:#fff;
+  padding:0.2rem 0.55rem;border-radius:4px;letter-spacing:0.1em;
+  flex-shrink:0;
+}
+.sec-sub{font-size:0.88rem;color:var(--text3);margin-bottom:2rem;font-style:italic}
+.hr{
+  height:1px;margin:3.5rem 0;
+  background:linear-gradient(90deg,transparent,rgba(18,130,162,0.4),transparent);
+}
+
+/* ===== CONCEPT CENTRAL ===== */
+.concept-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.2rem;margin-top:1.5rem;
+}
+.concept-card{
+  border-radius:14px;padding:1.6rem;
+  border:1px solid;transition:all 0.3s;
+}
+.cc-green{
+  border-color:rgba(45,198,83,0.3);
+  background:rgba(45,198,83,0.05);
+}
+.cc-green:hover{border-color:var(--green);box-shadow:0 0 24px rgba(45,198,83,0.2)}
+.cc-red{
+  border-color:rgba(230,57,70,0.3);
+  background:rgba(230,57,70,0.05);
+}
+.cc-red:hover{border-color:var(--red);box-shadow:var(--r-red)}
+.cc-blue{
+  border-color:rgba(37,99,235,0.3);
+  background:rgba(37,99,235,0.05);
+}
+.cc-blue:hover{border-color:var(--blue2);box-shadow:var(--r-blue)}
+.cc-purple{
+  border-color:rgba(124,58,237,0.3);
+  background:rgba(124,58,237,0.05);
+}
+.cc-purple:hover{border-color:var(--purple2);box-shadow:var(--r-purple)}
+.concept-card h4{
+  font-size:1rem;font-weight:900;margin-bottom:0.7rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.concept-card p,.concept-card li{
+  font-size:0.87rem;color:var(--text2);line-height:1.75;
+}
+.concept-card ul{list-style:none}
+.concept-card ul li::before{content:"→ ";color:var(--teal)}
+
+.mantra-box{
+  margin-top:2rem;
+  background:linear-gradient(135deg,rgba(18,130,162,0.12),rgba(124,58,237,0.08));
+  border:1px solid rgba(244,185,66,0.3);border-radius:14px;
+  padding:1.8rem 2rem;text-align:center;
+}
+.mantra-box p{font-size:1.1rem;font-weight:800;line-height:1.7;color:var(--gold)}
+.mantra-box small{display:block;margin-top:0.6rem;font-size:0.8rem;color:var(--text3);font-style:italic}
+
+/* ===== TEATRO ===== */
+.teatro-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.2rem;margin-top:1.5rem;
+}
+.sala{
+  border-radius:16px;padding:1.8rem;
+  position:relative;overflow:hidden;
+  border:1px solid;transition:all 0.3s;cursor:default;
+}
+.sala-number{
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.15em;
+  text-transform:uppercase;margin-bottom:1rem;opacity:0.6;
+}
+.sala-icon{font-size:2.4rem;margin-bottom:0.8rem;display:block}
+.sala-name{font-size:1.2rem;font-weight:900;margin-bottom:0.6rem}
+.sala-desc{font-size:0.83rem;color:var(--text2);line-height:1.7;margin-bottom:0.8rem}
+.sala-frase{
+  font-style:italic;font-size:0.85rem;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:0.8rem;color:var(--text3);
+}
+
+.sala-bre{border-color:rgba(141,153,174,0.3);background:rgba(141,153,174,0.05)}
+.sala-bre:hover{border-color:var(--gray);box-shadow:0 0 20px rgba(141,153,174,0.15)}
+.sala-bre .sala-name{color:var(--gray)}
+
+.sala-trc{border-color:rgba(37,99,235,0.35);background:rgba(37,99,235,0.06)}
+.sala-trc:hover{border-color:var(--blue2);box-shadow:var(--r-blue)}
+.sala-trc .sala-name{color:var(--blue2)}
+
+.sala-cdi{border-color:rgba(230,57,70,0.35);background:rgba(230,57,70,0.06)}
+.sala-cdi:hover{border-color:var(--red);box-shadow:var(--r-red)}
+.sala-cdi .sala-name{color:var(--red)}
+
+.sala-trcd{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.07)}
+.sala-trcd:hover{border-color:var(--purple2);box-shadow:var(--r-purple)}
+.sala-trcd .sala-name{
+  background:linear-gradient(135deg,var(--blue2),var(--purple2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ===== NOMENCLATURA TABLE ===== */
+.nom-table{
+  width:100%;border-collapse:collapse;
+  border-radius:14px;overflow:hidden;
+  border:1px solid var(--border);margin-top:1.5rem;
+}
+.nom-table thead{background:rgba(18,130,162,0.15)}
+.nom-table th{
+  padding:0.9rem 1.2rem;text-align:left;
+  font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;
+  color:var(--teal);text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+.nom-table td{
+  padding:0.85rem 1.2rem;border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:0.85rem;vertical-align:middle;
+}
+.nom-table tr:last-child td{border-bottom:none}
+.nom-table tr:hover td{background:rgba(18,130,162,0.05)}
+.badge-nome{
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;
+  padding:0.2rem 0.6rem;border-radius:4px;
+}
+.bn-blue{background:rgba(37,99,235,0.2);color:var(--blue2);border:1px solid rgba(37,99,235,0.3)}
+.bn-purple{background:rgba(124,58,237,0.2);color:var(--purple2);border:1px solid rgba(124,58,237,0.3)}
+.bn-red{background:rgba(230,57,70,0.2);color:var(--red);border:1px solid rgba(230,57,70,0.3)}
+.bn-gray{background:rgba(141,153,174,0.15);color:var(--gray);border:1px solid rgba(141,153,174,0.2)}
+
+.erro-box{
+  margin-top:1.5rem;
+  background:rgba(255,214,10,0.05);border:1px solid rgba(255,214,10,0.3);
+  border-radius:12px;padding:1.2rem 1.5rem;
+}
+.erro-box-title{
+  font-family:var(--mono);font-size:0.64rem;color:var(--yellow);
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.5rem;
+}
+.erro-box p{font-size:0.87rem;color:var(--text2)}
+.erro-box strong{color:var(--yellow)}
+
+/* ===== FORMULA TRC ===== */
+.formula-wrap{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:2rem;margin-top:1.5rem;
+  text-align:center;
+}
+.formula-items{
+  display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:center;gap:0.6rem;margin-bottom:1.5rem;
+}
+.formula-item{
+  font-size:0.9rem;font-weight:700;padding:0.6rem 1.2rem;
+  border-radius:8px;border:1px solid;
+}
+.fi-blue{border-color:rgba(37,99,235,0.4);color:var(--blue2);background:rgba(37,99,235,0.08)}
+.formula-plus{color:var(--teal);font-size:1.4rem;font-weight:300}
+.formula-eq{
+  font-size:1.6rem;font-weight:900;color:var(--gold);
+  animation:pulseGold 2.5s ease-in-out infinite;
+}
+@keyframes pulseGold{
+  0%,100%{text-shadow:0 0 10px rgba(244,185,66,0.3)}
+  50%{text-shadow:0 0 30px rgba(244,185,66,0.8)}
+}
+
+.escada{
+  display:flex;flex-direction:column;gap:0;
+  margin-top:1.5rem;max-width:600px;margin-left:auto;margin-right:auto;
+}
+.degrau{
+  border-radius:10px;padding:0.9rem 1.4rem;
+  border-left:4px solid;margin-bottom:0.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all 0.25s;
+}
+.degrau:hover{transform:translateX(4px)}
+.d1{border-color:var(--green);background:rgba(45,198,83,0.08)}
+.d2{border-color:var(--teal);background:rgba(18,130,162,0.08)}
+.d3{border-color:var(--gold);background:rgba(244,185,66,0.06)}
+.d4{border-color:var(--gray);background:rgba(141,153,174,0.05)}
+.degrau-label{font-size:0.87rem;font-weight:700}
+.degrau-num{
+  font-family:var(--mono);font-size:0.65rem;
+  padding:0.15rem 0.5rem;border-radius:4px;
+}
+.dn1{background:rgba(45,198,83,0.2);color:var(--green)}
+.dn2{background:rgba(18,130,162,0.2);color:var(--teal)}
+.dn3{background:rgba(244,185,66,0.15);color:var(--gold)}
+.dn4{background:rgba(141,153,174,0.15);color:var(--gray)}
+
+/* ===== TRC-P vs TRC-D ===== */
+.compare-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+  margin-top:1.5rem;
+}
+@media(max-width:650px){.compare-grid{grid-template-columns:1fr}}
+.compare-card{
+  border-radius:16px;padding:2rem;
+  border:1px solid;transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.compare-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.cc-trcp{
+  border-color:rgba(37,99,235,0.4);
+  background:linear-gradient(160deg,rgba(37,99,235,0.08),rgba(6,23,46,0.6));
+}
+.cc-trcp::after{background:var(--blue2)}
+.cc-trcp:hover{border-color:var(--blue2);box-shadow:var(--r-blue)}
+
+.cc-trcd{
+  border-color:rgba(124,58,237,0.4);
+  background:linear-gradient(160deg,rgba(124,58,237,0.08),rgba(6,23,46,0.6));
+}
+.cc-trcd::after{background:linear-gradient(90deg,var(--blue2),var(--purple2))}
+.cc-trcd:hover{border-color:var(--purple2);box-shadow:var(--r-purple)}
+
+.compare-icon{font-size:2.8rem;margin-bottom:1rem}
+.compare-name{font-size:1.5rem;font-weight:900;margin-bottom:0.5rem}
+.cc-trcp .compare-name{color:var(--blue2)}
+.cc-trcd .compare-name{
+  background:linear-gradient(135deg,var(--blue2),var(--purple2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.compare-tag{
+  font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;
+  letter-spacing:0.12em;padding:0.18rem 0.6rem;border-radius:4px;
+  display:inline-block;margin-bottom:1rem;
+}
+.t-blue{background:rgba(37,99,235,0.15);color:var(--blue2);border:1px solid rgba(37,99,235,0.3)}
+.t-purple{background:rgba(124,58,237,0.15);color:var(--purple2);border:1px solid rgba(124,58,237,0.3)}
+.compare-list{list-style:none;margin-bottom:1.2rem}
+.compare-list li{
+  font-size:0.85rem;color:var(--text2);padding:0.3rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;gap:0.5rem;
+}
+.compare-list li::before{color:var(--teal);flex-shrink:0}
+.cc-trcp .compare-list li::before{content:"✓";color:var(--blue2)}
+.cc-trcd .compare-list li::before{content:"✓";color:var(--purple2)}
+.compare-frase{
+  font-style:italic;font-size:0.9rem;font-weight:700;
+  border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;
+}
+.cc-trcp .compare-frase{color:var(--blue2)}
+.cc-trcd .compare-frase{color:var(--purple2)}
+
+.decisao-box{
+  margin-top:1.5rem;text-align:center;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:1.5rem;
+}
+.decisao-box h4{font-size:1rem;font-weight:800;color:var(--gold);margin-bottom:1rem}
+.decisao-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0.75rem}
+.dec-item{
+  padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;font-weight:700;border:1px solid;
+}
+.dec-q{border-color:rgba(244,185,66,0.4);color:var(--gold);background:rgba(244,185,66,0.08)}
+.dec-arrow{font-size:1.2rem;color:var(--teal)}
+.dec-sim{border-color:rgba(45,198,83,0.4);color:var(--green);background:rgba(45,198,83,0.08)}
+.dec-nao{border-color:rgba(141,153,174,0.3);color:var(--gray);background:rgba(141,153,174,0.05)}
+
+/* ===== PRIMÁRIA VS SECUNDÁRIA ===== */
+.primvsec-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;
+}
+@media(max-width:650px){.primvsec-grid{grid-template-columns:1fr}}
+.pvs-card{border-radius:16px;padding:2rem;border:1px solid;transition:all 0.3s}
+.pvs-primaria{
+  border-color:rgba(37,99,235,0.4);
+  background:linear-gradient(145deg,rgba(37,99,235,0.08),rgba(6,23,46,0.7));
+}
+.pvs-primaria:hover{border-color:var(--blue2);box-shadow:var(--r-blue)}
+.pvs-secundaria{
+  border-color:rgba(230,57,70,0.4);
+  background:linear-gradient(145deg,rgba(230,57,70,0.08),rgba(6,23,46,0.7));
+}
+.pvs-secundaria:hover{border-color:var(--red);box-shadow:var(--r-red)}
+.pvs-tag{
+  font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;
+  letter-spacing:0.12em;padding:0.18rem 0.6rem;border-radius:4px;
+  display:inline-block;margin-bottom:1rem;
+}
+.pt-blue{background:rgba(37,99,235,0.15);color:var(--blue2);border:1px solid rgba(37,99,235,0.3)}
+.pt-red{background:rgba(230,57,70,0.15);color:var(--red);border:1px solid rgba(230,57,70,0.3)}
+.pvs-title{font-size:1.3rem;font-weight:900;margin-bottom:0.5rem}
+.pvs-primaria .pvs-title{color:var(--blue2)}
+.pvs-secundaria .pvs-title{color:var(--red)}
+.pvs-def{font-size:0.85rem;color:var(--text2);margin-bottom:1rem;line-height:1.7}
+.pvs-example{
+  background:rgba(255,255,255,0.04);border-radius:8px;
+  padding:0.8rem 1rem;font-size:0.82rem;color:var(--text3);
+  margin-bottom:1rem;font-style:italic;
+}
+.pvs-frase{
+  font-style:italic;font-size:0.88rem;font-weight:700;
+  border-top:1px solid rgba(255,255,255,0.08);padding-top:0.8rem;
+}
+.pvs-primaria .pvs-frase{color:var(--blue2)}
+.pvs-secundaria .pvs-frase{color:var(--red)}
+
+/* ===== MNEMÔNICO ===== */
+.mne-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.5rem;
+}
+@media(max-width:700px){.mne-grid{grid-template-columns:1fr}}
+.mne-block{
+  border-radius:14px;padding:1.8rem;border:1px solid;transition:all 0.3s;
+}
+.mb-gray{border-color:rgba(141,153,174,0.3);background:rgba(141,153,174,0.05)}
+.mb-gray:hover{border-color:var(--gray);box-shadow:0 0 20px rgba(141,153,174,0.15)}
+.mb-red{border-color:rgba(230,57,70,0.3);background:rgba(230,57,70,0.05)}
+.mb-red:hover{border-color:var(--red);box-shadow:var(--r-red)}
+.mb-purple{border-color:rgba(124,58,237,0.3);background:rgba(124,58,237,0.05)}
+.mb-purple:hover{border-color:var(--purple2);box-shadow:var(--r-purple)}
+.mne-word{font-size:2.6rem;font-weight:900;letter-spacing:0.12em;margin-bottom:1rem;line-height:1}
+.mne-gray{color:var(--gray)}
+.mne-red{color:var(--red)}
+.mne-purple{
+  background:linear-gradient(135deg,var(--blue2),var(--purple2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.mne-letra{
+  display:flex;align-items:baseline;gap:0.75rem;
+  padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.mne-letra:last-of-type{border-bottom:none}
+.mne-l{
+  font-family:var(--mono);font-size:1.4rem;font-weight:600;
+  width:1.8rem;flex-shrink:0;text-align:center;
+}
+.ml-gray{color:var(--gray)}
+.ml-red{color:var(--red)}
+.ml-purple{color:var(--purple2)}
+.mne-def{font-size:0.83rem;color:var(--text2);line-height:1.5}
+.mne-frase{
+  margin-top:1rem;font-style:italic;font-weight:700;font-size:0.88rem;
+  border-top:1px solid rgba(255,255,255,0.08);padding-top:0.9rem;
+}
+.mf-gray{color:var(--gray)}
+.mf-red{color:var(--red)}
+.mf-purple{color:var(--purple2)}
+
+/* ===== FLUXOGRAMA ===== */
+.fluxo-wrap{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:2rem;margin-top:1.5rem;
+}
+.fluxo-estado{
+  background:var(--navy);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;max-width:600px;margin:0 auto;
+  text-align:center;
+}
+.fluxo-pergunta{
+  font-size:1rem;font-weight:800;color:var(--gold);margin-bottom:1.2rem;line-height:1.5;
+}
+.fluxo-context{
+  font-size:0.82rem;color:var(--text3);margin-bottom:1.2rem;font-style:italic;
+}
+.fluxo-btns{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
+.fluxo-btn{
+  font-family:var(--mono);font-size:0.72rem;font-weight:600;
+  padding:0.6rem 1.4rem;border-radius:8px;border:1px solid;
+  cursor:pointer;transition:all 0.25s;letter-spacing:0.07em;
+}
+.fb-sim{color:var(--green);border-color:var(--green);background:transparent}
+.fb-sim:hover{background:var(--green);color:var(--navy)}
+.fb-nao{color:var(--red);border-color:var(--red);background:transparent}
+.fb-nao:hover{background:var(--red);color:#fff}
+.fluxo-resultado{
+  text-align:center;padding:1.5rem;
+  background:rgba(18,130,162,0.05);border-radius:10px;margin-top:1rem;
+}
+.fluxo-resultado h3{font-size:1.1rem;font-weight:900;margin-bottom:0.5rem}
+.fluxo-resultado p{font-size:0.87rem;color:var(--text2)}
+.fluxo-progress{
+  display:flex;gap:0.35rem;justify-content:center;margin-bottom:1.2rem;flex-wrap:wrap;
+}
+.fp-dot{
+  width:24px;height:4px;border-radius:2px;
+  background:rgba(255,255,255,0.1);transition:background 0.3s;
+}
+.fp-dot.done{background:var(--teal)}
+.fp-dot.current{background:var(--gold)}
+.fluxo-reiniciar{
+  font-family:var(--mono);font-size:0.68rem;
+  padding:0.5rem 1rem;border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--text3);cursor:pointer;
+  margin-top:1rem;transition:all 0.2s;
+}
+.fluxo-reiniciar:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ===== PEGADINHAS ===== */
+.pegas-grid{display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem}
+.pega-item{
+  background:rgba(255,214,10,0.04);border:1px solid rgba(255,214,10,0.2);
+  border-radius:12px;overflow:hidden;cursor:pointer;transition:all 0.25s;
+}
+.pega-item:hover{border-color:rgba(255,214,10,0.4);background:rgba(255,214,10,0.07)}
+.pega-header{
+  padding:1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;
+}
+.pega-q{font-size:0.87rem;font-weight:700;color:var(--yellow)}
+.pega-q::before{content:"⚠️ "}
+.pega-arrow{color:var(--yellow);transition:transform 0.3s;font-size:0.9rem}
+.pega-item.open .pega-arrow{transform:rotate(180deg)}
+.pega-body{
+  max-height:0;overflow:hidden;transition:max-height 0.35s ease;
+}
+.pega-item.open .pega-body{max-height:200px}
+.pega-resp{
+  padding:0 1.4rem 1.1rem;font-size:0.85rem;color:var(--text2);
+  border-top:1px solid rgba(255,214,10,0.1);padding-top:0.75rem;
+  margin:0 1.4rem 1.1rem;line-height:1.7;
+}
+.pega-resp strong{color:var(--yellow)}
+
+/* ===== CASOS ===== */
+.casos-grid{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+.caso-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;transition:all 0.25s;
+}
+.caso-header{padding:1.2rem 1.5rem;cursor:default}
+.caso-num{
+  font-family:var(--mono);font-size:0.62rem;color:var(--teal);
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.4rem;
+}
+.caso-texto{font-size:0.9rem;font-weight:700;line-height:1.5}
+.caso-btn{
+  width:100%;padding:0.8rem 1.5rem;
+  font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;
+  background:rgba(18,130,162,0.12);border:none;border-top:1px solid var(--border);
+  color:var(--teal);cursor:pointer;text-align:left;transition:background 0.2s;
+}
+.caso-btn:hover{background:rgba(18,130,162,0.22)}
+.caso-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.caso-card.open .caso-answer{max-height:300px}
+.caso-answer-inner{
+  padding:1.1rem 1.5rem;border-top:1px solid var(--border);
+}
+.caso-verdict{
+  font-family:var(--mono);font-size:0.68rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.cv-blue{color:var(--blue2)}
+.cv-purple{color:var(--purple2)}
+.cv-red{color:var(--red)}
+.cv-gray{color:var(--gray)}
+.caso-explain{font-size:0.85rem;color:var(--text2);line-height:1.7}
+
+/* ===== QUIZ ===== */
+.quiz-wrap{display:flex;flex-direction:column;gap:1.2rem;margin-top:1.5rem}
+.quiz-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+}
+.quiz-top{padding:1rem 1.5rem 0}
+.quiz-num{
+  font-family:var(--mono);font-size:0.62rem;color:var(--teal);
+  text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.3rem;
+}
+.quiz-q{font-size:0.92rem;font-weight:700;padding:0 1.5rem 1.1rem;line-height:1.5}
+.quiz-reveal{
+  width:100%;padding:0.85rem 1.5rem;
+  font-family:var(--mono);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;
+  background:rgba(18,130,162,0.12);border:none;border-top:1px solid var(--border);
+  color:var(--teal);cursor:pointer;text-align:left;transition:background 0.2s;
+}
+.quiz-reveal:hover{background:rgba(18,130,162,0.22)}
+.quiz-ans{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.quiz-card.answered .quiz-ans{max-height:250px}
+.quiz-ans-inner{padding:1.1rem 1.5rem;border-top:1px solid var(--border)}
+.quiz-ans p{font-size:0.87rem;color:var(--text2);line-height:1.7}
+.quiz-ans strong{color:var(--teal)}
+
+/* ===== RESUMO ===== */
+.resumo-box{
+  background:linear-gradient(135deg,rgba(18,130,162,0.1),rgba(124,58,237,0.06));
+  border:1px solid rgba(244,185,66,0.25);border-radius:16px;
+  padding:2.5rem;margin-top:1.5rem;
+}
+.resumo-timer{
+  font-family:var(--mono);font-size:3rem;font-weight:600;
+  color:var(--gold);text-align:center;line-height:1;margin-bottom:0.3rem;
+  animation:pulseGold 2.5s ease-in-out infinite;
+}
+.resumo-timer-label{
+  text-align:center;font-size:0.85rem;color:var(--text3);margin-bottom:2rem;
+}
+.resumo-pills{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:2rem}
+.r-pill{
+  padding:0.5rem 1.1rem;border-radius:20px;font-size:0.82rem;font-weight:700;
+}
+.rp-blue{background:rgba(37,99,235,0.15);color:var(--blue2);border:1px solid rgba(37,99,235,0.3)}
+.rp-red{background:rgba(230,57,70,0.15);color:var(--red);border:1px solid rgba(230,57,70,0.3)}
+.rp-purple{background:rgba(124,58,237,0.15);color:var(--purple2);border:1px solid rgba(124,58,237,0.3)}
+.rp-gold{background:rgba(244,185,66,0.1);color:var(--gold);border:1px solid rgba(244,185,66,0.2)}
+.rp-gray{background:rgba(141,153,174,0.1);color:var(--gray);border:1px solid rgba(141,153,174,0.2)}
+
+/* ===== FRASES ===== */
+.frases-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1rem;margin-top:1.5rem;
+}
+.frase-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  border-left:4px solid var(--gold);
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.frase-card::before{
+  content:'"';font-size:6rem;color:rgba(244,185,66,0.04);
+  position:absolute;top:-1.2rem;left:0.5rem;font-family:Georgia,serif;line-height:1;
+}
+.frase-card:hover{border-color:var(--gold);box-shadow:var(--r-gold);transform:translateY(-3px)}
+.frase-card p{font-size:0.95rem;font-style:italic;line-height:1.65;position:relative;z-index:1}
+.frase-card .sig{
+  font-family:var(--script);font-size:1rem;color:var(--gold);
+  margin-top:0.75rem;display:block;
+}
+
+/* ===== MODO REVISÃO ===== */
+.modo-revisao .detalhe{display:none!important}
+.modo-revisao .pega-body{max-height:0!important}
+.modo-revisao .caso-answer{max-height:0!important}
+.modo-revisao .quiz-ans{max-height:0!important}
+
+/* ===== MODO PROFESSOR ===== */
+.prof-note{
+  background:rgba(244,185,66,0.05);border:1px solid rgba(244,185,66,0.2);
+  border-radius:8px;padding:0.8rem 1rem;margin-top:0.75rem;
+  font-size:0.82rem;color:var(--gold);
+  display:none;
+}
+.modo-professor .prof-note{display:block}
+
+/* ===== PEGADINHAS TOGGLE ===== */
+.pegas-section{display:none}
+.show-pegas .pegas-section{display:block}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;padding:3rem 1.5rem;
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,0.15);position:relative;z-index:1;
+}
+footer .sig-footer{
+  font-family:var(--script);font-size:2.2rem;
+  color:var(--gold);margin-bottom:0.5rem;
+}
+footer p{font-size:0.74rem;color:var(--text3);margin-bottom:0.2rem;line-height:1.7}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.reveal{
+  opacity:0;transform:translateY(16px);
+  transition:opacity 0.55s ease,transform 0.55s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hdr-inner{flex-wrap:wrap;height:auto;padding:0.75rem 0}
+  .hdr-nav{order:3;width:100%}
+  .hdr-modes{order:2}
+  .nom-table{font-size:0.8rem}
+  .nom-table th,.nom-table td{padding:0.7rem}
+}
+@media(max-width:480px){
+  .hero-title{font-size:1.8rem}
+  .sec-title{font-size:1.3rem}
+  .mne-word{font-size:2rem}
+  .formula-items{gap:0.4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg-grid"></div>
+<div class="bg-radials"></div>
+<div class="ecg-bg">
+  <svg viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <polyline points="0,40 100,40 120,40 135,8 145,72 155,12 165,40 185,40 285,40 305,40 320,8 330,72 340,12 350,40 370,40 470,40 490,40 505,8 515,72 525,12 535,40 555,40 655,40 675,40 690,8 700,72 710,12 720,40 740,40 840,40 860,40 875,8 885,72 895,12 905,40 925,40 1025,40 1045,40 1060,8 1070,72 1080,12 1090,40 1110,40 1200,40" stroke="#1282A2" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<!-- PROGRESS DOTS -->
+<div class="prog" id="progNav">
+  <div class="prog-dot on" onclick="goTo('n1')" title="N1"></div>
+  <div class="prog-dot" onclick="goTo('n2')" title="N2"></div>
+  <div class="prog-dot" onclick="goTo('n3')" title="N3"></div>
+  <div class="prog-dot" onclick="goTo('n4')" title="N4"></div>
+  <div class="prog-dot" onclick="goTo('n5')" title="N5"></div>
+  <div class="prog-dot" onclick="goTo('n6')" title="N6"></div>
+  <div class="prog-dot" onclick="goTo('n7')" title="N7"></div>
+  <div class="prog-dot" onclick="goTo('fluxo')" title="Fluxo"></div>
+  <div class="prog-dot" onclick="goTo('quiz')" title="Quiz"></div>
+</div>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-logo"><strong>ATLAS</strong> · BRE+TRC</div>
+    <nav class="hdr-nav">
+      <a href="#n1">N1</a><a href="#n2">N2</a><a href="#n3">N3</a>
+      <a href="#n4">N4</a><a href="#n5">N5</a><a href="#n6">N6</a>
+      <a href="#n7">N7</a><a href="#fluxo">Fluxo</a>
+      <a href="#pegas">Pegadinhas</a><a href="#casos">Casos</a>
+      <a href="#quiz">Quiz</a><a href="#resumo">Resumo</a>
+    </nav>
+    <div class="hdr-modes">
+      <button class="btn-m btn-rev" onclick="toggleMode('revisao',this)">⚡ Revisão</button>
+      <button class="btn-m btn-prof" onclick="toggleMode('professor',this)">🎓 Professor</button>
+      <button class="btn-m btn-pega" onclick="togglePegas(this)">⚠️ Pegadinhas</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-kicker">Método N1–N7 · Atlas Mental Interativo · Dr. André Rossanno</div>
+  <h1 class="hero-title">
+    <span class="accent-red">BRE</span> chama <span class="accent-blue">TRC</span>,<br>
+    não <span class="accent-red">CDI</span> isolado
+  </h1>
+  <p class="hero-sub">TRC-P, TRC-D, CDI primário e CDI secundário — Do Teatro Elétrico do Coração ao cockpit de decisão clínica</p>
+  <div class="hero-manifesto">
+    "BRE não é raio. BRE é fio atrasado."
+  </div>
+  <p style="font-size:0.88rem;color:var(--text3);max-width:560px;margin:1rem auto;position:relative;z-index:1">
+    No BRE, o ventrículo esquerdo contrai atrasado — dissincronia mecânica, não arritmia maligna. Quando vem com IC, FEVE baixa e QRS largo, a resposta é ressincronização, não choque cego.
+  </p>
+  <div class="hero-btns">
+    <a href="#n1" class="hero-btn hb-primary">Começar aula</a>
+    <a href="#fluxo" class="hero-btn hb-outline">Ver fluxograma</a>
+    <a href="#quiz" class="hero-btn hb-outline">Fazer quiz</a>
+    <button class="hero-btn hb-outline" onclick="toggleMode('revisao',document.querySelector('.btn-rev'))">Modo revisão rápida</button>
+  </div>
+</section>
+
+<!-- ===== N1 ===== -->
+<section class="sec" id="n1">
+  <div class="sec-title"><span class="n-badge">N1</span> Conceito Central</div>
+  <p class="sec-sub">BRE é problema de dissincronia — a orquestra com metade atrasada.</p>
+
+  <div class="concept-grid reveal">
+    <div class="concept-card cc-green">
+      <h4 style="color:var(--green)">✅ O que BRE causa</h4>
+      <ul>
+        <li>Atraso na ativação do VE</li>
+        <li>Dissincronia interventricular</li>
+        <li>Perda de eficiência mecânica</li>
+        <li>Pior função sistólica em IC</li>
+        <li>QRS largo (geralmente ≥120ms)</li>
+      </ul>
+    </div>
+    <div class="concept-card cc-red">
+      <h4 style="color:var(--red)">❌ O que BRE NÃO causa</h4>
+      <ul>
+        <li>Indicação isolada de CDI</li>
+        <li>Não define arritmia ventricular maligna</li>
+        <li>Não é TV nem FV</li>
+        <li>Não justifica choque sozinho</li>
+        <li>BRE assintomático com FEVE normal: não indica aparelho</li>
+      </ul>
+    </div>
+    <div class="concept-card cc-blue">
+      <h4 style="color:var(--blue2)">🎼 Quando BRE indica TRC</h4>
+      <ul>
+        <li>IC sintomática (NYHA II–IV)</li>
+        <li>FEVE ≤ 35%</li>
+        <li>BRE verdadeiro no ECG</li>
+        <li>QRS largo (esp. ≥150 ms)</li>
+        <li>Tratamento medicamentoso otimizado</li>
+      </ul>
+    </div>
+    <div class="concept-card cc-purple">
+      <h4 style="color:var(--purple2)">⚡ Quando TRC vira TRC-D</h4>
+      <ul>
+        <li>Indicação de TRC <strong>+</strong></li>
+        <li>Indicação de CDI (primária ou secundária)</li>
+        <li>Dois aparelhos em um</li>
+        <li>Sincroniza o compasso e protege do trovão</li>
+        <li>Não é "CDI por BRE" — é TRC com desfibrilador</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mantra-box reveal" style="margin-top:1.5rem">
+    <p>
+      "Não diga: <span style="color:var(--red)">CDI por BRE.</span><br>
+      Diga: <span style="color:var(--blue2)">TRC por dissincronia.</span><br>
+      Se tiver desfibrilador junto: <span style="color:var(--purple2)">TRC-D.</span>"
+    </p>
+    <small>— Dr. André Rossanno</small>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== N2 TEATRO ===== -->
+<section class="sec" id="n2">
+  <div class="sec-title"><span class="n-badge">N2</span> O Teatro Elétrico do Coração</div>
+  <p class="sec-sub">Palácio da Memória: 4 personagens, 1 palco, decisões diferentes.</p>
+
+  <div class="teatro-grid reveal">
+    <div class="sala sala-bre">
+      <div class="sala-number">Sala 1 · BRE</div>
+      <span class="sala-icon">🎭</span>
+      <div class="sala-name">O Maestro Atrasado</div>
+      <div class="sala-desc">O maestro levanta a batuta, mas o lado esquerdo da orquestra toca depois. O ventrículo esquerdo contrai atrasado — dissincronia pura, sem raio elétrico.</div>
+      <div class="sala-frase">"BRE é atraso, não raio."</div>
+    </div>
+    <div class="sala sala-trc">
+      <div class="sala-number">Sala 2 · TRC</div>
+      <span class="sala-icon">🎼</span>
+      <div class="sala-name">O Maestro da Sincronia</div>
+      <div class="sala-desc">A TRC usa estimulação biventricular para sincronizar os ventrículos. O objetivo é coordenação mecânica, melhora dos sintomas e remodelamento reverso.</div>
+      <div class="sala-frase">"TRC coloca os ventrículos para tocar no mesmo compasso."</div>
+    </div>
+    <div class="sala sala-cdi">
+      <div class="sala-number">Sala 3 · CDI</div>
+      <span class="sala-icon">🚒</span>
+      <div class="sala-name">O Bombeiro Elétrico</div>
+      <div class="sala-desc">CDI não existe para corrigir o atraso do BRE. Ele existe para tratar arritmias ventriculares malignas: TV sustentada instável, FV, PCR recuperada — o incêndio elétrico.</div>
+      <div class="sala-frase">"CDI não rege a orquestra. CDI apaga incêndio elétrico."</div>
+    </div>
+    <div class="sala sala-trcd">
+      <div class="sala-number">Sala 4 · TRC-D</div>
+      <span class="sala-icon">🎼🚒</span>
+      <div class="sala-name">Maestro + Bombeiro</div>
+      <div class="sala-desc">Quando o paciente precisa de ressincronização e também de proteção contra morte súbita. TRC-D é o casamento do maestro com o bombeiro — dois trabalhos, um aparelho.</div>
+      <div class="sala-frase">"TRC-D é maestro com bombeiro elétrico no bolso."</div>
+    </div>
+  </div>
+
+  <div class="prof-note reveal">
+    🎓 <strong>Modo Professor:</strong> A metáfora do teatro facilita interleaving N5. Ao ver BRE no ECG, o aluno deve automaticamente pensar: "maestro atrasado → quem corrige isso? O regente da sincronia (TRC), não o bombeiro (CDI)." A confusão vem de associar QRS largo a choque — o erro clássico.
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== N3 NOMENCLATURA ===== -->
+<section class="sec" id="n3">
+  <div class="sec-title"><span class="n-badge">N3</span> Como chamar corretamente?</div>
+  <p class="sec-sub">Nomenclatura precisa é medicina precisa. O erro de nome é erro de raciocínio.</p>
+
+  <div class="reveal" style="overflow-x:auto">
+    <table class="nom-table">
+      <thead>
+        <tr>
+          <th>Situação</th>
+          <th>Nome correto</th>
+          <th>Tradução mental</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>BRE isolado, FEVE normal, assintomático</td>
+          <td><span class="badge-nome bn-gray">Sem indicação</span></td>
+          <td>Só atraso no ECG não basta</td>
+        </tr>
+        <tr>
+          <td>IC + FEVE ≤35% + BRE + QRS largo + TMO</td>
+          <td><span class="badge-nome bn-blue">TRC</span></td>
+          <td>Problema é dissincronia → ressincronizar</td>
+        </tr>
+        <tr>
+          <td>TRC sem desfibrilador</td>
+          <td><span class="badge-nome bn-blue">TRC-P</span></td>
+          <td>Maestro sem bombeiro</td>
+        </tr>
+        <tr>
+          <td>TRC com desfibrilador</td>
+          <td><span class="badge-nome bn-purple">TRC-D</span></td>
+          <td>Maestro + bombeiro</td>
+        </tr>
+        <tr>
+          <td>TV/FV prévia sem QRS largo/IC</td>
+          <td><span class="badge-nome bn-red">CDI</span></td>
+          <td>Bombeiro sem maestro</td>
+        </tr>
+        <tr>
+          <td>BRE + IC + FEVE baixa + <strong>cardiopatia isquêmica</strong> ou evento arrítmico prévio</td>
+          <td><span class="badge-nome bn-purple">TRC-D</span></td>
+          <td>Maestro + bombeiro: isquêmico tem alto risco de raio mesmo sem TV/FV prévia</td>
+        </tr>
+        <tr>
+          <td>BRE + IC + FEVE baixa + <strong>miopatia não-isquêmica idiopática</strong>, sem TV/FV prévia</td>
+          <td><span class="badge-nome bn-blue">TRC-P (preferencial)</span></td>
+          <td>Evidência (DANISH): benefício do D menor no não-isquêmico sem evento. Maestro puro é a resposta elegante</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="erro-box reveal">
+    <div class="erro-box-title">⚠️ Correção de Linguagem</div>
+    <p><strong>Erro clássico:</strong> "CDI por BRE" ou "CDI porque o QRS é largo."<br>
+    <strong>Forma elegante:</strong> <span style="color:var(--teal)">"TRC-D por indicação de ressincronização em paciente com IC, FEVE reduzida e BRE, com componente desfibrilador por indicação de prevenção primária/secundária."</span></p>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== N4 FÓRMULA TRC ===== -->
+<section class="sec" id="n4">
+  <div class="sec-title"><span class="n-badge">N4</span> O Pacote Clássico da TRC</div>
+  <p class="sec-sub">Quando o BRE vira indicação — a fórmula e a escada de força.</p>
+
+  <div class="formula-wrap reveal">
+    <div class="formula-items">
+      <span class="formula-item fi-blue">IC sintomática</span>
+      <span class="formula-plus">+</span>
+      <span class="formula-item fi-blue">FEVE ≤ 35%</span>
+      <span class="formula-plus">+</span>
+      <span class="formula-item fi-blue">BRE verdadeiro</span>
+      <span class="formula-plus">+</span>
+      <span class="formula-item fi-blue">QRS ≥ 150 ms</span>
+      <span class="formula-plus">+</span>
+      <span class="formula-item fi-blue">TMO otimizado</span>
+      <br>
+      <span style="font-size:2rem;color:var(--teal);width:100%;text-align:center">=</span>
+      <br>
+    </div>
+    <div class="formula-eq">⚡ TRC Forte — Indicação mais robusta</div>
+    <p class="detalhe" style="font-size:0.85rem;color:var(--text3);margin-top:0.6rem">
+      Quanto mais BRE verdadeiro e quanto mais largo o QRS, maior a chance de benefício da TRC.
+    </p>
+  </div>
+
+  <h4 style="font-size:0.95rem;font-weight:800;margin:2rem 0 1rem;color:var(--gold)">⬆️ Escada de Benefício TRC</h4>
+  <div class="escada reveal">
+    <div class="degrau d1">
+      <span class="degrau-label">BRE + QRS ≥ 150 ms</span>
+      <span class="degrau-num dn1">Melhor resposta</span>
+    </div>
+    <div class="degrau d2">
+      <span class="degrau-label">BRE + QRS 130–149 ms</span>
+      <span class="degrau-num dn2">Boa resposta</span>
+    </div>
+    <div class="degrau d3">
+      <span class="degrau-label">Não-BRE + QRS ≥ 150 ms</span>
+      <span class="degrau-num dn3">Benefício incerto</span>
+    </div>
+    <div class="degrau d4">
+      <span class="degrau-label">QRS estreito (&lt;130 ms)</span>
+      <span class="degrau-num dn4">Sem benefício TRC</span>
+    </div>
+  </div>
+
+  <div class="erro-box reveal" style="margin-top:1.5rem;border-color:rgba(255,214,10,0.3)">
+    <div class="erro-box-title">⚠️ Pegadinha da Escada</div>
+    <p><strong>QRS largo sem morfologia de BRE não é igual a BRE verdadeiro.</strong> O padrão de BRE (deflexão negativa em V1, R monofásico em V6, sem deflexão septal) é o melhor terreno para TRC. Bloqueio de ramo direito com QRS largo tem comportamento diferente.</p>
+  </div>
+
+  <div class="prof-note reveal">
+    🎓 <strong>Modo Professor:</strong> O trio mágico para prova é: "BRE + QRS ≥150ms + FEVE ≤35%". Qualquer variação (QRS estreito, morfologia não-BRE, FEVE >35%) reduz a força da indicação. A questão vai trocar um desses elementos para testar o candidato.
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== N5 TRC-P vs TRC-D ===== -->
+<section class="sec" id="n5">
+  <div class="sec-title"><span class="n-badge">N5</span> TRC-P ou TRC-D?</div>
+  <p class="sec-sub">Maestro puro ou maestro com bombeiro? A pergunta que decide o aparelho.</p>
+
+  <div class="compare-grid reveal">
+    <div class="compare-card cc-trcp">
+      <div class="compare-icon">🎼</div>
+      <span class="compare-tag t-blue">TRC-P</span>
+      <div class="compare-name">TRC-P</div>
+      <p style="font-size:0.82rem;color:var(--text3);margin-bottom:1rem">Terapia de Ressincronização Cardíaca com <strong>Marcapasso</strong></p>
+      <ul class="compare-list">
+        <li>Ressincroniza VD e VE</li>
+        <li>Melhora coordenação ventricular</li>
+        <li>Pode melhorar sintomas e FEVE</li>
+        <li>Promove remodelamento reverso</li>
+        <li>Não dá choque para TV/FV</li>
+        <li>Sem função de desfibrilação</li>
+      </ul>
+      <div class="compare-frase">"TRC-P é maestro sem bombeiro."</div>
+    </div>
+    <div class="compare-card cc-trcd">
+      <div class="compare-icon">🎼⚡🚒</div>
+      <span class="compare-tag t-purple">TRC-D</span>
+      <div class="compare-name">TRC-D</div>
+      <p style="font-size:0.82rem;color:var(--text3);margin-bottom:1rem">Terapia de Ressincronização Cardíaca com <strong>Desfibrilador</strong></p>
+      <ul class="compare-list">
+        <li>Ressincroniza VD e VE</li>
+        <li>Também desfibrila TV/FV</li>
+        <li>Protege contra morte súbita</li>
+        <li>Indicado quando há dupla necessidade</li>
+        <li>Não é só CDI renomeado</li>
+        <li>TRC + componente de choque</li>
+      </ul>
+      <div class="compare-frase">"TRC-D é maestro com bombeiro elétrico."</div>
+    </div>
+  </div>
+
+  <div class="decisao-box reveal">
+    <h4>"Além de precisar de TRC, esse paciente também precisa de desfibrilador?"</h4>
+    <div class="decisao-flow">
+      <div class="dec-item dec-q">Indicação de TRC confirmada?</div>
+      <div class="dec-arrow">→</div>
+      <div class="dec-item dec-q">Também tem indicação de CDI?</div>
+      <div class="dec-arrow">→ SIM →</div>
+      <div class="dec-item dec-item" style="border-color:rgba(124,58,237,0.4);color:var(--purple2);background:rgba(124,58,237,0.08)">TRC-D</div>
+    </div>
+    <div class="decisao-flow" style="margin-top:0.75rem">
+      <div class="dec-item dec-q">Indicação de TRC confirmada?</div>
+      <div class="dec-arrow">→</div>
+      <div class="dec-item dec-q">Também tem indicação de CDI?</div>
+      <div class="dec-arrow">→ NÃO →</div>
+      <div class="dec-item dec-item" style="border-color:rgba(37,99,235,0.4);color:var(--blue2);background:rgba(37,99,235,0.08)">TRC-P</div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== N6 PRIMÁRIA vs SECUNDÁRIA ===== -->
+<section class="sec" id="n6">
+  <div class="sec-title"><span class="n-badge">N6</span> Primária ou Secundária?</div>
+  <p class="sec-sub">Não depende do BRE — depende se o raio já caiu.</p>
+
+  <div class="primvsec-grid reveal">
+    <div class="pvs-card pvs-primaria">
+      <div class="pvs-tag pt-blue">PREVENÇÃO PRIMÁRIA</div>
+      <div class="pvs-title">🔵 O raio ainda não caiu</div>
+      <div class="pvs-def">O paciente ainda não teve PCR por TV/FV nem TV sustentada grave sem causa reversível — mas tem alto risco de morte súbita.</div>
+      <div class="pvs-example">Ex: ICFEr, FEVE 28%, BRE, QRS 160ms, NYHA III, em TMO, sem TV/FV prévia.</div>
+      <strong style="font-size:0.82rem;color:var(--blue2)">Nome correto: TRC-D em prevenção primária</strong>
+      <div class="pvs-frase">"O raio ainda não caiu, mas o céu elétrico está carregado."</div>
+    </div>
+    <div class="pvs-card pvs-secundaria">
+      <div class="pvs-tag pt-red">PREVENÇÃO SECUNDÁRIA</div>
+      <div class="pvs-title">🔴 O raio já caiu</div>
+      <div class="pvs-def">O paciente já teve evento arrítmico maligno: PCR recuperada por TV/FV ou TV sustentada instável — sem causa reversível.</div>
+      <div class="pvs-example">Ex: FEVE 30%, BRE, QRS 165ms, sobreviveu a PCR por FV sem causa reversível.</div>
+      <strong style="font-size:0.82rem;color:var(--red)">Nome correto: TRC-D em prevenção secundária</strong>
+      <div class="pvs-frase">"O raio já caiu. Agora o aparelho protege do próximo."</div>
+    </div>
+  </div>
+
+  <h4 style="font-size:0.95rem;font-weight:800;margin:2rem 0 1rem;color:var(--gold)">📋 Tabela Matadora — 5 casos, 5 nomes certos</h4>
+  <div class="reveal" style="overflow-x:auto">
+    <table class="nom-table">
+      <thead>
+        <tr><th>Caso</th><th>Nome correto</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>IC + FEVE ≤35% + BRE largo. <strong>Nunca teve arritmia.</strong> Etiologia isquêmica ou alto risco.</td>
+          <td><span class="badge-nome bn-purple">TRC-D — Prevenção Primária</span></td>
+          <td style="font-size:0.8rem;color:var(--text3)">Maestro obrigatório + bombeiro de reserva: isquêmico tem terreno elétrico perigoso mesmo sem raio prévio</td>
+        </tr>
+        <tr>
+          <td>IC + FEVE ≤35% + BRE largo. <strong>Nunca teve arritmia.</strong> Miopatia não-isquêmica idiopática.</td>
+          <td><span class="badge-nome bn-blue">TRC-P (preferencial)</span></td>
+          <td style="font-size:0.8rem;color:var(--text3)">DANISH: benefício do D menor no não-isquêmico sem evento. Maestro puro é a resposta elegante de prova.</td>
+        </tr>
+        <tr>
+          <td>IC + FEVE ≤35% + BRE largo. <strong>Já sobreviveu a PCR por FV</strong> sem causa reversível.</td>
+          <td><span class="badge-nome bn-purple">TRC-D — Prevenção Secundária</span></td>
+          <td style="font-size:0.8rem;color:var(--text3)">Caos Total: maestro corrige o atraso e bombeiro é obrigatório porque o raio já caiu. Sem discussão de etiologia.</td>
+        </tr>
+        <tr>
+          <td>Coração síncrono, QRS estreito. <strong>Já teve TV instável/PCR</strong> sem causa reversível.</td>
+          <td><span class="badge-nome bn-red">CDI — Prevenção Secundária</span></td>
+          <td style="font-size:0.8rem;color:var(--text3)">Sem dissincronia para corrigir. Só o bombeiro vigilante de plantão — o maestro está dispensado.</td>
+        </tr>
+        <tr>
+          <td>BRE isolado no ECG de rotina. <strong>Assintomático, FEVE normal, sem IC.</strong></td>
+          <td><span class="badge-nome bn-gray">Nenhuma intervenção</span></td>
+          <td style="font-size:0.8rem;color:var(--text3)">O fio está atrasado no eletro, mas o coração bate em harmonia mecânica. Acompanhamento apenas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== N7 MNEMÔNICO ===== -->
+<section class="sec" id="n7">
+  <div class="sec-title"><span class="n-badge">N7</span> Mnemônico Final: BRE rege, TV explode</div>
+  <p class="sec-sub">Spaced Repetition — 3 blocos, 3 formulações, 1 decisão.</p>
+
+  <div class="mne-grid reveal">
+    <div class="mne-block mb-gray">
+      <div class="mne-word mne-gray">BRE</div>
+      <div class="mne-letra">
+        <span class="mne-l ml-gray">B</span>
+        <span class="mne-def">Bloqueio de ramo esquerdo</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-gray">R</span>
+        <span class="mne-def">Retarda a ativação do VE (dissincronia)</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-gray">E</span>
+        <span class="mne-def">Exige TRC quando vem com IC + FEVE baixa + QRS largo</span>
+      </div>
+      <div class="mne-frase mf-gray">"BRE chama TRC."</div>
+    </div>
+
+    <div class="mne-block mb-red">
+      <div class="mne-word mne-red">TV/FV</div>
+      <div class="mne-letra">
+        <span class="mne-l ml-red">T</span>
+        <span class="mne-def">Taquicardia Ventricular</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-red">V</span>
+        <span class="mne-def">Ventrículo em perigo elétrico</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-red">F</span>
+        <span class="mne-def">Fibrilação Ventricular</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-red">V</span>
+        <span class="mne-def">Vida ameaçada → raio maligno</span>
+      </div>
+      <div class="mne-frase mf-red">"TV/FV chama CDI."</div>
+    </div>
+
+    <div class="mne-block mb-purple">
+      <div class="mne-word mne-purple">TRC-D</div>
+      <div class="mne-letra">
+        <span class="mne-l ml-purple">T</span>
+        <span class="mne-def">Terapia de Ressincronização</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-purple">R</span>
+        <span class="mne-def">Ressincroniza os ventrículos</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-purple">C</span>
+        <span class="mne-def">Corrige o atraso do BRE</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l ml-purple">D</span>
+        <span class="mne-def">Desfibrila se vier o raio (TV/FV)</span>
+      </div>
+      <div class="mne-frase mf-purple">"TRC-D corrige o compasso e protege do trovão."</div>
+    </div>
+  </div>
+
+  <div class="mantra-box reveal" style="margin-top:1.5rem">
+    <p>
+      "<span style="color:var(--gray)">BRE chama TRC.</span>  
+      <span style="color:var(--red)">TV/FV chama CDI.</span>  
+      <span style="color:var(--purple2)">BRE + risco de morte súbita chama TRC-D.</span>"
+    </p>
+    <small>— Frase síntese absoluta · Dr. André Rossanno</small>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== FLUXOGRAMA ===== -->
+<section class="sec" id="fluxo">
+  <div class="sec-title"><span class="n-badge">N4</span> Fluxograma de Decisão Interativo</div>
+  <p class="sec-sub">Clique em SIM ou NÃO para navegar pelo raciocínio clínico.</p>
+
+  <div class="fluxo-wrap reveal">
+    <div class="fluxo-progress" id="fluxoProg"></div>
+    <div class="fluxo-estado" id="fluxoEstado"></div>
+    <div style="text-align:center">
+      <button class="fluxo-reiniciar" onclick="reiniciarFluxo()">↺ Reiniciar fluxograma</button>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== PEGADINHAS ===== -->
+<section class="sec" id="pegas">
+  <div class="sec-title"><span class="n-badge">N5</span> Pegadinhas de Prova</div>
+  <p class="sec-sub">Interleaving obrigatório — o que parece certo e está errado.</p>
+
+  <div class="pegas-section pegas-grid reveal" id="pegasGrid">
+
+    <div class="pega-item" onclick="togglePega(this)">
+      <div class="pega-header">
+        <span class="pega-q">"Paciente tem BRE → indica CDI."</span>
+        <span class="pega-arrow">▼</span>
+      </div>
+      <div class="pega-body">
+        <div class="pega-resp"><strong>Errado.</strong> BRE sugere dissincronia — o raciocínio é TRC quando vem com IC, FEVE baixa, QRS largo e sintomas apesar de TMO. CDI não serve para corrigir atraso de condução.</div>
+      </div>
+    </div>
+
+    <div class="pega-item" onclick="togglePega(this)">
+      <div class="pega-header">
+        <span class="pega-q">"TRC-D é sempre prevenção secundária."</span>
+        <span class="pega-arrow">▼</span>
+      </div>
+      <div class="pega-body">
+        <div class="pega-resp"><strong>Errado.</strong> TRC-D pode ser prevenção <strong>primária</strong> quando ainda não houve TV/FV/PCR. Primário/secundário depende de evento prévio — não do tipo de aparelho ou do BRE.</div>
+      </div>
+    </div>
+
+    <div class="pega-item" onclick="togglePega(this)">
+      <div class="pega-header">
+        <span class="pega-q">"Todo BRE + FEVE baixa precisa obrigatoriamente de TRC-D."</span>
+        <span class="pega-arrow">▼</span>
+      </div>
+      <div class="pega-body">
+        <div class="pega-resp"><strong>Cuidado.</strong> Primeiro confirmar a indicação de TRC (IC sintomática, QRS largo, TMO). Depois decidir se há indicação de desfibrilador. Não é automático — pode ser TRC-P.</div>
+      </div>
+    </div>
+
+    <div class="pega-item" onclick="togglePega(this)">
+      <div class="pega-header">
+        <span class="pega-q">"QRS largo sem BRE é igual a BRE para fins de TRC."</span>
+        <span class="pega-arrow">▼</span>
+      </div>
+      <div class="pega-body">
+        <div class="pega-resp"><strong>Errado.</strong> BRE verdadeiro com QRS ≥150ms é o perfil de melhor resposta à TRC. Padrão não-BRE com QRS largo tem benefício muito mais incerto — não é equivalente.</div>
+      </div>
+    </div>
+
+    <div class="pega-item" onclick="togglePega(this)">
+      <div class="pega-header">
+        <span class="pega-q">"CDI melhora a sincronia ventricular."</span>
+        <span class="pega-arrow">▼</span>
+      </div>
+      <div class="pega-body">
+        <div class="pega-resp"><strong>Errado.</strong> Quem melhora sincronia é TRC. CDI trata arritmia ventricular maligna (TV/FV). Função, mecanismo e indicação são completamente diferentes.</div>
+      </div>
+    </div>
+
+    <div class="pega-item" onclick="togglePega(this)">
+      <div class="pega-header">
+        <span class="pega-q">"BRE isolado em assintomático com FEVE normal indica aparelho."</span>
+        <span class="pega-arrow">▼</span>
+      </div>
+      <div class="pega-body">
+        <div class="pega-resp"><strong>Errado.</strong> BRE isolado não indica TRC/CDI. O BRE apenas no ECG, sem IC sintomática, FEVE reduzida, QRS muito largo e TMO otimizado, não é indicação de dispositivo.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- quando pegas está oculto por padrão -->
+  <div id="pegasHidden" style="text-align:center;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-top:1rem">
+    <p style="font-size:0.87rem;color:var(--text3);margin-bottom:1rem">Clique em "⚠️ Pegadinhas" no menu superior para revelar os cards de pegadinha.</p>
+    <button class="fluxo-reiniciar" onclick="togglePegas(document.querySelector('.btn-pega'))">Mostrar Pegadinhas</button>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== CASOS ===== -->
+<section class="sec" id="casos">
+  <div class="sec-title"><span class="n-badge">N6</span> Casos-Relâmpago</div>
+  <p class="sec-sub">5 casos, 5 diagnósticos — clique para revelar o raciocínio.</p>
+
+  <div class="casos-grid reveal">
+
+    <div class="caso-card" id="caso1">
+      <div class="caso-header">
+        <div class="caso-num">CASO 01 — O Seu Raimundo</div>
+        <div class="caso-texto">ICFEr, FEVE 28%, BRE, QRS 160ms, NYHA III, em TMO. Sem PCR/TV/FV prévia. <em>Etiologia: coronariopata isquêmico.</em> Qual o dispositivo?</div>
+      </div>
+      <button class="caso-btn" onclick="abrirCaso('caso1',this)">▶ REVELAR RACIOCÍNIO</button>
+      <div class="caso-answer">
+        <div class="caso-answer-inner">
+          <div class="caso-verdict cv-purple">⚡ TRC-D — Prevenção Primária</div>
+          <p class="caso-explain">BRE + QRS 160ms + FEVE 28% + NYHA III + TMO = indicação forte de TRC. Sem TV/FV prévia = <strong>prevenção primária</strong>. Etiologia isquêmica = terreno elétrico perigoso, alto risco de morte súbita futuro mesmo sem evento documentado. O bombeiro (D) entra junto com o maestro. Dispositivo: <strong>TRC-D em prevenção primária.</strong><br><br><em style="color:var(--yellow)">⚠️ Contraste: se fosse miopatia não-isquêmica idiopática sem evento prévio, a resposta elegante seria TRC-P (evidência DANISH: menor benefício do D nesse subgrupo).</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="caso-card" id="caso2">
+      <div class="caso-header">
+        <div class="caso-num">CASO 02</div>
+        <div class="caso-texto">FEVE 30%, BRE, QRS 165ms. Sobreviveu a PCR por FV sem causa reversível identificada. Qual dispositivo?</div>
+      </div>
+      <button class="caso-btn" onclick="abrirCaso('caso2',this)">▶ REVELAR RACIOCÍNIO</button>
+      <div class="caso-answer">
+        <div class="caso-answer-inner">
+          <div class="caso-verdict cv-purple">⚡ TRC-D — Prevenção Secundária</div>
+          <p class="caso-explain">BRE + QRS 165ms + FEVE 30% = indicação de ressincronização. PCR por FV sem causa reversível = prevenção secundária. Dispositivo: <strong>TRC-D em prevenção secundária.</strong> O raio já caiu — o bombeiro vai junto com o maestro.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="caso-card" id="caso3">
+      <div class="caso-header">
+        <div class="caso-num">CASO 03</div>
+        <div class="caso-texto">Paciente jovem, BRE isolado no ECG. FEVE 62%, sem IC, assintomático. Indica CDI ou TRC?</div>
+      </div>
+      <button class="caso-btn" onclick="abrirCaso('caso3',this)">▶ REVELAR RACIOCÍNIO</button>
+      <div class="caso-answer">
+        <div class="caso-answer-inner">
+          <div class="caso-verdict cv-gray">⭕ Sem indicação de CDI/TRC</div>
+          <p class="caso-explain">BRE isolado sem IC, sem FEVE reduzida, sem QRS muito alargado em contexto clínico relevante, sem sintomas. <strong>Não há indicação de aparelho.</strong> O atraso no ECG não basta para indicar dispositivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="caso-card" id="caso4">
+      <div class="caso-header">
+        <div class="caso-num">CASO 04</div>
+        <div class="caso-texto">TV sustentada com instabilidade hemodinâmica. FEVE 45%, QRS estreito. Sem causa reversível. Qual o dispositivo?</div>
+      </div>
+      <button class="caso-btn" onclick="abrirCaso('caso4',this)">▶ REVELAR RACIOCÍNIO</button>
+      <div class="caso-answer">
+        <div class="caso-answer-inner">
+          <div class="caso-verdict cv-red">⚡ CDI — Prevenção Secundária</div>
+          <p class="caso-explain">TV sustentada instável = evento arrítmico maligno = prevenção secundária. QRS estreito = sem indicação de TRC. FEVE 45% = sem critério de primário pela FEVE. Dispositivo: <strong>CDI em prevenção secundária.</strong> Bombeiro sem maestro — o incêndio aconteceu, não há dissincronia para corrigir.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="caso-card" id="caso5">
+      <div class="caso-header">
+        <div class="caso-num">CASO 05</div>
+        <div class="caso-texto">IC, FEVE 32%, QRS 115ms, morfologia não-BRE, sem TV/FV prévia. Indica TRC?</div>
+      </div>
+      <button class="caso-btn" onclick="abrirCaso('caso5',this)">▶ REVELAR RACIOCÍNIO</button>
+      <div class="caso-answer">
+        <div class="caso-answer-inner">
+          <div class="caso-verdict cv-gray">⚠️ Não é perfil clássico de TRC</div>
+          <p class="caso-explain">QRS 115ms sem morfologia de BRE = fora do terreno de melhor resposta à TRC. Otimizar TMO. Avaliar CDI isolado se houver critério. <strong>Não é indicação de TRC</strong> pelo QRS não suficientemente largo e sem padrão de BRE verdadeiro.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== QUIZ ===== -->
+<section class="sec" id="quiz">
+  <div class="sec-title"><span class="n-badge">N4</span> Quiz Final — 7 Questões TEC</div>
+  <p class="sec-sub">Testing Effect: clique para revelar a resposta comentada.</p>
+
+  <div class="quiz-wrap reveal">
+
+    <div class="quiz-card" id="qz1">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 01</div></div>
+      <div class="quiz-q">BRE isolado indica CDI?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz1',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--red)">Não.</strong> BRE isolado não indica CDI. BRE é atraso de condução — problema de <strong>dissincronia</strong>. O aparelho só entra se houver IC sintomática, FEVE baixa, QRS largo e/ou indicação de desfibrilador. Sem contexto clínico, BRE é só um achado de ECG.</p>
+      </div></div>
+    </div>
+
+    <div class="quiz-card" id="qz2">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 02 — Estilo TEC</div></div>
+      <div class="quiz-q">Paciente com Miocardiopatia Dilatada <strong>idiopática</strong>, FEVE 30%, BRE, QRS 155ms, NYHA III, em TMO pleno com Sacubitril-Valsartana + Carvedilol + Espironolactona + Empagliflozina. Nega síncope ou arritmia prévia. Melhor conduta invasiva?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz2',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--blue2)">TRC-P — Resposta elegante para miopatia não-isquêmica sem evento prévio.</strong><br><br>
+        Por que não TRC-D? O paciente nunca teve arritmia (afasta secundário). É não-isquêmico idiopático — o estudo DANISH demonstrou benefício incremental do desfibrilador menor nesse subgrupo versus isquêmico. A prioridade absoluta é corrigir a dissincronia com o <strong>Maestro Puro (TRC-P)</strong>.<br><br>
+        <em style="color:var(--yellow)">⚠️ A pegadinha: colocar TRC-D como automático porque FEVE 30% + BRE. Errado — etiologia e histórico arrítmico mudam a decisão sobre o "D".</em></p>
+      </div></div>
+    </div>
+
+    <div class="quiz-card" id="qz3">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 03</div></div>
+      <div class="quiz-q">Paciente com BRE e PCR por FV prévia sem causa reversível, que também precisa de ressincronização. Nome correto?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz3',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--purple2)">TRC-D em prevenção secundária.</strong> PCR por FV = evento arrítmico maligno = secundária. Necessidade de ressincronização + desfibrilador = TRC-D. O raio já caiu — maestro e bombeiro juntos.</p>
+      </div></div>
+    </div>
+
+    <div class="quiz-card" id="qz4">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 04</div></div>
+      <div class="quiz-q">TRC-P dá choque em TV/FV?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz4',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--blue2)">Não.</strong> TRC-P apenas ressincroniza — não tem função de desfibrilação. É o maestro puro, sem o bombeiro. Para choque em TV/FV, é necessário o componente desfibrilador: TRC-D ou CDI.</p>
+      </div></div>
+    </div>
+
+    <div class="quiz-card" id="qz5">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 05</div></div>
+      <div class="quiz-q">TRC-D faz o quê exatamente?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz5',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--purple2)">Ressincroniza e desfibrila.</strong> TRC-D tem duas funções: (1) estimulação biventricular para corrigir a dissincronia do BRE → melhora mecânica e sintomas; (2) desfibrilação para TV/FV → proteção contra morte súbita. Maestro + bombeiro no mesmo aparelho.</p>
+      </div></div>
+    </div>
+
+    <div class="quiz-card" id="qz6">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 06</div></div>
+      <div class="quiz-q">O que define prevenção primária ou secundária na indicação do dispositivo?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz6',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--gold)">A presença ou ausência de evento arrítmico maligno prévio.</strong> Não é o BRE. Não é o QRS. Secundária = já teve PCR por TV/FV ou TV sustentada grave sem causa reversível. Primária = alto risco, mas sem evento. O BRE não define isso — o histórico arrítmico define.</p>
+      </div></div>
+    </div>
+
+    <div class="quiz-card" id="qz7">
+      <div class="quiz-top"><div class="quiz-num">QUESTÃO 07</div></div>
+      <div class="quiz-q">Qual frase resume toda a aula em uma linha?</div>
+      <button class="quiz-reveal" onclick="revelarQuiz('qz7',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-ans"><div class="quiz-ans-inner">
+        <p><strong style="color:var(--teal)">"BRE chama TRC. TV/FV chama CDI. BRE + risco de morte súbita chama TRC-D."</strong> — Dr. André Rossanno<br><br>E o complemento: <em>"Primária ou secundária não depende do BRE. Depende se o raio já caiu."</em></p>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ===== RESUMO ===== -->
+<section class="sec" id="resumo">
+  <div class="sec-title"><span class="n-badge">N7</span> Resumo de 10 Segundos</div>
+
+  <div class="resumo-box reveal">
+    <div class="resumo-timer">10"</div>
+    <div class="resumo-timer-label">O essencial para não errar na prova</div>
+    <div class="resumo-pills">
+      <span class="r-pill rp-gray">BRE = dissincronia, não arritmia</span>
+      <span class="r-pill rp-gray">BRE isolado → sem indicação</span>
+      <span class="r-pill rp-blue">IC + FEVE ≤35% + BRE + QRS largo = TRC</span>
+      <span class="r-pill rp-blue">TRC-P: só ressincroniza</span>
+      <span class="r-pill rp-purple">TRC-D: ressincroniza + desfibrila</span>
+      <span class="r-pill rp-red">TV/FV sem QRS largo = CDI</span>
+      <span class="r-pill rp-blue">Sem evento prévio = primária</span>
+      <span class="r-pill rp-red">Com evento prévio = secundária</span>
+      <span class="r-pill rp-gold">Primária/secundária: não depende do BRE</span>
+    </div>
+
+    <div class="frases-grid" style="margin-top:0">
+      <div class="frase-card">
+        <p>"BRE não é raio. BRE é fio atrasado."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"Quem corrige atraso é TRC; quem apaga TV/FV é CDI."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"TRC-P é maestro sem bombeiro."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"TRC-D é maestro com bombeiro elétrico."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"No BRE, eu não trato o raio; eu corrijo o atraso."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"Primária ou secundária não depende do BRE. Depende se o raio já caiu."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"Se o paciente tem risco de raio, eu coloco o bombeiro junto: TRC-D."</p>
+        <span class="sig">— Dr. André Rossanno</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="sig-footer">Dr. André Rossanno</div>
+  <p>Atlas Mental Interativo · Método N1–N7 de Memorização Médica · TEC 2026</p>
+  <p style="margin-top:0.5rem;opacity:0.6">Base conceitual: DCEI 2023 · ESC Guidelines 2021 · HRS/APHRS/LAHRS 2023. Validar com diretriz e contexto do paciente.</p>
+  <p style="margin-top:0.4rem;opacity:0.45;font-size:0.7rem">Material educacional. Não substitui julgamento clínico, diretrizes atualizadas e decisão compartilhada.</p>
+  <p style="opacity:0.35;font-size:0.68rem;margin-top:0.3rem">© Método de Memorização Médica André Rossanno</p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== MODO TOGGLE =====
+function toggleMode(mode, btn) {
+  btn.classList.toggle('on');
+  document.body.classList.toggle('modo-' + mode);
+}
+
+// ===== PEGADINHAS TOGGLE =====
+let pegasVisible = false;
+function togglePegas(btn) {
+  pegasVisible = !pegasVisible;
+  btn.classList.toggle('on', pegasVisible);
+  document.body.classList.toggle('show-pegas', pegasVisible);
+  document.getElementById('pegasHidden').style.display = pegasVisible ? 'none' : 'block';
+}
+// init
+document.getElementById('pegasHidden').style.display = 'block';
+
+// ===== PEGA ITEM =====
+function togglePega(el) {
+  el.classList.toggle('open');
+}
+
+// ===== CASO ABRIR =====
+function abrirCaso(id, btn) {
+  const card = document.getElementById(id);
+  card.classList.add('open');
+  btn.style.display = 'none';
+}
+
+// ===== QUIZ REVEAL =====
+function revelarQuiz(id, btn) {
+  document.getElementById(id).classList.add('answered');
+  btn.style.display = 'none';
+}
+
+// ===== PROGRESS NAV =====
+function goTo(id) {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+
+const secIds = ['n1','n2','n3','n4','n5','n6','n7','fluxo','quiz'];
+const dots = document.querySelectorAll('.prog-dot');
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const i = secIds.indexOf(e.target.id);
+      if (i >= 0) { dots.forEach(d => d.classList.remove('on')); dots[i]?.classList.add('on'); }
+    }
+  });
+}, {threshold: 0.3});
+secIds.forEach(id => { const el = document.getElementById(id); if (el) secObs.observe(el); });
+
+// ===== NAV ACTIVE =====
+document.querySelectorAll('.hdr-nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelectorAll('.hdr-nav a').forEach(x => x.classList.remove('active'));
+    a.classList.add('active');
+  });
+});
+
+// ===== SCROLL REVEAL =====
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ===== FLUXOGRAMA =====
+const passos = [
+  {
+    id: 'p1', total: 7,
+    pergunta: "O paciente tem BRE no ECG?",
+    contexto: "Morfologia de BRE verdadeiro: QRS largo, deflexão negativa em V1, R monofásico em V6.",
+    sim: 'p2',
+    nao: { tipo:'fim', titulo:'Avaliar outras indicações', cor:'var(--gray)', icone:'⚙️',
+           nome:'Sem indicação por BRE', texto:'BRE não identificado. Avaliar outras causas de IC, outras indicações de CDI ou TRC. O raciocínio de ressincronização por dissincronia não se aplica aqui.' }
+  },
+  {
+    id: 'p2', total: 7,
+    pergunta: "Tem IC sintomática com FEVE reduzida (≤35%)?",
+    contexto: "IC com fração de ejeção reduzida — ICFEr — com sintomas apesar de tratamento.",
+    sim: 'p3',
+    nao: { tipo:'fim', titulo:'BRE sem IC/FEVE baixa', cor:'var(--gray)', icone:'📋',
+           nome:'Sem indicação de TRC', texto:'BRE isolado sem IC sintomática e sem FEVE reduzida não indica TRC/CDI. Acompanhamento clínico, investigar causa do BRE.' }
+  },
+  {
+    id: 'p3', total: 7,
+    pergunta: "QRS está largo, especialmente ≥150ms?",
+    contexto: "QRS ≥150ms com morfologia de BRE verdadeiro é o perfil de melhor resposta à TRC.",
+    sim: 'p4',
+    nao: { tipo:'fim', titulo:'QRS não suficientemente largo', cor:'var(--gold)', icone:'⚠️',
+           nome:'Benefício de TRC incerto', texto:'Com QRS <130ms, o benefício de TRC cai muito. Entre 130-149ms com BRE há indicação mais fraca. Otimizar TMO, avaliar CDI isolado se houver critério de FEVE.' }
+  },
+  {
+    id: 'p4', total: 7,
+    pergunta: "O tratamento medicamentoso está otimizado (TMO)?",
+    contexto: "Betabloqueador + IECA/BRA + ARM/INRA nas doses alvo — mínimo 3 meses para avaliar FEVE.",
+    sim: 'p5',
+    nao: { tipo:'acao', titulo:'Otimizar primeiro', cor:'var(--gold)', icone:'💊',
+           nome:'Otimizar TMO e reavaliar', texto:'Antes do dispositivo, garantir tratamento clínico otimizado por tempo adequado. A FEVE pode melhorar com TMO. Reavaliar após otimização.' }
+  },
+  {
+    id: 'p5', total: 7,
+    pergunta: "Confirmada indicação de ressincronização?",
+    contexto: "IC + FEVE ≤35% + BRE + QRS ≥150ms + TMO = perfil clássico de TRC.",
+    sim: 'p6',
+    nao: { tipo:'fim', titulo:'Sem indicação de TRC', cor:'var(--gray)', icone:'📋',
+           nome:'Sem indicação confirmada', texto:'Reavaliar critérios. Pode indicar CDI isolado se houver critério de FEVE e primário/secundário, sem necessidade de ressincronização.' }
+  },
+  {
+    id: 'p6', total: 7,
+    pergunta: "Também há indicação de desfibrilador (CDI)?",
+    contexto: "CDI primário (FEVE ≤35%, TMO, expectativa >1 ano) ou secundário (PCR/TV prévia sem causa reversível).",
+    sim: 'p7',
+    nao: { tipo:'fim', titulo:'TRC-P', cor:'var(--blue2)', icone:'🎼',
+           nome:'TRC-P', texto:'Terapia de Ressincronização com Marcapasso. Ressincroniza, mas não desfibrila. O maestro sem bombeiro — suficiente quando não há indicação de CDI.' }
+  },
+  {
+    id: 'p7', total: 8,
+    pergunta: "Já teve PCR por TV/FV ou TV sustentada instável sem causa reversível?",
+    contexto: "Isso define prevenção secundária. Sem esse evento = avaliar etiologia para decidir TRC-D ou TRC-P.",
+    sim: { tipo:'fim', titulo:'TRC-D — Prevenção Secundária', cor:'var(--purple2)', icone:'⚡🚒',
+           nome:'TRC-D em Prevenção Secundária', texto:'O raio já caiu. Precisa de ressincronização e o evento maligno prévio sem causa reversível torna o desfibrilador obrigatório — independente de etiologia. Maestro + bombeiro, sem discussão.' },
+    nao: 'p8'
+  },
+  {
+    id: 'p8', total: 8,
+    pergunta: "A cardiopatia é de etiologia isquêmica (coronariopata) ou há outra indicação clara de alto risco?",
+    contexto: "Isquêmicos têm substrato cicatricial que mantém risco arrítmico elevado mesmo sem TV/FV documentada. Não-isquêmicos idiopáticos têm evidência mais fraca para o 'D' na prevenção primária (estudo DANISH).",
+    sim: { tipo:'fim', titulo:'TRC-D — Prevenção Primária', cor:'var(--purple2)', icone:'⚡🎼',
+           nome:'TRC-D em Prevenção Primária', texto:'Isquêmico: alto risco de raio elétrico futuro mesmo sem evento prévio. O maestro corrige o atraso e o bombeiro fica de plantão antes do trovão. Prevenção primária.' },
+    nao: { tipo:'fim', titulo:'TRC-P — Prevenção Primária', cor:'var(--blue2)', icone:'🎼',
+           nome:'TRC-P em Prevenção Primária', texto:'Não-isquêmico idiopático sem evento prévio: o maestro é a prioridade. O DANISH mostrou que o "D" acrescenta menos benefício nesse subgrupo. Resposta mais elegante na prova: TRC-P. Desfibrilador pode ser discutido caso a caso, mas não é automático.' }
+  }
+];
+
+let passoAtual = 'p1';
+
+function renderFluxo() {
+  const passo = passos.find(p => p.id === passoAtual);
+  if (!passo) return;
+  const estado = document.getElementById('fluxoEstado');
+  const prog = document.getElementById('fluxoProg');
+
+  // Progresso
+  const idx = passos.findIndex(p => p.id === passoAtual);
+  prog.innerHTML = passos.map((p, i) =>
+    `<div class="fp-dot ${i < idx ? 'done' : i === idx ? 'current' : ''}"></div>`
+  ).join('');
+
+  estado.innerHTML = `
+    <div class="fluxo-pergunta">${passo.pergunta}</div>
+    <div class="fluxo-context">${passo.contexto}</div>
+    <div class="fluxo-btns">
+      <button class="fluxo-btn fb-sim" onclick="avancarFluxo('sim')">✓ SIM</button>
+      <button class="fluxo-btn fb-nao" onclick="avancarFluxo('nao')">✗ NÃO</button>
+    </div>
+  `;
+}
+
+function avancarFluxo(escolha) {
+  const passo = passos.find(p => p.id === passoAtual);
+  const prox = passo[escolha];
+  const estado = document.getElementById('fluxoEstado');
+  const prog = document.getElementById('fluxoProg');
+
+  if (typeof prox === 'string') {
+    passoAtual = prox;
+    renderFluxo();
+  } else {
+    // Resultado
+    prog.innerHTML = passos.map(() => `<div class="fp-dot done"></div>`).join('');
+    estado.innerHTML = `
+      <div class="fluxo-resultado">
+        <div style="font-size:2.5rem;margin-bottom:0.75rem">${prox.icone}</div>
+        <h3 style="color:${prox.cor};margin-bottom:0.5rem">${prox.nome}</h3>
+        <p>${prox.texto}</p>
+      </div>
+    `;
+  }
+}
+
+function reiniciarFluxo() {
+  passoAtual = 'p1';
+  renderFluxo();
+}
+
+renderFluxo();
+
+// ===== FADE ANIMATIONS =====
+document.querySelectorAll('.sala,.concept-card,.compare-card,.pvs-card,.mne-block,.frase-card,.degrau,.caso-card,.quiz-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(14px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s, background 0.3s';
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target); }
+    });
+  }, {threshold:0.08});
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
