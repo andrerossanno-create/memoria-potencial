@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDI – Prevenção Primária & Secundária | Atlas Mental Interativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B2545;
+  --teal:#1282A2;
+  --gold:#F4B942;
+  --red:#E63946;
+  --green:#2DC653;
+  --yellow:#FFD60A;
+  --gray:#8D99AE;
+  --bg:#06172E;
+  --bg2:#0D2137;
+  --bg3:#112947;
+  --surface:#0F2240;
+  --surface2:#162E50;
+  --border:rgba(18,130,162,0.25);
+  --text:#E8F4FD;
+  --text2:#A8C7DA;
+  --text3:#6B8EA8;
+  --font:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --script:'Dancing Script',cursive;
+  --glow-teal:0 0 20px rgba(18,130,162,0.4);
+  --glow-gold:0 0 20px rgba(244,185,66,0.4);
+  --glow-red:0 0 20px rgba(230,57,70,0.4);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* ===== HEADER ===== */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(6,23,46,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 1.5rem;
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;gap:1rem;
+}
+.logo{
+  font-family:var(--mono);
+  font-size:0.7rem;color:var(--teal);letter-spacing:0.1em;
+  text-transform:uppercase;white-space:nowrap;
+}
+.logo span{color:var(--gold);font-weight:600}
+
+/* Nav tabs */
+.nav-tabs{
+  display:flex;gap:0.25rem;align-items:center;flex-wrap:wrap;justify-content:center;
+}
+.nav-tab{
+  font-family:var(--mono);font-size:0.65rem;font-weight:600;
+  padding:0.3rem 0.7rem;border-radius:4px;
+  border:1px solid transparent;
+  cursor:pointer;transition:all 0.2s;
+  text-decoration:none;color:var(--text3);background:transparent;
+  letter-spacing:0.05em;
+}
+.nav-tab:hover,.nav-tab.active{
+  color:var(--teal);border-color:var(--teal);
+  background:rgba(18,130,162,0.1);
+}
+
+/* Mode buttons */
+.mode-btns{display:flex;gap:0.5rem;flex-shrink:0}
+.btn-mode{
+  font-family:var(--mono);font-size:0.65rem;font-weight:600;
+  padding:0.35rem 0.85rem;border-radius:20px;
+  border:1px solid;cursor:pointer;transition:all 0.25s;
+  letter-spacing:0.05em;
+}
+.btn-professor{
+  color:var(--gold);border-color:var(--gold);background:transparent;
+}
+.btn-professor.active,.btn-professor:hover{
+  background:var(--gold);color:var(--navy);
+}
+.btn-revisao{
+  color:var(--green);border-color:var(--green);background:transparent;
+}
+.btn-revisao.active,.btn-revisao:hover{
+  background:var(--green);color:var(--navy);
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;overflow:hidden;
+  padding:5rem 1.5rem 4rem;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,rgba(18,130,162,0.12) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%,rgba(244,185,66,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 60%,rgba(230,57,70,0.06) 0%,transparent 60%);
+}
+/* ECG animation */
+.hero-ecg{
+  position:absolute;bottom:0;left:0;right:0;height:60px;
+  opacity:0.15;overflow:hidden;
+}
+.hero-ecg svg{
+  width:200%;height:100%;
+  animation:ecgScroll 4s linear infinite;
+}
+@keyframes ecgScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.hero-kicker{
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.2em;
+  color:var(--teal);text-transform:uppercase;margin-bottom:1.2rem;
+  position:relative;z-index:1;
+}
+.hero-title{
+  font-size:clamp(2rem,5vw,3.5rem);font-weight:900;
+  line-height:1.1;margin-bottom:0.8rem;position:relative;z-index:1;
+}
+.hero-title .accent-red{color:var(--red)}
+.hero-title .accent-teal{color:var(--teal)}
+.hero-subtitle{
+  font-size:1rem;color:var(--text2);max-width:600px;
+  margin:0 auto 1.5rem;position:relative;z-index:1;font-style:italic;
+}
+.hero-quote{
+  display:inline-block;
+  background:linear-gradient(135deg,rgba(18,130,162,0.15),rgba(244,185,66,0.1));
+  border:1px solid rgba(244,185,66,0.3);
+  border-radius:12px;padding:1rem 2rem;
+  font-size:1.05rem;font-style:italic;color:var(--gold);
+  position:relative;z-index:1;max-width:700px;margin:0 auto;
+}
+
+/* ===== SECTION WRAPPER ===== */
+.section{
+  max-width:1200px;margin:0 auto;
+  padding:3rem 1.5rem;
+}
+.section-title{
+  font-size:1.8rem;font-weight:900;margin-bottom:0.4rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.section-title .n-badge{
+  font-family:var(--mono);font-size:0.65rem;
+  background:var(--teal);color:#fff;
+  padding:0.2rem 0.6rem;border-radius:4px;
+  letter-spacing:0.1em;
+}
+.section-sub{
+  font-size:0.9rem;color:var(--text3);margin-bottom:2rem;
+  font-style:italic;
+}
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--teal),transparent);
+  margin:3rem 0;opacity:0.4;
+}
+
+/* ===== PORTOES CARDS ===== */
+.portoes-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+  margin-top:1.5rem;
+}
+@media(max-width:700px){.portoes-grid{grid-template-columns:1fr}}
+
+.portao-card{
+  border-radius:16px;padding:2rem;position:relative;overflow:hidden;
+  border:1px solid;transition:transform 0.3s,box-shadow 0.3s;
+  cursor:default;
+}
+.portao-card:hover{transform:translateY(-4px)}
+
+.portao-secundaria{
+  border-color:rgba(230,57,70,0.4);
+  background:linear-gradient(135deg,rgba(230,57,70,0.08),rgba(15,34,64,0.8));
+  box-shadow:0 0 30px rgba(230,57,70,0.1);
+}
+.portao-secundaria:hover{box-shadow:var(--glow-red)}
+
+.portao-primaria{
+  border-color:rgba(18,130,162,0.4);
+  background:linear-gradient(135deg,rgba(18,130,162,0.08),rgba(15,34,64,0.8));
+  box-shadow:0 0 30px rgba(18,130,162,0.1);
+}
+.portao-primaria:hover{box-shadow:var(--glow-teal)}
+
+.portao-icon{font-size:2.5rem;margin-bottom:1rem}
+.portao-tag{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;
+  text-transform:uppercase;padding:0.2rem 0.7rem;
+  border-radius:4px;margin-bottom:1rem;display:inline-block;
+}
+.tag-red{background:rgba(230,57,70,0.2);color:var(--red);border:1px solid rgba(230,57,70,0.3)}
+.tag-blue{background:rgba(18,130,162,0.2);color:var(--teal);border:1px solid rgba(18,130,162,0.3)}
+.portao-title{font-size:1.4rem;font-weight:900;margin-bottom:0.8rem}
+.portao-list{list-style:none;margin-bottom:1.2rem}
+.portao-list li{
+  padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:0.9rem;display:flex;align-items:flex-start;gap:0.6rem;
+}
+.portao-list li::before{content:"→";opacity:0.5;flex-shrink:0;margin-top:0.05rem}
+.portao-frase{
+  font-style:italic;font-size:0.95rem;
+  border-left:3px solid;padding-left:1rem;margin-top:0.5rem;
+}
+.frase-red{border-color:var(--red);color:rgba(230,57,70,0.9)}
+.frase-blue{border-color:var(--teal);color:rgba(18,130,162,0.9)}
+
+/* ===== FILTER BUTTONS ===== */
+.filter-btns{
+  display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem;
+}
+.filter-btn{
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;
+  padding:0.5rem 1.2rem;border-radius:8px;
+  border:1px solid;cursor:pointer;transition:all 0.2s;
+  background:transparent;letter-spacing:0.08em;
+}
+.fb-all{color:var(--text2);border-color:rgba(255,255,255,0.2)}
+.fb-all.active,.fb-all:hover{background:rgba(255,255,255,0.1);color:#fff}
+.fb-primaria{color:var(--teal);border-color:var(--teal)}
+.fb-primaria.active,.fb-primaria:hover{background:var(--teal);color:var(--navy)}
+.fb-secundaria{color:var(--red);border-color:var(--red)}
+.fb-secundaria.active,.fb-secundaria:hover{background:var(--red);color:#fff}
+.fb-contra{color:var(--gray);border-color:var(--gray)}
+.fb-contra.active,.fb-contra:hover{background:var(--gray);color:var(--navy)}
+.fb-pega{color:var(--yellow);border-color:var(--yellow)}
+.fb-pega.active,.fb-pega:hover{background:var(--yellow);color:var(--navy)}
+
+/* ===== FLUXOGRAMA ===== */
+.fluxo-container{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:2rem;
+  overflow-x:auto;
+}
+.fluxo{
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;min-width:320px;
+}
+.fluxo-node{
+  width:100%;max-width:440px;
+  padding:1rem 1.5rem;border-radius:12px;
+  text-align:center;font-size:0.9rem;font-weight:700;
+  position:relative;
+  transition:all 0.3s;
+}
+.fluxo-node.inicio{
+  background:linear-gradient(135deg,var(--teal),var(--navy));
+  color:#fff;border:2px solid var(--teal);
+  font-size:1rem;
+  box-shadow:var(--glow-teal);
+}
+.fluxo-node.decisao{
+  background:var(--bg3);border:2px solid var(--gold);
+  color:var(--gold);
+  clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);
+  padding:1.5rem 2.5rem;
+  width:260px;max-width:260px;
+}
+.fluxo-arrow{
+  font-size:1.4rem;color:var(--teal);padding:0.3rem 0;
+  opacity:0.7;
+}
+.fluxo-branch{
+  display:flex;gap:1.5rem;width:100%;max-width:700px;
+  justify-content:center;margin-top:0.5rem;
+}
+.fluxo-branch-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:0;
+}
+.fluxo-branch-label{
+  font-family:var(--mono);font-size:0.65rem;font-weight:600;
+  padding:0.2rem 0.8rem;border-radius:4px;margin-bottom:0.3rem;
+}
+.label-sim{background:rgba(45,198,83,0.2);color:var(--green);border:1px solid rgba(45,198,83,0.3)}
+.label-nao{background:rgba(18,130,162,0.2);color:var(--teal);border:1px solid rgba(18,130,162,0.3)}
+.fluxo-node.resultado-vermelho{
+  background:linear-gradient(135deg,rgba(230,57,70,0.2),rgba(15,34,64,0.9));
+  border:2px solid var(--red);color:var(--red);
+  font-size:0.85rem;
+}
+.fluxo-node.resultado-azul{
+  background:linear-gradient(135deg,rgba(18,130,162,0.2),rgba(15,34,64,0.9));
+  border:2px solid var(--teal);color:var(--teal);
+  font-size:0.85rem;
+}
+.fluxo-sub{
+  font-size:0.7rem;font-weight:400;color:var(--text3);
+  margin-top:0.5rem;font-style:italic;
+}
+.fluxo-cdi-final{
+  background:linear-gradient(135deg,var(--red),#7b0d14);
+  color:#fff;border:none;
+  font-size:1.1rem;letter-spacing:0.05em;
+  box-shadow:var(--glow-red);
+  animation:pulseCdi 2s ease-in-out infinite;
+}
+@keyframes pulseCdi{
+  0%,100%{box-shadow:0 0 20px rgba(230,57,70,0.4)}
+  50%{box-shadow:0 0 40px rgba(230,57,70,0.7)}
+}
+
+/* ===== TABELA ===== */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+table{
+  width:100%;border-collapse:collapse;font-size:0.875rem;
+}
+thead{background:rgba(18,130,162,0.15)}
+th{
+  padding:0.9rem 1.2rem;text-align:left;
+  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;
+  color:var(--teal);text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+td{
+  padding:0.85rem 1.2rem;border-bottom:1px solid rgba(255,255,255,0.04);
+  vertical-align:middle;
+}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(18,130,162,0.05)}
+.td-green{color:var(--green);font-weight:700}
+.td-yellow{color:var(--yellow);font-weight:700}
+.td-gray{color:var(--gray)}
+
+/* ===== CRITERIOS GRID ===== */
+.criterios-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.2rem;margin-top:1.5rem;
+}
+.criterio-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  transition:all 0.3s;
+}
+.criterio-card:hover{
+  border-color:var(--teal);
+  box-shadow:var(--glow-teal);transform:translateY(-2px);
+}
+.criterio-card h4{
+  font-size:0.85rem;font-weight:800;margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.criterio-card p,.criterio-card li{font-size:0.85rem;color:var(--text2);line-height:1.7}
+.criterio-card ul{list-style:none}
+.criterio-card ul li{padding:0.2rem 0}
+.criterio-card ul li::before{content:"• ";color:var(--teal)}
+
+/* ===== ACORDEAO CARDIOPATIAS ===== */
+.acordeao{display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem}
+.acord-item{
+  border-radius:12px;overflow:hidden;
+  border:1px solid var(--border);
+  transition:all 0.3s;
+}
+.acord-item.open{border-color:var(--teal)}
+.acord-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.5rem;cursor:pointer;
+  background:var(--surface);transition:background 0.2s;
+  user-select:none;
+}
+.acord-header:hover{background:var(--surface2)}
+.acord-header-left{display:flex;align-items:center;gap:1rem}
+.acord-icon{font-size:1.5rem}
+.acord-title{font-size:1rem;font-weight:800}
+.acord-meta{font-size:0.7rem;font-family:var(--mono);color:var(--text3);margin-top:0.15rem}
+.acord-arrow{
+  font-size:1.2rem;color:var(--teal);
+  transition:transform 0.3s;
+}
+.acord-item.open .acord-arrow{transform:rotate(180deg)}
+.acord-body{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.4s ease,padding 0.3s;
+  background:var(--bg2);
+}
+.acord-item.open .acord-body{max-height:800px}
+.acord-content{padding:1.5rem}
+.acord-content h5{
+  font-size:0.75rem;font-family:var(--mono);color:var(--teal);
+  text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;margin-top:1rem;
+}
+.acord-content h5:first-child{margin-top:0}
+.acord-content p{font-size:0.875rem;color:var(--text2);margin-bottom:0.6rem;line-height:1.7}
+.acord-content ul{list-style:none;margin-bottom:0.6rem}
+.acord-content ul li{
+  font-size:0.875rem;color:var(--text2);
+  padding:0.25rem 0;display:flex;align-items:flex-start;gap:0.5rem;
+}
+.acord-content ul li::before{content:"⚡";font-size:0.75rem;flex-shrink:0;margin-top:0.15rem}
+.imagem-mental{
+  background:linear-gradient(135deg,rgba(18,130,162,0.1),rgba(244,185,66,0.05));
+  border:1px solid rgba(18,130,162,0.2);border-radius:8px;
+  padding:0.85rem 1.1rem;margin-top:0.75rem;
+  font-style:italic;font-size:0.85rem;color:var(--text2);
+}
+.imagem-mental strong{color:var(--gold)}
+.macete{
+  background:rgba(255,214,10,0.05);
+  border:1px solid rgba(255,214,10,0.2);border-radius:8px;
+  padding:0.85rem 1.1rem;margin-top:0.75rem;
+  font-size:0.85rem;color:var(--yellow);
+  display:flex;align-items:flex-start;gap:0.6rem;
+}
+
+/* PROFESSOR MODE extras in acordeão */
+.prof-content{display:none}
+.modo-professor .prof-content{display:block}
+
+/* ===== PEGADINHA BOX ===== */
+.pega-box{
+  background:linear-gradient(135deg,rgba(255,214,10,0.08),rgba(15,34,64,0.9));
+  border:1px solid rgba(255,214,10,0.3);border-radius:12px;
+  padding:1.25rem 1.5rem;margin:0.75rem 0;
+  display:none;
+}
+.pega-box.show{display:block}
+.modo-professor .pega-box,.pega-box.always{display:block}
+.pega-header{
+  font-family:var(--mono);font-size:0.65rem;letter-spacing:0.15em;
+  color:var(--yellow);text-transform:uppercase;margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.pega-box p{font-size:0.875rem;color:var(--text2)}
+.pega-box strong{color:var(--yellow)}
+
+/* ===== CONTRA CHECKLIST ===== */
+.checklist-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1rem;margin-top:1.5rem;
+}
+.check-item{
+  background:var(--surface);border:1px solid rgba(141,153,174,0.2);
+  border-radius:10px;padding:1.2rem;
+  display:flex;gap:1rem;align-items:flex-start;
+  transition:all 0.2s;
+}
+.check-item:hover{border-color:var(--gray);background:var(--surface2)}
+.check-num{
+  font-family:var(--mono);font-size:1.5rem;font-weight:600;
+  color:rgba(141,153,174,0.3);line-height:1;flex-shrink:0;
+}
+.check-text h5{font-size:0.85rem;font-weight:800;margin-bottom:0.25rem}
+.check-text p{font-size:0.8rem;color:var(--text3);line-height:1.5}
+
+/* ===== MNEMÔNICO CDI ===== */
+.mnemonico-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+  margin-top:1.5rem;
+}
+@media(max-width:650px){.mnemonico-wrap{grid-template-columns:1fr}}
+.mne-card{border-radius:16px;padding:2rem;overflow:hidden;position:relative}
+.mne-caiu{
+  background:linear-gradient(135deg,rgba(230,57,70,0.12),var(--bg2));
+  border:1px solid rgba(230,57,70,0.3);
+}
+.mne-caira{
+  background:linear-gradient(135deg,rgba(18,130,162,0.12),var(--bg2));
+  border:1px solid rgba(18,130,162,0.3);
+}
+.mne-word{
+  font-size:3rem;font-weight:900;letter-spacing:0.15em;
+  margin-bottom:1.2rem;line-height:1;
+}
+.mne-word.red{color:var(--red)}
+.mne-word.blue{color:var(--teal)}
+.mne-letra{
+  display:flex;align-items:baseline;gap:0.75rem;
+  padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.mne-letra:last-child{border-bottom:none}
+.mne-l{
+  font-family:var(--mono);font-size:1.6rem;font-weight:600;
+  flex-shrink:0;width:2rem;text-align:center;
+}
+.mne-l.red{color:var(--red)}
+.mne-l.blue{color:var(--teal)}
+.mne-def{font-size:0.875rem;color:var(--text2)}
+.mne-frase{
+  margin-top:1.2rem;font-style:italic;font-size:0.875rem;
+  border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;
+  color:var(--text3);
+}
+
+/* ===== QUIZ ===== */
+.quiz-container{display:flex;flex-direction:column;gap:1.25rem;margin-top:1.5rem}
+.quiz-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;transition:all 0.3s;
+}
+.quiz-num{
+  font-family:var(--mono);font-size:0.65rem;color:var(--teal);
+  text-transform:uppercase;letter-spacing:0.12em;
+  padding:1rem 1.5rem 0;
+}
+.quiz-q{
+  font-size:0.95rem;font-weight:700;
+  padding:0.6rem 1.5rem 1.2rem;line-height:1.5;
+}
+.quiz-btn{
+  width:100%;padding:0.85rem 1.5rem;
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;
+  background:rgba(18,130,162,0.15);border:none;border-top:1px solid var(--border);
+  color:var(--teal);cursor:pointer;text-align:left;
+  transition:all 0.2s;
+}
+.quiz-btn:hover{background:rgba(18,130,162,0.25)}
+.quiz-answer{
+  max-height:0;overflow:hidden;transition:max-height 0.4s ease;
+}
+.quiz-card.answered .quiz-answer{max-height:300px}
+.quiz-answer-inner{
+  padding:1.25rem 1.5rem;
+  border-top:1px solid var(--border);
+}
+.quiz-verdict{
+  font-family:var(--mono);font-size:0.7rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.1em;
+  margin-bottom:0.6rem;display:flex;align-items:center;gap:0.4rem;
+}
+.verdict-sim{color:var(--green)}
+.verdict-nao{color:var(--red)}
+.verdict-cuidado{color:var(--yellow)}
+.quiz-explain{font-size:0.875rem;color:var(--text2);line-height:1.7}
+.quiz-pegadinha{
+  margin-top:0.75rem;font-size:0.8rem;color:var(--yellow);
+  background:rgba(255,214,10,0.05);border:1px solid rgba(255,214,10,0.2);
+  border-radius:6px;padding:0.6rem 0.9rem;
+  display:none;
+}
+.modo-professor .quiz-pegadinha{display:block}
+
+/* ===== RESUMO BOLSO ===== */
+.resumo-wrap{
+  background:linear-gradient(135deg,rgba(18,130,162,0.1),rgba(244,185,66,0.05));
+  border:1px solid rgba(244,185,66,0.2);border-radius:16px;
+  padding:2.5rem;margin-top:1.5rem;
+}
+.resumo-10s{
+  text-align:center;margin-bottom:2rem;
+}
+.resumo-10s .timer{
+  font-family:var(--mono);font-size:3rem;font-weight:600;
+  color:var(--gold);line-height:1;margin-bottom:0.5rem;
+}
+.resumo-10s h3{font-size:1rem;color:var(--text3);margin-bottom:1.5rem}
+.resumo-pills{
+  display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;
+}
+.r-pill{
+  padding:0.5rem 1.1rem;border-radius:20px;
+  font-size:0.82rem;font-weight:700;
+}
+.r-pill.red{background:rgba(230,57,70,0.2);color:var(--red);border:1px solid rgba(230,57,70,0.3)}
+.r-pill.blue{background:rgba(18,130,162,0.2);color:var(--teal);border:1px solid rgba(18,130,162,0.3)}
+.r-pill.gold{background:rgba(244,185,66,0.15);color:var(--gold);border:1px solid rgba(244,185,66,0.3)}
+.r-pill.gray{background:rgba(141,153,174,0.15);color:var(--gray);border:1px solid rgba(141,153,174,0.3)}
+
+/* ===== FRASES EFEITO ===== */
+.frases-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1rem;margin-top:1.5rem;
+}
+.frase-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.5rem;
+  border-left:4px solid var(--gold);
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.frase-card::before{
+  content:'"';font-size:6rem;color:rgba(244,185,66,0.04);
+  position:absolute;top:-1rem;left:0.5rem;font-family:serif;line-height:1;
+}
+.frase-card:hover{border-color:var(--gold);box-shadow:var(--glow-gold);transform:translateY(-3px)}
+.frase-card p{
+  font-size:0.95rem;font-style:italic;color:var(--text);
+  line-height:1.6;position:relative;z-index:1;
+}
+.frase-card .assinatura{
+  font-family:var(--script);font-size:1rem;
+  color:var(--gold);margin-top:0.75rem;display:block;
+}
+
+/* ===== MODO REVISAO ===== */
+.modo-revisao .detalhe{display:none}
+.modo-revisao .acord-body{max-height:0!important}
+.modo-revisao .acord-arrow{display:none}
+.modo-revisao .quiz-answer{max-height:0!important}
+.modo-revisao .fluxo-sub{display:none}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;padding:3rem 1.5rem;
+  border-top:1px solid var(--border);
+  background:rgba(0,0,0,0.2);
+}
+footer .assinatura-footer{
+  font-family:var(--script);font-size:2rem;
+  color:var(--gold);margin-bottom:0.5rem;
+}
+footer p{font-size:0.75rem;color:var(--text3);margin-bottom:0.25rem}
+
+/* ===== CRITERIOS TABLE FEVE ===== */
+.feve-badge{
+  font-family:var(--mono);font-weight:600;font-size:0.85rem;
+  padding:0.2rem 0.5rem;border-radius:4px;
+  background:rgba(230,57,70,0.2);color:var(--red);
+  border:1px solid rgba(230,57,70,0.3);
+}
+.feve-badge.blue{background:rgba(18,130,162,0.2);color:var(--teal);border-color:rgba(18,130,162,0.3)}
+
+/* ===== SECTION VISIBILITY ===== */
+.content-block{transition:all 0.3s}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.fade-up{animation:fadeUp 0.6s ease both}
+
+/* Progress indicator */
+.progress-nav{
+  position:fixed;right:1rem;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:0.5rem;z-index:90;
+}
+.prog-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--surface2);border:1px solid var(--border);
+  cursor:pointer;transition:all 0.2s;
+}
+.prog-dot.active{background:var(--teal);border-color:var(--teal);transform:scale(1.3)}
+.prog-dot:hover{background:var(--gold);border-color:var(--gold)}
+@media(max-width:768px){.progress-nav{display:none}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .header-inner{flex-wrap:wrap;height:auto;padding:0.75rem 0}
+  .nav-tabs{order:3;width:100%}
+  .mode-btns{order:2}
+}
+@media(max-width:480px){
+  .section-title{font-size:1.4rem}
+  .portao-card{padding:1.5rem}
+  .mne-word{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <span>ATLAS MENTAL</span> · CDI
+    </div>
+    <nav class="nav-tabs">
+      <a class="nav-tab active" href="#n1-conceito">N1</a>
+      <a class="nav-tab" href="#n2-portoes">N2</a>
+      <a class="nav-tab" href="#n3-secundaria">N3</a>
+      <a class="nav-tab" href="#n4-primaria">N4</a>
+      <a class="nav-tab" href="#n5-especiais">N5</a>
+      <a class="nav-tab" href="#n6-contra">N6</a>
+      <a class="nav-tab" href="#n7-mnemonico">N7</a>
+      <a class="nav-tab" href="#quiz">Quiz</a>
+      <a class="nav-tab" href="#resumo">Resumo</a>
+    </nav>
+    <div class="mode-btns">
+      <button class="btn-mode btn-professor" onclick="toggleProfessor(this)" title="Ativa comentários e pegadinhas">⚡ Professor</button>
+      <button class="btn-mode btn-revisao" onclick="toggleRevisao(this)" title="Oculta detalhes, mostra só o essencial">⚡ Revisão</button>
+    </div>
+  </div>
+</header>
+
+<!-- Progress nav -->
+<div class="progress-nav" id="progressNav">
+  <div class="prog-dot active" onclick="scrollToSection('n1-conceito')" title="N1"></div>
+  <div class="prog-dot" onclick="scrollToSection('n2-portoes')" title="N2"></div>
+  <div class="prog-dot" onclick="scrollToSection('n3-secundaria')" title="N3"></div>
+  <div class="prog-dot" onclick="scrollToSection('n4-primaria')" title="N4"></div>
+  <div class="prog-dot" onclick="scrollToSection('n5-especiais')" title="N5"></div>
+  <div class="prog-dot" onclick="scrollToSection('n6-contra')" title="N6"></div>
+  <div class="prog-dot" onclick="scrollToSection('n7-mnemonico')" title="N7"></div>
+  <div class="prog-dot" onclick="scrollToSection('quiz')" title="Quiz"></div>
+  <div class="prog-dot" onclick="scrollToSection('resumo')" title="Resumo"></div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ecg">
+    <svg viewBox="0 0 1200 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <polyline points="0,30 80,30 100,30 110,5 120,55 130,10 140,30 160,30 240,30 260,30 270,5 280,55 290,10 300,30 320,30 400,30 420,30 430,5 440,55 450,10 460,30 480,30 560,30 580,30 590,5 600,55 610,10 620,30 640,30 720,30 740,30 750,5 760,55 770,10 780,30 800,30 880,30 900,30 910,5 920,55 930,10 940,30 960,30 1040,30 1060,30 1070,5 1080,55 1090,10 1100,30 1120,30 1200,30" stroke="#1282A2" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="hero-kicker">Método N1–N7 · Atlas Mental Interativo · Dr. André Rossanno</div>
+  <h1 class="hero-title fade-up">
+    <span class="accent-red">CDI</span> em Prevenção<br><span class="accent-teal">Primária</span> & Secundária
+  </h1>
+  <p class="hero-subtitle">Cardioversor-Desfibrilador Implantável — Do terreno elétrico à indicação precisa</p>
+  <div class="hero-quote">
+    "CDI secundário é capacete depois da queda;<br>CDI primário é para-raio antes da tempestade."<br>
+    <small style="font-size:0.8rem;color:var(--gold);opacity:0.7;font-family:var(--script)">— Dr. André Rossanno</small>
+  </div>
+</section>
+
+<!-- ===== FILTER BUTTONS ===== -->
+<div class="section" style="padding-bottom:0.5rem">
+  <div class="filter-btns">
+    <button class="filter-btn fb-all active" onclick="filterContent('all',this)">Tudo</button>
+    <button class="filter-btn fb-primaria" onclick="filterContent('primaria',this)">🔵 Prevenção Primária</button>
+    <button class="filter-btn fb-secundaria" onclick="filterContent('secundaria',this)">🔴 Prevenção Secundária</button>
+    <button class="filter-btn fb-contra" onclick="filterContent('contra',this)">⚫ Contraindicações</button>
+    <button class="filter-btn fb-pega" onclick="filterContent('pega',this)">⚠️ Pegadinhas</button>
+  </div>
+</div>
+
+<!-- ===== N1: CONCEITO ===== -->
+<section class="section" id="n1-conceito">
+  <div class="section-title">
+    <span class="n-badge">N1</span> Elaborative Encoding — Conceito Central
+  </div>
+  <p class="section-sub">O que o CDI é. O que ele não é. Por que a maioria erra na prova.</p>
+
+  <div class="criterios-grid">
+    <div class="criterio-card" style="border-color:rgba(45,198,83,0.3)">
+      <h4 style="color:var(--green)">✅ CDI É para</h4>
+      <ul>
+        <li>Prevenir morte súbita por TV/FV fatal</li>
+        <li>Proteger o paciente com terreno arrítmico real</li>
+        <li>Reduzir mortalidade arrítmica selecionada</li>
+        <li>Quem já morreu de arritmia (secundário)</li>
+        <li>Quem tem alto risco de morrer (primário)</li>
+      </ul>
+    </div>
+    <div class="criterio-card" style="border-color:rgba(230,57,70,0.3)">
+      <h4 style="color:var(--red)">❌ CDI NÃO é para</h4>
+      <ul>
+        <li>Tratar palpitação simples</li>
+        <li>Melhorar FEVE ou função cardíaca</li>
+        <li>Todo coração fraco sem contexto</li>
+        <li>Arritmias por causas reversíveis</li>
+        <li>Pacientes sem expectativa de vida &gt; 1 ano</li>
+      </ul>
+    </div>
+    <div class="criterio-card" style="border-color:rgba(244,185,66,0.3)">
+      <h4 style="color:var(--gold)">⚡ A pergunta-chave</h4>
+      <p><strong style="color:var(--gold)">"Foi arritmia do terreno ou arritmia do momento?"</strong></p>
+      <p class="detalhe">Se foi do <strong>terreno</strong> (cardiopatia estrutural, substrate arritmogênico): pensar em CDI.<br>Se foi do <strong>momento</strong> (hipocalemia, IAM agudo, sepse): corrigir o gatilho.</p>
+    </div>
+    <div class="criterio-card" style="border-color:rgba(18,130,162,0.3)">
+      <h4 style="color:var(--teal)">🧠 Imagem Mental</h4>
+      <div class="imagem-mental">
+        <strong>CDI = Para-raio elétrico.</strong> O raio já caiu? Capacete (secundário). O céu está carregado? Para-raio (primário). Sem tempestade arrítmica = sem para-raio.
+      </div>
+    </div>
+  </div>
+
+  <div class="pega-box always" style="margin-top:1.5rem">
+    <div class="pega-header">⚠️ Mensagem-Chave</div>
+    <p><strong>"CDI não trata coração fraco por vaidade elétrica; ele protege quem tem terreno pronto para morte súbita."</strong> — Dr. André Rossanno</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== N2: OS DOIS PORTÕES ===== -->
+<section class="section" id="n2-portoes">
+  <div class="section-title">
+    <span class="n-badge">N2</span> Dual Coding — Os Dois Portões
+  </div>
+  <p class="section-sub">Dois portões, uma decisão: o raio já caiu ou o céu está carregado?</p>
+
+  <div class="portoes-grid">
+    <div class="portao-card portao-secundaria">
+      <div class="portao-icon">🔴</div>
+      <div class="portao-tag tag-red">PREVENÇÃO SECUNDÁRIA</div>
+      <h3 class="portao-title">O raio já caiu.</h3>
+      <ul class="portao-list">
+        <li>PCR por TV/FV recuperada</li>
+        <li>TV sustentada com instabilidade hemodinâmica</li>
+        <li>TV sustentada sintomática relevante</li>
+        <li>Síncope arrítmica com documentação compatível</li>
+        <li>Evento arrítmico maligno sem causa reversível</li>
+      </ul>
+      <div class="portao-frase frase-red">"Ele já provou que pode morrer de arritmia."</div>
+    </div>
+    <div class="portao-card portao-primaria">
+      <div class="portao-icon">🔵</div>
+      <div class="portao-tag tag-blue">PREVENÇÃO PRIMÁRIA</div>
+      <h3 class="portao-title">O raio ainda não caiu, mas o céu está preto.</h3>
+      <ul class="portao-list">
+        <li>Sem PCR/TV/FV prévia</li>
+        <li>FEVE muito reduzida (≤35%)</li>
+        <li>Cardiopatia isquêmica ou não isquêmica</li>
+        <li>Cardiomiopatias genéticas ou arritmogênicas</li>
+        <li>Marcadores fortes de morte súbita</li>
+      </ul>
+      <div class="portao-frase frase-blue">"Ainda não caiu, mas o céu elétrico está armado."</div>
+    </div>
+  </div>
+
+  <!-- FLUXOGRAMA -->
+  <h3 style="font-size:1rem;font-weight:800;margin:2.5rem 0 1rem;color:var(--gold)">⚡ Fluxograma de Decisão CDI</h3>
+  <div class="fluxo-container">
+    <div class="fluxo">
+      <div class="fluxo-node inicio">🫀 Paciente com risco de morte súbita por arritmia</div>
+      <div class="fluxo-arrow">↓</div>
+      <div class="fluxo-node decisao">Já teve evento arrítmico maligno?</div>
+      <div class="fluxo-arrow">↓</div>
+      <div class="fluxo-branch">
+        <div class="fluxo-branch-item">
+          <span class="fluxo-branch-label label-sim">✓ SIM</span>
+          <div class="fluxo-arrow">↓</div>
+          <div class="fluxo-node resultado-vermelho">
+            Avaliar reversibilidade<br>
+            <div class="fluxo-sub detalhe">IAM agudo? Hipocalemia? Intoxicação? Sepse?</div>
+          </div>
+          <div class="fluxo-arrow">↓</div>
+          <div class="fluxo-node decisao" style="background:rgba(230,57,70,0.1);border-color:rgba(230,57,70,0.5);color:var(--red)">Causa reversível?</div>
+          <div class="fluxo-arrow">↓</div>
+          <div class="fluxo-branch">
+            <div class="fluxo-branch-item">
+              <span class="fluxo-branch-label label-sim">✓ SIM</span>
+              <div class="fluxo-arrow">↓</div>
+              <div class="fluxo-node resultado-azul" style="font-size:0.8rem">Corrigir causa<br>CDI não automático</div>
+            </div>
+            <div class="fluxo-branch-item">
+              <span class="fluxo-branch-label" style="background:rgba(230,57,70,0.2);color:var(--red);border:1px solid rgba(230,57,70,0.3)">✗ NÃO</span>
+              <div class="fluxo-arrow">↓</div>
+              <div class="fluxo-node fluxo-cdi-final">⚡ CDI<br><small style="font-weight:400;font-size:0.75rem">Prevenção Secundária</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="fluxo-branch-item">
+          <span class="fluxo-branch-label label-nao">✗ NÃO</span>
+          <div class="fluxo-arrow">↓</div>
+          <div class="fluxo-node resultado-azul">
+            Estratificar risco primário<br>
+            <div class="fluxo-sub detalhe">FEVE · Cardiopatia · Tempo pós-IAM · TMO · Expectativa de vida</div>
+          </div>
+          <div class="fluxo-arrow">↓</div>
+          <div class="fluxo-node resultado-azul" style="font-size:0.8rem">Critérios de<br>Prevenção Primária?</div>
+          <div class="fluxo-arrow">↓</div>
+          <div class="fluxo-node fluxo-cdi-final" style="background:linear-gradient(135deg,var(--teal),var(--navy));box-shadow:var(--glow-teal);animation:none">⚡ CDI<br><small style="font-weight:400;font-size:0.75rem">Prevenção Primária</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== N3: SECUNDÁRIA ===== -->
+<section class="section" id="n3-secundaria" data-filter="secundaria">
+  <div class="section-title">
+    <span class="n-badge">N3</span> Memory Palace — Prevenção Secundária
+  </div>
+  <p class="section-sub">Loci Clínico: UTI de pós-PCR. O raio já caiu. Agora, o CPR já falou.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Situação Clínica</th>
+          <th>Conduta Mental</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PCR recuperada por TV/FV</td>
+          <td class="td-green">⚡ CDI — Secundário</td>
+        </tr>
+        <tr>
+          <td>TV sustentada com síncope ou instabilidade</td>
+          <td class="td-green">⚡ CDI — Secundário</td>
+        </tr>
+        <tr>
+          <td>TV sustentada espontânea em cardiopatia estrutural</td>
+          <td class="td-green">CDI ou forte consideração</td>
+        </tr>
+        <tr>
+          <td>Canalopatia com PCR (Brugada, QT longo, TVPC)</td>
+          <td class="td-yellow">CDI em cenário selecionado</td>
+        </tr>
+        <tr>
+          <td>Evento por causa reversível clara</td>
+          <td class="td-gray">Corrigir causa — CDI não automático</td>
+        </tr>
+        <tr>
+          <td>TV/FV na fase aguda do IAM</td>
+          <td class="td-gray">Não vira CDI automático</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pega-box always" style="margin-top:1.5rem">
+    <div class="pega-header">⚠️ Pegadinha Suprema de Prova</div>
+    <p>TV/FV na fase <strong>aguda do IAM</strong>, <strong>hipocalemia grave</strong>, <strong>intoxicação medicamentosa</strong>, <strong>sepse grave</strong> ou <strong>isquemia corrigível</strong> <strong>NÃO</strong> viram CDI automático. <br><br>A questão vai apresentar esses cenários e esperar que você indique CDI. <strong>Não caia.</strong></p>
+  </div>
+
+  <div class="criterios-grid" style="margin-top:1.5rem">
+    <div class="criterio-card" style="border-color:rgba(230,57,70,0.3)">
+      <h4 style="color:var(--red)">🧠 A Pergunta Mental</h4>
+      <div class="imagem-mental">
+        <strong>"Foi arritmia do terreno ou arritmia do momento?"</strong><br><br>
+        Se foi do <strong>momento</strong>: corrigir o gatilho.<br>
+        Se foi do <strong>terreno</strong>: pensar em CDI secundário.
+      </div>
+    </div>
+    <div class="criterio-card" style="border-color:rgba(18,130,162,0.3)">
+      <h4 style="color:var(--teal)">🏛️ Palácio da Memória</h4>
+      <div class="imagem-mental">
+        Visualize o corridão da UTI de pós-PCR: ao entrar pela porta 1 → <strong>reversível</strong> = vai para o corredor de correção. Porta 2 → <strong>não reversível</strong> = direto para a sala do <strong>⚡ CDI</strong>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== N4: PRIMÁRIA ===== -->
+<section class="section" id="n4-primaria" data-filter="primaria">
+  <div class="section-title">
+    <span class="n-badge">N4</span> Testing Effect — Prevenção Primária
+  </div>
+  <p class="section-sub">O céu está carregado. FEVE abre a porta; contexto clínico decide se o CDI entra.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem">
+    <!-- Isquêmica -->
+    <div class="criterio-card" style="border-color:rgba(230,57,70,0.3);grid-column:1/-1">
+      <h4 style="color:var(--red)">❤️‍🔥 A) Cardiopatia Isquêmica — Critérios Primários</h4>
+      <div class="criterios-grid" style="margin-top:1rem">
+        <div style="background:rgba(230,57,70,0.05);border-radius:8px;padding:1rem;border:1px solid rgba(230,57,70,0.15)">
+          <h5 style="font-family:var(--mono);font-size:0.65rem;color:var(--red);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem">CRITÉRIO CLÁSSICO 1</h5>
+          <span class="feve-badge">FEVE ≤ 35%</span>
+          <p style="font-size:0.85rem;color:var(--text2);margin-top:0.5rem">NYHA II–III + TMO otimizado + expectativa de vida &gt;1 ano</p>
+        </div>
+        <div style="background:rgba(230,57,70,0.05);border-radius:8px;padding:1rem;border:1px solid rgba(230,57,70,0.15)">
+          <h5 style="font-family:var(--mono);font-size:0.65rem;color:var(--red);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem">CRITÉRIO CLÁSSICO 2</h5>
+          <span class="feve-badge">FEVE ≤ 30%</span>
+          <p style="font-size:0.85rem;color:var(--text2);margin-top:0.5rem">Mesmo NYHA I pode entrar com TMO otimizado</p>
+        </div>
+        <div style="background:rgba(244,185,66,0.05);border-radius:8px;padding:1rem;border:1px solid rgba(244,185,66,0.15)">
+          <h5 style="font-family:var(--mono);font-size:0.65rem;color:var(--yellow);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem">CRITÉRIO ESPECIAL</h5>
+          <span class="feve-badge" style="background:rgba(244,185,66,0.15);color:var(--yellow);border-color:rgba(244,185,66,0.3)">FEVE ≤ 40%</span>
+          <p style="font-size:0.85rem;color:var(--text2);margin-top:0.5rem">+ TVNS espontânea + TV sustentada induzida no EEF</p>
+        </div>
+      </div>
+      <div class="pega-box always" style="margin-top:1rem">
+        <div class="pega-header">⏱️ A Regra do Tempo</div>
+        <p>Pós-IAM em prevenção <strong>primária</strong>: aguardar <strong>&gt; 40 dias</strong> para reavaliar FEVE após TMO.<br>Pós-<strong>revascularização</strong>: aguardar <strong>&gt; 3 meses</strong> para nova avaliação.<br><em>Em prevenção <strong>secundária</strong>: o raio já falou — não há essa espera obrigatória.</em></p>
+      </div>
+    </div>
+
+    <!-- Não isquêmica -->
+    <div class="criterio-card" style="border-color:rgba(18,130,162,0.3)">
+      <h4 style="color:var(--teal)">💙 B) Cardiomiopatia Dilatada Não Isquêmica</h4>
+      <ul>
+        <li><span class="feve-badge blue" style="font-size:0.75rem;padding:0.15rem 0.4rem">FEVE ≤ 35%</span></li>
+        <li>TMO otimizado (BB + IECA/BRA + ARM/INRA)</li>
+        <li>NYHA II–III</li>
+        <li>Expectativa de vida &gt; 1 ano</li>
+      </ul>
+      <div class="imagem-mental" style="margin-top:0.75rem">
+        O ventrículo dilatado vira um <strong>pântano elétrico</strong>: cheio de fibrose, cicatriz e reentrada.
+      </div>
+      <div class="macete detalhe">⚡ "Dilata, fibrosa, reduz FEVE: a eletricidade começa a tropeçar."</div>
+    </div>
+
+    <!-- Fluxo TMO -->
+    <div class="criterio-card" style="border-color:rgba(45,198,83,0.3)">
+      <h4 style="color:var(--green)">✅ Checklist Antes do CDI Primário</h4>
+      <ul>
+        <li>FEVE medida com TMO otimizado?</li>
+        <li>Tempo mínimo respeitado pós-IAM/pós-revasc?</li>
+        <li>Isquemia tratável foi excluída?</li>
+        <li>Expectativa de vida &gt; 1 ano?</li>
+        <li>Condição funcional adequada para benefício?</li>
+        <li>Causa reversível excluída?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== N5: ESPECIAIS ===== -->
+<section class="section" id="n5-especiais">
+  <div class="section-title">
+    <span class="n-badge">N5</span> Interleaving — Cardiopatias Especiais
+  </div>
+  <p class="section-sub">Onde a FEVE não manda sozinha. O contexto clínico e genético decide.</p>
+
+  <div class="acordeao">
+
+    <!-- CMH -->
+    <div class="acord-item" id="acord-cmh">
+      <div class="acord-header" onclick="toggleAcord('acord-cmh')">
+        <div class="acord-header-left">
+          <span class="acord-icon">🏔️</span>
+          <div>
+            <div class="acord-title">Cardiomiopatia Hipertrófica (CMH)</div>
+            <div class="acord-meta">FEVE ≠ critério principal · Pacote de risco · SCD score</div>
+          </div>
+        </div>
+        <span class="acord-arrow">▼</span>
+      </div>
+      <div class="acord-body">
+        <div class="acord-content">
+          <h5>Por que a CMH é diferente?</h5>
+          <p>Na CMH, o ventrículo pode estar <strong>hipercontrátil</strong> (FEVE normal ou até aumentada). Não se usa apenas FEVE. A decisão é baseada em um <strong>pacote de fatores de risco</strong> para morte súbita.</p>
+          <h5>Fatores de risco para MS na CMH</h5>
+          <ul>
+            <li>Síncope inexplicada (recente ou de esforço)</li>
+            <li>História familiar de morte súbita (1° grau)</li>
+            <li>Espessura ventricular ≥ 30 mm</li>
+            <li>TVNS ao Holter</li>
+            <li>Fibrose extensiva na ressonância (realce tardio &gt;15%)</li>
+            <li>Aneurisma apical</li>
+            <li>FEVE &lt; 50% (disfunção presente)</li>
+            <li>Mutação sarcomérica de alto risco (ex: MYBPC3 grave)</li>
+            <li>Gradiente VSVE significativo</li>
+          </ul>
+          <div class="imagem-mental">
+            <strong>Imagem mental:</strong> A CMH é uma <strong>parede muscular gigante com fiação apertada</strong>. Nem sempre a bomba está fraca, mas o fio pode estar perigoso. O risco vem da arquitetura — não da força.
+          </div>
+          <div class="pega-box prof-content">
+            <div class="pega-header">⚠️ Pegadinha do Professor</div>
+            <p>A questão apresenta CMH com <strong>FEVE 70%</strong> e pergunta se CDI está contraindicado. <strong>Não!</strong> Se há síncope inexplicada + espessura ≥30mm + TVNS, o CDI está fortemente considerado. FEVE preservada na CMH não afasta indicação.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAGAS -->
+    <div class="acord-item" id="acord-chagas">
+      <div class="acord-header" onclick="toggleAcord('acord-chagas')">
+        <div class="acord-header-left">
+          <span class="acord-icon">🦠</span>
+          <div>
+            <div class="acord-title">Cardiopatia Chagásica</div>
+            <div class="acord-meta">Cupim elétrico do miocárdio · TV sustentada · Disfunção VE</div>
+          </div>
+        </div>
+        <span class="acord-arrow">▼</span>
+      </div>
+      <div class="acord-body">
+        <div class="acord-content">
+          <h5>Quando pensar em CDI na Doença de Chagas?</h5>
+          <ul>
+            <li>TV sustentada documentada</li>
+            <li>Disfunção ventricular esquerda (FEVE reduzida)</li>
+            <li>Síncope de provável origem arrítmica</li>
+            <li>Alto risco de morte súbita (escore de Rassi)</li>
+          </ul>
+          <div class="macete">⚡ "Chagas é o cupim elétrico do miocárdio: vai roendo a condução, criando cicatriz e armando TV."</div>
+          <div class="imagem-mental detalhe">
+            <strong>Palácio Evolutivo:</strong> Imagine o miocárdio chagásico como uma parede antiga sendo devorada por cupins. Os túneis = áreas de fibrose e condução lenta. O substrato para reentrada cresce com o tempo.
+          </div>
+          <h5>Escore de Rassi (simplificado)</h5>
+          <p class="detalhe">Fatores que aumentam risco: NYHA avançada, cardiomegalia, disfunção sistólica, TVNS, sexo masculino, aneurisma apical, achados eletrocardiográficos. Alto risco = CDI considerado.</p>
+          <div class="pega-box prof-content">
+            <div class="pega-header">⚠️ Detalhe importante</div>
+            <p>Chagas pode causar morte súbita mesmo com FEVE preservada em fases iniciais, especialmente quando há TV sustentada. Não espere FEVE cair para considerar CDI se já houve evento arrítmico.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARVC -->
+    <div class="acord-item" id="acord-arvc">
+      <div class="acord-header" onclick="toggleAcord('acord-arvc')">
+        <div class="acord-header-left">
+          <span class="acord-icon">⚡</span>
+          <div>
+            <div class="acord-title">Cardiomiopatia Arritmogênica do VD (CAVD/ARVC)</div>
+            <div class="acord-meta">VD de gordura e cicatriz · Piso falso elétrico · Jovens, esportistas</div>
+          </div>
+        </div>
+        <span class="acord-arrow">▼</span>
+      </div>
+      <div class="acord-body">
+        <div class="acord-content">
+          <h5>Indicações de CDI na ARVC</h5>
+          <ul>
+            <li>Morte súbita abortada (secundário)</li>
+            <li>TV sustentada hemodinamicamente instável (secundário)</li>
+            <li>Síncope provavelmente arrítmica</li>
+            <li>Disfunção importante de VD</li>
+            <li>Acometimento biventricular ou FEVE VE reduzida</li>
+          </ul>
+          <div class="imagem-mental">
+            <strong>Imagem mental:</strong> O VD vira uma parede infiltrada por gordura e cicatriz — como se a fiação estivesse passando por um <strong>piso falso</strong>. A qualquer momento, o circuito pode colapsar em TV.
+          </div>
+          <div class="pega-box prof-content">
+            <div class="pega-header">⚠️ Pegadinha</div>
+            <p>ARVC acomete principalmente jovens e atletas. A presença de TV de morfologia de BRE (origem no VD) em jovem deve levantar suspeita. Exercício intenso é agravante — restrição esportiva é parte do tratamento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LMNA -->
+    <div class="acord-item" id="acord-lmna">
+      <div class="acord-header" onclick="toggleAcord('acord-lmna')">
+        <div class="acord-header-left">
+          <span class="acord-icon">🧬</span>
+          <div>
+            <div class="acord-title">Cardiomiopatias Genéticas de Alto Risco (ex: LMNA)</div>
+            <div class="acord-meta">Mutação de lamina A/C · Distúrbio de condução + TVNS + FEVE reduzida</div>
+          </div>
+        </div>
+        <span class="acord-arrow">▼</span>
+      </div>
+      <div class="acord-body">
+        <div class="acord-content">
+          <h5>Lamina A/C (LMNA) — Quando ser mais agressivo?</h5>
+          <p>A mutação LMNA é associada a alto risco de morte súbita, muitas vezes precoce, mesmo com FEVE limítrofe.</p>
+          <h5>Combinação de fatores de risco na LMNA</h5>
+          <ul>
+            <li>Mutação de alto risco confirmada</li>
+            <li>TVNS ao monitoramento</li>
+            <li>FEVE reduzida ou limítrofe (&lt; 45-50%)</li>
+            <li>Sexo masculino</li>
+            <li>Distúrbio de condução (BAV, BCRE)</li>
+            <li>História familiar de morte súbita</li>
+          </ul>
+          <div class="imagem-mental detalhe">
+            <strong>Imagem:</strong> A lamina A/C é o esqueleto do núcleo da célula cardíaca. Quando muta, o "andaime genético" do cardiomiócito colapsa, gerando fibrose precoce e substrato para TV mesmo com função ainda preservada.
+          </div>
+          <div class="pega-box prof-content">
+            <div class="pega-header">⚠️ Detalhe para prova</div>
+            <p>Nas cardiomiopatias genéticas como LMNA, o limiar para CDI pode ser mais baixo (FEVE &lt;45% com outros fatores) do que na CMD não isquêmica genérica (≤35%). O risco genético acelera a decisão.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Canalopatias -->
+    <div class="acord-item" id="acord-canal">
+      <div class="acord-header" onclick="toggleAcord('acord-canal')">
+        <div class="acord-header-left">
+          <span class="acord-icon">🔬</span>
+          <div>
+            <div class="acord-title">Canalopatias (Brugada, QT Longo, TVPC)</div>
+            <div class="acord-meta">Coração estruturalmente normal · Risco puro de canal iônico</div>
+          </div>
+        </div>
+        <span class="acord-arrow">▼</span>
+      </div>
+      <div class="acord-body">
+        <div class="acord-content">
+          <h5>CDI nas Canalopatias</h5>
+          <ul>
+            <li>PCR ressuscitada por TV/FV → CDI (secundário)</li>
+            <li>Síncope arrítmica com padrão compatível → CDI considerado</li>
+            <li>Alto risco (fenótipo grave, história familiar) → CDI em selecionados</li>
+          </ul>
+          <h5>Casos selecionados para primário:</h5>
+          <ul>
+            <li><strong>Brugada:</strong> Padrão espontâneo Tipo 1 + síncope ou FV induzida</li>
+            <li><strong>QT longo:</strong> Persistência de evento sob betabloqueador</li>
+            <li><strong>TVPC:</strong> TV persistente sob betabloqueador adequado</li>
+          </ul>
+          <div class="imagem-mental">
+            <strong>Imagem:</strong> Canalopatia = coração com <strong>aparência normal mas fiação defeituosa de fábrica</strong>. O substrato é molecular, não estrutural. A morte súbita pode acontecer em jovem com ecocardiograma completamente normal.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /acordeao -->
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== N6: CONTRA ===== -->
+<section class="section" id="n6-contra" data-filter="contra">
+  <div class="section-title">
+    <span class="n-badge">N6</span> Emoção/Narrativa — Contraindicações & Pegadinhas
+  </div>
+  <p class="section-sub">O vilão da cena: indicar CDI para quem não vai se beneficiar é crueldade elétrica, não proteção.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Situação</th>
+          <th>Por quê NÃO?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Expectativa de vida &lt; 1 ano</td>
+          <td class="td-gray">Sem benefício clínico real — choque em terminal = crueldade</td>
+        </tr>
+        <tr>
+          <td>NYHA IV refratário sem transplante/DAV em plano</td>
+          <td class="td-gray">Prolonga sofrimento sem mudar desfecho</td>
+        </tr>
+        <tr>
+          <td>IAM muito recente (primário &lt;40 dias)</td>
+          <td class="td-yellow">Esperar remodelamento e otimização</td>
+        </tr>
+        <tr>
+          <td>Arritmia por causa reversível</td>
+          <td class="td-yellow">Corrigir causa primeiro</td>
+        </tr>
+        <tr>
+          <td>Isquemia ainda não tratada</td>
+          <td class="td-yellow">Revascularizar/otimizar antes</td>
+        </tr>
+        <tr>
+          <td>FEVE baixa sem TMO otimizado</td>
+          <td class="td-yellow">Reavaliar após 3 meses de tratamento</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:1rem;font-weight:800;margin:2rem 0 1rem;color:var(--green)">✅ Checklist Pré-CDI — 7 Perguntas Obrigatórias</h3>
+  <div class="checklist-grid">
+    <div class="check-item">
+      <div class="check-num">01</div>
+      <div class="check-text">
+        <h5>Risco real de morte súbita?</h5>
+        <p>Há substrato arritmogênico documentado ou alto risco estratificado?</p>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-num">02</div>
+      <div class="check-text">
+        <h5>Primária ou Secundária?</h5>
+        <p>O evento já aconteceu? Ou estamos prevenindo o primeiro evento?</p>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-num">03</div>
+      <div class="check-text">
+        <h5>A arritmia foi reversível?</h5>
+        <p>Hipocalemia, IAM agudo, sepse, intoxicação foram excluídos?</p>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-num">04</div>
+      <div class="check-text">
+        <h5>TMO otimizado?</h5>
+        <p>BB + IECA/BRA + ARM/INRA por tempo adequado?</p>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-num">05</div>
+      <div class="check-text">
+        <h5>Tempo pós-IAM/pós-revasc?</h5>
+        <p>&gt;40 dias pós-IAM, &gt;3 meses pós-revascularização para primário?</p>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-num">06</div>
+      <div class="check-text">
+        <h5>Expectativa de vida &gt; 1 ano?</h5>
+        <p>Cardiopatia ou comorbidade oncológica/sistêmica não limita benefício?</p>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-num">07</div>
+      <div class="check-text">
+        <h5>Condição funcional adequada?</h5>
+        <p>Paciente vai se beneficiar do CDI ou apenas ter choques sem impacto em qualidade de vida?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pegadinhas Supremas -->
+  <div data-filter="pega">
+    <h3 style="font-size:1rem;font-weight:800;margin:2rem 0 1rem;color:var(--yellow)">⚠️ Pegadinhas de Prova — Modo Professor</h3>
+    <div class="pega-box show">
+      <div class="pega-header">⚠️ Pegadinha 1 — FEVE Baixa = CDI?</div>
+      <p><strong>CDI não é para todo paciente com FEVE baixa.</strong> A FEVE abre a porta, mas o contexto clínico fecha o contrato. FEVE 30% em NYHA IV refratário sem plano de transplante <strong>≠</strong> CDI automático.</p>
+    </div>
+    <div class="pega-box show" style="margin-top:0.75rem">
+      <div class="pega-header">⚠️ Pegadinha 2 — PCR no IAM Agudo</div>
+      <p>Paciente com PCR por FV <strong>na sala de hemodinâmica</strong> durante angioplastia: causa reversível = isquemia aguda. <strong>CDI não automático.</strong> Corrigir isquemia e reavaliar.</p>
+    </div>
+    <div class="pega-box show" style="margin-top:0.75rem">
+      <div class="pega-header">⚠️ Pegadinha 3 — Pós-IAM 15 dias</div>
+      <p>Paciente pós-IAM há 15 dias, FEVE 28%, estável. CDI agora? <strong>Não — aguardar &gt;40 dias</strong> e otimizar tratamento. A FEVE pode melhorar. Indicação prematura é erro de prova.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== N7: MNEMÔNICO ===== -->
+<section class="section" id="n7-mnemonico">
+  <div class="section-title">
+    <span class="n-badge">N7</span> Spaced Repetition — Mnemônico Final
+  </div>
+  <p class="section-sub">CDI = "CAIU ou CAIRÁ" — 3 formulações: mnemônico, caso e questão.</p>
+
+  <div class="mnemonico-wrap">
+    <div class="mne-card mne-caiu">
+      <div class="mne-word red">CAIU</div>
+      <p style="font-size:0.75rem;font-family:var(--mono);color:var(--red);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.2rem;opacity:0.8">PREVENÇÃO SECUNDÁRIA</p>
+      <div class="mne-letra">
+        <span class="mne-l red">C</span>
+        <span class="mne-def">Choque cardíaco / PCR recuperada por TV/FV</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l red">A</span>
+        <span class="mne-def">Arritmia ventricular sustentada (TV sustentada)</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l red">I</span>
+        <span class="mne-def">Instabilidade hemodinâmica / síncope arrítmica</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l red">U</span>
+        <span class="mne-def">Única regra absoluta: sem causa reversível</span>
+      </div>
+      <div class="mne-frase">"CAIU o raio: CDI protege do próximo."</div>
+    </div>
+
+    <div class="mne-card mne-caira">
+      <div class="mne-word blue">CAIRÁ</div>
+      <p style="font-size:0.75rem;font-family:var(--mono);color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.2rem;opacity:0.8">PREVENÇÃO PRIMÁRIA</p>
+      <div class="mne-letra">
+        <span class="mne-l blue">C</span>
+        <span class="mne-def">Cardiopatia estrutural presente</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l blue">A</span>
+        <span class="mne-def">Alto risco genético ou arritmogênico (LMNA, ARVC)</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l blue">I</span>
+        <span class="mne-def">Isquêmica com FEVE baixa (≤35% sob TMO)</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l blue">R</span>
+        <span class="mne-def">Redução de FEVE persistente após tratamento otimizado</span>
+      </div>
+      <div class="mne-letra">
+        <span class="mne-l blue">Á</span>
+        <span class="mne-def">Aguarde o tempo certo: 40 dias pós-IAM, 3 meses pós-revasc</span>
+      </div>
+      <div class="mne-frase">"Ainda não caiu, mas o céu elétrico está carregado."</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== QUIZ ===== -->
+<section class="section" id="quiz">
+  <div class="section-title">
+    <span class="n-badge">N4</span> Testing Effect — Quiz Final (5 Questões TEC)
+  </div>
+  <p class="section-sub">Interleaving obrigatório: diferenciais, pegadinhas e questões estilo TEC 2026.</p>
+
+  <div class="quiz-container">
+
+    <!-- Q1 -->
+    <div class="quiz-card" id="q1">
+      <div class="quiz-num">QUESTÃO 01 · TEC 2026</div>
+      <div class="quiz-q">Paciente masculino, 58 anos, pós-IAM há 10 dias. FEVE atual: 30%. Sem TV/FV documentada, clinicamente estável, em início de otimização de tratamento. Qual a conduta mais adequada em relação ao CDI neste momento?</div>
+      <button class="quiz-btn" onclick="revelarResposta('q1',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-answer">
+        <div class="quiz-answer-inner">
+          <div class="quiz-verdict verdict-nao">✗ NÃO — CDI não está indicado agora</div>
+          <p class="quiz-explain">Em prevenção primária pós-IAM, é necessário aguardar <strong>mais de 40 dias</strong> e otimizar o tratamento clínico antes de indicar CDI. A FEVE pode melhorar significativamente com o remodelamento reverso. Indicar CDI no 10º dia pós-IAM é erro clássico de prova.</p>
+          <div class="quiz-pegadinha">🎯 Pegadinha: A questão dá FEVE muito baixa (30%) para tentar induzir indicação imediata. O tempo mínimo é a chave. "No pós-IAM primário, espera 40 dias; no secundário, o raio já falou." — Dr. André Rossanno</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-card" id="q2">
+      <div class="quiz-num">QUESTÃO 02 · TEC 2026</div>
+      <div class="quiz-q">Homem, 65 anos, encontrado em PCR por FV fora do hospital. Ressuscitado com sucesso. Coronariografia sem lesões obstrutivas significativas. Ecocardiograma com FEVE 40%, sem cardiopatia estrutural evidente. Qual a indicação de CDI?</div>
+      <button class="quiz-btn" onclick="revelarResposta('q2',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-answer">
+        <div class="quiz-answer-inner">
+          <div class="quiz-verdict verdict-sim">✓ SIM — CDI indicado (Prevenção Secundária)</div>
+          <p class="quiz-explain">O paciente teve PCR por FV sem causa reversível identificada (sem obstrução coronária, sem causa metabólica). Isso configura prevenção <strong>secundária</strong>. FEVE ≤35% não é critério obrigatório para secundário — o evento arrítmico maligno é suficiente.</p>
+          <div class="quiz-pegadinha">🎯 Detalhe: FEVE 40% parece "não tão baixa" — a questão testa se você confunde critério de primário (FEVE ≤35%) com secundário. No secundário, FEVE não é o critério — o evento é.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-card" id="q3">
+      <div class="quiz-num">QUESTÃO 03 · TEC 2026</div>
+      <div class="quiz-q">Mulher, 52 anos, hospitalizada por sepse grave com evolução para TV e FV, revertida com desfibrilação. Após resolução da sepse e alta, potássio normalizado, coração estruturalmente normal. O cardiologista deve indicar CDI?</div>
+      <button class="quiz-btn" onclick="revelarResposta('q3',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-answer">
+        <div class="quiz-answer-inner">
+          <div class="quiz-verdict verdict-cuidado">⚠️ NÃO automaticamente — Causa reversível = reavaliar</div>
+          <p class="quiz-explain">A FV ocorreu em contexto de <strong>sepse grave</strong> (causa reversível). Sem cardiopatia estrutural residual e com resolução da causa, CDI não é indicação automática. A regra: <strong>"Foi arritmia do terreno ou arritmia do momento?"</strong> — foi do momento.</p>
+          <div class="quiz-pegadinha">🎯 Pegadinha sofisticada: "evento arrítmico maligno" parece suficiente para secundário, mas a reversibilidade da causa muda tudo. Sepse + distúrbio eletrolítico = causa reversível.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-card" id="q4">
+      <div class="quiz-num">QUESTÃO 04 · TEC 2026</div>
+      <div class="quiz-q">Homem, 48 anos, cardiomiopatia dilatada não isquêmica. FEVE 30%, NYHA II. Há 4 meses em uso de carvedilol, enalapril e espironolactona nas doses alvo. Expectativa de vida maior que 1 ano. Qual a conduta em relação ao CDI?</div>
+      <button class="quiz-btn" onclick="revelarResposta('q4',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-answer">
+        <div class="quiz-answer-inner">
+          <div class="quiz-verdict verdict-sim">✓ SIM — CDI indicado (Prevenção Primária)</div>
+          <p class="quiz-explain">Critérios preenchidos: FEVE ≤35%, CMD não isquêmica, NYHA II, TMO otimizado há tempo adequado, expectativa de vida &gt;1 ano. Prevenção primária clássica. O cenário é o "paciente modelo" para indicação.</p>
+          <div class="quiz-pegadinha">🎯 A questão é direta, mas pode confundir quem acha que CMD não isquêmica tem menor benefício. As diretrizes atuais estendem a indicação para não isquêmica com os mesmos critérios funcionais.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-card" id="q5">
+      <div class="quiz-num">QUESTÃO 05 · TEC 2026</div>
+      <div class="quiz-q">Mulher, 34 anos, cardiomiopatia hipertrófica confirmada. Síncope inexplicada há 2 meses. Ecocardiograma: FEVE 68%, espessura máxima 32mm. Holter: TVNS. Ressonância: realce tardio difuso >15%. Mãe faleceu subitamente aos 38 anos. CDI está indicado?</div>
+      <button class="quiz-btn" onclick="revelarResposta('q5',this)">▶ REVELAR RESPOSTA</button>
+      <div class="quiz-answer">
+        <div class="quiz-answer-inner">
+          <div class="quiz-verdict verdict-sim">✓ SIM — CDI fortemente indicado na CMH</div>
+          <p class="quiz-explain">Na CMH, a decisão não é pela FEVE (68% = normal/supranormal). É pelo pacote de risco: síncope inexplicada + espessura ≥30mm + TVNS + fibrose extensa + história familiar de MS = múltiplos fatores de alto risco. CDI está fortemente indicado.</p>
+          <div class="quiz-pegadinha">🎯 Pegadinha suprema da CMH: FEVE 68% leva o candidato a pensar que não há disfunção, logo sem CDI. Errado. Na CMH, FEVE preservada não afasta a indicação — o risco vem da arquitetura, não da força da bomba.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== RESUMO ===== -->
+<section class="section" id="resumo">
+  <div class="section-title">
+    <span class="n-badge">N7</span> Resumo — Spaced Repetition
+  </div>
+
+  <!-- 10 segundos -->
+  <div class="resumo-wrap">
+    <div class="resumo-10s">
+      <div class="timer">10"</div>
+      <h3>RESUMO DE 10 SEGUNDOS</h3>
+      <div class="resumo-pills">
+        <span class="r-pill red">🔴 PCR por TV/FV sem causa reversível = CDI Secundário</span>
+        <span class="r-pill blue">🔵 FEVE ≤35% sob TMO = CDI Primário</span>
+        <span class="r-pill gold">⏱️ Pós-IAM: aguardar &gt;40 dias (primário)</span>
+        <span class="r-pill gray">⛔ NYHA IV refratário sem transplante = sem CDI</span>
+        <span class="r-pill gold">🏔️ CMH: pacote de risco, não FEVE</span>
+        <span class="r-pill blue">🦠 Chagas: TV + disfunção = CDI</span>
+      </div>
+    </div>
+
+    <!-- Frases efeito -->
+    <div class="frases-grid">
+      <div class="frase-card">
+        <p>"CDI secundário é capacete depois da queda; CDI primário é para-raio antes da tempestade."</p>
+        <span class="assinatura">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"No pós-IAM primário, espera 40 dias; no secundário, o raio já falou."</p>
+        <span class="assinatura">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"CDI não trata coração fraco por vaidade elétrica; protege quem tem terreno pronto para morte súbita."</p>
+        <span class="assinatura">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"Foi arritmia do terreno ou arritmia do momento?"</p>
+        <span class="assinatura">— Dr. André Rossanno</span>
+      </div>
+      <div class="frase-card">
+        <p>"FEVE baixa abre a porta; contexto clínico decide se o CDI entra."</p>
+        <span class="assinatura">— Dr. André Rossanno</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="assinatura-footer">Dr. André Rossanno</div>
+  <p>Atlas Mental Interativo · Método N1–N7 de Memorização Médica</p>
+  <p style="margin-top:0.5rem;font-size:0.7rem;opacity:0.5">Material educacional. Não substitui julgamento clínico, diretrizes atualizadas e decisão compartilhada.</p>
+  <p style="font-size:0.7rem;opacity:0.4;margin-top:0.25rem">© Método de Memorização Médica André Rossanno · TEC 2026</p>
+</footer>
+
+<script>
+// ===== ACORDEÃO =====
+function toggleAcord(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  // Fecha todos
+  document.querySelectorAll('.acord-item.open').forEach(el => el.classList.remove('open'));
+  // Abre o clicado se estava fechado
+  if (!isOpen) item.classList.add('open');
+}
+
+// ===== QUIZ =====
+function revelarResposta(id, btn) {
+  const card = document.getElementById(id);
+  card.classList.add('answered');
+  btn.style.display = 'none';
+}
+
+// ===== MODO PROFESSOR =====
+function toggleProfessor(btn) {
+  btn.classList.toggle('active');
+  document.body.classList.toggle('modo-professor');
+}
+
+// ===== MODO REVISÃO =====
+function toggleRevisao(btn) {
+  btn.classList.toggle('active');
+  document.body.classList.toggle('modo-revisao');
+  // Se ativar revisão, abre todos os acordeões para mostrar labels
+  if (document.body.classList.contains('modo-revisao')) {
+    document.querySelectorAll('.acord-item').forEach(el => el.classList.remove('open'));
+  }
+}
+
+// ===== FILTRO DE CONTEÚDO =====
+function filterContent(type, btn) {
+  // Atualiza botão ativo
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Seções com data-filter
+  const sections = document.querySelectorAll('[data-filter]');
+  if (type === 'all') {
+    sections.forEach(s => s.style.opacity = '1');
+    return;
+  }
+  sections.forEach(s => {
+    if (s.getAttribute('data-filter') === type) {
+      s.style.opacity = '1';
+      s.scrollIntoView({behavior:'smooth', block:'start'});
+    } else {
+      s.style.opacity = '0.3';
+    }
+  });
+}
+
+// ===== PROGRESS NAV =====
+function scrollToSection(id) {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+
+// Observer para dots ativos
+const sections = ['n1-conceito','n2-portoes','n3-secundaria','n4-primaria','n5-especiais','n6-contra','n7-mnemonico','quiz','resumo'];
+const dots = document.querySelectorAll('.prog-dot');
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = sections.indexOf(entry.target.id);
+      if (idx >= 0) {
+        dots.forEach(d => d.classList.remove('active'));
+        dots[idx]?.classList.add('active');
+      }
+    }
+  });
+}, {threshold:0.3});
+
+sections.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) obs.observe(el);
+});
+
+// ===== NAV TABS ACTIVE =====
+const navTabs = document.querySelectorAll('.nav-tab');
+navTabs.forEach(tab => {
+  tab.addEventListener('click', function() {
+    navTabs.forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ===== FADE UP ANIMATION =====
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.criterio-card,.portao-card,.acord-item,.quiz-card,.frase-card,.check-item,.mne-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, border-color 0.3s';
+  fadeObserver.observe(el);
+});
+</script>
+</body>
+</html>
