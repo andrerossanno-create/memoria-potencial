@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Infográfico Médico Premium - QTc e Critérios de Schwartz Atualizados</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap');
+
+        :root {
+            --bg-dark: #0a0f1d;
+            --bg-card: #12192c;
+            --primary-gold: #d4af37;
+            --accent-blue: #1e3a8a;
+            --neon-blue: #38bdf8;
+            --alert-red: #ef4444;
+            --warning-orange: #f97316;
+            --success-green: #22c55e;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: linear-gradient(135deg, #0d1527 0%, #070a14 100%);
+            border: 2px solid #1e293b;
+            border-image: linear-gradient(to bottom, var(--primary-gold), #1e293b) 1;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-gold);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        header::after {
+            content: ''; position: absolute; bottom: -6px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background-color: var(--primary-gold); rotate: 45deg;
+        }
+
+        h1 {
+            font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 2.2rem;
+            color: var(--text-light); letter-spacing: 0.5px; margin-bottom: 10px; line-height: 1.3;
+        }
+
+        h1 span { color: var(--primary-gold); }
+        .subtitle { font-weight: 700; font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; }
+        section { margin-bottom: 45px; }
+
+        .section-title {
+            font-weight: 900; font-size: 1.4rem; color: var(--primary-gold);
+            border-left: 4px solid var(--primary-gold); padding-left: 12px;
+            margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+
+        .card { background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 20px; border-radius: 6px; position: relative; }
+        .card-alert { border-left: 4px solid var(--alert-red); }
+        .card-highlight { border: 1px solid var(--primary-gold); background: linear-gradient(180deg, #162035 0%, #12192c 100%); }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { color: var(--primary-gold); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+        .text-alert { color: var(--alert-red); font-weight: bold; }
+        .text-warning { color: var(--warning-orange); font-weight: bold; }
+        .text-neon { color: var(--neon-blue); font-weight: bold; }
+
+        .macete-container { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+        .macete-badge { background: #1e293b; padding: 10px 15px; border-radius: 6px; font-size: 0.9rem; border-left: 3px solid var(--neon-blue); }
+
+        .semaphore { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .sem-item { display: flex; align-items: center; gap: 15px; padding: 12px; background: #162035; border-radius: 6px; }
+        .circle { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+        .circle.green { background-color: var(--success-green); box-shadow: 0 0 10px var(--success-green); }
+        .circle.orange { background-color: var(--warning-orange); box-shadow: 0 0 10px var(--warning-orange); }
+        .circle.red { background-color: var(--alert-red); box-shadow: 0 0 10px var(--alert-red); }
+
+        .palace-box { background: linear-gradient(135deg, #1e1b4b 0%, #111827 100%); border: 1px dashed var(--primary-gold); padding: 25px; border-radius: 6px; }
+        .palace-scene { margin-bottom: 20px; border-bottom: 1px solid #312e81; padding-bottom: 15px; }
+        .palace-scene:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+        .scene-title { font-weight: 800; color: var(--primary-gold); font-size: 1.1rem; margin-bottom: 8px; }
+
+        .mnemonic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-top: 15px; text-align: center; }
+        .mnemonic-block { background: #1e293b; padding: 10px; border-radius: 6px; border: 1px solid var(--border-color); }
+        .mnemonic-letter { font-size: 1.5rem; font-weight: 800; color: var(--primary-gold); display: block; }
+
+        .timeline { display: flex; flex-direction: column; gap: 20px; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 20px; top: 10px; bottom: 10px; width: 2px; background: var(--border-color); }
+        .time-item { display: flex; gap: 20px; position: relative; }
+        .time-num { width: 42px; height: 42px; background: var(--bg-card); border: 2px solid var(--primary-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; z-index: 2; flex-shrink: 0; color: var(--primary-gold); }
+        .time-content { background: var(--bg-card); padding: 15px 20px; border-radius: 6px; width: 100%; border: 1px solid var(--border-color); }
+        .time-content h4 { color: var(--primary-gold); font-weight: 700; margin-bottom: 5px; }
+
+        .algo-container { background: #0f172a; padding: 20px; border-radius: 6px; border: 1px solid var(--border-color); overflow-x: auto; }
+        .algo-flow { display: flex; flex-direction: column; gap: 15px; min-width: 600px; }
+        .algo-row { display: flex; justify-content: space-around; gap: 10px; }
+        .algo-node { background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px 18px; border-radius: 6px; text-align: center; font-size: 0.85rem; flex: 1; }
+        .algo-node.root { border-color: var(--primary-gold); font-weight: 800; max-width: 300px; margin: 0 auto; }
+        .algo-node.branch { background: #1e293b; font-weight: 600; }
+        .algo-node.action { border-left: 3px solid var(--success-green); }
+        .algo-node.critical { border-left: 3px solid var(--alert-red); }
+        .arrow-down { text-align: center; color: var(--text-muted); font-size: 1.2rem; }
+
+        .pegadinha-list { list-style: none; }
+        .pegadinha-list li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 0.95rem; }
+        .pegadinha-list li::before { content: '⚡'; position: absolute; left: 0; color: var(--warning-orange); }
+
+        .summary-box { background: linear-gradient(135deg, #111827 0%, #030712 100%); border: 2px solid var(--primary-gold); padding: 25px; border-radius: 6px; }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .summary-grid { grid-template-columns: 1fr; } }
+        .summary-item { font-size: 0.9rem; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px; }
+
+        footer { margin-top: 50px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 25px; color: var(--text-muted); }
+        .quote { font-weight: 700; font-size: 1.1rem; color: var(--text-light); font-style: italic; margin-bottom: 15px; line-height: 1.4; }
+        .signature { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-gold); font-weight: 700; }
+
+        ul.clean-list { list-style: none; padding-left: 5px; }
+        ul.clean-list li { margin-bottom: 8px; font-size: 0.9rem; position: relative; padding-left: 18px; }
+        ul.clean-list li::before { content: '•'; position: absolute; left: 0; color: var(--primary-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>QTc e Critérios de Schwartz:<br><span>Quando suspeitar e como tratar a Síndrome do QT Longo</span></h1>
+            <p class="subtitle">Memorização médica de alto impacto • Método Dr. André Rossanno</p>
+        </header>
+
+        <section>
+            <div class="section-title">1. Intervalo QTc Normal e Limites Críticos</div>
+            <div class="card" style="margin-bottom: 20px;">
+                <p style="font-size: 0.9rem; margin-bottom: 15px; color: var(--text-muted);">
+                    ⚠️ <strong>Regra Absoluta:</strong> Utilize sempre o <strong>QTc</strong> (corrigido pela Frequência), nunca o QT bruto.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Grupo de Pacientes</th>
+                            <th>Normal</th>
+                            <th>Atenção / Borderline</th>
+                            <th>Prolongado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Homem Adulto</strong></td>
+                            <td>&lt; 450 ms</td>
+                            <td class="text-warning">450 – 469 ms</td>
+                            <td class="text-alert">≥ 470 ms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mulher Adulta</strong></td>
+                            <td>&lt; 460 ms</td>
+                            <td class="text-warning">460 – 479 ms</td>
+                            <td class="text-alert">≥ 480 ms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Criança</strong></td>
+                            <td>&lt; 440 ms</td>
+                            <td class="text-warning">440 – 460 ms</td>
+                            <td class="text-alert">&gt; 460 ms</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div style="color: var(--primary-gold); font-weight: bold; margin-bottom: 10px;">Macetes de Fronteira</div>
+                    <div class="macete-container">
+                        <div class="macete-badge"><strong>Homem:</strong> "45 é o portão" (450 ms)</div>
+                        <div class="macete-badge"><strong>Mulher:</strong> "46 é o portão" (460 ms)</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="color: var(--primary-gold); font-weight: bold; margin-bottom: 10px;">Zonas de Alerta Máximo</div>
+                    <div class="macete-container">
+                        <div class="macete-badge" style="border-left-color: var(--alert-red);"><strong>≥ 480 ms:</strong> Portal do Schwartz Ativado</div>
+                        <div class="macete-badge" style="border-left-color: var(--warning-orange);"><span class="text-neon"><strong>≥ 500 ms:</strong></span> Zona Crítica de Torsades</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">2. Critérios Diagnósticos de Schwartz (Diretriz Atualizada)</div>
+            <div class="card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 75%;">Critério Avaliado</th>
+                            <th style="width: 25%; text-align: center;">Pontuação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th colspan="2" style="background: #162035; padding: 6px 12px; color: var(--text-light);">A) Achados Eletrocardiográficos (ECG)</th></tr>
+                        <tr><td>QTc ≥ 480 ms</td><td style="text-align: center;" class="text-alert">3.5 pts</td></tr>
+                        <tr><td>QTc 460 – 479 ms</td><td style="text-align: center;" class="text-warning">2.0 pts</td></tr>
+                        <tr><td>QTc 450 – 459 ms (Apenas em Homens)</td><td style="text-align: center;">1.0 pt</td></tr>
+                        <tr><td>QTc ≥ 480 ms no 4º minuto de recuperação do Teste Ergométrico</td><td style="text-align: center;">1.0 pt</td></tr>
+                        <tr><td>Torsades de Pointes (Documentado)</td><td style="text-align: center;" class="text-warning">2.0 pts</td></tr>
+                        <tr><td>Alternância de Onda T</td><td style="text-align: center;">1.0 pt</td></tr>
+                        <tr><td>Onda T entalhada (notched) em pelo menos 3 derivações</td><td style="text-align: center;">1.0 pt</td></tr>
+                        <tr><td>Frequência Cardíaca de repouso abaixo do 2º percentil para a idade</td><td style="text-align: center;">0.5 pt</td></tr>
+                        
+                        <tr><th colspan="2" style="background: #162035; padding: 6px 12px; color: var(--text-light);">B) História Clínica do Paciente</th></tr>
+                        <tr><td>Síncope desencadeada por estresse, esforço ou fortes emoções</td><td style="text-align: center;" class="text-warning">2.0 pts</td></tr>
+                        <tr><td>Síncope sem estresse ou fatores gatilho aparentes</td><td style="text-align: center;">1.0 pt</td></tr>
+                        <tr><td>Surdez congênita neurossensorial</td><td style="text-align: center;">0.5 pt</td></tr>
+                        
+                        <tr><th colspan="2" style="background: #162035; padding: 6px 12px; color: var(--text-light);">C) Antecedentes Familiares</th></tr>
+                        <tr><td>Membro da família com diagnóstico confirmado de SQTL</td><td style="text-align: center;">1.0 pt</td></tr>
+                        <tr><td>Morte súbita inexplicada antes dos 30 anos em familiar de 1º grau</td><td style="text-align: center;">0.5 pt</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="grid-2">
+            <div>
+                <div class="section-title">3. Interpretação Prática do Escore</div>
+                <div class="card" style="height: calc(100% - 40px);">
+                    <div class="semaphore">
+                        <div class="sem-item"><div class="circle green"></div><div><strong>&le; 1.0 ponto:</strong> Baixa probabilidade</div></div>
+                        <div class="sem-item"><div class="circle orange"></div><div><strong>1.5 a 3.0 pontos:</strong> Probabilidade Intermediária</div></div>
+                        <div class="sem-item"><div class="circle red"></div><div><strong>&gt; 3.0 pontos:</strong> Alta Probabilidade / Diagnóstico Provável (na ausência de causas secundárias)</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-title">4. Correlação Clínica (Caso Clínico)</div>
+                <div class="card card-highlight" style="height: calc(100% - 40px);">
+                    <p style="font-size: 0.9rem; margin-bottom: 12px; font-style: italic; color: #cbd5e1;">
+                        "Mulher de 30 anos, síncope em repouso. ECG inicial com QTc de 510 ms."
+                    </p>
+                    <div style="border-top: 1px solid rgba(212,175,55,0.2); padding-top: 10px; font-size: 0.9rem;">
+                        <ul class="clean-list">
+                            <li>QTc de 510 ms (&ge; 480 ms) = <span class="text-warning">3.5 pontos</span></li>
+                            <li>Síncope sem estresse = <span class="text-warning">1.0 ponto</span></li>
+                        </ul>
+                        <p style="margin-top: 10px; font-weight: bold; text-align: center;" class="text-alert">Total: 4.5 pts (Alta Probabilidade)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">5. Técnica de Memorização Suprema</div>
+            <div class="palace-box">
+                <div class="palace-scene">
+                    <div class="scene-title">O Castelo do QT Revisitado</div>
+                    <p style="font-size: 0.9rem; color: #cbd5e1;"><strong>Portão 45</strong> (Homem), <strong>Portão 46</strong> (Mulher). Mas ao cruzar o <strong>Portão 48</strong>, a barreira do Schwartz se rompe com um estrondo de <strong>3.5 pontos</strong>, jogando o paciente direto na alta probabilidade clínica!</p>
+                </div>
+                <div style="font-size: 1.1rem; text-align: center; color: var(--primary-gold); font-weight: bold; margin-top: 15px;">
+                    "45 Homem • 46 Mulher • 48 Schwartz • 50 Torsades"
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">6. Pegadinhas Blindadoras de Prova</div>
+            <div class="card card-alert">
+                <ul class="pegadinha-list">
+                    <li><strong>A armadilha do QTc isolado:</strong> Na diretriz atualizada, um QTc &ge; 480 ms sozinho soma 3.5 pontos. Como a alta probabilidade é definida por um escore &gt; 3.0, o eletro isolado fecha o diagnóstico provável (se excluídas causas secundárias).</li>
+                    <li>Gênero só pontua na faixa limítrofe de 450-459 ms para homens (1 pt). Mulher não pontua nessa faixa.</li>
+                    <li>Exclua sempre distúrbios eletrolíticos (K, Mg, Ca) e fármacos antes de diagnosticar causa congênita.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">7. Tratamento e Conduta (Nuances Clínicas ESC)</div>
+            <div class="timeline">
+                <div class="time-item">
+                    <div class="time-num">1</div>
+                    <div class="time-content">
+                        <h4>Medidas Gerais e Profilaxia</h4>
+                        <p>Retirar sumariamente drogas prolongadoras de QT. Correção agressiva de distúrbios eletrolíticos (K, Mg, Ca). Evitar gatilhos adrenérgicos específicos baseados no genótipo.</p>
+                    </div>
+                </div>
+                <div class="time-item">
+                    <div class="time-num">2</div>
+                    <div class="time-content">
+                        <h4>Terapia Farmacológica de Manutenção</h4>
+                        <p><strong>Betabloqueadores</strong> são recomendados para pacientes com diagnóstico clínico de SQTL e QT prolongado (preferência para <strong>Nadolol</strong> ou Propranolol). Considerar adição de **Mexiletina** especificamente no subtipo LQT3 com QT prolongado.</p>
+                    </div>
+                </div>
+                <div class="time-item">
+                    <div class="time-num">3</div>
+                    <div class="time-content">
+                        <h4>Prevenção de Morte Súbita (CDI)</h4>
+                        <p><strong>CDI associado ao betabloqueador</strong> é firmemente recomendado em pacientes com SQTL que sobreviveram a uma parada cardíaca. Também deve ser indicado/considerado naqueles que permanecem sintomáticos (síncopes recorrentes) apesar da terapia farmacológica otimizada e terapias específicas por genótipo.</p>
+                    </div>
+                </div>
+                <div class="time-item">
+                    <div class="time-num">4</div>
+                    <div class="time-content" style="border-left: 3px solid var(--alert-red);">
+                        <h4 class="text-alert">Emergência: Torsades de Pointes</h4>
+                        <p style="margin-bottom: 5px;"><strong>Sulfato de Magnésio 2g IV</strong> é a primeira linha terapêutica absoluta.</p>
+                        <ul class="clean-list">
+                            <li><strong>Se instável ou sem pulso:</strong> Choque elétrico imediato (Desfibrilação dessincronizada) conforme protocolo de ACLS.</li>
+                            <li><strong>Se recorrente:</strong> Corrigir agressivamente eletrólitos (K/Mg/Ca), suspender totalmente drogas causadoras e considerar aceleração da frequência cardíaca basal via marcapasso temporário ou infusão de isoproterenol (foco no QT longo adquirido e arritmias pausa-dependentes).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="quote">"45 é o portão do homem, 46 o da mulher, 48 acende Schwartz, 50 chama o dragão da Torsades."</div>
+            <div class="signature">Método André Rossanno de Memorização Médica</div>
+        </footer>
+    </div>
+</body>
+</html>
