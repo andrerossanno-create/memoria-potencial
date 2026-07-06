@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 2 | Fatores de Risco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--navy-2:#123a63;--teal:#1282A2;--teal-soft:#e4f1f5;
+    --gold:#F4B942;--gold-soft:#fdf3d9;--bg:#FBFCFD;--card:#FFFFFF;
+    --ink:#0B2545;--muted:#4b5a6b;--line:#e6ecf2;
+
+    --risk:#C1121F;--risk-soft:#fbe6e8;
+    --concept:#1B4965;--concept-soft:#e3edf3;
+    --prev:#2E7D46;--prev-soft:#e5f3e9;
+    --num:#E8710A;--num-soft:#fdeadb;
+    --mem:#6A4C93;--mem-soft:#eee7f5;
+    --slate:#546477;--slate-soft:#eaeef2;
+
+    --radius:20px;
+    --shadow:0 10px 30px rgba(11,37,69,.08);
+    --shadow-lg:0 22px 50px rgba(11,37,69,.14);
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;
+    --mono:'IBM Plex Mono','Trebuchet MS',monospace;
+    --script:'Dancing Script','Trebuchet MS',cursive;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+  section{padding:46px 0}
+  h2{font-size:clamp(1.5rem,4.4vw,2.15rem);font-weight:900;line-height:1.15;margin:0 0 8px;letter-spacing:-.5px}
+  h3{font-size:1.28rem;font-weight:800;margin:0 0 8px}
+  p{margin:0 0 14px}
+  .kicker{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);display:inline-block;margin-bottom:12px}
+  .lead{color:var(--muted);font-size:1.05rem;max-width:66ch}
+
+  /* HERO */
+  .hero{background:radial-gradient(120% 130% at 85% -10%,rgba(18,130,162,.20),transparent 55%),radial-gradient(110% 120% at -10% 10%,rgba(244,185,66,.16),transparent 50%),linear-gradient(160deg,#08203f 0%,#0B2545 55%,#10305a 100%);color:#fff;padding:66px 0 58px;position:relative;overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.03) 0 2px,transparent 2px 26px);pointer-events:none}
+  .hero .kicker{color:var(--gold)}
+  .hero h1{font-size:clamp(2.1rem,7vw,3.4rem);font-weight:900;line-height:1.05;margin:0 0 14px;letter-spacing:-1px;position:relative}
+  .hero h1 .hl{color:var(--gold)}
+  .hero .sub{font-size:1.14rem;color:#cfe0ec;max-width:62ch;margin:0 0 26px}
+  .keyphrase{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(244,185,66,.35);border-left:5px solid var(--gold);border-radius:16px;padding:18px 20px;max-width:66ch;backdrop-filter:blur(4px)}
+  .keyphrase .q{font-family:var(--script);font-size:2.4rem;color:var(--gold);line-height:.6;margin-top:6px}
+  .keyphrase p{margin:0;font-weight:700;font-size:1.08rem;color:#fff}
+
+  /* CARDS BASE */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:12px}
+  .accent{border-left:6px solid var(--teal)}
+  .accent.risk{border-left-color:var(--risk)}
+  .accent.prev{border-left-color:var(--prev)}
+  .accent.num{border-left-color:var(--num)}
+  .accent.mem{border-left-color:var(--mem)}
+
+  /* TERRENO — dois lados */
+  .terrain{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.terrain{grid-template-columns:1fr}}
+  .tside{border-radius:16px;padding:22px;color:#fff}
+  .tside h3{color:#fff;margin-bottom:12px}
+  .tside.fix{background:linear-gradient(150deg,#3a4653,#546477)}
+  .tside.mod{background:linear-gradient(150deg,#1c5a30,#2E7D46)}
+  .tside ul{margin:0;padding-left:20px}
+  .tside li{margin:5px 0;font-weight:700;color:rgba(255,255,255,.95)}
+
+  /* NÃO MODIFICÁVEIS — 4 blocos */
+  .nm{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:640px){.nm{grid-template-columns:1fr}}
+  .nmbox{background:#fff;border:1px solid var(--line);border-left:5px solid var(--slate);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+  .nmbox .ico{font-size:1.8rem;display:block;margin-bottom:6px}
+  .nmbox h4{margin:0 0 8px;font-size:1.1rem;color:var(--navy)}
+  .nmbox p{margin:0;font-size:.92rem;color:var(--muted)}
+  .mind{margin-top:12px;background:var(--concept-soft);border-radius:10px;padding:10px 12px;font-size:.86rem;color:var(--concept);font-style:italic}
+  .mind b{font-style:normal}
+
+  /* TABELA */
+  .tbl-wrap{overflow-x:auto;border-radius:18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;min-width:640px;background:#fff}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:14px 16px;font-size:.8rem;font-family:var(--mono);letter-spacing:1px;text-transform:uppercase;font-weight:700}
+  tbody td{padding:13px 16px;border-bottom:1px solid var(--line);font-size:.94rem;vertical-align:top}
+  tbody tr:nth-child(even){background:#f8fafc}
+  tbody td:first-child{font-weight:800;color:var(--navy)}
+  tbody td:last-child{color:var(--teal);font-style:italic}
+
+  /* NÚMEROS */
+  .numgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.numgrid{grid-template-columns:repeat(2,1fr)}}
+  .numcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 14px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .numcard:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--num)}
+  .numcard .n{font-size:1.9rem;font-weight:900;color:var(--num);line-height:1;letter-spacing:-1px}
+  .numcard .cap{font-size:.82rem;color:var(--muted);margin-top:8px;font-weight:700;line-height:1.3}
+
+  /* IMAGEM MENTAL / ALERTA / PERGUNTA */
+  .imgmind{background:var(--concept-soft);border:1px solid #cfe0ea;border-left:6px solid var(--concept);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;margin-top:14px}
+  .imgmind .ico{font-size:1.5rem}
+  .imgmind p{margin:0;font-size:.95rem;color:var(--navy)}
+  .imgmind b{color:var(--concept)}
+  .exam{background:var(--risk-soft);border:1px solid #f0b7bc;border-left:6px solid var(--risk);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;margin-top:14px}
+  .exam .ico{font-size:1.5rem}
+  .exam b{color:var(--risk)}
+  .exam p{margin:0}
+  .qbox{background:var(--teal-soft);border:1px solid #bfe0e9;border-radius:14px;padding:18px 20px;margin-top:14px}
+  .qbox h4{margin:0 0 10px;font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal)}
+  .qbox ul{margin:0;padding-left:20px;columns:2;column-gap:26px}
+  @media(max-width:640px){.qbox ul{columns:1}}
+  .qbox li{margin:5px 0;font-size:.9rem;font-weight:600;break-inside:avoid}
+
+  /* LISTA DE MEDICAMENTOS */
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .medpill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:700;font-size:.9rem;box-shadow:0 3px 10px rgba(11,37,69,.05);display:inline-flex;gap:8px;align-items:center}
+  .medpill .d{width:9px;height:9px;border-radius:50%;background:var(--risk)}
+  .medpill.drug .d{background:var(--mem)}
+
+  /* PADRÕES POR IDADE */
+  .agebox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow);border-top:5px solid var(--teal)}
+  .agebox h4{margin:0 0 6px;color:var(--navy)}
+  .agebox .pat{font-weight:800;color:var(--teal);font-size:.95rem;margin-bottom:6px}
+  .agebox p{margin:0;font-size:.88rem;color:var(--muted);font-style:italic}
+
+  /* FILOSOFIA */
+  .philo-sec{padding:4px 0 16px}
+  .philo{max-width:62ch;margin:0 auto;text-align:center;padding:22px}
+  .philo .mark{display:block;color:var(--gold);font-size:1.05rem;letter-spacing:7px;margin-bottom:14px}
+  .philo p{font-style:italic;font-weight:700;line-height:1.45;margin:0;color:var(--navy);font-size:clamp(1.12rem,3.3vw,1.38rem);letter-spacing:-.2px}
+  .philo .by{display:block;margin-top:14px;font-family:var(--mono);font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal)}
+  .philo-block{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#0e2c52);color:#fff;border-radius:22px;padding:34px 28px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .philo-block:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px);pointer-events:none}
+  .philo-block .kicker{color:var(--gold)}
+  .philo-block h2{color:#fff}
+  .philo-block p{color:#dbe7f1;font-size:1.05rem;max-width:64ch}
+  .philo-block .final{font-family:var(--script);font-size:1.9rem;color:var(--gold);line-height:1.2;margin-top:10px}
+  .philo-block .by{display:block;margin-top:12px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal)}
+
+  /* LADEIRA / N1-N7 */
+  .ladeira{background:radial-gradient(90% 120% at 80% 0%,rgba(106,76,147,.35),transparent 55%),linear-gradient(165deg,#1a1030,#241640 60%,#2c1a4d);color:#fff;border-radius:26px;padding:36px 28px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .ladeira:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px);pointer-events:none}
+  .ladeira .kicker{color:var(--gold)}
+  .ladeira h2{color:#fff}
+  .ladeira .scene{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin:18px 0 8px}
+  @media(max-width:720px){.ladeira .scene{grid-template-columns:1fr}}
+  .side{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px}
+  .side.left{border-top:4px solid var(--slate)}
+  .side.right{border-top:4px solid var(--gold)}
+  .side b{display:block;margin-bottom:10px;font-size:1rem}
+  .side.left b{color:#bcc9d6}
+  .side.right b{color:var(--gold)}
+  .side ul{margin:0;padding-left:18px}
+  .side li{font-size:.85rem;color:#e3dcf0;margin:3px 0}
+  .gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .gauge .disp{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--gold);background:#160b28;border-radius:12px;padding:12px 18px;box-shadow:inset 0 0 0 3px rgba(244,185,66,.3)}
+  .gauge .cap{font-size:.72rem;color:#c3aee6;margin-top:8px;max-width:16ch}
+  .qlum{text-align:center;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:12px;padding:14px;color:var(--gold);font-weight:800;font-style:italic;margin-top:8px}
+
+  .nlevel{background:#fff;border:1px solid var(--line);border-left:6px solid var(--mem);border-radius:16px;padding:22px;box-shadow:var(--shadow);margin-bottom:14px}
+  .nlevel .ntag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;color:#fff;background:var(--mem);border-radius:8px;padding:4px 12px;font-size:.8rem;margin-bottom:10px}
+  .nlevel h3{color:var(--navy)}
+  .nlevel ul{margin:8px 0 0;padding-left:20px}
+  .nlevel li{margin:5px 0;font-size:.94rem}
+  .nchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .nchip{background:var(--mem-soft);border:1px solid #d8c9ec;border-radius:999px;padding:6px 13px;font-size:.82rem;font-weight:700;color:var(--mem)}
+  .narrative{background:var(--mem-soft);border-radius:12px;padding:16px 18px;font-size:.96rem;color:#42305e;font-style:italic}
+  .narrative b{font-style:normal;color:var(--mem)}
+
+  /* CHECKLIST */
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.check-grid{grid-template-columns:1fr}}
+  .chk{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:0 3px 10px rgba(11,37,69,.04)}
+  .chk .mk{color:var(--prev);font-weight:900;flex-shrink:0;font-size:1.1rem}
+  .chk span{font-size:.9rem;color:var(--ink);font-weight:600;line-height:1.4}
+
+  /* TESTE-SE */
+  .quiz{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .quiz .qh{display:flex;gap:10px;align-items:flex-start}
+  .quiz .qn{font-family:var(--mono);font-weight:700;color:var(--gold);background:var(--navy);border-radius:8px;padding:4px 10px;font-size:.82rem;flex-shrink:0}
+  .quiz .qtext{font-weight:700;color:var(--navy);margin:0}
+  .quiz button{margin-top:14px;background:var(--teal);color:#fff;border:none;border-radius:10px;padding:9px 18px;font-family:var(--font);font-weight:800;font-size:.9rem;cursor:pointer;transition:background .15s ease}
+  .quiz button:hover{background:#0e6a86}
+  .quiz .ans{margin-top:14px;background:var(--prev-soft);border-left:4px solid var(--prev);border-radius:10px;padding:14px 16px;font-size:.92rem;color:#1c4d2c;display:none}
+  .quiz .ans.show{display:block}
+  .quiz .ans b{color:var(--prev)}
+
+  footer{background:var(--navy);color:#cfe0ec;padding:44px 0;text-align:center;margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.4rem;color:var(--gold);line-height:1}
+  footer .role{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-top:6px}
+  footer .theme{margin-top:18px;font-size:.86rem;color:#8fa8bd}
+
+  a.skip{position:absolute;left:-999px}
+  a.skip:focus{left:12px;top:12px;background:#fff;color:var(--navy);padding:8px 14px;border-radius:8px;z-index:99}
+  @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto;transition:none!important}}
+</style>
+</head>
+<body>
+<a href="#conteudo" class="skip">Pular para o conteúdo</a>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 2 · Fatores de Risco</span>
+    <h1>Fatores de Risco da <span class="hl">Hipertensão</span></h1>
+    <p class="sub">O que não se muda, o que se modifica e o que precisa ser perguntado na consulta.</p>
+    <div class="keyphrase">
+      <span class="q">&ldquo;</span>
+      <p>Hipertensão nasce do encontro entre herança, tempo, comportamento, ambiente, substâncias, sono e vasos envelhecendo.</p>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- 1. TERRENO -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">01 · O terreno da hipertensão</span>
+      <h2>Antes de tratar a pressão, enxergue onde ela nasceu</h2>
+      <p class="lead">Fatores de risco são elementos que aumentam a chance de desenvolver HAS. Dividem-se em <b>não modificáveis</b> e <b>modificáveis</b> — e é nos modificáveis que mora a prevenção.</p>
+
+      <div class="terrain" style="margin-top:18px">
+        <div class="tside fix">
+          <h3>🪨 Não modificáveis</h3>
+          <ul><li>Genética</li><li>Idade</li><li>Sexo</li><li>Etnia</li></ul>
+        </div>
+        <div class="tside mod">
+          <h3>🎒 Modificáveis</h3>
+          <p style="margin:0;color:rgba(255,255,255,.95);font-weight:600;font-size:.92rem">Peso, sedentarismo, sal, potássio, álcool, sono, estresse, ambiente, medicamentos, drogas, anabolizantes, tabagismo.</p>
+        </div>
+      </div>
+
+      <div class="card accent prev" style="margin-top:18px">
+        <p style="margin:0"><b>Por que focar nos modificáveis:</b> prevenir o surgimento da HAS, melhorar o controle em quem já é hipertenso, reduzir risco cardiovascular, evitar progressão para lesão de órgão-alvo e diminuir infarto e AVC. A prevenção começa na fase <b>primordial</b> — antes da doença aparecer.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="philo-sec"><div class="wrap"><div class="philo">
+    <span class="mark">✦</span>
+    <p>Antes de tratar a pressão, é preciso enxergar o terreno onde ela nasceu.</p>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div></div>
+
+  <!-- 2. NÃO MODIFICÁVEIS -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">02 · Não modificáveis</span>
+      <h2>Genética · Idade · Sexo · Etnia</h2>
+
+      <div class="nm" style="margin-top:18px">
+        <div class="nmbox">
+          <span class="ico">🧬</span>
+          <h4>Genética</h4>
+          <p>Contribuição importante, mas a HAS comum é <b>poligênica</b> — vários genes, cada um com pequena influência; o risco é a soma das variantes × ambiente. Diferente da miocardiopatia hipertrófica (que pode ser autossômica dominante).</p>
+          <div class="mind"><b>Imagem:</b> o DNA da HAS não é uma lâmpada acesa — é um painel com muitas luzinhas, cada uma somando risco.</div>
+        </div>
+        <div class="nmbox">
+          <span class="ico">⏳</span>
+          <h4>Idade</h4>
+          <p>Prevalência sobe com a idade. Após ~<b>55 anos</b>, aumento importante por envelhecimento vascular e rigidez arterial: PAS tende a subir, PAD pode cair, e a <b>HAS sistólica isolada</b> predomina no idoso.</p>
+          <div class="mind"><b>Imagem:</b> artéria jovem é mangueira elástica; artéria idosa endurece como cano de concreto — a sistólica sobe mais.</div>
+        </div>
+        <div class="nmbox">
+          <span class="ico">⚖️</span>
+          <h4>Sexo</h4>
+          <p>Acima de 30 anos: HAS em ~<b>48% dos homens</b> e ~<b>42% das mulheres</b>. Até os 60, mais prevalente em homens; após os 60, passa a ser maior em mulheres (perda do efeito estrogênico pós-menopausa).</p>
+          <div class="mind"><b>Imagem:</b> uma balança que vira o fiel após os 60 anos.</div>
+        </div>
+        <div class="nmbox">
+          <span class="ico">🚩</span>
+          <h4>Etnia</h4>
+          <p>Mais prevalente e frequentemente <b>mais grave</b> na população negra — mesmo considerando fatores socioeconômicos e acesso à saúde.</p>
+          <div class="mind"><b>Imagem:</b> um alerta populacional de maior prevalência e gravidade.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. PADRÕES POR IDADE -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">03 · Padrões pressóricos por idade</span>
+      <h2>A pressão fala idiomas diferentes conforme a idade</h2>
+
+      <div class="grid g3" style="margin-top:18px">
+        <div class="agebox">
+          <h4>Adulto jovem <span style="font-weight:400;color:var(--muted);font-size:.85rem">(~17–25 anos)</span></h4>
+          <div class="pat">HAS sistólica isolada / possível hipertensão espúria</div>
+          <p>Pressão periférica alta com pressão central normal. Mangueira elástica com onda periférica alta.</p>
+        </div>
+        <div class="agebox">
+          <h4>Meia-idade</h4>
+          <div class="pat">HAS sistólica + diastólica</div>
+          <p>Combinação das duas. Dois ponteiros subindo juntos.</p>
+        </div>
+        <div class="agebox">
+          <h4>Idoso</h4>
+          <div class="pat">HAS sistólica isolada</div>
+          <p>Predomínio por rigidez arterial. Cano rígido eleva a PAS e derruba a PAD.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MODIFICÁVEIS PRINCIPAIS -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">04 · Modificáveis principais</span>
+      <h2>Peso, movimento, sal, potássio e álcool</h2>
+
+      <div class="grid g2" style="margin-top:18px">
+        <div class="card accent">
+          <span class="tag" style="background:var(--num-soft);color:var(--num)">Obesidade</span>
+          <h3>Quanto maior o IMC, maior a prevalência</h3>
+          <p style="margin:0 0 12px">Um dos principais fatores modificáveis. No Brasil, a obesidade subiu de ~<b>10% (2006)</b> para quase <b>26% (2024)</b>.</p>
+          <div class="imgmind"><span class="ico">⚖️</span><p><b>Imagem:</b> a balança não pesa só o corpo — pesa o sistema vascular inteiro. Mais peso metabólico, mais força o coração precisa empurrar.</p></div>
+        </div>
+        <div class="card accent prev">
+          <span class="tag" style="background:var(--prev-soft);color:var(--prev)">Sedentarismo</span>
+          <h3>O sofá que algema as artérias</h3>
+          <p style="margin:0 0 12px">Ligado à obesidade e fator de risco significativo. Recomenda-se atividade aeróbica: <b>150 a 300 min/semana</b> (moderada).</p>
+          <div class="imgmind"><span class="ico">🛋️</span><p><b>Imagem:</b> o sedentarismo é um sofá com algemas nas artérias; o exercício solta as algemas e devolve elasticidade.</p></div>
+        </div>
+      </div>
+
+      <div class="card accent num" style="margin-top:18px">
+        <span class="tag" style="background:var(--num-soft);color:var(--num)">Sódio & Potássio</span>
+        <h3>Sal demais puxa água, volume e pressão</h3>
+        <p style="margin:0 0 12px">Recomendação: <b>sal &lt; 5 g/dia</b> e <b>sódio &lt; 2 g/dia</b>. A média brasileira é ~<b>9,3 g/dia</b> — quase o dobro. Reduzir sódio e aumentar potássio ajuda no controle; sais enriquecidos com potássio podem ser estratégia em alguns contextos.</p>
+        <div class="imgmind"><span class="ico">🧂</span><p><b>Imagem:</b> o saleiro é uma torneira escondida dentro do vaso. Mais sal, mais volume no rio vascular. Potássio entra como contrapeso.</p></div>
+      </div>
+
+      <div class="card accent" style="margin-top:18px">
+        <span class="tag" style="background:var(--concept-soft);color:var(--concept)">Álcool</span>
+        <h3>Três copos, o mesmo fantasma</h3>
+        <p style="margin:0 0 14px">Excesso aumenta o risco de HAS. Limites: <b>mulheres &gt; 15 g/dia ou 7 doses/semana</b>; <b>homens &gt; 30 g/dia ou 14 doses/semana</b>. Uma dose padrão = ~<b>14 g de álcool puro</b>.</p>
+        <div class="grid g3">
+          <div class="numcard"><div class="n">350 mL</div><div class="cap">Cerveja / chope (~5%)</div></div>
+          <div class="numcard"><div class="n">150 mL</div><div class="cap">Vinho (~12%)</div></div>
+          <div class="numcard"><div class="n">45 mL</div><div class="cap">Destilado (~40%)</div></div>
+        </div>
+        <div class="imgmind"><span class="ico">🍺</span><p><b>Imagem:</b> três copos diferentes com o mesmo fantasma dentro — o volume muda, mas os 14 g de álcool puro se equivalem.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SONO E ESTRESSE -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">05 · Sono e fatores psicossociais</span>
+      <h2>A pressão sobe no vaso depois de subir na vida</h2>
+
+      <div class="card accent" style="margin-top:18px">
+        <h3>Sono: pergunte de forma clínica, não &ldquo;dorme bem?&rdquo;</h3>
+        <p style="margin:0 0 4px">A apneia do sono associa-se a <b>maior desenvolvimento de HAS</b> e a <b>pior controle</b> em hipertensos. Investigue ativamente:</p>
+        <div class="qbox">
+          <h4>Roteiro do sono</h4>
+          <ul>
+            <li>Que horas dorme e acorda?</li>
+            <li>Quantas horas por noite?</li>
+            <li>Acorda cansado?</li>
+            <li>Ronca?</li>
+            <li>Alguém percebeu pausas respiratórias?</li>
+            <li>Tem sonolência diurna?</li>
+            <li>Já teve diagnóstico de distúrbio do sono?</li>
+            <li>Usa medicação para dormir?</li>
+          </ul>
+        </div>
+        <div class="imgmind"><span class="ico">😴</span><p><b>Imagem:</b> no sono o paciente deveria desligar o alarme simpático. Na apneia, o alarme toca várias vezes na madrugada, espremendo as artérias.</p></div>
+      </div>
+
+      <div class="card accent mem" style="margin-top:18px">
+        <span class="tag" style="background:var(--mem-soft);color:var(--mem)">Fatores psicossociais</span>
+        <p style="margin:0 0 6px">Estresse crônico (ativação simpática persistente), transtornos psiquiátricos, vulnerabilidade social, baixo nível socioeconômico e dificuldade de acesso. Meditação, espiritualidade e redução de estresse entram no cuidado integral.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filosofia breve -->
+  <div class="philo-sec"><div class="wrap"><div class="philo">
+    <span class="mark">✦</span>
+    <p>Muitas vezes, a pressão sobe no vaso depois de já ter subido na vida. Tratar fatores de risco é olhar o ser humano antes de olhar o número.</p>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div></div>
+
+  <!-- 6. AMBIENTE -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">06 · Urbanização, poluição e ambiente</span>
+      <h2>A cidade que aperta os vasos de fora para dentro</h2>
+      <div class="card accent" style="margin-top:18px">
+        <p style="margin:0 0 4px">Urbanização, poluição do ar, poluição sonora, temperatura e <b>frio</b> podem influenciar a PA. O frio aumenta a vasoconstrição periférica, contribuindo para elevação da pressão.</p>
+        <div class="imgmind"><span class="ico">🏙️</span><p><b>Imagem:</b> fumaça, ruído, pressa e frio viram uma mão invisível apertando o sistema vascular.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. MEDICAMENTOS -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">07 · Medicamentos e substâncias</span>
+      <h2>A farmácia escondida atrás do paciente</h2>
+      <p class="lead">Pergunte ativamente sobre remédios, suplementos, hormônios e substâncias — o paciente pode não considerar &ldquo;medicamento&rdquo; um suplemento, modulador hormonal, anabolizante, produto de academia, emagrecedor, estimulante ou manipulado.</p>
+
+      <div class="card accent risk" style="margin-top:18px">
+        <span class="tag" style="background:var(--risk-soft);color:var(--risk)">Podem elevar a PA</span>
+        <div class="pills">
+          <span class="medpill"><span class="d"></span>Venlafaxina</span>
+          <span class="medpill"><span class="d"></span>Anticoncepcionais</span>
+          <span class="medpill"><span class="d"></span>Lisdexanfetamina</span>
+          <span class="medpill"><span class="d"></span>Eritropoetina</span>
+          <span class="medpill"><span class="d"></span>Glicocorticoides (prednisona)</span>
+          <span class="medpill"><span class="d"></span>Tricíclicos (amitriptilina)</span>
+          <span class="medpill"><span class="d"></span>AINEs (ibuprofeno)</span>
+        </div>
+        <p style="margin:14px 0 0;font-size:.92rem;color:var(--muted)">Duais como a <b>venlafaxina</b> podem elevar a PA, sobretudo em doses altas. Anticoncepcionais podem associar-se à HAS (menos comum com doses atuais mais baixas). Estimulantes (lisdexanfetamina, ritalina) para TDAH também são fator de risco, especialmente combinados a antidepressivos.</p>
+        <div class="imgmind"><span class="ico">💊</span><p><b>Imagem:</b> no consultório da pressão há uma farmácia escondida atrás do paciente — algumas caixas empurram o ponteiro para cima.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. DROGAS, TABAGISMO, ANABOLIZANTES -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">08 · Drogas, tabagismo e anabolizantes</span>
+      <h2>Sirenes químicas e armaduras falsas</h2>
+
+      <div class="grid g2" style="margin-top:18px">
+        <div class="card accent mem">
+          <span class="tag" style="background:var(--mem-soft);color:var(--mem)">Substâncias ilícitas</span>
+          <div class="pills">
+            <span class="medpill drug"><span class="d"></span>Cocaína</span>
+            <span class="medpill drug"><span class="d"></span>Cannabis sativa</span>
+            <span class="medpill drug"><span class="d"></span>Anfetaminas</span>
+            <span class="medpill drug"><span class="d"></span>MDMA</span>
+          </div>
+          <p style="margin:12px 0 0;font-size:.92rem;color:var(--muted)"><b>Cocaína e anfetaminas</b> se destacam pelo potencial de aumentar o risco cardiovascular.</p>
+          <div class="imgmind"><span class="ico">⛈️</span><p><b>Imagem:</b> estimulantes são sirenes químicas — acordam o simpático, apertam vasos e sobem a pressão em modo tempestade.</p></div>
+        </div>
+        <div class="card accent risk">
+          <span class="tag" style="background:var(--risk-soft);color:var(--risk)">Tabagismo</span>
+          <p style="margin:0 0 12px">Papel direto na indução de HAS ainda é <b>controverso</b> — mas a cessação é <b>sempre recomendada</b> pelo enorme risco cardiovascular global.</p>
+          <div class="exam" style="margin-top:0"><span class="ico">⚠️</span><p><b>Frase-chave:</b> mesmo quando a relação direta com HAS é discutida, o cigarro nunca é inocente para o coração.</p></div>
+        </div>
+      </div>
+
+      <div class="card accent risk" style="margin-top:18px">
+        <span class="tag" style="background:var(--risk-soft);color:var(--risk)">Esteroides anabolizantes</span>
+        <h3>Brilha no espelho, cobra no miocárdio</h3>
+        <p style="margin:0 0 14px">Investigue em praticantes de musculação e fisiculturismo. Dados citados (Circulation 2025, usuários de esteroides androgênicos anabolizantes):</p>
+        <div class="grid g4">
+          <div class="numcard"><div class="n">3×</div><div class="cap">IAM</div></div>
+          <div class="numcard"><div class="n">2,4×</div><div class="cap">TEV</div></div>
+          <div class="numcard"><div class="n">2,3×</div><div class="cap">Arritmias</div></div>
+          <div class="numcard"><div class="n">8,9×</div><div class="cap">Cardiomiopatias</div></div>
+        </div>
+        <div class="imgmind"><span class="ico">🛡️</span><p><b>Imagem:</b> o anabolizante aumenta músculo por fora e adoece o coração por dentro — uma armadura falsa.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CONSULTA -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">09 · A consulta que não pode faltar</span>
+      <h2>Pergunte ativamente — quem está empurrando essa pressão?</h2>
+      <div class="qbox" style="margin-top:16px">
+        <h4>Checklist de perguntas clínicas</h4>
+        <ul>
+          <li>Peso atual e trajetória do peso</li>
+          <li>Minutos de atividade física/semana</li>
+          <li>Quanto sal usa? Saleiro na mesa?</li>
+          <li>Usa sal light/enriquecido com potássio?</li>
+          <li>Doses de álcool/semana</li>
+          <li>Como é o sono? Ronca? Acorda cansado?</li>
+          <li>Antidepressivo, estimulante, anticoncepcional, AINE, corticoide?</li>
+          <li>Suplemento, hormônio, anabolizante, produtos de academia?</li>
+          <li>Cocaína, anfetamina, MDMA ou outras?</li>
+          <li>Fuma?</li>
+          <li>Nível de estresse</li>
+          <li>História familiar</li>
+          <li>Barreiras sociais e acesso ao cuidado</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. N1-N7 LADEIRA -->
+  <section>
+    <div class="wrap">
+      <div class="ladeira">
+        <span class="kicker">Técnica N1–N7 · Loci + Emoção</span>
+        <h2>A Ladeira da Pressão</h2>
+        <p style="color:#e3dcf0;max-width:64ch">Várias forças empurram o paciente ladeira acima, em direção à hipertensão. À esquerda, pedras fixas que ele não muda. À direita, mochilas e ventos que ele pode largar.</p>
+
+        <div class="scene">
+          <div class="side left">
+            <b>🪨 Pedras fixas (não modificáveis)</b>
+            <ul><li>DNA</li><li>Idade</li><li>Sexo</li><li>Etnia</li></ul>
+          </div>
+          <div class="gauge">
+            <div class="disp">140/90</div>
+            <div class="cap">no topo da ladeira</div>
+          </div>
+          <div class="side right">
+            <b>🎒 Mochilas e ventos (modificáveis)</b>
+            <ul><li>Obesidade · sedentarismo</li><li>Sal · álcool · sono ruim</li><li>Estresse · poluição</li><li>Medicamentos · drogas</li><li>Anabolizantes · tabagismo</li></ul>
+          </div>
+        </div>
+        <div class="qlum">&ldquo;O que está empurrando a pressão deste paciente?&rdquo;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- N1-N7 níveis -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="nlevel">
+        <span class="ntag">N1 · Núcleo</span>
+        <p style="margin:0"><b>Fatores de risco da HAS</b> = o terreno que favorece o nascimento ou a piora da hipertensão.</p>
+      </div>
+
+      <div class="nlevel">
+        <span class="ntag">N2 · Números</span>
+        <div class="nchips">
+          <span class="nchip">55 anos: idade/rigidez</span>
+          <span class="nchip">48% H · 42% M (&gt;30a)</span>
+          <span class="nchip">60 anos: vira p/ mulheres</span>
+          <span class="nchip">Obesidade 10%→26%</span>
+          <span class="nchip">150–300 min/sem</span>
+          <span class="nchip">Sal &lt;5 g/dia</span>
+          <span class="nchip">Sódio &lt;2 g/dia</span>
+          <span class="nchip">Brasil 9,3 g/dia</span>
+          <span class="nchip">Mulher &gt;15 g ou 7 doses</span>
+          <span class="nchip">Homem &gt;30 g ou 14 doses</span>
+          <span class="nchip">1 dose = 14 g</span>
+          <span class="nchip">350/150/45 mL</span>
+          <span class="nchip">Anaboliz.: 3× / 2,4× / 2,3× / 8,9×</span>
+        </div>
+      </div>
+
+      <div class="nlevel">
+        <span class="ntag">N3 · Narrativa</span>
+        <div class="narrative">Um paciente sobe a Ladeira da Pressão carregando mochilas de sal, álcool, peso, sono ruim e estresse. Atrás dele, o <b>DNA empurra em silêncio</b>. A idade transforma suas artérias em canos rígidos. No bolso, remédios que ele nem lembrava de contar. No topo, o aparelho marca 140/90. O médico não pergunta só &ldquo;qual sua pressão?&rdquo; — pergunta: <b>&ldquo;quem está empurrando você?&rdquo;</b></div>
+      </div>
+
+      <div class="nlevel">
+        <span class="ntag">N4 · Neuroimagem</span>
+        <ul>
+          <li><b>Genética:</b> painel de DNA com muitas luzes pequenas</li>
+          <li><b>Idade:</b> mangueira elástica virando cano de concreto</li>
+          <li><b>Sexo:</b> balança que vira após os 60</li>
+          <li><b>Etnia:</b> alerta de maior prevalência e gravidade</li>
+          <li><b>Obesidade:</b> balança pressionando o coração</li>
+          <li><b>Sedentarismo:</b> sofá com algemas nas artérias</li>
+          <li><b>Sal:</b> saleiro abrindo torneira dentro do vaso</li>
+          <li><b>Álcool:</b> três copos com o mesmo fantasma de 14 g</li>
+          <li><b>Sono ruim:</b> alarme simpático tocando na madrugada</li>
+          <li><b>Estresse:</b> sirene emocional ligada</li>
+          <li><b>Medicamentos:</b> farmácia escondida elevando o ponteiro</li>
+          <li><b>Drogas:</b> tempestade simpática</li>
+          <li><b>Anabolizantes:</b> armadura falsa que adoece o miocárdio</li>
+          <li><b>Tabagismo:</b> fumaça que nunca é inocente</li>
+        </ul>
+      </div>
+
+      <div class="nlevel">
+        <span class="ntag">N5 · Nós clínicos</span>
+        <p style="margin:0 0 6px">As perguntas que destravam o diagnóstico do terreno estão no bloco <b>&ldquo;A consulta que não pode faltar&rdquo;</b> acima — peso, exercício, sal, álcool, sono, medicamentos, suplementos/hormônios, drogas, tabaco, estresse e barreiras sociais.</p>
+      </div>
+
+      <div class="nlevel">
+        <span class="ntag">N6 · Emoção e filosofia</span>
+        <p style="margin:0">Desenvolvida na seção <b>&ldquo;Filosofia da Pressão&rdquo;</b> logo abaixo.</p>
+      </div>
+
+      <div class="nlevel">
+        <span class="ntag">N7 · Revisão suprema</span>
+        <p style="margin:0"><b>Não modificáveis:</b> genética, idade, sexo, etnia. &nbsp;<b>Modificáveis:</b> obesidade, sedentarismo, sal, baixo potássio, álcool, sono ruim, estresse, poluição, medicamentos, drogas, anabolizantes, tabagismo. Números consolidados na tabela e no checklist final.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILOSOFIA DA PRESSÃO -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="philo-block">
+        <span class="kicker">N6 · Filosofia da Pressão</span>
+        <h2>As forças invisíveis</h2>
+        <p>A pressão arterial não sobe apenas no braço. Ela sobe na rotina. Sobe na noite mal dormida, na marmita salgada, no ônibus lotado, no medo, no plantão, no remédio esquecido, na academia que vende hormônio como promessa, no silêncio do paciente que não conta o que usa. A consulta boa não caça apenas números — ela caça forças invisíveis.</p>
+        <div class="final">&ldquo;Medir a pressão é fácil. Entender quem a empurra é medicina.&rdquo;</div>
+        <span class="by">— Dr. André Rossanno</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. TABELA -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">10 · Revisão rápida</span>
+      <h2>Fator · Tipo · Por que importa · Imagem</h2>
+      <div class="tbl-wrap" style="margin-top:16px">
+        <table>
+          <thead><tr><th>Fator</th><th>Tipo</th><th>Por que importa</th><th>Imagem mental</th></tr></thead>
+          <tbody>
+            <tr><td>Genética</td><td>Não modificável</td><td>Herança poligênica</td><td>Painel de DNA com várias luzes</td></tr>
+            <tr><td>Idade</td><td>Não modificável</td><td>Rigidez arterial aumenta PAS</td><td>Mangueira virando cano</td></tr>
+            <tr><td>Sexo</td><td>Não modificável</td><td>Homens antes de 60, mulheres após 60</td><td>Balança virando após 60</td></tr>
+            <tr><td>Etnia</td><td>Não modificável</td><td>População negra: maior prevalência e gravidade</td><td>Alerta vermelho populacional</td></tr>
+            <tr><td>Obesidade</td><td>Modificável</td><td>Maior IMC, maior prevalência de HAS</td><td>Balança esmagando o coração</td></tr>
+            <tr><td>Sedentarismo</td><td>Modificável</td><td>Aumenta risco e se liga à obesidade</td><td>Sofá com algemas vasculares</td></tr>
+            <tr><td>Sal</td><td>Modificável</td><td>Excesso de sódio aumenta PA</td><td>Saleiro abrindo torneira vascular</td></tr>
+            <tr><td>Potássio</td><td>Modificável</td><td>Contrapeso ao sódio</td><td>Escudo verde vascular</td></tr>
+            <tr><td>Álcool</td><td>Modificável</td><td>Excesso aumenta risco de HAS</td><td>Três copos com mesmo fantasma</td></tr>
+            <tr><td>Sono ruim</td><td>Modificável</td><td>Apneia piora risco e controle</td><td>Alarme simpático noturno</td></tr>
+            <tr><td>Estresse</td><td>Modificável</td><td>Ativação simpática persistente</td><td>Sirene emocional</td></tr>
+            <tr><td>Poluição/frio</td><td>Modificável/contextual</td><td>Ambiente pode elevar PA</td><td>Cidade apertando vasos</td></tr>
+            <tr><td>Medicamentos</td><td>Modificável</td><td>Alguns elevam PA</td><td>Farmácia escondida</td></tr>
+            <tr><td>Drogas</td><td>Modificável</td><td>Estimulantes elevam risco CV</td><td>Tempestade simpática</td></tr>
+            <tr><td>Anabolizantes</td><td>Modificável</td><td>IAM, TEV, arritmias e cardiomiopatia</td><td>Armadura falsa no coração</td></tr>
+            <tr><td>Tabagismo</td><td>Modificável</td><td>Papel direto controverso, mas alto risco CV</td><td>Fumaça nunca inocente</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTE-SE -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">11 · Teste-se</span>
+      <h2>Antes do checklist, tente responder</h2>
+      <div style="margin-top:16px">
+        <div class="quiz">
+          <div class="qh"><span class="qn">Q1</span><p class="qtext">Quais são os quatro fatores de risco não modificáveis?</p></div>
+          <button type="button" onclick="toggleAns(this)">Ver resposta</button>
+          <div class="ans"><b>Genética, idade, sexo e etnia.</b> A HAS comum é poligênica; a idade pesa sobretudo por rigidez arterial.</div>
+        </div>
+        <div class="quiz">
+          <div class="qh"><span class="qn">Q2</span><p class="qtext">Sal e sódio recomendados por dia — e a média brasileira?</p></div>
+          <button type="button" onclick="toggleAns(this)">Ver resposta</button>
+          <div class="ans">Sal <b>&lt; 5 g/dia</b>, sódio <b>&lt; 2 g/dia</b>. Média do Brasil ~<b>9,3 g/dia</b> — quase o dobro.</div>
+        </div>
+        <div class="quiz">
+          <div class="qh"><span class="qn">Q3</span><p class="qtext">Limites de álcool por sexo e o que é 1 dose padrão?</p></div>
+          <button type="button" onclick="toggleAns(this)">Ver resposta</button>
+          <div class="ans">Mulher <b>&gt; 15 g/dia ou 7 doses/sem</b>; homem <b>&gt; 30 g/dia ou 14 doses/sem</b>. 1 dose = <b>14 g de álcool puro</b> = 350 mL cerveja = 150 mL vinho = 45 mL destilado.</div>
+        </div>
+        <div class="quiz">
+          <div class="qh"><span class="qn">Q4</span><p class="qtext">Riscos CV dos anabolizantes (Circulation 2025)?</p></div>
+          <button type="button" onclick="toggleAns(this)">Ver resposta</button>
+          <div class="ans"><b>3×</b> IAM, <b>2,4×</b> TEV, <b>2,3×</b> arritmias, <b>8,9×</b> cardiomiopatias.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. CHECKLIST -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <span class="kicker">12 · Checklist final de prova</span>
+      <h2>O que não pode escapar</h2>
+      <div class="check-grid" style="margin-top:16px">
+        <div class="chk"><span class="mk">✓</span><span>Não modificáveis: genética, idade, sexo e etnia.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>HAS comum é poligênica.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Idade aumenta prevalência, principalmente por rigidez arterial.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Em idosos predomina HAS sistólica isolada.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Em adultos jovens pode haver HAS sistólica isolada/espúria.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Homens: maior prevalência até 60 anos.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Mulheres: maior prevalência após 60 anos.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>População negra: maior prevalência e gravidade.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Obesidade aumenta risco; maior IMC, maior prevalência.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Exercício aeróbico moderado: 150–300 min/semana.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Sal &lt; 5 g/dia; sódio &lt; 2 g/dia; Brasil 9,3 g/dia.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Álcool: mulher &gt;15 g ou 7 doses/sem; homem &gt;30 g ou 14 doses/sem.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>1 dose = 14 g; 350 mL cerveja = 150 mL vinho = 45 mL destilado.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Sono deve ser perguntado com detalhes; apneia piora risco e controle.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Buscar ativamente medicamentos, suplementos, hormônios e anabolizantes.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Venlafaxina, anticoncepcionais, lisdexanfetamina, eritropoetina, corticoides, tricíclicos e AINEs podem elevar PA.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Cocaína, anfetaminas e MDMA são relevantes.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Tabagismo: papel direto controverso, mas cessação sempre recomendada.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Anabolizantes: 3× IAM, 2,4× TEV, 2,3× arritmias, 8,9× cardiomiopatias.</span></div>
+        <div class="chk"><span class="mk">✓</span><span>Tratar fatores de risco é tratar a raiz da pressão.</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="sig">Dr. André Rossanno</div>
+    <div class="role">Método de Memorização Médica</div>
+    <div class="theme">HAS — Tema 2 · Fatores de Risco</div>
+  </div>
+</footer>
+
+<script>
+  function toggleAns(btn){
+    var ans = btn.nextElementSibling;
+    var open = ans.classList.toggle('show');
+    btn.textContent = open ? 'Ocultar resposta' : 'Ver resposta';
+  }
+</script>
+</body>
+</html>
