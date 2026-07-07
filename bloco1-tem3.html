@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 3 | Medição da Pressão Arterial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--navy-d:#08192f;--navy-2:#10305a;
+    --teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--red:#E63946;
+    --card:#FFFFFF;--ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;
+    --soft:#f1f6f9;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;
+    --mono:'IBM Plex Mono','Trebuchet MS',monospace;
+    --script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:34px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.18rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .sec-lead{color:#b8ccdd;max-width:64ch;margin-bottom:16px}
+
+  /* NAV */
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent;transition:.2s}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+
+  /* HERO */
+  .hero{padding:60px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2rem,6.5vw,3.2rem);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.12rem;max-width:52ch;margin:0 auto 20px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.8rem;color:var(--gold);margin-bottom:26px;padding:0 10px}
+
+  /* CARD BASE (claro) */
+  .card{background:var(--card);color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:10px}
+  .card p:last-child{margin-bottom:0}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16}
+  .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38}
+  .t-mag{background:#fbe4ee;color:var(--magenta)}
+
+  /* MISSÃO */
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:22px 24px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mission li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:700}
+
+  /* FILOSOFIA */
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:30px 26px;position:relative;overflow:hidden}
+  .philo:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px);pointer-events:none}
+  .philo .line{display:flex;gap:12px;align-items:flex-start;margin:10px 0;font-size:1.06rem;font-weight:700;color:#eef5fa}
+  .philo .line .q{color:var(--gold);font-family:var(--script);font-size:1.8rem;line-height:.5}
+  .philo .by{display:block;margin-top:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+
+  /* N1 / N7 */
+  .n17{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.n17{grid-template-columns:1fr}}
+  .nbox{border-radius:var(--radius);padding:24px;color:#fff}
+  .n1{background:linear-gradient(150deg,#0e6a86,#1282A2)}
+  .n7{background:linear-gradient(150deg,#8a2352,#D6336C)}
+  .nbox .ntag{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .nbox h3{color:#fff;margin:6px 0 12px}
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .flow span{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 11px;font-size:.82rem;font-weight:800}
+  .flow i{opacity:.7;font-style:normal}
+  .n7 .big{font-size:1.15rem;font-weight:800;line-height:1.35}
+  .n7 .small{margin-top:10px;font-style:italic;color:#ffdbe7}
+
+  /* PALÁCIO */
+  .palace{background:radial-gradient(90% 120% at 82% 0%,rgba(18,130,162,.30),transparent 55%),linear-gradient(165deg,#0a2142,#0B2545 60%,#0e2c52);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px 26px;position:relative;overflow:hidden}
+  .palace:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px);pointer-events:none}
+  .room-name{font-family:var(--script);font-size:1.9rem;color:var(--gold);margin:2px 0 16px}
+  .stations{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:760px){.stations{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:440px){.stations{grid-template-columns:1fr}}
+  .station{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-top:3px solid var(--gold);border-radius:14px;padding:16px}
+  .station .num{font-family:var(--mono);color:var(--gold);font-weight:700;font-size:.8rem}
+  .station .ico{font-size:1.5rem;display:block;margin:4px 0}
+  .station b{display:block;color:#fff;font-size:.92rem;margin-bottom:4px}
+  .station span{font-size:.8rem;color:#c2d3e2}
+  .plaque{text-align:center;margin-top:18px;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:12px;padding:14px;color:var(--gold);font-weight:800;font-style:italic}
+  .oneline{text-align:center;margin-top:12px;font-family:var(--mono);font-size:.82rem;letter-spacing:1px;color:#9fdfef}
+
+  /* CHECKLIST visual */
+  .checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.checklist{grid-template-columns:1fr}}
+  .ci{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:10px;padding:11px 13px}
+  .ci .mk{color:var(--green);font-weight:900;flex-shrink:0}
+  .ci.no .mk{color:var(--red)}
+  .ci span{font-size:.9rem;color:var(--ink);font-weight:600}
+
+  /* ALERTA / IMG MENTAL / PERGUNTA ATIVA */
+  .alert{border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;margin-top:14px}
+  .alert.red{background:#fde3e5;border:1px solid #f3b5bb;color:#7d1119}
+  .alert.gold{background:#fdf3d9;border:1px solid #ecd18a;color:#6b5210}
+  .alert .ico{font-size:1.4rem}
+  .alert b{color:inherit}
+  .imgmind{background:#eef5fb;border-left:5px solid var(--teal);border-radius:12px;padding:14px 16px;margin-top:12px;font-style:italic;color:var(--navy);font-size:.94rem}
+  .imgmind b{font-style:normal;color:var(--teal)}
+
+  .ask{background:var(--soft);border:1px dashed var(--teal);border-radius:12px;padding:16px 18px;margin-top:14px}
+  .ask .q{font-weight:800;color:var(--navy);margin-bottom:8px}
+  .ask button{background:var(--teal);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-family:var(--font);font-weight:800;font-size:.85rem;cursor:pointer}
+  .ask button:hover{background:#0e6a86}
+  .ask .a{display:none;margin-top:12px;background:#e5f6ea;border-left:4px solid var(--green);border-radius:9px;padding:12px 14px;font-size:.9rem;color:#1c4d2c}
+  .ask .a.show{display:block}
+
+  /* FLUXO / TABELA */
+  .steps{display:flex;flex-direction:column;gap:8px}
+  .step{display:flex;gap:12px;align-items:center;background:var(--soft);border-radius:10px;padding:12px 14px}
+  .step .n{width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem}
+  .step span{font-weight:700;color:var(--ink);font-size:.94rem}
+  .rule{background:#fff8e8;border:1px solid #ecd18a;border-radius:10px;padding:12px 14px;margin-top:12px;font-size:.9rem;color:#6b5210;font-weight:700}
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:420px;background:#fff}
+  th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-family:var(--mono);font-size:.72rem;letter-spacing:1px;text-transform:uppercase}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--ink)}
+  tr:nth-child(even) td{background:#f8fafc}
+  td:first-child{font-weight:800;color:var(--teal)}
+
+  .memline{background:var(--navy);color:#fff;border-radius:12px;padding:14px 16px;margin-top:14px;text-align:center;font-family:var(--mono);font-weight:700;letter-spacing:.5px;font-size:.9rem}
+  .memline b{color:var(--gold)}
+
+  /* CASOS */
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer;margin-top:4px}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+
+  /* FLASHCARDS */
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.98rem;line-height:1.3}
+  .flash .hint{position:absolute;bottom:8px;right:12px;font-size:.62rem;font-family:var(--mono);opacity:.5}
+
+  /* QUESTÕES */
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:14px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer;transition:.15s}
+  .qz .opt:hover{border-color:var(--teal)}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+
+  /* PEGADINHAS */
+  .traps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.traps{grid-template-columns:1fr}}
+  .trap{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .trap .ico{color:var(--red);flex-shrink:0;font-weight:900}
+  .trap span{font-size:.88rem;color:var(--ink);font-weight:600}
+
+  /* REVISÃO 60s */
+  .r60{background:linear-gradient(135deg,rgba(244,185,66,.14),rgba(18,130,162,.08));border:1px solid rgba(244,185,66,.35);border-radius:var(--radius);padding:24px}
+  .r60 .row{display:flex;flex-wrap:wrap;gap:8px}
+  .r60 .row span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 13px;font-weight:800;font-size:.85rem;color:#fff}
+  .r60 .row span b{color:var(--gold)}
+
+  /* REVISÃO ESPAÇADA */
+  .spaced{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.spaced{grid-template-columns:1fr}}
+  .sp{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .sp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+  .sp ul{list-style:none}
+  .sp li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem;font-weight:600;cursor:pointer}
+  .sp li:last-child{border-bottom:none}
+  .sp li .box{width:18px;height:18px;border:2px solid var(--teal);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff}
+  .sp li.done .box{background:var(--green);border-color:var(--green)}
+  .sp li.done span{text-decoration:line-through;color:var(--muted)}
+
+  /* FOOTER */
+  footer{text-align:center;padding:44px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.82rem;color:#8fa8bd;margin-top:12px}
+
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="inner">
+    <a href="#equip">Equipamentos</a>
+    <a href="#preparo">Preparo</a>
+    <a href="#manguito">Manguito</a>
+    <a href="#tecnica">Técnica</a>
+    <a href="#especiais">Especiais</a>
+    <a href="#pegadinhas">Pegadinhas</a>
+    <a href="#flashcards">Flashcards</a>
+    <a href="#questoes">Questões</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 3 · Cardiologia TEC 2026</span>
+    <h1>Medição da <span class="hl">Pressão Arterial</span></h1>
+    <p class="sub">A técnica que transforma números em decisões clínicas.</p>
+    <div class="impact">&ldquo;A pressão só é confiável quando a técnica também é.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- MISSÃO -->
+  <section>
+    <div class="wrap">
+      <div class="mission">
+        <b>Ao final deste tema, você será capaz de:</b>
+        <ul>
+          <li>Escolher o aparelho</li>
+          <li>Escolher o manguito</li>
+          <li>Preparar o paciente</li>
+          <li>Executar a técnica correta</li>
+          <li>Reconhecer erros</li>
+          <li>Responder questões de prova</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILOSOFIA -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">Filosofia da Medida</span>
+      <div class="philo">
+        <div class="line"><span class="q">&ldquo;</span>A pressão arterial não é apenas um número. É uma decisão clínica construída pela técnica.</div>
+        <div class="line"><span class="q">&ldquo;</span>Um manguito errado pode criar uma doença que não existe — ou esconder uma doença real.</div>
+        <div class="line"><span class="q">&ldquo;</span>Antes de interpretar a pressão, é preciso confiar na medida.</div>
+        <div class="line"><span class="q">&ldquo;</span>Um erro de poucos milímetros pode mudar classificação, tratamento e prognóstico.</div>
+        <div class="line"><span class="q">&ldquo;</span>A boa medicina começa antes do resultado aparecer no aparelho.</div>
+        <span class="by">— Dr. André Rossanno</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- N1 / N7 -->
+  <section>
+    <div class="wrap">
+      <div class="n17">
+        <div class="nbox n1">
+          <div class="ntag">N1 · O mapa da técnica</div>
+          <h3>A sequência que organiza tudo</h3>
+          <div class="flow">
+            <span>Equipamento</span><i>→</i><span>Paciente</span><i>→</i><span>Manguito</span><i>→</i><span>Medida</span><i>→</i><span>Repetição</span><i>→</i><span>Interpretação</span><i>→</i><span>Especiais</span>
+          </div>
+        </div>
+        <div class="nbox n7">
+          <div class="ntag">N7 · O peso da medida</div>
+          <div class="big">O aparelho mostra números.<br>A técnica decide se eles são verdadeiros.</div>
+          <div class="small">Medir mal é construir uma decisão sobre areia.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALÁCIO -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">Palácio da Memória</span>
+      <div class="palace">
+        <h2>Sala da Verdade Pressórica</h2>
+        <div class="room-name">sete estações antes de acreditar no número</div>
+        <div class="stations">
+          <div class="station"><span class="num">01</span><span class="ico">🤫</span><b>Porta do Silêncio</b><span>Paciente não fala durante a medida.</span></div>
+          <div class="station"><span class="num">02</span><span class="ico">🪑</span><b>Cadeira dos 5 min</b><span>Sentado, repousado, costas apoiadas, pés no chão.</span></div>
+          <div class="station"><span class="num">03</span><span class="ico">🚻</span><b>Bexiga Vazia</b><span>Esvaziar a bexiga antes da medida.</span></div>
+          <div class="station"><span class="num">04</span><span class="ico">⏱️</span><b>Relógio das Proibições</b><span>Exercício 90 min; café/álcool/cigarro 30 min.</span></div>
+          <div class="station"><span class="num">05</span><span class="ico">💪</span><b>Torre do Braço</b><span>Braço apoiado na altura do coração.</span></div>
+          <div class="station"><span class="num">06</span><span class="ico">👕</span><b>Guarda-roupa Vazio</b><span>Manguito sobre a pele, sem roupa comprimindo.</span></div>
+          <div class="station"><span class="num">07</span><span class="ico">🗄️</span><b>Armário dos Manguitos</b><span>Cada braço recebe o tamanho correto.</span></div>
+        </div>
+        <div class="plaque">&ldquo;Antes de acreditar no número, confira a sala.&rdquo;</div>
+        <div class="oneline">Silêncio → Repouso → Posição → Pele → Manguito → Repetição → Interpretação</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPAMENTOS -->
+  <section id="equip">
+    <div class="wrap">
+      <span class="kicker">01 · Equipamentos</span>
+      <h2>Qual aparelho usar?</h2>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card"><span class="tag t-red">Mercúrio</span><h3>Obsoleto</h3><p>Retirado de uso.</p></div>
+        <div class="card"><span class="tag t-green">Automático de braço ⭐</span><h3>Preferido</h3><p>Técnica oscilométrica, menor interferência do observador, pode permitir medida desacompanhada. Preferido quando disponível.</p></div>
+        <div class="card"><span class="tag t-gold">Aneroide</span><h3>Auscultatório</h3><p>Depende do observador; pode estar descalibrado.</p></div>
+        <div class="card"><span class="tag t-teal">Punho</span><h3>Não é 1ª escolha</h3><p>Situações especiais; depende da posição correta do punho.</p></div>
+        <div class="card"><span class="tag t-mag">Wearables</span><h3>Promissores</h3><p>Ainda não recomendados para uso rotineiro.</p></div>
+        <div class="card" style="background:linear-gradient(135deg,#e4f1f5,#fdf3d9);border:1px solid #bfe0e9">
+          <span class="tag t-teal">Preferência da Diretriz</span>
+          <p style="color:var(--navy);font-weight:700">Quando disponíveis, dispositivos <b>oscilométricos de braço</b> são preferíveis aos auscultatórios.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OSCILO x AUSCULT -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">02 · Oscilométrica × Auscultatória</span>
+      <h2>Duas formas de ouvir a pressão</h2>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card"><span class="tag t-green">Oscilométrica</span>
+          <div class="checklist" style="grid-template-columns:1fr">
+            <div class="ci"><span class="mk">✓</span><span>Fácil uso</span></div>
+            <div class="ci"><span class="mk">✓</span><span>Menor erro do observador</span></div>
+            <div class="ci"><span class="mk">✓</span><span>Permite medida desacompanhada</span></div>
+            <div class="ci"><span class="mk">✓</span><span>Adequada para rotina</span></div>
+          </div>
+        </div>
+        <div class="card"><span class="tag t-red">Auscultatória</span>
+          <div class="checklist" style="grid-template-columns:1fr">
+            <div class="ci no"><span class="mk">✕</span><span>Arredondamento e erro de leitura</span></div>
+            <div class="ci no"><span class="mk">✕</span><span>Pressão excessiva do estetoscópio</span></div>
+            <div class="ci no"><span class="mk">✕</span><span>Inflação excessiva / deflação rápida</span></div>
+            <div class="ci no"><span class="mk">✕</span><span>PAS/PAD identificadas de forma incorreta</span></div>
+            <div class="ci no"><span class="mk">✕</span><span>Risco de aparelho descalibrado</span></div>
+            <div class="ci no"><span class="mk">✕</span><span>Não permite medida desacompanhada</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ask">
+        <div class="q">Por que a oscilométrica reduz o erro do observador?</div>
+        <button onclick="toggleNext(this)">Ver resposta</button>
+        <div class="a">Porque a detecção e o cálculo são feitos automaticamente, reduzindo a interferência humana.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREPARO -->
+  <section id="preparo">
+    <div class="wrap">
+      <span class="kicker">03 · Preparo do paciente</span>
+      <h2>O erro que finge ser hipertensão</h2>
+      <div class="card" style="margin-top:16px">
+        <span class="tag t-green">Antes de medir</span>
+        <div class="checklist">
+          <div class="ci"><span class="mk">✓</span><span>Repouso por 5 minutos</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Ambiente calmo</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Costas apoiadas</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Pés no chão</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Pernas descruzadas</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Braço na altura do coração</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Palma voltada para cima</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Bexiga vazia</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Não falar</span></div>
+          <div class="ci"><span class="mk">✓</span><span>Manguito sobre a pele</span></div>
+        </div>
+        <span class="tag t-red" style="margin-top:16px">Evitar antes</span>
+        <div class="checklist">
+          <div class="ci no"><span class="mk">✕</span><span>Exercício nos últimos 90 min</span></div>
+          <div class="ci no"><span class="mk">✕</span><span>Café nos últimos 30 min</span></div>
+          <div class="ci no"><span class="mk">✕</span><span>Álcool nos últimos 30 min</span></div>
+          <div class="ci no"><span class="mk">✕</span><span>Cigarro nos últimos 30 min</span></div>
+        </div>
+        <div class="alert gold"><span class="ico">🔇</span><div><b>Erro silencioso:</b> o paciente pode estar com a técnica errada e <b>parecer hipertenso sem realmente estar</b>.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANGUITO -->
+  <section id="manguito">
+    <div class="wrap">
+      <span class="kicker">04 · Escolha do manguito</span>
+      <h2>O detalhe que fabrica ou apaga a hipertensão</h2>
+      <div class="card" style="margin-top:16px">
+        <div class="steps">
+          <div class="step"><div class="n">1</div><span>Medir do acrômio até o olécrano</span></div>
+          <div class="step"><div class="n">2</div><span>Identificar o ponto médio</span></div>
+          <div class="step"><div class="n">3</div><span>Medir a circunferência do braço</span></div>
+          <div class="step"><div class="n">4</div><span>Escolher o manguito correspondente</span></div>
+        </div>
+        <div class="rule">Bolsa inflável — <b>largura</b> = 35–50% da circunferência · <b>comprimento</b> = 75–100%.</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Circunferência</th><th>Manguito</th></tr></thead>
+            <tbody>
+              <tr><td>≤ 6 cm</td><td>Recém-nascido</td></tr>
+              <tr><td>6–15 cm</td><td>Criança</td></tr>
+              <tr><td>16–21 cm</td><td>Infantil</td></tr>
+              <tr><td>22–26 cm</td><td>Adulto pequeno</td></tr>
+              <tr><td>27–34 cm</td><td>Adulto</td></tr>
+              <tr><td>35–44 cm</td><td>Adulto grande</td></tr>
+              <tr><td>45–52 cm</td><td>Coxa</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert red"><span class="ico">🎯</span><div><b>PEGADINHA SUPREMA</b> — Manguito <b>pequeno superestima</b> a PA; manguito <b>grande pode subestimar</b>.</div></div>
+        <div class="imgmind"><b>Imagem:</b> braço grande com manguito pequeno fabrica hipertensão.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉCNICA / PROCEDIMENTO -->
+  <section id="tecnica">
+    <div class="wrap">
+      <span class="kicker">05 · Procedimento prático</span>
+      <h2>Como a medida é feita de verdade</h2>
+      <div class="card" style="margin-top:16px">
+        <div class="steps">
+          <div class="step"><div class="n">1</div><span>Primeira consulta: medir nos <b>dois braços</b></span></div>
+          <div class="step"><div class="n">2</div><span>Realizar pelo menos <b>três medidas</b></span></div>
+          <div class="step"><div class="n">3</div><span><b>Descartar a primeira</b></span></div>
+          <div class="step"><div class="n">4</div><span>Calcular a <b>média das duas últimas</b></span></div>
+          <div class="step"><div class="n">5</div><span>Se diferença &gt; 10 mmHg entre medidas: fazer medidas adicionais</span></div>
+        </div>
+        <div class="memline">2 braços → 3 medidas → joga fora a 1ª → <b>média das 2 últimas</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENÇA ENTRE BRAÇOS -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">06 · Diferença entre os braços</span>
+      <h2>Quando os dois braços discordam</h2>
+      <div class="card" style="margin-top:16px">
+        <div class="alert red"><span class="ico">⚠️</span><div>Diferença <b>&gt; 15 mmHg</b> entre membros superiores → <b>maior risco cardiovascular</b>.</div></div>
+        <p style="margin-top:12px;font-weight:700;color:var(--navy)">Pensar em:</p>
+        <div class="checklist" style="grid-template-columns:1fr 1fr">
+          <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Aterosclerose subclávia</span></div>
+          <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Doença arterial periférica</span></div>
+          <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Takayasu (mulher jovem)</span></div>
+          <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Dissecção de aorta (dor torácica aguda)</span></div>
+        </div>
+      </div>
+      <div class="case" style="margin-top:14px">
+        <div class="cq">Mulher de 28 anos, diferença persistente de 24 mmHg entre os braços. Qual diagnóstico lembrar?</div>
+        <button onclick="toggleNext(this)">Ver resposta</button>
+        <div class="ca"><b>Arterite de Takayasu.</b></div>
+      </div>
+      <div class="case">
+        <div class="cq">Homem com dor torácica súbita e grande diferença de pressão entre os braços.</div>
+        <button onclick="toggleNext(this)">Ver resposta</button>
+        <div class="ca"><b>Considerar dissecção de aorta.</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORTOSTÁTICA -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">07 · Hipotensão ortostática</span>
+      <h2>20 em cima ou 10 embaixo</h2>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card">
+          <span class="tag t-teal">Quando pesquisar</span>
+          <div class="checklist" style="grid-template-columns:1fr">
+            <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Idosos</span></div>
+            <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Diabéticos</span></div>
+            <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Sintomáticos</span></div>
+            <div class="ci"><span class="mk" style="color:var(--teal)">•</span><span>Usuários de anti-hipertensivos</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="tag t-gold">Técnica e critério</span>
+          <p>Medir <b>deitado</b> após repouso e repetir em <b>ortostase após 3 minutos</b>.</p>
+          <div class="alert gold"><span class="ico">📏</span><div><b>Regra visual:</b> queda de PAS <b>≥ 20</b> mmHg <b>ou</b> PAD <b>≥ 10</b> mmHg.</div></div>
+        </div>
+      </div>
+      <div class="case" style="margin-top:14px">
+        <div class="cq">PA 150/80 deitado e 126/68 após 3 min em pé. Há hipotensão ortostática?</div>
+        <button onclick="toggleNext(this)">Ver resposta</button>
+        <div class="ca"><b>Sim.</b> Queda de 24 mmHg na PAS e de 12 mmHg na PAD.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARRITMIAS + HIATO -->
+  <section id="especiais">
+    <div class="wrap">
+      <span class="kicker">08 · Arritmias e hiato auscultatório</span>
+      <h2>Quando o ritmo engana o aparelho</h2>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card">
+          <span class="tag t-mag">FA e extrassístoles</span>
+          <p>Podem dificultar aparelhos automáticos. Considerar método auscultatório, repetir medidas e verificar se o automático é validado para arritmias.</p>
+          <div class="ask" style="margin-top:8px">
+            <div class="q">Todo aparelho automático é proibido na FA?</div>
+            <button onclick="toggleNext(this)">Ver resposta</button>
+            <div class="a"><b>Não.</b> Alguns dispositivos são validados para FA, mas a irregularidade pode comprometer a leitura.</div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="tag t-gold">Hiato auscultatório</span>
+          <p>Interrupção temporária dos sons entre as <b>fases 1 e 2 de Korotkoff</b>. Pode <b>subestimar a PAS</b> e <b>superestimar a PAD</b>.</p>
+          <div class="rule">Prevenção: inflar <b>20–30 mmHg acima</b> do desaparecimento do pulso.</div>
+          <div class="imgmind"><b>Imagem:</b> o som some no meio do caminho e engana quem não procurou a pressão antes pelo pulso.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITUAÇÕES ESPECIAIS -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">09 · Situações especiais</span>
+      <h2>Fora do braço-padrão</h2>
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card"><span class="tag t-teal">Punho</span><p>Não é 1ª escolha. Pode ser opção na obesidade importante — precisa ficar na altura do coração.</p></div>
+        <div class="card"><span class="tag t-gold">Membros inferiores</span><p>Quando os superiores não puderem ser usados. Preferir panturrilha/perna com aparelho digital. Valores podem ser <b>12–17 mmHg maiores</b>.</p></div>
+        <div class="card"><span class="tag t-teal">Crianças e adolescentes</span><p>Critérios por idade, sexo e altura. Acima de 13 anos, valores mais próximos dos adultos.</p></div>
+        <div class="card"><span class="tag t-red">Pseudo-hipertensão</span><p>Idosos com artérias calcificadas. Manobra de Osler tem utilidade limitada.</p></div>
+        <div class="card"><span class="tag t-mag">Wearables</span><p>Promissores, mas ainda não indicados para rotina.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards">
+    <div class="wrap">
+      <span class="kicker">10 · Flashcards</span>
+      <h2>Toque no cartão para virar</h2>
+      <p class="sec-lead">Uma ideia por cartão. Tente responder antes de virar.</p>
+      <div class="fc-grid" id="fcgrid"></div>
+    </div>
+  </section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes">
+    <div class="wrap">
+      <span class="kicker">11 · Questões de prova</span>
+      <h2>Resolva antes de ver a resposta</h2>
+      <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+      <div id="qzlist"></div>
+    </div>
+  </section>
+
+  <!-- MINI-CASOS -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">12 · Mini-casos clínicos</span>
+      <h2>Raciocínio em 5 linhas</h2>
+      <div id="cases" style="margin-top:16px"></div>
+    </div>
+  </section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas">
+    <div class="wrap">
+      <span class="kicker">13 · Pegadinhas</span>
+      <h2>Pegadinhas que tentam roubar seu ponto</h2>
+      <div class="traps" style="margin-top:16px">
+        <div class="trap"><span class="ico">✗</span><span>Manguito pequeno não reduz a PA — ele <b>superestima</b>.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Punho <b>não</b> é primeira escolha.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Em FA, o automático <b>não</b> é sempre proibido.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>A primeira medida <b>não</b> entra na média.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Diferença entre braços <b>é relevante</b>.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Hiato auscultatório altera <b>PAS e PAD</b>.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Pressão no membro inferior costuma ser <b>maior</b>.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Braço deve estar na <b>altura do coração</b>.</span></div>
+        <div class="trap"><span class="ico">✗</span><span>Medir <b>sobre roupa</b> é erro.</span></div>
+        <div class="trap"><span class="ico">✗</span><span><b>Conversar</b> durante a medida é erro.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVISÃO 60s -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">14 · Revisão de 60 segundos</span>
+      <div class="r60">
+        <div class="row">
+          <span><b>5 min</b> de repouso</span>
+          <span><b>90 min</b> sem exercício</span>
+          <span><b>30 min</b> sem café/álcool/cigarro</span>
+          <span><b>2 braços</b> na 1ª consulta</span>
+          <span><b>3 medidas</b></span>
+          <span>descartar a <b>1ª</b></span>
+          <span><b>média</b> das 2 últimas</span>
+          <span><b>&gt;15 mmHg</b> entre braços = risco CV</span>
+          <span>ortostática = <b>20/10</b> em 3 min</span>
+          <span>manguito pequeno = <b>PA falsamente alta</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVISÃO ESPAÇADA -->
+  <section>
+    <div class="wrap">
+      <span class="kicker">15 · Revisão espaçada</span>
+      <h2>Volte aqui</h2>
+      <p class="sec-lead">Toque para marcar como revisado.</p>
+      <div class="spaced">
+        <div class="sp">
+          <h4>Revisar hoje</h4>
+          <ul>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Preparo</span></li>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Manguito</span></li>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Sequência da medida</span></li>
+          </ul>
+        </div>
+        <div class="sp">
+          <h4>Revisar amanhã</h4>
+          <ul>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Diferença entre braços</span></li>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Ortostática</span></li>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Hiato auscultatório</span></li>
+          </ul>
+        </div>
+        <div class="sp">
+          <h4>Revisar em 7 dias</h4>
+          <ul>
+            <li onclick="toggleDone(this)"><span class="box">✓</span><span>Resolver novamente as questões</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Cardiologia TEC 2026</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+/* ---- utilitário: revelar próximo elemento ---- */
+function toggleNext(btn){
+  var el = btn.nextElementSibling;
+  var open = el.classList.toggle('show');
+  btn.textContent = open ? 'Ocultar resposta' : 'Ver resposta';
+}
+/* ---- revisão espaçada ---- */
+function toggleDone(li){ li.classList.toggle('done'); }
+
+/* ---- FLASHCARDS ---- */
+var flashcards = [
+  ["Qual aparelho é preferido para rotina?","Automático/semiautomático de braço, validado, método oscilométrico."],
+  ["Quanto tempo de repouso antes da medida?","Pelo menos 5 minutos."],
+  ["Quanto tempo evitar exercício?","90 minutos."],
+  ["Quanto tempo evitar café, álcool e cigarro?","30 minutos."],
+  ["Efeito do manguito pequeno?","Superestima a pressão arterial."],
+  ["Efeito do manguito grande?","Pode subestimar a pressão arterial."],
+  ["Quantas medidas devem ser feitas?","Pelo menos três; descartar a 1ª e usar a média das 2 últimas."],
+  ["Quando medir nos dois braços?","Na primeira consulta."],
+  ["Diferença entre braços que aumenta risco CV?","Maior que 15 mmHg."],
+  ["Critério de hipotensão ortostática?","Queda de PAS ≥20 ou PAD ≥10 mmHg após ortostase."],
+  ["Tempo para reavaliar em ortostase?","3 minutos."],
+  ["O que é hiato auscultatório?","Interrupção temporária dos sons entre as fases 1 e 2 de Korotkoff."],
+  ["Como evitar erro pelo hiato auscultatório?","Inflar 20–30 mmHg acima do desaparecimento do pulso."],
+  ["Quando considerar método auscultatório?","FA, extrassístoles frequentes ou leituras automáticas inconsistentes."],
+  ["Aparelho de punho é primeira escolha?","Não."],
+  ["Wearables já são indicados para rotina?","Não — promissores, mas ainda não recomendados."],
+  ["PA no membro inferior comparada ao braço?","Pode ser 12–17 mmHg maior."],
+  ["Como medir em crianças/adolescentes?","Critérios por idade, sexo e altura; >13 anos aproxima do adulto."],
+  ["Regra da largura da bolsa inflável?","35–50% da circunferência do braço."],
+  ["Regra do comprimento da bolsa inflável?","75–100% da circunferência."],
+  ["Posição correta do braço?","Apoiado, na altura do coração, palma para cima."],
+  ["O que sugere aparelho descalibrado?","Aneroide/auscultatório sem manutenção — fonte de erro."]
+];
+var fcgrid = document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d = document.createElement('div');
+  d.className = 'flash';
+  d.innerHTML = '<div class="flash-in">'+
+    '<div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div><span class="hint">tocar p/ virar</span></div>'+
+    '<div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick = function(){ d.classList.toggle('flip'); };
+  fcgrid.appendChild(d);
+});
+
+/* ---- QUESTÕES ---- */
+var questions = [
+  {type:"Direta",stem:"Qual aparelho é preferido para medida de rotina, quando disponível?",opts:["Mercúrio","Aneroide auscultatório","Automático de braço (oscilométrico) validado","Punho"],correct:2,expl:"O oscilométrico de braço validado reduz o erro do observador e permite medida desacompanhada. Mercúrio é obsoleto; aneroide depende do observador; punho não é 1ª escolha."},
+  {type:"Direta",stem:"Tempo mínimo de repouso antes de medir a PA?",opts:["1 minuto","5 minutos","15 minutos","30 minutos"],correct:1,expl:"Pelo menos 5 minutos de repouso. Tempos maiores não são a recomendação-padrão; medir sem repouso eleva artificialmente a PA."},
+  {type:"Direta",stem:"A largura da bolsa inflável deve corresponder a que fração da circunferência do braço?",opts:["10–20%","35–50%","60–70%","90–100%"],correct:1,expl:"Largura 35–50% e comprimento 75–100%. Manguito inadequado distorce a medida."},
+  {type:"Direta",stem:"Quantas medidas fazer e como calcular o valor?",opts:["Uma medida basta","Três medidas, usar a primeira","Três medidas, descartar a 1ª e fazer média das 2 últimas","Duas medidas, somar"],correct:2,expl:"Pelo menos três; descarta-se a primeira e faz-se a média das duas últimas. A 1ª tende a ser mais alta."},
+  {type:"Caso clínico",stem:"Paciente chega apressado, tomou café há 10 min, fala ao telefone e senta com as pernas cruzadas. Melhor conduta?",opts:["Medir imediatamente","Aguardar 5 min, corrigir postura e manter silêncio","Medir apenas no punho","Inflar o manguito acima de 200 mmHg"],correct:1,expl:"A técnica inadequada produz elevação artificial da PA. Corrigir preparo e postura antes de medir."},
+  {type:"Caso clínico",stem:"Mulher de 28 anos com diferença persistente de 24 mmHg entre os braços. Diagnóstico a lembrar?",opts:["Hipertensão do avental branco","Arterite de Takayasu","Hipotensão ortostática","Pseudo-hipertensão"],correct:1,expl:"Diferença >15 mmHg em mulher jovem sugere Takayasu. Também eleva risco CV de forma geral."},
+  {type:"Caso clínico",stem:"PA 150/80 deitado e 126/68 após 3 min em pé. Conclusão?",opts:["Sem alteração","Hipotensão ortostática presente","Crise hipertensiva","Erro de manguito"],correct:1,expl:"Queda de 24 (PAS) e 12 (PAD) mmHg — cumpre o critério ≥20/≥10 mmHg."},
+  {type:"Caso clínico",stem:"Homem com dor torácica súbita e grande assimetria de PA entre os braços. Hipótese grave?",opts:["Dissecção de aorta","Enxaqueca","Refluxo","Ansiedade"],correct:0,expl:"Assimetria + dor torácica aguda obriga a considerar dissecção de aorta."},
+  {type:"V ou F",stem:"Verdadeiro ou falso: manguito pequeno demais reduz a leitura da PA.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. Manguito pequeno SUPERESTIMA a PA. O grande é que pode subestimar."},
+  {type:"V ou F",stem:"Verdadeiro ou falso: na FA, todo aparelho automático é proibido.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. Alguns automáticos são validados para FA, embora a irregularidade possa comprometer a leitura."},
+  {type:"Pegadinha",stem:"Sobre o hiato auscultatório, é correto afirmar:",opts:["Só afeta a PAS","Só afeta a PAD","Pode subestimar a PAS e superestimar a PAD","Não tem efeito clínico"],correct:2,expl:"Ele pode subestimar a PAS e superestimar a PAD. Prevenção: inflar 20–30 mmHg acima do sumiço do pulso."},
+  {type:"Pegadinha",stem:"Sobre a medida em membro inferior, é correto:",opts:["Valores costumam ser menores","Valores podem ser 12–17 mmHg maiores","É a primeira escolha sempre","Nunca deve ser feita"],correct:1,expl:"Quando os MMSS não podem ser usados, mede-se em MMII (panturrilha/perna, digital); valores podem ser 12–17 mmHg maiores."}
+];
+var qzlist = document.getElementById('qzlist');
+var answered = 0;
+document.getElementById('total').textContent = questions.length;
+questions.forEach(function(q,qi){
+  var card = document.createElement('div');
+  card.className = 'qz';
+  var letters = ['A','B','C','D'];
+  var html = '<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){
+    html += '<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';
+  });
+  html += '<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML = html;
+  qzlist.appendChild(card);
+});
+qzlist.addEventListener('click', function(e){
+  var btn = e.target.closest('.opt');
+  if(!btn) return;
+  var qi = +btn.dataset.q, oi = +btn.dataset.o;
+  var card = btn.closest('.qz');
+  if(card.dataset.done) return;
+  card.dataset.done = "1";
+  var opts = card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){
+    op.classList.add('locked');
+    if(idx === questions[qi].correct) op.classList.add('correct');
+  });
+  if(oi !== questions[qi].correct) btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;
+  document.getElementById('answered').textContent = answered;
+});
+
+/* ---- MINI-CASOS ---- */
+var cases = [
+  ["Obeso com manguito pequeno","PA lida = 168/104 com manguito de adulto comum num braço de 42 cm. Conduta?","Trocar por manguito adulto grande e repetir.","Manguito pequeno superestima; o braço grande exige manguito maior."],
+  ["Idoso com síncope","Idoso cai ao levantar; PA deitado 150/80, em pé 126/68 após 3 min.","Hipotensão ortostática.","Queda ≥20/≥10 mmHg confirma o diagnóstico."],
+  ["Paciente com FA","Leituras automáticas muito variáveis em paciente com pulso irregular.","Repetir e considerar método auscultatório / aparelho validado para FA.","A irregularidade compromete o oscilométrico não validado."],
+  ["Jovem com diferença entre braços","Mulher jovem, diferença de 24 mmHg persistente.","Investigar arterite de Takayasu.","Assimetria >15 mmHg em jovem sugere Takayasu."],
+  ["Dor torácica com assimetria de PA","Dor torácica súbita + grande diferença entre os braços.","Considerar dissecção de aorta.","Emergência: assimetria aguda + dor torácica."],
+  ["Fístula em ambos os braços","Paciente renal com fístula nos dois MMSS.","Medir em membro inferior (panturrilha/perna, digital).","Valores podem ser 12–17 mmHg maiores; braço com fístula não deve ser usado."]
+];
+var cbox = document.getElementById('cases');
+cases.forEach(function(c){
+  var d = document.createElement('div');
+  d.className = 'case';
+  d.innerHTML = '<div class="qtype" style="font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:6px">'+c[0]+'</div>'+
+    '<div class="cq">'+c[1]+'</div>'+
+    '<button onclick="toggleNext(this)">Ver resposta</button>'+
+    '<div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+/* ---- back to top ---- */
+window.addEventListener('scroll', function(){
+  document.getElementById('totop').classList.toggle('show', window.scrollY > 500);
+});
+</script>
+</body>
+</html>
