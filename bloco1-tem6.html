@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 6 | MAPA, MRPA e AMPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--red:#E63946;
+    --ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;--soft:#f1f6f9;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;--mono:'IBM Plex Mono','Trebuchet MS',monospace;--script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:34px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.18rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+  .hero{padding:60px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2rem,6.5vw,3.1rem);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.12rem;max-width:52ch;margin:0 auto 20px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.7rem;color:var(--gold);margin-bottom:10px}
+  .card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:10px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16} .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38} .t-mag{background:#fbe4ee;color:var(--magenta)}
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:22px 24px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mission li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:700}
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:26px}
+  .philo .line{font-size:1.1rem;font-weight:700;color:#eef5fa}
+  .philo .by{display:block;margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+  .n17{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.n17{grid-template-columns:1fr}}
+  .nbox{border-radius:var(--radius);padding:24px;color:#fff}
+  .n1{background:linear-gradient(150deg,#0e6a86,#1282A2)} .n7{background:linear-gradient(150deg,#8a2352,#D6336C)}
+  .nbox .ntag{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .nbox h3{color:#fff;margin:6px 0 12px}
+  .nbox .big{font-size:1.02rem;font-weight:800;line-height:1.35}
+  .numgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:640px){.numgrid{grid-template-columns:1fr}}
+  .numcard{background:#fff;border-radius:14px;padding:16px;text-align:center;box-shadow:var(--shadow);border-top:4px solid var(--teal)}
+  .numcard .n{font-size:1.5rem;font-weight:900;color:var(--teal)}
+  .numcard .cap{font-size:.82rem;color:var(--muted);margin-top:4px}
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:520px;background:#fff}
+  th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-family:var(--mono);font-size:.68rem;letter-spacing:1px;text-transform:uppercase}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.88rem;color:var(--ink)}
+  tr:nth-child(even) td{background:#f8fafc}
+  td:first-child{font-weight:800;color:var(--teal)}
+  .imgmind{background:#eef5fb;border-left:5px solid var(--teal);border-radius:12px;padding:14px 16px;margin-top:12px;font-style:italic;color:var(--navy);font-size:.94rem}
+  .imgmind b{font-style:normal;color:var(--teal)}
+  /* PALÁCIO 3 SALAS */
+  .palace{background:radial-gradient(90% 120% at 82% 0%,rgba(18,130,162,.30),transparent 55%),linear-gradient(165deg,#0a2142,#0B2545 60%,#0e2c52);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px 26px}
+  .rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  @media(max-width:700px){.rooms{grid-template-columns:1fr}}
+  .room{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-top:4px solid var(--gold);border-radius:16px;padding:20px;text-align:center}
+  .room .ico{font-size:2.2rem;display:block;margin-bottom:8px}
+  .room b{display:block;color:#fff;font-size:1.05rem;margin-bottom:4px}
+  .room span{font-size:.85rem;color:#c2d3e2}
+  .plaque{text-align:center;margin-top:16px;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:12px;padding:14px;color:var(--gold);font-weight:800;font-style:italic}
+  /* SIMULADOR ESCOLHA DE EXAME */
+  .tool{background:#fff;color:var(--ink);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .tool button.opt2{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.94rem;font-weight:700;color:var(--ink);cursor:pointer}
+  .tool .expl2{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.92rem;color:var(--navy)}
+  .tool .expl2.show{display:block}
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.94rem;line-height:1.3}
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:14px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+  .traps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.traps{grid-template-columns:1fr}}
+  .trap{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .trap span{font-size:.88rem;color:var(--ink);font-weight:600}
+  .r60{background:linear-gradient(135deg,rgba(244,185,66,.14),rgba(18,130,162,.08));border:1px solid rgba(244,185,66,.35);border-radius:var(--radius);padding:24px}
+  .r60 .row{display:flex;flex-wrap:wrap;gap:8px}
+  .r60 .row span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 13px;font-weight:800;font-size:.85rem;color:#fff}
+  .r60 .row span b{color:var(--gold)}
+  .spaced{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.spaced{grid-template-columns:1fr}}
+  .sp{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .sp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+  .sp ul{list-style:none}
+  .sp li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem;font-weight:600;cursor:pointer}
+  .sp li:last-child{border-bottom:none}
+  .sp li .box{width:18px;height:18px;border:2px solid var(--teal);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff}
+  .sp li.done .box{background:var(--green);border-color:var(--green)}
+  .sp li.done span{text-decoration:line-through;color:var(--muted)}
+  footer{text-align:center;padding:44px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.82rem;color:#8fa8bd;margin-top:12px}
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="inner">
+  <a href="#mapa">MAPA</a>
+  <a href="#mrpa">MRPA</a>
+  <a href="#ampa">AMPA</a>
+  <a href="#escolha">Escolha do exame</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#questoes">Questões</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 6 · Cardiologia TEC 2026</span>
+    <h1>MAPA, MRPA e <span class="hl">AMPA</span></h1>
+    <p class="sub">Três formas de olhar a pressão fora do consultório.</p>
+    <div class="impact">&ldquo;O diagnóstico não termina quando o aparelho desliga.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+  <section><div class="wrap">
+    <div class="mission"><b>Ao final deste tema, você será capaz de:</b>
+      <ul><li>Diferenciar MAPA, MRPA e AMPA</li><li>Saber os valores diagnósticos de cada um</li><li>Reconhecer vantagens e limitações</li><li>Escolher o exame certo para cada caso</li></ul>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">Filosofia</span>
+    <div class="philo">
+      <div class="line">&ldquo;Medir em casa não é sempre a mesma coisa. O valor depende do método, do protocolo e do tempo observado.&rdquo;</div>
+      <span class="by">— Dr. André Rossanno</span>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="n17">
+      <div class="nbox n1"><div class="ntag">N1 · O mapa</div><h3>Três métodos, três lógicas</h3>
+        <p style="color:#dbe7f1;margin:0">MAPA = 24 horas. MRPA = vários dias com protocolo. AMPA = medida livre para triagem.</p>
+      </div>
+      <div class="nbox n7"><div class="ntag">N7 · Por que importa</div>
+        <div class="big">O MAPA mostra o filme. A MRPA mostra uma série organizada. A AMPA mostra fotografias.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- MAPA -->
+  <section id="mapa"><div class="wrap">
+    <span class="kicker">01 · MAPA</span>
+    <h2>Monitorização Ambulatorial da Pressão Arterial</h2>
+    <div class="card" style="margin-top:16px">
+      <span class="tag t-teal">Padrão-ouro</span>
+      <p>Aparelho automático medindo por <b>24 horas</b>: vigília, sono, atividades habituais, sintomas, ascensão matinal e descenso noturno.</p>
+      <div class="numgrid" style="margin-top:12px">
+        <div class="numcard"><div class="n">≥130/80</div><div class="cap">Média 24h</div></div>
+        <div class="numcard"><div class="n">≥135/85</div><div class="cap">Vigília</div></div>
+        <div class="numcard"><div class="n">≥120/70</div><div class="cap">Sono</div></div>
+      </div>
+      <div class="grid g2" style="margin-top:14px">
+        <div><span class="tag t-green">Vantagens</span><p>Padrão-ouro, avalia 24h e sono, ascensão matinal, melhor correlação prognóstica, detecta avental branco e mascarada.</p></div>
+        <div><span class="tag t-red">Desvantagens</span><p>Custo, disponibilidade, desconforto, pode alterar o sono, depende de diário correto, horários de sono mal classificados.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- MRPA -->
+  <section id="mrpa"><div class="wrap">
+    <span class="kicker">02 · MRPA</span>
+    <h2>Monitorização Residencial da Pressão Arterial</h2>
+    <div class="card" style="margin-top:16px">
+      <span class="tag t-gold">Protocolo definido</span>
+      <p>Vários dias, medidas em repouso, feita pelo paciente, resultados analisados pelo médico.</p>
+      <div class="numgrid" style="margin-top:12px;grid-template-columns:1fr">
+        <div class="numcard"><div class="n">≥130/80</div><div class="cap">Valor diagnóstico</div></div>
+      </div>
+      <div class="grid g2" style="margin-top:14px">
+        <div><span class="tag t-green">Vantagens</span><p>Menor custo que MAPA, melhor adesão, acompanhamento prolongado, avaliação de tratamento, melhor correlação que consultório isolado.</p></div>
+        <div><span class="tag t-red">Limitações</span><p>Não avalia sono, depende de treinamento, risco de técnica inadequada, ansiedade, excesso de medidas, seleção de resultados, automedicação.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- AMPA -->
+  <section id="ampa"><div class="wrap">
+    <span class="kicker">03 · AMPA</span>
+    <h2>Automedida da Pressão Arterial</h2>
+    <div class="card" style="margin-top:16px">
+      <span class="tag t-mag">Triagem, não protocolo</span>
+      <p>Feita pelo paciente ou familiar, sem protocolo rígido, em casa — serve para <b>triagem</b>.</p>
+      <div class="imgmind"><b>Atenção:</b> AMPA <b>não é igual</b> a MRPA. AMPA é medida livre e de triagem; não confirma diagnóstico de forma estruturada. MRPA segue protocolo, vários dias, com uso diagnóstico e de acompanhamento.</div>
+    </div>
+  </div></section>
+
+  <!-- COMPARAÇÃO -->
+  <section><div class="wrap">
+    <span class="kicker">04 · Comparação</span>
+    <h2>MAPA × MRPA × AMPA</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>MAPA</th><th>MRPA</th><th>AMPA</th></tr></thead>
+        <tbody>
+          <tr><td>Duração</td><td>24 horas</td><td>Vários dias</td><td>Livre</td></tr>
+          <tr><td>Protocolo</td><td>Sim, rígido</td><td>Sim, definido</td><td>Não</td></tr>
+          <tr><td>Mede sono</td><td>Sim</td><td>Não</td><td>Não</td></tr>
+          <tr><td>Diagnóstico</td><td>Sim (padrão-ouro)</td><td>Sim</td><td>Não confirma</td></tr>
+          <tr><td>Prognóstico</td><td>Melhor correlação</td><td>Boa correlação</td><td>Limitado</td></tr>
+          <tr><td>Custo</td><td>Alto</td><td>Moderado</td><td>Baixo</td></tr>
+          <tr><td>Treinamento</td><td>Pouco (automático)</td><td>Necessário</td><td>Mínimo</td></tr>
+          <tr><td>Utilidade principal</td><td>Confirmação e sono</td><td>Diagnóstico e acompanhamento</td><td>Triagem inicial</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div></section>
+
+  <!-- PALÁCIO -->
+  <section><div class="wrap">
+    <span class="kicker">Palácio da Memória</span>
+    <div class="palace">
+      <h2>As Três Salas</h2>
+      <div class="rooms">
+        <div class="room"><span class="ico">🎬</span><b>Sala do Cinema</b><span>MAPA — filme de 24 horas</span></div>
+        <div class="room"><span class="ico">📺</span><b>Sala da Série</b><span>MRPA — episódios organizados durante vários dias</span></div>
+        <div class="room"><span class="ico">📷</span><b>Sala da Fotografia</b><span>AMPA — medidas soltas para triagem</span></div>
+      </div>
+      <div class="plaque">&ldquo;Filme, série e foto não contam a mesma história.&rdquo;</div>
+    </div>
+  </div></section>
+
+  <!-- ESCOLHA DO EXAME -->
+  <section id="escolha"><div class="wrap">
+    <span class="kicker">05 · Escolha do exame</span>
+    <h2>Qual exame pedir?</h2>
+    <div class="tool" style="margin-top:16px">
+      <p style="color:var(--navy);font-weight:700;margin-bottom:12px">Caso: paciente com consultório elevado, sem diagnóstico prévio, disponibilidade limitada de exames de alto custo. Qual pedir primeiro?</p>
+      <button class="opt2" onclick="mostrarExpl(this,false)">MAPA</button>
+      <button class="opt2" onclick="mostrarExpl(this,true)">MRPA</button>
+      <button class="opt2" onclick="mostrarExpl(this,false)">AMPA</button>
+      <div class="expl2" id="explChoice">MRPA costuma ser o exame inicial mais equilibrado: protocolo definido, menor custo que o MAPA, boa correlação diagnóstica. MAPA fica reservado sobretudo quando se precisa avaliar sono/ascensão matinal ou há dúvida diagnóstica após MRPA. AMPA não confirma diagnóstico de forma estruturada.</div>
+    </div>
+  </div></section>
+
+  <!-- CASOS -->
+  <section><div class="wrap">
+    <span class="kicker">06 · Casos clínicos</span>
+    <h2>Qual método usar?</h2>
+    <div id="cases" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas"><div class="wrap">
+    <span class="kicker">07 · Pegadinhas</span>
+    <h2>Pegadinhas que tentam roubar seu ponto</h2>
+    <div class="traps" style="margin-top:16px">
+      <div class="trap"><span>MAPA é o <b>padrão-ouro</b>.</span></div>
+      <div class="trap"><span>MRPA <b>não mede sono</b>.</span></div>
+      <div class="trap"><span>AMPA <b>não segue protocolo</b>.</span></div>
+      <div class="trap"><span>AMPA é apenas <b>triagem</b>.</span></div>
+      <div class="trap"><span>MAPA 24h e MRPA usam <b>130/80</b>.</span></div>
+      <div class="trap"><span>Vigília usa <b>135/85</b>.</span></div>
+      <div class="trap"><span>Sono usa <b>120/70</b>.</span></div>
+      <div class="trap"><span>Pressão fora do consultório <b>melhora a estratificação</b> de risco.</span></div>
+      <div class="trap"><span>Valores de consultório <b>não valem</b> para MAPA/MRPA.</span></div>
+    </div>
+  </div></section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards"><div class="wrap">
+    <span class="kicker">08 · Flashcards</span>
+    <h2>Toque no cartão para virar</h2>
+    <div class="fc-grid" id="fcgrid" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes"><div class="wrap">
+    <span class="kicker">09 · Questões de prova</span>
+    <h2>Resolva antes de ver a resposta</h2>
+    <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+    <div id="qzlist"></div>
+  </div></section>
+
+  <!-- REVISÃO 60s -->
+  <section><div class="wrap">
+    <span class="kicker">10 · Revisão de 60 segundos</span>
+    <div class="r60"><div class="row">
+      <span>MAPA 24h = <b>130/80</b></span>
+      <span>Vigília = <b>135/85</b></span>
+      <span>Sono = <b>120/70</b></span>
+      <span>MRPA = <b>130/80</b></span>
+      <span>AMPA = <b>triagem</b></span>
+    </div></div>
+  </div></section>
+
+  <!-- REVISÃO ESPAÇADA -->
+  <section><div class="wrap">
+    <span class="kicker">11 · Revisão espaçada</span>
+    <h2>Volte aqui</h2>
+    <div class="spaced">
+      <div class="sp"><h4>Hoje</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Valores de MAPA</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Valor de MRPA</span></li>
+      </ul></div>
+      <div class="sp"><h4>Amanhã</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>MRPA × AMPA</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Vantagens e limitações</span></li>
+      </ul></div>
+      <div class="sp"><h4>Em 7 dias</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Resolver as questões de novo</span></li>
+      </ul></div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Cardiologia TEC 2026</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleNext(btn){var el=btn.nextElementSibling;var open=el.classList.toggle('show');btn.textContent=open?'Ocultar resposta':'Ver resposta';}
+function toggleDone(li){li.classList.toggle('done');}
+function mostrarExpl(btn,correct){
+  document.getElementById('explChoice').classList.add('show');
+  btn.style.background = correct ? '#e5f6ea' : '#fde3e5';
+  btn.style.borderColor = correct ? '#2DC653' : '#E63946';
+}
+
+var flashcards=[
+["O que é MAPA?","Monitorização Ambulatorial da Pressão Arterial, 24 horas."],
+["O que é MRPA?","Monitorização Residencial da Pressão Arterial, protocolo, vários dias."],
+["O que é AMPA?","Automedida da Pressão Arterial, livre, para triagem."],
+["Valor diagnóstico do MAPA 24h?","≥130/80 mmHg."],
+["Valor diagnóstico da vigília no MAPA?","≥135/85 mmHg."],
+["Valor diagnóstico do sono no MAPA?","≥120/70 mmHg."],
+["Valor diagnóstico da MRPA?","≥130/80 mmHg."],
+["MRPA avalia o sono?","Não."],
+["Qual é o padrão-ouro?","MAPA."],
+["Principal vantagem do MAPA sobre a MRPA?","Avalia sono e ascensão matinal; melhor correlação prognóstica."],
+["Principal limitação do MAPA?","Custo, disponibilidade e desconforto."],
+["Principal vantagem da MRPA?","Menor custo, melhor adesão, bom para acompanhamento."],
+["Principal limitação da MRPA?","Não avalia sono; depende de técnica e treinamento."],
+["AMPA confirma diagnóstico de forma estruturada?","Não — serve apenas para triagem."],
+["AMPA é igual a MRPA?","Não. AMPA é livre; MRPA segue protocolo."],
+["Qual método melhor correlaciona com prognóstico CV?","MAPA."],
+["Quem realiza a MRPA?","O próprio paciente, seguindo protocolo definido."],
+["O que pode atrapalhar a MRPA?","Ansiedade, excesso de medidas, seleção de resultados, automedicação."],
+["Frase-chave sobre os três métodos?","MAPA mostra o filme; MRPA a série; AMPA a fotografia."],
+["Valores de consultório podem ser usados para MAPA/MRPA?","Não — cada método tem seu próprio valor de corte."]
+];
+var fcgrid=document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d=document.createElement('div');d.className='flash';
+  d.innerHTML='<div class="flash-in"><div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div></div><div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick=function(){d.classList.toggle('flip');};
+  fcgrid.appendChild(d);
+});
+
+var questions=[
+{type:"Direta",stem:"Qual é o valor diagnóstico da média de 24h no MAPA?",opts:["≥140/90","≥135/85","≥130/80","≥120/70"],correct:2,expl:"Média de 24h no MAPA: ≥130/80 mmHg."},
+{type:"Direta",stem:"Qual valor é usado para o período de sono no MAPA?",opts:["≥140/90","≥135/85","≥130/80","≥120/70"],correct:3,expl:"Sono: ≥120/70 mmHg — o corte mais baixo entre os períodos do MAPA."},
+{type:"Direta",stem:"Qual é o valor diagnóstico da MRPA?",opts:["≥140/90","≥135/85","≥130/80","≥120/70"],correct:2,expl:"MRPA usa o mesmo valor da média de 24h do MAPA: ≥130/80 mmHg."},
+{type:"Direta",stem:"Qual método é considerado padrão-ouro?",opts:["MRPA","AMPA","MAPA","Consultório"],correct:2,expl:"MAPA é o padrão-ouro por avaliar 24h, sono e correlacionar melhor com prognóstico."},
+{type:"Caso clínico",stem:"Paciente idoso com suspeita de hipertensão mascarada e necessidade de avaliar o sono. Melhor exame?",opts:["AMPA","MRPA","MAPA","Repetir no consultório"],correct:2,expl:"Só o MAPA avalia o período de sono e descenso noturno."},
+{type:"Caso clínico",stem:"Paciente já em acompanhamento, precisa de monitorização prolongada e de baixo custo para ajuste terapêutico. Melhor exame?",opts:["MAPA","MRPA","AMPA","Nenhum é necessário"],correct:1,expl:"MRPA tem menor custo que o MAPA e boa correlação para acompanhamento de tratamento."},
+{type:"Caso clínico",stem:"Paciente mede a própria pressão em casa esporadicamente, sem protocolo, só para 'ver como está'. Isso é:",opts:["MRPA","MAPA","AMPA","Diagnóstico confirmado"],correct:2,expl:"Medida livre e sem protocolo é AMPA — serve apenas para triagem."},
+{type:"V ou F",stem:"Verdadeiro ou falso: a AMPA pode ser usada para confirmar o diagnóstico de HAS de forma estruturada.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. AMPA é triagem; não confirma diagnóstico de forma estruturada como a MRPA."},
+{type:"V ou F",stem:"Verdadeiro ou falso: a MRPA avalia o sono do paciente.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. Apenas o MAPA avalia o período de sono."},
+{type:"Pegadinha",stem:"Os valores de corte do consultório podem ser usados para interpretar o MAPA/MRPA?",opts:["Sim, são os mesmos","Não, cada método tem seu próprio valor de corte","Só para MRPA","Só para MAPA"],correct:1,expl:"Consultório usa 140/90; MAPA 24h e MRPA usam 130/80; vigília 135/85; sono 120/70 — valores distintos."},
+{type:"Pegadinha",stem:"AMPA e MRPA são sinônimos?",opts:["Sim","Não — AMPA é livre/triagem, MRPA segue protocolo","Só em crianças","Só em idosos"],correct:1,expl:"São conceitos diferentes, apesar de ambos serem medidas domiciliares."},
+{type:"Direta",stem:"Qual método tem menor custo entre os três?",opts:["MAPA","MRPA","AMPA","Todos têm o mesmo custo"],correct:2,expl:"AMPA, por ser medida livre sem protocolo estruturado, tende a ter o menor custo."}
+];
+var qzlist=document.getElementById('qzlist');var answered=0;
+document.getElementById('total').textContent=questions.length;
+questions.forEach(function(q,qi){
+  var card=document.createElement('div');card.className='qz';
+  var letters=['A','B','C','D'];
+  var html='<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';});
+  html+='<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML=html;qzlist.appendChild(card);
+});
+qzlist.addEventListener('click',function(e){
+  var btn=e.target.closest('.opt');if(!btn)return;
+  var qi=+btn.dataset.q,oi=+btn.dataset.o;var card=btn.closest('.qz');
+  if(card.dataset.done)return;card.dataset.done="1";
+  var opts=card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){op.classList.add('locked');if(idx===questions[qi].correct)op.classList.add('correct');});
+  if(oi!==questions[qi].correct)btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;document.getElementById('answered').textContent=answered;
+});
+
+var cases=[
+["Caso 1","Paciente com consultório 148/92, deseja saber se tem avental branco. Sem histórico de distúrbio do sono. Qual pedir primeiro, considerando custo?","MRPA.","Boa correlação diagnóstica com menor custo que o MAPA."],
+["Caso 2","Paciente com forte suspeita de apneia do sono associada à HAS. Qual exame avalia isso?","MAPA.","Só o MAPA avalia o período de sono e o descenso noturno."],
+["Caso 3","Paciente jovem, sem sintomas, quer só 'checar' a pressão em casa de vez em quando. Isso corresponde a:","AMPA.","Medida livre, sem protocolo — apenas triagem."],
+["Caso 4","Paciente em tratamento, quer acompanhamento domiciliar prolongado e de baixo custo.","MRPA.","Melhor custo-benefício para seguimento terapêutico."],
+["Caso 5","Paciente com MRPA média de 134/86, mas dúvida se o valor reflete corretamente por técnica inadequada relatada. Conduta?","Reforçar treinamento e repetir MRPA; considerar MAPA se dúvida persistir.","Técnica inadequada é limitação conhecida da MRPA."],
+["Caso 6","Paciente com consultório normal, mas MAPA vigília 138/87. Diagnóstico mais provável?","Hipertensão mascarada.","Vigília acima de 135/85 no MAPA, com consultório normal, sugere mascarada."]
+];
+var cbox=document.getElementById('cases');
+cases.forEach(function(c){
+  var d=document.createElement('div');d.className='case';
+  d.innerHTML='<div class="cq"><b>'+c[0]+':</b> '+c[1]+'</div><button onclick="toggleNext(this)">Ver resposta</button><div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+window.addEventListener('scroll',function(){document.getElementById('totop').classList.toggle('show',window.scrollY>500);});
+</script>
+</body>
+</html>

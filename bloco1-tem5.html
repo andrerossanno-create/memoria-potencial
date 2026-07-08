@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 5 | Fenótipos Pressóricos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--yellow:#E8B90B;--red:#E63946;
+    --ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;--soft:#f1f6f9;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;--mono:'IBM Plex Mono','Trebuchet MS',monospace;--script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:34px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.18rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+  .hero{padding:60px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2rem,6.5vw,3.1rem);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.12rem;max-width:52ch;margin:0 auto 20px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.7rem;color:var(--gold);margin-bottom:10px}
+  .card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:10px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:760px){.g2{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16} .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38} .t-mag{background:#fbe4ee;color:var(--magenta)}
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:22px 24px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mission li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:700}
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:26px}
+  .philo .line{font-size:1.1rem;font-weight:700;color:#eef5fa}
+  .philo .by{display:block;margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+  .n17{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.n17{grid-template-columns:1fr}}
+  .nbox{border-radius:var(--radius);padding:24px;color:#fff}
+  .n1{background:linear-gradient(150deg,#0e6a86,#1282A2)} .n7{background:linear-gradient(150deg,#8a2352,#D6336C)}
+  .nbox .ntag{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .nbox h3{color:#fff;margin:6px 0 12px}
+  .nbox .big{font-size:1.05rem;font-weight:800;line-height:1.35}
+  /* MATRIZ 2X2 */
+  .matrix{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;margin-top:16px}
+  .matrix .lbl{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.7rem;font-weight:700;color:#dbe7f1;text-align:center;padding:6px}
+  .matrix .cell{border-radius:12px;padding:16px;color:#fff;text-align:center}
+  .m-green{background:linear-gradient(145deg,#1f7a38,var(--green))}
+  .m-yellow{background:linear-gradient(145deg,#a6870a,var(--yellow));color:#2a2003}
+  .m-red{background:linear-gradient(145deg,#8f0d18,var(--red))}
+  .m-orange{background:linear-gradient(145deg,#a04d05,#E8710A)}
+  .cell b{display:block;font-size:.95rem;margin-bottom:4px}
+  .cell span{font-size:.78rem;opacity:.9}
+  @media(max-width:600px){.matrix{grid-template-columns:1fr 1fr}.matrix .lbl:first-child{display:none}}
+  /* SIMULADOR */
+  .tool{background:#fff;color:var(--ink);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .tool .inputs{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+  .tool label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .tool input{width:120px;padding:10px 12px;border:2px solid var(--line);border-radius:10px;font-family:var(--font);font-weight:800;font-size:1rem;color:var(--navy)}
+  .tool button{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:var(--font);font-weight:800;cursor:pointer}
+  .tool button:hover{background:#0e6a86}
+  .result{margin-top:14px;border-radius:12px;padding:16px 18px;font-weight:800;display:none}
+  .result.show{display:block}
+  .alert{border-radius:14px;padding:16px 18px;margin-top:14px}
+  .alert.red{background:#fde3e5;border:1px solid #f3b5bb;color:#7d1119}
+  .alert.gold{background:#fdf3d9;border:1px solid #ecd18a;color:#6b5210}
+  .imgmind{background:#eef5fb;border-left:5px solid var(--teal);border-radius:12px;padding:14px 16px;margin-top:12px;font-style:italic;color:var(--navy);font-size:.94rem}
+  .imgmind b{font-style:normal;color:var(--teal)}
+  /* BAILE DAS MÁSCARAS */
+  .palace{background:radial-gradient(90% 120% at 82% 0%,rgba(18,130,162,.30),transparent 55%),linear-gradient(165deg,#0a2142,#0B2545 60%,#0e2c52);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px 26px}
+  .masks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+  @media(max-width:700px){.masks{grid-template-columns:repeat(2,1fr)}}
+  .mask{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px;text-align:center}
+  .mask .ico{font-size:2rem;display:block;margin-bottom:8px}
+  .mask b{display:block;color:#fff;font-size:.92rem;margin-bottom:4px}
+  .mask span{font-size:.78rem;color:#c2d3e2}
+  .plaque{text-align:center;margin-top:16px;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:12px;padding:14px;color:var(--gold);font-weight:800;font-style:italic}
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:460px;background:#fff}
+  th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-family:var(--mono);font-size:.7rem;letter-spacing:1px;text-transform:uppercase}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--ink)}
+  tr:nth-child(even) td{background:#f8fafc}
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.95rem;line-height:1.3}
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:14px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+  .traps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.traps{grid-template-columns:1fr}}
+  .trap{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .trap span{font-size:.88rem;color:var(--ink);font-weight:600}
+  .r60{background:linear-gradient(135deg,rgba(244,185,66,.14),rgba(18,130,162,.08));border:1px solid rgba(244,185,66,.35);border-radius:var(--radius);padding:24px}
+  .r60 .row{display:flex;flex-wrap:wrap;gap:8px}
+  .r60 .row span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 13px;font-weight:800;font-size:.85rem;color:#fff}
+  .r60 .row span b{color:var(--gold)}
+  .spaced{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.spaced{grid-template-columns:1fr}}
+  .sp{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .sp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+  .sp ul{list-style:none}
+  .sp li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem;font-weight:600;cursor:pointer}
+  .sp li:last-child{border-bottom:none}
+  .sp li .box{width:18px;height:18px;border:2px solid var(--teal);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff}
+  .sp li.done .box{background:var(--green);border-color:var(--green)}
+  .sp li.done span{text-decoration:line-through;color:var(--muted)}
+  footer{text-align:center;padding:44px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.82rem;color:#8fa8bd;margin-top:12px}
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="inner">
+  <a href="#fenotipos">Fenótipos</a>
+  <a href="#tratados">Em tratados</a>
+  <a href="#simulador">Simulador</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#questoes">Questões</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 5 · Cardiologia TEC 2026</span>
+    <h1>Pressão Fora do Consultório e <span class="hl">Fenótipos</span></h1>
+    <p class="sub">Quando a pressão usa uma máscara.</p>
+    <div class="impact">&ldquo;O consultório mostra uma fotografia. A vida real mostra o filme.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+  <section><div class="wrap">
+    <div class="mission"><b>Ao final deste tema, você será capaz de:</b>
+      <ul><li>Diferenciar avental branco de mascarada</li><li>Aplicar a matriz 2x2</li><li>Reconhecer efeito x doença</li><li>Aplicar critérios de diferença</li><li>Classificar fenótipos em tratados</li></ul>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">Filosofia</span>
+    <div class="philo">
+      <div class="line">&ldquo;A pressão pode mudar conforme o ambiente. O diagnóstico precisa descobrir quem o paciente é quando ninguém está olhando.&rdquo;</div>
+      <span class="by">— Dr. André Rossanno</span>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="n17">
+      <div class="nbox n1"><div class="ntag">N1 · O mapa</div><h3>A equação do fenótipo</h3>
+        <p style="color:#dbe7f1;margin:0">Consultório + fora do consultório = fenótipo pressórico.</p>
+      </div>
+      <div class="nbox n7"><div class="ntag">N7 · Por que importa</div>
+        <div class="big">A máscara pode elevar ou esconder a pressão. O risco está em acreditar apenas na aparência.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- MATRIZ 2X2 -->
+  <section id="fenotipos"><div class="wrap">
+    <span class="kicker">01 · Matriz de fenótipos (sem tratamento)</span>
+    <h2>Consultório × fora do consultório</h2>
+    <p style="color:#b8ccdd;max-width:60ch">Consultório: &lt;140/90 normal, ≥140/90 elevado. MAPA 24h ou MRPA: &lt;130/80 normal, ≥130/80 elevado.</p>
+    <div class="matrix">
+      <div class="lbl"></div><div class="lbl">Fora normal</div><div class="lbl">Fora elevado</div>
+      <div class="lbl">Consultório normal</div>
+      <div class="cell m-green"><b>Normotensão verdadeira</b><span>ambos normais</span></div>
+      <div class="cell m-red"><b>Hipertensão mascarada</b><span>consultório normal, fora alto</span></div>
+      <div class="lbl">Consultório elevado</div>
+      <div class="cell m-yellow"><b>Avental branco</b><span>consultório alto, fora normal</span></div>
+      <div class="cell m-orange"><b>Hipertensão sustentada</b><span>ambos elevados</span></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card"><span class="tag t-gold">Avental branco</span>
+        <p>Consultório alto, fora normal. Risco <b>maior que normotensão</b>, porém <b>menor que sustentada</b>. Maior chance de evoluir para HAS.</p>
+      </div>
+      <div class="card"><span class="tag t-red">Mascarada</span>
+        <p>Consultório normal, fora alta. Frequentemente associada a <b>lesão de órgão-alvo</b>, mais comum em alto risco. Prognóstico <b>semelhante à sustentada</b>.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- EM TRATADOS -->
+  <section id="tratados"><div class="wrap">
+    <span class="kicker">02 · Fenótipos em pacientes tratados</span>
+    <h2>Quando já existe medicação</h2>
+    <div class="matrix">
+      <div class="lbl"></div><div class="lbl">Fora normal</div><div class="lbl">Fora elevado</div>
+      <div class="lbl">Consultório normal</div>
+      <div class="cell m-green"><b>Hipertensão controlada</b><span>ambos normais</span></div>
+      <div class="cell m-red"><b>Mascarada não controlada</b><span>consultório normal, fora alto</span></div>
+      <div class="lbl">Consultório elevado</div>
+      <div class="cell m-yellow"><b>Efeito do avental não controlado</b><span>consultório alto, fora normal</span></div>
+      <div class="cell m-orange"><b>Sustentada não controlada</b><span>ambos elevados</span></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card"><span class="tag t-teal">Doença × Efeito</span>
+        <p><b>Hipertensão do avental branco:</b> muda o diagnóstico, paciente sem tratamento, consultório alto e fora normal.</p>
+        <p><b>Efeito do avental branco:</b> não muda o diagnóstico, ocorre em paciente já hipertenso, é a diferença consultório × fora.</p>
+        <p><b>Efeito de mascaramento:</b> consultório parece melhor que fora; não muda necessariamente o diagnóstico, mas indica <b>controle inadequado</b> fora do consultório.</p>
+      </div>
+      <div class="card"><span class="tag t-mag">Critérios de diferença</span>
+        <p><b>Efeito avental (MAPA):</b> PAS ≥20 e/ou PAD ≥10 mmHg.</p>
+        <p><b>Efeito avental (MRPA):</b> PAS ≥15 e/ou PAD ≥9 mmHg.</p>
+        <p><b>Mascaramento (MAPA):</b> consultório até 2 mmHg abaixo da média 24h.</p>
+        <p><b>Mascaramento (MRPA):</b> consultório até 1 mmHg abaixo da média residencial.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- BAILE DAS MÁSCARAS -->
+  <section><div class="wrap">
+    <span class="kicker">Palácio da Memória</span>
+    <div class="palace">
+      <h2>O Baile das Máscaras Pressóricas</h2>
+      <div class="masks">
+        <div class="mask"><span class="ico">🎭</span><b>Máscara branca</b><span>Avental branco</span></div>
+        <div class="mask"><span class="ico">🖤</span><b>Máscara escura</b><span>Mascarada</span></div>
+        <div class="mask"><span class="ico">😊</span><b>Rosto sem máscara</b><span>Normotensão</span></div>
+        <div class="mask"><span class="ico">🔴</span><b>Rosto vermelho</b><span>Sustentada</span></div>
+      </div>
+      <div class="plaque">&ldquo;Uma pressão normal diante do médico pode esconder uma doença fora dele.&rdquo;</div>
+    </div>
+  </div></section>
+
+  <!-- SIMULADOR -->
+  <section id="simulador"><div class="wrap">
+    <span class="kicker">03 · Simulador de fenótipos</span>
+    <h2>Digite PA do consultório e fora dele</h2>
+    <div class="tool" style="margin-top:16px">
+      <div class="inputs">
+        <div><label>PAS consultório</label><input type="number" id="pasC"></div>
+        <div><label>PAD consultório</label><input type="number" id="padC"></div>
+        <div><label>PAS fora (MAPA/MRPA)</label><input type="number" id="pasF"></div>
+        <div><label>PAD fora (MAPA/MRPA)</label><input type="number" id="padF"></div>
+        <button onclick="simularFenotipo()">Simular</button>
+      </div>
+      <div class="result" id="resultBox2"></div>
+    </div>
+  </div></section>
+
+  <!-- CASOS -->
+  <section><div class="wrap">
+    <span class="kicker">04 · Casos clínicos</span>
+    <h2>Reconheça o fenótipo</h2>
+    <div id="cases" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas"><div class="wrap">
+    <span class="kicker">05 · Pegadinhas</span>
+    <h2>Pegadinhas que tentam roubar seu ponto</h2>
+    <div class="traps" style="margin-top:16px">
+      <div class="trap"><span>Avental branco <b>não é igual</b> a efeito do avental branco.</span></div>
+      <div class="trap"><span>Mascarada <b>não é igual</b> a efeito de mascaramento.</span></div>
+      <div class="trap"><span>Avental branco <b>não é completamente benigno</b>.</span></div>
+      <div class="trap"><span>Mascarada tem risco <b>semelhante à sustentada</b>.</span></div>
+      <div class="trap"><span>Paciente tratado usa a nomenclatura de <b>controle</b>.</span></div>
+      <div class="trap"><span>Consultório normal <b>não exclui</b> hipertensão.</span></div>
+    </div>
+  </div></section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards"><div class="wrap">
+    <span class="kicker">06 · Flashcards</span>
+    <h2>Toque no cartão para virar</h2>
+    <div class="fc-grid" id="fcgrid" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes"><div class="wrap">
+    <span class="kicker">07 · Questões de prova</span>
+    <h2>Resolva antes de ver a resposta</h2>
+    <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+    <div id="qzlist"></div>
+  </div></section>
+
+  <!-- REVISÃO 60s -->
+  <section><div class="wrap">
+    <span class="kicker">08 · Revisão de 60 segundos</span>
+    <div class="r60"><div class="row">
+      <span>Consultório alto + fora normal = <b>avental branco</b></span>
+      <span>Consultório normal + fora alta = <b>mascarada</b></span>
+      <span>Ambos normais = <b>normotensão</b></span>
+      <span>Ambos altos = <b>sustentada</b></span>
+    </div></div>
+  </div></section>
+
+  <!-- REVISÃO ESPAÇADA -->
+  <section><div class="wrap">
+    <span class="kicker">09 · Revisão espaçada</span>
+    <h2>Volte aqui</h2>
+    <div class="spaced">
+      <div class="sp"><h4>Hoje</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Matriz 2x2</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Valores de corte</span></li>
+      </ul></div>
+      <div class="sp"><h4>Amanhã</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Efeito × mascaramento</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Fenótipos em tratados</span></li>
+      </ul></div>
+      <div class="sp"><h4>Em 7 dias</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Resolver as questões de novo</span></li>
+      </ul></div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Cardiologia TEC 2026</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleNext(btn){var el=btn.nextElementSibling;var open=el.classList.toggle('show');btn.textContent=open?'Ocultar resposta':'Ver resposta';}
+function toggleDone(li){li.classList.toggle('done');}
+
+function simularFenotipo(){
+  var pasC=parseFloat(document.getElementById('pasC').value), padC=parseFloat(document.getElementById('padC').value);
+  var pasF=parseFloat(document.getElementById('pasF').value), padF=parseFloat(document.getElementById('padF').value);
+  var box=document.getElementById('resultBox2');
+  if([pasC,padC,pasF,padF].some(isNaN)){box.className='result show';box.style.background='#fde3e5';box.style.color='#7d1119';box.textContent='Preencha os quatro valores.';return;}
+  var altoC = (pasC>=140||padC>=90);
+  var altoF = (pasF>=130||padF>=80);
+  var cat,bg,color;
+  if(!altoC&&!altoF){cat='Normotensão verdadeira';bg='#e5f6ea';color='#1f7a38';}
+  else if(altoC&&!altoF){cat='Hipertensão do avental branco';bg='#fdf3d9';color='#8a6d16';}
+  else if(!altoC&&altoF){cat='Hipertensão mascarada';bg='#fde3e5';color='#8f0d18';}
+  else {cat='Hipertensão sustentada';bg='#fde8d2';color='#a04d05';}
+  box.className='result show';box.style.background=bg;box.style.color=color;
+  box.innerHTML='Fenótipo: <span style="font-size:1.25rem">'+cat+'</span>';
+}
+
+var flashcards=[
+["Consultório alto + fora normal =","Hipertensão do avental branco."],
+["Consultório normal + fora alta =","Hipertensão mascarada."],
+["Ambos normais =","Normotensão verdadeira."],
+["Ambos altos =","Hipertensão sustentada."],
+["Valor de corte no consultório?","≥140/90 mmHg elevado."],
+["Valor de corte no MAPA/MRPA?","≥130/80 mmHg elevado."],
+["Avental branco é benigno?","Não — risco maior que normotensão, menor que sustentada."],
+["Mascarada tem prognóstico como o quê?","Semelhante à hipertensão sustentada."],
+["Efeito do avental branco muda o diagnóstico?","Não — ocorre em quem já é hipertenso."],
+["Efeito de mascaramento indica o quê?","Controle inadequado fora do consultório."],
+["Critério de efeito avental no MAPA?","PAS ≥20 e/ou PAD ≥10 mmHg."],
+["Critério de efeito avental no MRPA?","PAS ≥15 e/ou PAD ≥9 mmHg."],
+["Critério de mascaramento no MAPA?","Consultório até 2 mmHg abaixo da média 24h."],
+["Critério de mascaramento no MRPA?","Consultório até 1 mmHg abaixo da média residencial."],
+["Em tratado, consultório alto + fora normal =","Efeito do avental branco não controlado."],
+["Em tratado, ambos normais =","Hipertensão controlada."],
+["Em tratado, consultório normal + fora alto =","Mascarada não controlada."],
+["Em tratado, ambos altos =","Sustentada não controlada."],
+["Mascarada associa-se a quê?","Lesão de órgão-alvo, mais comum em alto risco."],
+["Consultório normal exclui HAS?","Não."]
+];
+var fcgrid=document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d=document.createElement('div');d.className='flash';
+  d.innerHTML='<div class="flash-in"><div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div></div><div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick=function(){d.classList.toggle('flip');};
+  fcgrid.appendChild(d);
+});
+
+var questions=[
+{type:"Direta",stem:"Consultório 150/95, MAPA 24h 122/78. Fenótipo?",opts:["Normotensão verdadeira","Hipertensão do avental branco","Hipertensão mascarada","Hipertensão sustentada"],correct:1,expl:"Consultório alto, fora normal → avental branco."},
+{type:"Direta",stem:"Consultório 128/82, MRPA 138/86. Fenótipo?",opts:["Normotensão verdadeira","Avental branco","Mascarada","Sustentada"],correct:2,expl:"Consultório normal, fora elevado → mascarada."},
+{type:"Direta",stem:"Valor de corte do MAPA/MRPA para elevado?",opts:["≥140/90","≥135/85","≥130/80","≥120/80"],correct:2,expl:"MAPA 24h/MRPA usam ≥130/80 para elevado."},
+{type:"Caso clínico",stem:"Paciente hipertenso tratado, consultório 145/92, MRPA 121/76. Classificação?",opts:["Hipertensão controlada","Efeito do avental branco não controlado","Mascarada não controlada","Sustentada não controlada"],correct:1,expl:"Consultório alto, fora normal, em tratado = efeito do avental branco não controlado."},
+{type:"Caso clínico",stem:"Paciente tratado, consultório 122/78, MAPA 24h 137/88. Classificação?",opts:["Hipertensão controlada","Efeito do avental não controlado","Mascarada não controlada","Sustentada não controlada"],correct:2,expl:"Consultório normal, fora elevado, em tratado = mascarada não controlada."},
+{type:"Caso clínico",stem:"Paciente com HAS mascarada. Qual o prognóstico esperado?",opts:["Igual à normotensão","Semelhante à sustentada","Sempre benigno","Sem risco cardiovascular"],correct:1,expl:"Mascarada tem prognóstico semelhante ao da hipertensão sustentada."},
+{type:"V ou F",stem:"Verdadeiro ou falso: avental branco é sempre uma condição totalmente benigna.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. Tem risco maior que normotensão, embora menor que sustentada."},
+{type:"V ou F",stem:"Verdadeiro ou falso: efeito de mascaramento sempre muda o diagnóstico.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. Indica controle inadequado fora do consultório, sem necessariamente mudar o diagnóstico."},
+{type:"Pegadinha",stem:"Avental branco e efeito do avental branco são a mesma coisa?",opts:["Sim, sempre","Não — avental branco muda diagnóstico; efeito ocorre em já hipertenso","Sim, só muda o nome","Não têm relação nenhuma"],correct:1,expl:"São conceitos distintos: um está ligado ao diagnóstico inicial, o outro ao acompanhamento do já tratado."},
+{type:"Pegadinha",stem:"Consultório normal exclui hipertensão?",opts:["Sim, sempre","Não, pode haver mascarada","Só em idosos","Só em diabéticos"],correct:1,expl:"Consultório normal pode esconder hipertensão mascarada — por isso a importância da medida fora do consultório."},
+{type:"Direta",stem:"Critério de efeito do avental branco pelo MRPA?",opts:["PAS ≥20 ou PAD ≥10","PAS ≥15 e/ou PAD ≥9","PAS ≥10 ou PAD ≥5","Não existe critério"],correct:1,expl:"MRPA: PAS ≥15 e/ou PAD ≥9 mmHg de diferença."},
+{type:"Caso clínico",stem:"Paciente jovem, consultório 138/88, MAPA vigília 132/84. Melhor interpretação?",opts:["Normotensão verdadeira","Avental branco","Provável mascarada/sustentada, requer avaliação","Sem significado clínico"],correct:2,expl:"Ambos em faixa de risco — deve-se investigar cuidadosamente o fenótipo com os critérios apropriados."}
+];
+var qzlist=document.getElementById('qzlist');var answered=0;
+document.getElementById('total').textContent=questions.length;
+questions.forEach(function(q,qi){
+  var card=document.createElement('div');card.className='qz';
+  var letters=['A','B','C','D'];
+  var html='<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';});
+  html+='<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML=html;qzlist.appendChild(card);
+});
+qzlist.addEventListener('click',function(e){
+  var btn=e.target.closest('.opt');if(!btn)return;
+  var qi=+btn.dataset.q,oi=+btn.dataset.o;var card=btn.closest('.qz');
+  if(card.dataset.done)return;card.dataset.done="1";
+  var opts=card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){op.classList.add('locked');if(idx===questions[qi].correct)op.classList.add('correct');});
+  if(oi!==questions[qi].correct)btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;document.getElementById('answered').textContent=answered;
+});
+
+var cases=[
+["Executivo estressado","Consultório 148/94, MRPA média 118/74. Fenótipo?","Hipertensão do avental branco.","Consultório alto, fora normal."],
+["Motorista de aplicativo","Consultório 126/80, MAPA 24h 136/86. Fenótipo?","Hipertensão mascarada.","Consultório normal, fora elevado — atenção ao risco elevado."],
+["Paciente em tratamento A","Consultório 118/74, MRPA 124/78. Classificação em tratado?","Hipertensão controlada.","Ambos normais em paciente tratado."],
+["Paciente em tratamento B","Consultório 150/96, MAPA 24h 128/79. Classificação em tratado?","Efeito do avental branco não controlado.","Consultório alto, fora normal, já em tratamento."],
+["Paciente em tratamento C","Consultório 124/80, MRPA 134/88. Classificação em tratado?","Mascarada não controlada.","Consultório normal, fora elevado, em tratamento."],
+["Idoso de alto risco","Consultório 132/84, sem MAPA disponível, mas com forte suspeita de mascarada.","Investigar com MRPA/MAPA quando possível; risco de lesão de órgão-alvo se mascarada confirmada.","Mascarada é mais comum em pacientes de alto risco e tem prognóstico grave."]
+];
+var cbox=document.getElementById('cases');
+cases.forEach(function(c){
+  var d=document.createElement('div');d.className='case';
+  d.innerHTML='<div class="cq"><b>'+c[0]+':</b> '+c[1]+'</div><button onclick="toggleNext(this)">Ver resposta</button><div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+window.addEventListener('scroll',function(){document.getElementById('totop').classList.toggle('show',window.scrollY>500);});
+</script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 4 | Classificação e Diagnóstico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--navy-d:#08192f;--teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--yellow:#E8B90B;--orange:#E8710A;--red:#E63946;--wine:#7A1F2B;
+    --ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;--soft:#f1f6f9;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;--mono:'IBM Plex Mono','Trebuchet MS',monospace;--script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:34px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.18rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .sec-lead{color:#b8ccdd;max-width:64ch;margin-bottom:16px}
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent;transition:.2s}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+  .hero{padding:60px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2rem,6.5vw,3.1rem);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.12rem;max-width:52ch;margin:0 auto 20px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.7rem;color:var(--gold);margin-bottom:10px;padding:0 10px}
+  .card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:10px}
+  .card p:last-child{margin-bottom:0}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:760px){.g2,.g3,.g5{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16}
+  .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38} .t-mag{background:#fbe4ee;color:var(--magenta)}
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:22px 24px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mission li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:700}
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:26px}
+  .philo .line{font-size:1.1rem;font-weight:700;color:#eef5fa}
+  .philo .by{display:block;margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+  .n17{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.n17{grid-template-columns:1fr}}
+  .nbox{border-radius:var(--radius);padding:24px;color:#fff}
+  .n1{background:linear-gradient(150deg,#0e6a86,#1282A2)} .n7{background:linear-gradient(150deg,#8a2352,#D6336C)}
+  .nbox .ntag{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .nbox h3{color:#fff;margin:6px 0 12px}
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .flow span{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 11px;font-size:.8rem;font-weight:800}
+  .flow i{opacity:.7;font-style:normal}
+  .n7 .big{font-size:1.1rem;font-weight:800;line-height:1.35}
+  /* ELEVADOR PRESSÓRICO */
+  .elevator-box{background:radial-gradient(90% 120% at 82% 0%,rgba(18,130,162,.30),transparent 55%),linear-gradient(165deg,#0a2142,#0B2545 60%,#0e2c52);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px 26px;position:relative;overflow:hidden}
+  .gauge-row{display:flex;justify-content:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .gauge-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:8px 18px;font-weight:800;color:#fff;font-size:.85rem;font-family:var(--mono);letter-spacing:.5px}
+  .gauge-chip.btn-like{background:rgba(244,185,66,.14);border-color:rgba(244,185,66,.5);color:var(--gold)}
+  .shaft{display:flex;flex-direction:column-reverse;gap:6px;max-width:480px;margin:0 auto}
+  .lvl{border-radius:10px;padding:14px 18px;font-weight:800;display:flex;justify-content:space-between;align-items:center;color:#fff;opacity:.45;transform:scale(.97);transition:all .4s ease}
+  .lvl small{font-weight:600;opacity:.9;font-size:.82rem}
+  .lvl.active{opacity:1;transform:scale(1.045);box-shadow:0 0 0 3px rgba(244,185,66,.75),0 10px 26px rgba(0,0,0,.4)}
+  .lvl-verde{background:linear-gradient(90deg,#1f7a38,var(--green))}
+  .lvl-amarelo{background:linear-gradient(90deg,#a6870a,var(--yellow));color:#2a2003}
+  .lvl-laranja{background:linear-gradient(90deg,#a04d05,var(--orange))}
+  .lvl-vermelho{background:linear-gradient(90deg,#8f0d18,var(--red))}
+  .lvl-vinho{background:linear-gradient(90deg,#4a131b,var(--wine))}
+  .marker{font-family:var(--mono);font-size:.64rem;background:var(--gold);color:#2a2003;border-radius:6px;padding:2px 9px;margin-left:8px;white-space:nowrap}
+  .rule-plate{text-align:center;margin-top:18px;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:12px;padding:14px;color:var(--gold);font-weight:800;font-style:italic}
+  .ask{background:var(--soft);border:1px dashed var(--teal);border-radius:12px;padding:16px 18px;margin-top:14px;color:var(--ink)}
+  .ask .q{font-weight:800;color:var(--navy);margin-bottom:8px}
+  .ask button{background:var(--teal);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-family:var(--font);font-weight:800;font-size:.85rem;cursor:pointer}
+  .ask button:hover{background:#0e6a86}
+  .ask .a{display:none;margin-top:12px;background:#e5f6ea;border-left:4px solid var(--green);border-radius:9px;padding:12px 14px;font-size:.9rem;color:#1c4d2c}
+  .ask .a.show{display:block}
+  /* TABELA */
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:460px;background:#fff}
+  th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-family:var(--mono);font-size:.7rem;letter-spacing:1px;text-transform:uppercase}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--ink)}
+  tr:nth-child(even) td{background:#f8fafc}
+  .rowdot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:middle}
+  /* CLASSIFICADOR */
+  .tool{background:#fff;color:var(--ink);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .tool .inputs{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+  .tool label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .tool input{width:100px;padding:10px 12px;border:2px solid var(--line);border-radius:10px;font-family:var(--font);font-weight:800;font-size:1.05rem;color:var(--navy)}
+  .tool button{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:var(--font);font-weight:800;cursor:pointer}
+  .tool button:hover{background:#0e6a86}
+  .result{margin-top:14px;border-radius:12px;padding:16px 18px;font-weight:800;display:none}
+  .result.show{display:block}
+  .alert{border-radius:14px;padding:16px 18px;margin-top:14px}
+  .alert.red{background:#fde3e5;border:1px solid #f3b5bb;color:#7d1119}
+  .alert.gold{background:#fdf3d9;border:1px solid #ecd18a;color:#6b5210}
+  .imgmind{background:#eef5fb;border-left:5px solid var(--teal);border-radius:12px;padding:14px 16px;margin-top:12px;font-style:italic;color:var(--navy);font-size:.94rem}
+  .imgmind b{font-style:normal;color:var(--teal)}
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.98rem;line-height:1.3}
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:14px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+  .traps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.traps{grid-template-columns:1fr}}
+  .trap{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .trap span{font-size:.88rem;color:var(--ink);font-weight:600}
+  .r60{background:linear-gradient(135deg,rgba(244,185,66,.14),rgba(18,130,162,.08));border:1px solid rgba(244,185,66,.35);border-radius:var(--radius);padding:24px}
+  .r60 .row{display:flex;flex-wrap:wrap;gap:8px}
+  .r60 .row span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 13px;font-weight:800;font-size:.85rem;color:#fff}
+  .r60 .row span b{color:var(--gold)}
+  .spaced{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.spaced{grid-template-columns:1fr}}
+  .sp{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .sp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+  .sp ul{list-style:none}
+  .sp li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem;font-weight:600;cursor:pointer}
+  .sp li:last-child{border-bottom:none}
+  .sp li .box{width:18px;height:18px;border:2px solid var(--teal);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff}
+  .sp li.done .box{background:var(--green);border-color:var(--green)}
+  .sp li.done span{text-decoration:line-through;color:var(--muted)}
+  footer{text-align:center;padding:44px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.82rem;color:#8fa8bd;margin-top:12px}
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="inner">
+  <a href="#classific">Classificação</a>
+  <a href="#diagnostico">Diagnóstico</a>
+  <a href="#classificador">Classificador</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#questoes">Questões</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 4 · Cardiologia TEC 2026</span>
+    <h1>Classificação e <span class="hl">Diagnóstico</span></h1>
+    <p class="sub">Do número medido à categoria clínica.</p>
+    <div class="impact">&ldquo;Classificar corretamente é decidir corretamente.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+  <section><div class="wrap">
+    <div class="mission"><b>Ao final deste tema, você será capaz de:</b>
+      <ul><li>Classificar a PA por estágio</li><li>Aplicar a regra do maior valor</li><li>Reconhecer a pré-hipertensão</li><li>Confirmar o diagnóstico</li><li>Saber quando pedir MAPA/MRPA</li></ul>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">Filosofia</span>
+    <div class="philo">
+      <div class="line">&ldquo;Classificar não é colocar o paciente em uma caixa. É reconhecer o tamanho do risco antes que ele cresça.&rdquo;</div>
+      <span class="by">— Dr. André Rossanno</span>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="n17">
+      <div class="nbox n1"><div class="ntag">N1 · O mapa</div><h3>A sequência da classificação</h3>
+        <div class="flow"><span>Valor medido</span><i>→</i><span>PAS</span><i>→</i><span>PAD</span><i>→</i><span>Maior valor</span><i>→</i><span>Classificar</span><i>→</i><span>Confirmar</span><i>→</i><span>Risco</span></div>
+      </div>
+      <div class="nbox n7"><div class="ntag">N7 · Por que importa</div>
+        <div class="big">O número mais alto conduz a classificação, porque o risco segue a maior ameaça.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- CLASSIFICAÇÃO -->
+  <section id="classific"><div class="wrap">
+    <span class="kicker">01 · Categorias</span>
+    <h2>Cinco níveis, um único critério: o maior valor</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Categoria</th><th>PAS (mmHg)</th><th>Critério</th><th>PAD (mmHg)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rowdot" style="background:var(--green)"></span>Normal</td><td>&lt;120</td><td><b>e</b></td><td>&lt;80</td></tr>
+          <tr><td><span class="rowdot" style="background:var(--yellow)"></span>Pré-hipertensão</td><td>120–139</td><td><b>e/ou</b></td><td>80–89</td></tr>
+          <tr><td><span class="rowdot" style="background:var(--orange)"></span>Estágio 1</td><td>140–159</td><td><b>e/ou</b></td><td>90–99</td></tr>
+          <tr><td><span class="rowdot" style="background:var(--red)"></span>Estágio 2</td><td>160–179</td><td><b>e/ou</b></td><td>100–109</td></tr>
+          <tr><td><span class="rowdot" style="background:var(--wine)"></span>Estágio 3</td><td>≥180</td><td><b>e/ou</b></td><td>≥110</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert red"><b>Regra fundamental:</b> classifica-se pelo <b>valor mais elevado</b>, seja sistólico ou diastólico. Ex.: PA 134/102 → <b>estágio 2</b>, porque a PAD está entre 100–109.</div>
+  </div></section>
+
+  <!-- ELEVADOR PRESSÓRICO -->
+  <section id="classificador"><div class="wrap">
+    <span class="kicker">Palácio da Memória · Elevador Pressórico</span>
+    <h2>O valor mais alto aperta o botão</h2>
+    <p class="sec-lead">Um elevador clínico vertical. No centro, o aparelho de pressão; dos lados, os botões PAS e PAD. Quem decide o andar é sempre o valor mais perigoso.</p>
+
+    <div class="elevator-box" style="margin-top:16px">
+      <div class="gauge-row">
+        <div class="gauge-chip">🩺 Aparelho</div>
+        <div class="gauge-chip btn-like" id="btnPAS">PAS</div>
+        <div class="gauge-chip btn-like" id="btnPAD">PAD</div>
+      </div>
+      <div class="shaft" id="shaft">
+        <div class="lvl lvl-vinho" data-lvl="4"><span>Estágio 3</span><small>≥180 ou ≥110</small></div>
+        <div class="lvl lvl-vermelho" data-lvl="3"><span>Estágio 2</span><small>160–179 ou 100–109</small></div>
+        <div class="lvl lvl-laranja" data-lvl="2"><span>Estágio 1</span><small>140–159 ou 90–99</small></div>
+        <div class="lvl lvl-amarelo" data-lvl="1"><span>Pré-hipertensão</span><small>120–139 ou 80–89</small></div>
+        <div class="lvl lvl-verde" data-lvl="0"><span>Normal</span><small>&lt;120 e &lt;80</small></div>
+      </div>
+      <div class="rule-plate">&ldquo;O valor mais alto aperta o botão.&rdquo;</div>
+
+      <div class="tool" style="margin-top:18px">
+        <div class="inputs">
+          <div><label>PAS (mmHg)</label><input type="number" id="pasIn" placeholder="ex: 134"></div>
+          <div><label>PAD (mmHg)</label><input type="number" id="padIn" placeholder="ex: 102"></div>
+          <button onclick="classificarPA()">Classificar</button>
+        </div>
+        <div class="result" id="resultBox"></div>
+      </div>
+    </div>
+
+    <div class="n17" style="margin-top:18px">
+      <div class="nbox n1"><div class="ntag">N1 · Regra lógica</div>
+        <ol style="margin:0;padding-left:20px;color:#fff;font-weight:700;font-size:.92rem;line-height:1.7">
+          <li>Leia a PAS.</li><li>Leia a PAD.</li><li>Identifique a categoria de cada uma.</li><li>Escolha a categoria mais alta.</li>
+        </ol>
+      </div>
+      <div class="nbox n7"><div class="ntag">N7 · Imagem mental</div>
+        <div class="big">PAS e PAD entram juntas no elevador, mas quem aperta o botão é o valor mais perigoso.</div>
+      </div>
+    </div>
+
+    <div class="ask">
+      <div class="q">Pegadinha: PA 118/92 é normal?</div>
+      <button onclick="toggleNext(this)">Ver resposta</button>
+      <div class="a">Não. É <b>hipertensão estágio 1</b>, porque a PAD está entre 90–99 mmHg — mesmo com a PAS (118) ainda dentro da faixa normal. A PAD aperta o botão.</div>
+    </div>
+  </div></section>
+
+  <!-- PRÉ-HIPERTENSÃO E DIAGNÓSTICO -->
+  <section id="diagnostico"><div class="wrap">
+    <span class="kicker">02 · Pré-hipertensão e diagnóstico</span>
+    <h2>O que confirma a doença</h2>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><span class="tag t-gold">Pré-hipertensão</span>
+        <p>Não é hipertensão estabelecida — identifica indivíduos em <b>maior risco</b> e favorece prevenção precoce.</p>
+        <p>Atenção especial: PAS 130–139 ou PAD 80–89, sobretudo em pacientes de <b>alto risco cardiovascular</b>.</p>
+      </div>
+      <div class="card"><span class="tag t-teal">Confirmação diagnóstica</span>
+        <p>Em geral: confirmar elevação em <b>duas ou mais visitas</b>, com técnica correta, considerando medidas fora do consultório.</p>
+        <div class="imgmind"><b>Importante:</b> MAPA e MRPA são recomendadas quando viáveis e melhoram a precisão — mas <b>não são obrigatórias</b> quando indisponíveis.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- MINI CASOS -->
+  <section><div class="wrap">
+    <span class="kicker">04 · Casos clínicos</span>
+    <h2>Aplique a regra do maior valor</h2>
+    <div id="cases" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas"><div class="wrap">
+    <span class="kicker">05 · Pegadinhas</span>
+    <h2>Pegadinhas que tentam roubar seu ponto</h2>
+    <div class="traps" style="margin-top:16px">
+      <div class="trap"><span>Na PA normal usa-se <b>&ldquo;e&rdquo;</b>; nas demais, <b>&ldquo;e/ou&rdquo;</b>.</span></div>
+      <div class="trap"><span>Classifica-se sempre pelo <b>valor mais elevado</b>.</span></div>
+      <div class="trap"><span><b>120/80</b> não é mais normal — é pré-hipertensão.</span></div>
+      <div class="trap"><span><b>139/79</b> é pré-hipertensão.</span></div>
+      <div class="trap"><span><b>118/88</b> é pré-hipertensão (PAD manda).</span></div>
+      <div class="trap"><span><b>150/105</b> é estágio 2 (PAD manda).</span></div>
+      <div class="trap"><span>MAPA/MRPA ajudam a confirmar, mas <b>não são sempre obrigatórias</b>.</span></div>
+    </div>
+  </div></section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards"><div class="wrap">
+    <span class="kicker">06 · Flashcards</span>
+    <h2>Toque no cartão para virar</h2>
+    <div class="fc-grid" id="fcgrid" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes"><div class="wrap">
+    <span class="kicker">07 · Questões de prova</span>
+    <h2>Resolva antes de ver a resposta</h2>
+    <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+    <div id="qzlist"></div>
+  </div></section>
+
+  <!-- REVISÃO 60s -->
+  <section><div class="wrap">
+    <span class="kicker">08 · Revisão de 60 segundos</span>
+    <div class="r60"><div class="row">
+      <span>&lt;120 e &lt;80 = <b>normal</b></span>
+      <span>120–139 ou 80–89 = <b>pré-HAS</b></span>
+      <span>140–159 ou 90–99 = <b>estágio 1</b></span>
+      <span>160–179 ou 100–109 = <b>estágio 2</b></span>
+      <span>≥180 ou ≥110 = <b>estágio 3</b></span>
+      <span>classificar pelo <b>maior valor</b></span>
+    </div></div>
+  </div></section>
+
+  <!-- REVISÃO ESPAÇADA -->
+  <section><div class="wrap">
+    <span class="kicker">09 · Revisão espaçada</span>
+    <h2>Volte aqui</h2>
+    <div class="spaced">
+      <div class="sp"><h4>Hoje</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Tabela de categorias</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Regra do maior valor</span></li>
+      </ul></div>
+      <div class="sp"><h4>Amanhã</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Pré-hipertensão</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Confirmação diagnóstica</span></li>
+      </ul></div>
+      <div class="sp"><h4>Em 7 dias</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Resolver as questões de novo</span></li>
+      </ul></div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Cardiologia TEC 2026</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleNext(btn){var el=btn.nextElementSibling;var open=el.classList.toggle('show');btn.textContent=open?'Ocultar resposta':'Ver resposta';}
+function toggleDone(li){li.classList.toggle('done');}
+
+var NIVEIS = ['Normal','Pré-hipertensão','Estágio 1','Estágio 2','Estágio 3'];
+function nivelPAS(v){ if(v>=180) return 4; if(v>=160) return 3; if(v>=140) return 2; if(v>=120) return 1; return 0; }
+function nivelPAD(v){ if(v>=110) return 4; if(v>=100) return 3; if(v>=90) return 2; if(v>=80) return 1; return 0; }
+
+function acenderNivel(lvl){
+  document.querySelectorAll('.lvl').forEach(function(el){
+    el.classList.remove('active');
+    var marker = el.querySelector('.marker'); if(marker) marker.remove();
+  });
+  var alvo = document.querySelector('.lvl[data-lvl="'+lvl+'"]');
+  if(alvo){
+    alvo.classList.add('active');
+    var m=document.createElement('span'); m.className='marker'; m.textContent='◄ você está aqui';
+    alvo.querySelector('span').appendChild(m);
+    alvo.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+}
+
+function classificarPA(){
+  var pas=parseFloat(document.getElementById('pasIn').value);
+  var pad=parseFloat(document.getElementById('padIn').value);
+  var box=document.getElementById('resultBox');
+  if(isNaN(pas)||isNaN(pad)){box.className='result show';box.style.background='#fde3e5';box.style.color='#7d1119';box.textContent='Digite PAS e PAD válidos.';return;}
+  var lvlPAS=nivelPAS(pas), lvlPAD=nivelPAD(pad);
+  var lvlFinal=Math.max(lvlPAS,lvlPAD);
+  var cat=NIVEIS[lvlFinal];
+  var cores=['#e5f6ea','#fdf3d9','#fde8d2','#fde3e5','#f6dde0'];
+  var textos=['#1f7a38','#8a6d16','#a04d05','#8f0d18','#7A1F2B'];
+  var quem;
+  if(lvlPAS>lvlPAD) quem='PAS ('+pas+')';
+  else if(lvlPAD>lvlPAS) quem='PAD ('+pad+')';
+  else quem='PAS e PAD, empatadas';
+  box.className='result show';box.style.background=cores[lvlFinal];box.style.color=textos[lvlFinal];
+  box.innerHTML='Categoria: <span style="font-size:1.3rem">'+cat+'</span><br>'+
+    '<span style="font-weight:600;font-size:.9rem">A PAS está em '+NIVEIS[lvlPAS]+' e a PAD está em '+NIVEIS[lvlPAD]+'. O maior estágio determina a classificação — conduzido por '+quem+'.</span>';
+  acenderNivel(lvlFinal);
+}
+
+var flashcards=[
+["PA normal (consultório)?","PAS <120 e PAD <80."],
+["Faixa de pré-hipertensão?","PAS 120–139 e/ou PAD 80–89."],
+["Faixa do estágio 1?","PAS 140–159 e/ou PAD 90–99."],
+["Faixa do estágio 2?","PAS 160–179 e/ou PAD 100–109."],
+["Faixa do estágio 3?","PAS ≥180 e/ou PAD ≥110."],
+["Regra fundamental de classificação?","Segue o valor mais elevado, sistólico ou diastólico."],
+["120/80 ainda é normal?","Não — já é pré-hipertensão."],
+["139/79 é qual categoria?","Pré-hipertensão (PAS manda)."],
+["118/88 é qual categoria?","Pré-hipertensão (PAD manda)."],
+["150/105 é qual categoria?","Estágio 2 (PAD manda)."],
+["Quantas visitas confirmam o diagnóstico em geral?","Duas ou mais, com técnica correta."],
+["MAPA/MRPA são obrigatórias para diagnosticar?","Recomendadas quando viáveis, mas não obrigatórias."],
+["Por que a pré-hipertensão importa?","Identifica maior risco e favorece prevenção precoce."],
+["Qual conector usa a PA normal?","'E' (PAS e PAD)."],
+["Qual conector usam as demais categorias?","'E/ou'."]
+];
+var fcgrid=document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d=document.createElement('div');d.className='flash';
+  d.innerHTML='<div class="flash-in"><div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div></div><div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick=function(){d.classList.toggle('flip');};
+  fcgrid.appendChild(d);
+});
+
+var questions=[
+{type:"Direta",stem:"PA 134/102. Qual a classificação?",opts:["Estágio 1","Estágio 2","Pré-hipertensão","Normal"],correct:1,expl:"PAD 100–109 → estágio 2. A PAD é o valor mais elevado nesse caso e conduz a classificação."},
+{type:"Direta",stem:"Qual conector é usado na categoria 'PA normal'?",opts:["E/ou","Ou","E","Nenhum"],correct:2,expl:"PA normal exige PAS <120 E PAD <80 simultaneamente."},
+{type:"Direta",stem:"120/80 mmHg é classificado como:",opts:["Normal","Pré-hipertensão","Estágio 1","Estágio 3"],correct:1,expl:"120/80 já entra na faixa de pré-hipertensão (120–139 ou 80–89)."},
+{type:"Direta",stem:"Qual a faixa de PAS do estágio 2?",opts:["120–139","140–159","160–179","≥180"],correct:2,expl:"Estágio 2: PAS 160–179 e/ou PAD 100–109."},
+{type:"Caso clínico",stem:"Paciente com PA 139/79 mmHg em duas visitas. Classificação?",opts:["Normal","Pré-hipertensão","Estágio 1","Estágio 2"],correct:1,expl:"PAS 139 está na faixa 120–139 → pré-hipertensão, mesmo com PAD normal."},
+{type:"Caso clínico",stem:"Paciente com PA 118/88 mmHg. Classificação?",opts:["Normal","Pré-hipertensão","Estágio 1","Estágio 2"],correct:1,expl:"PAD 88 está na faixa 80–89 → pré-hipertensão, mesmo com PAS normal."},
+{type:"Caso clínico",stem:"Paciente de alto risco CV com PAS 132 mmHg. Conduta na avaliação?",opts:["Ignorar, é normal","Atenção especial por ser pré-hipertensão em alto risco","Tratar como estágio 3","Repetir em 1 ano"],correct:1,expl:"Pré-hipertensão exige atenção redobrada em pacientes de alto risco cardiovascular."},
+{type:"Caso clínico",stem:"Paciente sem MAPA/MRPA disponível, com PA elevada em 2 consultas com técnica correta. É possível diagnosticar HAS?",opts:["Não, é obrigatório MAPA","Sim, MAPA/MRPA não são obrigatórias quando indisponíveis","Só com MRPA","Só com 3 consultas"],correct:1,expl:"MAPA/MRPA melhoram a precisão, mas não são obrigatórias quando indisponíveis."},
+{type:"V ou F",stem:"Verdadeiro ou falso: a classificação da PA sempre usa a média entre PAS e PAD.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso. Usa-se o valor mais elevado, não a média."},
+{type:"Pegadinha",stem:"Sobre pré-hipertensão, é correto afirmar:",opts:["É hipertensão leve já estabelecida","Não é hipertensão estabelecida, mas indica maior risco","Não precisa de nenhuma atenção clínica","Sempre precisa de medicação imediata"],correct:1,expl:"Pré-hipertensão não é doença estabelecida — é sinalizador de risco e chance de prevenção precoce."}
+];
+var qzlist=document.getElementById('qzlist');var answered=0;
+document.getElementById('total').textContent=questions.length;
+questions.forEach(function(q,qi){
+  var card=document.createElement('div');card.className='qz';
+  var letters=['A','B','C','D'];
+  var html='<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';});
+  html+='<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML=html;qzlist.appendChild(card);
+});
+qzlist.addEventListener('click',function(e){
+  var btn=e.target.closest('.opt');if(!btn)return;
+  var qi=+btn.dataset.q,oi=+btn.dataset.o;var card=btn.closest('.qz');
+  if(card.dataset.done)return;card.dataset.done="1";
+  var opts=card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){op.classList.add('locked');if(idx===questions[qi].correct)op.classList.add('correct');});
+  if(oi!==questions[qi].correct)btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;document.getElementById('answered').textContent=answered;
+});
+
+var cases=[
+["Paciente A","PA 128/84 mmHg em consultório. Classificação?","Pré-hipertensão.","Aqui os dois valores já apontam para a mesma categoria: PAS 128 está na faixa 120–139 e PAD 84 está na faixa 80–89. Não é preciso a PAD 'decidir' sozinha — a PAS já bastaria."],
+["Paciente B","PA 145/88 mmHg. Classificação?","Estágio 1.","PAS 145 está na faixa 140–159, que conduz a classificação."],
+["Paciente C","PA 170/95 mmHg. Classificação?","Estágio 2.","PAS 170 está na faixa 160–179 — o valor mais alto manda."],
+["Paciente D","PA 185/92 mmHg. Classificação?","Estágio 3.","PAS ≥180 já classifica como estágio 3, independente da PAD."],
+["Paciente E","PA 138/76 mmHg em duas consultas com técnica correta, sem MAPA disponível. Pode-se considerar o diagnóstico?","Sim, é possível trabalhar com a classificação de pré-hipertensão/HAS mesmo sem MAPA, quando indisponível.","MAPA/MRPA melhoram a precisão mas não são obrigatórias."]
+];
+var cbox=document.getElementById('cases');
+cases.forEach(function(c){
+  var d=document.createElement('div');d.className='case';
+  d.innerHTML='<div class="cq"><b>'+c[0]+':</b> '+c[1]+'</div><button onclick="toggleNext(this)">Ver resposta</button><div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+window.addEventListener('scroll',function(){document.getElementById('totop').classList.toggle('show',window.scrollY>500);});
+</script>
+</body>
+</html>
