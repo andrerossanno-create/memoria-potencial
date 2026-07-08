@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semiologia Cardiovascular · Módulo 2 | Atlas Mental Interativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2545; --navy-deep:#071a33; --teal:#1282A2; --gold:#F4B942;
+  --magenta:#C23B6B; --danger:#E14B4B; --safe:#2E9E6D;
+  --card:#F7F9FC; --ink:#0B2545; --muted:#5A6B85;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Nunito','Trebuchet MS',Arial,sans-serif; background:var(--navy-deep); color:#e9eef7; line-height:1.5; -webkit-font-smoothing:antialiased;}
+.kicker{font-family:'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase; font-size:.72rem; color:var(--gold);}
+
+nav{position:sticky; top:0; z-index:50; background:rgba(7,26,51,.94); backdrop-filter:blur(8px); border-bottom:1px solid rgba(244,185,66,.25); display:flex; align-items:center; justify-content:space-between; padding:.7rem 1.2rem; flex-wrap:wrap; gap:.4rem;}
+nav .brand{font-weight:800; font-size:1rem;}
+nav .brand span{color:var(--gold);}
+nav ul{list-style:none; display:flex; gap:.9rem; flex-wrap:wrap;}
+nav a{font-size:.8rem; font-weight:700; text-decoration:none; color:#cfe0f5; padding:.3rem .5rem; border-radius:8px;}
+nav a:hover{background:rgba(244,185,66,.12); color:var(--gold);}
+
+.hero{padding:3rem 1.2rem 2rem; text-align:center; background:radial-gradient(circle at 20% 20%, rgba(18,130,162,.35), transparent 55%), radial-gradient(circle at 80% 0%, rgba(194,59,107,.25), transparent 50%);}
+.hero h1{font-size:clamp(1.6rem,4vw,2.5rem); font-weight:900; margin:.5rem 0 .6rem;}
+.hero h1 em{font-style:normal; color:var(--gold);}
+.hero p.lead{max-width:640px; margin:0 auto; color:#c7d6ec; font-size:1rem;}
+
+section{max-width:960px; margin:0 auto; padding:2.3rem 1.2rem;}
+h2.section-title{font-size:1.35rem; font-weight:800; margin-bottom:.9rem; display:flex; align-items:center; gap:.5rem;}
+h2.section-title .tag{font-family:'IBM Plex Mono',monospace; font-size:.65rem; background:var(--teal); color:#fff; padding:.2rem .5rem; border-radius:6px;}
+
+.philosophy{background:linear-gradient(135deg, rgba(18,130,162,.14), rgba(244,185,66,.06)); border-left:3px solid var(--gold); border-radius:12px; padding:1.4rem 1.6rem;}
+.philosophy p{font-size:1rem; color:#dbe7f7; margin-bottom:.8rem;}
+.signature{font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--gold); text-align:right;}
+
+/* TIMELINE BAR (S1→SÍSTOLE→S2 style, from reference decks) */
+.timeline{display:grid; grid-template-columns:auto 1fr auto; gap:.5rem; align-items:center; margin-bottom:1rem;}
+.tl-node{background:var(--navy); border:1px solid var(--gold); color:#fff; font-weight:900; padding:.5rem 1rem; border-radius:10px; font-family:'IBM Plex Mono',monospace; font-size:.85rem; text-align:center;}
+.tl-bar{background:var(--teal); color:#fff; font-weight:800; text-align:center; padding:.5rem 1rem; border-radius:999px; font-size:.9rem;}
+.tl-bar.diastole{background:#123a63;}
+
+/* MURMUR CARD */
+.murmur-card{background:var(--card); color:var(--ink); border-radius:16px; padding:1.4rem 1.5rem; margin-bottom:1.4rem; box-shadow:0 8px 22px rgba(0,0,0,.28); border-top:5px solid var(--teal);}
+.murmur-card.diastolic{border-top-color:var(--magenta);}
+.murmur-card h3{font-size:1.15rem; font-weight:900; color:var(--navy); margin-bottom:.2rem;}
+.murmur-card .subtitle{font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--muted); margin-bottom:.8rem; text-transform:uppercase; letter-spacing:.04em;}
+.murmur-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+@media(max-width:680px){.murmur-grid{grid-template-columns:1fr;}}
+.murmur-facts{list-style:none; font-size:.9rem;}
+.murmur-facts li{padding:.35rem 0 .35rem 1.3rem; position:relative; border-bottom:1px solid #e4ebf3;}
+.murmur-facts li:last-child{border-bottom:none;}
+.murmur-facts li::before{content:"●"; position:absolute; left:0; color:var(--teal); font-size:.6rem; top:.6rem;}
+.murmur-facts b{color:var(--navy);}
+
+/* PLAY BUTTON */
+.play-btn{display:inline-flex; align-items:center; gap:.5rem; background:var(--teal); color:#fff; border:none; border-radius:999px; padding:.6rem 1.2rem; font-weight:800; font-size:.88rem; cursor:pointer; transition:transform .12s ease, background .2s ease; margin-top:.4rem;}
+.play-btn:hover{background:#0e6b86; transform:translateY(-1px);}
+.play-btn.playing{background:var(--gold); color:var(--navy);}
+.phase-readout{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--muted); min-height:1.1rem; margin-top:.5rem;}
+.phase-readout b{color:var(--magenta);}
+.wave{display:flex; align-items:center; gap:2px; height:32px; margin:.6rem 0; overflow:hidden;}
+.wave i{display:inline-block; width:4px; border-radius:2px; background:#cdd8e8; transition:background .15s;}
+.wave i.active{background:var(--magenta);}
+
+/* MACETE BOX */
+.macete{display:flex; gap:1rem; align-items:flex-start; background:linear-gradient(135deg,var(--navy),#123a63); border:1px solid var(--gold); border-radius:14px; padding:1.1rem 1.3rem; margin-top:1rem;}
+.macete .icon{font-size:1.6rem; flex:none;}
+.macete p{color:#e9eef7; font-size:.9rem; margin:0;}
+.macete b{color:var(--gold);}
+
+/* MAPA MENTAL FINAL - VISUAL QUADRANT MATRIX */
+.quad-matrix{display:grid; grid-template-columns:100px 1fr 1fr; gap:.5rem;}
+@media(max-width:640px){.quad-matrix{grid-template-columns:70px 1fr 1fr; gap:.35rem;}}
+.quad-corner{background:transparent;}
+.quad-colhead{text-align:center; font-family:'IBM Plex Mono',monospace; font-weight:900; font-size:.85rem; color:#fff; padding:.6rem; border-radius:10px;}
+.quad-colhead.sys{background:var(--teal);}
+.quad-colhead.dia{background:var(--magenta);}
+.quad-rowhead{display:flex; align-items:center; justify-content:center; text-align:center; font-family:'IBM Plex Mono',monospace; font-weight:900; font-size:.8rem; color:var(--gold); writing-mode:horizontal-tb;}
+.quad-cell{background:var(--card); color:var(--ink); border-radius:14px; padding:1rem .9rem; text-align:center; border-top:4px solid;}
+.quad-cell.sys{border-top-color:var(--teal);}
+.quad-cell.dia{border-top-color:var(--magenta);}
+.quad-cell h4{font-size:.95rem; font-weight:900; color:var(--navy); margin:.3rem 0 .3rem;}
+.quad-cell p{font-size:.8rem; color:var(--muted); margin:0;}
+.quad-icon{width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto; font-weight:900; font-size:1.1rem;}
+.quad-icon.open{background:rgba(46,158,109,.15); color:var(--safe); border:2px solid var(--safe);}
+.quad-icon.closed{background:rgba(225,75,75,.15); color:var(--danger); border:2px solid var(--danger);}
+
+/* CASOS CLÍNICOS INTERATIVOS - estilo detetive */
+.case-card{background:var(--card); color:var(--ink); border-radius:16px; padding:1.4rem 1.5rem; margin-bottom:1.5rem; box-shadow:0 8px 22px rgba(0,0,0,.28); border-top:5px solid var(--gold);}
+.case-patient{background:#eef2f8; border-radius:12px; padding:1rem 1.2rem; margin-bottom:1.2rem; font-size:.92rem;}
+.case-patient b{color:var(--navy);}
+.case-step{margin-bottom:1.1rem; padding-bottom:1.1rem; border-bottom:1px dashed #d6e0ee;}
+.case-step:last-of-type{border-bottom:none;}
+.case-q{font-weight:800; color:var(--navy); font-size:.95rem; margin-bottom:.6rem;}
+.case-opts{display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:.6rem;}
+.case-opt{background:#eef2f8; border:1px solid #d6e0ee; border-radius:999px; padding:.5rem 1rem; font-family:'Nunito'; font-size:.85rem; color:var(--ink); cursor:pointer;}
+.case-opt:hover{border-color:var(--teal);}
+.case-opt.correct{background:rgba(46,158,109,.18); border-color:var(--safe); font-weight:800;}
+.case-opt.wrong{background:rgba(225,75,75,.18); border-color:var(--danger);}
+.case-clue{font-size:.86rem; padding:.6rem .8rem; border-radius:8px; background:rgba(244,185,66,.12); border-left:3px solid var(--gold); display:none; color:var(--navy);}
+.case-clue.show{display:block;}
+.case-final{background:rgba(11,37,69,.04);}
+.case-final .case-q{font-size:1.02rem;}
+.case-verdict{font-size:.9rem; padding:.8rem 1rem; border-radius:10px; display:none; margin-top:.6rem;}
+.case-verdict.show{display:block;}
+.case-verdict.correct{background:rgba(46,158,109,.15); color:#1d6b49;}
+.case-verdict.wrong{background:rgba(225,75,75,.15); color:#a12f2f;}
+
+/* MAPA MENTAL FINAL GRID */
+.mapa-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+@media(max-width:680px){.mapa-grid{grid-template-columns:1fr;}}
+.mapa-card{background:var(--card); color:var(--ink); border-radius:14px; padding:1.1rem 1.3rem; text-align:center;}
+.mapa-card h4{font-size:1rem; font-weight:900; color:var(--navy); margin-bottom:.3rem;}
+.mapa-card .rule-line{font-size:.86rem; color:var(--muted); margin:.3rem 0;}
+.mapa-card .tagpill{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.68rem; font-weight:800; padding:.2rem .6rem; border-radius:999px; margin-top:.4rem;}
+.tagpill.sys{background:#FCE2DF; color:#8A211A;}
+.tagpill.dia{background:#DFF2F7; color:#0A6178;}
+
+/* FLASHCARD FLIP */
+.flip-card{background:transparent; perspective:1000px; height:170px; cursor:pointer; margin-bottom:1rem;}
+.flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:14px; padding:1.1rem; display:flex; flex-direction:column; justify-content:center;}
+.flip-front{background:var(--card); color:var(--ink); box-shadow:0 6px 16px rgba(0,0,0,.25);}
+.flip-back{background:var(--navy); color:#fff; transform:rotateY(180deg); border:1px solid var(--gold);}
+.flip-front .kicker2{font-family:'IBM Plex Mono',monospace; font-size:.66rem; color:var(--teal); margin-bottom:.3rem;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+@media(max-width:640px){.grid2{grid-template-columns:1fr;}}
+
+/* QUIZ */
+.quiz-opt{display:block; width:100%; text-align:left; background:#eef2f8; border:1px solid #d6e0ee; border-radius:10px; padding:.6rem .9rem; margin-bottom:.5rem; cursor:pointer; font-family:'Nunito'; font-size:.9rem; color:var(--ink);}
+.quiz-opt:hover{border-color:var(--teal);}
+.quiz-opt.correct{background:rgba(46,158,109,.18); border-color:var(--safe);}
+.quiz-opt.wrong{background:rgba(225,75,75,.18); border-color:var(--danger);}
+.quiz-feedback{font-size:.86rem; margin-top:.5rem; padding:.6rem .8rem; border-radius:8px; display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.correct{background:rgba(46,158,109,.15); color:#1d6b49;}
+.quiz-feedback.wrong{background:rgba(225,75,75,.15); color:#a12f2f;}
+.counter{font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--gold); margin-bottom:.5rem;}
+.card{background:var(--card); color:var(--ink); border-radius:14px; padding:1.3rem 1.4rem; margin-bottom:1rem; box-shadow:0 6px 18px rgba(0,0,0,.25);}
+
+.pegadinha{border:1px dashed var(--gold); background:rgba(244,185,66,.08); border-radius:12px; padding:1rem 1.2rem; margin-bottom:.9rem;}
+
+.review60{background:var(--navy); border:1px solid var(--teal); border-radius:14px; padding:1.2rem 1.4rem;}
+.review60 ul{margin:.6rem 0 0 1.1rem; font-size:.9rem; color:#dbe7f7;}
+.review60 li{margin-bottom:.4rem;}
+
+.spaced-item{display:flex; align-items:center; gap:.6rem; background:var(--card); color:var(--ink); border-radius:10px; padding:.65rem .9rem; margin-bottom:.5rem;}
+.spaced-item input{width:18px; height:18px;}
+.spaced-item.done label{text-decoration:line-through; color:var(--muted);}
+.badge{font-family:'IBM Plex Mono',monospace; font-size:.65rem; background:var(--teal); color:#fff; padding:.15rem .4rem; border-radius:5px;}
+
+.modnav{display:flex; justify-content:space-between; max-width:960px; margin:0 auto; padding:0 1.2rem 1rem; font-size:.82rem; color:var(--muted);}
+footer{text-align:center; padding:2rem 1rem 3rem; color:#7f93b4; font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Atlas Mental <span>Interativo</span></div>
+  <ul>
+    <li><a href="#sistolicos">Sopros Sistólicos</a></li>
+    <li><a href="#diastolicos">Sopros Diastólicos</a></li>
+    <li><a href="#mapa">Mapa Mental Final</a></li>
+    <li><a href="#casos">Casos Clínicos</a></li>
+    <li><a href="#flashcards">Flashcards</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#pegadinhas">Pegadinhas</a></li>
+    <li><a href="#revisao60">Revisão 60s</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="kicker">Semiologia Cardiovascular · Módulo 2 de 4</p>
+  <h1>Os quatro <em>sopros clássicos</em></h1>
+  <p class="lead">Estenose aórtica, insuficiência mitral, insuficiência aórtica e estenose mitral — as quatro assinaturas que, uma vez internalizadas de verdade, resolvem a maioria dos casos de prova e de ambulatório.</p>
+</div>
+
+<section class="philosophy">
+  <p>Você já sabe o mecanismo (Módulo 1): estenose é problema pra abrir, insuficiência é problema pra fechar. Agora é hora de vestir esse mecanismo com som, foco, irradiação e imagem mental — até que ouvir vire reconhecer, não deduzir.</p>
+  <p>Não decore "estenose aórtica = sopro sistólico". Ouça o crescendo-decrescendo, sinta o tempo entre S1 e S2, e deixe a imagem mental fazer o resto. É assim que o som vira diagnóstico na sua cabeça antes mesmo de você nomear a doença.</p>
+  <p class="signature">— Dr. André Rossanno</p>
+</section>
+
+<section id="sistolicos">
+  <h2 class="section-title"><span class="tag">Sístole</span> Sopros Sistólicos — Estenose Aórtica e Insuficiência Mitral</h2>
+  <div class="timeline">
+    <div class="tl-node">S1</div>
+    <div class="tl-bar">SÍSTOLE</div>
+    <div class="tl-node">S2</div>
+  </div>
+
+  <div class="murmur-card">
+    <h3>Estenose Aórtica (EAo)</h3>
+    <p class="subtitle">Válvula aórtica deveria ABRIR — e abre mal</p>
+    <div class="murmur-grid">
+      <ul class="murmur-facts">
+        <li>Lesão ouvida na <b>sístole</b></li>
+        <li>Obstrução à ejeção do VE</li>
+        <li>Sopro <b>ejetivo, crescendo-decrescendo</b> (diamante)</li>
+        <li>Melhor no <b>foco aórtico</b></li>
+        <li>Pode irradiar para <b>carótidas</b></li>
+        <li>Pulso associado: <b>parvus et tardus</b></li>
+      </ul>
+      <div>
+        <button class="play-btn" data-sound="ea">▶ Ouvir sopro</button>
+        <div class="wave" data-wave="ea"></div>
+        <div class="phase-readout" data-phase="ea">Pronto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="murmur-card">
+    <h3>Insuficiência Mitral (IM)</h3>
+    <p class="subtitle">Válvula mitral deveria FECHAR — e fecha mal</p>
+    <div class="murmur-grid">
+      <ul class="murmur-facts">
+        <li>Lesão ouvida na <b>sístole</b></li>
+        <li>Refluxo do VE para o átrio esquerdo</li>
+        <li>Sopro <b>holossistólico</b> (intensidade constante)</li>
+        <li>Melhor no <b>ápice</b> (foco mitral)</li>
+        <li>Pode irradiar para a <b>axila</b></li>
+        <li>Pode coexistir com <b>B3</b> por sobrecarga de volume</li>
+      </ul>
+      <div>
+        <button class="play-btn" data-sound="im">▶ Ouvir sopro</button>
+        <div class="wave" data-wave="im"></div>
+        <div class="phase-readout" data-phase="im">Pronto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="macete">
+    <div class="icon">🧠</div>
+    <p><b>Macete de memorização:</b> sístole = o ventrículo está <b>ESPREMENDO</b>. Na EAo, o sangue tenta <b>SAIR</b> por uma válvula estreita. Na IM, o sangue <b>VOLTA</b> pro átrio porque a mitral não fechou. Regra prática: na sístole, pense em ejeção (EAo) ou refluxo mitral (IM).</p>
+  </div>
+</section>
+
+<section id="diastolicos">
+  <h2 class="section-title"><span class="tag">Diástole</span> Sopros Diastólicos — Insuficiência Aórtica e Estenose Mitral</h2>
+  <div class="timeline">
+    <div class="tl-node">S2</div>
+    <div class="tl-bar diastole">DIÁSTOLE</div>
+    <div class="tl-node">S1</div>
+  </div>
+
+  <div class="murmur-card diastolic">
+    <h3>Insuficiência Aórtica (IAo)</h3>
+    <p class="subtitle">Válvula aórtica deveria FECHAR — e fecha mal</p>
+    <div class="murmur-grid">
+      <ul class="murmur-facts">
+        <li>Lesão ouvida na <b>diástole</b>, logo após S2</li>
+        <li>Refluxo da aorta para o VE</li>
+        <li>Sopro <b>diastólico aspirativo, decrescente</b></li>
+        <li>Mais audível na <b>borda esternal esquerda</b> / ponto de Erb</li>
+        <li>Refluxo ocorre durante <b>toda a diástole</b></li>
+        <li>Pulso associado: <b>amplo e célere</b> (martelo d'água)</li>
+      </ul>
+      <div>
+        <button class="play-btn" data-sound="ia">▶ Ouvir sopro</button>
+        <div class="wave" data-wave="ia"></div>
+        <div class="phase-readout" data-phase="ia">Pronto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="murmur-card diastolic">
+    <h3>Estenose Mitral (EM)</h3>
+    <p class="subtitle">Válvula mitral deveria ABRIR — e abre mal</p>
+    <div class="murmur-grid">
+      <ul class="murmur-facts">
+        <li>Lesão ouvida na <b>diástole</b></li>
+        <li>Passagem dificultada do átrio esquerdo para o VE</li>
+        <li>Sopro <b>ruflar diastólico</b>, grave</li>
+        <li>Mais audível no <b>ápice</b>, com campânula</li>
+        <li>Pode ter <b>estalido de abertura</b> logo após S2</li>
+        <li>Obstrução ocorre durante a diástole</li>
+      </ul>
+      <div>
+        <button class="play-btn" data-sound="em">▶ Ouvir sopro</button>
+        <div class="wave" data-wave="em"></div>
+        <div class="phase-readout" data-phase="em">Pronto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="macete">
+    <div class="icon">🧠</div>
+    <p><b>Macete de memorização:</b> diástole = o ventrículo está <b>RELAXANDO e ENCHENDO</b>. Na IAo, o sangue <b>DESCE</b> da aorta para o ventrículo. Na EM, o sangue <b>ENTRA com dificuldade</b> pela mitral estreita. Regra prática: na diástole, pense em refluxo aórtico (IAo) ou obstrução da entrada mitral (EM).</p>
+  </div>
+</section>
+
+<section id="mapa">
+  <h2 class="section-title"><span class="tag">Síntese</span> Mapa Mental Final: a matriz dos 4 sopros</h2>
+  <div class="card" style="margin-bottom:1rem;">
+    <p>Uma vez que você enxerga essa matriz de cabeça — válvula × fase — qualquer um dos 4 sopros clássicos vira reflexo, não dedução.</p>
+  </div>
+
+  <div class="quad-matrix">
+    <div class="quad-corner"></div>
+    <div class="quad-colhead sys">SÍSTOLE</div>
+    <div class="quad-colhead dia">DIÁSTOLE</div>
+
+    <div class="quad-rowhead">AÓRTICA</div>
+    <div class="quad-cell sys">
+      <div class="quad-icon open">▲</div>
+      <h4>Estenose Aórtica</h4>
+      <p>Deveria <b>ABRIR</b>.<br>Abre mal → sopro sistólico.</p>
+    </div>
+    <div class="quad-cell dia">
+      <div class="quad-icon closed">✕</div>
+      <h4>Insuficiência Aórtica</h4>
+      <p>Deveria <b>FECHAR</b>.<br>Fecha mal → sopro diastólico.</p>
+    </div>
+
+    <div class="quad-rowhead">MITRAL</div>
+    <div class="quad-cell sys">
+      <div class="quad-icon closed">✕</div>
+      <h4>Insuficiência Mitral</h4>
+      <p>Deveria <b>FECHAR</b>.<br>Fecha mal → sopro sistólico.</p>
+    </div>
+    <div class="quad-cell dia">
+      <div class="quad-icon open">▲</div>
+      <h4>Estenose Mitral</h4>
+      <p>Deveria <b>ABRIR</b>.<br>Abre mal → sopro diastólico.</p>
+    </div>
+  </div>
+
+  <div class="macete" style="margin-top:1rem;">
+    <div class="icon">🧠</div>
+    <p><b>Regra de ouro da memorização:</b> (1) Estenose faz sopro na fase em que a válvula deveria estar ABERTA (ícone ▲ verde). (2) Insuficiência faz sopro na fase em que a válvula deveria estar FECHADA (ícone ✕ vermelho). (3) Semilunares (aórtica/pulmonar): abertas na sístole, fechadas na diástole. (4) AV (mitral/tricúspide): abertas na diástole, fechadas na sístole.</p>
+  </div>
+
+  <div class="pegadinha" style="margin-top:1rem; border-color:var(--danger);">
+    <p class="kicker" style="color:var(--danger);">Lembrete epidemiológico — Brasil</p>
+    <p style="margin-top:.4rem;">No Brasil, a <b>febre reumática</b> continua sendo uma das principais causas de valvopatia adquirida, especialmente <b>estenose mitral</b> e lesões mistas (mitral + aórtica). Pense nela sempre que houver histórico de faringite/artrite migratória na infância, paciente jovem com sopro mitral predominante, ou lesão valvar múltipla sem outra causa clara — principalmente em regiões com menor acesso a diagnóstico e tratamento precoce de faringoamigdalite estreptocócica.</p>
+  </div>
+</section>
+
+<section id="casos">
+  <h2 class="section-title"><span class="tag">N3 · Caso Clínico</span> Jogo do Detetive: descubra o sopro</h2>
+  <div class="card">
+    <p>Três pistas, na ordem que você colheria à beira do leito: <b>foco → sístole ou diástole → irradiação</b>. Vá respondendo e deixe as pistas te levarem ao diagnóstico — sem espiar a resposta antes de tentar.</p>
+  </div>
+
+  <div class="case-card">
+    <p class="kicker">Caso 1</p>
+    <div class="case-patient">Homem, <b>68 anos</b>, encaminhado por <b>síncope aos esforços</b> e episódios ocasionais de dor torácica. Você vai auscultar o coração dele agora.</div>
+
+    <div class="case-step">
+      <p class="case-q">1) Em qual foco o sopro é mais intenso?</p>
+      <div class="case-opts" data-case="c1-1">
+        <button class="case-opt" data-correct="false">Foco mitral (ápice)</button>
+        <button class="case-opt" data-correct="true">Foco aórtico (2º EIC direito)</button>
+        <button class="case-opt" data-correct="false">Foco tricúspide</button>
+      </div>
+      <div class="case-clue" data-clue="c1-1">🔍 Pista: sopro mais intenso no <b>2º espaço intercostal direito</b> — foco aórtico.</div>
+    </div>
+
+    <div class="case-step">
+      <p class="case-q">2) Palpando o pulso carotídeo enquanto ausculta, o som coincide com a subida do pulso. Sistólico ou diastólico?</p>
+      <div class="case-opts" data-case="c1-2">
+        <button class="case-opt" data-correct="true">Sistólico</button>
+        <button class="case-opt" data-correct="false">Diastólico</button>
+      </div>
+      <div class="case-clue" data-clue="c1-2">🔍 Pista: o som coincide com a subida do pulso → está entre <b>B1 e B2</b>, portanto <b>sistólico</b>.</div>
+    </div>
+
+    <div class="case-step">
+      <p class="case-q">3) Para onde esse sopro irradia?</p>
+      <div class="case-opts" data-case="c1-3">
+        <button class="case-opt" data-correct="false">Axila</button>
+        <button class="case-opt" data-correct="true">Carótidas</button>
+        <button class="case-opt" data-correct="false">Dorso</button>
+      </div>
+      <div class="case-clue" data-clue="c1-3">🔍 Pista: irradia para as <b>carótidas</b>. Ao palpar o pulso radial, você também nota que ele sobe devagar e é de pequena amplitude.</div>
+    </div>
+
+    <div class="case-step case-final">
+      <p class="case-q">🩺 Juntando as pistas — foco aórtico, sistólico, irradia p/ carótidas, pulso pequeno e lento — qual é o diagnóstico?</p>
+      <div class="case-opts" data-case="c1-final">
+        <button class="case-opt" data-correct="false">Insuficiência Mitral</button>
+        <button class="case-opt" data-correct="true">Estenose Aórtica</button>
+        <button class="case-opt" data-correct="false">Estenose Mitral</button>
+      </div>
+      <div class="case-verdict" data-verdict="c1-final"></div>
+    </div>
+  </div>
+
+  <div class="case-card">
+    <p class="kicker">Caso 2</p>
+    <div class="case-patient">Mulher, <b>54 anos</b>, fadiga progressiva aos esforços nos últimos meses, sem dor torácica. Você vai auscultar o coração dela agora.</div>
+
+    <div class="case-step">
+      <p class="case-q">1) Em qual foco o sopro é mais intenso?</p>
+      <div class="case-opts" data-case="c2-1">
+        <button class="case-opt" data-correct="true">Foco mitral (ápice)</button>
+        <button class="case-opt" data-correct="false">Foco aórtico</button>
+        <button class="case-opt" data-correct="false">Foco pulmonar</button>
+      </div>
+      <div class="case-clue" data-clue="c2-1">🔍 Pista: mais intenso no <b>ápice</b> (ictus cordis) — foco mitral.</div>
+    </div>
+
+    <div class="case-step">
+      <p class="case-q">2) O sopro tem a mesma intensidade do início ao fim, ocupando todo o intervalo entre B1 e B2. Sistólico ou diastólico?</p>
+      <div class="case-opts" data-case="c2-2">
+        <button class="case-opt" data-correct="true">Sistólico</button>
+        <button class="case-opt" data-correct="false">Diastólico</button>
+      </div>
+      <div class="case-clue" data-clue="c2-2">🔍 Pista: ocupa <b>toda a sístole</b> com intensidade constante — sopro holossistólico.</div>
+    </div>
+
+    <div class="case-step">
+      <p class="case-q">3) Para onde esse sopro irradia?</p>
+      <div class="case-opts" data-case="c2-3">
+        <button class="case-opt" data-correct="false">Carótidas</button>
+        <button class="case-opt" data-correct="true">Axila</button>
+        <button class="case-opt" data-correct="false">Epigástrio</button>
+      </div>
+      <div class="case-clue" data-clue="c2-3">🔍 Pista: irradia para a <b>axila esquerda</b>. Você ainda ausculta uma B3 discreta logo após B2.</div>
+    </div>
+
+    <div class="case-step case-final">
+      <p class="case-q">🩺 Juntando as pistas — foco mitral, holossistólico, irradia p/ axila, + B3 — qual é o diagnóstico?</p>
+      <div class="case-opts" data-case="c2-final">
+        <button class="case-opt" data-correct="false">Estenose Aórtica</button>
+        <button class="case-opt" data-correct="false">Estenose Mitral</button>
+        <button class="case-opt" data-correct="true">Insuficiência Mitral</button>
+      </div>
+      <div class="case-verdict" data-verdict="c2-final"></div>
+    </div>
+  </div>
+</section>
+
+<section id="flashcards">
+  <h2 class="section-title"><span class="tag">N2 · Flashcards</span> Vire e confira</h2>
+  <div class="grid2">
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">SISTÓLICO · DIAMANTE</div><h3 style="color:#0B2545;">Qual sopro é esse?</h3><p style="color:#5A6B85; font-size:.85rem;">Ejetivo, crescendo-decrescendo, irradia p/ carótidas.</p></div>
+        <div class="flip-back"><b>Estenose Aórtica</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Válvula deveria abrir e não abre direito.</p></div>
+      </div>
+    </div>
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">SISTÓLICO · HOLOSSISTÓLICO</div><h3 style="color:#0B2545;">Qual sopro é esse?</h3><p style="color:#5A6B85; font-size:.85rem;">Intensidade constante, irradia p/ axila.</p></div>
+        <div class="flip-back"><b>Insuficiência Mitral</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Válvula deveria fechar e vaza.</p></div>
+      </div>
+    </div>
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">DIASTÓLICO · ASPIRATIVO</div><h3 style="color:#0B2545;">Qual sopro é esse?</h3><p style="color:#5A6B85; font-size:.85rem;">Decrescente, logo após S2, borda esternal esquerda.</p></div>
+        <div class="flip-back"><b>Insuficiência Aórtica</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Válvula deveria fechar e vaza — pulso em martelo d'água.</p></div>
+      </div>
+    </div>
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">DIASTÓLICO · RUFLAR</div><h3 style="color:#0B2545;">Qual sopro é esse?</h3><p style="color:#5A6B85; font-size:.85rem;">Grave, no ápice, campânula, pode ter estalido de abertura.</p></div>
+        <div class="flip-back"><b>Estenose Mitral</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Válvula deveria abrir e não abre direito.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2 class="section-title"><span class="tag">N6 · Quiz</span> Teste o ouvido e o raciocínio</h2>
+  <div class="counter">Respondidas: <span id="quizCount">0</span>/4</div>
+  <div class="card">
+    <h3>1) Sopro sistólico em diamante, irradiando para carótidas:</h3>
+    <div class="quiz-opts" data-quiz="1">
+      <button class="quiz-opt" data-correct="false">Insuficiência mitral</button>
+      <button class="quiz-opt" data-correct="true">Estenose aórtica</button>
+      <button class="quiz-opt" data-correct="false">Estenose mitral</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="1"></div>
+  </div>
+  <div class="card">
+    <h3>2) Sopro holossistólico no ápice, irradiando para axila:</h3>
+    <div class="quiz-opts" data-quiz="2">
+      <button class="quiz-opt" data-correct="true">Insuficiência mitral</button>
+      <button class="quiz-opt" data-correct="false">Insuficiência aórtica</button>
+      <button class="quiz-opt" data-correct="false">Estenose aórtica</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="2"></div>
+  </div>
+  <div class="card">
+    <h3>3) Pulso amplo e célere (martelo d'água) acompanha:</h3>
+    <div class="quiz-opts" data-quiz="3">
+      <button class="quiz-opt" data-correct="false">Estenose mitral</button>
+      <button class="quiz-opt" data-correct="true">Insuficiência aórtica</button>
+      <button class="quiz-opt" data-correct="false">Insuficiência mitral</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="3"></div>
+  </div>
+  <div class="card">
+    <h3>4) Ruflar diastólico grave, no ápice, com possível estalido de abertura:</h3>
+    <div class="quiz-opts" data-quiz="4">
+      <button class="quiz-opt" data-correct="false">Insuficiência aórtica</button>
+      <button class="quiz-opt" data-correct="false">Estenose aórtica</button>
+      <button class="quiz-opt" data-correct="true">Estenose mitral</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="4"></div>
+  </div>
+</section>
+
+<section id="pegadinhas">
+  <h2 class="section-title"><span class="tag">N4 · Pegadinha</span> Armadilhas clássicas</h2>
+  <div class="pegadinha">
+    <p class="kicker">Armadilha clássica</p>
+    <p style="margin-top:.4rem;">Sopro intenso não significa necessariamente lesão mais grave. Em baixo débito cardíaco, uma lesão grave pode produzir sopro pouco intenso — a intensidade depende do fluxo, não só do grau de obstrução.</p>
+  </div>
+  <div class="pegadinha">
+    <p class="kicker">Armadilha clássica</p>
+    <p style="margin-top:.4rem;">Sopro diastólico deve ser considerado patológico até prova em contrário. Diferente de alguns sopros sistólicos inocentes, praticamente todo sopro diastólico indica anormalidade valvar ou estrutural real.</p>
+  </div>
+</section>
+
+<section id="revisao60">
+  <div class="review60">
+    <h2 class="section-title" style="color:#fff;"><span class="tag">N5</span> Revisão de 60 segundos</h2>
+    <ul>
+      <li><b>Estenose Aórtica</b>: sístole, diamante, foco aórtico, irradia p/ carótidas, pulso parvus et tardus</li>
+      <li><b>Insuficiência Mitral</b>: sístole, holossistólico, ápice, irradia p/ axila</li>
+      <li><b>Insuficiência Aórtica</b>: diástole, aspirativo decrescente, borda esternal esquerda/Erb, pulso em martelo d'água</li>
+      <li><b>Estenose Mitral</b>: diástole, ruflar grave, ápice, campânula, ± estalido de abertura</li>
+      <li>Estenose = problema pra <b>abrir</b> · Insuficiência = problema pra <b>fechar</b></li>
+      <li>Sopro diastólico = <b>sempre investigar</b>, quase nunca é inocente</li>
+    </ul>
+  </div>
+</section>
+
+<section id="espacada">
+  <h2 class="section-title"><span class="tag">N7</span> Revisão Espaçada</h2>
+  <div class="spaced-item"><input type="checkbox" data-spaced="m2_hoje"><label>Hoje: ouvir os 4 sopros em loop e nomear antes de olhar a ficha <span class="badge">D0</span></label></div>
+  <div class="spaced-item"><input type="checkbox" data-spaced="m2_amanha"><label>Amanhã: desenhar de memória o mapa mental final (4 quadrantes) <span class="badge">D1</span></label></div>
+  <div class="spaced-item"><input type="checkbox" data-spaced="m2_d7"><label>Em 7 dias: repetir o quiz sem consultar a revisão de 60s <span class="badge">D7</span></label></div>
+</section>
+
+<div class="modnav">
+  <span>Módulo 2 de 4 · Os 4 sopros clássicos</span>
+  <span>Próximo: Módulo 3 — B3, B4, hiperfonese, desdobramento de B2 e pulsos</span>
+</div>
+
+<footer>Atlas Mental Interativo · Semiologia Cardiovascular · Dr. André Rossanno</footer>
+
+<script>
+/* ================= AUDIO ENGINE ================= */
+let audioCtx = null;
+function getCtx(){
+  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function chestFilter(ctx){
+  const lp = ctx.createBiquadFilter();
+  lp.type='lowpass'; lp.frequency.value=900; lp.Q.value=0.5;
+  return lp;
+}
+function getMaster(ctx){
+  if(!ctx._masterBus){
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value=-26; comp.knee.value=18; comp.ratio.value=8; comp.attack.value=0.003; comp.release.value=0.2;
+    const gain = ctx.createGain();
+    gain.gain.value = 3.4;
+    gain.connect(comp).connect(ctx.destination);
+    ctx._masterBus = gain;
+  }
+  return ctx._masterBus;
+}
+function scheduleTone(ctx, tStart, freqs, dur, peakGain){
+  const bus = chestFilter(ctx); bus.connect(getMaster(ctx));
+  freqs.forEach((f,i)=>{
+    const osc = ctx.createOscillator(); const gain = ctx.createGain();
+    osc.type='sine';
+    osc.frequency.setValueAtTime(f*1.15, tStart);
+    osc.frequency.exponentialRampToValueAtTime(f, tStart+dur*0.3);
+    gain.gain.setValueAtTime(0.0001, tStart);
+    gain.gain.exponentialRampToValueAtTime(peakGain*(i===0?1:0.55), tStart+dur*0.1);
+    gain.gain.exponentialRampToValueAtTime(0.0001, tStart+dur);
+    osc.connect(gain).connect(bus);
+    osc.start(tStart); osc.stop(tStart+dur+0.02);
+  });
+  const knockDur = Math.min(0.03, dur*0.3);
+  const bufferSize = Math.ceil(ctx.sampleRate*knockDur);
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<bufferSize;i++) data[i]=(Math.random()*2-1)*(1-i/bufferSize);
+  const src = ctx.createBufferSource(); src.buffer=buffer;
+  const knockFilter = ctx.createBiquadFilter(); knockFilter.type='lowpass'; knockFilter.frequency.value=220;
+  const knockGain = ctx.createGain();
+  knockGain.gain.setValueAtTime(peakGain*0.7, tStart);
+  knockGain.gain.exponentialRampToValueAtTime(0.0001, tStart+knockDur);
+  src.connect(knockFilter).connect(knockGain).connect(bus);
+  src.start(tStart);
+}
+function scheduleNoise(ctx, tStart, dur, {freqLo, freqHi, shape, peakGain}){
+  const bufferSize = Math.ceil(ctx.sampleRate * dur);
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  let prev = 0;
+  for(let i=0;i<bufferSize;i++){
+    const white = Math.random()*2-1;
+    prev = (prev*0.92) + (white*0.08);
+    data[i] = prev*3.2;
+  }
+  const src = ctx.createBufferSource();
+  src.buffer = buffer;
+  const filter1 = ctx.createBiquadFilter();
+  filter1.type = 'bandpass'; filter1.frequency.value = freqLo + (freqHi-freqLo)*0.35; filter1.Q.value = 0.9;
+  const filter2 = ctx.createBiquadFilter();
+  filter2.type = 'bandpass'; filter2.frequency.value = freqLo + (freqHi-freqLo)*0.75; filter2.Q.value = 1.3;
+  const flutter = ctx.createOscillator();
+  flutter.type='sine'; flutter.frequency.value = 26 + Math.random()*10;
+  const flutterGain = ctx.createGain(); flutterGain.gain.value = 0.18;
+  const flutterOffset = ctx.createConstantSource(); flutterOffset.offset.value = 0.82;
+  const flutterBus = ctx.createGain();
+  flutter.connect(flutterGain).connect(flutterBus.gain);
+  flutterOffset.connect(flutterBus.gain);
+  const bus = chestFilter(ctx); bus.connect(getMaster(ctx));
+  const gain = ctx.createGain();
+  const steps = 32;
+  gain.gain.setValueAtTime(0.0001, tStart);
+  for(let i=0;i<=steps;i++){
+    const t = tStart + (dur*i/steps);
+    const x = i/steps;
+    let env;
+    if(shape==='crescendo-decrescendo'){ env = Math.pow(Math.sin(Math.PI*x), 1.4); }
+    else if(shape==='plateau'){ env = x<0.1 ? x/0.1 : (x>0.9 ? (1-x)/0.1 : 1); }
+    else if(shape==='decrescendo'){ env = Math.exp(-2.6*x); }
+    else if(shape==='decrescendo-crescendo'){ env = 0.3 + 0.7*Math.abs(Math.cos(Math.PI*x*0.9)); }
+    else { env = 1; }
+    gain.gain.linearRampToValueAtTime(Math.max(0.0001, peakGain*env), t);
+  }
+  gain.gain.linearRampToValueAtTime(0.0001, tStart+dur);
+  src.connect(filter1).connect(filter2).connect(flutterBus).connect(gain).connect(bus);
+  flutter.start(tStart); flutter.stop(tStart+dur+0.02);
+  flutterOffset.start(tStart); flutterOffset.stop(tStart+dur+0.02);
+  src.start(tStart);
+  src.stop(tStart+dur+0.02);
+}
+
+/* Cycle timing (~55bpm, bradicárdico) */
+const T = { s1dur:0.15, s2dur:0.12, systole:0.34, diastole:0.75 };
+
+/* ===== Continuous loop playback ===== */
+const loopState = {};
+function stopLoop(key){
+  const st = loopState[key]; if(!st) return;
+  st.playing=false;
+  if(st.timerId) clearInterval(st.timerId);
+  if(st.rafId) cancelAnimationFrame(st.rafId);
+}
+function toggleLoop(key, buildEvents, waveEl, phaseEl, btn){
+  if(loopState[key] && loopState[key].playing){
+    stopLoop(key);
+    btn.classList.remove('playing');
+    btn.textContent = btn.dataset.origText || btn.textContent;
+    if(phaseEl) phaseEl.innerHTML='Parado. Toque para ouvir novamente.';
+    if(waveEl) [...waveEl.children].forEach(b=>b.classList.remove('active'));
+    return;
+  }
+  const ctx = getCtx();
+  const events = buildEvents();
+  const cycleDur = events.reduce((m,e)=>Math.max(m, e.at+e.dur), 0) + 0.15;
+  buildWave(waveEl, events, cycleDur);
+  btn.dataset.origText = btn.dataset.origText || btn.textContent;
+  btn.classList.add('playing'); btn.textContent='⏹ Parar';
+  const st = { playing:true, nextTime: ctx.currentTime+0.06, cycleDur, loopStartCtxTime: ctx.currentTime+0.06 };
+  loopState[key]=st;
+  function scheduleAhead(){
+    if(!st.playing) return;
+    while(st.nextTime < ctx.currentTime+1.0){
+      events.forEach(e=>{
+        const start = st.nextTime+e.at;
+        if(e.type==='tone') scheduleTone(ctx, start, e.freqs, e.dur, e.gain||0.9);
+        if(e.type==='noise') scheduleNoise(ctx, start, e.dur, e.opts);
+      });
+      st.nextTime += cycleDur;
+    }
+  }
+  scheduleAhead();
+  st.timerId = setInterval(scheduleAhead, 150);
+  function tick(){
+    if(!st.playing) return;
+    const elapsed = (ctx.currentTime - st.loopStartCtxTime) % cycleDur;
+    const current = events.find(e=> elapsed>=e.at && elapsed<=e.at+e.dur);
+    if(phaseEl) phaseEl.innerHTML = current ? ('Fase: <b>'+current.label+'</b>') : 'Fase: <b>silêncio</b>';
+    if(waveEl){
+      [...waveEl.children].forEach(b=>{
+        const t = parseFloat(b.dataset.t);
+        b.classList.toggle('active', Math.abs(t-elapsed) < cycleDur/60);
+      });
+    }
+    st.rafId = requestAnimationFrame(tick);
+  }
+  tick();
+}
+function buildWave(waveEl, events, totalDur){
+  if(!waveEl) return;
+  waveEl.innerHTML='';
+  const nBars = 60;
+  for(let i=0;i<nBars;i++){
+    const bar = document.createElement('i');
+    const tRel = (i/nBars)*totalDur;
+    let h=4;
+    events.forEach(e=>{
+      if(tRel>=e.at && tRel<=e.at+e.dur){
+        const localX = (tRel-e.at)/e.dur;
+        const amp = e.type==='tone' ? Math.sin(Math.PI*Math.min(1,localX*3)) : (0.4+0.6*Math.sin(Math.PI*localX));
+        h = Math.max(h, 6+amp*26);
+      }
+    });
+    bar.style.height=h+'px'; bar.dataset.t=tRel.toFixed(3);
+    waveEl.appendChild(bar);
+  }
+}
+
+/* ===== Sound definitions (one cycle each, looped) ===== */
+const SOUNDS = {
+  ea: ()=>{
+    let ev=[], t=0;
+    ev.push({type:'tone', freqs:[45,90], dur:T.s1dur, at:t, label:'B1'});
+    const murmurStart = t+0.10;
+    ev.push({type:'noise', at:murmurStart, dur:T.systole-0.16, label:'Sopro sistólico (crescendo-decrescendo)', opts:{freqLo:200, freqHi:500, shape:'crescendo-decrescendo', peakGain:0.55}});
+    t+=T.systole;
+    ev.push({type:'tone', freqs:[55,110], dur:T.s2dur, at:t, label:'B2'}); t+=T.diastole;
+    return ev;
+  },
+  im: ()=>{
+    let ev=[], t=0;
+    ev.push({type:'tone', freqs:[45,90], dur:T.s1dur, at:t, label:'B1'});
+    ev.push({type:'noise', at:t+0.03, dur:T.systole-0.05, label:'Sopro holossistólico (platô)', opts:{freqLo:300,freqHi:700, shape:'plateau', peakGain:0.5}});
+    t+=T.systole;
+    ev.push({type:'tone', freqs:[55,110], dur:T.s2dur, at:t, label:'B2'}); t+=T.diastole;
+    return ev;
+  },
+  ia: ()=>{
+    let ev=[], t=0;
+    ev.push({type:'tone', freqs:[45,90], dur:T.s1dur, at:t, label:'B1'}); t+=T.systole;
+    ev.push({type:'tone', freqs:[55,110], dur:T.s2dur, at:t, label:'B2'});
+    ev.push({type:'noise', at:t+0.10, dur:T.diastole-0.22, label:'Sopro diastólico (decrescendo agudo)', opts:{freqLo:400,freqHi:900, shape:'decrescendo', peakGain:0.45}});
+    t+=T.diastole;
+    return ev;
+  },
+  em: ()=>{
+    let ev=[], t=0;
+    ev.push({type:'tone', freqs:[45,90], dur:T.s1dur, at:t, label:'B1'}); t+=T.systole;
+    ev.push({type:'tone', freqs:[55,110], dur:T.s2dur, at:t, label:'B2'});
+    const snapT = t+0.12;
+    ev.push({type:'tone', freqs:[150], dur:0.05, at:snapT, label:'Estalido de abertura', gain:0.5});
+    ev.push({type:'noise', at:snapT+0.06, dur:T.diastole-0.28, label:'Ruflar diastólico (grave)', opts:{freqLo:80,freqHi:220, shape:'decrescendo-crescendo', peakGain:0.55}});
+    t+=T.diastole;
+    return ev;
+  }
+};
+
+document.querySelectorAll('.play-btn[data-sound]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const key = btn.dataset.sound;
+    const waveEl = btn.closest('.murmur-grid').querySelector('[data-wave="'+key+'"]');
+    const phaseEl = btn.closest('.murmur-grid').querySelector('[data-phase="'+key+'"]');
+    toggleLoop(key, SOUNDS[key], waveEl, phaseEl, btn);
+  });
+});
+
+/* ================= CASOS CLÍNICOS (DETETIVE) ================= */
+document.querySelectorAll('.case-step .case-opts').forEach(group=>{
+  const caseId = group.dataset.case;
+  const isFinal = caseId.endsWith('-final');
+  const clueBox = document.querySelector('.case-clue[data-clue="'+caseId+'"]');
+  const verdictBox = document.querySelector('.case-verdict[data-verdict="'+caseId+'"]');
+  let answered=false;
+  group.querySelectorAll('.case-opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      if(answered) return;
+      answered=true;
+      const isCorrect = opt.dataset.correct==='true';
+      opt.classList.add(isCorrect?'correct':'wrong');
+      group.querySelectorAll('.case-opt').forEach(o=>{ if(o.dataset.correct==='true') o.classList.add('correct'); });
+      if(clueBox){ clueBox.classList.add('show'); }
+      if(verdictBox){
+        const correctLabel = [...group.querySelectorAll('.case-opt')].find(o=>o.dataset.correct==='true').textContent;
+        verdictBox.textContent = isCorrect
+          ? ('✅ Isso mesmo! O diagnóstico é ' + correctLabel + '.')
+          : ('❌ Não é bem isso — o diagnóstico correto é ' + correctLabel + '. Releia as 3 pistas acima e veja como elas se encaixam.');
+        verdictBox.classList.add('show', isCorrect?'correct':'wrong');
+      }
+    });
+  });
+});
+
+/* ================= FLASHCARDS ================= */
+document.querySelectorAll('[data-flip]').forEach(card=>{
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+});
+
+/* ================= QUIZ ================= */
+let answeredCount = 0;
+document.querySelectorAll('.quiz-opts').forEach(group=>{
+  const qid = group.dataset.quiz;
+  const feedback = document.querySelector('[data-feedback="'+qid+'"]');
+  let answered=false;
+  group.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      if(answered) return;
+      answered=true; answeredCount++;
+      document.getElementById('quizCount').textContent = answeredCount;
+      const isCorrect = opt.dataset.correct==='true';
+      opt.classList.add(isCorrect?'correct':'wrong');
+      group.querySelectorAll('.quiz-opt').forEach(o=>{ if(o.dataset.correct==='true') o.classList.add('correct'); });
+      feedback.textContent = isCorrect ? 'Correto!' : 'Quase — revise a ficha acima.';
+      feedback.classList.add('show', isCorrect?'correct':'wrong');
+    });
+  });
+});
+
+/* ================= SPACED REVIEW ================= */
+document.querySelectorAll('[data-spaced]').forEach(chk=>{
+  const key = 'semio2_spaced_'+chk.dataset.spaced;
+  const item = chk.closest('.spaced-item');
+  if(localStorage.getItem(key)==='1'){ chk.checked=true; item.classList.add('done'); }
+  chk.addEventListener('change', ()=>{
+    localStorage.setItem(key, chk.checked?'1':'0');
+    item.classList.toggle('done', chk.checked);
+  });
+});
+</script>
+</body>
+</html>
