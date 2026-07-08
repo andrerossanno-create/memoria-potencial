@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semiologia Cardiovascular · Módulo 1 | Atlas Mental Interativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2545; --navy-deep:#071a33; --teal:#1282A2; --gold:#F4B942;
+  --magenta:#C23B6B; --danger:#E14B4B; --safe:#2E9E6D;
+  --card:#F7F9FC; --ink:#0B2545; --muted:#5A6B85;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Nunito','Trebuchet MS',Arial,sans-serif; background:var(--navy-deep); color:#e9eef7; line-height:1.5; -webkit-font-smoothing:antialiased;}
+.kicker{font-family:'IBM Plex Mono',monospace; letter-spacing:.08em; text-transform:uppercase; font-size:.72rem; color:var(--gold);}
+
+nav{position:sticky; top:0; z-index:50; background:rgba(7,26,51,.94); backdrop-filter:blur(8px); border-bottom:1px solid rgba(244,185,66,.25); display:flex; align-items:center; justify-content:space-between; padding:.7rem 1.2rem; flex-wrap:wrap; gap:.4rem;}
+nav .brand{font-weight:800; font-size:1rem;}
+nav .brand span{color:var(--gold);}
+nav ul{list-style:none; display:flex; gap:.9rem; flex-wrap:wrap;}
+nav a{font-size:.8rem; font-weight:700; text-decoration:none; color:#cfe0f5; padding:.3rem .5rem; border-radius:8px;}
+nav a:hover{background:rgba(244,185,66,.12); color:var(--gold);}
+
+.hero{padding:3rem 1.2rem 2rem; text-align:center; background:radial-gradient(circle at 20% 20%, rgba(18,130,162,.35), transparent 55%), radial-gradient(circle at 80% 0%, rgba(194,59,107,.25), transparent 50%);}
+.hero h1{font-size:clamp(1.6rem,4vw,2.5rem); font-weight:900; margin:.5rem 0 .6rem;}
+.hero h1 em{font-style:normal; color:var(--gold);}
+.hero p.lead{max-width:640px; margin:0 auto; color:#c7d6ec; font-size:1rem;}
+
+section{max-width:940px; margin:0 auto; padding:2.3rem 1.2rem;}
+h2.section-title{font-size:1.35rem; font-weight:800; margin-bottom:.9rem; display:flex; align-items:center; gap:.5rem;}
+h2.section-title .tag{font-family:'IBM Plex Mono',monospace; font-size:.65rem; background:var(--teal); color:#fff; padding:.2rem .5rem; border-radius:6px;}
+
+.philosophy{background:linear-gradient(135deg, rgba(18,130,162,.14), rgba(244,185,66,.06)); border-left:3px solid var(--gold); border-radius:12px; padding:1.4rem 1.6rem;}
+.philosophy p{font-size:1rem; color:#dbe7f7; margin-bottom:.8rem;}
+.signature{font-family:'Dancing Script',cursive; font-size:1.4rem; color:var(--gold); text-align:right;}
+
+.card{background:var(--card); color:var(--ink); border-radius:14px; padding:1.3rem 1.4rem; margin-bottom:1rem; box-shadow:0 6px 18px rgba(0,0,0,.25);}
+.card h3{font-size:1.05rem; font-weight:800; margin-bottom:.4rem; color:var(--navy);}
+.card p{font-size:.92rem; color:var(--muted); margin-bottom:.6rem;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem;}
+@media(max-width:640px){.grid2{grid-template-columns:1fr;} .grid4{grid-template-columns:1fr 1fr;}}
+
+/* TUM-TA visual */
+.tumta{display:grid; grid-template-columns:1fr auto 1fr; gap:1rem; align-items:center; margin:1rem 0;}
+@media(max-width:640px){.tumta{grid-template-columns:1fr;}}
+.soundbox{border-radius:16px; padding:1.2rem; text-align:center; border:2px solid;}
+.soundbox.tum{background:rgba(225,75,75,.1); border-color:rgba(225,75,75,.4); color:#fff;}
+.soundbox.ta{background:rgba(18,130,162,.15); border-color:rgba(18,130,162,.5); color:#fff;}
+.soundbox strong{font-size:2.4rem; display:block; color:var(--gold);}
+.tumta .arrow{font-size:1.8rem; font-weight:900; color:var(--gold); text-align:center;}
+
+/* valve state table */
+.valves{display:grid; grid-template-columns:repeat(4,1fr); gap:.6rem; margin:.8rem 0;}
+@media(max-width:640px){.valves{grid-template-columns:1fr 1fr;}}
+.valve{text-align:center; padding:.8rem .5rem; border:1px solid #d9e4ec; border-radius:12px; background:#fff;}
+.valve b{font-size:.86rem;}
+.open{color:var(--safe); font-weight:900; font-size:.8rem;}
+.closed{color:var(--danger); font-weight:900; font-size:.8rem;}
+
+.rule-box{background:linear-gradient(135deg,var(--navy),#123a63); border:1px solid var(--gold); color:#fff; padding:1.1rem 1.3rem; border-radius:14px; font-size:1rem; font-weight:800; margin:1rem 0;}
+
+/* PLAY BUTTON */
+.play-btn{display:inline-flex; align-items:center; gap:.5rem; background:var(--teal); color:#fff; border:none; border-radius:999px; padding:.55rem 1.1rem; font-weight:800; font-size:.86rem; cursor:pointer; transition:transform .12s ease, background .2s ease;}
+.play-btn:hover{background:#0e6b86; transform:translateY(-1px);}
+.play-btn.playing{background:var(--gold); color:var(--navy);}
+.phase-readout{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--muted); min-height:1.1rem; margin-top:.5rem;}
+.phase-readout b{color:var(--magenta);}
+.wave{display:flex; align-items:center; gap:2px; height:32px; margin:.6rem 0; overflow:hidden;}
+.wave i{display:inline-block; width:4px; border-radius:2px; background:#cdd8e8; transition:background .15s;}
+.wave i.active{background:var(--magenta);}
+
+/* APARTAMENTO word */
+.bigword{font-size:clamp(1.6rem,6vw,3rem); font-weight:900; text-align:center; letter-spacing:.05em; color:var(--gold); margin:.8rem 0;}
+.bigword span.hot{color:#fff; text-decoration:underline; text-decoration-color:var(--magenta); text-decoration-thickness:3px;}
+
+.focusgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:.8rem;}
+@media(max-width:640px){.focusgrid{grid-template-columns:1fr 1fr;}}
+.focus{border-radius:14px; padding:1rem; color:#fff; min-height:150px;}
+.focus .letter{font-size:2rem; font-weight:900; line-height:1;}
+.focus.a{background:#A7322B;} .focus.p{background:#2176AE;} .focus.t{background:#6D4AA5;} .focus.m{background:#C96F1A;}
+.focus p{color:rgba(255,255,255,.9); font-size:.82rem; margin-top:.3rem;}
+
+/* FLASHCARD FLIP */
+.flip-card{background:transparent; perspective:1000px; height:170px; cursor:pointer; margin-bottom:1rem;}
+.flip-inner{position:relative; width:100%; height:100%; transition:transform .5s; transform-style:preserve-3d;}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+.flip-front,.flip-back{position:absolute; width:100%; height:100%; backface-visibility:hidden; border-radius:14px; padding:1.1rem; display:flex; flex-direction:column; justify-content:center;}
+.flip-front{background:var(--card); color:var(--ink); box-shadow:0 6px 16px rgba(0,0,0,.25);}
+.flip-back{background:var(--navy); color:#fff; transform:rotateY(180deg); border:1px solid var(--gold);}
+.flip-front .kicker2{font-family:'IBM Plex Mono',monospace; font-size:.66rem; color:var(--teal); margin-bottom:.3rem;}
+
+/* QUIZ */
+.quiz-opt{display:block; width:100%; text-align:left; background:#eef2f8; border:1px solid #d6e0ee; border-radius:10px; padding:.6rem .9rem; margin-bottom:.5rem; cursor:pointer; font-family:'Nunito'; font-size:.9rem; color:var(--ink);}
+.quiz-opt:hover{border-color:var(--teal);}
+.quiz-opt.correct{background:rgba(46,158,109,.18); border-color:var(--safe);}
+.quiz-opt.wrong{background:rgba(225,75,75,.18); border-color:var(--danger);}
+.quiz-feedback{font-size:.86rem; margin-top:.5rem; padding:.6rem .8rem; border-radius:8px; display:none;}
+.quiz-feedback.show{display:block;}
+.quiz-feedback.correct{background:rgba(46,158,109,.15); color:#1d6b49;}
+.quiz-feedback.wrong{background:rgba(225,75,75,.15); color:#a12f2f;}
+.counter{font-family:'IBM Plex Mono',monospace; font-size:.74rem; color:var(--gold); margin-bottom:.5rem;}
+
+.pegadinha{border:1px dashed var(--gold); background:rgba(244,185,66,.08); border-radius:12px; padding:1rem 1.2rem; margin-bottom:.9rem;}
+
+.review60{background:var(--navy); border:1px solid var(--teal); border-radius:14px; padding:1.2rem 1.4rem;}
+.review60 ul{margin:.6rem 0 0 1.1rem; font-size:.9rem; color:#dbe7f7;}
+.review60 li{margin-bottom:.4rem;}
+
+.spaced-item{display:flex; align-items:center; gap:.6rem; background:var(--card); color:var(--ink); border-radius:10px; padding:.65rem .9rem; margin-bottom:.5rem;}
+.spaced-item input{width:18px; height:18px;}
+.spaced-item.done label{text-decoration:line-through; color:var(--muted);}
+.badge{font-family:'IBM Plex Mono',monospace; font-size:.65rem; background:var(--teal); color:#fff; padding:.15rem .4rem; border-radius:5px;}
+
+.modnav{display:flex; justify-content:space-between; max-width:940px; margin:0 auto; padding:0 1.2rem 1rem; font-size:.82rem; color:var(--muted);}
+footer{text-align:center; padding:2rem 1rem 3rem; color:#7f93b4; font-size:.82rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Atlas Mental <span>Interativo</span></div>
+  <ul>
+    <li><a href="#identificacao">Sístole × Diástole</a></li>
+    <li><a href="#intensidade">Escala de Levine</a></li>
+    <li><a href="#tumta">Ciclo (TUM-TÁ)</a>
+    <li><a href="#marcozero">Ângulo de Louis</a></li>
+    <li><a href="#projecao">Projeção Sonora</a></li>
+    <li><a href="#focos">Focos</a></li>
+    <li><a href="#regra">Regra de Ouro</a></li>
+    <li><a href="#flashcards">Flashcards</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#revisao60">Revisão 60s</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="kicker">Semiologia Cardiovascular · Módulo 1 de 4</p>
+  <h1>Antes do sopro, <em>o ciclo</em></h1>
+  <p class="lead">Nenhum sopro faz sentido sem antes entender quando cada válvula deveria abrir e quando deveria fechar. Este módulo constrói esse mapa mecânico — a base de tudo o que vem depois.</p>
+</div>
+
+<section class="philosophy">
+  <p>Ninguém deveria aprender ausculta decorando "estenose aórtica: sopro sistólico em foco aórtico". Isso é decorar a resposta sem entender a pergunta. A pergunta certa é sempre a mesma: <b>o que o coração estava tentando fazer quando esse som apareceu?</b></p>
+  <p>Antes de qualquer valvopatia, o aluno precisa saber de cor — no corpo, não só na cabeça — quando cada porta do coração deveria estar aberta e quando deveria estar fechada. É esse mapa que transforma um som confuso em um raciocínio.</p>
+  <p class="signature">— Dr. André Rossanno</p>
+</section>
+
+<section id="tumta">
+  <h2 class="section-title"><span class="tag">N1 · Núcleo</span> O ciclo cardíaco: TUM-TÁ</h2>
+
+  <div class="card">
+    <h3>B1/B2 ou S1/S2? Os dois estão certos</h3>
+    <p>S1 e S2 vêm da nomenclatura internacional em inglês: <b>S</b> de <i>sound</i> (som) — S1 é o primeiro som cardíaco (formado principalmente por M1 + T1), S2 é o segundo (formado por A2 + P2), e depois vêm S3 e S4. Em português, o mais intuitivo é B1/B2 ("bulha"), e é assim que a maioria dos livros e professores brasileiros ensina. Mas artigos científicos, diretrizes e fonocardiogramas internacionais quase sempre usam S1/S2, por padronização.</p>
+    <p>Ou seja: <b>nenhuma nomenclatura está errada</b> — só são convenções diferentes para a mesma coisa. Neste Atlas usamos o som didático (TUM-TÁ) para fixar o ritmo, mas você vai encontrar as três formas na literatura.</p>
+    <table style="width:100%; border-collapse:collapse; margin-top:.8rem; font-size:.88rem;">
+      <thead>
+        <tr style="background:#eef2f8;">
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:2px solid #d6e0ee; color:var(--navy);">Português</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:2px solid #d6e0ee; color:var(--navy);">Internacional</th>
+          <th style="text-align:left; padding:.5rem .6rem; border-bottom:2px solid #d6e0ee; color:var(--navy);">Seu som didático</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">B1</td><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">S1</td><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">TUM</td></tr>
+        <tr><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">B2</td><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">S2</td><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">TÁ</td></tr>
+        <tr><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">B3</td><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">S3</td><td style="padding:.5rem .6rem; border-bottom:1px solid #e4ebf3;">terceira bulha</td></tr>
+        <tr><td style="padding:.5rem .6rem;">B4</td><td style="padding:.5rem .6rem;">S4</td><td style="padding:.5rem .6rem;">quarta bulha</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Ouça o ritmo antes de decorar qualquer doença</h3>
+    <p>B1 ("TUM") marca o início da sístole. B2 ("TÁ") marca o início da diástole. Toque e ouça o ciclo em loop — repare no espaço curto entre TUM e TÁ (sístole) e no espaço longo entre TÁ e o próximo TUM (diástole).</p>
+    <button class="play-btn" data-sound="normal">▶ Ouvir ciclo TUM-TÁ</button>
+    <div class="wave" data-wave="normal"></div>
+    <div class="phase-readout" data-phase="normal">Pronto.</div>
+  </div>
+
+  <div class="tumta">
+    <div class="soundbox tum">
+      <strong>TUM</strong>
+      <div><b>M</b>itral + <b>T</b>ricúspide fecham</div>
+      <p style="color:#cfe0f5; font-size:.85rem; margin-top:.4rem;">Início da sístole ventricular. As portas de entrada fecham antes da ejeção.</p>
+    </div>
+    <div class="arrow">→ sístole →</div>
+    <div class="soundbox ta">
+      <strong>TÁ</strong>
+      <div><b>A</b>órtica + <b>P</b>ulmonar fecham</div>
+      <p style="color:#cfe0f5; font-size:.85rem; margin-top:.4rem;">Fim da sístole, início da diástole. As portas de saída se fecham quando a ejeção termina.</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Entre TUM e TÁ: SÍSTOLE — "saída"</h3>
+      <p>O ventrículo contrai e ejeta sangue.</p>
+      <div class="valves">
+        <div class="valve"><b>Mitral</b><br><span class="closed">FECHADA</span></div>
+        <div class="valve"><b>Tricúspide</b><br><span class="closed">FECHADA</span></div>
+        <div class="valve"><b>Aórtica</b><br><span class="open">ABERTA</span></div>
+        <div class="valve"><b>Pulmonar</b><br><span class="open">ABERTA</span></div>
+      </div>
+      <p style="margin-top:.5rem;">Imagem mental: as portas de entrada fecham, as portas de saída abrem.</p>
+    </div>
+    <div class="card">
+      <h3>Entre TÁ e o próximo TUM: DIÁSTOLE — "descida"</h3>
+      <p>O ventrículo relaxa e se enche.</p>
+      <div class="valves">
+        <div class="valve"><b>Mitral</b><br><span class="open">ABERTA</span></div>
+        <div class="valve"><b>Tricúspide</b><br><span class="open">ABERTA</span></div>
+        <div class="valve"><b>Aórtica</b><br><span class="closed">FECHADA</span></div>
+        <div class="valve"><b>Pulmonar</b><br><span class="closed">FECHADA</span></div>
+      </div>
+      <p style="margin-top:.5rem;">Imagem mental: as portas de saída fecham, as portas de entrada abrem.</p>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    Regra de ouro: <u>Estenose</u> faz sopro quando a válvula deveria estar <b>ABERTA</b>. <u>Insuficiência</u> faz sopro quando a válvula deveria estar <b>FECHADA</b>.
+  </div>
+
+  <div class="card">
+    <h3>Como confirmar sístole à beira do leito</h3>
+    <p>Palpe o pulso carotídeo enquanto ausculta. O som que coincide com a subida do pulso está dentro da sístole — é o intervalo entre B1 e B2. Esse truque resolve a maior dúvida inicial do aluno: "isso que eu ouvi foi antes ou depois de quê?"</p>
+  </div>
+</section>
+
+<section id="identificacao">
+  <h2 class="section-title"><span class="tag">Introdução</span> Antes de tudo: como saber se é sístole ou diástole</h2>
+  <div class="card">
+    <h3>O truque mais simples de todos: use o pulso como cronômetro</h3>
+    <p>Ausculte enquanto palpa o pulso carotídeo (ou o ictus cordis) com a outra mão. O pulso arterial é gerado pela ejeção ventricular — ou seja, ele sobe <b>durante a sístole</b>. Qualquer som que coincida com a subida do pulso está entre B1 e B2 (sístole). Qualquer som que apareça depois da subida do pulso, antes do próximo batimento, está na diástole.</p>
+    <p>Fisiologicamente funciona assim: a sístole é a fase de <b>ejeção</b> — o ventrículo contrai, as válvulas semilunares (aórtica/pulmonar) abrem, e o sangue é lançado para as artérias, gerando a onda de pulso que você sente no pescoço ou no punho. A diástole é a fase de <b>enchimento</b> — o ventrículo relaxa, as válvulas atrioventriculares (mitral/tricúspide) abrem, e não há ejeção, logo não há pulso arterial correspondente naquele instante.</p>
+  </div>
+  <div class="rule-box">Regra prática: som + subida do pulso = sístole. Som sem pulso correspondente, no intervalo maior = diástole.</div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Manobra de Pachón — para os focos do ápice (mitral)</h3>
+      <p>Peça ao paciente para se deitar em <b>decúbito lateral esquerdo</b>, com o braço esquerdo atrás da cabeça. Isso aproxima o ápice do coração da parede torácica, tornando os sons mitrais — sopro diastólico da estenose mitral, B3, B4, reforço pré-sistólico — muito mais audíveis. Use a <b>campânula</b>, apoiada de leve.</p>
+    </div>
+    <div class="card">
+      <h3>Anteroflexão — para os focos da base (aórtico/pulmonar)</h3>
+      <p>Peça ao paciente para sentar, inclinar levemente o tronco para frente e prender a respiração em <b>expiração</b>. Isso aproxima a aorta e a via de saída do VE da parede torácica, facilitando a ausculta de sopros aórticos (como a insuficiência aórtica) e do atrito pericárdico. Use o <b>diafragma</b>.</p>
+    </div>
+  </div>
+
+  <div class="pegadinha">
+    <p class="kicker">Armadilha clássica</p>
+    <p style="margin-top:.4rem;">Não confunda a manobra de Pachón com a de Rivero-Carvallo. Pachón é <b>posicionamento</b> (decúbito lateral esquerdo) para aproximar o ápice — usada para sons mitrais. Rivero-Carvallo é uma manobra <b>respiratória</b> (apneia inspiratória) usada para diferenciar sopros de origem direita (tricúspide) dos de origem esquerda (mitral) — isso fica pro módulo de manobras mais à frente.</p>
+  </div>
+</section>
+
+<section id="intensidade">
+  <h2 class="section-title"><span class="tag">Introdução</span> Quantificando o sopro: a Escala de Levine</h2>
+  <div class="card">
+    <p>Depois de saber <b>quando</b> o sopro ocorre, você precisa saber <b>quão intenso</b> ele é. A escala clássica, descrita por Levine em 1933, vai de <b>1+/6+ a 6+/6+</b> para sopros sistólicos.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>1+ a 3+ (sem frêmito)</h3>
+      <p><b>Grau 1:</b> muito tênue — precisa de vários ciclos cardíacos, com atenção, pra perceber.</p>
+      <p><b>Grau 2:</b> leve, mas prontamente identificável na ausculta.</p>
+      <p><b>Grau 3:</b> moderado a alto, geralmente com irradiação já detectável, ainda sem frêmito.</p>
+    </div>
+    <div class="card">
+      <h3>4+ a 6+ (com frêmito)</h3>
+      <p><b>Grau 4:</b> intenso, acompanhado de frêmito (sopro palpável) no foco de maior intensidade.</p>
+      <p><b>Grau 5:</b> muito intenso, audível mesmo com o estetoscópio apenas levemente encostado na pele.</p>
+      <p><b>Grau 6:</b> intensíssimo, audível mesmo com o estetoscópio já afastado da pele.</p>
+    </div>
+  </div>
+  <div class="rule-box">Sopro ≥ 3+/6+ já é considerado sugestivo de origem orgânica/patológica e deve ser investigado — principalmente se vier acompanhado de frêmito (a partir do grau 4), irradiação, ou qualquer alteração de bulhas.</div>
+  <div class="card">
+    <h3>E os sopros diastólicos?</h3>
+    <p>Diastólicos são classicamente graduados numa escala menor, de <b>1+ a 4+</b> (embora algumas escolas usem 1 a 6, igual ao sistólico). Mas isso quase não importa na prática: <b>qualquer sopro diastólico é considerado patológico</b>, independente do grau — não existe "sopro diastólico inocente".</p>
+  </div>
+  <div class="pegadinha">
+    <p class="kicker">Armadilha clássica</p>
+    <p style="margin-top:.4rem;">Sopro inocente/funcional costuma ser sistólico, grau 1–2/6, sem frêmito, sem irradiação e sem qualquer alteração de bulhas ou sintomas associados. Basta UM desses critérios fugir do esperado (grau ≥3, frêmito, irradiação, ser diastólico) para a suspeita de organicidade subir — e a investigação (ecocardiograma) se tornar mandatória.</p>
+  </div>
+</section>
+
+<section id="marcozero">
+  <h2 class="section-title"><span class="tag">Técnica</span> O Marco Zero: Ângulo de Louis</h2>
+  <div class="card">
+    <h3>Antes de procurar qualquer foco, ache este ponto</h3>
+    <p><b>1. Palpar:</b> localize a fúrcula esternal e desça até sentir uma proeminência óssea transversal no esterno — o Ângulo de Louis.</p>
+    <p><b>2. Deslizar:</b> deslize os dedos lateralmente (direita ou esquerda). A estrutura óssea imediatamente conectada ao ângulo é a 2ª costela.</p>
+    <p><b>3. Mergulhar:</b> desça o dedo logo abaixo da 2ª costela. Você encontrou o 2º espaço intercostal (EIC).</p>
+  </div>
+  <div class="rule-box">Este é o ponto de partida absoluto. A partir do 2º EIC você conta e mapeia qualquer outro espaço intercostal com precisão — é daqui que nascem os focos aórtico e pulmonar, e é a referência pra descer até Erb, tricúspide e mitral.</div>
+</section>
+
+<section id="projecao">
+  <h2 class="section-title"><span class="tag">Fisiologia</span> A Engenharia da Projeção Sonora</h2>
+  <div class="card">
+    <p>Os focos de ausculta <b>não correspondem</b> à posição anatômica exata das válvulas. O som viaja em meio líquido — por isso escutamos na direção do fluxo sanguíneo ejetado pela válvula, não em cima dela.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>O Paradoxo Mitral</h3>
+      <p>A válvula mitral está anatomicamente mais alta no tórax, mas o fluxo é direcionado para a ponta do ventrículo esquerdo — por isso o som projeta no ápice (ictus cordis), não onde a válvula realmente fica.</p>
+    </div>
+    <div class="card">
+      <h3>O Caminho Aórtico</h3>
+      <p>O fluxo do ventrículo esquerdo cruza para a direita, em direção à aorta ascendente — por isso o som projeta no 2º EIC direito e irradia para as carótidas, mesmo a válvula estando entre os ventrículos.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>O Duelo das Bulhas: a gênese do som</h3>
+    <p>O som cardíaco não é o fluxo em si — é o impacto do fechamento valvar (o "estalo" da porta batendo), transmitido pelas estruturas vizinhas até a parede torácica. É por isso que sintetizamos B1 e B2 como um "thump" grave seguido de um pequeno transiente percussivo, e não como um simples bipe.</p>
+  </div>
+</section>
+
+<section id="focos">
+  <h2 class="section-title"><span class="tag">N3 · Mapa corporal</span> Focos de ausculta: APARTAMENTO</h2>
+  <div class="card">
+    <p>O foco é onde o som transmitido pelo fluxo costuma ser melhor ouvido — não necessariamente onde a válvula está anatomicamente. A palavra <b>APARTAMENTO</b> guarda as 4 letras-chave na ordem em que o estetoscópio percorre o tórax (o "caminho em Z"): Aórtico → Pulmonar → (Erb) → Tricúspide → Mitral.</p>
+  </div>
+  <div class="bigword"><span class="hot">A</span><span class="hot">P</span><span class="hot">A</span>R<span class="hot">T</span>A<span class="hot">M</span>ENTO</div>
+  <p style="text-align:center; color:#c7d6ec; font-size:.85rem; margin-top:-.4rem; margin-bottom:1rem;">A·P·A·T·M → Aórtico · Pulmonar · Aórtico acessório (Erb) · Tricúspide · Mitral</p>
+  <div class="focusgrid">
+    <div class="focus a"><div class="letter">A</div><h3 style="margin-top:.3rem;">Aórtico</h3><p>2º espaço intercostal direito, borda esternal.</p><p><b>Pista:</b> irradia para carótidas.</p></div>
+    <div class="focus p"><div class="letter">P</div><h3 style="margin-top:.3rem;">Pulmonar</h3><p>2º espaço intercostal esquerdo.</p><p><b>Pista:</b> sons da base esquerda.</p></div>
+    <div class="focus t"><div class="letter">T</div><h3 style="margin-top:.3rem;">Tricúspide</h3><p>Borda esternal esquerda inferior, 4º–5º EIC.</p><p><b>Pista:</b> aumenta na inspiração (Rivero-Carvallo).</p></div>
+    <div class="focus m"><div class="letter">M</div><h3 style="margin-top:.3rem;">Mitral</h3><p>Ictus cordis, geralmente 5º EIC, linha hemiclavicular.</p><p><b>Pista:</b> insuficiência mitral irradia para axila.</p></div>
+  </div>
+  <div class="card" style="margin-top:1rem;">
+    <h3>Ponto extra: foco aórtico acessório (ponto de Erb)</h3>
+    <p>3º espaço intercostal esquerdo, paraesternal. Especialmente útil para sons aórticos, incluindo a insuficiência aórtica — muitas vezes mais audível aqui do que no foco aórtico clássico.</p>
+  </div>
+  <div class="pegadinha">
+    <p class="kicker">Armadilha clássica</p>
+    <p style="margin-top:.4rem;">Foco mitral não significa automaticamente doença mitral. Um sopro de estenose aórtica pode ser ouvido no ápice, especialmente em idosos — o fenômeno de Gallavardin. Não confunda com insuficiência mitral só pela localização.</p>
+  </div>
+</section>
+
+<section id="regra">
+  <h2 class="section-title"><span class="tag">N2 · Regra</span> O quadrado fundamental</h2>
+  <div class="card">
+    <p>Da regra de ouro (estenose = problema pra abrir; insuficiência = problema pra fechar) nasce direto o quadrado que organiza todo o resto do curso:</p>
+  </div>
+  <div class="grid2">
+    <div class="card" style="border-left:4px solid var(--danger);">
+      <h3>Sístole</h3>
+      <p><b>Estenose aórtica</b> — a saída deveria estar bem aberta e não está.</p>
+      <p><b>Insuficiência mitral</b> — a porta atrioventricular deveria estar fechada e vaza.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--teal);">
+      <h3>Diástole</h3>
+      <p><b>Insuficiência aórtica</b> — a porta arterial deveria estar fechada e vaza.</p>
+      <p><b>Estenose mitral</b> — a entrada deveria estar bem aberta e não está.</p>
+    </div>
+  </div>
+  <div class="rule-box">Sístole: saída estreita ou porta atrioventricular vazando.<br>Diástole: entrada estreita ou porta arterial vazando.</div>
+  <p style="color:#c7d6ec; font-size:.9rem; margin-top:.5rem;">Os sopros de cada uma dessas 4 lesões, com foco, irradiação, formato e manobras completos, ficam para o Módulo 2 (sistólicos) e Módulo 3 (diastólicos) — aqui o que importa é fixar o mecanismo.</p>
+</section>
+
+<section id="flashcards">
+  <h2 class="section-title"><span class="tag">N2 · Flashcards</span> Vire e confira</h2>
+  <div class="grid2">
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">CICLO</div><h3>O que fecha para gerar B1?</h3></div>
+        <div class="flip-back"><b>Mitral + Tricúspide</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Marca o início da sístole. "TUM."</p></div>
+      </div>
+    </div>
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">CICLO</div><h3>O que fecha para gerar B2?</h3></div>
+        <div class="flip-back"><b>Aórtica + Pulmonar</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Marca o fim da sístole / início da diástole. "TÁ."</p></div>
+      </div>
+    </div>
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">FOCO</div><h3>Onde fica o foco aórtico?</h3></div>
+        <div class="flip-back"><b>2º EIC direito</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Irradia para carótidas.</p></div>
+      </div>
+    </div>
+    <div class="flip-card" data-flip>
+      <div class="flip-inner">
+        <div class="flip-front"><div class="kicker2">MANOBRA</div><h3>Qual manobra melhora a ausculta dos focos do ápice?</h3></div>
+        <div class="flip-back"><b>Manobra de Pachón</b><p style="margin-top:.4rem; font-size:.85rem; color:#cfe0f5;">Decúbito lateral esquerdo — aproxima o ápice da parede torácica.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2 class="section-title"><span class="tag">N6 · Quiz</span> Teste o raciocínio</h2>
+  <div class="counter">Respondidas: <span id="quizCount">0</span>/3</div>
+  <div class="card">
+    <h3>1) Durante a sístole, quais válvulas deveriam estar abertas?</h3>
+    <div class="quiz-opts" data-quiz="1">
+      <button class="quiz-opt" data-correct="false">Mitral e tricúspide</button>
+      <button class="quiz-opt" data-correct="true">Aórtica e pulmonar</button>
+      <button class="quiz-opt" data-correct="false">Todas as quatro</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="1"></div>
+  </div>
+  <div class="card">
+    <h3>2) Desdobramento de B2 que não varia com a respiração:</h3>
+    <div class="quiz-opts" data-quiz="2">
+      <button class="quiz-opt" data-correct="false">Fisiológico</button>
+      <button class="quiz-opt" data-correct="false">Amplo</button>
+      <button class="quiz-opt" data-correct="true">Fixo</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="2"></div>
+  </div>
+  <div class="card">
+    <h3>3) Um sopro de estenose aórtica ouvido no ápice em um idoso é chamado de:</h3>
+    <div class="quiz-opts" data-quiz="3">
+      <button class="quiz-opt" data-correct="false">Sopro de Austin Flint</button>
+      <button class="quiz-opt" data-correct="true">Fenômeno de Gallavardin</button>
+      <button class="quiz-opt" data-correct="false">Sopro de Graham Steell</button>
+    </div>
+    <div class="quiz-feedback" data-feedback="3"></div>
+  </div>
+</section>
+
+<section id="revisao60">
+  <div class="review60">
+    <h2 class="section-title" style="color:#fff;"><span class="tag">N5</span> Revisão de 60 segundos</h2>
+    <ul>
+      <li><b>TUM (B1)</b> = mitral + tricúspide fecham → início da sístole</li>
+      <li><b>TÁ (B2)</b> = aórtica + pulmonar fecham → início da diástole</li>
+      <li>Sístole = <b>saída</b> (AV fechadas, semilunares abertas)</li>
+      <li>Diástole = <b>descida</b> (AV abertas, semilunares fechadas)</li>
+      <li>Estenose = problema pra <b>abrir</b> · Insuficiência = problema pra <b>fechar</b></li>
+      <li><b>APARTAMENTO</b> = Aórtico → Pulmonar → Tricúspide → Mitral</li>
+      <li>Sopro ≥ <b>3+/6+</b> = sugestivo de patologia · frêmito a partir do grau 4</li>
+      <li><b>Pachón</b> (decúbito lateral esquerdo) = focos do ápice · <b>Anteroflexão</b> = focos da base</li>
+    </ul>
+  </div>
+</section>
+
+<section id="espacada">
+  <h2 class="section-title"><span class="tag">N7</span> Revisão Espaçada</h2>
+  <div class="spaced-item"><input type="checkbox" data-spaced="m1_hoje"><label>Hoje: ouvir os 4 padrões de B2 e nomear antes de ver a resposta <span class="badge">D0</span></label></div>
+  <div class="spaced-item"><input type="checkbox" data-spaced="m1_amanha"><label>Amanhã: desenhar de memória o quadrado sístole/diástole com as 4 válvulas <span class="badge">D1</span></label></div>
+  <div class="spaced-item"><input type="checkbox" data-spaced="m1_d7"><label>Em 7 dias: repetir o quiz sem olhar a revisão de 60s <span class="badge">D7</span></label></div>
+</section>
+
+<div class="modnav">
+  <span>Módulo 1 de 4 · Ciclo, projeção sonora e focos</span>
+  <span>Próximo: Módulo 2 — Os 4 sopros clássicos (IM, IAo, EM, EAo)</span>
+</div>
+
+<footer>Atlas Mental Interativo · Semiologia Cardiovascular · Dr. André Rossanno</footer>
+
+<script>
+/* ================= AUDIO ENGINE ================= */
+let audioCtx = null;
+function getCtx(){
+  if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function chestFilter(ctx){
+  const lp = ctx.createBiquadFilter();
+  lp.type='lowpass'; lp.frequency.value=900; lp.Q.value=0.5;
+  return lp;
+}
+function getMaster(ctx){
+  if(!ctx._masterBus){
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value=-26; comp.knee.value=18; comp.ratio.value=8; comp.attack.value=0.003; comp.release.value=0.2;
+    const gain = ctx.createGain();
+    gain.gain.value = 3.4;
+    gain.connect(comp).connect(ctx.destination);
+    ctx._masterBus = gain;
+  }
+  return ctx._masterBus;
+}
+function scheduleTone(ctx, tStart, freqs, dur, peakGain){
+  const bus = chestFilter(ctx); bus.connect(getMaster(ctx));
+  freqs.forEach((f,i)=>{
+    const osc = ctx.createOscillator(); const gain = ctx.createGain();
+    osc.type='sine';
+    osc.frequency.setValueAtTime(f*1.15, tStart);
+    osc.frequency.exponentialRampToValueAtTime(f, tStart+dur*0.3);
+    gain.gain.setValueAtTime(0.0001, tStart);
+    gain.gain.exponentialRampToValueAtTime(peakGain*(i===0?1:0.55), tStart+dur*0.1);
+    gain.gain.exponentialRampToValueAtTime(0.0001, tStart+dur);
+    osc.connect(gain).connect(bus);
+    osc.start(tStart); osc.stop(tStart+dur+0.02);
+  });
+  const knockDur = Math.min(0.03, dur*0.3);
+  const bufferSize = Math.ceil(ctx.sampleRate*knockDur);
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<bufferSize;i++) data[i]=(Math.random()*2-1)*(1-i/bufferSize);
+  const src = ctx.createBufferSource(); src.buffer=buffer;
+  const knockFilter = ctx.createBiquadFilter(); knockFilter.type='lowpass'; knockFilter.frequency.value=220;
+  const knockGain = ctx.createGain();
+  knockGain.gain.setValueAtTime(peakGain*0.7, tStart);
+  knockGain.gain.exponentialRampToValueAtTime(0.0001, tStart+knockDur);
+  src.connect(knockFilter).connect(knockGain).connect(bus);
+  src.start(tStart);
+}
+/* Cycle timing (~55bpm, bradicárdico) */
+const T = { s1dur:0.15, s2dur:0.12, systole:0.34, diastole:0.75 };
+
+/* ===== Continuous loop playback ===== */
+const loopState = {};
+function stopLoop(key){
+  const st = loopState[key]; if(!st) return;
+  st.playing=false;
+  if(st.timerId) clearInterval(st.timerId);
+  if(st.rafId) cancelAnimationFrame(st.rafId);
+}
+function toggleLoop(key, buildEvents, waveEl, phaseEl, btn){
+  if(loopState[key] && loopState[key].playing){
+    stopLoop(key);
+    btn.classList.remove('playing');
+    btn.textContent = btn.dataset.origText || btn.textContent;
+    if(phaseEl) phaseEl.innerHTML='Parado. Toque para ouvir novamente.';
+    if(waveEl) [...waveEl.children].forEach(b=>b.classList.remove('active'));
+    return;
+  }
+  const ctx = getCtx();
+  const events = buildEvents();
+  const cycleDur = events.reduce((m,e)=>Math.max(m, e.at+e.dur), 0) + 0.15;
+  buildWave(waveEl, events, cycleDur);
+  btn.dataset.origText = btn.dataset.origText || btn.textContent;
+  btn.classList.add('playing'); btn.textContent='⏹ Parar';
+  const st = { playing:true, nextTime: ctx.currentTime+0.06, cycleDur, loopStartCtxTime: ctx.currentTime+0.06 };
+  loopState[key]=st;
+  function scheduleAhead(){
+    if(!st.playing) return;
+    while(st.nextTime < ctx.currentTime+1.0){
+      events.forEach(e=>{
+        const start = st.nextTime+e.at;
+        if(e.type==='tone') scheduleTone(ctx, start, e.freqs, e.dur, e.gain||0.9);
+      });
+      st.nextTime += cycleDur;
+    }
+  }
+  scheduleAhead();
+  st.timerId = setInterval(scheduleAhead, 150);
+  function tick(){
+    if(!st.playing) return;
+    const elapsed = (ctx.currentTime - st.loopStartCtxTime) % cycleDur;
+    const current = events.find(e=> elapsed>=e.at && elapsed<=e.at+e.dur);
+    if(phaseEl) phaseEl.innerHTML = current ? ('Fase: <b>'+current.label+'</b>') : 'Fase: <b>silêncio</b>';
+    if(waveEl){
+      [...waveEl.children].forEach(b=>{
+        const t = parseFloat(b.dataset.t);
+        b.classList.toggle('active', Math.abs(t-elapsed) < cycleDur/60);
+      });
+    }
+    st.rafId = requestAnimationFrame(tick);
+  }
+  tick();
+}
+function buildWave(waveEl, events, totalDur){
+  if(!waveEl) return;
+  waveEl.innerHTML='';
+  const nBars = 60;
+  for(let i=0;i<nBars;i++){
+    const bar = document.createElement('i');
+    const tRel = (i/nBars)*totalDur;
+    let h=4;
+    events.forEach(e=>{
+      if(tRel>=e.at && tRel<=e.at+e.dur){
+        const localX = (tRel-e.at)/e.dur;
+        const amp = Math.sin(Math.PI*Math.min(1,localX*3));
+        h = Math.max(h, 6+amp*26);
+      }
+    });
+    bar.style.height=h+'px'; bar.dataset.t=tRel.toFixed(3);
+    waveEl.appendChild(bar);
+  }
+}
+
+/* ===== Sound definitions (one cycle each, looped) ===== */
+const SOUNDS = {
+  normal: ()=>{
+    let ev=[], t=0;
+    ev.push({type:'tone', freqs:[45,90], dur:T.s1dur, at:t, label:'TUM (B1)'});
+    t+=T.systole;
+    ev.push({type:'tone', freqs:[55,110], dur:T.s2dur, at:t, label:'TÁ (B2)'});
+    t+=T.diastole;
+    return ev;
+  }
+};
+
+document.querySelectorAll('.play-btn[data-sound]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const key = btn.dataset.sound;
+    const waveEl = btn.closest('.card').querySelector('[data-wave="'+key+'"]');
+    const phaseEl = btn.closest('.card').querySelector('[data-phase="'+key+'"]');
+    toggleLoop(key, SOUNDS[key], waveEl, phaseEl, btn);
+  });
+});
+
+/* ================= FLASHCARDS ================= */
+document.querySelectorAll('[data-flip]').forEach(card=>{
+  card.addEventListener('click', ()=> card.classList.toggle('flipped'));
+});
+
+/* ================= QUIZ ================= */
+let answeredCount = 0;
+document.querySelectorAll('.quiz-opts').forEach(group=>{
+  const qid = group.dataset.quiz;
+  const feedback = document.querySelector('[data-feedback="'+qid+'"]');
+  let answered=false;
+  group.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      if(answered) return;
+      answered=true; answeredCount++;
+      document.getElementById('quizCount').textContent = answeredCount;
+      const isCorrect = opt.dataset.correct==='true';
+      opt.classList.add(isCorrect?'correct':'wrong');
+      group.querySelectorAll('.quiz-opt').forEach(o=>{ if(o.dataset.correct==='true') o.classList.add('correct'); });
+      feedback.textContent = isCorrect ? 'Correto!' : 'Quase — revise a seção acima.';
+      feedback.classList.add('show', isCorrect?'correct':'wrong');
+    });
+  });
+});
+
+/* ================= SPACED REVIEW ================= */
+document.querySelectorAll('[data-spaced]').forEach(chk=>{
+  const key = 'semio1_spaced_'+chk.dataset.spaced;
+  const item = chk.closest('.spaced-item');
+  if(localStorage.getItem(key)==='1'){ chk.checked=true; item.classList.add('done'); }
+  chk.addEventListener('change', ()=>{
+    localStorage.setItem(key, chk.checked?'1':'0');
+    item.classList.toggle('done', chk.checked);
+  });
+});
+</script>
+</body>
+</html>
