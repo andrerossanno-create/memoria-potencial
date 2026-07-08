@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 2 | Fatores de Risco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--red:#E63946;--purple:#6A4C93;--orange:#E8710A;
+    --ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;--soft:#f1f6f9;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;--mono:'IBM Plex Mono','Trebuchet MS',monospace;--script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:34px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.18rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .sec-lead{color:#b8ccdd;max-width:64ch;margin-bottom:16px}
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+  .hero{padding:60px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2rem,6.5vw,3.1rem);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.12rem;max-width:56ch;margin:0 auto 20px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.6rem;color:var(--gold);margin-bottom:10px;padding:0 10px}
+  .card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:10px}
+  .card p:last-child{margin-bottom:0}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16}
+  .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38} .t-mag{background:#fbe4ee;color:var(--magenta)} .t-purple{background:#ede6f5;color:var(--purple)}
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:22px 24px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mission li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:700}
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:26px}
+  .philo .line{font-size:1.06rem;font-weight:700;color:#eef5fa;margin-bottom:8px}
+  .philo .by{display:block;margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+  .n17{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.n17{grid-template-columns:1fr}}
+  .nbox{border-radius:var(--radius);padding:24px;color:#fff}
+  .n1{background:linear-gradient(150deg,#0e6a86,#1282A2)} .n7{background:linear-gradient(150deg,#8a2352,#D6336C)}
+  .nbox .ntag{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .nbox h3{color:#fff;margin:6px 0 12px}
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .flow span{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 11px;font-size:.8rem;font-weight:800}
+  .flow i{opacity:.7;font-style:normal}
+  .n7 .big{font-size:1.05rem;font-weight:800;line-height:1.35}
+  .terrain{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.terrain{grid-template-columns:1fr}}
+  .tside{border-radius:16px;padding:20px;color:#fff}
+  .tside h3{color:#fff;margin-bottom:10px}
+  .tside.fix{background:linear-gradient(150deg,#3a4653,#546477)}
+  .tside.mod{background:linear-gradient(150deg,#1c5a30,#2E7D46)}
+  .numcard{background:#fff;border-radius:16px;padding:16px 12px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .numcard:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange)}
+  .numcard .n{font-size:1.5rem;font-weight:900;color:var(--orange);line-height:1}
+  .numcard .cap{font-size:.78rem;color:var(--muted);margin-top:6px;font-weight:700}
+  .agebox{background:#fff;border-radius:14px;padding:16px;box-shadow:var(--shadow);border-top:4px solid var(--teal)}
+  .agebox .pat{font-weight:800;color:var(--teal);font-size:.9rem;margin-bottom:4px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .medpill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.85rem;box-shadow:0 3px 10px rgba(0,0,0,.05);display:inline-flex;gap:6px;align-items:center}
+  .medpill .d{width:8px;height:8px;border-radius:50%;background:var(--red)}
+  .medpill.drug .d{background:var(--purple)}
+  .ladeira{background:radial-gradient(90% 120% at 80% 0%,rgba(106,76,147,.35),transparent 55%),linear-gradient(165deg,#1a1030,#241640 60%,#2c1a4d);color:#fff;border-radius:24px;padding:32px 26px;position:relative;overflow:hidden}
+  .scene{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:16px 0 8px}
+  @media(max-width:700px){.scene{grid-template-columns:1fr}}
+  .side{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px}
+  .side.left{border-top:4px solid #8899AA} .side.right{border-top:4px solid var(--gold)}
+  .side b{display:block;margin-bottom:8px;font-size:.92rem}
+  .side.left b{color:#bcc9d6} .side.right b{color:var(--gold)}
+  .side ul{margin:0;padding-left:16px}
+  .side li{font-size:.8rem;color:#e3dcf0;margin:3px 0}
+  .gauge{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .gauge .disp{font-family:var(--mono);font-size:1.7rem;font-weight:700;color:var(--gold);background:#160b28;border-radius:10px;padding:10px 14px;box-shadow:inset 0 0 0 3px rgba(244,185,66,.3)}
+  .qlum{text-align:center;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:10px;padding:12px;color:var(--gold);font-weight:800;font-style:italic;margin-top:8px}
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:540px;background:#fff}
+  th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-family:var(--mono);font-size:.66rem;letter-spacing:1px;text-transform:uppercase}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.86rem;color:var(--ink)}
+  tr:nth-child(even) td{background:#f8fafc}
+  td:first-child{font-weight:800;color:var(--navy)}
+  td:last-child{color:var(--teal);font-style:italic}
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.9rem;line-height:1.3}
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:14px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+  .traps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.traps{grid-template-columns:1fr}}
+  .trap{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .trap span{font-size:.88rem;color:var(--ink);font-weight:600}
+  .r60{background:linear-gradient(135deg,rgba(244,185,66,.14),rgba(18,130,162,.08));border:1px solid rgba(244,185,66,.35);border-radius:var(--radius);padding:24px}
+  .r60 .row{display:flex;flex-wrap:wrap;gap:8px}
+  .r60 .row span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 13px;font-weight:800;font-size:.85rem;color:#fff}
+  .r60 .row span b{color:var(--gold)}
+  .spaced{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.spaced{grid-template-columns:1fr}}
+  .sp{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .sp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+  .sp ul{list-style:none}
+  .sp li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem;font-weight:600;cursor:pointer}
+  .sp li:last-child{border-bottom:none}
+  .sp li .box{width:18px;height:18px;border:2px solid var(--teal);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff}
+  .sp li.done .box{background:var(--green);border-color:var(--green)}
+  .sp li.done span{text-decoration:line-through;color:var(--muted)}
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.check-grid{grid-template-columns:1fr}}
+  .chk{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  .chk .mk{color:var(--green);font-weight:900;flex-shrink:0}
+  .chk span{font-size:.9rem;color:var(--ink);font-weight:600}
+  footer{text-align:center;padding:44px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.82rem;color:#8fa8bd;margin-top:12px}
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="inner">
+  <a href="#terreno">Terreno</a>
+  <a href="#nao-mod">Não modificáveis</a>
+  <a href="#modificaveis">Modificáveis</a>
+  <a href="#substancias">Substâncias</a>
+  <a href="#ladeira">Ladeira</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#questoes">Questões</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 2 · Cardiologia TEC 2026</span>
+    <h1>Fatores de Risco da <span class="hl">Hipertensão</span></h1>
+    <p class="sub">O que não se muda, o que se modifica e o que precisa ser perguntado na consulta.</p>
+    <div class="impact">&ldquo;Hipertensão nasce do encontro entre herança, tempo, comportamento, ambiente, substâncias, sono e vasos envelhecendo.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+  <section><div class="wrap">
+    <div class="mission"><b>Ao final deste tema, você será capaz de:</b>
+      <ul><li>Separar não modificáveis de modificáveis</li><li>Reconhecer padrões por idade</li><li>Investigar sono e medicamentos</li><li>Identificar substâncias de risco</li><li>Perguntar o que a consulta não pode deixar passar</li></ul>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">Filosofia</span>
+    <div class="philo">
+      <div class="line">Antes de tratar a pressão, é preciso enxergar o terreno onde ela nasceu.</div>
+      <span class="by">— Dr. André Rossanno</span>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="n17">
+      <div class="nbox n1"><div class="ntag">N1 · O mapa</div><h3>A ladeira que empurra a pressão</h3>
+        <div class="flow"><span>Pedras fixas</span><i>(não modificáveis)</i><i>+</i><span>Mochilas e ventos</span><i>(modificáveis)</i><i>=</i><span>140/90</span></div>
+      </div>
+      <div class="nbox n7"><div class="ntag">N7 · Imagem em uma frase</div>
+        <div class="big">Um paciente sobe a Ladeira da Pressão carregando mochilas de sal, álcool, peso, sono ruim e estresse — atrás dele, o DNA empurra em silêncio.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- TERRENO -->
+  <section id="terreno"><div class="wrap">
+    <span class="kicker">01 · O terreno da hipertensão</span>
+    <h2>Não modificáveis × Modificáveis</h2>
+    <div class="terrain" style="margin-top:14px">
+      <div class="tside fix"><h3>🪨 Não modificáveis</h3><p style="color:rgba(255,255,255,.9);font-size:.9rem;margin:0">Genética · Idade · Sexo · Etnia</p></div>
+      <div class="tside mod"><h3>🎒 Modificáveis</h3><p style="color:rgba(255,255,255,.9);font-size:.9rem;margin:0">Peso, sedentarismo, sal, potássio, álcool, sono, estresse, ambiente, medicamentos, drogas, anabolizantes, tabagismo</p></div>
+    </div>
+    <div class="card" style="margin-top:14px;border-left:5px solid var(--green)">
+      <p style="margin:0"><b>Por que focar nos modificáveis:</b> prevenir o surgimento da HAS, melhorar o controle em quem já é hipertenso, reduzir risco cardiovascular, evitar lesão de órgão-alvo. A prevenção começa na fase <b>primordial</b> — antes da doença aparecer.</p>
+    </div>
+  </div></section>
+
+  <!-- NÃO MODIFICÁVEIS -->
+  <section id="nao-mod"><div class="wrap">
+    <span class="kicker">02 · Não modificáveis</span>
+    <h2>Genética · Idade · Sexo · Etnia</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><span class="tag t-teal">Genética</span><p>HAS comum é <b>poligênica</b> — vários genes de pequena influência, somados ao ambiente.</p></div>
+      <div class="card"><span class="tag t-gold">Idade</span><p>Após ~55 anos, aumento por rigidez arterial: PAS sobe, PAD pode cair, predomina <b>HAS sistólica isolada</b> no idoso.</p></div>
+      <div class="card"><span class="tag t-purple">Sexo</span><p>Acima de 30a: ~48% homens e ~42% mulheres. Até 60a, maior em homens; após 60a, maior em mulheres.</p></div>
+      <div class="card"><span class="tag t-red">Etnia</span><p>Mais prevalente e <b>mais grave</b> na população negra, mesmo ajustando fatores socioeconômicos.</p></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:14px">
+      <div class="agebox"><h4>Adulto jovem</h4><div class="pat">HAS sistólica isolada/espúria</div></div>
+      <div class="agebox"><h4>Meia-idade</h4><div class="pat">HAS sistólica + diastólica</div></div>
+      <div class="agebox"><h4>Idoso</h4><div class="pat">HAS sistólica isolada</div></div>
+    </div>
+  </div></section>
+
+  <!-- MODIFICÁVEIS -->
+  <section id="modificaveis"><div class="wrap">
+    <span class="kicker">03 · Modificáveis principais</span>
+    <h2>Peso, movimento, sal, potássio e álcool</h2>
+    <div class="grid g4" style="margin-top:14px">
+      <div class="numcard"><div class="n">10→26%</div><div class="cap">Obesidade BR (2006→2024)</div></div>
+      <div class="numcard"><div class="n">150–300</div><div class="cap">min/sem exercício</div></div>
+      <div class="numcard"><div class="n">&lt;5g/dia</div><div class="cap">Sal recomendado</div></div>
+      <div class="numcard"><div class="n">9,3g/dia</div><div class="cap">Média do Brasil</div></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Álcool</span>
+      <p>Mulheres &gt;15g/dia ou 7 doses/sem; homens &gt;30g/dia ou 14 doses/sem. 1 dose = 14g álcool puro = 350mL cerveja = 150mL vinho = 45mL destilado.</p>
+    </div>
+  </div></section>
+
+  <!-- SUBSTÂNCIAS -->
+  <section id="substancias"><div class="wrap">
+    <span class="kicker">04 · Sono, medicamentos e substâncias</span>
+    <h2>A farmácia escondida atrás do paciente</h2>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-teal">Sono</span>
+      <p>Apneia do sono associa-se a maior desenvolvimento de HAS e pior controle. Pergunte: horas de sono, ronco, pausas respiratórias, sonolência diurna.</p>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Podem elevar a PA</span>
+      <div class="pills">
+        <span class="medpill"><span class="d"></span>Venlafaxina</span>
+        <span class="medpill"><span class="d"></span>Anticoncepcionais</span>
+        <span class="medpill"><span class="d"></span>Lisdexanfetamina</span>
+        <span class="medpill"><span class="d"></span>Eritropoetina</span>
+        <span class="medpill"><span class="d"></span>Glicocorticoides</span>
+        <span class="medpill"><span class="d"></span>Tricíclicos</span>
+        <span class="medpill"><span class="d"></span>AINEs</span>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-purple">Substâncias ilícitas</span>
+      <div class="pills">
+        <span class="medpill drug"><span class="d"></span>Cocaína</span>
+        <span class="medpill drug"><span class="d"></span>Cannabis</span>
+        <span class="medpill drug"><span class="d"></span>Anfetaminas</span>
+        <span class="medpill drug"><span class="d"></span>MDMA</span>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Anabolizantes (Circulation 2025)</span>
+      <div class="grid g4">
+        <div class="numcard"><div class="n">3×</div><div class="cap">IAM</div></div>
+        <div class="numcard"><div class="n">2,4×</div><div class="cap">TEV</div></div>
+        <div class="numcard"><div class="n">2,3×</div><div class="cap">Arritmias</div></div>
+        <div class="numcard"><div class="n">8,9×</div><div class="cap">Cardiomiopatias</div></div>
+      </div>
+    </div>
+  </div></section>
+
+  <div class="wrap"><div class="philo" style="margin:10px 0 0">
+    <div class="line" style="font-size:.98rem">Muitas vezes, a pressão sobe no vaso depois de já ter subido na vida.</div>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div>
+
+  <!-- LADEIRA -->
+  <section id="ladeira"><div class="wrap">
+    <span class="kicker">Palácio da Memória</span>
+    <div class="ladeira">
+      <h2>A Ladeira da Pressão</h2>
+      <div class="scene">
+        <div class="side left"><b>🪨 Pedras fixas</b><ul><li>DNA</li><li>Idade</li><li>Sexo</li><li>Etnia</li></ul></div>
+        <div class="gauge"><div class="disp">140/90</div></div>
+        <div class="side right"><b>🎒 Mochilas e ventos</b><ul><li>Obesidade · sedentarismo</li><li>Sal · álcool · sono ruim</li><li>Estresse · poluição</li><li>Medicamentos · drogas</li><li>Anabolizantes · tabagismo</li></ul></div>
+      </div>
+      <div class="qlum">&ldquo;O que está empurrando a pressão deste paciente?&rdquo;</div>
+    </div>
+  </div></section>
+
+  <!-- TABELA -->
+  <section><div class="wrap">
+    <span class="kicker">05 · Revisão rápida</span>
+    <h2>Fator · Tipo · Por que importa</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Fator</th><th>Tipo</th><th>Por que importa</th></tr></thead>
+        <tbody>
+          <tr><td>Genética</td><td>Não modificável</td><td>Herança poligênica</td></tr>
+          <tr><td>Idade</td><td>Não modificável</td><td>Rigidez arterial aumenta PAS</td></tr>
+          <tr><td>Sexo</td><td>Não modificável</td><td>Homens até 60, mulheres após 60</td></tr>
+          <tr><td>Etnia</td><td>Não modificável</td><td>Negra: maior prevalência e gravidade</td></tr>
+          <tr><td>Obesidade</td><td>Modificável</td><td>Maior IMC, maior prevalência</td></tr>
+          <tr><td>Sal</td><td>Modificável</td><td>Excesso de sódio aumenta PA</td></tr>
+          <tr><td>Álcool</td><td>Modificável</td><td>Excesso aumenta risco</td></tr>
+          <tr><td>Sono ruim</td><td>Modificável</td><td>Apneia piora risco e controle</td></tr>
+          <tr><td>Medicamentos</td><td>Modificável</td><td>Alguns elevam PA</td></tr>
+          <tr><td>Anabolizantes</td><td>Modificável</td><td>IAM, TEV, arritmias, cardiomiopatia</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div></section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas"><div class="wrap">
+    <span class="kicker">06 · Pegadinhas</span>
+    <h2>Pegadinhas que tentam roubar seu ponto</h2>
+    <div class="traps" style="margin-top:14px">
+      <div class="trap"><span>HAS comum é <b>poligênica</b>, não monogênica.</span></div>
+      <div class="trap"><span>Até 60 anos: <b>homens</b>; após 60: <b>mulheres</b>.</span></div>
+      <div class="trap"><span>População negra: maior prevalência <b>e</b> gravidade.</span></div>
+      <div class="trap"><span>Sal &lt;5g/dia; sódio &lt;2g/dia; Brasil consome <b>9,3g/dia</b>.</span></div>
+      <div class="trap"><span>1 dose de álcool = <b>14g</b> de álcool puro.</span></div>
+      <div class="trap"><span>Estimulantes para TDAH também são fator de risco para HAS.</span></div>
+      <div class="trap"><span>Tabagismo: papel direto na HAS é controverso, mas cessação é <b>sempre</b> recomendada.</span></div>
+      <div class="trap"><span>Anabolizantes: risco de IAM, TEV, arritmias e cardiomiopatia.</span></div>
+    </div>
+  </div></section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards"><div class="wrap">
+    <span class="kicker">07 · Flashcards</span>
+    <h2>Toque no cartão para virar</h2>
+    <div class="fc-grid" id="fcgrid" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes"><div class="wrap">
+    <span class="kicker">08 · Questões de prova</span>
+    <h2>Resolva antes de ver a resposta</h2>
+    <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+    <div id="qzlist"></div>
+  </div></section>
+
+  <!-- CASOS -->
+  <section><div class="wrap">
+    <span class="kicker">09 · Mini-casos</span>
+    <h2>Quem está empurrando essa pressão?</h2>
+    <div id="cases" style="margin-top:14px"></div>
+  </div></section>
+
+  <!-- R60 -->
+  <section><div class="wrap">
+    <span class="kicker">10 · Revisão de 60 segundos</span>
+    <div class="r60"><div class="row">
+      <span>Não modificáveis: <b>genética, idade, sexo, etnia</b></span>
+      <span>Sal <b>&lt;5g/dia</b>; Brasil <b>9,3g/dia</b></span>
+      <span>Álcool: M &gt;15g/7doses · H &gt;30g/14doses</span>
+      <span>1 dose = <b>14g</b></span>
+      <span>Anabolizantes: <b>3× · 2,4× · 2,3× · 8,9×</b></span>
+    </div></div>
+  </div></section>
+
+  <!-- ESPAÇADA -->
+  <section><div class="wrap">
+    <span class="kicker">11 · Revisão espaçada</span>
+    <h2>Volte aqui</h2>
+    <div class="spaced">
+      <div class="sp"><h4>Hoje</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Não modificáveis</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Números de sal e álcool</span></li>
+      </ul></div>
+      <div class="sp"><h4>Amanhã</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Medicamentos e substâncias</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Anabolizantes</span></li>
+      </ul></div>
+      <div class="sp"><h4>Em 7 dias</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Resolver as questões de novo</span></li>
+      </ul></div>
+    </div>
+  </div></section>
+
+  <!-- CHECKLIST -->
+  <section><div class="wrap">
+    <span class="kicker">12 · Checklist final de prova</span>
+    <h2>O que não pode escapar</h2>
+    <div class="check-grid" style="margin-top:14px">
+      <div class="chk"><span class="mk">✓</span><span>Não modificáveis: genética, idade, sexo, etnia.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>HAS comum é poligênica.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Idosos: predomina HAS sistólica isolada.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Homens até 60; mulheres após 60.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Negros: maior prevalência e gravidade.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Obesidade: quanto maior o IMC, maior a prevalência.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Exercício: 150–300 min/semana.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Sal &lt;5g/dia; sódio &lt;2g/dia; Brasil 9,3g/dia.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Álcool: limites por sexo; 1 dose = 14g.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Sono ruim/apneia piora risco e controle.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Buscar ativamente medicamentos e substâncias.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Anabolizantes: 3×IAM, 2,4×TEV, 2,3×arritmias, 8,9×cardiomiopatia.</span></div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Cardiologia TEC 2026</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleNext(btn){var el=btn.nextElementSibling;var open=el.classList.toggle('show');btn.textContent=open?'Ocultar resposta':'Ver resposta';}
+function toggleDone(li){li.classList.toggle('done');}
+
+var flashcards=[
+["Quais são os 4 fatores não modificáveis?","Genética, idade, sexo e etnia."],
+["A HAS comum é poligênica ou monogênica?","Poligênica — vários genes de pequena influência."],
+["Até que idade os homens têm maior prevalência?","Até 60 anos."],
+["Após os 60, quem tem maior prevalência?","Mulheres."],
+["Padrão de HAS predominante no idoso?","Sistólica isolada."],
+["Obesidade no Brasil: de quanto para quanto (2006→2024)?","De ~10% para quase 26%."],
+["Exercício recomendado por semana?","150 a 300 min de atividade aeróbica moderada."],
+["Sal recomendado por dia?","Menos de 5 g/dia."],
+["Sódio recomendado por dia?","Menos de 2 g/dia."],
+["Consumo médio de sal no Brasil?","9,3 g/dia."],
+["Limite de álcool para mulheres?","Mais de 15g/dia ou 7 doses/semana já é risco."],
+["Limite de álcool para homens?","Mais de 30g/dia ou 14 doses/semana já é risco."],
+["Quanto é 1 dose padrão de álcool?","14 g de álcool puro."],
+["Equivalência de 1 dose em cerveja, vinho e destilado?","350 mL cerveja = 150 mL vinho = 45 mL destilado."],
+["Apneia do sono afeta a HAS como?","Aumenta desenvolvimento e piora o controle pressórico."],
+["Cite 3 medicamentos que podem elevar a PA.","Venlafaxina, anticoncepcionais, AINEs (entre outros)."],
+["Substâncias ilícitas associadas a maior risco CV?","Cocaína e anfetaminas, destacadamente."],
+["O tabagismo tem papel direto comprovado na HAS?","É controverso, mas a cessação é sempre recomendada."],
+["Risco de IAM em usuários de anabolizantes?","3 vezes maior."],
+["Risco de cardiomiopatia em usuários de anabolizantes?","8,9 vezes maior."]
+];
+var fcgrid=document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d=document.createElement('div');d.className='flash';
+  d.innerHTML='<div class="flash-in"><div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div></div><div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick=function(){d.classList.toggle('flip');};
+  fcgrid.appendChild(d);
+});
+
+var questions=[
+{type:"Direta",stem:"Quais são os fatores de risco não modificáveis da HAS?",opts:["Sal, álcool, sono","Genética, idade, sexo, etnia","Obesidade, tabagismo","Estresse e poluição"],correct:1,expl:"Os não modificáveis são genética, idade, sexo e etnia."},
+{type:"Direta",stem:"Qual o consumo médio de sal no Brasil?",opts:["5 g/dia","7 g/dia","9,3 g/dia","12 g/dia"],correct:2,expl:"A média brasileira é de 9,3 g/dia, quase o dobro do recomendado (<5g)."},
+{type:"Direta",stem:"Quanto é uma dose padrão de álcool em gramas?",opts:["7g","10g","14g","20g"],correct:2,expl:"1 dose padrão = 14g de álcool puro."},
+{type:"Direta",stem:"Qual mecanismo liga o tabagismo à HAS segundo o conteúdo?",opts:["Papel direto bem estabelecido","Papel direto controverso, mas cessação sempre recomendada","Nenhuma relação","Só relacionado a arritmias"],correct:1,expl:"O papel direto na indução de HAS é controverso, mas a cessação é sempre recomendada pelo risco CV global."},
+{type:"Caso clínico",stem:"Mulher de 55 anos, pós-menopausa, hipertensão recém-diagnosticada. Qual fator não modificável mais provavelmente contribui agora?",opts:["Sexo, pela perda do efeito estrogênico","Etnia","Genética isolada","Nenhum, só fatores modificáveis contam"],correct:0,expl:"Após a menopausa, a perda do efeito protetor estrogênico contribui para maior prevalência em mulheres."},
+{type:"Caso clínico",stem:"Fisiculturista de 28 anos, uso de esteroides anabolizantes há 2 anos, chega com palpitações. Qual risco deve ser lembrado?",opts:["Risco aumentado de arritmias e cardiomiopatia","Nenhum risco cardiovascular adicional","Apenas risco estético","Risco apenas hepático"],correct:0,expl:"Anabolizantes aumentam risco de arritmias (2,3×) e cardiomiopatias (8,9×), além de IAM e TEV."},
+{type:"Caso clínico",stem:"Paciente relata dificuldade em dormir, ronco alto e sonolência diurna, com HAS de difícil controle. Qual investigação é prioritária?",opts:["Rastreio de apneia do sono","Apenas ajustar a dose do anti-hipertensivo","Investigar só função renal","Não há relação com o sono"],correct:0,expl:"Apneia do sono é fator de risco relevante para desenvolvimento e mau controle da HAS."},
+{type:"V ou F",stem:"Verdadeiro ou falso: a HAS comum costuma ter herança monogênica simples.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso — é poligênica, com múltiplos genes de pequena influência somados ao ambiente."},
+{type:"V ou F",stem:"Verdadeiro ou falso: estimulantes usados para TDAH não representam risco para HAS.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso — lisdexanfetamina e outros estimulantes são fator de risco, principalmente combinados a antidepressivos."},
+{type:"Pegadinha",stem:"Sobre o consumo de álcool, é correto afirmar:",opts:["Só cerveja aumenta o risco, vinho não","O volume da bebida é o que importa, não o teor alcoólico","1 dose padrão equivale a 14g de álcool puro, independente da bebida","Destilados nunca contam como dose padrão"],correct:2,expl:"O que importa é a quantidade de álcool puro (14g), não o volume ou o tipo de bebida isoladamente."}
+];
+var qzlist=document.getElementById('qzlist');var answered=0;
+document.getElementById('total').textContent=questions.length;
+questions.forEach(function(q,qi){
+  var card=document.createElement('div');card.className='qz';
+  var letters=['A','B','C','D'];
+  var html='<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';});
+  html+='<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML=html;qzlist.appendChild(card);
+});
+qzlist.addEventListener('click',function(e){
+  var btn=e.target.closest('.opt');if(!btn)return;
+  var qi=+btn.dataset.q,oi=+btn.dataset.o;var card=btn.closest('.qz');
+  if(card.dataset.done)return;card.dataset.done="1";
+  var opts=card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){op.classList.add('locked');if(idx===questions[qi].correct)op.classList.add('correct');});
+  if(oi!==questions[qi].correct)btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;document.getElementById('answered').textContent=answered;
+});
+
+var cases=[
+["Caso 1","Homem, 62 anos, obeso (IMC 33), sedentário, consome cerca de 12g de sal/dia. Quais fatores modificáveis estão presentes?","Obesidade, sedentarismo e excesso de sal.","Todos são fatores modificáveis-chave e alvos de intervenção precoce."],
+["Caso 2","Mulher, 45 anos, em uso de anticoncepcional oral, PA 148/92 mmHg recente. Qual associação deve ser considerada?","O anticoncepcional pode estar contribuindo para a elevação da PA.","Anticoncepcionais podem associar-se ao desenvolvimento de HAS, embora menos comum com doses atuais mais baixas."],
+["Caso 3","Paciente de 33 anos, uso recreativo de cocaína há meses, episódios de PA muito elevada. Qual mecanismo explica isso?","Estimulação simpática intensa (\"tempestade simpática\").","Cocaína e anfetaminas têm destaque pelo potencial de aumentar risco cardiovascular via ativação simpática."],
+["Caso 4","Jovem de 24 anos, fisiculturista, uso de anabolizantes, sem sintomas ainda. Qual orientação é prioritária?","Alertar sobre o aumento de risco de IAM, TEV, arritmias e cardiomiopatia, e investigar ativamente o uso.","O uso de anabolizantes deve ser buscado ativamente, dado o risco cardiovascular elevado mesmo em jovens."]
+];
+var cbox=document.getElementById('cases');
+cases.forEach(function(c){
+  var d=document.createElement('div');d.className='case';
+  d.innerHTML='<div class="cq"><b>'+c[0]+':</b> '+c[1]+'</div><button onclick="toggleNext(this)">Ver resposta</button><div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+window.addEventListener('scroll',function(){document.getElementById('totop').classList.toggle('show',window.scrollY>500);});
+</script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 1 | Introdução, Prevalência e Fisiopatologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--red:#E63946;--purple:#6A4C93;
+    --ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;--soft:#f1f6f9;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;--mono:'IBM Plex Mono','Trebuchet MS',monospace;--script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:34px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.18rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .sec-lead{color:#b8ccdd;max-width:64ch;margin-bottom:16px}
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+  .hero{padding:60px 0 40px;text-align:center}
+  .hero h1{font-size:clamp(2rem,6.5vw,3.1rem);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.12rem;max-width:56ch;margin:0 auto 20px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.7rem;color:var(--gold);margin-bottom:10px;padding:0 10px}
+  .card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:10px}
+  .card p:last-child{margin-bottom:0}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:760px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16}
+  .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38} .t-mag{background:#fbe4ee;color:var(--magenta)} .t-purple{background:#ede6f5;color:var(--purple)}
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:22px 24px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mission li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;font-size:.86rem;font-weight:700}
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:26px}
+  .philo .line{font-size:1.06rem;font-weight:700;color:#eef5fa;margin-bottom:8px}
+  .philo .by{display:block;margin-top:14px;font-family:var(--mono);font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+  .n17{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.n17{grid-template-columns:1fr}}
+  .nbox{border-radius:var(--radius);padding:24px;color:#fff}
+  .n1{background:linear-gradient(150deg,#0e6a86,#1282A2)} .n7{background:linear-gradient(150deg,#8a2352,#D6336C)}
+  .nbox .ntag{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .nbox h3{color:#fff;margin:6px 0 12px}
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+  .flow span{background:rgba(255,255,255,.14);border-radius:8px;padding:6px 11px;font-size:.8rem;font-weight:800}
+  .flow i{opacity:.7;font-style:normal}
+  .n7 .big{font-size:1.1rem;font-weight:800;line-height:1.35}
+  /* ÓRGÃOS */
+  .organs{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  @media(max-width:760px){.organs{grid-template-columns:repeat(2,1fr)}}
+  .organ{background:#fff;border-radius:14px;padding:16px 12px;text-align:center;box-shadow:var(--shadow)}
+  .organ .ico{font-size:1.7rem;display:block;margin-bottom:6px}
+  .organ b{display:block;color:var(--navy);font-size:.92rem;margin-bottom:2px}
+  .organ span{font-size:.76rem;color:var(--muted)}
+  /* NÚMEROS */
+  .numcard{background:#fff;border-radius:16px;padding:18px 14px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .numcard:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--teal)}
+  .numcard .n{font-size:1.8rem;font-weight:900;color:var(--teal);line-height:1}
+  .numcard .cap{font-size:.8rem;color:var(--muted);margin-top:6px;font-weight:700}
+  .numcard.red:before{background:var(--red)} .numcard.red .n{color:var(--red)}
+  /* MORTALIDADE */
+  .mortal{background:linear-gradient(135deg,#7d0a13,#C1121F);color:#fff;border-radius:var(--radius);padding:26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;box-shadow:0 18px 40px rgba(193,18,31,.28)}
+  @media(max-width:600px){.mortal{grid-template-columns:1fr;text-align:center}}
+  .mortal .huge{font-size:3.6rem;font-weight:900;line-height:.9}
+  .mortal .huge small{font-size:1.3rem}
+  .mortal h3{color:#fff;margin:0 0 4px}
+  .mortal p{color:#ffdcdf;margin:0;font-weight:600}
+  /* PALÁCIO */
+  .palace{background:radial-gradient(90% 120% at 82% 0%,rgba(18,130,162,.30),transparent 55%),linear-gradient(165deg,#0a2142,#0B2545 60%,#0e2c52);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:32px 26px;position:relative;overflow:hidden}
+  .palace .city{font-family:var(--script);font-size:2rem;color:var(--gold);margin:2px 0 16px}
+  .tower{text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(244,185,66,.35);border-radius:16px;padding:18px;max-width:320px;margin:0 auto 20px}
+  .tower .disp{font-family:var(--mono);font-size:2.2rem;font-weight:700;color:var(--gold);background:#160b28;border-radius:10px;padding:10px 0;box-shadow:inset 0 0 0 3px rgba(244,185,66,.3)}
+  .tower p{margin:10px 0 0;font-size:.88rem;color:#cfe0ec}
+  .machines{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  @media(max-width:760px){.machines{grid-template-columns:repeat(2,1fr)}}
+  .machine{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-top:3px solid var(--gold);border-radius:14px;padding:14px}
+  .machine .ico{font-size:1.6rem;display:block;margin-bottom:6px}
+  .machine b{display:block;color:var(--gold);font-size:.9rem;margin-bottom:4px}
+  .machine span{font-size:.76rem;color:#c2d3e2}
+  .scoreboard{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;background:rgba(0,0,0,.25);border-radius:14px;padding:14px;margin-bottom:12px}
+  .score{font-family:var(--mono);font-weight:700;text-align:center}
+  .score .v{font-size:1.5rem;color:var(--gold)}
+  .score .k{font-size:.62rem;letter-spacing:1px;color:#9fb8cc;text-transform:uppercase}
+  .redsky{text-align:center;background:rgba(193,18,31,.2);border:1px solid rgba(193,18,31,.5);border-radius:10px;padding:10px;color:#ff9ba2;font-weight:800;font-family:var(--mono);font-size:.82rem;margin-bottom:18px}
+  .plaque{text-align:center;background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:12px;padding:14px;color:var(--gold);font-weight:800;font-style:italic}
+  /* TABELA */
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-top:14px}
+  table{border-collapse:collapse;width:100%;min-width:520px;background:#fff}
+  th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-family:var(--mono);font-size:.68rem;letter-spacing:1px;text-transform:uppercase}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);font-size:.88rem;color:var(--ink)}
+  tr:nth-child(even) td{background:#f8fafc}
+  td:first-child{font-weight:800;color:var(--navy)}
+  td:last-child{color:var(--teal);font-style:italic}
+  /* FLASHCARDS */
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.64rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.95rem;line-height:1.3}
+  /* QUESTÕES */
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:14px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;font-family:var(--font);font-size:.92rem;font-weight:600;color:var(--ink);cursor:pointer}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:14px 16px;font-size:.9rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+  /* CASOS */
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+  /* PEGADINHAS */
+  .traps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.traps{grid-template-columns:1fr}}
+  .trap{display:flex;gap:10px;align-items:flex-start;background:#fff;border-left:4px solid var(--red);border-radius:10px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .trap span{font-size:.88rem;color:var(--ink);font-weight:600}
+  /* REVISÃO 60s */
+  .r60{background:linear-gradient(135deg,rgba(244,185,66,.14),rgba(18,130,162,.08));border:1px solid rgba(244,185,66,.35);border-radius:var(--radius);padding:24px}
+  .r60 .row{display:flex;flex-wrap:wrap;gap:8px}
+  .r60 .row span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:8px 13px;font-weight:800;font-size:.85rem;color:#fff}
+  .r60 .row span b{color:var(--gold)}
+  /* REVISÃO ESPAÇADA */
+  .spaced{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.spaced{grid-template-columns:1fr}}
+  .sp{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .sp h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);margin-bottom:10px}
+  .sp ul{list-style:none}
+  .sp li{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem;font-weight:600;cursor:pointer}
+  .sp li:last-child{border-bottom:none}
+  .sp li .box{width:18px;height:18px;border:2px solid var(--teal);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff}
+  .sp li.done .box{background:var(--green);border-color:var(--green)}
+  .sp li.done span{text-decoration:line-through;color:var(--muted)}
+  /* CHECKLIST */
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.check-grid{grid-template-columns:1fr}}
+  .chk{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  .chk .mk{color:var(--green);font-weight:900;flex-shrink:0}
+  .chk span{font-size:.9rem;color:var(--ink);font-weight:600}
+  footer{text-align:center;padding:44px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.2rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.82rem;color:#8fa8bd;margin-top:12px}
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="inner">
+  <a href="#definicao">Definição</a>
+  <a href="#prevalencia">Prevalência</a>
+  <a href="#fisiopatologia">Fisiopatologia</a>
+  <a href="#palacio">Palácio</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#questoes">Questões</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 1 · Cardiologia TEC 2026</span>
+    <h1>Introdução, Prevalência e <span class="hl">Fisiopatologia</span></h1>
+    <p class="sub">A pressão alta como doença crônica, silenciosa, prevalente, sistêmica e multifatorial.</p>
+    <div class="impact">&ldquo;Hipertensão não é uma pressão alta isolada. É uma pressão alta sustentada.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+  <section><div class="wrap">
+    <div class="mission"><b>Ao final deste tema, você será capaz de:</b>
+      <ul><li>Definir HAS corretamente</li><li>Reconhecer as exceções à confirmação</li><li>Situar a prevalência no Brasil</li><li>Explicar o impacto sistêmico</li><li>Organizar os 4 mecanismos fisiopatológicos</li></ul>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">Filosofia</span>
+    <div class="philo">
+      <div class="line">A doença não grita: insiste. E o que insiste em silêncio costuma ser, no fim, o que mais cobra.</div>
+      <span class="by">— Dr. André Rossanno</span>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="n17">
+      <div class="nbox n1"><div class="ntag">N1 · O mapa</div><h3>A sequência que não pode esquecer</h3>
+        <div class="flow"><span>Definição</span><i>→</i><span>Prevalência</span><i>→</i><span>Silêncio</span><i>→</i><span>Mecanismos</span><i>→</i><span>Tratamento contínuo</span></div>
+      </div>
+      <div class="nbox n7"><div class="ntag">N7 · Imagem em uma frase</div>
+        <div class="big">HAS é uma cidade brasileira silenciosa, com portão 140/90, placar 27-36-45-65, quatro máquinas fisiopatológicas funcionando ao mesmo tempo e poucos pacientes realmente controlados.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- DEFINIÇÃO -->
+  <section id="definicao"><div class="wrap">
+    <span class="kicker">01 · Definição</span>
+    <h2>Elevação sustentada, não um pico isolado</h2>
+    <div class="card" style="margin-top:16px">
+      <p>Doença crônica não transmissível caracterizada pela elevação <b>persistente</b> da pressão arterial: <b>PAS ≥140 mmHg e/ou PAD ≥90 mmHg</b>, com técnica correta, confirmada em <b>pelo menos duas ocasiões distintas</b>.</p>
+      <div style="background:var(--soft);border-radius:10px;padding:14px 16px;margin-top:10px">
+        <b style="color:var(--navy);font-size:.9rem">Uma única medida pode bastar quando há:</b>
+        <ul style="margin:8px 0 0;padding-left:20px;font-size:.9rem;color:var(--muted)">
+          <li>Lesão de órgão-alvo documentada</li>
+          <li>Doença cardiovascular estabelecida</li>
+          <li>Hipertensão estágio 3</li>
+        </ul>
+      </div>
+      <p style="margin-top:12px"><b>Natureza da doença:</b> crônica, <b>controlável, não curável</b> — exige tratamento contínuo.</p>
+    </div>
+  </div></section>
+
+  <!-- IMPACTO SISTÊMICO -->
+  <section><div class="wrap">
+    <span class="kicker">02 · Impacto sistêmico</span>
+    <h2>Uma doença que atinge múltiplos órgãos</h2>
+    <div class="organs" style="margin-top:14px">
+      <div class="organ"><span class="ico">🫀</span><b>Coração</b><span>IC, coronariana, infarto, FA</span></div>
+      <div class="organ"><span class="ico">🧠</span><b>Cérebro</b><span>AVC</span></div>
+      <div class="organ"><span class="ico">🫘</span><b>Rim</b><span>Doença renal crônica</span></div>
+      <div class="organ"><span class="ico">👁️</span><b>Retina</b><span>Retinopatia hipertensiva</span></div>
+      <div class="organ"><span class="ico">🩸</span><b>Vasos</b><span>Aterosclerose, rigidez</span></div>
+    </div>
+  </div></section>
+
+  <div class="wrap"><div class="philo" style="margin:10px 0 0">
+    <div class="line" style="font-size:.98rem">Nenhum órgão adoece sozinho. O corpo é uma conversa — e a pressão é a voz que ecoa em todos os cômodos.</div>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div>
+
+  <!-- PREVALÊNCIA -->
+  <section id="prevalencia"><div class="wrap">
+    <span class="kicker">03 · Prevalência no Brasil</span>
+    <h2>Mais de um terço da população adulta</h2>
+    <div class="grid g4" style="margin-top:16px">
+      <div class="numcard"><div class="n">27,9%</div><div class="cap">Vigitel</div></div>
+      <div class="numcard"><div class="n">36%</div><div class="cap">Áreas urbanas</div></div>
+      <div class="numcard"><div class="n">45%</div><div class="cap">OMS · 35–70 anos</div></div>
+      <div class="numcard"><div class="n">65,1%</div><div class="cap">Acima de 65 anos</div></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="mortal">
+      <div class="huge">54<small>%</small></div>
+      <div><h3>das mortes cardiovasculares no Brasil</h3><p>Podem ser atribuídas à hipertensão arterial — principal fator de risco para óbitos cardiovasculares no país.</p></div>
+    </div>
+  </div></section>
+
+  <div class="wrap"><div class="philo" style="margin:10px 0 0">
+    <div class="line" style="font-size:.98rem">Metade das mortes do coração começa numa medida que alguém achou que podia esperar.</div>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div>
+
+  <section><div class="wrap">
+    <span class="kicker">04 · Idade, sexo e populações</span>
+    <h2>Em quem a prevalência é maior?</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <p><b>Até 60 anos:</b> maior prevalência em homens.</p>
+        <p><b>Após 60 anos:</b> maior prevalência em mulheres (perda do efeito estrogênico).</p>
+        <p><b>Acima de 65 anos:</b> prevalência ultrapassa 65%.</p>
+      </div>
+      <div class="card">
+        <p><b>População negra:</b> mais comum e frequentemente <b>mais grave</b>, mesmo considerando fatores socioeconômicos e acesso à saúde.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">05 · O paradoxo do silêncio</span>
+    <h2>Alta prevalência, baixo controle</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="numcard"><div class="n">~67%</div><div class="cap">dos hipertensos são diagnosticados</div></div>
+      <div class="numcard red"><div class="n">&lt;30%</div><div class="cap">dos diagnosticados têm PA controlada</div></div>
+    </div>
+  </div></section>
+
+  <div class="wrap"><div class="philo" style="margin:10px 0 0">
+    <div class="line" style="font-size:.98rem">O sintoma é um aliado: denuncia a doença. A hipertensão rouba esse aliado — e transfere ao médico o aviso que o corpo se cala.</div>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div>
+
+  <!-- FISIOPATOLOGIA -->
+  <section id="fisiopatologia"><div class="wrap">
+    <span class="kicker">06 · Fisiopatologia multifatorial</span>
+    <h2>Quatro grandes mecanismos</h2>
+    <p class="sec-lead">Não existe causa única. Genética (poligênica), comportamento, psicossocial, ambiente e fatores socioeconômicos interagem entre si.</p>
+    <div class="grid g4" style="margin-top:14px">
+      <div class="card"><span class="tag t-green">A · Renal</span><p>Sensibilidade ao sal, natriurese por pressão, SRAA, isquemia renal</p></div>
+      <div class="card"><span class="tag t-gold">B · Hormonal</span><p>SRAA, endotelina, hormônios sexuais</p></div>
+      <div class="card"><span class="tag t-purple">C · Neural</span><p>Sistema autônomo, atividade simpática, barorreflexo</p></div>
+      <div class="card"><span class="tag t-teal">D · Vascular</span><p>Disfunção endotelial, remodelamento, rigidez arterial</p></div>
+    </div>
+    <div class="card" style="margin-top:14px;border-left:5px solid var(--teal)">
+      <p style="margin:0"><b>Implicação terapêutica:</b> a multiplicidade de mecanismos justifica a combinação de dois fármacos em vias diferentes — pode aumentar eficácia e reduzir efeitos colaterais versus só aumentar a dose de um único medicamento.</p>
+    </div>
+  </div></section>
+
+  <div class="wrap"><div class="philo" style="margin:10px 0 0">
+    <div class="line" style="font-size:.98rem">Procurar uma causa única para a hipertensão é culpar um só instrumento pelo som de toda a orquestra.</div>
+    <span class="by">— Dr. André Rossanno</span>
+  </div></div>
+
+  <!-- PALÁCIO -->
+  <section id="palacio"><div class="wrap">
+    <span class="kicker">Palácio da Memória</span>
+    <div class="palace">
+      <h2>Brasilândia Pressórica</h2>
+      <div class="tower">
+        <div class="disp">140/90</div>
+        <p>No centro da cidade, o portão diagnóstico. A pressão precisa bater <b>duas vezes</b> para confirmar.</p>
+      </div>
+      <div class="machines">
+        <div class="machine"><span class="ico">🫘</span><b>Rim-salina</b><span>Sal, natriurese, SRAA, isquemia</span></div>
+        <div class="machine"><span class="ico">⚗️</span><b>Hormônio-caldeirão</b><span>SRAA, endotelina, hormônios sexuais</span></div>
+        <div class="machine"><span class="ico">🚨</span><b>Cérebro-sirene</b><span>Simpático, barorreflexo</span></div>
+        <div class="machine"><span class="ico">🧱</span><b>Vaso-concreto</b><span>Endotélio, remodelamento, rigidez</span></div>
+      </div>
+      <div class="scoreboard">
+        <div class="score"><div class="v">27,9</div><div class="k">Vigitel</div></div>
+        <div class="score"><div class="v">36</div><div class="k">Urbana</div></div>
+        <div class="score"><div class="v">45</div><div class="k">OMS</div></div>
+        <div class="score"><div class="v">65,1</div><div class="k">&gt;65a</div></div>
+      </div>
+      <div class="redsky">☁ CÉU VERMELHO · 54% DAS MORTES CARDIOVASCULARES</div>
+      <div class="plaque">&ldquo;HAS é uma cidade brasileira silenciosa, com portão 140/90, placar 27-36-45-65, quatro máquinas funcionando ao mesmo tempo e poucos pacientes realmente controlados.&rdquo;</div>
+    </div>
+  </div></section>
+
+  <!-- TABELA -->
+  <section><div class="wrap">
+    <span class="kicker">07 · Revisão rápida</span>
+    <h2>Tema · Essência · Imagem mental</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tema</th><th>Essência</th><th>Imagem mental</th></tr></thead>
+        <tbody>
+          <tr><td>Definição</td><td>PAS ≥140 e/ou PAD ≥90 em duas ocasiões</td><td>Portão 140/90 batendo duas vezes</td></tr>
+          <tr><td>Crônica</td><td>Controlável, não curável</td><td>Alarme monitorado</td></tr>
+          <tr><td>Prevalência</td><td>27,9% · 36% · 45% · 65,1%</td><td>Placar subindo na cidade</td></tr>
+          <tr><td>Mortalidade</td><td>54% das mortes CV atribuídas à HAS</td><td>Céu vermelho sobre o coração</td></tr>
+          <tr><td>Sintomas</td><td>Frequentemente assintomática</td><td>Multidão com máscaras</td></tr>
+          <tr><td>Controle</td><td>Diagnóstico e controle insuficientes</td><td>Poucos desligam o alarme</td></tr>
+          <tr><td>Fisiopatologia</td><td>Multifatorial</td><td>Cidade com várias máquinas</td></tr>
+          <tr><td>Rim</td><td>Sal, natriurese, SRAA, isquemia</td><td>Rim jogando sal no rio</td></tr>
+          <tr><td>Hormônios</td><td>SRAA, endotelina, sexuais</td><td>Caldeirão hormonal</td></tr>
+          <tr><td>Neural</td><td>Simpático e barorreflexo</td><td>Cérebro-sirene</td></tr>
+          <tr><td>Vascular</td><td>Endotélio, remodelamento, rigidez</td><td>Artéria de concreto</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div></section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas"><div class="wrap">
+    <span class="kicker">08 · Pegadinhas</span>
+    <h2>Pegadinhas que tentam roubar seu ponto</h2>
+    <div class="traps" style="margin-top:14px">
+      <div class="trap"><span>HAS <b>não</b> é pico isolado — é elevação <b>sustentada</b>.</span></div>
+      <div class="trap"><span>Ponto de corte clássico: <b>140/90</b> mmHg.</span></div>
+      <div class="trap"><span>1 medida pode bastar: lesão de órgão-alvo, DCV estabelecida ou estágio 3.</span></div>
+      <div class="trap"><span>Até 60 anos: <b>homens</b>; após 60: <b>mulheres</b>.</span></div>
+      <div class="trap"><span>População negra: maior prevalência <b>e</b> gravidade.</span></div>
+      <div class="trap"><span>Apenas <b>~67%</b> são diagnosticados; <b>&lt;30%</b> controlados.</span></div>
+      <div class="trap"><span>4 mecanismos: renal, hormonal, neural, vascular.</span></div>
+      <div class="trap"><span>Multiplicidade de mecanismos justifica <b>combinação</b> terapêutica.</span></div>
+    </div>
+  </div></section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards"><div class="wrap">
+    <span class="kicker">09 · Flashcards</span>
+    <h2>Toque no cartão para virar</h2>
+    <div class="fc-grid" id="fcgrid" style="margin-top:16px"></div>
+  </div></section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes"><div class="wrap">
+    <span class="kicker">10 · Questões de prova</span>
+    <h2>Resolva antes de ver a resposta</h2>
+    <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+    <div id="qzlist"></div>
+  </div></section>
+
+  <!-- CASOS -->
+  <section><div class="wrap">
+    <span class="kicker">11 · Mini-casos</span>
+    <h2>Aplique o conceito</h2>
+    <div id="cases" style="margin-top:14px"></div>
+  </div></section>
+
+  <!-- REVISÃO 60s -->
+  <section><div class="wrap">
+    <span class="kicker">12 · Revisão de 60 segundos</span>
+    <div class="r60"><div class="row">
+      <span>140/90 = <b>portão diagnóstico</b></span>
+      <span>27,9 → 36 → 45 → 65,1 <b>= prevalência</b></span>
+      <span>54% <b>= mortes CV atribuídas</b></span>
+      <span>67% <b>diagnosticados</b></span>
+      <span>&lt;30% <b>controlados</b></span>
+      <span>4 mecanismos: <b>R·H·N·V</b></span>
+    </div></div>
+  </div></section>
+
+  <!-- REVISÃO ESPAÇADA -->
+  <section><div class="wrap">
+    <span class="kicker">13 · Revisão espaçada</span>
+    <h2>Volte aqui</h2>
+    <div class="spaced">
+      <div class="sp"><h4>Hoje</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Definição e exceções</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Números de prevalência</span></li>
+      </ul></div>
+      <div class="sp"><h4>Amanhã</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>4 mecanismos</span></li>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Grupos de risco (idade/sexo/etnia)</span></li>
+      </ul></div>
+      <div class="sp"><h4>Em 7 dias</h4><ul>
+        <li onclick="toggleDone(this)"><span class="box">✓</span><span>Resolver as questões de novo</span></li>
+      </ul></div>
+    </div>
+  </div></section>
+
+  <!-- CHECKLIST FINAL -->
+  <section><div class="wrap">
+    <span class="kicker">14 · Checklist final de prova</span>
+    <h2>O que não pode escapar</h2>
+    <div class="check-grid" style="margin-top:14px">
+      <div class="chk"><span class="mk">✓</span><span>HAS não é pico isolado de pressão.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Ponto de corte clássico: 140/90 mmHg.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Em geral, confirmar em duas ocasiões.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Exceções para 1 medida: LOA, DCV estabelecida, estágio 3.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Crônica, controlável, exige tratamento contínuo.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Prevalência alta no Brasil; sobe com a idade.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Após 65 anos, prevalência ultrapassa 65%.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Até 60 anos: homens; após 60: mulheres.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>População negra: maior prevalência e gravidade.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>HAS é frequentemente assintomática.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Há subdiagnóstico e baixo controle.</span></div>
+      <div class="chk"><span class="mk">✓</span><span>Mecanismos: renal, hormonal, neural, vascular.</span></div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Cardiologia TEC 2026</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleNext(btn){var el=btn.nextElementSibling;var open=el.classList.toggle('show');btn.textContent=open?'Ocultar resposta':'Ver resposta';}
+function toggleDone(li){li.classList.toggle('done');}
+
+var flashcards=[
+["Ponto de corte clássico da HAS?","PAS ≥140 e/ou PAD ≥90 mmHg."],
+["Em quantas ocasiões confirmar em geral?","Pelo menos duas ocasiões distintas."],
+["Quando 1 medida pode bastar?","Lesão de órgão-alvo, DCV estabelecida ou estágio 3."],
+["HAS é curável?","Não — é controlável, mas não curável."],
+["Prevalência pelo Vigitel?","27,9%."],
+["Prevalência em áreas urbanas?","36%."],
+["Prevalência pela OMS (35-70 anos)?","45%."],
+["Prevalência acima de 65 anos?","65,1%."],
+["% das mortes CV atribuídas à HAS?","54%."],
+["Até que idade homens têm maior prevalência?","Até 60 anos."],
+["Após os 60, quem tem maior prevalência?","Mulheres (perda do efeito estrogênico)."],
+["População negra tem que características na HAS?","Maior prevalência e maior gravidade."],
+["% de hipertensos diagnosticados?","Cerca de 67%."],
+["% com PA controlada entre os diagnosticados?","Menos de 30%."],
+["Quais os 4 mecanismos fisiopatológicos?","Renal, hormonal, neural e vascular."],
+["O que representa o mecanismo renal?","Sensibilidade ao sal, natriurese, SRAA, isquemia renal."],
+["O que representa o mecanismo neural?","Sistema autônomo, atividade simpática, barorreflexo."],
+["Por que combinar dois fármacos?","Multiplicidade de mecanismos aumenta eficácia e reduz efeitos colaterais."],
+["A HAS comum é monogênica?","Não — é poligênica."],
+["Quais órgãos-alvo da HAS?","Coração, cérebro, rim, retina, vasos."]
+];
+var fcgrid=document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d=document.createElement('div');d.className='flash';
+  d.innerHTML='<div class="flash-in"><div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div></div><div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick=function(){d.classList.toggle('flip');};
+  fcgrid.appendChild(d);
+});
+
+var questions=[
+{type:"Direta",stem:"Qual o ponto de corte clássico para HAS?",opts:["130/85","140/90","150/95","160/100"],correct:1,expl:"PAS ≥140 e/ou PAD ≥90 mmHg, confirmado em geral em duas ocasiões."},
+{type:"Direta",stem:"Em qual situação uma única medida pode confirmar HAS?",opts:["Paciente ansioso","Estágio 3","Primeira consulta","Idade avançada"],correct:1,expl:"Estágio 3, lesão de órgão-alvo documentada ou DCV estabelecida dispensam a repetição."},
+{type:"Direta",stem:"Qual mecanismo fisiopatológico envolve SRAA e endotelina?",opts:["Renal","Hormonal","Neural","Vascular"],correct:1,expl:"O mecanismo hormonal inclui SRAA, sistema endotelina e hormônios sexuais."},
+{type:"Direta",stem:"Percentual de mortes cardiovasculares atribuídas à HAS no Brasil?",opts:["27%","36%","45%","54%"],correct:3,expl:"54% das mortes cardiovasculares podem ser atribuídas à hipertensão."},
+{type:"Caso clínico",stem:"Mulher de 68 anos, PA 168/72 mmHg. Qual padrão é mais provável?",opts:["Hipertensão diastólica isolada","Hipertensão sistólica isolada","Normotensão","Hipotensão"],correct:1,expl:"No idoso, a rigidez arterial favorece hipertensão sistólica isolada."},
+{type:"Caso clínico",stem:"Homem de 45 anos, PA 145/95 em consulta única, sem LOA ou DCV. Conduta quanto à confirmação?",opts:["Diagnosticar HAS imediatamente","Confirmar em nova ocasião","Aguardar 1 ano","Solicitar apenas exames de rotina"],correct:1,expl:"Sem critérios para medida única, deve-se confirmar em pelo menos duas ocasiões."},
+{type:"V ou F",stem:"Verdadeiro ou falso: a hipertensão comum costuma ser monogênica.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso — a HAS comum é poligênica, com múltiplos genes de pequena influência."},
+{type:"V ou F",stem:"Verdadeiro ou falso: menos de 30% dos hipertensos diagnosticados têm PA controlada.",opts:["Verdadeiro","Falso"],correct:0,expl:"Verdadeiro — reflete o paradoxo de alta prevalência e baixo controle."},
+{type:"Pegadinha",stem:"Sobre a população negra na HAS, é correto afirmar:",opts:["Menor prevalência e gravidade semelhante","Maior prevalência e maior gravidade","Prevalência igual à população geral","Menor gravidade, mesma prevalência"],correct:1,expl:"População negra tem maior prevalência e frequentemente maior gravidade, mesmo ajustando por fatores socioeconômicos."},
+{type:"Pegadinha",stem:"Sobre o corte etário do sexo na prevalência de HAS:",opts:["Mulheres sempre têm mais HAS","Homens sempre têm mais HAS","Até 60 anos homens, após 60 mulheres","Não há diferença por sexo"],correct:2,expl:"Até 60 anos a prevalência é maior em homens; após 60, em mulheres, pela perda do efeito estrogênico."}
+];
+var qzlist=document.getElementById('qzlist');var answered=0;
+document.getElementById('total').textContent=questions.length;
+questions.forEach(function(q,qi){
+  var card=document.createElement('div');card.className='qz';
+  var letters=['A','B','C','D'];
+  var html='<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';});
+  html+='<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML=html;qzlist.appendChild(card);
+});
+qzlist.addEventListener('click',function(e){
+  var btn=e.target.closest('.opt');if(!btn)return;
+  var qi=+btn.dataset.q,oi=+btn.dataset.o;var card=btn.closest('.qz');
+  if(card.dataset.done)return;card.dataset.done="1";
+  var opts=card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){op.classList.add('locked');if(idx===questions[qi].correct)op.classList.add('correct');});
+  if(oi!==questions[qi].correct)btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;document.getElementById('answered').textContent=answered;
+});
+
+var cases=[
+["Caso 1","Paciente de 52 anos, PA 142/88 mmHg em uma única consulta, sem LOA. Pode-se fechar o diagnóstico?","Não — precisa confirmar em outra ocasião.","Sem critérios de medida única, exige-se confirmação em duas ocasiões distintas."],
+["Caso 2","Homem, 30 anos, obeso, PA 150/96 mmHg com retinopatia hipertensiva documentada. Uma medida basta?","Sim — lesão de órgão-alvo já documentada dispensa nova visita.","Retinopatia é lesão de órgão-alvo, um dos critérios para diagnóstico com medida única."],
+["Caso 3","Mulher, 70 anos, hipertensa há anos, controle irregular, agora com queixa de dispneia aos esforços. Qual mecanismo cardíaco pode estar envolvido?","Insuficiência cardíaca relacionada à HAS crônica.","HAS mal controlada é fator de risco relevante para IC, um dos órgãos-alvo cardíacos."],
+["Caso 4","Paciente jovem, sem fatores de risco aparentes, é diagnosticado com HAS. Isso indica causa monogênica simples?","Não necessariamente — a HAS comum é poligênica.","Múltiplos genes de pequeno efeito, somados a fatores ambientais, é o padrão mais comum."]
+];
+var cbox=document.getElementById('cases');
+cases.forEach(function(c){
+  var d=document.createElement('div');d.className='case';
+  d.innerHTML='<div class="cq"><b>'+c[0]+':</b> '+c[1]+'</div><button onclick="toggleNext(this)">Ver resposta</button><div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+window.addEventListener('scroll',function(){document.getElementById('totop').classList.toggle('show',window.scrollY>500);});
+</script>
+</body>
+</html>
