@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAS — Tema 7 | Central de Monitoramento da Pressão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,600&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2545;--navy-2:#123a63;--teal:#1282A2;--teal-l:#3aa9c9;--gold:#F4B942;--magenta:#D6336C;
+    --green:#2DC653;--yellow:#E8B90B;--orange:#E8710A;--red:#E63946;--purple:#6A4C93;
+    --ink:#0B2545;--muted:#5a6b7d;--line:#e6ecf2;--soft:#f1f6f9;--bg:#FBFCFD;
+    --font:'Nunito','Trebuchet MS',Arial,sans-serif;--mono:'IBM Plex Mono','Trebuchet MS',monospace;--script:'Dancing Script','Trebuchet MS',cursive;
+    --shadow:0 10px 30px rgba(0,0,0,.28);--radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--navy);color:#eaf2f8;line-height:1.55;font-size:17px;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 60% at 12% 8%,rgba(18,130,162,.22),transparent 55%),radial-gradient(ellipse 60% 70% at 88% 90%,rgba(214,51,108,.10),transparent 55%);pointer-events:none;z-index:0}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+  section{padding:32px 0}
+  h2{font-size:clamp(1.4rem,4.2vw,2rem);font-weight:900;line-height:1.15;letter-spacing:-.5px;margin-bottom:6px;color:#fff}
+  h3{font-size:1.15rem;font-weight:800;margin-bottom:6px;color:var(--navy)}
+  .kicker{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px}
+  .sec-lead{color:#b8ccdd;max-width:64ch;margin-bottom:16px}
+  .topnav{position:sticky;top:0;z-index:50;background:rgba(8,25,47,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .topnav .inner{max-width:980px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 14px;scrollbar-width:none}
+  .topnav .inner::-webkit-scrollbar{display:none}
+  .topnav a{white-space:nowrap;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:#9fb8cc;text-decoration:none;padding:6px 11px;border-radius:999px;border:1px solid transparent}
+  .topnav a:hover{color:#fff;border-color:rgba(244,185,66,.5);background:rgba(244,185,66,.08)}
+  .hero{padding:56px 0 36px;text-align:center}
+  .hero h1{font-size:clamp(1.9rem,6.2vw,2.9rem);font-weight:900;line-height:1.08;letter-spacing:-1px;color:#fff;margin-bottom:14px}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--teal-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero .sub{color:#c6d6e4;font-size:1.08rem;max-width:56ch;margin:0 auto 18px}
+  .impact{display:inline-block;font-family:var(--script);font-size:1.6rem;color:var(--gold);margin-bottom:6px}
+  .card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .card p{color:var(--muted);margin-bottom:8px}
+  .card p:last-child{margin-bottom:0}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .tag{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px;display:inline-block;margin-bottom:10px}
+  .t-teal{background:#e4f1f5;color:var(--teal)} .t-gold{background:#fdf3d9;color:#8a6d16}
+  .t-red{background:#fde3e5;color:var(--red)} .t-green{background:#e5f6ea;color:#1f7a38} .t-mag{background:#fbe4ee;color:var(--magenta)} .t-purple{background:#ede6f5;color:var(--purple)}
+  .mission{background:linear-gradient(135deg,rgba(18,130,162,.14),rgba(244,185,66,.06));border:1px solid rgba(18,130,162,.35);border-radius:var(--radius);padding:20px 22px;color:#eaf2f8}
+  .mission b{color:var(--gold)}
+  .mission ol{margin:10px 0 0;padding-left:20px}
+  .mission li{margin:4px 0;font-weight:600;font-size:.94rem}
+  .philo{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:24px}
+  .philo .line{font-size:1.06rem;font-weight:700;color:#eef5fa;margin-bottom:8px}
+  .philo .by{display:block;margin-top:12px;font-family:var(--mono);font-size:.64rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l)}
+  /* CENTRAL */
+  .central{background:radial-gradient(90% 120% at 82% 0%,rgba(18,130,162,.30),transparent 55%),linear-gradient(165deg,#0a2142,#0B2545 60%,#0e2c52);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px 22px}
+  .setores{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+  @media(max-width:760px){.setores{grid-template-columns:repeat(2,1fr)}}
+  .setor{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-top:4px solid var(--gold);border-radius:14px;padding:16px;text-align:center}
+  .setor .ico{font-size:1.9rem;display:block;margin-bottom:6px}
+  .setor b{display:block;color:#fff;font-size:.92rem;margin-bottom:2px}
+  .setor span{font-size:.76rem;color:#c2d3e2}
+  .anchor4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+  @media(max-width:640px){.anchor4{grid-template-columns:repeat(2,1fr)}}
+  .anchor-item{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:var(--shadow)}
+  .anchor-item .ico{font-size:1.4rem}
+  .anchor-item p{margin:4px 0 0;font-size:.78rem;color:var(--navy);font-weight:700}
+  /* COMPARADOR CLICÁVEL */
+  .compare-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  .compare-row .top{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--navy)}
+  .compare-row .scores{font-family:var(--mono);font-size:.78rem;color:var(--teal)}
+  .compare-row .expl{display:none;margin-top:10px;background:var(--soft);border-left:3px solid var(--teal);border-radius:8px;padding:10px 12px;font-size:.88rem;color:var(--navy)}
+  .compare-row.open .expl{display:block}
+  /* TOOL */
+  .tool{background:#fff;color:var(--ink);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .tool .inputs{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px}
+  .tool label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .tool input,.tool select{padding:10px 12px;border:2px solid var(--line);border-radius:10px;font-family:var(--font);font-weight:700;font-size:.98rem;color:var(--navy)}
+  .tool input{width:100px}
+  .tool button{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:var(--font);font-weight:800;cursor:pointer}
+  .tool button:hover{background:#0e6a86}
+  .result{margin-top:14px;border-radius:12px;padding:16px 18px;font-weight:800;display:none}
+  .result.show{display:block}
+  .result .sub2{display:block;font-weight:600;font-size:.86rem;margin-top:6px}
+  .alert{border-radius:14px;padding:15px 17px;margin-top:12px}
+  .alert.red{background:#fde3e5;border:1px solid #f3b5bb;color:#7d1119}
+  .alert.gold{background:#fdf3d9;border:1px solid #ecd18a;color:#6b5210}
+  .imgmind{background:#eef5fb;border-left:5px solid var(--teal);border-radius:12px;padding:13px 15px;margin-top:10px;font-style:italic;color:var(--navy);font-size:.92rem}
+  .imgmind b{font-style:normal;color:var(--teal)}
+  /* PEGADINHAS T/F */
+  .tfcard{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);margin-bottom:10px}
+  .tfcard .stmt{font-weight:700;color:var(--navy);font-style:italic;margin-bottom:8px}
+  .tfcard button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.8rem;cursor:pointer}
+  .tfcard .a{display:none;margin-top:10px;border-radius:8px;padding:10px 13px;font-size:.88rem}
+  .tfcard .a.show{display:block}
+  .tfcard .a.true{background:#e5f6ea;color:#1c4d2c;border-left:4px solid var(--green)}
+  .tfcard .a.trap{background:#fde3e5;color:#7d1119;border-left:4px solid var(--red)}
+  /* CASOS */
+  .case{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-left:5px solid var(--magenta);margin-bottom:12px}
+  .case .cq{font-weight:700;color:var(--navy);margin-bottom:6px}
+  .case button{background:var(--magenta);color:#fff;border:none;border-radius:8px;padding:7px 14px;font-family:var(--font);font-weight:800;font-size:.82rem;cursor:pointer}
+  .case .ca{display:none;margin-top:10px;background:#fbe4ee;border-left:4px solid var(--magenta);border-radius:8px;padding:11px 14px;font-size:.9rem;color:#7a1846}
+  .case .ca.show{display:block}
+  .case .ca b{color:var(--magenta)}
+  /* FLASHCARDS */
+  .fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:640px){.fc-grid{grid-template-columns:1fr}}
+  .flash{background:transparent;perspective:1200px;height:150px;cursor:pointer}
+  .flash-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flash.flip .flash-in{transform:rotateY(180deg)}
+  .flash-f,.flash-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .flash-f{background:#fff;color:var(--navy)}
+  .flash-b{background:linear-gradient(150deg,#0e6a86,#1282A2);color:#fff;transform:rotateY(180deg)}
+  .flash .qn{font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:8px;text-transform:uppercase}
+  .flash-b .qn{color:var(--gold)}
+  .flash .txt{font-weight:800;font-size:.92rem;line-height:1.3}
+  /* QUESTÕES */
+  .qzcount{background:rgba(244,185,66,.12);border:1px solid rgba(244,185,66,.4);border-radius:999px;padding:8px 18px;display:inline-block;font-family:var(--mono);font-size:.78rem;color:var(--gold);font-weight:700;margin-bottom:16px}
+  .qz{background:#fff;border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:14px;color:var(--ink)}
+  .qz .qtype{font-family:var(--mono);font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--magenta);font-weight:700;margin-bottom:8px}
+  .qz .stem{font-weight:800;color:var(--navy);margin-bottom:12px}
+  .qz .opt{display:block;width:100%;text-align:left;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:7px;font-family:var(--font);font-size:.9rem;font-weight:600;color:var(--ink);cursor:pointer}
+  .qz .opt .let{font-weight:900;color:var(--teal);margin-right:8px}
+  .qz .opt.correct{background:#e5f6ea;border-color:var(--green)}
+  .qz .opt.correct .let{color:#1f7a38}
+  .qz .opt.wrong{background:#fde3e5;border-color:var(--red)}
+  .qz .opt.wrong .let{color:var(--red)}
+  .qz .opt.locked{cursor:default;pointer-events:none}
+  .qz .expl{display:none;margin-top:12px;background:#eef5fb;border-left:4px solid var(--teal);border-radius:10px;padding:12px 14px;font-size:.88rem;color:var(--navy)}
+  .qz .expl.show{display:block}
+  .qz .expl b{color:var(--teal)}
+  /* FECHAMENTO */
+  .closepanel{background:linear-gradient(160deg,#0a2142,#0B2545 60%,#10305a);border:1px solid rgba(244,185,66,.25);border-radius:22px;padding:26px}
+  .closepanel .row5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+  @media(max-width:760px){.closepanel .row5{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.closepanel .row5{grid-template-columns:1fr}}
+  .cp-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px}
+  .cp-item b{display:block;color:var(--gold);font-size:.86rem;margin-bottom:4px}
+  .cp-item span{font-size:.76rem;color:#c2d3e2;display:block;line-height:1.4}
+  .final-phrase{text-align:center;margin-top:18px;font-family:var(--script);font-size:1.7rem;color:var(--gold)}
+  footer{text-align:center;padding:40px 18px 80px;border-top:1px solid rgba(255,255,255,.08);margin-top:20px}
+  footer .sig{font-family:var(--script);font-size:2.1rem;color:var(--gold)}
+  footer .role{font-family:var(--mono);font-size:.66rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-top:6px}
+  footer .note{font-size:.8rem;color:#8fa8bd;margin-top:10px}
+  .totop{position:fixed;bottom:20px;right:20px;z-index:60;background:var(--gold);color:var(--navy);border:none;width:46px;height:46px;border-radius:50%;font-size:1.2rem;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.3s}
+  .totop.show{opacity:1;pointer-events:auto}
+  .progress{position:sticky;top:41px;z-index:49;height:3px;background:rgba(255,255,255,.08)}
+  .progress-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0%;transition:width .2s}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="inner">
+  <a href="#geral">Visão geral</a>
+  <a href="#mapa">MAPA</a>
+  <a href="#mrpa">MRPA</a>
+  <a href="#sono">Sono</a>
+  <a href="#vop">VOP e central</a>
+  <a href="#casos">Casos</a>
+  <a href="#pegadinhas">Pegadinhas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#questoes">Questões</a>
+</div></nav>
+<div class="progress"><div class="progress-bar" id="progbar"></div></div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">HAS · Tema 7 · Cardiologia TEC 2026</span>
+    <h1>Central de Monitoramento da <span class="hl">Pressão</span></h1>
+    <p class="sub">MAPA, MRPA, descenso noturno, VOP e pressão central — o laboratório onde você aprende a interpretar, não só a decorar.</p>
+    <div class="impact">&ldquo;Medir é registrar. Interpretar é transformar números em decisões.&rdquo;</div>
+  </div>
+</header>
+
+<main>
+  <!-- VISÃO GERAL -->
+  <section id="geral"><div class="wrap">
+    <div class="mission">
+      <b>Ao final deste tema, você deve conseguir responder:</b>
+      <ol>
+        <li>Qual exame foi realizado?</li>
+        <li>O exame é tecnicamente válido?</li>
+        <li>Qual média devo analisar?</li>
+        <li>O valor está normal ou alterado?</li>
+        <li>Existe alteração do sono?</li>
+        <li>Isso muda diagnóstico, prognóstico ou tratamento?</li>
+        <li>Há alguma armadilha no caso?</li>
+      </ol>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <span class="kicker">Filosofia</span>
+    <div class="philo">
+      <div class="line">A pressão arterial não é uma fotografia. É um filme de 24 horas.</div>
+      <div class="line" style="font-size:.94rem;font-weight:600;color:#cfe0ec">MAPA mostra vigília, sono, atividades, sintomas e comportamento noturno. MRPA mostra repetição, tendência e resposta ao tratamento. VOP e pressão central mostram uma camada mais profunda: não apenas quanto é a pressão, mas como a artéria conduz e amplifica a onda.</div>
+      <span class="by">— Dr. André Rossanno</span>
+    </div>
+  </div></section>
+
+  <!-- CENTRAL DE MONITORAMENTO -->
+  <section><div class="wrap">
+    <span class="kicker">Conceito visual central</span>
+    <h2>A Central de Monitoramento da Pressão</h2>
+    <div class="central">
+      <div class="setores">
+        <div class="setor"><span class="ico">🕐</span><b>Setor 1</b><span>MAPA 24 horas</span></div>
+        <div class="setor"><span class="ico">🏠</span><b>Setor 2</b><span>MRPA residencial</span></div>
+        <div class="setor"><span class="ico">🌙</span><b>Setor 3</b><span>Sono e descenso</span></div>
+        <div class="setor"><span class="ico">🩸</span><b>Setor 4</b><span>Artéria e onda de pulso</span></div>
+      </div>
+      <p style="text-align:center;color:#c6d6e4;margin-top:16px;font-size:.92rem">Técnica de memorização: <b style="color:#fff">o relógio, a casa, a lua e a estrada.</b></p>
+      <div class="anchor4">
+        <div class="anchor-item"><span class="ico">🕐</span><p>MAPA vê o dia inteiro</p></div>
+        <div class="anchor-item"><span class="ico">🏠</span><p>MRPA repete dias inteiros</p></div>
+        <div class="anchor-item"><span class="ico">🌙</span><p>A lua deve baixar a pressão</p></div>
+        <div class="anchor-item"><span class="ico">🛣️</span><p>Estrada rígida, onda mais rápida</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- ESTAÇÃO 1 — ESCOLHA DO MÉTODO -->
+  <section><div class="wrap">
+    <span class="kicker">01 · Escolha do método</span>
+    <h2>Qual exame você pediria?</h2>
+    <p class="sec-lead">Toque em cada linha para ver a explicação.</p>
+    <div id="compareList" style="margin-top:14px"></div>
+  </div></section>
+
+  <!-- MAPA -->
+  <section id="mapa"><div class="wrap">
+    <span class="kicker">02 · MAPA</span>
+    <h2>O relógio de 24 horas</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><span class="tag t-teal">Como funciona</span>
+        <p>Aparelho automático, braço não dominante, manguito adequado. Mede na vigília e no sono, registrando atividades, sintomas e medicamentos. Evitar exercício durante o exame; realizar em dia representativo.</p>
+        <p><b>Intervalos:</b> vigília a cada 15–20 min; sono a cada 20–30 min.</p>
+      </div>
+      <div class="card"><span class="tag t-gold">Diário da MAPA</span>
+        <p>O relatório só ganha sentido com contexto: medicamentos, refeições, álcool/cigarro, deslocamentos, estresse, sintomas, horário de dormir/acordar, atividade física.</p>
+        <div class="imgmind"><b>Frase-chave:</b> o número isolado tem pouco valor quando não sabemos o que o paciente estava fazendo naquele momento.</div>
+      </div>
+    </div>
+
+    <!-- QUALIDADE MAPA -->
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Este exame pode ser interpretado?</span>
+      <p>Critérios: mínimo <b>16 medidas válidas na vigília</b>, mínimo <b>8 no sono</b>, duração ideal ≥<b>22 horas</b>, evitar períodos &gt;2h sem medidas.</p>
+      <div class="tool" style="margin-top:12px">
+        <div class="inputs">
+          <div><label>Medidas na vigília</label><input type="number" id="vig"></div>
+          <div><label>Medidas no sono</label><input type="number" id="son"></div>
+          <div><label>Duração (h)</label><input type="number" id="dur"></div>
+          <button onclick="avaliarQualidade()">Avaliar</button>
+        </div>
+        <div class="result" id="qualBox"></div>
+      </div>
+    </div>
+
+    <!-- VALORES MAPA -->
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-teal">Classificador de médias — MAPA</span>
+      <div class="grid g3" style="margin-top:8px">
+        <div style="text-align:center;background:var(--soft);border-radius:10px;padding:10px"><b style="color:var(--navy)">24h</b><br><span style="font-size:.82rem;color:var(--muted)">Normal &lt;130/80</span></div>
+        <div style="text-align:center;background:var(--soft);border-radius:10px;padding:10px"><b style="color:var(--navy)">Vigília ☀️</b><br><span style="font-size:.82rem;color:var(--muted)">Normal &lt;135/85</span></div>
+        <div style="text-align:center;background:var(--soft);border-radius:10px;padding:10px"><b style="color:var(--navy)">Sono 🌙</b><br><span style="font-size:.82rem;color:var(--muted)">Normal &lt;120/70</span></div>
+      </div>
+      <div class="tool" style="margin-top:12px">
+        <div class="inputs">
+          <div><label>PAS</label><input type="number" id="mapaPAS"></div>
+          <div><label>PAD</label><input type="number" id="mapaPAD"></div>
+          <div><label>Período</label>
+            <select id="mapaPeriodo">
+              <option value="24h">24 horas (&lt;130/80)</option>
+              <option value="vigilia">Vigília (&lt;135/85)</option>
+              <option value="sono">Sono (&lt;120/70)</option>
+            </select>
+          </div>
+          <button onclick="classificarMAPA()">Classificar</button>
+        </div>
+        <div class="result" id="mapaResult"></div>
+      </div>
+      <div class="alert gold" style="margin-top:10px">PAS ou PAD elevada já torna o período <b>alterado</b> — não é preciso as duas.</div>
+    </div>
+  </div></section>
+
+  <!-- SONO E DESCENSO -->
+  <section id="sono"><div class="wrap">
+    <span class="kicker">03 · Sono e descenso noturno</span>
+    <h2>A lua deve baixar a pressão</h2>
+    <div class="card" style="margin-top:14px">
+      <div class="grid g4">
+        <div style="text-align:center;background:#e5f6ea;border-radius:10px;padding:10px"><b style="color:#1f7a38">Presente</b><br><span style="font-size:.8rem;color:var(--muted)">10–20%</span></div>
+        <div style="text-align:center;background:#fdf3d9;border-radius:10px;padding:10px"><b style="color:#8a6d16">Atenuado</b><br><span style="font-size:.8rem;color:var(--muted)">&gt;0 e &lt;10%</span></div>
+        <div style="text-align:center;background:#fde3e5;border-radius:10px;padding:10px"><b style="color:#8f0d18">Ausente/ascensão</b><br><span style="font-size:.8rem;color:var(--muted)">≤0%</span></div>
+        <div style="text-align:center;background:#ede6f5;border-radius:10px;padding:10px"><b style="color:var(--purple)">Acentuado</b><br><span style="font-size:.8rem;color:var(--muted)">&gt;20%</span></div>
+      </div>
+      <div class="tool" style="margin-top:14px">
+        <span class="tag t-teal">Calculadora de descenso</span>
+        <div class="inputs" style="margin-top:8px">
+          <div><label>PAS vigília</label><input type="number" id="pasVig"></div>
+          <div><label>PAS sono</label><input type="number" id="pasSon"></div>
+          <button onclick="calcularDescenso()">Calcular</button>
+        </div>
+        <div class="result" id="descResult"></div>
+      </div>
+      <div class="imgmind"><b>Fórmula:</b> Descenso (%) = [(PA vigília − PA sono) / PA vigília] × 100.</div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Ausência de descenso — o que pensar?</span>
+      <p>Sono ruim, erro técnico, apneia do sono, diabetes, disautonomia, medicamentos, outras condições associadas.</p>
+      <div class="alert red"><b>Pegadinha:</b> o padrão de descenso, isoladamente, <b>não determina automaticamente</b> mudança de horário ou dose do anti-hipertensivo. É marcador prognóstico e convite à investigação — não uma receita automática.</div>
+    </div>
+  </div></section>
+
+  <!-- MRPA -->
+  <section id="mrpa"><div class="wrap">
+    <span class="kicker">04 · MRPA</span>
+    <h2>A casa: manhã e noite</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><span class="tag t-gold">Protocolo</span>
+        <p><b>3 medidas pela manhã + 3 à noite</b>, por 4 a 6 dias, ~1 min de intervalo entre medidas. O <b>primeiro dia é excluído</b> do cálculo da média.</p>
+        <p>Ideal: <b>24 a 36 medidas válidas</b>. Mínimo aceitável: 14 a 18.</p>
+      </div>
+      <div class="card"><span class="tag t-mag">MRPA × AMPA</span>
+        <p><b>AMPA</b> = medição eventual, sem protocolo — triagem.</p>
+        <p><b>MRPA</b> = protocolo definido, repetição, média, uso diagnóstico.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-teal">Classificador de médias — MRPA</span>
+      <p>Normal: média &lt;130/80 mmHg. Hipertensão: ≥130 e/ou ≥80.</p>
+      <div class="tool" style="margin-top:8px">
+        <div class="inputs">
+          <div><label>PAS média</label><input type="number" id="mrpaPAS"></div>
+          <div><label>PAD média</label><input type="number" id="mrpaPAD"></div>
+          <button onclick="classificarMRPA()">Classificar</button>
+        </div>
+        <div class="result" id="mrpaResult"></div>
+      </div>
+      <div class="alert gold" style="margin-top:10px">Não é necessário que PAS e PAD estejam alteradas ao mesmo tempo.</div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Exclusão de medidas discrepantes</span>
+      <p>Suspeitar/revisar: PAD &gt;140 ou &lt;40; PAS &lt;70 ou &gt;250; PAS menor que a PAD anterior/subsequente; pressão de pulso &lt;20 ou &gt;100 sem justificativa clínica.</p>
+      <div class="imgmind"><b>Regra:</b> primeiro verificar contexto clínico, sintoma e possível erro técnico — não excluir mecanicamente.</div>
+    </div>
+  </div></section>
+
+  <!-- VOP E PRESSÃO CENTRAL -->
+  <section id="vop"><div class="wrap">
+    <span class="kicker">05 · VOP e pressão central</span>
+    <h2>A estrada e a rigidez da artéria</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><span class="tag t-green">Artéria elástica</span><p>Onda mais lenta, amortecimento adequado, retorno mais tardio. Como estrada de borracha — carro lento.</p></div>
+      <div class="card"><span class="tag t-red">Artéria rígida</span><p>Onda mais rápida, retorno precoce, aumento da PAS, maior pressão de pulso. Como estrada de pedra — carro dispara.</p></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-teal">Valor de prova</span>
+      <p><b>VOP ≥10 m/s</b> = lesão subclínica de órgão-alvo e marcador de maior risco cardiovascular.</p>
+      <p><b>Quando solicitar:</b> reestratificação de pré-hipertensos e hipertensos de risco baixo/intermediário — não é obrigatório para todos, nem método diagnóstico primário de HAS.</p>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-mag">Pressão central — hipertensão espúria do jovem</span>
+      <p>Jovem, magro, ativo, sem lesão de órgão-alvo: PA braquial 152/70, pressão central 126/69, VOP 5 m/s.</p>
+      <div class="imgmind"><b>Hipótese:</b> hipertensão sistólica espúria do jovem — a pressão periférica pode estar amplificada enquanto a central permanece normal. Evitar tratamento precipitado baseado só na braquial.</div>
+      <p style="margin-top:8px;font-style:italic;color:var(--navy)">&ldquo;No jovem, a pressão do braço pode gritar enquanto a aorta permanece tranquila.&rdquo;</p>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <span class="tag t-red">Teste ergométrico não diagnostica HAS</span>
+      <p>Resposta hipertensiva exacerbada: PAS ≥210 mmHg (homens) ou ≥190 mmHg (mulheres) ao esforço — sugere maior probabilidade futura de HAS, mas <b>não confirma diagnóstico</b> nem gera tratamento automático.</p>
+    </div>
+  </div></section>
+
+  <!-- CASOS -->
+  <section id="casos"><div class="wrap">
+    <span class="kicker">06 · Casos clínicos</span>
+    <h2>Interprete de verdade</h2>
+    <div id="cases" style="margin-top:14px"></div>
+  </div></section>
+
+  <!-- PEGADINHAS -->
+  <section id="pegadinhas"><div class="wrap">
+    <span class="kicker">07 · Verdadeiro ou armadilha?</span>
+    <h2>Pegadinhas que tentam roubar seu ponto</h2>
+    <div id="tfList" style="margin-top:14px"></div>
+  </div></section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards"><div class="wrap">
+    <span class="kicker">08 · Flashcards</span>
+    <h2>Toque no cartão para virar</h2>
+    <div class="fc-grid" id="fcgrid" style="margin-top:14px"></div>
+  </div></section>
+
+  <!-- QUESTÕES -->
+  <section id="questoes"><div class="wrap">
+    <span class="kicker">09 · Questões</span>
+    <h2>Resolva antes de ver a resposta</h2>
+    <div class="qzcount"><span id="answered">0</span> / <span id="total">0</span> respondidas</div>
+    <div id="qzlist"></div>
+  </div></section>
+
+  <!-- FECHAMENTO -->
+  <section><div class="wrap">
+    <span class="kicker">Fechamento</span>
+    <div class="closepanel">
+      <h2>O mapa mental definitivo</h2>
+      <div class="row5">
+        <div class="cp-item"><b>MAPA</b><span>24h · vigília, sono e sintomas · melhor para fenótipos e comportamento noturno</span></div>
+        <div class="cp-item"><b>MRPA</b><span>vários dias · manhã e noite · melhor para acompanhamento</span></div>
+        <div class="cp-item"><b>Sono</b><span>queda esperada 10–20% · marcador prognóstico · não determina tratamento automático</span></div>
+        <div class="cp-item"><b>VOP</b><span>rigidez arterial · ≥10 m/s = lesão subclínica</span></div>
+        <div class="cp-item"><b>Pressão central</b><span>útil na suspeita de hipertensão espúria do jovem</span></div>
+      </div>
+      <div class="final-phrase">&ldquo;A pressão verdadeira não mora em um único número. Ela aparece no padrão.&rdquo;</div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="role">Atlas Mental — Curadoria: Dr. André Rossanno</div>
+  <div class="note">Material educacional para estudo e revisão.</div>
+</footer>
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function toggleNext(btn){var el=btn.nextElementSibling;var open=el.classList.toggle('show');btn.textContent=open?'Ocultar resposta':'Ver resposta';}
+
+/* COMPARADOR ESCOLHA DE MÉTODO */
+var compare=[
+["Suspeita de avental branco","MAPA","+++","++","MAPA é preferencial, embora a MRPA também possa ajudar."],
+["Suspeita de hipertensão mascarada","MAPA","+++","++","MAPA é preferencial; MRPA é alternativa possível."],
+["Acompanhamento de tratamento","MRPA","++","+++","MRPA é o método preferencial para seguir a resposta terapêutica."],
+["Hipertensão resistente","MAPA","+++","++","MAPA ajuda a confirmar e caracterizar; MRPA pode complementar."],
+["Avaliação do sono","MAPA","+++","—","Só o MAPA avalia o período de sono; MRPA não se aplica aqui."],
+["Acompanhar resposta ao tratamento ao longo das semanas","MRPA","++","+++","MRPA é indicada para seguimento prolongado e prático."]
+];
+var cList=document.getElementById('compareList');
+compare.forEach(function(c){
+  var d=document.createElement('div');d.className='compare-row';
+  d.innerHTML='<div class="top"><span>'+c[0]+'</span><span class="scores">MAPA '+c[2]+' · MRPA '+c[3]+'</span></div><div class="expl"><b>'+c[1]+'.</b> '+c[4]+'</div>';
+  d.onclick=function(){d.classList.toggle('open');};
+  cList.appendChild(d);
+});
+
+/* QUALIDADE MAPA */
+function avaliarQualidade(){
+  var v=parseFloat(document.getElementById('vig').value);
+  var s=parseFloat(document.getElementById('son').value);
+  var d=parseFloat(document.getElementById('dur').value);
+  var box=document.getElementById('qualBox');
+  if([v,s,d].some(isNaN)){box.className='result show';box.style.background='#fde3e5';box.style.color='#7d1119';box.textContent='Preencha os três campos.';return;}
+  var problemas=[];
+  if(v<16) problemas.push('número insuficiente de medidas válidas na vigília (mínimo 16)');
+  if(s<8) problemas.push('número insuficiente de medidas válidas no sono (mínimo 8)');
+  if(d<22) problemas.push('duração inferior ao desejável (ideal ≥22 horas)');
+  box.className='result show';
+  if(problemas.length===0){box.style.background='#e5f6ea';box.style.color='#1f7a38';box.innerHTML='Exame tecnicamente <b>adequado</b>.';}
+  else{box.style.background='#fde3e5';box.style.color='#7d1119';box.innerHTML='Exame <b>inadequado</b> — '+problemas.join('; ')+'.';}
+}
+
+/* CLASSIFICADOR MAPA */
+function classificarMAPA(){
+  var pas=parseFloat(document.getElementById('mapaPAS').value);
+  var pad=parseFloat(document.getElementById('mapaPAD').value);
+  var periodo=document.getElementById('mapaPeriodo').value;
+  var box=document.getElementById('mapaResult');
+  if(isNaN(pas)||isNaN(pad)){box.className='result show';box.style.background='#fde3e5';box.style.color='#7d1119';box.textContent='Digite PAS e PAD.';return;}
+  var limPAS,limPAD;
+  if(periodo==='24h'){limPAS=130;limPAD=80;}
+  else if(periodo==='vigilia'){limPAS=135;limPAD=85;}
+  else {limPAS=120;limPAD=70;}
+  var altPAS=pas>=limPAS, altPAD=pad>=limPAD;
+  var cat;
+  if(!altPAS&&!altPAD) cat='Normal';
+  else if(altPAS&&altPAD) cat='Ambas alteradas';
+  else if(altPAS) cat='Sistólica alterada';
+  else cat='Diastólica alterada';
+  box.className='result show';
+  box.style.background = cat==='Normal' ? '#e5f6ea' : '#fde3e5';
+  box.style.color = cat==='Normal' ? '#1f7a38' : '#7d1119';
+  box.innerHTML='Resultado: <span style="font-size:1.15rem">'+cat+'</span><span class="sub2">Limite do período: '+limPAS+'/'+limPAD+' mmHg.</span>';
+}
+
+/* CALCULADORA DESCENSO */
+function calcularDescenso(){
+  var vig=parseFloat(document.getElementById('pasVig').value);
+  var son=parseFloat(document.getElementById('pasSon').value);
+  var box=document.getElementById('descResult');
+  if(isNaN(vig)||isNaN(son)||vig<=0){box.className='result show';box.style.background='#fde3e5';box.style.color='#7d1119';box.textContent='Digite valores válidos.';return;}
+  var desc=((vig-son)/vig)*100;
+  var cat,bg,color;
+  if(desc>20){cat='Acentuado';bg='#ede6f5';color='#4b3369';}
+  else if(desc>=10){cat='Presente';bg='#e5f6ea';color='#1f7a38';}
+  else if(desc>0){cat='Atenuado';bg='#fdf3d9';color='#8a6d16';}
+  else {cat='Ausente/ascensão';bg='#fde3e5';color='#8f0d18';}
+  box.className='result show';box.style.background=bg;box.style.color=color;
+  box.innerHTML='Descenso: <span style="font-size:1.2rem">'+desc.toFixed(1)+'%</span> — <b>'+cat+'</b><span class="sub2">Cálculo: [('+vig+' − '+son+') / '+vig+'] × 100</span>';
+}
+
+/* CLASSIFICADOR MRPA */
+function classificarMRPA(){
+  var pas=parseFloat(document.getElementById('mrpaPAS').value);
+  var pad=parseFloat(document.getElementById('mrpaPAD').value);
+  var box=document.getElementById('mrpaResult');
+  if(isNaN(pas)||isNaN(pad)){box.className='result show';box.style.background='#fde3e5';box.style.color='#7d1119';box.textContent='Digite PAS e PAD.';return;}
+  var altPAS=pas>=130, altPAD=pad>=80;
+  var cat;
+  if(!altPAS&&!altPAD) cat='Dentro da faixa normal da MRPA';
+  else if(altPAS&&altPAD) cat='Alterada — PAS e PAD';
+  else if(altPAS) cat='Alterada pela PAS';
+  else cat='Alterada pela PAD';
+  box.className='result show';
+  box.style.background = (!altPAS&&!altPAD) ? '#e5f6ea' : '#fde3e5';
+  box.style.color = (!altPAS&&!altPAD) ? '#1f7a38' : '#7d1119';
+  box.innerHTML=cat+'.';
+}
+
+/* CASOS */
+var cases=[
+["Caso 1 — MAPA adequada?","22 horas de exame, 17 medidas válidas na vigília, 7 durante o sono. O exame é adequado?","Não.","Número insuficiente de medidas válidas durante o sono (mínimo 8)."],
+["Caso 2 — Sono alterado","24h: 128/76 · Vigília: 132/78 · Sono: 124/72. Qual período está alterado?","O sono.","O limite do sono é <120/70 mmHg; 124/72 ultrapassa esse valor."],
+["Caso 3 — Descenso atenuado","Vigília 140/80, sono 132/76, descenso da PAS 5,7%. Classificação e próximo passo?","Descenso atenuado.","Avaliar qualidade do sono, técnica, apneia e condições associadas — não modificar automaticamente a medicação só pelo padrão."],
+["Caso 4 — MRPA","Média residencial 128/83 mmHg. Classificação?","MRPA alterada pela PAD.","PAD 83 ≥80, mesmo com PAS 128 <130."],
+["Caso 5 — Hipertensão espúria","Homem, 22 anos, corredor. PA braquial 152/70, pressão central 126/69, VOP 5 m/s, sem lesão de órgão-alvo.","Suspeita de hipertensão sistólica espúria do jovem.","Pressão periférica amplificada com pressão central normal e VOP baixo — não trate só pela braquial."],
+["Caso 6 — VOP","Paciente pré-hipertenso, VOP 11,2 m/s.","Lesão subclínica de órgão-alvo, com reclassificação do risco cardiovascular.","VOP ≥10 m/s já indica lesão subclínica."]
+];
+var cbox=document.getElementById('cases');
+cases.forEach(function(c){
+  var d=document.createElement('div');d.className='case';
+  d.innerHTML='<div class="cq"><b>'+c[0]+':</b> '+c[1]+'</div><button onclick="toggleNext(this)">Ver resposta</button><div class="ca"><b>'+c[2]+'</b><br><span style="color:#7a1846">'+c[3]+'</span></div>';
+  cbox.appendChild(d);
+});
+
+/* PEGADINHAS T/F */
+var tf=[
+["MRPA avalia a pressão durante o sono.",false,"Armadilha. A MRPA não mede continuamente durante o sono."],
+["MAPA é melhor para avaliar descenso noturno.",true,"Verdadeiro."],
+["Uma MRPA de 128/82 é normal porque a PAS está abaixo de 130.",false,"Armadilha. A PAD (82) está alterada."],
+["Descenso ausente exige tomar todos os anti-hipertensivos à noite.",false,"Armadilha. É marcador prognóstico, não uma receita automática."],
+["VOP ≥10 m/s indica lesão subclínica de órgão-alvo.",true,"Verdadeiro."],
+["O teste ergométrico confirma HAS.",false,"Armadilha. Só sugere maior probabilidade futura, não confirma diagnóstico."],
+["MAPA normal nas 24 horas garante que vigília e sono estão normais.",false,"Armadilha. Cada período deve ser analisado separadamente."],
+["A MRPA é excelente para acompanhamento do tratamento.",true,"Verdadeiro."],
+["Qualquer valor discrepante deve ser automaticamente apagado.",false,"Armadilha. Deve-se verificar contexto clínico e possível erro técnico antes."],
+["Na hipertensão espúria, a pressão braquial pode estar elevada e a central normal.",true,"Verdadeiro."]
+];
+var tfList=document.getElementById('tfList');
+tf.forEach(function(t,i){
+  var d=document.createElement('div');d.className='tfcard';
+  d.innerHTML='<div class="stmt">"'+t[0]+'"</div><button onclick="toggleNext(this)">Ver resposta</button><div class="a '+(t[1]?'true':'trap')+'">'+(t[1]?'✓ Verdadeiro. ':'✗ Armadilha. ')+t[2]+'</div>';
+  tfList.appendChild(d);
+});
+
+/* FLASHCARDS */
+var flashcards=[
+["Limite normal da média de 24h na MAPA?","<130/80 mmHg."],
+["Limite normal da vigília?","<135/85 mmHg."],
+["Limite normal do sono?","<120/70 mmHg."],
+["Descenso noturno fisiológico?","10% a 20%."],
+["Descenso atenuado?","Entre 0% e 10%."],
+["Descenso ausente/ascensão?","≤0%."],
+["Descenso acentuado?","Maior que 20%."],
+["Medidas válidas desejáveis na MAPA?","Pelo menos 16 na vigília e 8 no sono."],
+["Duração ideal da MAPA?","Pelo menos 22 horas."],
+["Protocolo principal da MRPA?","3 medidas pela manhã e 3 à noite, por 4 a 6 dias."],
+["Qual dia é excluído da média na MRPA?","O primeiro dia."],
+["Número ideal de medidas na MRPA?","24 a 36 medidas válidas."],
+["Valor alterado na MRPA?","Média ≥130 e/ou ≥80 mmHg."],
+["MRPA e AMPA são a mesma coisa?","Não — AMPA é livre/triagem, MRPA segue protocolo."],
+["Qual método avalia o sono?","MAPA."],
+["Qual método é preferencial no acompanhamento do tratamento?","MRPA."],
+["Valor de VOP que indica lesão subclínica?","≥10 m/s."],
+["O teste ergométrico diagnostica HAS?","Não."],
+["Resposta hipertensiva exacerbada ao esforço em homens?","PAS ≥210 mmHg."],
+["Resposta hipertensiva exacerbada ao esforço em mulheres?","PAS ≥190 mmHg."],
+["O que sugere PA braquial alta com central normal em jovem magro ativo?","Hipertensão sistólica espúria do jovem."],
+["Quando considerar solicitar VOP?","Reestratificação de pré-hipertensos e hipertensos de risco baixo/intermediário."],
+["O descenso ausente muda a medicação automaticamente?","Não — é marcador prognóstico, exige investigação."],
+["Critério de qualidade técnica insuficiente na vigília?","Menos de 16 medidas válidas."],
+["O que fazer diante de um valor discrepante na MRPA?","Verificar contexto clínico e erro técnico antes de excluir."]
+];
+var fcgrid=document.getElementById('fcgrid');
+flashcards.forEach(function(f,i){
+  var d=document.createElement('div');d.className='flash';
+  d.innerHTML='<div class="flash-in"><div class="flash-f"><div class="qn">Card '+(i+1)+'</div><div class="txt">'+f[0]+'</div></div><div class="flash-b"><div class="qn">Resposta</div><div class="txt">'+f[1]+'</div></div></div>';
+  d.onclick=function(){d.classList.toggle('flip');};
+  fcgrid.appendChild(d);
+});
+
+/* QUESTÕES */
+var questions=[
+{type:"Direta",stem:"Qual o limite normal da média de 24h no MAPA?",opts:["<140/90","<135/85","<130/80","<120/70"],correct:2,expl:"Média de 24h: <130/80 mmHg."},
+{type:"Direta",stem:"Qual o limite do período de sono no MAPA?",opts:["<135/85","<130/80","<120/70","<140/90"],correct:2,expl:"Sono: <120/70 mmHg, o corte mais baixo entre os períodos."},
+{type:"Direta",stem:"Quantas medidas válidas são o mínimo desejável na vigília da MAPA?",opts:["8","12","16","20"],correct:2,expl:"Mínimo de 16 medidas válidas na vigília."},
+{type:"Direta",stem:"Qual o protocolo padrão da MRPA?",opts:["1 medida por dia por 10 dias","3 medidas manhã + 3 à noite por 4-6 dias","5 medidas seguidas em um único dia","2 medidas por semana"],correct:1,expl:"3 medidas pela manhã e 3 à noite, por 4 a 6 dias, com o 1º dia excluído da média."},
+{type:"Direta",stem:"Valor de VOP que indica lesão subclínica de órgão-alvo?",opts:["≥5 m/s","≥7 m/s","≥10 m/s","≥15 m/s"],correct:2,expl:"VOP ≥10 m/s é o valor de corte para lesão subclínica."},
+{type:"Direta",stem:"O primeiro dia de MRPA deve ser:",opts:["Incluído normalmente","Excluído da média","Repetido no dia seguinte","Ignorado o protocolo inteiro"],correct:1,expl:"O primeiro dia é excluído do cálculo da média, conforme o protocolo."},
+{type:"Direta",stem:"Descenso noturno fisiológico esperado?",opts:["0-5%","10-20%","25-30%","35-40%"],correct:1,expl:"Descenso presente (fisiológico): 10% a 20%."},
+{type:"Direta",stem:"Duração ideal mínima do exame de MAPA?",opts:["12 horas","18 horas","22 horas","30 horas"],correct:2,expl:"Duração ideal de pelo menos 22 horas."},
+{type:"Direta",stem:"Resposta hipertensiva exacerbada ao esforço em homens é definida por:",opts:["PAS ≥150 mmHg","PAS ≥180 mmHg","PAS ≥210 mmHg","PAS ≥250 mmHg"],correct:2,expl:"PAS ≥210 mmHg em homens (≥190 em mulheres)."},
+{type:"Direta",stem:"Qual método avalia diretamente o comportamento da pressão durante o sono?",opts:["MRPA","AMPA","MAPA","Consultório"],correct:2,expl:"Apenas o MAPA mede continuamente durante o sono."},
+{type:"Caso clínico",stem:"MAPA com 22h de duração, 17 medidas na vigília, 7 no sono. O exame é adequado?",opts:["Sim, totalmente adequado","Não, poucas medidas na vigília","Não, poucas medidas no sono","Não, duração insuficiente"],correct:2,expl:"7 medidas no sono é menor que o mínimo de 8 — critério de qualidade não atendido."},
+{type:"Caso clínico",stem:"MAPA: 24h 128/76, vigília 132/78, sono 124/72. Qual período está alterado?",opts:["24h","Vigília","Sono","Nenhum"],correct:2,expl:"Sono 124/72 ultrapassa o limite de <120/70."},
+{type:"Caso clínico",stem:"Vigília 140/80, sono 132/76 (descenso da PAS de 5,7%). Classificação e conduta?",opts:["Descenso presente; nada a fazer","Descenso atenuado; investigar sono/técnica sem mudar dose automaticamente","Descenso acentuado; reduzir dose noturna","Descenso ausente; trocar todos os anti-hipertensivos"],correct:1,expl:"5,7% está entre 0 e 10% — atenuado. Investigar causas, sem mudança automática de tratamento."},
+{type:"Caso clínico",stem:"Homem de 22 anos, corredor, PA braquial 152/70, pressão central 126/69, VOP 5 m/s, sem lesão de órgão-alvo. Hipótese?",opts:["Hipertensão sustentada","Hipertensão do avental branco","Hipertensão sistólica espúria do jovem","Hipertensão mascarada"],correct:2,expl:"Pressão periférica amplificada com central normal e VOP baixo é o quadro clássico da espúria do jovem."},
+{type:"V ou F",stem:"Verdadeiro ou falso: a MRPA avalia o sono do paciente.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso — apenas o MAPA avalia o período de sono."},
+{type:"V ou F",stem:"Verdadeiro ou falso: o teste ergométrico confirma o diagnóstico de hipertensão arterial.",opts:["Verdadeiro","Falso"],correct:1,expl:"Falso — apenas sugere maior probabilidade futura de HAS."},
+{type:"Cálculo",stem:"PAS vigília 150, PAS sono 120. Qual o descenso e a classificação?",opts:["10% — atenuado","20% — presente","30% — acentuado","0% — ausente"],correct:1,expl:"(150-120)/150 × 100 = 20% — no limite superior de 'presente'."},
+{type:"Cálculo",stem:"PAS vigília 130, PAS sono 128. Qual a classificação do descenso?",opts:["Presente","Atenuado","Ausente/ascensão","Acentuado"],correct:1,expl:"(130-128)/130×100 ≈ 1,5% — descenso atenuado (entre 0 e 10%)."},
+{type:"Interpretação de relatório",stem:"Um relatório de MAPA prioriza, para decisão clínica:",opts:["Somente a carga pressórica","Médias, qualidade técnica, períodos, sintomas e sono","Somente o valor máximo do dia","Somente a pressão de pulso"],correct:1,expl:"Carga pressórica não deve ser o elemento principal; priorizar médias, qualidade técnica, períodos, sintomas, sono e conclusão clínica."},
+{type:"Pegadinha",stem:"MRPA de 128/82 mmHg — está normal?",opts:["Sim, PAS <130","Não, PAD está alterada","Não, ambas alteradas","Sim, sempre que PAS <135"],correct:1,expl:"PAD 82 ≥80 já torna a MRPA alterada, mesmo com PAS normal."}
+];
+var qzlist=document.getElementById('qzlist');var answered=0;
+document.getElementById('total').textContent=questions.length;
+questions.forEach(function(q,qi){
+  var card=document.createElement('div');card.className='qz';
+  var letters=['A','B','C','D'];
+  var html='<div class="qtype">'+q.type+'</div><div class="stem">'+q.stem+'</div>';
+  q.opts.forEach(function(o,oi){html+='<button class="opt" data-q="'+qi+'" data-o="'+oi+'"><span class="let">'+letters[oi]+'</span>'+o+'</button>';});
+  html+='<div class="expl"><b>Correta: '+letters[q.correct]+'.</b> '+q.expl+'</div>';
+  card.innerHTML=html;qzlist.appendChild(card);
+});
+qzlist.addEventListener('click',function(e){
+  var btn=e.target.closest('.opt');if(!btn)return;
+  var qi=+btn.dataset.q,oi=+btn.dataset.o;var card=btn.closest('.qz');
+  if(card.dataset.done)return;card.dataset.done="1";
+  var opts=card.querySelectorAll('.opt');
+  opts.forEach(function(op,idx){op.classList.add('locked');if(idx===questions[qi].correct)op.classList.add('correct');});
+  if(oi!==questions[qi].correct)btn.classList.add('wrong');
+  card.querySelector('.expl').classList.add('show');
+  answered++;document.getElementById('answered').textContent=answered;
+});
+
+/* SCROLL PROGRESS + TOTOP */
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progbar').style.width=pct+'%';
+  document.getElementById('totop').classList.toggle('show',window.scrollY>500);
+});
+</script>
+</body>
+</html>
