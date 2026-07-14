@@ -1,0 +1,1913 @@
+<title>Tema 3 — Bulhas, Sons Adicionais e Sopros Especiais | Atlas Mental</title>
+<meta name="description" content="Atlas Mental de Semiologia Cardiovascular — Dr. André Rossanno. Módulo interativo sobre bulhas cardíacas, desdobramentos, B3/B4 e sopros especiais.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#0b2a4a;
+  --navy-dark:#071b30;
+  --petrol:#0e6c78;
+  --petrol-dark:#0a4f58;
+  --gold:#d9a441;
+  --gold-dark:#b5822a;
+  --red:#c0392b;
+  --red-dark:#96281d;
+  --green:#2f7a4d;
+  --blue:#2f6fad;
+  --purple:#6a4c93;
+  --bg:#f5f8fb;
+  --card:#ffffff;
+  --ink:#152238;
+  --ink-soft:#4a5568;
+  --line:#dde5ee;
+  --shadow:0 8px 24px rgba(11,42,74,.10);
+  --radius:16px;
+  --sidebar-w:270px;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  color:var(--navy);
+  margin:0 0 .5em 0;
+  line-height:1.2;
+}
+h1{font-size:2.1rem;}
+h2{font-size:1.6rem;}
+h3{font-size:1.2rem;}
+p{margin:.4em 0;}
+a{color:var(--petrol);}
+.icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;vertical-align:-.15em;}
+.icon-lg{width:2.4rem;height:2.4rem;}
+
+/* ---------- layout ---------- */
+.app{display:flex;min-height:100vh;}
+.sidebar{
+  width:var(--sidebar-w);
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-dark) 100%);
+  color:#eaf1f8;
+  position:fixed;top:0;left:0;bottom:0;
+  overflow-y:auto;
+  z-index:50;
+  transition:transform .25s ease;
+  padding-bottom:2rem;
+}
+.sidebar-brand{
+  display:flex;align-items:center;gap:.6rem;
+  padding:1.3rem 1.2rem 1rem;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.sidebar-brand svg{width:2rem;height:2rem;color:var(--gold);flex-shrink:0;}
+.sidebar-brand .t1{font-weight:700;font-size:1.02rem;color:#fff;letter-spacing:.02em;}
+.sidebar-brand .t2{font-size:.72rem;color:#a9c2d8;letter-spacing:.04em;text-transform:uppercase;}
+.sidebar nav{padding:.6rem .6rem;}
+.sidebar nav a{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.62rem .8rem;margin:.12rem 0;
+  border-radius:10px;color:#cfe0ee;text-decoration:none;
+  font-size:.9rem;font-weight:600;
+  border-left:3px solid transparent;
+  transition:background .15s, color .15s;
+}
+.sidebar nav a span.num{
+  width:1.5rem;height:1.5rem;border-radius:50%;background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;font-size:.72rem;color:var(--gold);flex-shrink:0;
+}
+.sidebar nav a:hover{background:rgba(255,255,255,.07);color:#fff;}
+.sidebar nav a.active{background:rgba(217,164,65,.16);color:#fff;border-left-color:var(--gold);}
+.sidebar-foot{padding:1rem 1.2rem;font-size:.72rem;color:#8fa8bf;border-top:1px solid rgba(255,255,255,.1);margin-top:.6rem;}
+
+.topbar{
+  display:none;position:fixed;top:0;left:0;right:0;height:58px;background:var(--navy);
+  color:#fff;align-items:center;justify-content:space-between;padding:0 1rem;z-index:60;box-shadow:var(--shadow);
+}
+.topbar .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;}
+.topbar button{background:none;border:none;color:#fff;padding:.4rem;cursor:pointer;}
+.topbar svg{width:1.6rem;height:1.6rem;}
+
+.main{margin-left:var(--sidebar-w);flex:1;min-width:0;}
+.hero{
+  background:radial-gradient(1200px 420px at 15% -10%, rgba(217,164,65,.16), transparent 60%),
+             linear-gradient(135deg,var(--navy) 0%, var(--petrol-dark) 100%);
+  color:#fff;padding:3.4rem 2.4rem 2.6rem;position:relative;overflow:hidden;
+}
+.hero .kicker{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-weight:700;letter-spacing:.12em;font-size:.78rem;text-transform:uppercase;}
+.hero h1{color:#fff;margin-top:.4rem;max-width:820px;}
+.hero p.lead{color:#dce9f4;max-width:680px;font-size:1.05rem;}
+.hero .authorline{margin-top:1.1rem;font-size:.85rem;color:#b9d2e6;}
+.hero .tumta{
+  display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem;
+}
+.tumta .pill{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;padding:.55rem 1.1rem;font-weight:700;font-size:.95rem;color:#fff;
+  display:flex;align-items:center;gap:.5rem;
+}
+.tumta .pill b{color:var(--gold);}
+
+.section{padding:2.6rem 2.4rem;max-width:1180px;margin:0 auto;scroll-margin-top:1rem;}
+.section-head{margin-bottom:1.4rem;}
+.section-head .eyebrow{
+  font-family:'IBM Plex Mono',monospace;color:var(--petrol);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;
+}
+.section-head p.sub{color:var(--ink-soft);max-width:760px;}
+
+.grid{display:grid;gap:1.1rem;}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:1.3rem 1.4rem;
+}
+.card.tint-navy{border-top:5px solid var(--navy);}
+.card.tint-petrol{border-top:5px solid var(--petrol);}
+.card.tint-gold{border-top:5px solid var(--gold);}
+.card.tint-red{border-top:5px solid var(--red);}
+.card.tint-green{border-top:5px solid var(--green);}
+.card.tint-purple{border-top:5px solid var(--purple);}
+.card.tint-blue{border-top:5px solid var(--blue);}
+.card h3{display:flex;align-items:center;gap:.5rem;}
+.card h3 svg{color:var(--petrol);}
+.card ul{margin:.4rem 0;padding-left:1.15rem;}
+.card li{margin:.28rem 0;}
+
+.badge{
+  display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  padding:.22rem .55rem;border-radius:999px;background:var(--petrol);color:#fff;margin-bottom:.5rem;
+}
+.badge.red{background:var(--red);}
+.badge.gold{background:var(--gold-dark);}
+.badge.green{background:var(--green);}
+.badge.purple{background:var(--purple);}
+.badge.blue{background:var(--blue);}
+.badge.navy{background:var(--navy);}
+
+.macete{
+  background:linear-gradient(135deg,#fff7e8,#fdefd2);
+  border:1px solid #eccd8b;border-left:5px solid var(--gold-dark);
+  border-radius:12px;padding:1rem 1.1rem;display:flex;gap:.8rem;margin:1rem 0;
+}
+.macete svg{color:var(--gold-dark);width:1.7rem;height:1.7rem;flex-shrink:0;}
+.macete b{color:var(--gold-dark);}
+
+.pegadinha{
+  background:linear-gradient(135deg,#fdecea,#fbe0dd);
+  border:1px solid #f0b6ae;border-left:5px solid var(--red);
+  border-radius:12px;padding:1rem 1.1rem;display:flex;gap:.8rem;margin:1rem 0;
+}
+.pegadinha svg{color:var(--red);width:1.7rem;height:1.7rem;flex-shrink:0;}
+.pegadinha b{color:var(--red-dark);}
+
+.frase{
+  font-style:italic;font-weight:700;color:var(--navy);
+  border-left:4px solid var(--petrol);padding-left:.8rem;margin:.8rem 0;
+}
+
+/* signature */
+.assinatura{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  color:var(--ink-soft);font-size:.78rem;margin:2.2rem 0 .4rem;opacity:.75;
+}
+.assinatura svg{width:1rem;height:1rem;color:var(--petrol);}
+.assinatura .nome-assin{font-family:'Dancing Script',cursive;font-size:1.3rem;font-weight:700;color:var(--navy);opacity:1;}
+.filosofia-assin{font-family:'Dancing Script',cursive;font-size:1.4rem;font-weight:700;color:var(--navy);}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;}
+.tab-btn{
+  background:#eef3f8;border:1px solid var(--line);color:var(--navy);font-weight:700;
+  padding:.55rem 1rem;border-radius:10px;cursor:pointer;font-size:.88rem;transition:.15s;
+}
+.tab-btn:hover{background:#e1ecf5;}
+.tab-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* accordion */
+.accordion-item{border:1px solid var(--line);border-radius:12px;margin-bottom:.6rem;overflow:hidden;background:#fff;}
+.accordion-head{
+  width:100%;text-align:left;background:#f3f7fb;border:none;padding:.9rem 1.1rem;
+  font-weight:700;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  font-size:.95rem;
+}
+.accordion-head svg{transition:transform .2s;width:1.1rem;height:1.1rem;color:var(--petrol);}
+.accordion-item.open .accordion-head svg{transform:rotate(180deg);}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 1.1rem;}
+.accordion-item.open .accordion-body{max-height:800px;padding:.9rem 1.1rem 1.1rem;}
+
+/* timeline visual */
+.ciclo-timeline{
+  display:flex;align-items:stretch;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:1rem 0;
+  font-weight:700;font-size:.82rem;text-align:center;color:#fff;
+}
+.ciclo-timeline > div{padding:.7rem .4rem;display:flex;align-items:center;justify-content:center;}
+.ct-b1{background:var(--red);flex:0 0 60px;}
+.ct-sistole{background:linear-gradient(90deg,#e08477,#c0392b);flex:2;color:#fff;}
+.ct-b2{background:var(--blue);flex:0 0 60px;}
+.ct-diastole{background:linear-gradient(90deg,#3d84c4,#2f6fad);flex:3;}
+.ct-b3, .ct-b4{background:var(--purple);flex:0 0 50px;font-size:.72rem;}
+
+table.comparativa{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem;}
+table.comparativa th{background:var(--navy);color:#fff;padding:.65rem .7rem;text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;}
+table.comparativa td{padding:.6rem .7rem;border-bottom:1px solid var(--line);vertical-align:top;}
+table.comparativa tr:nth-child(even) td{background:#f7fafc;}
+.table-wrap{overflow-x:auto;border-radius:12px;box-shadow:var(--shadow);}
+
+.btn{
+  background:var(--petrol);color:#fff;border:none;border-radius:10px;padding:.6rem 1rem;
+  font-weight:700;cursor:pointer;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;transition:.15s;
+}
+.btn:hover{background:var(--petrol-dark);}
+.btn.ghost{background:#eef3f8;color:var(--navy);}
+.btn.ghost:hover{background:#dfe9f2;}
+.btn.gold{background:var(--gold-dark);}
+.btn.gold:hover{background:#93691f;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn svg{width:1.05rem;height:1.05rem;}
+
+/* audio lab */
+.audiolab-wrap{display:grid;grid-template-columns:340px 1fr;gap:1.2rem;}
+@media(max-width:900px){.audiolab-wrap{grid-template-columns:1fr;}}
+.audio-list{max-height:640px;overflow-y:auto;border:1px solid var(--line);border-radius:12px;background:#fff;padding:.5rem;}
+.audio-list-group{padding:.4rem .5rem .1rem;font-size:.72rem;font-weight:800;color:var(--petrol);text-transform:uppercase;letter-spacing:.06em;}
+.audio-item{
+  width:100%;text-align:left;background:none;border:none;padding:.55rem .6rem;border-radius:8px;cursor:pointer;
+  display:flex;align-items:center;gap:.55rem;color:var(--ink);font-size:.85rem;
+}
+.audio-item:hover{background:#eef3f8;}
+.audio-item.active{background:var(--navy);color:#fff;}
+.audio-item svg{width:1rem;height:1rem;flex-shrink:0;color:var(--petrol);}
+.audio-item.active svg{color:var(--gold);}
+
+.player-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);padding:1.2rem;}
+.player-title{font-weight:800;color:var(--navy);font-size:1.15rem;margin-bottom:.15rem;}
+.player-desc{color:var(--ink-soft);font-size:.88rem;margin-bottom:.8rem;}
+.canvas-wrap{background:#0d1f33;border-radius:12px;padding:.6rem;}
+canvas#lab-canvas{width:100%;display:block;border-radius:8px;}
+.player-controls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:1rem;}
+.speed-group{display:flex;gap:.3rem;background:#eef3f8;border-radius:10px;padding:.25rem;}
+.speed-btn{border:none;background:none;padding:.35rem .6rem;border-radius:7px;font-weight:700;font-size:.78rem;cursor:pointer;color:var(--navy);}
+.speed-btn.active{background:var(--navy);color:#fff;}
+.vol-row{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--ink-soft);}
+.disclaimer-audio{
+  margin-top:.9rem;font-size:.75rem;color:var(--ink-soft);background:#fdf3e0;border:1px dashed #e2c483;
+  padding:.5rem .7rem;border-radius:8px;
+}
+.breath-row{display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap;}
+.breath-btn{flex:1;min-width:140px;background:#eef3f8;border:1px solid var(--line);border-radius:10px;padding:.6rem;font-weight:700;color:var(--navy);cursor:pointer;font-size:.85rem;display:flex;align-items:center;gap:.4rem;justify-content:center;}
+.breath-btn.active{background:var(--petrol);color:#fff;border-color:var(--petrol);}
+
+/* cases */
+.caso-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);padding:1.2rem 1.3rem;margin-bottom:1rem;}
+.caso-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:.85rem;margin-right:.6rem;}
+.caso-vinheta{color:var(--ink-soft);margin:.5rem 0;}
+.caso-pergunta{font-weight:700;color:var(--navy);}
+.caso-resposta{display:none;margin-top:.7rem;padding-top:.7rem;border-top:1px dashed var(--line);color:var(--ink);}
+.caso-resposta.show{display:block;animation:fadeIn .25s ease;}
+.caso-resposta b{color:var(--green);}
+
+/* quiz */
+.quiz-item{border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow);padding:1.1rem 1.3rem;margin-bottom:.9rem;}
+.quiz-q{font-weight:700;color:var(--navy);display:flex;gap:.6rem;}
+.quiz-a{display:none;margin-top:.7rem;background:#eef8f0;border-left:4px solid var(--green);padding:.7rem .9rem;border-radius:8px;}
+.quiz-a.show{display:block;animation:fadeIn .25s ease;}
+
+/* flashcards */
+.flash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+@media(max-width:900px){.flash-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.flash-grid{grid-template-columns:1fr;}}
+.flashcard{perspective:1200px;height:150px;cursor:pointer;}
+.flashcard-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+.flashcard-face{position:absolute;inset:0;border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;backface-visibility:hidden;box-shadow:var(--shadow);}
+.flashcard-front{background:var(--navy);color:#fff;font-weight:800;font-size:1.15rem;}
+.flashcard-back{background:var(--gold);color:var(--navy-dark);transform:rotateY(180deg);font-size:.86rem;font-weight:600;}
+
+/* mind map */
+.mindmap{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;}
+@media(max-width:900px){.mindmap{grid-template-columns:repeat(2,1fr);}}
+.mm-node{border-radius:12px;padding:.9rem 1rem;color:#fff;font-size:.85rem;}
+.mm-node h4{color:#fff;margin-bottom:.35rem;font-size:.95rem;}
+.mm-node ul{padding-left:1.1rem;margin:.3rem 0;}
+
+footer.site-footer{
+  background:var(--navy-dark);color:#c9d9e6;padding:2.4rem 2rem;text-align:center;margin-top:2rem;
+}
+footer.site-footer .fname{color:#fff;font-weight:800;font-size:1.1rem;}
+footer.site-footer .fsub{color:var(--gold);font-size:.85rem;margin-bottom:.8rem;}
+footer.site-footer .fnote{max-width:620px;margin:1rem auto 0;font-size:.78rem;color:#94adc2;}
+
+@media(max-width:980px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .topbar{display:flex;}
+  .section{padding:2rem 1.1rem;}
+  .hero{padding:5rem 1.2rem 2rem;}
+}
+.reveal-btn{margin-top:.7rem;}
+.small-note{font-size:.78rem;color:var(--ink-soft);}
+hr.sep{border:none;border-top:1px solid var(--line);margin:1.6rem 0;}
+</style>
+
+<div id="sprite" style="display:none">
+<svg xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.2C.4 8.2 2 4 6.2 4c2.2 0 3.7 1.2 5.8 3.6C14.1 5.2 15.6 4 17.8 4 22 4 23.6 8.2 22 11.8 19.5 16.4 12 21 12 21z" stroke-linejoin="round"/><path d="M4 12h3l2-4 3 8 2-6 1.5 2H20" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-stetho" viewBox="0 0 24 24"><path d="M6 3v6a4 4 0 0 0 8 0V3" stroke-linecap="round"/><path d="M6 3H4.5M14 3h1.5" stroke-linecap="round"/><path d="M10 13v3a5 5 0 0 0 10 0v-1.5" stroke-linecap="round"/><circle cx="20.5" cy="14.3" r="1.8"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 12h3l2-7 4 14 3-11 2 5h6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-door" viewBox="0 0 24 24"><rect x="5" y="3" width="11" height="18" rx="1"/><circle cx="13" cy="12" r="1" fill="currentColor" stroke="none"/><path d="M16 3l3 1.5v15L16 21" stroke-linejoin="round"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2s7 8.5 7 13a7 7 0 0 1-14 0c0-4.5 7-13 7-13z" stroke-linejoin="round"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3z" stroke-linejoin="round"/><path d="M12 10v4" stroke-linecap="round"/><circle cx="12" cy="17" r=".9" fill="currentColor" stroke="none"/></symbol>
+<symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5h1a3 3 0 0 0 2-3V6a3 3 0 0 0 0-3z"/><path d="M15 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5h-1a3 3 0 0 1-2-3V6a3 3 0 0 1 0-3z"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8V4z" stroke-linejoin="round"/></symbol>
+<symbol id="i-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 11V9a4 4 0 0 1 4-4h14" stroke-linecap="round"/><path d="M7 22l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 13v2a4 4 0 0 1-4 4H3" stroke-linecap="round"/></symbol>
+<symbol id="i-lungs" viewBox="0 0 24 24"><path d="M12 3v7" stroke-linecap="round"/><path d="M12 10c-1-3-3-3-4-2s-1 3 0 5-1 5-3 5-3-3-2-6c1-3 1-6 3-7" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10c1-3 3-3 4-2s1 3 0 5 1 5 3 5 3-3 2-6c-1-3-1-6-3-7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></symbol>
+<symbol id="i-flow" viewBox="0 0 24 24"><path d="M3 12h14" stroke-linecap="round"/><path d="M13 7l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-valve" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 4v8l6 4M12 12L6 16" stroke-linecap="round"/></symbol>
+</svg>
+</div>
+
+<div class="topbar">
+  <div class="brand"><svg class="icon"><use href="#i-heart"/></svg> Atlas Mental — Tema 3</div>
+  <button id="menu-toggle" aria-label="Abrir menu"><svg><use href="#i-menu"/></svg></button>
+</div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg viewBox="0 0 24 24"><use href="#i-heart"/></svg>
+      <div>
+        <div class="t1">Atlas Mental</div>
+        <div class="t2">Semiologia Cardiovascular</div>
+      </div>
+    </div>
+    <nav id="nav-links">
+      <a href="#topo"><span class="num">•</span> Início</a>
+      <a href="#filosofia"><span class="num">◆</span> Filosofia</a>
+      <a href="#palacio"><span class="num">◆</span> Palácio da memória</a>
+      <a href="#b1-b2"><span class="num">1</span> B1 e B2</a>
+      <a href="#b1-alterada"><span class="num">2</span> B1 alterada</a>
+      <a href="#b2-alterada"><span class="num">3</span> B2 alterada</a>
+      <a href="#desdobramento"><span class="num">4</span> Desdobramentos de B2</a>
+      <a href="#b3-b4"><span class="num">5</span> B3 e B4</a>
+      <a href="#sons-adicionais"><span class="num">6</span> Sons adicionais</a>
+      <a href="#sopros-especiais"><span class="num">7</span> Sopros especiais</a>
+      <a href="#comparacao"><span class="num">8</span> Comparação final</a>
+      <a href="#audios"><span class="num">9</span> Áudios</a>
+      <a href="#casos"><span class="num">10</span> Casos clínicos</a>
+      <a href="#quiz"><span class="num">11</span> Quiz</a>
+      <a href="#flashcards"><span class="num">★</span> Flashcards</a>
+      <a href="#pegadinhas"><span class="num">⚠</span> Pegadinhas</a>
+      <a href="#revisao-final"><span class="num">⏱</span> Revisão 60s</a>
+      <a href="#revisao-espacada"><span class="num">📅</span> Revisão espaçada</a>
+      <a href="#ausculta-real"><span class="num">♪</span> Ausculta real</a>
+    </nav>
+    <div class="sidebar-foot">Dr. André Rossanno<br>Atlas Mental — Tema 3</div>
+  </aside>
+
+  <div class="main">
+
+    <header class="hero" id="topo">
+      <div class="kicker">Atlas Mental · Semiologia Cardiovascular · Tema 3</div>
+      <h1>Bulhas cardíacas, sons adicionais e sopros especiais</h1>
+      <p class="lead">Uma aula guiada, visual e interativa para transformar a ausculta cardíaca em um raciocínio fisiológico memorável — dos fenômenos normais de B1 e B2 até os sopros com nome próprio.</p>
+      <div class="authorline">Dr. André Rossanno — Atlas Mental</div>
+
+      <div class="tumta">
+        <div class="pill"><b>TUM</b> = B1 / S1</div>
+        <div class="pill"><b>TÁ</b> = B2 / S2</div>
+        <div class="pill">B1 é a nomenclatura brasileira; S1 (<i>first heart sound</i>) é a internacional — o mesmo vale para B2/S2.</div>
+      </div>
+
+      <div class="ciclo-timeline" style="margin-top:2rem;max-width:820px;">
+        <div class="ct-b1">B1<br>TUM</div>
+        <div class="ct-sistole">SÍSTOLE</div>
+        <div class="ct-b2">B2<br>TÁ</div>
+        <div class="ct-diastole">DIÁSTOLE</div>
+        <div class="ct-b1" style="flex:0 0 60px;">B1<br>TUM</div>
+      </div>
+      <p class="small-note" style="color:#b9d2e6;">TUM → sístole → TÁ → diástole → próximo TUM. Nas próximas seções, B3 encaixa logo após o TÁ, e B4 logo antes do próximo TUM.</p>
+    </header>
+
+    <!-- ================= FILOSOFIA ================= -->
+    <section class="section" id="filosofia">
+      <div class="card tint-gold">
+        <span class="badge gold">Filosofia</span>
+        <h3><svg class="icon"><use href="#i-brain"/></svg> Por que decorar bulhas, quando dá pra "só olhar o eco"?</h3>
+        <p>Porque o ecocardiograma não está no seu ouvido às 3h da manhã, na beira do leito, quando o paciente descompensa e a decisão precisa ser tomada antes do exame chegar. A ausculta não é peça de museu da semiologia — é o primeiro dado que você tem, de graça, em qualquer lugar, sem esperar em fila de exame.</p>
+        <p>Este módulo não pede que você "grave sopros". Pede que você entenda o <b>porquê</b> fisiológico de cada som — porque isso é o que resiste ao esquecimento, o que se aplica mesmo diante de um caso que a prova nunca descreveu exatamente assim, e o que separa quem decora tabela de quem realmente examina o paciente.</p>
+        <p>Cada seção segue o mesmo compromisso: uma imagem mental que gruda, uma pegadinha que a banca adora cobrar, e uma frase-síntese para carregar para a vida.</p>
+        <p class="filosofia-assin" style="text-align:right;margin-top:1rem;">— Dr. André Rossanno</p>
+      </div>
+    </section>
+
+    <!-- ================= PALÁCIO DA MEMÓRIA ================= -->
+    <section class="section" id="palacio">
+      <div class="section-head">
+        <div class="eyebrow">Loci Clínico · Palácio da Memória</div>
+        <h2>A UTI imaginária deste tema</h2>
+        <p class="sub">Visualize um único leito de UTI. Cada fenômeno deste módulo mora em um ponto fixo dessa cena — ao revisar, "ande" pelo quarto na sua cabeça em vez de recitar uma lista.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card tint-red">
+          <span class="badge red">Porta de entrada</span>
+          <h3><svg class="icon"><use href="#i-door"/></svg> B1 — a porta que você atravessa ao entrar</h3>
+          <p>Ao entrar no quarto, você fecha a porta atrás de si: <b>TUM</b>. Se a porta for pesada e móvel, o som é forte (valva móvel); se estiver emperrada e calcificada, quase não faz ruído.</p>
+        </div>
+        <div class="card tint-blue">
+          <span class="badge blue">Porta de saída</span>
+          <h3><svg class="icon"><use href="#i-door"/></svg> B2 — a porta do lado oposto do quarto</h3>
+          <p>No fundo do quarto há duas portas próximas — aórtica e pulmonar. Normalmente você as ouve fechar quase juntas (A2 antes de P2); em algumas cenas (CIA, BRE) o padrão de fechamento muda de um jeito característico.</p>
+        </div>
+        <div class="card tint-purple">
+          <span class="badge purple">Cachoeira no canto</span>
+          <h3><svg class="icon"><use href="#i-drop"/></svg> B3 — a água enchendo o balde rápido demais</h3>
+          <p>Logo depois da porta de saída (B2), uma cachoeira grave enche um balde já cheio — ventrículo dilatado recebendo volume rápido demais no início da diástole.</p>
+        </div>
+        <div class="card tint-purple">
+          <span class="badge purple">Tambor antes da porta</span>
+          <h3><svg class="icon"><use href="#i-alert"/></svg> B4 — o tambor que anuncia a chegada</h3>
+          <p>Um tambor grave soa <i>antes</i> de você bater na porta de entrada — o átrio "empurrando" o sangue contra um ventrículo rígido, no fim da diástole. Sem tambor organizado (fibrilação atrial), não há B4.</p>
+        </div>
+      </div>
+      <div class="macete">
+        <svg><use href="#i-brain"/></svg>
+        <div><b>Andando pela cena:</b> tambor (B4) → porta de entrada (B1/TUM) → sístole → porta de saída (B2/TÁ) → cachoeira (B3) → tambor de novo. Os sopros especiais (Austin Flint, Gallavardin, Carey Coombs, Graham Steell) são "salas anexas" com nome de dono — cada uma com uma história clínica específica que você vai visitar nas próximas seções.</div>
+      </div>
+    </section>
+
+    <!-- ================= INTRO CONCEITUAL ================= -->
+    <section class="section">
+      <div class="card tint-navy">
+        <h3><svg class="icon"><use href="#i-wave"/></svg> O que realmente é uma bulha?</h3>
+        <p>As bulhas não são apenas o ruído mecânico de cúspides "batendo" umas nas outras. Elas representam <b>vibrações</b> produzidas pela <b>desaceleração abrupta do sangue</b> e pela tensão súbita de estruturas valvares, do aparelho subvalvar, das paredes cardíacas e dos grandes vasos no momento do fechamento (ou, na diástole, do enchimento) das câmaras.</p>
+        <p>Pensar nas bulhas como "eventos de desaceleração" — e não como simples cliques mecânicos — é o que permite entender por que a intensidade de B1 e B2 muda com a mobilidade valvar, a pressão dos vasos e a força de contração, temas centrais deste módulo.</p>
+      </div>
+    </section>
+
+    <!-- ================= 1. B1 e B2 NORMAIS ================= -->
+    <section class="section" id="b1-b2">
+      <div class="section-head">
+        <div class="eyebrow">01 · Fundamentos</div>
+        <h2>B1 e B2 normais</h2>
+        <p class="sub">As duas bulhas fundamentais delimitam a sístole. Entender seus componentes é a base para tudo que vem a seguir.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card tint-red">
+          <span class="badge red">TUM</span>
+          <h3><svg class="icon"><use href="#i-door"/></svg> B1 — primeira bulha</h3>
+          <p>Resulta principalmente dos fenômenos associados ao <b>fechamento das válvulas mitral e tricúspide</b>.</p>
+          <ul>
+            <li><b>M1</b>: componente mitral</li>
+            <li><b>T1</b>: componente tricúspide</li>
+            <li>Mais grave e geralmente mais longa que B2</li>
+            <li>Melhor audível no <b>ápice</b></li>
+            <li>Marca o <b>início da sístole</b></li>
+            <li>Ocorre imediatamente antes da subida do pulso carotídeo</li>
+          </ul>
+          <div class="frase">"B1 fecha as portas de entrada antes da ejeção."</div>
+        </div>
+
+        <div class="card tint-blue">
+          <span class="badge blue">TÁ</span>
+          <h3><svg class="icon"><use href="#i-door"/></svg> B2 — segunda bulha</h3>
+          <p>Resulta dos fenômenos relacionados ao <b>fechamento das válvulas semilunares</b> (aórtica e pulmonar).</p>
+          <ul>
+            <li><b>A2</b>: componente aórtico</li>
+            <li><b>P2</b>: componente pulmonar</li>
+            <li>Mais aguda e mais curta que B1</li>
+            <li>Melhor audível na <b>base</b></li>
+            <li>Marca o <b>fim da ejeção ventricular</b></li>
+            <li>Normalmente <b>A2 ocorre antes de P2</b></li>
+          </ul>
+          <div class="frase">A2 → P2 — A2 costuma ser mais intenso e mais amplamente transmitido.</div>
+        </div>
+      </div>
+
+      <div class="macete">
+        <svg><use href="#i-brain"/></svg>
+        <div><b>Animação mental do ciclo:</b> TUM → sístole ventricular (ejeção) → TÁ → diástole (enchimento) → próximo TUM. B1 fecha as "portas de entrada" (mitral/tricúspide); B2 fecha as "portas de saída" (aórtica/pulmonar).</div>
+      </div>
+    </section>
+
+    <!-- ================= 2. B1 ALTERADA ================= -->
+    <section class="section" id="b1-alterada">
+      <div class="section-head">
+        <div class="eyebrow">02 · B1</div>
+        <h2>B1 hiperfonética, hipofonética e variável</h2>
+        <p class="sub">A intensidade de B1 depende de três fatores: mobilidade da valva, posição da valva no início da sístole e vigor da contração ventricular.</p>
+      </div>
+
+      <div class="tabs" data-tabgroup="b1">
+        <button class="tab-btn active" data-tab="hiper">B1 hiperfonética</button>
+        <button class="tab-btn" data-tab="hipo">B1 hipofonética</button>
+        <button class="tab-btn" data-tab="variavel">B1 variável</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="hiper" data-tabgroup="b1">
+        <div class="card tint-red">
+          <span class="badge red">TUM forte, seco e destacado</span>
+          <h3>B1 hiperfonética</h3>
+          <p>B1 aumenta quando as cúspides atrioventriculares <b>ainda têm boa mobilidade</b>, estão relativamente afastadas antes da sístole, realizam <b>grande excursão de fechamento</b>, fecham rapidamente e recebem uma <b>contração ventricular vigorosa</b>.</p>
+          <ul>
+            <li><b>Estenose mitral com valva ainda móvel</b> — a pressão atrial esquerda mantém as cúspides relativamente abertas durante a diástole; na contração ventricular, elas percorrem maior excursão e produzem B1 intensa.</li>
+            <li><b>Intervalo PR curto</b> — a sístole ventricular começa pouco depois da contração atrial; a mitral ainda está relativamente aberta quando a sístole se inicia.</li>
+            <li><b>Taquicardia</b> — a diástole curta deixa menos tempo para as cúspides se aproximarem antes da sístole.</li>
+            <li><b>Estados hiperdinâmicos</b> — maior velocidade e vigor da contração aumentam a intensidade.</li>
+          </ul>
+          <div class="frase">"Quanto mais aberta e móvel a porta antes da contração, mais forte o TUM."</div>
+          <div class="pegadinha">
+            <svg><use href="#i-alert"/></svg>
+            <div><b>Pegadinha:</b> estenose mitral <u>não</u> significa obrigatoriamente B1 hiperfonética. Se a valva estiver calcificada, rígida, fibrosada e imóvel, B1 pode ser normal ou até hipofonética — a intensidade depende da <b>mobilidade valvar</b>, não apenas do grau de estenose.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="hipo" data-tabgroup="b1">
+        <div class="card tint-navy">
+          <span class="badge navy">TUM abafado e distante</span>
+          <h3>B1 hipofonética</h3>
+          <p>Som abafado, distante, pouco definido, de pequena amplitude sonora.</p>
+          <ul>
+            <li><b>Insuficiência mitral</b> — as cúspides não produzem fechamento competente e sincronizado.</li>
+            <li><b>Estenose mitral calcificada ou rígida</b> — pouca mobilidade, menos vibração.</li>
+            <li><b>Intervalo PR prolongado</b> — a contração atrial ocorre muito antes da ventricular; quando a sístole começa, as cúspides já estão parcialmente aproximadas.</li>
+            <li><b>Disfunção ventricular esquerda importante</b> — contração menos vigorosa.</li>
+            <li><b>Infarto extenso ou cardiomiopatia avançada</b> — redução da força contrátil.</li>
+            <li><b>Atenuação da transmissão sonora</b> — obesidade, enfisema, derrame pericárdico, parede torácica espessa.</li>
+          </ul>
+        </div>
+        <div class="grid grid-2" style="margin-top:1rem;">
+          <div class="card tint-red" style="border-top-color:var(--red);">
+            <h4 style="color:var(--red);">B1 forte</h4>
+            <ul><li>Valva móvel</li><li>Fechamento rápido</li><li>PR curto</li><li>Contração vigorosa</li></ul>
+          </div>
+          <div class="card tint-navy">
+            <h4>B1 fraca</h4>
+            <ul><li>Valva incompetente</li><li>Valva calcificada</li><li>PR longo</li><li>Ventrículo fraco</li><li>Som amortecido até o estetoscópio</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="variavel" data-tabgroup="b1">
+        <div class="card tint-gold">
+          <span class="badge gold">Intensidade muda a cada batimento</span>
+          <h3>B1 variável</h3>
+          <ul>
+            <li><b>Fibrilação atrial</b> — intervalos RR variáveis, posição variável da valva mitral no início da sístole, variação do enchimento e da força contrátil.</li>
+            <li><b>Bloqueio atrioventricular completo</b> — átrios e ventrículos contraem independentemente; a relação temporal entre as contrações varia, modificando a posição das válvulas atrioventriculares no início da sístole.</li>
+            <li><b>B1 em canhão</b> — ocasionalmente muito intensa, quando a contração atrial e a ventricular ocorrem em uma relação temporal que favorece fechamento valvar vigoroso. Não confundir obrigatoriamente com ondas A em canhão da jugular, embora ambas possam ocorrer em dissociação AV.</li>
+          </ul>
+          <div class="frase">"Ritmo irregular produz uma porta mitral imprevisível."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. B2 ALTERADA ================= -->
+    <section class="section" id="b2-alterada">
+      <div class="section-head">
+        <div class="eyebrow">03 · B2</div>
+        <h2>B2 hiperfonética e hipofonética</h2>
+        <p class="sub">Nunca trate B2 como uma peça única. Sempre pergunte: <b>qual componente está alterado — A2 ou P2?</b></p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card tint-blue">
+          <h3>A2 hiperfonética</h3>
+          <span class="badge blue">Foco aórtico / base</span>
+          <p>Principal associação: <b>hipertensão arterial sistêmica</b>.</p>
+          <p>Mecanismo: a pressão elevada na aorta produz maior energia de desaceleração e vibração no fechamento aórtico.</p>
+        </div>
+        <div class="card tint-purple">
+          <h3>P2 hiperfonética</h3>
+          <span class="badge purple">Além do foco pulmonar</span>
+          <p>Principal associação: <b>hipertensão pulmonar</b>.</p>
+          <ul>
+            <li>Intenso, seco, pode ser palpável</li>
+            <li>Pode ser ouvido além do foco pulmonar</li>
+            <li>Pode se aproximar ou superar A2 em intensidade</li>
+          </ul>
+          <p><b>Outras associações:</b> hipertensão arterial pulmonar, estenose mitral com hipertensão pulmonar, cardiopatias congênitas com hipertensão pulmonar, doença pulmonar avançada.</p>
+        </div>
+      </div>
+
+      <div class="macete">
+        <svg><use href="#i-brain"/></svg>
+        <div><b>Dois tambores na base:</b> A2 forte = pressão alta na aorta. P2 forte = pressão alta na artéria pulmonar. <br>"A pressão da artéria dá potência ao fechamento."</div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>A2 diminuída ou ausente</h3>
+          <p>Pode ocorrer quando a válvula aórtica está muito calcificada, pouco móvel, rigidamente estenosada.</p>
+          <p><b>Associação clássica:</b> estenose aórtica importante calcificada. A2 pode ficar reduzida, atrasada, praticamente inaudível — podendo resultar em B2 aparentemente única.</p>
+        </div>
+        <div class="card">
+          <h3>P2 diminuída</h3>
+          <p>Pode ocorrer em estenose pulmonar importante, baixa pressão pulmonar ou mobilidade reduzida da válvula pulmonar.</p>
+          <p>Na estenose pulmonar grave, P2 pode estar diminuída e atrasada.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. DESDOBRAMENTO DE B2 ================= -->
+    <section class="section" id="desdobramento">
+      <div class="section-head">
+        <div class="eyebrow">04 · B2 em detalhe</div>
+        <h2>Desdobramento de B2</h2>
+        <p class="sub">Compare os quatro padrões clicando nos botões. Use o controle de respiração para ver A2 e P2 se aproximarem ou se afastarem.</p>
+      </div>
+
+      <div class="tabs" id="desdob-tabs">
+        <button class="tab-btn active" data-desdob="fisiologico">Fisiológico</button>
+        <button class="tab-btn" data-desdob="amplo">Amplo</button>
+        <button class="tab-btn" data-desdob="fixo">Fixo</button>
+        <button class="tab-btn" data-desdob="paradoxal">Paradoxal</button>
+      </div>
+
+      <div class="player-card">
+        <div class="player-title" id="desdob-title">Desdobramento fisiológico</div>
+        <div class="player-desc" id="desdob-desc">O intervalo A2-P2 aumenta na inspiração e se estreita (ou desaparece) na expiração.</div>
+        <div class="canvas-wrap"><canvas id="desdob-canvas" width="900" height="180"></canvas></div>
+
+        <div class="breath-row">
+          <button class="breath-btn active" id="btn-inspiracao" data-phase="inspiracao"><svg class="icon"><use href="#i-lungs"/></svg> Inspiração</button>
+          <button class="breath-btn" id="btn-expiracao" data-phase="expiracao"><svg class="icon"><use href="#i-lungs"/></svg> Expiração</button>
+        </div>
+        <div class="player-controls">
+          <button class="btn" id="desdob-play"><svg><use href="#i-play"/></svg> Ouvir A2-P2</button>
+        </div>
+        <div id="desdob-mecanismo" class="card" style="margin-top:1rem;background:#f7fafc;box-shadow:none;"></div>
+      </div>
+    </section>
+
+    <!-- ================= 5. B3 e B4 ================= -->
+    <section class="section" id="b3-b4">
+      <div class="section-head">
+        <div class="eyebrow">05 · Sons diastólicos</div>
+        <h2>B3, B4 e galope de soma</h2>
+        <p class="sub">B3 lembra volume. B4 lembra rigidez. Posicione-as corretamente no ciclo antes de decorar as causas.</p>
+      </div>
+
+      <div class="ciclo-timeline" style="max-width:820px;">
+        <div class="ct-b1" style="flex:0 0 50px;">B1</div>
+        <div class="ct-sistole" style="flex:2;">SÍSTOLE</div>
+        <div class="ct-b2" style="flex:0 0 50px;">B2</div>
+        <div class="ct-b3" style="background:var(--purple);">B3</div>
+        <div class="ct-diastole" style="flex:2;">diástase</div>
+        <div class="ct-b4" style="background:var(--gold-dark);">B4</div>
+        <div class="ct-b1" style="flex:0 0 50px;">B1</div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card tint-purple">
+          <span class="badge purple">Logo após B2</span>
+          <h3>B3</h3>
+          <p>Aparece no início da diástole, durante a fase de <b>enchimento ventricular rápido</b>. O fluxo rápido que entra no ventrículo sofre desaceleração e produz vibração no sistema ventricular.</p>
+          <ul>
+            <li>Grave, curta, baixa frequência</li>
+            <li>Melhor audível com <b>campânula</b>, apoiada suavemente</li>
+            <li>B3 esquerda: ápice, decúbito lateral esquerdo, mais evidente na expiração</li>
+            <li>B3 direita: borda esternal inferior, pode aumentar com a inspiração</li>
+          </ul>
+          <h4>B3 esquerda — associações</h4>
+          <p class="small-note">Insuficiência cardíaca com disfunção sistólica, cardiomiopatia dilatada, insuficiência mitral importante, insuficiência aórtica importante, sobrecarga volumétrica, pressão de enchimento elevada, estados de hiperfluxo.</p>
+          <h4>B3 direita — associações</h4>
+          <p class="small-note">Insuficiência cardíaca direita, sobrecarga volumétrica do VD, insuficiência tricúspide importante.</p>
+          <h4>B3 fisiológica</h4>
+          <p class="small-note">Pode ocorrer em crianças, adolescentes, adultos jovens, gestantes e estados de alto débito. Em adultos mais velhos, especialmente com dispneia ou congestão, deve ser considerada sugestiva de doença.</p>
+          <div class="frase">"B3 lembra volume, enchimento rápido e ventrículo frequentemente dilatado."</div>
+        </div>
+
+        <div class="card tint-gold">
+          <span class="badge gold">Imediatamente antes de B1</span>
+          <h3>B4</h3>
+          <p>Aparece no <b>final da diástole</b>, produzida pela <b>contração atrial</b> contra um ventrículo pouco complacente.</p>
+          <ul>
+            <li>Grave, baixa frequência, pré-sistólica</li>
+            <li>Melhor audível com <b>campânula</b></li>
+            <li>B4 esquerda: ápice</li>
+            <li>B4 direita: borda esternal inferior, pode aumentar com a inspiração</li>
+          </ul>
+          <h4>B4 esquerda — associações</h4>
+          <p class="small-note">Hipertensão arterial com hipertrofia ventricular, estenose aórtica, cardiomiopatia hipertrófica, isquemia miocárdica, infarto agudo, ventrículo rígido, disfunção diastólica.</p>
+          <h4>B4 direita — associações</h4>
+          <p class="small-note">Hipertensão pulmonar, estenose pulmonar, hipertrofia do VD.</p>
+          <div class="frase">"B4 lembra rigidez."</div>
+          <div class="pegadinha">
+            <svg><use href="#i-alert"/></svg>
+            <div><b>Pegadinha:</b> B4 exige contração atrial organizada. <u>Não existe B4 verdadeira na fibrilação atrial.</u></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="macete">
+        <svg><use href="#i-brain"/></svg>
+        <div><b>Imagem mental:</b> B3 é uma onda volumosa entrando rapidamente e batendo em uma câmara dilatada. B4 é o átrio usando um "aríete" contra uma câmara rígida.</div>
+      </div>
+
+      <div class="card tint-red">
+        <h3>Galope de soma (summation gallop)</h3>
+        <p>Em taquicardia, a diástole encurta e <b>B3 e B4 podem se aproximar e se fundir</b>, gerando um único som diastólico mais intenso.</p>
+        <div class="ciclo-timeline" style="max-width:520px;">
+          <div class="ct-b3" style="background:var(--purple);flex:1;">B3</div>
+          <div style="background:var(--navy);flex:0 0 30px;color:var(--gold);">+</div>
+          <div class="ct-b4" style="background:var(--gold-dark);flex:1;">B4</div>
+          <div style="background:var(--red);flex:1;">= galope de soma</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. SONS ADICIONAIS ================= -->
+    <section class="section" id="sons-adicionais">
+      <div class="section-head">
+        <div class="eyebrow">06 · Cliques, estalidos e atritos</div>
+        <h2>Sons adicionais</h2>
+        <p class="sub">Momento no ciclo, mecanismo, associação clássica e diferença em relação a B3 e B4.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="badge">Início da sístole</span>
+          <h3>Clique de ejeção</h3>
+          <p>Logo após B1. Associado a válvula semilunar anormal ou dilatação da raiz arterial. Pode ser aórtico ou pulmonar.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Mesossístole</span>
+          <h3>Clique mesossistólico</h3>
+          <p>Prolapso da válvula mitral, seguido ou não de sopro sistólico tardio. Modifica-se com o volume ventricular.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Início da diástole</span>
+          <h3>Estalido de abertura</h3>
+          <p>Após B2. Clássico da estenose mitral com valva ainda móvel.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Diástole precoce</span>
+          <h3>Knock pericárdico</h3>
+          <p>Som diastólico precoce, ocorre mais cedo que B3. Associado à pericardite constritiva; geralmente mais agudo que B3.</p>
+        </div>
+        <div class="card">
+          <span class="badge">Multifásico</span>
+          <h3>Atrito pericárdico</h3>
+          <p>Áspero, superficial, pode ter até três componentes e persistir em diferentes fases do ciclo. Melhor audível com o paciente inclinado para frente.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="comparativa">
+          <thead><tr><th>Som</th><th>Momento</th><th>Mecanismo</th><th>Diferença de B3/B4</th></tr></thead>
+          <tbody>
+            <tr><td>Clique de ejeção</td><td>Logo após B1</td><td>Válvula semilunar anormal / dilatação da raiz</td><td>Mais agudo e mais precoce que B3</td></tr>
+            <tr><td>Clique mesossistólico</td><td>Meio da sístole</td><td>Prolapso mitral</td><td>Ocorre em sístole, nunca na diástole</td></tr>
+            <tr><td>Estalido de abertura</td><td>Logo após B2</td><td>Abertura brusca da mitral estenótica ainda móvel</td><td>Mais agudo e mais precoce que B3</td></tr>
+            <tr><td>Knock pericárdico</td><td>Diástole precoce, antes do tempo de B3</td><td>Pericárdio rígido limita o enchimento</td><td>Mais agudo e mais precoce que B3</td></tr>
+            <tr><td>Atrito pericárdico</td><td>Pode ter componente sistólico e diastólico</td><td>Folhetos pericárdicos inflamados se atritando</td><td>Áspero e superficial, não é um som pontual como B3/B4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= 7. SOPROS ESPECIAIS ================= -->
+    <section class="section" id="sopros-especiais">
+      <div class="section-head">
+        <div class="eyebrow">07 · Epônimos</div>
+        <h2>Sopros especiais: quando uma lesão imita outra</h2>
+        <p class="sub">Cinco fenômenos auscultatórios clássicos, cada um com um mecanismo fisiológico próprio — não decore o nome sem entender o porquê.</p>
+      </div>
+
+      <div class="accordion" id="sopros-accordion">
+
+        <div class="accordion-item open">
+          <button class="accordion-head"><span>Austin Flint — "a aorta cria uma falsa estenose mitral"</span><svg><use href="#i-chevron"/></svg></button>
+          <div class="accordion-body">
+            <span class="badge red">Diastólico · ápice</span>
+            <p><b>Definição:</b> ruflar mesodiastólico ou telediastólico apical produzido pela insuficiência aórtica importante, <b>sem</b> estenose mitral anatômica.</p>
+            <p><b>Mecanismo:</b> o jato regurgitante aórtico entra no VE durante a diástole, interfere na abertura do folheto anterior da mitral, produz obstrução funcional do fluxo mitral e gera turbulência diastólica semelhante à estenose mitral.</p>
+            <ul>
+              <li>Apical, grave, baixa frequência, campânula, decúbito lateral esquerdo</li>
+              <li>Meso ou telediastólico</li>
+            </ul>
+            <h4>Diferenças em relação à estenose mitral</h4>
+            <ul>
+              <li>Não apresenta obrigatoriamente estalido de abertura</li>
+              <li>Não representa fusão comissural</li>
+              <li>Ocorre com sinais de insuficiência aórtica importante (pressão de pulso ampla, pulso amplo e célere)</li>
+              <li>Acompanha sopro diastólico aórtico decrescente</li>
+            </ul>
+            <div class="frase">"Imita o ruflar da estenose mitral, mas não existe estenose mitral anatômica."</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-head"><span>Fenômeno de Gallavardin — "dois instrumentos na mesma estenose"</span><svg><use href="#i-chevron"/></svg></button>
+          <div class="accordion-body">
+            <span class="badge blue">Sistólico ejetivo · transmissão apical</span>
+            <p><b>Definição:</b> transmissão do componente agudo e musical do sopro da estenose aórtica para o ápice. Não é uma doença diferente — é um <b>fenômeno acústico</b> da estenose aórtica.</p>
+            <ul>
+              <li>O componente áspero permanece melhor audível na base</li>
+              <li>O componente agudo/musical pode ser ouvido no ápice — pode simular insuficiência mitral</li>
+              <li>Continua sendo um sopro sistólico ejetivo (crescendo-decrescendo), <b>não</b> holossistólico</li>
+              <li>Pode coexistir com irradiação para carótidas e pulso <i>parvus et tardus</i></li>
+            </ul>
+            <div class="table-wrap">
+              <table class="comparativa">
+                <thead><tr><th>Gallavardin</th><th>Insuficiência mitral</th></tr></thead>
+                <tbody>
+                  <tr><td>Sistólico ejetivo, crescendo-decrescendo</td><td>Holossistólica, uniforme</td></tr>
+                  <tr><td>Origem aórtica — áspero na base, musical no ápice</td><td>Apical</td></tr>
+                  <tr><td>Pode irradiar para carótidas</td><td>Irradia classicamente para axila</td></tr>
+                  <tr><td>—</td><td>Aumenta com handgrip</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="frase">"A estenose aórtica toca dois instrumentos: um ralador áspero na base e um violino agudo no ápice."</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-head"><span>Carey Coombs — "a mitral inchada e febril"</span><svg><use href="#i-chevron"/></svg></button>
+          <div class="accordion-body">
+            <span class="badge purple">Mesodiastólico · transitório</span>
+            <p><b>Definição:</b> ruflar mesodiastólico apical <b>transitório</b> associado à valvulite mitral da <b>febre reumática aguda</b>.</p>
+            <p><b>Mecanismo:</b> inflamação, edema das cúspides, aumento de fluxo, turbulência diastólica transitória. Não significa obrigatoriamente estenose mitral anatômica estabelecida.</p>
+            <ul>
+              <li>Mesodiastólico, apical, curto, baixa frequência</li>
+              <li>Sem estalido de abertura típico</li>
+              <li>Tende a desaparecer quando a cardite melhora</li>
+            </ul>
+            <div class="table-wrap">
+              <table class="comparativa">
+                <thead><tr><th>Carey Coombs</th><th>Estenose mitral</th></tr></thead>
+                <tbody>
+                  <tr><td>Febre reumática aguda, valvulite, edema</td><td>Doença estrutural crônica, fusão comissural</td></tr>
+                  <tr><td>Transitório</td><td>Estalido de abertura</td></tr>
+                  <tr><td>Sem fusão comissural crônica</td><td>Ruflar prolongado, possível reforço pré-sistólico</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="frase">"A mitral está inchada e febril, não permanentemente cimentada."</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-head"><span>Graham Steell — "pressão pulmonar alta produz vazamento pulmonar"</span><svg><use href="#i-chevron"/></svg></button>
+          <div class="accordion-body">
+            <span class="badge green">Diastólico precoce · foco pulmonar</span>
+            <p><b>Definição:</b> sopro da <b>insuficiência pulmonar funcional</b> secundária à hipertensão pulmonar importante.</p>
+            <p><b>Mecanismo:</b> dilatação do anel pulmonar e/ou da artéria pulmonar, hipertensão pulmonar, incompetência funcional da válvula pulmonar, refluxo diastólico para o VD.</p>
+            <ul>
+              <li>Diastólico precoce, agudo, aspirativo, decrescente</li>
+              <li>Melhor no foco pulmonar / borda esternal esquerda superior</li>
+              <li>Inicia após P2, pode aumentar com a inspiração</li>
+            </ul>
+            <div class="table-wrap">
+              <table class="comparativa">
+                <thead><tr><th>Graham Steell</th><th>Insuficiência aórtica</th></tr></thead>
+                <tbody>
+                  <tr><td>Foco pulmonar, hipertensão pulmonar</td><td>Borda esternal esquerda / ponto de Erb</td></tr>
+                  <tr><td>P2 hiperfonética</td><td>Sinais periféricos de pressão de pulso ampla</td></tr>
+                  <tr><td>Pode aumentar com a inspiração</td><td>Maior destaque com expiração e inclinação para frente</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="frase">"Steell = pressão pulmonar alta produz vazamento pulmonar."</div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-head"><span>Rivero-Carvallo — um sinal, não um sopro</span><svg><use href="#i-chevron"/></svg></button>
+          <div class="accordion-body">
+            <span class="badge gold">Manobra auscultatória · inspiração</span>
+            <p><b>Rivero-Carvallo não é um sopro independente. É um sinal/manobra auscultatória.</b></p>
+            <p><b>Definição:</b> aumento da intensidade dos sopros originados no coração direito durante a inspiração. Exemplo clássico: <b>insuficiência tricúspide</b>.</p>
+            <h4>Fisiologia (passo a passo)</h4>
+            <ol>
+              <li>A inspiração reduz a pressão intratorácica</li>
+              <li>Aumenta o retorno venoso sistêmico</li>
+              <li>Aumenta o enchimento do coração direito</li>
+              <li>Aumenta o fluxo através das válvulas direitas</li>
+              <li>Intensifica os sopros de origem direita</li>
+            </ol>
+            <p><b>Sopros que podem aumentar:</b> insuficiência tricúspide, estenose tricúspide, estenose pulmonar, insuficiência pulmonar.</p>
+            <div class="frase">"Inspirou, trouxe sangue para a direita." · Macete: "TRI inspira e grita" (TRI = tricúspide — a inspiração torna o sopro da insuficiência tricúspide mais intenso).</div>
+            <p><b>Insuficiência tricúspide:</b> holossistólica, borda esternal esquerda inferior / região xifoide, pode irradiar para epigástrio, aumenta com inspiração.</p>
+            <div class="pegadinha">
+              <svg><use href="#i-alert"/></svg>
+              <div><b>Limitações do sinal:</b> pode ser menos evidente em insuficiência cardíaca direita muito avançada, baixo débito, pressão atrial direita muito elevada, ventilação mecânica ou exame tecnicamente difícil.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 8. COMPARAÇÃO FINAL ================= -->
+    <section class="section" id="comparacao">
+      <div class="section-head">
+        <div class="eyebrow">08 · Síntese</div>
+        <h2>Comparação final</h2>
+        <p class="sub">Tabelas de revisão rápida e o mapa mental de fechamento do Tema 3.</p>
+      </div>
+
+      <h3>Tabela comparativa de bulhas</h3>
+      <div class="table-wrap">
+        <table class="comparativa">
+          <thead><tr><th>Bulha</th><th>Momento</th><th>Origem</th><th>Melhor local</th><th>Timbre</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td><b>B1</b></td><td>Início da sístole</td><td>Mitral / tricúspide</td><td>Ápice</td><td>Grave</td><td>—</td></tr>
+            <tr><td><b>B2</b></td><td>Fim da sístole</td><td>Aórtica / pulmonar</td><td>Base</td><td>Aguda</td><td>—</td></tr>
+            <tr><td><b>B3</b></td><td>Início da diástole</td><td>Enchimento rápido</td><td>Ápice/BEI, campânula</td><td>Grave</td><td>Volume — pode ser fisiológica em jovens</td></tr>
+            <tr><td><b>B4</b></td><td>Fim da diástole</td><td>Contração atrial</td><td>Ápice/BEI, campânula</td><td>Grave</td><td>Ventrículo rígido — ausente na fibrilação atrial</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.6rem;">Tabela comparativa dos sopros especiais</h3>
+      <div class="table-wrap">
+        <table class="comparativa">
+          <thead><tr><th>Sopro</th><th>Contexto</th><th>Fase</th><th>Local</th><th>Ponto-chave</th></tr></thead>
+          <tbody>
+            <tr><td><b>Austin Flint</b></td><td>Insuficiência aórtica importante</td><td>Diastólico</td><td>Ápice</td><td>Simula estenose mitral, sem estenose anatômica</td></tr>
+            <tr><td><b>Gallavardin</b></td><td>Estenose aórtica</td><td>Sistólico</td><td>Base → ápice (musical)</td><td>Pode simular insuficiência mitral</td></tr>
+            <tr><td><b>Carey Coombs</b></td><td>Febre reumática aguda</td><td>Mesodiastólico</td><td>Ápice</td><td>Transitório — valvulite</td></tr>
+            <tr><td><b>Graham Steell</b></td><td>Hipertensão pulmonar</td><td>Diastólico precoce</td><td>Foco pulmonar</td><td>Insuficiência pulmonar funcional</td></tr>
+            <tr><td><b>Rivero-Carvallo</b></td><td>Sopros de coração direito</td><td>Manobra (inspiração)</td><td>—</td><td>Clássico da insuficiência tricúspide</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:1.8rem;">Mapa mental final</h3>
+      <div class="mindmap">
+        <div class="mm-node" style="background:var(--red);">
+          <h4>B1</h4>
+          <ul><li>Mitral / tricúspide</li><li>Início da sístole</li><li>Forte se móvel e aberta</li><li>Fraca se incompetente, calcificada ou contração fraca</li></ul>
+        </div>
+        <div class="mm-node" style="background:var(--blue);">
+          <h4>B2</h4>
+          <ul><li>Aórtica / pulmonar</li><li>Fim da sístole</li><li>A2 forte = pressão sistêmica</li><li>P2 forte = pressão pulmonar</li></ul>
+        </div>
+        <div class="mm-node" style="background:var(--purple);">
+          <h4>B3 / B4</h4>
+          <ul><li>B3: depois de B2, volume, enchimento rápido</li><li>B4: antes de B1, rigidez, contração atrial, não existe na FA</li></ul>
+        </div>
+        <div class="mm-node" style="background:var(--navy);">
+          <h4>Desdobramento</h4>
+          <ul><li>Fisiológico = inspiração</li><li>Amplo = P2 atrasado</li><li>Fixo = CIA</li><li>Paradoxal = A2 atrasado</li></ul>
+        </div>
+      </div>
+      <div class="mindmap" style="margin-top:.9rem;">
+        <div class="mm-node" style="background:var(--red-dark);grid-column:span 1;"><h4>Austin Flint</h4><p>IAo imita EM</p></div>
+        <div class="mm-node" style="background:var(--blue);"><h4>Gallavardin</h4><p>EAo imita IM</p></div>
+        <div class="mm-node" style="background:var(--purple);"><h4>Carey Coombs</h4><p>Mitral febril e inflamada</p></div>
+        <div class="mm-node" style="background:var(--green);"><h4>Graham Steell</h4><p>Hipertensão pulmonar causa IP</p></div>
+      </div>
+      <div class="mindmap" style="margin-top:.9rem;grid-template-columns:1fr;">
+        <div class="mm-node" style="background:var(--gold-dark);"><h4>Rivero-Carvallo</h4><p>Inspiração aumenta sopros de origem direita</p></div>
+      </div>
+
+      <div class="card tint-navy" style="margin-top:1.4rem;">
+        <p><svg class="icon" style="color:var(--navy);"><use href="#i-alert"/></svg> A ausculta orienta a hipótese clínica, mas <b>não substitui o ecocardiograma</b> quando há suspeita de doença estrutural.</p>
+      </div>
+    </section>
+
+    <!-- ================= 9. LABORATÓRIO DE ÁUDIOS ================= -->
+    <section class="section" id="audios">
+      <div class="section-head">
+        <div class="eyebrow">09 · Treinamento de ausculta</div>
+        <h2>Laboratório de Ausculta</h2>
+        <p class="sub">Sons sintéticos gerados por Web Audio API, sincronizados a um fonocardiograma esquemático. Use fone de ouvido para melhor percepção.</p>
+      </div>
+
+      <div class="disclaimer-audio"><svg class="icon"><use href="#i-alert"/></svg> Simulação didática — não substitui ausculta clínica real.</div>
+
+      <div class="audiolab-wrap" style="margin-top:1rem;">
+        <div class="audio-list" id="audio-list"></div>
+
+        <div class="player-card">
+          <div class="player-title" id="lab-title">Selecione um som na lista</div>
+          <div class="player-desc" id="lab-desc">Clique em qualquer item à esquerda para começar.</div>
+          <div class="canvas-wrap"><canvas id="lab-canvas" width="900" height="220"></canvas></div>
+
+          <div id="lab-riverocarvallo" class="breath-row" style="display:none;">
+            <button class="breath-btn active" id="rc-antes" data-rc="antes">Antes da inspiração</button>
+            <button class="breath-btn" id="rc-durante" data-rc="durante">Durante a inspiração</button>
+          </div>
+
+          <div class="player-controls">
+            <button class="btn" id="lab-play"><svg><use href="#i-play"/></svg><span>Tocar</span></button>
+            <button class="btn ghost" id="lab-repeat"><svg><use href="#i-repeat"/></svg> Repetir</button>
+            <div class="speed-group">
+              <button class="speed-btn" data-speed="0.75">0,75x</button>
+              <button class="speed-btn active" data-speed="1">1x</button>
+              <button class="speed-btn" data-speed="1.25">1,25x</button>
+            </div>
+            <div class="vol-row">Volume <input type="range" id="lab-volume" min="0" max="100" value="80"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card tint-green" style="margin-top:1.4rem;">
+        <span class="badge green">Gravações reais, gratuitas</span>
+        <h3><svg class="icon"><use href="#i-stetho"/></svg> Quer ouvir ausculta real, não sintética?</h3>
+        <p>Os sons acima são <b>aproximações didáticas</b> geradas por síntese sonora — ótimas para entender timing, timbre relativo e posição no ciclo, mas não substituem gravações de pacientes reais. Veja o acervo de gravações reais gratuitas na seção <a href="#ausculta-real">Ouvir ausculta real</a>, mais abaixo.</p>
+      </div>
+    </section>
+
+    <!-- ================= 10. CASOS CLÍNICOS ================= -->
+    <section class="section" id="casos">
+      <div class="section-head">
+        <div class="eyebrow">10 · Prática</div>
+        <h2>Casos clínicos interativos</h2>
+        <p class="sub">Leia a vinheta, pense na resposta e só depois clique para revelar.</p>
+      </div>
+      <div id="casos-container"></div>
+    </section>
+
+    <!-- ================= 11. QUIZ ================= -->
+    <section class="section" id="quiz">
+      <div class="section-head">
+        <div class="eyebrow">11 · Evocação ativa</div>
+        <h2>Quiz de revisão</h2>
+        <p class="sub">Responda mentalmente antes de revelar — a evocação ativa é o que consolida a memória.</p>
+      </div>
+      <div id="quiz-container"></div>
+    </section>
+
+    <!-- ================= FLASHCARDS ================= -->
+    <section class="section" id="flashcards">
+      <div class="section-head">
+        <div class="eyebrow">★ Revisão rápida</div>
+        <h2>Flashcards</h2>
+        <p class="sub">Clique no cartão para virar.</p>
+      </div>
+      <div class="flash-grid" id="flash-container"></div>
+    </section>
+
+    <!-- ================= AUSCULTA REAL (RECURSOS EXTERNOS) ================= -->
+    <section class="section" id="ausculta-real">
+      <div class="section-head">
+        <div class="eyebrow">Para ir além</div>
+        <h2>Ouvir ausculta real</h2>
+        <p class="sub">Os sons deste módulo são sintéticos e didáticos. Para treinar com gravações reais de pacientes, estes quatro acervos são gratuitos, não exigem login para os conteúdos essenciais e foram verificados no momento da publicação deste material.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card tint-petrol">
+          <span class="badge">Gravações reais · sem login</span>
+          <h3><svg class="icon"><use href="#i-stetho"/></svg> Harvey Heart Sounds</h3>
+          <p>Gravações reais de B1–B4, cliques, estalidos e sopros clássicos (estenose/insuficiência mitral e aórtica, CIV, PCA, CIA), organizadas por diagnóstico — acervo do Dr. W. Proctor Harvey (Georgetown University).</p>
+          <p><a href="https://teachingheartauscultation.com/heart-sounds-mp3-downloads" target="_blank" rel="noopener noreferrer">teachingheartauscultation.com →</a></p>
+        </div>
+        <div class="card tint-petrol">
+          <span class="badge">Cursos gratuitos + quizzes</span>
+          <h3><svg class="icon"><use href="#i-wave"/></svg> EasyAuscultation</h3>
+          <p>Módulos gratuitos com gravações de pacientes reais e sons simulados, cobrindo B1/B2, B3/B4 e os principais sopros, com quizzes de treino.</p>
+          <p><a href="https://www.easyauscultation.com/learning-resources-free" target="_blank" rel="noopener noreferrer">easyauscultation.com →</a></p>
+        </div>
+        <div class="card tint-petrol">
+          <span class="badge">Aulas + animações</span>
+          <h3><svg class="icon"><use href="#i-heart"/></svg> Practical Clinical Skills</h3>
+          <p>Cursos introdutórios gratuitos sobre sons normais, S1, S2, B3/B4 e sopros sistólicos, com áudio real, vídeos de forma de onda e animações cardíacas.</p>
+          <p><a href="https://www.practicalclinicalskills.com/heart-sounds" target="_blank" rel="noopener noreferrer">practicalclinicalskills.com →</a></p>
+        </div>
+        <div class="card tint-petrol">
+          <span class="badge">Acervo universitário</span>
+          <h3><svg class="icon"><use href="#i-brain"/></svg> Heart Sound & Murmur Library</h3>
+          <p>Gravações reais em streaming/download, organizadas por bulhas e sopros clássicos — acervo aberto da University of Michigan.</p>
+          <p><a href="https://open.umich.edu/find/open-educational-resources/medical/heart-sound-murmur-library" target="_blank" rel="noopener noreferrer">open.umich.edu →</a></p>
+        </div>
+      </div>
+      <p class="small-note">Para o sopro de Austin Flint especificamente, o <a href="https://www.msdmanuals.com/professional/multimedia/audio/austin_flint_murmur" target="_blank" rel="noopener noreferrer">MSD Manual</a> tem uma gravação real dedicada, citada na seção de sopros especiais deste módulo.</p>
+      <p class="small-note">Sites externos, mantidos por terceiros e sem relação com o Atlas Mental — a disponibilidade pode mudar com o tempo.</p>
+    </section>
+
+    <!-- ================= PEGADINHAS CONSOLIDADAS ================= -->
+    <section class="section" id="pegadinhas">
+      <div class="section-head">
+        <div class="eyebrow">⚠ Não caia nessa</div>
+        <h2>Pegadinhas do Tema 3</h2>
+        <p class="sub">As armadilhas mais comuns de prova reunidas em um só lugar — releia na véspera.</p>
+      </div>
+      <div class="pegadinha">
+        <svg><use href="#i-alert"/></svg>
+        <div><b>Estenose mitral ≠ B1 sempre hiperfonética.</b> Se a valva estiver calcificada e imóvel, B1 pode ser normal ou hipofonética. A intensidade depende da <u>mobilidade valvar</u>, não só do grau de estenose.</div>
+      </div>
+      <div class="pegadinha">
+        <svg><use href="#i-alert"/></svg>
+        <div><b>B4 exige contração atrial organizada.</b> Não existe B4 verdadeira na fibrilação atrial — sem átrio contraindo em ritmo, não há tambor pré-sistólico.</div>
+      </div>
+      <div class="pegadinha">
+        <svg><use href="#i-alert"/></svg>
+        <div><b>Austin Flint não é estenose mitral anatômica.</b> É o jato de insuficiência aórtica interferindo na abertura da mitral — sem fusão comissural, sem estalido de abertura típico.</div>
+      </div>
+      <div class="pegadinha">
+        <svg><use href="#i-alert"/></svg>
+        <div><b>Gallavardin não é insuficiência mitral associada.</b> É o mesmo sopro ejetivo da estenose aórtica, apenas com um componente agudo/musical transmitido ao ápice.</div>
+      </div>
+      <div class="pegadinha">
+        <svg><use href="#i-alert"/></svg>
+        <div><b>Rivero-Carvallo é sinal, não sopro.</b> Descreve o aumento de sopros de origem direita durante a inspiração — não é uma lesão à parte.</div>
+      </div>
+      <div class="pegadinha">
+        <svg><use href="#i-alert"/></svg>
+        <div><b>Desdobramento fixo (CIA) ≠ desdobramento paradoxal (BRE).</b> Fixo não varia com a respiração; paradoxal inverte a ordem (P2 antes de A2) e se acentua na expiração — não confunda os dois padrões.</div>
+      </div>
+    </section>
+
+    <!-- ================= REVISÃO FINAL 60 SEGUNDOS ================= -->
+    <section class="section" id="revisao-final">
+      <div class="section-head">
+        <div class="eyebrow">⏱ Fechamento</div>
+        <h2>60 segundos de revisão final</h2>
+        <p class="sub">Leia isto em voz alta antes de fechar o material. Se fizer sentido de cabeça, o tema está consolidado.</p>
+      </div>
+      <div class="card tint-navy">
+        <p><b>TUM (B1)</b> fecha mitral/tricúspide — depende de mobilidade valvar. <b>TÁ (B2)</b> fecha aórtica/pulmonar — A2 antes de P2. <b>B3</b> logo após o TÁ = volume sobrecarregando ventrículo dilatado. <b>B4</b> antes do TUM = átrio empurrando contra ventrículo rígido, some na FA.</p>
+        <p>Desdobramento <b>fisiológico</b> aumenta na inspiração; <b>fixo</b> não varia (CIA); <b>paradoxal</b> inverte a ordem (BRE). <b>P2 hiperfonética</b> = hipertensão pulmonar.</p>
+        <p>Sopros com nome: <b>Austin Flint</b> (IAo simulando EM), <b>Gallavardin</b> (EAo transmitida ao ápice), <b>Carey Coombs</b> (febre reumática aguda), <b>Graham Steell</b> (IP funcional por hipertensão pulmonar). <b>Rivero-Carvallo</b> = sopros direitos aumentam na inspiração.</p>
+      </div>
+    </section>
+
+    <!-- ================= REVISÃO ESPAÇADA ================= -->
+    <section class="section" id="revisao-espacada">
+      <div class="section-head">
+        <div class="eyebrow">📅 Consolidação</div>
+        <h2>Checklist de revisão espaçada</h2>
+        <p class="sub">Marque conforme revisar. A repetição espaçada é o que transforma isto em memória de longo prazo.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card tint-petrol">
+          <span class="badge">Hoje</span>
+          <h3>Consolidação imediata</h3>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Refazer o quiz sem olhar as respostas</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Revisar os 6 casos clínicos</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Ler a seção de pegadinhas</label>
+        </div>
+        <div class="card tint-gold">
+          <span class="badge gold">Amanhã</span>
+          <h3>Primeira repetição</h3>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Virar todos os flashcards de cabeça</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Reler a revisão de 60 segundos</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Ouvir os áudios do Laboratório sem ver o nome antes</label>
+        </div>
+        <div class="card tint-green">
+          <span class="badge green">7 dias</span>
+          <h3>Retenção de longo prazo</h3>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Refazer o quiz do zero</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Explicar o Palácio da Memória em voz alta, sem olhar a tela</label>
+          <label style="display:flex;gap:.5rem;align-items:flex-start;margin:.5rem 0;"><input type="checkbox"> Comparar com o Tema 2 (sopros clássicos) — intercalar os dois temas</label>
+        </div>
+      </div>
+      <p class="small-note">Este checklist não salva o progresso entre sessões — é um guia de estudo, não um rastreador. Marque mentalmente ou anote em seu próprio sistema de revisão.</p>
+    </section>
+
+    <div class="assinatura"><svg><use href="#i-heart"/></svg> <span class="nome-assin">Dr. André Rossanno</span> — Atlas Mental</div>
+
+    <footer class="site-footer">
+      <div class="fname">Dr. André Rossanno</div>
+      <div class="fsub">Atlas Mental — Semiologia Cardiovascular · Tema 3</div>
+      <p class="fnote">Material educacional destinado ao ensino médico. A ausculta deve ser correlacionada ao quadro clínico e aos exames complementares.</p>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+/* ============ NAV / SIDEBAR ============ */
+const sidebar = document.getElementById('sidebar');
+document.getElementById('menu-toggle').addEventListener('click', ()=> sidebar.classList.toggle('open'));
+document.querySelectorAll('#nav-links a').forEach(a=>{
+  a.addEventListener('click', ()=> sidebar.classList.remove('open'));
+});
+const navLinks = document.querySelectorAll('#nav-links a');
+const obsSections = [...document.querySelectorAll('.section[id], header[id]')];
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.remove('active'));
+      const link = document.querySelector('#nav-links a[href="#'+e.target.id+'"]');
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+obsSections.forEach(s=>io.observe(s));
+
+/* ============ TABS (generic) ============ */
+document.querySelectorAll('.tabs[data-tabgroup]').forEach(group=>{
+  const name = group.dataset.tabgroup;
+  group.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      group.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-panel[data-tabgroup="'+name+'"]').forEach(p=>p.classList.remove('active'));
+      document.querySelector('.tab-panel[data-tabgroup="'+name+'"][data-panel="'+btn.dataset.tab+'"]').classList.add('active');
+    });
+  });
+});
+
+/* ============ ACCORDION ============ */
+document.querySelectorAll('.accordion-head').forEach(head=>{
+  head.addEventListener('click', ()=>{
+    head.parentElement.classList.toggle('open');
+  });
+});
+
+/* ============================================================
+   AUDIO ENGINE
+   ============================================================ */
+const AudioLab = (()=>{
+  let ctx=null, master=null, noiseBuf=null, brownBuf=null;
+  let volume=0.8, rate=1;
+  let playing=false, loopOn=false, loopTimer=null, rafId=null;
+
+  function ensure(){
+    if(!ctx){
+      ctx = new (window.AudioContext||window.webkitAudioContext)();
+      master = ctx.createGain(); master.gain.value=volume;
+      // "de-metalizing" output chain: gentle low-pass to tame harsh digital highs
+      // + soft-clip saturation for analog-ish warmth, applied to every sound uniformly.
+      const warmth = ctx.createBiquadFilter();
+      warmth.type='lowpass'; warmth.frequency.value=1500; warmth.Q.value=0.4;
+      const shaper = ctx.createWaveShaper();
+      shaper.curve = makeSoftClipCurve(); shaper.oversample='4x';
+      master.connect(warmth); warmth.connect(shaper); shaper.connect(ctx.destination);
+      noiseBuf = makeWhiteNoise(2);
+      brownBuf = makeBrownNoise(3);
+    }
+    if(ctx.state==='suspended') ctx.resume();
+    return ctx;
+  }
+  function makeSoftClipCurve(){
+    const n=1024, curve=new Float32Array(n);
+    for(let i=0;i<n;i++){ const x=i/(n-1)*2-1; curve[i]=Math.tanh(x*1.4)/Math.tanh(1.4); }
+    return curve;
+  }
+  function makeWhiteNoise(sec){
+    const len = Math.floor(ctx.sampleRate*sec);
+    const buf = ctx.createBuffer(1,len,ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for(let i=0;i<len;i++) d[i]=Math.random()*2-1;
+    return buf;
+  }
+  // Brown noise (leaky integrator of white noise): warm, low-heavy texture —
+  // much closer to organic body sound than hissy white noise, avoids the
+  // "metallic" character of narrow resonant filters on white noise.
+  function makeBrownNoise(sec){
+    const len = Math.floor(ctx.sampleRate*sec);
+    const buf = ctx.createBuffer(1,len,ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    let last=0;
+    for(let i=0;i<len;i++){
+      const white = Math.random()*2-1;
+      last = (last + 0.02*white) / 1.02;
+      d[i] = last*3.2;
+    }
+    return buf;
+  }
+  function setVolume(v){ volume=v; if(master) master.gain.value=v; }
+  function setRate(r){ rate=r; }
+  function setLoop(v){ loopOn=v; }
+  const jitter = (amt)=> 1 + (Math.random()*2-1)*amt;
+
+  function thump(t0,{freq=100,decay=0.15,gain=0.8,tone=55}){
+    // tiny beat-to-beat jitter humanizes the loop instead of sounding like a robotic sequencer
+    const jf=jitter(0.03), jg=jitter(0.05);
+    const realFreq=freq*jf, realTone=tone*jf, realGain=gain*jg;
+
+    // body: brown noise through a broad low-pass (a soft "thud", not a resonant "beep")
+    const src=ctx.createBufferSource(); src.buffer=brownBuf;
+    const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=realFreq*2.1; lp.Q.value=0.5;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.linearRampToValueAtTime(realGain*0.75,t0+0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+decay);
+    src.connect(lp); lp.connect(g); g.connect(master);
+    src.start(t0); src.stop(t0+decay+0.05);
+
+    // pitched component: quick downward glide (kick-drum style) instead of a static sine tone —
+    // a fixed-frequency sine is what reads as "metallic"/synthetic; a falling pitch reads as organic.
+    const osc=ctx.createOscillator(); osc.type='sine';
+    osc.frequency.setValueAtTime(realTone*2.4,t0);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(18,realTone*0.75),t0+decay*0.55);
+    const g2=ctx.createGain();
+    g2.gain.setValueAtTime(0.0001,t0);
+    g2.gain.linearRampToValueAtTime(realGain*0.6,t0+0.014);
+    g2.gain.exponentialRampToValueAtTime(0.0001,t0+decay*0.85);
+    osc.connect(g2); g2.connect(master);
+    osc.start(t0); osc.stop(t0+decay+0.05);
+  }
+  function click(t0,{freq=650,decay=0.03,gain=0.45}){
+    const jf=jitter(0.04);
+    // short noise transient (brown, not white) gives body without hiss
+    const src=ctx.createBufferSource(); src.buffer=brownBuf;
+    const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=freq*jf; bp.Q.value=1.4;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(0.0001,t0);
+    g.gain.linearRampToValueAtTime(gain*0.55,t0+0.002);
+    g.gain.exponentialRampToValueAtTime(0.0001,t0+decay);
+    src.connect(bp); bp.connect(g); g.connect(master);
+    src.start(t0); src.stop(t0+decay+0.02);
+
+    // pitched click: gentle downward glide instead of a flat triangle tone
+    const osc=ctx.createOscillator(); osc.type='triangle';
+    osc.frequency.setValueAtTime(freq*jf*1.25,t0);
+    osc.frequency.exponentialRampToValueAtTime(freq*jf*0.7,t0+decay);
+    const g2=ctx.createGain();
+    g2.gain.setValueAtTime(0.0001,t0);
+    g2.gain.linearRampToValueAtTime(gain*0.45,t0+0.002);
+    g2.gain.exponentialRampToValueAtTime(0.0001,t0+decay*0.8);
+    osc.connect(g2); g2.connect(master);
+    osc.start(t0); osc.stop(t0+decay+0.02);
+  }
+  const shapes={
+    crescDecresc:x=>Math.sin(Math.PI*x),
+    decresc:x=>Math.exp(-3.2*x),
+    cresc:x=>Math.exp(-3.2*(1-x)),
+    uniforme:x=>{const a=0.08; if(x<a) return x/a; if(x>1-a) return (1-x)/a; return 1;},
+    rumble:x=>Math.sin(Math.PI*x)*(0.55+0.45*Math.sin(Math.PI*x))
+  };
+  function murmur(t0,dur,{freq=300,q=0.7,peak=0.4,shape=shapes.uniforme,musical=false}){
+    if(dur<=0.02) dur=0.02;
+    // mostly brown noise (warm turbulence) with a touch of white blended in for natural "breathiness"
+    const src=ctx.createBufferSource(); src.buffer=brownBuf; src.loop=true;
+    const srcHiss=ctx.createBufferSource(); srcHiss.buffer=noiseBuf; srcHiss.loop=true;
+    const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=freq; bp.Q.value=Math.min(q,0.85);
+    const bpHiss=ctx.createBiquadFilter(); bpHiss.type='bandpass'; bpHiss.frequency.value=freq; bpHiss.Q.value=Math.min(q,0.85);
+    const hissGain=ctx.createGain(); hissGain.gain.value=0.18;
+
+    // slow amplitude flutter = organic turbulence shimmer, instead of a static noise wash
+    // flutter.gain's intrinsic value (1) sums with the connected LFO signal (±0.14),
+    // so no extra "offset" node is needed — that would just double the gain.
+    const flutter=ctx.createGain(); flutter.gain.value=1;
+    const lfo=ctx.createOscillator(); lfo.type='sine'; lfo.frequency.value=12+Math.random()*8;
+    const lfoDepth=ctx.createGain(); lfoDepth.gain.value=0.14;
+    lfo.connect(lfoDepth); lfoDepth.connect(flutter.gain);
+
+    const g=ctx.createGain();
+    const N=32; const curve=new Float32Array(N);
+    for(let i=0;i<N;i++) curve[i]=Math.max(0.0001, shape(i/(N-1))*peak);
+    g.gain.setValueCurveAtTime(curve,t0,dur);
+
+    src.connect(bp); bp.connect(flutter);
+    srcHiss.connect(bpHiss); bpHiss.connect(hissGain); hissGain.connect(flutter);
+    flutter.connect(g); g.connect(master);
+    src.start(t0); src.stop(t0+dur+0.02);
+    srcHiss.start(t0); srcHiss.stop(t0+dur+0.02);
+    lfo.start(t0); lfo.stop(t0+dur+0.02);
+
+    if(musical){
+      const osc=ctx.createOscillator(); osc.type='sine';
+      osc.frequency.setValueAtTime(freq*1.3,t0);
+      const vibrato=ctx.createOscillator(); vibrato.type='sine'; vibrato.frequency.value=5.5;
+      const vibratoDepth=ctx.createGain(); vibratoDepth.gain.value=freq*0.02;
+      vibrato.connect(vibratoDepth); vibratoDepth.connect(osc.frequency);
+      const g2=ctx.createGain();
+      const curve2=new Float32Array(N);
+      for(let i=0;i<N;i++) curve2[i]=Math.max(0.0001, shape(i/(N-1))*peak*0.3);
+      g2.gain.setValueCurveAtTime(curve2,t0,dur);
+      osc.connect(g2); g2.connect(master);
+      osc.start(t0); osc.stop(t0+dur+0.02);
+      vibrato.start(t0); vibrato.stop(t0+dur+0.02);
+    }
+  }
+  function rub(t0,dur){
+    [0,0.4,0.75].forEach(off=>{
+      const start=t0+off*dur;
+      const d=dur*0.2;
+      murmur(start,d,{freq:480,q:0.4,peak:0.3,shape:shapes.uniforme});
+    });
+  }
+
+  function scheduleEvents(events,baseTime){
+    events.forEach(ev=>{
+      const t0=baseTime+ev.t0/rate;
+      if(ev.kind==='thump') thump(t0,ev.p);
+      else if(ev.kind==='click') click(t0,ev.p);
+      else if(ev.kind==='murmur') murmur(t0,(ev.t1-ev.t0)/rate,ev.p);
+      else if(ev.kind==='rub') rub(t0,(ev.t1-ev.t0)/rate);
+    });
+  }
+
+  function stop(){
+    playing=false;
+    if(loopTimer){ clearTimeout(loopTimer); loopTimer=null; }
+    if(rafId){ cancelAnimationFrame(rafId); rafId=null; }
+  }
+
+  function play(preset, drawFn, onDone){
+    ensure();
+    stop();
+    playing=true;
+    const cycle = preset.cycleDuration/rate;
+    const startRef = ctx.currentTime+0.06;
+    scheduleEvents(preset.events, startRef);
+
+    function tick(){
+      if(!playing) return;
+      const elapsed = ctx.currentTime-startRef;
+      let progress = elapsed/cycle;
+      if(progress>=1){
+        if(loopOn){
+          scheduleEvents(preset.events, startRef+Math.ceil(progress)*cycle);
+          progress = progress%1;
+        } else {
+          drawFn(1);
+          playing=false;
+          if(onDone) onDone();
+          return;
+        }
+      }
+      drawFn(Math.max(0,progress));
+      rafId=requestAnimationFrame(tick);
+    }
+    rafId=requestAnimationFrame(tick);
+  }
+
+  return {ensure,setVolume,setRate,setLoop,play,stop,shapes,get isPlaying(){return playing;}};
+})();
+
+/* ============================================================
+   PRESET BUILDERS
+   ============================================================ */
+function baseCycle(){ return 0.92; }
+
+function evThump(t0,p){ return {kind:'thump',t0,p}; }
+function evClick(t0,p){ return {kind:'click',t0,p}; }
+function evMurmur(t0,t1,p){ return {kind:'murmur',t0,t1,p}; }
+function evRub(t0,t1){ return {kind:'rub',t0,t1}; }
+
+const S1_N   = {freq:100,q:1.1,decay:0.15,gain:0.75,tone:55,label:'B1'};
+const S1_HI  = {freq:105,q:1.2,decay:0.14,gain:1.05,tone:60,label:'B1'};
+const S1_LO  = {freq:95, q:1.0,decay:0.16,gain:0.32,tone:50,label:'B1'};
+const A2_N   = {freq:150,q:1.3,decay:0.11,gain:0.62,tone:85,label:'A2'};
+const A2_HI  = {freq:155,q:1.3,decay:0.11,gain:0.95,tone:90,label:'A2'};
+const A2_LO  = {freq:145,q:1.2,decay:0.12,gain:0.28,tone:78,label:'A2'};
+const P2_N   = {freq:165,q:1.3,decay:0.11,gain:0.55,tone:95,label:'P2'};
+const P2_HI  = {freq:170,q:1.4,decay:0.10,gain:0.95,tone:100,label:'P2'};
+const P2_LO  = {freq:160,q:1.2,decay:0.12,gain:0.25,tone:90,label:'P2'};
+const S3_P   = {freq:70, q:1.0,decay:0.18,gain:0.5, tone:42,label:'B3'};
+const S4_P   = {freq:65, q:1.0,decay:0.16,gain:0.48,tone:40,label:'B4'};
+
+function presetB1B2Normal(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N)]};
+}
+function presetB1Hiper(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_HI), evThump(0.35,A2_N), evThump(0.38,P2_N)]};
+}
+function presetB1Hipo(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_LO), evThump(0.35,A2_N), evThump(0.38,P2_N)]};
+}
+function presetP2Hiper(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.39,P2_HI)]};
+}
+function desdobEvents(type, phase){
+  const insp = phase==='inspiracao';
+  let gap, reversed=false;
+  if(type==='fisiologico') gap = insp? 0.075:0.012;
+  if(type==='amplo') gap = insp? 0.10:0.055;
+  if(type==='fixo') gap = 0.06;
+  if(type==='paradoxal'){ reversed=true; gap = insp? 0.015:0.075; }
+  const a2t=0.35, p2t = reversed? 0.35 : 0.35+gap;
+  const events=[evThump(0,S1_N)];
+  if(reversed){
+    events.push(evThump(0.35,{...P2_N})); // P2 first
+    events.push(evThump(0.35+gap,{...A2_N})); // A2 second (delayed)
+  } else {
+    events.push(evThump(0.35,{...A2_N}));
+    events.push(evThump(0.35+gap,{...P2_N}));
+  }
+  return {cycleDuration:baseCycle(), systoleEnd:0.35, gap, reversed, events};
+}
+function presetB3(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N), evThump(0.5,S3_P)]};
+}
+function presetB4(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0.88,S4_P), evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N)]};
+}
+function presetGalopeSoma(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N), evThump(0.46,{freq:68,q:1.0,decay:0.22,gain:0.75,tone:41,label:'B3+B4'})]};
+}
+function presetEstalido(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_HI), evThump(0.35,A2_N), evThump(0.38,P2_N), evClick(0.44,{freq:560,decay:0.035,gain:0.55}),
+             evMurmur(0.46,0.85,{freq:130,q:1.0,peak:0.3,shape:AudioLab.shapes.rumble})]};
+}
+function presetCliqueMeso(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evClick(0.2,{freq:700,decay:0.02,gain:0.5}), evThump(0.35,A2_N), evThump(0.38,P2_N)]};
+}
+function presetAtrito(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evRub(0.05,0.32), evThump(0.35,A2_N), evThump(0.38,P2_N), evRub(0.4,0.7), evRub(0.82,0.92)]};
+}
+function presetEAo(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evMurmur(0.05,0.33,{freq:380,q:0.55,peak:0.5,shape:AudioLab.shapes.crescDecresc}), evThump(0.35,A2_LO), evThump(0.38,P2_N)]};
+}
+function presetIM(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_LO), evMurmur(0.02,0.35,{freq:420,q:0.5,peak:0.4,shape:AudioLab.shapes.uniforme}), evThump(0.35,A2_N), evThump(0.38,P2_N)]};
+}
+function presetIT(intensa){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evMurmur(0.02,0.35,{freq:400,q:0.5,peak:intensa?0.6:0.24,shape:AudioLab.shapes.uniforme}), evThump(0.35,A2_N), evThump(0.38,P2_HI)]};
+}
+function presetIAo(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N), evMurmur(0.38,0.68,{freq:470,q:0.5,peak:0.35,shape:AudioLab.shapes.decresc})]};
+}
+function presetAustinFlint(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N),
+             evMurmur(0.38,0.6,{freq:460,q:0.5,peak:0.28,shape:AudioLab.shapes.decresc}),
+             evMurmur(0.55,0.85,{freq:135,q:1.0,peak:0.34,shape:AudioLab.shapes.rumble})]};
+}
+function presetGrahamSteell(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.39,P2_HI),
+             evMurmur(0.39,0.64,{freq:500,q:0.55,peak:0.42,shape:AudioLab.shapes.decresc})]};
+}
+function presetCareyCoombs(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evThump(0.35,A2_N), evThump(0.38,P2_N),
+             evMurmur(0.42,0.58,{freq:150,q:1.0,peak:0.22,shape:AudioLab.shapes.rumble})]};
+}
+function presetGallavardin(){
+  return {cycleDuration:baseCycle(), systoleEnd:0.35,
+    events:[evThump(0,S1_N), evMurmur(0.05,0.32,{freq:380,q:0.6,peak:0.45,shape:AudioLab.shapes.crescDecresc,musical:true}), evThump(0.35,A2_LO), evThump(0.38,P2_N)]};
+}
+
+/* ============================================================
+   CANVAS DRAWING
+   ============================================================ */
+function drawTimeline(canvas, preset, progress){
+  const ctx2d = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx2d.clearRect(0,0,W,H);
+  const midY = H*0.55;
+  const se = preset.systoleEnd!==undefined?preset.systoleEnd:0.35;
+
+  // bands
+  ctx2d.fillStyle='rgba(192,57,43,0.18)';
+  ctx2d.fillRect(0,20,W*se,H-60);
+  ctx2d.fillStyle='rgba(47,111,173,0.16)';
+  ctx2d.fillRect(W*se,20,W*(1-se),H-60);
+
+  ctx2d.fillStyle='#9db6c9'; ctx2d.font='12px Segoe UI';
+  ctx2d.fillText('SÍSTOLE', 10, 34);
+  ctx2d.fillText('DIÁSTOLE', W*se+10, 34);
+
+  // baseline
+  ctx2d.strokeStyle='rgba(255,255,255,0.25)';
+  ctx2d.beginPath(); ctx2d.moveTo(0,midY); ctx2d.lineTo(W,midY); ctx2d.stroke();
+
+  const colorFor = k => k==='thump' ? '#ffd479' : k==='click' ? '#7de6c8' : k==='murmur' ? '#ff8f7a' : '#c9a6ff';
+
+  preset.events.forEach(ev=>{
+    const x0 = ev.t0*W;
+    if(ev.kind==='thump'){
+      const amp = Math.min(50, (ev.p.gain||0.6)*55);
+      ctx2d.strokeStyle='#ffd479'; ctx2d.lineWidth=3;
+      ctx2d.beginPath(); ctx2d.moveTo(x0,midY); ctx2d.lineTo(x0,midY-amp); ctx2d.stroke();
+      ctx2d.fillStyle='#ffd479'; ctx2d.font='bold 12px Segoe UI';
+      const label = ev.p.label || '•';
+      ctx2d.fillText(label, x0-8, midY-amp-6);
+    } else if(ev.kind==='click'){
+      ctx2d.strokeStyle='#7de6c8'; ctx2d.lineWidth=2;
+      ctx2d.beginPath(); ctx2d.moveTo(x0,midY); ctx2d.lineTo(x0,midY-22); ctx2d.stroke();
+    } else if(ev.kind==='murmur'){
+      const x1=ev.t1*W;
+      ctx2d.beginPath();
+      ctx2d.moveTo(x0,midY);
+      const steps=24;
+      for(let i=0;i<=steps;i++){
+        const xx = ev.t0+(ev.t1-ev.t0)*i/steps;
+        const shapeFn = ev.p.shape||AudioLab.shapes.uniforme;
+        const yy = midY - shapeFn(i/steps)*(ev.p.peak||0.4)*90;
+        ctx2d.lineTo(xx*W, yy);
+      }
+      ctx2d.lineTo(x1,midY);
+      ctx2d.closePath();
+      ctx2d.fillStyle='rgba(255,143,122,0.55)';
+      ctx2d.fill();
+    } else if(ev.kind==='rub'){
+      const x1=ev.t1*W;
+      ctx2d.strokeStyle='#c9a6ff'; ctx2d.lineWidth=1.5;
+      for(let xx=x0; xx<x1; xx+=4){
+        const yy = midY + (Math.random()*16-8);
+        ctx2d.beginPath(); ctx2d.moveTo(xx,midY); ctx2d.lineTo(xx,yy); ctx2d.stroke();
+      }
+    }
+  });
+
+  // playhead
+  if(progress!==undefined && progress!==null){
+    const px = progress*W;
+    ctx2d.strokeStyle='#ffffff'; ctx2d.lineWidth=2;
+    ctx2d.beginPath(); ctx2d.moveTo(px,10); ctx2d.lineTo(px,H-10); ctx2d.stroke();
+  }
+}
+
+/* ============================================================
+   SECTION 4: DESDOBRAMENTO INTERACTIVE
+   ============================================================ */
+const desdobInfo = {
+  fisiologico:{
+    title:'Desdobramento fisiológico',
+    desc:'Na inspiração, aumenta o retorno venoso ao coração direito, aumenta o volume do VD e prolonga sua ejeção — P2 ocorre mais tarde e o intervalo A2-P2 aumenta. Na expiração os componentes se aproximam e o desdobramento pode desaparecer.',
+    mecanismo:'"A inspiração coloca mais passageiros no ônibus direito. O VD demora mais para esvaziar, e P2 chega depois."'
+  },
+  amplo:{
+    title:'Desdobramento amplo',
+    desc:'O intervalo A2-P2 está aumentado, mas ainda varia com a respiração (P2 sempre mais atrasado que o normal).',
+    mecanismo:'Causas: bloqueio de ramo direito, estenose pulmonar, prolongamento da ejeção do VD. Mecanismo: P2 está atrasado.'
+  },
+  fixo:{
+    title:'Desdobramento fixo',
+    desc:'O intervalo A2-P2 permanece praticamente constante na inspiração e na expiração.',
+    mecanismo:'Associação clássica: comunicação interatrial. O shunt interatrial reduz a variação respiratória efetiva do volume ejetado pelo VD, mantendo o desdobramento relativamente constante. Macete: "CIA congela a distância entre A2 e P2."'
+  },
+  paradoxal:{
+    title:'Desdobramento paradoxal (invertido)',
+    desc:'A ordem se inverte: P2 → A2 (A2 está atrasado). Aparece ou aumenta na expiração; diminui ou desaparece na inspiração.',
+    mecanismo:'Causas: bloqueio de ramo esquerdo, estimulação ventricular direita, estenose aórtica importante, prolongamento acentuado da ejeção do VE. Macete: "No normal, A2 vence a corrida. No paradoxal, A2 tropeça e P2 cruza primeiro."'
+  }
+};
+let desdobType='fisiologico', desdobPhase='inspiracao';
+const desdobCanvas = document.getElementById('desdob-canvas');
+function renderDesdob(){
+  const info=desdobInfo[desdobType];
+  document.getElementById('desdob-title').textContent=info.title;
+  document.getElementById('desdob-desc').textContent=info.desc;
+  document.getElementById('desdob-mecanismo').innerHTML='<b>Mecanismo e causas:</b> '+info.mecanismo;
+  const preset = desdobEvents(desdobType, desdobPhase);
+  drawTimeline(desdobCanvas, preset, null);
+}
+document.querySelectorAll('#desdob-tabs .tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#desdob-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    desdobType=btn.dataset.desdob;
+    renderDesdob();
+  });
+});
+document.getElementById('btn-inspiracao').addEventListener('click', ()=>{
+  desdobPhase='inspiracao';
+  document.getElementById('btn-inspiracao').classList.add('active');
+  document.getElementById('btn-expiracao').classList.remove('active');
+  renderDesdob();
+});
+document.getElementById('btn-expiracao').addEventListener('click', ()=>{
+  desdobPhase='expiracao';
+  document.getElementById('btn-expiracao').classList.add('active');
+  document.getElementById('btn-inspiracao').classList.remove('active');
+  renderDesdob();
+});
+document.getElementById('desdob-play').addEventListener('click', ()=>{
+  const preset = desdobEvents(desdobType, desdobPhase);
+  AudioLab.play(preset, (p)=>drawTimeline(desdobCanvas, preset, p));
+});
+renderDesdob();
+
+/* ============================================================
+   SECTION 9: AUDIO LAB LIST + PLAYER
+   ============================================================ */
+const audioPresets = [
+  {group:'Bulhas básicas', id:'b1n', label:'B1 normal', build:presetB1B2Normal, desc:'TUM de intensidade normal, seguido de TÁ.'},
+  {group:'Bulhas básicas', id:'b2n', label:'B2 normal', build:presetB1B2Normal, desc:'A2 seguido de perto por P2, formando o TÁ.'},
+  {group:'Bulhas básicas', id:'b1hi', label:'B1 hiperfonética', build:presetB1Hiper, desc:'TUM forte, seco e destacado — valva móvel, PR curto ou contração vigorosa.'},
+  {group:'Bulhas básicas', id:'b1lo', label:'B1 hipofonética', build:presetB1Hipo, desc:'TUM abafado — valva incompetente, calcificada, PR longo ou ventrículo fraco.'},
+  {group:'Bulhas básicas', id:'p2hi', label:'B2 com P2 hiperfonética', build:presetP2Hiper, desc:'P2 forte e destacado na base — sugestivo de hipertensão pulmonar.'},
+
+  {group:'Desdobramentos de B2', id:'dfis', label:'Desdobramento fisiológico', build:()=>desdobEvents('fisiologico','inspiracao'), desc:'A2-P2 se afastam na inspiração.'},
+  {group:'Desdobramentos de B2', id:'damp', label:'Desdobramento amplo', build:()=>desdobEvents('amplo','inspiracao'), desc:'Intervalo A2-P2 sempre aumentado.'},
+  {group:'Desdobramentos de B2', id:'dfix', label:'Desdobramento fixo', build:()=>desdobEvents('fixo','inspiracao'), desc:'Intervalo A2-P2 constante — pense em CIA.'},
+  {group:'Desdobramentos de B2', id:'dpar', label:'Desdobramento paradoxal', build:()=>desdobEvents('paradoxal','expiracao'), desc:'Ordem invertida: P2 antes de A2.'},
+
+  {group:'Sons diastólicos', id:'b3', label:'B3', build:presetB3, desc:'Som grave logo após B2 — enchimento rápido, volume.'},
+  {group:'Sons diastólicos', id:'b4', label:'B4', build:presetB4, desc:'Som grave imediatamente antes de B1 — contração atrial contra ventrículo rígido.'},
+  {group:'Sons diastólicos', id:'soma', label:'Galope de soma', build:presetGalopeSoma, desc:'B3 e B4 fundidos por taquicardia.'},
+
+  {group:'Sons adicionais', id:'oa', label:'Estalido de abertura', build:presetEstalido, desc:'Logo após B2, seguido de ruflar — estenose mitral com valva móvel.'},
+  {group:'Sons adicionais', id:'clickmeso', label:'Clique mesossistólico', build:presetCliqueMeso, desc:'Meio da sístole — prolapso mitral.'},
+  {group:'Sons adicionais', id:'atrito', label:'Atrito pericárdico', build:presetAtrito, desc:'Som áspero e multifásico, superficial.'},
+
+  {group:'Lesões clássicas', id:'eao', label:'Estenose aórtica', build:presetEAo, desc:'Sopro sistólico ejetivo em crescendo-decrescendo, foco aórtico.'},
+  {group:'Lesões clássicas', id:'im', label:'Insuficiência mitral', build:presetIM, desc:'Sopro holossistólico uniforme, ápice.'},
+  {group:'Lesões clássicas', id:'it', label:'Insuficiência tricúspide (antes/durante inspiração)', build:()=>presetIT(false), desc:'Compare a intensidade antes e durante a inspiração — sinal de Rivero-Carvallo.', rc:true},
+  {group:'Lesões clássicas', id:'iao', label:'Insuficiência aórtica', build:presetIAo, desc:'Sopro diastólico precoce, decrescente, aspirativo.'},
+
+  {group:'Sopros especiais', id:'austin', label:'Austin Flint', build:presetAustinFlint, desc:'Ruflar diastólico apical sobre insuficiência aórtica importante.'},
+  {group:'Sopros especiais', id:'steell', label:'Graham Steell', build:presetGrahamSteell, desc:'Sopro diastólico precoce agudo no foco pulmonar, hipertensão pulmonar.'},
+  {group:'Sopros especiais', id:'carey', label:'Carey Coombs', build:presetCareyCoombs, desc:'Ruflar mesodiastólico breve — valvulite reumática aguda.'},
+  {group:'Sopros especiais', id:'gallavardin', label:'Gallavardin', build:presetGallavardin, desc:'Componente musical da estenose aórtica, transmitido ao ápice.'}
+];
+
+const audioListEl = document.getElementById('audio-list');
+let currentGroup='';
+audioPresets.forEach(p=>{
+  if(p.group!==currentGroup){
+    currentGroup=p.group;
+    const g=document.createElement('div'); g.className='audio-list-group'; g.textContent=currentGroup;
+    audioListEl.appendChild(g);
+  }
+  const b=document.createElement('button');
+  b.className='audio-item'; b.dataset.id=p.id;
+  b.innerHTML='<svg><use href="#i-play"/></svg><span>▶ Ouvir '+p.label+'</span>';
+  b.addEventListener('click', ()=> selectPreset(p.id));
+  audioListEl.appendChild(b);
+});
+
+let labSpeed=1, labRepeat=false, labVolume=0.8, currentPresetDef=null, currentRcState='antes';
+const labCanvas = document.getElementById('lab-canvas');
+const labTitle = document.getElementById('lab-title');
+const labDesc = document.getElementById('lab-desc');
+const labPlayBtn = document.getElementById('lab-play');
+const rcPanel = document.getElementById('lab-riverocarvallo');
+
+function selectPreset(id){
+  currentPresetDef = audioPresets.find(p=>p.id===id);
+  document.querySelectorAll('.audio-item').forEach(el=>el.classList.toggle('active', el.dataset.id===id));
+  labTitle.textContent='▶ '+currentPresetDef.label;
+  labDesc.textContent=currentPresetDef.desc;
+  rcPanel.style.display = currentPresetDef.rc ? 'flex':'none';
+  currentRcState='antes';
+  if(currentPresetDef.rc){
+    document.getElementById('rc-antes').classList.add('active');
+    document.getElementById('rc-durante').classList.remove('active');
+  }
+  const preset = getCurrentPreset();
+  drawTimeline(labCanvas, preset, null);
+  triggerPlay();
+}
+function getCurrentPreset(){
+  if(currentPresetDef.rc) return presetIT(currentRcState==='durante');
+  return currentPresetDef.build();
+}
+function triggerPlay(){
+  if(!currentPresetDef) return;
+  AudioLab.setRate(labSpeed);
+  AudioLab.setLoop(labRepeat);
+  const preset = getCurrentPreset();
+  labPlayBtn.querySelector('span').textContent='Tocando…';
+  AudioLab.play(preset, (p)=>drawTimeline(labCanvas, preset, p), ()=>{
+    labPlayBtn.querySelector('span').textContent='Tocar';
+  });
+}
+labPlayBtn.addEventListener('click', ()=>{
+  if(!currentPresetDef){ return; }
+  if(AudioLab.isPlaying){ AudioLab.stop(); labPlayBtn.querySelector('span').textContent='Tocar'; }
+  else triggerPlay();
+});
+document.getElementById('lab-repeat').addEventListener('click', function(){
+  labRepeat=!labRepeat; AudioLab.setLoop(labRepeat);
+  this.classList.toggle('active', labRepeat);
+  this.style.background = labRepeat ? 'var(--petrol)' : '';
+  this.style.color = labRepeat ? '#fff' : '';
+});
+document.querySelectorAll('.speed-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.speed-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    labSpeed=parseFloat(btn.dataset.speed);
+    AudioLab.setRate(labSpeed);
+  });
+});
+document.getElementById('lab-volume').addEventListener('input', function(){
+  labVolume=this.value/100; AudioLab.setVolume(labVolume);
+});
+document.getElementById('rc-antes').addEventListener('click', ()=>{
+  currentRcState='antes';
+  document.getElementById('rc-antes').classList.add('active');
+  document.getElementById('rc-durante').classList.remove('active');
+  triggerPlay();
+});
+document.getElementById('rc-durante').addEventListener('click', ()=>{
+  currentRcState='durante';
+  document.getElementById('rc-durante').classList.add('active');
+  document.getElementById('rc-antes').classList.remove('active');
+  triggerPlay();
+});
+
+/* ============================================================
+   CASOS CLÍNICOS
+   ============================================================ */
+const casos = [
+  {t:'Estenose mitral com valva móvel', v:'Paciente jovem com estenose mitral reumática, valva ainda flexível ao ecocardiograma. À ausculta: B1 intensa e estalido de abertura logo após B2.', p:'Por que B1 está hiperfonética?', r:'Porque a valva mitral ainda é móvel: a pressão atrial esquerda a mantém relativamente aberta durante a diástole, e a contração ventricular a fecha com grande excursão e rapidez, gerando um TUM intenso.'},
+  {t:'Estenose mitral calcificada', v:'Paciente com estenose mitral avançada, valva espessada e calcificada ao ecocardiograma. B1 pouco intensa à ausculta.', p:'Por que uma estenose mitral pode apresentar B1 hipofonética?', r:'Porque a intensidade de B1 depende da mobilidade valvar, não apenas do grau de estenose. Uma valva calcificada, rígida e pouco móvel vibra menos ao fechar, tornando B1 normal ou hipofonética mesmo com estenose importante.'},
+  {t:'Hipertensão pulmonar', v:'Paciente com hipertensão pulmonar importante. B2 palpável na base, P2 se sobrepondo a A2 em intensidade.', p:'Qual componente de B2 explica esse achado, e por quê?', r:'P2 hiperfonética. A pressão elevada na artéria pulmonar aumenta a energia de desaceleração no fechamento da válvula pulmonar, tornando o componente P2 intenso, seco e por vezes palpável.'},
+  {t:'Comunicação interatrial', v:'Paciente jovem com CIA confirmada. Desdobramento de B2 audível tanto na inspiração quanto na expiração, com intervalo A2-P2 que não varia perceptivelmente com a respiração.', p:'Como se chama esse padrão de desdobramento e qual seu mecanismo?', r:'Desdobramento fixo. O shunt interatrial reduz a variação respiratória efetiva do volume ejetado pelo VD, "congelando" a distância entre A2 e P2 independentemente do ciclo respiratório.'},
+  {t:'Hipertensão arterial com hipertrofia', v:'Paciente hipertenso de longa data, com hipertrofia ventricular esquerda ao ECG. Som grave pré-sistólico palpável no ápice, ritmo sinusal.', p:'Que som adicional é esse, e o que ele representa?', r:'B4 — produzida pela contração atrial vigorosa contra um ventrículo esquerdo hipertrofiado e pouco complacente (disfunção diastólica).'},
+  {t:'Cardiomiopatia dilatada', v:'Paciente com cardiomiopatia dilatada e fração de ejeção reduzida. Som grave logo após B2, mais evidente em decúbito lateral esquerdo com a campânula.', p:'Que som é esse, e qual seu significado nesse contexto?', r:'B3 — reflete sobrecarga de volume e enchimento ventricular rápido para dentro de um ventrículo dilatado; em adulto sintomático, é sugestiva de disfunção sistólica e não deve ser considerada fisiológica.'},
+  {t:'Insuficiência aórtica importante', v:'Paciente com insuficiência aórtica importante, pulso amplo e célere, pressão de pulso alargada. Ruflar apical na diástole, sem estalido de abertura, sem evidência ecocardiográfica de estenose mitral.', p:'Qual o diagnóstico auscultatório desse ruflar?', r:'Austin Flint — o jato regurgitante aórtico interfere na abertura do folheto anterior da mitral, gerando turbulência diastólica que imita a estenose mitral, mas sem estenose anatômica.'},
+  {t:'Estenose aórtica com componente musical', v:'Paciente com estenose aórtica moderada a importante. Sopro sistólico ejetivo áspero na base; no ápice, ouve-se um componente mais agudo e musical.', p:'Como se chama esse fenômeno acústico?', r:'Fenômeno de Gallavardin — transmissão do componente agudo/musical do sopro da estenose aórtica até o ápice; continua sendo o mesmo sopro ejetivo, e não uma insuficiência mitral associada.'},
+  {t:'Febre reumática aguda', v:'Adolescente com febre reumática aguda e cardite. Ruflar mesodiastólico apical, curto, que regride junto com a melhora do quadro inflamatório em poucas semanas.', p:'Qual o nome desse sopro transitório?', r:'Sopro de Carey Coombs — valvulite mitral da febre reumática aguda, com edema das cúspides gerando turbulência diastólica transitória, sem fusão comissural crônica.'},
+  {t:'Hipertensão pulmonar com sopro diastólico', v:'Paciente com hipertensão pulmonar importante, P2 hiperfonética, e sopro diastólico precoce, agudo e decrescente no foco pulmonar.', p:'Qual o diagnóstico auscultatório?', r:'Graham Steell — insuficiência pulmonar funcional secundária à hipertensão pulmonar importante, por dilatação do anel/artéria pulmonar.'},
+  {t:'Sopro que aumenta na inspiração', v:'Paciente com sopro holossistólico na borda esternal inferior esquerda, que se intensifica nitidamente durante a inspiração.', p:'Qual a lesão mais provável e qual sinal está presente?', r:'Insuficiência tricúspide, com sinal de Rivero-Carvallo positivo — a inspiração aumenta o retorno venoso ao coração direito e intensifica os sopros de origem direita.'}
+];
+const casosContainer = document.getElementById('casos-container');
+casos.forEach((c,i)=>{
+  const div=document.createElement('div'); div.className='caso-card';
+  div.innerHTML = `
+    <div><span class="caso-num">${i+1}</span><b>${c.t}</b></div>
+    <p class="caso-vinheta">${c.v}</p>
+    <p class="caso-pergunta">${c.p}</p>
+    <button class="btn ghost reveal-btn">Revelar resposta</button>
+    <div class="caso-resposta"><b>Resposta:</b> ${c.r}</div>
+  `;
+  const btn=div.querySelector('.reveal-btn');
+  const resp=div.querySelector('.caso-resposta');
+  btn.addEventListener('click', ()=>{
+    resp.classList.toggle('show');
+    btn.textContent = resp.classList.contains('show') ? 'Ocultar resposta' : 'Revelar resposta';
+  });
+  casosContainer.appendChild(div);
+});
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+const quizData = [
+  {q:'Em qual fase ocorre B3?', a:'No início da diástole, logo após B2, durante o enchimento ventricular rápido.'},
+  {q:'Em qual fase ocorre B4?', a:'No final da diástole, imediatamente antes de B1, produzida pela contração atrial.'},
+  {q:'Por que B4 desaparece na fibrilação atrial?', a:'Porque depende de uma contração atrial organizada contra o ventrículo; na FA não há contração atrial coordenada, logo não existe B4 verdadeira.'},
+  {q:'Qual componente de B2 está hiperfonético na hipertensão pulmonar?', a:'P2 (componente pulmonar).'},
+  {q:'Qual desdobramento de B2 ocorre na comunicação interatrial?', a:'Desdobramento fixo — intervalo A2-P2 praticamente constante na inspiração e na expiração.'},
+  {q:'Qual desdobramento ocorre no bloqueio de ramo esquerdo?', a:'Desdobramento paradoxal (invertido) — A2 fica atrasado e a ordem se inverte para P2 → A2.'},
+  {q:'O que diferencia Austin Flint de estenose mitral anatômica?', a:'Austin Flint é causado pela interferência do jato de insuficiência aórtica na abertura da mitral, sem fusão comissural nem estalido de abertura típico.'},
+  {q:'O que diferencia Gallavardin de insuficiência mitral?', a:'Gallavardin é a transmissão do componente musical do sopro sistólico ejetivo da estenose aórtica ao ápice — continua sendo ejetivo, não holossistólico.'},
+  {q:'Carey Coombs ocorre em qual contexto?', a:'Valvulite mitral da febre reumática aguda — ruflar mesodiastólico apical transitório.'},
+  {q:'Rivero-Carvallo é um sopro ou uma manobra/sinal?', a:'É um sinal/manobra auscultatória — o aumento dos sopros de origem direita durante a inspiração — não é um sopro independente.'},
+  {q:'Qual sopro aumenta classicamente com a inspiração pelo sinal de Rivero-Carvallo?', a:'Sopros de origem no coração direito, classicamente a insuficiência tricúspide.'},
+  {q:'Qual som surge antes de B1?', a:'B4.'},
+  {q:'Qual som surge depois de B2?', a:'B3 (e, mais precocemente ainda, o estalido de abertura, quando presente).'}
+];
+const quizContainer = document.getElementById('quiz-container');
+quizData.forEach((item,i)=>{
+  const div=document.createElement('div'); div.className='quiz-item';
+  div.innerHTML = `
+    <div class="quiz-q"><span class="caso-num" style="background:var(--petrol);">${i+1}</span> ${item.q}</div>
+    <button class="btn ghost reveal-btn" style="margin-top:.6rem;">Ver resposta</button>
+    <div class="quiz-a">${item.a}</div>
+  `;
+  const btn=div.querySelector('.reveal-btn');
+  const a=div.querySelector('.quiz-a');
+  btn.addEventListener('click', ()=>{
+    a.classList.toggle('show');
+    btn.textContent = a.classList.contains('show') ? 'Ocultar resposta' : 'Ver resposta';
+  });
+  quizContainer.appendChild(div);
+});
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+const flashData = [
+  {f:'B3', b:'Enchimento ventricular rápido, volume, início da diástole.'},
+  {f:'B4', b:'Contração atrial contra ventrículo rígido, fim da diástole.'},
+  {f:'B2 fixa', b:'Comunicação interatrial.'},
+  {f:'P2 hiperfonética', b:'Hipertensão pulmonar.'},
+  {f:'Austin Flint', b:'IAo importante simulando estenose mitral.'},
+  {f:'Gallavardin', b:'Componente musical da estenose aórtica no ápice.'},
+  {f:'Carey Coombs', b:'Valvulite mitral da febre reumática aguda.'},
+  {f:'Graham Steell', b:'Insuficiência pulmonar funcional por hipertensão pulmonar.'},
+  {f:'Rivero-Carvallo', b:'Inspiração aumenta sopros direitos.'}
+];
+const flashContainer = document.getElementById('flash-container');
+flashData.forEach(item=>{
+  const div=document.createElement('div'); div.className='flashcard';
+  div.innerHTML = `
+    <div class="flashcard-inner">
+      <div class="flashcard-face flashcard-front">${item.f}</div>
+      <div class="flashcard-face flashcard-back">${item.b}</div>
+    </div>`;
+  div.addEventListener('click', ()=> div.classList.toggle('flipped'));
+  flashContainer.appendChild(div);
+});
+</script>
