@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Mental da Hipertensão Arterial · Bloco 2 · Tema 3 — Estratificação do Risco Cardiovascular</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Semântica de risco (fixa em todo o material) */
+  --baixo:#16a34a; --baixo-bg:#e7f6ec;
+  --atencao:#e0a80b; --atencao-bg:#fdf5e0;
+  --elevado:#ea6c1f; --elevado-bg:#fdeede;
+  --alto:#dc2626; --alto-bg:#fce9e9;
+  --muito-alto:#a80f2c; --muito-alto-bg:#f8e0e5;
+  --azul:#1282A2; --azul-bg:#e3f1f5;   /* conceitos, cálculo, refinadores, notas */
+  /* Identidade Atlas */
+  --navy:#0f2745; --navy-2:#1b3a63; --tinta:#17233a;
+  --cinza:#5a6b82; --linha:#e4e9f1;
+  --bg:#f5f8fc; --card:#ffffff;
+  --sombra:0 10px 30px rgba(15,39,69,.08);
+  --sombra-2:0 4px 14px rgba(15,39,69,.10);
+  --r:18px; --r-s:12px;
+  --mono:'IBM Plex Mono',monospace;
+  --disp:'Nunito',sans-serif;
+  --sans:'Nunito','Trebuchet MS',Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--sans);color:var(--tinta);
+  background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;
+  font-size:16.5px;
+}
+body.reduz-mov *{animation:none!important;transition:none!important}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.15;color:var(--navy);margin:0 0 .4em}
+h2{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:900;letter-spacing:-.5px}
+h3{font-size:1.28rem;font-weight:800}
+h4{font-size:1.05rem;font-weight:800}
+p{margin:0 0 .8em}
+a{color:var(--azul);text-decoration:none}
+.kicker{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--azul)}
+.mono{font-family:var(--mono)}
+.assinatura{font-family:'Dancing Script',cursive;font-size:1.5rem;font-weight:700;color:var(--navy-2)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.hidden{display:none!important}
+
+/* ---------- NAV ---------- */
+nav.topo{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.nav-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:9px 18px}
+.marca{display:flex;align-items:center;gap:9px;font-weight:900;color:var(--navy);font-size:.98rem;cursor:pointer;white-space:nowrap}
+.marca .pulse{width:12px;height:12px;border-radius:50%;background:var(--alto);box-shadow:0 0 0 0 rgba(220,38,38,.5);animation:pl 2.4s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 rgba(220,38,38,.45)}70%{box-shadow:0 0 0 9px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
+.nav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-size:.82rem;font-weight:700;color:var(--cinza);padding:7px 10px;border-radius:9px;white-space:nowrap}
+.nav-links a:hover{background:var(--azul-bg);color:var(--azul)}
+.nav-tools{display:flex;gap:6px;align-items:center}
+.icobtn{border:1px solid var(--linha);background:#fff;border-radius:10px;padding:6px 9px;font-size:.78rem;font-weight:700;color:var(--navy);cursor:pointer;display:flex;gap:5px;align-items:center}
+.icobtn:hover{background:var(--azul-bg);border-color:var(--azul)}
+.icobtn.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* progresso global */
+.progress-top{height:4px;background:var(--linha)}
+.progress-top>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--baixo),var(--atencao),var(--elevado),var(--alto));transition:width .4s}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(1200px 500px at 80% -10%,rgba(18,130,162,.10),transparent 60%),
+  radial-gradient(900px 500px at 0% 110%,rgba(168,15,44,.08),transparent 55%),
+  linear-gradient(180deg,#ffffff,#eef6f9)}
+.hero .wrap{padding:64px 20px 54px;position:relative;z-index:2}
+.hero .kicker{color:var(--azul)}
+.hero h1{font-size:clamp(2.1rem,6vw,3.7rem);font-weight:900;letter-spacing:-1.2px;margin:.25em 0 .1em;color:var(--navy)}
+.hero .sub{font-family:var(--mono);font-size:.85rem;letter-spacing:.1em;color:var(--navy-2);text-transform:uppercase;font-weight:600}
+.hero .frase{font-size:clamp(1.05rem,2.4vw,1.45rem);color:var(--navy-2);max-width:640px;margin:20px 0 8px;font-weight:600}
+.hero .foto-frase{font-style:italic;color:var(--cinza);max-width:600px;border-left:3px solid var(--azul);padding-left:14px;margin-top:18px}
+.ecg-line{position:absolute;left:0;right:0;bottom:0;height:70px;opacity:.5;z-index:1}
+.ecg-line path{stroke:var(--alto);stroke-width:2;fill:none;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 4s ease forwards .3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ---------- HUB ---------- */
+.hub{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px;margin-top:26px}
+.hub a{background:var(--card);border:1px solid var(--linha);border-radius:var(--r-s);padding:16px 15px;display:block;box-shadow:var(--sombra-2);transition:transform .15s,box-shadow .15s,border-color .15s;position:relative}
+.hub a:hover{transform:translateY(-3px);box-shadow:var(--sombra);border-color:var(--azul)}
+.hub .n{font-family:var(--mono);font-size:.72rem;color:var(--azul);font-weight:700}
+.hub .t{font-weight:900;color:var(--navy);font-size:1.02rem;margin:2px 0 3px}
+.hub .d{font-size:.82rem;color:var(--cinza);line-height:1.35}
+.hub .ic{font-size:1.3rem}
+
+/* ---------- SECTIONS ---------- */
+section.bloco{padding:52px 0;border-top:1px solid var(--linha)}
+.sechead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.sechead .num{font-family:var(--mono);font-size:.9rem;color:var(--azul);font-weight:700}
+.lead{font-size:1.05rem;color:var(--cinza);max-width:720px;margin-bottom:22px}
+
+.card{background:var(--card);border:1px solid var(--linha);border-radius:var(--r);padding:22px;box-shadow:var(--sombra-2);margin-bottom:16px}
+.card.slim{padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}}
+
+.mantra{background:var(--navy);color:#fff;border-radius:var(--r);padding:22px 24px;text-align:center;margin:8px 0 18px;box-shadow:var(--sombra)}
+.mantra b{color:#ffd36b}
+.mantra .big{font-family:var(--disp);font-weight:900;font-size:clamp(1.2rem,3vw,1.7rem);letter-spacing:.3px;line-height:1.3}
+.mantra .small{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin-top:6px}
+
+.aviso{font-size:.83rem;color:var(--cinza);background:var(--atencao-bg);border:1px solid #f0dca0;border-radius:10px;padding:10px 13px;display:flex;gap:9px;align-items:flex-start}
+.aviso b{color:#8a6d10}
+.conferir{background:var(--azul-bg);border:1px dashed var(--azul);color:var(--navy);border-radius:9px;padding:8px 11px;font-size:.82rem;font-weight:600;margin:8px 0}
+
+.fonte-tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;font-weight:600;padding:3px 8px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.fonte-2025{background:var(--azul-bg);color:var(--azul)}
+.fonte-2020{background:#eef1f5;color:#5a6b82}
+.fonte-aha{background:var(--alto-bg);color:var(--alto)}
+.fonte-didatico{background:var(--azul-bg);color:var(--azul)}
+
+.assina-rod{text-align:right;margin-top:12px}
+.assina-rod .assinatura{font-size:1.3rem}
+.assina-rod small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--cinza);text-transform:uppercase}
+
+/* pills de risco */
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:20px;font-weight:800;font-size:.8rem}
+.p-baixo{background:var(--baixo-bg);color:var(--baixo)}
+.p-mod{background:var(--atencao-bg);color:var(--atencao)}
+.p-alto{background:var(--alto-bg);color:var(--alto)}
+.p-azul{background:var(--azul-bg);color:var(--azul)}
+
+/* botões */
+.btn{font-family:var(--sans);font-weight:800;font-size:.9rem;border:none;border-radius:11px;padding:11px 18px;cursor:pointer;transition:.15s;display:inline-flex;gap:7px;align-items:center}
+.btn-primary{background:var(--azul);color:#fff}
+.btn-primary:hover{background:#0e6a83}
+.btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--linha)}
+.btn-ghost:hover{border-color:var(--azul);color:var(--azul)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-sm{padding:7px 12px;font-size:.8rem;border-radius:9px}
+
+/* ---------- CONTÍNUO ---------- */
+.continuum{display:flex;flex-wrap:wrap;gap:0;border-radius:14px;overflow:hidden;box-shadow:var(--sombra-2)}
+.cstep{flex:1 1 130px;min-width:120px;padding:16px 12px;color:#fff;text-align:center;position:relative;opacity:0;transform:translateY(8px);animation:up .5s forwards}
+.cstep h4{color:#fff;font-size:.92rem;margin:0 0 3px}
+.cstep p{font-size:.74rem;margin:0;opacity:.92;line-height:1.3}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* ---------- 3 COLUNAS FÓSFORO ---------- */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.tri{grid-template-columns:1fr}}
+.tri .col{border-radius:var(--r);padding:18px;border:2px solid}
+.tri .col.f{background:var(--azul-bg);border-color:#bcdfe9}
+.tri .col.l{background:var(--atencao-bg);border-color:#f0dca0}
+.tri .col.d{background:var(--alto-bg);border-color:#f3c2c2}
+.tri .col h3{font-size:1.05rem}
+.tri .col ul{margin:8px 0 0;padding-left:18px;font-size:.86rem}
+.tri .col li{margin-bottom:3px}
+.metafora{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.05em;margin-top:10px;padding-top:8px;border-top:1px dashed rgba(0,0,0,.15)}
+
+/* ---------- DRAG & DROP ---------- */
+.dd-pool{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:10px;background:var(--bg);border:1px dashed var(--linha);border-radius:12px;margin-bottom:14px}
+.dd-item{background:#fff;border:1px solid var(--linha);border-radius:9px;padding:7px 12px;font-size:.85rem;font-weight:700;cursor:grab;box-shadow:var(--sombra-2);user-select:none}
+.dd-item.correto{border-color:var(--baixo);background:var(--baixo-bg)}
+.dd-item.sel{outline:2px solid var(--azul);outline-offset:1px;background:var(--azul-bg);border-color:var(--azul)}
+.dd-item.errado{border-color:var(--alto);background:var(--alto-bg);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.dd-zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.dd-zone{border:2px dashed var(--linha);border-radius:12px;padding:10px;min-height:90px;transition:.15s}
+.dd-zone.over{border-color:var(--azul);background:var(--azul-bg)}
+.dd-zone h5{margin:0 0 6px;font-size:.82rem;font-family:var(--disp);color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
+.dd-zone .in{display:flex;flex-wrap:wrap;gap:6px}
+
+/* ---------- MAPA CORPORAL ---------- */
+.body-map{display:grid;grid-template-columns:270px 1fr;gap:18px}
+@media(max-width:760px){.body-map{grid-template-columns:1fr}}
+.silhueta{position:relative;background:linear-gradient(180deg,#eef6f9,#e3f1f5);border-radius:16px;padding:14px;text-align:center}
+.organ{position:absolute;width:42px;height:42px;border-radius:50%;background:#fff;border:2px solid var(--azul);display:flex;align-items:center;justify-content:center;font-size:1.15rem;cursor:pointer;box-shadow:var(--sombra-2);transition:.15s}
+.organ:hover,.organ.sel{transform:scale(1.15);background:var(--azul);border-color:var(--navy)}
+.organ.sel{background:var(--alto);border-color:var(--muito-alto)}
+.organ-info{background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:18px;min-height:200px}
+
+/* ---------- ALGORITMO ---------- */
+.algo-stage{border-left:3px solid var(--azul);padding:4px 0 4px 16px;margin-bottom:6px}
+.algo-q{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.algo-q .qt{font-weight:700;font-size:.92rem}
+.algo-q .yn{display:flex;gap:6px}
+.algo-result{border-radius:12px;padding:14px 16px;font-weight:700;display:none;margin-top:6px}
+.algo-result.show{display:block;animation:up .4s}
+
+/* ---------- MATRIZ ---------- */
+.matriz-wrap{overflow-x:auto}
+table.matriz{border-collapse:separate;border-spacing:4px;width:100%;min-width:640px}
+table.matriz th,table.matriz td{padding:11px 8px;text-align:center;border-radius:9px;font-size:.82rem;font-weight:700}
+table.matriz thead th{background:#dce9ee;color:var(--navy);font-family:var(--disp)}
+table.matriz .rowh{background:#eef2f8;color:var(--navy);text-align:left;font-size:.8rem;padding-left:12px}
+table.matriz td.cell{cursor:pointer;color:#123;transition:.12s;border:2px solid transparent}
+table.matriz td.cell:hover{transform:scale(1.03)}
+table.matriz td.sel{border-color:var(--navy);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--navy)}
+.m-baixo{background:var(--baixo-bg);color:var(--baixo)!important}
+.m-mod{background:var(--atencao-bg);color:#8a6d10!important}
+.m-alto{background:var(--elevado-bg);color:var(--elevado)!important}
+.m-muito{background:var(--muito-alto-bg);color:var(--muito-alto)!important}
+.matriz-out{margin-top:14px}
+
+/* ---------- ÁRVORE CARDIORRENAL ---------- */
+.arvore{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:820px){.arvore{grid-template-columns:1fr}}
+.arvore .lvl{background:var(--bg);border:1px solid var(--linha);border-radius:12px;padding:12px}
+.arvore .lvl h5{margin:0 0 8px;font-family:var(--disp);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.chip{display:inline-block;padding:5px 10px;margin:3px;border-radius:8px;font-size:.8rem;font-weight:700;cursor:pointer;background:#fff;border:1px solid var(--linha);transition:.12s}
+.chip:hover{border-color:var(--azul)}
+.chip.raiz{border-left:3px solid var(--elevado)}
+.chip.tronco{border-left:3px solid var(--azul)}
+.chip.galho{border-left:3px solid var(--alto)}
+.chip.lit{background:var(--azul-bg);border-color:var(--azul);box-shadow:0 0 0 2px rgba(18,130,162,.15)}
+.chip.dim{opacity:.28}
+
+/* ---------- RELÓGIOS 10x30 ---------- */
+.relogios{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.relogios{grid-template-columns:1fr}}
+.relogio{text-align:center;background:var(--bg);border:1px solid var(--linha);border-radius:14px;padding:18px}
+.relmostra{font-family:var(--disp);font-weight:900;font-size:2.6rem;line-height:1;margin:6px 0}
+.slider-idade input{width:100%}
+
+/* ---------- ESPELHO IDADE ---------- */
+.espelho{display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:center}
+.espelho .lado{border-radius:14px;padding:20px}
+.espelho .cal{background:var(--azul-bg);border:2px solid #bcdfe9}
+.espelho .perf{background:var(--alto-bg);border:2px solid #f3c2c2}
+.espelho .idade-num{font-family:var(--disp);font-weight:900;font-size:2.4rem}
+
+/* ---------- FLASHCARDS ---------- */
+.fc-scene{perspective:1400px;max-width:520px;margin:0 auto 12px}
+.fc{position:relative;width:100%;min-height:210px;transform-style:preserve-3d;transition:transform .5s;cursor:pointer}
+.fc.flip{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--sombra)}
+.fc-front{background:var(--card);border:1px solid var(--linha)}
+.fc-back{background:var(--navy);color:#fff;transform:rotateY(180deg)}
+.fc-back h4{color:#ffd36b}
+.fc-tag{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;opacity:.6;text-transform:uppercase}
+.fc-hint{font-family:var(--mono);font-size:.7rem;opacity:.55;position:absolute;bottom:12px;right:14px}
+.fc-rate{display:flex;gap:8px;justify-content:center;margin:10px 0}
+.fc-nav{display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:520px;margin:0 auto}
+
+/* ---------- QUIZ ---------- */
+.q-card{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:20px;box-shadow:var(--sombra-2)}
+.q-meta{display:flex;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--cinza);margin-bottom:10px}
+.q-meta span{background:var(--bg);border:1px solid var(--linha);padding:3px 8px;border-radius:20px}
+.q-stem{font-weight:700;font-size:1.02rem;margin-bottom:14px}
+.q-opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--linha);border-radius:11px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-size:.92rem;font-weight:600;transition:.12s}
+.q-opt:hover{border-color:var(--azul);background:var(--azul-bg)}
+.q-opt.sel{border-color:var(--navy)}
+.q-opt.right{border-color:var(--baixo);background:var(--baixo-bg)}
+.q-opt.wrong{border-color:var(--alto);background:var(--alto-bg)}
+.q-opt .lt{font-family:var(--mono);font-weight:700;margin-right:8px;color:var(--azul)}
+.q-feedback{margin-top:12px;border-radius:12px;padding:13px 15px;font-size:.9rem;display:none}
+.q-feedback.show{display:block;animation:up .3s}
+.q-feedback.ok{background:var(--baixo-bg);border:1px solid #b7e2c6}
+.q-feedback.no{background:var(--alto-bg);border:1px solid #f3c2c2}
+.q-conf{display:flex;gap:6px;align-items:center;margin-bottom:12px;font-size:.82rem;flex-wrap:wrap}
+.q-conf button{border:1px solid var(--linha);background:#fff;border-radius:20px;padding:4px 11px;font-size:.78rem;font-weight:700;cursor:pointer}
+.q-conf button.on{background:var(--azul);color:#fff;border-color:var(--azul)}
+.q-progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:700;color:var(--navy)}
+.cronometro{font-family:var(--mono);font-weight:700;color:var(--alto)}
+
+/* ---------- CASOS ---------- */
+.caso{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:20px;box-shadow:var(--sombra-2)}
+.caso .ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:12px 0;font-size:.83rem}
+.caso .ficha div{background:var(--bg);border:1px solid var(--linha);border-radius:9px;padding:7px 10px}
+.caso .ficha b{display:block;font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;color:var(--cinza)}
+.etapas5{margin:12px 0}
+.etapa5{border:1px solid var(--linha);border-radius:11px;padding:10px 13px;margin-bottom:7px;background:#fff}
+.etapa5 .lbl{font-weight:700;font-size:.88rem;margin-bottom:6px}
+.etapa5 .op{display:inline-block;border:1px solid var(--linha);background:#fff;border-radius:8px;padding:5px 10px;margin:3px 4px 0 0;font-size:.8rem;font-weight:600;cursor:pointer}
+.etapa5 .op.pick{background:var(--navy);color:#fff;border-color:var(--navy)}
+.caso-final{display:none;margin-top:10px;border-radius:12px;padding:14px;background:var(--azul-bg);border:1px solid #bcdfe9}
+.caso-final.show{display:block;animation:up .3s}
+.nivel-tag{font-family:var(--mono);font-size:.64rem;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.06em}
+.nv-basico{background:var(--baixo-bg);color:var(--baixo)}
+.nv-inter{background:var(--atencao-bg);color:#8a6d10}
+.nv-avanc{background:var(--elevado-bg);color:var(--elevado)}
+.nv-chefe{background:var(--muito-alto-bg);color:var(--muito-alto)}
+
+/* ---------- CALCULAR OU NÃO ---------- */
+.mini-decisao{background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:18px;box-shadow:var(--sombra-2)}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+@media(max-width:600px){.opt-grid{grid-template-columns:1fr}}
+.opt-grid button{border:1.5px solid var(--linha);background:#fff;border-radius:11px;padding:11px;font-weight:700;font-size:.85rem;cursor:pointer;text-align:left}
+.opt-grid button:hover{border-color:var(--azul)}
+.opt-grid button.ok{border-color:var(--baixo);background:var(--baixo-bg)}
+.opt-grid button.no{border-color:var(--alto);background:var(--alto-bg)}
+
+/* ---------- LAB VARIÁVEIS ---------- */
+.lab-ctrl{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.lab-ctrl{grid-template-columns:1fr}}
+.lab-row label{font-size:.82rem;font-weight:700;color:var(--navy);display:flex;justify-content:space-between}
+.lab-row input[type=range]{width:100%}
+.eixo-status{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.eixo{flex:1;min-width:120px;text-align:center;border-radius:11px;padding:12px;border:1px solid var(--linha);background:#fff;transition:.2s}
+.eixo .lv{font-family:var(--disp);font-weight:900;font-size:1.05rem}
+
+/* ---------- ERROS ---------- */
+.erro-item{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--linha);border-radius:11px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:.12s}
+.erro-item:hover{border-color:var(--alto)}
+.erro-item.marcado{border-color:var(--alto);background:var(--alto-bg)}
+.erro-item .expl{display:none;font-size:.85rem;color:var(--cinza);margin-top:8px;width:100%}
+.erro-item.marcado .expl{display:block}
+
+/* ---------- PALÁCIO ---------- */
+.palacio{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.sala{background:linear-gradient(160deg,#fff,#f2f7fd);border:1px solid var(--linha);border-radius:14px;padding:16px;box-shadow:var(--sombra-2)}
+.sala .porta{font-size:1.6rem}
+.sala h4{margin:6px 0 4px}
+.sala p{font-size:.82rem;color:var(--cinza);margin:0}
+
+/* ---------- HIPOCAMPO ---------- */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:16px;text-align:center;box-shadow:var(--sombra-2)}
+.stat .v{font-family:var(--disp);font-weight:900;font-size:2rem;color:var(--navy)}
+.stat .l{font-size:.76rem;color:var(--cinza);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.fila-revisao{background:var(--azul-bg);border:1px solid #bcdfe9;border-radius:14px;padding:16px;margin-top:14px}
+
+/* ---------- GLOSSÁRIO ---------- */
+.glossbusca{width:100%;padding:11px 14px;border:1px solid var(--linha);border-radius:11px;font-size:.95rem;font-family:var(--sans);margin-bottom:14px}
+.verbete{border:1px solid var(--linha);border-radius:12px;padding:14px 16px;margin-bottom:8px;background:#fff}
+.verbete summary{font-weight:800;cursor:pointer;color:var(--navy);font-size:1rem}
+.verbete .sig{font-family:var(--mono);color:var(--azul);font-size:.8rem}
+.verbete .corpo{margin-top:8px;font-size:.88rem}
+.verbete .corpo .rot{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;color:var(--cinza);display:block;margin-top:6px}
+
+/* osmolaridade */
+.osmo-tabs{display:inline-flex;background:var(--bg);border:1px solid var(--linha);border-radius:30px;padding:4px;gap:4px;margin-bottom:6px}
+.osmo-tabs button{border:none;background:none;padding:7px 15px;border-radius:24px;font-weight:800;font-size:.82rem;cursor:pointer;color:var(--cinza)}
+.osmo-tabs button.on{background:var(--navy);color:#fff}
+
+/* modo professor */
+body.prof .prof-hide{filter:blur(6px);user-select:none;position:relative}
+body.prof .prof-hide::after{content:"👁 clique para revelar";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;color:var(--navy);cursor:pointer}
+body.prof .prof-hide.reveal{filter:none}
+body.prof .prof-hide.reveal::after{display:none}
+
+/* rodapé */
+footer{background:var(--navy);color:#dce6f3;padding:40px 0 30px;text-align:center}
+footer .assinatura{color:#ffd36b;font-size:1.7rem}
+footer .creditos{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;opacity:.7;margin-top:8px;line-height:1.7}
+
+.som-toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:10px 18px;border-radius:30px;font-weight:700;font-size:.85rem;z-index:120;transition:.3s;box-shadow:var(--sombra)}
+.som-toast.show{transform:translateX(-50%) translateY(0)}
+
+.checklist label{display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--linha);cursor:pointer;font-size:.9rem}
+.checklist input{margin-top:3px}
+.checklist label.done span{text-decoration:line-through;color:var(--cinza)}
+
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="progress-top"><span id="progGlobal"></span></div>
+<nav class="topo">
+  <div class="nav-in">
+    <div class="marca" onclick="go('capa')"><span class="pulse"></span> Atlas Mental · HAS</div>
+    <div class="nav-links">
+      <a onclick="go('algoritmo')">Algoritmo</a>
+      <a onclick="go('prevent')">PREVENT</a>
+      <a onclick="go('triade')">Fator/LOA/DCV</a>
+      <a onclick="go('matriz')">Matriz</a>
+      <a onclick="go('casos')">Casos</a>
+      <a onclick="go('quiz')">Arena TEC</a>
+      <a onclick="go('flashcards')">Flashcards</a>
+      <a onclick="go('hipocampo')">Hipocampo</a>
+      <a onclick="go('glossario')">Glossário</a>
+    </div>
+    <div class="nav-tools">
+      <button class="icobtn" id="btnSom" onclick="toggleSom()" title="Som" aria-label="Ativar ou desativar som">🔈</button>
+      <button class="icobtn" id="btnProf" onclick="toggleProf()" title="Modo professor" aria-label="Alternar modo professor (ocultar respostas)">👩‍🏫</button>
+      <button class="icobtn" id="btnMov" onclick="toggleMov()" title="Reduzir animações" aria-label="Reduzir animações">🎞</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ CAPA ============ -->
+<header class="hero" id="capa">
+  <div class="wrap">
+    <div class="kicker">Atlas Mental da Hipertensão Arterial</div>
+    <div class="sub">Bloco 2 · Tema 3</div>
+    <h1>Estratificação do Risco Cardiovascular</h1>
+    <p class="frase">Antes de tratar um número, descubra a trajetória cardiovascular do paciente.</p>
+    <p class="foto-frase">“A pressão arterial é uma fotografia. O risco cardiovascular é o filme inteiro.”</p>
+    <div style="margin-top:22px" class="assina-rod">
+      <span class="kicker" style="color:var(--cinza)">Autor e curador</span>
+      <div class="assinatura">Dr. André Rossanno</div>
+    </div>
+
+    <div class="hub" id="hub"></div>
+  </div>
+  <svg class="ecg-line" viewBox="0 0 1400 70" preserveAspectRatio="none">
+    <path d="M0,45 L280,45 L300,45 L312,20 L326,60 L340,10 L354,45 L620,45 L640,45 L652,20 L666,60 L680,10 L694,45 L980,45 L1000,45 L1012,20 L1026,60 L1040,10 L1054,45 L1400,45"/>
+  </svg>
+</header>
+
+<main class="wrap">
+
+<!-- COMO UTILIZAR -->
+<section class="bloco" id="como">
+  <div class="sechead"><span class="num">02</span><h2>Como usar este material</h2></div>
+  <p class="lead">Esta não é uma apresentação de slides — é uma plataforma de raciocínio. Escolha a densidade de informação e siga a lógica: <b>reconhecer → calcular → refinar → decidir</b>.</p>
+  <div class="grid3">
+    <div class="card slim"><span class="pill p-baixo">Via rápida</span><p style="margin-top:8px;font-size:.88rem">O algoritmo essencial em ~10 min. Comece pelo <a onclick="go('algoritmo')">algoritmo clínico</a> e pela <a onclick="go('matriz')">matriz</a>.</p></div>
+    <div class="card slim"><span class="pill p-azul">Aula completa</span><p style="margin-top:8px;font-size:.88rem">Percorra as seções na ordem. Use a osmolaridade de memória em cada bloco denso.</p></div>
+    <div class="card slim"><span class="pill p-azul">Treino intensivo</span><p style="margin-top:8px;font-size:.88rem">20 casos, 50+ questões e 60+ flashcards. Erros vão para o <a onclick="go('hipocampo')">Hipocampo Supremo</a>.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <label class="mono" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--cinza)">Osmolaridade de memória — escolha a densidade de qualquer seção</label>
+    <div class="osmo-tabs" style="margin-top:8px">
+      <button class="on" data-osmo="iso" onclick="setOsmo('iso')">Isotônico · padrão</button>
+      <button data-osmo="hipo" onclick="setOsmo('hipo')">Hipotônico · revisão</button>
+      <button data-osmo="hiper" onclick="setOsmo('hiper')">Hipertônico · aprofundar</button>
+    </div>
+    <p id="osmoDesc" style="font-size:.85rem;color:var(--cinza);margin:8px 0 0">Modo padrão: explicação clínica, exemplos, comparações e perguntas.</p>
+  </div>
+  <div class="aviso" style="margin-top:14px">⚕️ <span><b>Material educacional.</b> As decisões clínicas devem considerar a diretriz vigente, o contexto do paciente e o julgamento médico.</span></div>
+</section>
+
+<!-- FILOSOFIA -->
+<section class="bloco" id="filosofia">
+  <div class="sechead"><span class="num">04</span><h2>A filosofia da estratificação</h2></div>
+  <p class="lead">Dois pacientes com a mesma pressão arterial podem ter prognósticos completamente diferentes. A pressão é apenas uma das dimensões do risco.</p>
+
+  <div class="grid2">
+    <div class="card" style="border-top:4px solid var(--baixo)">
+      <span class="pill p-baixo">Paciente A</span>
+      <h3 style="margin-top:8px">PA 150 × 95 mmHg</h3>
+      <ul style="font-size:.9rem;padding-left:18px;margin:6px 0 0">
+        <li>Jovem, não fumante</li><li>Sem diabetes · sem DRC</li><li>Sem lesão de órgão-alvo</li><li>Sem doença cardiovascular</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--alto)">
+      <span class="pill p-alto">Paciente B</span>
+      <h3 style="margin-top:8px">PA 150 × 95 mmHg</h3>
+      <ul style="font-size:.9rem;padding-left:18px;margin:6px 0 0">
+        <li>Diabetes · tabagismo</li><li>Albuminúria</li><li>Hipertrofia ventricular esquerda</li><li>Doença renal crônica</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mantra" style="margin-top:16px">
+    <div class="big">A pressão é igual. O risco é igual? <span style="color:#ff8a8a">Não.</span></div>
+    <div class="small">A PA é apenas uma das dimensões do risco cardiovascular</div>
+  </div>
+
+  <div class="card osmo-hiper hidden" style="background:#fbfcfe">
+    <h4>Vocabulário do risco</h4>
+    <div class="grid2" style="font-size:.86rem">
+      <div><b>Risco absoluto</b> — probabilidade real de evento num horizonte (ex.: 10 anos). É o que o PREVENT estima.<br><b>Risco relativo</b> — quantas vezes maior que um comparador; pode ser alto mesmo com absoluto baixo.<br><b>Risco acumulado</b> — carga ao longo da vida; depende da exposição × tempo.<br><b>Risco residual</b> — o que sobra mesmo com tratamento otimizado.</div>
+      <div><b>Prevenção primordial</b> — evitar que o fator de risco surja.<br><b>Prevenção primária</b> — há fatores, mas ainda <u>não há</u> DCV clínica.<br><b>Prevenção secundária</b> — já existe DCV estabelecida.<br><b>Doença subclínica</b> — dano detectável sem evento (≈ LOA).<br><b>Doença manifesta</b> — evento clínico ocorrido.</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(160deg,#fff,#f3f7fd)">
+    <p style="font-size:1.02rem;color:var(--navy-2);font-weight:600">Estratificar não é preencher uma calculadora. É reconhecer onde, na trajetória cardiovascular, aquele paciente já se encontra — e o que ainda pode ser mudado. O escore não encerra o caso; ele organiza a incerteza.</p>
+    <div class="assina-rod"><div class="assinatura">— Dr. André Rossanno</div></div>
+  </div>
+</section>
+
+<!-- CONTÍNUO CARDIOVASCULAR -->
+<section class="bloco" id="continuo">
+  <div class="sechead"><span class="num">05</span><h2>O contínuo cardiovascular</h2></div>
+  <p class="lead">A doença cardiovascular é um filme, não uma fotografia. Estratificar é dizer em que cena o paciente está.</p>
+  <div class="continuum" id="continuum"></div>
+  <p style="font-size:.85rem;color:var(--cinza);margin-top:12px">Quanto mais à direita, mais tarde a intervenção e menor o retorno. A prevenção primordial e primária atuam à esquerda; a secundária, à direita.</p>
+</section>
+
+<!-- TRÍADE FÓSFORO -->
+<section class="bloco" id="triade">
+  <div class="sechead"><span class="num">08</span><h2>Não confunda o fósforo, a parede chamuscada e o incêndio</h2></div>
+  <p class="lead">Fator de risco, lesão de órgão-alvo e doença estabelecida são degraus diferentes do mesmo processo. Classificar errado muda toda a estratificação.</p>
+
+  <div class="tri">
+    <div class="col f">
+      <h3>Fator de risco</h3>
+      <p style="font-size:.85rem;margin:6px 0 0"><b>Aumenta a probabilidade futura</b> de lesão ou evento — ainda não há dano.</p>
+      <ul><li>Idade · sexo · história familiar</li><li>Tabagismo · dislipidemia</li><li>Obesidade · sedentarismo</li><li>Hipertensão</li></ul>
+      <div class="metafora">🔥 O fósforo aceso</div>
+    </div>
+    <div class="col l">
+      <h3>Lesão de órgão-alvo</h3>
+      <p style="font-size:.85rem;margin:6px 0 0"><b>Dano estrutural ou funcional</b> já presente, ainda sem evento clínico maior.</p>
+      <ul><li>Coração: HVE</li><li>Rim: albuminúria, queda de TFG</li><li>Retina: retinopatia hipertensiva</li><li>Vasos: doença subclínica, rigidez</li></ul>
+      <div class="metafora">🧱 A parede chamuscada</div>
+    </div>
+    <div class="col d">
+      <h3>Doença estabelecida</h3>
+      <p style="font-size:.85rem;margin:6px 0 0"><b>Evento ou doença clínica</b> — o paciente está em prevenção secundária.</p>
+      <ul><li>DAC (aguda e crônica), IAM, angina</li><li>Insuficiência cardíaca</li><li>AVE isquêmico/hemorrágico, AIT</li><li>DAOP sintomática, doença aórtica</li></ul>
+      <div class="metafora">🚒 O incêndio</div>
+    </div>
+  </div>
+  <div class="conferir">A definição exata de cada categoria (e a fronteira entre alto e muito alto risco) deve ser conferida diretamente na diretriz utilizada.</div>
+
+  <div class="card" style="margin-top:16px">
+    <h4>Classifique cada item na categoria correta</h4>
+    <p style="font-size:.84rem;color:var(--cinza)">No computador, arraste; no celular, toque no item e depois na categoria. Fator de risco · LOA · Doença estabelecida · Refinador · Informação insuficiente</p>
+    <div class="dd-pool" id="ddPool"></div>
+    <div class="dd-zones" id="ddZones"></div>
+    <div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="ddReset()">Reiniciar</button><span id="ddScore" class="mono" style="align-self:center;font-size:.82rem;color:var(--cinza)"></span></div>
+  </div>
+  <div class="assina-rod"><div class="assinatura">— Dr. André Rossanno</div></div>
+</section>
+
+<!-- FATORES DE RISCO CLÁSSICOS -->
+<section class="bloco" id="fatores">
+  <div class="sechead"><span class="num">14</span><h2>Fatores de risco cardiovascular clássicos</h2></div>
+  <span class="fonte-tag fonte-2025">Diretriz Brasileira de Hipertensão Arterial — 2025</span>
+  <p class="lead">Painel dos fatores clássicos. Passe por cada um: por que aumenta o risco e como é identificado.</p>
+  <div class="grid2" id="fatoresGrid"></div>
+  <div class="conferir">Pontos de corte reproduzidos da tela da aula. Confira sempre a diretriz vigente antes de aplicar clinicamente.</div>
+</section>
+
+<!-- MAPA CORPORAL / LOA -->
+<section class="bloco" id="mapa">
+  <div class="sechead"><span class="num">13</span><h2>Mapa corporal — órgãos-alvo e doença clínica</h2></div>
+  <span class="fonte-tag fonte-2020">Definições de DCV/LOA — Diretrizes Brasileiras de HAS 2020</span>
+  <p class="lead">Clique em cada órgão: o que é lesão subclínica, o que já é doença manifesta e o erro frequente de classificação.</p>
+  <div class="body-map">
+    <div class="silhueta" id="silhueta" style="height:360px">
+      <div class="organ" style="top:8%;left:44%" data-org="cerebro" title="Cérebro">🧠</div>
+      <div class="organ" style="top:20%;left:60%" data-org="retina" title="Retina">👁</div>
+      <div class="organ" style="top:34%;left:42%" data-org="coracao" title="Coração">❤️</div>
+      <div class="organ" style="top:44%;left:58%" data-org="aorta" title="Aorta">🩸</div>
+      <div class="organ" style="top:56%;left:40%" data-org="rins" title="Rins">🫘</div>
+      <div class="organ" style="top:74%;left:52%" data-org="perif" title="Artérias periféricas">🦵</div>
+      <p style="position:absolute;bottom:8px;left:0;right:0;font-size:.72rem;color:var(--cinza);font-family:var(--mono)">clique num órgão</p>
+    </div>
+    <div class="organ-info" id="organInfo"><p style="color:var(--cinza)">Selecione um órgão para ver lesões subclínicas, doenças manifestas, exames e a pegadinha clássica.</p></div>
+  </div>
+</section>
+
+<!-- ALGORITMO -->
+<section class="bloco" id="algoritmo">
+  <div class="sechead"><span class="num">07</span><h2>O grande algoritmo clínico</h2></div>
+  <span class="fonte-tag fonte-2025">Brandão et al. · Diretriz Brasileira de HAS 2025</span>
+  <p class="lead"><b>O paciente precisa de cálculo ou já chegou com o risco definido?</b> Primeiro reconhecer, depois calcular.</p>
+
+  <div class="card">
+    <div class="algo-stage">
+      <span class="kicker">Etapa 1</span>
+      <h4>Existe condição de alto risco CV presente?</h4>
+      <div id="etapa1"></div>
+    </div>
+    <div class="algo-result p-alto" id="r1" style="background:var(--alto-bg);color:var(--muito-alto)">
+      ✔️ <b>Alto risco CV.</b> O paciente já apresenta condição clinicamente relevante para estratificação elevada. Não transforme a calculadora em obstáculo ao raciocínio clínico. A categoria exata (alto vs. muito alto) segue a diretriz utilizada.
+    </div>
+  </div>
+
+  <div class="card" id="cardEtapa2" style="opacity:.5;pointer-events:none">
+    <div class="algo-stage" style="border-color:var(--azul)">
+      <span class="kicker" style="color:var(--azul)">Etapa 2 — só quando a Etapa 1 for toda NÃO</span>
+      <h4>Estimar o risco CV</h4>
+      <p style="font-size:.88rem;color:var(--cinza)">Verifique se o PREVENT é aplicável, depois estime.</p>
+      <div id="etapa2"></div>
+    </div>
+    <div class="algo-result" id="r2" style="background:var(--azul-bg);color:var(--navy)">
+      Agora o cálculo pode acrescentar informação. Se o <b>escore PREVENT ≥ 20% em 10 anos</b> → alto risco CV. Considere <b>agravantes em casos selecionados: CAC, BNP, troponina us, Lp(a)</b>.
+    </div>
+    <div class="algo-result" id="r2no" style="background:var(--atencao-bg);color:#8a6d10">
+      ⚠️ PREVENT não aplicável aqui. Justifique: fora da faixa etária (30–79 anos), prevenção secundária, dados insuficientes, população não contemplada ou necessidade de julgamento clínico. Use a matriz de risco e o julgamento clínico.
+    </div>
+  </div>
+
+  <div class="mantra">
+    <div class="big"><b>PRIMEIRO RECONHECER · DEPOIS CALCULAR · POR FIM REFINAR E DECIDIR</b></div>
+    <div class="small">o score organiza a incerteza — não encerra o caso</div>
+  </div>
+</section>
+
+<!-- PREVENT -->
+<section class="bloco" id="prevent">
+  <div class="sechead"><span class="num">14</span><h2>Anatomia do PREVENT</h2></div>
+  <span class="fonte-tag fonte-aha">American Heart Association · PREVENT™</span>
+  <p class="lead"><b>PREVENT = Predicting Risk of cardiovascular disease EVENTs.</b> Não é "PRI-20". É uma <b>família de equações</b> — e todo resultado exige desfecho + horizonte + população.</p>
+
+  <div class="mantra" style="background:var(--alto)">
+    <div class="big">Nunca aceite "PREVENT = 8%".</div>
+    <div class="small">Qual desfecho? Qual horizonte? Qual população? Qual decisão?</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Uma família de equações</h4>
+      <ul style="font-size:.9rem;padding-left:18px">
+        <li>Risco cardiovascular <b>total (CVD)</b></li>
+        <li>Risco <b>aterosclerótico (ASCVD)</b></li>
+        <li>Risco de <b>insuficiência cardíaca (HF)</b></li>
+        <li>Horizonte de <b>10 anos</b> (30–79 anos)</li>
+        <li>Horizonte de <b>30 anos</b> (30–59 anos)</li>
+        <li><b>PREVENT-Age</b> e percentis de risco, quando disponíveis</li>
+      </ul>
+      <p style="font-size:.82rem;color:var(--cinza);margin-top:6px">Exemplo correto: <span class="pill p-azul">Risco PREVENT-ASCVD em 10 anos</span></p>
+    </div>
+    <div class="card">
+      <h4>Em quem usar — e em quem não</h4>
+      <p style="font-size:.88rem"><span class="pill p-baixo">Pode</span> Prevenção primária, idade 30–79 anos, variáveis obrigatórias disponíveis, valores dentro das faixas.</p>
+      <p style="font-size:.88rem"><span class="pill p-alto">Não</span> Prevenção secundária (DCV já estabelecida), fora da faixa etária, dados insuficientes, população não contemplada, extrapolação inadequada.</p>
+      <p style="font-size:.82rem;color:var(--cinza)">A função renal entrou no modelo porque o eixo cardiorrenal-metabólico é central ao risco.</p>
+    </div>
+  </div>
+
+  <h4 style="margin-top:8px">Variáveis obrigatórias (calculadora oficial)</h4>
+  <p style="font-size:.83rem;color:var(--cinza)">Faixas reproduzidas da tela da AHA na aula.</p>
+  <div class="grid3" id="preventVars"></div>
+
+  <div class="card" style="background:var(--azul-bg);border-color:#bcdfe9">
+    <span class="pill p-azul">Preditores adicionais / opcionais</span>
+    <div class="grid3" style="margin-top:10px;font-size:.85rem">
+      <div><b>UACR (mg/g)</b> — indicado em DRC, diabetes ou hipertensão.</div>
+      <div><b>HbA1c</b> — indicado em diabetes, pré-diabetes, sobrepeso/obesidade ou DM gestacional prévio.</div>
+      <div><b>Zip Code (EUA)</b> — estima índice de privação social (SDI). <b style="color:var(--alto)">Não transplante o CEP norte-americano para o Brasil automaticamente.</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h4>Interação — Qual dado está faltando?</h4>
+    <p style="font-size:.85rem;color:var(--cinza)">Ficha clínica incompleta: identifique a variável obrigatória ausente.</p>
+    <div id="faltaBox"></div>
+  </div>
+
+  <div class="card">
+    <h4>Categorias de risco — escore PREVENT (ASCVD)</h4>
+    <span class="fonte-tag fonte-aha">Faixas do desfecho ASCVD apresentadas na aula</span>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px" class="matriz-out">
+      <div style="text-align:center;padding:12px;border-radius:11px" class="m-baixo"><b>&lt; 5%</b><br><span style="font-size:.8rem">Risco baixo</span></div>
+      <div style="text-align:center;padding:12px;border-radius:11px" class="m-mod"><b>5 a &lt; 7,5%</b><br><span style="font-size:.8rem">Risco limítrofe</span></div>
+      <div style="text-align:center;padding:12px;border-radius:11px" class="m-alto"><b>7,5 a &lt; 20%</b><br><span style="font-size:.8rem">Risco intermediário</span></div>
+      <div style="text-align:center;padding:12px;border-radius:11px" class="m-muito"><b>≥ 20%</b><br><span style="font-size:.8rem">Alto risco</span></div>
+    </div>
+    <div class="conferir">Estas faixas foram apresentadas para o desfecho ASCVD. Não as misture automaticamente com as categorias da matriz brasileira (baixo/moderado/alto/muito alto), que têm origem e lógica próprias.</div>
+  </div>
+  <div class="assina-rod"><div class="assinatura">— Dr. André Rossanno</div></div>
+</section>
+
+<!-- EIXO CARDIORRENAL -->
+<section class="bloco" id="eixo">
+  <div class="sechead"><span class="num">09</span><h2>Árvore cardiorrenal-metabólica</h2></div>
+  <p class="lead">Clique numa raiz para iluminar os mecanismos; clique num galho para ver quais raízes o alimentam.</p>
+  <div class="arvore">
+    <div class="lvl"><h5 style="color:var(--elevado)">🌱 Raízes</h5><div id="raizes"></div></div>
+    <div class="lvl"><h5 style="color:var(--azul)">🪵 Tronco · mecanismos</h5><div id="tronco"></div></div>
+    <div class="lvl"><h5 style="color:var(--alto)">🌿 Galhos · desfechos</h5><div id="galhos"></div></div>
+  </div>
+  <div class="conferir">As setas representam associações fisiopatológicas didáticas — não relações causais absolutas. Contribuição e causalidade não são a mesma coisa.</div>
+</section>
+
+<!-- 10 x 30 ANOS -->
+<section class="bloco" id="relogios">
+  <div class="sechead"><span class="num">10</span><h2>Os dois relógios do risco</h2></div>
+  <p class="lead">Um paciente jovem com múltiplos fatores pode ter risco baixo em 10 anos e trajetória desfavorável em 30 anos.</p>
+  <div class="relogios">
+    <div class="relogio"><span class="kicker">Relógio 1</span><div class="relmostra" style="color:var(--baixo)" id="rel10">baixo</div><b>10 anos</b><p style="font-size:.8rem;color:var(--cinza)">risco de curto prazo</p></div>
+    <div class="relogio"><span class="kicker" style="color:var(--alto)">Relógio 2</span><div class="relmostra" style="color:var(--alto)" id="rel30">elevado</div><b>30 anos</b><p style="font-size:.8rem;color:var(--cinza)">risco acumulado</p></div>
+  </div>
+  <div class="card slim slider-idade" style="margin-top:14px">
+    <label class="mono" style="font-size:.8rem">Idade: <b id="idadeVal">35</b> anos — demais fatores constantes (múltiplos fatores presentes)</label>
+    <input type="range" min="35" max="65" step="10" value="35" id="idadeSlider" oninput="atualizaRelogio(this.value)">
+    <div style="display:flex;justify-content:space-between;font-size:.72rem;color:var(--cinza);font-family:var(--mono)"><span>35</span><span>45</span><span>55</span><span>65</span></div>
+    <p style="font-size:.86rem;margin-top:10px" id="relTexto"></p>
+    <div class="aviso" style="margin-top:8px">🧪 <span><b>Simulação conceitual.</b> Evolução qualitativa apenas — não corresponde a cálculo clínico real nem gera porcentagens.</span></div>
+  </div>
+  <div class="mantra"><div class="big">Baixo risco em 10 anos significa baixo risco de vida? <span style="color:#ff8a8a">Não necessariamente.</span></div><div class="small">a idade domina o risco absoluto de curto prazo — não use isso para tranquilizar indevidamente o jovem</div></div>
+</section>
+
+<!-- PREVENT-AGE -->
+<section class="bloco" id="preventage">
+  <div class="sechead"><span class="num">11</span><h2>O espelho da idade cardiovascular</h2></div>
+  <p class="lead">Idade cronológica × idade do perfil de risco. Ferramenta de comunicação — não uma medida literal da idade do coração.</p>
+  <div class="espelho">
+    <div class="lado cal"><span class="kicker">Idade do calendário</span><div class="idade-num" style="color:var(--azul)">42</div><span style="font-size:.82rem">anos cronológicos</span></div>
+    <div class="lado perf"><span class="kicker" style="color:var(--alto)">Idade do perfil de risco</span><div class="idade-num" style="color:var(--alto)" id="preventAgeNum">58</div><span style="font-size:.82rem">exemplo didático</span></div>
+  </div>
+  <div class="card slim" style="margin-top:12px">
+    <p style="font-size:.85rem;color:var(--cinza)">Remova fatores modificáveis e observe a redução conceitual da carga (sem inventar anos exatos):</p>
+    <div id="ageFatores" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"></div>
+    <p id="ageTexto" style="font-size:.86rem;margin-top:10px"></p>
+  </div>
+  <div class="aviso">🪞 <span>O coração não tem literalmente essa idade. A finalidade é comunicacional: traduzir risco em algo tangível para o paciente. Exemplo <b>hipotético e didático</b>.</span></div>
+</section>
+
+<!-- MATRIZ -->
+<section class="bloco" id="matriz">
+  <div class="sechead"><span class="num">15</span><h2>Matriz de risco da hipertensão</h2></div>
+  <span class="fonte-tag fonte-2025">Brandão et al. · Diretriz Brasileira de HAS 2025</span>
+  <p class="lead">Cruze o nível de PA com o perfil clínico. Clique numa célula: ela acende e o sistema explica por que aquele paciente não está na categoria vizinha.</p>
+  <div class="card">
+    <div class="matriz-wrap">
+      <table class="matriz" id="tabMatriz">
+        <thead><tr>
+          <th style="background:#eef2f8;text-align:left">Fatores de risco CV,<br>presença de LOA ou DCV</th>
+          <th>PAS 130–139<br>PAD 80–89</th>
+          <th>Estágio 1<br>PAS 140–159 · PAD 90–99</th>
+          <th>Estágio 2<br>PAS 160–179 · PAD 100–109</th>
+          <th>Estágio 3<br>PAS ≥180 · PAD ≥110</th>
+        </tr></thead>
+        <tbody id="matrizBody"></tbody>
+      </table>
+    </div>
+    <div class="matriz-out" id="matrizOut"><p style="color:var(--cinza);font-size:.88rem">Selecione uma célula para ver a categoria, os dados decisivos e o contraste com a vizinha.</p></div>
+  </div>
+  <div class="conferir">Tabela reproduzida fielmente da tela da aula. Não altere pontos de corte nem preencha lacunas por memória. Confira o texto exato da diretriz.</div>
+</section>
+
+<!-- NÃO MISTURE OS MAPAS -->
+<section class="bloco" id="mapas">
+  <div class="sechead"><span class="num">16</span><h2>Não misture os mapas</h2></div>
+  <p class="lead">Sete instrumentos diferentes que os alunos costumam confundir. Cada frase abaixo pertence a um mapa — identifique.</p>
+  <div class="grid3" id="mapasCards"></div>
+  <div class="card" style="margin-top:8px">
+    <h4>Qual mapa está sendo usado?</h4>
+    <div id="mapasQuiz"></div>
+  </div>
+</section>
+
+<!-- REFINADORES -->
+<section class="bloco" id="refinadores">
+  <div class="sechead"><span class="num">17</span><h2>Câmara dos refinadores</h2></div>
+  <span class="fonte-tag fonte-2025">Agravantes em casos selecionados · HAS 2025</span>
+  <p class="lead">Marcadores que <b>podem apoiar o refinamento em casos selecionados</b> — nenhum muda a categoria isoladamente.</p>
+  <div class="grid2" id="refinaGrid"></div>
+  <div class="conferir">Refinadores pertencem à etapa de refinamento, não ao cálculo básico. Uso indiscriminado gera excesso de exames e reclassificações indevidas.</div>
+</section>
+
+<!-- PALÁCIO -->
+<section class="bloco" id="palacio">
+  <div class="sechead"><span class="num">24</span><h2>Palácio da memória</h2></div>
+  <p class="lead">Sete ambientes para ancorar a lógica espacialmente (técnica N4 — localização). Percorra na ordem do raciocínio.</p>
+  <div class="palacio" id="palacioGrid"></div>
+</section>
+
+<!-- CASOS -->
+<section class="bloco" id="casos">
+  <div class="sechead"><span class="num">20</span><h2>Simulador clínico — casos</h2></div>
+  <p class="lead">Cada caso obriga o raciocínio em cinco etapas antes de revelar a conclusão. Alguns trazem dados distratores de propósito.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" id="casoFiltros"></div>
+  <div id="casoBox"></div>
+  <div class="fc-nav" style="margin-top:14px;max-width:none"><button class="btn btn-ghost" onclick="navCaso(-1)">← Anterior</button><span class="mono" id="casoPos" style="align-self:center"></span><button class="btn btn-primary" onclick="navCaso(1)">Próximo →</button></div>
+</section>
+
+<!-- CALCULAR OU NÃO -->
+<section class="bloco" id="calcular">
+  <div class="sechead"><span class="num">25</span><h2>Calcular ou não?</h2></div>
+  <p class="lead">Sequência rápida de mini-casos. Escolha a conduta correta e receba feedback imediato.</p>
+  <div id="decisaoBox"></div>
+  <div class="fc-nav" style="max-width:none;margin-top:12px"><span class="mono" id="decPos" style="align-self:center"></span><button class="btn btn-primary" onclick="navDecisao(1)">Próximo →</button></div>
+</section>
+
+<!-- LAB VARIÁVEIS -->
+<section class="bloco" id="lab">
+  <div class="sechead"><span class="num">26</span><h2>Laboratório de variáveis</h2></div>
+  <p class="lead">Interface conceitual: veja <b>qualitativamente</b> quais eixos são agravados. Não há equação inventada aqui — para o número real, use a calculadora oficial.</p>
+  <div class="card">
+    <div class="lab-ctrl" id="labCtrl"></div>
+    <div class="eixo-status" id="eixoStatus"></div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <a class="btn btn-navy" href="https://professional.heart.org/en/guidelines-and-statements/prevent-calculator" target="_blank" rel="noopener">↗ Abrir calculadora oficial (AHA PREVENT)</a>
+      <div style="flex:1;min-width:200px"><label style="font-size:.8rem;font-weight:700">Ou insira manualmente o resultado obtido:</label><input id="manualResult" placeholder="ex.: PREVENT-ASCVD 10 anos = 12%" style="width:100%;padding:9px 12px;border:1px solid var(--linha);border-radius:9px;font-family:var(--sans)"></div>
+    </div>
+  </div>
+  <div class="aviso">🧪 <span>Este painel mostra <b>direção de agravamento por eixo</b>, não risco absoluto. Só a equação oficial validada fornece porcentagem.</span></div>
+</section>
+
+<!-- SIMULADOR DE ERROS -->
+<section class="bloco" id="erros">
+  <div class="sechead"><span class="num">27</span><h2>Onde o médico errou?</h2></div>
+  <p class="lead">Clique em cada conduta incorreta para revelar por que ela está errada.</p>
+  <div id="errosBox"></div>
+</section>
+
+<!-- ARENA TEC -->
+<section class="bloco" id="quiz">
+  <div class="sechead"><span class="num">22</span><h2>Arena TEC</h2></div>
+  <p class="lead">Questões estilo prova com justificativa, nível, tema e registro de confiança. Ative o modo sem piedade para simular a prova.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+    <button class="btn btn-ghost btn-sm" id="btnTema" onclick="ciclaTema()">Tema: todos</button>
+    <button class="icobtn" id="btnPiedade" onclick="togglePiedade()">🔥 TEC sem piedade: off</button>
+    <button class="btn btn-ghost btn-sm" onclick="reiniciaQuiz()">Reiniciar</button>
+  </div>
+  <div class="q-progress"><span id="qPos"></span><span class="cronometro" id="cron"></span></div>
+  <div id="quizBox"></div>
+  <div class="fc-nav" style="max-width:none;margin-top:12px"><button class="btn btn-ghost" onclick="navQuiz(-1)">← Anterior</button><span id="qScore" class="mono" style="align-self:center"></span><button class="btn btn-primary" onclick="navQuiz(1)">Próxima →</button></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="bloco" id="flashcards">
+  <div class="sechead"><span class="num">23</span><h2>Flashcards — evocação ativa</h2></div>
+  <p class="lead">Clique para virar. Avalie sua evocação: cartões marcados como "errei/difícil" reaparecem mais cedo.</p>
+  <div class="fc-scene"><div class="fc" id="fcCard" onclick="flipFc()"></div></div>
+  <div class="fc-rate" id="fcRate"></div>
+  <div class="fc-nav"><button class="btn btn-ghost" onclick="navFc(-1)">←</button><span class="mono" id="fcPos" style="align-self:center"></span><button class="btn btn-primary" onclick="navFc(1)">→</button></div>
+</section>
+
+<!-- HIPOCAMPO -->
+<section class="bloco" id="hipocampo">
+  <div class="sechead"><span class="num">24</span><h2>Hipocampo Supremo</h2></div>
+  <p class="lead">Seu desempenho consolidado. A fila de revisão prioriza o que está frágil.</p>
+  <div class="dash" id="dashStats"></div>
+  <div class="fila-revisao" id="filaRevisao"></div>
+  <div class="card" style="margin-top:14px">
+    <h4>Revisão espaçada</h4>
+    <div class="checklist" id="checklist"></div>
+  </div>
+  <div style="margin-top:14px"><button class="btn btn-ghost" onclick="resetProgresso()">🗑 Reiniciar progresso</button></div>
+</section>
+
+<!-- REVISÃO 60s -->
+<section class="bloco" id="revisao">
+  <div class="sechead"><span class="num">36</span><h2>Revisão de 60 segundos</h2></div>
+  <div class="card" style="background:var(--navy);color:#e6f1f5">
+    <ol style="font-size:.95rem;line-height:1.7;padding-left:20px;margin:0">
+      <li><b style="color:#ffd36b">Reconhecer → calcular → refinar → decidir.</b></li>
+      <li>Etapa 1: condição de alto risco (DCV, DM, DRC, hipercolesterolemia familiar, LOA) → já é alto risco. Não calcule para "descobrir".</li>
+      <li>Etapa 2: só se tudo for NÃO. PREVENT em prevenção primária, 30–79 anos, dados completos.</li>
+      <li>PREVENT é família: exija desfecho (CVD/ASCVD/HF) + horizonte (10/30 anos).</li>
+      <li>Baixo em 10 anos ≠ baixo na vida — cuidado com o jovem.</li>
+      <li>Fator ≠ LOA ≠ doença estabelecida.</li>
+      <li>Matriz 2025 cruza PA × fatores × LOA/DRC/DM × DCV — não some categorias.</li>
+      <li>Refinadores (CAC, BNP, troponina us, Lp(a)) apoiam casos selecionados; nenhum decide sozinho.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- GLOSSÁRIO -->
+<section class="bloco" id="glossario">
+  <div class="sechead"><span class="num">29</span><h2>Glossário</h2></div>
+  <input class="glossbusca" id="glossBusca" placeholder="Buscar sigla ou conceito..." oninput="filtraGloss(this.value)">
+  <div id="glossBox"></div>
+</section>
+
+<!-- REFERÊNCIAS -->
+<section class="bloco" id="referencias">
+  <div class="sechead"><span class="num">37</span><h2>Referências e fontes</h2></div>
+  <div class="card">
+    <ul style="font-size:.88rem;line-height:1.7">
+      <li><span class="fonte-tag fonte-2025">2025</span> Brandão et al. <b>Diretriz Brasileira de Hipertensão Arterial — 2025</b> (matriz de risco, algoritmo de alto risco, metas de PA).</li>
+      <li><span class="fonte-tag fonte-2020">2020</span> <b>Diretrizes Brasileiras de Hipertensão Arterial — 2020</b> (definições de DCV estabelecida e lesão de órgão-alvo).</li>
+      <li><span class="fonte-tag fonte-aha">AHA</span> <b>American Heart Association PREVENT™</b> — equações e calculadora online (variáveis, faixas e categorias apresentadas na aula).</li>
+      <li><span class="fonte-tag fonte-didatico">didático</span> Conceitos de memorização (fósforo/parede/incêndio, dois relógios, espelho da idade) criados para este material.</li>
+    </ul>
+    <div class="conferir">Onde houver divergência entre documentos, confira diretamente a diretriz utilizada. Este material não substitui a leitura das fontes originais.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="assinatura">Dr. André Rossanno</div>
+    <p style="margin:4px 0 0">Autor e curador</p>
+    <div class="creditos">
+      ATLAS MENTAL DA HIPERTENSÃO ARTERIAL<br>
+      BLOCO 2 · TEMA 3 · ESTRATIFICAÇÃO DO RISCO CARDIOVASCULAR<br>
+      Material educacional · decisões clínicas seguem a diretriz vigente e o julgamento médico
+    </div>
+  </div>
+</footer>
+
+<div class="som-toast" id="somToast"></div>
+<script>
+/* ===================== ESTADO / STORAGE ===================== */
+const KEY='atlas_has_b2t3';
+let ST=JSON.parse(localStorage.getItem(KEY)||'{}');
+ST.q=ST.q||{}; ST.fc=ST.fc||{}; ST.check=ST.check||{}; ST.set=ST.set||{};
+function save(){localStorage.setItem(KEY,JSON.stringify(ST));updProgresso();}
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function el(t,c,h){const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+
+/* progresso global = seções visitadas + questões respondidas */
+function updProgresso(){
+  const total=QUESTOES.length+CASOS.length;
+  const feitos=Object.keys(ST.q).length+ (ST.casosVistos||[]).length;
+  const pct=Math.min(100,Math.round(feitos/total*100));
+  document.getElementById('progGlobal').style.width=pct+'%';
+}
+
+/* ===================== TOGGLES ===================== */
+function toggleSom(){ST.set.som=!ST.set.som;document.getElementById('btnSom').classList.toggle('on',ST.set.som);document.getElementById('btnSom').textContent=ST.set.som?'🔊':'🔈';save();}
+function toggleProf(){document.body.classList.toggle('prof');document.getElementById('btnProf').classList.toggle('on',document.body.classList.contains('prof'));}
+document.addEventListener('click',e=>{const h=e.target.closest('.prof-hide');if(h&&document.body.classList.contains('prof'))h.classList.toggle('reveal');});
+function toggleMov(){document.body.classList.toggle('reduz-mov');document.getElementById('btnMov').classList.toggle('on',document.body.classList.contains('reduz-mov'));}
+if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)document.body.classList.add('reduz-mov');
+
+/* SOM via Web Audio (feedback leve, nunca automático) */
+let AC;
+function beep(type){
+  if(!ST.set.som)return;
+  try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+  const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);
+  const f={ok:660,err:180,mod:520,alto:110}[type]||440;o.frequency.value=f;
+  o.type=type==='alto'?'sawtooth':'sine';
+  g.gain.setValueAtTime(.001,AC.currentTime);g.gain.exponentialRampToValueAtTime(.18,AC.currentTime+.01);
+  g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.28);o.start();o.stop(AC.currentTime+.3);
+  if(type==='ok'){const o2=AC.createOscillator();o2.connect(g);o2.frequency.value=880;o2.start(AC.currentTime+.12);o2.stop(AC.currentTime+.3);}
+  }catch(e){}
+}
+function toast(msg){const t=document.getElementById('somToast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+
+/* ===================== OSMOLARIDADE ===================== */
+function setOsmo(m){
+  document.querySelectorAll('.osmo-tabs button').forEach(b=>b.classList.toggle('on',b.dataset.osmo===m));
+  const d={iso:'Modo padrão: explicação clínica, exemplos, comparações e perguntas.',hipo:'Revisão mínima: apenas regras centrais, algoritmo e pontos de corte indispensáveis.',hiper:'Aprofundamento: fisiopatologia, limitações, controvérsias e armadilhas de prova.'};
+  document.getElementById('osmoDesc').textContent=d[m];
+  document.querySelectorAll('.osmo-hiper').forEach(e=>e.classList.toggle('hidden',m!=='hiper'));
+}
+
+/* ===================== HUB ===================== */
+const HUB=[
+ ['01','⚡','Via rápida','O algoritmo essencial em ~10 min','algoritmo'],
+ ['02','📖','Aula completa','Todos os conceitos, em ordem','filosofia'],
+ ['03','🗺️','Mapa mental','A arquitetura do assunto','eixo'],
+ ['04','🩺','Simulador clínico','Resolver pacientes passo a passo','casos'],
+ ['05','🎛️','Matriz de risco','PA × fatores × LOA × DM/DRC × DCV','matriz'],
+ ['06','🎯','Arena TEC','Questões estilo prova','quiz'],
+ ['07','🃏','Flashcards','Evocação ativa','flashcards'],
+ ['08','🧠','Hipocampo Supremo','Revisar erros e pontos frágeis','hipocampo'],
+ ['09','👩‍🏫','Modo professor','Perguntas em tela, respostas ocultas','como'],
+ ['10','📚','Glossário','Siglas, conceitos e diferenças','glossario'],
+];
+document.getElementById('hub').innerHTML=HUB.map(h=>`<a onclick="go('${h[4]}')"><span class="ic">${h[1]}</span><div class="n">${h[0]}</div><div class="t">${h[2]}</div><div class="d">${h[3]}</div></a>`).join('');
+
+/* ===================== CONTÍNUO ===================== */
+const CONT=[
+ ['Predisposição','genética, ambiente','#16a34a'],
+ ['Fatores de risco','PA, glicemia, lipídios','#65a30d'],
+ ['Disfunção endotelial','dano vascular inicial','#e0a80b'],
+ ['Lesão de órgão-alvo','HVE, albuminúria','#ea6c1f'],
+ ['DCV clínica','coronária, IC, DAOP','#dc2626'],
+ ['Evento CV','IAM, AVE','#b91c1c'],
+ ['Recorrência / morte','incapacidade','#7a0b1e'],
+];
+document.getElementById('continuum').innerHTML=CONT.map((c,i)=>`<div class="cstep" style="background:${c[2]};animation-delay:${i*.12}s"><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('');
+
+/* ===================== FATORES CLÁSSICOS (img 5) ===================== */
+const FATORES=[
+ ['♂','Sexo masculino','Não modificável','Homens têm risco basal mais alto em faixas etárias médias.'],
+ ['🎂','Idade','Homem &gt; 55 anos · Mulher &gt; 65 anos','Não modificável. Forte determinante do risco absoluto.'],
+ ['👪','História familiar de DCV prematura','Homem &lt; 55 anos · Mulher &lt; 65 anos','Não modificável. Marca predisposição herdada.'],
+ ['🚬','Tabagismo','Modificável','Disfunção endotelial, protrombose, aceleração aterosclerótica.'],
+ ['🩸','Dislipidemia','LDL-c ≥ 100 · não-HDL ≥ 130 · HDL ≤ 40 (H) / ≤ 50 (M) · TG &gt; 150 mg/dL','Modificável. Substrato lipídico da placa.'],
+ ['⚖️','Obesidade','IMC ≥ 30 kg/m²','Modificável. Inflamação, resistência insulínica, sobrecarga.'],
+ ['🛋️','Sedentarismo','Modificável','Piora perfil metabólico e pressórico.'],
+];
+document.getElementById('fatoresGrid').innerHTML=FATORES.map(f=>`<div class="card slim"><div style="display:flex;gap:10px;align-items:flex-start"><span style="font-size:1.5rem">${f[0]}</span><div><h4 style="margin:0">${f[1]}</h4><div class="mono" style="font-size:.72rem;color:var(--azul);margin:2px 0 4px">${f[2]}</div><p style="margin:0;font-size:.84rem;color:var(--cinza)"><b>Por quê:</b> ${f[3]}</p></div></div></div>`).join('');
+
+/* ===================== MAPA CORPORAL (img 6, fonte 2020) ===================== */
+const ORGAOS={
+ cerebro:['🧠 Cérebro',['Alterações subclínicas quando previstas pela diretriz'],['AVE isquêmico · AIT · AVE hemorrágico'],'Neuroimagem, avaliação clínica','Confundir AIT (evento clínico) com achado subclínico incidental.'],
+ retina:['👁 Retina',['Retinopatia hipertensiva leve (cruzamentos AV, reflexo em fio de cobre/prata)'],['Retinopatia com hemorragias, exsudatos e papiledema'],'Fundoscopia','Tratar toda alteração de fundo como emergência — gravidade importa.'],
+ coracao:['❤️ Coração',['Hipertrofia ventricular esquerda (LOA)'],['DAC aguda/crônica · IAM · angina · ICFEp/ICFEr · FA'],'ECG, ecocardiograma','Chamar HVE de "doença estabelecida" — HVE é LOA, não evento clínico.'],
+ rins:['🫘 Rins',['Albuminúria · queda de TFG estimada (DRC estágio 3 conta na matriz)'],['DRC estágios 4 e 5 (muito alto risco)'],'TFG estimada + relação albumina/creatinina','Achar que creatinina normal exclui dano renal — avalie TFG e albuminúria.'],
+ aorta:['🩸 Aorta',['Rigidez arterial · doença subclínica'],['Aneurismas · úlceras · hematomas intramurais'],'Imagem vascular','Ignorar a aorta na busca por doença estabelecida.'],
+ perif:['🦵 Artérias periféricas',['Placas/alterações subclínicas · ITB alterado'],['Doença arterial obstrutiva periférica sintomática'],'ITB, Doppler','Só considerar DAOP quando sintomática — a definição de doença clínica exige sintoma.'],
+};
+document.querySelectorAll('.organ').forEach(o=>o.onclick=()=>{
+  document.querySelectorAll('.organ').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');
+  const d=ORGAOS[o.dataset.org];
+  document.getElementById('organInfo').innerHTML=`<h3>${d[0]}</h3>
+   <div style="font-size:.86rem"><span class="pill p-mod">Lesão subclínica / LOA</span><ul style="margin:6px 0">${d[1].map(x=>`<li>${x}</li>`).join('')}</ul>
+   <span class="pill p-alto">Doença manifesta</span><ul style="margin:6px 0">${d[2].map(x=>`<li>${x}</li>`).join('')}</ul>
+   <p style="margin:6px 0 2px"><b>Exames:</b> ${d[3]}</p>
+   <p style="margin:0;color:var(--alto)"><b>⚠ Erro frequente:</b> ${d[4]}</p></div>`;
+  beep('mod');
+});
+
+/* ===================== DRAG & DROP TRÍADE ===================== */
+const DD_ITENS=[
+ ['Tabagismo','fator'],['Hipertrofia ventricular esquerda','loa'],['Infarto prévio','doenca'],
+ ['Albuminúria','loa'],['Escore de cálcio coronariano','refinador'],['AVE isquêmico prévio','doenca'],
+ ['Idade &gt; 55 anos (homem)','fator'],['"PREVENT 8%" sem horizonte','insuf'],['Lp(a)','refinador'],['Obesidade','fator'],
+];
+const DD_ZONAS=[['fator','Fator de risco'],['loa','Lesão de órgão-alvo'],['doenca','Doença estabelecida'],['refinador','Refinador'],['insuf','Informação insuficiente']];
+let ddSel=null;
+function ddClearSel(){document.querySelectorAll('.dd-item.sel').forEach(x=>x.classList.remove('sel'));ddSel=null;}
+function ddSelect(item){
+  if(ddSel===item){ddClearSel();return;}
+  ddClearSel();item.classList.add('sel');ddSel=item;
+}
+function ddPlace(item,zone){
+  if(!item)return;
+  const ok=item.dataset.cat===zone.dataset.cat;
+  item.classList.remove('errado','sel');
+  item.classList.toggle('correto',ok);
+  if(!ok){item.classList.add('errado');beep('err');}else beep('ok');
+  zone.querySelector('.in').appendChild(item);
+  ddSel=null;ddCheck();
+}
+function ddReset(){
+  const pool=document.getElementById('ddPool');pool.innerHTML='';ddSel=null;
+  document.getElementById('ddScore').textContent='';
+  DD_ITENS.map((it,i)=>({it,i})).sort(()=>Math.random()-.5).forEach(({it,i})=>{
+    const d=el('div','dd-item',it[0]);d.draggable=true;d.dataset.cat=it[1];d.dataset.id=i;
+    d.ondragstart=e=>e.dataTransfer.setData('id',i);
+    d.onclick=e=>{e.stopPropagation();ddSelect(d);};   /* toque: seleciona */
+    pool.appendChild(d);
+  });
+  document.getElementById('ddZones').innerHTML=DD_ZONAS.map(z=>`<div class="dd-zone" data-cat="${z[0]}"><h5>${z[1]}</h5><div class="in"></div></div>`).join('');
+  document.querySelectorAll('.dd-zone').forEach(z=>{
+    z.ondragover=e=>{e.preventDefault();z.classList.add('over');};
+    z.ondragleave=()=>z.classList.remove('over');
+    z.ondrop=e=>{e.preventDefault();z.classList.remove('over');
+      ddPlace(document.querySelector(`.dd-item[data-id="${e.dataTransfer.getData('id')}"]`),z);};
+    z.onclick=()=>{if(ddSel)ddPlace(ddSel,z);};   /* toque: solta na categoria */
+  });
+}
+function ddCheck(){
+  const total=DD_ITENS.length,ok=document.querySelectorAll('.dd-item.correto').length;
+  document.getElementById('ddScore').textContent=`${ok}/${total} corretos`;
+}
+ddReset();
+
+/* ===================== EIXO CARDIORRENAL ===================== */
+const RAIZES=['Hipertensão','Glicemia','Adiposidade','Tabagismo','Dislipidemia','Função renal','Inflamação','Idade','Fatores sociais'];
+const TRONCO=['Disfunção endotelial','Remodelamento','Aterosclerose','Rigidez vascular','Lesão microvascular','Ativação neuro-hormonal'];
+const GALHOS=['Doença coronariana','AVC','Insuficiência cardíaca','DRC','DAOP','Doença aórtica','Morte CV'];
+/* mapa didático raiz->tronco e galho->raízes */
+const R2T={Hipertensão:['Remodelamento','Rigidez vascular','Disfunção endotelial'],Glicemia:['Disfunção endotelial','Aterosclerose','Lesão microvascular'],Adiposidade:['Inflamação'.replace('Inflamação','Disfunção endotelial'),'Ativação neuro-hormonal'],Tabagismo:['Disfunção endotelial','Aterosclerose'],Dislipidemia:['Aterosclerose'],'Função renal':['Ativação neuro-hormonal','Lesão microvascular'],Inflamação:['Disfunção endotelial','Aterosclerose'],Idade:['Rigidez vascular'],'Fatores sociais':['Disfunção endotelial']};
+const G2R={'Doença coronariana':['Dislipidemia','Hipertensão','Tabagismo','Glicemia'],AVC:['Hipertensão','Tabagismo','Glicemia'],'Insuficiência cardíaca':['Hipertensão','Glicemia','Função renal'],DRC:['Hipertensão','Glicemia','Função renal'],DAOP:['Tabagismo','Dislipidemia','Glicemia'],'Doença aórtica':['Hipertensão','Idade'],'Morte CV':['Hipertensão','Glicemia','Função renal','Idade']};
+function renderArvore(){
+  document.getElementById('raizes').innerHTML=RAIZES.map(r=>`<span class="chip raiz" data-r="${r}" onclick="litRaiz('${r}')">${r}</span>`).join('');
+  document.getElementById('tronco').innerHTML=TRONCO.map(t=>`<span class="chip tronco" data-t="${t}">${t}</span>`).join('');
+  document.getElementById('galhos').innerHTML=GALHOS.map(g=>`<span class="chip galho" data-g="${g}" onclick="litGalho('${g}')">${g}</span>`).join('');
+}
+function clearLit(){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('lit','dim'));}
+function litRaiz(r){clearLit();document.querySelector(`[data-r="${r}"]`).classList.add('lit');
+  const t=R2T[r]||[];document.querySelectorAll('[data-t]').forEach(c=>c.classList.toggle('lit',t.includes(c.dataset.t)));
+  document.querySelectorAll('[data-g]').forEach(c=>c.classList.add('dim'));beep('mod');}
+function litGalho(g){clearLit();document.querySelector(`[data-g="${g}"]`).classList.add('lit');
+  const rs=G2R[g]||[];document.querySelectorAll('[data-r]').forEach(c=>c.classList.toggle('lit',rs.includes(c.dataset.r)));
+  document.querySelectorAll('[data-r]:not(.lit)').forEach(c=>c.classList.add('dim'));beep('mod');}
+renderArvore();
+
+/* ===================== ALGORITMO (img 3) ===================== */
+const ETAPA1=['Doença cardiovascular manifesta?','Diabetes mellitus?','Doença renal crônica?','Hipercolesterolemia familiar?','Lesão de órgão-alvo?'];
+function renderEtapa1(){
+  document.getElementById('etapa1').innerHTML=ETAPA1.map((q,i)=>`<div class="algo-q"><span class="qt">${q}</span><span class="yn"><button class="btn btn-ghost btn-sm" onclick="e1(${i},1,this)">Sim</button><button class="btn btn-ghost btn-sm" onclick="e1(${i},0,this)">Não</button></span></div>`).join('');
+}
+let e1st={};
+function e1(i,v,btn){
+  e1st[i]=v;btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('btn-navy'));btn.classList.add('btn-navy');btn.classList.remove('btn-ghost');
+  const anySim=Object.values(e1st).some(x=>x===1);
+  const todasNao=ETAPA1.every((_,idx)=>e1st[idx]===0);
+  document.getElementById('r1').classList.toggle('show',anySim);
+  if(anySim){beep('alto');document.getElementById('cardEtapa2').style.opacity=.4;document.getElementById('cardEtapa2').style.pointerEvents='none';}
+  if(todasNao){document.getElementById('r1').classList.remove('show');const c=document.getElementById('cardEtapa2');c.style.opacity=1;c.style.pointerEvents='auto';beep('mod');}
+}
+renderEtapa1();
+const ETAPA2=['Idade entre 30–79 anos?','Ausência de DCV estabelecida (prevenção primária)?','Variáveis obrigatórias disponíveis?','Objetivo é estimar risco (não confirmar doença)?'];
+document.getElementById('etapa2').innerHTML=ETAPA2.map((q,i)=>`<div class="algo-q"><span class="qt">${q}</span><span class="yn"><button class="btn btn-ghost btn-sm" onclick="e2(${i},1,this)">Sim</button><button class="btn btn-ghost btn-sm" onclick="e2(${i},0,this)">Não</button></span></div>`).join('');
+let e2st={};
+function e2(i,v,btn){e2st[i]=v;btn.parentElement.querySelectorAll('button').forEach(b=>{b.classList.add('btn-ghost');b.classList.remove('btn-navy');});btn.classList.add('btn-navy');btn.classList.remove('btn-ghost');
+  const done=ETAPA2.every((_,idx)=>e2st[idx]!==undefined);
+  if(!done)return;
+  const aplica=ETAPA2.every((_,idx)=>e2st[idx]===1);
+  document.getElementById('r2').classList.toggle('show',aplica);
+  document.getElementById('r2no').classList.toggle('show',!aplica);
+  beep(aplica?'mod':'alto');
+}
+
+/* ===================== PREVENT VARIÁVEIS (img 2) ===================== */
+const PVARS=[['Sexo','Male / Female'],['Idade','30–79 anos'],['PAS','90–200 mmHg'],['Colesterol total','130–320 mg/dL'],['HDL','20–100 mg/dL'],['TFG estimada','15–140 mL/min/1,73m²'],['IMC','18,5–39,9 kg/m²'],['Diabetes','história de diabetes'],['Tabagismo atual','cigarro nos últimos 30 dias'],['Anti-hipertensivo','uso atual'],['Hipolipemiante','uso atual de estatina']];
+document.getElementById('preventVars').innerHTML=PVARS.map(v=>`<div class="card slim" style="margin:0"><b style="font-size:.9rem">${v[0]}</b><div class="mono" style="font-size:.72rem;color:var(--azul);margin-top:2px">${v[1]}</div></div>`).join('');
+
+const FALTAS=[
+ {ficha:'♂ 58a · PAS 148 · CT 210 · HDL 44 · IMC 27 · DM não · tabagista não · anti-HAS sim',falta:'TFG estimada',opts:['TFG estimada','Sexo','Idade','IMC']},
+ {ficha:'♀ 63a · TFG 72 · CT 190 · HDL 55 · IMC 24 · DM não · tabagista não',falta:'PAS',opts:['PAS','HDL','TFG estimada','Colesterol total']},
+ {ficha:'♂ 45a · PAS 152 · HDL 38 · TFG 90 · IMC 31 · DM sim · tabagista sim',falta:'Colesterol total',opts:['Colesterol total','Diabetes','Tabagismo','IMC']},
+];
+let faltaI=0;
+function renderFalta(){
+  const f=FALTAS[faltaI];
+  document.getElementById('faltaBox').innerHTML=`<div class="card slim" style="background:var(--bg)"><div class="mono" style="font-size:.82rem">${f.ficha}</div></div>
+   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">${f.opts.map(o=>`<button class="btn btn-ghost btn-sm" onclick="chkFalta('${o}',this)">${o}</button>`).join('')}</div>
+   <div id="faltaFb" style="margin-top:8px;font-size:.85rem"></div>`;
+}
+function chkFalta(o,btn){
+  const f=FALTAS[faltaI],ok=o===f.falta;
+  document.getElementById('faltaFb').innerHTML=ok?`<span class="pill p-baixo">Correto</span> Sem <b>${f.falta}</b>, a equação não pode ser calculada — é variável obrigatória.`:`<span class="pill p-alto">Não</span> A ausente é <b>${f.falta}</b>. Sem ela, não há como calcular.`;
+  beep(ok?'ok':'err');
+  setTimeout(()=>{faltaI=(faltaI+1)%FALTAS.length;renderFalta();},1600);
+}
+renderFalta();
+
+/* ===================== RELÓGIOS 10x30 ===================== */
+function atualizaRelogio(idade){
+  document.getElementById('idadeVal').textContent=idade;
+  idade=+idade;
+  const r10=idade<50?'baixo':idade<60?'intermediário':'elevado';
+  const cor10=idade<50?'var(--baixo)':idade<60?'var(--elevado)':'var(--alto)';
+  document.getElementById('rel10').textContent=r10;document.getElementById('rel10').style.color=cor10;
+  document.getElementById('rel30').textContent=idade<60?'elevado':'muito elevado';
+  document.getElementById('relTexto').innerHTML=idade<50
+    ? 'Aos '+idade+' anos, o risco de <b>10 anos permanece baixo</b> — dominado pela idade. Mas a trajetória de 30 anos já é desfavorável. <b>Não tranquilize o jovem só pelo horizonte curto.</b>'
+    : idade<60 ? 'Aos '+idade+' anos o risco de curto prazo sobe; a carga acumulada de 30 anos torna-se evidente.'
+    : 'Aos '+idade+' anos, curto e longo prazo convergem — a janela de prevenção primordial já se estreitou.';
+}
+atualizaRelogio(35);
+
+/* ===================== PREVENT-AGE ESPELHO ===================== */
+const AGE_FAT=[['🚬 Tabagismo',6],['🩸 Dislipidemia',5],['⚖️ Obesidade',3],['🛋️ Sedentarismo',2]];
+let ageRemovidos=[];
+function renderAgeFat(){
+  document.getElementById('ageFatores').innerHTML=AGE_FAT.map((f,i)=>`<button class="btn ${ageRemovidos.includes(i)?'btn-ghost':'btn-navy'} btn-sm" onclick="toggleAge(${i})">${ageRemovidos.includes(i)?'+ ':'− '}${f[0]}</button>`).join('');
+  const reduc=ageRemovidos.reduce((s,i)=>s+AGE_FAT[i][1],0);
+  const base=58,novo=Math.max(43,base-reduc);
+  document.getElementById('preventAgeNum').textContent=novo;
+  document.getElementById('ageTexto').innerHTML=reduc?`Removendo fatores modificáveis, a idade do perfil de risco recua conceitualmente para ~<b>${novo}</b> anos. <span style="color:var(--cinza)">(ilustração — sem cálculo real de anos)</span>`:'Idade do perfil de risco no cenário base: 58 anos (cronológica 42).';
+}
+function toggleAge(i){ageRemovidos.includes(i)?ageRemovidos=ageRemovidos.filter(x=>x!==i):ageRemovidos.push(i);renderAgeFat();beep('mod');}
+renderAgeFat();
+
+/* ===================== MATRIZ (img 8, HAS 2025) ===================== */
+const M_ROWS=[
+ ['Sem fatores de risco CV',['baixo','baixo','mod','alto']],
+ ['1 ou 2 fatores de risco CV',['baixo','mod','alto','alto']],
+ ['≥ 3 fatores de risco CV',['mod','alto','alto','alto']],
+ ['LOA, DRC Estágio 3 ou DM',['alto','alto','alto','muito']],
+ ['DCV estabelecida ou DRC Estágio ≥ 4',['muito','muito','muito','muito']],
+];
+const M_COLS=['PAS 130–139 / PAD 80–89','Estágio 1','Estágio 2','Estágio 3'];
+const M_CLS={baixo:'m-baixo',mod:'m-mod',alto:'m-alto',muito:'m-muito'};
+const M_LBL={baixo:'RISCO BAIXO',mod:'RISCO MODERADO',alto:'RISCO ALTO',muito:'RISCO MUITO ALTO'};
+function renderMatriz(){
+  document.getElementById('matrizBody').innerHTML=M_ROWS.map((r,ri)=>`<tr><td class="rowh">${r[0]}</td>${r[1].map((c,ci)=>`<td class="cell ${M_CLS[c]}" data-r="${ri}" data-c="${ci}" onclick="selCell(${ri},${ci})">${M_LBL[c]}</td>`).join('')}</tr>`).join('');
+}
+function selCell(ri,ci){
+  document.querySelectorAll('#tabMatriz td.cell').forEach(t=>t.classList.remove('sel'));
+  document.querySelector(`td[data-r="${ri}"][data-c="${ci}"]`).classList.add('sel');
+  const cat=M_ROWS[ri][1][ci];
+  let viz='';
+  if(ci>0){const vc=M_ROWS[ri][1][ci-1];if(vc!==cat)viz+=`À esquerda (PA menor) seria <b>${M_LBL[vc]}</b>: reduzir o estágio pressórico rebaixa a categoria.`;}
+  if(ri>0){const vr=M_ROWS[ri-1][1][ci];if(vr!==cat)viz+=(viz?' ':'')+`Acima (perfil clínico mais leve) seria <b>${M_LBL[vr]}</b>: a presença de ${M_ROWS[ri][0].toLowerCase()} elevou a categoria.`;}
+  document.getElementById('matrizOut').innerHTML=`<div class="card slim ${M_CLS[cat]}" style="border:none"><b>${M_LBL[cat]}</b> — PA: ${M_COLS[ci]} · Perfil: ${M_ROWS[ri][0]}</div>
+   <p style="font-size:.86rem;margin-top:8px"><b>Dados decisivos:</b> nível de PA (${M_COLS[ci]}) e perfil clínico (${M_ROWS[ri][0]}).</p>
+   ${viz?`<div class="conferir" style="border-style:solid">Por que não a categoria vizinha? ${viz}</div>`:''}
+   ${ri>=3?'<p style="font-size:.84rem;color:var(--alto)"><b>Atenção:</b> LOA/DRC3/DM e sobretudo DCV/DRC≥4 puxam o risco independentemente de o estágio pressórico ser baixo. Uma condição de alto risco substitui o cálculo.</p>':''}`;
+  beep('mod');
+}
+renderMatriz();
+
+/* ===================== NÃO MISTURE OS MAPAS ===================== */
+const MAPAS=[
+ ['PREVENT','Ferramenta de estimativa de risco (família de equações da AHA).','p-azul'],
+ ['Matriz de risco da HAS','Integra PA, fatores, LOA e doenças (diretriz brasileira 2025).','p-azul'],
+ ['Condição automática de alto risco','DCV, DM, DRC, hipercolesterolemia familiar, LOA — pode dispensar cálculo.','p-alto'],
+ ['Prevenção primária','Ausência de DCV clínica estabelecida.','p-baixo'],
+ ['Prevenção secundária','Presença de DCV estabelecida.','p-alto'],
+ ['Refinadores de risco','Ajudam em situações selecionadas (CAC, BNP, troponina us, Lp(a)).','p-azul'],
+ ['Metas terapêuticas','Consequência da estratificação — não são a ferramenta de risco.','p-mod'],
+];
+document.getElementById('mapasCards').innerHTML=MAPAS.map((m,i)=>`<div class="card slim"><span class="pill ${m[2]}">${i+1}</span> <b>${m[0]}</b><p style="font-size:.83rem;color:var(--cinza);margin:6px 0 0">${m[1]}</p></div>`).join('');
+const MAPAS_Q=[
+ ['"Meta &lt; 130/80 mmHg com redução do risco CV e renal."','Metas terapêuticas'],
+ ['"Risco estimado ≥ 20% em 10 anos → alto risco."','PREVENT'],
+ ['"Paciente com IAM prévio já é alto risco, sem calcular."','Condição automática de alto risco'],
+ ['"CAC elevado pode reforçar a decisão em caso limítrofe."','Refinadores de risco'],
+ ['"PA estágio 2 + 1 fator → risco alto."','Matriz de risco da HAS'],
+];
+document.getElementById('mapasQuiz').innerHTML=MAPAS_Q.map((q,i)=>`<div class="algo-q"><span class="qt">${q[0]}</span></div><div style="display:flex;gap:6px;flex-wrap:wrap;margin:-4px 0 10px">${MAPAS.map(m=>`<button class="btn btn-ghost btn-sm" onclick="chkMapa(${i},'${m[0].replace(/'/g,"")}',this)">${m[0]}</button>`).join('')}</div>`).join('');
+function chkMapa(i,resp,btn){
+  const ok=resp===MAPAS_Q[i][1].replace(/'/g,'');
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'btn-navy':'btn-ghost');btn.style.borderColor=ok?'var(--baixo)':'var(--alto)';btn.style.background=ok?'var(--baixo-bg)':'var(--alto-bg)';
+  beep(ok?'ok':'err');
+}
+
+/* ===================== REFINADORES ===================== */
+const REFINA=[
+ ['CAC','Escore de cálcio coronariano','Carga de aterosclerose subclínica coronariana.','Não é exame obrigatório para todos; apoia decisão em risco limítrofe/intermediário.'],
+ ['Albuminúria (UACR)','Relação albumina/creatinina','Lesão renal/vascular precoce.','Também é LOA; no PREVENT entra como preditor opcional.'],
+ ['HbA1c','Hemoglobina glicada','Controle glicêmico e disglicemia.','Preditor opcional do PREVENT em situações indicadas.'],
+ ['Lp(a)','Lipoproteína(a)','Componente lipídico hereditário aterogênico.','Pode reforçar decisão; não reclassifica sozinho.'],
+ ['BNP / peptídeos natriuréticos','Estresse/sobrecarga cardíaca','Risco de insuficiência cardíaca.','Agravante em casos selecionados.'],
+ ['Troponina us','Troponina ultrassensível','Injúria miocárdica subclínica.','Agravante em casos selecionados; não confirma evento agudo isoladamente.'],
+];
+document.getElementById('refinaGrid').innerHTML=REFINA.map(r=>`<div class="card slim"><span class="pill p-azul">${r[0]}</span> <b>${r[1]}</b><p style="font-size:.83rem;margin:6px 0 2px"><b>Mede:</b> ${r[2]}</p><p style="font-size:.83rem;margin:0;color:var(--cinza)"><b>Limite:</b> ${r[3]}</p><p style="font-size:.8rem;margin:6px 0 0;color:var(--azul)">Pode apoiar o refinamento em casos selecionados.</p></div>`).join('');
+
+/* ===================== PALÁCIO ===================== */
+const PALACIO=[
+ ['🚪','1 · Portaria do Alto Risco','DCV, DM, DRC, hipercolesterolemia familiar, LOA — quem entra por aqui não precisa de cálculo.'],
+ ['🔬','2 · Laboratório PREVENT','Variáveis obrigatórias, desfechos CVD/ASCVD/HF, faixas de idade.'],
+ ['🩻','3 · Corredor dos órgãos-alvo','Coração, rim, retina, cérebro, aorta, artérias — subclínico vs. clínico.'],
+ ['🕙','4 · Relógio de 10 anos','Risco de curto prazo, dominado pela idade.'],
+ ['🕧','5 · Relógio de 30 anos','Risco acumulado — o alerta do jovem.'],
+ ['⚗️','6 · Câmara dos refinadores','CAC, BNP, troponina us, Lp(a), albuminúria, HbA1c.'],
+ ['🚪','7 · Sala da decisão','Integrar tudo: estágio, fatores, LOA, DM/DRC, DCV, contexto.'],
+];
+document.getElementById('palacioGrid').innerHTML=PALACIO.map(p=>`<div class="sala"><div class="porta">${p[0]}</div><h4>${p[1]}</h4><p>${p[2]}</p></div>`).join('');
+
+/* ===================== CASOS (20) ===================== */
+const CASOS=[
+ {nv:'basico',tit:'Jovem tabagista e obeso',ficha:{Idade:'38a',Sexo:'M',PA:'146×92',Metab:'IMC 33',Extra:'Tabagista · sem DM/DRC/DCV'},perg:'Como interpretar o baixo risco de 10 anos?',a:'primaria',b:'nao',fim:'Prevenção primária, sem condição automática de alto risco → PREVENT aplicável. Risco de 10 anos tende a baixo pela idade, mas a trajetória de 30 anos é desfavorável. Objetivo: diferenciar curto prazo de carga acumulada.',erro:'Tranquilizar pelo horizonte curto.',perola:'Baixo em 10 anos ≠ baixo na vida.'},
+ {nv:'basico',tit:'Mulher jovem, dois horizontes',ficha:{Idade:'41a',Sexo:'F',PA:'138×86',Metab:'CT 235 · HDL 46',Extra:'Sem DM/DRC/DCV'},perg:'O que muda entre 10 e 30 anos?',a:'primaria',b:'nao',fim:'PREVENT aplicável. Exemplo da aula: ASCVD 10 anos 3,2% × 30 anos 19,6%. O horizonte longo revela o risco que o curto esconde.',erro:'Olhar só o número de 10 anos.',perola:'Sempre pergunte o horizonte.'},
+ {nv:'basico',tit:'Infarto prévio',ficha:{Idade:'60a',Sexo:'M',PA:'150×90',Metab:'—',Extra:'IAM há 2 anos'},perg:'Deve-se calcular o PREVENT para saber se é alto risco?',a:'secundaria',b:'sim',fim:'DCV estabelecida → prevenção secundária → já é alto risco. PREVENT é para prevenção primária. Não use a calculadora para confirmar o óbvio.',erro:'Calcular PREVENT em paciente com IAM prévio.',perola:'Doença estabelecida dispensa cálculo de risco.'},
+ {nv:'basico',tit:'AVE prévio',ficha:{Idade:'66a',Sexo:'F',PA:'158×94',Metab:'—',Extra:'AVE isquêmico há 1 ano'},perg:'Qual a categoria de prevenção?',a:'secundaria',b:'sim',fim:'AVE isquêmico é DCV estabelecida → prevenção secundária → alto risco automático.',erro:'Tratar AVE como simples fator de risco.',perola:'AVE/AIT = doença estabelecida.'},
+ {nv:'basico',tit:'Insuficiência cardíaca',ficha:{Idade:'71a',Sexo:'M',PA:'140×84',Metab:'—',Extra:'ICFEr conhecida'},perg:'O cálculo decide se há doença clínica?',a:'secundaria',b:'sim',fim:'IC é doença cardiovascular clínica estabelecida. Não se usa cálculo para decidir se o paciente "tem ou não" a doença.',erro:'Usar score para definir presença de doença.',perola:'Diagnóstico clínico não sai da calculadora.'},
+ {nv:'inter',tit:'TFG preservada, albuminúria alta',ficha:{Idade:'55a',Sexo:'M',PA:'144×88',Metab:'TFG 88',Extra:'UACR 320 mg/g'},perg:'Como classificar?',a:'primaria',b:'sim',fim:'Albuminúria elevada é lesão renal (LOA) mesmo com TFG normal. Na matriz, LOA eleva a categoria. Condição relevante para risco.',erro:'Ignorar albuminúria por TFG normal.',perola:'Rim se avalia por TFG E albuminúria.'},
+ {nv:'inter',tit:'Creatinina "normal", TFG reduzida',ficha:{Idade:'78a',Sexo:'F',PA:'150×82',Metab:'Cr 1,1 · TFG 48',Extra:'—'},perg:'Creatinina normal exclui dano renal?',a:'primaria',b:'sim',fim:'Não. Creatinina isolada engana no idoso. TFG 48 indica DRC estágio 3 — entra na matriz como condição que eleva o risco.',erro:'Interpretar creatinina isoladamente.',perola:'Creatinina normal ≠ função renal normal.'},
+ {nv:'inter',tit:'Mesma PA, riscos opostos',ficha:{Idade:'A: 35a / B: 62a',Sexo:'—',PA:'160×100 (ambos)',Metab:'—',Extra:'A: sem fatores · B: DM+HVE+tabagismo'},perg:'PA estágio 2 igual — risco igual?',a:'primaria',b:'nao',fim:'A PA (estágio 2) é a mesma, mas o risco não. Estágio pressórico não é risco global — a matriz integra fatores, LOA, DM, DRC e DCV.',erro:'Classificar risco só pelo número da PA.',perola:'Estágio da PA ≠ risco cardiovascular.'},
+ {nv:'inter',tit:'HVE isolada',ficha:{Idade:'59a',Sexo:'M',PA:'146×90',Metab:'—',Extra:'HVE ao ECO, sem outros achados'},perg:'HVE é fator, LOA ou doença?',a:'primaria',b:'sim',fim:'HVE é lesão de órgão-alvo (não doença clínica estabelecida). Na matriz, linha "LOA, DRC estágio 3 ou DM" → risco alto.',erro:'Chamar HVE de doença estabelecida.',perola:'HVE = LOA, não evento.'},
+ {nv:'inter',tit:'Retinopatia grave',ficha:{Idade:'52a',Sexo:'F',PA:'176×108',Metab:'—',Extra:'Hemorragias, exsudatos e papiledema'},perg:'Achado leve ou lesão grave?',a:'primaria',b:'sim',fim:'Retinopatia com hemorragias, exsudatos e papiledema é condição relevante (definição 2020) — muito diferente de cruzamentos AV leves. A gravidade define a conduta.',erro:'Igualar retinopatia leve e grave.',perola:'Papiledema muda o jogo.'},
+ {nv:'inter',tit:'DRC estágio 3',ficha:{Idade:'64a',Sexo:'M',PA:'150×92',Metab:'TFG 42',Extra:'2 fatores de risco'},perg:'Onde entra na matriz?',a:'primaria',b:'sim',fim:'DRC estágio 3 está na linha "LOA, DRC estágio 3 ou DM" → risco alto na maioria das faixas de PA.',erro:'Somar DRC como "mais um fator".',perola:'DRC3 tem linha própria na matriz.'},
+ {nv:'inter',tit:'DRC estágio 4',ficha:{Idade:'69a',Sexo:'F',PA:'138×84',Metab:'TFG 22',Extra:'—'},perg:'Qual categoria?',a:'primaria',b:'sim',fim:'DRC estágio ≥4 → linha "DCV estabelecida ou DRC estágio ≥4" → risco muito alto em qualquer faixa de PA.',erro:'Achar que PA baixa protege o DRC4.',perola:'DRC≥4 = muito alto risco.'},
+ {nv:'avanc',tit:'Idoso de 82 anos',ficha:{Idade:'82a',Sexo:'M',PA:'156×86',Metab:'TFG 60',Extra:'—'},perg:'PREVENT é aplicável?',a:'primaria',b:'nao',fim:'82 anos está fora da faixa etária do PREVENT (30–79). Não extrapole automaticamente; use a matriz e o julgamento clínico. Considere fragilidade e metas individualizadas.',erro:'Aplicar PREVENT fora da faixa etária.',perola:'Faixa etária limita o cálculo.'},
+ {nv:'avanc',tit:'Paciente de 27 anos',ficha:{Idade:'27a',Sexo:'M',PA:'142×90',Metab:'—',Extra:'—'},perg:'O que fazer?',a:'primaria',b:'nao',fim:'27 anos está abaixo da faixa aplicável (30–79). PREVENT não contempla. Foco em prevenção primordial/primária e trajetória.',erro:'Extrapolar o PREVENT para <30 anos.',perola:'Jovem demais para a equação — não para a prevenção.'},
+ {nv:'avanc',tit:'Sem TFG disponível',ficha:{Idade:'54a',Sexo:'F',PA:'150×90',Metab:'CT 220 · HDL 50',Extra:'TFG ausente'},perg:'Pode calcular?',a:'primaria',b:'nao',fim:'TFG estimada é variável obrigatória. Sem ela, o cálculo não pode ser feito. Solicite o dado antes.',erro:'Inventar/estimar por falta de dado.',perola:'Falta variável obrigatória → não calcula.'},
+ {nv:'avanc',tit:'PREVENT sem desfecho',ficha:{Idade:'57a',Sexo:'M',PA:'—',Metab:'—',Extra:'Resultado "PREVENT = 12%"'},perg:'O que exigir?',a:'primaria',b:'nao',fim:'"12%" não diz nada sem desfecho. Exija: CVD, ASCVD ou HF? E o horizonte?',erro:'Aceitar resultado sem desfecho.',perola:'Sempre pergunte: qual desfecho?'},
+ {nv:'avanc',tit:'Resultado "8%" sem horizonte',ficha:{Idade:'49a',Sexo:'F',PA:'—',Metab:'—',Extra:'Resultado "ASCVD 8%"'},perg:'Falta o quê?',a:'primaria',b:'nao',fim:'ASCVD 8% em 10 anos ou em 30 anos? A interpretação muda completamente. Exija o horizonte.',erro:'Interpretar sem o horizonte temporal.',perola:'10 ou 30 anos — nunca omita.'},
+ {nv:'chefe',tit:'Risco calculado baixo, CAC muito alto',ficha:{Idade:'56a',Sexo:'M',PA:'138×84',Metab:'CT 200 · HDL 48 · TFG 85',Extra:'CAC 600'},perg:'Como decidir?',a:'primaria',b:'sim',fim:'PREVENT aplicável e possivelmente baixo/limítrofe, mas o CAC muito elevado é agravante em caso selecionado — reforça a decisão. O refinador contextualiza; não substitui o julgamento.',erro:'Ignorar CAC alto por score baixo.',perola:'Refinador ajuda no limítrofe.'},
+ {nv:'chefe',tit:'Diabetes sem LOA',ficha:{Idade:'58a',Sexo:'F',PA:'150×92',Metab:'HbA1c 8,1',Extra:'DM sem LOA/DCV'},perg:'Onde o DM entra?',a:'primaria',b:'sim',fim:'Na Etapa 1, o diabetes é condição de alto risco automático (algoritmo 2025). Na matriz, "DM" está na linha "LOA, DRC estágio 3 ou DM" → risco alto. Não é preciso calcular para "descobrir" o risco.',erro:'Calcular PREVENT para "confirmar" risco em DM.',perola:'DM já entra como condição de alto risco.'},
+ {nv:'chefe',tit:'Múltiplas condições simultâneas',ficha:{Idade:'67a',Sexo:'M',PA:'168×100',Metab:'TFG 38',Extra:'IAM prévio + albuminúria + HVE'},perg:'Como concluir?',a:'secundaria',b:'sim',fim:'Reconheça a condição dominante: DCV estabelecida (IAM) → prevenção secundária → alto/muito alto risco. Não some categorias mecanicamente — a condição de maior peso governa.',erro:'Somar categorias aritmeticamente.',perola:'A condição dominante manda.'},
+];
+let casoI=0,casoFiltro='todos';
+ST.casosVistos=ST.casosVistos||[];
+function renderCasoFiltros(){
+  const nvs=[['todos','Todos'],['basico','Básicos'],['inter','Intermediários'],['avanc','Avançados'],['chefe','Chefes finais']];
+  document.getElementById('casoFiltros').innerHTML=nvs.map(n=>`<button class="btn ${casoFiltro===n[0]?'btn-navy':'btn-ghost'} btn-sm" onclick="filtraCaso('${n[0]}')">${n[1]}</button>`).join('');
+}
+function casosFiltrados(){return CASOS.map((c,i)=>({c,i})).filter(x=>casoFiltro==='todos'||x.c.nv===casoFiltro);}
+function filtraCaso(f){casoFiltro=f;casoI=0;renderCasoFiltros();renderCaso();}
+const NVL={basico:['nv-basico','Básico'],inter:['nv-inter','Intermediário'],avanc:['nv-avanc','Avançado'],chefe:['nv-chefe','Chefe final']};
+function renderCaso(){
+  const arr=casosFiltrados();if(!arr.length)return;
+  const {c,i}=arr[Math.min(casoI,arr.length-1)];
+  if(!ST.casosVistos.includes(i)){ST.casosVistos.push(i);save();}
+  document.getElementById('casoPos').textContent=`${casoI+1} / ${arr.length}`;
+  document.getElementById('casoBox').innerHTML=`<div class="caso">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">${c.tit}</h3><span class="nivel-tag ${NVL[c.nv][0]}">${NVL[c.nv][1]}</span></div>
+    <div class="ficha">${Object.entries(c.ficha).map(([k,v])=>`<div><b>${k}</b>${v}</div>`).join('')}</div>
+    <p style="font-weight:700">${c.perg}</p>
+    <div class="etapas5">
+      <div class="etapa5"><div class="lbl">A · Prevenção primária ou secundária?</div><span class="op" onclick="pickEtapa(this,'${c.a}','primaria')">Primária</span><span class="op" onclick="pickEtapa(this,'${c.a}','secundaria')">Secundária</span></div>
+      <div class="etapa5"><div class="lbl">B · Existe condição que já eleva o risco?</div><span class="op" onclick="pickEtapa(this,'${c.b}','sim')">Sim</span><span class="op" onclick="pickEtapa(this,'${c.b}','nao')">Não</span></div>
+      <div class="etapa5"><div class="lbl">C · O PREVENT é aplicável?</div><span class="op" onclick="this.parentElement.querySelectorAll('.op').forEach(o=>o.classList.remove('pick'));this.classList.add('pick')">Sim</span><span class="op" onclick="this.parentElement.querySelectorAll('.op').forEach(o=>o.classList.remove('pick'));this.classList.add('pick')">Não</span></div>
+      <div class="etapa5"><div class="lbl">D · Qual informação complementar é necessária?</div><span style="font-size:.82rem;color:var(--cinza)">Reflita antes de revelar.</span></div>
+    </div>
+    <button class="btn btn-primary prof-hide-trigger" onclick="revelaCaso(this)">Revelar conclusão (Etapa E)</button>
+    <div class="caso-final"><b>Conclusão:</b> ${c.fim}<p style="margin:8px 0 0;color:var(--alto)"><b>⚠ Erro mais provável:</b> ${c.erro}</p><p style="margin:4px 0 0;color:var(--baixo)"><b>💎 Pérola de prova:</b> ${c.perola}</p></div>
+  </div>`;
+}
+function pickEtapa(elp,correct,val){elp.parentElement.querySelectorAll('.op').forEach(o=>o.classList.remove('pick'));elp.classList.add('pick');const ok=val===correct;elp.style.borderColor=ok?'var(--baixo)':'var(--alto)';beep(ok?'ok':'err');}
+function revelaCaso(btn){btn.nextElementSibling.classList.add('show');beep('mod');}
+function navCaso(d){const arr=casosFiltrados();casoI=(casoI+d+arr.length)%arr.length;renderCaso();}
+renderCasoFiltros();
+
+/* ===================== CALCULAR OU NÃO ===================== */
+const DECISOES=[
+ ['Homem 40a, hipertenso, sem DM/DRC/DCV, dados completos.','calcular','PREVENT aplicável — prevenção primária, faixa etária, dados presentes.'],
+ ['Mulher 58a com IAM há 3 anos.','secundaria','Prevenção secundária — já é alto risco, não calcule.'],
+ ['Homem 84a hipertenso.','idade','Fora da faixa (30–79). Não extrapole.'],
+ ['Mulher 50a, PREVENT sem TFG.','dados','Falta variável obrigatória. Sem TFG, não calcula.'],
+ ['Homem 62a com DM e HVE.','condicao','DM/LOA já é condição de alto risco — estratifique direto.'],
+ ['Mulher 45a, PA estágio 2, 1 fator, sem LOA/DCV.','matriz','Use a matriz para integrar PA e perfil.'],
+ ['Homem 55a hipertenso, sem exames de LOA feitos.','loa','Busque LOA antes de concluir a estratificação.'],
+ ['Mulher 66a com AVE prévio.','secundaria','DCV estabelecida — prevenção secundária.'],
+ ['Mulher 45a hipertensa, sem DM/DRC/DCV/LOA, todos os dados disponíveis.','calcular','Prevenção primária, sem condição automática — PREVENT aplicável, dados completos.'],
+ ['Homem 70a com angina crônica (DAC).','secundaria','DAC é DCV estabelecida — já é alto risco, não calcule.'],
+ ['Mulher 52a com DAOP sintomática.','secundaria','DAOP sintomática é doença cardiovascular estabelecida — prevenção secundária.'],
+ ['Mulher 28a hipertensa.','idade','Abaixo da faixa etária do PREVENT (30–79 anos). Não extrapole.'],
+ ['Homem 60a, PREVENT sem colesterol total.','dados','Colesterol total é variável obrigatória. Sem ela, não calcula.'],
+ ['Mulher 40a com hipercolesterolemia familiar.','condicao','Condição de alto risco automática na Etapa 1 — dispensa o cálculo.'],
+ ['Homem 50a com doença renal crônica.','condicao','DRC é condição de alto risco na Etapa 1 — estratifique direto, sem calcular.'],
+ ['Homem 58a, PA estágio 1, 2 fatores de risco, sem LOA/DCV.','matriz','Use a matriz para integrar o nível de PA com o perfil de fatores.'],
+ ['Mulher 62a hipertensa, sem fundoscopia nem ecocardiograma realizados.','loa','Busque LOA (retina, coração, rim) antes de concluir a estratificação.'],
+ ['Homem 48a hipertenso, sem DM/DRC/DCV/hipercolesterolemia familiar/LOA, dados completos.','calcular','Nenhuma condição de alto risco automática — siga para a Etapa 2 e calcule o PREVENT.'],
+ ['Mulher 75a com retinopatia hipertensiva grave (hemorragias e papiledema), sem DCV clínica.','condicao','LOA grave já é condição de alto risco na Etapa 1 — dispensa o cálculo.'],
+ ['Homem 42a, PREVENT sem IMC.','dados','IMC é variável obrigatória da calculadora. Sem ele, não calcula.'],
+];
+const DEC_OPTS=[['calcular','Calcular PREVENT'],['secundaria','Não calcular — prevenção secundária'],['idade','Não calcular — idade'],['dados','Não calcular — dados insuficientes'],['condicao','Estratificar por condição de alto risco'],['matriz','Usar matriz de risco'],['loa','Buscar LOA antes de concluir']];
+let decI=0;
+function renderDecisao(){
+  const d=DECISOES[decI];
+  document.getElementById('decPos').textContent=`${decI+1} / ${DECISOES.length}`;
+  document.getElementById('decisaoBox').innerHTML=`<div class="mini-decisao"><p style="font-weight:700;margin:0">${d[0]}</p>
+    <div class="opt-grid">${DEC_OPTS.map(o=>`<button onclick="chkDec('${o[0]}',this)">${o[1]}</button>`).join('')}</div>
+    <div id="decFb" style="margin-top:10px;font-size:.86rem"></div></div>`;
+}
+function chkDec(v,btn){
+  const d=DECISOES[decI],ok=v===d[1];
+  document.querySelectorAll('.opt-grid button').forEach(b=>b.disabled=true);
+  btn.classList.add(ok?'ok':'no');
+  document.getElementById('decFb').innerHTML=`<span class="pill ${ok?'p-baixo':'p-alto'}">${ok?'Correto':'Reveja'}</span> ${d[2]}`;
+  beep(ok?'ok':'err');
+}
+function navDecisao(){decI=(decI+1)%DECISOES.length;renderDecisao();}
+renderDecisao();
+
+/* ===================== LAB VARIÁVEIS ===================== */
+const LAB=[['Idade','anos',30,79,55],['PAS','mmHg',90,200,150],['Colesterol','mg/dL',130,320,210],['HDL','mg/dL',20,100,45],['IMC','kg/m²',18,40,28],['TFG','mL/min',15,140,80]];
+const LAB_BOOL=[['Tabagismo'],['Diabetes'],['Anti-hipertensivo'],['Hipolipemiante']];
+let labVals={};
+function renderLab(){
+  document.getElementById('labCtrl').innerHTML=LAB.map((l,i)=>{labVals[l[0]]=labVals[l[0]]??l[4];return `<div class="lab-row"><label>${l[0]} <b id="labv${i}">${labVals[l[0]]}</b> ${l[1]}</label><input type="range" min="${l[2]}" max="${l[3]}" value="${labVals[l[0]]}" oninput="labSet('${l[0]}',this.value,${i})"></div>`;}).join('')
+   +LAB_BOOL.map(b=>{labVals[b[0]]=labVals[b[0]]||false;return `<div class="lab-row"><label>${b[0]}</label><button class="btn btn-ghost btn-sm" onclick="labBool('${b[0]}',this)">${labVals[b[0]]?'Sim':'Não'}</button></div>`;}).join('');
+  atualizaEixos();
+}
+function labSet(k,v,i){labVals[k]=+v;document.getElementById('labv'+i).textContent=v;atualizaEixos();}
+function labBool(k,btn){labVals[k]=!labVals[k];btn.textContent=labVals[k]?'Sim':'Não';btn.classList.toggle('btn-navy',labVals[k]);btn.classList.toggle('btn-ghost',!labVals[k]);atualizaEixos();}
+function atualizaEixos(){
+  const press=(labVals.PAS-90)/110, lip=((labVals.Colesterol-130)/190 + (60-Math.min(60,labVals.HDL))/40)/2 + (labVals.Hipolipemiante?-.1:0);
+  const met=((labVals.IMC-18)/22 + (labVals.Diabetes?.5:0) + (labVals['HDL']<40?.2:0)), renal=(140-labVals.TFG)/125;
+  const eixos=[['Pressórico',press],['Lipídico',Math.max(0,lip)],['Metabólico',Math.min(1,met)],['Renal',renal]];
+  if(labVals.Tabagismo)eixos.forEach(e=>e[1]=Math.min(1,e[1]+.08));
+  document.getElementById('eixoStatus').innerHTML=eixos.map(e=>{
+    const lv=e[1]<.33?['baixo','var(--baixo)']:e[1]<.66?['moderado','var(--elevado)']:['elevado','var(--alto)'];
+    return `<div class="eixo" style="border-color:${lv[1]}"><div class="mono" style="font-size:.72rem;color:var(--cinza)">${e[0]}</div><div class="lv" style="color:${lv[1]}">${lv[0]}</div></div>`;
+  }).join('');
+}
+renderLab();
+
+/* ===================== SIMULADOR DE ERROS ===================== */
+const ERROS=[
+ ['Calculou PREVENT em paciente com IAM prévio.','Prevenção secundária: já é alto risco; PREVENT é para prevenção primária.'],
+ ['Chamou albuminúria de "simples fator de risco".','Albuminúria é lesão de órgão-alvo (dano renal), não apenas fator.'],
+ ['Usou apenas a creatinina para avaliar o rim.','Falta TFG estimada e albuminúria — creatinina engana no idoso.'],
+ ['Confundiu risco de 10 anos com risco vitalício.','Horizontes diferentes; baixo em 10 anos não exclui carga acumulada.'],
+ ['Informou "PREVENT 8%" sem desfecho.','Exija CVD, ASCVD ou HF — e o horizonte.'],
+ ['Aplicou o CEP norte-americano ao Brasil sem ressalva.','O Zip Code estima SDI dos EUA; não se transplanta automaticamente.'],
+ ['Misturou categorias de outra diretriz.','Faixas do PREVENT (ASCVD) ≠ categorias da matriz brasileira.'],
+ ['Classificou risco apenas pelo número da PA.','Estágio pressórico não é risco global; integre fatores/LOA/DCV.'],
+ ['Somou categorias de forma aritmética.','A condição dominante governa; não se somam categorias.'],
+ ['Tratou CAC como exame obrigatório para todos.','CAC é refinador em casos selecionados, não rastreio universal.'],
+ ['Ignorou o limite etário do PREVENT.','Aplicável a 30–79 anos; fora disso, julgamento clínico.'],
+ ['Inventou resultado por falta de dados.','Sem variável obrigatória, não se calcula — solicite o dado.'],
+ ['Considerou o score uma certeza individual.','É estimativa estatística, não destino individual.'],
+ ['Confundiu LOA com evento clínico.','HVE/albuminúria são LOA; IAM/AVE são doença estabelecida.'],
+ ['Concluiu baixo risco porque o paciente era jovem.','Idade baixa reduz risco de 10 anos, não a trajetória de vida.'],
+];
+document.getElementById('errosBox').innerHTML=ERROS.map((e,i)=>`<div class="erro-item" onclick="this.classList.toggle('marcado');beep('mod')"><span style="font-size:1.1rem">🔍</span><div><b>${e[0]}</b><div class="expl">✔ ${e[1]}</div></div></div>`).join('');
+
+/* ===================== ARENA TEC ===================== */
+const QUESTOES=[
+ {t:'conceito',nv:'B',s:'Qual a sequência central da estratificação de risco cardiovascular?',o:['Calcular → reconhecer → decidir → refinar','Reconhecer → calcular → refinar → decidir','Refinar → calcular → reconhecer → decidir','Decidir → refinar → reconhecer → calcular'],c:1,e:'Primeiro reconhecer condições de alto risco, depois calcular (quando aplicável), refinar em casos selecionados e por fim decidir.'},
+ {t:'conceito',nv:'B',s:'"A pressão arterial é uma fotografia; o risco cardiovascular é..."',o:['a mesma coisa','o filme inteiro','irrelevante','apenas a sistólica'],c:1,e:'A PA é uma dimensão pontual; o risco integra a trajetória cardiovascular completa.'},
+ {t:'conceito',nv:'B',s:'O que significa a sigla PREVENT?',o:['Prevention of Events','Predicting Risk of cardiovascular disease EVENTs','Pressure and Renal Events','Primary Vascular Events'],c:1,e:'PREVENT = Predicting Risk of cardiovascular disease EVENTs (AHA).'},
+ {t:'conceito',nv:'I',s:'Um paciente com risco de 10 anos baixo, jovem e com múltiplos fatores. A melhor conduta é:',o:['Tranquilizar — risco baixo','Considerar o risco de 30 anos e a carga acumulada','Iniciar prevenção secundária','Ignorar os fatores'],c:1,e:'Baixo risco de 10 anos pode subestimar a carga de longo prazo em jovens.'},
+ {t:'conceito',nv:'I',s:'A diferença entre lesão de órgão-alvo e doença cardiovascular estabelecida é:',o:['Nenhuma','LOA é dano subclínico; DCV estabelecida é doença/evento clínico','LOA é mais grave','DCV é sempre reversível'],c:1,e:'LOA (ex.: HVE, albuminúria) é subclínica; DCV estabelecida (IAM, AVE, IC) é clínica.'},
+ {t:'conceito',nv:'I',s:'Prevenção secundária caracteriza-se por:',o:['Ausência de fatores de risco','Presença de DCV estabelecida','Risco baixo em 10 anos','TFG normal'],c:1,e:'Prevenção secundária = já existe doença cardiovascular clínica estabelecida.'},
+ {t:'conceito',nv:'I',s:'Risco absoluto difere de risco relativo porque:',o:['São iguais','Absoluto = probabilidade real no horizonte; relativo = comparação com referência','Relativo é sempre maior','Absoluto ignora idade'],c:1,e:'O relativo pode ser alto mesmo com absoluto baixo (típico do jovem).'},
+ {t:'conceito',nv:'A',s:'Prevenção primordial refere-se a:',o:['Tratar DCV estabelecida','Evitar o surgimento dos próprios fatores de risco','Refinar com CAC','Calcular PREVENT'],c:1,e:'Primordial atua antes mesmo do fator de risco aparecer.'},
+ {t:'conceito',nv:'B',s:'No contínuo cardiovascular, o que vem imediatamente antes da DCV clínica?',o:['Predisposição','Lesão de órgão-alvo','Recorrência','Evento CV'],c:1,e:'Predisposição → fatores → disfunção endotelial → LOA → DCV clínica → evento → recorrência.'},
+ {t:'conceito',nv:'A',s:'"Idade cardiovascular estimada" (PREVENT-Age) deve ser interpretada como:',o:['A idade real do coração','Ferramenta comunicacional de risco','Um diagnóstico','Substituto do exame físico'],c:1,e:'É recurso de comunicação; o coração não tem literalmente essa idade.'},
+
+ {t:'matriz',nv:'B',s:'Na matriz 2025, paciente "sem fatores de risco CV" com PA estágio 1 (140–159/90–99) tem risco:',o:['Baixo','Moderado','Alto','Muito alto'],c:0,e:'Linha "sem fatores": estágio 1 permanece risco baixo.'},
+ {t:'matriz',nv:'I',s:'Paciente com "1 ou 2 fatores" e PA estágio 2 (160–179/100–109):',o:['Baixo','Moderado','Alto','Muito alto'],c:2,e:'Linha "1 ou 2 fatores" + estágio 2 = risco alto.'},
+ {t:'matriz',nv:'I',s:'"≥ 3 fatores de risco" com PA 130–139/80–89:',o:['Baixo','Moderado','Alto','Muito alto'],c:1,e:'≥3 fatores nessa faixa de PA = risco moderado.'},
+ {t:'matriz',nv:'I',s:'Linha "LOA, DRC Estágio 3 ou DM" com PA estágio 3 (≥180/≥110):',o:['Baixo','Moderado','Alto','Muito alto'],c:3,e:'Nessa combinação, a categoria chega a risco muito alto.'},
+ {t:'matriz',nv:'B',s:'Paciente com DCV estabelecida, qualquer faixa de PA, é classificado como:',o:['Baixo','Moderado','Alto','Muito alto'],c:3,e:'Linha "DCV estabelecida ou DRC estágio ≥4" = muito alto em todas as colunas.'},
+ {t:'matriz',nv:'A',s:'Dois pacientes com PA 160×100 (estágio 2): um sem fatores, outro com DM. A matriz mostra que:',o:['Ambos têm risco igual','Sem fatores = moderado; com DM = alto (ou mais)','Ambos são baixos','A PA define tudo'],c:1,e:'Mesmo estágio de PA, categorias diferentes conforme o perfil.'},
+ {t:'matriz',nv:'I',s:'"Sem fatores de risco" com PA estágio 3 (≥180/≥110):',o:['Baixo','Moderado','Alto','Muito alto'],c:2,e:'Mesmo sem fatores, estágio 3 eleva a risco alto.'},
+ {t:'matriz',nv:'A',s:'Qual afirmação sobre a matriz é correta?',o:['Somam-se categorias de cada fator','A condição de maior peso governa a categoria','A PA sozinha define o risco','LOA não altera a categoria'],c:1,e:'Não se somam categorias; a condição dominante manda.'},
+
+ {t:'prevent',nv:'B',s:'O PREVENT deve ser usado para descobrir se um paciente com IAM prévio é de alto risco?',o:['Sim, sempre','Não — ele já tem DCV estabelecida','Só se jovem','Só com CAC'],c:1,e:'Prevenção secundária dispensa o cálculo para definir alto risco.'},
+ {t:'prevent',nv:'B',s:'Qual a faixa etária de aplicação do PREVENT (risco de 10 anos)?',o:['18–65','30–79','40–75','50–80'],c:1,e:'30–79 anos para o risco de 10 anos.'},
+ {t:'prevent',nv:'I',s:'São desfechos estimados pelas equações PREVENT, EXCETO:',o:['CVD (total)','ASCVD','Insuficiência cardíaca (HF)','Fibrilação atrial'],c:3,e:'PREVENT estima CVD total, ASCVD e HF — não FA.'},
+ {t:'prevent',nv:'I',s:'Qual variável NÃO é obrigatória no cálculo básico do PREVENT?',o:['TFG estimada','IMC','Lp(a)','Colesterol total'],c:2,e:'Lp(a) é preditor adicional/opcional, não obrigatório.'},
+ {t:'prevent',nv:'I',s:'Por que a função renal foi incorporada ao PREVENT?',o:['Por acaso','Porque o eixo cardiorrenal-metabólico é central ao risco','Para excluir idosos','Para substituir a PA'],c:1,e:'A TFG reflete o eixo cardiorrenal-metabólico.'},
+ {t:'prevent',nv:'A',s:'Resultado "PREVENT 8%" isolado é insuficiente porque falta:',o:['O sexo','O desfecho e o horizonte','A PA','O nome do paciente'],c:1,e:'Sempre especifique desfecho (CVD/ASCVD/HF) e horizonte (10/30 anos).'},
+ {t:'prevent',nv:'A',s:'O "Zip Code" da calculadora PREVENT:',o:['Deve ser aplicado no Brasil diretamente','Estima o índice de privação social dos EUA (SDI) e não se transplanta','É obrigatório','Substitui a TFG'],c:1,e:'É opcional e específico dos EUA — não se transplanta automaticamente.'},
+ {t:'prevent',nv:'I',s:'Faixa de PAS aceita pela calculadora PREVENT (tela da aula):',o:['80–160','90–200','100–220','110–180'],c:1,e:'90–200 mmHg conforme a interface apresentada.'},
+ {t:'prevent',nv:'A',s:'No algoritmo 2025, quando o PREVENT ≥ 20% em 10 anos, o paciente é:',o:['Baixo risco','Alto risco CV','Muito baixo risco','Indeterminado'],c:1,e:'Etapa 2: PREVENT ≥20% em 10 anos → alto risco CV.'},
+ {t:'prevent',nv:'A',s:'Um preditor opcional do PREVENT indicado em DRC, diabetes ou hipertensão é:',o:['Zip code','UACR (relação albumina/creatinina)','IMC','HDL'],c:1,e:'UACR é preditor opcional indicado nessas condições.'},
+
+ {t:'algoritmo',nv:'B',s:'Na Etapa 1 do algoritmo 2025, qual NÃO é uma condição de alto risco automático?',o:['Diabetes mellitus','Doença renal crônica','Hipercolesterolemia familiar','Sedentarismo isolado'],c:3,e:'Sedentarismo é fator de risco, não condição de alto risco automático.'},
+ {t:'algoritmo',nv:'I',s:'Se todas as respostas da Etapa 1 forem "não", o próximo passo é:',o:['Concluir alto risco','Estimar o risco (Etapa 2, PREVENT)','Iniciar prevenção secundária','Solicitar cateterismo'],c:1,e:'Só então se estima com o PREVENT.'},
+ {t:'algoritmo',nv:'I',s:'Quais agravantes podem ser considerados na Etapa 2, em casos selecionados?',o:['CAC, BNP, troponina us, Lp(a)','Somente PA','Apenas idade','Nenhum'],c:0,e:'Agravantes em casos selecionados: CAC, BNP, troponina us, Lp(a).'},
+ {t:'algoritmo',nv:'A',s:'A lesão de órgão-alvo, na Etapa 1, funciona como:',o:['Fator de risco leve','Condição que já define alto risco CV','Refinador opcional','Irrelevante'],c:1,e:'LOA está entre as condições de alto risco da Etapa 1.'},
+ {t:'algoritmo',nv:'A',s:'O principal risco de transformar a calculadora em obstáculo é:',o:['Perder tempo apenas','Deixar de reconhecer condições que já definem alto risco','Melhorar a acurácia','Nenhum'],c:1,e:'Reconhecer vem antes de calcular; a condição de alto risco dispensa o cálculo.'},
+
+ {t:'casos',nv:'I',s:'Paciente com TFG 85 e UACR 320 mg/g. A albuminúria representa:',o:['Doença estabelecida','Lesão de órgão-alvo (renal)','Fator modificável trivial','Refinador apenas'],c:1,e:'Albuminúria elevada é LOA renal, mesmo com TFG normal.'},
+ {t:'casos',nv:'I',s:'Idosa de 78a com creatinina 1,1 e TFG 48. A interpretação correta:',o:['Rim normal','DRC estágio 3 — creatinina normal não exclui dano','Necessita diálise','Ignorar TFG'],c:1,e:'TFG 48 = DRC estágio 3; creatinina isolada engana.'},
+ {t:'casos',nv:'A',s:'Paciente 82a hipertenso. Sobre o PREVENT:',o:['Aplicar normalmente','Não aplicável (fora de 30–79); usar matriz e julgamento','Aplicar com correção','Contraindicado calcular qualquer risco'],c:1,e:'Fora da faixa etária; não extrapole automaticamente.'},
+ {t:'casos',nv:'A',s:'HVE isolada ao ecocardiograma, sem outros achados, classifica-se como:',o:['DCV estabelecida','Lesão de órgão-alvo','Refinador','Sem valor'],c:1,e:'HVE é LOA, não doença clínica estabelecida.'},
+ {t:'casos',nv:'A',s:'Paciente com IAM prévio + albuminúria + HVE. A conduta correta:',o:['Somar as três categorias','Reconhecer a condição dominante (DCV estabelecida) → prevenção secundária','Calcular PREVENT','Ignorar a albuminúria'],c:1,e:'A condição dominante governa; não se somam categorias.'},
+ {t:'casos',nv:'I',s:'DRC estágio 4 (TFG 22), PA 138×84. Categoria na matriz:',o:['Baixo','Moderado','Alto','Muito alto'],c:3,e:'DRC estágio ≥4 = muito alto risco em qualquer faixa de PA.'},
+
+ {t:'pegadinha',nv:'A',s:'(Pegadinha) A resposta "óbvia" para um jovem de 30a com fatores é risco baixo. O que a prova espera?',o:['Confirmar risco baixo','Diferenciar risco de 10 anos de trajetória de 30 anos','Iniciar estatina em todos','Prevenção secundária'],c:1,e:'A armadilha é tranquilizar pelo horizonte curto.'},
+ {t:'pegadinha',nv:'A',s:'(Pegadinha) "PREVENT-ASCVD 3,2%" — logo o paciente é de baixo risco?',o:['Sim, sempre','Depende do horizonte: 3,2% em 10 anos pode coexistir com ~20% em 30 anos','Não existe esse valor','É erro de cálculo'],c:1,e:'Exemplo da aula: 10a 3,2% × 30a 19,6%.'},
+ {t:'pegadinha',nv:'A',s:'(Pegadinha) CAC muito alto obriga sempre a reclassificar para alto risco?',o:['Sim, automaticamente','Não — apoia o refinamento em casos selecionados, com julgamento','Nunca influencia','Só em diabéticos'],c:1,e:'Nenhum refinador reclassifica sozinho.'},
+ {t:'pegadinha',nv:'A',s:'(Pegadinha) As faixas <5%, 5–7,5%, 7,5–20%, ≥20% aplicam-se a qual mapa?',o:['À matriz brasileira','Ao escore PREVENT (ASCVD) apresentado na aula','Às metas de PA','A nenhum'],c:1,e:'São faixas do PREVENT-ASCVD; não misture com a matriz.'},
+ {t:'pegadinha',nv:'A',s:'(Pegadinha) Meta de PA <130/80 é uma ferramenta de estratificação de risco?',o:['Sim','Não — é consequência da estratificação, um alvo terapêutico','É o mesmo que PREVENT','É a matriz'],c:1,e:'Metas são consequência, não a ferramenta de risco.'},
+
+ {t:'matriz',nv:'I',s:'"1 ou 2 fatores de risco" com PA 130–139/80–89:',o:['Baixo','Moderado','Alto','Muito alto'],c:0,e:'Linha "1 ou 2 fatores": nessa faixa de PA, o risco permanece baixo.'},
+ {t:'matriz',nv:'I',s:'"≥ 3 fatores de risco" com PA estágio 2 (160–179/100–109):',o:['Baixo','Moderado','Alto','Muito alto'],c:2,e:'Linha "≥3 fatores" + estágio 2 = risco alto.'},
+ {t:'prevent',nv:'I',s:'Faixa de HDL aceita pela calculadora PREVENT (tela da aula):',o:['10–80 mg/dL','20–100 mg/dL','30–120 mg/dL','40–150 mg/dL'],c:1,e:'20–100 mg/dL conforme a interface apresentada na aula.'},
+ {t:'prevent',nv:'A',s:'O risco de 30 anos (CVD) do PREVENT é estimado para qual faixa etária?',o:['30–59 anos','30–79 anos','40–70 anos','Qualquer idade'],c:0,e:'O horizonte de 30 anos é estimado para 30–59 anos; o de 10 anos, para 30–79.'},
+ {t:'algoritmo',nv:'I',s:'Qual das seguintes é uma das cinco condições avaliadas na Etapa 1 do algoritmo?',o:['Sedentarismo','Doença cardiovascular manifesta','Obesidade','Tabagismo'],c:1,e:'A Etapa 1 avalia: DCV manifesta, diabetes mellitus, DRC, hipercolesterolemia familiar e LOA.'},
+ {t:'pegadinha',nv:'A',s:'(Pegadinha) Creatinina sérica normal exclui lesão renal?',o:['Sim, sempre','Não — avalie TFG estimada e albuminúria; a creatinina isolada pode enganar','Só em idosos','É o único exame necessário'],c:1,e:'Erro clássico: creatinina normal não exclui DRC nem albuminúria elevada.'},
+];
+let quizI=0,quizTema='todos',piedade=false,cronId=null,cronSeg=0;
+const TEMAS=['todos','conceito','matriz','prevent','algoritmo','casos','pegadinha'];
+const TEMA_LBL={todos:'todos',conceito:'conceitos',matriz:'matriz',prevent:'PREVENT',algoritmo:'algoritmo',casos:'casos clínicos',pegadinha:'pegadinhas'};
+function quizFiltrado(){return QUESTOES.map((q,i)=>({q,i})).filter(x=>quizTema==='todos'||x.q.t===quizTema);}
+function ciclaTema(){quizTema=TEMAS[(TEMAS.indexOf(quizTema)+1)%TEMAS.length];document.getElementById('btnTema').textContent='Tema: '+TEMA_LBL[quizTema];quizI=0;renderQuiz();}
+function togglePiedade(){piedade=!piedade;document.getElementById('btnPiedade').textContent='🔥 TEC sem piedade: '+(piedade?'on':'off');document.getElementById('btnPiedade').classList.toggle('on',piedade);if(piedade)startCron();else stopCron();quizI=0;renderQuiz();}
+function startCron(){cronSeg=0;stopCron();cronId=setInterval(()=>{cronSeg++;const m=String(Math.floor(cronSeg/60)).padStart(2,'0'),s=String(cronSeg%60).padStart(2,'0');document.getElementById('cron').textContent='⏱ '+m+':'+s;},1000);}
+function stopCron(){if(cronId)clearInterval(cronId);}
+const NVQ={B:'Fácil',I:'Médio',A:'Difícil'};
+function renderQuiz(){
+  const arr=quizFiltrado();if(!arr.length)return;
+  const {q,i}=arr[Math.min(quizI,arr.length-1)];
+  document.getElementById('qPos').textContent=`Questão ${quizI+1} de ${arr.length}`;
+  if(!piedade)document.getElementById('cron').textContent='';
+  const saved=ST.q[i];
+  let opts=q.o.map((o,oi)=>({o,oi}));
+  if(piedade&&!saved)opts=opts.sort(()=>Math.random()-.5);
+  document.getElementById('quizBox').innerHTML=`<div class="q-card">
+    <div class="q-meta"><span>${TEMA_LBL[q.t]}</span><span>${NVQ[q.nv]}</span><span>Tempo médio ~60s</span></div>
+    <div class="q-stem prof-hide-q">${q.s}</div>
+    ${!piedade?`<div class="q-conf">Confiança: ${['baixa','média','alta'].map(c=>`<button data-c="${c}" onclick="setConf('${c}',this)" class="${saved&&saved.conf===c?'on':''}">${c}</button>`).join('')}</div>`:''}
+    <div id="qOpts">${opts.map(({o,oi})=>`<button class="q-opt ${saved?(oi===q.c?'right':oi===saved.pick?'wrong':''):''}" onclick="respQuiz(${i},${oi})" ${saved?'disabled':''}><span class="lt">${String.fromCharCode(65+oi)}</span>${o}</button>`).join('')}</div>
+    <div class="q-feedback ${saved?(saved.ok?'ok show':'no show'):''}">${saved?feedbackHtml(q,saved):''}</div>
+  </div>`;
+  updQScore();
+}
+let confAtual=null;
+function setConf(c,btn){confAtual=c;btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+function feedbackHtml(q,s){return (piedade?'':`<b>${s.ok?'✔ Correto':'✗ Incorreto'}.</b> `)+q.e+(q.w?`<br><span style="color:var(--cinza)">${q.w}</span>`:'');}
+function respQuiz(i,pick){
+  const q=QUESTOES[i],ok=pick===q.c;
+  if(piedade){ST.q[i]={pick,ok,conf:confAtual,later:true};save();navQuiz(1);return;}
+  ST.q[i]={pick,ok,conf:confAtual};save();beep(ok?'ok':'err');confAtual=null;renderQuiz();
+}
+function navQuiz(d){const arr=quizFiltrado();quizI=(quizI+d+arr.length)%arr.length;renderQuiz();}
+function updQScore(){const done=Object.keys(ST.q).length,ok=Object.values(ST.q).filter(x=>x.ok).length;document.getElementById('qScore').textContent=`${ok}/${done} corretas`;}
+function reiniciaQuiz(){if(confirm('Apagar respostas do quiz?')){ST.q={};save();quizI=0;renderQuiz();}}
+renderQuiz();
+
+/* ===================== FLASHCARDS ===================== */
+const FLASH=[
+ ['conceito','Qual a sequência central da estratificação?','Reconhecer → calcular → refinar → decidir.'],
+ ['conceito','A PA é uma fotografia; o risco CV é...','O filme inteiro.'],
+ ['conceito','Baixo risco em 10 anos exclui risco relevante na vida?','Não — no jovem, o horizonte curto subestima a carga acumulada.'],
+ ['prevent','Creatinina normal exclui dano renal?','Não. Avalie TFG estimada e albuminúria.'],
+ ['prevent','O que significa PREVENT?','Predicting Risk of cardiovascular disease EVENTs.'],
+ ['prevent','Desfechos das equações PREVENT?','CVD total, ASCVD e HF (insuficiência cardíaca).'],
+ ['prevent','Faixa etária do PREVENT (10 anos)?','30–79 anos (30 anos: 30–59).'],
+ ['prevent','PREVENT em paciente com IAM prévio?','Não — já é DCV estabelecida (prevenção secundária).'],
+ ['prevent','"PREVENT 8%" está completo?','Não — falta desfecho (CVD/ASCVD/HF) e horizonte (10/30 anos).'],
+ ['prevent','O CEP norte-americano serve para o Brasil?','Não — estima o SDI dos EUA; não se transplanta.'],
+ ['prevent','TFG entrou no PREVENT porque...','o eixo cardiorrenal-metabólico é central ao risco.'],
+ ['prevent','Preditores opcionais do PREVENT?','UACR, HbA1c e Zip Code (SDI).'],
+ ['triade','Fósforo, parede chamuscada e incêndio representam...','Fator de risco, lesão de órgão-alvo e doença estabelecida.'],
+ ['triade','HVE é fator, LOA ou doença?','Lesão de órgão-alvo.'],
+ ['triade','IAM é fator, LOA ou doença?','Doença cardiovascular estabelecida.'],
+ ['triade','Albuminúria isolada é...','Lesão de órgão-alvo (renal).'],
+ ['triade','DAOP conta como doença estabelecida quando...','é sintomática.'],
+ ['algoritmo','Condições de alto risco na Etapa 1?','DCV manifesta, DM, DRC, hipercolesterolemia familiar, LOA.'],
+ ['algoritmo','Quando estimar com PREVENT (Etapa 2)?','Só quando a Etapa 1 for toda "não".'],
+ ['algoritmo','PREVENT ≥ 20% em 10 anos →','Alto risco CV.'],
+ ['algoritmo','Agravantes em casos selecionados?','CAC, BNP, troponina us, Lp(a).'],
+ ['matriz','A matriz 2025 cruza o quê?','PA × fatores de risco × LOA/DRC3/DM × DCV/DRC≥4.'],
+ ['matriz','"Sem fatores" + estágio 1 →','Risco baixo.'],
+ ['matriz','"1 ou 2 fatores" + estágio 2 →','Risco alto.'],
+ ['matriz','DCV estabelecida, qualquer PA →','Risco muito alto.'],
+ ['matriz','LOA/DRC3/DM + estágio 3 →','Risco muito alto.'],
+ ['matriz','Somam-se categorias na matriz?','Não — a condição dominante governa.'],
+ ['relogio','Exemplo de 10 vs 30 anos da aula (ASCVD)?','10 anos 3,2% × 30 anos 19,6%.'],
+ ['relogio','O que domina o risco absoluto de curto prazo?','A idade.'],
+ ['refinador','CAC é rastreio universal?','Não — refinador em casos selecionados.'],
+ ['refinador','Algum refinador reclassifica sozinho?','Não — apoiam o refinamento, não decidem isolados.'],
+ ['prevent-age','A "idade cardiovascular" é literal?','Não — é ferramenta de comunicação de risco.'],
+ ['conceito','Prevenção primária vs. secundária?','Primária: sem DCV clínica. Secundária: com DCV estabelecida.'],
+ ['conceito','Prevenção primordial?','Evitar o surgimento do próprio fator de risco.'],
+ ['conceito','Risco absoluto vs. relativo?','Absoluto = probabilidade real; relativo = comparação com referência.'],
+ ['conceito','Doença subclínica ≈','lesão de órgão-alvo (dano sem evento).'],
+ ['mapas','Meta <130/80 é ferramenta de risco?','Não — é consequência (alvo terapêutico).'],
+ ['mapas','Faixas <5%/5–7,5%/7,5–20%/≥20% pertencem a...','escore PREVENT (ASCVD).'],
+ ['mapas','Categorias baixo/moderado/alto/muito alto pertencem a...','matriz de risco da HAS 2025.'],
+ ['mapas','Condição automática de alto risco pode...','dispensar o cálculo para certas decisões.'],
+ ['orgao','Retinopatia hipertensiva grave inclui...','hemorragias, exsudatos e papiledema.'],
+ ['orgao','DRC estágios 4 e 5 são...','doença renal avançada (muito alto risco).'],
+ ['orgao','Ponto de corte de albuminúria (2020)?','≥ 300 mg/24h ou relação Alb/Creat ≥ 300 mg/g.'],
+ ['orgao','O rim se avalia com...','TFG estimada E albuminúria.'],
+ ['fator','Idade como fator (homem/mulher)?','Homem > 55 anos; mulher > 65 anos.'],
+ ['fator','História familiar de DCV prematura?','Homem < 55 anos; mulher < 65 anos.'],
+ ['fator','Obesidade como fator?','IMC ≥ 30 kg/m².'],
+ ['fator','Corte de HDL baixo (H/M)?','HDL ≤ 40 (homens) / ≤ 50 (mulheres) mg/dL.'],
+ ['erro','Erro: score baixo → jovem tranquilizado. Correto:','olhar a trajetória de 30 anos.'],
+ ['erro','Erro: creatinina normal → rim ok. Correto:','avaliar TFG e albuminúria.'],
+ ['erro','Erro: HVE = doença estabelecida. Correto:','HVE é LOA.'],
+ ['erro','Erro: somar categorias. Correto:','a condição dominante governa.'],
+ ['metas','Há curva em J da PA para risco CV (2025)?','Não há evidências consistentes.'],
+ ['metas','Meta geral de PA (2025)?','< 130/80 mmHg (com atenção à tolerabilidade).'],
+ ['prevent','Faixa de HDL aceita pela calculadora PREVENT?','20–100 mg/dL.'],
+ ['prevent','O risco de 30 anos (CVD) do PREVENT é estimado para qual faixa etária?','30–59 anos (o de 10 anos: 30–79).'],
+ ['algoritmo','Quais são as cinco condições avaliadas na Etapa 1?','DCV manifesta, diabetes mellitus, DRC, hipercolesterolemia familiar e LOA.'],
+ ['orgao','O que caracteriza a retinopatia hipertensiva grave?','Hemorragias, exsudatos e papiledema (a leve mostra cruzamentos AV e reflexo em fio de cobre/prata).'],
+ ['fator','Corte de LDL-c como fator de risco?','LDL-c ≥ 100 mg/dL (também contam não-HDL ≥ 130 e TG > 150 mg/dL).'],
+ ['erro','Erro: tratar hipercolesterolemia familiar como "só mais um fator". Correto:','É condição de alto risco automática na Etapa 1 — dispensa o cálculo.'],
+];
+let fcI=0;
+function renderFc(){
+  const f=FLASH[fcI];
+  document.getElementById('fcPos').textContent=`${fcI+1} / ${FLASH.length}`;
+  const st=ST.fc[fcI]||'';
+  document.getElementById('fcCard').className='fc';
+  document.getElementById('fcCard').innerHTML=`
+   <div class="fc-face fc-front"><span class="fc-tag">${f[0]}</span><h3 style="color:var(--navy)">${f[1]}</h3><span class="fc-hint">clique para virar</span></div>
+   <div class="fc-face fc-back"><span class="fc-tag">resposta</span><h4>${f[2]}</h4></div>`;
+  document.getElementById('fcRate').innerHTML=[['errei','p-alto'],['difícil','p-mod'],['razoável','p-azul'],['fácil','p-baixo']].map(r=>`<button class="btn btn-ghost btn-sm" style="${st===r[0]?'border-color:var(--navy);background:var(--navy);color:#fff':''}" onclick="rateFc('${r[0]}')">${r[0]}</button>`).join('');
+}
+function flipFc(){document.getElementById('fcCard').classList.toggle('flip');}
+function rateFc(r){ST.fc[fcI]=r;save();beep(r==='errei'||r==='difícil'?'mod':'ok');renderFc();setTimeout(()=>navFc(1),350);}
+function navFc(d){
+  // prioriza cartões errados/difíceis na navegação para frente
+  if(d>0){const dif=FLASH.map((_,i)=>i).filter(i=>['errei','difícil'].includes(ST.fc[i])&&i!==fcI);if(dif.length&&Math.random()<.4){fcI=dif[Math.floor(Math.random()*dif.length)];renderFc();return;}}
+  fcI=(fcI+d+FLASH.length)%FLASH.length;renderFc();
+}
+renderFc();
+
+/* ===================== HIPOCAMPO ===================== */
+function renderDash(){
+  const done=Object.keys(ST.q).length,ok=Object.values(ST.q).filter(x=>x.ok).length;
+  const taxa=done?Math.round(ok/done*100):0;
+  const fcErr=Object.values(ST.fc).filter(x=>['errei','difícil'].includes(x)).length;
+  const casos=(ST.casosVistos||[]).length;
+  // temas frágeis
+  const porTema={};QUESTOES.forEach((q,i)=>{if(ST.q[i]){porTema[q.t]=porTema[q.t]||{t:0,o:0};porTema[q.t].t++;if(ST.q[i].ok)porTema[q.t].o++;}});
+  let fraco='—',forte='—',minR=2,maxR=-1;
+  for(const t in porTema){const r=porTema[t].o/porTema[t].t;if(r<minR){minR=r;fraco=TEMA_LBL[t];}if(r>maxR){maxR=r;forte=TEMA_LBL[t];}}
+  document.getElementById('dashStats').innerHTML=[
+    ['Taxa de acerto',taxa+'%'],['Questões feitas',done+'/'+QUESTOES.length],['Casos vistos',casos+'/'+CASOS.length],
+    ['Flashcards frágeis',fcErr],['Tema forte',forte],['Tema frágil',fraco]
+  ].map(s=>`<div class="stat"><div class="v">${s[1]}</div><div class="l">${s[0]}</div></div>`).join('');
+  // fila de revisão
+  const erradas=QUESTOES.map((q,i)=>({q,i})).filter(x=>ST.q[x.i]&&!ST.q[x.i].ok);
+  let fila='';
+  if(erradas.length){const e=erradas[0];fila=`<b>Você errou uma questão de <span class="pill p-azul">${TEMA_LBL[e.q.t]}</span>.</b><p style="margin:8px 0;font-size:.88rem">${e.q.e}</p><button class="btn btn-primary btn-sm" onclick="quizTema='${e.q.t}';document.getElementById('btnTema').textContent='Tema: ${TEMA_LBL[e.q.t]}';quizI=0;renderQuiz();go('quiz')">Revisar este tema</button>`;}
+  else if(fcErr){fila=`<b>Você tem ${fcErr} flashcard(s) marcados como difíceis.</b><p style="font-size:.88rem;margin:8px 0">A navegação de flashcards já os reapresenta com mais frequência.</p><button class="btn btn-primary btn-sm" onclick="go('flashcards')">Ir aos flashcards</button>`;}
+  else fila=`<b>Nenhum ponto frágil registrado ainda.</b><p style="font-size:.88rem;margin:6px 0 0">Resolva questões e casos para alimentar sua fila personalizada.</p>`;
+  document.getElementById('filaRevisao').innerHTML='<h4 style="margin-top:0">Fila de revisão personalizada</h4>'+fila;
+}
+const CHECK=[['hoje','Hoje: algoritmo + matriz + 10 flashcards'],['amanha','Amanhã: 20 questões (temas frágeis)'],['7dias','Em 7 dias: casos avançados + chefes finais + revisão de 60s']];
+function renderChecklist(){
+  document.getElementById('checklist').innerHTML=CHECK.map(c=>`<label class="${ST.check[c[0]]?'done':''}"><input type="checkbox" ${ST.check[c[0]]?'checked':''} onchange="ST.check['${c[0]}']=this.checked;save();this.parentElement.classList.toggle('done',this.checked)"><span>${c[1]}</span></label>`).join('');
+}
+function resetProgresso(){if(confirm('Isto apagará TODO o progresso (questões, flashcards, casos, checklist). Continuar?')){localStorage.removeItem(KEY);ST={q:{},fc:{},check:{},set:{}};location.reload();}}
+renderDash();renderChecklist();
+
+/* ===================== GLOSSÁRIO ===================== */
+const GLOSS=[
+ ['ASCVD','Atherosclerotic Cardiovascular Disease','Doença cardiovascular aterosclerótica.','Desfecho aterosclerótico do PREVENT.','Ex.: risco PREVENT-ASCVD em 10 anos.','Confundir com CVD total.'],
+ ['CVD','Cardiovascular Disease','Desfecho cardiovascular total do PREVENT.','Inclui componentes ateroscleróticos e de IC.','Ex.: PREVENT-CVD.','Achar que é igual a ASCVD.'],
+ ['PREVENT','Predicting Risk of cardiovascular disease EVENTs','Família de equações de risco da AHA.','Estima CVD, ASCVD e HF.','PREVENT-ASCVD 10 anos.','Chamar de "PRI-20".'],
+ ['PAS','Pressão arterial sistólica','Componente sistólico da PA.','Variável do PREVENT e da matriz.','PAS 90–200 na calculadora.','Confundir estágio de PA com risco global.'],
+ ['HDL','Lipoproteína de alta densidade','Colesterol "protetor".','Variável obrigatória do PREVENT.','HDL 20–100 mg/dL.','Baixo HDL como fator (≤40 H/≤50 M).'],
+ ['TFG','Taxa de filtração glomerular estimada','Marcador de função renal.','Variável obrigatória do PREVENT; define DRC.','TFG 15–140.','Usar só creatinina.'],
+ ['UACR','Relação albumina/creatinina urinária','Marcador de lesão renal precoce.','LOA e preditor opcional do PREVENT.','UACR ≥300 mg/g (2020).','Ignorar por TFG normal.'],
+ ['HbA1c','Hemoglobina glicada','Controle glicêmico.','Preditor opcional do PREVENT.','—','Usar como refinador universal.'],
+ ['CAC','Escore de cálcio coronariano','Aterosclerose subclínica.','Refinador em casos selecionados.','—','Rastreio universal.'],
+ ['Lp(a)','Lipoproteína(a)','Fator lipídico hereditário.','Agravante em casos selecionados.','—','Reclassificar sozinho.'],
+ ['BNP','Peptídeo natriurético tipo B','Sobrecarga/estresse cardíaco.','Agravante (risco de IC).','—','Confirmar IC isoladamente.'],
+ ['Troponina us','Troponina ultrassensível','Injúria miocárdica subclínica.','Agravante em casos selecionados.','—','Diagnosticar evento agudo isolado.'],
+ ['LOA','Lesão de órgão-alvo','Dano estrutural/funcional subclínico.','Eleva a categoria na matriz.','HVE, albuminúria.','Confundir com doença estabelecida.'],
+ ['DCV','Doença cardiovascular','Doença/evento clínico cardiovascular.','Define prevenção secundária.','IAM, AVE, IC.','Igualar a fator de risco.'],
+ ['DRC','Doença renal crônica','Perda crônica de função renal.','Estágio 3 e ≥4 têm pesos distintos na matriz.','TFG 48 = estágio 3.','Somar como fator simples.'],
+ ['Prevenção primária','—','Antes da DCV clínica, com fatores presentes.','Contexto do PREVENT.','—','Confundir com secundária.'],
+ ['Prevenção secundária','—','Com DCV estabelecida.','Já é alto risco.','—','Calcular PREVENT para "confirmar".'],
+ ['Risco absoluto','—','Probabilidade real de evento num horizonte.','O que o PREVENT estima.','—','Confundir com relativo.'],
+ ['Risco relativo','—','Comparação com referência.','Alto no jovem mesmo com absoluto baixo.','—','Tomar como probabilidade real.'],
+ ['Risco residual','—','Risco remanescente sob tratamento otimizado.','Justifica intensificação.','—','Assumir risco zero pós-tratamento.'],
+ ['Risco acumulado','—','Carga ao longo da vida.','Base do horizonte de 30 anos.','—','Ignorar no jovem.'],
+ ['Doença subclínica','—','Dano detectável sem evento.','≈ LOA.','—','Chamar de evento.'],
+ ['Doença manifesta','—','Evento clínico ocorrido.','Prevenção secundária.','—','Confundir com subclínica.'],
+];
+function renderGloss(f=''){
+  const q=f.toLowerCase();
+  document.getElementById('glossBox').innerHTML=GLOSS.filter(g=>!q||g[0].toLowerCase().includes(q)||g[2].toLowerCase().includes(q)||(g[1]||'').toLowerCase().includes(q)).map(g=>`<details class="verbete"><summary>${g[0]} <span class="sig">${g[1]!=='—'?g[1]:''}</span></summary><div class="corpo"><span class="prof-hide"><span class="rot">Simples</span>${g[2]}<span class="rot">Técnica</span>${g[3]}${g[4]!=='—'?`<span class="rot">Exemplo</span>${g[4]}`:''}<span class="rot" style="color:var(--alto)">Erro comum</span>${g[5]}</span></div></details>`).join('');
+}
+function filtraGloss(v){renderGloss(v);}
+renderGloss();
+
+/* ===================== INIT ===================== */
+document.getElementById('btnSom').textContent=ST.set.som?'🔊':'🔈';
+if(ST.set.som)document.getElementById('btnSom').classList.add('on');
+updProgresso();
+// Renderiza o dashboard do Hipocampo ao entrar em tela (uma vez por entrada), sem custo por scroll.
+const hipoEl=document.getElementById('hipocampo');
+if(hipoEl&&'IntersectionObserver'in window){
+  new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting)renderDash();});},{threshold:.15}).observe(hipoEl);
+}else{
+  renderDash();
+}
+</script>
+</body>
+</html>
