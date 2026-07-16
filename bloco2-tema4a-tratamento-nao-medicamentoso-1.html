@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Mental da HAS · Bloco 2 · Tema 4A — Tratamento Não Medicamentoso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/*
+HANDOFF SONNET — TEMA 4A  (Atlas Mental da Hipertensão Arterial)
+
+ARQUITETURA ESTABILIZADA PELO OPUS — versão RC1.
+NÃO REESTRUTURAR O MÓDULO SEM SOLICITAÇÃO EXPRESSA.
+
+TAREFAS FUTURAS DO SONNET:
+1. Expandir QUESTOES_TEC até 50 (schema idêntico).
+2. Expandir FLASHCARDS até 60 (schema idêntico).
+3. Expandir MINI_DECISOES até 20 (schema idêntico).
+4. Corrigir textos ou bugs pontuais.
+5. Preservar tokens :root, schemas dos bancos, chave localStorage e ordem das seções.
+6. NÃO reintroduzir qualquer aparato de imagens (placeholders, modais, uploads).
+7. NÃO alterar a numeração do Bloco 2 — este arquivo é o TEMA 4A dentro do TEMA 4.
+Marcadores dos bancos estão logo acima de cada array no JS.
+*/
+
+:root{
+  /* Estrutura */
+  --navy:#0b2545;
+  --navy-2:#12335e;
+  --ink:#172033;
+  --muted:#5d6878;
+  --surface:#ffffff;
+  --surface-alt:#f5f8fb;
+  --border:#dbe4ed;
+
+  /* Azul Atlas — conceito / informação / cálculo */
+  --blue:#1282A2;
+  --blue-deep:#146c94;
+  --blue-soft:#eaf5fb;
+
+  /* Verde — benefício, segurança, recomendação forte */
+  --green:#178f5b;
+  --green-soft:#eaf8f1;
+
+  /* Âmbar — atenção, evidência limitada, pegadinha */
+  --amber:#c98a00;
+  --amber-soft:#fff7df;
+
+  /* Vermelho — contraindicação, perigo, limite pressórico */
+  --red:#c73737;
+  --red-soft:#fff0f0;
+
+  /* Assinatura */
+  --gold:#b8860b;
+
+  --shadow:0 6px 22px rgba(11,37,69,.08);
+  --shadow-lg:0 14px 40px rgba(11,37,69,.14);
+  --radius:16px;
+  --radius-sm:10px;
+  --maxw:960px;
+
+  --font-body:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --font-sig:'Dancing Script',cursive;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--surface-alt);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.reduz *{animation:none!important;transition:none!important}
+
+/* ============ NAV STICKY ============ */
+.topnav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.topnav-inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;align-items:center;gap:10px;
+  padding:8px 16px;flex-wrap:wrap;
+}
+.brandmark{
+  font-family:var(--font-mono);font-size:.72rem;font-weight:600;
+  letter-spacing:.14em;color:var(--blue);text-transform:uppercase;
+  margin-right:auto;
+}
+.brandmark b{color:var(--navy)}
+.navselect{
+  font-family:var(--font-body);font-weight:700;font-size:.82rem;
+  color:var(--navy);background:var(--surface);
+  border:1px solid var(--border);border-radius:999px;
+  padding:6px 12px;max-width:190px;cursor:pointer;
+}
+.toggle-btn{
+  font-family:var(--font-mono);font-size:.68rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);background:var(--surface);
+  border:1px solid var(--border);border-radius:999px;
+  padding:6px 11px;cursor:pointer;transition:all .18s;
+}
+.toggle-btn[aria-pressed="true"]{
+  background:var(--navy);color:#fff;border-color:var(--navy);
+}
+.toggle-btn:focus-visible,.navselect:focus-visible,a:focus-visible,button:focus-visible{
+  outline:3px solid var(--blue);outline-offset:2px;
+}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+section{scroll-margin-top:70px}
+.block{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px;margin:16px 0;
+  box-shadow:var(--shadow);
+}
+.sechead{
+  display:flex;align-items:baseline;gap:12px;
+  margin:38px 0 4px;padding-top:8px;
+}
+.sechead .num{
+  font-family:var(--font-mono);font-weight:600;font-size:.8rem;
+  color:#fff;background:var(--navy);border-radius:8px;
+  padding:3px 9px;letter-spacing:.05em;flex:none;
+}
+.sechead h2{
+  font-size:1.5rem;font-weight:900;color:var(--navy);
+  margin:0;line-height:1.15;letter-spacing:-.01em;
+}
+.kicker{
+  font-family:var(--font-mono);font-size:.7rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--blue);
+  margin:0 0 6px;
+}
+p{margin:.5em 0}
+.lead{font-size:1.06rem;color:var(--ink)}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+h3{font-size:1.15rem;font-weight:800;color:var(--navy);margin:18px 0 6px}
+h4{font-size:1rem;font-weight:800;color:var(--navy-2);margin:14px 0 4px}
+strong{font-weight:800}
+a{color:var(--blue-deep)}
+
+/* Chips de âncora N1–N7 */
+.nchip{
+  display:inline-block;font-family:var(--font-mono);font-size:.66rem;
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue);background:var(--blue-soft);
+  border:1px solid #cfe7f1;border-radius:999px;padding:2px 8px;
+  margin-bottom:8px;
+}
+
+/* Caixas semânticas */
+.callout{border-radius:var(--radius-sm);padding:14px 16px;margin:14px 0;border:1px solid;border-left-width:5px}
+.callout .tag{font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+.c-green{background:var(--green-soft);border-color:var(--green)}
+.c-green .tag{color:var(--green)}
+.c-amber{background:var(--amber-soft);border-color:var(--amber)}
+.c-amber .tag{color:#9a6a00}
+.c-red{background:var(--red-soft);border-color:var(--red)}
+.c-red .tag{color:var(--red)}
+.c-blue{background:var(--blue-soft);border-color:var(--blue)}
+.c-blue .tag{color:var(--blue-deep)}
+
+/* Selo de destaque para nome de exame */
+.exam-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-soft);border:1.5px solid var(--blue);
+  border-radius:999px;padding:6px 16px;margin:6px 0 10px;
+  font-family:var(--font-mono);font-weight:700;letter-spacing:.03em;
+  color:var(--blue-deep);font-size:.95rem;
+}
+.exam-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+
+.mono{font-family:var(--font-mono)}
+.sig{font-family:var(--font-sig);font-size:1.5rem;color:var(--gold);line-height:1}
+
+/* Grid helpers */
+.grid{display:grid;gap:12px}
+@media(min-width:640px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:1fr 1fr 1fr}}
+
+/* Tabela responsiva */
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-sm);border:1px solid var(--border)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.9rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+thead th{background:var(--navy);color:#fff;font-weight:700;position:sticky;top:0}
+tbody tr:nth-child(even){background:var(--surface-alt)}
+
+/* prof mode */
+body:not(.prof-on) .prof-only{display:none}
+.prof-only{border-left:4px solid var(--gold);background:#fffdf5;padding:12px 14px;border-radius:8px;margin:12px 0}
+.prof-only .tag{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:3px}
+
+/* ============ HERO ============ */
+.hero{
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 60%,#0d3a5c 100%);
+  color:#eaf2fb;padding:44px 16px 40px;position:relative;overflow:hidden;
+}
+.hero .wrap{position:relative;z-index:2}
+.hero .eyebrow{font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#7fd0e6}
+.hero h1{font-size:clamp(1.8rem,6vw,2.9rem);font-weight:900;line-height:1.08;margin:.3em 0 .2em;letter-spacing:-.02em;color:#fff}
+.hero .sub{font-size:1.08rem;color:#c6dcf0;max-width:640px}
+.hero .path{font-family:var(--font-mono);font-size:.78rem;color:#8fb8d8;margin-top:6px}
+.hero .hero-sig{margin-top:18px}
+.hero .hero-sig .sig{color:#ffd970}
+.pulse-heart{position:absolute;right:-40px;top:-30px;width:280px;height:280px;opacity:.16;z-index:1}
+@media(min-width:720px){.pulse-heart{right:20px;top:0;opacity:.22}}
+
+/* HUB */
+.hub{display:grid;gap:10px;grid-template-columns:1fr 1fr;margin-top:18px}
+@media(min-width:640px){.hub{grid-template-columns:repeat(4,1fr)}}
+.hub a{
+  display:block;text-decoration:none;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px;
+  color:#eaf2fb;transition:all .18s;
+}
+.hub a:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.hub a .hn{font-family:var(--font-mono);font-size:.66rem;color:#7fd0e6;letter-spacing:.08em}
+.hub a .ht{font-weight:800;font-size:.92rem;margin-top:2px}
+
+/* ============ FLASHCARDS 3D ============ */
+.fc-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.fc-controls .cnt{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);margin-left:auto}
+.mini-btn{font-family:var(--font-body);font-weight:700;font-size:.82rem;border:1px solid var(--border);background:var(--surface);color:var(--navy);border-radius:999px;padding:7px 13px;cursor:pointer;transition:all .16s}
+.mini-btn:hover{border-color:var(--blue);color:var(--blue-deep)}
+.mini-btn.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.flip{perspective:1400px;cursor:pointer;user-select:none}
+.flip-inner{position:relative;transition:transform .5s;transform-style:preserve-3d;min-height:170px}
+.flip.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius-sm);padding:20px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--border)}
+.flip-front{background:var(--surface)}
+.flip-back{background:var(--navy);color:#eaf2fb;transform:rotateY(180deg);border-color:var(--navy)}
+.flip-cat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.flip-back .flip-cat{color:#7fd0e6}
+.flip-q{font-weight:800;font-size:1.05rem;color:var(--navy)}
+.flip-a{font-size:.98rem}
+.flip-hint{font-family:var(--font-mono);font-size:.66rem;color:var(--muted);margin-top:auto;padding-top:10px}
+.flip-back .flip-hint{color:#8fb8d8}
+.fc-judge{display:flex;gap:8px;margin-top:10px}
+.fc-judge button{flex:1;border-radius:10px;padding:9px;font-weight:800;font-size:.85rem;cursor:pointer;border:1px solid}
+.fc-hit{background:var(--green-soft);color:var(--green);border-color:var(--green)}
+.fc-miss{background:var(--red-soft);color:var(--red);border-color:var(--red)}
+
+/* ============ QUIZ ============ */
+.q-card{border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;margin:12px 0;background:var(--surface)}
+.q-meta{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;gap:10px;flex-wrap:wrap}
+.q-meta .diff{color:var(--blue-deep)}
+.q-stem{font-weight:700;margin-bottom:12px}
+.q-opt{display:block;width:100%;text-align:left;border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:11px 13px;margin:7px 0;cursor:pointer;font-family:var(--font-body);font-size:.95rem;color:var(--ink);transition:all .14s}
+.q-opt:hover{border-color:var(--blue)}
+.q-opt.correct{background:var(--green-soft);border-color:var(--green);font-weight:700}
+.q-opt.wrong{background:var(--red-soft);border-color:var(--red)}
+.q-opt.dim{opacity:.55}
+.q-feedback{margin-top:10px;padding:12px;border-radius:10px;background:var(--surface-alt);border-left:4px solid var(--blue);display:none}
+.q-feedback.show{display:block}
+.q-feedback .perola{margin-top:8px;font-size:.88rem;color:#9a6a00;background:var(--amber-soft);border-radius:8px;padding:8px 10px}
+.quiz-nav{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.quiz-score{font-family:var(--font-mono);font-size:.82rem;color:var(--muted);margin-left:auto}
+
+/* ============ SIMULADORES ============ */
+.sim{background:var(--blue-soft);border:1px solid #cfe7f1;border-radius:var(--radius-sm);padding:16px;margin:14px 0}
+.sim h4{margin-top:0;color:var(--blue-deep)}
+.field{display:flex;flex-direction:column;gap:3px;margin:8px 0}
+.field label{font-size:.82rem;font-weight:700;color:var(--navy-2)}
+.field input,.field select{font-family:var(--font-body);font-size:1rem;padding:9px 11px;border:1px solid var(--border);border-radius:9px;background:#fff;color:var(--ink)}
+.sim-out{margin-top:12px;background:#fff;border-radius:10px;padding:13px;border:1px solid var(--border);font-size:.95rem}
+.sim-out b{color:var(--navy)}
+.sim-out .big{font-size:1.4rem;font-weight:900;color:var(--blue-deep);font-family:var(--font-mono)}
+.warnbar{margin-top:10px;font-size:.8rem;color:#9a6a00;background:var(--amber-soft);border-radius:8px;padding:8px 10px;border-left:3px solid var(--amber)}
+
+/* Painel de magnitude / tabela ordenável */
+.sortbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.mag-eff{font-family:var(--font-mono);font-weight:600}
+.eff-strong{color:var(--green)}
+.eff-mid{color:var(--blue-deep)}
+.eff-weak{color:var(--muted)}
+
+/* Portão de segurança */
+.gate{display:grid;gap:12px;grid-template-columns:1fr;margin:14px 0}
+@media(min-width:560px){.gate{grid-template-columns:1fr 1fr}}
+.gate-card{border-radius:var(--radius-sm);padding:18px;border:2px solid;text-align:center}
+.gate-stop{background:var(--red-soft);border-color:var(--red)}
+.gate-slow{background:var(--amber-soft);border-color:var(--amber)}
+.gate-card .gv{font-family:var(--font-mono);font-size:1.8rem;font-weight:600;letter-spacing:-.02em}
+.gate-stop .gv{color:var(--red)}
+.gate-slow .gv{color:#9a6a00}
+.gate-card .gl{font-weight:800;margin-top:4px}
+
+/* Matriz força × certeza */
+.matrix{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.matrix{grid-template-columns:1fr 1fr}}
+.mx-cell{border-radius:var(--radius-sm);padding:14px;border:1px solid}
+.mx-cell h4{margin:0 0 6px}
+.mx-fa{background:var(--green-soft);border-color:var(--green)}
+.mx-fm{background:var(--blue-soft);border-color:var(--blue)}
+.mx-nb{background:var(--surface-alt);border-color:var(--border)}
+.mx-cell ul{margin:6px 0 0;padding-left:18px;font-size:.9rem}
+
+/* Mini-decisões */
+.dec{border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin:10px 0;background:var(--surface)}
+.dec .q{font-weight:800;color:var(--navy)}
+.dec .a{display:none;margin-top:10px;padding:11px;border-radius:9px;background:var(--surface-alt);border-left:4px solid var(--blue)}
+.dec.open .a{display:block}
+.dec .verdict{font-family:var(--font-mono);font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:6px;display:inline-block;margin-bottom:6px}
+.v-sim{background:var(--green-soft);color:var(--green)}
+.v-nao{background:var(--red-soft);color:var(--red)}
+.v-dep{background:var(--amber-soft);color:#9a6a00}
+
+/* Detetive do sódio */
+.detetive{display:grid;gap:8px;grid-template-columns:1fr 1fr;margin:12px 0}
+@media(min-width:560px){.detetive{grid-template-columns:repeat(3,1fr)}}
+.food{border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;cursor:pointer;background:var(--surface);font-weight:700;font-size:.86rem;transition:all .16s;user-select:none}
+.food:hover{border-color:var(--blue)}
+.food.flag{background:var(--red-soft);border-color:var(--red);color:var(--red)}
+.food.safe{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+.food .verdict-mini{display:block;font-family:var(--font-mono);font-size:.62rem;margin-top:4px;font-weight:600;line-height:1.35;font-weight:500;white-space:normal}
+
+/* Hipocampo / dashboard */
+.dash{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media(min-width:560px){.dash{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.stat .n{font-size:1.7rem;font-weight:900;color:var(--navy);font-family:var(--font-mono)}
+.stat .l{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-mono)}
+.check-list{list-style:none;padding:0;margin:12px 0}
+.check-list li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.check-list input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--blue)}
+
+/* Palácio */
+.palace{counter-reset:room;display:grid;gap:10px}
+.room{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--blue);border-radius:10px;padding:13px 15px;position:relative}
+.room::before{counter-increment:room;content:counter(room);position:absolute;left:-2px;top:-2px;font-family:var(--font-mono);font-size:.66rem;font-weight:600;background:var(--navy);color:#fff;padding:2px 7px;border-radius:0 0 8px 0}
+.room h4{margin:0 0 3px;padding-left:18px}
+.room p{margin:0;font-size:.9rem;padding-left:18px}
+
+/* Progresso topo */
+.progressbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--green));width:0;z-index:70;transition:width .1s}
+
+/* Footer */
+.foot{background:var(--navy);color:#c6dcf0;padding:34px 16px;margin-top:40px;text-align:center}
+.foot .sig{color:#ffd970;font-size:2rem}
+.foot .fm{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;color:#7fa8ce;margin-top:8px}
+
+/* Conclusão */
+.done{background:linear-gradient(150deg,var(--green) 0%,#0f7a4c 100%);color:#eafff5;border-radius:var(--radius);padding:26px;text-align:center;margin:20px 0}
+.done h3{color:#fff;font-size:1.4rem}
+.done .sig{color:#fff}
+
+.reset-btn{background:transparent;border:1px solid var(--red);color:var(--red);border-radius:999px;padding:8px 15px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:var(--font-body)}
+.reset-btn:hover{background:var(--red-soft)}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="progressbar" id="progressbar"></div>
+
+<!-- ===== NAV ===== -->
+<nav class="topnav" aria-label="Navegação principal">
+  <div class="topnav-inner">
+    <span class="brandmark">Atlas Mental · <b>Bloco 2 · Tema 4A</b></span>
+    <select class="navselect" id="navselect" aria-label="Ir para seção">
+      <option value="">Ir para…</option>
+      <option value="#filosofia">Filosofia clínica</option>
+      <option value="#magnitude">Painel de magnitude</option>
+      <option value="#sodio">Sódio &amp; sal</option>
+      <option value="#ssass">Estudo SSaSS</option>
+      <option value="#potassio">Potássio</option>
+      <option value="#dash">Dieta DASH</option>
+      <option value="#alcool">Álcool</option>
+      <option value="#cafe">Café</option>
+      <option value="#peso">Peso &amp; obesidade</option>
+      <option value="#exercicio">Exercício &amp; FITT</option>
+      <option value="#karvonen">Karvonen</option>
+      <option value="#seguranca">Segurança pressórica</option>
+      <option value="#tabaco">Tabagismo</option>
+      <option value="#mente">Meditação &amp; estresse</option>
+      <option value="#matriz">Força × certeza</option>
+      <option value="#palacio">Palácio da memória</option>
+      <option value="#casos">Casos clínicos</option>
+      <option value="#arena">Arena TEC</option>
+      <option value="#flash">Flashcards</option>
+      <option value="#decisoes">Mini-decisões</option>
+      <option value="#pegadinhas">Pegadinhas</option>
+      <option value="#revisao">Revisão 60s</option>
+      <option value="#hipocampo">Hipocampo</option>
+    </select>
+    <button class="toggle-btn" id="btnProf" aria-pressed="false">Modo professor</button>
+    <button class="toggle-btn" id="btnMotion" aria-pressed="false">Reduzir mov.</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <svg class="pulse-heart" viewBox="0 0 100 100" aria-hidden="true"><path fill="#7fd0e6" d="M50 88C25 70 8 55 8 35 8 22 18 13 30 13c8 0 14 4 20 12 6-8 12-12 20-12 12 0 22 9 22 22 0 20-17 35-42 53z"/><path fill="none" stroke="#0b2545" stroke-width="2.5" d="M8 50h20l6-14 8 26 7-32 6 20h29"/></svg>
+  <div class="wrap">
+    <div class="eyebrow">Atlas Mental da Hipertensão Arterial</div>
+    <h1>Tratamento não medicamentoso</h1>
+    <p class="path">BLOCO 2 · TEMA 4A · Tema 4 permanece Tema 4</p>
+    <p class="sub">Quanto cada mudança reduz a pressão, como prescrever com precisão e quando ter cautela. Não é o prefácio fraco antes do remédio — é tratamento.</p>
+    <div class="hero-sig"><span class="sig">Dr. André Rossanno</span></div>
+
+    <div class="hub">
+      <a href="#magnitude"><span class="hn">N1 · mapa</span><span class="ht">Magnitude do efeito</span></a>
+      <a href="#exercicio"><span class="hn">prescrição</span><span class="ht">Exercício &amp; FITT-VP</span></a>
+      <a href="#ssass"><span class="hn">evidência</span><span class="ht">Estudo SSaSS</span></a>
+      <a href="#arena"><span class="hn">treino</span><span class="ht">Arena TEC</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===== COMO USAR ===== -->
+<section id="como-usar">
+  <div class="sechead"><span class="num">00</span><h2>Como usar este módulo</h2></div>
+  <div class="block">
+    <p class="lead">Este não é uma apostila digital nem um resumo. É uma plataforma de raciocínio. Você vai decidir, calcular, errar em ambiente seguro e reter.</p>
+    <div class="grid cols-3" style="margin-top:12px">
+      <div class="callout c-blue"><span class="tag">Leia ativo</span>Antes de cada explicação, tente responder. A resposta só ganha valor depois do esforço.</div>
+      <div class="callout c-green"><span class="tag">Simule</span>Use os simuladores (sódio, Karvonen, dose de álcool, prescrição). São ferramentas educacionais, não promessas individuais.</div>
+      <div class="callout c-amber"><span class="tag">Cace a pegadinha</span>Cada bloco tem uma armadilha de prova. Elas aparecem de novo na Arena TEC.</div>
+    </div>
+    <p class="small muted" style="margin-top:12px">Ative o <b>Modo professor</b> no topo para abrir fisiopatologia, controvérsias e notas de docência. Seu progresso fica salvo neste dispositivo.</p>
+  </div>
+</section>
+
+<!-- ===== OBJETIVOS ===== -->
+<section id="objetivos">
+  <div class="sechead"><span class="num">01</span><h2>Objetivos de aprendizagem</h2></div>
+  <div class="block">
+    <p class="kicker">Ao final você será capaz de</p>
+    <div class="grid cols-2">
+      <div>
+        <p>▸ Estimar <b>quanto</b> cada intervenção reduz a PAS/PAD e por que não somá-las cegamente.</p>
+        <p>▸ Prescrever <b>exercício aeróbico</b> por FITT-VP e definir intensidade moderada por múltiplos métodos.</p>
+        <p>▸ Distinguir <b>sódio × sal</b>, <b>atividade × exercício</b>, <b>força da recomendação × certeza da evidência</b>.</p>
+      </div>
+      <div>
+        <p>▸ Aplicar os <b>limites de segurança pressórica</b> do exercício (160/105 e 180/105).</p>
+        <p>▸ Reconhecer quando <b>sal light</b>, <b>potássio</b> e <b>substituto de sal</b> exigem cautela.</p>
+        <p>▸ Interpretar criticamente o <b>estudo SSaSS</b> e transferir para casos e questões.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASO LONGITUDINAL ===== -->
+<section id="caso-abertura">
+  <div class="sechead"><span class="num">02</span><h2>O caso que atravessa o módulo</h2></div>
+  <div class="block">
+    <span class="nchip">N6 · narrativa clínica</span>
+    <p class="lead"><b>Roberto, 52 anos.</b> Sedentário, IMC 31 kg/m². PA média de consultório <b>148/94 mmHg</b>. Come ultraprocessados quase todos os dias, bebe bastante nos fins de semana e quase não come frutas e verduras.</p>
+    <div class="callout c-blue"><span class="tag">Sua missão</span>Ao longo do módulo você vai decidir o plano de Roberto: quais intervenções prescrever, quais têm maior impacto, como quantificar, o que exige cautela, como prescrever exercício e o que esperar. No fim, seu plano será comparado a um plano ideal comentado.</div>
+    <p class="small muted">Guarde estes números. Vamos voltar a eles.</p>
+  </div>
+</section>
+
+<!-- ===== MAPA-MESTRE ===== -->
+<section id="mapa">
+  <div class="sechead"><span class="num">03</span><h2>Mapa-mestre — as 8 alavancas</h2></div>
+  <div class="block">
+    <span class="nchip">N1 · compressão</span>
+    <p>Todo o tratamento não medicamentoso comprime em oito alavancas. Não force um acrônimo: é a <b>constelação da pressão segura</b>.</p>
+    <div class="detetive" style="grid-template-columns:repeat(2,1fr)" role="list">
+      <div class="food" style="cursor:default" role="listitem">SAL<span class="verdict-mini" style="color:var(--muted)">&lt;2 g Na / 5 g sal</span></div>
+      <div class="food" style="cursor:default" role="listitem">PESO<span class="verdict-mini" style="color:var(--muted)">1 kg ≈ −1 mmHg</span></div>
+      <div class="food" style="cursor:default" role="listitem">DASH<span class="verdict-mini" style="color:var(--muted)">padrão alimentar</span></div>
+      <div class="food" style="cursor:default" role="listitem">POTÁSSIO<span class="verdict-mini" style="color:var(--muted)">≥3,5 g/dia</span></div>
+      <div class="food" style="cursor:default" role="listitem">ÁLCOOL<span class="verdict-mini" style="color:var(--muted)">moderar / sem binge</span></div>
+      <div class="food" style="cursor:default" role="listitem">MOVIMENTO<span class="verdict-mini" style="color:var(--muted)">150 min/sem</span></div>
+      <div class="food" style="cursor:default" role="listitem">TABACO<span class="verdict-mini" style="color:var(--muted)">cessar, não reduzir</span></div>
+      <div class="food" style="cursor:default" role="listitem">ESTRESSE<span class="verdict-mini" style="color:var(--muted)">meditação / mente</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FILOSOFIA ===== -->
+<section id="filosofia">
+  <div class="sechead"><span class="num">04</span><h2>Filosofia clínica</h2></div>
+  <div class="block">
+    <p class="lead">Existe uma frase que atrapalha muito médico: <i>"primeiro a gente tenta mudar o estilo de vida, depois entra o remédio."</i> Ela sugere que a medida não medicamentosa é um começo fraco, uma formalidade antes do tratamento de verdade.</p>
+    <p>Não é. A medida não medicamentosa <b>reduz a pressão</b>, reduz risco cardiovascular, trata fatores de risco concomitantes, <b>melhora a resposta aos anti-hipertensivos</b> e pode diminuir o número ou a dose de medicamentos. Ela não substitui o remédio quando ele é necessário — mas anda junto com ele, e às vezes o antecipa.</p>
+    <p>O que ela cobra em troca é o mais difícil de prescrever: <b>adesão e manutenção</b>. Um comprimido é tomado em segundos. Uma dieta, um treino e um copo a menos são decisões repetidas mil vezes. É por isso que a maior parte deste módulo é sobre <i>como prescrever</i>, não apenas <i>o que recomendar</i>.</p>
+    <div class="callout c-amber"><span class="tag">O alerta que define o módulo</span>Não some cegamente todas as reduções médias de PAS/PAD. Os efeitos se sobrepõem, são parcialmente aditivos e variam conforme PA basal, adesão, fenótipo e duração. Somar os números como numa fatura dá uma queda impossível.</div>
+    <p style="text-align:right;margin-top:16px"><span class="sig">— Dr. André Rossanno</span></p>
+  </div>
+</section>
+
+<!-- ===== PAINEL DE MAGNITUDE ===== -->
+<section id="magnitude">
+  <div class="sechead"><span class="num">05</span><h2>Painel de magnitude do efeito</h2></div>
+  <div class="block">
+    <span class="nchip">N7 · o peso de cada gesto</span>
+    <p>Reduções médias aproximadas de estudos e metanálises (Diretriz Brasileira de HAS 2025). São <b>médias populacionais</b>, não resposta individual garantida. Ordene para ver quem move mais a agulha.</p>
+    <div class="sortbar">
+      <button class="mini-btn on" data-sort="pas">Ordenar por PAS</button>
+      <button class="mini-btn" data-sort="pad">Ordenar por PAD</button>
+      <button class="mini-btn" data-sort="nome">A–Z</button>
+    </div>
+    <div class="tbl-scroll">
+      <table id="magTable">
+        <thead><tr><th>Intervenção</th><th>Δ PAS</th><th>Δ PAD</th><th>Recomendação</th></tr></thead>
+        <tbody><!-- preenchido por JS --></tbody>
+      </table>
+    </div>
+    <div class="callout c-red" style="margin-top:14px"><span class="tag">Pegadinha de prova</span>Somar linearmente todas as linhas dá uma queda irreal (&gt;30 mmHg). A prova adora testar isso. Os efeitos se sobrepõem.</div>
+    <div class="prof-only"><span class="tag">Nota de docência</span>A cessação do tabagismo aparece com efeito <i>direto</i> sobre a PA controverso — mas o benefício sobre eventos, câncer e mortalidade é inequívoco. Não confunda "efeito pequeno/incerto na PA" com "intervenção fraca": aqui força de recomendação e magnitude de PA divergem.</div>
+  </div>
+</section>
+
+<!-- ===== SÓDIO ===== -->
+<section id="sodio">
+  <div class="sechead"><span class="num">06</span><h2>Sódio &amp; sal</h2></div>
+  <div class="block">
+    <span class="nchip">N3 · causalidade</span>
+    <p class="lead">Menos sódio → menor retenção de água → menor volume circulante e carga vascular → <b>menor PA</b>. Até cerca de <b>30%</b> dos casos de hipertensão podem ser atribuídos ao excesso de sódio (material da aula).</p>
+    <h4>De onde vem o sódio</h4>
+    <p>Três fontes: sal <b>na mesa</b>, sal <b>no preparo</b> e sódio <b>de industrializados/ultraprocessados</b>. Em países desenvolvidos predomina o industrial; no Brasil o preparo domiciliar ainda pesa muito, embora os ultraprocessados venham crescendo.</p>
+    <h4>Quem responde mais à restrição</h4>
+    <p>Hipertensos, idosos, pessoas negras, indivíduos sal-sensíveis e fenótipos de retenção volêmica (incluindo DRC) — sempre com individualização.</p>
+
+    <div class="callout c-green"><span class="tag">Meta principal</span><b>&lt; 2 g de sódio/dia ≈ 5 g de sal/dia ≈ uma colher de chá rasa</b> distribuída no dia inteiro.</div>
+
+    <h3>Conversor sódio ↔ sal ↔ mmol</h3>
+    <div class="sim">
+      <h4>Não confunda sódio com sal</h4>
+      <div class="grid cols-3">
+        <div class="field"><label for="convVal">Valor</label><input type="number" id="convVal" value="2" min="0" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="convDe">Está em</label>
+          <select id="convDe"><option value="naG">g de sódio</option><option value="salG">g de sal (NaCl)</option><option value="mmol">mmol de sódio</option></select>
+        </div>
+        <div class="field" style="justify-content:flex-end"><button class="mini-btn on" id="convBtn" style="padding:9px">Converter</button></div>
+      </div>
+      <div class="sim-out" id="convOut" aria-live="polite">
+        <span class="muted small">Relações: 1 mmol Na ≈ 23 mg · 100 mmol Na ≈ 2,3 g Na · 2 g Na ≈ 5 g sal (aprox.).</span>
+      </div>
+      <div class="warnbar">"2 g de sal" NÃO equivale a "2 g de sódio". 2 g de <b>sódio</b> ≈ 5 g de <b>sal</b>.</div>
+    </div>
+
+    <div class="callout c-amber"><span class="tag">Contraste N2</span>Sódio é o elemento (Na). Sal de cozinha é NaCl — só cerca de 40% dele é sódio. Rótulo, prova e prescrição usam <b>sódio</b>; a colher de chá é <b>sal</b>.</div>
+  </div>
+</section>
+
+<!-- ===== TIPOS DE SAL ===== -->
+<section id="tipos-sal">
+  <div class="sechead"><span class="num">07</span><h2>Tipos de sal &amp; sal light</h2></div>
+  <div class="block">
+    <p>Sal refinado, marinho, grosso, rosa do Himalaia, flor de sal, integral, negro, com ervas… A aparência, a origem exótica ou os minerais-traço <b>não transformam um sal rico em NaCl em tratamento anti-hipertensivo</b>. Na prática, a maioria continua entregando bastante sódio.</p>
+    <div class="callout c-red"><span class="tag">Mito perigoso</span>"Sal rosa é natural, então é sem sódio." Falso. Continua sendo majoritariamente NaCl.</div>
+    <h3>Sal light — o único diferente de verdade</h3>
+    <p>Menor proporção de NaCl, com substituição parcial por <b>KCl</b>. Pode reduzir sódio e aumentar potássio. Mas a composição <b>varia por marca</b> — não use porcentagem fixa universal, leia o rótulo.</p>
+    <div class="callout c-amber"><span class="tag">Cautela / contraindicação relativa</span>DRC, hipercalemia ou risco dela, e uso de <b>IECA, BRA, antagonista de mineralocorticoide</b> ou outros fármacos que elevam K⁺. Exige avaliação individual e monitorização. Sal light <b>não</b> é recomendação universal.</div>
+  </div>
+</section>
+
+<!-- ===== SSaSS ===== -->
+<section id="ssass">
+  <div class="sechead"><span class="num">08</span><h2>O saleiro que mudou desfechos: SSaSS</h2></div>
+  <div class="block">
+    <p class="lead">Um substituto de sal (75% NaCl + 25% KCl) trocando o sal comum em vilas rurais — e os desfechos duros caíram. <span class="mono small">NEJM, 2021.</span></p>
+    <div class="grid cols-2">
+      <div class="callout c-blue"><span class="tag">Desenho</span>Ensaio por conglomerados · ~20.995 participantes · ~600 vilas rurais na China · com história de AVC ou ≥60 anos com hipertensão · seguimento ~5 anos.</div>
+      <div class="callout c-green"><span class="tag">Achados (reduções relativas aprox.)</span>AVC ↓ ~14% · eventos cardiovasculares maiores ↓ ~13% · mortalidade ↓ ~12%. Sem aumento estatisticamente significativo de eventos graves por hipercalemia no estudo.</div>
+    </div>
+    <h4>Taxas por 1.000 pessoas-ano (substituto vs. comum)</h4>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Desfecho</th><th>Sal substituto</th><th>Sal comum</th></tr></thead>
+        <tbody>
+          <tr><td>AVC</td><td>29,14</td><td>33,65</td></tr>
+          <tr><td>Eventos CV maiores</td><td>49,09</td><td>56,29</td></tr>
+          <tr><td>Mortalidade</td><td>39,28</td><td>44,61</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid cols-2" style="margin-top:12px">
+      <div class="callout c-blue"><span class="tag">Aplicação prática</span>Substituto de sal é uma alavanca populacional real, sobretudo em quem come sal do preparo doméstico.</div>
+      <div class="callout c-red"><span class="tag">Limitação &amp; pegadinha</span>População de alto risco, contexto rural chinês. <b>Não</b> significa que todo paciente pode usar KCl sem avaliação. Efetividade populacional não elimina a individualização — quem tem risco de hipercalemia precisa de cautela.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AVALIAÇÃO DO SÓDIO ===== -->
+<section id="aval-sodio">
+  <div class="sechead"><span class="num">09</span><h2>Avaliar o consumo de sódio</h2></div>
+  <div class="block">
+    <p>Recordatório alimentar ajuda, mas é impreciso — rótulos, temperos escondidos e preparo caseiro atrapalham qualquer estimativa feita de memória. Quando é preciso ir além da impressão clínica, existe um exame que se destaca de todos os outros:</p>
+
+    <div class="exam-badge"><span class="dot"></span>SÓDIO URINÁRIO DE 24 HORAS</div>
+
+    <p>Ele é considerado o <b>melhor método disponível</b> para estimar a ingestão habitual de sódio — muito superior ao recordatório alimentar, que depende da memória e da sinceridade do paciente sobre o que realmente comeu.</p>
+    <p>É, reconhecidamente, um exame desconfortável: o paciente precisa coletar <b>toda a urina produzida em 24 horas</b>, sem perder nenhuma micção, guardando o frasco refrigerado. Mesmo assim, em determinadas situações, essa informação vale o incômodo:</p>
+    <div class="grid cols-2">
+      <div class="callout c-blue"><span class="tag">Hipertensão resistente</span>Ajuda a diferenciar resistência verdadeira de consumo excessivo de sal mascarando o controle.</div>
+      <div class="callout c-blue"><span class="tag">Suspeita de baixa adesão</span>Confronta o que o paciente relata com o que o corpo efetivamente excreta.</div>
+      <div class="callout c-blue"><span class="tag">Ingestão elevada suspeitada</span>Documenta objetivamente um consumo de sódio que a anamnese não consegue captar.</div>
+      <div class="callout c-blue"><span class="tag">Orientar o tratamento</span>Fornece um número concreto para negociar metas realistas com o paciente.</div>
+    </div>
+    <p>Ainda assim, o resultado nunca deve ser lido isoladamente: uma <b>única coleta tem variação diária</b> considerável (o consumo de sal muda de um dia para o outro), a <b>qualidade da coleta</b> interfere muito no resultado (perder uma micção subestima tudo), e o número final só ganha sentido quando <b>interpretado junto ao contexto clínico</b> do paciente.</p>
+    <div class="callout c-amber"><span class="tag">Ressalva</span>Uma coleta isolada varia dia a dia. Avalie a qualidade da coleta (creatinina urinária, volume) conforme o contexto.</div>
+
+    <h3>Estimador de sódio urinário 24h</h3>
+    <div class="sim">
+      <div class="field"><label for="uNa">Sódio urinário (mmol/24h)</label><input type="number" id="uNa" value="150" min="0" step="1" inputmode="numeric"></div>
+      <button class="mini-btn on" id="uNaBtn" style="padding:9px">Estimar</button>
+      <div class="sim-out" id="uNaOut" aria-live="polite">
+        <span class="muted small">Referência: &lt;100 mmol/24h ≈ 2,3 g de sódio ≈ 5–6 g de sal.</span>
+      </div>
+      <div class="warnbar">Educacional. &lt;100 mmol NÃO corresponde exatamente a 2 g de sódio, e uma coleta isolada sofre variação diária.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ESTRATÉGIAS + DETETIVE ===== -->
+<section id="estrategias">
+  <div class="sechead"><span class="num">10</span><h2>Reduzir sódio na vida real</h2></div>
+  <div class="block">
+    <p class="kicker">A escada de intervenção</p>
+    <p>1 · conscientizar paciente e família · 2 · identificar as principais fontes · 3 · ler rótulos · 4 · reduzir ultraprocessados · 5 · priorizar in natura/minimamente processados · 6 · diminuir sal do preparo · 7 · tirar o saleiro da mesa · 8 · usar ervas, alho, cebola, limão, especiarias e pimentas · 9 · considerar substituto de sal quando apropriado · 10 · reavaliar adesão e, em casos selecionados, sódio urinário 24h.</p>
+
+    <h3>Detetive do sódio</h3>
+    <p class="small muted">Toque em cada alimento: fonte oculta de sódio ou seguro?</p>
+    <div class="detetive" id="detetive" role="group" aria-label="Detetive do sódio"></div>
+    <p class="small mono" id="detScore" style="margin-top:8px"></p>
+  </div>
+</section>
+
+<!-- ===== POTÁSSIO ===== -->
+<section id="potassio">
+  <div class="sechead"><span class="num">11</span><h2>Potássio</h2></div>
+  <div class="block">
+    <span class="nchip">N3 · causalidade</span>
+    <div class="callout c-green"><span class="tag">Meta dietética</span><b>≥ 3,5 g/dia</b>, preferencialmente por <b>alimentos</b> — exceto em DRC ou hiperpotassemia.</div>
+    <p><b>Fontes:</b> frutas, verduras, legumes, leguminosas, batata, abacate, folhas verdes, banana, tomate, cítricos, melão, feijões e peixes (dentro da dieta global).</p>
+    <p><b>Mecanismos:</b> natriurese, modulação vascular, melhora da relação sódio/potássio e efeitos sobre o tônus vascular.</p>
+    <div class="callout c-red"><span class="tag">Cautela</span>DRC, hipercalemia, hipoaldosteronismo e fármacos que elevam K⁺. Não prescrever suplementação indiscriminada.</div>
+    <div class="callout c-amber"><span class="tag">Contraste N2</span><b>Dieta rica em potássio</b> (recomendada amplamente) ≠ <b>suplemento farmacológico de potássio</b> (não é a estratégia de rotina). A prova troca os dois.</div>
+  </div>
+</section>
+
+<!-- ===== DASH ===== -->
+<section id="dash">
+  <div class="sechead"><span class="num">12</span><h2>Dieta DASH</h2></div>
+  <div class="block">
+    <p class="lead"><b>DASH = Dietary Approaches to Stop Hypertension.</b> Reduz a PAS em ≈ <b>8,7 mmHg</b> e a PAD em ≈ <b>4,5 mmHg</b> (valores do estudo clássico, em contexto específico — o efeito individual varia).</p>
+    <div class="grid cols-2">
+      <div class="callout c-green"><span class="tag">Priorizar</span>Frutas, verduras, legumes, cereais integrais, leguminosas, oleaginosas e sementes, laticínios desnatados, peixes, carnes brancas e óleos/gorduras de melhor perfil.</div>
+      <div class="callout c-red"><span class="tag">Reduzir</span>Sal, ultraprocessados, bebidas açucaradas, açúcares, gorduras saturadas, carnes processadas e excesso de carne vermelha.</div>
+    </div>
+    <div class="callout c-amber"><span class="tag">O que DASH NÃO é</span>Não é dieta de fome, não é só salada, não é obrigatoriamente vegetariana e não é uma lista rígida idêntica para todos. É um <b>padrão</b> alimentar.</div>
+    <div class="prof-only"><span class="tag">Por que funciona</span>O padrão DASH combina três alavancas em uma: mais potássio/cálcio/magnésio, menos sódio e melhor perfil de gorduras. Parte do efeito se sobrepõe ao do potássio e ao da restrição de sódio — mais um motivo para não somar tudo linearmente.</div>
+  </div>
+</section>
+
+<!-- ===== ÁLCOOL ===== -->
+<section id="alcool">
+  <div class="sechead"><span class="num">13</span><h2>Álcool</h2></div>
+  <div class="block">
+    <p>Excesso de álcool eleva a PA, e o <b>binge drinking</b> é particularmente nocivo. Reduzir ~50% (ou retirar ≥6 doses) em grandes consumidores reduz a PAS ≈ <b>5,5 mmHg</b> e a PAD ≈ <b>4,0 mmHg</b>.</p>
+    <div class="callout c-red"><span class="tag">Nunca</span>Não recomende <b>iniciar</b> consumo de álcool com finalidade cardiovascular. Para quem já bebe, oriente redução e limites.</div>
+    <div class="callout c-green"><span class="tag">Limites — Diretriz Brasileira de HAS 2025</span>Homens: até <b>2 doses padrão/dia</b> · Mulheres: até <b>1 dose padrão/dia</b> · evitar consumo episódico abusivo.</div>
+    <p><b>Uma dose padrão</b> no material ≈ <b>10 a 12 g</b> de álcool puro, correspondendo aproximadamente a 200 mL de cerveja (5%), 100 mL de vinho (12%) ou 25 mL de destilado (40%).</p>
+
+    <h3>Calculadora de dose alcoólica</h3>
+    <div class="sim">
+      <div class="grid cols-3">
+        <div class="field"><label for="alcVol">Volume (mL)</label><input type="number" id="alcVol" value="350" min="0" step="10" inputmode="numeric"></div>
+        <div class="field"><label for="alcTeor">Teor (% álcool)</label><input type="number" id="alcTeor" value="5" min="0" step="0.5" inputmode="decimal"></div>
+        <div class="field" style="justify-content:flex-end"><button class="mini-btn on" id="alcBtn" style="padding:9px">Calcular</button></div>
+      </div>
+      <div class="sim-out" id="alcOut" aria-live="polite"><span class="muted small">gramas de álcool = volume × (%/100) × 0,789 (densidade do etanol).</span></div>
+      <div class="warnbar">O tamanho do copo ≠ uma dose. Uma lata de cerveja de 350 mL costuma ser mais de uma dose padrão.</div>
+    </div>
+    <div class="callout c-blue"><span class="tag">Nota científica</span>Organizações usam definições diferentes de dose padrão (frequentemente 10–14 g) e volumes diferentes conforme o teor. Não misture padrões sem citar a fonte.</div>
+  </div>
+</section>
+
+<!-- ===== CAFÉ ===== -->
+<section id="cafe">
+  <div class="sechead"><span class="num">14</span><h2>Mito ou verdade: café causa hipertensão?</h2></div>
+  <div class="block">
+    <p>A cafeína <b>pode</b> elevar transitoriamente a PA em alguns indivíduos, mas consumidores habituais desenvolvem <b>tolerância parcial</b>. O consumo habitual moderado — em geral ~3 a 4 xícaras/dia no material — <b>não</b> se associa de forma consistente a aumento crônico da PA ou incidência de HAS.</p>
+    <div class="callout c-amber"><span class="tag">Considere caso a caso</span>Sensibilidade individual, palpitações, ansiedade, sono, forma de preparo e o açúcar/acompanhamentos. E <b>energético não é café</b>.</div>
+    <div class="callout c-blue"><span class="tag">Não exagere na conclusão</span>"Café não piora a PA cronicamente na maioria" não vira "café protege o coração de todo mundo". Não afirme benefício cardiovascular universal.</div>
+  </div>
+</section>
+
+<!-- ===== PESO ===== -->
+<section id="peso">
+  <div class="sechead"><span class="num">15</span><h2>Redução de peso &amp; obesidade</h2></div>
+  <div class="block">
+    <span class="nchip">N3 · causalidade</span>
+    <p class="lead">Em sobrepeso/obesidade, perder peso é uma das intervenções de <b>maior efeito</b> — depende da magnitude e da manutenção. Melhora PA, resistência insulínica, apneia do sono e perfil metabólico.</p>
+    <p class="small muted">Perda de peso → ↓ ativação simpática, ↓ resistência insulínica, ↓ retenção de sódio, ↓ AOS → ↓ PA.</p>
+    <div class="callout c-green"><span class="tag">Metas de IMC (material da aula)</span>Em geral <b>IMC &lt; 25 kg/m²</b> até 65 anos. Após os 65, considerar faixa ≈ <b>22–27 kg/m²</b>, individualizando e evitando sarcopenia.</div>
+    <p><b>Efeito médio:</b> cada 1 kg perdido ≈ PAS <b>−1,05 mmHg</b> e PAD <b>−0,92 mmHg</b>.</p>
+
+    <h3>Calculadora de efeito da perda de peso</h3>
+    <div class="sim">
+      <div class="grid cols-2">
+        <div class="field"><label for="pesoAtual">Peso atual (kg)</label><input type="number" id="pesoAtual" value="95" min="0" step="0.5" inputmode="decimal"></div>
+        <div class="field"><label for="pesoMeta">Peso-meta (kg)</label><input type="number" id="pesoMeta" value="85" min="0" step="0.5" inputmode="decimal"></div>
+      </div>
+      <button class="mini-btn on" id="pesoBtn" style="padding:9px">Estimar queda de PA</button>
+      <div class="sim-out" id="pesoOut" aria-live="polite"><span class="muted small">Estimativa média — não é promessa individual.</span></div>
+      <div class="warnbar">Ferramenta educacional. A resposta real varia com PA basal, fenótipo, adesão e duração.</div>
+    </div>
+
+    <h3>Medicações para obesidade (repercussão na PA)</h3>
+    <p class="small muted">Abordadas apenas como tratamento da obesidade que pode repercutir na PA — este não é um módulo de farmacoterapia da obesidade.</p>
+    <div class="grid cols-2">
+      <div class="callout c-blue"><span class="tag">Semaglutida</span>Agonista do receptor GLP-1. Uso conforme indicação, dose, titulação e regulamentação. <b>2,4 mg não é dose inicial</b> — há titulação. Prefira o nome genérico.</div>
+      <div class="callout c-blue"><span class="tag">Tirzepatida</span>Agonista duplo GIP/GLP-1. Uso conforme indicação, dose, titulação e regulamentação. <b>15 mg não é dose inicial</b>. Maior perda média de peso não vira superioridade universal.</div>
+    </div>
+    <p class="small">Considere indicação, contraindicações, efeitos adversos, custo/acesso, acompanhamento, preservação de massa muscular (dieta, proteína, exercício resistido) e risco de reganho após interrupção. Evite propaganda de marcas.</p>
+  </div>
+</section>
+
+<!-- ===== ATIVIDADE vs EXERCÍCIO ===== -->
+<section id="ativ-exerc">
+  <div class="sechead"><span class="num">16</span><h2>Atividade física × exercício físico</h2></div>
+  <div class="block">
+    <span class="nchip">N2 · contraste</span>
+    <div class="grid cols-2">
+      <div class="callout c-blue"><span class="tag">Atividade física</span>Qualquer movimento corporal que eleve o gasto energético acima do repouso: caminhar, deslocar-se, tarefas domésticas, trabalho, lazer, subir escadas.</div>
+      <div class="callout c-green"><span class="tag">Exercício físico</span>Atividade física <b>planejada, estruturada e repetitiva</b>, com objetivo de melhorar saúde ou aptidão física.</div>
+    </div>
+    <p class="small muted">Todo exercício é atividade física; nem toda atividade física é exercício. A prova gosta desse detalhe.</p>
+
+    <h3>Não fique sentado o tempo todo</h3>
+    <p>Interrompa períodos prolongados sentado: ≈ <b>5 minutos de movimento a cada 30 minutos</b> de sedentarismo prolongado.</p>
+    <div class="callout c-amber"><span class="tag">Cuidado conceitual</span>Isso <b>não substitui</b> o volume semanal recomendado. "Sedentário" e "fisicamente ativo" não são excludentes — dá para cumprir o treino e ainda passar muitas horas sentado.</div>
+  </div>
+</section>
+
+<!-- ===== PRESCRIÇÃO EXERCÍCIO ===== -->
+<section id="exercicio">
+  <div class="sechead"><span class="num">17</span><h2>Prescrever exercício — FITT-VP</h2></div>
+  <div class="block">
+    <p class="lead">Prescrição de exercício não é "faça caminhada". É uma receita com seis variáveis.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Letra</th><th>Variável</th><th>Para Roberto</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">F</td><td>Frequência</td><td>3 a 5 dias/semana</td></tr>
+          <tr><td class="mono">I</td><td>Intensidade</td><td>Moderada (veja próxima seção)</td></tr>
+          <tr><td class="mono">T</td><td>Tempo</td><td>30 a 60 min/sessão</td></tr>
+          <tr><td class="mono">T</td><td>Tipo</td><td>Caminhar, correr, pedalar, nadar, dançar…</td></tr>
+          <tr><td class="mono">V</td><td>Volume</td><td>≥ 150 min/semana moderado (ou 75 vigoroso)</td></tr>
+          <tr><td class="mono">P</td><td>Progressão</td><td>Aquecimento, desaquecimento e evolução gradual</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout c-green" style="margin-top:12px"><span class="tag">Recomendação geral</span><b>150 min/semana moderado</b> OU <b>75 min/semana vigoroso</b>, mais <b>fortalecimento muscular ≥ 2×/semana</b>.</div>
+
+    <h3>Montador de prescrição FITT</h3>
+    <div class="sim">
+      <div class="grid cols-2">
+        <div class="field"><label for="fittTipo">Tipo</label><select id="fittTipo"><option>Caminhada</option><option>Corrida</option><option>Bicicleta</option><option>Natação</option><option>Dança</option></select></div>
+        <div class="field"><label for="fittFreq">Frequência (dias/semana)</label><input type="number" id="fittFreq" value="4" min="1" max="7" inputmode="numeric"></div>
+        <div class="field"><label for="fittTempo">Tempo (min/sessão)</label><input type="number" id="fittTempo" value="40" min="5" step="5" inputmode="numeric"></div>
+        <div class="field"><label for="fittInt">Intensidade</label><select id="fittInt"><option>Moderada</option><option>Vigorosa</option></select></div>
+      </div>
+      <button class="mini-btn on" id="fittBtn" style="padding:9px">Montar receita</button>
+      <div class="sim-out" id="fittOut" aria-live="polite"><span class="muted small">Volume semanal = frequência × tempo. Meta: ≥150 min moderado ou ≥75 vigoroso + força 2×/sem.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTENSIDADE ===== -->
+<section id="intensidade">
+  <div class="sechead"><span class="num">18</span><h2>O que é "intensidade moderada"</h2></div>
+  <div class="block">
+    <p>Vários métodos apontam para o mesmo alvo. Não misture as escalas.</p>
+    <div class="grid cols-2">
+      <div class="callout c-blue"><span class="tag">Teste da fala</span>Respiração mais intensa, ainda <b>consegue conversar</b> uma frase — mas não canta confortavelmente.</div>
+      <div class="callout c-blue"><span class="tag">Borg</span>≈ <b>12–13</b> na escala 6–20, ou ≈ <b>2–4</b> na escala 0–10. São escalas <b>diferentes</b>.</div>
+      <div class="callout c-blue"><span class="tag">% da FC de pico</span>≈ <b>70–85%</b> da FC de pico em referências de reabilitação (Diretriz de Reabilitação CV 2020). FC-alvo = FC pico × %.</div>
+      <div class="callout c-blue"><span class="tag">FC de reserva (Karvonen)</span>Faixa <b>prática</b> apresentada na aula: <b>40–60%</b> da FC de reserva. Outras referências usam faixas mais amplas (ex.: 50–80%).</div>
+    </div>
+    <p class="small">Com teste cardiopulmonar disponível, prescreve-se entre os <b>limiares ventilatórios</b> (prescrição especializada).</p>
+    <div class="callout c-amber"><span class="tag">Pegadinha</span>"12–13" é escala de Borg <b>6–20</b>. Se a questão citar Borg 0–10, o alvo moderado é ~2–4. Trocar a escala é erro clássico.</div>
+
+    <h3>Entendendo a escala de Borg</h3>
+    <p>Borg não mede a frequência cardíaca — ele mede a <b>percepção subjetiva de esforço</b>, ou seja, o quanto o próprio paciente sente que está se esforçando. Por não depender de FC, é especialmente útil quando a frequência cardíaca não é confiável: uso de <b>betabloqueador</b>, arritmias, incompetência cronotrópica ou marca-passo — situações em que a fórmula de Karvonen perde precisão, mas a percepção do paciente continua valendo.</p>
+    <p>Existem <b>duas escalas de Borg</b>, e confundi-las é o erro mais comum:</p>
+    <div class="grid cols-2">
+      <div class="callout c-blue"><span class="tag">Escala original (6–20)</span>Criada por <b>Gunnar Borg</b>. Vai de 6 a 20 porque a ideia era aproximar cada valor de uma FC de referência (6 ≈ repouso, em torno de 60 bpm) — um número que, multiplicado por 10, lembra a FC esperada naquele esforço.</div>
+      <div class="callout c-blue"><span class="tag">Escala CR10 (0–10)</span>Versão simplificada, mais intuitiva (0 = nenhum esforço, 10 = esforço máximo). É a mais usada na prática atual de reabilitação cardiovascular, embora a 6–20 ainda apareça bastante na literatura e em provas.</div>
+    </div>
+    <p>Como o paciente sente cada intensidade, na escala 6–20:</p>
+    <div class="grid cols-2">
+      <div class="callout c-green"><span class="tag">Borg 12–13 (moderado)</span>"Estou respirando mais rápido, mas ainda consigo conversar."</div>
+      <div class="callout c-amber"><span class="tag">Borg 17 (intenso)</span>"Falar ficou muito difícil."</div>
+    </div>
+    <div class="callout c-red"><span class="tag">Borg 20 (máximo)</span>"Esforço máximo." — o topo da escala, não o alvo de um treino de intensidade moderada.</div>
+
+    <div class="prof-only"><span class="tag">Por que faixas divergem</span>O método e a faixa dependem da diretriz, do teste e da população. A Reabilitação CV 2020 traz 70–85% da FC pico e 50–80% da FC de reserva; o material de HAS 2025 usa a faixa prática 40–60% da FC de reserva. Deixe explícito qual método está usando.</div>
+  </div>
+</section>
+
+<!-- ===== KARVONEN ===== -->
+<section id="karvonen">
+  <div class="sechead"><span class="num">19</span><h2>Fórmula de Karvonen</h2></div>
+  <div class="block">
+    <div class="callout c-blue"><span class="tag">Fórmula</span><b>FC-alvo = [(FC máx − FC repouso) × intensidade] + FC repouso</b></div>
+    <div class="sim">
+      <h4>Calculadora de Karvonen</h4>
+      <div class="grid cols-2">
+        <div class="field"><label for="kIdade">Idade (anos)</label><input type="number" id="kIdade" value="52" min="1" inputmode="numeric"></div>
+        <div class="field"><label for="kRep">FC de repouso (bpm)</label><input type="number" id="kRep" value="72" min="30" inputmode="numeric"></div>
+        <div class="field"><label for="kMax">FC máxima medida (bpm) — opcional</label><input type="number" id="kMax" placeholder="deixe vazio p/ 220 − idade" min="60" inputmode="numeric"></div>
+        <div class="field"><label for="kFaixa">Faixa de intensidade</label><select id="kFaixa"><option value="40-60">40–60% (moderada, material da aula)</option><option value="50-80">50–80% (Reabilitação CV 2020)</option></select></div>
+      </div>
+      <button class="mini-btn on" id="kBtn" style="padding:9px">Calcular faixa-alvo</button>
+      <div class="sim-out" id="kOut" aria-live="polite"><span class="muted small">Sem FC máxima medida, usa-se 220 − idade (estimativa imprecisa).</span></div>
+      <div class="warnbar" id="kWarn"></div>
+    </div>
+    <div class="callout c-red"><span class="tag">Quando Karvonen falha</span>Betabloqueador, incompetência cronotrópica, arritmias, marca-passo, cardiopatias, BCC não di-hidropiridínicos, disautonomia. Nesses casos valorize teste da fala, Borg, teste ergométrico/cardiopulmonar e orientação especializada.</div>
+    <div class="callout c-amber"><span class="tag">Pegadinha</span>"220 − idade" é fórmula tradicional simples e <b>imprecisa</b> — não é verdade exata. Prefira FC máxima medida em teste quando disponível.</div>
+  </div>
+</section>
+
+<!-- ===== TIPOS DE TREINO ===== -->
+<section id="tipos-treino">
+  <div class="sechead"><span class="num">20</span><h2>Efeito por tipo de treino</h2></div>
+  <div class="block">
+    <p>Reduções médias aproximadas (mmHg). A ausência de valor de 24h/MAPA não prova ausência absoluta de efeito — pode ser só falta de dado suficiente no material.</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th>Tipo</th><th>Consultório (PAS/PAD)</th><th>24 h (PAS/PAD)</th></tr></thead>
+        <tbody>
+          <tr><td>Aeróbico</td><td class="mono eff-strong">−7,6 / −4,7</td><td class="mono">−5,5 / −3,8</td></tr>
+          <tr><td>Resistido dinâmico</td><td class="mono eff-weak">−2,6 / −2,1</td><td class="mono muted">—</td></tr>
+          <tr><td>Resistido isométrico</td><td class="mono eff-mid">−4,3 / −5,0</td><td class="mono muted">—</td></tr>
+          <tr><td>Combinado</td><td class="mono eff-mid">−5,3 / −5,6</td><td class="mono muted">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout c-blue" style="margin-top:12px"><span class="tag">Leitura fina</span>O <b>aeróbico</b> lidera na PAS de consultório. Curiosamente o <b>isométrico</b> e o <b>combinado</b> puxam bem a PAD. O tipo ideal considera idade, fragilidade, comorbidades e preferência.</div>
+  </div>
+</section>
+
+<!-- ===== SEGURANÇA ===== -->
+<section id="seguranca">
+  <div class="sechead"><span class="num">21</span><h2>Segurança pressórica no exercício</h2></div>
+  <div class="block">
+    <span class="nchip">N7 · o portão vermelho</span>
+    <p>Dois números da Diretriz Brasileira de HAS 2025 que valem ouro na prova e no plantão:</p>
+    <div class="gate">
+      <div class="gate-card gate-stop">
+        <div class="gv">160/105</div>
+        <div class="gl">Não iniciar a sessão</div>
+        <p class="small" style="margin:6px 0 0">PA de repouso acima disso: não comece o exercício.</p>
+      </div>
+      <div class="gate-card gate-slow">
+        <div class="gv">180/105</div>
+        <div class="gl">Reduzir intensidade</div>
+        <p class="small" style="margin:6px 0 0">Durante o aeróbico, se a PA passar disso: reduza e reavalie.</p>
+      </div>
+    </div>
+    <div class="callout c-amber"><span class="tag">Não universalize</span>Esses são limites <b>específicos</b> do material da Diretriz de HAS 2025. Não os converta automaticamente em regra para todo cenário de reabilitação, teste ergométrico ou competição.</div>
+    <div class="callout c-red"><span class="tag">Interromper e avaliar já</span>Dor torácica, dispneia desproporcional, déficit neurológico, síncope/pré-síncope, arritmia importante, queda inadequada da PAS, resposta pressórica extrema ou sinais de instabilidade. Antes de tudo: repita a medida corretamente e avalie sintomas, adesão e necessidade de ajuste.</div>
+  </div>
+</section>
+
+<!-- ===== TABAGISMO ===== -->
+<section id="tabaco">
+  <div class="sechead"><span class="num">22</span><h2>Cessação do tabagismo</h2></div>
+  <div class="block">
+    <p>O efeito <b>direto e sustentado</b> do abandono sobre a PA isolada é controverso. Mas a cessação reduz <b>eventos cardiovasculares, câncer e mortalidade</b> — recomendação forte, alta certeza para esses desfechos.</p>
+    <div class="callout c-red"><span class="tag">Reduzir ≠ cessar</span>Diminuir o número de cigarros não equivale a parar. E "tabaco" inclui cigarro convencional, <b>narguilé, cigarro eletrônico e tabaco aquecido</b>.</div>
+    <div class="callout c-green"><span class="tag">Abordagem breve — os 5 "A"</span>Perguntar · Aconselhar · Avaliar prontidão · Auxiliar · Acompanhar. A farmacoterapia do tabagismo foge do escopo deste módulo.</div>
+    <div class="callout c-amber"><span class="tag">Pegadinha</span>Como o efeito na PA é incerto, alguém pode achar a intervenção "fraca". Erro: a força da recomendação vem dos <b>desfechos duros</b>, não do delta de PA.</div>
+  </div>
+</section>
+
+<!-- ===== MENTE ===== -->
+<section id="mente">
+  <div class="sechead"><span class="num">23</span><h2>Estresse, meditação, respiração &amp; espiritualidade</h2></div>
+  <div class="block">
+    <span class="nchip">N2 · contraste rigoroso</span>
+    <p>Aqui a prova adora nivelar tudo como "coisa alternativa". Separe com precisão:</p>
+    <div class="grid cols-3">
+      <div class="callout c-green"><span class="tag">Meditação</span>Recomendação <b>forte</b>, certeza <b>moderada</b> para redução da PA (adjuvante).</div>
+      <div class="callout c-amber"><span class="tag">Respiração lenta</span>Recomendação <b>neutra</b>, certeza <b>baixa</b>. Não venda como terapia isolada comprovada.</div>
+      <div class="callout c-amber"><span class="tag">Espiritualidade/religiosidade</span>Recomendação <b>neutra</b>, certeza <b>baixa</b> para PA. Pode ser abordada no cuidado centrado no paciente.</div>
+    </div>
+    <div class="callout c-red"><span class="tag">Limite ético</span>Não afirme que espiritualidade reduz diretamente a PA. Respeite preferências, valores e autonomia — e <b>nunca</b> imponha prática religiosa.</div>
+    <div class="callout c-blue"><span class="tag">A distinção que cai</span>"Pode ser abordado" ≠ "tem eficácia anti-hipertensiva comprovada". Meditação tem a evidência mais robusta do trio.</div>
+  </div>
+</section>
+
+<!-- ===== MATRIZ ===== -->
+<section id="matriz">
+  <div class="sechead"><span class="num">24</span><h2>Força da recomendação × certeza da evidência</h2></div>
+  <div class="block">
+    <p>Quatro conceitos que <b>não</b> são a mesma coisa: força da recomendação, certeza da evidência, magnitude da queda de PA e importância clínica global. Uma intervenção pode ter recomendação forte e efeito pequeno na PA (tabagismo).</p>
+    <div class="matrix">
+      <div class="mx-cell mx-fa"><h4>Forte + alta</h4><ul>
+        <li>Cessação do tabagismo (eventos e mortalidade)</li>
+        <li>Redução de peso na obesidade</li>
+        <li>Redução de sódio</li>
+        <li>Aumento de potássio (exceto contraindicação)</li>
+        <li>Dieta DASH</li>
+        <li>Atividade física moderada regular</li>
+        <li>Treinamento aeróbico</li>
+      </ul></div>
+      <div class="mx-cell mx-fm"><h4>Forte + moderada</h4><ul>
+        <li>Limitação do álcool</li>
+        <li>Meditação</li>
+      </ul></div>
+      <div class="mx-cell mx-nb"><h4>Neutra + baixa</h4><ul>
+        <li>Respiração lenta</li>
+        <li>Espiritualidade/religiosidade como intervenção isolada para reduzir PA</li>
+      </ul></div>
+    </div>
+    <h3>Posicione a intervenção</h3>
+    <p class="small muted">Toque na intervenção e depois no quadrante correto.</p>
+    <div id="matrixGame"></div>
+    <p class="mono small" id="matrixScore" style="margin-top:8px"></p>
+  </div>
+</section>
+
+<!-- ===== EQUIPE ===== -->
+<section id="equipe">
+  <div class="sechead"><span class="num">25</span><h2>Equipe multiprofissional</h2></div>
+  <div class="block">
+    <p>Nenhum médico sustenta adesão sozinho. Integração de médico, enfermagem, nutrição, educação física/fisioterapia, psicologia, farmácia e outros profissionais.</p>
+    <p class="small">O trabalho é sobre <b>metas compartilhadas</b>, entrevista motivacional, barreiras sociais, acesso, letramento em saúde, preferências, monitorização, adesão e manutenção de longo prazo.</p>
+  </div>
+</section>
+
+<!-- ===== PALÁCIO ===== -->
+<section id="palacio">
+  <div class="sechead"><span class="num">26</span><h2>Palácio da memória — Academia da Pressão Segura</h2></div>
+  <div class="block">
+    <span class="nchip">N4 · palácio</span>
+    <p>Percorra a academia. Cada ambiente ancora um número que cai na prova.</p>
+    <div class="palace">
+      <div class="room"><h4>Catraca do tabaco</h4><p>Nenhuma fumaça entra — cessar, não reduzir. Convencional, narguilé, eletrônico, aquecido.</p></div>
+      <div class="room"><h4>Balança</h4><p>1 kg perdido acende: −1,05 PAS / −0,92 PAD. IMC &lt;25 até 65 anos.</p></div>
+      <div class="room"><h4>Refeitório DASH</h4><p>Frutas, verduras, cereais integrais, leguminosas, laticínios desnatados e peixes.</p></div>
+      <div class="room"><h4>Saleiro trancado</h4><p>&lt;2 g de sódio ≈ 5 g de sal ≈ uma colher de chá.</p></div>
+      <div class="room"><h4>Estação do potássio</h4><p>≥3,5 g/dia — com alerta renal aceso.</p></div>
+      <div class="room"><h4>Bar das doses</h4><p>1 dose mulher, até 2 homem, sem binge drinking.</p></div>
+      <div class="room"><h4>Pista aeróbica</h4><p>150 min moderado ou 75 min vigoroso por semana.</p></div>
+      <div class="room"><h4>Estação de força</h4><p>Fortalecimento muscular 2× por semana.</p></div>
+      <div class="room"><h4>Painel da fala</h4><p>"Consegue conversar?" = intensidade moderada.</p></div>
+      <div class="room"><h4>Portão de segurança</h4><p>160/105 → não inicia.</p></div>
+      <div class="room"><h4>Painel interno</h4><p>180/105 durante o treino → reduz intensidade.</p></div>
+      <div class="room"><h4>Sala silenciosa</h4><p>Meditação com evidência moderada; respiração lenta e espiritualidade com evidência limitada para PA.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIMULADOR DE PRESCRIÇÃO / PRIORIZADOR ===== -->
+<section id="priorizador">
+  <div class="sechead"><span class="num">27</span><h2>Priorizador de intervenções</h2></div>
+  <div class="block">
+    <p>Monte o plano de Roberto. Selecione intervenções e veja a estimativa educacional de queda — <b>com</b> ressalva de sobreposição.</p>
+    <div class="sim">
+      <div id="prioList"></div>
+      <div class="sim-out" id="prioOut" aria-live="polite"><span class="muted small">Selecione ao menos uma intervenção.</span></div>
+      <div class="warnbar">Ferramenta educacional. Não prevê resposta individual. As reduções se sobrepõem — por isso a estimativa combinada é apresentada como <b>faixa amortecida</b>, não como soma.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASOS ===== -->
+<section id="casos">
+  <div class="sechead"><span class="num">28</span><h2>Casos clínicos</h2></div>
+  <div class="block">
+    <span class="nchip">N7 · transferência</span>
+    <p>Oito pacientes reais de consultório. Decida antes de abrir a resposta comentada.</p>
+    <div id="casosBox"></div>
+  </div>
+</section>
+
+<!-- ===== ARENA TEC ===== -->
+<section id="arena">
+  <div class="sechead"><span class="num">29</span><h2>Arena TEC</h2></div>
+  <div class="block">
+    <span class="nchip">N5 · evocação ativa</span>
+    <div class="fc-controls">
+      <button class="mini-btn on" data-qfilter="todas">Todas</button>
+      <button class="mini-btn" data-qfilter="sodio">Sódio/SSaSS</button>
+      <button class="mini-btn" data-qfilter="exercicio">Exercício</button>
+      <button class="mini-btn" data-qfilter="dieta">Dieta/álcool</button>
+      <button class="mini-btn" data-qfilter="evidencia">Evidência</button>
+      <span class="cnt" id="quizCnt"></span>
+    </div>
+    <div id="quizBox"></div>
+    <div class="quiz-nav">
+      <button class="mini-btn" id="quizPrev">◀ Anterior</button>
+      <button class="mini-btn" id="quizNext">Próxima ▶</button>
+      <span class="quiz-score" id="quizScore"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLASHCARDS ===== -->
+<section id="flash">
+  <div class="sechead"><span class="num">30</span><h2>Flashcards</h2></div>
+  <div class="block">
+    <div class="fc-controls">
+      <button class="mini-btn on" data-fcfilter="todos">Todos</button>
+      <button class="mini-btn" data-fcfilter="numero">Números</button>
+      <button class="mini-btn" data-fcfilter="conceito">Conceitos</button>
+      <button class="mini-btn" data-fcfilter="cautela">Cautelas</button>
+      <button class="mini-btn" id="fcShuffle">Embaralhar</button>
+      <button class="mini-btn" id="fcErrados">Só os que errei</button>
+      <span class="cnt" id="fcCnt"></span>
+    </div>
+    <div id="fcBox"></div>
+    <div class="quiz-nav">
+      <button class="mini-btn" id="fcPrev">◀</button>
+      <button class="mini-btn" id="fcNext">▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MINI-DECISÕES ===== -->
+<section id="decisoes">
+  <div class="sechead"><span class="num">31</span><h2>Mini-decisões</h2></div>
+  <div class="block">
+    <p>Pode ou não? Prescrever ou evitar? Toque para revelar a justificativa.</p>
+    <div id="decisoesBox"></div>
+  </div>
+</section>
+
+<!-- ===== PEGADINHAS ===== -->
+<section id="pegadinhas">
+  <div class="sechead"><span class="num">32</span><h2>Erros clássicos &amp; pegadinhas</h2></div>
+  <div class="block">
+    <span class="nchip">N7 · o que derruba na prova</span>
+    <div id="pegBox"></div>
+  </div>
+</section>
+
+<!-- ===== REVISÃO 60s ===== -->
+<section id="revisao">
+  <div class="sechead"><span class="num">33</span><h2>Revisão de 60 segundos</h2></div>
+  <div class="block">
+    <p class="lead">Alta osmolaridade. Se você lembrar só destes, já ganhou muita questão:</p>
+    <div class="grid cols-2">
+      <div>
+        <p>▸ <b>&lt;2 g sódio ≈ 5 g sal</b> ≈ 1 colher de chá.</p>
+        <p>▸ Sódio ≠ sal (só ~40% do NaCl é sódio).</p>
+        <p>▸ <b>SSaSS:</b> 75% NaCl + 25% KCl → AVC ↓~14%, mortalidade ↓~12%.</p>
+        <p>▸ Potássio dieta <b>≥3,5 g/dia</b> (exceto DRC/hipercalemia).</p>
+        <p>▸ DASH: PAS −8,7 / PAD −4,5.</p>
+        <p>▸ Álcool: ♂ até 2, ♀ até 1 dose/dia; sem binge.</p>
+      </div>
+      <div>
+        <p>▸ Peso: 1 kg → −1,05/−0,92 mmHg.</p>
+        <p>▸ Exercício: <b>150 min moderado</b> ou 75 vigoroso + força 2×/sem.</p>
+        <p>▸ Aeróbico consultório: −7,6 / −4,7.</p>
+        <p>▸ Karvonen falha em BB, arritmia, cardiopatia.</p>
+        <p>▸ <b>160/105</b> não inicia · <b>180/105</b> reduz intensidade.</p>
+        <p>▸ Cessar (não reduzir) tabaco; meditação &gt; respiração/espiritualidade em evidência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HIPOCAMPO ===== -->
+<section id="hipocampo">
+  <div class="sechead"><span class="num">34</span><h2>Hipocampo — seu desempenho</h2></div>
+  <div class="block">
+    <div class="dash">
+      <div class="stat"><div class="n" id="stQ">0</div><div class="l">Questões</div></div>
+      <div class="stat"><div class="n" id="stAcc">—</div><div class="l">Acertos</div></div>
+      <div class="stat"><div class="n" id="stFc">0</div><div class="l">Flashcards</div></div>
+      <div class="stat"><div class="n" id="stCasos">0</div><div class="l">Casos abertos</div></div>
+    </div>
+    <h3>Revisão espaçada</h3>
+    <ul class="check-list" id="revChecklist"></ul>
+    <div style="text-align:center;margin-top:16px">
+      <button class="reset-btn" id="resetBtn">Reiniciar progresso</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONCLUSÃO ===== -->
+<section id="conclusao">
+  <div class="done">
+    <h3>Roberto agora tem um plano</h3>
+    <p>Sódio &lt;2 g, padrão DASH, ≥3,5 g de potássio, álcool moderado sem binge, meta de peso realista, 150 min de aeróbico moderado por semana com força 2×, cessação do tabaco e atenção aos portões 160/105 e 180/105. Nada disso somado como fatura — tudo prescrito, quantificado e acompanhado.</p>
+    <p class="sig" style="font-size:1.9rem;margin-top:10px">Dr. André Rossanno</p>
+  </div>
+</section>
+
+<!-- ===== GLOSSÁRIO ===== -->
+<section id="glossario">
+  <div class="sechead"><span class="num">35</span><h2>Glossário</h2></div>
+  <div class="block">
+    <div id="glossBox"></div>
+  </div>
+</section>
+
+<!-- ===== REFERÊNCIAS ===== -->
+<section id="referencias">
+  <div class="sechead"><span class="num">36</span><h2>Referências &amp; notas científicas</h2></div>
+  <div class="block">
+    <p class="small">▸ Diretriz Brasileira de Hipertensão Arterial — 2025 (medidas nutricionais, limites de álcool, metas de sódio/potássio, segurança do exercício).</p>
+    <p class="small">▸ SSaSS — Salt Substitute and Stroke Study. <i>N Engl J Med</i>, 2021.</p>
+    <p class="small">▸ Diretriz Brasileira de Reabilitação Cardiovascular — 2020 (métodos de prescrição de intensidade: Borg, teste da fala, % FC pico, FC de reserva, limiares ventilatórios).</p>
+    <p class="small">▸ Posicionamento sobre hipertensão arterial e espiritualidade — 2021.</p>
+    <p class="small">▸ Metanálises citadas no material da aula para as reduções médias de PA por intervenção.</p>
+    <p class="small muted" style="margin-top:12px">Valores apresentados como médias aproximadas de estudos/metanálises. Não representam resposta individual garantida. Material educacional; não substitui julgamento clínico individualizado.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="sig">Dr. André Rossanno</div>
+  <div class="fm">ATLAS MENTAL DA HIPERTENSÃO ARTERIAL · BLOCO 2 · TEMA 4A · RC1</div>
+  <div class="fm" style="margin-top:4px">Tratamento não medicamentoso · Tema 4 permanece Tema 4</div>
+</footer>
+
+<script>
+"use strict";
+/*
+HANDOFF SONNET — TEMA 4A
+Arquitetura estabilizada pelo Opus (RC1). Não reestruturar sem pedido.
+Tarefas do Sonnet: expandir QUESTOES_TEC→50, FLASHCARDS→60, MINI_DECISOES→20,
+copiando exatamente o schema dos itens existentes. Não inventar números.
+Preservar tokens, chave localStorage (LS_KEY) e ordem das seções.
+Não reintroduzir aparato de imagens.
+*/
+
+const LS_KEY = "atlasHAS_bloco2_tema4a_v1";
+
+/* ---------- estado persistente ---------- */
+const store = {
+  data:{prof:false,reduz:false,quiz:{},fc:{},casos:{},checks:{}},
+  load(){try{const r=localStorage.getItem(LS_KEY);if(r)this.data=Object.assign(this.data,JSON.parse(r));}catch(e){}},
+  save(){try{localStorage.setItem(LS_KEY,JSON.stringify(this.data));}catch(e){}}
+};
+store.load();
+
+/* ============================================================
+   PAINEL DE MAGNITUDE
+   ============================================================ */
+const MAGNITUDE = [
+  {nome:"Dieta DASH", pas:-8.7, pad:-4.5, rec:"Forte · alta", cls:"eff-strong"},
+  {nome:"Exercício aeróbico", pas:-7.6, pad:-4.7, rec:"Forte · alta", cls:"eff-strong"},
+  {nome:"Redução de álcool (grandes consumidores)", pas:-5.5, pad:-4.0, rec:"Forte · moderada", cls:"eff-mid"},
+  {nome:"Treino combinado", pas:-5.3, pad:-5.6, rec:"Recomendado", cls:"eff-mid"},
+  {nome:"Aumento de potássio", pas:-4.8, pad:-3.0, rec:"Forte · alta (exceto DRC)", cls:"eff-mid"},
+  {nome:"Treino isométrico", pas:-4.3, pad:-5.0, rec:"Recomendado", cls:"eff-mid"},
+  {nome:"Redução de sódio (~1,15 g/dia)", pas:-2.8, pad:-1.4, rec:"Forte · alta", cls:"eff-weak"},
+  {nome:"Treino resistido dinâmico", pas:-2.6, pad:-2.1, rec:"Recomendado", cls:"eff-weak"},
+  {nome:"Redução de peso (por kg)", pas:-1.05, pad:-0.92, rec:"Forte · alta", cls:"eff-weak"},
+  {nome:"Cessação do tabagismo", pas:null, pad:null, rec:"Forte · alta (eventos/mortalidade)", cls:"eff-weak"}
+];
+function fmtEff(v){return v===null? '<span class="muted">controverso</span>' : v.toFixed(v%1===0?0:1);}
+function renderMag(sort){
+  const rows=[...MAGNITUDE];
+  if(sort==="pas") rows.sort((a,b)=>(a.pas??1)-(b.pas??1));
+  else if(sort==="pad") rows.sort((a,b)=>(a.pad??1)-(b.pad??1));
+  else if(sort==="nome") rows.sort((a,b)=>a.nome.localeCompare(b.nome));
+  const tb=document.querySelector("#magTable tbody");
+  tb.innerHTML=rows.map(r=>`<tr>
+    <td><b>${r.nome}</b></td>
+    <td class="mag-eff ${r.cls}">${fmtEff(r.pas)}</td>
+    <td class="mag-eff ${r.cls}">${fmtEff(r.pad)}</td>
+    <td class="small">${r.rec}</td></tr>`).join("");
+}
+
+/* ============================================================
+   DETETIVE DO SÓDIO
+   ============================================================ */
+const FOODS=[
+  {n:"Macarrão instantâneo",oculto:true,exp:"Muito rico em sódio devido ao tempero industrializado."},
+  {n:"Sopa pronta",oculto:true,exp:"Caldo industrializado concentra sódio para conservação e sabor."},
+  {n:"Presunto",oculto:true,exp:"Embutido conservado com grande quantidade de sódio."},
+  {n:"Embutidos",oculto:true,exp:"Processo de cura e conservação adiciona muito sódio à carne."},
+  {n:"Queijo processado",oculto:true,exp:"Sódio usado como conservante e estabilizante na fabricação."},
+  {n:"Pizza congelada",oculto:true,exp:"Massa + queijo + conservantes = muito sódio somado."},
+  {n:"Salgadinhos",oculto:true,exp:"Sódio adicionado diretamente para reforçar o sabor salgado."},
+  {n:"Tempero industrializado",oculto:true,exp:"Concentra sódio em pequena quantidade — fácil exagerar na dose."},
+  {n:"Caldo concentrado",oculto:true,exp:"Verdadeira \"bomba\" de sódio escondida em pouco volume."},
+  {n:"Molho pronto",oculto:true,exp:"Grande quantidade de sódio adicionada durante a fabricação."},
+  {n:"Maçã in natura",oculto:false,exp:"Pouquíssimo sódio naturalmente — alimento in natura."},
+  {n:"Arroz sem sal",oculto:false,exp:"Baixíssimo teor de sódio quando preparado sem adição de sal."}
+];
+let detHits=0;
+function renderDetetive(){
+  const box=document.getElementById("detetive");
+  box.innerHTML=FOODS.map((f,i)=>`<button class="food" data-i="${i}" aria-pressed="false">${f.n}<span class="verdict-mini"></span></button>`).join("");
+  box.querySelectorAll(".food").forEach(el=>{
+    el.addEventListener("click",()=>{
+      const f=FOODS[el.dataset.i];
+      if(el.classList.contains("flag")||el.classList.contains("safe"))return;
+      el.classList.add(f.oculto?"flag":"safe");
+      el.setAttribute("aria-pressed","true");
+      el.querySelector(".verdict-mini").textContent=(f.oculto?"⚠ ":"✓ ")+f.exp;
+      detHits++;
+      document.getElementById("detScore").textContent=`Investigados: ${detHits}/${FOODS.length}. Dez destes escondem sódio; dois são seguros.`;
+    });
+  });
+}
+
+/* ============================================================
+   MATRIZ — jogo de posicionamento
+   ============================================================ */
+const MATRIX_ITEMS=[
+  {n:"Dieta DASH",q:"fa"},{n:"Redução de sódio",q:"fa"},{n:"Treino aeróbico",q:"fa"},
+  {n:"Limitação do álcool",q:"fm"},{n:"Meditação",q:"fm"},
+  {n:"Respiração lenta",q:"nb"},{n:"Espiritualidade (p/ PA isolada)",q:"nb"}
+];
+let mxSel=null,mxDone=0;
+const MX_LABEL={fa:"Forte + alta",fm:"Forte + moderada",nb:"Neutra + baixa"};
+function renderMatrixGame(){
+  const box=document.getElementById("matrixGame");
+  box.innerHTML=`
+    <div class="detetive" id="mxItems" style="grid-template-columns:1fr 1fr;margin-bottom:10px"></div>
+    <div class="matrix" id="mxZones">
+      <div class="mx-cell mx-fa" data-z="fa"><b>Forte + alta</b></div>
+      <div class="mx-cell mx-fm" data-z="fm"><b>Forte + moderada</b></div>
+      <div class="mx-cell mx-nb" data-z="nb"><b>Neutra + baixa</b></div>
+    </div>`;
+  const items=box.querySelector("#mxItems");
+  items.innerHTML=MATRIX_ITEMS.map((it,i)=>`<button class="food" data-i="${i}">${it.n}</button>`).join("");
+  items.querySelectorAll(".food").forEach(el=>el.addEventListener("click",()=>{
+    if(el.classList.contains("safe"))return;
+    items.querySelectorAll(".food").forEach(x=>x.classList.remove("on"));
+    el.classList.add("on");mxSel=+el.dataset.i;
+  }));
+  box.querySelectorAll(".mx-cell").forEach(z=>z.addEventListener("click",()=>{
+    if(mxSel===null)return;
+    const it=MATRIX_ITEMS[mxSel];
+    const btn=items.querySelector(`[data-i="${mxSel}"]`);
+    if(it.q===z.dataset.z){
+      btn.classList.remove("on");btn.classList.add("safe");
+      btn.textContent="✓ "+it.n;mxDone++;
+      document.getElementById("matrixScore").textContent=`Corretos: ${mxDone}/${MATRIX_ITEMS.length}.`;
+    }else{
+      btn.classList.remove("on");
+      document.getElementById("matrixScore").textContent=`"${it.n}" não é ${MX_LABEL[z.dataset.z]}. Tente outro quadrante.`;
+    }
+    mxSel=null;
+  }));
+}
+
+/* ============================================================
+   PRIORIZADOR
+   ============================================================ */
+const PRIO=[
+  {n:"Dieta DASH",pas:8.7},{n:"Exercício aeróbico",pas:7.6},
+  {n:"Reduzir álcool",pas:5.5},{n:"Aumentar potássio",pas:4.8},
+  {n:"Reduzir sódio",pas:2.8},{n:"Perder 5 kg",pas:5.25}
+];
+function renderPrio(){
+  const box=document.getElementById("prioList");
+  box.innerHTML=PRIO.map((p,i)=>`<label style="display:flex;align-items:center;gap:9px;padding:7px 0;font-weight:700;color:var(--navy)">
+    <input type="checkbox" data-i="${i}" style="width:18px;height:18px;accent-color:var(--blue)"> ${p.n}
+    <span class="mono small muted" style="margin-left:auto">PAS ~−${p.pas}</span></label>`).join("");
+  box.querySelectorAll("input").forEach(c=>c.addEventListener("change",calcPrio));
+}
+function calcPrio(){
+  const sel=[...document.querySelectorAll("#prioList input:checked")].map(c=>PRIO[c.dataset.i]);
+  const out=document.getElementById("prioOut");
+  if(!sel.length){out.innerHTML='<span class="muted small">Selecione ao menos uma intervenção.</span>';return;}
+  const somaIngenua=sel.reduce((s,p)=>s+p.pas,0);
+  // amortecimento por sobreposição: soma decrescente ordenada
+  const ord=sel.map(p=>p.pas).sort((a,b)=>b-a);
+  let amort=0,fator=1;
+  ord.forEach(v=>{amort+=v*fator;fator*=0.65;});
+  out.innerHTML=`<div><b>Soma ingênua (ERRADA):</b> ~−${somaIngenua.toFixed(1)} mmHg PAS — impossível.</div>
+    <div style="margin-top:8px"><b>Estimativa amortecida:</b> <span class="big">~−${amort.toFixed(1)}</span> mmHg PAS</div>
+    <div class="small muted" style="margin-top:6px">Faixa plausível pela sobreposição dos efeitos. ${sel.length} intervenção(ões) selecionada(s).</div>`;
+}
+
+/* ============================================================
+   CASOS CLÍNICOS
+   ============================================================ */
+const CASOS=[
+  {t:"1 · Homem obeso e sedentário",
+   h:"Roberto, 52a, IMC 31, PA 148/94, ultraprocessados diários.",
+   p:"Qual intervenção combina maior efeito na PA com benefício metabólico amplo neste perfil?",
+   r:"Redução de peso associada a DASH e exercício aeróbico. Em sobrepeso/obesidade a perda de peso é uma das medidas de maior impacto (melhora PA, resistência insulínica, AOS e perfil metabólico); DASH e aeróbico somam efeito e adesão.",
+   peg:"Não some os deltas isolados — o efeito combinado é amortecido.",
+   tr:"Meta IMC <25 até 65 anos; prescrever exercício por FITT-VP."},
+  {t:"2 · Alto consumo de ultraprocessados",
+   h:"Mulher, 46a, PA 144/90, come muito industrializado.",
+   p:"Onde está o principal alvo de sódio e como estimar melhor a ingestão?",
+   r:"Alvo: reduzir ultraprocessados e ler rótulos (sódio industrial predomina nesse padrão). O método mais confiável para estimar a excreção/ingestão habitual é o sódio urinário de 24h, sobretudo se houver dúvida de adesão.",
+   peg:"Recordatório alimentar subestima o sódio oculto.",
+   tr:"Meta <2 g de sódio ≈ 5 g de sal/dia."},
+  {t:"3 · Idoso sensível ao sal",
+   h:"Homem, 74a, PA 150/86, responde muito à restrição de sódio.",
+   p:"A restrição de sódio tende a ter efeito maior ou menor aqui?",
+   r:"Maior. Idosos, negros, hipertensos e sal-sensíveis respondem mais à restrição. Individualize a meta e observe o padrão alimentar global.",
+   peg:"Não confundir maior resposta com liberação para KCl sem avaliar função renal.",
+   tr:"Considerar substituto de sal apenas após avaliar risco de hipercalemia."},
+  {t:"4 · DRC com interesse em sal light",
+   h:"Homem, 60a, DRC estágio 4, quer trocar por sal light.",
+   p:"Sal light é apropriado?",
+   r:"Não como recomendação simples. Sal light substitui parte do NaCl por KCl; em DRC há risco de hipercalemia. Exige avaliação individual e monitorização — frequentemente contraindicado.",
+   peg:"O estudo SSaSS NÃO libera KCl universalmente — população era de alto risco CV, mas sem DRC avançada como alvo.",
+   tr:"Cautela também com IECA/BRA/antagonista de mineralocorticoide."},
+  {t:"5 · Binge drinking",
+   h:"Homem, 40a, bebe pouco na semana e muito no sábado; PA 150/96.",
+   p:"Qual a orientação central?",
+   r:"Reduzir o consumo e, principalmente, eliminar o binge (particularmente nocivo). Em grandes consumidores, reduzir ~50% baixa PAS ~5,5 e PAD ~4,0 mmHg. Limites: até 2 doses/dia homem.",
+   peg:"Nunca recomende iniciar álcool a abstêmio por 'benefício cardiovascular'.",
+   tr:"Uma dose ≈ 10–12 g de álcool ≈ 200 mL cerveja / 100 mL vinho / 25 mL destilado."},
+  {t:"6 · Betabloqueador e FC de treino",
+   h:"Mulher, 58a, em betabloqueador, quer calcular a FC de treino.",
+   p:"Karvonen é confiável aqui?",
+   r:"Não isoladamente. Betabloqueador altera a resposta cronotrópica e torna 220−idade e Karvonen pouco confiáveis. Prefira teste da fala, Borg e, idealmente, FC de teste ergométrico em uso da medicação.",
+   peg:"'220 − idade' não é verdade exata mesmo sem BB.",
+   tr:"Com teste cardiopulmonar, prescrever entre limiares ventilatórios."},
+  {t:"7 · PA 166/106 antes da academia",
+   h:"Homem, 55a, mede 166/106 antes de iniciar o treino.",
+   p:"Inicia a sessão?",
+   r:"Não. PA de repouso acima de 160/105 → não iniciar a sessão (Diretriz de HAS 2025). Repita a medida corretamente, avalie sintomas, adesão e necessidade de ajuste terapêutico.",
+   peg:"Se durante o aeróbico a PA passar de 180/105 → reduzir a intensidade (não é o mesmo limite).",
+   tr:"Limites específicos do material; não universalizar para todo cenário."},
+  {t:"8 · Hipertensão resistente e sódio urinário alto",
+   h:"Mulher, 63a, PA controlada só na aparência, 3 fármacos, sódio urinário 220 mmol/24h.",
+   p:"O que o sódio urinário elevado sugere?",
+   r:"Ingestão de sódio alta contribuindo para a resistência aparente. Reforce restrição de sódio, cheque adesão (dieta e medicação) e reavalie. O sódio urinário 24h é útil justamente na suspeita de consumo elevado e baixa adesão.",
+   peg:"Uma coleta isolada varia — avalie qualidade da coleta.",
+   tr:"220 mmol ≈ ~5 g de sódio ≈ ~13 g de sal: muito acima da meta."}
+];
+function renderCasos(){
+  const box=document.getElementById("casosBox");
+  box.innerHTML=CASOS.map((c,i)=>`<div class="dec" data-ci="${i}">
+    <div class="q">${c.t}</div>
+    <p class="small muted" style="margin:6px 0">${c.h}</p>
+    <p style="margin:6px 0"><b>Pergunta:</b> ${c.p}</p>
+    <button class="mini-btn caso-btn">Ver resposta comentada</button>
+    <div class="a">
+      <p><b>Conduta:</b> ${c.r}</p>
+      <p class="small" style="color:#9a6a00;background:var(--amber-soft);padding:8px;border-radius:8px"><b>Pegadinha:</b> ${c.peg}</p>
+      <p class="small"><b>Transferência:</b> ${c.tr}</p>
+    </div></div>`).join("");
+  box.querySelectorAll(".caso-btn").forEach(b=>b.addEventListener("click",()=>{
+    const d=b.closest(".dec");d.classList.add("open");b.style.display="none";
+    store.data.casos[d.dataset.ci]=1;store.save();refreshDash();
+  }));
+  Object.keys(store.data.casos).forEach(ci=>{
+    const d=box.querySelector(`[data-ci="${ci}"]`);
+    if(d){d.classList.add("open");const b=d.querySelector(".caso-btn");if(b)b.style.display="none";}
+  });
+}
+
+/* ============================================================
+   QUESTOES_TEC  — banco Opus inicial; Sonnet expandir até 50 sem alterar schema
+   ============================================================ */
+/* QUESTOES_TEC: banco Opus inicial (40); Sonnet expandir até 50 sem alterar schema */
+const QUESTOES_TEC=[
+  {id:"q001",cat:"sodio",dif:"fácil",stem:"A meta de ingestão de sódio recomendada é aproximadamente:",opts:["<2 g de sódio/dia (≈5 g de sal)","<5 g de sódio/dia (≈2 g de sal)","<2 g de sal/dia","<10 g de sódio/dia"],correct:0,com:"Meta: <2 g de sódio ≈ 5 g de sal ≈ uma colher de chá rasa/dia.",perola:"2 g de sódio ≠ 2 g de sal — só ~40% do NaCl é sódio."},
+  {id:"q002",cat:"sodio",dif:"média",stem:"Qual afirmação sobre sal rosa do Himalaia é correta?",opts:["É praticamente livre de sódio","Continua sendo majoritariamente NaCl, sem virar tratamento anti-hipertensivo","Reduz a PA por conter minerais-traço","Substitui a restrição de sódio"],correct:1,com:"Origem exótica e minerais-traço não transformam sal rico em NaCl em terapia. Continua entregando bastante sódio.",perola:"'Natural' não significa 'sem sódio'."},
+  {id:"q003",cat:"sodio",dif:"média",stem:"Sal light difere dos demais principalmente por:",opts:["Não conter sódio","Substituir parte do NaCl por KCl","Conter mais iodo","Ser isento de cloro"],correct:1,com:"Sal light tem menor proporção de NaCl com substituição parcial por KCl; pode reduzir sódio e aumentar potássio.",perola:"Composição varia por marca — leia o rótulo."},
+  {id:"q004",cat:"sodio",dif:"difícil",stem:"Sal light exige cautela/contraindicação relativa em qual situação?",opts:["Atleta jovem saudável","DRC ou uso de IECA/BRA/antagonista de mineralocorticoide","Hipotensão ortostática","Uso de diurético tiazídico isolado"],correct:1,com:"O KCl do sal light pode elevar o potássio; DRC, hipercalemia e fármacos que retêm K⁺ exigem cautela e monitorização.",perola:"Sal light não é recomendação universal."},
+  {id:"q005",cat:"evidencia",dif:"média",stem:"No estudo SSaSS, o substituto de sal usado continha:",opts:["100% KCl","75% NaCl + 25% KCl","50% NaCl + 50% KCl","90% NaCl + 10% MgCl"],correct:1,com:"Substituto com ~75% NaCl + 25% KCl, testado em vilas rurais chinesas.",perola:"Reduziu AVC ~14%, eventos CV ~13% e mortalidade ~12%."},
+  {id:"q006",cat:"evidencia",dif:"difícil",stem:"Qual a melhor interpretação do SSaSS?",opts:["Todo paciente pode usar KCl livremente","Efetividade populacional em alto risco, sem eliminar a individualização","Prova que sal comum é inofensivo","Contraindica substituto de sal em geral"],correct:1,com:"População de alto risco, contexto rural chinês. Não libera KCl sem avaliar risco de hipercalemia.",perola:"Efetividade populacional ≠ liberação individual irrestrita."},
+  {id:"q007",cat:"evidencia",dif:"média",stem:"O SSaSS foi publicado em qual periódico/ano?",opts:["Lancet, 2018","NEJM, 2021","JAMA, 2019","Circulation, 2020"],correct:1,com:"Salt Substitute and Stroke Study, NEJM, 2021, ensaio por conglomerados, ~20.995 participantes.",perola:"Seguimento de ~5 anos, ~600 vilas."},
+  {id:"q008",cat:"dieta",dif:"fácil",stem:"A sigla DASH significa:",opts:["Diet And Sodium in Hypertension","Dietary Approaches to Stop Hypertension","Daily Approach to Salt in Hypertension","Diet Against Sodium and Hypertension"],correct:1,com:"Dietary Approaches to Stop Hypertension: padrão rico em frutas, verduras, integrais, laticínios desnatados e peixes.",perola:"Reduz PAS ~8,7 e PAD ~4,5 mmHg."},
+  {id:"q009",cat:"dieta",dif:"média",stem:"Qual NÃO é característica da dieta DASH?",opts:["Rica em frutas e verduras","Obrigatoriamente vegetariana","Laticínios desnatados","Redução de ultraprocessados"],correct:1,com:"DASH não é obrigatoriamente vegetariana nem dieta de fome — é um padrão flexível.",perola:"Inclui peixes e carnes brancas."},
+  {id:"q010",cat:"dieta",dif:"média",stem:"A meta dietética de potássio é aproximadamente:",opts:["≥1 g/dia","≥3,5 g/dia, preferencialmente por alimentos","≥7 g/dia por suplemento","<2 g/dia"],correct:1,com:"Meta ≥3,5 g/dia por alimentos — exceto em DRC ou hiperpotassemia.",perola:"Dieta rica em K⁺ ≠ suplemento farmacológico de K⁺."},
+  {id:"q011",cat:"dieta",dif:"difícil",stem:"O aumento de potássio reduz a PA em média (PAS/PAD):",opts:["−1,0 / −0,5 mmHg","−4,8 / −3,0 mmHg","−8,7 / −4,5 mmHg","−12 / −8 mmHg"],correct:1,com:"Aumento de potássio: PAS ~−4,8 e PAD ~−3,0 mmHg.",perola:"Cuidado em DRC e hipercalemia."},
+  {id:"q012",cat:"dieta",dif:"média",stem:"Limite de álcool para homens (Diretriz HAS 2025):",opts:["Até 1 dose/dia","Até 2 doses/dia","Até 4 doses/dia","Sem limite"],correct:1,com:"Homens até 2 doses/dia, mulheres até 1 dose/dia, evitando binge drinking.",perola:"Uma dose ≈ 10–12 g de álcool."},
+  {id:"q013",cat:"dieta",dif:"difícil",stem:"Reduzir ~50% do álcool em grandes consumidores reduz a PA em torno de:",opts:["−2,8 / −1,4 mmHg","−5,5 / −4,0 mmHg","−8,7 / −4,5 mmHg","sem efeito"],correct:1,com:"Redução expressiva do álcool em grandes consumidores: PAS ~−5,5 e PAD ~−4,0 mmHg.",perola:"Binge drinking é particularmente nocivo."},
+  {id:"q014",cat:"dieta",dif:"fácil",stem:"Sobre café e hipertensão, é correto:",opts:["Consumo habitual moderado não se associa consistentemente a HAS crônica","Café deve ser proibido a todo hipertenso","Energético equivale a café comum","Café reduz a PA em todos"],correct:0,com:"Cafeína pode elevar a PA transitoriamente, mas há tolerância parcial; consumo habitual moderado (3–4 xícaras) não se associa consistentemente a HAS.",perola:"Energético não é café — e não afirme benefício CV universal."},
+  {id:"q015",cat:"dieta",dif:"média",stem:"Uma 'dose padrão' de álcool no material corresponde a:",opts:["~5 g de álcool","~10 a 12 g de álcool puro","~30 g de álcool","~50 g de álcool"],correct:1,com:"~10–12 g de álcool ≈ 200 mL cerveja (5%), 100 mL vinho (12%) ou 25 mL destilado (40%).",perola:"Tamanho do copo ≠ uma dose."},
+  {id:"q016",cat:"exercicio",dif:"fácil",stem:"A recomendação geral de atividade aeróbica é:",opts:["50 min moderado/semana","150 min moderado OU 75 min vigoroso/semana","300 min vigoroso/dia","30 min/mês"],correct:1,com:"150 min moderado ou 75 min vigoroso/semana + fortalecimento muscular ≥2×/semana.",perola:"O volume soma sessões ao longo da semana."},
+  {id:"q017",cat:"exercicio",dif:"média",stem:"Atividade física difere de exercício físico porque exercício é:",opts:["Qualquer movimento acima do repouso","Planejado, estruturado e repetitivo com objetivo de aptidão","Sempre de alta intensidade","Sinônimo de esporte competitivo"],correct:1,com:"Exercício é atividade física planejada, estruturada e repetitiva com objetivo de saúde/aptidão.",perola:"Todo exercício é atividade física; nem toda atividade física é exercício."},
+  {id:"q018",cat:"exercicio",dif:"média",stem:"Na fórmula de Karvonen, a FC-alvo é:",opts:["FC máx × %","(FC máx − FC repouso) × % + FC repouso","220 − idade","FC repouso × %"],correct:1,com:"FC-alvo = [(FC máx − FC repouso) × intensidade] + FC repouso.",perola:"Usa a FC de reserva, não a FC máxima direta."},
+  {id:"q019",cat:"exercicio",dif:"difícil",stem:"A fórmula de Karvonen/220−idade é pouco confiável em:",opts:["Adulto jovem saudável","Uso de betabloqueador e cardiopatias","Corredor amador","Pessoa em jejum"],correct:1,com:"BB, incompetência cronotrópica, arritmias, marca-passo, BCC não di-hidropiridínicos e disautonomia comprometem a fórmula.",perola:"Nesses casos: teste da fala, Borg, ergométrico/cardiopulmonar."},
+  {id:"q020",cat:"exercicio",dif:"média",stem:"O treino aeróbico reduz a PA de consultório em média (PAS/PAD):",opts:["−2,6 / −2,1","−7,6 / −4,7","−4,3 / −5,0","−1,0 / −0,9"],correct:1,com:"Aeróbico, consultório: PAS ~−7,6 e PAD ~−4,7 mmHg (líder na PAS).",perola:"Na MAPA de 24h: ~−5,5 / −3,8."},
+  {id:"q021",cat:"exercicio",dif:"difícil",stem:"Qual tipo de treino puxa mais a PAD no material?",opts:["Aeróbico","Resistido dinâmico","Isométrico e combinado","Nenhum afeta a PAD"],correct:2,com:"Isométrico (−4,3/−5,0) e combinado (−5,3/−5,6) têm efeito notável na PAD.",perola:"Aeróbico lidera a PAS; isométrico/combinado destacam a PAD."},
+  {id:"q022",cat:"exercicio",dif:"média",stem:"Intensidade moderada pelo teste da fala significa:",opts:["Não conseguir falar nada","Conseguir conversar, mas não cantar confortavelmente","Cantar sem esforço","Silêncio total"],correct:1,com:"Respiração mais intensa, ainda consegue completar uma frase, mas não canta confortavelmente.",perola:"Método simples e independente de equipamento."},
+  {id:"q023",cat:"exercicio",dif:"difícil",stem:"Na escala de Borg 6–20, a intensidade moderada situa-se em torno de:",opts:["6–8","12–13","17–19","20"],correct:1,com:"Borg 6–20: moderado ≈ 12–13. Na escala 0–10, ≈ 2–4.",perola:"Não misture as escalas 6–20 e 0–10."},
+  {id:"q024",cat:"exercicio",dif:"média",stem:"O fortalecimento muscular deve ser feito pelo menos:",opts:["1×/mês","2×/semana","Todos os dias","Não é recomendado"],correct:1,com:"Fortalecimento muscular ≥2×/semana, complementando o aeróbico.",perola:"Complementa, não substitui o aeróbico."},
+  {id:"q025",cat:"exercicio",dif:"média",stem:"Para interromper o comportamento sedentário, recomenda-se:",opts:["Ficar sentado o dia todo","~5 min de movimento a cada 30 min sentado","Correr 1h por dia","Apenas dormir mais"],correct:1,com:"~5 min de movimento a cada 30 min de sedentarismo prolongado — não substitui o volume semanal.",perola:"Cumprir o treino não anula horas sentado."},
+  {id:"q026",cat:"exercicio",dif:"difícil",stem:"Na faixa prática da aula (FC de reserva), a intensidade moderada usa:",opts:["10–20%","40–60%","85–95%","100%"],correct:1,com:"Material da aula: 40–60% da FC de reserva como faixa prática moderada.",perola:"Outras referências (Reabilitação CV 2020) usam 50–80%."},
+  {id:"q027",cat:"exercicio",dif:"fácil",stem:"O limite de PA para NÃO INICIAR a sessão de exercício é:",opts:["140/90","160/105","180/110","200/120"],correct:1,com:"PA de repouso acima de 160/105 mmHg → não iniciar a sessão (Diretriz HAS 2025).",perola:"Durante o aeróbico, reduzir intensidade se >180/105."},
+  {id:"q028",cat:"exercicio",dif:"média",stem:"Durante o exercício aeróbico, deve-se reduzir a intensidade se a PA passar de:",opts:["140/90","160/100","180/105","220/120"],correct:2,com:"Acima de 180/105 mmHg durante o aeróbico → reduzir intensidade e reavaliar.",perola:"160/105 (não iniciar) e 180/105 (reduzir) são limites diferentes."},
+  {id:"q029",cat:"exercicio",dif:"difícil",stem:"Qual sinal exige interromper e avaliar imediatamente durante o exercício?",opts:["Leve rubor facial","Dor torácica, síncope ou déficit neurológico","Sede","Suor moderado"],correct:1,com:"Dor torácica, dispneia desproporcional, déficit neurológico, síncope, arritmia importante, queda inadequada da PAS ou instabilidade → parar e avaliar.",perola:"Repita a medida corretamente antes de decidir."},
+  {id:"q030",cat:"exercicio",dif:"média",stem:"A frequência recomendada do treino aeróbico é:",opts:["1×/semana","3 a 5 dias/semana","Apenas fins de semana","Diária obrigatória"],correct:1,com:"3 a 5 dias/semana, 30–60 min/sessão, adaptando à capacidade.",perola:"Mais frequência e mais tempo → maior efeito."},
+  {id:"q031",cat:"evidencia",dif:"média",stem:"Sobre a cessação do tabagismo e a PA:",opts:["Reduz muito a PA de forma comprovada","Efeito direto na PA é controverso, mas reduz eventos e mortalidade","Não tem qualquer benefício","Piora o risco cardiovascular"],correct:1,com:"Efeito direto sobre a PA controverso; benefício inequívoco sobre eventos CV, câncer e mortalidade.",perola:"Recomendação forte pelos desfechos, não pelo delta de PA."},
+  {id:"q032",cat:"evidencia",dif:"fácil",stem:"Reduzir o número de cigarros é equivalente a cessar?",opts:["Sim, é a mesma coisa","Não — reduzir não equivale a cessar","Sim, se cair pela metade","Depende da marca"],correct:1,com:"Reduzir cigarros não equivale a cessar. Tabaco inclui narguilé, eletrônico e aquecido.",perola:"A meta é cessação total."},
+  {id:"q033",cat:"evidencia",dif:"difícil",stem:"Na matriz força × certeza, qual par está correto?",opts:["Meditação: neutra + baixa","Meditação: forte + moderada","Espiritualidade: forte + alta","Respiração lenta: forte + alta"],correct:1,com:"Meditação: forte + moderada. Respiração lenta e espiritualidade: neutra + baixa para PA.",perola:"Meditação tem a evidência mais robusta do trio mente-corpo."},
+  {id:"q034",cat:"evidencia",dif:"média",stem:"Sobre espiritualidade/religiosidade e PA:",opts:["Reduz diretamente a PA de forma comprovada","Recomendação neutra, certeza baixa para PA; pode ser abordada no cuidado","Deve ser imposta ao paciente","Substitui o anti-hipertensivo"],correct:1,com:"Pode ser abordada no cuidado centrado no paciente; recomendação neutra e certeza baixa para reduzir a PA. Nunca impor.",perola:"'Pode ser abordado' ≠ 'eficácia anti-hipertensiva comprovada'."},
+  {id:"q035",cat:"dieta",dif:"difícil",stem:"A redução de ~1,15 g de sódio/dia reduz a PA em torno de:",opts:["−8,7 / −4,5","−2,8 / −1,4","−5,5 / −4,0","−1,0 / −0,9"],correct:1,com:"Redução de ~1,15 g de sódio/dia: PAS ~−2,8 e PAD ~−1,4 mmHg.",perola:"Efeito por si modesto — mas soma-se ao padrão alimentar."},
+  {id:"q036",cat:"dieta",dif:"média",stem:"Cada 1 kg de peso perdido reduz a PA em média:",opts:["−1,05 / −0,92 mmHg","−5 / −3 mmHg","−8,7 / −4,5 mmHg","sem efeito"],correct:0,com:"1 kg perdido ≈ PAS −1,05 e PAD −0,92 mmHg (média, não garantia individual).",perola:"~10 kg ≈ ~10 mmHg de PAS, aproximadamente."},
+  {id:"q037",cat:"dieta",dif:"difícil",stem:"Sobre metas de IMC no tratamento não medicamentoso:",opts:["IMC <25 até 65 anos; ~22–27 após 65","IMC <18 sempre","IMC <30 em qualquer idade","Sem meta definida"],correct:0,com:"Em geral IMC <25 até 65 anos; após 65, faixa ~22–27 kg/m², individualizando e evitando sarcopenia.",perola:"Após 65 anos, evitar perda que gere sarcopenia."},
+  {id:"q038",cat:"dieta",dif:"difícil",stem:"Sobre semaglutida/tirzepatida para obesidade e PA:",opts:["2,4 mg e 15 mg são doses iniciais","São abordadas como tratamento da obesidade que pode repercutir na PA, com titulação","Substituem o anti-hipertensivo","Devem ser prescritas pela marca comercial"],correct:1,com:"São tratamentos da obesidade (GLP-1; GIP/GLP-1) com titulação; 2,4 mg e 15 mg NÃO são doses iniciais. Prefira nomes genéricos.",perola:"Este não é um módulo de farmacoterapia da obesidade."},
+  {id:"q039",cat:"sodio",dif:"média",stem:"O método clínico mais confiável para estimar a ingestão habitual de sódio é:",opts:["Recordatório de 24h","Sódio urinário de 24 horas","Impressão do paciente","Pressão de consultório"],correct:1,com:"Sódio urinário de 24h estima a excreção e aproxima a ingestão; útil em baixa adesão e hipertensão resistente.",perola:"Uma coleta isolada varia — avalie a qualidade."},
+  {id:"q040",cat:"sodio",dif:"difícil",stem:"Sódio urinário <100 mmol/24h corresponde a aproximadamente:",opts:["Exatamente 2 g de sódio","~2,3 g de sódio ≈ 5–6 g de sal","10 g de sal","0,5 g de sódio"],correct:1,com:"<100 mmol/24h ≈ 2,3 g de sódio ≈ 5–6 g de sal (aproximado, não exato).",perola:"Não afirmar que <100 mmol = exatamente 2 g de sódio."}
+];
+
+/* ============================================================
+   FLASHCARDS — banco Opus inicial; Sonnet expandir até 60 sem alterar schema
+   ============================================================ */
+/* FLASHCARDS: banco Opus inicial (50); Sonnet expandir até 60 sem alterar schema */
+const FLASHCARDS=[
+  {cat:"numero",q:"Meta de sódio/dia",a:"<2 g de sódio ≈ 5 g de sal ≈ 1 colher de chá."},
+  {cat:"conceito",q:"Sódio × sal",a:"Só ~40% do NaCl é sódio. 2 g de sódio ≈ 5 g de sal."},
+  {cat:"numero",q:"Meta de potássio/dia",a:"≥3,5 g/dia, por alimentos (exceto DRC/hipercalemia)."},
+  {cat:"numero",q:"DASH reduz a PA em",a:"PAS ~−8,7 / PAD ~−4,5 mmHg."},
+  {cat:"numero",q:"Aumento de potássio reduz",a:"PAS ~−4,8 / PAD ~−3,0 mmHg."},
+  {cat:"numero",q:"Redução de ~1,15 g sódio/dia",a:"PAS ~−2,8 / PAD ~−1,4 mmHg."},
+  {cat:"numero",q:"Redução de álcool (~50%) em grandes consumidores",a:"PAS ~−5,5 / PAD ~−4,0 mmHg."},
+  {cat:"numero",q:"1 kg de peso perdido",a:"PAS ~−1,05 / PAD ~−0,92 mmHg."},
+  {cat:"numero",q:"Aeróbico (consultório)",a:"PAS ~−7,6 / PAD ~−4,7 mmHg."},
+  {cat:"numero",q:"Aeróbico (24h/MAPA)",a:"PAS ~−5,5 / PAD ~−3,8 mmHg."},
+  {cat:"numero",q:"Resistido dinâmico",a:"PAS ~−2,6 / PAD ~−2,1 mmHg."},
+  {cat:"numero",q:"Resistido isométrico",a:"PAS ~−4,3 / PAD ~−5,0 mmHg."},
+  {cat:"numero",q:"Treino combinado",a:"PAS ~−5,3 / PAD ~−5,6 mmHg."},
+  {cat:"numero",q:"Volume de exercício recomendado",a:"150 min moderado ou 75 vigoroso/semana + força 2×/sem."},
+  {cat:"numero",q:"Álcool: limites diários",a:"Homens até 2 doses, mulheres até 1 dose. Sem binge."},
+  {cat:"numero",q:"Uma dose padrão de álcool",a:"~10–12 g ≈ 200 mL cerveja / 100 mL vinho / 25 mL destilado."},
+  {cat:"numero",q:"Limite: não iniciar exercício",a:"PA de repouso > 160/105 mmHg."},
+  {cat:"numero",q:"Limite: reduzir intensidade no aeróbico",a:"PA > 180/105 mmHg durante o exercício."},
+  {cat:"numero",q:"Borg (6–20) moderado",a:"≈ 12–13 (ou ≈ 2–4 na escala 0–10)."},
+  {cat:"numero",q:"% FC de reserva (material da aula)",a:"40–60% para moderado."},
+  {cat:"numero",q:"% FC de pico (Reabilitação CV 2020)",a:"70–85%."},
+  {cat:"numero",q:"Meta de IMC até 65 anos",a:"< 25 kg/m²."},
+  {cat:"numero",q:"Meta de IMC após 65 anos",a:"~22–27 kg/m² (individualizar, evitar sarcopenia)."},
+  {cat:"numero",q:"SSaSS: composição do substituto",a:"75% NaCl + 25% KCl."},
+  {cat:"numero",q:"SSaSS: reduções relativas",a:"AVC ~14%, eventos CV ~13%, mortalidade ~12%."},
+  {cat:"numero",q:"Interromper sedentarismo",a:"~5 min de movimento a cada 30 min sentado."},
+  {cat:"numero",q:"Frequência do aeróbico",a:"3–5 dias/semana, 30–60 min/sessão."},
+  {cat:"numero",q:"Café: consumo habitual moderado",a:"~3–4 xícaras/dia sem associação consistente com HAS."},
+  {cat:"numero",q:"% do potássio: café",a:"—"},
+  {cat:"conceito",q:"Fórmula de Karvonen",a:"FC-alvo = (FC máx − FC repouso) × % + FC repouso."},
+  {cat:"conceito",q:"Atividade física × exercício",a:"Exercício = atividade planejada, estruturada, repetitiva, com objetivo de aptidão."},
+  {cat:"conceito",q:"DASH significa",a:"Dietary Approaches to Stop Hypertension."},
+  {cat:"conceito",q:"FITT-VP",a:"Frequência, Intensidade, Tempo, Tipo, Volume, Progressão."},
+  {cat:"conceito",q:"SSaSS: onde e quando",a:"~600 vilas rurais na China, NEJM 2021, ~20.995 participantes, ~5 anos."},
+  {cat:"conceito",q:"Sal light é",a:"Menor NaCl + substituição parcial por KCl."},
+  {cat:"conceito",q:"Teste da fala moderado",a:"Consegue conversar, não canta confortavelmente."},
+  {cat:"conceito",q:"Melhor método p/ estimar sódio",a:"Sódio urinário de 24h."},
+  {cat:"conceito",q:"Meditação (força/certeza)",a:"Forte + moderada para redução da PA."},
+  {cat:"conceito",q:"Respiração lenta (força/certeza)",a:"Neutra + baixa."},
+  {cat:"conceito",q:"Espiritualidade (força/certeza p/ PA)",a:"Neutra + baixa; pode ser abordada no cuidado."},
+  {cat:"cautela",q:"Sal light — quando evitar",a:"DRC, hipercalemia, IECA/BRA/antagonista de mineralocorticoide."},
+  {cat:"cautela",q:"Potássio dieta — cautela",a:"DRC, hipercalemia, hipoaldosteronismo, fármacos que elevam K⁺."},
+  {cat:"cautela",q:"Karvonen não confiável em",a:"BB, arritmia, marca-passo, cardiopatia, BCC não di-hidro, disautonomia."},
+  {cat:"cautela",q:"Álcool a abstêmio",a:"Nunca recomendar iniciar por 'benefício cardiovascular'."},
+  {cat:"cautela",q:"Semaglutida/tirzepatida",a:"2,4 mg e 15 mg NÃO são doses iniciais; há titulação."},
+  {cat:"cautela",q:"Reduzir cigarros",a:"Não equivale a cessar — meta é cessação total."},
+  {cat:"cautela",q:"Somar reduções de PA",a:"Não somar linearmente — efeitos se sobrepõem."},
+  {cat:"cautela",q:"Sódio urinário isolado",a:"Varia dia a dia — avaliar qualidade da coleta."},
+  {cat:"conceito",q:"Sódio: quem responde mais",a:"Hipertensos, idosos, negros, sal-sensíveis, retenção volêmica/DRC."},
+  {cat:"conceito",q:"Tabaco inclui",a:"Convencional, narguilé, cigarro eletrônico e tabaco aquecido."}
+];
+
+/* ============================================================
+   MINI_DECISOES — banco Opus inicial; Sonnet expandir até 20 sem alterar schema
+   ============================================================ */
+/* MINI_DECISOES: banco Opus inicial (12); Sonnet expandir até 20 sem alterar schema */
+const MINI_DECISOES=[
+  {q:"PA de repouso 168/108 antes do treino — inicia a sessão?",v:"nao",a:"Não. Acima de 160/105 não se inicia a sessão. Repita a medida, avalie sintomas e ajuste terapêutico."},
+  {q:"Sal light para paciente com DRC estágio 4?",v:"nao",a:"Evitar. O KCl do sal light pode causar hipercalemia em DRC. Avaliar individualmente e monitorar."},
+  {q:"Paciente em betabloqueador — usar Karvonen com 220−idade?",v:"nao",a:"Não confiável. Prefira teste da fala, Borg e FC de teste ergométrico em uso da medicação."},
+  {q:"Hipertensão resistente com suspeita de excesso de sal — pedir sódio urinário 24h?",v:"sim",a:"Sim. É o método mais confiável para estimar a ingestão e checar adesão."},
+  {q:"Abstêmio pergunta se deve beber 'uma taça pelo coração'?",v:"nao",a:"Não recomendar iniciar álcool por finalidade cardiovascular."},
+  {q:"Durante o aeróbico a PA sobe para 184/106 — o que fazer?",v:"sim",a:"Reduzir a intensidade e reavaliar (limite 180/105 no exercício)."},
+  {q:"Paciente quer trocar sal comum por sal rosa 'para baixar a PA'?",v:"nao",a:"Não resolve. Sal rosa continua majoritariamente NaCl; foque na quantidade de sódio."},
+  {q:"Prescrever fortalecimento muscular além do aeróbico?",v:"sim",a:"Sim. ≥2×/semana, complementando o aeróbico."},
+  {q:"Meditação como adjuvante para reduzir a PA?",v:"sim",a:"Sim. Recomendação forte, certeza moderada — como adjuvante."},
+  {q:"Afirmar ao paciente que a espiritualidade reduz a PA diretamente?",v:"nao",a:"Não. Certeza baixa para PA. Pode ser abordada no cuidado, respeitando autonomia, sem impor."},
+  {q:"Paciente sal-sensível idoso — vale intensificar a restrição de sódio?",v:"dep",a:"Depende/individualize: idosos respondem mais, mas evite restrição excessiva que comprometa a ingestão alimentar global."},
+  {q:"Contar as reduções médias de PA como soma para prometer resultado?",v:"nao",a:"Não. Os efeitos se sobrepõem; a combinação é amortecida, não somada."}
+];
+
+/* ============================================================
+   PEGADINHAS
+   ============================================================ */
+const PEGADINHAS=[
+  "Confundir 2 g de sódio com 2 g de sal (só ~40% do NaCl é sódio).",
+  "Achar que sal rosa/marinho é 'sem sódio'.",
+  "Recomendar sal light a paciente com risco de hipercalemia.",
+  "Interpretar o SSaSS como liberação universal de KCl.",
+  "Somar linearmente todas as reduções de PA.",
+  "Usar 220 − idade como verdade exata.",
+  "Aplicar Karvonen em resposta cronotrópica alterada sem ressalva.",
+  "Confundir atividade física com exercício físico.",
+  "Iniciar treino com PA acima de 160/105.",
+  "Ignorar o limite de 180/105 durante o treino.",
+  "Achar que reduzir cigarro equivale a cessar.",
+  "Recomendar álcool a abstêmio.",
+  "Tratar espiritualidade como anti-hipertensivo comprovado.",
+  "Prescrever potássio sem avaliar DRC.",
+  "Colocar semaglutida 2,4 mg ou tirzepatida 15 mg como dose inicial.",
+  "Confundir ausência de dado na MAPA com ausência absoluta de benefício.",
+  "Misturar a escala de Borg 6–20 com a escala 0–10."
+];
+
+/* ============================================================
+   GLOSSÁRIO
+   ============================================================ */
+const GLOSSARIO=[
+  ["Sódio (Na)","Elemento; alvo das metas e rótulos. Meta <2 g/dia."],
+  ["Sal (NaCl)","Cloreto de sódio; ~40% é sódio. 5 g de sal ≈ 2 g de sódio."],
+  ["Sal light","Sal com substituição parcial de NaCl por KCl."],
+  ["DASH","Dietary Approaches to Stop Hypertension — padrão alimentar."],
+  ["SSaSS","Salt Substitute and Stroke Study (NEJM, 2021)."],
+  ["FITT-VP","Frequência, Intensidade, Tempo, Tipo, Volume, Progressão."],
+  ["FC de reserva","FC máx − FC de repouso; base da fórmula de Karvonen."],
+  ["Karvonen","FC-alvo = (FC máx − FC repouso) × % + FC repouso."],
+  ["Borg","Escala de percepção subjetiva de esforço (6–20 ou 0–10)."],
+  ["Limiares ventilatórios","Referência de intensidade no teste cardiopulmonar."],
+  ["Binge drinking","Consumo episódico abusivo de álcool; particularmente nocivo."],
+  ["Sal-sensível","Fenótipo que responde mais à restrição de sódio."],
+  ["AOS","Apneia obstrutiva do sono; melhora com perda de peso."]
+];
+
+/* ============================================================
+   SIMULADORES
+   ============================================================ */
+function num(id){const v=parseFloat(document.getElementById(id).value);return isNaN(v)?null:v;}
+
+// conversor sódio/sal/mmol
+function convert(){
+  const v=num("convVal"), de=document.getElementById("convDe").value;
+  const out=document.getElementById("convOut");
+  if(v===null||v<0){out.innerHTML='<span class="muted small">Informe um valor válido.</span>';return;}
+  let naG;
+  if(de==="naG") naG=v;
+  else if(de==="salG") naG=v*0.393; // sódio = 39,3% do NaCl
+  else naG=v*23/1000; // mmol → g de sódio
+  const salG=naG/0.393, mmol=naG*1000/23;
+  out.innerHTML=`<div><b>Sódio:</b> <span class="big">${naG.toFixed(2)} g</span></div>
+    <div style="margin-top:6px"><b>Sal (NaCl):</b> ${salG.toFixed(2)} g &nbsp;·&nbsp; <b>Sódio:</b> ${mmol.toFixed(0)} mmol</div>
+    <div class="small muted" style="margin-top:6px">Relações aproximadas: 1 mmol Na ≈ 23 mg · 2 g Na ≈ 5 g sal.</div>`;
+}
+
+// sódio urinário
+function estimUNa(){
+  const m=num("uNa"),out=document.getElementById("uNaOut");
+  if(m===null||m<0){out.innerHTML='<span class="muted small">Informe mmol/24h.</span>';return;}
+  const naG=m*23/1000, salG=naG/0.393;
+  let interp;
+  if(m<100) interp="Compatível com ingestão baixa de sódio (dentro/próximo da meta).";
+  else if(m<170) interp="Ingestão moderada-alta — acima da meta de <2 g de sódio.";
+  else interp="Ingestão elevada de sódio — reforçar restrição e checar adesão.";
+  out.innerHTML=`<div><b>Sódio estimado:</b> <span class="big">${naG.toFixed(1)} g</span> ≈ ${salG.toFixed(1)} g de sal</div>
+    <div style="margin-top:6px">${interp}</div>
+    <div class="small muted" style="margin-top:6px">Referência: <100 mmol ≈ 2,3 g de sódio ≈ 5–6 g de sal.</div>`;
+}
+
+// dose de álcool
+function calcAlc(){
+  const vol=num("alcVol"),teor=num("alcTeor"),out=document.getElementById("alcOut");
+  if(vol===null||teor===null||vol<0||teor<0){out.innerHTML='<span class="muted small">Informe volume e teor.</span>';return;}
+  const g=vol*(teor/100)*0.789;
+  const doses=g/11; // dose ~11 g (média 10–12)
+  out.innerHTML=`<div><b>Álcool puro:</b> <span class="big">${g.toFixed(1)} g</span></div>
+    <div style="margin-top:6px"><b>≈ ${doses.toFixed(1)} dose(s) padrão</b> (dose ≈ 11 g)</div>
+    <div class="small muted" style="margin-top:6px">Limite: homens até 2 doses/dia, mulheres até 1.</div>`;
+}
+
+// perda de peso
+function calcPeso(){
+  const a=num("pesoAtual"),m=num("pesoMeta"),out=document.getElementById("pesoOut");
+  if(a===null||m===null){out.innerHTML='<span class="muted small">Informe os pesos.</span>';return;}
+  const perda=a-m;
+  if(perda<=0){out.innerHTML='<span class="muted small">A meta deve ser menor que o peso atual.</span>';return;}
+  const pas=perda*1.05, pad=perda*0.92;
+  out.innerHTML=`<div><b>Perda prevista:</b> ${perda.toFixed(1)} kg</div>
+    <div style="margin-top:6px"><b>Redução média estimada:</b> <span class="big">PAS ~−${pas.toFixed(1)}</span> / PAD ~−${pad.toFixed(1)} mmHg</div>
+    <div class="small muted" style="margin-top:6px">Média (1 kg ≈ −1,05/−0,92). Não é promessa individual.</div>`;
+}
+
+// FITT
+function montarFitt(){
+  const tipo=document.getElementById("fittTipo").value;
+  const freq=num("fittFreq"),tempo=num("fittTempo");
+  const inten=document.getElementById("fittInt").value;
+  const out=document.getElementById("fittOut");
+  if(freq===null||tempo===null){out.innerHTML='<span class="muted small">Preencha frequência e tempo.</span>';return;}
+  const vol=freq*tempo;
+  const metaMin=inten==="Moderada"?150:75;
+  const ok=vol>=metaMin;
+  out.innerHTML=`<div><b>Receita:</b> ${tipo}, ${freq}×/semana, ${tempo} min/sessão, intensidade ${inten.toLowerCase()}.</div>
+    <div style="margin-top:6px"><b>Volume semanal:</b> <span class="big">${vol} min</span> (meta ${inten.toLowerCase()}: ≥${metaMin})</div>
+    <div class="small ${ok?'':'muted'}" style="margin-top:6px;color:${ok?'var(--green)':'var(--red)'}">${ok?'✓ Atinge a meta de volume.':'✗ Abaixo da meta — aumente frequência ou tempo.'} Lembre da força 2×/semana.</div>`;
+}
+
+// Karvonen
+function calcKarv(){
+  const idade=num("kIdade"),rep=num("kRep");let max=num("kMax");
+  const faixa=document.getElementById("kFaixa").value.split("-").map(Number);
+  const out=document.getElementById("kOut"),warn=document.getElementById("kWarn");
+  if(idade===null||rep===null){out.innerHTML='<span class="muted small">Informe idade e FC de repouso.</span>';return;}
+  let estim=false;
+  if(max===null){max=220-idade;estim=true;}
+  const reserva=max-rep;
+  if(reserva<=0){out.innerHTML='<span class="muted small">FC máxima deve ser maior que a de repouso.</span>';return;}
+  const lo=reserva*(faixa[0]/100)+rep, hi=reserva*(faixa[1]/100)+rep;
+  out.innerHTML=`<div><b>FC máxima:</b> ${max.toFixed(0)} bpm ${estim?'<span class="small muted">(220 − idade, estimada)</span>':'<span class="small muted">(medida)</span>'}</div>
+    <div><b>FC de reserva:</b> ${reserva.toFixed(0)} bpm</div>
+    <div style="margin-top:6px"><b>Faixa-alvo (${faixa[0]}–${faixa[1]}%):</b> <span class="big">${lo.toFixed(0)}–${hi.toFixed(0)} bpm</span></div>
+    <div class="small muted" style="margin-top:6px">Passo: [(FCmáx − FCrep) × %] + FCrep.</div>`;
+  warn.textContent=estim?"FC máxima estimada por 220 − idade — imprecisa. Cuidado especial em BB, arritmias e cardiopatias.":"Se houver BB, arritmia, marca-passo ou cardiopatia, valorize teste da fala/Borg/ergométrico.";
+}
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+let quizFilter="todas",quizIdx=0;
+function quizPool(){return quizFilter==="todas"?QUESTOES_TEC:QUESTOES_TEC.filter(q=>{
+  if(quizFilter==="sodio")return q.cat==="sodio"||(q.cat==="evidencia"&&/SSaSS|substituto/i.test(q.stem));
+  if(quizFilter==="exercicio")return q.cat==="exercicio";
+  if(quizFilter==="dieta")return q.cat==="dieta";
+  if(quizFilter==="evidencia")return q.cat==="evidencia";
+  return true;
+});}
+function renderQuiz(){
+  const pool=quizPool();
+  if(quizIdx>=pool.length)quizIdx=0;
+  const q=pool[quizIdx],box=document.getElementById("quizBox");
+  document.getElementById("quizCnt").textContent=`${pool.length} questões`;
+  if(!q){box.innerHTML='<p class="muted">Sem questões neste filtro.</p>';return;}
+  const answered=store.data.quiz[q.id];
+  box.innerHTML=`<div class="q-card">
+    <div class="q-meta"><span>${q.id.toUpperCase()}</span><span>${q.cat}</span><span class="diff">${q.dif}</span><span>${quizIdx+1}/${pool.length}</span></div>
+    <div class="q-stem">${q.stem}</div>
+    <div class="q-opts">${q.opts.map((o,i)=>`<button class="q-opt" data-i="${i}">${String.fromCharCode(65+i)}) ${o}</button>`).join("")}</div>
+    <div class="q-feedback" id="qfb"><div id="qfbtext"></div><div class="perola"><b>Pérola TEC:</b> ${q.perola}</div></div>
+  </div>`;
+  const fb=box.querySelector("#qfb");
+  const reveal=(chosen)=>{
+    box.querySelectorAll(".q-opt").forEach((b,i)=>{
+      b.disabled=true;
+      if(i===q.correct)b.classList.add("correct");
+      else if(i===chosen)b.classList.add("wrong");
+      else b.classList.add("dim");
+    });
+    box.querySelector("#qfbtext").innerHTML=(chosen===q.correct?"<b style='color:var(--green)'>Correto.</b> ":"<b style='color:var(--red)'>Incorreto.</b> ")+q.com;
+    fb.classList.add("show");
+  };
+  box.querySelectorAll(".q-opt").forEach(b=>b.addEventListener("click",()=>{
+    const chosen=+b.dataset.i;
+    if(!(q.id in store.data.quiz)){store.data.quiz[q.id]=(chosen===q.correct);store.save();refreshDash();}
+    reveal(chosen);
+  }));
+  if(answered!==undefined)reveal(q.correct===true?q.correct:(answered?q.correct:-1));
+  updateQuizScore();
+}
+function updateQuizScore(){
+  const ans=Object.keys(store.data.quiz).length;
+  const hit=Object.values(store.data.quiz).filter(Boolean).length;
+  document.getElementById("quizScore").textContent=`Respondidas: ${ans} · Acertos: ${hit}`;
+}
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+let fcFilter="todos",fcList=[],fcIdx=0,fcOnlyWrong=false;
+function buildFcList(){
+  let base=FLASHCARDS.map((c,i)=>({...c,idx:i}));
+  if(fcFilter!=="todos")base=base.filter(c=>c.cat===fcFilter);
+  if(fcOnlyWrong)base=base.filter(c=>store.data.fc[c.idx]==="miss");
+  fcList=base;if(fcIdx>=fcList.length)fcIdx=0;
+}
+function renderFc(){
+  buildFcList();
+  const box=document.getElementById("fcBox");
+  document.getElementById("fcCnt").textContent=`${fcList.length} cards`;
+  if(!fcList.length){box.innerHTML='<p class="muted">Nenhum card neste filtro.</p>';return;}
+  const c=fcList[fcIdx];
+  box.innerHTML=`<div class="flip" id="theFlip" tabindex="0" role="button" aria-label="Virar flashcard">
+    <div class="flip-inner">
+      <div class="flip-face flip-front"><div class="flip-cat">${c.cat} · ${fcIdx+1}/${fcList.length}</div><div class="flip-q">${c.q}</div><div class="flip-hint">Toque para virar</div></div>
+      <div class="flip-face flip-back"><div class="flip-cat">resposta</div><div class="flip-a">${c.a}</div><div class="flip-hint">Toque para voltar</div></div>
+    </div></div>
+    <div class="fc-judge"><button class="fc-hit">Acertei</button><button class="fc-miss">Errei</button></div>`;
+  const flip=box.querySelector("#theFlip");
+  const doFlip=()=>flip.classList.toggle("flipped");
+  flip.addEventListener("click",doFlip);
+  flip.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();doFlip();}});
+  box.querySelector(".fc-hit").addEventListener("click",()=>{store.data.fc[c.idx]="hit";store.save();refreshDash();nextFc();});
+  box.querySelector(".fc-miss").addEventListener("click",()=>{store.data.fc[c.idx]="miss";store.save();refreshDash();nextFc();});
+}
+function nextFc(){fcIdx=(fcIdx+1)%Math.max(fcList.length,1);renderFc();}
+function prevFc(){fcIdx=(fcIdx-1+fcList.length)%Math.max(fcList.length,1);renderFc();}
+
+/* ============================================================
+   DECISÕES / PEGADINHAS / GLOSSÁRIO
+   ============================================================ */
+function renderDecisoes(){
+  const box=document.getElementById("decisoesBox");
+  const VL={sim:["v-sim","Pode / Sim"],nao:["v-nao","Evitar / Não"],dep:["v-dep","Depende"]};
+  box.innerHTML=MINI_DECISOES.map((d,i)=>`<div class="dec" data-di="${i}">
+    <div class="q">${d.q}</div>
+    <button class="mini-btn dec-btn" style="margin-top:8px">Revelar</button>
+    <div class="a"><span class="verdict ${VL[d.v][0]}">${VL[d.v][1]}</span><p style="margin:4px 0 0">${d.a}</p></div>
+  </div>`).join("");
+  box.querySelectorAll(".dec-btn").forEach(b=>b.addEventListener("click",()=>{
+    const d=b.closest(".dec");d.classList.toggle("open");
+    b.textContent=d.classList.contains("open")?"Ocultar":"Revelar";
+  }));
+}
+function renderPeg(){
+  document.getElementById("pegBox").innerHTML=PEGADINHAS.map(p=>
+    `<div class="callout c-amber" style="margin:8px 0"><span class="tag">Não caia nessa</span>${p}</div>`).join("");
+}
+function renderGloss(){
+  document.getElementById("glossBox").innerHTML=GLOSSARIO.map(([t,d])=>
+    `<p style="margin:8px 0"><b>${t}:</b> <span class="muted">${d}</span></p>`).join("");
+}
+
+/* ============================================================
+   REVISÃO ESPAÇADA
+   ============================================================ */
+const REV_ITEMS=[
+  ["hoje","Hoje","Refazer a Arena TEC e revisar os 6 números-chave (sódio, potássio, DASH, álcool, peso, exercício)."],
+  ["amanha","Amanhã","Revisar limites de segurança (160/105 e 180/105) e a fórmula de Karvonen."],
+  ["7dias","Em 7 dias","Reler a matriz força × certeza e refazer os flashcards que errou."]
+];
+function renderChecklist(){
+  const ul=document.getElementById("revChecklist");
+  ul.innerHTML=REV_ITEMS.map(([k,t,d])=>`<li>
+    <input type="checkbox" data-k="${k}" ${store.data.checks[k]?"checked":""} aria-label="${t}">
+    <span><b>${t}.</b> ${d}</span></li>`).join("");
+  ul.querySelectorAll("input").forEach(c=>c.addEventListener("change",()=>{
+    store.data.checks[c.dataset.k]=c.checked;store.save();
+  }));
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function refreshDash(){
+  const ans=Object.keys(store.data.quiz).length;
+  const hit=Object.values(store.data.quiz).filter(Boolean).length;
+  document.getElementById("stQ").textContent=ans;
+  document.getElementById("stAcc").textContent=ans?Math.round(hit/ans*100)+"%":"—";
+  document.getElementById("stFc").textContent=Object.keys(store.data.fc).length;
+  document.getElementById("stCasos").textContent=Object.keys(store.data.casos).length;
+}
+
+/* ============================================================
+   TOGGLES / NAV / PROGRESSO
+   ============================================================ */
+function applyToggles(){
+  document.body.classList.toggle("prof-on",store.data.prof);
+  document.body.classList.toggle("reduz",store.data.reduz);
+  const bp=document.getElementById("btnProf"),bm=document.getElementById("btnMotion");
+  bp.setAttribute("aria-pressed",store.data.prof);bp.classList.toggle("on",store.data.prof);
+  bm.setAttribute("aria-pressed",store.data.reduz);bm.classList.toggle("on",store.data.reduz);
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener("DOMContentLoaded",()=>{
+  // magnitude
+  renderMag("pas");
+  document.querySelectorAll("[data-sort]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-sort]").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");renderMag(b.dataset.sort);
+  }));
+
+  renderDetetive();
+  renderMatrixGame();
+  renderPrio();
+  renderCasos();
+  renderDecisoes();
+  renderPeg();
+  renderGloss();
+  renderChecklist();
+
+  // simuladores
+  document.getElementById("convBtn").addEventListener("click",convert);
+  document.getElementById("uNaBtn").addEventListener("click",estimUNa);
+  document.getElementById("alcBtn").addEventListener("click",calcAlc);
+  document.getElementById("pesoBtn").addEventListener("click",calcPeso);
+  document.getElementById("fittBtn").addEventListener("click",montarFitt);
+  document.getElementById("kBtn").addEventListener("click",calcKarv);
+
+  // quiz
+  renderQuiz();
+  document.querySelectorAll("[data-qfilter]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-qfilter]").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");quizFilter=b.dataset.qfilter;quizIdx=0;renderQuiz();
+  }));
+  document.getElementById("quizNext").addEventListener("click",()=>{quizIdx=(quizIdx+1)%quizPool().length;renderQuiz();});
+  document.getElementById("quizPrev").addEventListener("click",()=>{const n=quizPool().length;quizIdx=(quizIdx-1+n)%n;renderQuiz();});
+
+  // flashcards
+  renderFc();
+  document.querySelectorAll("[data-fcfilter]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-fcfilter]").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");fcFilter=b.dataset.fcfilter;fcOnlyWrong=false;fcIdx=0;
+    document.getElementById("fcErrados").classList.remove("on");renderFc();
+  }));
+  document.getElementById("fcShuffle").addEventListener("click",()=>{
+    for(let i=FLASHCARDS.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[FLASHCARDS[i],FLASHCARDS[j]]=[FLASHCARDS[j],FLASHCARDS[i]];}
+    fcIdx=0;renderFc();
+  });
+  document.getElementById("fcErrados").addEventListener("click",function(){
+    fcOnlyWrong=!fcOnlyWrong;this.classList.toggle("on",fcOnlyWrong);fcIdx=0;renderFc();
+  });
+  document.getElementById("fcNext").addEventListener("click",nextFc);
+  document.getElementById("fcPrev").addEventListener("click",prevFc);
+
+  // toggles
+  document.getElementById("btnProf").addEventListener("click",()=>{store.data.prof=!store.data.prof;store.save();applyToggles();});
+  document.getElementById("btnMotion").addEventListener("click",()=>{store.data.reduz=!store.data.reduz;store.save();applyToggles();});
+  applyToggles();
+
+  // nav
+  document.getElementById("navselect").addEventListener("change",function(){
+    if(this.value){const el=document.querySelector(this.value);if(el)el.scrollIntoView({behavior:store.data.reduz?"auto":"smooth"});this.value="";}
+  });
+
+  // reset
+  document.getElementById("resetBtn").addEventListener("click",()=>{
+    if(confirm("Reiniciar todo o progresso deste módulo? Esta ação não pode ser desfeita.")){
+      store.data={prof:store.data.prof,reduz:store.data.reduz,quiz:{},fc:{},casos:{},checks:{}};
+      store.save();quizIdx=0;fcIdx=0;renderQuiz();renderFc();renderCasos();renderChecklist();refreshDash();
+    }
+  });
+
+  // barra de progresso
+  const pb=document.getElementById("progressbar");
+  const onScroll=()=>{const h=document.documentElement.scrollHeight-innerHeight;pb.style.width=(h>0?(scrollY/h*100):0)+"%";};
+  addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+  refreshDash();
+});
+</script>
+
+</body>
+</html>
