@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<!--
+==================================================================
+  ATLAS MENTAL DA HIPERTENSÃO ARTERIAL — BLOCO 2
+  TEMA 4 · CAPÍTULO 2
+  ESTRATÉGIAS E PRINCÍPIOS DO TRATAMENTO MEDICAMENTOSO DA HAS
+  Dr. André Rossanno · Memória Potencial
+  HTML+CSS+JS embutidos, sem libs de interatividade externas.
+  Handoff: Opus estabiliza RC1 → Sonnet expande bancos.
+==================================================================
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 4 · Cap. 2 — Estratégias e Princípios do Tratamento Medicamentoso | Atlas Mental HAS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f2740; --navy2:#173553; --navy-soft:#1f4266;
+  --ink:#12263a; --paper:#ffffff; --paper2:#f5f8fb; --line:#e2eaf1;
+  --green:#128a5a; --green-soft:#e4f5ec; --green-deep:#0c5e3d;
+  --amber:#c98a00; --amber-soft:#fdf3d9; --amber-deep:#8f6200;
+  --red:#c0362c; --red-soft:#fbe7e4; --red-deep:#8f271f;
+  --blue:#1282A2; --blue-soft:#e2f2f7; --blue-deep:#0c5c72;
+  --gray:#5c6b78; --gray-soft:#eef2f5;
+  --shadow:0 6px 22px rgba(15,39,64,.10);
+  --shadow-lg:0 14px 40px rgba(15,39,64,.16);
+  --radius:16px;
+  --font:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Trebuchet MS',monospace;
+  --sign:'Dancing Script','Trebuchet MS',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--navy);line-height:1.55;-webkit-font-smoothing:antialiased}
+body.reduz *{animation:none!important;transition:none!important}
+img{max-width:100%}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 .4em}
+p{margin:0 0 .8em}
+a{color:var(--blue-deep)}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px}
+.nav{position:sticky;top:0;z-index:60;background:rgba(15,39,64,.96);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-in{max-width:920px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:9px 16px}
+.brand{display:flex;flex-direction:column;line-height:1.05;margin-right:auto}
+.brand b{color:#fff;font-weight:900;font-size:15px;letter-spacing:.2px}
+.brand span{color:#8fc7d8;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.5px}
+.toggle{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#cfe3ea;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.toggle:hover{background:rgba(255,255,255,.12)}
+.toggle.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.progress-wrap{height:3px;background:rgba(255,255,255,.08)}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#4fc3dd);transition:width .3s}
+.hero{padding:46px 0 40px;color:#fff;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 400px at 80% -10%,rgba(79,195,221,.18),transparent),radial-gradient(900px 380px at 0% 120%,rgba(18,130,162,.22),transparent)}
+.hero-in{position:relative}
+.crumb{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7fb9cc;margin-bottom:14px}
+.hero h1{font-size:33px;font-weight:900;letter-spacing:-.5px;margin-bottom:14px}
+.hero .lead{font-size:17px;color:#d5e5ec;max-width:640px}
+.hero .kicker{display:inline-block;margin-top:20px;background:rgba(79,195,221,.14);border:1px solid rgba(79,195,221,.35);color:#bfe6f0;border-radius:999px;padding:8px 16px;font-weight:800;font-size:14px}
+.sheet{background:var(--paper2);border-radius:26px 26px 0 0;padding:8px 0 60px;margin-top:8px}
+.hub{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;margin:26px 0 8px}
+.hub a{display:block;background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:13px 14px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
+.hub a:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.hub a b{display:block;font-size:14px;font-weight:800;margin-bottom:2px}
+.hub a span{font-size:11.5px;color:var(--gray)}
+.hub a i{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--blue-deep);font-weight:600}
+.sec{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;margin:20px 0;box-shadow:var(--shadow)}
+.sechead{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sechead .num{flex:none;width:40px;height:40px;border-radius:11px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900;font-size:17px;font-family:var(--mono)}
+.sechead h2{font-size:22px;font-weight:900;margin:0;letter-spacing:-.3px}
+.sechead .sub{font-size:12.5px;color:var(--gray);font-weight:700;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-deep);font-weight:600;margin-bottom:6px}
+.n-tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 8px;border-radius:6px;background:var(--navy);color:#bfe6f0;letter-spacing:1px;margin-right:6px;vertical-align:middle}
+.card{border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin:12px 0;background:var(--paper)}
+.card.mental{background:var(--blue-soft);border-color:#bfe0ea}
+.card.mental .lab{color:var(--blue-deep)}
+.card.win{background:var(--green-soft);border-color:#bfe6d1}
+.card.win .lab{color:var(--green-deep)}
+.card.trap{background:var(--amber-soft);border-color:#f0dca0}
+.card.trap .lab{color:var(--amber-deep)}
+.card.stop{background:var(--red-soft);border-color:#f0c4bd}
+.card.stop .lab{color:var(--red-deep)}
+.card .lab{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;display:block;margin-bottom:5px}
+.card p:last-child{margin-bottom:0}
+.summary{border-left:4px solid var(--blue);background:var(--blue-soft);padding:11px 15px;border-radius:0 10px 10px 0;font-weight:700;margin:14px 0 2px}
+.summary .lab{font-family:var(--mono);font-size:10px;color:var(--blue-deep);letter-spacing:1.5px;display:block;text-transform:uppercase;font-weight:600}
+.quote{font-size:19px;font-weight:800;color:var(--navy);line-height:1.35;border-left:5px solid var(--blue);padding:6px 0 6px 18px;margin:18px 0}
+.quote.warn{border-color:var(--red)}
+.quote.good{border-color:var(--green)}
+.filo{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#eaf3f7;border:none}
+.filo h2{color:#fff}
+.filo p{color:#d5e5ec;font-size:16px}
+.filo .sign{font-family:var(--sign);font-size:26px;color:#8fc7d8;margin-top:10px}
+ul.clean{list-style:none;padding:0;margin:10px 0}
+ul.clean li{padding:7px 0 7px 26px;position:relative;border-bottom:1px solid var(--line)}
+ul.clean li:last-child{border-bottom:none}
+ul.clean li:before{content:"›";position:absolute;left:6px;top:6px;color:var(--blue);font-weight:900}
+.callnum{list-style:none;counter-reset:c;padding:0;margin:12px 0}
+.callnum li{counter-increment:c;position:relative;padding:9px 0 9px 40px;border-bottom:1px solid var(--line)}
+.callnum li:before{content:counter(c);position:absolute;left:0;top:8px;width:26px;height:26px;background:var(--blue);color:#fff;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:13px;font-family:var(--mono)}
+.elevator{display:flex;flex-direction:column;gap:0;margin:14px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.floor{display:flex;align-items:center;gap:12px;padding:13px 15px;cursor:pointer;background:var(--paper);border-bottom:1px solid var(--line);transition:background .15s}
+.floor:last-child{border-bottom:none}
+.floor:hover{background:var(--paper2)}
+.floor.active{background:var(--blue-soft)}
+.floor .ic{flex:none;width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:17px}
+.floor .txt{flex:1}
+.floor .txt b{display:block;font-size:14.5px}
+.floor .txt small{color:var(--gray);font-size:12px}
+.floor .val{flex:none;font-weight:900;font-size:17px;color:var(--red);font-family:var(--mono)}
+.elev-detail{background:var(--navy);color:#eaf3f7;padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.elev-detail.open{max-height:220px;padding:14px 16px}
+.elev-detail small{color:#8fc7d8;font-family:var(--mono);letter-spacing:1px}
+.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+.tbl th{background:var(--navy);color:#fff;font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.5px}
+.tbl tr:nth-child(even) td{background:var(--paper2)}
+.tbl .hl{font-weight:800;color:var(--blue-deep)}
+.prof{display:none}
+body.prof-on .prof{display:block}
+.prof-note{border:1px dashed var(--blue);background:var(--blue-soft);border-radius:10px;padding:12px 14px;margin:12px 0;font-size:14px}
+.prof-note .lab{font-family:var(--mono);font-size:10px;color:var(--blue-deep);letter-spacing:1.5px;font-weight:600;display:block;margin-bottom:4px}
+.note{font-size:12.5px;color:var(--gray);font-style:italic;margin-top:8px}
+.src{font-family:var(--mono);font-size:11px;color:var(--gray)}
+.octeto{display:flex;flex-direction:column;align-items:center;gap:5px;margin:16px 0}
+.oct-row{display:flex;gap:5px;width:100%;justify-content:center}
+.oct{border:none;color:#fff;font-weight:800;font-family:var(--font);cursor:pointer;padding:12px 8px;border-radius:9px;font-size:13.5px;text-align:center;transition:transform .12s,filter .12s;flex:1;max-width:230px}
+.oct:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.oct.base{background:var(--blue)}
+.oct.esp{background:var(--red)}
+.oct.mid{background:var(--amber);color:#4a3400}
+.oct.top{background:#5b3d8f}
+.oct.side{background:var(--amber);color:#4a3400;max-width:120px;flex:none;align-self:center;border-radius:999px}
+.oct-found{background:var(--green-soft);border:1px dashed var(--green);color:var(--green-deep);border-radius:999px;padding:8px 14px;font-weight:800;font-size:12.5px;margin-top:4px}
+.oct-info{background:var(--navy);color:#eaf3f7;border-radius:11px;padding:14px 16px;margin-top:12px;font-size:14px;min-height:20px}
+.oct-info b{color:#8fc7d8}
+.oct-info:empty{display:none}
+.algoritmo{border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0;background:var(--paper2)}
+.algo-q{font-weight:800;margin-bottom:10px;color:var(--navy);font-size:15px}
+.algo-opts{display:flex;flex-wrap:wrap;gap:8px}
+.algo-btn{border:1px solid var(--blue);background:#fff;color:var(--blue-deep);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer;font-family:var(--font);font-size:13.5px}
+.algo-btn:hover{background:var(--blue-soft)}
+.algo-out{margin-top:12px;padding:13px 15px;border-radius:11px;font-weight:700;display:none}
+.algo-out.show{display:block}
+.algo-out.mono{background:var(--green-soft);border:1px solid #bfe6d1;color:var(--green-deep)}
+.algo-out.combo{background:var(--blue-soft);border:1px solid #bfe0ea;color:var(--blue-deep)}
+.barreiras{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:12px 0}
+.barr{border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:var(--paper);cursor:pointer;transition:box-shadow .15s}
+.barr:hover{box-shadow:var(--shadow)}
+.barr b{display:block;font-size:14px;color:var(--red-deep);margin-bottom:4px}
+.barr .sol{font-size:13px;color:var(--green-deep);max-height:0;overflow:hidden;transition:max-height .25s;font-weight:600}
+.barr.open .sol{max-height:120px;margin-top:6px}
+.barr .hint{font-family:var(--mono);font-size:10px;color:var(--gray);letter-spacing:1px}
+.palace{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;margin:14px 0}
+.room{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--paper);cursor:pointer;box-shadow:var(--shadow)}
+.room-h{display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--navy);color:#fff}
+.room-h .rn{font-family:var(--mono);font-weight:600;color:#8fc7d8;font-size:12px}
+.room-h b{font-size:14px}
+.room-b{padding:0 14px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:13.5px;color:var(--ink)}
+.room.open .room-b{max-height:260px;padding:13px 14px}
+.room-b .scene{color:var(--blue-deep);font-weight:700;display:block;margin-bottom:4px}
+.quiz-meta{font-family:var(--mono);font-size:12px;color:var(--gray);margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.quiz-meta span{color:var(--blue-deep);font-weight:600}
+.qitem{border:1px solid var(--line);border-radius:13px;padding:16px;margin-bottom:14px;background:var(--paper)}
+.qitem .qn{font-family:var(--mono);font-size:11px;color:var(--blue-deep);letter-spacing:1px;margin-bottom:6px}
+.qitem .qtext{font-weight:800;margin-bottom:12px;font-size:15px}
+.qopt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--paper2);border-radius:10px;padding:11px 13px;margin-bottom:8px;cursor:pointer;font-family:var(--font);font-size:14px;transition:background .12s}
+.qopt:hover{background:var(--blue-soft)}
+.qopt.correct{background:var(--green-soft);border-color:var(--green);color:var(--green-deep);font-weight:700}
+.qopt.wrong{background:var(--red-soft);border-color:var(--red);color:var(--red-deep)}
+.qopt:disabled{cursor:default}
+.qexp{border-left:4px solid var(--blue);background:var(--blue-soft);padding:11px 14px;border-radius:0 10px 10px 0;font-size:13.5px;margin-top:8px;display:none}
+.qexp.show{display:block}
+.qexp .lab{font-family:var(--mono);font-size:10px;color:var(--blue-deep);letter-spacing:1.5px;display:block;margin-bottom:4px;font-weight:600}
+.caso{border:1px solid var(--line);border-radius:13px;padding:16px;margin-bottom:13px;background:var(--paper)}
+.caso .stem{margin-bottom:10px}
+.caso .stem b{color:var(--navy)}
+.caso-btn{border:1px solid var(--blue);background:#fff;color:var(--blue-deep);border-radius:9px;padding:8px 14px;font-weight:700;cursor:pointer;font-family:var(--font);font-size:13px}
+.caso-ans{margin-top:11px;padding:12px 14px;background:var(--green-soft);border:1px solid #bfe6d1;border-radius:10px;font-size:14px;color:var(--green-deep);display:none}
+.caso-ans.show{display:block}
+.caso-ans .lab{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;font-weight:600;display:block;margin-bottom:4px}
+.flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.fc{perspective:1000px;height:150px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:13px;padding:15px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);border:1px solid var(--line)}
+.fc-front{background:var(--navy);color:#fff}
+.fc-front .q{font-weight:800;font-size:15px}
+.fc-front .tag{font-family:var(--mono);font-size:10px;color:#8fc7d8;letter-spacing:1px;margin-bottom:6px}
+.fc-back{background:var(--blue-soft);color:var(--ink);transform:rotateY(180deg);font-size:14px}
+.fc-back .a{font-weight:700}
+.dash{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}
+.dash .cell{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.dash .cell b{display:block;font-size:26px;font-weight:900;color:var(--navy);font-family:var(--mono)}
+.dash .cell span{font-size:12px;color:var(--gray)}
+.dash .cell.err b{color:var(--red)}
+.dash .cell.hit b{color:var(--green)}
+.spaced{margin-top:10px}
+.spaced .day{border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:10px;background:var(--paper)}
+.spaced .day h4{margin:0 0 8px;font-size:14px;color:var(--navy)}
+.spaced label{display:flex;align-items:flex-start;gap:9px;padding:5px 0;font-size:13.5px;cursor:pointer}
+.spaced input{margin-top:3px;accent-color:var(--blue);width:16px;height:16px;flex:none}
+.spaced label.done{text-decoration:line-through;color:var(--gray)}
+.gl{border-bottom:1px solid var(--line);padding:10px 0}
+.gl:last-child{border-bottom:none}
+.gl b{color:var(--navy-soft)}
+.r60 li{font-size:14px}
+.foot{text-align:center;color:#cfe3ea;padding:34px 18px 10px}
+.foot .sign{font-family:var(--sign);font-size:30px;color:#8fc7d8;margin-bottom:4px}
+.foot p{color:#9fc0cf;font-size:13px;margin:0}
+
+/* ==== NOVO: Regra de Ouro / alerta grande ==== */
+.regra-box{background:linear-gradient(160deg,var(--red-deep),#5c1811);color:#fff;border-radius:16px;
+  padding:22px 20px;margin:14px 0;text-align:center}
+.regra-box .tag{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffd0c8;margin-bottom:8px}
+.regra-box .big{font-size:21px;font-weight:900;margin:6px 0}
+.regra-box .arrow{font-size:22px;margin:6px 0;color:#ffb3a6}
+.regra-box .ok{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:8px 16px;font-weight:800;margin:4px}
+.ref-box{border:1px dashed var(--blue);background:var(--blue-soft);border-radius:10px;padding:11px 14px;
+  margin:10px 0;font-size:13.5px;color:var(--blue-deep);font-weight:700}
+.ref-box b{color:var(--navy)}
+
+/* ==== NOVO: Ilha da Monoterapia ==== */
+.ilha{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin:14px 0}
+.hab{border:1px solid var(--line);border-radius:13px;padding:14px;background:var(--green-soft);
+  border-color:#bfe6d1;text-align:center}
+.hab .ic{font-size:26px;margin-bottom:6px}
+.hab b{display:block;font-size:13.5px;color:var(--green-deep);margin-bottom:4px}
+.hab span{font-size:12px;color:var(--ink)}
+
+/* ==== NOVO: Regra "maioria começa com dois" ==== */
+.regra-dois{background:var(--navy);color:#fff;border-radius:16px;padding:24px 20px;text-align:center;margin:14px 0}
+.regra-dois .no{font-size:15px;color:#8fc7d8;font-weight:700;letter-spacing:1px}
+.regra-dois .not-one{font-size:34px;font-weight:900;text-decoration:line-through;color:#ff9d90;margin:6px 0}
+.regra-dois .two{font-size:40px;font-weight:900;color:#7fe0c2}
+
+/* ==== NOVO: comprimido único (fusão) ==== */
+.fusao{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0;flex-wrap:wrap}
+.pill{width:44px;height:22px;border-radius:999px;background:var(--blue);box-shadow:var(--shadow)}
+.pill.b{background:var(--green)}
+.pill.c{background:var(--amber)}
+.fusao-arrow{font-size:22px;color:var(--gray)}
+.pill-unico{width:76px;height:30px;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--green),var(--amber));
+  box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:800;font-family:var(--mono)}
+
+/* ==== NOVO: cascata do algoritmo (etapas clicáveis) ==== */
+.cascata{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:14px 0}
+.step{padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer;background:var(--paper);
+  display:flex;align-items:center;gap:12px;transition:background .15s}
+.step:last-child{border-bottom:none}
+.step:hover{background:var(--paper2)}
+.step.active{background:var(--blue-soft)}
+.step .sn{flex:none;width:30px;height:30px;border-radius:9px;background:var(--navy);color:#fff;
+  display:grid;place-items:center;font-family:var(--mono);font-weight:800;font-size:13px}
+.step .st{flex:1}
+.step .st b{display:block;font-size:14.5px}
+.step .st small{color:var(--gray);font-size:12px}
+.step-detail{background:var(--navy);color:#eaf3f7;padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.step-detail.open{max-height:200px;padding:14px 16px}
+.step-detail small{color:#8fc7d8;font-family:var(--mono);letter-spacing:1px}
+
+/* ==== NOVO: pegadinhas rápidas ==== */
+.peg-rapida{border-left:4px solid var(--amber);background:var(--amber-soft);padding:10px 14px;
+  border-radius:0 10px 10px 0;margin:8px 0;font-size:13.5px}
+.peg-rapida b{color:var(--amber-deep)}
+
+@media(max-width:560px){
+  .hero h1{font-size:26px}
+  .sechead h2{font-size:19px}
+  .oct{font-size:12px;padding:10px 5px}
+  .hub{grid-template-columns:repeat(2,1fr)}
+  .regra-dois .not-one{font-size:26px}
+  .regra-dois .two{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <b>Atlas Mental · HAS</b>
+      <span>Tema 4 · Cap. 2</span>
+    </div>
+    <button class="toggle" id="tProf" onclick="toggleProf()">👨‍🏫 Professor</button>
+    <button class="toggle" id="tMov" onclick="toggleMov()">🎬 Movimento</button>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="pbar"></div></div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="crumb">Bloco 2 › Tema 4 · Tratamento › Capítulo 2</div>
+    <h1>Estratégias e Princípios do Tratamento Medicamentoso da Hipertensão Arterial</h1>
+    <p class="lead">O maior erro não é escolher o medicamento errado. É escolher a <b>estratégia</b>
+      errada. Este capítulo ensina por que tratamos, o que torna um anti-hipertensivo bom, e o
+      algoritmo completo — de monoterapia até o quarto fármaco — que decide o próximo passo diante
+      de qualquer hipertenso.</p>
+    <div class="kicker">Diagnóstico de HAS = iniciar tratamento já — medicamentoso e não medicamentoso, juntos.</div>
+  </div>
+</header>
+
+<div class="sheet">
+<div class="wrap">
+
+  <nav class="hub" aria-label="Navegação do capítulo">
+    <a href="#regra"><i>00</i><b>Regra de Ouro</b><span>Diagnóstico = tratar já</span></a>
+    <a href="#b1"><i>01</i><b>Por que tratar</b><span>O elevador da pressão</span></a>
+    <a href="#b2"><i>02</i><b>Anti-hipertensivo ideal</b><span>O que faz uma droga boa</span></a>
+    <a href="#b3"><i>03</i><b>Classes preferenciais</b><span>As 4 portas</span></a>
+    <a href="#algoritmo"><i>11</i><b>O Grande Algoritmo</b><span>Passo a passo clicável</span></a>
+    <a href="#ilha"><i>12</i><b>Ilha da Monoterapia</b><span>Quem começa sozinho</span></a>
+    <a href="#b4"><i>04</i><b>Trio de Ouro</b><span>A base das combinações</span></a>
+    <a href="#regra-dois"><i>13</i><b>A Regra dos Dois</b><span>Maioria começa com dupla</span></a>
+    <a href="#comprimido"><i>14</i><b>Comprimido Único</b><span>Fusão que salva adesão</span></a>
+    <a href="#b5"><i>05</i><b>Octeto da HAS</b><span>A escada terapêutica</span></a>
+    <a href="#b6"><i>06</i><b>Betabloqueadores</b><span>Beta não morreu</span></a>
+    <a href="#b7"><i>07</i><b>Horário / cronoterapia</b><span>Manhã × noite</span></a>
+    <a href="#b8"><i>08</i><b>Reavaliar e resistência</b><span>Antes de rotular</span></a>
+    <a href="#b9"><i>09</i><b>Adesão</b><span>Mapa das barreiras</span></a>
+    <a href="#b10"><i>10</i><b>Erros que matam</b><span>Alta letalidade</span></a>
+    <a href="#palacio"><i>N4</i><b>Palácio</b><span>Central da Pressão</span></a>
+    <a href="#arena"><i>TEC</i><b>Arena</b><span>Questões · casos</span></a>
+    <a href="#flash"><i>★</i><b>Flashcards</b><span>Evocação ativa</span></a>
+    <a href="#hipocampo"><i>H</i><b>Hipocampo</b><span>Revisão espaçada</span></a>
+  </nav>
+
+  <section class="sec filo" id="filosofia">
+    <div class="sechead">
+      <div class="num">✦</div>
+      <div><div class="sub">Filosofia</div><h2>O que estamos realmente tratando</h2></div>
+    </div>
+    <p>Ninguém morre de um número no manguito. O paciente hipertenso teme o lado do corpo que
+      não obedece depois do AVC, a falta de ar que não deixa deitar, a diálise três vezes por
+      semana — e é isso que se compra ao prescrever, não um número menor no consultório.</p>
+    <p>Por isso o melhor remédio é o que a pessoa <b>consegue tomar todo dia</b>, que <b>cobre
+      as 24 horas</b> e que ela <b>pode pagar</b>. Este capítulo não é sobre medicamentos — é
+      sobre <b>tomada de decisão</b>. Ao final, você deve responder de imediato: paciente com
+      HAS diagnosticada, qual estratégia eu inicio?</p>
+    <div class="sign">— Dr. André Rossanno</div>
+  </section>
+
+  <!-- ============ REGRA DE OURO (NOVO) ============ -->
+  <section class="sec" id="regra">
+    <div class="sechead">
+      <div class="num">00</div>
+      <div><div class="sub">Regra de Ouro</div><h2>Diagnóstico de HA = iniciar tratamento já</h2></div>
+    </div>
+    <div class="regra-box">
+      <div class="tag">Diagnóstico confirmado de HAS</div>
+      <div class="arrow">↓</div>
+      <div class="big">Iniciar imediatamente</div>
+      <div class="ok">✔ tratamento medicamentoso</div>
+      <div class="ok">✔ tratamento não medicamentoso</div>
+    </div>
+    <div class="card trap">
+      <span class="lab">⚠️ A pegadinha mais cobrada desta regra</span>
+      <p>Não se espera <b>três meses</b> de mudança de estilo de vida isolada em quem já tem
+        indicação clara de fármaco (estágios 2/3, alto risco, LOA). Esse período de observação
+        vale apenas para estágio 1 de risco baixo/moderado a critério médico — não é regra geral.</p>
+    </div>
+    <div class="ref-box">Nunca abandonar: <b>alimentação · exercício · peso · sal · álcool ·
+      tabaco · sono</b> — todas as medidas não medicamentosas continuam obrigatórias em paralelo
+      ao fármaco (desenvolvidas no Capítulo 1).</div>
+  </section>
+
+  <!-- ============ BLOCO 1 ============ -->
+  <section class="sec" id="b1">
+    <div class="sechead">
+      <div class="num">1</div>
+      <div><div class="sub">Bloco 1 · Por que tratar</div><h2>O Elevador da Pressão</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>Pequenas quedas de pressão produzem <b>grandes</b> quedas de eventos — não é preciso
+      normalizar a PA para colher benefício. E o que decide a indicação não é o <b>risco
+      relativo</b> (quanto o tratamento corta proporcionalmente), e sim o <b>benefício absoluto</b>
+      (eventos evitados por 100 pessoas), que nasce do risco de base do paciente.</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>Um <b>elevador</b>: cada botão desce a pressão alguns mmHg, e a cada andar menos gente
+        sai ferida no térreo — cérebro, coração e rim agradecem a descida.</p>
+    </div>
+
+    <p class="src">Toque em cada andar para ver o benefício — Diretriz Brasileira de HAS 2025 (Brandão et al.).</p>
+    <div class="elevator" id="elevator"></div>
+
+    <div class="quote">Quanto maior o risco cardiovascular, maior o benefício absoluto do tratamento.</div>
+
+    <div class="prof-note prof">
+      <span class="lab">Modo professor · NNT</span>
+      O número necessário para tratar (NNT) é o inverso da redução de risco absoluto. Em alto
+      risco, a mesma redução relativa gera redução absoluta maior → NNT menor.
+    </div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Trate o risco, não o número: mesmo −33% de AVC vale mais em quem parte de risco alto.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 2 ============ -->
+  <section class="sec" id="b2">
+    <div class="sechead">
+      <div class="num">2</div>
+      <div><div class="sub">Bloco 2 · O anti-hipertensivo ideal</div><h2>O que faz uma droga ser boa</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>Um bom anti-hipertensivo não é o mais potente — é o que junta <b>proteção de desfecho +
+      cobertura de 24h + tolerabilidade + acesso</b>. Reduzir PA no consultório é só o primeiro
+      requisito; sustentar isso todo dia (adesão) é o que decide o resultado (Bloco 9).</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>A caixa <b>“IDEAL”</b>: um comprimido só por dia, ação de 24 horas, combina com os
+        vizinhos de prateleira, cabe no bolso. Potência sozinha não entra na caixa.</p>
+    </div>
+
+    <p class="src">Características desejáveis — Diretriz Brasileira de HAS 2025.</p>
+    <table class="tbl">
+      <tr><th>Característica</th><th>Por que importa</th></tr>
+      <tr><td class="hl">Reduz morbidade e mortalidade CV e renal</td><td>É o objetivo final — proteger desfecho, não só número.</td></tr>
+      <tr><td class="hl">Eficácia por via oral + boa tolerabilidade</td><td>Uso crônico ambulatorial exige comodidade e poucos efeitos.</td></tr>
+      <tr><td class="hl">Ação prolongada (24h) → dose única diária</td><td>Menor oscilação, cobre noite e pico matinal; quanto mais tomadas ao dia, menor a adesão.</td></tr>
+      <tr><td class="hl">Sinergismo farmacológico</td><td>Permite associação em mecanismos diferentes (Bloco 4).</td></tr>
+      <tr><td>Baixa variabilidade pico-vale</td><td>PA estável ao longo do dia; evita “buracos” de cobertura.</td></tr>
+      <tr><td>Evidência de desfechos</td><td>Reduzir PA em estudo não basta; precisa reduzir eventos reais.</td></tr>
+      <tr><td>Acessível + controle de qualidade</td><td>Remédio que não se compra — ou de qualidade incerta — não controla PA.</td></tr>
+    </table>
+
+    <div class="eyebrow"><span class="n-tag">N2</span>Controle de qualidade — com prudência</div>
+    <p>Industrializado × manipulado envolve biodisponibilidade, uniformidade de dose,
+      estabilidade e fiscalização. O ponto sensato é a <b>variabilidade</b> de formulações
+      incertas.</p>
+    <div class="card trap">
+      <span class="lab">⚠️ Não confunda</span>
+      <p>Isso justifica <b>evitar de rotina</b> formulações não confiáveis — não uma
+        <b>proibição universal</b>. A diretriz recomenda cautela, sem afirmações absolutas.</p>
+    </div>
+
+    <div class="quote warn">Um medicamento excelente, mas inacessível, não controla pressão.</div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Anti-hipertensivo ideal = protege desfecho + cobre 24h em dose única + tolera + combina +
+      é acessível e confiável. Potência é só a porta de entrada; adesão decide o resto (Bloco 9).
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 3 ============ -->
+  <section class="sec" id="b3">
+    <div class="sechead">
+      <div class="num">3</div>
+      <div><div class="sub">Bloco 3 · Classes preferenciais</div><h2>As Quatro Portas</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>Quatro classes ocupam o centro do início do tratamento: <b>diuréticos tiazídicos (ou
+      similares)</b>, <b>BCC</b>, <b>IECA</b> e <b>BRA</b>. Elas são a base porque reúnem
+      eficácia + evidência de desfecho + combinabilidade.</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>Quatro <b>portas</b> na sala de entrada do tratamento. Por qualquer uma você entra com
+        segurança; as demais classes ficam em salas mais ao fundo, para situações específicas.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Classe preferencial</th><th>Por que ocupa o centro</th></tr>
+      <tr><td class="hl">Diurético tiazídico / similar</td><td>Reduz sódio e volume; barato; evidência robusta de desfecho.</td></tr>
+      <tr><td class="hl">BCC</td><td>Potente vasodilatador; boa evidência; combina bem com SRA.</td></tr>
+      <tr><td class="hl">IECA</td><td>Bloqueia SRA; proteção CV/renal; forte evidência.</td></tr>
+      <tr><td class="hl">BRA</td><td>Bloqueia SRA sem tosse; mesmo braço estratégico do IECA.</td></tr>
+    </table>
+
+    <div class="eyebrow"><span class="n-tag">N2</span>Por que as outras não são 1ª escolha universal</div>
+    <p><b>Alfa-1 bloqueadores</b> ficam adjuvantes em situações específicas; <b>vasodilatadores
+      diretos</b> entram mais tarde (taquicardia reflexa, retenção); <b>agonistas centrais (α2)</b>
+      têm papel restrito a cenários próprios; <b>betabloqueadores</b> deixaram de ser 1ª escolha
+      universal em várias diretrizes (motivo completo no Bloco 6).</p>
+
+    <div class="card trap">
+      <span class="lab">⚠️ Pegadinha</span>
+      <p>“Não ser primeira escolha universal” <b>não</b> significa “droga ruim”. Significa que,
+        sem uma indicação que a chame, ela não é a porta de entrada padrão.</p>
+    </div>
+  </section>
+
+  <!-- ============ ALGORITMO (NOVO — Bloco 11) ============ -->
+  <section class="sec" id="algoritmo">
+    <div class="sechead">
+      <div class="num">11</div>
+      <div><div class="sub">O Grande Algoritmo</div><h2>Do diagnóstico ao 4º fármaco, passo a passo</h2></div>
+    </div>
+    <div class="eyebrow"><span class="n-tag">N6</span>Ideia-núcleo</div>
+    <p>Toda a estratégia medicamentosa da HAS é uma <b>escalada condicional</b>: em cada etapa,
+      pergunta-se "a meta foi atingida?" — se não, sobe-se um degrau. Toque em cada etapa para
+      ver o motivo e o link com o restante do capítulo.</p>
+    <div class="cascata" id="cascata"></div>
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Mono (Bloco 12/Ilha) → dupla (Trio de Ouro, Bloco 4) → tripla (Octeto-base, Bloco 5) →
+      4º fármaco espironolactona/eplerenona (Bloco 5) → outras drogas conforme indicação (Blocos 5-6).
+      Cada seta só existe porque a meta anterior não foi alcançada.
+    </div>
+  </section>
+
+  <!-- ============ ILHA DA MONOTERAPIA (NOVO — Bloco 12) ============ -->
+  <section class="sec" id="ilha">
+    <div class="sechead">
+      <div class="num">12</div>
+      <div><div class="sub">Bloco 12 · Quem começa sozinho</div><h2>Os Cinco Habitantes da Ilha da Monoterapia</h2></div>
+    </div>
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>A regra geral (Bloco 13) é começar com dois fármacos. A monoterapia é a <b>exceção</b>,
+      reservada a cinco perfis específicos — pense neles como habitantes de uma ilha isolada do
+      continente das combinações.</p>
+    <div class="ilha" id="ilhaGrid"></div>
+    <div class="card trap">
+      <span class="lab">⚠️ Pegadinha</span>
+      <p>Idoso ≥80 anos não é sinônimo automático de monoterapia por ser “mais frágil” — é a
+        <b>idade isolada</b> que já basta como critério aqui; frágil e hipotensão ortostática são
+        critérios separados, que também valem para adultos mais jovens.</p>
+    </div>
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Monoterapia = idosos ≥80, frágeis, hipotensão ortostática sintomática, estágio 1 de risco
+      baixo (a critério médico) e PA 130-139/80-89 com alto risco após 3 meses de MEV. Fora
+      desses cinco perfis, a estratégia inicial é a associação dupla (Bloco 13).
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 4 ============ -->
+  <section class="sec" id="b4">
+    <div class="sechead">
+      <div class="num">4</div>
+      <div><div class="sub">Bloco 4 · O Trio de Ouro</div><h2>A base das combinações</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>Combinar <b>mecanismos diferentes</b> costuma superar dobrar a dose de uma só droga — mais
+      controle, menos efeito adverso dose-dependente. Três classes formam o núcleo de quase toda
+      combinação — o <b>Trio de Ouro</b>: <b>diurético tiazídico</b>, <b>IECA ou BRA</b> e <b>BCC</b>.</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>Um <b>triângulo</b>: o diurético tira <b>volume</b>, o SRA desliga a
+        <b>vasoconstrição/retenção neuro-hormonal</b>, o BCC <b>relaxa a artéria</b>. Juntos
+        cercam a pressão por três lados.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Vértice</th><th>Mecanismo que ataca</th></tr>
+      <tr><td class="hl">Diurético tiazídico</td><td>Reduz retenção de sódio e volume.</td></tr>
+      <tr><td class="hl">IECA ou BRA</td><td>Bloqueia o sistema renina-angiotensina (mesmo braço).</td></tr>
+      <tr><td class="hl">BCC</td><td>Vasodilatação por bloqueio de canais de cálcio.</td></tr>
+    </table>
+
+    <div class="eyebrow"><span class="n-tag">N3</span>Como se somam</div>
+    <p>O edema do BCC pode ser atenuado ao associar bloqueio do SRA; o diurético reduz volume e
+      potencializa esse bloqueio. Como IECA e BRA ocupam o <b>mesmo vértice</b> (mesmo braço do
+      SRA), eles não se somam entre si.</p>
+
+    <div class="card stop">
+      <span class="lab">🚫 Regra dura</span>
+      <p>IECA + BRA de rotina é <b>erro</b>: dois bloqueios do mesmo braço, mais hipercalemia,
+        piora renal, hipotensão e tontura — sem ganho de desfecho.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Exemplos reais de associação fixa dupla</th><th>Composição</th></tr>
+      <tr><td>Perindopril arginina + Indapamida</td><td>5 mg + 1,25 mg</td></tr>
+      <tr><td>Ramipril + Anlodipino</td><td>10 mg + 5 mg</td></tr>
+      <tr><td>Olmesartana medoxomila + Anlodipino</td><td>20 mg + 5 mg</td></tr>
+      <tr><td>Candesartana cilexetila + Hidroclorotiazida</td><td>16 mg + 12,5 mg</td></tr>
+    </table>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Trio de Ouro = tiazídico + (IECA ou BRA) + BCC, três mecanismos complementares que nunca
+      incluem IECA e BRA juntos.
+    </div>
+  </section>
+
+  <!-- ============ A REGRA DOS DOIS (NOVO — Bloco 13) ============ -->
+  <section class="sec" id="regra-dois">
+    <div class="sechead">
+      <div class="num">13</div>
+      <div><div class="sub">Bloco 13 · A grande mensagem da diretriz</div><h2>A Regra: a maioria começa com dois</h2></div>
+    </div>
+    <div class="regra-dois">
+      <div class="no">A maioria dos pacientes</div>
+      <div class="not-one">NÃO começa com um remédio</div>
+      <div class="two">Começa com DOIS</div>
+    </div>
+    <div class="eyebrow"><span class="n-tag">N2</span>Quem exatamente entra por essa porta</div>
+    <p>Fora dos cinco perfis da Ilha (Bloco 12), a associação dupla é o ponto de partida para
+      duas populações nomeadas pela diretriz: <b>HA estágio 1 de risco moderado e alto</b> e
+      <b>HA estágios 2 e 3</b> (qualquer risco). Ambas entram direto na coluna "Associação de
+      dois medicamentos" do algoritmo, sem passar por monoterapia.</p>
+
+    <div class="eyebrow"><span class="n-tag">N3</span>Por que dose baixa dupla vence dose plena única</div>
+    <p>Duas drogas em <b>baixa dose</b>, cada uma atacando um mecanismo do Trio de Ouro (Bloco 4),
+      costumam controlar mais e causar menos efeito adverso dose-dependente do que empurrar uma
+      única droga até a dose máxima:</p>
+    <ol class="callnum">
+      <li>Maior eficácia — dois mecanismos complementares em vez de saturar um só.</li>
+      <li>Menos efeitos adversos — cada droga em dose baixa, longe do teto de toxicidade.</li>
+      <li>Menos abandono — melhor tolerância sustenta a adesão (Bloco 9).</li>
+      <li>Mais proteção cardiovascular — controle pressórico mais rápido e estável.</li>
+    </ol>
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Associação dupla em dose baixa (preferencialmente Trio de Ouro, Bloco 4) é o ponto de
+      partida padrão para HA estágio 1 risco moderado/alto e estágios 2-3; monoterapia é
+      reservada aos cinco perfis da Ilha (Bloco 12).
+    </div>
+  </section>
+
+  <!-- ============ COMPRIMIDO ÚNICO (NOVO — Bloco 14) ============ -->
+  <section class="sec" id="comprimido">
+    <div class="sechead">
+      <div class="num">14</div>
+      <div><div class="sub">Bloco 14 · Adesão pela simplicidade</div><h2>Vários comprimidos viram um só</h2></div>
+    </div>
+    <div class="fusao">
+      <div class="pill"></div><div class="pill b"></div><div class="pill c"></div>
+      <div class="fusao-arrow">→</div>
+      <div class="pill-unico">1x/dia</div>
+    </div>
+    <p class="src">Sempre que disponível, prefira a associação em comprimido único à mesma combinação em frascos separados.</p>
+    <ol class="callnum">
+      <li>Melhor adesão — menos comprimidos para lembrar de tomar.</li>
+      <li>Menos esquecimento — um único horário fixa o hábito.</li>
+      <li>Melhor controle pressórico — cobertura constante, sem falhas de tomada.</li>
+      <li>Menos eventos cardiovasculares — resultado final de tudo o que vem antes.</li>
+    </ol>
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Mesma combinação farmacológica, formulação diferente: o comprimido único converte a
+      física da adesão (Bloco 9) a favor do paciente.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 5 ============ -->
+  <section class="sec" id="b5">
+    <div class="sechead">
+      <div class="num">5</div>
+      <div><div class="sub">Bloco 5 · O Octeto da HAS</div><h2>A escada terapêutica</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>Quando o Trio de Ouro não basta, sobe-se uma <b>escada</b>. Cada degrau adiciona
+      complexidade, efeitos adversos e necessidade de monitorização.</p>
+
+    <p class="src">Octeto do tratamento da HAS (adaptada de Feitosa et al.) — sobre a fundação de mudanças no estilo de vida.</p>
+    <div class="octeto" id="octeto"></div>
+
+    <table class="tbl">
+      <tr><th>Degrau</th><th>Quando entra / observação</th></tr>
+      <tr><td class="hl">Base — TIAZ · IECA ou BRA · BCC</td><td>Trio de Ouro (Bloco 4) — associação dupla, depois tripla, ≈90% de controle.</td></tr>
+      <tr><td class="hl">Espironolactona</td><td>4º fármaco de destaque na <b>HAS resistente</b>; se intolerância, Eplerenona.</td></tr>
+      <tr><td class="hl">Betabloqueador (BB)</td><td>Posição depende da indicação (Bloco 6); seta lateral BB** na arte original.</td></tr>
+      <tr><td class="hl">Agonista central (α2A)</td><td>Papel mais restrito, degraus superiores.</td></tr>
+      <tr><td class="hl">Alfa-1 bloqueador (α1B)</td><td>Útil em situações específicas; topo da escada.</td></tr>
+      <tr><td class="hl">Vasodilatador direto (VD)</td><td>Aparece mais tarde; maior monitorização.</td></tr>
+    </table>
+
+    <div class="card trap">
+      <span class="lab">⚠️ Pegadinha</span>
+      <p>A pirâmide é <b>guia estratégico</b>, não regra rígida — a comorbidade pode reposicionar
+        uma classe inteira (o BB é o exemplo mais importante; ver Bloco 6).</p>
+    </div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Base = Trio de Ouro (dupla → tripla, ~90% controle); depois espironolactona/eplerenona
+      (resistente); topo = α2, α1, VD. Cada degrau custa mais efeito adverso e vigilância.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 6 ============ -->
+  <section class="sec" id="b6">
+    <div class="sechead">
+      <div class="num">6</div>
+      <div><div class="sub">Bloco 6 · Betabloqueadores</div><h2>Beta não morreu</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N2</span>Contraste histórico</div>
+    <p>Por décadas o BB foi primeira linha ao lado do diurético. Muitas diretrizes o
+      <b>rebaixaram</b> como escolha universal na HAS “pura” — não por queda de qualidade, mas
+      por mudança de posicionamento: ele passou a exigir uma comorbidade que o chame.</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>Um <b>tribunal</b>: o BB perde o mandato automático de 1ª linha universal, mas é
+        <b>reconvocado como protagonista</b> assim que aparece angina, ICFEr, pós-IAM ou arritmia.</p>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N3</span>Por que perdeu o posto universal</div>
+    <ul class="clean">
+      <li>Menor proteção contra alguns desfechos (ex.: AVC) em certas populações.</li>
+      <li>Impacto metabólico de alguns representantes (glicídico/lipídico).</li>
+      <li>Menor efeito sobre a <b>pressão central</b> em alguns contextos.</li>
+      <li>Classe <b>heterogênea</b> — resultados históricos influenciados por fármacos/esquemas específicos (ex.: atenolol); vasodilatadores como carvedilol e nebivolol diferem dos clássicos no perfil metabólico e hemodinâmico.</li>
+    </ul>
+
+    <div class="eyebrow"><span class="n-tag">N7</span>Quando continuam soberanos</div>
+    <table class="tbl">
+      <tr><th>Indicação que “chama” o BB</th><th></th></tr>
+      <tr><td>Angina · pós-IAM</td><td>Proteção isquêmica e antiarrítmica.</td></tr>
+      <tr><td>ICFEr</td><td>Reduz mortalidade (pilar do tratamento).</td></tr>
+      <tr><td>FA · taquiarritmias</td><td>Controle de frequência.</td></tr>
+      <tr><td>Dissecção de aorta</td><td>Reduz dP/dt (controle de frequência e força).</td></tr>
+      <tr><td>Hipertireoidismo · tremor essencial · enxaqueca</td><td>Indicações clínicas próprias.</td></tr>
+      <tr><td>Mulheres jovens com potencial gestacional</td><td>Situação em que o BB pode ser preferido no arsenal disponível.</td></tr>
+      <tr><td>Pacientes com HA em hemodiálise</td><td>Cenário clínico próprio que o chama de volta.</td></tr>
+      <tr><td>Gestação (situações específicas)</td><td>Representantes selecionados.</td></tr>
+      <tr><td>Hipertensão portal / varizes</td><td>Conforme o fármaco e a indicação (não anti-hipertensivo per se).</td></tr>
+    </table>
+
+    <div class="card win">
+      <span class="lab">✔ Onde ele encaixa na escalada</span>
+      <p>O BB não é só um "5º fármaco isolado": quando há condição clínica concomitante que o
+        chame (Bloco 5), ele pode <b>integrar a própria associação dupla ou tripla</b> desde o
+        início — substituindo um dos vértices do Trio de Ouro — e não apenas ser somado depois
+        da espironolactona.</p>
+    </div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Classe heterogênea — nunca a trate como bloco único; generalizar é armadilha de prova.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 7 ============ -->
+  <section class="sec" id="b7">
+    <div class="sechead">
+      <div class="num">7</div>
+      <div><div class="sub">Bloco 7 · Cronoterapia</div><h2>Que horas tomar?</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>Houve grande entusiasmo com tomar anti-hipertensivo <b>à noite</b>. Os ensaios mais
+      robustos e recentes esfriaram essa ideia — a resposta atual é <b>individualizar</b>, sem
+      recomendação noturna para todos.</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>Um <b>relógio</b>: a pergunta certa não é “manhã ou noite?”, e sim em que horário este
+        paciente cumpre o esquema sem falhar.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Estudo</th><th>O que trouxe ao debate</th></tr>
+      <tr><td class="hl">MAPEC / Hygia</td><td>Geraram entusiasmo com dose noturna, mas sofreram <b>críticas metodológicas</b> importantes.</td></tr>
+      <tr><td class="hl">TIME</td><td>Ensaio grande e pragmático: <b>não</b> mostrou diferença de desfecho entre manhã e noite.</td></tr>
+      <tr><td class="hl">BedMed</td><td>Reforça a ausência de superioridade robusta da dose noturna universal.</td></tr>
+    </table>
+
+    <div class="card trap">
+      <span class="lab">⚠️ Riscos da noite para todos</span>
+      <p>Dose noturna universal pode causar <b>hipotensão noturna</b> em suscetíveis (idosos,
+        disautonômicos). O horário deve ser escolhido, não imposto.</p>
+    </div>
+
+    <div class="quote good">O melhor horário é aquele que garante cobertura adequada e que o paciente não esquece.</div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Sem recomendação noturna universal — individualize por tolerância e adesão.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 8 ============ -->
+  <section class="sec" id="b8">
+    <div class="sechead">
+      <div class="num">8</div>
+      <div><div class="sub">Bloco 8 · Reavaliar e resistência</div><h2>Antes de rotular “resistente”</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N6</span>Ideia-núcleo</div>
+    <p>Depois de cada degrau do algoritmo (Bloco 11), reavalia-se a meta antes de subir. Não há
+      prazos fixos universais — a diretriz orienta conforme resposta, tolerância e risco.</p>
+
+    <ol class="callnum">
+      <li><b>Reavaliar quando?</b> Conforme resposta clínica e tolerância — nunca um número de
+        semanas decorado como regra geral.</li>
+      <li><b>Antes de rotular “resistente”:</b> excluir <b>pseudorresistência</b> (má adesão,
+        técnica de medida, jaleco branco) e considerar <b>HAS secundária</b>.</li>
+    </ol>
+
+    <div class="card">
+      <span class="lab">⚖️ Modere pela fragilidade</span>
+      <p>Idoso frágil, hipotensão ortostática e polifarmácia (perfis da Ilha, Bloco 12) pedem
+        reavaliação mais próxima. Combinação agressiva demais derruba adesão e causa quedas.</p>
+    </div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      A meta e o risco decidem o ritmo de escalada do algoritmo — nunca um prazo fixo decorado.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 9 ============ -->
+  <section class="sec" id="b9">
+    <div class="sechead">
+      <div class="num">9</div>
+      <div><div class="sub">Bloco 9 · Adesão</div><h2>O elo que decide tudo</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N1</span>Ideia-núcleo</div>
+    <p>A diretriz é direta: a <b>adesão é absolutamente necessária</b> ao sucesso do controle da
+      PA. Não é apêndice do tratamento — é parte central dele.</p>
+
+    <div class="card mental">
+      <span class="lab">🧠 Imagem mental</span>
+      <p>Uma <b>ponte</b> entre a prescrição e o desfecho: sem adesão, a melhor receita nunca
+        atravessa.</p>
+    </div>
+
+    <p class="src">Toque para revelar a estratégia que derruba cada barreira.</p>
+    <div class="barreiras" id="barreiras"></div>
+
+    <div class="prof-note prof">
+      <span class="lab">Modo professor · orientações da diretriz</span>
+      Três orientações ao paciente/cuidador: (1) o sucesso do controle depende da adesão;
+      (2) podem ser necessários ajustes de dose, trocas ou associações ao longo do tempo;
+      (3) alertar sobre o possível aparecimento de efeitos adversos e como lidar com eles.
+    </div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      Adesão é o gargalo do desfecho — trate-a como parte da prescrição, não como esperança.
+    </div>
+  </section>
+
+  <!-- ============ BLOCO 10 ============ -->
+  <section class="sec" id="b10">
+    <div class="sechead">
+      <div class="num">10</div>
+      <div><div class="sub">Bloco 10 · Erros que prejudicam ou matam</div><h2>A ala dos erros fatais</h2></div>
+    </div>
+
+    <div class="eyebrow"><span class="n-tag">N7</span>Peso emocional</div>
+    <p>Alguns erros não são “deslizes”: mudam desfecho. Reconhecê-los é tão importante quanto
+      escolher a droga certa.</p>
+
+    <div class="card stop">
+      <span class="lab">🚫 Do paciente</span>
+      <p>Parar a medicação porque “a pressão melhorou” · usar remédio só quando a PA sobe ·
+        duplicar dose por conta própria · interromper por efeito adverso sem avisar · não retornar.</p>
+    </div>
+    <div class="card stop">
+      <span class="lab">🚫 Do prescritor</span>
+      <p>Trocar de esquema toda semana · associar <b>IECA + BRA</b> de rotina · ignorar função
+        renal e potássio · esquemas complexos demais · não considerar custo · confiar só na PA de
+        consultório · rotular “resistente” sem checar adesão/pseudorresistência · não reconhecer
+        formulações de qualidade duvidosa · não perguntar sobre automedicação e substâncias que
+        elevam a PA (AINEs, corticoide, descongestionantes, etc.).</p>
+    </div>
+
+    <p class="src">Pegadinhas rápidas de prova:</p>
+    <div class="peg-rapida"><b>Estágio 2 diagnosticado.</b> Espera-se 3 meses de MEV antes de medicar? Não — inicia-se já (Regra de Ouro).</div>
+    <div class="peg-rapida"><b>Idoso de 84 anos.</b> Precisa começar com dois remédios? Não necessariamente — a idade ≥80 isolada já permite monoterapia (Ilha, Bloco 12).</div>
+    <div class="peg-rapida"><b>PA controlada com 3 drogas em dose plena, sem checar adesão.</b> Pode chamar de resistente? Não — descarte pseudorresistência primeiro (Bloco 8).</div>
+    <div class="peg-rapida"><b>IECA + BRA para "reforçar" o bloqueio do SRA.</b> Estratégia válida? Não — mesmo braço, sem ganho de desfecho, mais efeito adverso (Bloco 4).</div>
+    <div class="peg-rapida"><b>Betabloqueador descartado por não ser mais 1ª linha universal.</b> Sempre correto? Não — se há ICFEr, pós-IAM ou FA, ele volta ao topo (Bloco 6).</div>
+
+    <div class="summary">
+      <span class="lab">Síntese</span>
+      O erro mais letal: tratar o número e esquecer a pessoa. Antes de subir dose ou chamar de
+      resistente, cheque adesão, técnica de medida, IECA+BRA indevido e K⁺/função renal.
+    </div>
+  </section>
+
+  <!-- ============ PALÁCIO ============ -->
+  <section class="sec filo">
+    <p>Cada associação que você monta na receita não é aritmética de farmacologia — é uma
+      aposta de que essa pessoa ainda vai estar de pé, lúcida e caminhando sozinha daqui a
+      vinte anos. O algoritmo existe para servir a essa aposta, nunca o contrário.</p>
+    <div class="sign">— Dr. André Rossanno</div>
+  </section>
+
+  <section class="sec" id="palacio">
+    <div class="sechead">
+      <div class="num">N4</div>
+      <div><div class="sub">Palácio da Memória</div><h2>A Central de Controle da Pressão</h2></div>
+    </div>
+    <p>Um prédio de treze ambientes. Percorra-os em ordem: cada sala guarda um bloco inteiro.
+      Toque para abrir.</p>
+    <div class="palace" id="palace"></div>
+    <p class="note">Imagens fisiologicamente coerentes, sem mnemônicos infantis. A cena importa mais que a rima.</p>
+  </section>
+
+  <!-- ============ ARENA TEC ============ -->
+  <section class="sec" id="arena">
+    <div class="sechead">
+      <div class="num">TEC</div>
+      <div><div class="sub">Arena de Pegadinhas</div><h2>Questões &amp; decisões</h2></div>
+    </div>
+    <div class="quiz-meta">
+      <span id="qCount">0</span> respondidas · <span id="qHit">0</span> acertos
+      <button class="toggle" style="border-color:var(--line);color:var(--gray)" onclick="resetQuiz()">Reiniciar</button>
+    </div>
+    <div id="quizBox"></div>
+  </section>
+
+  <section class="sec" id="casos">
+    <div class="sechead">
+      <div class="num">🩺</div>
+      <div><div class="sub">Casos-decisão</div><h2>Raciocínio terapêutico</h2></div>
+    </div>
+    <div id="casosBox"></div>
+  </section>
+
+  <section class="sec" id="flash">
+    <div class="sechead">
+      <div class="num">★</div>
+      <div><div class="sub">Evocação ativa</div><h2>Flashcards</h2></div>
+    </div>
+    <p class="note">Toque para virar. Tente responder <b>antes</b> de ver o verso.</p>
+    <div class="flash-grid" id="flashGrid"></div>
+  </section>
+
+  <section class="sec" id="hipocampo">
+    <div class="sechead">
+      <div class="num">H</div>
+      <div><div class="sub">Hipocampo</div><h2>Consolidação &amp; revisão espaçada</h2></div>
+    </div>
+    <div class="dash" id="dash"></div>
+    <h3 style="margin-top:18px;font-size:16px">Checklist de revisão espaçada</h3>
+    <div class="spaced" id="spaced"></div>
+  </section>
+
+  <section class="sec" id="rev60">
+    <div class="sechead">
+      <div class="num">⏱</div>
+      <div><div class="sub">Revisão de 60 segundos</div><h2>O capítulo em um sopro</h2></div>
+    </div>
+    <ul class="clean r60">
+      <li><b>Regra de ouro:</b> diagnóstico de HAS = iniciar já, medicamentoso + não medicamentoso, sem esperar 3 meses em quem já tem indicação clara.</li>
+      <li><b>Por que tratar:</b> −10 mmHg de PAS → AVC ↓~33% (1ª prevenção), DAC ↓até 40–50% em metas baixas, IC/DRC ↓~50%/42%, mortalidade ↓17%. Maior risco → maior benefício absoluto.</li>
+      <li><b>Ideal:</b> protege desfecho + 24h em dose única + tolera + combina + acessível/confiável + adesão.</li>
+      <li><b>Quatro portas:</b> tiazídico, BCC, IECA, BRA.</li>
+      <li><b>Algoritmo:</b> mono (Ilha) → dupla (Trio de Ouro) → tripla (Octeto-base, ~90% controle) → 4º fármaco (espironolactona/eplerenona) → outras drogas.</li>
+      <li><b>Ilha da Monoterapia:</b> idosos ≥80, frágeis, hipotensão ortostática, estágio 1 risco baixo, PA 130-139/80-89 + alto risco após 3 meses de MEV.</li>
+      <li><b>A regra dos dois:</b> maioria dos pacientes começa com associação dupla em dose baixa, de preferência em comprimido único.</li>
+      <li><b>Trio de Ouro:</b> tiazídico + (IECA ou BRA) + BCC. IECA+BRA de rotina = erro.</li>
+      <li><b>BB:</b> não é 1ª linha universal, mas volta ao topo com angina/ICFEr/pós-IAM/FA/hemodiálise/mulher jovem com potencial gestacional.</li>
+      <li><b>Horário:</b> sem noite universal (TIME/BedMed). Individualizar por cobertura + adesão.</li>
+      <li><b>Adesão:</b> absolutamente necessária. Simplificar, dose única, associação fixa, sem julgamento.</li>
+      <li><b>Erros que matam:</b> parar por “melhora”, usar SOS, IECA+BRA, ignorar K⁺/rim, confiar só no consultório, esperar 3 meses indevidamente.</li>
+    </ul>
+  </section>
+
+  <section class="sec" id="gloss">
+    <div class="sechead">
+      <div class="num">📖</div>
+      <div><div class="sub">Glossário</div><h2>Termos-chave</h2></div>
+    </div>
+    <div id="glossBox"></div>
+  </section>
+
+  <section class="sec" id="refs">
+    <div class="sechead">
+      <div class="num">§</div>
+      <div><div class="sub">Referências</div><h2>Base do capítulo</h2></div>
+    </div>
+    <ul class="clean src" style="font-family:var(--font)">
+      <li>Brandão AA et al. <b>Diretriz Brasileira de Hipertensão Arterial — 2025</b> (eixo principal).</li>
+      <li>Octeto do tratamento da HAS — adaptada de <b>Feitosa et al.</b></li>
+      <li>Ensaios de cronoterapia: MAPEC, Hygia, <b>TIME</b>, BedMed (comparação crítica).</li>
+      <li>Outras diretrizes (europeias, americanas/JNC) apenas para contraste de posicionamento.</li>
+    </ul>
+    <p class="note">Sem números fora das fontes acima. Onde a aula não trouxe valor exato, o texto
+      fica qualitativo de propósito.</p>
+    <div class="card trap">
+      <span class="lab">⚠️ Conferir antes da versão definitiva</span>
+      <p>Os percentuais do Bloco 1 (AVC −33%/−27%, DAC −17%/−40–50%, IC −50%, DRC −42%,
+        mortalidade −17%) foram transcritos de captura de tela da aula e não de PDF/texto oficial
+        da diretriz. Recomenda-se checar cada valor na fonte primária antes de publicar.</p>
+    </div>
+  </section>
+
+  <section class="sec filo">
+    <p>No fim, o algoritmo é só um mapa. Quem decide se o paciente chega ao fim do caminho é a
+      confiança que ele deposita em você — e essa confiança se ganha remédio por remédio, dia
+      após dia, e nunca de uma vez só.</p>
+    <div class="sign">— Dr. André Rossanno</div>
+  </section>
+
+  <footer class="foot">
+    <div class="sign">Dr. André Rossanno</div>
+    <p>Atlas Mental da Hipertensão Arterial · Bloco 2 · Tema 4 · Capítulo 2<br>
+      Estratégias e Princípios do Tratamento Medicamentoso · Memória Potencial</p>
+  </footer>
+
+</div>
+</div>
+
+<script>
+/* ================= HANDOFF / BANCOS =================
+   Opus estabiliza RC1 (merge de "Princípios" + "Estratégias" em um só
+   Capítulo 2, sem duplicar conteúdo). Sonnet expande os arrays abaixo.
+
+   ESTADO ATUAL DOS BANCOS NESTE RC1:
+     QUESTOES   = 20  (meta usual ~50-60)
+     CASOS      = 10  (meta usual ~15-20)
+     FLASHCARDS = 26  (meta usual ~60-80)
+     GLOSSARIO  = 12
+   ==================================================== */
+var LS_KEY='atlasHAS_bloco2_tema4_cap2_v1';
+
+var ELEVADOR=[
+ {ic:'🧠',t:'AVC',s:'−10 mmHg de PAS · prevenção primária',v:'−33%',
+  d:'Prevenção primária: risco de AVC cai cerca de 33% para cada 10 mmHg de PAS reduzidos. Na prevenção secundária, a redução é ~27%.'},
+ {ic:'❤️',t:'DAC',s:'metas mais baixas de PAS',v:'↓40–50%',
+  d:'Com −10 mmHg o risco de DAC cai ~17%; alcançando PAS <130 mmHg a redução chega a 40–50%. Metas mais baixas, mais proteção coronariana.'},
+ {ic:'🫀',t:'IC',s:'PAS <130 mmHg · idosos / nova IC',v:'−50%',
+  d:'Atingir PAS <130 mmHg reduz em ~50% a insuficiência cardíaca em idosos e o surgimento de nova IC.'},
+ {ic:'🩺',t:'DRC',s:'PAS <130 mmHg',v:'−42%',
+  d:'A evolução para doença renal crônica cai ~42% ao alcançar PAS <130 mmHg.'},
+ {ic:'⚰️',t:'Mortalidade',s:'redução global',v:'−17%',
+  d:'A mortalidade cai cerca de 17% — o desfecho que resume todos os outros.'}
+];
+
+var OCTETO={
+ 'TIAZ*':'Diurético tiazídico — vértice de volume do Trio de Ouro. Reduz sódio e volume; barato; evidência de desfecho.',
+ 'IECA ou BRA':'Bloqueio do sistema renina-angiotensina — mesmo braço estratégico. Nunca IECA+BRA de rotina.',
+ 'BCC':'Bloqueador de canais de cálcio — vasodilatação. Edema pode ser atenuado combinando com bloqueio do SRA.',
+ 'Espironolactona':'4º fármaco de destaque na HAS resistente. Antagonista mineralocorticoide; vigie potássio. Se intolerância, eplerenona.',
+ 'BB':'Betabloqueador — sobe conforme indicação específica (angina, ICFEr, pós-IAM, FA, hemodiálise). Não é 1ª linha universal.',
+ 'α2A':'Agonista central — papel restrito, degraus superiores.',
+ 'α1B':'Alfa-1 bloqueador — situações específicas; topo da escada.',
+ 'VD':'Vasodilatador direto — aparece mais tarde; maior monitorização (taquicardia reflexa, retenção).'
+};
+
+var CASCATA=[
+ {t:'Diagnóstico confirmado de HAS',d:'Ponto de partida do algoritmo. Regra de ouro: inicia-se tratamento já, medicamentoso e não medicamentoso (Bloco 00).'},
+ {t:'Existe indicação para monoterapia?',d:'Checar os cinco perfis da Ilha da Monoterapia (Bloco 12): idoso ≥80, frágil, hipotensão ortostática, estágio 1 risco baixo, ou PA 130-139/80-89 com alto risco após 3 meses de MEV.'},
+ {t:'Monoterapia',d:'Uma das quatro portas (Bloco 3): tiazídico, BCC, IECA ou BRA. Reservada aos perfis da Ilha.'},
+ {t:'Meta atingida?',d:'Se sim, mantém e reavalia periodicamente (Bloco 8). Se não, sobe um degrau.'},
+ {t:'Associação dupla',d:'A regra dos dois (Bloco 13): Trio de Ouro (Bloco 4) em dose baixa, de preferência em comprimido único (Bloco 14).'},
+ {t:'Meta atingida?',d:'~60% de controle nesta etapa. Se não, sobe para tripla.'},
+ {t:'Associação tripla',d:'IECA/BRA + BCC + diurético — o Trio de Ouro completo (Bloco 4/5). ~90% de controle nesta etapa.'},
+ {t:'Meta atingida?',d:'Se não, é hora do 4º fármaco — HAS resistente.'},
+ {t:'4º fármaco — Espironolactona',d:'Primeira escolha na HAS resistente (Bloco 5). Se intolerância, eplerenona.'},
+ {t:'Meta atingida?',d:'Se ainda não, adicionam-se outras drogas conforme indicação clínica.'},
+ {t:'Outras drogas',d:'Betabloqueador por indicação (Bloco 6), simpaticolíticos centrais, alfabloqueadores ou vasodilatadores diretos (Bloco 5), conforme o contexto do paciente.'}
+];
+
+var ILHA=[
+ {ic:'👵',n:'Idosos ≥80 anos',d:'Idade isolada já é critério para monoterapia, independente de fragilidade.'},
+ {ic:'🦯',n:'Indivíduos frágeis',d:'Fragilidade clínica pede início mais suave e reavaliação próxima.'},
+ {ic:'😵‍💫',n:'Hipotensão ortostática sintomática',d:'Tontura ao levantar contraindica combinação agressiva de início.'},
+ {ic:'🩺',n:'HA estágio 1, risco baixo',d:'A critério médico — perfil de menor urgência terapêutica.'},
+ {ic:'📉',n:'PA 130-139/80-89 + alto risco CV',d:'Após 3 meses de medidas não farmacológicas sem meta atingida.'}
+];
+
+var BARREIRAS=[
+ {b:'Ausência de sintomas',s:'Educar: HAS é silenciosa; tratar protege o futuro, não o sintoma de hoje.'},
+ {b:'Efeitos adversos',s:'Antecipar, identificar cedo, trocar/ajustar em vez de abandonar.'},
+ {b:'Custo',s:'Escolher droga acessível; associação fixa; genéricos confiáveis.'},
+ {b:'Muitos comprimidos',s:'Simplificar: dose única diária + associação fixa em comprimido único.'},
+ {b:'Esquema complexo',s:'Reduzir número de tomadas; alinhar horário à rotina do paciente.'},
+ {b:'“Pressão normalizou = curou”',s:'Explicar que controle não é cura; suspender faz voltar a subir.'},
+ {b:'Medo de dependência',s:'Desmistificar; decisão compartilhada e vínculo médico-paciente.'},
+ {b:'Esquecimento',s:'Lembretes, ancorar à rotina, apoio de cuidador, MRPA.'},
+ {b:'Baixo vínculo',s:'Abordagem sem julgamento; equipe multiprofissional; retorno programado.'}
+];
+
+var PALACE=[
+ {n:'Sala 00',t:'Portão da Regra de Ouro',sc:'Um portão que só se abre no instante do diagnóstico — atrás dele, tratamento já.',d:'Âncora: diagnóstico = iniciar já, sem esperar 3 meses indevidamente (Bloco 00).'},
+ {n:'Sala 01',t:'Elevador dos 5–10 mmHg',sc:'Você desce um elevador; a cada andar, menos gente ferida no térreo.',d:'Âncora: benefício absoluto cresce com o risco de base (Bloco 1).'},
+ {n:'Sala 02',t:'Caixa “IDEAL”',sc:'Uma caixa de remédio escrita IDEAL, mas potência sozinha não cabe dentro.',d:'Âncora: 24h + tolerância + acesso > potência isolada (Bloco 2).'},
+ {n:'Sala 03',t:'Quatro portas',sc:'Quatro portas lado a lado, todas dando para a mesma sala de entrada.',d:'Âncora: tiazídico, BCC, IECA, BRA (Bloco 3).'},
+ {n:'Sala 11',t:'Escada da cascata',sc:'Uma escada rolante com placas "meta atingida?" em cada degrau.',d:'Âncora: mono → dupla → tripla → 4º fármaco → outras drogas (Bloco 11).'},
+ {n:'Sala 12',t:'A Ilha da Monoterapia',sc:'Uma pequena ilha isolada do continente, com apenas cinco moradores.',d:'Âncora: idoso ≥80, frágil, hipotensão ortostática, estágio1 baixo, PA130-139 alto risco (Bloco 12).'},
+ {n:'Sala 04',t:'Triângulo de Ouro',sc:'Um triângulo luminoso cercando a pressão por três lados.',d:'Âncora: volume + SRA + artéria; IECA/BRA no mesmo vértice (Bloco 4).'},
+ {n:'Sala 13',t:'O portão riscado do UM',sc:'Um grande número 1 riscado, e ao lado um número 2 brilhando.',d:'Âncora: a maioria começa com associação dupla, não monoterapia (Bloco 13).'},
+ {n:'Sala 14',t:'Câmara de fusão dos comprimidos',sc:'Vários comprimidos coloridos se fundindo em um só, brilhante.',d:'Âncora: comprimido único melhora adesão e reduz eventos (Bloco 14).'},
+ {n:'Sala 05',t:'Escadaria do Octeto',sc:'Uma escada que sobe ficando mais estreita e mais alta a cada degrau.',d:'Âncora: base = Trio; sobe-se com mais efeito adverso a cada degrau (Bloco 5).'},
+ {n:'Sala 06',t:'Tribunal do betabloqueador',sc:'Um réu que perde o mandato universal, mas é reconvocado como protagonista.',d:'Âncora: não é 1ª linha universal, mas soberano com indicação (Bloco 6).'},
+ {n:'Sala 07',t:'Relógio da cronoterapia',sc:'Um relógio sem hora marcada — o ponteiro pousa onde o paciente não esquece.',d:'Âncora: sem noite universal, individualizar (Bloco 7).'},
+ {n:'Sala 10',t:'Corredor dos erros fatais',sc:'Um corredor com placas de alerta, uma para cada erro que muda desfecho.',d:'Âncora: parar por “melhora”, IECA+BRA, ignorar K⁺/rim, esperar demais (Bloco 10).'}
+];
+
+var QUESTOES=[
+ {q:'Diante do diagnóstico confirmado de HAS em paciente estágio 2, a conduta correta é:',
+  o:['Aguardar 3 meses de MEV isolada antes de medicar','Iniciar tratamento medicamentoso e não medicamentoso simultaneamente','Iniciar apenas MEV, reavaliando em 6 meses','Encaminhar direto para hipertensão resistente'],
+  c:1,e:'Diagnóstico de HAS já estabelecida (estágio 2/3, alto risco) = iniciar já os dois tratamentos; a espera de 3 meses vale só para estágio 1 de risco baixo/moderado.'},
+ {q:'Segundo a lógica “quanto maior o risco, maior o benefício”, qual afirmação é correta?',
+  o:['O benefício absoluto independe do risco de base','Pacientes de alto risco obtêm maior benefício absoluto do tratamento','Risco relativo e absoluto são sempre iguais','Baixar a PA só ajuda quem tem PA muito alta'],
+  c:1,e:'O benefício absoluto cresce com o risco de base: mais eventos a prevenir → maior redução absoluta → NNT menor.'},
+ {q:'Qual característica NÃO define, por si só, um bom anti-hipertensivo?',
+  o:['Reduzir eventos cardiovasculares','Cobrir 24h em dose única','Ser o mais potente em reduzir PA no consultório','Ter boa tolerabilidade e acesso'],
+  c:2,e:'Potência isolada não basta. O ideal soma proteção de desfecho, cobertura 24h, tolerância, acesso e adesão.'},
+ {q:'As quatro classes preferenciais para iniciar tratamento são:',
+  o:['BB, α1, α2 e VD','Tiazídico, BCC, IECA e BRA','Espironolactona, BB, VD e α2','IECA, BRA, BB e espironolactona'],
+  c:1,e:'Tiazídicos/similares, BCC, IECA e BRA — as quatro portas de entrada.'},
+ {q:'Qual perfil abaixo NÃO faz parte dos cinco habitantes da Ilha da Monoterapia?',
+  o:['Idoso ≥80 anos','Diabético de 50 anos sem lesão de órgão-alvo','Hipotensão ortostática sintomática','Estágio 1 de risco baixo, a critério médico'],
+  c:1,e:'Diabetes por si só não é critério de monoterapia; os cinco perfis são idoso ≥80, frágil, hipotensão ortostática, estágio1 baixo risco e PA130-139/80-89+alto risco após 3 meses de MEV.'},
+ {q:'Sobre IECA + BRA na mesma prescrição:',
+  o:['É a combinação preferencial do Trio de Ouro','Deve ser rotina em diabéticos','Não deve ser usada como combinação rotineira','Reduz mais desfecho que qualquer dupla'],
+  c:2,e:'Dois bloqueios do mesmo braço do SRA aumentam hipercalemia, piora renal e hipotensão sem ganho de desfecho.'},
+ {q:'No Trio de Ouro, o edema causado pelo BCC pode ser atenuado ao associar:',
+  o:['Outro BCC','Um bloqueador do SRA (IECA ou BRA)','Um vasodilatador direto','Um agonista central'],
+  c:1,e:'Associar bloqueio do SRA atenua o edema de membros inferiores do BCC.'},
+ {q:'Segundo a diretriz, o ponto de partida padrão para a maioria dos hipertensos é:',
+  o:['Monoterapia em dose plena','Associação dupla em dose baixa, de preferência em comprimido único','Associação tripla imediata','Aguardar avaliação especializada'],
+  c:1,e:'A regra dos dois: a maioria começa com associação dupla em dose baixa, preferencialmente em comprimido único.'},
+ {q:'Por que a associação dupla em dose baixa costuma ser preferível a uma droga em dose máxima?',
+  o:['Porque é sempre mais barata','Porque combina mecanismos diferentes com menos efeito adverso dose-dependente','Porque dispensa reavaliação','Porque substitui a monoterapia em todos os pacientes idosos'],
+  c:1,e:'Mecanismos complementares controlam mais e geram menos efeito adverso do que saturar a dose de uma única droga.'},
+ {q:'Sobre o comprimido único (associação fixa), é correto afirmar que:',
+  o:['Muda o mecanismo farmacológico da combinação','Só existe para diuréticos','Melhora adesão ao reduzir o número de tomadas','É contraindicado em idosos'],
+  c:2,e:'O comprimido único mantém a mesma combinação farmacológica, apenas simplificando a tomada — o que melhora adesão.'},
+ {q:'Na hipertensão resistente, o fármaco que ganha destaque como 4º agente é:',
+  o:['Hidralazina','Espironolactona','Clonidina','Prazosina'],
+  c:1,e:'A espironolactona é o 4º fármaco de destaque na HAS resistente; se intolerância, eplerenona.'},
+ {q:'Por que os betabloqueadores deixaram de ser 1ª linha universal em várias diretrizes?',
+  o:['Não reduzem PA','Menor proteção contra alguns desfechos em certas populações e classe heterogênea','São proibidos em cardiopatas','Não existem em dose única'],
+  c:1,e:'Menor proteção contra alguns desfechos (ex.: AVC) em certos grupos, impacto metabólico de alguns e heterogeneidade da classe.'},
+ {q:'Em qual cenário o betabloqueador volta a ser escolha de destaque?',
+  o:['HAS isolada em jovem sem comorbidade','Insuficiência cardíaca com fração de ejeção reduzida','Como monoterapia universal','Sempre que a PAS >140'],
+  c:1,e:'ICFEr, angina, pós-IAM, FA, hemodiálise e mulher jovem com potencial gestacional “chamam” o BB de volta ao protagonismo.'},
+ {q:'O que os ensaios TIME e BedMed indicam sobre o horário do anti-hipertensivo?',
+  o:['Todo mundo deve tomar à noite','Não há superioridade robusta da dose noturna universal','A dose matinal aumenta a mortalidade','O horário é irrelevante para adesão'],
+  c:1,e:'Esfriaram o entusiasmo da dose noturna universal; individualizar por cobertura e adesão.'},
+ {q:'Paciente com PA muito acima da meta e alto risco. A conduta inicial mais alinhada é:',
+  o:['Monoterapia em dose baixa','Mudança de estilo de vida isolada por 6 meses','Iniciar combinação (preferir dose baixa dupla, associação fixa)','Iniciar com betabloqueador'],
+  c:2,e:'Quanto maior a distância da meta e o risco, mais cedo se combina; associação fixa melhora adesão.'},
+ {q:'Antes de rotular um paciente como “hipertenso resistente”, é essencial:',
+  o:['Trocar todas as drogas','Excluir pseudorresistência (adesão, técnica de medida, jaleco branco)','Suspender o diurético','Dobrar todas as doses'],
+  c:1,e:'Pseudorresistência (má adesão, medida incorreta, efeito do avental) deve ser descartada antes.'},
+ {q:'Qual é um erro de alto impacto no manejo da HAS?',
+  o:['Usar associação fixa','Orientar sobre efeitos adversos','Associar IECA + BRA de rotina e ignorar potássio/função renal','Simplificar o esquema'],
+  c:2,e:'IECA+BRA de rotina e não vigiar K⁺/rim estão entre os erros que mudam desfecho.'},
+ {q:'Na escada terapêutica (algoritmo), a etapa que sucede a associação tripla sem controle é:',
+  o:['Trocar toda a combinação','Adicionar espironolactona (ou eplerenona se intolerância)','Suspender o tratamento por 1 mês','Iniciar diálise'],
+  c:1,e:'Espironolactona é o 4º fármaco de escolha na HAS resistente após tripla sem controle; eplerenona é a alternativa em caso de intolerância.'},
+ {q:'Associação tripla com IECA/BRA + BCC + diurético controla aproximadamente:',
+  o:['30% dos pacientes','60% dos pacientes','90% dos pacientes','100% dos pacientes'],
+  c:2,e:'A tripla combinação do Trio de Ouro completo controla cerca de 90% dos hipertensos.'},
+ {q:'Idoso de 84 anos, hígido, PA 148/88 sem lesão de órgão-alvo. Conduta inicial mais alinhada?',
+  o:['Associação tripla imediata','Considerar monoterapia, dada a idade ≥80 anos','IECA + BRA para maior segurança','Aguardar 6 meses sem tratar'],
+  c:1,e:'Idade ≥80 anos isolada já é critério de entrada pela Ilha da Monoterapia — não exige, por si só, combinação.'}
+ /* Sonnet: expandir até 50-60 mantendo o formato {q,o,c,e} */
+];
+
+var CASOS=[
+ {s:'Homem, 58 anos, PA 168/104, diabético, TFGe normal, virgem de tratamento. Como iniciar?',
+  a:'PA longe da meta + alto risco → iniciar já (Regra de Ouro) com associação dupla em dose baixa (Trio de Ouro: bloqueio do SRA + BCC ou + tiazídico), idealmente em comprimido único. Não usar IECA+BRA juntos.'},
+ {s:'Mulher, 72 anos, frágil, PA 146/84, história de quedas e tontura ao levantar. Conduta?',
+  a:'Perfil da Ilha da Monoterapia (frágil + hipotensão ortostática): início mais suave, considerar monoterapia e reavaliação próxima. Evitar combinação agressiva.'},
+ {s:'Paciente com HAS “que não controla” com 3 drogas em dose plena. O que checar antes de chamar de resistente?',
+  a:'Excluir pseudorresistência: adesão (a mais comum), técnica de medida, efeito do avental. Depois considerar HAS secundária e revisar substâncias que elevam a PA.'},
+ {s:'Paciente hipertenso desenvolve ICFEr. E o betabloqueador?',
+  a:'A comorbidade reposiciona o BB para a base do tratamento: na ICFEr ele reduz mortalidade e passa a ser pilar, não coadjuvante.'},
+ {s:'Paciente pergunta se deve tomar o remédio à noite “porque protege mais”. Resposta?',
+  a:'Não há superioridade robusta da dose noturna universal (TIME/BedMed). Individualizar: o melhor horário é o que cobre 24h e que ele não esquece.'},
+ {s:'Paciente parou o anti-hipertensivo porque “a pressão normalizou”. Como abordar?',
+  a:'Erro clássico e perigoso. Explicar que controle ≠ cura; suspender faz a PA voltar a subir. Reforçar adesão, sem julgamento.'},
+ {s:'Mulher, 84 anos, PA 138/86, sem fragilidade, sem lesão de órgão-alvo, boa funcionalidade. Iniciar mono ou dupla?',
+  a:'Idade ≥80 anos isolada já permite monoterapia — critério de entrada pela Ilha, independentemente da ausência de outros fatores de fragilidade.'},
+ {s:'Homem, 45 anos, PA 152/96, sem comorbidades, risco cardiovascular moderado. Estratégia inicial mais alinhada com a "regra dos dois"?',
+  a:'Fora dos cinco perfis da Ilha da Monoterapia — inicia-se associação dupla em dose baixa (Trio de Ouro), de preferência em comprimido único, não monoterapia.'},
+ {s:'Paciente em associação tripla plena (IECA+BCC+diurético) sem atingir meta, adesão confirmada e técnica de medida correta. Próximo passo do algoritmo?',
+  a:'Espironolactona como 4º fármaco (ou eplerenona se houver intolerância) — a etapa da HAS resistente confirmada, após excluir pseudorresistência.'},
+ {s:'Paciente com dificuldade de tomar 3 comprimidos separados ao dia, mas com boa resposta pressórica na combinação atual. O que oferecer para sustentar a adesão?',
+  a:'Buscar a mesma combinação em associação de comprimido único, quando disponível — reduz o número de tomadas sem alterar o esquema farmacológico.'}
+ /* Sonnet: expandir mantendo {s,a} */
+];
+
+var FLASHCARDS=[
+ {tag:'Bloco 00',q:'Diagnóstico de HAS obriga esperar quanto tempo antes de medicar?',a:'Nenhum, em quem já tem indicação clara — inicia-se já (medicamentoso + não medicamentoso).'},
+ {tag:'Bloco 1',q:'−10 mmHg de PAS reduz AVC em quanto (1ª prevenção)?',a:'≈ 33% (secundária ≈ 27%).'},
+ {tag:'Bloco 1',q:'Risco relativo × benefício absoluto: quem decide tratar?',a:'O benefício absoluto — cresce com o risco de base.'},
+ {tag:'Bloco 1',q:'PAS <130 mmHg e DAC?',a:'Redução de risco de 40–50%.'},
+ {tag:'Bloco 1',q:'Redução de mortalidade com o tratamento?',a:'≈ 17%.'},
+ {tag:'Bloco 2',q:'Ação de 24h permite o quê?',a:'Dose única diária, menor oscilação, cobertura noturna/matinal, menos esquecimento.'},
+ {tag:'Bloco 2',q:'Mais tomadas por dia →',a:'Menor adesão.'},
+ {tag:'Bloco 3',q:'As quatro portas (classes preferenciais)',a:'Tiazídico, BCC, IECA, BRA.'},
+ {tag:'Bloco 11',q:'Ordem da escalada do algoritmo',a:'Mono → dupla → tripla → 4º fármaco (espironolactona) → outras drogas.'},
+ {tag:'Bloco 12',q:'Cinco habitantes da Ilha da Monoterapia',a:'Idoso ≥80, frágil, hipotensão ortostática, estágio1 baixo risco, PA130-139/80-89+alto risco pós-MEV.'},
+ {tag:'Bloco 4',q:'Os três vértices do Trio de Ouro',a:'Tiazídico + (IECA ou BRA) + BCC.'},
+ {tag:'Bloco 4',q:'Por que IECA e BRA não se combinam?',a:'Mesmo braço (SRA); risco sem ganho de desfecho.'},
+ {tag:'Bloco 13',q:'A maioria dos pacientes começa com quantas drogas?',a:'Duas — associação dupla em dose baixa é o padrão, não monoterapia.'},
+ {tag:'Bloco 14',q:'Vantagem do comprimido único',a:'Melhor adesão, menos esquecimento, melhor controle, menos eventos.'},
+ {tag:'Bloco 5',q:'Fármaco de destaque na HAS resistente',a:'Espironolactona (4º agente); eplerenona se intolerância.'},
+ {tag:'Bloco 5',q:'Associação tripla completa controla quantos %?',a:'≈ 90% dos pacientes.'},
+ {tag:'Bloco 6',q:'BB é 1ª linha universal na HAS pura?',a:'Não — mas volta ao topo com angina/ICFEr/pós-IAM/FA/hemodiálise.'},
+ {tag:'Bloco 6',q:'Tratar todos os BB como iguais?',a:'Não — classe heterogênea (ex.: carvedilol/nebivolol diferem).'},
+ {tag:'Bloco 7',q:'TIME/BedMed sobre horário',a:'Sem superioridade da dose noturna universal; individualizar.'},
+ {tag:'Bloco 8',q:'Antes de chamar de "resistente"?',a:'Excluir pseudorresistência (adesão, técnica, jaleco branco).'},
+ {tag:'Bloco 9',q:'Qual é o gargalo do desfecho?',a:'Adesão — absolutamente necessária ao controle da PA.'},
+ {tag:'Bloco 10',q:'Erro mais letal no manejo da HAS?',a:'Tratar o número e esquecer a pessoa — não investigar por que não adere.'},
+ {tag:'Bloco 4',q:'Exemplo de associação fixa dupla real (SRA+diurético)',a:'Perindopril arginina + Indapamida 5mg+1,25mg.'},
+ {tag:'Bloco 4',q:'Exemplo de associação fixa dupla real (SRA+BCC)',a:'Ramipril + Anlodipino 10mg+5mg, ou Olmesartana + Anlodipino 20mg+5mg.'},
+ {tag:'Bloco 6',q:'Duas indicações de BB frequentemente esquecidas',a:'Mulher jovem com potencial gestacional e HA em hemodiálise.'},
+ {tag:'Bloco 00',q:'Efeitos adversos citados na proibição de IECA+BRA',a:'Lesão renal aguda, hiperpotassemia, hipotensão, tontura e mal-estar, maior risco de eventos adversos.'}
+ /* Sonnet: expandir até 60-80 mantendo {tag,q,a} */
+];
+
+var GLOSSARIO=[
+ {t:'Regra de Ouro',d:'Diagnóstico de HAS = iniciar tratamento já, medicamentoso e não medicamentoso, sem esperar 3 meses indevidamente.'},
+ {t:'Ilha da Monoterapia',d:'Os cinco perfis em que se justifica iniciar com um único fármaco.'},
+ {t:'A Regra dos Dois',d:'A maioria dos hipertensos inicia tratamento com associação dupla, não monoterapia.'},
+ {t:'Comprimido único',d:'Associação fixa de duas ou mais classes em um só comprimido; melhora adesão sem mudar a farmacologia.'},
+ {t:'Trio de Ouro',d:'Tiazídico + (IECA ou BRA) + BCC — núcleo das combinações.'},
+ {t:'Octeto da HAS',d:'Escada terapêutica sobre estilo de vida (adaptada de Feitosa et al.).'},
+ {t:'Benefício absoluto',d:'Eventos evitados por 100 pessoas; cresce com o risco de base.'},
+ {t:'NNT',d:'Número necessário para tratar; inverso da redução de risco absoluto.'},
+ {t:'Pseudorresistência',d:'Falso rótulo de resistência por má adesão, técnica de medida ou avental branco.'},
+ {t:'Associação tripla',d:'IECA/BRA + BCC + diurético — controla cerca de 90% dos pacientes.'},
+ {t:'Variabilidade pico-vale',d:'Oscilação da PA entre concentração máxima e mínima do fármaco.'},
+ {t:'Cronoterapia',d:'Escolha do horário da medicação; sem dose noturna universal (TIME/BedMed).'}
+];
+
+function loadState(){try{return JSON.parse(localStorage.getItem(LS_KEY))||{}}catch(e){return{}}}
+function saveState(s){try{localStorage.setItem(LS_KEY,JSON.stringify(s))}catch(e){}}
+var state=loadState();
+state.answered=state.answered||{};state.spaced=state.spaced||{};
+
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+
+(function(){var box=document.getElementById('elevator');
+ ELEVADOR.forEach(function(f,i){
+  var row=el('div','floor');row.innerHTML='<div class="ic">'+f.ic+'</div><div class="txt"><b>'+f.t+'</b><small>'+f.s+'</small></div><div class="val">'+f.v+'</div>';
+  var det=el('div','elev-detail','<small>POR QUÊ</small><br>'+f.d);
+  row.onclick=function(){var op=det.classList.contains('open');
+   document.querySelectorAll('.elev-detail').forEach(function(d){d.classList.remove('open')});
+   document.querySelectorAll('.floor').forEach(function(d){d.classList.remove('active')});
+   if(!op){det.classList.add('open');row.classList.add('active')}};
+  box.appendChild(row);box.appendChild(det);
+ });
+})();
+
+(function(){var box=document.getElementById('octeto');if(!box)return;
+ var info=el('div','oct-info','');
+ function mk(txt,cls){var b=el('button','oct '+cls,txt);b.onclick=function(){info.innerHTML='<b>'+txt+'</b> — '+OCTETO[txt]};return b;}
+ var r1=el('div','oct-row');r1.appendChild(mk('α1B','top'));r1.appendChild(mk('VD','top'));
+ var r2=el('div','oct-row');r2.appendChild(mk('BB','mid'));r2.appendChild(mk('α2A','mid'));
+ var r3=el('div','oct-row');r3.appendChild(mk('Espironolactona','esp'));
+ var r4=el('div','oct-row');r4.appendChild(mk('TIAZ*','base'));r4.appendChild(mk('IECA ou BRA','base'));r4.appendChild(mk('BCC','base'));
+ box.appendChild(r1);box.appendChild(r2);box.appendChild(r3);box.appendChild(r4);
+ var side=el('div','',null);side.style.textAlign='center';
+ var bb2=mk('BB','side');bb2.textContent='BB**';bb2.onclick=function(){info.innerHTML='<b>BB**</b> — Seta lateral do octeto: indicação específica que reposiciona o betabloqueador para dentro da estratégia, fora da posição habitual.'};
+ side.appendChild(bb2);box.appendChild(side);
+ box.appendChild(el('div','oct-found','⟶ Fundação: mudanças no estilo de vida'));
+ box.appendChild(info);
+})();
+
+/* cascata do algoritmo (NOVO) */
+(function(){var box=document.getElementById('cascata');if(!box)return;
+ CASCATA.forEach(function(s,i){
+  var step=el('div','step');
+  step.innerHTML='<div class="sn">'+(i+1)+'</div><div class="st"><b>'+s.t+'</b></div>';
+  var det=el('div','step-detail','<small>POR QUÊ</small><br>'+s.d);
+  step.onclick=function(){var op=det.classList.contains('open');
+   document.querySelectorAll('.step-detail').forEach(function(d){d.classList.remove('open')});
+   document.querySelectorAll('.step').forEach(function(d){d.classList.remove('active')});
+   if(!op){det.classList.add('open');step.classList.add('active')}};
+  box.appendChild(step);box.appendChild(det);
+ });
+})();
+
+/* ilha da monoterapia (NOVO) */
+(function(){var box=document.getElementById('ilhaGrid');if(!box)return;
+ ILHA.forEach(function(h){box.appendChild(el('div','hab','<div class="ic">'+h.ic+'</div><b>'+h.n+'</b><span>'+h.d+'</span>'));});
+})();
+
+(function(){var box=document.getElementById('algo');if(!box)return;
+ box.innerHTML='<div class="algo-q">Onde está o paciente?</div>';
+ var opts=el('div','algo-opts');
+ var out=el('div','algo-out');
+ [['PA perto da meta · risco baixo','mono','Considerar MONOTERAPIA. Reavaliar resposta, tolerância e adesão; escalar se necessário.'],
+  ['PA longe da meta · risco alto','combo','Iniciar COMBINAÇÃO — preferir dupla em dose baixa (ex.: SRA + BCC ou + tiazídico), idealmente associação fixa. Nunca IECA+BRA de rotina.'],
+  ['Idoso frágil · ortostase','mono','Início SUAVE e reavaliação próxima. Priorizar tolerabilidade; evitar combinação agressiva.']
+ ].forEach(function(o){var b=el('button','algo-btn',o[0]);b.onclick=function(){out.className='algo-out show '+o[1];out.textContent=o[2];};opts.appendChild(b);});
+ box.appendChild(opts);box.appendChild(out);
+})();
+
+(function(){var box=document.getElementById('barreiras');if(!box)return;
+ BARREIRAS.forEach(function(x){var c=el('div','barr','<b>'+x.b+'</b><span class="hint">tocar p/ solução ›</span><div class="sol">✔ '+x.s+'</div>');
+  c.onclick=function(){c.classList.toggle('open')};box.appendChild(c);});
+})();
+
+(function(){var box=document.getElementById('palace');if(!box)return;
+ PALACE.forEach(function(r){var room=el('div','room',
+  '<div class="room-h"><span class="rn">'+r.n+'</span><b>'+r.t+'</b></div>'+
+  '<div class="room-b"><span class="scene">🎬 '+r.sc+'</span>'+r.d+'</div>');
+  room.onclick=function(){room.classList.toggle('open')};box.appendChild(room);});
+})();
+
+function renderQuiz(){var box=document.getElementById('quizBox');box.innerHTML='';
+ QUESTOES.forEach(function(q,i){
+  var item=el('div','qitem');
+  item.appendChild(el('div','qn','Questão '+(i+1)+'/'+QUESTOES.length));
+  item.appendChild(el('div','qtext',q.q));
+  var exp=el('div','qexp','<span class="lab">Comentário</span>'+q.e);
+  var done=state.answered['q'+i];
+  q.o.forEach(function(opt,j){
+   var b=el('button','qopt',opt);
+   if(done!=null){b.disabled=true;
+    if(j===q.c)b.classList.add('correct');
+    if(j===done&&done!==q.c)b.classList.add('wrong');}
+   b.onclick=function(){if(state.answered['q'+i]!=null)return;
+    state.answered['q'+i]=j;saveState(state);
+    Array.prototype.forEach.call(item.querySelectorAll('.qopt'),function(x,k){x.disabled=true;
+     if(k===q.c)x.classList.add('correct');});
+    if(j!==q.c)b.classList.add('wrong');
+    exp.classList.add('show');updateMeta();renderDash();};
+   item.appendChild(b);
+  });
+  if(done!=null)exp.classList.add('show');
+  item.appendChild(exp);box.appendChild(item);
+ });updateMeta();}
+function updateMeta(){var c=0,h=0;Object.keys(state.answered).forEach(function(k){
+  var i=parseInt(k.slice(1));if(state.answered[k]!=null){c++;if(state.answered[k]===QUESTOES[i].c)h++;}});
+ document.getElementById('qCount').textContent=c;document.getElementById('qHit').textContent=h;}
+function resetQuiz(){state.answered={};saveState(state);renderQuiz();renderDash();}
+
+(function(){var box=document.getElementById('casosBox');if(!box)return;
+ CASOS.forEach(function(c,i){var d=el('div','caso');
+  d.innerHTML='<div class="stem"><b>Caso '+(i+1)+'.</b> '+c.s+'</div>';
+  var btn=el('button','caso-btn','Ver raciocínio');
+  var ans=el('div','caso-ans','<span class="lab">Conduta</span>'+c.a);
+  btn.onclick=function(){ans.classList.toggle('show');btn.textContent=ans.classList.contains('show')?'Ocultar':'Ver raciocínio';};
+  d.appendChild(btn);d.appendChild(ans);box.appendChild(d);});
+})();
+
+(function(){var box=document.getElementById('flashGrid');if(!box)return;
+ FLASHCARDS.forEach(function(f){var c=el('div','fc');
+  c.innerHTML='<div class="fc-in"><div class="fc-face fc-front"><span class="tag">'+f.tag+'</span><span class="q">'+f.q+'</span></div><div class="fc-face fc-back"><span class="a">'+f.a+'</span></div></div>';
+  c.onclick=function(){c.classList.toggle('flip')};box.appendChild(c);});
+})();
+
+(function(){var box=document.getElementById('glossBox');if(!box)return;
+ GLOSSARIO.forEach(function(g){box.appendChild(el('div','gl','<b>'+g.t+'</b> — '+g.d));});
+})();
+
+function renderDash(){var box=document.getElementById('dash');if(!box)return;
+ var c=0,h=0,e=0;Object.keys(state.answered).forEach(function(k){var i=parseInt(k.slice(1));
+  if(state.answered[k]!=null){c++;if(state.answered[k]===QUESTOES[i].c)h++;else e++;}});
+ box.innerHTML='';
+ box.appendChild(el('div','cell','<b>'+c+'</b><span>respondidas</span>'));
+ box.appendChild(el('div','cell hit','<b>'+h+'</b><span>acertos</span>'));
+ box.appendChild(el('div','cell err','<b>'+e+'</b><span>a revisar</span>'));
+ box.appendChild(el('div','cell','<b>'+QUESTOES.length+'</b><span>total</span>'));
+}
+
+var SPACED=[
+ {id:'d0',day:'Hoje',items:['Regra de ouro: diagnóstico = tratar já','O grande algoritmo (mono → dupla → tripla → 4º fármaco)','Ilha da Monoterapia: os cinco perfis']},
+ {id:'d1',day:'Amanhã',items:['Trio de Ouro e IECA+BRA nunca de rotina','A regra dos dois + comprimido único','Octeto e reposicionamento do BB']},
+ {id:'d7',day:'Em 7 dias',items:['Mapa das barreiras à adesão','Erros que prejudicam ou matam','Refazer a Arena TEC sem consultar']}
+];
+(function(){var box=document.getElementById('spaced');if(!box)return;
+ SPACED.forEach(function(s){var d=el('div','day','<h4>'+s.day+'</h4>');
+  s.items.forEach(function(it,j){var key=s.id+'_'+j;
+   var lab=el('label',state.spaced[key]?'done':'');
+   var cb=el('input');cb.type='checkbox';cb.checked=!!state.spaced[key];
+   cb.onchange=function(){state.spaced[key]=cb.checked;saveState(state);lab.className=cb.checked?'done':'';};
+   lab.appendChild(cb);lab.appendChild(document.createTextNode(' '+it));d.appendChild(lab);});
+  box.appendChild(d);});
+})();
+
+function toggleProf(){document.body.classList.toggle('prof-on');
+ document.getElementById('tProf').classList.toggle('on',document.body.classList.contains('prof-on'));}
+function toggleMov(){document.body.classList.toggle('reduz');
+ document.getElementById('tMov').classList.toggle('on',document.body.classList.contains('reduz'));}
+
+window.addEventListener('scroll',function(){
+ var h=document.documentElement,b=document.body;
+ var st=h.scrollTop||b.scrollTop;var sh=(h.scrollHeight||b.scrollHeight)-h.clientHeight;
+ document.getElementById('pbar').style.width=(sh>0?(st/sh*100):0)+'%';},{passive:true});
+
+renderQuiz();renderDash();
+</script>
+
+</body>
+</html>
