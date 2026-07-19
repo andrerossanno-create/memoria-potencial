@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- ================================================================
+  ATLAS MENTAL DA HIPERTENSÃO ARTERIAL
+  BLOCO 2 • TEMA 4 • CAPÍTULO 5A
+  INIBIDORES DA ENZIMA CONVERSORA DA ANGIOTENSINA (IECA)
+  Autor: Dr. André Rossanno
+  Arquivo único, autossuficiente, offline, sem dependências externas.
+================================================================= -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap. 5A — IECA · Atlas Mental da Hipertensão Arterial</title>
+<style>
+/* ===================== FONTES ===================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap');
+
+/* ===================== TOKENS ===================== */
+:root{
+  /* Estrutura Bloco 2: fundo claro */
+  --bg:#eef2f7;
+  --bg2:#e3e9f2;
+  --paper:#ffffff;
+  --ink:#0f2942;          /* navy estrutural / texto principal */
+  --ink2:#3a5674;         /* texto secundário */
+  --line:#d7e0ec;
+
+  /* Semântica de cores */
+  --blue:#1282A2;         /* Azul Atlas — conceito / mecanismo / fisiologia */
+  --blue-soft:#e2f1f6;
+  --blue-deep:#0d6883;
+  --green:#1e8f5e;        /* proteção cardiorrenal / benefício */
+  --green-soft:#e4f5ec;
+  --amber:#d98a04;        /* atenção / pegadinha / memória */
+  --amber-soft:#fcf1dc;
+  --red:#c0392b;          /* perigo / contraindicação / limite */
+  --red-soft:#fbe6e3;
+  --navy:#0f2942;
+  --navy-soft:#e7edf4;
+
+  /* Personagens da narrativa (uso pontual, não decorativo) */
+  --renina:#1e8f5e;
+  --forja:#d98a04;
+  --angio:#c0392b;
+  --brad:#1282A2;
+
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow:0 6px 22px rgba(15,41,66,.10);
+  --shadow-lg:0 14px 40px rgba(15,41,66,.16);
+  --maxw:1080px;
+  --fs:1;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  background:
+     radial-gradient(1200px 600px at 80% -10%, #dce7f5 0, transparent 60%),
+     radial-gradient(900px 500px at -10% 10%, #e6eef8 0, transparent 55%),
+     var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  font-size:calc(17px * var(--fs));
+  -webkit-text-size-adjust:100%;
+}
+body.hi-contrast{--bg:#fff;--bg2:#f0f0f0;--ink:#000;--ink2:#233;--line:#889;}
+h1,h2,h3,h4{line-height:1.15;margin:0 0 .4em;font-weight:900;letter-spacing:-.01em}
+p{margin:0 0 .8em}
+a{color:var(--blue-deep)}
+.mono{font-family:'IBM Plex Mono',monospace}
+.sig{font-family:'Dancing Script',cursive;font-weight:700}
+
+/* ===================== LAYOUT ===================== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+section{padding:38px 0;border-top:1px solid transparent}
+.sec{scroll-margin-top:84px}
+.kick{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--blue-deep);
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;
+}
+.kick::before{content:"";width:26px;height:2px;background:var(--blue);display:inline-block}
+.sechead{font-size:clamp(1.5rem,4.4vw,2.15rem);color:var(--navy)}
+.lead{font-size:1.06rem;color:var(--ink2);max-width:62ch}
+
+/* ===================== NAV ===================== */
+.topbar{
+  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.brand{display:flex;flex-direction:column;line-height:1;margin-right:auto}
+.brand b{font-size:.98rem;color:var(--navy);letter-spacing:-.01em}
+.brand span{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--blue-deep);letter-spacing:.14em;margin-top:3px}
+.tbtns{display:flex;gap:6px;flex-wrap:wrap}
+.tb{
+  border:1px solid var(--line);background:#fff;color:var(--ink2);
+  font-family:inherit;font-weight:800;font-size:.74rem;cursor:pointer;
+  padding:7px 10px;border-radius:999px;transition:.15s;white-space:nowrap;
+}
+.tb:hover{border-color:var(--blue);color:var(--blue-deep)}
+.tb.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tb.on.mode-rev{background:var(--blue)}
+.tb.on.mode-prova{background:var(--red)}
+.menu-toggle{display:none}
+.progress-rail{height:3px;background:var(--line)}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .3s}
+
+/* Menu lateral (drawer) */
+.drawer{
+  position:fixed;inset:0 auto 0 0;width:280px;max-width:86vw;background:#fff;
+  border-right:1px solid var(--line);transform:translateX(-102%);transition:.28s;
+  z-index:80;overflow-y:auto;padding:16px 0;box-shadow:var(--shadow-lg);
+}
+.drawer.open{transform:none}
+.drawer h4{padding:6px 20px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);font-family:'IBM Plex Mono',monospace}
+.drawer a{display:flex;gap:10px;align-items:center;padding:9px 20px;color:var(--ink);text-decoration:none;font-weight:700;font-size:.9rem;border-left:3px solid transparent}
+.drawer a:hover{background:var(--blue-soft);border-left-color:var(--blue)}
+.drawer a .n{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--ink2);min-width:20px}
+.scrim{position:fixed;inset:0;background:rgba(15,41,66,.4);z-index:70;opacity:0;pointer-events:none;transition:.28s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer-close{margin:4px 16px 10px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:800;cursor:pointer;font-family:inherit}
+
+/* ===================== CARDS / UI ===================== */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--navy-soft);color:var(--navy)}
+.pill.blue{background:var(--blue-soft);color:var(--blue-deep)}
+.pill.green{background:var(--green-soft);color:var(--green)}
+.pill.amber{background:var(--amber-soft);color:var(--amber)}
+.pill.red{background:var(--red-soft);color:var(--red)}
+
+.callout{border-radius:var(--radius-sm);padding:14px 16px;border-left:5px solid var(--blue);background:var(--blue-soft)}
+.callout.green{border-left-color:var(--green);background:var(--green-soft)}
+.callout.amber{border-left-color:var(--amber);background:var(--amber-soft)}
+.callout.red{border-left-color:var(--red);background:var(--red-soft)}
+.callout h4{margin:0 0 4px;font-size:1rem}
+.callout p{margin:0;font-size:.95rem;color:var(--ink)}
+
+.trad{font-size:.86rem;color:var(--ink2);border-left:3px solid var(--blue);padding-left:10px;margin:6px 0 0;font-style:italic}
+.trad b{font-style:normal;color:var(--blue-deep)}
+
+.gold{background:linear-gradient(180deg,#fff, #fffdf6);border:1px solid #f0e2bf;border-left:5px solid var(--amber)}
+.frase{font-size:1.12rem;font-weight:800;color:var(--navy);line-height:1.35}
+
+.btn{border:none;border-radius:10px;padding:11px 16px;font-family:inherit;font-weight:800;cursor:pointer;font-size:.92rem;transition:.15s}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.primary:hover{background:#153a5c}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--blue);color:var(--blue-deep)}
+.btn.blue{background:var(--blue);color:#fff}
+.btn:focus-visible,.tb:focus-visible,a:focus-visible,.chip:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+/* N1–N7 selo */
+.n-seal{display:flex;gap:5px;flex-wrap:wrap;margin:2px 0 14px}
+.n-seal .n{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;padding:3px 7px;border-radius:6px;background:var(--navy-soft);color:var(--navy);border:1px solid var(--line)}
+.n-seal .n b{color:var(--blue-deep)}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;overflow:hidden;background:
+   linear-gradient(180deg,#0f2942,#14395c 62%, #123b5e);color:#eaf2fb;padding:0}
+.hero .wrap{padding:64px 18px 54px;position:relative;z-index:2}
+.hero .kick{color:#8fd0e6}
+.hero .kick::before{background:#8fd0e6}
+.hero h1{font-size:clamp(2rem,6.4vw,3.5rem);color:#fff;letter-spacing:-.02em;margin-bottom:.2em}
+.hero .sub{font-size:clamp(1.05rem,2.6vw,1.35rem);color:#bcd6ee;max-width:32ch;font-weight:700}
+.hero .sig{color:#8fd0e6;font-size:1.5rem;margin-top:18px;display:inline-block}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.hero .btn.primary{background:#8fd0e6;color:#0f2942}
+.hero .btn.primary:hover{background:#a8dced}
+.hero .btn.ghost{background:transparent;border:1px solid #3a6a8f;color:#cfe6f5}
+/* veias de fundo do hero */
+.hero-bg{position:absolute;inset:0;z-index:1;opacity:.5}
+
+/* HUB */
+.hub{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.hub{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.hub{grid-template-columns:1fr}}
+.hub a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--ink);transition:.15s}
+.hub a:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
+.hub a .hn{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--blue-deep);letter-spacing:.1em}
+.hub a b{display:block;margin-top:4px;font-size:.98rem}
+.hub a span{font-size:.82rem;color:var(--ink2)}
+
+/* ===================== ABAS / ACORDEÃO ===================== */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:800;font-size:.85rem;cursor:pointer;font-family:inherit;color:var(--ink2)}
+.tab.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tabpane{display:none}
+.tabpane.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.acc{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;background:#fff}
+.acc>button{width:100%;text-align:left;background:#fff;border:none;padding:14px 16px;font-family:inherit;font-weight:800;font-size:.98rem;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--navy)}
+.acc>button:hover{background:var(--blue-soft)}
+.acc>button .ico{transition:.2s;color:var(--blue)}
+.acc.open>button .ico{transform:rotate(45deg)}
+.acc .body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc .body-in{padding:0 16px 16px}
+
+/* Especialista pensa */
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:760px){.spec{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.spec{grid-template-columns:1fr}}
+.spec div{border-radius:10px;padding:11px 12px;font-size:.85rem}
+.spec .s1{background:var(--navy-soft)}
+.spec .s2{background:var(--amber-soft)}
+.spec .s3{background:var(--blue-soft)}
+.spec .s4{background:var(--green-soft)}
+.spec b{display:block;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;margin-bottom:4px;color:var(--ink2)}
+
+/* ===================== MODOS ===================== */
+body[data-mode="revisao"] .rev-hide{display:none!important}
+body[data-mode="prova"] .prova-hide{display:none!important}
+body:not([data-mode="prova"]) .prova-only{display:none!important}
+body:not([data-mode="professor"]) .prof-only{display:none!important}
+.prof-only{border-left:4px solid var(--blue);background:#f2f9fb;border-radius:8px;padding:10px 14px;margin:10px 0}
+.prof-only .tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--blue-deep);text-transform:uppercase}
+
+/* reduzir movimento */
+body.no-motion *{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* footer */
+footer{background:var(--navy);color:#cfe0ef;padding:36px 0;margin-top:20px}
+footer .sig{color:#8fd0e6;font-size:1.7rem}
+footer a{color:#8fd0e6}
+.disc{font-size:.8rem;color:#9db7cf;max-width:60ch;margin-top:10px}
+
+/* util */
+.center{text-align:center}
+.mt0{margin-top:0}.mb0{margin-bottom:0}
+.small{font-size:.85rem;color:var(--ink2)}
+.divider{height:1px;background:var(--line);margin:14px 0}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+</style>
+</head>
+<body data-mode="livre">
+
+<!-- ===================== NAVEGAÇÃO ===================== -->
+<div class="topbar">
+  <div class="wrap">
+    <button class="tb" id="menuBtn" aria-label="Abrir menu de seções">☰ Seções</button>
+    <div class="brand">
+      <b>Atlas Mental · IECA</b>
+      <span>BLOCO 2 · TEMA 4 · CAP. 5A</span>
+    </div>
+    <div class="tbtns">
+      <button class="tb" data-mode-btn="professor" title="Conteúdo completo + notas de aula">Professor</button>
+      <button class="tb" data-mode-btn="revisao" title="Só o essencial">Revisão</button>
+      <button class="tb" data-mode-btn="prova" title="Questões, casos e desempenho">Prova</button>
+      <button class="tb" id="motionBtn" title="Reduzir animações">Movimento</button>
+      <button class="tb" id="fontBtn" title="Aumentar fonte">A+</button>
+      <button class="tb" id="contrastBtn" title="Alto contraste">◑</button>
+      <button class="tb" id="resetBtn" title="Apagar meu progresso">⟲</button>
+    </div>
+  </div>
+  <div class="progress-rail"><div class="progress-fill" id="progFill"></div></div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Índice do capítulo">
+  <button class="drawer-close" id="drawerClose">✕ Fechar</button>
+  <h4>A jornada</h4>
+  <a href="#top"><span class="n">00</span> Entrada no Reino</a>
+  <a href="#jararaca"><span class="n">01</span> A jararaca e o captopril</a>
+  <a href="#sraa"><span class="n">02</span> O SRAA completo</a>
+  <a href="#eca"><span class="n">03</span> ECA e bradicinina</a>
+  <a href="#mecanismo"><span class="n">04</span> Mecanismo do IECA</a>
+  <a href="#cavaleiros"><span class="n">05</span> Cinco Cavaleiros · AT1/AT2</a>
+  <h4>Clínica</h4>
+  <a href="#coracao"><span class="n">06</span> Proteção cardíaca</a>
+  <a href="#rim"><span class="n">07</span> Proteção renal · Lago</a>
+  <a href="#diabetes"><span class="n">08</span> Diabetes e albuminúria</a>
+  <a href="#indicacoes"><span class="n">09</span> Indicações</a>
+  <a href="#adversos"><span class="n">10</span> Efeitos adversos</a>
+  <a href="#contra"><span class="n">11</span> Contraindicações · Gestação</a>
+  <a href="#duplo"><span class="n">12</span> Duplo bloqueio · ARNI</a>
+  <a href="#farmaco"><span class="n">13</span> Os IECAs (tabela)</a>
+  <a href="#prescrever"><span class="n">14</span> Como prescrever</a>
+  <a href="#evidencias"><span class="n">15</span> Evidências · escudos</a>
+  <h4>Treino</h4>
+  <a href="#palacio"><span class="n">16</span> Palácio da Memória</a>
+  <a href="#casos"><span class="n">17</span> Casos clínicos</a>
+  <a href="#arena"><span class="n">18</span> Arena TEC</a>
+  <a href="#decisoes"><span class="n">19</span> Mini-decisões</a>
+  <a href="#flash"><span class="n">20</span> Flashcards</a>
+  <a href="#pegadinhas"><span class="n">21</span> Armadilhas da banca</a>
+  <a href="#hipocampo"><span class="n">22</span> Hipocampo · revisão</a>
+  <a href="#final"><span class="n">23</span> Revisão de 60 s</a>
+  <a href="#refs"><span class="n">24</span> Referências</a>
+</nav>
+
+<!-- ===================== ABERTURA CINEMATOGRÁFICA ===================== -->
+<div id="cine" class="cine" role="dialog" aria-label="Abertura animada">
+  <div class="cine-inner">
+    <button class="cine-skip" id="cineSkip">Pular introdução ›</button>
+    <svg id="cineSvg" viewBox="0 0 400 260" aria-hidden="true"></svg>
+    <div class="cine-cap" id="cineCap">A perfusão renal cai…</div>
+    <div class="cine-dots" id="cineDots"></div>
+  </div>
+</div>
+<style>
+.cine{position:fixed;inset:0;z-index:120;background:radial-gradient(circle at 50% 40%,#12395c,#08192b);display:none;align-items:center;justify-content:center}
+.cine.on{display:flex}
+.cine-inner{width:min(520px,92vw);text-align:center;color:#eaf2fb;position:relative}
+.cine-skip{position:absolute;top:-40px;right:0;background:rgba(255,255,255,.12);border:1px solid #3a6a8f;color:#cfe6f5;border-radius:999px;padding:7px 14px;font-family:inherit;font-weight:800;cursor:pointer}
+#cineSvg{width:100%;height:auto;background:rgba(255,255,255,.04);border-radius:18px;border:1px solid rgba(143,208,230,.25)}
+.cine-cap{font-size:1.25rem;font-weight:800;margin-top:18px;min-height:2.6em}
+.cine-cap b{color:#8fd0e6}
+.cine-dots{display:flex;gap:7px;justify-content:center;margin-top:10px}
+.cine-dots i{width:8px;height:8px;border-radius:50%;background:#3a6a8f;transition:.2s}
+.cine-dots i.on{background:#8fd0e6;transform:scale(1.3)}
+</style>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero sec" id="top">
+  <svg class="hero-bg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#2b567c" stroke-width="1.4" opacity=".7">
+      <path d="M-20 300 C 200 220 260 360 460 300 S 760 200 980 280 1240 250 1240 250"/>
+      <path d="M-20 340 C 220 300 320 400 520 340 S 820 260 1040 320 1240 300 1240 300"/>
+      <path d="M-20 120 C 180 60 300 180 520 120 S 820 40 1040 110"/>
+    </g>
+    <g fill="#8fd0e6" opacity=".5">
+      <circle cx="460" cy="300" r="3"/><circle cx="520" cy="340" r="3"/><circle cx="980" cy="280" r="3"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <span class="kick">Atlas Mental da Hipertensão Arterial</span>
+    <h1>Inibidores da Enzima Conversora da Angiotensina</h1>
+    <p class="sub">Da jararaca ao glomérulo: compreenda o IECA, prescreva com segurança e nunca mais esqueça.</p>
+    <div class="hero-cta">
+      <button class="btn primary" id="startCine">▶ Entrar no Reino do SRAA</button>
+      <a class="btn ghost" href="#sraa">Ir direto à fisiologia</a>
+    </div>
+    <span class="sig">Dr. André Rossanno</span>
+  </div>
+</header>
+
+<!-- ===================== HUB ===================== -->
+<section class="sec wrap" id="hub">
+  <span class="kick">Como navegar</span>
+  <h2 class="sechead">Escolha por onde entrar</h2>
+  <p class="lead rev-hide">Este capítulo é uma plataforma, não um texto. Você pode seguir a história do Reino ou pular para a clínica. O progresso fica salvo neste aparelho.</p>
+  <div class="hub" style="margin-top:16px">
+    <a href="#sraa"><span class="hn">FISIOLOGIA</span><b>O SRAA vivo</b><span>Renina, ECA, Ang II, AT1/AT2, ACE2</span></a>
+    <a href="#rim"><span class="hn">SIMULADOR</span><b>O Lago Glomerular</b><span>Aferente, eferente, creatinina, proteinúria</span></a>
+    <a href="#prescrever"><span class="hn">PRÁTICA</span><b>Consultório</b><span>Prescreva e receba o retorno</span></a>
+    <a href="#arena"><span class="hn">TEC</span><b>Arena de questões</b><span>Casos, pegadinhas e desempenho</span></a>
+  </div>
+</section>
+
+<!-- ===================== FILOSOFIA ===================== -->
+<section class="sec wrap rev-hide" id="filosofia">
+  <div class="card gold">
+    <span class="kick">Filosofia</span>
+    <p class="frase">O IECA não é um remédio de pressão. É um modulador do eixo cardiorrenal.</p>
+    <p style="margin-top:10px;color:var(--ink)">Quem só decora “IECA baixa a pressão” trava na primeira pegadinha. Quem entende a fisiologia consegue prever, antes de prescrever, o que acontecerá com a arteríola eferente, a creatinina, o potássio, a proteinúria e a bradicinina. Este capítulo foi construído para que essa previsão se torne natural — e para que ela ainda esteja com você anos depois, porque nasceu de compreensão, e não de repetição.</p>
+    <p class="sig" style="color:var(--blue-deep);font-size:1.5rem;margin:6px 0 0">— Dr. André Rossanno</p>
+  </div>
+</section>
+
+<!-- ===================== 01 · JARARACA ===================== -->
+<section class="sec wrap" id="jararaca">
+  <span class="kick">Capítulo 01 · Do veneno à cardiologia</span>
+  <h2 class="sechead">A serpente que ajudou a mudar o tratamento mundial da pressão</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N3</b> associação</span></div>
+  <p class="lead">Como a investigação do veneno de uma serpente brasileira ajudou a originar um dos pilares da cardiologia moderna?</p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <p>Na década de 1960–70, o pesquisador brasileiro <b>Sérgio Henrique Ferreira</b>, estudando o veneno da <i>Bothrops jararaca</i>, descreveu <b>peptídeos potencializadores da bradicinina</b>. Esses peptídeos revelaram um caminho: era possível interferir na enzima que degrada a bradicinina e converte a angiotensina I em angiotensina II.</p>
+      <p>Essa base científica foi decisiva para o desenvolvimento farmacológico posterior que culminou no <b>captopril</b>, o primeiro IECA de uso amplo — e no nascimento de uma classe inteira.</p>
+      <div class="callout amber" style="margin-top:8px">
+        <h4>Precisão histórica</h4>
+        <p>Ferreira não “inventou o captopril” sozinho. Sua descoberta forneceu a base científica fundamental; o fármaco resultou de um desenvolvimento subsequente. Orgulho brasileiro — sem lenda.</p>
+      </div>
+    </div>
+    <div class="card" style="background:linear-gradient(180deg,#fff,#f7fbfc)">
+      <span class="pill blue">Linha do tempo</span>
+      <ol class="timeline">
+        <li><b>Veneno observado</b><span>O veneno da jararaca derrubava a pressão — por quê?</span></li>
+        <li><b>Peptídeos identificados</b><span>Potencializadores da bradicinina (BPFs).</span></li>
+        <li><b>Elo com a ECA</b><span>A mesma enzima faz Ang I→Ang II e degrada bradicinina.</span></li>
+        <li><b>Captopril</b><span>Primeiro IECA amplamente utilizado.</span></li>
+        <li><b>Revolução</b><span>HAS, insuficiência cardíaca e doença renal mudam de rumo.</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="prof-only"><span class="tag">Nota de aula</span><p style="margin:.3em 0 0">Fio condutor para provas: <b>jararaca → bradicinina preservada → bloqueio da ECA → captopril</b>. A banca gosta de ligar “sulfidrila do captopril” a rash e disgeusia — voltaremos a isso na farmacologia.</p></div>
+</section>
+<style>
+.timeline{list-style:none;margin:10px 0 0;padding:0;position:relative}
+.timeline li{position:relative;padding:0 0 14px 22px;border-left:2px solid var(--blue);}
+.timeline li:last-child{border-left-color:transparent}
+.timeline li::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid #fff}
+.timeline li b{display:block;font-size:.95rem}
+.timeline li span{font-size:.85rem;color:var(--ink2)}
+</style>
+
+<!-- ===================== 02 · SRAA ===================== -->
+<section class="sec wrap" id="sraa">
+  <span class="kick">Capítulo 02 · O reino em funcionamento</span>
+  <h2 class="sechead">O SRAA completo — uma história com começo, meio e freios</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N4</b> organização</span></div>
+  <p class="lead">Toque em cada etapa para revelá-la. Ative os fármacos para ver <b>onde</b> cada um bloqueia o eixo. Nada aparece tudo de uma vez — a ideia é construir o mapa na sua cabeça.</p>
+
+  <div class="card" style="margin-top:14px">
+    <div class="sraa-ctrls">
+      <button class="chip" data-sraa-step>▶ Avançar etapa</button>
+      <button class="chip alt" data-sraa-drug="ieca">IECA</button>
+      <button class="chip alt" data-sraa-drug="bra">BRA (comparar)</button>
+      <button class="chip alt" data-sraa-drug="renina">Inib. renina</button>
+      <button class="chip alt" data-sraa-drug="aldo">Antag. aldosterona</button>
+      <button class="chip ghost2" data-sraa-reset>Reiniciar</button>
+    </div>
+    <svg id="sraaSvg" viewBox="0 0 720 470" role="img" aria-label="Diagrama do sistema renina-angiotensina-aldosterona com pontos de bloqueio farmacológico"></svg>
+    <p class="small" id="sraaMsg" style="min-height:2.4em;margin:6px 0 0"></p>
+  </div>
+
+  <div class="grid g3 rev-hide" style="margin-top:16px">
+    <div class="callout"><h4>Onde a renina age?</h4><p>A renina <b>não</b> transforma Ang I em Ang II. Ela cliva o <b>angiotensinogênio</b> (produzido sobretudo no fígado) e gera <b>Angiotensina I</b>.</p></div>
+    <div class="callout"><h4>Três gatilhos do SRAA</h4><p>Queda da <b>perfusão renal</b>, menor entrega de <b>NaCl à mácula densa</b> e estímulo <b>simpático β1</b>. Não é a PA sistêmica isolada.</p></div>
+    <div class="callout green"><h4>O eixo protetor</h4><p><b>ACE2</b> gera <b>Ang-(1-7)</b>, que age no receptor <b>MAS</b>: vasodilatação, natriurese, antiproliferação e antifibrose.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <span class="pill amber">Pegadinha obrigatória</span>
+      <p style="margin-top:8px"><b>A renina converte angiotensina I em angiotensina II?</b></p>
+      <button class="btn ghost reveal-btn" data-reveal="r-sraa1">Ver resposta</button>
+      <div id="r-sraa1" class="reveal"><p><b>Não.</b> A renina cliva o angiotensinogênio → Ang I. Quem faz Ang I → Ang II é a <b>ECA</b>.</p></div>
+    </div>
+    <div class="card">
+      <span class="pill amber">Pegadinha obrigatória</span>
+      <p style="margin-top:8px"><b>O IECA é inibidor da ACE2?</b></p>
+      <button class="btn ghost reveal-btn" data-reveal="r-sraa2">Ver resposta</button>
+      <div id="r-sraa2" class="reveal"><p><b>Não.</b> ACE2 é outra enzima, do braço contrarregulatório (Ang-(1-7)/MAS). Ela <b>não</b> é diretamente inibida pelos IECAs.</p></div>
+    </div>
+  </div>
+  <div class="prof-only"><span class="tag">Fonte da figura da aula</span><p style="margin:.3em 0 0">O diagrama completo (des(Ang I)AGT, Ang(1-9), Ang(1-7), MAS, efeitos AT1 sobre SNC, vasos, coração, túbulo, hipófise/ADH) segue o esquema de <i>JACC Heart Fail</i>, set/2022, usado na aula.</p></div>
+</section>
+<style>
+.sraa-ctrls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:999px;padding:8px 13px;font-family:inherit;font-weight:800;font-size:.82rem;cursor:pointer;transition:.15s}
+.chip.alt{background:#fff;color:var(--blue-deep)}
+.chip.alt.on{background:var(--red);border-color:var(--red);color:#fff}
+.chip.ghost2{background:#fff;border-color:var(--line);color:var(--ink2)}
+#sraaSvg{width:100%;height:auto;margin-top:4px}
+.sraa-node{transition:.25s}
+.sraa-node rect,.sraa-node ellipse{transition:.25s}
+.sraa-node.hidden{opacity:.16}
+.sraa-lbl{font:700 13px 'Nunito',sans-serif;fill:#fff}
+.sraa-lbl.dark{fill:var(--ink)}
+.sraa-small{font:600 10px 'IBM Plex Mono',monospace;fill:var(--ink2)}
+.sraa-block{opacity:0;transition:.25s}
+.sraa-block.on{opacity:1}
+.reveal{max-height:0;overflow:hidden;transition:max-height .3s;margin-top:0}
+.reveal.on{max-height:400px;margin-top:10px}
+.reveal p{background:var(--navy-soft);border-radius:8px;padding:10px 12px;margin:0}
+</style>
+
+<!-- ===================== 03 · ECA E BRADICININA ===================== -->
+<section class="sec wrap" id="eca">
+  <span class="kick">Capítulo 03 · A Forja e a Guardiã</span>
+  <h2 class="sechead">A ECA tem duas mãos — e o IECA segura as duas</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N5</b> recuperação</span></div>
+
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <span class="pill blue">A Forja</span>
+      <p style="margin-top:8px">Imagine a ECA como uma <b>forja</b>: todo recruta que entra (Angiotensina I) sai transformado em um comandante poderoso (Angiotensina II). O IECA não mata a Ang II — ele <b>destrói a forja</b>. Menos forja, menos comandante.</p>
+      <p class="trad"><b>Tradução fisiológica:</b> o IECA inibe a enzima conversora, reduzindo a formação de Ang II a partir de Ang I.</p>
+    </div>
+    <div class="card">
+      <span class="pill blue">A Guardiã</span>
+      <p style="margin-top:8px">A mesma ECA também <b>degrada a bradicinina</b>. Enquanto a forja funciona, a bradicinina fica contida. Quando o IECA para a forja, a bradicinina é <b>libertada</b>: vasodilatação e proteção endotelial — mas, em alguns pacientes, tosse e angioedema.</p>
+      <p class="trad"><b>Tradução fisiológica:</b> ao inibir a ECA, o IECA reduz a degradação da bradicinina, elevando seus níveis.</p>
+    </div>
+  </div>
+
+  <div class="callout amber" style="margin-top:14px">
+    <h4>Correção que a banca adora cobrar</h4>
+    <p>A ECA é <b>abundante no endotélio pulmonar</b>, mas <b>não existe só no pulmão</b> — está distribuída em vários tecidos (endotélio vascular sistêmico, rim, etc.). A “Forja dos Pulmões” é imagem de memória, não anatomia literal.</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="balance">
+      <div class="bside down"><b>↓ Angiotensina II</b><span>vasoconstrição · aldosterona · remodelamento · pressão intraglomerular</span></div>
+      <div class="beq">IECA</div>
+      <div class="bside up"><b>↑ Bradicinina</b><span>vasodilatação · óxido nítrico · (tosse · angioedema)</span></div>
+    </div>
+    <p class="center small" style="margin:10px 0 0">Guarde esta fórmula. Ela reaparece em cada efeito clínico do capítulo.</p>
+  </div>
+</section>
+<style>
+.balance{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+@media(max-width:640px){.balance{grid-template-columns:1fr}}
+.bside{border-radius:12px;padding:14px;text-align:center}
+.bside.down{background:var(--green-soft);border:1px solid #bfe6d0}
+.bside.up{background:var(--blue-soft);border:1px solid #bfe0ea}
+.bside b{display:block;font-size:1.05rem;margin-bottom:4px}
+.bside span{font-size:.82rem;color:var(--ink2)}
+.beq{font-family:'IBM Plex Mono',monospace;font-weight:600;background:var(--navy);color:#fff;border-radius:10px;padding:10px 12px;text-align:center}
+</style>
+
+<!-- ===================== 04 · MECANISMO ===================== -->
+<section class="sec wrap" id="mecanismo">
+  <span class="kick">Capítulo 04 · Dois braços</span>
+  <h2 class="sechead">O que o IECA faz — em dois movimentos simultâneos</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N4</b> organização</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--green)">
+      <span class="pill green">Braço 1 · menos Ang II</span>
+      <ul class="tick">
+        <li>↓ vasoconstrição → ↓ resistência periférica e pós-carga</li>
+        <li>↓ aldosterona → ↓ retenção de Na⁺/H₂O</li>
+        <li>↓ ativação simpática</li>
+        <li>↓ hipertrofia, fibrose e remodelamento</li>
+        <li>↓ pressão intraglomerular</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--blue)">
+      <span class="pill blue">Braço 2 · mais bradicinina</span>
+      <ul class="tick">
+        <li>↑ vasodilatação</li>
+        <li>↑ óxido nítrico e prostaglandinas</li>
+        <li>contribui para o efeito anti-hipertensivo</li>
+        <li>tosse (em suscetíveis)</li>
+        <li>angioedema (raro)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px"><h4>Hemodinâmica sem taquicardia reflexa importante</h4><p>O IECA reduz a PA por queda da resistência periférica e da pós-carga, com pouca ativação reflexa. Atenção à <b>hipotensão de primeira dose</b> em hipovolêmicos, uso intenso de diurético ou SRAA muito ativado — avalie volume e PA antes de iniciar.</p></div>
+  <div class="spec rev-hide">
+    <div class="s1"><b>O aluno pensa</b>“IECA é vasodilatador, então dá taquicardia reflexa como os di-hidropiridínicos.”</div>
+    <div class="s2"><b>A banca tenta</b>Fazer você marcar “taquicardia reflexa acentuada” como efeito esperado.</div>
+    <div class="s3"><b>O especialista observa</b>A resposta não depende de taquicardia importante; o alerta real é hipotensão de 1ª dose.</div>
+    <div class="s4"><b>A conduta depende de</b>Volemia, dose de diurético e grau de ativação do SRAA.</div>
+  </div>
+</section>
+<style>
+ul.tick{list-style:none;margin:10px 0 0;padding:0}
+ul.tick li{position:relative;padding:5px 0 5px 24px;font-size:.94rem;border-bottom:1px dashed var(--line)}
+ul.tick li:last-child{border-bottom:none}
+ul.tick li::before{content:"›";position:absolute;left:6px;color:var(--blue);font-weight:900}
+</style>
+
+<!-- ===================== 05 · CINCO CAVALEIROS / AT1-AT2 ===================== -->
+<section class="sec wrap" id="cavaleiros">
+  <span class="kick">Capítulo 05 · O exército da Angiotensina II</span>
+  <h2 class="sechead">Os Cinco Cavaleiros — e os dois receptores</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N3</b> associação</span><span class="n"><b>N5</b> recuperação</span></div>
+  <p class="lead">A Angiotensina II não é uma vilã caricata. Na emergência (hipovolemia, hipotensão) ela <b>salva</b>, restaurando pressão e perfusão. O dano vem da <b>ativação crônica</b>. Toque em cada cavaleiro.</p>
+
+  <div class="grid g3 knights" style="margin-top:14px" id="knights"></div>
+
+  <div class="card" style="margin-top:18px">
+    <span class="pill red">Receptores</span>
+    <h3 style="margin:8px 0">AT1 (braço pressor) × AT2 (contrarregulatório)</h3>
+    <div class="grid g2">
+      <div class="callout red">
+        <h4>Receptor AT1 — pró-dano</h4>
+        <p>Vasoconstrição · aldosterona (Na⁺/H₂O ↑, K⁺ ↓) · simpático ↑ · hipertrofia · fibrose · inflamação (TNF-α, IL-6, TGF-β ↑) · proteinúria · ↑ pressão intraglomerular.</p>
+      </div>
+      <div class="callout green">
+        <h4>Receptor AT2 — protetor</h4>
+        <p>Vasodilatação/NO · natriurese · antifibrose · antiproliferação · anti-inflamação · proteção vascular · reparo tecidual. Não assuma que “neutraliza sempre o AT1”.</p>
+      </div>
+    </div>
+    <div class="callout amber" style="margin-top:12px"><h4>Diferença IECA × BRA (só o necessário aqui)</h4><p>O <b>IECA</b> reduz a produção de Ang II (afeta os dois receptores por falta de agonista). O <b>BRA</b> bloqueia seletivamente o <b>AT1</b> e deixa o AT2 disponível. O detalhamento dos BRAs fica no <b>Cap. 5B</b>.</p></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <span class="pill blue">Recuperação ativa</span>
+    <p style="margin-top:8px"><b>Qual cavaleiro explica a hipertrofia ventricular e a fibrose miocárdica na HAS crônica?</b></p>
+    <button class="btn ghost reveal-btn" data-reveal="r-knight">Ver resposta</button>
+    <div id="r-knight" class="reveal"><p>O <b>Cavaleiro da Fibrose</b> (Ang II crônica → hipertrofia + fibrose + remodelamento). O IECA reduz esse estímulo — base da proteção cardíaca.</p></div>
+  </div>
+</section>
+<style>
+.knights .kn{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:.18s;position:relative}
+.knights .kn:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--shadow)}
+.knights .kn .em{font-size:1.7rem}
+.knights .kn b{display:block;margin:6px 0 2px;color:var(--navy)}
+.knights .kn .role{font-size:.8rem;color:var(--ink2)}
+.knights .kn .more{max-height:0;overflow:hidden;transition:max-height .3s;font-size:.85rem}
+.knights .kn.open .more{max-height:320px;margin-top:8px}
+.knights .kn .more div{padding:5px 0;border-top:1px dashed var(--line)}
+.knights .kn .more b{color:var(--blue-deep);display:inline;margin:0}
+</style>
+
+<!-- ===================== 06 · CORAÇÃO ===================== -->
+<section class="sec wrap" id="coracao">
+  <span class="kick">Capítulo 06 · Proteção cardíaca</span>
+  <h2 class="sechead">O IECA não apenas baixa a pressão</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N6</b> aplicação</span></div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-tab="c-icfer">ICFEr</button>
+    <button class="tab" data-tab="c-iam">Pós-IAM</button>
+    <button class="tab" data-tab="c-remod">Hipertrofia / remodelamento</button>
+  </div>
+  <div class="tabpane on" id="c-icfer">
+    <div class="card">
+      <p>Historicamente, os IECAs <b>reduziram mortalidade e hospitalização</b> na insuficiência cardíaca com fração de ejeção reduzida (ICFEr). Mantêm relevância quando o <b>ARNI</b> não está sendo usado ou não é viável.</p>
+      <div class="callout red" style="margin-top:8px"><h4>Trava de segurança</h4><p>Nunca associe IECA + ARNI simultaneamente. Após suspender o IECA, respeite o <b>intervalo de washout</b> recomendado na bula/diretriz antes de iniciar sacubitril/valsartana (risco de angioedema).</p></div>
+    </div>
+  </div>
+  <div class="tabpane" id="c-iam">
+    <div class="card">
+      <p>Benefício sobretudo em cenários selecionados: <b>disfunção ventricular esquerda, insuficiência cardíaca, IAM anterior extenso</b> e alto risco. Evite a simplificação “todo pós-IAM precisa de IECA para sempre” sem contexto.</p>
+      <div class="prof-only"><span class="tag">Escudos</span><p style="margin:.3em 0 0">SAVE (captopril), AIRE (ramipril), TRACE (trandolapril) — revisitados na Galeria dos Escudos.</p></div>
+    </div>
+  </div>
+  <div class="tabpane" id="c-remod">
+    <div class="card">
+      <p>Ang II crônica → <b>hipertrofia + fibrose + remodelamento</b> (o Cavaleiro da Fibrose). O IECA reduz esse estímulo, atenuando o remodelamento ventricular e vascular.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 · RIM / LAGO GLOMERULAR ===================== -->
+<section class="sec wrap" id="rim">
+  <span class="kick">Capítulo 07 · Proteção renal</span>
+  <h2 class="sechead">O Lago Glomerular</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N4</b> organização</span><span class="n"><b>N6</b> aplicação</span></div>
+  <p class="lead">A arteríola aferente é a entrada do lago; a eferente é a comporta de saída. A Angiotensina II fecha a comporta e a pressão sobe. Toque nos controles e observe o que muda.</p>
+
+  <div class="grid" style="grid-template-columns:1.1fr .9fr;gap:16px;margin-top:14px" id="lagoGrid">
+    <div class="card">
+      <svg id="lagoSvg" viewBox="0 0 360 260" role="img" aria-label="Simulador do glomérulo mostrando arteríola aferente, capilares glomerulares, arteríola eferente e pressão intraglomerular"></svg>
+    </div>
+    <div class="card">
+      <span class="pill blue">Controles</span>
+      <div class="lago-ctrls">
+        <button class="chip alt" data-lago="angII">Ativar Ang II</button>
+        <button class="chip alt" data-lago="ieca">Ativar IECA</button>
+        <button class="chip alt" data-lago="volume">↓ Volemia</button>
+        <button class="chip alt" data-lago="aine">+ AINE</button>
+        <button class="chip alt" data-lago="diur">+ Diurético</button>
+        <button class="chip alt" data-lago="estenose">Estenose bilateral</button>
+        <button class="chip ghost2" data-lago-reset>Reiniciar</button>
+      </div>
+      <div class="gauges">
+        <div class="gauge"><span>Pressão intraglomerular</span><div class="bar"><i id="gPig"></i></div></div>
+        <div class="gauge"><span>TFG</span><div class="bar"><i id="gTfg"></i></div></div>
+        <div class="gauge"><span>Proteinúria</span><div class="bar"><i id="gProt"></i></div></div>
+        <div class="gauge"><span>Risco de LRA</span><div class="bar"><i id="gLra"></i></div></div>
+      </div>
+      <p class="small" id="lagoMsg" style="min-height:3em;margin-top:8px"></p>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card gold">
+      <span class="pill amber">O paradoxo renal</span>
+      <p class="frase" style="margin-top:8px">Pode aumentar a creatinina no início e proteger o rim no longo prazo.</p>
+      <p class="trad"><b>Tradução:</b> a dilatação da eferente reduz a pressão intraglomerular. A TFG cai um pouco (creatinina sobe), mas a menor hiperpressão reduz a proteinúria e retarda a progressão na doença albuminúrica.</p>
+    </div>
+    <div class="card">
+      <span class="pill blue">Aumento de creatinina — o raciocínio</span>
+      <ol class="steps">
+        <li>Creatinina e potássio <b>basais</b> antes de iniciar.</li>
+        <li>Iniciar em dose apropriada.</li>
+        <li>Repetir exames após início/titulação conforme risco.</li>
+        <li>Interpretar a <b>variação</b> (tendência, não um ponto).</li>
+        <li>Investigar causas reversíveis se a elevação for relevante.</li>
+      </ol>
+      <div class="callout amber" style="margin-top:8px"><p>Regra prática frequentemente usada: alta de creatinina de <b>até ~30%</b> pode ser aceitável <b>se estabilizar</b> e o contexto for adequado. <b>Não</b> é salvo-conduto automático — pese volume, PA, K⁺, sintomas, DRC prévia, nefrotóxicos e possível estenose renal.</p></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;border-left:5px solid var(--red)">
+    <span class="pill red">RIM EM ALERTA — quando desconfiar</span>
+    <div class="grid g4" style="margin-top:8px">
+      <div class="mnem"><b>R</b>edução de volume</div>
+      <div class="mnem"><b>I</b>ECA + AINE + diurético (tríplice)</div>
+      <div class="mnem"><b>M</b>á perfusão / hipotensão</div>
+      <div class="mnem"><b>E</b>stenose renal (bilateral ou rim único)</div>
+    </div>
+    <p class="small" style="margin:8px 0 0">…e <b>múltiplos bloqueadores do SRAA</b>. A tríplice “diurético + bloqueador do SRAA + AINE” é a receita clássica de lesão renal aguda hemodinâmica.</p>
+  </div>
+  <div class="spec rev-hide">
+    <div class="s1"><b>O aluno pensa</b>Creatinina subiu 22% → nefrotoxicidade → suspender já.</div>
+    <div class="s2"><b>A banca tenta</b>Confundir mudança hemodinâmica esperada com lesão renal progressiva.</div>
+    <div class="s3"><b>O especialista observa</b>Volume, PA, tendência, K⁺, AINE, DRC prévia, estenose renal.</div>
+    <div class="s4"><b>A conduta depende de</b>Estabilidade clínica e laboratorial — muitas vezes é observar, não suspender.</div>
+  </div>
+</section>
+<style>
+.lago-ctrls{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}
+#lagoSvg{width:100%;height:auto}
+.gauges{display:grid;gap:9px}
+.gauge span{font-size:.78rem;font-weight:800;color:var(--ink2)}
+.gauge .bar{height:12px;background:var(--navy-soft);border-radius:999px;overflow:hidden;margin-top:3px}
+.gauge .bar i{display:block;height:100%;width:50%;border-radius:999px;background:var(--blue);transition:width .35s,background .35s}
+.steps{margin:8px 0 0;padding-left:20px}
+.steps li{padding:3px 0;font-size:.92rem}
+.mnem{background:var(--red-soft);border-radius:10px;padding:10px;font-size:.86rem}
+.mnem b{color:var(--red);font-size:1.1rem;margin-right:4px}
+</style>
+
+<!-- ===================== 08 · DIABETES / ALBUMINÚRIA ===================== -->
+<section class="sec wrap" id="diabetes">
+  <span class="kick">Capítulo 08 · Diabetes e albuminúria</span>
+  <h2 class="sechead">O benefício renal mora na albuminúria — não no diagnóstico de diabetes</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N7</b> consolidação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--ink2)">
+      <span class="pill">Diabetes SEM albuminúria</span>
+      <p style="margin-top:8px">A escolha do anti-hipertensivo depende do <b>contexto global</b> de risco. Não há indicação automática de IECA só por existir diabetes.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--green)">
+      <span class="pill green">Diabetes COM albuminúria</span>
+      <p style="margin-top:8px">O bloqueio do SRAA ganha importância: reduz a <b>pressão intraglomerular</b> e a <b>albuminúria</b>, retardando a progressão da DRC.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px"><h4>Terminologia atual</h4><p>“Microalbuminúria” é termo histórico. Prefira <b>quantificar</b> a albuminúria pela relação albumina/creatinina urinária (RAC). A queda da albuminúria funciona como <b>marcador de resposta</b>.</p></div>
+  <div class="card" style="margin-top:12px">
+    <span class="pill amber">Pegadinha</span>
+    <p style="margin-top:8px"><b>IECA é obrigatório em todo diabético?</b></p>
+    <button class="btn ghost reveal-btn" data-reveal="r-dm">Ver resposta</button>
+    <div id="r-dm" class="reveal"><p><b>Não.</b> O benefício renal é particularmente evidente com <b>albuminúria / DRC / alto risco</b>. Sem albuminúria, a decisão é individualizada pelo risco global.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 09 · INDICAÇÕES ===================== -->
+<section class="sec wrap" id="indicacoes">
+  <span class="kick">Capítulo 09 · Onde o IECA brilha</span>
+  <h2 class="sechead">Cinco portas de indicação preferencial</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span></div>
+  <div class="grid g3" style="margin-top:12px">
+    <div class="door"><span class="pill blue">Porta 1</span><b>Hipertensão</b><p>Primeira linha em muitos algoritmos, frequentemente com <b>BCC</b> ou <b>tiazídico/tiazídico-like</b>. Mono ou combinação conforme perfil.</p></div>
+    <div class="door"><span class="pill green">Porta 2</span><b>ICFEr</b><p>Relevância prognóstica quando ARNI não é utilizado.</p></div>
+    <div class="door"><span class="pill green">Porta 3</span><b>Pós-IAM / disfunção VE</b><p>Especialmente IAM anterior extenso e disfunção ventricular.</p></div>
+    <div class="door"><span class="pill green">Porta 4</span><b>DRC com albuminúria</b><p>Proteção glomerular pela dilatação da eferente.</p></div>
+    <div class="door"><span class="pill green">Porta 5</span><b>DM com albuminúria/DRC</b><p>Indicação ligada à <b>lesão renal</b>, não ao diagnóstico de diabetes.</p></div>
+    <div class="door gold" style="display:flex;flex-direction:column;justify-content:center"><p class="frase" style="margin:0">O IECA não é “remédio de pressão apenas”. É modulador hemodinâmico, cardíaco e renal.</p></div>
+  </div>
+  <div class="prof-only"><span class="tag">Da aula (lâmpada)</span><p style="margin:.3em 0 0">Resumo visual da aula: <b>ICFEr · Pós-IAM (anterior extenso) · DRC · Albuminúria (RAC ≥ 30 mg/g) · DM2</b>.</p></div>
+</section>
+<style>
+.door{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+.door b{display:block;margin:8px 0 4px;font-size:1.05rem;color:var(--navy)}
+.door p{font-size:.88rem;color:var(--ink2);margin:0}
+</style>
+
+<!-- ===================== 10 · EFEITOS ADVERSOS ===================== -->
+<section class="sec wrap" id="adversos">
+  <span class="kick">Capítulo 10 · Efeitos adversos</span>
+  <h2 class="sechead">Cada efeito, explicado pela fisiologia</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N5</b> recuperação</span><span class="n"><b>N7</b> consolidação</span></div>
+
+  <div class="acc-group" style="margin-top:12px">
+    <!-- TOSSE -->
+    <div class="acc">
+      <button aria-expanded="false"><span>🗣️ Tosse — o eco da bradicinina</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <p>Tosse <b>seca</b>, sem secreção, por acúmulo de <b>bradicinina e substância P</b>. Costuma surgir no <b>primeiro mês</b>, mas pode aparecer semanas a meses depois. É <b>efeito de classe</b>.</p>
+        <div class="statline">
+          <span>5–20% <i>(11,48%)</i></span><span>2,5× mais comum em asiáticos</span><span>1º mês</span><span>resolução 1–4 semanas</span><span>&gt;96% em até 10 dias</span>
+        </div>
+        <p class="small" style="margin-top:8px">Fator descrito como protetor na aula: <b>uso de estatinas</b>. Percentuais e diferença por grupo são dados de estudos/populações — não vire afirmação categórica por etnia isolada.</p>
+        <div class="callout amber" style="margin-top:8px"><h4>Antes de culpar o IECA</h4><p>Diferencial obrigatório: infecção respiratória, asma, refluxo, insuficiência cardíaca, tabagismo, doença pulmonar, outros fármacos. Só então avalie a relação temporal e considere <b>trocar por BRA</b> quando a tosse for relevante.</p></div>
+        <p class="mono small" style="margin-top:6px">Pegadinha — “tosse por IECA é alérgica?” <b>Não.</b> É farmacológica (bradicinina/substância P).</p>
+      </div></div>
+    </div>
+    <!-- ANGIOEDEMA -->
+    <div class="acc">
+      <button aria-expanded="false"><span>🚨 Angioedema — o alarme de incêndio</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <div class="callout red"><h4>Via aérea primeiro</h4><p>Mediado por <b>bradicinina</b>, não por histamina. Pode ser <b>potencialmente fatal</b> e ocorrer mesmo após uso prolongado. Edema de lábios, língua, face, orofaringe, laringe; às vezes sintomas abdominais.</p></div>
+        <div class="statline red"><span>0,1–0,7%</span><span>5× afrodescendentes</span><span>mais comum no 1º mês</span><span>face · língua · VAS · outros</span></div>
+        <p style="margin-top:10px"><b>Algoritmo:</b></p>
+        <ol class="steps">
+          <li>Interromper o IECA imediatamente.</li>
+          <li>Avaliar língua, voz, estridor, disfagia, progressão e saturação.</li>
+          <li>Acionar apoio de via aérea precocemente se houver risco; preparar via aérea difícil.</li>
+          <li>Considerar terapias específicas conforme protocolo local e gravidade.</li>
+          <li>Monitorizar progressão. <b>Não reintroduzir IECA</b> depois — documentar.</li>
+        </ol>
+        <div class="callout amber" style="margin-top:8px"><h4>Por que anti-histamínico, corticoide e adrenalina podem falhar</h4><p>Porque o mecanismo central <b>não é histaminérgico</b>. Mas, se o quadro for inicialmente <b>indistinguível de anafilaxia</b>, o tratamento de emergência pode precisar cobrir as duas possibilidades. Não os omita por reflexo quando houver dúvida.</p></div>
+      </div></div>
+    </div>
+    <!-- HIPERCALEMIA -->
+    <div class="acc">
+      <button aria-expanded="false"><span>🔺 Hipercalemia — a conta da aldosterona</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <p class="mono" style="background:var(--navy-soft);border-radius:8px;padding:8px 10px">IECA → ↓ Ang II → ↓ aldosterona → ↓ secreção distal de K⁺ → ↑ K⁺</p>
+        <p style="margin-top:8px"><b>Maior risco:</b> DRC, idade avançada, diabetes, hipovolemia, acidose, IC; espironolactona/eplerenona, amilorida, triantereno; suplementos de K⁺, <b>substitutos do sal ricos em potássio</b>, trimetoprim, AINE e outros bloqueadores do SRAA.</p>
+        <div class="callout amber" style="margin-top:8px"><h4>A armadilha do sal “light”</h4><p>Muitos substitutos do sal contêm <b>cloreto de potássio</b>. Pergunte sobre isso antes de investigar o K⁺ elevado.</p></div>
+        <p class="small" style="margin-top:8px">Conduta: confirmar o resultado, revisar dieta/fármacos, avaliar função renal e volemia, estratificar gravidade (nível de K⁺, ECG, contexto) e decidir entre reduzir, pausar ou suspender. Sem valor rígido isolado.</p>
+      </div></div>
+    </div>
+    <!-- HIPOTENSÃO/LRA -->
+    <div class="acc">
+      <button aria-expanded="false"><span>💧 Hipotensão e lesão renal aguda</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <p>Maior risco em hipovolemia, uso intenso de diuréticos, IC avançada, idoso frágil, sepse, doença renovascular e PA basal baixa.</p>
+        <div class="callout"><h4>Caso-relâmpago</h4><p>Idoso, diarreia há 3 dias, em <b>enalapril + furosemida + ibuprofeno</b>, evolui com oligúria e ↑ creatinina. Reconheça a tríplice: <b>diurético + bloqueador do SRAA + AINE</b>.</p></div>
+        <p class="trad"><b>Mecanismo:</b> redução de volume + vasodilatação eferente (IECA) + ↓ prostaglandinas com vasoconstrição aferente (AINE) → queda acentuada da pressão de filtração.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+<style>
+.statline{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.statline span{background:var(--blue-soft);color:var(--blue-deep);border-radius:8px;padding:6px 10px;font-size:.82rem;font-weight:800}
+.statline span i{font-style:normal;opacity:.8}
+.statline.red span{background:var(--red-soft);color:var(--red)}
+</style>
+
+<!-- ===================== 11 · CONTRAINDICAÇÕES / GESTAÇÃO ===================== -->
+<section class="sec wrap" id="contra">
+  <span class="kick">Capítulo 11 · Limites</span>
+  <h2 class="sechead">Contraindicações e situações de alto risco</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span><span class="n"><b>N7</b> consolidação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--red)">
+      <span class="pill red">Contraindicações fortes</span>
+      <ul class="tick">
+        <li><b>Gestação</b> (qualquer trimestre)</li>
+        <li>Antecedente de <b>angioedema</b> relacionado a IECA</li>
+        <li><b>Hipercalemia grave</b> não controlada</li>
+        <li>Uso <b>simultâneo com sacubitril/valsartana</b> (ARNI)</li>
+        <li>Hipotensão/choque grave; hipersensibilidade conhecida</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--amber)">
+      <span class="pill amber">Cautela / investigar</span>
+      <ul class="tick">
+        <li><b>Estenose bilateral</b> de artérias renais ou rim único funcional</li>
+        <li>DRC avançada (monitorizar — não é contraindicação)</li>
+        <li>PA limítrofe; hipovolemia</li>
+        <li>Fármacos que elevam K⁺; doença renovascular</li>
+        <li>Risco de lesão renal aguda</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout amber" style="margin-top:12px"><h4>Não escreva “DRC contraindica IECA”</h4><p>A DRC (sobretudo albuminúrica) é frequentemente <b>indicação</b> — exige <b>vigilância</b> de creatinina e potássio, não proibição.</p></div>
+
+  <div class="card" style="margin-top:14px;border-left:5px solid var(--red)">
+    <span class="pill red">IECA não atravessa a ponte da gestação</span>
+    <p style="margin-top:8px">Risco fetal relevante: disfunção renal fetal, <b>oligodrâmnio</b>, alterações de ossificação craniana, hipoplasia pulmonar, insuficiência renal neonatal e morte fetal em exposições relevantes. <b>Não há segurança em nenhum trimestre.</b></p>
+    <p class="small" style="margin-top:6px">Conduta: interromper ao reconhecer a gestação, substituir por opção compatível, avaliar exposição com acompanhamento obstétrico e orientar mulheres em idade fértil quando apropriado.</p>
+  </div>
+</section>
+
+<!-- ===================== 12 · DUPLO BLOQUEIO / ARNI ===================== -->
+<section class="sec wrap" id="duplo">
+  <span class="kick">Capítulo 12 · Mais bloqueio ≠ mais proteção</span>
+  <h2 class="sechead">Duplo bloqueio do SRAA e a transição para ARNI</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <span class="pill red">Duplo bloqueio</span>
+      <p style="margin-top:8px">Combinações como <b>IECA + BRA</b>, ou IECA + aliscireno em certos grupos, e múltiplos bloqueadores do SRAA <b>não</b> devem ser usadas de rotina.</p>
+      <p class="small">Riscos: hipercalemia, hipotensão, piora da função renal, LRA — sem benefício clínico líquido em muitos contextos.</p>
+      <div class="callout amber" style="margin-top:8px"><p><b>Se IECA protege o rim e o BRA também, usar os dois protege mais?</b> Não. Mais bloqueio do SRAA pode significar <b>menos rim e mais potássio</b>.</p></div>
+    </div>
+    <div class="card">
+      <span class="pill red">IECA + ARNI</span>
+      <p style="margin-top:8px">O sacubitril inibe a <b>neprilisina</b>; o aumento de peptídeos vasoativos pode somar-se ao efeito sobre a bradicinina, elevando o risco de <b>angioedema</b>.</p>
+      <div class="callout red" style="margin-top:8px"><h4>Trava absoluta</h4><p>Nunca combinar IECA com ARNI simultaneamente. Após suspender o IECA, respeitar o <b>intervalo de washout</b> definido em bula/diretriz antes de iniciar sacubitril/valsartana.</p></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <span class="pill blue">Interações que você não pode esquecer</span>
+    <div class="grid g3" style="margin-top:8px">
+      <div class="callout"><h4>AINE</h4><p>Lesão renal e ↓ efeito anti-hipertensivo.</p></div>
+      <div class="callout"><h4>Poupadores de K⁺ / suplementos</h4><p>Hipercalemia.</p></div>
+      <div class="callout"><h4>Trimetoprim</h4><p>Eleva K⁺ em suscetíveis.</p></div>
+      <div class="callout"><h4>Lítio</h4><p>IECA ↑ concentrações e toxicidade do lítio.</p></div>
+      <div class="callout"><h4>Diuréticos</h4><p>Potencializam hipotensão inicial; associação pode ser terapêutica se bem conduzida.</p></div>
+      <div class="callout"><h4>Sacubitril/valsartana</h4><p>Uso simultâneo contraindicado; exige washout.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 13 · FARMACOLOGIA / TABELA ===================== -->
+<section class="sec wrap" id="farmaco">
+  <span class="kick">Capítulo 13 · Os IECAs, um a um</span>
+  <h2 class="sechead">Tabela clínica — doses da Diretriz Brasileira de HAS 2025</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span></div>
+  <div class="callout" style="margin-top:8px"><p>Doses diárias habituais e nº de tomadas conforme a <b>Diretriz Brasileira de Hipertensão Arterial 2025</b>. Bloqueiam a ECA (↓ Ang II, ↓ degradação de bradicinina); têm propriedades anti-ateroscleróticas e anti-inflamatórias; eficazes na ICFEr e pós-IAM; reduzem progressão da DRC, proteinúria e HVE.</p></div>
+  <div class="tabs" style="margin-top:12px" id="farmacoFilters">
+    <button class="tab on" data-fil="all">Todos</button>
+    <button class="tab" data-fil="prod">Pró-fármaco</button>
+    <button class="tab" data-fil="ativo">Forma ativa</button>
+    <button class="tab" data-fil="1x">1×/dia</button>
+    <button class="tab" data-fil="ic">Evidência em IC/pós-IAM</button>
+  </div>
+  <div id="farmacoCards" class="grid g2"></div>
+  <div class="callout amber" style="margin-top:12px"><h4>Captopril não é “ritual de pressão”</h4><p>Não use captopril como reflexo automático para “baixar a pressão rápido” em paciente sem emergência hipertensiva. A elevação assintomática da PA não é indicação de dose sublingual improvisada.</p></div>
+</section>
+
+<!-- ===================== 14 · COMO PRESCREVER ===================== -->
+<section class="sec wrap" id="prescrever">
+  <span class="kick">Capítulo 14 · Consultório</span>
+  <h2 class="sechead">Prescreva com segurança — e receba o retorno</h2>
+  <div class="n-seal"><span class="n"><b>N6</b> aplicação</span></div>
+  <div class="grid g3 rev-hide" style="margin-top:12px">
+    <div class="card"><span class="pill blue">Antes de iniciar</span><ul class="tick"><li>PA, creatinina, TFGe, K⁺</li><li>Estado volêmico</li><li>Gestação / possibilidade</li><li>Fármacos concomitantes (AINE, K⁺)</li><li>Angioedema prévio; suspeita renovascular</li></ul></div>
+    <div class="card"><span class="pill blue">Ao iniciar</span><ul class="tick"><li>Dose adequada ao perfil</li><li>Dose menor em idoso/frágil/hipovolêmico/PA baixa</li><li>Orientar sinais de alerta</li><li>Revisar AINE e suplementos</li><li>Planejar controle laboratorial</li></ul></div>
+    <div class="card"><span class="pill blue">Após iniciar/titular</span><ul class="tick"><li>PA, sintomas, adesão</li><li>Creatinina e K⁺</li><li>Tosse, volume, resposta</li><li>Titular até dose efetiva e tolerada</li></ul></div>
+  </div>
+
+  <div class="card" style="margin-top:14px" id="prescSim">
+    <span class="pill">Simulador de prescrição</span>
+    <p class="small" style="margin-top:6px">Escolha um paciente, decida a conduta e veja o que passou (ou não) despercebido.</p>
+    <div class="presc-patients" id="prescPatients"></div>
+    <div id="prescStage" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- ===================== 15 · EVIDÊNCIAS ===================== -->
+<section class="sec wrap" id="evidencias">
+  <span class="kick">Capítulo 15 · Galeria dos Escudos</span>
+  <h2 class="sechead">Estudos clássicos — e como ler um forest plot</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span><span class="n"><b>N6</b> aplicação</span></div>
+  <p class="lead">Cada escudo é um estudo que sustenta o uso do IECA em um cenário. Toque para ver população, comparador e a leitura correta.</p>
+  <div id="shieldGrid" class="grid g3" style="margin-top:14px"></div>
+
+  <div class="card" style="margin-top:16px">
+    <span class="pill blue">Leitura crítica · IECA × BRA</span>
+    <div class="grid g2">
+      <div>
+        <p>No forest plot da aula, cada estudo tem uma estimativa pontual e um <b>intervalo de confiança</b>; a <b>linha de nulidade</b> separa benefício de dano; o <b>peso</b> reflete o tamanho/eventos; a heterogeneidade indica quão parecidos são os estudos.</p>
+        <div class="callout amber"><h4>A armadilha estatística</h4><p><b>Não</b> concluir “IECA e BRA são idênticos” só porque um resultado não mostrou diferença significativa. <b>Ausência de superioridade ≠ equivalência demonstrada.</b></p></div>
+      </div>
+      <div class="card" style="background:#f7fbfc">
+        <p><b>O que se pode dizer:</b></p>
+        <ul class="tick">
+          <li>Eficácia clínica frequentemente semelhante em vários cenários.</li>
+          <li>BRA tende a causar <b>menos tosse</b>.</li>
+          <li>Angioedema é <b>muito menos comum</b> com BRA (não impossível).</li>
+          <li>Escolha por indicação, evidência específica, tolerância, custo e disponibilidade.</li>
+        </ul>
+        <p class="small">Detalhes dos BRAs → <b>Cap. 5B</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 16 · PALÁCIO DA MEMÓRIA ===================== -->
+<section class="sec wrap" id="palacio">
+  <span class="kick">Capítulo 16 · Palácio da Memória</span>
+  <h2 class="sechead">O Reino do SRAA em cinco salas</h2>
+  <div class="n-seal"><span class="n"><b>N3</b> associação</span><span class="n"><b>N7</b> consolidação</span></div>
+  <p class="lead">Cinco salas, uma história. Percorra-as e reconstrua sozinho toda a fisiologia, indicações e efeitos adversos — sem repetição mecânica.</p>
+  <div class="rooms" id="rooms"></div>
+  <div id="roomPanel" class="card" style="margin-top:14px;display:none"></div>
+  <div class="badges" id="badges" style="margin-top:14px"></div>
+</section>
+<style>
+.rooms{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+@media(max-width:760px){.rooms{grid-template-columns:1fr 1fr}}
+.room{background:linear-gradient(180deg,#12395c,#0f2942);color:#eaf2fb;border-radius:14px;padding:16px;cursor:pointer;text-align:center;border:1px solid #1d4straight;transition:.18s;border:1px solid #26527a}
+.room:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.room .em{font-size:1.8rem}
+.room b{display:block;margin-top:6px;font-size:.92rem}
+.room.visited{outline:2px solid #8fd0e6}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{background:#fff;border:1px dashed var(--line);border-radius:999px;padding:7px 12px;font-size:.8rem;font-weight:800;color:var(--ink2);opacity:.5}
+.badge.on{opacity:1;border-style:solid;border-color:var(--green);color:var(--green);background:var(--green-soft)}
+</style>
+
+<!-- ===================== 17 · CASOS ===================== -->
+<section class="sec wrap" id="casos">
+  <span class="kick">Capítulo 17 · Raciocínio clínico</span>
+  <h2 class="sechead">Casos clínicos interativos</h2>
+  <div class="n-seal"><span class="n"><b>N6</b> aplicação</span></div>
+  <div id="caseNav" class="tabs" style="margin-top:12px"></div>
+  <div id="caseStage"></div>
+</section>
+
+<!-- ===================== 18 · ARENA TEC ===================== -->
+<section class="sec wrap" id="arena">
+  <span class="kick">Capítulo 18 · Arena TEC</span>
+  <h2 class="sechead">Questões estilo prova — cada erro ensina</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div class="quiz-top">
+    <div class="tabs" id="quizFilters"></div>
+    <div class="quiz-score" id="quizScore"></div>
+  </div>
+  <div id="quizStage"></div>
+  <div class="quiz-nav"><button class="btn ghost" id="quizPrev">‹ Anterior</button><span id="quizCount" class="mono"></span><button class="btn primary" id="quizNext">Próxima ›</button></div>
+</section>
+<style>
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.quiz-score{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.82rem;color:var(--ink2)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:7px 0;font-family:inherit;font-size:.94rem;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--blue)}
+.opt.correct{background:var(--green-soft);border-color:var(--green)}
+.opt.wrong{background:var(--red-soft);border-color:var(--red)}
+.opt .mk{font-weight:900;margin-right:8px}
+.qexpl{margin-top:10px;border-radius:10px;padding:12px 14px;background:var(--navy-soft);font-size:.9rem;display:none}
+.qexpl.on{display:block}
+.qexpl .e{padding:4px 0;border-top:1px dashed var(--line);font-size:.85rem}
+.qexpl .e:first-child{border-top:none}
+</style>
+
+<!-- ===================== 19 · MINI DECISÕES ===================== -->
+<section class="sec wrap" id="decisoes">
+  <span class="kick">Capítulo 19 · Decisão rápida</span>
+  <h2 class="sechead">Mini-decisões</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div id="decStage" class="grid g2" style="margin-top:12px"></div>
+</section>
+
+<!-- ===================== 20 · FLASHCARDS ===================== -->
+<section class="sec wrap" id="flash">
+  <span class="kick">Capítulo 20 · Memória ativa</span>
+  <h2 class="sechead">Flashcards</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span><span class="n"><b>N7</b> consolidação</span></div>
+  <div class="flash-ctrls">
+    <div class="tabs" id="flashFilters"></div>
+    <div class="flash-tools">
+      <label class="mono small"><input type="checkbox" id="onlyHard"> só difíceis</label>
+      <button class="btn ghost" id="flashShuffle">Embaralhar</button>
+    </div>
+  </div>
+  <div id="flashStage" class="center"></div>
+  <div class="flash-nav"><button class="btn ghost" id="flashPrev">‹</button><span class="mono" id="flashCount"></span><button class="btn ghost" id="flashNext">›</button></div>
+</section>
+<style>
+.flash-ctrls{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.flash-tools{display:flex;gap:10px;align-items:center}
+.flashcard{max-width:520px;margin:0 auto;perspective:1200px}
+.flashcard .inner{position:relative;width:100%;min-height:220px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flashcard.flip .inner{transform:rotateY(180deg)}
+.flashcard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#fff}
+.flashcard .back{transform:rotateY(180deg);background:var(--blue-soft)}
+.flashcard .face .q{font-size:1.12rem;font-weight:800;color:var(--navy)}
+.flashcard .face .a{font-size:1rem}
+.flashcard .tagm{position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.flash-rate{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.flash-rate button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-family:inherit;font-weight:800;cursor:pointer;font-size:.82rem}
+.flash-rate button.easy.on{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+.flash-rate button.med.on{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.flash-rate button.hard.on{background:var(--red-soft);border-color:var(--red);color:var(--red)}
+.flash-nav{display:flex;justify-content:center;gap:16px;align-items:center;margin-top:14px}
+</style>
+
+<!-- ===================== 21 · PEGADINHAS ===================== -->
+<section class="sec wrap" id="pegadinhas">
+  <span class="kick">Capítulo 21 · Armadilhas da banca</span>
+  <h2 class="sechead">Verdadeiro ou falso — com correção</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div id="pegStage" class="grid g2" style="margin-top:12px"></div>
+</section>
+
+<!-- ===================== 22 · HIPOCAMPO ===================== -->
+<section class="sec wrap" id="hipocampo">
+  <span class="kick">Capítulo 22 · Hipocampo</span>
+  <h2 class="sechead">Central de revisão espaçada</h2>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <span class="pill blue">Seu desempenho</span>
+      <div id="dash"></div>
+    </div>
+    <div class="card">
+      <span class="pill amber">Revisão espaçada</span>
+      <p class="small">Marque o que já revisou. O estado fica salvo neste aparelho (sem notificações externas).</p>
+      <div id="spaced"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 23 · REVISÃO 60s ===================== -->
+<section class="sec wrap" id="final">
+  <span class="kick">Capítulo 23 · Revisão de 60 segundos</span>
+  <h2 class="sechead">A equação mental do IECA</h2>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--green)">
+      <b>↓ Angiotensina II</b>
+      <ul class="tick"><li>vasodilatação</li><li>menos aldosterona</li><li>menos remodelamento</li><li>dilatação eferente</li><li>menos proteinúria</li></ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--blue)">
+      <b>↑ Bradicinina</b>
+      <ul class="tick"><li>vasodilatação</li><li>tosse</li><li>angioedema</li></ul>
+    </div>
+  </div>
+  <div class="card gold" style="margin-top:14px">
+    <span class="pill amber">Frases de ouro</span>
+    <div id="goldPhrases"></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <span class="pill blue">Teste da memória — responda sem consultar</span>
+    <div id="memTest"></div>
+  </div>
+</section>
+
+<!-- ===================== 24 · REFERÊNCIAS ===================== -->
+<section class="sec wrap" id="refs">
+  <span class="kick">Capítulo 24 · Referências</span>
+  <h2 class="sechead">Fontes por tema</h2>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card small">
+      <p><b>SRAA / fisiologia</b><br>Esquema integrado do sistema renina-angiotensina-aldosterona, incluindo eixos ACE2 / Ang-(1-7) / MAS — <i>JACC Heart Fail</i>, set/2022 (figura usada na aula).</p>
+      <p><b>Hipertensão / farmacologia / doses</b><br>Diretriz Brasileira de Hipertensão Arterial, 2025 (tabela de IECAs, doses e recomendações).</p>
+      <p><b>DRC e albuminúria</b><br>Recomendações de nefrologia (KDIGO) para bloqueio do SRAA e quantificação da albuminúria (RAC).</p>
+    </div>
+    <div class="card small">
+      <p><b>Insuficiência cardíaca / pós-IAM</b><br>Estudos clássicos com IECA: CONSENSUS, SOLVD, SAVE, AIRE, TRACE; prevenção CV em alto risco: HOPE, EUROPA; estratégias com perindopril: PROGRESS, ADVANCE.</p>
+      <p><b>Angioedema e gestação</b><br>Consensos e diretrizes específicas; conduta orientada por protocolo local.</p>
+      <p class="mono" style="font-size:.75rem;color:var(--ink2)">As doses e recomendações devem ser confirmadas na diretriz e bula vigentes no momento da prescrição.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="pill blue">Atlas Mental da Hipertensão Arterial</span>
+    <p class="sig" style="margin:10px 0 0">Dr. André Rossanno</p>
+    <p style="margin:2px 0 0">Bloco 2 · Tema 4 · Capítulo 5A — Inibidores da Enzima Conversora da Angiotensina</p>
+    <p class="disc">Material educacional para médicos e estudantes de Medicina. A aplicação clínica exige avaliação individual, diretrizes locais, condições do paciente e julgamento médico. Produção digital assistida por inteligência artificial.</p>
+  </div>
+</footer>
+<script>
+/* ============================================================
+   DADOS — bancos data-driven do Capítulo 5A (IECA)
+============================================================ */
+
+/* ---- FÁRMACOS IECA (Diretriz BR HAS 2025) ---- */
+const FARMACOS_IECA = [
+  {nome:"Captopril", dose:"25–150 mg/dia", freq:"2 a 3×", forma:"ativo", tags:["ativo"],
+   nota:"Grupo sulfidrila (associado a rash e disgeusia). Ação mais curta; várias tomadas. Marco histórico.",
+   pega:"Não usar como “ritual sublingual” para qualquer PA elevada sem emergência."},
+  {nome:"Enalapril", dose:"5–40 mg/dia", freq:"1 a 2×", forma:"prod", tags:["prod","ic"],
+   nota:"Pró-fármaco → enalaprilato. Uso amplo em HAS e IC; existe formulação IV em contextos específicos.",
+   pega:"Evitar em mulher em idade fértil; contraindicado na gravidez."},
+  {nome:"Benazepril", dose:"10–40 mg/dia", freq:"1 a 2×", forma:"prod", tags:["prod"],
+   nota:"Pró-fármaco. Contraindicado em associação com BRA.",
+   pega:"Duplo bloqueio não protege mais — evita-lo."},
+  {nome:"Lisinopril", dose:"10–40 mg/dia", freq:"1×", forma:"ativo", tags:["ativo","1x"],
+   nota:"Ativo, não depende de conversão hepática. Dose única diária.",
+   pega:"Não é pró-fármaco — pergunta clássica de prova."},
+  {nome:"Fosinopril", dose:"10–40 mg/dia", freq:"1×", forma:"prod", tags:["prod","1x"],
+   nota:"Eliminação mista (renal e hepática), quando pertinente. Dose única.",
+   pega:"Eliminação mista não é “passe livre” automático na DRC."},
+  {nome:"Ramipril", dose:"2,5–20 mg/dia", freq:"1 a 2×", forma:"prod", tags:["prod","ic"],
+   nota:"Pró-fármaco. Evidência cardiovascular em alto risco (HOPE) e pós-IAM (AIRE).",
+   pega:"Lembrado pelos desfechos CV — não confundir dose com a do captopril."},
+  {nome:"Perindopril", dose:"4–16 mg/dia", freq:"1×", forma:"prod", tags:["prod","1x","ic"],
+   nota:"Pró-fármaco. Estudos CV (EUROPA; estratégias PROGRESS/ADVANCE, frequentemente com indapamida).",
+   pega:"Nos estudos, muitas vezes vem associado à indapamida — não é monoterapia isolada."}
+];
+
+/* ---- ESTUDOS (Galeria dos Escudos) ---- */
+const ESTUDOS = [
+  {nome:"HOPE", drug:"ramipril", cenario:"Alto risco CV", pop:"Alto risco cardiovascular, muitos sem IC evidente.",
+   leitura:"Redução de desfechos CV em prevenção de alto risco. Cobrado como marco do ramipril fora da HAS clássica."},
+  {nome:"EUROPA", drug:"perindopril", cenario:"Doença coronariana estável", pop:"Coronariopatas estáveis.",
+   leitura:"Benefício CV em coronariopatia estável. Base do uso do perindopril nesse cenário."},
+  {nome:"PROGRESS", drug:"perindopril ± indapamida", cenario:"Prevenção após AVC", pop:"Pacientes com AVC/AIT prévio.",
+   leitura:"Estratégia baseada em perindopril, frequentemente com indapamida. Cuidado: efeito da combinação, não só do IECA."},
+  {nome:"ADVANCE", drug:"perindopril + indapamida", cenario:"Diabetes tipo 2", pop:"Diabéticos de alto risco.",
+   leitura:"Combinação perindopril + indapamida. É estratégia combinada — não atribua tudo ao IECA isolado."},
+  {nome:"SAVE", drug:"captopril", cenario:"Pós-IAM com disfunção VE", pop:"Disfunção ventricular esquerda pós-infarto.",
+   leitura:"Benefício do captopril na disfunção VE pós-IAM. Marco da proteção pós-infarto."},
+  {nome:"AIRE", drug:"ramipril", cenario:"Pós-IAM com IC", pop:"Insuficiência cardíaca após infarto.",
+   leitura:"Ramipril reduziu mortalidade em IC pós-IAM."},
+  {nome:"TRACE", drug:"trandolapril", cenario:"Pós-IAM com disfunção VE", pop:"Disfunção sistólica pós-infarto.",
+   leitura:"Trandolapril em disfunção VE pós-IAM. Completa o trio pós-infarto (SAVE/AIRE/TRACE)."}
+];
+
+/* ---- CINCO CAVALEIROS ---- */
+const CAVALEIROS = [
+  {em:"🗡️", nome:"Cavaleiro da Vasoconstrição", role:"Fecha artérias, eleva a pressão",
+   fis:"Vasoconstrição arteriolar → ↑ resistência periférica.", clin:"Hipertensão; ↑ pós-carga.",
+   med:"IECA reduz a formação de Ang II → vasodilatação.", q:"Que parâmetro hemodinâmico cai primeiro com a vasodilatação do IECA?", a:"A resistência vascular periférica (e a pós-carga)."},
+  {em:"🧂", nome:"Cavaleiro da Aldosterona", role:"Retém sódio e água, perde potássio",
+   fis:"↑ aldosterona → reabsorção de Na⁺/H₂O, secreção de K⁺.", clin:"Retenção volêmica; base da hipercalemia ao bloquear.",
+   med:"IECA ↓ aldosterona → risco de ↑ K⁺.", q:"Por que o IECA pode elevar o potássio?", a:"Porque ↓ Ang II → ↓ aldosterona → ↓ secreção distal de K⁺."},
+  {em:"💧", nome:"Cavaleiro da Sede", role:"Estimula ADH e sede",
+   fis:"Estímulo hipotalâmico → sede e ADH → reabsorção de água.", clin:"Expansão do volume circulante.",
+   med:"Menos Ang II → menos estímulo à sede/ADH.", q:"Qual hormônio da neuro-hipófise é estimulado pela Ang II?", a:"O ADH (vasopressina)."},
+  {em:"🕸️", nome:"Cavaleiro da Fibrose", role:"Hipertrofia, fibrose, remodelamento",
+   fis:"Ang II crônica → hipertrofia + fibrose + remodelamento.", clin:"HVE, remodelamento pós-IAM, progressão de IC e DRC.",
+   med:"IECA atenua o remodelamento cardíaco e vascular.", q:"Qual cavaleiro sustenta a proteção do IECA na ICFEr?", a:"O da Fibrose (remodelamento reduzido)."},
+  {em:"⚡", nome:"Cavaleiro do Simpático", role:"Aumenta noradrenalina e FC",
+   fis:"↑ atividade simpática, noradrenalina, FC, vasoconstrição.", clin:"Sobrecarga adrenérgica crônica.",
+   med:"IECA reduz a facilitação simpática pela Ang II.", q:"A Ang II potencializa qual sistema além do vascular direto?", a:"O sistema nervoso simpático."}
+];
+
+/* ---- SALAS DO PALÁCIO ---- */
+const SALAS = [
+  {id:"s1", em:"🏰", nome:"Castelo dos Rins", pill:"Renina",
+   html:`<p>No castelo, três sentinelas decidem soltar a <b>renina</b>: o <b>barômetro</b> (pressão de perfusão), a <b>mácula densa</b> (entrega de NaCl) e a <b>antena β1</b> (simpático).</p>
+   <div class="callout"><h4>Fisiologia</h4><p>Renina cliva o angiotensinogênio (fígado) → Angiotensina I. A renina não faz Ang II.</p></div>
+   <p class="mono small">Pegadinha: renina responde à perfusão e à entrega tubular — não só à PA sistêmica.</p>`},
+  {id:"s2", em:"🔥", nome:"Forja da ECA", pill:"Conversão + bradicinina",
+   html:`<p>Duas esteiras giram na forja: em cima, <b>Ang I → Ang II</b>; embaixo, <b>bradicinina → degradação</b>. O IECA para a forja: menos Ang II <i>e</i> mais bradicinina.</p>
+   <div class="callout amber"><h4>Correção</h4><p>A ECA é abundante no endotélio pulmonar, mas está distribuída em vários tecidos — não é exclusiva do pulmão.</p></div>`},
+  {id:"s3", em:"👑", nome:"Trono da Angiotensina II", pill:"AT1 · AT2 · ACE2 · MAS",
+   html:`<p>No trono, a Ang II comanda o <b>AT1</b> (pró-dano) e toca o <b>AT2</b> (protetor). Ao lado, o eixo <b>ACE2 → Ang-(1-7) → MAS</b> contrarregula (vasodilatação, antifibrose).</p>
+   <div class="callout"><h4>Chave</h4><p>Ang II salva na emergência (restaura pressão/perfusão). O dano vem da ativação crônica.</p></div>`},
+  {id:"s4", em:"⚔️", nome:"Os Cinco Cavaleiros", pill:"Efeitos da Ang II",
+   html:`<p>Vasoconstrição, Aldosterona, Sede, Fibrose e Simpático. Quando o IECA entra, os cavaleiros perdem força — e reaparecem em cada efeito clínico do capítulo.</p>
+   <p class="mono small">Recuperação: nomeie os cinco antes de sair da sala.</p>`},
+  {id:"s5", em:"🌿", nome:"Câmara da Bradicinina", pill:"Benefício e toxicidade",
+   html:`<p>Libertada, a bradicinina traz vasodilatação e óxido nítrico. Em excesso, em alguns pacientes, traz <b>tosse</b> e <b>angioedema</b>.</p>
+   <div class="callout amber"><h4>Frase-âncora</h4><p>Benefício e toxicidade nascem da mesma libertação. Tosse é a voz da bradicinina; angioedema é seu alarme de incêndio.</p></div>`}
+];
+
+/* ---- PACIENTES DO SIMULADOR DE PRESCRIÇÃO ---- */
+const PRESC = [
+  {id:"jovem", nome:"Jovem hipertenso, sem comorbidades",
+   opts:[{t:"Iniciar IECA (isolado ou combinado) após avaliação basal", ok:true, fb:"Razoável: IECA é primeira linha. Combinação com BCC ou tiazídico conforme o perfil pressórico."},
+         {t:"Captopril sublingual para “normalizar” agora", ok:false, fb:"Erro clássico: sem emergência, não há papel para captopril de resgate. Prescreva de forma programada."}]},
+  {id:"idoso", nome:"Idoso frágil, PA limítrofe, usa diurético",
+   opts:[{t:"Iniciar em dose menor, checar volemia e reavaliar", ok:true, fb:"Correto: risco de hipotensão de 1ª dose e LRA. Dose baixa, revisar diurético e reavaliar."},
+         {t:"Dose plena de imediato", ok:false, fb:"Passou despercebido: hipovolemia + diurético → hipotensão/LRA. Ajuste a dose."}]},
+  {id:"drc", nome:"DRC com albuminúria (RAC elevado)",
+   opts:[{t:"Iniciar IECA, monitorar creatinina e K⁺", ok:true, fb:"Correto: DRC albuminúrica é indicação. Espere possível ↑ creatinina e vigie o potássio."},
+         {t:"Evitar IECA porque “DRC contraindica”", ok:false, fb:"Erro: DRC não é contraindicação — é frequentemente indicação com vigilância."}]},
+  {id:"dm", nome:"Diabético SEM albuminúria",
+   opts:[{t:"Escolher anti-hipertensivo pelo risco global", ok:true, fb:"Correto: sem albuminúria, não há indicação automática de IECA só pelo diabetes."},
+         {t:"IECA obrigatório por ser diabético", ok:false, fb:"Pegadinha: o benefício renal mora na albuminúria, não no diagnóstico de DM."}]},
+  {id:"desidratado", nome:"Desidratado, diarreia, em AINE + diurético",
+   opts:[{t:"Não iniciar/segurar agora; corrigir volume e rever AINE", ok:true, fb:"Correto: tríplice diurético+SRAA+AINE em hipovolemia = LRA hemodinâmica."},
+         {t:"Iniciar IECA para “proteger o rim”", ok:false, fb:"Perigo: neste contexto o IECA pode precipitar LRA. Corrija o volume primeiro."}]},
+  {id:"gestante", nome:"Gestante hipertensa",
+   opts:[{t:"Não usar IECA; escolher opção compatível com gestação", ok:true, fb:"Correto: IECA é contraindicado em qualquer trimestre."},
+         {t:"Manter ramipril em dose baixa", ok:false, fb:"Erro grave: fetotoxicidade (oligodrâmnio, disfunção renal fetal). Suspender."}]},
+  {id:"angio", nome:"Antecedente de angioedema por IECA",
+   opts:[{t:"Não reintroduzir IECA; documentar e avaliar alternativas", ok:true, fb:"Correto: angioedema prévio por IECA é contraindicação."},
+         {t:"Tentar outro IECA da classe", ok:false, fb:"Erro: é efeito de classe (bradicinérgico). Não reexponha."}]},
+  {id:"arni", nome:"ICFEr em enalapril, candidato a ARNI",
+   opts:[{t:"Suspender o IECA e respeitar o washout antes do ARNI", ok:true, fb:"Correto: nunca simultâneos; respeite o intervalo de washout da bula/diretriz."},
+         {t:"Iniciar sacubitril/valsartana mantendo o enalapril", ok:false, fb:"Perigo: risco de angioedema. Jamais IECA + ARNI juntos."}]},
+  {id:"hiperk", nome:"IECA + espironolactona, K⁺ = 5,9",
+   opts:[{t:"Confirmar K⁺, revisar fármacos/dieta e ajustar conduta", ok:true, fb:"Correto: rever substitutos do sal, poupadores, AINE; estratificar por ECG/nível."},
+         {t:"Ignorar, pois “IECA sempre pode”", ok:false, fb:"Erro: hipercalemia relevante exige ação, não naturalização."}]}
+];
+
+/* ---- QUESTOES_TEC (>=50) ---- */
+const QUESTOES_TEC = [
+// SRAA e fisiologia (8)
+{tema:"fisiologia",dif:"média",q:"Sobre o SRAA, assinale a correta quanto à ação da renina:",
+ op:["A renina converte angiotensina I em angiotensina II","A renina cliva o angiotensinogênio, gerando angiotensina I","A renina é produzida principalmente no fígado","A renina degrada a bradicinina","A renina ativa diretamente o receptor AT1"],
+ c:1,ec:["Quem faz Ang I→Ang II é a ECA.","Correto: renina + angiotensinogênio → Ang I.","O angiotensinogênio é hepático; a renina é renal (justaglomerular).","Quem degrada bradicinina é a ECA.","A renina não é agonista de AT1."],
+ pega:"Renina não faz Ang II.",key:"renina"},
+{tema:"fisiologia",dif:"média",q:"Qual NÃO é um estímulo clássico para a liberação de renina?",
+ op:["Queda da pressão de perfusão renal","Menor entrega de NaCl à mácula densa","Estímulo simpático via β1","Aumento isolado da PA sistêmica","Hipovolemia"],
+ c:3,ec:["É estímulo clássico.","É estímulo clássico.","É estímulo clássico.","Correto: a renina responde à perfusão/entrega tubular/simpático, não à PA sistêmica isolada.","Reduz perfusão → estimula renina."],
+ pega:"Renina responde à perfusão, não à PA sistêmica isolada.",key:"gatilhos"},
+{tema:"fisiologia",dif:"fácil",q:"A enzima conversora da angiotensina (ECA):",
+ op:["Existe exclusivamente no pulmão","Converte Ang I em Ang II e degrada bradicinina","Só converte Ang I em Ang II","Só degrada bradicinina","É a mesma enzima que a ACE2"],
+ c:1,ec:["Errado: é abundante no endotélio pulmonar, mas distribuída em vários tecidos.","Correto: dupla função.","Falta a degradação da bradicinina.","Falta a conversão de Ang I.","ACE2 é outra enzima, contrarregulatória."],
+ pega:"ECA não é exclusiva do pulmão.",key:"eca"},
+{tema:"fisiologia",dif:"média",q:"O eixo contrarregulatório do SRAA envolve:",
+ op:["ECA → Ang II → AT1","ACE2 → Ang-(1-7) → receptor MAS","Renina → AT2","Aldosterona → bradicinina","AINE → prostaglandinas → AT1"],
+ c:1,ec:["É o braço clássico pró-dano.","Correto: eixo protetor (vasodilatação, antifibrose).","Não existe essa via.","Não relacionado.","Não é o eixo contrarregulatório do SRAA."],
+ pega:"ACE2/Ang-(1-7)/MAS = eixo protetor.",key:"ace2"},
+{tema:"fisiologia",dif:"média",q:"Sobre o receptor AT2, é correto:",
+ op:["Media vasoconstrição e fibrose","Está associado a efeitos protetores como vasodilatação e antifibrose","Sempre neutraliza completamente o AT1","É o alvo direto dos IECAs","Estimula secreção de aldosterona"],
+ c:1,ec:["Isso é AT1.","Correto.","Exagero: não neutraliza sempre por completo.","IECA não age em receptor; reduz o agonista.","Isso é AT1."],
+ pega:"AT2 protetor — mas não anula o AT1 sempre.",key:"at2"},
+{tema:"fisiologia",dif:"difícil",q:"Paciente pergunta por que a Ang II “às vezes é boa”. A melhor explicação:",
+ op:["Ang II nunca é benéfica","Na hipovolemia/hipotensão aguda, preserva pressão e perfusão","Ang II protege por estimular AT1 cronicamente","O benefício vem da degradação da bradicinina","Ela só é útil em gestantes"],
+ c:1,ec:["Incorreto.","Correto: na emergência ela é adaptativa; o dano é crônico.","Ativação crônica de AT1 é deletéria.","Não é esse o mecanismo.","Contraindicada na gestação."],
+ pega:"Ang II aguda salva; crônica adoece.",key:"angII"},
+{tema:"fisiologia",dif:"fácil",q:"O angiotensinogênio é produzido predominantemente:",
+ op:["Nos rins","No fígado","Nos pulmões","Nas adrenais","No coração"],
+ c:1,ec:["Rim produz renina.","Correto.","Não.","Produz aldosterona.","Não."],
+ pega:"Fígado = angiotensinogênio; rim = renina.",key:"agt"},
+{tema:"fisiologia",dif:"média",q:"A ativação crônica do AT1 leva a todos, EXCETO:",
+ op:["Vasoconstrição","Fibrose e hipertrofia","Aumento da natriurese e reparo tecidual","Secreção de aldosterona","Aumento da pressão intraglomerular"],
+ c:2,ec:["É efeito AT1.","É efeito AT1.","Correto: natriurese/reparo são efeitos do AT2.","É efeito AT1.","É efeito AT1."],
+ pega:"Natriurese/reparo = AT2, não AT1.",key:"at1"},
+
+// Mecanismo do IECA (5)
+{tema:"mecanismo",dif:"fácil",q:"O IECA reduz a pressão arterial principalmente por:",
+ op:["Taquicardia reflexa intensa","Redução da resistência vascular periférica e da pós-carga","Bloqueio direto do receptor AT1","Aumento da aldosterona","Vasoconstrição eferente"],
+ c:1,ec:["Não causa taquicardia reflexa importante.","Correto.","Isso é o BRA.","Reduz aldosterona.","Ele dilata a eferente."],
+ pega:"IECA não bloqueia AT1 (isso é BRA).",key:"mecanismo"},
+{tema:"mecanismo",dif:"média",q:"O aumento da bradicinina pelo IECA explica:",
+ op:["A hipercalemia","A tosse e o angioedema","A dilatação da arteríola aferente","A retenção de sódio","O aumento da aldosterona"],
+ c:1,ec:["Hipercalemia vem da ↓ aldosterona.","Correto: efeito bradicinérgico.","O efeito renal é sobre a eferente e via ↓ Ang II.","Ele reduz retenção.","Ele reduz aldosterona."],
+ pega:"Tosse/angioedema = bradicinina.",key:"bradicinina"},
+{tema:"mecanismo",dif:"média",q:"“IECA = ↓ Ang II + ↑ bradicinina.” Uma consequência do braço ‘↓ Ang II’:",
+ op:["Tosse seca","↓ aldosterona e ↓ remodelamento","Angioedema","↑ óxido nítrico pela bradicinina","Rash por sulfidrila"],
+ c:1,ec:["É do braço bradicinina.","Correto.","É do braço bradicinina.","É do braço bradicinina.","É particularidade do captopril."],
+ pega:"Separe os dois braços do mecanismo.",key:"mecanismo"},
+{tema:"mecanismo",dif:"difícil",q:"Paciente com IC congestiva, tratado agressivamente com diurético, PA limítrofe, inicia captopril e apresenta hipotensão. Mecanismo/fator mais provável:",
+ op:["Taquicardia reflexa","Hipotensão de primeira dose por SRAA muito ativado + hipovolemia","Angioedema","Hipercalemia","Bloqueio de AT2"],
+ c:1,ec:["Não é o mecanismo.","Correto: reavaliar volume e dose, não necessariamente suspender.","Não é o quadro.","Não explica hipotensão aguda.","Não faz sentido."],
+ pega:"1ª dose: cuidado com hipovolêmico/diurético.",key:"primeira-dose"},
+{tema:"mecanismo",dif:"média",q:"Sobre a resposta hemodinâmica ao IECA:",
+ op:["Depende de taquicardia reflexa acentuada","Ocorre sem taquicardia reflexa importante","Aumenta a pós-carga","Reduz a bradicinina","Eleva a resistência periférica"],
+ c:1,ec:["Não.","Correto.","Reduz a pós-carga.","Aumenta a bradicinina.","Reduz a resistência."],
+ pega:"Sem taquicardia reflexa importante.",key:"hemodinamica"},
+
+// Função renal e creatinina (8)
+{tema:"renal",dif:"média",q:"A Angiotensina II atua preferencialmente na arteríola:",
+ op:["Aferente, dilatando-a","Eferente, contraindo-a","Aferente, contraindo-a","Eferente, dilatando-a","Não age em arteríolas"],
+ c:1,ec:["Não.","Correto: vasoconstrição eferente mantém a pressão de filtração.","Não é o principal.","Ao contrário.","Age sim."],
+ pega:"Ang II fecha a eferente; IECA a abre.",key:"eferente"},
+{tema:"renal",dif:"média",q:"Ao iniciar IECA, uma elevação de creatinina de ~20% que estabiliza, com PA e K⁺ ok, paciente assintomático:",
+ op:["Indica nefrotoxicidade — suspender já","Pode ser aceitável; observar e reavaliar","Exige biópsia renal","Confirma estenose bilateral","Contraindica qualquer bloqueio do SRAA"],
+ c:1,ec:["Não necessariamente.","Correto: mudança hemodinâmica esperada; contextualizar.","Exagero.","Não confirma.","Não."],
+ pega:"Até ~30% pode ser aceitável se estabilizar — não é regra absoluta.",key:"creatinina"},
+{tema:"renal",dif:"difícil",q:"Elevação abrupta e importante de creatinina após IECA deve levantar suspeita de:",
+ op:["Estenose bilateral de artérias renais","Hiperaldosteronismo primário","Feocromocitoma","Hipotireoidismo","Diabetes insipidus"],
+ c:0,ec:["Correto: também rim único funcional, hipovolemia, AINE.","Não.","Não.","Não.","Não."],
+ pega:"↑ creatinina marcante → pense em estenose renovascular.",key:"estenose"},
+{tema:"renal",dif:"média",q:"O “paradoxo renal” do IECA significa:",
+ op:["Aumenta a TFG e a proteinúria","Pode elevar a creatinina no início e proteger o rim no longo prazo","Sempre piora a função renal","Nunca altera a creatinina","Só serve em rim único"],
+ c:1,ec:["Ao contrário na proteinúria.","Correto.","Não é regra.","Pode alterar.","Não."],
+ pega:"Creatinina ↑ inicial ≠ envenenamento renal.",key:"paradoxo"},
+{tema:"renal",dif:"média",q:"A tríade clássica de lesão renal aguda hemodinâmica inclui:",
+ op:["IECA + estatina + AAS","Diurético + bloqueador do SRAA + AINE","Betabloqueador + BCC + nitrato","IECA + insulina + metformina","Diurético + estatina + IECA"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Falta o AINE."],
+ pega:"Diurético + SRAA + AINE = LRA.",key:"triplice"},
+{tema:"renal",dif:"média",q:"Sobre a proteinúria com IECA na doença renal albuminúrica:",
+ op:["Aumenta pela dilatação eferente","Diminui pela redução da pressão intraglomerular","Não se altera","Só cai se a creatinina cair","Aumenta a albuminúria como esperado"],
+ c:1,ec:["Ao contrário.","Correto.","Altera-se.","Não depende disso.","Ao contrário."],
+ pega:"↓ pressão intraglomerular → ↓ proteinúria.",key:"proteinuria"},
+{tema:"renal",dif:"fácil",q:"Antes de iniciar IECA em DRC, o mais adequado é:",
+ op:["Nada, iniciar direto em dose plena","Obter creatinina e potássio basais e planejar reavaliação","Suspender por ser contraindicado","Solicitar biópsia renal","Iniciar apenas captopril sublingual"],
+ c:1,ec:["Não.","Correto.","DRC não contraindica.","Desnecessário.","Não faz sentido."],
+ pega:"DRC = indicação com vigilância.",key:"drc"},
+{tema:"renal",dif:"difícil",q:"Idoso, diarreia há 3 dias, usa enalapril + furosemida + ibuprofeno, evolui com oligúria e ↑ creatinina. O mecanismo do AINE nesse contexto:",
+ op:["Vasodilata a aferente","Reduz prostaglandinas → vasoconstrição aferente","Dilata a eferente","Aumenta a TFG","Bloqueia a ECA"],
+ c:1,ec:["Ao contrário.","Correto: com IECA dilatando a eferente e hipovolemia, a filtração despenca.","Isso é o IECA.","Reduz.","Não."],
+ pega:"AINE fecha a aferente; IECA abre a eferente.",key:"aine-renal"},
+
+// Albuminúria e diabetes (5)
+{tema:"diabetes",dif:"média",q:"O benefício renal do bloqueio do SRAA em diabéticos é mais evidente quando há:",
+ op:["Apenas o diagnóstico de diabetes","Albuminúria / doença renal","Ausência de hipertensão","Idade jovem","HbA1c normal"],
+ c:1,ec:["Insuficiente.","Correto.","Não é o critério.","Não.","Não."],
+ pega:"Albuminúria, não o diagnóstico de DM.",key:"albuminuria"},
+{tema:"diabetes",dif:"fácil",q:"O termo atual preferido no lugar de “microalbuminúria” envolve:",
+ op:["Proteína total de 24h obrigatória","Quantificação pela relação albumina/creatinina (RAC)","Fita reagente isolada","Clearance de inulina","Cistatina C apenas"],
+ c:1,ec:["Não obrigatório.","Correto.","Insuficiente.","Não é padrão prático.","Não é o ponto."],
+ pega:"Prefira a RAC para quantificar albuminúria.",key:"rac"},
+{tema:"diabetes",dif:"média",q:"Diabético sem albuminúria e sem outra indicação específica:",
+ op:["IECA é obrigatório","A escolha depende do risco cardiovascular global","IECA é contraindicado","Deve receber duplo bloqueio","Só BCC é permitido"],
+ c:1,ec:["Não.","Correto.","Não é contraindicado.","Nunca de rotina.","Não."],
+ pega:"Sem albuminúria: decisão individualizada.",key:"dm-sem"},
+{tema:"diabetes",dif:"média",q:"A queda da albuminúria após IECA funciona como:",
+ op:["Sinal de toxicidade","Marcador de resposta ao tratamento","Indicação de suspensão","Sinal de estenose renal","Efeito da bradicinina"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Não."],
+ pega:"↓ albuminúria = boa resposta.",key:"resposta"},
+{tema:"diabetes",dif:"difícil",q:"Sobre IECA e diabetes, a afirmação mais precisa:",
+ op:["Protege o rim de todo diabético igualmente","O benefício renal concentra-se em quem tem albuminúria/DRC/alto risco","Não tem papel em diabéticos","Substitui o controle glicêmico","Contraindicado se HbA1c alta"],
+ c:1,ec:["Generalização indevida.","Correto.","Tem papel em cenários selecionados.","Não substitui.","Não."],
+ pega:"Evite proteção renal 'universal'.",key:"dm"},
+
+// Tosse e angioedema (6)
+{tema:"tosse",dif:"fácil",q:"A tosse induzida por IECA é classicamente:",
+ op:["Produtiva e purulenta","Seca, por acúmulo de bradicinina e substância P","Alérgica, responsiva a anti-histamínico","Sempre no 2º ano de uso","Exclusiva do captopril"],
+ c:1,ec:["Não.","Correto.","Não é alérgica.","Costuma surgir no 1º mês.","É efeito de classe."],
+ pega:"Tosse do IECA não é alérgica.",key:"tosse"},
+{tema:"tosse",dif:"média",q:"Diante de tosse em paciente usando IECA, antes de atribuí-la à droga deve-se:",
+ op:["Suspender imediatamente sempre","Excluir causas como refluxo, asma, IC, infecção, tabagismo","Trocar por outro IECA","Iniciar corticoide","Solicitar broncoscopia de rotina"],
+ c:1,ec:["Nem sempre.","Correto: diferencial obrigatório.","Efeito de classe.","Não indicado.","Desnecessário."],
+ pega:"Nem toda tosse é do IECA.",key:"tosse-dif"},
+{tema:"tosse",dif:"média",q:"Conduta apropriada quando a tosse por IECA é clinicamente relevante e a suspeita é forte:",
+ op:["Manter e associar antitussígeno","Substituir por BRA","Aumentar a dose","Associar corticoide inalatório","Reintroduzir após 1 semana"],
+ c:1,ec:["Não resolve a causa.","Correto: BRA causa menos tosse.","Piora.","Não trata a causa.","A causa persiste."],
+ pega:"Tosse relevante → BRA.",key:"troca-bra"},
+{tema:"angioedema",dif:"difícil",q:"Sobre o angioedema por IECA, é correto:",
+ op:["É mediado por histamina","É mediado por bradicinina e pode ocorrer mesmo após uso prolongado","Só ocorre no primeiro dia","Responde bem a anti-histamínico","Nunca acomete a via aérea"],
+ c:1,ec:["Não.","Correto.","Pode ocorrer tardiamente.","Costuma responder pouco.","Pode acometer VAS — risco de vida."],
+ pega:"Bradicinérgico, não histaminérgico.",key:"angioedema"},
+{tema:"angioedema",dif:"média",q:"No manejo do angioedema por IECA, a prioridade é:",
+ op:["Anti-histamínico venoso","Proteção da via aérea","Corticoide em dose alta","Reexposição controlada","Adrenalina isolada resolve"],
+ c:1,ec:["Pode falhar.","Correto: via aérea primeiro.","Pode falhar.","Nunca reexpor.","Mecanismo não histaminérgico."],
+ pega:"Via aérea vale mais que qualquer ampola.",key:"via-aerea"},
+{tema:"angioedema",dif:"média",q:"Após angioedema atribuído a IECA, a conduta correta é:",
+ op:["Trocar por outro IECA","Não reintroduzir IECA; documentar e avaliar alternativas com cautela","Reduzir a dose do mesmo IECA","Associar anti-histamínico crônico","Reexpor em ambiente hospitalar"],
+ c:1,ec:["Efeito de classe.","Correto.","Não.","Não previne.","Não reexpor."],
+ pega:"Angioedema prévio por IECA = contraindicação.",key:"reexposicao"},
+
+// Hipercalemia e interações (5)
+{tema:"hiperk",dif:"fácil",q:"A hipercalemia com IECA decorre principalmente de:",
+ op:["Aumento da aldosterona","Redução da aldosterona","Aumento da bradicinina","Vasodilatação eferente","Aumento da TFG"],
+ c:1,ec:["Ao contrário.","Correto: ↓ Ang II → ↓ aldosterona → ↓ secreção de K⁺.","Não é o mecanismo.","Não.","Não."],
+ pega:"↓ aldosterona → ↑ K⁺.",key:"hiperk"},
+{tema:"hiperk",dif:"média",q:"Fator que MAIS aumenta o risco de hipercalemia com IECA:",
+ op:["Uso de tiazídico isolado","Associação com espironolactona/suplemento de K⁺","Dieta hipossódica sem substituto","Atividade física","Uso de estatina"],
+ c:1,ec:["Tiazídico tende a baixar K⁺.","Correto: poupadores/suplementos somam risco.","Depende do substituto do sal.","Não.","Não."],
+ pega:"Poupador de K⁺ + IECA = cuidado.",key:"hiperk-risco"},
+{tema:"hiperk",dif:"média",q:"“Sal light” pode causar hipercalemia porque:",
+ op:["Contém sódio em excesso","Contém cloreto de potássio","Reduz a aldosterona","Bloqueia a ECA","Aumenta a bradicinina"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Não."],
+ pega:"Substituto do sal ≈ KCl.",key:"sal-light"},
+{tema:"interacoes",dif:"média",q:"A interação IECA + lítio pode causar:",
+ op:["Redução dos níveis de lítio","Aumento das concentrações e toxicidade do lítio","Nenhuma interação","Hipocalemia grave","Angioedema garantido"],
+ c:1,ec:["Ao contrário.","Correto.","Há interação.","Não.","Não."],
+ pega:"IECA ↑ lítio.",key:"litio"},
+{tema:"interacoes",dif:"difícil",q:"Sobre o duplo bloqueio do SRAA (IECA + BRA), é correto:",
+ op:["Aumenta a proteção renal de rotina","Não deve ser usado rotineiramente: mais hipercalemia, hipotensão e LRA sem ganho líquido","É a base do tratamento da HAS","Reduz o risco de angioedema","É obrigatório na DRC"],
+ c:1,ec:["Ao contrário.","Correto.","Não.","Não.","Não."],
+ pega:"Mais bloqueio ≠ mais proteção.",key:"duplo"},
+
+// Indicações e contraindicações (5)
+{tema:"indicacoes",dif:"fácil",q:"São indicações preferenciais do IECA, EXCETO:",
+ op:["ICFEr","DRC com albuminúria","Gestação hipertensiva","Pós-IAM com disfunção VE","HAS com alto risco CV"],
+ c:2,ec:["Indicação.","Indicação.","Correto: é contraindicação.","Indicação.","Indicação."],
+ pega:"Gestação = contraindicação.",key:"indicacoes"},
+{tema:"contra",dif:"média",q:"Assinale a contraindicação FORTE ao IECA:",
+ op:["DRC estágio 3 albuminúrica","Antecedente de angioedema por IECA","Diabetes tipo 2","Idade avançada","Uso de tiazídico"],
+ c:1,ec:["É indicação com vigilância.","Correto.","Não.","Cautela, não contraindicação.","Não."],
+ pega:"Angioedema prévio contraindica.",key:"contra"},
+{tema:"contra",dif:"média",q:"A DRC, em relação ao IECA, deve ser entendida como:",
+ op:["Contraindicação absoluta","Frequentemente indicação, exigindo monitorização","Irrelevante para a decisão","Motivo para duplo bloqueio","Indicação de captopril sublingual"],
+ c:1,ec:["Não.","Correto.","Relevante.","Não.","Não."],
+ pega:"DRC não proíbe IECA.",key:"drc-contra"},
+{tema:"contra",dif:"difícil",q:"Gestante em uso inadvertido de IECA. A conduta e o racional:",
+ op:["Manter, pois o risco é só no 1º trimestre","Interromper: risco fetal (oligodrâmnio, disfunção renal fetal) em qualquer trimestre","Reduzir a dose pela metade","Trocar por outro IECA","Associar corticoide fetal"],
+ c:1,ec:["Não há trimestre seguro.","Correto.","Não.","Efeito de classe.","Não."],
+ pega:"Sem segurança em nenhum trimestre.",key:"gestacao"},
+{tema:"contra",dif:"média",q:"Situação que exige cautela/investigação (não contraindicação absoluta) com IECA:",
+ op:["Angioedema prévio por IECA","Estenose bilateral de artérias renais","Gestação","Hipercalemia grave não controlada","Uso simultâneo de ARNI"],
+ c:1,ec:["É contraindicação.","Correto: exige investigação, risco de LRA.","Contraindicação.","Contraindicação.","Contraindicação."],
+ pega:"Estenose bilateral: investigar, cuidado com LRA.",key:"cautela"},
+
+// Farmacologia e doses (4)
+{tema:"farmaco",dif:"fácil",q:"Segundo a Diretriz Brasileira de HAS 2025, a faixa habitual do captopril e a frequência são:",
+ op:["25–150 mg/dia, 2 a 3×","5–40 mg/dia, 1×","2,5–20 mg/dia, 1×","10–40 mg/dia, 1×","4–16 mg/dia, 1×"],
+ c:0,ec:["Correto.","Isso é o enalapril.","Isso é o ramipril.","Lisinopril/fosinopril/benazepril.","Isso é o perindopril."],
+ pega:"Captopril: várias tomadas.",key:"doses"},
+{tema:"farmaco",dif:"média",q:"Qual IECA é ativo e NÃO depende de conversão hepática?",
+ op:["Enalapril","Ramipril","Lisinopril","Perindopril","Benazepril"],
+ c:2,ec:["Pró-fármaco.","Pró-fármaco.","Correto.","Pró-fármaco.","Pró-fármaco."],
+ pega:"Lisinopril é ativo (não pró-fármaco).",key:"lisinopril"},
+{tema:"farmaco",dif:"média",q:"Característica do captopril frequentemente cobrada:",
+ op:["Meia-vida muito longa","Grupo sulfidrila, associado a disgeusia e rash","Dose única diária","Pró-fármaco","Eliminação exclusivamente hepática"],
+ c:1,ec:["É de ação curta.","Correto.","Costuma exigir 2–3 tomadas.","É ativo.","Não."],
+ pega:"Sulfidrila → disgeusia/rash.",key:"captopril"},
+{tema:"farmaco",dif:"difícil",q:"Na escolha entre IECAs, é correto afirmar que:",
+ op:["Existe um IECA universalmente superior","A escolha considera evidência na condição, adesão, função renal, custo e tolerabilidade","A frequência de doses é irrelevante","Todos têm exatamente a mesma meia-vida","Pró-fármacos são sempre inferiores"],
+ c:1,ec:["Não há.","Correto.","Importa para adesão.","Não.","Não."],
+ pega:"Não existe 'melhor IECA' universal.",key:"escolha"},
+
+// Evidências (4)
+{tema:"evidencias",dif:"média",q:"Um resultado que “não mostrou diferença significativa” entre IECA e BRA significa:",
+ op:["Que são comprovadamente idênticos","Ausência de superioridade demonstrada, o que não é o mesmo que equivalência provada","Que o IECA é inferior","Que o estudo foi negativo","Que ambos são ineficazes"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Não."],
+ pega:"Ausência de superioridade ≠ equivalência.",key:"forest"},
+{tema:"evidencias",dif:"fácil",q:"O trio de estudos clássicos de IECA no pós-IAM/disfunção VE inclui:",
+ op:["HOPE, EUROPA, VALUE","SAVE, AIRE, TRACE","LIFE, RENAAL, VAL-HeFT","CHARM, SCOPE, ONTARGET","PROGRESS, ADVANCE, HYVET"],
+ c:1,ec:["São de alto risco/coronariopatia/BRA.","Correto: SAVE (captopril), AIRE (ramipril), TRACE (trandolapril).","São de BRA.","São de BRA.","São estratégias com perindopril/tiazídico."],
+ pega:"SAVE/AIRE/TRACE = pós-IAM.",key:"trio-iam"},
+{tema:"evidencias",dif:"média",q:"O estudo HOPE está classicamente associado a:",
+ op:["Perindopril na coronariopatia","Ramipril em pacientes de alto risco CV","Captopril no pós-IAM","Trandolapril na disfunção VE","Losartana na DRC"],
+ c:1,ec:["Isso é o EUROPA.","Correto.","Isso é o SAVE.","Isso é o TRACE.","Isso é o RENAAL (BRA)."],
+ pega:"HOPE = ramipril, alto risco.",key:"hope"},
+{tema:"evidencias",dif:"difícil",q:"Sobre PROGRESS/ADVANCE, a leitura crítica correta:",
+ op:["O benefício é atribuível apenas ao IECA","São estratégias frequentemente com perindopril + indapamida — o efeito é da combinação","Não usaram IECA","Compararam IECA com placebo puro em monoterapia sempre","Provaram superioridade do IECA sobre BRA"],
+ c:1,ec:["Não.","Correto.","Usaram perindopril.","Envolveram combinação.","Não é esse o objeto."],
+ pega:"Combinação ≠ efeito isolado do IECA.",key:"progress"},
+
+// Comparação IECA x BRA (2)
+{tema:"evidencias",dif:"fácil",q:"Em relação aos BRAs, os IECAs tendem a apresentar:",
+ op:["Menos tosse","Mais tosse e mais angioedema","Menos hipercalemia sempre","Nenhuma diferença de tolerabilidade","Contraindicação na HAS"],
+ c:1,ec:["Ao contrário.","Correto.","Ambos podem dar hiperK.","Há diferença de tolerabilidade.","Não."],
+ pega:"BRA = menos tosse/angioedema.",key:"ieca-bra"},
+{tema:"mecanismo",dif:"média",q:"Por que o IECA, e não o BRA, causa mais tosse?",
+ op:["Porque bloqueia AT2","Porque eleva a bradicinina ao inibir a ECA","Porque reduz a aldosterona","Porque é pró-fármaco","Porque dilata a aferente"],
+ c:1,ec:["Não.","Correto.","Não explica a tosse.","Irrelevante.","Não."],
+ pega:"Tosse do IECA = via bradicinina (BRA não inibe ECA).",key:"tosse-mec"}
+];
+
+/* ---- FLASHCARDS (>=60) ---- */
+const FLASHCARDS = [
+{cat:"fisiologia",q:"Onde a renina atua?",a:"Cliva o angiotensinogênio (fígado) → Angiotensina I. Não faz Ang II."},
+{cat:"fisiologia",q:"Quem converte Ang I em Ang II?",a:"A ECA (enzima conversora da angiotensina)."},
+{cat:"fisiologia",q:"Três gatilhos da liberação de renina",a:"↓ perfusão renal, ↓ NaCl na mácula densa, estímulo simpático β1."},
+{cat:"fisiologia",q:"A ECA existe só no pulmão?",a:"Não. Abundante no endotélio pulmonar, mas distribuída em vários tecidos."},
+{cat:"fisiologia",q:"Segunda função da ECA além de gerar Ang II",a:"Degrada a bradicinina."},
+{cat:"fisiologia",q:"Eixo contrarregulatório do SRAA",a:"ACE2 → Ang-(1-7) → receptor MAS (vasodilatação, antifibrose, natriurese)."},
+{cat:"fisiologia",q:"Onde é produzido o angiotensinogênio?",a:"Predominantemente no fígado."},
+{cat:"fisiologia",q:"A Ang II é sempre deletéria?",a:"Não. Na hipovolemia/hipotensão aguda preserva pressão e perfusão. O dano é da ativação crônica."},
+{cat:"mecanismo",q:"IECA bloqueia o receptor AT1?",a:"Não — isso é o BRA. O IECA reduz a produção de Ang II."},
+{cat:"mecanismo",q:"IECA inibe a ACE2?",a:"Não. ACE2 é outra enzima, do braço protetor."},
+{cat:"mecanismo",q:"A fórmula mental do IECA",a:"↓ Angiotensina II + ↑ Bradicinina."},
+{cat:"mecanismo",q:"Como o IECA reduz a PA?",a:"↓ resistência vascular periférica e ↓ pós-carga, sem taquicardia reflexa importante."},
+{cat:"mecanismo",q:"Efeitos do braço '↓ Ang II'",a:"↓ vasoconstrição, ↓ aldosterona, ↓ remodelamento, dilatação eferente, ↓ proteinúria."},
+{cat:"mecanismo",q:"Efeitos do braço '↑ bradicinina'",a:"Vasodilatação, óxido nítrico — e tosse/angioedema em suscetíveis."},
+{cat:"mecanismo",q:"Hipotensão de primeira dose: quem tem mais risco?",a:"Hipovolêmicos, uso intenso de diurético, SRAA muito ativado."},
+{cat:"rim",q:"Qual arteríola a Ang II contrai preferencialmente?",a:"A eferente (mantém a pressão de filtração)."},
+{cat:"rim",q:"O que o IECA faz na arteríola eferente?",a:"Dilata → ↓ pressão intraglomerular → ↓ proteinúria (creatinina pode subir)."},
+{cat:"rim",q:"O paradoxo renal do IECA",a:"Pode ↑ creatinina no início e proteger o rim no longo prazo."},
+{cat:"rim",q:"Até quanto de ↑ creatinina costuma ser aceitável?",a:"Até ~30% se estabilizar e o contexto for adequado — não é regra absoluta."},
+{cat:"rim",q:"↑ creatinina marcante após IECA sugere o quê?",a:"Estenose renal (bilateral ou rim único), hipovolemia, AINE."},
+{cat:"rim",q:"A tríplice da LRA hemodinâmica",a:"Diurético + bloqueador do SRAA + AINE."},
+{cat:"rim",q:"Mnemônico RIM EM ALERTA",a:"Redução de volume · IECA+AINE+diurético · Má perfusão · Estenose renal · Múltiplos bloqueadores do SRAA."},
+{cat:"rim",q:"Por que a proteinúria cai com IECA?",a:"Pela redução da pressão intraglomerular (dilatação eferente)."},
+{cat:"coracao",q:"Papel histórico do IECA na ICFEr",a:"Reduz mortalidade e hospitalização; relevante quando ARNI não é usado."},
+{cat:"coracao",q:"Cenários de maior benefício pós-IAM",a:"Disfunção VE, IC, IAM anterior extenso, alto risco."},
+{cat:"coracao",q:"Cavaleiro ligado ao remodelamento",a:"O da Fibrose (Ang II crônica → hipertrofia + fibrose + remodelamento)."},
+{cat:"diabetes",q:"Quando o benefício renal do IECA no DM é maior?",a:"Com albuminúria / DRC / alto risco — não pelo diagnóstico de DM."},
+{cat:"diabetes",q:"Termo atual para quantificar albuminúria",a:"Relação albumina/creatinina urinária (RAC)."},
+{cat:"diabetes",q:"Diabético sem albuminúria: como escolher?",a:"Pelo risco cardiovascular global — sem indicação automática de IECA."},
+{cat:"diabetes",q:"↓ albuminúria após IECA significa?",a:"Marcador de boa resposta ao tratamento."},
+{cat:"adversos",q:"Tosse por IECA: mecanismo",a:"Acúmulo de bradicinina e substância P. É seca e efeito de classe."},
+{cat:"adversos",q:"Tosse por IECA é alérgica?",a:"Não. É farmacológica (bradicinérgica)."},
+{cat:"adversos",q:"Quando costuma surgir a tosse?",a:"Frequentemente no 1º mês; resolução em 1–4 semanas após suspender."},
+{cat:"adversos",q:"Conduta na tosse relevante por IECA",a:"Excluir diferenciais e, se forte a suspeita, trocar por BRA."},
+{cat:"adversos",q:"Angioedema por IECA: mediador",a:"Bradicinina (não histamina). Pode ocorrer mesmo após uso prolongado."},
+{cat:"adversos",q:"Prioridade no angioedema por IECA",a:"Proteção da via aérea."},
+{cat:"adversos",q:"Por que anti-histamínico/corticoide/adrenalina podem falhar?",a:"Porque o mecanismo é bradicinérgico, não histaminérgico."},
+{cat:"adversos",q:"Após angioedema por IECA, pode-se reintroduzir?",a:"Não. Documentar e avaliar alternativas com cautela."},
+{cat:"adversos",q:"Hipercalemia com IECA: mecanismo",a:"↓ Ang II → ↓ aldosterona → ↓ secreção distal de K⁺."},
+{cat:"adversos",q:"A armadilha do sal 'light'",a:"Contém cloreto de potássio → risco de hipercalemia."},
+{cat:"contra",q:"IECA na gestação",a:"Contraindicado em qualquer trimestre (fetotoxicidade: oligodrâmnio, disfunção renal fetal)."},
+{cat:"contra",q:"DRC é contraindicação ao IECA?",a:"Não. Frequentemente é indicação — exige vigilância de creatinina e K⁺."},
+{cat:"contra",q:"Contraindicações fortes ao IECA",a:"Gestação, angioedema prévio por IECA, hiperK grave, uso simultâneo com ARNI."},
+{cat:"contra",q:"Estenose bilateral de artérias renais e IECA",a:"Situação de cautela/investigação — risco de LRA."},
+{cat:"interacoes",q:"IECA + AINE",a:"Risco de lesão renal e ↓ efeito anti-hipertensivo."},
+{cat:"interacoes",q:"IECA + lítio",a:"Pode ↑ concentrações e toxicidade do lítio."},
+{cat:"interacoes",q:"IECA + trimetoprim",a:"Pode elevar o potássio em suscetíveis."},
+{cat:"interacoes",q:"Duplo bloqueio IECA + BRA",a:"Não usar de rotina: mais hiperK, hipotensão e LRA, sem ganho líquido."},
+{cat:"interacoes",q:"IECA + ARNI",a:"Nunca simultâneos. Respeitar o washout da bula/diretriz (risco de angioedema)."},
+{cat:"farmaco",q:"Captopril: dose e frequência (HAS 2025)",a:"25–150 mg/dia, 2 a 3× ao dia."},
+{cat:"farmaco",q:"Enalapril: forma e dose",a:"Pró-fármaco (→ enalaprilato); 5–40 mg/dia, 1–2×."},
+{cat:"farmaco",q:"Qual IECA é ativo, não pró-fármaco?",a:"Lisinopril (10–40 mg/dia, 1×)."},
+{cat:"farmaco",q:"Ramipril: dose e evidência",a:"2,5–20 mg/dia, 1–2×; evidência CV (HOPE) e pós-IAM (AIRE)."},
+{cat:"farmaco",q:"Perindopril: dose e observação",a:"4–16 mg/dia, 1×; nos estudos frequentemente com indapamida."},
+{cat:"farmaco",q:"Particularidade do captopril (sulfidrila)",a:"Associação com disgeusia e rash."},
+{cat:"farmaco",q:"Existe um 'melhor IECA' universal?",a:"Não. Escolha por evidência na condição, adesão, função renal, custo e tolerabilidade."},
+{cat:"evidencias",q:"Trio de estudos pós-IAM/disfunção VE",a:"SAVE (captopril), AIRE (ramipril), TRACE (trandolapril)."},
+{cat:"evidencias",q:"HOPE está associado a…",a:"Ramipril em pacientes de alto risco CV."},
+{cat:"evidencias",q:"EUROPA está associado a…",a:"Perindopril na doença coronariana estável."},
+{cat:"evidencias",q:"PROGRESS/ADVANCE: leitura crítica",a:"Estratégias com perindopril ± indapamida — efeito da combinação."},
+{cat:"evidencias",q:"'Sem diferença significativa' IECA×BRA significa?",a:"Ausência de superioridade demonstrada ≠ equivalência provada."},
+{cat:"evidencias",q:"IECA vs BRA: tolerabilidade",a:"BRA tende a causar menos tosse e menos angioedema."},
+{cat:"pegadinhas",q:"IECA bloqueia AT1?",a:"Não — isso é o BRA."},
+{cat:"pegadinhas",q:"IECA é obrigatório em todo diabético?",a:"Não — o benefício renal mora na albuminúria."},
+{cat:"frases",q:"Frase de ouro (creatinina)",a:"A creatinina pode subir porque a pressão intraglomerular caiu, não porque o rim foi envenenado."},
+{cat:"frases",q:"Frase de ouro (bradicinina)",a:"Tosse é a voz da bradicinina; angioedema é seu alarme de incêndio."},
+{cat:"frases",q:"Frase de ouro (DRC)",a:"DRC não proíbe IECA. DRC exige vigilância."},
+{cat:"frases",q:"Frase de ouro (via aérea)",a:"No angioedema por IECA, a via aérea vale mais que qualquer ampola."}
+];
+
+/* ---- MINI_DECISOES (>=20) ---- */
+const MINI_DECISOES = [
+{cen:"Creatinina ↑ 18%, K⁺ estável, PA controlada, assintomático.",op:["Suspender IECA","Observar e reavaliar"],c:1,fb:"Elevação esperada e tolerável. Observe a tendência — não suspenda por reflexo."},
+{cen:"Creatinina ↑ 45% em 5 dias, oligúria, hipotenso.",op:["Manter e reavaliar em 1 mês","Suspender e investigar"],c:1,fb:"Elevação marcante + instabilidade → suspender e investigar (volume, AINE, estenose)."},
+{cen:"Tosse seca há 3 semanas em enalapril, sem outra causa aparente, incomodando muito.",op:["Antitussígeno e manter","Trocar por BRA"],c:1,fb:"Tosse relevante e provável do IECA → BRA (menos tosse)."},
+{cen:"Tosse leve há 2 dias, resfriado evidente, febre.",op:["Suspender IECA já","Tratar o resfriado e reavaliar"],c:1,fb:"Diferencial primeiro — nem toda tosse é do IECA."},
+{cen:"Gestante de 8 semanas em uso de ramipril.",op:["Reduzir dose","Suspender e trocar"],c:1,fb:"Contraindicado em qualquer trimestre — suspender."},
+{cen:"K⁺ = 5,4 em DRC, IECA recém-iniciado, sem AINE/poupador.",op:["Suspender definitivamente","Revisar dieta/fármacos e monitorar"],c:1,fb:"Hipercalemia leve — investigar dieta (sal light), reavaliar; nem sempre suspende."},
+{cen:"K⁺ = 6,6 com alterações no ECG.",op:["Apenas repetir o exame amanhã","Tratar hipercalemia e revisar SRAA/AINE/poupador"],c:1,fb:"Hipercalemia grave com ECG → conduta imediata."},
+{cen:"Paciente com angioedema de língua há 30 min, voz abafada.",op:["Anti-histamínico e observar","Priorizar via aérea e suspender IECA"],c:1,fb:"Via aérea primeiro. Mecanismo bradicinérgico — não conte com anti-histamínico."},
+{cen:"ICFEr estável em enalapril; equipe quer iniciar sacubitril/valsartana.",op:["Iniciar mantendo o enalapril","Suspender IECA e respeitar o washout"],c:1,fb:"Nunca simultâneos. Washout antes do ARNI."},
+{cen:"HAS não controlada em monoterapia com IECA, sem efeitos adversos.",op:["Trocar a classe","Associar BCC ou tiazídico"],c:1,fb:"Combinação preferível a trocar — IECA + BCC/tiazídico é sinérgico."},
+{cen:"Diabético sem albuminúria, PA 150/95, sem outra indicação específica.",op:["IECA obrigatório","Escolher pelo risco global"],c:1,fb:"Sem albuminúria não há indicação automática de IECA."},
+{cen:"Diabético com RAC elevado e HAS.",op:["Evitar bloqueio do SRAA","Preferir bloqueio do SRAA"],c:1,fb:"Albuminúria favorece IECA/BRA (↓ pressão intraglomerular)."},
+{cen:"Idoso frágil, PA 138/82, em furosemida, vai iniciar IECA.",op:["Dose plena","Dose baixa + reavaliar"],c:1,fb:"Risco de hipotensão de 1ª dose/LRA — comece baixo."},
+{cen:"Paciente com estenose bilateral conhecida das artérias renais.",op:["IECA como 1ª escolha","Evitar/investigar antes"],c:1,fb:"Cautela: risco de LRA — não é a 1ª escolha nesse cenário."},
+{cen:"Antecedente de angioedema por captopril; precisa de anti-hipertensivo.",op:["Tentar enalapril","Evitar toda a classe IECA"],c:1,fb:"É efeito de classe — não reexpor a IECA."},
+{cen:"Paciente em IECA com desidratação por gastroenterite e uso de ibuprofeno.",op:["Manter tudo","Segurar IECA/AINE e reidratar"],c:1,fb:"Tríplice + hipovolemia = LRA. Corrija volume e reveja AINE."},
+{cen:"Tosse atribuída ao IECA persiste 2 semanas após suspensão.",op:["Descartar IECA como causa de imediato","Aguardar — pode não ser imediata"],c:1,fb:"A resolução nem sempre é imediata; reavaliar diferenciais."},
+{cen:"HAS + coronariopatia estável, boa tolerância a IECA.",op:["Suspender por segurança","Manter — há benefício CV"],c:1,fb:"Há racional de proteção CV (ex.: EUROPA/perindopril)."},
+{cen:"Paciente pergunta se pode usar 'sal light' porque toma IECA.",op:["Liberar sem ressalvas","Alertar sobre potássio"],c:1,fb:"Substituto do sal tem KCl → risco de hipercalemia."},
+{cen:"IECA + espironolactona na IC, K⁺ = 5,1 estável, função renal ok.",op:["Suspender a associação","Manter com monitorização"],c:1,fb:"A associação pode ser usada na IC/DRC com proteinúria — com vigilância do K⁺."},
+{cen:"Creatinina basal não coletada, paciente inicia IECA por conta própria.",op:["Seguir sem exames","Obter creatinina e K⁺ e planejar reavaliação"],c:1,fb:"Basais são essenciais para interpretar a variação depois."}
+];
+
+/* ---- CASOS_CLINICOS (10) ---- */
+const CASOS = [
+{tit:"HAS recém-diagnosticada, sem comorbidades",vin:"Homem, 48 anos, PA 152/96 confirmada, exame e exames básicos normais.",
+ q1:"Papel do IECA aqui?",d1:["1ª linha, isolado ou combinado","Contraindicado","Só após falhar tudo"],c1:0,
+ info:"Após semanas, PA ainda 148/92 em monoterapia bem tolerada.",
+ q2:"Próximo passo?",d2:["Trocar a classe","Associar BCC ou tiazídico"],c2:1,
+ disc:"IECA é 1ª linha; a combinação (com BCC ou tiazídico/tiazídico-like) costuma superar a troca.",mem:"Combinar > trocar quando bem tolerado."},
+{tit:"Diabetes com albuminúria",vin:"Mulher, 60 anos, DM2, HAS, RAC elevado, TFGe 62.",
+ q1:"Classe preferida?",d1:["Bloqueio do SRAA (IECA/BRA)","BCC isolado","Evitar SRAA"],c1:0,
+ info:"Inicia enalapril; após 2 semanas, creatinina sobe ~15% e estabiliza.",
+ q2:"Conduta?",d2:["Suspender","Manter e monitorar"],c2:1,
+ disc:"Albuminúria favorece o bloqueio do SRAA; ↑ leve e estável da creatinina é esperada.",mem:"Albuminúria puxa o IECA; ↑ creatinina leve não assusta."},
+{tit:"DRC com aumento de creatinina após início",vin:"Homem, 67 anos, DRC estágio 3, inicia IECA; creatinina sobe 22%, K⁺ 5,0, PA ok, assintomático.",
+ q1:"Interpretação?",d1:["Nefrotoxicidade — suspender","Alteração hemodinâmica esperada"],c1:1,
+ info:"Nova dosagem em 1–2 semanas: creatinina estável.",
+ q2:"Conduta?",d2:["Suspender mesmo assim","Manter com vigilância"],c2:1,
+ disc:"Até ~30% pode ser aceitável se estabiliza e o contexto é adequado.",mem:"Estabilizou e ≤~30% → seguir com vigilância."},
+{tit:"Tríplice nefrotóxica",vin:"Idoso, diarreia há 3 dias, usa enalapril + furosemida + ibuprofeno, agora oligúrico com ↑ creatinina.",
+ q1:"Mecanismo?",d1:["Nefrite intersticial alérgica","LRA hemodinâmica pela tríplice + hipovolemia"],c1:1,
+ info:"Está hipotenso e desidratado.",
+ q2:"Conduta imediata?",d2:["Aumentar o IECA","Segurar IECA/AINE e reidratar"],c2:1,
+ disc:"Diurético + SRAA + AINE em hipovolemia derruba a pressão de filtração.",mem:"AINE fecha a aferente; IECA abre a eferente; volume baixo fecha a conta."},
+{tit:"Tosse seca persistente",vin:"Mulher, 55 anos, em enalapril há 6 semanas, tosse seca incômoda, sem febre, sem secreção, sem outra causa.",
+ q1:"Primeiro passo?",d1:["Suspender já e assumir causa","Excluir diferenciais e avaliar relação temporal"],c1:1,
+ info:"Diferenciais afastados; tosse mantém e atrapalha o sono.",
+ q2:"Conduta?",d2:["Antitussígeno e manter","Trocar por BRA"],c2:1,
+ disc:"Tosse bradicinérgica, efeito de classe; BRA causa menos tosse.",mem:"Tosse relevante do IECA → BRA."},
+{tit:"Angioedema tardio",vin:"Homem afrodescendente, 58 anos, em enalapril há meses, chega com edema de língua e voz abafada.",
+ q1:"Prioridade?",d1:["Anti-histamínico venoso","Proteção da via aérea + suspender IECA"],c1:1,
+ info:"Estridor incipiente, saturação caindo.",
+ q2:"Racional terapêutico?",d2:["Confiar na adrenalina isolada","Preparar via aérea difícil e terapia conforme protocolo"],c2:1,
+ disc:"Bradicinérgico; pode ser tardio; via aérea é prioridade. Não reintroduzir IECA depois.",mem:"Via aérea primeiro; não reexpor."},
+{tit:"Gestante em uso de IECA",vin:"Mulher, 29 anos, 9 semanas de gestação, em ramipril para HAS.",
+ q1:"Conduta?",d1:["Manter em dose baixa","Suspender e trocar por opção compatível"],c1:1,
+ info:"Pergunta se pode manter até o 2º trimestre.",
+ q2:"Resposta correta?",d2:["Seguro após o 1º trimestre","Sem segurança em nenhum trimestre"],c2:1,
+ disc:"Fetotoxicidade (oligodrâmnio, disfunção renal fetal, alterações de ossificação).",mem:"IECA não atravessa a ponte da gestação."},
+{tit:"ICFEr candidato a ARNI",vin:"Homem, 64 anos, ICFEr sintomática, estável em enalapril; equipe deseja otimizar para sacubitril/valsartana.",
+ q1:"Como transicionar?",d1:["Iniciar ARNI mantendo o IECA","Suspender IECA e respeitar washout"],c1:1,
+ info:"Pergunta o motivo do intervalo.",
+ q2:"Justificativa?",d2:["Evitar hipocalemia","Reduzir risco de angioedema"],c2:1,
+ disc:"Somatório sobre a bradicinina eleva risco de angioedema; jamais simultâneos.",mem:"IECA + ARNI nunca juntos; respeite o washout."},
+{tit:"Hipercalemia com associação",vin:"Homem, 70 anos, IC, em enalapril + espironolactona, K⁺ = 5,9, sem ECG alterado.",
+ q1:"Conduta inicial?",d1:["Ignorar, pois 'IECA sempre pode'","Confirmar K⁺ e revisar dieta/fármacos"],c1:1,
+ info:"Usa substituto do sal 'light' e AINE ocasional.",
+ q2:"Fatores em jogo?",d2:["Apenas a dose do IECA","Sal light + poupador + AINE somando K⁺"],c2:1,
+ disc:"Vários somadores de potássio; estratificar e ajustar conforme nível/ECG/contexto.",mem:"Some os fatores de K⁺ antes de decidir."},
+{tit:"Pós-IAM com disfunção ventricular",vin:"Homem, 62 anos, IAM anterior extenso, FE 35%, estável.",
+ q1:"Indicação de IECA?",d1:["Sim, com benefício prognóstico","Não, aguardar 6 meses"],c1:0,
+ info:"Sem hipotensão, função renal e K⁺ aceitáveis.",
+ q2:"Base de evidência?",d2:["LIFE/RENAAL","SAVE/AIRE/TRACE"],c2:1,
+ disc:"Disfunção VE pós-IAM tem benefício com IECA (trio clássico).",mem:"Pós-IAM com disfunção VE → IECA (SAVE/AIRE/TRACE)."}
+];
+
+/* ---- PEGADINHAS (>=20) ---- */
+const PEGADINHAS = [
+{af:"O IECA bloqueia o receptor AT1.",v:false,cor:"Quem bloqueia AT1 é o BRA. O IECA reduz a produção de Ang II.",fix:"IECA = menos chave; BRA = fecha a fechadura AT1."},
+{af:"A ECA existe apenas no pulmão.",v:false,cor:"É abundante no endotélio pulmonar, mas distribuída em vários tecidos.",fix:"Forja é imagem, não anatomia literal."},
+{af:"Qualquer aumento de creatinina exige suspender o IECA.",v:false,cor:"Alta de até ~30% que estabiliza pode ser aceitável no contexto certo.",fix:"↑ creatinina leve e estável = hemodinâmica esperada."},
+{af:"A tosse do IECA é uma reação alérgica.",v:false,cor:"É bradicinérgica (bradicinina + substância P), não alérgica.",fix:"Tosse = voz da bradicinina."},
+{af:"O angioedema por IECA sempre surge nos primeiros dias.",v:false,cor:"É mais comum no 1º mês, mas pode ocorrer mesmo após uso prolongado.",fix:"Bradicinérgico pode ser tardio."},
+{af:"Usar IECA + BRA juntos protege mais o rim.",v:false,cor:"Duplo bloqueio de rotina aumenta hiperK/hipotensão/LRA sem ganho líquido.",fix:"Mais bloqueio ≠ mais proteção."},
+{af:"Captopril deve ser usado para qualquer PA elevada.",v:false,cor:"Sem emergência hipertensiva, não há papel de captopril de resgate.",fix:"PA alta assintomática não é emergência."},
+{af:"A ACE2 é bloqueada pelo IECA.",v:false,cor:"ACE2 é outra enzima, do braço contrarregulatório; não é inibida diretamente.",fix:"IECA ≠ inibidor de ACE2."},
+{af:"IECA é obrigatório em todo diabético.",v:false,cor:"O benefício renal concentra-se em quem tem albuminúria/DRC/alto risco.",fix:"Albuminúria, não o diagnóstico."},
+{af:"Anti-histamínico resolve todo angioedema por IECA.",v:false,cor:"O mecanismo é bradicinérgico; costuma responder pouco. Via aérea primeiro.",fix:"Histamina não manda aqui."},
+{af:"A renina converte Ang I em Ang II.",v:false,cor:"A renina cliva o angiotensinogênio → Ang I. Quem faz Ang II é a ECA.",fix:"Renina = angiotensinogênio → Ang I."},
+{af:"DRC é contraindicação absoluta ao IECA.",v:false,cor:"Frequentemente é indicação; exige monitorização de creatinina e K⁺.",fix:"DRC exige vigilância, não proibição."},
+{af:"O IECA causa taquicardia reflexa importante.",v:false,cor:"Reduz a PA sem taquicardia reflexa relevante.",fix:"Sem taquicardia reflexa marcante."},
+{af:"A Ang II é apenas prejudicial.",v:false,cor:"Na hipovolemia/hipotensão aguda preserva pressão e perfusão.",fix:"Aguda salva; crônica adoece."},
+{af:"O IECA contrai a arteríola eferente.",v:false,cor:"Ele dilata a eferente (↓ pressão intraglomerular).",fix:"Ang II fecha; IECA abre a eferente."},
+{af:"A hipercalemia do IECA vem do aumento da aldosterona.",v:false,cor:"Vem da REDUÇÃO da aldosterona (↓ secreção distal de K⁺).",fix:"↓ aldosterona → ↑ K⁺."},
+{af:"Pode-se iniciar ARNI logo após suspender o IECA, sem intervalo.",v:false,cor:"É preciso respeitar o washout da bula/diretriz (risco de angioedema).",fix:"Washout antes do ARNI."},
+{af:"Lisinopril é um pró-fármaco.",v:false,cor:"É um IECA ativo, não depende de conversão hepática.",fix:"Lisinopril já é ativo."},
+{af:"'Sem diferença significativa' prova que IECA e BRA são idênticos.",v:false,cor:"Ausência de superioridade não é equivalência demonstrada.",fix:"Não confunda 'sem diferença' com 'igual'."},
+{af:"O 'sal light' é sempre seguro para quem usa IECA.",v:false,cor:"Muitos contêm cloreto de potássio → risco de hipercalemia.",fix:"Sal light ≈ KCl."},
+{af:"O benefício de PROGRESS/ADVANCE é atribuível só ao IECA.",v:false,cor:"São estratégias com perindopril ± indapamida — efeito da combinação.",fix:"Combinação ≠ efeito isolado."},
+{af:"Após angioedema por um IECA, pode-se tentar outro IECA.",v:false,cor:"É efeito de classe (bradicinérgico) — não reexpor.",fix:"Angioedema por IECA fecha a classe."}
+];
+
+/* ---- FRASES DE OURO ---- */
+const FRASES_OURO = [
+"O IECA não bloqueia a porta AT1. Ele reduz a fabricação da chave.",
+"A creatinina pode subir porque a pressão intraglomerular caiu, não porque o rim foi envenenado.",
+"O mesmo mecanismo que protege o glomérulo pode reduzir inicialmente sua filtração.",
+"Tosse é a voz da bradicinina. Angioedema é seu alarme de incêndio.",
+"DRC não proíbe IECA. DRC exige vigilância.",
+"Mais bloqueio do SRAA pode significar menos rim e mais potássio.",
+"No angioedema por IECA, a via aérea vale mais que qualquer ampola."
+];
+
+/* ---- TESTE DA MEMÓRIA ---- */
+const MEM_TEST = [
+{q:"Onde a renina atua?",a:"No angiotensinogênio (fígado) → Angiotensina I."},
+{q:"Onde a ECA atua?",a:"Converte Ang I → Ang II e degrada bradicinina (vários tecidos, não só pulmão)."},
+{q:"O que acontece com a bradicinina sob IECA?",a:"Sobe (menos degradação) → vasodilatação, mas tosse/angioedema."},
+{q:"Por que surge tosse?",a:"Acúmulo de bradicinina e substância P."},
+{q:"Por que surge angioedema?",a:"Mecanismo bradicinérgico (não histaminérgico)."},
+{q:"Por que o potássio sobe?",a:"↓ Ang II → ↓ aldosterona → ↓ secreção distal de K⁺."},
+{q:"Por que a creatinina pode subir?",a:"Dilatação da eferente → ↓ pressão intraglomerular → ↓ TFG inicial."},
+{q:"Por que a proteinúria cai?",a:"Pela redução da pressão intraglomerular."},
+{q:"Qual arteríola dilata?",a:"A eferente."},
+{q:"Quando NÃO usar IECA?",a:"Gestação, angioedema prévio por IECA, hiperK grave, junto com ARNI."},
+{q:"Quando suspeitar de doença renovascular?",a:"↑ creatinina marcante após iniciar o IECA."},
+{q:"Por que não combinar IECA com BRA?",a:"Mais hiperK/hipotensão/LRA, sem ganho líquido."},
+{q:"Por que não combinar IECA com ARNI?",a:"Risco de angioedema (soma sobre a bradicinina)."},
+{q:"Em qual diabético o benefício renal é mais evidente?",a:"No que tem albuminúria/DRC/alto risco."},
+{q:"Como interpretar ↑ inicial da creatinina?",a:"Contextualizar: até ~30% e estável costuma ser aceitável; investigar se marcante."}
+];
+
+/* ============================================================
+   ESTADO GLOBAL + LOCALSTORAGE
+============================================================ */
+const LS_KEY = 'atlasHAS_b2t4_cap5a_ieca_v1';
+const state = {
+  mode:'livre', font:1, contrast:false, motion:true,
+  quizAns:{}, flashRate:{}, casesDone:{}, roomsVisited:{}, spaced:{}, section:''
+};
+function save(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
+function load(){ try{ const r=localStorage.getItem(LS_KEY); if(r) Object.assign(state, JSON.parse(r)); }catch(e){} }
+load();
+
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function safeScroll(el){ try{ if(el && el.scrollIntoView) el.scrollIntoView({behavior:state && state.motion?'smooth':'auto',block:'nearest'}); }catch(e){} }
+
+/* ============================================================
+   PREFERÊNCIAS (fonte, contraste, movimento, modo)
+============================================================ */
+function applyPrefs(){
+  document.documentElement.style.setProperty('--fs', state.font);
+  document.body.classList.toggle('hi-contrast', state.contrast);
+  document.body.classList.toggle('no-motion', !state.motion);
+  document.body.dataset.mode = state.mode;
+  $$('[data-mode-btn]').forEach(b=>{
+    const on = b.dataset.modeBtn===state.mode;
+    b.classList.toggle('on', on);
+    b.classList.remove('mode-rev','mode-prova');
+    if(on && state.mode==='revisao') b.classList.add('mode-rev');
+    if(on && state.mode==='prova') b.classList.add('mode-prova');
+  });
+}
+$$('[data-mode-btn]').forEach(b=>b.addEventListener('click',()=>{
+  state.mode = (state.mode===b.dataset.modeBtn)?'livre':b.dataset.modeBtn;
+  applyPrefs(); save();
+}));
+$('#fontBtn').addEventListener('click',()=>{ state.font = state.font>=1.3?1:+(state.font+0.1).toFixed(2); applyPrefs(); save(); });
+$('#contrastBtn').addEventListener('click',()=>{ state.contrast=!state.contrast; applyPrefs(); save(); });
+$('#motionBtn').addEventListener('click',()=>{ state.motion=!state.motion; applyPrefs(); save(); });
+$('#resetBtn').addEventListener('click',()=>{
+  if(confirm('Apagar todo o seu progresso deste capítulo neste aparelho?')){
+    localStorage.removeItem(LS_KEY); location.reload();
+  }
+});
+applyPrefs();
+
+/* ============================================================
+   DRAWER / NAV
+============================================================ */
+const drawer=$('#drawer'), scrim=$('#scrim');
+function openDrawer(){ drawer.classList.add('open'); scrim.classList.add('on'); }
+function closeDrawer(){ drawer.classList.remove('open'); scrim.classList.remove('on'); }
+$('#menuBtn').addEventListener('click',openDrawer);
+$('#drawerClose').addEventListener('click',closeDrawer);
+scrim.addEventListener('click',closeDrawer);
+$$('#drawer a').forEach(a=>a.addEventListener('click',closeDrawer));
+
+/* progresso por scroll */
+const progFill=$('#progFill');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+  progFill.style.width=(max>0?(h.scrollTop/max*100):0)+'%';
+},{passive:true});
+
+/* reveal buttons */
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.reveal-btn'); if(!b) return;
+  const el=$('#'+b.dataset.reveal); if(el){ el.classList.toggle('on'); b.textContent = el.classList.contains('on')?'Ocultar resposta':'Ver resposta'; }
+});
+
+/* tabs genéricas */
+$$('.tabs').forEach(group=>{
+  if(group.id) return; // grupos com id são controlados por JS específico
+  group.addEventListener('click',e=>{
+    const t=e.target.closest('.tab'); if(!t) return;
+    const pane=t.dataset.tab; if(!pane) return;
+    $$('.tab',group).forEach(x=>x.classList.remove('on')); t.classList.add('on');
+    const sec=group.closest('section');
+    $$('.tabpane',sec).forEach(p=>p.classList.toggle('on', p.id===pane));
+  });
+});
+
+/* acordeões */
+$$('.acc>button').forEach(btn=>btn.addEventListener('click',()=>{
+  const acc=btn.parentElement, body=acc.querySelector('.body');
+  const open=acc.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+  body.style.maxHeight = open ? body.scrollHeight+'px' : 0;
+}));
+
+/* ============================================================
+   ABERTURA CINEMATOGRÁFICA
+============================================================ */
+const CINE_FRAMES=[
+  {cap:'A perfusão renal cai. O <b>rim</b> percebe o perigo…', d:'kidney'},
+  {cap:'O <b>General Renina</b> desperta e cliva o angiotensinogênio.', d:'renina'},
+  {cap:'A <b>Angiotensina I</b> marcha rumo à Forja da ECA…', d:'ang1'},
+  {cap:'Na forja, nasce a <b>Angiotensina II</b> — poderosa.', d:'ang2'},
+  {cap:'Surgem os <b>Cinco Cavaleiros</b>: vaso, aldosterona, sede, fibrose, simpático.', d:'knights'},
+  {cap:'Então entra o <b>IECA</b>. Ele não mata a Ang II — <b>destrói a forja</b>.', d:'ieca'},
+  {cap:'E a <b>Guardiã Bradicinina</b> é libertada. Começa a história.', d:'brad'}
+];
+let cineIdx=0, cineTimer=null;
+const cine=$('#cine'), cineCap=$('#cineCap'), cineDots=$('#cineDots'), cineSvg=$('#cineSvg');
+CINE_FRAMES.forEach((_,i)=>{const d=document.createElement('i'); cineDots.appendChild(d);});
+function cineDraw(kind){
+  const P={kidney:'#c46',renina:'#1e8f5e',ang1:'#8fd0e6',ang2:'#c0392b',knights:'#d98a04',ieca:'#1282A2',brad:'#2ecc71'};
+  const col=P[kind]||'#8fd0e6';
+  cineSvg.innerHTML=`
+    <defs><radialGradient id="cg"><stop offset="0" stop-color="${col}" stop-opacity=".9"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></radialGradient></defs>
+    <rect x="0" y="0" width="400" height="260" fill="none"/>
+    <circle cx="200" cy="130" r="70" fill="url(#cg)"><animate attributeName="r" values="50;78;50" dur="2.4s" repeatCount="indefinite"/></circle>
+    <circle cx="200" cy="130" r="30" fill="${col}" opacity=".85"/>
+    <text x="200" y="137" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#08192b" font-weight="600">${kind.toUpperCase()}</text>`;
+}
+function cineShow(i){
+  cineIdx=i;
+  const f=CINE_FRAMES[i]; cineCap.innerHTML=f.cap; cineDraw(f.d);
+  $$('#cineDots i').forEach((d,k)=>d.classList.toggle('on',k===i));
+}
+function cineStart(){
+  cine.classList.add('on'); cineShow(0);
+  if(!state.motion){ return; } // sem auto-avanço se movimento reduzido
+  clearInterval(cineTimer);
+  cineTimer=setInterval(()=>{
+    if(cineIdx>=CINE_FRAMES.length-1){ clearInterval(cineTimer); return; }
+    cineShow(cineIdx+1);
+  }, 2600);
+}
+function cineEnd(){ cine.classList.remove('on'); clearInterval(cineTimer); }
+$('#startCine').addEventListener('click',cineStart);
+$('#cineSkip').addEventListener('click',cineEnd);
+cineDots.addEventListener('click',()=>{ if(cineIdx<CINE_FRAMES.length-1) cineShow(cineIdx+1); else cineEnd(); });
+cineSvg.addEventListener('click',()=>{ if(cineIdx<CINE_FRAMES.length-1) cineShow(cineIdx+1); else cineEnd(); });
+
+/* ============================================================
+   MAPA SRAA (SVG interativo)
+============================================================ */
+(function(){
+  const svg=$('#sraaSvg'); if(!svg) return;
+  const msg=$('#sraaMsg');
+  const nodes={
+    agt:{x:300,y:30,w:150,t:'Angiotensinogênio',sub:'(fígado)',c:'#3a5674',step:0},
+    ang1:{x:315,y:120,w:120,t:'Angiotensina I',c:'#1282A2',step:1},
+    ang2:{x:315,y:210,w:120,t:'Angiotensina II',c:'#c0392b',step:2},
+    at1:{x:200,y:300,w:110,t:'Receptor AT1',c:'#c0392b',step:3},
+    at2:{x:430,y:300,w:110,t:'Receptor AT2',c:'#1e8f5e',step:3},
+    aldo:{x:315,y:300,w:100,t:'Aldosterona',c:'#d98a04',step:3},
+    brad:{x:560,y:120,w:120,t:'Bradicinina',c:'#1282A2',step:2},
+    frag:{x:560,y:210,w:120,t:'Fragmentos',c:'#8aa',step:2},
+    ace2:{x:560,y:30,w:120,t:'ACE2·Ang(1-7)',c:'#1e8f5e',step:2},
+    mas:{x:560,y:300,w:110,t:'Receptor MAS',c:'#1e8f5e',step:3},
+    effect:{x:120,y:390,w:200,t:'Vaso · Na⁺/H₂O · remodel.',c:'#0f2942',step:4}
+  };
+  let step=0, drugs={};
+  function draw(){
+    let s='';
+    // enzimas / setas
+    const arrow=(x1,y1,x2,y2,lbl,col,vis)=>`<g class="sraa-block ${vis?'on':''}"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="2.5" marker-end="url(#ar)"/>${lbl?`<rect x="${(x1+x2)/2-22}" y="${(y1+y2)/2-11}" width="44" height="18" rx="5" fill="#fff" stroke="${col}"/><text x="${(x1+x2)/2}" y="${(y1+y2)/2+2}" text-anchor="middle" class="sraa-small" fill="${col}">${lbl}</text>`:''}</g>`;
+    s+=`<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#3a5674"/></marker></defs>`;
+    s+=arrow(375,58,375,118,'renina','#1e8f5e',step>=1);
+    s+=arrow(375,148,375,208,'ECA','#d98a04',step>=2);
+    s+=arrow(360,238,250,298,'','#c0392b',step>=3);
+    s+=arrow(375,238,375,298,'','#d98a04',step>=3);
+    s+=arrow(390,238,470,298,'','#1e8f5e',step>=3);
+    s+=arrow(620,148,620,208,'ECA','#d98a04',step>=2);
+    s+=arrow(255,330,200,388,'','#0f2942',step>=4);
+    // eixo ACE2
+    s+=arrow(435,225,555,60,'ACE2','#1e8f5e',step>=3);
+    s+=arrow(620,58,620,290,'','#1e8f5e',step>=3);
+    // pontos de bloqueio (drogas)
+    const block=(x,y,lbl)=>`<g class="sraa-block on"><circle cx="${x}" cy="${y}" r="12" fill="#fff" stroke="#c0392b" stroke-width="2.5"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="13" fill="#c0392b" font-weight="900">✕</text><text x="${x+16}" y="${y+4}" class="sraa-small" fill="#c0392b">${lbl}</text></g>`;
+    if(drugs.renina) s+=block(375,88,'inib. renina');
+    if(drugs.ieca) s+=block(375,178,'IECA');
+    if(drugs.bra) s+=block(300,270,'BRA→AT1');
+    if(drugs.aldo) s+=block(355,285,'antag. aldo');
+    // nós
+    for(const k in nodes){
+      const n=nodes[k], vis=step>=n.step;
+      s+=`<g class="sraa-node ${vis?'':'hidden'}">
+        <rect x="${n.x-n.w/2}" y="${n.y}" width="${n.w}" height="40" rx="9" fill="${n.c}"/>
+        <text x="${n.x}" y="${n.y+(n.sub?18:25)}" text-anchor="middle" class="sraa-lbl">${n.t}</text>
+        ${n.sub?`<text x="${n.x}" y="${n.y+32}" text-anchor="middle" class="sraa-lbl" font-size="10" opacity=".85">${n.sub}</text>`:''}
+      </g>`;
+    }
+    svg.setAttribute('viewBox','0 0 720 445');
+    svg.innerHTML=s;
+  }
+  function setMsg(){
+    const m=['Toque em “Avançar etapa” para construir a cascata.',
+      'Renina cliva o angiotensinogênio → Angiotensina I.',
+      'A ECA gera Ang II — e degrada a bradicinina (braço à direita).',
+      'Ang II age em AT1 (pró-dano), AT2 (protetor) e estimula aldosterona; ACE2 leva ao eixo MAS.',
+      'Efeitos AT1: vasoconstrição, retenção de Na⁺/H₂O e remodelamento.'];
+    let t=m[Math.min(step,4)];
+    const on=Object.keys(drugs).filter(k=>drugs[k]);
+    if(on.length){
+      const map={ieca:'IECA bloqueia a ECA: ↓ Ang II e ↑ bradicinina.',bra:'BRA bloqueia o AT1 (compare com o IECA — detalhes no Cap. 5B).',renina:'Inibidor de renina bloqueia lá no topo do eixo.',aldo:'Antagonista de aldosterona atua no efeito final (retenção de Na⁺/K⁺).'};
+      t += ' ' + on.map(k=>map[k]).join(' ');
+    }
+    msg.textContent=t;
+  }
+  $$('[data-sraa-step]').forEach(b=>b.addEventListener('click',()=>{ step=Math.min(step+1,4); draw(); setMsg(); }));
+  $$('[data-sraa-drug]').forEach(b=>b.addEventListener('click',()=>{
+    const d=b.dataset.sraaDrug; drugs[d]=!drugs[d]; b.classList.toggle('on',drugs[d]);
+    if(drugs[d]) step=Math.max(step, d==='renina'?1:(d==='aldo'?3:2));
+    draw(); setMsg();
+  }));
+  $$('[data-sraa-reset]').forEach(b=>b.addEventListener('click',()=>{ step=0; drugs={}; $$('[data-sraa-drug]').forEach(x=>x.classList.remove('on')); draw(); setMsg(); }));
+  draw(); setMsg();
+})();
+
+/* ============================================================
+   CINCO CAVALEIROS
+============================================================ */
+(function(){
+  const wrap=$('#knights'); if(!wrap) return;
+  CAVALEIROS.forEach((k,i)=>{
+    const el=document.createElement('div'); el.className='kn'; el.tabIndex=0;
+    el.innerHTML=`<div class="em">${k.em}</div><b>${k.nome}</b><span class="role">${k.role}</span>
+      <div class="more">
+        <div><b>Fisiologia:</b> ${k.fis}</div>
+        <div><b>Clínica:</b> ${k.clin}</div>
+        <div><b>Com o IECA:</b> ${k.med}</div>
+        <div class="rev-hide"><b>Recuperação:</b> ${k.q}<br><span class="mono small">→ ${k.a}</span></div>
+      </div>`;
+    const toggle=()=>el.classList.toggle('open');
+    el.addEventListener('click',toggle);
+    el.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();} });
+    wrap.appendChild(el);
+  });
+})();
+
+/* ============================================================
+   LAGO GLOMERULAR
+============================================================ */
+(function(){
+  const svg=$('#lagoSvg'); if(!svg) return;
+  const msg=$('#lagoMsg');
+  let f={angII:false,ieca:false,volume:false,aine:false,diur:false,estenose:false};
+  function calc(){
+    // base 50
+    let pig=50, tfg=50, prot=40, lra=15, aff=50, eff=50;
+    if(f.angII){ eff-=25; pig+=22; prot+=20; }         // Ang II fecha eferente
+    if(f.ieca){ eff+=28; pig-=24; prot-=22; }          // IECA abre eferente
+    if(f.volume){ pig-=12; tfg-=14; lra+=18; }
+    if(f.aine){ aff+=22; pig-=6; lra+=16; }            // AINE fecha aferente
+    if(f.diur){ pig-=8; lra+=10; }
+    if(f.estenose){ // com estenose, IECA derruba muito a filtração
+      if(f.ieca){ tfg-=30; lra+=35; pig-=14; }
+    }
+    tfg += (pig-50)*0.5;
+    if(f.ieca && !f.estenose) tfg-=8;
+    const clamp=v=>Math.max(4,Math.min(100,v));
+    return {pig:clamp(pig),tfg:clamp(tfg),prot:clamp(prot),lra:clamp(lra),aff:clamp(aff),eff:clamp(eff)};
+  }
+  function gauge(id,val,invGood){
+    const el=$(id); el.style.width=val+'%';
+    // cor: para PIG/prot/LRA alto=ruim; TFG alto=bom
+    let col='#1282A2';
+    if(invGood){ col = val>66?'#c0392b':val>40?'#d98a04':'#1e8f5e'; }
+    else { col = val<34?'#c0392b':val<55?'#d98a04':'#1e8f5e'; }
+    el.style.background=col;
+  }
+  function draw(){
+    const v=calc();
+    const affW=8+ (100-v.aff)/100*10;   // aferente mais estreita se contraída
+    const effW=8+ (100-v.eff)/100*10;
+    const lake= v.pig>66?'#c0392b': v.pig<40?'#1e8f5e':'#1282A2';
+    svg.innerHTML=`
+      <rect x="0" y="0" width="360" height="260" fill="none"/>
+      <text x="70" y="30" text-anchor="middle" class="sraa-small" fill="#3a5674">AFERENTE</text>
+      <text x="290" y="30" text-anchor="middle" class="sraa-small" fill="#3a5674">EFERENTE</text>
+      <path d="M20 60 Q 70 60 110 110" stroke="#c0392b" stroke-width="${affW}" fill="none" stroke-linecap="round"/>
+      <path d="M250 110 Q 290 60 340 60" stroke="#1282A2" stroke-width="${effW}" fill="none" stroke-linecap="round"/>
+      <ellipse cx="180" cy="140" rx="78" ry="52" fill="${lake}" opacity=".28" stroke="${lake}" stroke-width="2"/>
+      <ellipse cx="180" cy="140" rx="52" ry="34" fill="${lake}" opacity=".5"/>
+      <text x="180" y="145" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#0f2942" font-weight="600">GLOMÉRULO</text>
+      <text x="180" y="215" text-anchor="middle" class="sraa-small">Pressão intraglomerular: ${v.pig>66?'ALTA':v.pig<40?'baixa':'média'}</text>
+      ${f.estenose?'<text x="180" y="234" text-anchor="middle" class="sraa-small" fill="#c0392b">estenose bilateral ativa</text>':''}`;
+    gauge('#gPig',v.pig,true);
+    gauge('#gTfg',v.tfg,false);
+    gauge('#gProt',v.prot,true);
+    gauge('#gLra',v.lra,true);
+    // mensagem educativa
+    let t=[];
+    if(f.ieca && !f.estenose && !f.volume) t.push('A eferente abriu. A pressão glomerular caiu; a creatinina pode subir, mas a albuminúria tende a cair.');
+    if(f.ieca && f.estenose) t.push('Com estenose bilateral, o IECA remove o único suporte da filtração → queda acentuada da TFG e risco de LRA.');
+    if(f.aine && f.ieca && f.volume) t.push('Tríplice em ação: AINE fecha a aferente, IECA abre a eferente, hipovolemia baixa a entrada — pressão de filtração despenca.');
+    if(f.angII && !f.ieca) t.push('Ang II contrai a eferente: mantém a pressão de filtração, mas às custas de hiperpressão e proteinúria.');
+    msg.textContent = t.join(' ') || 'Ative os controles para ver a hemodinâmica glomerular mudar.';
+  }
+  $$('[data-lago]').forEach(b=>b.addEventListener('click',()=>{
+    const k=b.dataset.lago; f[k]=!f[k]; b.classList.toggle('on',f[k]); draw();
+  }));
+  $$('[data-lago-reset]').forEach(b=>b.addEventListener('click',()=>{
+    for(const k in f) f[k]=false; $$('[data-lago]').forEach(x=>x.classList.remove('on')); draw();
+  }));
+  draw();
+})();
+
+/* ============================================================
+   SIMULADOR DE PRESCRIÇÃO
+============================================================ */
+(function(){
+  const nav=$('#prescPatients'), stage=$('#prescStage'); if(!nav) return;
+  PRESC.forEach((p,i)=>{
+    const b=document.createElement('button'); b.className='tab'+(i===0?' on':''); b.textContent=p.nome; b.dataset.i=i;
+    nav.appendChild(b);
+  });
+  nav.className='tabs'; nav.style.marginTop='10px';
+  function render(i){
+    const p=PRESC[i];
+    stage.innerHTML=`<div class="card" style="background:#f7fbfc"><b>${p.nome}</b>
+      <div class="presc-opts">${p.opts.map((o,k)=>`<button class="opt" data-k="${k}"><span class="mk">${k+1}.</span>${o.t}</button>`).join('')}</div>
+      <div class="qexpl" id="prescFb"></div></div>`;
+    $$('.opt',stage).forEach(btn=>btn.addEventListener('click',()=>{
+      const o=p.opts[+btn.dataset.k];
+      $$('.opt',stage).forEach(x=>x.classList.remove('correct','wrong'));
+      btn.classList.add(o.ok?'correct':'wrong');
+      const fb=$('#prescFb'); fb.className='qexpl on';
+      fb.innerHTML=`<div class="e"><b>${o.ok?'✓ Conduta adequada':'✕ Cuidado'}:</b> ${o.fb}</div>`;
+    }));
+  }
+  nav.addEventListener('click',e=>{ const b=e.target.closest('.tab'); if(!b)return; $$('.tab',nav).forEach(x=>x.classList.remove('on')); b.classList.add('on'); render(+b.dataset.i); });
+  render(0);
+})();
+
+/* ============================================================
+   TABELA DE FÁRMACOS (cards filtráveis)
+============================================================ */
+(function(){
+  const cont=$('#farmacoCards'), filt=$('#farmacoFilters'); if(!cont) return;
+  function render(f){
+    cont.innerHTML=FARMACOS_IECA.filter(m=>f==='all'||m.tags.includes(f)).map(m=>`
+      <div class="card">
+        <div class="tag-row"><span class="pill blue">${m.nome}</span>${m.forma==='ativo'?'<span class="pill green">ativo</span>':'<span class="pill">pró-fármaco</span>'}</div>
+        <div class="drug-row"><span>Dose habitual</span><b>${m.dose}</b></div>
+        <div class="drug-row"><span>Tomadas/dia</span><b>${m.freq}</b></div>
+        <p class="small" style="margin:8px 0 0">${m.nota}</p>
+        <div class="callout amber" style="margin-top:8px;padding:8px 10px"><p style="font-size:.84rem"><b>Prova:</b> ${m.pega}</p></div>
+      </div>`).join('');
+  }
+  filt.addEventListener('click',e=>{ const t=e.target.closest('.tab'); if(!t)return; $$('.tab',filt).forEach(x=>x.classList.remove('on')); t.classList.add('on'); render(t.dataset.fil); });
+  render('all');
+})();
+
+/* ============================================================
+   GALERIA DOS ESCUDOS (estudos)
+============================================================ */
+(function(){
+  const grid=$('#shieldGrid'); if(!grid) return;
+  ESTUDOS.forEach(s=>{
+    const el=document.createElement('div'); el.className='card shield'; el.tabIndex=0;
+    el.innerHTML=`<div class="tag-row"><span class="pill">🛡️ ${s.nome}</span></div>
+      <b>${s.cenario}</b><span class="small">${s.drug}</span>
+      <div class="more"><p class="small"><b>População:</b> ${s.pop}</p><p class="small"><b>Leitura:</b> ${s.leitura}</p></div>`;
+    const t=()=>el.classList.toggle('open');
+    el.addEventListener('click',t); el.addEventListener('keydown',e=>{if(e.key==='Enter'){t();}});
+    grid.appendChild(el);
+  });
+})();
+
+/* ============================================================
+   PALÁCIO — SALAS
+============================================================ */
+(function(){
+  const rooms=$('#rooms'), panel=$('#roomPanel'), badgesEl=$('#badges'); if(!rooms) return;
+  const BADGES=[
+    {id:'s1',t:'Sentinela dos Rins'},{id:'s2',t:'Mestre da Forja'},{id:'s3',t:'Guardião do Trono'},
+    {id:'s4',t:'Cavaleiro-mor'},{id:'s5',t:'Mestre da Bradicinina'}
+  ];
+  SALAS.forEach(s=>{
+    const el=document.createElement('div'); el.className='room'+(state.roomsVisited[s.id]?' visited':''); el.tabIndex=0;
+    el.innerHTML=`<div class="em">${s.em}</div><b>${s.nome}</b><span class="mono small" style="color:#9ec7e0">${s.pill}</span>`;
+    const open=()=>{
+      panel.style.display='block';
+      panel.innerHTML=`<div class="tag-row"><span class="pill blue">${s.em} ${s.nome}</span><span class="pill">${s.pill}</span></div>${s.html}`;
+      state.roomsVisited[s.id]=true; el.classList.add('visited'); save(); renderBadges();
+      safeScroll(panel);
+    };
+    el.addEventListener('click',open); el.addEventListener('keydown',e=>{if(e.key==='Enter'){open();}});
+    rooms.appendChild(el);
+  });
+  function renderBadges(){
+    const all=BADGES.every(b=>state.roomsVisited[b.id]);
+    badgesEl.innerHTML=BADGES.map(b=>`<span class="badge ${state.roomsVisited[b.id]?'on':''}">🏅 ${b.t}</span>`).join('')
+      + (all?'<span class="badge on" style="border-color:var(--amber);color:var(--amber);background:var(--amber-soft)">👑 Senhor do Reino SRAA</span>':'');
+  }
+  renderBadges();
+})();
+
+/* ============================================================
+   ARENA TEC (quiz)
+============================================================ */
+(function(){
+  const stage=$('#quizStage'), filt=$('#quizFilters'), scoreEl=$('#quizScore'), countEl=$('#quizCount'); if(!stage) return;
+  const TEMAS=[['all','Todas'],['fisiologia','SRAA/fisio'],['mecanismo','Mecanismo'],['renal','Rim'],['diabetes','DM/albumin.'],['tosse','Tosse'],['angioedema','Angioedema'],['hiperk','HiperK'],['interacoes','Interações'],['indicacoes','Indicações'],['contra','Contra'],['farmaco','Fármaco'],['evidencias','Evidências']];
+  filt.innerHTML=TEMAS.map((t,i)=>`<button class="tab ${i===0?'on':''}" data-t="${t[0]}">${t[1]}</button>`).join('');
+  let list=QUESTOES_TEC.slice(), idx=0, filter='all';
+  function apply(){ list=QUESTOES_TEC.filter(q=>filter==='all'||q.tema===filter); idx=0; render(); }
+  function score(){
+    const ans=state.quizAns; let ok=0,tot=0;
+    QUESTOES_TEC.forEach((q,i)=>{ if(ans[i]!=null){tot++; if(ans[i]===q.c)ok++;} });
+    scoreEl.textContent=`Respondidas: ${tot}/${QUESTOES_TEC.length} · Acertos: ${ok}`;
+  }
+  function render(){
+    if(!list.length){ stage.innerHTML='<div class="card">Sem questões neste filtro.</div>'; countEl.textContent=''; return; }
+    const q=list[idx], gi=QUESTOES_TEC.indexOf(q), chosen=state.quizAns[gi];
+    countEl.textContent=`${idx+1} / ${list.length}`;
+    stage.innerHTML=`<div class="card">
+      <div class="tag-row"><span class="pill">${q.tema}</span><span class="pill ${q.dif==='difícil'?'red':q.dif==='média'?'amber':'green'}">${q.dif}</span></div>
+      <p style="font-weight:800">${q.q}</p>
+      <div class="opts">${q.op.map((o,k)=>`<button class="opt" data-k="${k}"><span class="mk">${'ABCDE'[k]})</span>${o}</button>`).join('')}</div>
+      <div class="qexpl" id="qx"></div>
+    </div>`;
+    const opts=$$('.opt',stage), qx=$('#qx');
+    function reveal(sel){
+      opts.forEach((b,k)=>{ b.classList.toggle('correct',k===q.c); if(sel===k&&k!==q.c) b.classList.add('wrong'); b.disabled=true; });
+      qx.className='qexpl on';
+      qx.innerHTML=`<div class="e"><b>Resposta: ${'ABCDE'[q.c]}.</b> ${q.ec[q.c]}</div>`
+        + q.ec.map((e,k)=>k===q.c?'':`<div class="e"><b>${'ABCDE'[k]})</b> ${e}</div>`).join('')
+        + `<div class="e" style="background:var(--amber-soft);border-radius:6px;padding:6px 8px"><b>⚠ Pegadinha:</b> ${q.pega}</div>`;
+    }
+    opts.forEach(b=>b.addEventListener('click',()=>{ const k=+b.dataset.k; state.quizAns[gi]=k; save(); reveal(k); score(); }));
+    if(chosen!=null) reveal(chosen);
+  }
+  filt.addEventListener('click',e=>{ const t=e.target.closest('.tab'); if(!t)return; $$('.tab',filt).forEach(x=>x.classList.remove('on')); t.classList.add('on'); filter=t.dataset.t; apply(); });
+  $('#quizPrev').addEventListener('click',()=>{ idx=(idx-1+list.length)%list.length; render(); });
+  $('#quizNext').addEventListener('click',()=>{ idx=(idx+1)%list.length; render(); });
+  render(); score();
+})();
+
+/* ============================================================
+   MINI-DECISÕES
+============================================================ */
+(function(){
+  const stage=$('#decStage'); if(!stage) return;
+  stage.innerHTML=MINI_DECISOES.map((d,i)=>`
+    <div class="card">
+      <span class="pill blue">Decisão ${i+1}</span>
+      <p style="margin:8px 0">${d.cen}</p>
+      <div class="dec-opts">${d.op.map((o,k)=>`<button class="opt" data-i="${i}" data-k="${k}">${o}</button>`).join('')}</div>
+      <div class="qexpl" id="dfb${i}"></div>
+    </div>`).join('');
+  stage.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b)return;
+    const i=+b.dataset.i,k=+b.dataset.k,d=MINI_DECISOES[i];
+    const card=b.closest('.card');
+    $$('.opt',card).forEach(x=>x.classList.remove('correct','wrong'));
+    b.classList.add(k===d.c?'correct':'wrong');
+    if(k!==d.c) $$('.opt',card)[d.c].classList.add('correct');
+    const fb=$('#dfb'+i); fb.className='qexpl on'; fb.innerHTML=`<div class="e">${d.fb}</div>`;
+  });
+})();
+
+/* ============================================================
+   FLASHCARDS
+============================================================ */
+(function(){
+  const stage=$('#flashStage'), filt=$('#flashFilters'), countEl=$('#flashCount'); if(!stage) return;
+  const CATS=[['all','Todos'],['fisiologia','Fisiologia'],['mecanismo','Mecanismo'],['rim','Rim'],['coracao','Coração'],['diabetes','Diabetes'],['adversos','Adversos'],['contra','Contra'],['interacoes','Interações'],['farmaco','Fármaco'],['evidencias','Evidências'],['pegadinhas','Pegadinhas'],['frases','Frases']];
+  filt.innerHTML=CATS.map((c,i)=>`<button class="tab ${i===0?'on':''}" data-c="${c[0]}">${c[1]}</button>`).join('');
+  let cat='all', onlyHard=false, order=FLASHCARDS.map((_,i)=>i), pos=0;
+  function pool(){ return order.filter(i=>{ const c=FLASHCARDS[i]; if(cat!=='all'&&c.cat!==cat) return false; if(onlyHard && state.flashRate[i]!=='hard') return false; return true; }); }
+  function render(){
+    const p=pool(); if(!p.length){ stage.innerHTML='<div class="card">Nenhum cartão neste filtro.</div>'; countEl.textContent=''; return; }
+    if(pos>=p.length) pos=0;
+    const gi=p[pos], c=FLASHCARDS[gi], rate=state.flashRate[gi];
+    countEl.textContent=`${pos+1} / ${p.length}`;
+    stage.innerHTML=`<div class="flashcard" id="fc"><div class="inner">
+        <div class="face front"><span class="tagm">${c.cat}</span><div class="q">${c.q}</div><span class="small" style="margin-top:10px;color:var(--ink2)">toque para virar</span></div>
+        <div class="face back"><span class="tagm">resposta</span><div class="a">${c.a}</div></div>
+      </div></div>
+      <div class="flash-rate">
+        <button class="easy ${rate==='easy'?'on':''}" data-r="easy">Fácil</button>
+        <button class="med ${rate==='med'?'on':''}" data-r="med">Médio</button>
+        <button class="hard ${rate==='hard'?'on':''}" data-r="hard">Difícil</button>
+      </div>`;
+    const fc=$('#fc'); fc.addEventListener('click',()=>fc.classList.toggle('flip'));
+    $$('.flash-rate button',stage).forEach(b=>b.addEventListener('click',()=>{ state.flashRate[gi]=b.dataset.r; save(); $$('.flash-rate button',stage).forEach(x=>x.classList.remove('on')); b.classList.add('on'); }));
+  }
+  filt.addEventListener('click',e=>{ const t=e.target.closest('.tab'); if(!t)return; $$('.tab',filt).forEach(x=>x.classList.remove('on')); t.classList.add('on'); cat=t.dataset.c; pos=0; render(); });
+  $('#onlyHard').addEventListener('change',e=>{ onlyHard=e.target.checked; pos=0; render(); });
+  $('#flashShuffle').addEventListener('click',()=>{ for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];} pos=0; render(); });
+  $('#flashPrev').addEventListener('click',()=>{ const p=pool(); pos=(pos-1+p.length)%p.length; render(); });
+  $('#flashNext').addEventListener('click',()=>{ const p=pool(); pos=(pos+1)%p.length; render(); });
+  render();
+})();
+
+/* ============================================================
+   PEGADINHAS
+============================================================ */
+(function(){
+  const stage=$('#pegStage'); if(!stage) return;
+  stage.innerHTML=PEGADINHAS.map((p,i)=>`
+    <div class="card">
+      <span class="pill amber">Armadilha ${i+1}</span>
+      <p style="font-weight:800;margin:8px 0">"${p.af}"</p>
+      <div class="vf"><button class="opt" data-i="${i}" data-v="true">Verdadeiro</button><button class="opt" data-i="${i}" data-v="false">Falso</button></div>
+      <div class="qexpl" id="pfb${i}"></div>
+    </div>`).join('');
+  stage.addEventListener('click',e=>{
+    const b=e.target.closest('.opt'); if(!b)return;
+    const i=+b.dataset.i, chose=b.dataset.v==='true', p=PEGADINHAS[i], card=b.closest('.card');
+    $$('.opt',card).forEach(x=>{ x.classList.remove('correct','wrong'); if((x.dataset.v==='true')===p.v) x.classList.add('correct'); });
+    if(chose!==p.v) b.classList.add('wrong');
+    const fb=$('#pfb'+i); fb.className='qexpl on';
+    fb.innerHTML=`<div class="e"><b>${p.v?'Verdadeiro':'Falso'}.</b> ${p.cor}</div><div class="e" style="background:var(--amber-soft);border-radius:6px;padding:6px 8px"><b>Fixação:</b> ${p.fix}</div>`;
+  });
+})();
+
+/* ============================================================
+   CASOS CLÍNICOS
+============================================================ */
+(function(){
+  const nav=$('#caseNav'), stage=$('#caseStage'); if(!nav) return;
+  nav.innerHTML=CASOS.map((c,i)=>`<button class="tab ${i===0?'on':''}" data-i="${i}">${i+1}</button>`).join('');
+  function render(i){
+    const c=CASOS[i];
+    stage.innerHTML=`<div class="card">
+      <div class="tag-row"><span class="pill blue">Caso ${i+1}</span><b>${c.tit}</b>${state.casesDone[i]?'<span class="pill green">concluído</span>':''}</div>
+      <p>${c.vin}</p>
+      <div class="case-step" data-s="1">
+        <p style="font-weight:800">${c.q1}</p>
+        <div class="c-opts">${c.d1.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join('')}</div>
+      </div>
+      <div class="case-step2" style="display:none">
+        <div class="callout" style="margin:10px 0"><b>Evolução:</b> ${c.info}</div>
+        <p style="font-weight:800">${c.q2}</p>
+        <div class="c-opts2">${c.d2.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join('')}</div>
+      </div>
+      <div class="case-final" style="display:none">
+        <div class="callout green" style="margin-top:10px"><h4>Discussão</h4><p>${c.disc}</p></div>
+        <div class="card gold" style="margin-top:8px"><span class="pill amber">Memória final</span><p class="frase" style="font-size:1rem;margin-top:6px">${c.mem}</p></div>
+      </div>
+    </div>`;
+    const s2=$('.case-step2',stage), fin=$('.case-final',stage);
+    $$('.c-opts .opt',stage).forEach(b=>b.addEventListener('click',()=>{
+      $$('.c-opts .opt',stage).forEach(x=>x.classList.remove('correct','wrong'));
+      const k=+b.dataset.k; b.classList.add(k===c.c1?'correct':'wrong'); if(k!==c.c1)$$('.c-opts .opt',stage)[c.c1].classList.add('correct');
+      s2.style.display='block'; safeScroll(s2);
+    }));
+    $$('.c-opts2 .opt',stage).forEach(b=>b.addEventListener('click',()=>{
+      $$('.c-opts2 .opt',stage).forEach(x=>x.classList.remove('correct','wrong'));
+      const k=+b.dataset.k; b.classList.add(k===c.c2?'correct':'wrong'); if(k!==c.c2)$$('.c-opts2 .opt',stage)[c.c2].classList.add('correct');
+      fin.style.display='block'; state.casesDone[i]=true; save();
+      $('.pill.green',nav)||render.badge; safeScroll(fin);
+    }));
+  }
+  nav.addEventListener('click',e=>{ const t=e.target.closest('.tab'); if(!t)return; $$('.tab',nav).forEach(x=>x.classList.remove('on')); t.classList.add('on'); render(+t.dataset.i); });
+  render(0);
+})();
+
+/* ============================================================
+   HIPOCAMPO — dashboard + revisão espaçada
+============================================================ */
+(function(){
+  const dash=$('#dash'), spaced=$('#spaced'); if(!dash) return;
+  function renderDash(){
+    const ans=state.quizAns; let ok=0,tot=0;
+    QUESTOES_TEC.forEach((q,i)=>{ if(ans[i]!=null){tot++; if(ans[i]===q.c)ok++;} });
+    const wrong=tot-ok;
+    const hard=Object.values(state.flashRate).filter(r=>r==='hard').length;
+    const cases=Object.keys(state.casesDone).length, rooms=Object.keys(state.roomsVisited).length;
+    dash.innerHTML=`
+      <div class="dash-row"><span>Questões respondidas</span><b>${tot}/${QUESTOES_TEC.length}</b></div>
+      <div class="dash-row"><span>Acertos</span><b style="color:var(--green)">${ok}</b></div>
+      <div class="dash-row"><span>Erros a revisar</span><b style="color:var(--red)">${wrong}</b></div>
+      <div class="dash-row"><span>Flashcards difíceis</span><b style="color:var(--amber)">${hard}</b></div>
+      <div class="dash-row"><span>Casos concluídos</span><b>${cases}/${CASOS.length}</b></div>
+      <div class="dash-row"><span>Salas visitadas</span><b>${rooms}/${SALAS.length}</b></div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <a class="btn ghost" href="#arena">Revisar erros ›</a>
+        <a class="btn ghost" href="#flash">Só difíceis ›</a>
+        <a class="btn ghost" href="#rim">Rever rim ›</a>
+      </div>`;
+  }
+  const REV=[['agora','Revisar agora'],['24h','Revisar em 24 horas'],['7d','Revisar em 7 dias'],['30d','Revisar em 30 dias'],['erros','Revisar erros'],['dificeis','Revisar cartões difíceis'],['rim','Revisar apenas rim'],['adversos','Revisar apenas efeitos adversos']];
+  function renderSpaced(){
+    spaced.innerHTML=REV.map(r=>`<label class="chk"><input type="checkbox" data-r="${r[0]}" ${state.spaced[r[0]]?'checked':''}> ${r[1]}</label>`).join('');
+    $$('input',spaced).forEach(c=>c.addEventListener('change',()=>{ state.spaced[c.dataset.r]=c.checked; save(); }));
+  }
+  renderDash(); renderSpaced();
+  // atualiza dashboard quando a seção entra em vista (defensivo p/ ambientes sem IntersectionObserver)
+  try{
+    if(typeof IntersectionObserver!=='undefined'){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) renderDash(); }),{threshold:.2});
+      io.observe($('#hipocampo'));
+    }
+  }catch(e){}
+})();
+
+/* ============================================================
+   FRASES DE OURO + TESTE DA MEMÓRIA
+============================================================ */
+(function(){
+  const gp=$('#goldPhrases'); if(gp) gp.innerHTML=FRASES_OURO.map(f=>`<p class="frase" style="font-size:1.02rem;border-left:4px solid var(--amber);padding-left:12px;margin:10px 0">"${f}"</p>`).join('');
+  const mt=$('#memTest');
+  if(mt) mt.innerHTML=MEM_TEST.map((m,i)=>`
+    <div class="acc">
+      <button aria-expanded="false"><span>${m.q}</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in"><p class="small" style="margin:8px 0 0">${m.a}</p></div></div>
+    </div>`).join('')
+    + '<p class="small mono" style="margin-top:10px">Se você respondeu todas sem consultar, o capítulo cumpriu seu papel.</p>';
+  // religar acordeões recém-criados
+  $$('#memTest .acc>button').forEach(btn=>btn.addEventListener('click',()=>{
+    const acc=btn.parentElement, body=acc.querySelector('.body');
+    const open=acc.classList.toggle('open'); btn.setAttribute('aria-expanded',open);
+    body.style.maxHeight=open?body.scrollHeight+'px':0;
+  }));
+})();
+
+/* estilos injetados p/ linhas de tabela e dashboard */
+(function(){
+  const css=`
+  .drug-row,.dash-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+  .drug-row span,.dash-row span{color:var(--ink2)}
+  .presc-opts,.dec-opts,.c-opts,.c-opts2,.vf,.opts{margin-top:6px}
+  .vf{display:flex;gap:8px}.vf .opt{flex:1;text-align:center}
+  .shield{cursor:pointer;transition:.15s}.shield:hover{border-color:var(--blue)}
+  .shield .more{max-height:0;overflow:hidden;transition:max-height .3s}.shield.open .more{max-height:300px;margin-top:8px}
+  .chk{display:flex;gap:8px;align-items:center;padding:6px 0;font-size:.9rem;font-weight:700;color:var(--ink)}
+  `;
+  const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+})();
+
+/* marca fim de init */
+console.log('Cap.5A IECA — init OK');
+
+</script>
+</body>
+</html>
