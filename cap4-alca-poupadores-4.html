@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Mental da Hipertensão Arterial · Bloco 2 · Tema 4 · Capítulo 5 — Diuréticos de Alça e Diuréticos Poupadores de Potássio · Dr. André Rossanno</title>
+<style>
+:root{
+  --bg:#0a1628; --bg2:#0d1d33; --panel:#102439; --panel2:#0f2035;
+  --line:rgba(120,160,210,.14); --line2:rgba(120,160,210,.28);
+  --ink:#e8f0fb; --ink2:#a9bfd8; --ink3:#6f89a8;
+  --cyan:#39c0d6; --cyan2:#7fe3f0; --amber:#f5b642; --amber2:#ffd27f;
+  --red:#e8506b; --red2:#ff89a0; --violet:#8b7fe8; --green:#46c98a;
+  --k:#b07de8; --na:#f5b642;
+  --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --r:16px; --sh:0 10px 40px -12px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+    radial-gradient(1200px 700px at 12% -8%,rgba(57,192,214,.10),transparent 60%),
+    radial-gradient(1000px 600px at 98% 4%,rgba(232,80,107,.09),transparent 55%),
+    var(--bg);
+  background-attachment:fixed;color:var(--ink);font-family:var(--sans);
+  line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(120,160,210,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,160,210,.05) 1px,transparent 1px);
+  background-size:44px 44px;mask:radial-gradient(circle at 50% 30%,#000,transparent 85%)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+@media(max-width:560px){.wrap{padding:0 14px}}
+
+/* ---- top nav ---- */
+.topbar{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(10,22,40,.92),rgba(10,22,40,.66));
+  border-bottom:1px solid var(--line)}
+.topbar .row{max-width:1080px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink3);white-space:nowrap}
+.brand b{color:var(--cyan2);font-weight:600}
+.progress{flex:1;height:4px;border-radius:4px;background:rgba(120,160,210,.14);overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--amber));transition:width .18s}
+.pct{font-family:var(--mono);font-size:11px;color:var(--ink3);min-width:38px;text-align:right}
+.sound{border:1px solid var(--line2);background:rgba(120,160,210,.06);color:var(--ink2);
+  border-radius:9px;padding:6px 10px;font-family:var(--mono);font-size:11px;cursor:pointer;white-space:nowrap}
+.sound:hover{border-color:var(--cyan);color:var(--cyan2)}
+
+/* ---- hero ---- */
+.hero{padding:64px 0 30px;text-align:center;position:relative}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;color:var(--ink3);text-transform:uppercase}
+.eyebrow b{color:var(--amber2);font-weight:600}
+h1{font-family:var(--mono);font-weight:600;font-size:clamp(30px,6vw,52px);line-height:1.05;
+  margin:16px 0 8px;letter-spacing:-.01em}
+h1 .l1{color:var(--cyan2)} h1 .l2{color:var(--k)}
+.tagline{color:var(--ink2);max-width:640px;margin:14px auto 0;font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:26px auto 0;max-width:720px}
+.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink2);
+  border:1px solid var(--line2);border-radius:999px;padding:7px 13px;background:rgba(120,160,210,.05)}
+.chip.k{color:var(--k);border-color:rgba(176,125,232,.4)}
+.chip.na{color:var(--amber2);border-color:rgba(245,182,66,.35)}
+.author-line{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink3);margin-top:22px}
+.scroll-cue{margin-top:22px;font-family:var(--mono);font-size:11px;color:var(--ink3);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+
+/* ---- section frame ---- */
+section{padding:44px 0;border-top:1px solid var(--line);position:relative}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+.sec-num{font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.1em;
+  border:1px solid rgba(245,182,66,.3);border-radius:8px;padding:3px 9px}
+.sec-head h2{font-family:var(--mono);font-weight:600;font-size:clamp(20px,3.4vw,27px);margin:0;letter-spacing:-.01em}
+.sec-head .sub{color:var(--ink3);font-size:13.5px;width:100%;font-family:var(--mono)}
+.lead{color:var(--ink2);max-width:760px;font-size:15.5px}
+.lead strong{color:var(--ink)}
+.subhead{font-family:var(--mono);font-size:14px;color:var(--amber2);letter-spacing:.03em;
+  margin:30px 0 4px;padding-top:14px;border-top:1px dashed var(--line)}
+.pause{font-family:var(--mono);font-style:italic;font-size:14.5px;color:var(--cyan2);
+  border-left:2px solid var(--cyan);padding:10px 16px;margin:18px 0;background:rgba(57,192,214,.05);
+  border-radius:0 10px 10px 0;max-width:640px}
+
+/* ---- nephron map ---- */
+.nephron{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px;box-shadow:var(--sh);margin-top:8px}
+.nephron .segs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+@media(max-width:720px){.nephron .segs{grid-template-columns:repeat(2,1fr)}}
+.seg{position:relative;border:1px solid var(--line2);border-radius:12px;padding:13px 12px;cursor:pointer;
+  background:rgba(120,160,210,.04);transition:.18s;overflow:hidden}
+.seg:hover,.seg.on{border-color:var(--drug,var(--cyan));background:rgba(120,160,210,.09);transform:translateY(-2px)}
+.seg .n{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.seg .t{font-weight:600;font-size:13.5px;margin:3px 0 6px;color:var(--ink)}
+.seg .d{font-family:var(--mono);font-size:10.5px;color:var(--drug,var(--cyan2))}
+.seg .glow{position:absolute;inset:0;opacity:0;background:radial-gradient(circle at 50% 120%,var(--drug,var(--cyan)),transparent 70%);transition:.25s}
+.seg.on .glow{opacity:.16}
+.seg-detail{margin-top:16px;border-top:1px dashed var(--line2);padding-top:16px;min-height:74px;
+  font-size:14.5px;color:var(--ink2)}
+.seg-detail b{color:var(--ink)}
+.seg-detail .tag{font-family:var(--mono);font-size:11px;color:var(--drug,var(--cyan2));
+  border:1px solid var(--line2);border-radius:6px;padding:2px 7px;margin-right:6px}
+.hl-loop{--drug:var(--cyan)} .hl-dct{--drug:var(--amber)} .hl-cd{--drug:var(--k)}
+
+/* ---- cascade / mechanism ---- */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.card h3{font-family:var(--mono);font-size:15px;margin:0 0 4px;letter-spacing:.01em}
+.card .who{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-bottom:12px}
+.flow{list-style:none;padding:0;margin:10px 0 0;counter-reset:s}
+.flow li{position:relative;padding:9px 0 9px 30px;font-size:14px;color:var(--ink2);border-left:2px solid var(--line2);margin-left:8px}
+.flow li::before{counter-increment:s;content:counter(s);position:absolute;left:-13px;top:8px;
+  width:24px;height:24px;border-radius:50%;background:var(--bg2);border:1px solid var(--accent,var(--cyan));
+  color:var(--accent,var(--cyan2));font-family:var(--mono);font-size:11px;display:grid;place-items:center}
+.flow li b{color:var(--ink)}
+.flow.block li:last-child{color:var(--red2)}
+.flow.block li:last-child::before{border-color:var(--red);color:var(--red2)}
+.arm{--accent:var(--k)} .enac{--accent:var(--green)}
+
+/* ---- ion animation ---- */
+.ionbox{margin-top:16px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);
+  padding:18px;position:relative;overflow:hidden;min-height:120px}
+.ionlbl{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-bottom:8px}
+.channel{display:flex;align-items:center;justify-content:center;gap:6px;height:74px;position:relative}
+.gate{width:54px;height:54px;border-radius:12px;border:2px solid var(--green);position:relative;
+  display:grid;place-items:center;font-family:var(--mono);font-size:11px;color:var(--green);transition:.3s}
+.gate.locked{border-color:var(--red);color:var(--red2)}
+.gate .lock{position:absolute;font-size:20px;opacity:0;transition:.3s;transform:scale(.4)}
+.gate.locked .lock{opacity:1;transform:scale(1)}
+.ion{position:absolute;font-family:var(--mono);font-weight:600;font-size:13px;
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.ion.na{background:rgba(245,182,66,.16);color:var(--amber2);border:1px solid rgba(245,182,66,.5)}
+.ion.k{background:rgba(176,125,232,.16);color:var(--k);border:1px solid rgba(176,125,232,.5)}
+.mech-btn{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{font-family:var(--mono);font-size:12px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:8px;padding:8px 13px;cursor:pointer;transition:.15s}
+.tbtn:hover{border-color:var(--cyan);color:var(--cyan2)}
+.tbtn.active{border-color:var(--red);color:var(--red2);background:rgba(232,80,107,.08)}
+
+/* ---- compare table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);margin-top:8px}
+table{width:100%;border-collapse:collapse;min-width:640px;font-size:13.5px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+thead th{background:var(--panel2);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+  color:var(--ink3);text-transform:uppercase;position:sticky;top:0}
+tbody th{font-weight:600;color:var(--ink);font-family:var(--mono);font-size:12px}
+td{color:var(--ink2)}
+.pill{font-family:var(--mono);font-size:10.5px;border-radius:5px;padding:2px 7px;white-space:nowrap}
+.p-esp{background:rgba(176,125,232,.14);color:var(--k)}
+.p-epl{background:rgba(57,192,214,.13);color:var(--cyan2)}
+.p-ami{background:rgba(70,201,138,.13);color:var(--green)}
+
+/* ---- race / algorithm ---- */
+.race{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--sh);margin-top:8px}
+.lanes{display:grid;gap:10px}
+.lane{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:12px;
+  border:1px solid var(--line2);border-radius:11px;padding:11px 14px;background:rgba(120,160,210,.04);
+  position:relative;overflow:hidden}
+.lane .rank{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink3)}
+.lane .nm{font-weight:600;font-size:14.5px}
+.lane .nm small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--ink3);font-weight:400}
+.lane .role{font-family:var(--mono);font-size:11px;color:var(--ink3);text-align:right}
+.lane.g1{border-color:rgba(70,201,138,.4)} .lane.g1 .rank{color:var(--green)}
+.lane.g2{border-color:rgba(57,192,214,.4)} .lane.g2 .rank{color:var(--cyan2)}
+.lane.g3{border-color:rgba(245,182,66,.4)} .lane.g3 .rank{color:var(--amber2)}
+.lane.g4{border-color:rgba(176,125,232,.55);background:rgba(176,125,232,.08)} .lane.g4 .rank{color:var(--k)}
+.lane.g4 .nm{color:var(--k)}
+.finish{font-family:var(--mono);font-size:11px;color:var(--ink3);text-align:center;margin:14px 0 4px;
+  letter-spacing:.1em;text-transform:uppercase}
+
+/* ---- trial / evidence ---- */
+.trial{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:var(--r);padding:24px;box-shadow:var(--sh);margin-top:8px}
+.trial .badge{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--amber2);
+  border:1px solid rgba(245,182,66,.35);border-radius:6px;padding:3px 8px}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+@media(max-width:680px){.stat-row{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line2);border-radius:12px;padding:14px;text-align:center;background:rgba(120,160,210,.04)}
+.stat .v{font-family:var(--mono);font-size:22px;font-weight:600;color:var(--cyan2)}
+.stat .v.red{color:var(--red2)}
+.stat .l{font-size:11px;color:var(--ink3);margin-top:4px;line-height:1.3}
+.srcline{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-top:14px}
+.two-src{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:680px){.two-src{grid-template-columns:1fr}}
+.srcbox{border:1px dashed var(--line2);border-radius:10px;padding:12px 14px}
+.srcbox .h{font-family:var(--mono);font-size:11px;color:var(--amber2);margin-bottom:5px}
+.srcbox p{margin:0;font-size:13px;color:var(--ink2)}
+
+/* ---- alert / dica ---- */
+.alert{border:1px solid rgba(245,182,66,.4);background:
+   linear-gradient(120deg,rgba(245,182,66,.10),rgba(245,182,66,.02));
+  border-radius:var(--r);padding:20px;margin-top:20px;position:relative;overflow:hidden}
+.alert::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--amber);
+  box-shadow:0 0 18px 2px rgba(245,182,66,.6);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.alert .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--amber2);text-transform:uppercase}
+.alert p{margin:8px 0 0;font-size:15px}
+.alert b{color:var(--amber2)}
+
+.note{border-left:2px solid var(--cyan);background:rgba(57,192,214,.05);border-radius:0 10px 10px 0;
+  padding:12px 16px;margin-top:16px;font-size:13.5px;color:var(--ink2)}
+.note b{color:var(--cyan2)}
+.danger{border-left-color:var(--red);background:rgba(232,80,107,.06)}
+.danger b{color:var(--red2)}
+
+/* ---- N1/N7 story ---- */
+.story{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--sh);margin-top:8px}
+.story .n{font-family:var(--mono);font-size:11px;color:var(--violet);letter-spacing:.1em}
+.story h3{font-family:var(--mono);font-size:16px;margin:6px 0 12px}
+.scene{font-size:15px;color:var(--ink2);border-left:2px solid var(--violet);padding-left:16px;margin:0}
+.scene b{color:var(--ink)}
+.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+@media(max-width:680px){.cast{grid-template-columns:1fr}}
+.char{border:1px solid var(--line2);border-radius:12px;padding:14px;background:rgba(120,160,210,.04)}
+.char .name{font-weight:600;font-size:14px}
+.char .name.k{color:var(--k)} .char .name.c{color:var(--cyan2)} .char .name.g{color:var(--green)}
+.char .arch{font-family:var(--mono);font-size:11px;color:var(--ink3);margin:2px 0 8px}
+.char p{margin:0;font-size:12.5px;color:var(--ink2)}
+
+/* ---- flashcards ---- */
+.fc-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.fc-filter{font-family:var(--mono);font-size:11px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:999px;padding:7px 12px;cursor:pointer;transition:.15s}
+.fc-filter:hover{border-color:var(--cyan)}
+.fc-filter.active{border-color:var(--cyan);color:var(--cyan2);background:rgba(57,192,214,.1)}
+.fc-count{font-family:var(--mono);font-size:11px;color:var(--ink3);margin:10px 0 4px}
+.fc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+@media(max-width:680px){.fc-grid{grid-template-columns:1fr}}
+.fc{perspective:1200px;height:150px;cursor:pointer}
+.fc-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;
+  display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line2)}
+.fc-f{background:var(--panel);}
+.fc-b{background:linear-gradient(160deg,var(--panel2),rgba(57,192,214,.06));transform:rotateY(180deg)}
+.fc-q{font-size:14.5px;color:var(--ink)}
+.fc-a{font-size:13.5px;color:var(--ink2)} .fc-a b{color:var(--cyan2)}
+.fc .tag{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:8px}
+.fc-hint{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:10px}
+
+/* ---- questions ---- */
+.q-filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.q-filter{font-family:var(--mono);font-size:11px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:999px;padding:7px 12px;cursor:pointer;transition:.15s}
+.q-filter:hover{border-color:var(--amber)}
+.q-filter.active{border-color:var(--amber);color:var(--amber2);background:rgba(245,182,66,.1)}
+.q .lvl{font-family:var(--mono);font-size:10px;color:var(--ink3);border:1px solid var(--line2);border-radius:5px;padding:1px 6px;margin-left:8px}
+.q .flagbtn{float:right;font-family:var(--mono);font-size:10.5px;border:1px solid var(--line2);background:none;
+  color:var(--ink3);border-radius:6px;padding:3px 8px;cursor:pointer}
+.q .flagbtn.flagged{border-color:var(--red);color:var(--red2)}
+.opt-analysis{margin-top:4px;padding-left:10px;border-left:2px solid var(--line2)}
+.opt-analysis .aline{font-size:12.5px;color:var(--ink3);margin:4px 0}
+.opt-analysis .aline b{color:var(--ink2)}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh);margin-top:16px}
+.q .qhead{font-family:var(--mono);font-size:11px;color:var(--amber2);letter-spacing:.08em;margin-bottom:8px}
+.q .stem{font-size:15px;color:var(--ink);margin-bottom:14px}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line2);background:rgba(120,160,210,.03);
+  color:var(--ink2);border-radius:10px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:14px;transition:.15s;font-family:inherit}
+.opt:hover{border-color:var(--cyan)}
+.opt .letter{font-family:var(--mono);color:var(--ink3);margin-right:8px}
+.opt.correct{border-color:var(--green);background:rgba(70,201,138,.1);color:var(--ink)}
+.opt.wrong{border-color:var(--red);background:rgba(232,80,107,.08)}
+.expl{margin-top:12px;border-top:1px dashed var(--line2);padding-top:12px;font-size:13.5px;color:var(--ink2);display:none}
+.expl.show{display:block}
+.expl b{color:var(--cyan2)} .expl .trap{color:var(--amber2)}
+
+/* ---- case ---- */
+.case{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--panel2);margin-top:16px}
+.case .cn{font-family:var(--mono);font-size:11px;color:var(--red2);letter-spacing:.08em}
+.case h4{margin:6px 0 10px;font-size:16px}
+.case .body{font-size:14.5px;color:var(--ink2)}
+.case .reveal{font-family:var(--mono);font-size:12px;color:var(--cyan2);cursor:pointer;margin-top:12px;
+  border:1px solid var(--line2);border-radius:8px;padding:8px 12px;display:inline-block}
+.case .ans{display:none;margin-top:12px;border-left:2px solid var(--green);padding-left:14px;font-size:14px;color:var(--ink2)}
+.case .ans.show{display:block}
+.case .ans b{color:var(--green)}
+
+/* ---- footer objective ---- */
+/* ---- palace of memory ---- */
+.palace{margin-top:14px}
+.palace-nav{display:flex;flex-wrap:wrap;gap:8px}
+.pnav{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:9px;padding:9px 13px;cursor:pointer;transition:.15s}
+.pnav:hover{border-color:var(--violet)}
+.pnav.active{border-color:var(--violet);color:#c9bdf5;background:rgba(139,127,232,.1)}
+.palace-stage{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px;box-shadow:var(--sh);min-height:180px}
+.palace-stage h4{margin:0 0 4px;font-family:var(--mono);font-size:12px;color:var(--violet);letter-spacing:.08em}
+.palace-stage .ptitle{font-size:18px;font-weight:600;margin:2px 0 12px;color:var(--ink)}
+.palace-stage p{font-size:15px;color:var(--ink2);margin:0 0 10px}
+.palace-stage b{color:var(--ink)}
+
+/* ---- N1-N7 system ---- */
+.nlevels{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.nlvl{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:999px;padding:8px 14px;cursor:pointer;transition:.15s}
+.nlvl:hover{border-color:var(--amber)}
+.nlvl.active{border-color:var(--amber);color:var(--amber2);background:rgba(245,182,66,.1)}
+.nstage{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px;box-shadow:var(--sh);min-height:160px}
+.nstage h4{margin:0 0 12px;font-family:var(--mono);font-size:13px;color:var(--amber2)}
+.n-pairs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:680px){.n-pairs{grid-template-columns:1fr}}
+.n-pill{border:1px solid var(--line2);border-radius:10px;padding:10px 13px;font-size:13.5px;color:var(--ink2);
+  background:rgba(120,160,210,.04)}
+.n-pill b{color:var(--ink)}
+.n-case{border:1px solid var(--line2);border-radius:12px;padding:16px;background:rgba(120,160,210,.04);margin-bottom:10px}
+.n-case .cq{font-size:14.5px;color:var(--ink)}
+.n-case .copts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.n-case .copts button{font-family:var(--mono);font-size:12px;border:1px solid var(--line2);
+  background:rgba(120,160,210,.04);color:var(--ink2);border-radius:8px;padding:7px 12px;cursor:pointer}
+.n-case .copts button.pick-correct{border-color:var(--green);color:var(--ink);background:rgba(70,201,138,.1)}
+.n-case .copts button.pick-wrong{border-color:var(--red);background:rgba(232,80,107,.08)}
+.n-case .cexpl{margin-top:10px;font-size:13px;color:var(--ink2);display:none}
+.n-case .cexpl.show{display:block}
+.teach-btn{font-family:var(--mono);font-size:13px;border:1px solid var(--violet);background:rgba(139,127,232,.1);
+  color:#c9bdf5;border-radius:10px;padding:12px 18px;cursor:pointer;margin-top:8px}
+.teach-script{display:none;margin-top:14px;border-left:2px solid var(--violet);padding-left:16px;font-size:14px;color:var(--ink2)}
+.teach-script.show{display:block}
+
+/* ---- prescription tabs & card ---- */
+.rx-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rxtab{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:9px;padding:9px 12px;cursor:pointer;transition:.15s}
+.rxtab:hover{border-color:var(--cyan)}
+.rxtab.active{border-color:var(--amber);color:var(--amber2);background:rgba(245,182,66,.08)}
+.rxcard{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px;box-shadow:var(--sh)}
+.rxcard h4{margin:0 0 4px;font-size:17px;color:var(--ink)}
+.rxcard .obj{font-family:var(--mono);font-size:12px;color:var(--cyan2);margin-bottom:16px}
+.rx-rows{display:grid;gap:10px}
+.rx-row{display:grid;grid-template-columns:120px 1fr;gap:14px;font-size:14px;padding:8px 0;
+  border-bottom:1px dashed var(--line)}
+.rx-row:last-child{border-bottom:none}
+.rx-row .k{font-family:var(--mono);font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.rx-row .v{color:var(--ink2)}
+.rx-row .v b{color:var(--ink)}
+.rx-wm{font-family:var(--mono);font-size:10.5px;color:var(--ink3);text-align:right;margin-top:14px;
+  border-top:1px dashed var(--line2);padding-top:10px}
+
+/* ---- timeline ---- */
+.timeline{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tl-step{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line2);background:rgba(120,160,210,.05);
+  color:var(--ink2);border-radius:999px;padding:8px 14px;cursor:pointer;transition:.15s}
+.tl-step:hover{border-color:var(--cyan)}
+.tl-step.active{border-color:var(--cyan);color:var(--cyan2);background:rgba(57,192,214,.1)}
+.tl-detail{margin-top:12px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;font-size:14px;color:var(--ink2);min-height:70px}
+.tl-detail b{color:var(--ink)}
+
+/* ---- algorithms accordion ---- */
+.algo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+@media(max-width:680px){.algo-grid{grid-template-columns:1fr}}
+.algo{border:1px solid var(--line2);border-radius:11px;padding:12px 14px;background:rgba(120,160,210,.04)}
+.algo summary{cursor:pointer;font-weight:600;font-size:13.5px;color:var(--ink);list-style:none;
+  display:flex;align-items:center;justify-content:space-between}
+.algo summary::-webkit-details-marker{display:none}
+.algo summary::after{content:"+";font-family:var(--mono);color:var(--cyan2);font-size:16px}
+.algo[open] summary::after{content:"−"}
+.algo p{margin:10px 0 0;font-size:13px;color:var(--ink2)}
+
+.objective{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);
+  border-radius:var(--r);padding:26px;box-shadow:var(--sh);margin-top:8px}
+.objective ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.objective li{padding-left:28px;position:relative;font-size:14.5px;color:var(--ink2)}
+.objective li::before{content:"✓";position:absolute;left:0;top:0;color:var(--green);font-weight:700}
+.objective li b{color:var(--ink)}
+footer{padding:40px 0 60px;text-align:center;border-top:1px solid var(--line)}
+footer .sig{font-family:var(--mono);font-size:13px;color:var(--ink2)}
+footer .src{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-top:8px;line-height:1.7}
+
+.reveal-on-scroll{opacity:0;transform:translateY(18px);transition:.6s cubic-bezier(.2,.7,.2,1)}
+.reveal-on-scroll.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
+  .reveal-on-scroll{opacity:1;transform:none}}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="row">
+    <span class="brand">ATLAS&nbsp;MENTAL&nbsp;·&nbsp;HAS &nbsp;<b>B2·T4·Cap5</b> &nbsp;<span style="color:var(--ink3);opacity:.7">· Dr. André Rossanno</span></span>
+    <div class="progress"><i id="bar"></i></div>
+    <span class="pct" id="pct">0%</span>
+    <button class="sound" id="snd" aria-pressed="true">♪ som on</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Bloco 2 · Tema 4 · <b>Capítulo 5</b></div>
+    <h1><span class="l1">Diuréticos de Alça</span><br>&amp; <span class="l2">Diuréticos Poupadores de Potássio</span></h1>
+    <p class="tagline">O diurético certo não é o que produz mais urina. É o que corrige o
+      <b>mecanismo dominante</b> do paciente — quem arranca volume, quem preserva potássio, quem desliga a
+      ordem da aldosterona.</p>
+    <p class="author-line">Dr. André Rossanno</p>
+    <div class="chips">
+      <span class="chip na">NKCC2 · ramo ascendente</span>
+      <span class="chip">furosemida 20–240 mg</span>
+      <span class="chip k">receptor mineralocorticoide</span>
+      <span class="chip k">ENaC</span>
+      <span class="chip">PATHWAY-2</span>
+      <span class="chip">Diretriz HAS 2025</span>
+    </div>
+    <div class="scroll-cue">↓ role para acender o néfron</div>
+  </header>
+
+  <!-- 1 · NEPHRON MAP -->
+  <section id="s-nefron">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>O mapa do néfron</h2>
+      <span class="sub">clique num segmento — cada classe acende exatamente onde age</span>
+    </div>
+    <p class="lead">O rim é uma linha de montagem que reabsorve sódio em estações sucessivas. Cada diurético
+      sabota <strong>uma</strong> estação. Fixe o <strong>lugar</strong> primeiro — o mecanismo e os efeitos adversos
+      caem por gravidade depois.</p>
+
+    <div class="nephron">
+      <div class="segs">
+        <div class="seg" data-seg="tcp"><div class="glow"></div><div class="n">1</div><div class="t">Túbulo proximal</div><div class="d">65% do Na⁺</div></div>
+        <div class="seg hl-loop" data-seg="loop"><div class="glow"></div><div class="n">2–3</div><div class="t">Alça de Henle</div><div class="d">◆ ALÇA</div></div>
+        <div class="seg hl-dct" data-seg="dct"><div class="glow"></div><div class="n">4</div><div class="t">Túbulo distal</div><div class="d">◆ tiazídicos</div></div>
+        <div class="seg hl-cd" data-seg="cd"><div class="glow"></div><div class="n">5</div><div class="t">Túbulo coletor</div><div class="d">◆ POUPADORES</div></div>
+        <div class="seg" data-seg="adh"><div class="glow"></div><div class="n">→</div><div class="t">Ducto / ADH</div><div class="d">água</div></div>
+      </div>
+      <div class="seg-detail" id="segDetail">
+        <span class="tag">toque um segmento</span> Os dois protagonistas deste capítulo moram nas pontas: a
+        <b>alça</b> (potência de volume) e o <b>coletor</b> (onde reina a aldosterona).
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · DIURÉTICOS DE ALÇA -->
+  <section id="s-alca">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Diuréticos de alça</h2>
+      <span class="sub">a cachoeira do néfron · furosemida · bumetanida · torasemida</span>
+    </div>
+    <p class="lead">Agem no <strong>ramo ascendente espesso</strong> da alça de Henle, bloqueando o cotransportador
+      <strong>NKCC2 (Na⁺/K⁺/2Cl⁻)</strong>. São os <strong>mais potentes natriuréticos</strong> que existem —
+      isso não é a mesma coisa que serem os melhores anti-hipertensivos crônicos.</p>
+
+    <div class="pause">“Na alça, potência sem estratégia produz apenas eletrólitos no chão.”</div>
+
+    <h3 class="subhead">2.1 · Mecanismo completo</h3>
+    <div class="card" style="margin-top:10px">
+      <div class="who">ramo ascendente espesso · sítio 3 do néfron</div>
+      <ul class="flow">
+        <li><b>NKCC2</b> bloqueado na membrana luminal</li>
+        <li>Menor entrada de <b>Na⁺, K⁺ e 2Cl⁻</b> na célula</li>
+        <li>Redução do <b>potencial luminal positivo</b> gerado pela reciclagem de K⁺ pelo ROMK</li>
+        <li>Esse potencial é o que empurrava <b>Ca²⁺ e Mg²⁺</b> pela via paracelular — sem ele, <b>cai a reabsorção
+          desses cátions</b> e sobe a excreção urinária (calciúria e magnesiúria)</li>
+        <li>O ramo ascendente espesso é impermeável à água mas reabsorvia sal — bloqueá-lo desfaz parte do
+          <b>gradiente corticomedular</b>, reduzindo a capacidade do rim de <b>concentrar a urina</b> depois</li>
+        <li><b>Natriurese intensa</b> → redução de volume rápida e proporcional à dose</li>
+      </ul>
+      <div class="note"><b>Por que o AINE derruba a resposta:</b> parte da eficácia da furosemida depende de
+        <b>prostaglandinas renais</b> (vasodilatação da mácula densa e liberação de renina). AINE inibe a
+        ciclo-oxigenase, reduz essas prostaglandinas e <b>atenua a resposta diurética</b> — mecanismo, não coincidência.</div>
+    </div>
+
+    <h3 class="subhead">2.2 · Furosemida × bumetanida × torasemida</h3>
+    <p class="lead" style="margin-top:6px">São a mesma classe farmacológica, mas <strong>não são intercambiáveis
+      sem ajuste</strong>. A escolha entre elas resolve problemas diferentes: resposta oral errática, necessidade
+      de menos tomadas, ou disponibilidade no serviço.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Fármaco</th><th>Dose oral usual*</th><th>Biodisponibilidade</th><th>Frequência</th><th>Perfil / uso prático</th></tr></thead>
+        <tbody>
+          <tr><th>Furosemida</th><td>20–240 mg/dia, individualizada</td>
+            <td>Variável e às vezes errática (≈10–90%, piora com edema de parede intestinal)</td>
+            <td>1 a 3×/dia — meia-vida curta</td>
+            <td>Principal representante no Brasil; oral e IV; a dose depende de função renal, congestão e
+              exposição prévia — <b>240 mg não é dose rotineira</b>, é teto em resistência grave</td></tr>
+          <tr><th>Bumetanida</th><td>Equivalência aproximada à furosemida, <b>não matemática</b></td>
+            <td>Geralmente mais previsível por via oral</td>
+            <td>1 a 2×/dia</td>
+            <td>Maior potência por miligrama; útil quando a resposta oral à furosemida é errática (ex.: edema
+              intestinal em IC descompensada)</td></tr>
+          <tr><th>Torasemida</th><td>Equivalência aproximada, individualizada</td>
+            <td>Mais previsível, meia-vida mais longa</td>
+            <td>1×/dia geralmente suficiente</td>
+            <td>Maior duração de ação — possível conveniência posológica; <b>não há evidência consistente de
+              superioridade de desfechos</b> sobre furosemida, apesar da farmacocinética mais estável</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="srcline">*Doses individualizadas conforme função renal, grau de congestão e exposição prévia ao diurético. Não usar como prescrição fixa sem avaliação clínica.</p>
+
+    <h3 class="subhead">2.3 · Diurese não é ação anti-hipertensiva</h3>
+    <div class="note" style="margin-top:8px">
+      A frase simplista "alça é menos potente que tiazídico" esconde o que importa: a alça é
+      <b>mais potente como natriurético agudo</b>, mas tem <b>ação curta</b> e pode gerar
+      <b>retenção pós-diurética de sódio</b> entre as doses — o rim "compensa" no intervalo. Isso a torna
+      <b>menos adequada para controle estável da PA em 24 horas</b> quando não há edema. Tiazídicos e similares,
+      com ação mais longa e natriurese mais suave e constante, geralmente cobrem melhor as 24 horas em pacientes
+      sem congestão.
+    </div>
+    <div class="pause">“A alça vence a batalha do volume, mas nem sempre vence a guerra das 24 horas.”</div>
+
+    <h3 class="subhead">2.4 · Volume verdadeiro × redistribuição — a decisão que precede a prescrição</h3>
+    <div class="grid2" style="margin-top:8px">
+      <div class="card" style="--accent:var(--cyan)">
+        <h3>Volume verdadeiro — diurético de alça ajuda</h3>
+        <div class="who">retenção hidrossalina real</div>
+        <ul class="flow">
+          <li>Ganho de peso recente e objetivo</li>
+          <li>Turgência jugular, estertores, congestão</li>
+          <li>Ascite, edema de MMII com fóvea, oligúria relativa</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Redistribuição capilar — diurético de alça <u>não</u> resolve</h3>
+        <div class="who">ex.: edema por bloqueador de canal de cálcio (BCC) diidropiridínico</div>
+        <ul class="flow" style="--accent:var(--amber)">
+          <li>Aumento da <b>pressão hidrostática pré-capilar</b> por vasodilatação arteriolar seletiva</li>
+          <li><b>Ausência</b> de congestão sistêmica — sem jugular, sem estertor, sem ganho de peso importante</li>
+          <li>Resposta ruim ao simples aumento de dose do diurético</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note danger" style="margin-top:12px">
+      <b>Conduta no edema de BCC:</b> reduzir a dose do BCC, trocar por outro anti-hipertensivo ou
+      <b>associar IECA/BRA</b> — que reduz a pressão hidrostática pré-capilar por vasodilatação venosa concomitante.
+      Isso <b>reduz</b> o edema em parte dos pacientes; não é garantia universal, e a resposta deve ser reavaliada
+      caso a caso.
+    </div>
+
+    <h3 class="subhead">2.5 · Indicações aprofundadas</h3>
+    <ul class="flow" style="margin-top:8px">
+      <li><b>Insuficiência cardíaca congestiva</b> e <b>edema agudo de pulmão</b> — reduz pré-carga rapidamente</li>
+      <li><b>DRC com retenção hidrossalina</b> — muitas vezes exige doses maiores pela menor entrega tubular do fármaco</li>
+      <li><b>Síndrome nefrótica</b> — resposta pode estar reduzida por ligação do fármaco à albuminúria intraluminal</li>
+      <li><b>Cirrose com ascite</b>, dentro de esquema apropriado, geralmente associado a antagonista da aldosterona</li>
+      <li><b>Hipercalcemia</b> em contextos selecionados — <b>somente após reposição volêmica adequada</b>, nunca em paciente desidratado</li>
+      <li><b>Bloqueio sequencial do néfron</b> em resistência diurética (ver 2.7)</li>
+    </ul>
+
+    <h3 class="subhead">2.6 · Emergência hipertensiva — o que a furosemida realmente faz aqui</h3>
+    <div class="alert">
+      <span class="k">Não é "nunca usar" — é usar pela razão certa</span>
+      <p>A furosemida <b>não é o anti-hipertensivo universal</b> da emergência e <b>não deve ser usada
+        automaticamente</b> só porque a PA está muito alta. O tratamento é dirigido ao <b>órgão-alvo</b> e à
+        <b>fisiopatologia</b>: em paciente <b>sem sobrecarga volêmica</b>, ela pode piorar a depleção e ativar
+        ainda mais o SRAA. Quando existe <b>edema agudo de pulmão ou congestão</b>, o diurético de alça pode
+        fazer parte da estratégia — como tratamento da congestão, não como "baixador de pressão" isolado.</p>
+    </div>
+    <div class="note" style="margin-top:10px"><b>Quadro-resumo:</b> PA alta + pulmão seco ≠ furosemida automática.
+      PA alta + edema pulmonar/congestão = diurético pode compor a estratégia, junto a vasodilatador conforme o quadro.</div>
+
+    <h3 class="subhead">2.7 · Resistência diurética</h3>
+    <p class="lead" style="margin-top:6px">Paciente que "não urina mais" apesar de doses crescentes. Antes de
+      simplesmente aumentar a dose, identifique a causa.</p>
+    <div class="grid2" style="margin-top:8px">
+      <div class="card">
+        <h3>Causas a investigar</h3>
+        <ul class="flow" style="--accent:var(--red)">
+          <li>Baixa absorção intestinal / <b>edema de parede intestinal</b></li>
+          <li>Menor <b>secreção tubular</b> do fármaco na <b>DRC</b></li>
+          <li><b>AINE</b> em uso concomitante</li>
+          <li>Ingestão elevada de <b>sódio</b> na dieta</li>
+          <li><b>Retenção pós-diurética</b> entre as doses</li>
+          <li><b>Adaptação distal</b> — hipertrofia do néfron distal compensando a perda proximal de sódio</li>
+          <li>Dose <b>abaixo do limiar</b> terapêutico · má adesão · hipoalbuminemia em contextos selecionados</li>
+        </ul>
+      </div>
+      <div class="card" style="--accent:var(--amber)">
+        <h3>Dose-limiar e efeito-teto</h3>
+        <ul class="flow" style="--accent:var(--amber)">
+          <li>Abaixo do limiar individual, <b>quase não há resposta</b> — a curva dose-resposta da alça é sigmoide, não linear</li>
+          <li>Ao ultrapassar o limiar, a diurese aumenta de forma expressiva</li>
+          <li>Depois do <b>teto</b>, aumentar mais a dose rende <b>pouco benefício adicional</b></li>
+          <li>Nesse ponto, é melhor <b>aumentar a frequência</b> ou <b>bloquear outro segmento</b> do néfron do que empilhar dose</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note danger" style="margin-top:12px">
+      <b>Bloqueio sequencial do néfron:</b> associar alça + tiazídico/símile em pacientes selecionados
+      <b>bloqueia a compensação distal</b> (a adaptação que o néfron faz para "recuperar" o sódio perdido) e
+      <b>aumenta a natriurese</b> — mas também aumenta o risco de <b>hipovolemia, hiponatremia, hipocalemia,
+      hipomagnesemia e disfunção renal</b>. Exige <b>monitorização estreita</b> de eletrólitos e função renal,
+      geralmente em ambiente com acompanhamento próximo.
+    </div>
+
+    <h3 class="subhead">2.8 · Efeitos adversos — a causalidade, não só a lista</h3>
+    <div class="card" style="margin-top:8px">
+      <ul class="flow" style="--accent:var(--amber)">
+        <li><b>Hipocalemia + hipomagnesemia</b> — perda direta pela via paracelular desfeita</li>
+        <li><b>Aumento da calciúria</b> — mesmo mecanismo; hipocalcemia <b>clínica</b> é incomum, porque PTH e
+          vitamina D regulam o cálcio sérico independentemente da perda urinária aumentada</li>
+        <li><b>Hiponatremia e hipovolemia</b> — quando a diurese excede a reposição</li>
+        <li><b>Hipotensão</b> e <b>piora aguda da função renal</b> em depleção excessiva</li>
+        <li><b>Hiperuricemia</b> — competição pelo transportador de ácido úrico no túbulo proximal</li>
+        <li><b>Ototoxicidade</b> — dose alta e/ou infusão IV rápida, mais descrita com bumetanida/altas doses de furosemida</li>
+        <li>Reações relacionadas a <b>sulfonamida</b> — furosemida e bumetanida têm núcleo sulfa; risco de
+          reação cruzada existe mas é <b>menor</b> que o classicamente assumido, e deve ser avaliado caso a caso</li>
+        <li><b>Ativação neuro-hormonal</b> (SRAA, simpático) quando há diurese excessiva — pode ser contraproducente em IC</li>
+      </ul>
+      <div class="note" style="margin-top:12px"><b>Correção do mecanismo de alcalose:</b> não é "o líquido que
+        sobra fica alcalino" — a alcalose metabólica de contração ocorre porque (1) a <b>contração de volume</b>
+        concentra o bicarbonato plasmático; (2) mais sódio chega ao <b>túbulo coletor</b>, onde é reabsorvido em
+        troca de <b>H⁺ e K⁺</b> secretados, estimulado pela <b>aldosterona</b> ativada pela hipovolemia; (3) há
+        <b>perda de cloreto</b> desproporcional à de sódio. O resultado é uma alcalose <b>hipoclorêmica e
+        hipocalêmica</b> — três mecanismos concorrentes, não um efeito passivo.</div>
+    </div>
+
+    <!-- N1 story: cachoeira -->
+    <div class="story reveal-on-scroll">
+      <div class="n">MEMÓRIA · N1 — cinema mental</div>
+      <h3>A cachoeira NKCC2</h3>
+      <p class="scene">A <b>alça de Henle</b> é uma usina que bombeia <b>1 Na⁺, 1 K⁺ e 2 Cl⁻</b> a cada ciclo.
+        A <b>furosemida explode o motor NKCC2</b>. Sem o potencial elétrico que ele gerava, <b>Ca²⁺ e Mg²⁺
+        escorregam</b> pela via paracelular e vão embora na urina. Lá embaixo, a <b>hipovolemia aciona a
+        aldosterona</b>, que troca sódio por <b>H⁺ e K⁺</b> no coletor — a caldeira fica <b>alcalina</b>. Quem
+        abre comporta desse tamanho, ensurdece: <b>ototoxicidade</b> na dose alta.</p>
+    </div>
+  </section>
+
+  <!-- 3 · POUPADORES: LOCAL + 2 FAMÍLIAS -->
+  <section id="s-poup">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Poupadores de potássio</h2>
+      <span class="sub">túbulo distal tardio + ducto coletor · o reino da aldosterona</span>
+    </div>
+    <p class="lead">No fim da linha, a <strong>aldosterona</strong> manda reabsorver Na⁺ (e jogar K⁺ fora).
+      Poupar potássio = <strong>desligar esse comando</strong>. Há <strong>duas famílias</strong> que chegam ao mesmo
+      resultado por <strong>portas diferentes</strong> — e confundi-las é o erro clássico de prova.</p>
+
+    <div class="pause">“Poupar potássio é útil até o instante em que o potássio deixa de ser poupado e passa a ser acumulado.”</div>
+
+    <h3 class="subhead">3.1 · Fisiologia normal da aldosterona — a cascata completa</h3>
+    <div class="card" style="margin-top:8px">
+      <div class="who">célula principal do túbulo coletor</div>
+      <ul class="flow">
+        <li><b>Aldosterona</b> (esteroide) atravessa a membrana livremente</li>
+        <li>Liga-se ao <b>receptor mineralocorticoide intracelular</b></li>
+        <li>O complexo hormônio-receptor migra ao <b>núcleo</b> e ativa <b>transcrição gênica</b></li>
+        <li>Isso aumenta a síntese de três proteínas-chave:
+          <b>ENaC</b> (entrada luminal de Na⁺), <b>Na⁺/K⁺-ATPase</b> basolateral (mantém o gradiente) e
+          <b>ROMK</b> (canal que devolve K⁺ à luz tubular)</li>
+        <li>Resultado: <b>reabsorção de Na⁺</b> (água segue por osmose) e <b>secreção de K⁺ e H⁺</b> para a urina</li>
+      </ul>
+      <div class="note danger" style="margin-top:12px"><b>Por que o excesso de aldosterona é perigoso além da PA:</b>
+        expansão de volume → hipertensão; secreção contínua de K⁺/H⁺ → hipocalemia e alcalose metabólica;
+        o excesso de sódio filtrado suprime a renina; e há <b>lesão cardiovascular e renal direta</b>, mediada por
+        fibrose e inflamação tecidual — <b>independente</b> do nível de pressão arterial.</div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <!-- família 1 -->
+      <div class="card">
+        <h3 style="color:var(--k)">Família 1 · Antagonistas do receptor mineralocorticoide (ARM)</h3>
+        <div class="who">espironolactona · eplerenona · finerenona</div>
+        <ul class="flow arm">
+          <li>Ocupam o <b>receptor mineralocorticoide</b> sem ativá-lo</li>
+          <li>Bloqueiam a transcrição de ENaC, Na⁺/K⁺-ATPase e ROMK <b>antes de ela acontecer</b></li>
+          <li>O <b>início de ação não é imediato</b> — depende do turnover das proteínas já sintetizadas, não só da ligação ao receptor</li>
+        </ul>
+        <div class="note"><b>Chave:</b> agem <b>a montante</b> — desligam a ordem antes de ela ser dada.</div>
+      </div>
+
+      <!-- família 2 -->
+      <div class="card">
+        <h3 style="color:var(--green)">Família 2 · Bloqueadores diretos do ENaC</h3>
+        <div class="who">amilorida · triantereno (conhecimento complementar, pouco usado no Brasil)</div>
+        <ul class="flow enac">
+          <li><b>Independem</b> do receptor de aldosterona — atuam mesmo se ela estiver muito alta</li>
+          <li>Fecham diretamente o canal <b>ENaC</b> na membrana luminal</li>
+          <li>Sem entrada de Na⁺ → some a força elétrica que puxava K⁺ e H⁺ para a luz</li>
+          <li>Resultado: <b>reduz secreção de K⁺ e H⁺</b> → poupa potássio</li>
+        </ul>
+        <div class="ionbox">
+          <div class="ionlbl">ENaC — clique para trancar o canal</div>
+          <div class="channel">
+            <span class="ion na" id="ionNa" style="left:calc(50% - 15px);top:6px">Na⁺</span>
+            <div class="gate" id="gate">ENaC<span class="lock">🔒</span></div>
+            <span class="ion k" id="ionK" style="right:18px;bottom:6px">K⁺</span>
+          </div>
+          <div class="mech-btn">
+            <button class="tbtn" id="lockBtn">🔒 amilorida fecha o ENaC</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>Não confundir:</b> ARM bloqueia a <b>ordem</b> (o receptor); amilorida fecha a
+      <b>porta</b> (o canal ENaC) diretamente. Resultado semelhante — poupar K⁺ — por mecanismos opostos.
+      A conexão fisiológica final: a <b>síndrome de Liddle</b> é um ENaC constitutivamente ativo por mutação —
+      por isso responde a amilorida, e <b>não</b> a espironolactona (o receptor nem está envolvido).</div>
+
+    <h3 class="subhead">3.2 · Espironolactona</h3>
+    <div class="card" style="margin-top:8px">
+      <ul class="flow arm">
+        <li>ARM <b>não seletivo</b> — também interage com receptores de <b>androgênio e progesterona</b>, daí o pacote hormonal</li>
+        <li>Gera <b>metabólitos ativos</b> (ex.: canrenona), o que contribui para a duração do efeito</li>
+        <li>Indicações centrais: <b>HAS resistente</b> (4ª droga), <b>hiperaldosteronismo primário</b>,
+          <b>insuficiência cardíaca</b> com fração de ejeção reduzida, <b>cirrose com ascite</b> (associada a
+          diurético de alça), e <b>redução de proteinúria</b> em contextos selecionados</li>
+      </ul>
+      <div class="note danger" style="margin-top:10px"><b>As doses não são uma faixa única</b> — dependem da indicação:
+        HAS resistente costuma iniciar mais baixo e titular; IC segue esquemas próprios de titulação lenta com
+        monitorização de K⁺; hiperaldosteronismo pode exigir doses mais altas conforme resposta e tolerância.
+        Nunca prescrever uma dose "padrão" sem contextualizar a indicação.</div>
+      <div class="note" style="margin-top:10px"><b>Efeitos hormonais</b> (ação fora do receptor mineralocorticoide):
+        <b>ginecomastia</b>, <b>mastalgia</b>, <b>diminuição da libido</b>, <b>disfunção sexual</b> e
+        <b>irregularidade menstrual</b>. São dose-dependentes e reversíveis com a suspensão.</div>
+    </div>
+
+    <h3 class="subhead">3.3 · Eplerenona</h3>
+    <div class="card" style="margin-top:8px">
+      <ul class="flow" style="--accent:var(--cyan)">
+        <li><b>Maior seletividade</b> pelo receptor mineralocorticoide — não interage de forma relevante com androgênio/progesterona</li>
+        <li>Risco de <b>hipercalemia permanece</b> — a seletividade reduz o efeito hormonal, não o efeito sobre o K⁺</li>
+        <li>Metabolizada por <b>CYP3A4</b> — atenção a interações com inibidores potentes dessa via</li>
+        <li>Não tem <b>equivalência posológica direta e garantida</b> com a espironolactona — a troca exige reavaliação clínica, não conversão automática de miligramas</li>
+      </ul>
+      <div class="note" style="margin-top:10px">Formulação correta: <b>mantém o bloqueio mineralocorticoide com
+        incidência muito menor de efeitos sexuais, mas não elimina o risco de hipercalemia nem garante
+        equivalência posológica</b> com a espironolactona.</div>
+    </div>
+
+    <h3 class="subhead">3.4 · Amilorida</h3>
+    <div class="card" style="margin-top:8px">
+      <ul class="flow enac">
+        <li>Bloqueio direto do ENaC, <b>independente</b> do receptor mineralocorticoide</li>
+        <li>Reduz secreção de <b>K⁺ e H⁺</b> — mesmo risco de hipercalemia que os ARM, por via diferente</li>
+        <li>Uso combinado clássico com <b>tiazídico</b>, para poupar o potássio que o tiazídico perderia</li>
+        <li><b>Alternativa eficaz</b> quando há intolerância hormonal à espironolactona — não é apenas "segunda opção teórica":
+          evidência recente mostra resposta pressórica comparável em subgrupos de HAS resistente</li>
+        <li>Conexão fisiológica: droga de escolha na <b>síndrome de Liddle</b></li>
+      </ul>
+    </div>
+
+    <h3 class="subhead">3.5 · Finerenona — cultura cardiorrenal, não diurético clássico</h3>
+    <div class="note" style="margin-top:8px">
+      <b>ARM não esteroidal</b> de nova geração — estruturalmente diferente da espironolactona e eplerenona.
+      Indicação principal atual: <b>doença renal crônica associada ao diabetes tipo 2</b>, com benefícios
+      <b>cardiorrenais</b> (redução de progressão de DRC e desfechos cardiovasculares) demonstrados em ensaios
+      dedicados a essa população. Mantém risco de <b>hipercalemia</b>. <b>Não é</b> tratamento de rotina da HAS
+      resistente e <b>não deve</b> ser apresentada como um terceiro diurético poupador equivalente aos demais —
+      seu lugar na prática é outro.
+    </div>
+  </section>
+
+  <!-- 4 · COMPARADOR -->
+  <section id="s-comp">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Comparador premium</h2>
+      <span class="sub">espironolactona × eplerenona × amilorida · doses da Diretriz HAS 2025</span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Critério</th><th>Espironolactona</th><th>Eplerenona</th><th>Amilorida</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Classe</th>
+            <td><span class="pill p-esp">ARM não seletivo</span></td>
+            <td><span class="pill p-epl">ARM seletivo</span></td>
+            <td><span class="pill p-ami">bloqueador ENaC</span></td></tr>
+          <tr><th>Alvo</th><td>Receptor mineralocorticoide</td><td>Receptor mineralocorticoide</td><td>Canal ENaC (coletor)</td></tr>
+          <tr><th>Dose (mg/dia)</th><td>25–100</td><td>25–100</td><td>2,5–5</td></tr>
+          <tr><th>Tomadas/dia</th><td>1 a 2</td><td>1</td><td>1</td></tr>
+          <tr><th>Efeitos hormonais</th>
+            <td>Ginecomastia, ↓libido, irregularidade menstrual (também bloqueia androgênio/progesterona)</td>
+            <td><b style="color:var(--cyan2)">Poucos</b> — mais seletiva</td>
+            <td>Nenhum</td></tr>
+          <tr><th>Hipercalemia</th><td>Sim</td><td>Similar à espironolactona</td><td>Sim</td></tr>
+          <tr><th>Indicação-chave</th>
+            <td>HAS resistente (4ª droga), IC, hiperaldosteronismo, ↓proteinúria</td>
+            <td>Alternativa quando há efeito hormonal da espiro</td>
+            <td>Alternativa quando ARM não tolerado; associação com tiazídico</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="srcline">Fonte das doses e características: Diretriz Brasileira de Hipertensão Arterial — 2025.</p>
+  </section>
+
+  <!-- 5 · HAS RESISTENTE + PATHWAY-2 -->
+  <section id="s-resist">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Hipertensão resistente</h2>
+      <span class="sub">antes da 4ª droga, confirme que os três primeiros corredores realmente chegaram à pista</span>
+    </div>
+    <p class="lead">HAS resistente = PA não controlada apesar de <strong>3 drogas em dose otimizada, incluindo um
+      diurético</strong> (esquema A + C + D). Mas antes de liberar a 4ª faixa, é preciso <strong>confirmar que a
+      resistência é real</strong> — a maioria dos casos "resistentes" não é.</p>
+
+    <div class="pause">“Antes da quarta droga, confirme que os três primeiros corredores realmente chegaram à pista.”</div>
+
+    <h3 class="subhead">5.1 · Pit stop diagnóstico — descarte a pseudorresistência primeiro</h3>
+    <div class="grid2" style="margin-top:8px">
+      <div class="card">
+        <h3>Problemas de medida e adesão</h3>
+        <ul class="flow" style="--accent:var(--amber)">
+          <li><b>Técnica de medida incorreta</b> — manguito de tamanho errado, posição inadequada</li>
+          <li><b>Efeito do avental branco</b> — só se descarta com <b>MRPA ou MAPA</b>, nunca com aferição isolada de consultório</li>
+          <li><b>Má adesão</b> ao esquema — a causa mais comum de "resistência" na prática</li>
+          <li>Doses ou <b>combinações inadequadas</b> — muitas vezes o esquema nem está otimizado</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Fatores que sustentam PA elevada</h3>
+        <ul class="flow" style="--accent:var(--red)">
+          <li>Consumo elevado de <b>sal</b> e de <b>álcool</b> · <b>obesidade</b></li>
+          <li><b>Apneia obstrutiva do sono</b> não tratada</li>
+          <li><b>AINE</b>, descongestionantes, estimulantes, corticoides, anticoncepcionais, drogas ilícitas</li>
+          <li>Causas <b>secundárias</b> não investigadas — incluindo hiperaldosteronismo (seção 6)</li>
+          <li><b>Volume</b> e função renal não avaliados</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note danger" style="margin-top:12px">Somente depois de percorrer essa lista — e confirmar PA elevada
+      por <b>MRPA/MAPA</b>, adesão real e esquema A+C+D verdadeiramente otimizado — a hipertensão é
+      <b>verdadeiramente resistente</b> e a quarta droga se justifica.</div>
+
+    <h3 class="subhead">5.2 · Esquema-base A + C + D</h3>
+    <div class="note" style="margin-top:8px">
+      <b>IECA ou BRA</b> (nunca os dois juntos — a combinação IECA+BRA não é permitida, sem benefício adicional e
+      com mais risco de hipercalemia e disfunção renal) + <b>bloqueador de canal de cálcio</b> +
+      <b>diurético tiazídico ou tiazídico-símile</b> apropriado, todos em dose otimizada.
+    </div>
+
+    <h3 class="subhead">5.3 · A corrida — quem chega antes da 4ª droga</h3>
+    <div class="race" style="margin-top:8px">
+      <div class="finish">Linha de chegada · HA verdadeiramente resistente</div>
+      <div class="lanes">
+        <div class="lane g1"><span class="rank">1</span><span class="nm">IECA ou BRA <small>inibe sistema renina-angiotensina</small></span><span class="role">base A</span></div>
+        <div class="lane g2"><span class="rank">2</span><span class="nm">BCC <small>bloqueador de canal de cálcio</small></span><span class="role">base C</span></div>
+        <div class="lane g3"><span class="rank">3</span><span class="nm">Tiazídico <small>↑ excreção de sódio e água</small></span><span class="role">base D</span></div>
+        <div class="lane g4"><span class="rank">4</span><span class="nm">Espironolactona <small>antagonista da aldosterona</small></span><span class="role">4ª droga ★</span></div>
+      </div>
+    </div>
+
+    <h3 class="subhead">5.4 · PATHWAY-2 — por que a espironolactona venceu</h3>
+    <div class="trial reveal-on-scroll" style="margin-top:8px">
+      <span class="badge">PATHWAY-2 · Lancet 2015</span>
+      <p style="margin:14px 0 0;font-size:15px;color:var(--ink2)">Ensaio <b>crossover, duplo-cego</b>, 335
+        randomizados com HAS resistente já em A+C+D otimizado (230 completaram todos os ciclos). Cada paciente
+        passou <b>12 semanas</b> em cada braço: <b>placebo, espironolactona (25–50 mg), bisoprolol (5–10 mg) e
+        doxazosina (4–8 mg)</b>, com desfecho primário em <b>PAS domiciliar</b>. A hipótese fisiológica: se a
+        resistência é predominantemente <b>retenção de sódio</b> mediada por aldosterona relativamente inapropriada,
+        o antagonista mineralocorticoide deveria superar os simpaticolíticos. Foi o que se observou.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="v red">−8,70</div><div class="l">PAS domiciliar vs <b>placebo</b> (mmHg)</div></div>
+        <div class="stat"><div class="v">−4,03</div><div class="l">vs <b>doxazosina</b> (mmHg)</div></div>
+        <div class="stat"><div class="v">−4,48</div><div class="l">vs <b>bisoprolol</b> (mmHg)</div></div>
+        <div class="stat"><div class="v">60%</div><div class="l">atingiram PAS domiciliar &lt;135</div></div>
+      </div>
+      <p class="srcline">Williams B, et al. Lancet 2015;386:2059–68. Valores de PAS <b>domiciliar</b>, desenho crossover.
+        <b>Limitação:</b> população selecionada (excluiu TFG muito baixa e K⁺ elevado), o que restringe a
+        generalização para pacientes com DRC avançada ou hipercalemia basal.</p>
+    </div>
+
+    <div class="two-src">
+      <div class="srcbox">
+        <div class="h">Meta-análise · Tian et al., ESC Cardiovasc Res 2024</div>
+        <p>24 ensaios, 3.485 pacientes: a espironolactona foi o tratamento <b>mais efetivo</b> na HAS resistente —
+          PAS de consultório <b>−13,3</b> e PAS 24h <b>−8,46 mmHg</b>.</p>
+      </div>
+      <div class="srcbox">
+        <div class="h">Amilorida · substudy do PATHWAY-2</div>
+        <p>Amilorida reduziu a PAS clínica <b>−20,4</b>, quase idêntica à espironolactona (−18,3) —
+          sustentando-a como <b>alternativa eficaz</b>, não apenas teórica, quando a espironolactona não é tolerada.</p>
+      </div>
+    </div>
+    <div class="note"><b>Cuidado de prova (fontes diferentes):</b> o −8,70 é <b>domiciliar</b> do PATHWAY-2;
+      o −13,3 / −8,46 é <b>consultório/24h</b> da meta-análise Tian 2024. Não misture os números.</div>
+
+    <h3 class="subhead">5.5 · Se a espironolactona não puder ser usada</h3>
+    <div class="card" style="margin-top:8px">
+      <ul class="flow" style="--accent:var(--cyan)">
+        <li><b>Efeito hormonal intolerável</b> (ginecomastia, mastalgia) → trocar por <b>eplerenona</b></li>
+        <li><b>Hipercalemia ou intolerância ao ARM</b> → considerar <b>amilorida</b>, com monitorização de K⁺ equivalente</li>
+        <li>PA ainda não controlada → reavaliar <b>causas secundárias</b> não investigadas e considerar
+          <b>avaliação especializada</b> (hipertensologia) antes de empilhar mais drogas empiricamente</li>
+      </ul>
+      <div class="note" style="margin-top:10px">Não existe um ranking rígido e universal entre as alternativas —
+        a escolha depende do perfil de K⁺, função renal, tolerância e resposta individual.</div>
+    </div>
+  </section>
+
+  <!-- 6 · HIPERALDOSTERONISMO -->
+  <section id="s-hiper">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2>Hiperaldosteronismo primário</h2>
+      <span class="sub">a causa secundária que se esconde na HAS resistente</span>
+    </div>
+    <p class="lead">A adrenal produz aldosterona <strong>em excesso e de forma autônoma</strong>, suprimindo a
+      renina. Estimativas variam conforme a população e os critérios diagnósticos usados, mas em séries de
+      <strong>HAS resistente</strong> uma <strong>proporção relevante</strong> (frequentemente citada na faixa de
+      20–25%, com variação entre estudos) apresenta aldosterona inapropriadamente alta.</p>
+
+    <div class="alert">
+      <span class="k">A hipocalemia não é senha obrigatória</span>
+      <p><b>Muitos pacientes com hiperaldosteronismo primário são normocalêmicos.</b> Esperar hipocalemia para
+        suspeitar do diagnóstico faz o médico perder a maioria dos casos — a hipocalemia é um achado
+        <b>possível</b>, não um pré-requisito para investigar.</p>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <h3>Quando suspeitar</h3>
+        <ul class="flow" style="--accent:var(--cyan)">
+          <li>HAS <b>resistente</b> ou de início precoce (jovem)</li>
+          <li>Hipocalemia espontânea ou <b>desproporcional</b> à dose de diurético</li>
+          <li><b>Incidentaloma adrenal</b> · HAS + apneia obstrutiva do sono</li>
+          <li>HAS + <b>história familiar</b> de hiperaldosteronismo ou AVC em jovem</li>
+          <li>Lesão de órgão-alvo <b>desproporcional</b> ao nível pressórico</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Investigação — passo a passo</h3>
+        <ul class="flow" style="--accent:var(--amber)">
+          <li><b>Rastreio:</b> relação aldosterona/renina (ARR) — requer preparo e interpretação contextual</li>
+          <li><b>Interferentes do ARR:</b> espironolactona, eplerenona e amilorida devem idealmente ser suspensos
+            antes do teste (falseiam o resultado); betabloqueador, IECA/BRA e diurético também interferem em graus variados</li>
+          <li><b>Confirmação</b> com teste dinâmico quando o rastreio é positivo</li>
+          <li><b>Imagem adrenal</b> (TC) para identificar lesão</li>
+          <li><b>Lateralização</b> por <b>cateterismo de veias adrenais</b> — define se é doença unilateral ou bilateral, e muda a conduta</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:12px"><b>Conduta conforme lateralização:</b> doença <b>unilateral</b>
+      (adenoma produtor de aldosterona) → <b>adrenalectomia</b>, com potencial de cura ou grande melhora da PA;
+      doença <b>bilateral</b> (hiperplasia) → tratamento <b>medicamentoso</b> com ARM (espironolactona ou
+      eplerenona), já que a cirurgia bilateral não é rotina.</div>
+
+    <div class="note danger" style="margin-top:12px"><b>Ponte com o PATHWAY-2:</b> o próprio estudo estimou uma
+      fração relevante de aldosterona inapropriadamente alta em sua população — e esses pacientes foram
+      justamente os que <b>mais responderam</b> à espironolactona, reforçando a hipótese fisiopatológica central
+      do ensaio.</div>
+  </section>
+
+  <!-- 7 · EFEITOS ADVERSOS GALERIA + DICA EPLERENONA -->
+  <section id="s-adv">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2>Dica de prova · o alerta luminoso</h2>
+      <span class="sub">o que fazer quando o efeito hormonal aparece</span>
+    </div>
+    <div class="alert">
+      <span class="k">Ginecomastia com espironolactona</span>
+      <p>Apareceu <b>ginecomastia, mastalgia ou queixa hormonal</b> com espironolactona? <b>Troque por
+        EPLERENONA</b> — mantém o bloqueio mineralocorticoide com incidência muito menor de efeitos sexuais
+        (mas <b>não elimina</b> o risco de hipercalemia).</p>
+    </div>
+    <div class="note" style="margin-top:12px"><b>Finerenona — lugar certo, não protagonista aqui.</b> ARM
+      <b>não esteroidal</b>, seu palco é a <b>DRC associada ao diabetes tipo 2</b> (proteção cardiorrenal),
+      <b>não</b> a HAS resistente de rotina. Não confunda na prova.</div>
+  </section>
+
+  <!-- 8 · PRESCRIÇÃO PRÁTICA -->
+  <section id="s-presc">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2>Da fisiologia ao receituário</h2>
+      <span class="sub">a maior seção do capítulo — porque é aqui que o aluno aprende a decidir</span>
+    </div>
+    <div class="pause">“Prescrever um diurético é escolher onde interromper o transporte de sódio e prever o que o néfron fará depois.”</div>
+
+    <h3 class="subhead">8.1 · Antes de prescrever um diurético de alça</h3>
+    <div class="card" style="margin-top:8px">
+      <div class="who">avaliação clínica e laboratorial mínima</div>
+      <ul class="flow" style="--accent:var(--cyan)">
+        <li><b>Indicação real</b> de volume: congestão, peso, edema, turgência jugular, ausculta pulmonar</li>
+        <li><b>Pressão arterial</b> e <b>ortostatismo</b> — risco de hipotensão em depleção</li>
+        <li><b>Creatinina e TFG</b> — função renal basal orienta dose e via</li>
+        <li><b>Sódio, potássio, magnésio, bicarbonato, ácido úrico</b> — base para monitorizar depois</li>
+        <li><b>Medicamentos em uso:</b> AINE (atenua resposta), outros diuréticos, nefrotóxicos</li>
+        <li><b>Ingestão de sal</b> e <b>exposição prévia</b> ao diurético (guia a dose inicial)</li>
+      </ul>
+    </div>
+
+    <h3 class="subhead">8.2 · Antes de prescrever ARM ou amilorida</h3>
+    <div class="card" style="margin-top:8px">
+      <ul class="flow" style="--accent:var(--k)">
+        <li><b>Potássio sérico</b> basal — obrigatório antes de iniciar</li>
+        <li><b>Creatinina e TFG</b> — hipercalemia é mais provável com função renal reduzida</li>
+        <li><b>Uso de IECA/BRA</b> — a combinação é a mais comum causa de hipercalemia iatrogênica</li>
+        <li><b>AINE</b> — reduz TFG e potencializa retenção de K⁺</li>
+        <li><b>Suplementos de potássio</b> e <b>substitutos de sal com K⁺</b> — pergunte explicitamente, o paciente raramente relata sem ser perguntado</li>
+        <li><b>Trimetoprima</b> (e outros poupadores de K⁺ concomitantes) — interação frequentemente esquecida</li>
+        <li>Estado de <b>hidratação</b> e <b>DRC</b> de base</li>
+      </ul>
+      <div class="note danger" style="margin-top:10px">Não existe um valor de corte universal e definitivo de K⁺
+        ou TFG que sirva para todo paciente — a decisão de iniciar, e o intervalo de reavaliação, seguem
+        critérios de diretriz e <b>julgamento clínico contextual</b>. Nunca inicie ARM sem K⁺ basal conhecido.</div>
+    </div>
+
+    <h3 class="subhead">8.3 · Modelos didáticos de prescrição</h3>
+    <p class="lead" style="margin-top:6px">Simulações <b>educacionais</b> — cada uma mostra a estrutura do
+      raciocínio, não uma receita fixa para copiar.</p>
+
+    <div class="rx-tabs">
+      <button class="rxtab active" data-rx="furo1">Furosemida · edema leve/moderado</button>
+      <button class="rxtab" data-rx="furo2">Furosemida · DRC / exposição prévia</button>
+      <button class="rxtab" data-rx="espiro1">Espironolactona · HAS resistente</button>
+      <button class="rxtab" data-rx="espiro2">Espironolactona · hiperaldosteronismo</button>
+      <button class="rxtab" data-rx="eple">Eplerenona · troca por efeito hormonal</button>
+      <button class="rxtab" data-rx="amilo">Amilorida · associação/intolerância</button>
+    </div>
+
+    <div class="rxcard" id="rxcard">
+      <!-- preenchido via JS -->
+    </div>
+
+    <h3 class="subhead">8.4 · Painel de monitorização temporal</h3>
+    <p class="lead" style="margin-top:6px">O que revisar muda conforme a fase do tratamento — clique nas etapas.</p>
+    <div class="timeline" id="timeline">
+      <button class="tl-step active" data-tl="basal">Basal</button>
+      <button class="tl-step" data-tl="inicio">Após início</button>
+      <button class="tl-step" data-tl="titula">Após titulação</button>
+      <button class="tl-step" data-tl="estavel">Acompanhamento estável</button>
+      <button class="tl-step" data-tl="risco">Paciente de alto risco</button>
+    </div>
+    <div class="tl-detail" id="tlDetail"></div>
+    <div class="note" style="margin-top:12px">O intervalo entre reavaliações <b>não é o mesmo para todos</b> —
+      DRC, uso concomitante de IECA/BRA, idade avançada e instabilidade clínica encurtam o intervalo.</div>
+
+    <h3 class="subhead">8.5 · Condutas diante de alterações</h3>
+    <div class="algo-grid">
+      <details class="algo"><summary>Hipocalemia</summary>
+        <p>Reforçar ingestão de potássio na dieta; considerar reposição oral se sintomática ou K⁺ muito baixo;
+          reavaliar dose do diurético de alça; considerar associar poupador de K⁺ se o quadro persistir e não houver contraindicação.</p></details>
+      <details class="algo"><summary>Hipomagnesemia</summary>
+        <p>Repor magnésio quando sintomática (cãibras, arritmia) ou muito baixa — a hipocalemia refratária
+          muitas vezes só corrige depois que o magnésio é corrigido junto.</p></details>
+      <details class="algo"><summary>Hiponatremia</summary>
+        <p>Avaliar volemia clínica; se hipovolêmica, reduzir/pausar o diurético e reavaliar; investigar outras
+          causas concomitantes antes de atribuir tudo ao fármaco.</p></details>
+      <details class="algo"><summary>Alcalose metabólica</summary>
+        <p>Geralmente acompanha contração de volume — ajustar dose do diurético, repor cloreto e potássio
+          conforme o quadro clínico.</p></details>
+      <details class="algo"><summary>Hipercalemia (ARM/amilorida)</summary>
+        <p>Reavaliar dose e necessidade real; suspender temporariamente se K⁺ elevado; revisar IECA/BRA, AINE e
+          suplementos concomitantes; repetir dosagem antes de qualquer decisão definitiva.</p></details>
+      <details class="algo"><summary>Aumento de creatinina</summary>
+        <p>Diferenciar queda de TFG hemodinâmica esperada (leve, estabiliza) de lesão renal aguda verdadeira
+          (progressiva) — a primeira pode não exigir suspensão, a segunda exige reavaliação completa.</p></details>
+      <details class="algo"><summary>Hipotensão / pouca resposta diurética</summary>
+        <p>Hipotensão: reavaliar volemia e reduzir dose. Pouca resposta: revisar adesão, AINE, sal na dieta,
+          dose abaixo do limiar, e considerar bloqueio sequencial (seção 2.7).</p></details>
+      <details class="algo"><summary>Ototoxicidade</summary>
+        <p>Mais associada a dose alta e infusão IV rápida — evitar bolus rápido em dose elevada, especialmente
+          com outros ototóxicos concomitantes (ex. aminoglicosídeos).</p></details>
+      <details class="algo"><summary>Ginecomastia / irregularidade menstrual</summary>
+        <p>Efeito hormonal da espironolactona — trocar por eplerenona conforme a dica de prova da seção 7.</p></details>
+      <details class="algo"><summary>Crise de gota</summary>
+        <p>A alça pode elevar ácido úrico por competição tubular — em paciente com histórico de gota, monitorizar
+          e tratar a crise conforme protocolo específico, sem necessariamente suspender o diurético se a indicação for forte.</p></details>
+    </div>
+
+    <div class="note danger" style="margin-top:16px" style="text-align:center">
+      <b style="display:block;text-align:center;font-family:var(--mono);letter-spacing:.05em">Simulação educacional · Dr. André Rossanno</b>
+    </div>
+  </section>
+
+  <!-- 9 · N7 story -->
+  <!-- 9 · PALÁCIO DA MEMÓRIA -->
+  <section id="s-palacio">
+    <div class="sec-head">
+      <span class="sec-num">09</span>
+      <h2>O Palácio da Memória</h2>
+      <span class="sub">a Usina Hidrelétrica do Néfron · uma narrativa só, cinco estações, navegável</span>
+    </div>
+    <p class="lead">Não são histórias soltas. É <strong>um só lugar</strong>, percorrido em sequência — cada
+      estação empilha na anterior. Clique nas estações abaixo e percorra a usina do início ao fim.</p>
+
+    <div class="palace" id="palace">
+      <div class="palace-nav">
+        <button class="pnav active" data-p="1">① Cachoeira NKCC2</button>
+        <button class="pnav" data-p="2">② Castelo da Aldosterona</button>
+        <button class="pnav" data-p="3">③ Três Guardiões</button>
+        <button class="pnav" data-p="4">④ Cofre do Potássio</button>
+        <button class="pnav" data-p="5">⑤ Pista da HAS Resistente</button>
+      </div>
+      <div class="palace-stage" id="palaceStage"></div>
+    </div>
+  </section>
+
+  <!-- 10 · SISTEMA N1-N7 -->
+  <section id="s-n1n7">
+    <div class="sec-head">
+      <span class="sec-num">10</span>
+      <h2>Sistema de memorização N1 — N7</h2>
+      <span class="sub">de reconhecer a palavra até conseguir ensinar o capítulo</span>
+    </div>
+    <p class="lead">Cada nível exige mais do que o anterior. Percorra em ordem — pular etapa é o que faz o
+      conhecimento evaporar na hora da prova.</p>
+
+    <div class="nlevels">
+      <button class="nlvl active" data-n="1">N1 · Reconhecimento</button>
+      <button class="nlvl" data-n="2">N2 · Associação</button>
+      <button class="nlvl" data-n="3">N3 · Contraste</button>
+      <button class="nlvl" data-n="4">N4 · Causalidade</button>
+      <button class="nlvl" data-n="5">N5 · Escolha clínica</button>
+      <button class="nlvl" data-n="6">N6 · Prescrição</button>
+      <button class="nlvl" data-n="7">N7 · Reconstrução</button>
+    </div>
+    <div class="nstage" id="nstage"></div>
+  </section>
+
+  <!-- 11 · FLASHCARDS -->
+  <section id="s-fc">
+    <div class="sec-head">
+      <span class="sec-num">11</span>
+      <h2>Banco de flashcards</h2>
+      <span class="sub">toque para virar · filtre por categoria</span>
+    </div>
+    <div class="fc-filters" id="fcFilters"></div>
+    <div class="fc-grid" id="fcGrid"></div>
+  </section>
+
+  <!-- 10 · QUESTÕES -->
+  <section id="s-q">
+    <div class="sec-head">
+      <span class="sec-num">12</span>
+      <h2>Banco de questões comentadas</h2>
+      <span class="sub">estilo TEC/SBC · 5 alternativas · comentário de todas · marque erro</span>
+    </div>
+    <div class="q-filters" id="qFilters"></div>
+    <div id="qGrid"></div>
+  </section>
+
+  <!-- 11 · CASOS -->
+  <section id="s-casos">
+    <div class="sec-head">
+      <span class="sec-num">13</span>
+      <h2>Casos rápidos</h2>
+      <span class="sub">toque para revelar a conduta</span>
+    </div>
+
+    <div class="case">
+      <div class="cn">CASO A · hipercalemia</div>
+      <h4>Idoso, DRC estágio 4, em enalapril + espironolactona. K⁺ 6,1.</h4>
+      <div class="body">Conduta imediata?</div>
+      <span class="reveal">▸ revelar conduta</span>
+      <div class="ans"><b>Suspender a espironolactona</b> (ARM + IECA + DRC = trinca clássica de hipercalemia).
+        Tratar o K⁺, rever a associação. Se precisar poupar volume sem poupar K⁺, mudar a estratégia diurética.</div>
+    </div>
+
+    <div class="case">
+      <div class="cn">CASO B · edema de anlodipino</div>
+      <h4>Mulher, 62a, edema maleolar após anlodipino 10 mg. Sem dispneia, sem ganho de peso, PA controlada.</h4>
+      <div class="body">Furosemida resolve?</div>
+      <span class="reveal">▸ revelar conduta</span>
+      <div class="ans"><b>Não.</b> É edema por <b>redistribuição capilar</b>, não sobrecarga volêmica — diurético
+        de alça não corrige. Reduzir dose do BCC ou associar <b>IECA/BRA</b>, que reequilibra a pressão capilar.</div>
+    </div>
+
+    <div class="case">
+      <div class="cn">CASO C · resistente + hipocalemia</div>
+      <h4>Homem, 45a, HAS resistente e K⁺ 3,0 espontâneo. Nunca usou poupador.</h4>
+      <div class="body">Que diagnóstico investigar — e como?</div>
+      <span class="reveal">▸ revelar conduta</span>
+      <div class="ans"><b>Hiperaldosteronismo primário.</b> Rastrear com <b>relação aldosterona/renina (ARR)</b>;
+        se confirmado, lateralizar. Bilateral → espironolactona; unilateral → adrenalectomia.</div>
+    </div>
+  </section>
+
+  <!-- 12 · OBJETIVO FINAL -->
+  <section id="s-fim">
+    <div class="sec-head">
+      <span class="sec-num">14</span>
+      <h2>Ao fechar este capítulo, você</h2>
+    </div>
+    <div class="objective">
+      <ul>
+        <li>Sabe <b>onde</b> a alça e os poupadores agem no néfron — sem confundir nunca mais.</li>
+        <li>Entende a <b>fisiologia da aldosterona</b> e por que poupar K⁺ é desligar esse comando.</li>
+        <li>Separa <b>ARM</b> (bloqueia o receptor) de <b>bloqueador de ENaC</b> (fecha o canal).</li>
+        <li>Fixou <b>espironolactona × eplerenona × amilorida</b> — dose, efeito hormonal, hipercalemia.</li>
+        <li>Domina a <b>HAS resistente</b> e o <b>PATHWAY-2</b> como base da 4ª droga.</li>
+        <li>Reconhece <b>efeitos adversos</b>, a dica da <b>eplerenona</b> e o papel restrito da <b>finerenona</b>.</li>
+        <li>Resolve praticamente qualquer questão de diuréticos na hipertensão.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="sig">Dr. André Rossanno · Atlas Mental da Hipertensão Arterial</div>
+    <div class="src">
+      Diretriz Brasileira de Hipertensão Arterial — 2025 · Williams B et al., PATHWAY-2, Lancet 2015;386:2059–68 ·
+      Tian Z et al., ESC Cardiovascular Research 2024;120:108–119.<br>
+      Material educativo. Condutas devem ser individualizadas à beira do leito.
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- sound engine (WebAudio, no assets) ---- */
+  var AC=null, soundOn=true;
+  function ctx(){ if(!AC){ try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){AC=null;} } return AC; }
+  function beep(freq,dur,type,vol){
+    if(!soundOn) return; var c=ctx(); if(!c) return;
+    var o=c.createOscillator(), g=c.createGain();
+    o.type=type||"sine"; o.frequency.value=freq;
+    g.gain.setValueAtTime(0,c.currentTime);
+    g.gain.linearRampToValueAtTime(vol||0.05,c.currentTime+0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001,c.currentTime+(dur||0.12));
+    o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime+(dur||0.12));
+  }
+  var sfx={
+    click:function(){beep(520,0.07,"triangle",0.04);},
+    reveal:function(){beep(440,0.09,"sine",0.05);setTimeout(function(){beep(660,0.12,"sine",0.05);},70);},
+    correct:function(){beep(587,0.1,"sine",0.06);setTimeout(function(){beep(880,0.16,"sine",0.06);},90);},
+    wrong:function(){beep(180,0.22,"sawtooth",0.05);},
+    lock:function(){beep(300,0.14,"square",0.05);setTimeout(function(){beep(150,0.18,"square",0.05);},80);}
+  };
+  var sndBtn=document.getElementById("snd");
+  sndBtn.addEventListener("click",function(){
+    soundOn=!soundOn; sndBtn.textContent=soundOn?"♪ som on":"♪ som off";
+    sndBtn.setAttribute("aria-pressed",String(soundOn)); if(soundOn){ctx();sfx.click();}
+  });
+
+  /* ---- progress bar ---- */
+  var bar=document.getElementById("bar"), pct=document.getElementById("pct");
+  function onScroll(){
+    var h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+    var p=max>0?Math.min(100,Math.round(h.scrollTop/max*100)):0;
+    bar.style.width=p+"%"; pct.textContent=p+"%";
+  }
+  document.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+
+  /* ---- nephron map ---- */
+  var detail=document.getElementById("segDetail");
+  var segData={
+    tcp:['','65% do sódio é reabsorvido aqui. Sítio dos inibidores da anidrase carbônica e diuréticos osmóticos — fora do escopo deste capítulo.'],
+    loop:['hl-loop','<span class="tag">DIURÉTICOS DE ALÇA</span> Ramo ascendente espesso. Bloqueio do <b>NKCC2</b> → natriurese intensa, a maior potência de volume. Furosemida, bumetanida, torasemida.'],
+    dct:['hl-dct','<span class="tag">TIAZÍDICOS</span> Túbulo contorcido distal, cotransportador <b>NCC</b>. Anti-hipertensivos de 1ª linha — tema do Capítulo 3.'],
+    cd:['hl-cd','<span class="tag">POUPADORES DE POTÁSSIO</span> Túbulo distal tardio + ducto coletor. Reino da <b>aldosterona</b>: ARM (espiro/eplerenona) e bloqueador de ENaC (amilorida).'],
+    adh:['','Ajuste final de água sob comando do <b>ADH</b>. Determina a osmolaridade urinária final.']
+  };
+  var segEls=document.querySelectorAll(".seg");
+  segEls.forEach(function(el){
+    el.addEventListener("click",function(){
+      segEls.forEach(function(s){s.classList.remove("on");});
+      el.classList.add("on");
+      var d=segData[el.getAttribute("data-seg")];
+      detail.className="seg-detail "+(d[0]||"");
+      detail.innerHTML=d[1];
+      sfx.click();
+    });
+  });
+
+  /* ---- ENaC lock animation ---- */
+  var gate=document.getElementById("gate"), ionNa=document.getElementById("ionNa"),
+      lockBtn=document.getElementById("lockBtn"), locked=false;
+  function toggleLock(){
+    locked=!locked;
+    gate.classList.toggle("locked",locked);
+    lockBtn.classList.toggle("active",locked);
+    if(locked){
+      ionNa.style.transition="transform .4s"; ionNa.style.transform="translateY(-16px)";
+      ionNa.style.opacity="0.5"; lockBtn.textContent="🔓 reabrir canal"; sfx.lock();
+    }else{
+      ionNa.style.transform="none"; ionNa.style.opacity="1";
+      lockBtn.textContent="🔒 amilorida fecha o ENaC"; sfx.click();
+    }
+  }
+  gate.addEventListener("click",toggleLock);
+  lockBtn.addEventListener("click",toggleLock);
+
+  /* ---- prescription models (8.3) ---- */
+  var rxData={
+    furo1:{
+      h:"Furosemida — edema leve/moderado (ambulatorial)",
+      obj:"Objetivo: reduzir congestão sem depleção excessiva",
+      rows:[["Medicamento","<b>Furosemida</b> via oral"],
+        ["Dose inicial","Dose baixa individualizada, ajustada à resposta — não iniciar já no teto"],
+        ["Horário","Pela manhã (evita noctúria); considerar 2ª dose precoce à tarde se necessário"],
+        ["Via","Oral"],
+        ["Exames antes","Creatinina, TFG, Na⁺, K⁺, Mg²⁺"],
+        ["Retorno","Reavaliar peso, sintomas e eletrólitos em intervalo curto após início"],
+        ["Sinais de alerta","Tontura postural, cãibras, redução importante da diurese, ganho ou perda de peso abrupta"],
+        ["Ajuste","Titular pela resposta clínica — peso e sintomas, não apenas volume urinário"]]
+    },
+    furo2:{
+      h:"Furosemida — DRC / exposição prévia ao diurético",
+      obj:"Objetivo: vencer a menor entrega tubular do fármaco na DRC",
+      rows:[["Medicamento","<b>Furosemida</b> — considerar dose mais alta ou via IV conforme contexto hospitalar"],
+        ["Dose inicial","Maior que em paciente virgem de diurético, pela menor secreção tubular na DRC"],
+        ["Horário","Fracionar em 2–3 tomadas se dose alta, para manter efeito mais estável"],
+        ["Via","Oral ambulatorial; IV se congestão importante em ambiente hospitalar"],
+        ["Exames antes","Creatinina/TFG basal, K⁺, Mg²⁺, ácido úrico"],
+        ["Retorno","Monitorização mais próxima — DRC eleva risco de distúrbio eletrolítico e de resistência diurética"],
+        ["Sinais de alerta","Piora de função renal, resposta ausente mesmo em dose alta (→ considerar bloqueio sequencial)"],
+        ["Ajuste","Se dose alta sem resposta, reavaliar adesão, sal na dieta e considerar associação com outro segmento (seção 2.7)"]]
+    },
+    espiro1:{
+      h:"Espironolactona — HAS resistente (4ª droga)",
+      obj:"Objetivo: bloquear a retenção de sódio mediada por aldosterona (base PATHWAY-2)",
+      rows:[["Pré-requisito","A+C+D confirmadamente otimizado e pseudorresistência descartada (seção 5.1)"],
+        ["Medicamento","<b>Espironolactona</b>"],
+        ["Dose inicial","Dose baixa de início, com titulação conforme resposta pressórica e tolerância"],
+        ["Horário","1×/dia, preferencialmente pela manhã"],
+        ["Exames antes","K⁺ e creatinina/TFG obrigatórios antes de iniciar"],
+        ["Retorno","Reavaliar K⁺ e função renal em prazo curto após início e após qualquer titulação"],
+        ["Sinais de alerta","Hipercalemia, ginecomastia/mastalgia, piora de função renal"],
+        ["Ajuste","Ginecomastia → trocar por eplerenona; hipercalemia → reavaliar dose, IECA/BRA e AINE concomitantes"]]
+    },
+    espiro2:{
+      h:"Espironolactona — hiperaldosteronismo primário (bilateral)",
+      obj:"Objetivo: bloquear o excesso de aldosterona quando a cirurgia não está indicada",
+      rows:[["Pré-requisito","Diagnóstico confirmado e lateralização definida como doença bilateral"],
+        ["Medicamento","<b>Espironolactona</b>"],
+        ["Dose","Pode exigir doses maiores que na HAS resistente comum, titulada por resposta e tolerância"],
+        ["Exames antes","K⁺, creatinina/TFG; idealmente suspender ARM antes de qualquer nova dosagem de ARR"],
+        ["Retorno","Acompanhamento estruturado de K⁺, PA e efeitos hormonais, com titulação gradual"],
+        ["Sinais de alerta","Hipercalemia, efeitos hormonais dose-dependentes"],
+        ["Ajuste","Efeito hormonal limitante → eplerenona; resposta pressórica insuficiente → reavaliação especializada"]]
+    },
+    eple:{
+      h:"Eplerenona — troca por efeito hormonal da espironolactona",
+      obj:"Objetivo: manter o bloqueio mineralocorticoide sem o pacote hormonal",
+      rows:[["Quando trocar","Ginecomastia, mastalgia, irregularidade menstrual ou disfunção sexual com espironolactona"],
+        ["Medicamento","<b>Eplerenona</b>"],
+        ["Equivalência","Não há conversão automática de miligramas — reavaliar resposta clínica após a troca"],
+        ["Interações","Atenção a inibidores potentes de CYP3A4 (metabolismo hepático da eplerenona)"],
+        ["Exames antes","K⁺ e função renal — o risco de hipercalemia permanece igual ao da espironolactona"],
+        ["Retorno","Reavaliar K⁺ após a troca, como se fosse início de um novo ARM"],
+        ["Sinais de alerta","Hipercalemia — a seletividade reduz efeito hormonal, não o risco de K⁺"]]
+    },
+    amilo:{
+      h:"Amilorida — associação com tiazídico ou alternativa por intolerância",
+      obj:"Objetivo: poupar K⁺ por via independente do receptor de aldosterona",
+      rows:[["Cenário 1","Associação com tiazídico para poupar o K⁺ que o tiazídico perderia"],
+        ["Cenário 2","Alternativa quando há intolerância hormonal ao ARM, mantendo o objetivo de poupar potássio"],
+        ["Medicamento","<b>Amilorida</b>"],
+        ["Exames antes","K⁺ e creatinina/TFG — mesmo cuidado que com ARM, mecanismo diferente, risco de hipercalemia semelhante"],
+        ["Retorno","Reavaliar K⁺ conforme contexto clínico e função renal"],
+        ["Sinais de alerta","Hipercalemia — vigiar sobretudo se associada a IECA/BRA"]]
+    }
+  };
+  var rxTabs=document.querySelectorAll(".rxtab"), rxCard=document.getElementById("rxcard");
+  function renderRx(key){
+    var d=rxData[key]; if(!d||!rxCard) return;
+    var rowsHtml=d.rows.map(function(r){
+      return '<div class="rx-row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';
+    }).join("");
+    rxCard.innerHTML='<h4>'+d.h+'</h4><div class="obj">'+d.obj+'</div><div class="rx-rows">'+rowsHtml+
+      '</div><div class="rx-wm">Simulação educacional · Dr. André Rossanno</div>';
+  }
+  if(rxTabs.length){
+    rxTabs.forEach(function(t){
+      t.addEventListener("click",function(){
+        rxTabs.forEach(function(x){x.classList.remove("active");});
+        t.classList.add("active"); renderRx(t.getAttribute("data-rx")); sfx.click();
+      });
+    });
+    renderRx(rxTabs[0].getAttribute("data-rx"));
+  }
+
+  /* ---- monitorization timeline (8.4) ---- */
+  var tlData={
+    basal:"<b>Antes de iniciar:</b> peso, PA, sinais de congestão, creatinina/TFG, Na⁺, K⁺, Mg²⁺, bicarbonato, ácido úrico (se alça). Define o ponto de comparação para tudo o que vem depois.",
+    inicio:"<b>Dias a 1–2 semanas após início:</b> reavaliar sintomas, diurese, PA, ortostatismo e eletrólitos — é quando distúrbios agudos (hipovolemia, hipercalemia inicial) mais aparecem.",
+    titula:"<b>Após cada titulação de dose:</b> repetir K⁺ e creatinina — cada mudança de dose é, na prática, um novo início.",
+    estavel:"<b>Acompanhamento estável:</b> reavaliação periódica de peso, PA, eletrólitos e função renal, com intervalo definido pelo risco individual, não por um protocolo único.",
+    risco:"<b>Paciente de alto risco</b> (DRC, IECA/BRA associado, idoso, instável): monitorização mais frequente e mais próxima em todas as fases anteriores — o intervalo padrão não se aplica aqui."
+  };
+  var tlSteps=document.querySelectorAll(".tl-step"), tlDetail=document.getElementById("tlDetail");
+  function renderTl(key){ if(tlDetail) tlDetail.innerHTML=tlData[key]||""; }
+  if(tlSteps.length){
+    tlSteps.forEach(function(s){
+      s.addEventListener("click",function(){
+        tlSteps.forEach(function(x){x.classList.remove("active");});
+        s.classList.add("active"); renderTl(s.getAttribute("data-tl")); sfx.click();
+      });
+    });
+    renderTl(tlSteps[0].getAttribute("data-tl"));
+  }
+
+  /* ---- algorithm accordions: sound on open ---- */
+  document.querySelectorAll(".algo").forEach(function(a){
+    a.addEventListener("toggle",function(){ if(a.open) sfx.click(); });
+  });
+
+  /* ---- Palace of Memory — Usina Hidrelétrica do Néfron ---- */
+  var palaceData={
+    1:{h:"ESTAÇÃO 1",t:"A Cachoeira NKCC2",
+      body:["A alça ascendente é uma <b>usina</b> que bombeia <b>1 Na⁺, 1 K⁺ e 2 Cl⁻</b> a cada ciclo do motor <b>NKCC2</b>.",
+        "A <b>furosemida explode o motor</b>. Sal cai. Água cai. K⁺ cai. Mg²⁺ cai. A calciúria sobe — o cálcio escorrega pela beirada, mas o cofre central do corpo (regulado por PTH) segura o nível sérico.",
+        "Ao fundo, uma <b>sirene</b> toca quando a comporta abre rápido demais: ototoxicidade. E a água que sobra vira uma <b>caldeira alcalina</b> — a hipovolemia aciona a aldosterona lá na frente."]},
+    2:{h:"ESTAÇÃO 2",t:"O Castelo da Aldosterona",
+      body:["No fim da usina, um <b>castelo</b>. A rainha <b>Aldosterona</b> entrega uma ordem ao <b>receptor</b>, que é o porteiro.",
+        "O porteiro carrega um <b>pergaminho até o núcleo</b>. Lá dentro, o núcleo <b>instala três máquinas</b>: o portão <b>ENaC</b>, a bomba <b>Na⁺/K⁺-ATPase</b> e a válvula de escape <b>ROMK</b>.",
+        "Resultado: sódio entra pelo portão, água segue atrás, e potássio é expulso pela válvula. Isso é a fisiologia normal — funcionando demais, vira hiperaldosteronismo."]},
+    3:{h:"ESTAÇÃO 3",t:"Os Três Guardiões",
+      body:["Três guardas tentam impedir a rainha — cada um de um jeito diferente.",
+        "<b>Espironolactona</b> derruba o porteiro (o receptor) — mas o golpe também esbarra nos salões vizinhos de <b>androgênio e progesterona</b>. Daí a ginecomastia.",
+        "<b>Eplerenona</b> usa um bloqueador de precisão — só o porteiro certo, sem invadir os outros salões.",
+        "<b>Amilorida</b> ignora a rainha inteira. Vai direto ao portão <b>ENaC</b> e o tranca por fora — funciona mesmo se a rainha gritar mais alto."]},
+    4:{h:"ESTAÇÃO 4",t:"O Cofre do Potássio",
+      body:["Ao fechar a entrada de sódio — por qualquer um dos três guardiões — o potássio <b>deixa de ser expulso</b>.",
+        "Ele se acumula num <b>cofre</b>. Um cofre cheio demais é <b>hipercalemia</b> — o preço de poupar demais.",
+        "Por isso todo guardião tem o mesmo aviso na porta: <b>checar K⁺ antes de entrar, e checar de novo depois</b>."]},
+    5:{h:"ESTAÇÃO 5",t:"A Pista da HAS Resistente",
+      body:["Do lado de fora do castelo, uma <b>pista de corrida</b>. Três corredores de sempre: <b>IECA/BRA, BCC, Tiazídico</b>.",
+        "A quarta raia só abre depois que um <b>fiscal</b> confirma que os três realmente correram — doses otimizadas, adesão real, pseudorresistência descartada.",
+        "Só então a <b>Espironolactona</b> entra na pista, carregando o troféu <b>PATHWAY-2</b>."]}
+  };
+  var pnavBtns=document.querySelectorAll(".pnav"), pStage=document.getElementById("palaceStage");
+  function renderPalace(n){
+    var d=palaceData[n]; if(!d||!pStage) return;
+    pStage.innerHTML='<h4>'+d.h+'</h4><div class="ptitle">'+d.t+'</div>'+
+      d.body.map(function(p){return '<p>'+p+'</p>';}).join("");
+  }
+  if(pnavBtns.length){
+    pnavBtns.forEach(function(b){
+      b.addEventListener("click",function(){
+        pnavBtns.forEach(function(x){x.classList.remove("active");});
+        b.classList.add("active"); renderPalace(b.getAttribute("data-p")); sfx.click();
+      });
+    });
+    renderPalace(1);
+  }
+
+  /* ---- N1-N7 memorization system ---- */
+  var nData={
+    1:{h:"N1 · Reconhecimento visual — aponte e nomeie",
+      html:'<div class="n-pairs">'+
+        ['Alça de Henle (ramo ascendente espesso)','Túbulo coletor (célula principal)','NKCC2','Receptor mineralocorticoide',
+         'ENaC','Furosemida','Espironolactona','Eplerenona','Amilorida'].map(function(x){
+          return '<div class="n-pill">'+x+'</div>';
+        }).join('')+'</div>'},
+    2:{h:"N2 · Associação — âncoras verbais",
+      html:'<div class="n-pairs">'+
+        ['<b>FURO</b> abre a cachoeira.','<b>ESPI</b> bloqueia a ordem.','<b>EPLERE</b> mira com precisão.',
+         '<b>AMILORIDA</b> amarra a porta ENaC.'].map(function(x){return '<div class="n-pill">'+x+'</div>';}).join('')+
+        '</div>'},
+    3:{h:"N3 · Contraste — comparadores instantâneos",
+      html:'<div class="n-pairs">'+
+        ['Alça <b>perde</b> K⁺ · poupador <b>retém</b> K⁺','Alça <b>aumenta calciúria</b> · tiazídico <b>reduz calciúria</b>',
+         'ARM bloqueia o <b>receptor</b> · amilorida bloqueia o <b>canal</b>','Furosemida trata <b>volume</b> · espironolactona trata <b>retenção mediada por aldosterona</b>'
+        ].map(function(x){return '<div class="n-pill">'+x+'</div>';}).join('')+'</div>'},
+    4:{h:"N4 · Causalidade — explique o porquê, não só o quê",
+      html:'<div class="n-pairs">'+
+        ['Por que hipocalemia com alça? <b>Perda direta pela via paracelular desfeita pelo NKCC2 bloqueado.</b>',
+         'Por que hipercalemia com ARM? <b>Menos ENaC/ROMK → menos força para secretar K⁺.</b>',
+         'Por que ginecomastia só na espironolactona? <b>Ação não seletiva sobre androgênio/progesterona.</b>',
+         'Por que AINE reduz resposta da alça? <b>Menos prostaglandina renal → menos vasodilatação/renina na mácula densa.</b>'
+        ].map(function(x){return '<div class="n-pill">'+x+'</div>';}).join('')+'</div>'},
+    5:{h:"N5 · Escolha clínica — qual classe você usaria?",
+      html:'<div class="n-case"><div class="cq">Paciente com IC descompensada, estertores bilaterais e ganho de 4 kg em 3 dias. Qual classe?</div>'+
+        '<div class="copts"><button data-c="wrong">Espironolactona isolada</button><button data-c="correct">Diurético de alça</button><button data-c="wrong">Amilorida</button></div>'+
+        '<div class="cexpl">Congestão aguda = <b>volume verdadeiro</b> → diurético de alça é a base do tratamento agudo. ARM pode entrar depois, como adjuvante em IC com FE reduzida.</div></div>'+
+        '<div class="n-case"><div class="cq">HAS resistente confirmada, A+C+D otimizado, K⁺ 4,2, TFG normal. Qual a 4ª droga?</div>'+
+        '<div class="copts"><button data-c="wrong">Furosemida</button><button data-c="correct">Espironolactona</button><button data-c="wrong">Amilorida de primeira linha</button></div>'+
+        '<div class="cexpl">Sem contraindicação a ARM, a espironolactona é a 4ª droga de escolha — base PATHWAY-2. Amilorida fica reservada para intolerância.</div></div>'},
+    6:{h:"N6 · Prescrição — monte o essencial",
+      html:'<div class="n-case"><div class="cq">Vai iniciar espironolactona em paciente com HAS resistente. Quais exames pede <b>antes</b>?</div>'+
+        '<div class="copts"><button data-c="wrong">Só creatinina</button><button data-c="correct">K⁺ e creatinina/TFG</button><button data-c="wrong">Nenhum, é seguro</button></div>'+
+        '<div class="cexpl">K⁺ basal é obrigatório antes de qualquer ARM — sem ele, você não tem como saber se uma hipercalemia futura é nova ou preexistente.</div></div>'},
+    7:{h:"N7 · Reconstrução e ensino",
+      html:'<p style="font-size:14.5px;color:var(--ink2);margin:0 0 14px">Antes de ver o roteiro, tente <b>narrar em voz alta</b> (ou por escrito) todo o mecanismo: do NKCC2 até o cofre do potássio, passando pelos três guardiões.</p>'+
+        '<button class="teach-btn" id="teachBtn">🎤 Ensine este capítulo em 90 segundos</button>'+
+        '<div class="teach-script" id="teachScript"><b>Roteiro-guia (leia só depois de tentar):</b><br><br>'+
+        '"No ramo ascendente da alça, o NKCC2 bombeia Na⁺, K⁺ e 2Cl⁻. A furosemida bloqueia esse transportador — cai a reabsorção dos três, e junto vai embora o gradiente que puxava Ca²⁺ e Mg²⁺. Resultado: natriurese intensa, mas hipocalemia, hipomagnesemia e aumento da calciúria. É o remédio do volume, não da pressão de 24 horas.<br><br>'+
+        'Mais à frente no néfron, no túbulo coletor, a aldosterona ativa o receptor mineralocorticoide, que liga genes para ENaC, Na⁺/K⁺-ATPase e ROMK — mais sódio entra, mais potássio sai. Espironolactona bloqueia esse receptor, mas também mexe em androgênio e progesterona — daí a ginecomastia. Eplerenona faz o mesmo bloqueio com mais seletividade. Amilorida ignora a aldosterona e fecha o canal ENaC diretamente.<br><br>'+
+        'Na HAS resistente, depois de confirmar que IECA/BRA, BCC e tiazídico estão realmente otimizados, a espironolactona entra como quarta droga — o PATHWAY-2 mostrou superioridade sobre placebo, bisoprolol e doxazosina, porque a resistência ali era, na maioria, retenção de sódio mediada por aldosterona."</div>'}
+  };
+  var nlvlBtns=document.querySelectorAll(".nlvl"), nStage=document.getElementById("nstage");
+  function renderN(n){
+    var d=nData[n]; if(!d||!nStage) return;
+    nStage.innerHTML='<h4>'+d.h+'</h4>'+d.html;
+    nStage.querySelectorAll(".n-case .copts button").forEach(function(btn){
+      btn.addEventListener("click",function(){
+        var box=btn.closest(".n-case"), expl=box.querySelector(".cexpl");
+        var already=box.getAttribute("data-done");
+        if(already) return;
+        box.setAttribute("data-done","1");
+        box.querySelectorAll(".copts button").forEach(function(b2){
+          b2.classList.add(b2.getAttribute("data-c")==="correct"?"pick-correct":"pick-wrong");
+        });
+        expl.classList.add("show");
+        if(btn.getAttribute("data-c")==="correct") sfx.correct(); else sfx.wrong();
+      });
+    });
+    var tb=document.getElementById("teachBtn"), ts=document.getElementById("teachScript");
+    if(tb){ tb.addEventListener("click",function(){ ts.classList.add("show"); tb.style.display="none"; sfx.reveal(); }); }
+  }
+  if(nlvlBtns.length){
+    nlvlBtns.forEach(function(b){
+      b.addEventListener("click",function(){
+        nlvlBtns.forEach(function(x){x.classList.remove("active");});
+        b.classList.add("active"); renderN(b.getAttribute("data-n")); sfx.click();
+      });
+    });
+    renderN(1);
+  }
+
+  /* ---- flashcards data bank (70 cards, 6 categories) ---- */
+  var fcData=[
+    // ALÇA (15)
+    {c:"alca",tag:"ALÇA",q:"Qual transportador a furosemida bloqueia e onde?",a:"<b>NKCC2 (Na⁺/K⁺/2Cl⁻)</b> no ramo ascendente espesso da alça de Henle."},
+    {c:"alca",tag:"ALÇA",q:"Por que bloquear o NKCC2 reduz a reabsorção de Ca²⁺ e Mg²⁺?",a:"Porque desfaz o <b>potencial luminal positivo</b> gerado pela reciclagem de K⁺ via ROMK, que era o que empurrava esses cátions pela via paracelular."},
+    {c:"alca",tag:"ALÇA",q:"Alça causa hipocalcemia clínica com frequência?",a:"<b>Não</b> — aumenta a calciúria, mas o cálcio sérico é regulado por PTH/vitamina D independentemente disso."},
+    {c:"alca",tag:"ALÇA",q:"Por que o AINE reduz a resposta à furosemida?",a:"Inibe as <b>prostaglandinas renais</b>, que contribuem para a vasodilatação e a resposta na mácula densa."},
+    {c:"alca",tag:"ALÇA",q:"Qual diurético de alça tem maior potência por miligrama?",a:"<b>Bumetanida.</b>"},
+    {c:"alca",tag:"ALÇA",q:"Qual diurético de alça tem a maior duração de ação?",a:"<b>Torasemida</b> — meia-vida mais longa, biodisponibilidade mais previsível."},
+    {c:"alca",tag:"ALÇA",q:"A dose de furosemida de 240 mg/dia é rotineira?",a:"<b>Não</b> — é um teto usado em resistência diurética grave, não uma dose de início padrão."},
+    {c:"alca",tag:"ALÇA",q:"O que é a 'retenção pós-diurética de sódio'?",a:"Entre as doses de um diurético de ação curta, o rim <b>compensa</b> retendo sódio — por isso a alça cobre pior as 24h que o tiazídico em pacientes sem edema."},
+    {c:"alca",tag:"ALÇA",q:"Diurético de alça é o anti-hipertensivo de escolha na emergência hipertensiva?",a:"<b>Não, automaticamente.</b> Só compõe a estratégia quando há congestão/edema pulmonar."},
+    {c:"alca",tag:"ALÇA",q:"O edema causado por BCC diidropiridínico responde a diurético de alça?",a:"<b>Não</b> — é redistribuição capilar, não sobrecarga volêmica."},
+    {c:"alca",tag:"ALÇA",q:"O que é 'dose-limiar' na curva dose-resposta da alça?",a:"Abaixo dele, <b>quase não há resposta</b> — a curva é sigmoide, não linear."},
+    {c:"alca",tag:"ALÇA",q:"O que é 'bloqueio sequencial do néfron'?",a:"Associar alça + tiazídico para <b>bloquear a adaptação distal</b> — aumenta natriurese, mas exige monitorização estreita."},
+    {c:"alca",tag:"ALÇA",q:"Os três mecanismos da alcalose metabólica pós-alça?",a:"<b>(1)</b> Contração de volume concentra HCO₃⁻; <b>(2)</b> mais Na⁺ chega ao coletor, trocado por H⁺/K⁺ via aldosterona; <b>(3)</b> perda de cloreto desproporcional."},
+    {c:"alca",tag:"ALÇA",q:"Diuréticos de alça têm núcleo sulfa?",a:"Furosemida e bumetanida <b>sim</b> — risco de reação cruzada existe, mas é menor que classicamente assumido."},
+    {c:"alca",tag:"ALÇA",q:"Quando a hipercalcemia pode ser tratada com diurético de alça?",a:"Apenas <b>após reposição volêmica adequada</b> — nunca em paciente desidratado."},
+    // ARM (15)
+    {c:"arm",tag:"ARM",q:"O que a aldosterona ativa no núcleo da célula principal?",a:"Transcrição gênica que aumenta <b>ENaC, Na⁺/K⁺-ATPase e ROMK</b>."},
+    {c:"arm",tag:"ARM",q:"O início de ação da espironolactona é imediato?",a:"<b>Não</b> — depende do turnover das proteínas já sintetizadas, não só da ligação ao receptor."},
+    {c:"arm",tag:"ARM",q:"Por que a espironolactona causa ginecomastia e a eplerenona muito menos?",a:"Espironolactona é <b>não seletiva</b> (também liga androgênio/progesterona); eplerenona é <b>seletiva</b> pelo receptor mineralocorticoide."},
+    {c:"arm",tag:"ARM",q:"A eplerenona elimina o risco de hipercalemia?",a:"<b>Não</b> — reduz o efeito hormonal, mas o risco de K⁺ elevado permanece."},
+    {c:"arm",tag:"ARM",q:"Existe conversão automática de miligramas entre espironolactona e eplerenona?",a:"<b>Não</b> — a troca exige reavaliação clínica, não equivalência posológica garantida."},
+    {c:"arm",tag:"ARM",q:"Por que via metabólica a eplerenona interage com outros fármacos?",a:"<b>CYP3A4</b> — atenção a inibidores potentes dessa via."},
+    {c:"arm",tag:"ARM",q:"A finerenona é um ARM esteroidal ou não esteroidal?",a:"<b>Não esteroidal</b> — estrutura diferente de espironolactona e eplerenona."},
+    {c:"arm",tag:"ARM",q:"Qual a principal indicação atual da finerenona?",a:"<b>DRC associada ao diabetes tipo 2</b>, com benefícios cardiorrenais — não HAS resistente de rotina."},
+    {c:"arm",tag:"ARM",q:"Espironolactona reduz proteinúria?",a:"Sim, em <b>contextos selecionados</b> — não é a indicação central, mas é um efeito descrito."},
+    {c:"arm",tag:"ARM",q:"Quais os efeitos hormonais clássicos da espironolactona?",a:"<b>Ginecomastia, mastalgia, diminuição da libido, disfunção sexual, irregularidade menstrual.</b>"},
+    {c:"arm",tag:"ARM",q:"A dose de espironolactona é a mesma para HAS resistente, IC e hiperaldosteronismo?",a:"<b>Não</b> — cada indicação tem lógica própria de início e titulação; não existe faixa única."},
+    {c:"arm",tag:"ARM",q:"Espironolactona atua em qual receptor, e onde ele fica?",a:"<b>Receptor mineralocorticoide</b>, intracelular, na célula principal do túbulo coletor."},
+    {c:"arm",tag:"ARM",q:"O metabólito ativo da espironolactona chama-se?",a:"<b>Canrenona</b> (entre outros) — contribui para a duração do efeito."},
+    {c:"arm",tag:"ARM",q:"Espironolactona é indicada em cirrose com ascite?",a:"Sim, <b>dentro de esquema apropriado</b>, geralmente associada a diurético de alça."},
+    {c:"arm",tag:"ARM",q:"Ginecomastia com espironolactona — conduta?",a:"Trocar por <b>eplerenona</b> — mesmo mecanismo, muito menos efeito hormonal."},
+    // ENaC (10)
+    {c:"enac",tag:"ENaC",q:"Amilorida depende do receptor de aldosterona para agir?",a:"<b>Não</b> — bloqueia o canal ENaC diretamente, funciona mesmo com aldosterona muito alta."},
+    {c:"enac",tag:"ENaC",q:"Diferença de mecanismo entre espironolactona e amilorida?",a:"Espiro bloqueia o <b>receptor</b> (a ordem); amilorida fecha o <b>canal ENaC</b> (a porta). Mesmo fim, portas diferentes."},
+    {c:"enac",tag:"ENaC",q:"Amilorida tem o mesmo risco de hipercalemia que os ARM?",a:"<b>Sim</b> — mecanismo diferente, risco semelhante."},
+    {c:"enac",tag:"ENaC",q:"Qual a associação clássica de amilorida com outro diurético?",a:"<b>Tiazídico</b> — a amilorida poupa o K⁺ que o tiazídico perderia."},
+    {c:"enac",tag:"ENaC",q:"Amilorida pode substituir a espironolactona em algum contexto?",a:"<b>Sim</b> — é alternativa eficaz quando há intolerância hormonal, com evidência de resposta pressórica comparável em subgrupos."},
+    {c:"enac",tag:"ENaC",q:"Qual doença genética é a conexão fisiológica clássica da amilorida?",a:"<b>Síndrome de Liddle</b> — ENaC constitutivamente ativo por mutação."},
+    {c:"enac",tag:"ENaC",q:"Por que a síndrome de Liddle não responde à espironolactona?",a:"Porque o defeito está no <b>canal ENaC</b>, não no receptor de aldosterona — o problema é a montante do bloqueio do ARM."},
+    {c:"enac",tag:"ENaC",q:"Triantereno é muito usado na prática brasileira atual?",a:"<b>Não</b> — é conhecimento complementar, pouco usado no Brasil."},
+    {c:"enac",tag:"ENaC",q:"O que acontece com H⁺ quando o ENaC é bloqueado?",a:"A secreção de <b>H⁺ também cai</b>, junto com a de K⁺ — mesmo mecanismo elétrico."},
+    {c:"enac",tag:"ENaC",q:"Amilorida é um bloqueador de ENaC seletivo ou também age em outros canais?",a:"É considerada <b>seletiva</b> para o ENaC na dose terapêutica usual."},
+    // HAS RESISTENTE (10)
+    {c:"resist",tag:"RESISTENTE",q:"O que verificar antes de liberar a 4ª droga na HAS resistente?",a:"<b>Pseudorresistência</b> — técnica de medida, adesão, MRPA/MAPA, sal, álcool, apneia, AINE, causas secundárias."},
+    {c:"resist",tag:"RESISTENTE",q:"Qual o esquema-base da HAS resistente?",a:"<b>A + C + D</b>: IECA ou BRA + bloqueador de canal de cálcio + tiazídico/símile, em dose otimizada."},
+    {c:"resist",tag:"RESISTENTE",q:"Pode-se combinar IECA e BRA no esquema-base?",a:"<b>Não</b> — a combinação não é permitida, sem benefício adicional e com mais risco de hipercalemia e disfunção renal."},
+    {c:"resist",tag:"RESISTENTE",q:"Qual a 4ª droga e o estudo que sustenta essa escolha?",a:"<b>Espironolactona</b>, sustentada pelo <b>PATHWAY-2</b> (Lancet 2015)."},
+    {c:"resist",tag:"RESISTENTE",q:"Qual foi o desenho do PATHWAY-2?",a:"<b>Crossover, duplo-cego</b>, 335 randomizados, 12 semanas em cada braço: placebo, espironolactona, bisoprolol, doxazosina."},
+    {c:"resist",tag:"RESISTENTE",q:"Qual a redução de PAS domiciliar da espironolactona vs placebo no PATHWAY-2?",a:"<b>−8,70 mmHg</b> (IC95% −9,72 a −7,69)."},
+    {c:"resist",tag:"RESISTENTE",q:"Qual limitação do PATHWAY-2 restringe sua generalização?",a:"Excluiu pacientes com <b>TFG muito baixa e K⁺ elevado</b> — não generaliza para DRC avançada."},
+    {c:"resist",tag:"RESISTENTE",q:"Se a espironolactona não puder ser usada, quais as alternativas?",a:"<b>Eplerenona</b> (efeito hormonal) ou <b>amilorida</b> (hipercalemia/intolerância) — sem ranking rígido universal."},
+    {c:"resist",tag:"RESISTENTE",q:"O que a meta-análise de Tian et al. (2024) mostrou sobre a espironolactona?",a:"Foi o tratamento <b>mais efetivo</b> na HAS resistente entre 24 ensaios — PAS consultório −13,3 e 24h −8,46 mmHg."},
+    {c:"resist",tag:"RESISTENTE",q:"A amilorida teve redução de PAS comparável à espironolactona em algum substudy?",a:"<b>Sim</b> — substudy do PATHWAY-2: amilorida −20,4 mmHg vs espironolactona −18,3 mmHg."},
+    // PRESCRIÇÃO/MONITORIZAÇÃO (10)
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Quais exames pedir antes de iniciar um ARM ou amilorida?",a:"<b>K⁺ e creatinina/TFG</b>, no mínimo — obrigatórios antes de qualquer início."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Que interação é frequentemente esquecida ao prescrever ARM?",a:"<b>Trimetoprima</b> — também poupa potássio, somando risco de hipercalemia."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"O que perguntar explicitamente sobre a dieta antes de iniciar ARM?",a:"Uso de <b>substitutos de sal com potássio</b> e suplementos de K⁺ — o paciente raramente relata sem ser perguntado."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Quando reavaliar K⁺ e creatinina após iniciar um poupador de potássio?",a:"Em <b>prazo curto após o início</b> e após <b>cada titulação de dose</b> — cada mudança de dose é, na prática, um novo início."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"O intervalo de monitorização é igual para todo paciente em diurético?",a:"<b>Não</b> — DRC, uso de IECA/BRA, idade avançada e instabilidade encurtam o intervalo."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Como diferenciar queda de TFG esperada de lesão renal aguda verdadeira ao iniciar diurético?",a:"A esperada é <b>leve e estabiliza</b>; a lesão renal aguda é <b>progressiva</b> e exige reavaliação completa."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Qual a conduta inicial diante de pouca resposta ao diurético de alça?",a:"Revisar <b>adesão, AINE, sal na dieta, dose abaixo do limiar</b>; considerar bloqueio sequencial."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Antes de prescrever furosemida, que sinais de congestão devem ser buscados no exame?",a:"<b>Turgência jugular, estertores, edema com fóvea, ganho de peso recente.</b>"},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Por que a dose de furosemida costuma ser maior na DRC?",a:"Menor <b>secreção tubular</b> do fármaco reduz a quantidade que chega ao seu sítio de ação."},
+    {c:"presc",tag:"PRESCRIÇÃO",q:"Qual assinatura acompanha toda simulação de prescrição deste capítulo?",a:"<b>Simulação educacional · Dr. André Rossanno.</b>"},
+    // EFEITOS ADVERSOS / INTERAÇÕES (10)
+    {c:"adv",tag:"ADVERSOS",q:"Hipocalemia com alça — mecanismo direto?",a:"<b>Perda pela via paracelular desfeita</b> quando o NKCC2 é bloqueado."},
+    {c:"adv",tag:"ADVERSOS",q:"Hipercalemia com ARM — mecanismo direto?",a:"<b>Menos ENaC/ROMK</b> → menos força elétrica para secretar K⁺."},
+    {c:"adv",tag:"ADVERSOS",q:"Qual efeito adverso da alça está ligado à dose alta/infusão IV rápida?",a:"<b>Ototoxicidade</b> — mais descrita com bumetanida e altas doses de furosemida."},
+    {c:"adv",tag:"ADVERSOS",q:"Por que a alça pode desencadear crise de gota?",a:"Eleva <b>ácido úrico</b> por competição pelo transportador no túbulo proximal."},
+    {c:"adv",tag:"ADVERSOS",q:"Qual a tríade clássica de risco para hipercalemia iatrogênica?",a:"<b>ARM + IECA/BRA + DRC</b> — a combinação mais comum na prática."},
+    {c:"adv",tag:"ADVERSOS",q:"AINE some com que mecanismo de ação da alça?",a:"Reduz <b>prostaglandinas renais</b>, atenuando a resposta diurética."},
+    {c:"adv",tag:"ADVERSOS",q:"O que caracteriza a alcalose metabólica pós-diurético de alça?",a:"É <b>hipoclorêmica e hipocalêmica</b> — resultado de três mecanismos concorrentes, não um efeito passivo."},
+    {c:"adv",tag:"ADVERSOS",q:"Excesso crônico de aldosterona causa dano além da PA elevada?",a:"<b>Sim</b> — lesão cardiovascular e renal direta, mediada por fibrose e inflamação, independente do nível pressórico."},
+    {c:"adv",tag:"ADVERSOS",q:"Reação cruzada de furosemida com alergia a sulfa — quão comum é?",a:"<b>Menor</b> que classicamente assumido — deve ser avaliada caso a caso, não automaticamente contraindicada."},
+    {c:"adv",tag:"ADVERSOS",q:"Diurese excessiva pode ser contraproducente em IC — por quê?",a:"Pode causar <b>ativação neuro-hormonal</b> (SRAA, simpático) que piora o quadro hemodinâmico."}
+  ];
+  var fcCats=[["all","Todos"],["alca","Alça"],["arm","ARM"],["enac","ENaC"],["resist","Resistente"],["presc","Prescrição"],["adv","Adversos"]];
+  var fcFiltersEl=document.getElementById("fcFilters"), fcGridEl=document.getElementById("fcGrid");
+  var fcActive="all";
+  function renderFcFilters(){
+    if(!fcFiltersEl) return;
+    fcFiltersEl.innerHTML=fcCats.map(function(c){
+      var n=c[0]==="all"?fcData.length:fcData.filter(function(x){return x.c===c[0];}).length;
+      return '<button class="fc-filter'+(c[0]===fcActive?' active':'')+'" data-fc="'+c[0]+'">'+c[1]+' ('+n+')</button>';
+    }).join('');
+    fcFiltersEl.querySelectorAll(".fc-filter").forEach(function(b){
+      b.addEventListener("click",function(){
+        fcActive=b.getAttribute("data-fc"); renderFcFilters(); renderFcGrid(); sfx.click();
+      });
+    });
+  }
+  function renderFcGrid(){
+    if(!fcGridEl) return;
+    var items=fcActive==="all"?fcData:fcData.filter(function(x){return x.c===fcActive;});
+    fcGridEl.innerHTML=items.map(function(it){
+      return '<div class="fc"><div class="fc-in">'+
+        '<div class="fc-f"><div class="tag">'+it.tag+'</div><div class="fc-q">'+it.q+'</div><div class="fc-hint">toque ↻</div></div>'+
+        '<div class="fc-b"><div class="fc-a">'+it.a+'</div></div>'+
+        '</div></div>';
+    }).join('');
+    fcGridEl.querySelectorAll(".fc").forEach(function(fc){
+      fc.setAttribute("tabindex","0"); fc.setAttribute("role","button");
+      function flip(){ fc.classList.toggle("flip"); sfx.click(); }
+      fc.addEventListener("click",flip);
+      fc.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();} });
+    });
+  }
+  renderFcFilters(); renderFcGrid();
+
+  /* ---- questions bank (50, data-driven, 5 alternatives, full analysis) ---- */
+  var qData=[
+    {tema:"Alça·mecanismo",nivel:"médio",stem:"Qual transportador é o alvo direto da furosemida, e em que segmento do néfron ele está?",
+      opts:["NCC, túbulo contorcido distal","NKCC2, ramo ascendente espesso da alça de Henle","ENaC, ducto coletor","SGLT2, túbulo proximal","NHE3, túbulo proximal"],
+      correct:1,
+      an:["NCC é o alvo do <b>tiazídico</b>, não da furosemida.","<b>Correta.</b> NKCC2 no ramo ascendente espesso é o alvo direto da furosemida.","ENaC é alvo da <b>amilorida</b>, mecanismo independente de transportador de Na/K/Cl.","SGLT2 é alvo de outra classe (inibidores de SGLT2), não de diurético de alça.","NHE3 atua no túbulo proximal, fora do alvo da furosemida."]},
+    {tema:"Alça·fisiologia",nivel:"difícil",stem:"Por que o bloqueio do NKCC2 reduz a reabsorção paracelular de Ca²⁺ e Mg²⁺?",
+      opts:["Porque a furosemida bloqueia diretamente canais de Ca²⁺ e Mg²⁺","Porque desfaz o potencial luminal positivo gerado pela reciclagem de K⁺ via ROMK","Porque aumenta a secreção de PTH","Porque inibe a anidrase carbônica no mesmo segmento","Porque reduz a filtração glomerular de Ca²⁺ e Mg²⁺"],
+      correct:1,
+      an:["A furosemida não tem alvo direto em canais de cálcio ou magnésio.","<b>Correta.</b> Sem o potencial luminal positivo (que dependia do K⁺ reciclado pelo ROMK), a via paracelular perde a força que empurrava Ca²⁺/Mg²⁺.","PTH não é o mecanismo imediato envolvido nessa via.","Inibidor de anidrase carbônica é outra classe, agindo no túbulo proximal.","A filtração glomerular de cálcio não é o mecanismo relevante aqui — o efeito é tubular."]},
+    {tema:"Alça·eletrólitos",nivel:"médio",stem:"Um paciente em uso crônico de furosemida apresenta aumento da calciúria. Isso significa que ele terá hipocalcemia clínica?",
+      opts:["Sim, sempre, é inevitável","Não necessariamente — PTH e vitamina D regulam o cálcio sérico independentemente da perda urinária aumentada","Só se a dose for maior que 80 mg/dia","Sim, mas apenas em idosos","Não, porque a furosemida na verdade reduz a calciúria"],
+      correct:1,
+      an:["Afirmar que é 'sempre inevitável' é um exagero não sustentado pela fisiologia.","<b>Correta.</b> A calciúria aumenta, mas o cálcio sérico costuma ser mantido por mecanismos compensatórios hormonais.","Não existe esse corte de dose que determine hipocalcemia clínica.","Não há essa relação etária específica descrita como regra.","A furosemida <b>aumenta</b>, não reduz, a calciúria — o oposto do tiazídico."]},
+    {tema:"Alça·farmacocinética",nivel:"médio",stem:"Qual diurético de alça tem, entre os três, a maior potência por miligrama?",
+      opts:["Furosemida","Torasemida","Bumetanida","Todos têm potência idêntica","Depende exclusivamente da via de administração"],
+      correct:2,
+      an:["Furosemida é o mais usado no Brasil, mas não é o mais potente por mg.","Torasemida se destaca pela duração, não pela potência por miligrama.","<b>Correta.</b> Bumetanida tem a maior potência por miligrama entre os três.","Não têm potência idêntica — a equivalência é aproximada, não matemática.","A via de administração não determina sozinha a potência por miligrama da molécula."]},
+    {tema:"Alça·farmacocinética",nivel:"fácil",stem:"Qual diurético de alça costuma ter a maior duração de ação, com biodisponibilidade mais previsível?",
+      opts:["Bumetanida","Torasemida","Furosemida","Amilorida","Espironolactona"],
+      correct:1,
+      an:["Bumetanida é mais potente por mg, mas não é a de maior duração entre as três.","<b>Correta.</b> Torasemida tem meia-vida mais longa e absorção mais previsível.","Furosemida tem meia-vida curta e biodisponibilidade oral variável.","Amilorida não é diurético de alça — é bloqueador de ENaC.","Espironolactona não é diurético de alça — é ARM."]},
+    {tema:"Alça·resistência",nivel:"difícil",stem:"Paciente com IC descompensada não urina apesar de doses crescentes de furosemida oral. Qual NÃO é uma causa plausível de resistência diurética?",
+      opts:["Edema de parede intestinal reduzindo absorção","Uso concomitante de AINE","Retenção pós-diurética entre as doses","Aumento da secreção tubular do fármaco na DRC","Ingestão elevada de sódio na dieta"],
+      correct:3,
+      an:["Edema intestinal reduz absorção — causa real de resistência.","AINE reduz prostaglandinas renais e atenua resposta — causa real.","A retenção pós-diurética entre doses é mecanismo real de resistência.","<b>Correta (é a falsa/incorreta).</b> Na DRC a secreção tubular do fármaco <b>diminui</b>, não aumenta — por isso a dose costuma precisar ser maior.","Sódio elevado na dieta contrapõe a natriurese induzida — causa real."]},
+    {tema:"Alça·resistência",nivel:"difícil",stem:"O que caracteriza o conceito de 'dose-limiar' na curva dose-resposta dos diuréticos de alça?",
+      opts:["A dose máxima absoluta permitida por bula","O ponto abaixo do qual quase não há resposta diurética, pela curva ser sigmoide","A dose que garante ototoxicidade","A dose mínima para evitar hipocalemia","A dose equivalente entre furosemida e bumetanida"],
+      correct:1,
+      an:["Não é sobre limite de bula, é sobre farmacodinâmica da curva dose-resposta.","<b>Correta.</b> Abaixo do limiar individual, a resposta é mínima — a curva não é linear.","Ototoxicidade está ligada a dose alta/infusão rápida, não ao conceito de limiar.","Não é essa a definição — limiar não é sobre prevenção de hipocalemia.","Equivalência entre moléculas é outro conceito, não relacionado ao limiar individual."]},
+    {tema:"Alça·bloqueio sequencial",nivel:"difícil",stem:"O que é o 'bloqueio sequencial do néfron' na resistência diurética?",
+      opts:["Trocar furosemida por bumetanida","Associar alça + tiazídico para bloquear a adaptação distal e aumentar a natriurese","Aumentar a dose de furosemida indefinidamente","Associar dois diuréticos de alça diferentes","Suspender todo diurético e reiniciar do zero"],
+      correct:1,
+      an:["Trocar de molécula dentro da mesma classe não é bloqueio sequencial.","<b>Correta.</b> Associar alça + tiazídico bloqueia a compensação distal, aumentando a natriurese — mas exige monitorização estreita.","Aumentar dose indefinidamente ignora o conceito de efeito-teto.","Associar duas alças não bloqueia segmentos diferentes do néfron.","Suspender e reiniciar não é a estratégia descrita para resistência."]},
+    {tema:"Alça·indicação",nivel:"médio",stem:"Homem, 70a, edema bilateral de MMII após início de anlodipino há 2 semanas, sem dispneia, sem turgência jugular, PA controlada. Diurético de alça é a conduta correta?",
+      opts:["Sim, sempre que houver edema","Não — é edema por redistribuição capilar, não sobrecarga volêmica","Sim, mas apenas em dose baixa","Não, deve-se usar apenas tiazídico","Sim, associado a amilorida"],
+      correct:1,
+      an:["Edema não é sinônimo de indicação automática de diurético de alça.","<b>Correta.</b> Sem sinais de congestão sistêmica, é redistribuição capilar pelo BCC — conduta é ajustar o BCC ou associar IECA/BRA.","Dose baixa não resolve o mecanismo, que não é volêmico.","Tiazídico também não trata esse tipo de edema.","Amilorida não tem papel nesse mecanismo específico de edema."]},
+    {tema:"Alça·emergência",nivel:"médio",stem:"Paciente chega com PA 220/130, sem dispneia, ausculta pulmonar limpa, sem edema. Furosemida IV é a conduta inicial correta?",
+      opts:["Sim, é o padrão-ouro de toda emergência hipertensiva","Não — sem sobrecarga volêmica, pode piorar depleção e ativar SRAA; tratamento deve ser dirigido ao órgão-alvo","Sim, sempre que a PAS ultrapassar 200","Não, furosemida nunca deve ser usada em emergência hipertensiva","Sim, associada a anti-hipertensivo oral"],
+      correct:1,
+      an:["Não existe esse padrão-ouro universal — depende do órgão-alvo envolvido.","<b>Correta.</b> Sem congestão, a furosemida pode ser contraproducente. O tratamento segue a fisiopatologia do caso.","Não há esse corte numérico isolado como indicação automática.","A afirmação absoluta 'nunca' também está errada — ela participa quando há congestão pulmonar.","Associar a oral não resolve o problema conceitual da indicação inadequada."]},
+    {tema:"ARM·fisiologia",nivel:"médio",stem:"Após a aldosterona ativar o receptor mineralocorticoide e a transcrição gênica, quais três proteínas têm sua síntese aumentada?",
+      opts:["NKCC2, ROMK, NCC","ENaC, Na⁺/K⁺-ATPase, ROMK","SGLT2, NHE3, AQP2","NCC, TRPV5, Claudina","ENaC, NKCC2, Claudina"],
+      correct:1,
+      an:["NKCC2 e NCC são de outros segmentos/classes, não da cascata da aldosterona.","<b>Correta.</b> ENaC, Na⁺/K⁺-ATPase e ROMK são as três proteínas-chave induzidas pela aldosterona.","Essas proteínas não são o alvo transcricional principal da aldosterona nesse contexto.","Essas são proteínas de outros mecanismos tubulares, não da cascata aldosterona-ENaC.","NKCC2 pertence à alça, não à cascata da aldosterona no coletor."]},
+    {tema:"ARM·mecanismo",nivel:"fácil",stem:"Qual a diferença central de mecanismo entre espironolactona e amilorida?",
+      opts:["Não há diferença, são idênticas","Espironolactona bloqueia o receptor de aldosterona; amilorida bloqueia diretamente o canal ENaC","Espironolactona age no túbulo proximal; amilorida na alça","Amilorida bloqueia o receptor; espironolactona bloqueia o canal","Espironolactona é mais potente em todos os cenários"],
+      correct:1,
+      an:["Elas têm mecanismos claramente diferentes, apesar do efeito final semelhante.","<b>Correta.</b> ARM bloqueia a ordem (receptor); amilorida fecha a porta (canal ENaC).","Nenhuma das duas age nesses segmentos.","Essa alternativa inverte os mecanismos corretos.","Não existe essa superioridade universal e incondicional."]},
+    {tema:"ARM·eplerenona",nivel:"difícil",stem:"Sobre a eplerenona, qual afirmação está correta?",
+      opts:["Elimina completamente o risco de hipercalemia","É sempre equivalente em miligramas à espironolactona","Mantém o bloqueio mineralocorticoide com muito menos efeito hormonal, mas sem eliminar o risco de hipercalemia","Não interage com nenhum outro fármaco","Tem o mesmo perfil de ginecomastia que a espironolactona"],
+      correct:2,
+      an:["Afirmar eliminação completa do risco é um absoluto não sustentado.","Não existe equivalência posológica automática e garantida entre as duas.","<b>Correta.</b> A seletividade reduz o efeito hormonal, mas não o risco de hipercalemia.","A eplerenona é metabolizada por CYP3A4 e tem interações relevantes por essa via.","A incidência de ginecomastia é muito menor, não igual à da espironolactona."]},
+    {tema:"ARM·finerenona",nivel:"médio",stem:"Qual é o lugar correto da finerenona na prática clínica atual?",
+      opts:["Substituta de primeira linha da espironolactona na HAS resistente","Terceiro diurético poupador de potássio equivalente aos demais para HAS","DRC associada ao diabetes tipo 2, com benefícios cardiorrenais","Tratamento de emergência hipertensiva","Uso rotineiro em toda insuficiência cardíaca"],
+      correct:2,
+      an:["A finerenona não é substituta de primeira linha da espironolactona na HAS resistente.","Não deve ser apresentada como equivalente rotineiro na HAS.","<b>Correta.</b> Seu principal uso vigente é DRC associada ao diabetes tipo 2, com proteção cardiorrenal.","Não tem papel descrito em emergência hipertensiva.","Não é uso rotineiro estabelecido em toda IC — seu campo é outro."]},
+    {tema:"ARM·espironolactona",nivel:"médio",stem:"Sobre a dose de espironolactona, qual afirmação é mais precisa?",
+      opts:["Existe uma única faixa de dose para todas as indicações","A dose varia conforme a indicação — HAS resistente, IC e hiperaldosteronismo seguem lógicas de titulação diferentes","A dose é sempre fixa em 100 mg/dia","Não é necessário ajustar dose em nenhuma situação clínica","A dose independe da função renal"],
+      correct:1,
+      an:["Não existe faixa única — isso seria uma simplificação perigosa.","<b>Correta.</b> Cada indicação tem lógica própria de início e titulação.","Não existe essa dose fixa universal.","A afirmação de que nunca é necessário ajustar é incorreta.","A função renal influencia diretamente o risco de hipercalemia e a conduta."]},
+    {tema:"ARM·efeitos adversos",nivel:"fácil",stem:"Qual conjunto de efeitos é mais característico da ação não seletiva da espironolactona sobre outros receptores esteroides?",
+      opts:["Hipercalemia e piora de função renal","Ginecomastia, mastalgia e irregularidade menstrual","Hiperuricemia e ototoxicidade","Alcalose metabólica e hipomagnesemia","Hipertrigliceridemia e hiperglicemia"],
+      correct:1,
+      an:["Hipercalemia decorre do bloqueio do receptor mineralocorticoide em si, não da ação 'extra' sobre outros receptores.","<b>Correta.</b> Esses efeitos vêm da interação com receptores de androgênio e progesterona.","Esses são efeitos típicos dos diuréticos de alça, não da espironolactona.","Também são efeitos característicos da alça, não da espironolactona.","Não são efeitos classicamente associados à espironolactona."]},
+    {tema:"ENaC·amilorida",nivel:"médio",stem:"A amilorida depende da atividade da aldosterona para funcionar?",
+      opts:["Sim, é totalmente dependente do nível de aldosterona","Não — atua diretamente no canal ENaC, independente do receptor de aldosterona","Sim, mas apenas em doses altas","Não, mas só funciona se a aldosterona estiver baixa","Depende exclusivamente da função renal"],
+      correct:1,
+      an:["A amilorida não depende da aldosterona — essa é justamente sua vantagem mecanística.","<b>Correta.</b> Bloqueia o ENaC diretamente, funcionando mesmo com aldosterona muito elevada.","Não há essa dependência de dose para o mecanismo básico.","Não há essa exigência de aldosterona baixa para funcionar.","A função renal influencia o risco de hipercalemia, mas não é o determinante do mecanismo em si."]},
+    {tema:"ENaC·Liddle",nivel:"difícil",stem:"Por que a síndrome de Liddle responde à amilorida e não à espironolactona?",
+      opts:["Porque a mutação está no receptor de aldosterona","Porque o ENaC está constitutivamente ativo por mutação, a montante do receptor de aldosterona","Porque a espironolactona não existe em formulação pediátrica","Porque a síndrome de Liddle não envolve o néfron","Porque a amilorida tem meia-vida mais longa"],
+      correct:1,
+      an:["A mutação não está no receptor — está no próprio canal.","<b>Correta.</b> O ENaC ativo independe do receptor de aldosterona, por isso bloqueá-lo (amilorida) funciona e bloquear o receptor (espironolactona) não resolve o defeito.","Isso não é relevante para o mecanismo fisiopatológico da questão.","A síndrome de Liddle é justamente uma tubulopatia renal.","A meia-vida não é o motivo da resposta terapêutica diferencial aqui."]},
+    {tema:"ENaC·associação",nivel:"fácil",stem:"Qual é a associação clássica de amilorida com outro diurético, e por quê?",
+      opts:["Com furosemida, para potencializar a natriurese","Com tiazídico, para poupar o K⁺ que este perderia","Com espironolactona, para dobrar o bloqueio de aldosterona","Com finerenona, para uso em DRC diabética","Com IECA, para reduzir hipercalemia"],
+      correct:1,
+      an:["Não é essa a lógica clássica de associação com furosemida.","<b>Correta.</b> A amilorida poupa o potássio que o tiazídico perderia, sendo uma combinação clássica.","Associar dois poupadores de K⁺ aumentaria, não reduziria, o risco de hipercalemia.","Não é essa a associação clássica descrita.","IECA não reduz hipercalemia — na verdade contribui para o risco quando associado a poupadores."]},
+    {tema:"HAS resistente·definição",nivel:"médio",stem:"Antes de considerar um paciente verdadeiramente resistente e liberar a 4ª droga, o que deve ser descartado primeiro?",
+      opts:["Nada, pode-se avançar direto para a 4ª droga","Pseudorresistência: técnica de medida, adesão, MRPA/MAPA, causas secundárias e fatores que sustentam a PA","Apenas a função renal","Apenas o uso de AINE","Apenas a adesão ao tratamento"],
+      correct:1,
+      an:["Avançar direto sem descartar pseudorresistência é o erro clássico.","<b>Correta.</b> É um conjunto amplo de fatores a excluir, não um único item isolado.","Função renal é só um dos itens do pit stop, não o único.","AINE é só um dos fatores, não o único a verificar.","Adesão é importante, mas isolada não cobre todo o pit stop diagnóstico."]},
+    {tema:"HAS resistente·esquema-base",nivel:"fácil",stem:"Qual o esquema-base correto antes de considerar HAS verdadeiramente resistente?",
+      opts:["IECA + BRA + tiazídico","IECA ou BRA + BCC + tiazídico/símile, em dose otimizada","Apenas 2 drogas em dose baixa","BCC + betabloqueador + tiazídico","IECA + espironolactona + tiazídico"],
+      correct:1,
+      an:["A combinação IECA + BRA não é permitida — sem benefício adicional e com mais risco.","<b>Correta.</b> A + C + D, com todas em dose otimizada.","Duas drogas em dose baixa não configura o esquema-base para definir resistência.","Betabloqueador não faz parte do esquema-base clássico A+C+D.","Espironolactona é a 4ª droga, não parte do esquema-base inicial."]},
+    {tema:"HAS resistente·PATHWAY-2",nivel:"difícil",stem:"No PATHWAY-2, qual foi a redução de PAS domiciliar da espironolactona comparada ao placebo?",
+      opts:["−4,03 mmHg","−4,48 mmHg","−8,70 mmHg","−13,3 mmHg","−20,4 mmHg"],
+      correct:2,
+      an:["Esse valor corresponde à comparação com a doxazosina, não com o placebo.","Esse valor corresponde à comparação com o bisoprolol, não com o placebo.","<b>Correta.</b> −8,70 mmHg foi a redução de PAS domiciliar vs placebo.","Esse valor é da meta-análise Tian 2024 (PAS de consultório), não do PATHWAY-2 vs placebo.","Esse valor é do substudy de amilorida (PAS clínica), não da comparação principal com placebo."]},
+    {tema:"HAS resistente·PATHWAY-2 desenho",nivel:"médio",stem:"Qual foi o desenho do estudo PATHWAY-2?",
+      opts:["Coorte observacional prospectiva","Caso-controle retrospectivo","Ensaio crossover, duplo-cego, com 4 braços sucessivos","Ensaio aberto de braço único","Meta-análise de estudos observacionais"],
+      correct:2,
+      an:["Não foi um estudo observacional — foi um ensaio clínico controlado.","Não foi caso-controle — foi um ensaio de intervenção.","<b>Correta.</b> Crossover duplo-cego: cada paciente passou por placebo, espironolactona, bisoprolol e doxazosina.","Não foi aberto nem de braço único — foi duplo-cego e crossover.","O PATHWAY-2 é o ensaio original, não uma meta-análise."]},
+    {tema:"HAS resistente·limitações",nivel:"difícil",stem:"Qual limitação do PATHWAY-2 restringe sua aplicação a determinados pacientes?",
+      opts:["Incluiu apenas mulheres","Excluiu pacientes com TFG muito baixa e K⁺ elevado","Durou apenas 1 semana por braço","Não usou desfecho de pressão arterial","Foi realizado em apenas um país sem revisão por pares"],
+      correct:1,
+      an:["Não há essa restrição de sexo descrita como limitação do estudo.","<b>Correta.</b> A exclusão de TFG muito baixa e K⁺ elevado limita a generalização para DRC avançada.","Cada braço durou 12 semanas, não 1 semana.","O desfecho primário foi justamente a PAS domiciliar.","Foi publicado em revista com revisão por pares (Lancet)."]},
+    {tema:"HAS resistente·alternativas",nivel:"médio",stem:"Se a espironolactona não puder ser usada por hipercalemia, qual alternativa tem maior respaldo?",
+      opts:["Aumentar ainda mais a dose de espironolactona","Amilorida, com monitorização de K⁺ equivalente","Suspender todo tratamento anti-hipertensivo","Furosemida como substituta direta","Betabloqueador em dose máxima, sem mais investigação"],
+      correct:1,
+      an:["Aumentar a dose em quadro de hipercalemia pioraria o problema.","<b>Correta.</b> Amilorida é alternativa quando ARM não é tolerado, mantendo vigilância de K⁺.","Suspender todo o tratamento não é conduta apropriada diante de HAS resistente.","Furosemida não substitui o mecanismo de bloqueio da retenção mediada por aldosterona.","Avançar sem investigar mais a fundo ignora possíveis causas secundárias."]},
+    {tema:"Hiperaldosteronismo·suspeita",nivel:"médio",stem:"A hipocalemia é obrigatória para suspeitar de hiperaldosteronismo primário?",
+      opts:["Sim, é critério obrigatório","Não — muitos pacientes são normocalêmicos","Sim, mas apenas em jovens","Não, hipercalemia é o achado típico","Sim, é o único critério de rastreio"],
+      correct:1,
+      an:["Não é obrigatória — exigir hipocalemia faz perder a maioria dos casos.","<b>Correta.</b> Muitos pacientes com hiperaldosteronismo primário são normocalêmicos.","Não há essa restrição etária para a regra.","O achado típico, quando presente, é hipocalemia, não hipercalemia.","O rastreio é feito pela relação aldosterona/renina, não pela calemia isolada."]},
+    {tema:"Hiperaldosteronismo·rastreio",nivel:"médio",stem:"Qual é o exame de rastreio inicial para hiperaldosteronismo primário?",
+      opts:["Cortisol salivar noturno","Relação aldosterona/renina (ARR)","TC de adrenal isolada","Cateterismo de veias adrenais direto","Dosagem isolada de sódio urinário"],
+      correct:1,
+      an:["Cortisol salivar é usado em investigação de outras condições, não é o rastreio de hiperaldosteronismo.","<b>Correta.</b> ARR é o teste de rastreio inicial.","Imagem vem depois do rastreio positivo, não como primeiro passo.","Cateterismo é reservado para lateralização após confirmação, não como rastreio inicial.","Sódio urinário isolado não é o exame de rastreio padrão."]},
+    {tema:"Hiperaldosteronismo·interferentes",nivel:"difícil",stem:"Por que idealmente se suspende a espironolactona antes de dosar a relação aldosterona/renina?",
+      opts:["Porque não interfere no resultado","Porque falseia o resultado do teste, comprometendo a interpretação","Porque é obrigatório por lei em todos os países","Porque a espironolactona aumenta a aldosterona sérica diretamente","Porque reduz a renina de forma permanente"],
+      correct:1,
+      an:["Ela interfere sim — essa é a razão da suspensão.","<b>Correta.</b> A espironolactona (e outros ARM/amilorida) falseiam o ARR, exigindo suspensão prévia idealmente.","Não é uma questão de exigência legal, é de acurácia diagnóstica.","O mecanismo não é elevar diretamente a aldosterona sérica.","Não é uma redução permanente da renina que justifica a suspensão."]},
+    {tema:"Hiperaldosteronismo·conduta",nivel:"médio",stem:"Paciente com hiperaldosteronismo primário confirmado, doença unilateral após cateterismo de veias adrenais. Conduta?",
+      opts:["Espironolactona vitalícia","Adrenalectomia, com potencial de cura ou grande melhora da PA","Amilorida isolada permanente","Observação sem tratamento","Finerenona como primeira escolha"],
+      correct:1,
+      an:["ARM vitalício é a conduta para doença bilateral, não unilateral confirmada.","<b>Correta.</b> Doença unilateral tem indicação cirúrgica, com bom potencial de resposta.","Amilorida isolada não é a conduta de escolha para doença unilateral confirmada.","Observação sem tratamento não é apropriada diante de diagnóstico confirmado.","Finerenona não é a primeira escolha nesse contexto."]},
+    {tema:"Prescrição·pré-requisitos alça",nivel:"fácil",stem:"Antes de prescrever furosemida, qual exame é essencial para orientar a dose e a via?",
+      opts:["Apenas hemograma","Creatinina/TFG, além de eletrólitos basais","Apenas glicemia de jejum","Apenas colesterol total","Nenhum exame é necessário antes de iniciar"],
+      correct:1,
+      an:["Hemograma isolado não orienta dose de diurético de alça.","<b>Correta.</b> Função renal e eletrólitos basais orientam dose, via e monitorização subsequente.","Glicemia isolada não é o exame relevante para essa decisão.","Colesterol não influencia a decisão de dose do diurético de alça.","Não avaliar antes de prescrever é uma conduta inadequada."]},
+    {tema:"Prescrição·pré-requisitos ARM",nivel:"fácil",stem:"Qual exame é obrigatório antes de iniciar espironolactona, independentemente da indicação?",
+      opts:["Potássio sérico","Hemoglobina glicada","TSH","Perfil lipídico","PSA"],
+      correct:0,
+      an:["<b>Correta.</b> K⁺ basal é obrigatório antes de qualquer início de ARM.","Hemoglobina glicada não é pré-requisito para iniciar ARM.","TSH não é exame obrigatório antes do ARM.","Perfil lipídico não é pré-requisito específico para ARM.","PSA não tem relação com a segurança do início de ARM."]},
+    {tema:"Prescrição·interações",nivel:"difícil",stem:"Qual interação medicamentosa é frequentemente esquecida ao prescrever um ARM, aumentando risco de hipercalemia?",
+      opts:["Estatina","Trimetoprima","Metformina","Levotiroxina","Ácido acetilsalicílico em dose antiplaquetária"],
+      correct:1,
+      an:["Estatina não tem essa interação relevante de potássio.","<b>Correta.</b> Trimetoprima também poupa potássio, somando risco de hipercalemia com o ARM.","Metformina não interage dessa forma com poupadores de K⁺.","Levotiroxina não tem essa interação relevante.","AAS em dose antiplaquetária não é a interação clássica de hipercalemia aqui."]},
+    {tema:"Prescrição·monitorização",nivel:"médio",stem:"Quando reavaliar K⁺ e creatinina após qualquer titulação de dose de um poupador de potássio?",
+      opts:["Nunca é necessário reavaliar após titulação","Em prazo curto após cada mudança de dose, pois cada titulação é, na prática, um novo início","Apenas 1 vez por ano, independente de mudanças","Somente se o paciente relatar sintomas","Apenas na primeira prescrição, nunca mais depois"],
+      correct:1,
+      an:["Não reavaliar após mudança de dose é conduta de risco.","<b>Correta.</b> Cada titulação altera o equilíbrio e merece reavaliação em prazo curto.","Intervalo anual fixo ignora o efeito de cada nova titulação.","Esperar sintomas é perigoso, pois hipercalemia pode ser assintomática.","Ignorar titulações subsequentes é uma falha de monitorização."]},
+    {tema:"Prescrição·resistência",nivel:"médio",stem:"Paciente em furosemida oral em dose alta com pouca resposta diurética. Qual NÃO é uma medida inicial razoável?",
+      opts:["Revisar adesão ao tratamento","Investigar uso de AINE","Avaliar ingestão de sódio na dieta","Dobrar a dose repetidamente sem outra investigação","Considerar bloqueio sequencial do néfron"],
+      correct:3,
+      an:["Revisar adesão é sempre um primeiro passo razoável.","Investigar AINE é uma causa comum e corrigível.","Avaliar sal na dieta é relevante e frequentemente esquecido.","<b>Correta (é a inadequada).</b> Dobrar a dose repetidamente sem investigar outras causas ignora o conceito de efeito-teto e as causas de resistência.","Bloqueio sequencial é uma estratégia racional após avaliação completa."]},
+    {tema:"Prescrição·função renal",nivel:"difícil",stem:"Após iniciar furosemida, a creatinina sobe discretamente e se estabiliza em poucos dias, sem outros sinais de alerta. Isso indica necessariamente lesão renal aguda grave?",
+      opts:["Sim, sempre exige suspensão imediata","Não necessariamente — pode ser queda de TFG hemodinâmica esperada, que se estabiliza","Sim, é sempre nefrotoxicidade direta do fármaco","Não, esse achado nunca deve ser monitorizado","Sim, exige diálise imediata"],
+      correct:1,
+      an:["Suspensão imediata automática não é a conduta correta diante de uma elevação leve e estável.","<b>Correta.</b> Elevação leve e estável de creatinina pode ser hemodinâmica e esperada — diferente de uma lesão renal progressiva.","Não é necessariamente nefrotoxicidade direta — pode ser resposta hemodinâmica.","Mesmo sendo esperada, o achado deve continuar sendo monitorizado.","Diálise imediata é desproporcional a uma elevação leve e estável."]},
+    {tema:"Efeitos adversos·ototoxicidade",nivel:"médio",stem:"A ototoxicidade dos diuréticos de alça está mais associada a qual cenário?",
+      opts:["Dose baixa oral crônica","Dose alta e/ou infusão IV rápida","Uso isolado de amilorida","Uso exclusivo de espironolactona","Qualquer dose, independente da via"],
+      correct:1,
+      an:["Dose baixa crônica não é o cenário clássico de ototoxicidade.","<b>Correta.</b> Dose alta e infusão IV rápida são os cenários mais associados, sobretudo com bumetanida.","Amilorida não é diurético de alça e não tem esse perfil de ototoxicidade.","Espironolactona não é diurético de alça.","A afirmação de que 'qualquer dose' causa esse efeito é imprecisa."]},
+    {tema:"Efeitos adversos·gota",nivel:"médio",stem:"Por que o diurético de alça pode desencadear crise de gota?",
+      opts:["Reduz diretamente a síntese de ácido úrico","Compete pelo transportador de ácido úrico no túbulo proximal, elevando sua concentração sérica","Aumenta diretamente a excreção de purinas","Não tem qualquer relação com ácido úrico","Reduz a filtração glomerular de forma permanente"],
+      correct:1,
+      an:["Não reduz a síntese — o mecanismo é de competição por transporte tubular.","<b>Correta.</b> A competição pelo transportador de ácido úrico eleva sua concentração sérica.","Não é sobre excreção de purinas diretamente.","Há sim relação descrita com hiperuricemia.","Não é sobre redução permanente da filtração glomerular."]},
+    {tema:"Efeitos adversos·alcalose",nivel:"difícil",stem:"Quais são os três mecanismos concorrentes da alcalose metabólica pós-diurético de alça?",
+      opts:["Apenas perda de bicarbonato pela urina","Contração de volume, maior entrega distal de Na⁺ trocado por H⁺/K⁺ via aldosterona, e perda desproporcional de cloreto","Aumento isolado da secreção de insulina","Redução da ventilação alveolar","Aumento da reabsorção proximal de glicose"],
+      correct:1,
+      an:["Não é apenas perda de bicarbonato — o mecanismo é mais complexo.","<b>Correta.</b> Contração de volume, troca distal estimulada por aldosterona, e perda de cloreto — três mecanismos concorrentes.","Não envolve secreção de insulina nesse mecanismo.","Não é um mecanismo respiratório.","Não envolve reabsorção de glicose nesse contexto."]},
+    {tema:"Efeitos adversos·sulfa",nivel:"difícil",stem:"Um paciente com histórico de 'alergia a sulfa' precisa de furosemida. Qual a conduta mais adequada?",
+      opts:["Contraindicar automaticamente e de forma absoluta","Avaliar o caso individualmente — o risco de reação cruzada é menor que classicamente assumido","Trocar automaticamente por espironolactona sem avaliação","Nunca usar qualquer diurético nesse paciente","Aumentar a dose para compensar risco de reação"],
+      correct:1,
+      an:["Contraindicação automática e absoluta não reflete a evidência mais atual sobre reação cruzada.","<b>Correta.</b> A avaliação deve ser individualizada — o risco é menor do que classicamente assumido.","Trocar automaticamente ignora que a indicação pode ser específica para volume, que a espironolactona não trata da mesma forma.","Evitar todo diurético não é proporcional ao risco real.","Aumentar dose não tem relação com o manejo de risco alérgico."]},
+    {tema:"Efeitos adversos·IC",nivel:"difícil",stem:"Por que a diurese excessiva pode ser contraproducente em um paciente com insuficiência cardíaca?",
+      opts:["Porque não tem nenhum efeito hemodinâmico relevante","Porque pode causar ativação neuro-hormonal (SRAA, simpático) que piora o quadro","Porque aumenta diretamente a fração de ejeção","Porque reduz permanentemente a pré-carga sem nenhum risco","Porque estabiliza a pressão arterial de forma definitiva"],
+      correct:1,
+      an:["Ela tem, sim, efeito hemodinâmico relevante — esse é o ponto da questão.","<b>Correta.</b> Diurese excessiva pode ativar SRAA e sistema simpático, piorando o quadro hemodinâmico.","Não há esse efeito direto sobre a fração de ejeção.","Reduzir demais a pré-carga tem riscos, não é isento de consequência.","Não estabiliza a PA de forma definitiva — pode gerar instabilidade."]},
+    {tema:"Comparação alça×tiazídico",nivel:"médio",stem:"Por que a frase 'alça é menos potente que tiazídico' é uma simplificação problemática?",
+      opts:["Porque a alça é sempre mais potente em tudo, sem exceção","Porque a alça é mais potente como natriurético agudo, mas tem ação curta e cobre pior as 24h sem edema","Porque não existe diferença real entre as classes","Porque o tiazídico não tem nenhuma ação natriurética","Porque a alça nunca deve ser usada em nenhum contexto"],
+      correct:1,
+      an:["Não é 'sempre mais potente em tudo' — a potência aguda não equivale a melhor cobertura de 24h.","<b>Correta.</b> A alça vence a batalha do volume agudo, mas nem sempre a guerra das 24 horas sem edema.","Existe, sim, diferença farmacocinética e de indicação relevante entre elas.","O tiazídico tem ação natriurética, só que mais suave e sustentada.","A alça tem indicações claras — a frase não invalida seu uso, apenas contextualiza."]},
+    {tema:"Néfron·localização",nivel:"fácil",stem:"Em qual segmento do néfron a aldosterona exerce seu efeito principal sobre ENaC e ROMK?",
+      opts:["Túbulo proximal","Ramo descendente fino","Ramo ascendente espesso","Túbulo distal tardio e ducto coletor","Alça descendente"],
+      correct:3,
+      an:["O túbulo proximal não é o sítio de ação da aldosterona sobre ENaC.","O ramo descendente fino não expressa esses transportadores-alvo.","O ramo ascendente espesso é sítio do NKCC2, não da ação principal da aldosterona.","<b>Correta.</b> Túbulo distal tardio e ducto coletor são onde ENaC/ROMK respondem à aldosterona.","A alça descendente não é o sítio principal de ação da aldosterona."]},
+    {tema:"Néfron·comparação de segmentos",nivel:"médio",stem:"Qual a principal diferença de indicação entre o segmento de ação do tiazídico e o dos poupadores de potássio?",
+      opts:["São exatamente o mesmo segmento e mesma indicação","Tiazídico atua no túbulo distal (NCC) e é 1ª linha para HAS; poupadores atuam mais distalmente e são reservados a contextos específicos como HAS resistente","Poupadores são sempre 1ª linha na HAS não complicada","Tiazídico não tem indicação em hipertensão","Poupadores atuam no túbulo proximal"],
+      correct:1,
+      an:["Não são o mesmo segmento nem a mesma indicação primária.","<b>Correta.</b> O tiazídico é 1ª linha na HAS comum; os poupadores entram em contextos mais específicos.","Poupadores não são 1ª linha na HAS não complicada — entram depois, em contextos como resistência.","O tiazídico é justamente 1ª linha clássica em hipertensão.","Poupadores não atuam no túbulo proximal."]},
+    {tema:"Caso integrado·volume×resistência",nivel:"difícil",stem:"Paciente com DRC estágio 4, HAS resistente confirmada (pseudorresistência descartada), K⁺ 5,2, já em A+C+D otimizado. Qual a conduta mais prudente para a 4ª droga?",
+      opts:["Iniciar espironolactona em dose plena sem reavaliação","Reavaliar cuidadosamente o risco de hipercalemia antes de decidir entre ARM, amilorida ou avaliação especializada, dado K⁺ já elevado","Iniciar furosemida como 4ª droga","Aumentar ainda mais a dose de BCC isoladamente","Suspender todo o esquema anti-hipertensivo"],
+      correct:1,
+      an:["Iniciar em dose plena sem reavaliação, com K⁺ já em 5,2, é conduta de risco.","<b>Correta.</b> Com K⁺ já elevado e DRC avançada, a decisão exige reavaliação cuidadosa — pode incluir avaliação especializada antes de qualquer ARM.","Furosemida não substitui o mecanismo-alvo da 4ª droga na HAS resistente.","Aumentar apenas o BCC isoladamente não segue a lógica de tratamento combinado indicada.","Suspender todo o esquema não é conduta apropriada diante de HAS resistente confirmada."]},
+    {tema:"Caso integrado·ginecomastia",nivel:"médio",stem:"Paciente em espironolactona para HAS resistente evolui com ginecomastia dolorosa, PA controlada, K⁺ normal. Conduta mais adequada?",
+      opts:["Suspender toda terapia anti-hipertensiva","Trocar por eplerenona","Trocar por amilorida em monoterapia sem mais avaliação","Associar finerenona","Aumentar a dose de espironolactona"],
+      correct:1,
+      an:["Suspender toda a terapia é desproporcional a um efeito hormonal isolado e reversível.","<b>Correta.</b> A troca por eplerenona resolve o efeito hormonal mantendo o bloqueio mineralocorticoide.","Trocar por amilorida sem avaliação ignora que ela tem mecanismo diferente e pode não repetir o mesmo efeito pressórico sem reavaliação.","Finerenona não é indicada para HAS resistente de rotina.","Aumentar a dose pioraria o efeito hormonal, não resolveria."]},
+    {tema:"Caso integrado·hipocalemia refratária",nivel:"difícil",stem:"Paciente em furosemida com hipocalemia refratária à reposição oral de potássio. Qual eletrólito deve ser investigado e corrigido em conjunto?",
+      opts:["Cálcio","Magnésio","Fósforo","Cloreto isoladamente, sem outro eletrólito","Bicarbonato isoladamente"],
+      correct:1,
+      an:["Cálcio não é o eletrólito classicamente ligado à refratariedade da hipocalemia.","<b>Correta.</b> Hipomagnesemia concomitante frequentemente torna a hipocalemia refratária até ser corrigida.","Fósforo não é o principal fator de refratariedade nesse cenário.","Cloreto participa do quadro geral, mas magnésio é o fator classicamente associado à refratariedade.","Bicarbonato reflete a alcalose associada, mas não é o fator de refratariedade da hipocalemia em si."]},
+    {tema:"Caso integrado·edema+HAS",nivel:"médio",stem:"Paciente com IC e HAS mal controlada, já em furosemida para congestão. PA ainda alta apesar de A+C+D. É correto considerar espironolactona nesse paciente?",
+      opts:["Não, ARM é contraindicado em IC","Sim — na IC com fração de ejeção reduzida, ARM tem papel próprio, além de poder contribuir na HAS resistente, com monitorização de K⁺","Sim, mas apenas em dose máxima sem monitorização","Não, deve-se apenas aumentar a furosemida indefinidamente","Sim, mas somente se K⁺ já estiver baixo"],
+      correct:1,
+      an:["ARM não é contraindicado na IC com FE reduzida — tem papel terapêutico reconhecido.","<b>Correta.</b> O ARM soma benefício na IC e pode contribuir na HAS resistente, sempre com vigilância de K⁺.","Dose máxima sem monitorização é conduta de risco, não recomendada.","Aumentar apenas a furosemida ignora o mecanismo de retenção mediado por aldosterona.","Não é necessário K⁺ baixo como pré-requisito — pelo contrário, deve-se vigiar hipercalemia."]},
+    {tema:"Farmacologia comparada",nivel:"médio",stem:"Qual par de fármacos age em receptores/canais totalmente diferentes, apesar do mesmo efeito final de poupar potássio?",
+      opts:["Furosemida e bumetanida","Espironolactona e amilorida","Espironolactona e eplerenona","Furosemida e torasemida","Eplerenona e finerenona"],
+      correct:1,
+      an:["Furosemida e bumetanida têm o mesmo alvo (NKCC2) — mesma classe.","<b>Correta.</b> Espironolactona (receptor) e amilorida (canal ENaC) têm mecanismos diferentes, mesmo efeito final.","Espironolactona e eplerenona têm o mesmo alvo (receptor mineralocorticoide).","Furosemida e torasemida têm o mesmo alvo (NKCC2).","Eplerenona e finerenona também são ambas ARM, mesmo alvo geral."]},
+    {tema:"Alça·torasemida",nivel:"médio",stem:"Qual argumento sustenta a conveniência posológica da torasemida em relação à furosemida, sem implicar superioridade de desfechos?",
+      opts:["A torasemida cura a insuficiência cardíaca","A torasemida tem meia-vida mais longa e biodisponibilidade mais previsível, permitindo geralmente 1 tomada/dia — sem evidência consistente de superioridade de desfechos sobre a furosemida","A torasemida não causa nenhum distúrbio eletrolítico","A torasemida é sempre mais barata que a furosemida no Brasil","A torasemida substitui totalmente o uso de ARM na HAS resistente"],
+      correct:1,
+      an:["Nenhum diurético 'cura' a insuficiência cardíaca — eles tratam congestão, dentro do tratamento global.","<b>Correta.</b> A conveniência é farmacocinética (duração e previsibilidade), não uma superioridade de desfechos comprovada.","Ela também pode causar distúrbios eletrolíticos, como qualquer diurético de alça.","Custo e disponibilidade variam por mercado — não é uma regra fixa e universal.","Torasemida não tem relação com o mecanismo de ação dos ARM na HAS resistente — são classes diferentes."]},
+    {tema:"Síntese·objetivo do capítulo",nivel:"fácil",stem:"Qual frase resume melhor a filosofia central deste capítulo sobre escolha de diurético?",
+      opts:["O diurético certo é sempre o de maior potência disponível","O diurético certo é o que corrige o mecanismo dominante do paciente, não o que produz mais urina","Todo paciente hipertenso deve receber diurético de alça","Urinar mais é sempre sinônimo de tratar melhor","A escolha do diurético é irrelevante para o desfecho clínico"],
+      correct:1,
+      an:["Maior potência não é sinônimo de melhor escolha clínica — depende do mecanismo do paciente.","<b>Correta.</b> É a frase-guia do capítulo: tratar o mecanismo dominante, não maximizar diurese.","Nem todo hipertenso tem indicação de diurético de alça — depende do contexto de volume.","Urinar mais não equivale a tratar melhor — essa é justamente a lição central.","A escolha do diurético é altamente relevante para eficácia e segurança."]}
+  ];
+  var qTemas=["Todos"].concat(Array.from(new Set(qData.map(function(x){return x.tema.split("·")[0];}))));
+  var qActive="Todos", qFlags={};
+  var qFiltersEl=document.getElementById("qFilters"), qGridEl=document.getElementById("qGrid");
+  function renderQFilters(){
+    if(!qFiltersEl) return;
+    qFiltersEl.innerHTML=qTemas.map(function(t){
+      var n=t==="Todos"?qData.length:qData.filter(function(x){return x.tema.split("·")[0]===t;}).length;
+      return '<button class="q-filter'+(t===qActive?' active':'')+'" data-qf="'+t+'">'+t+' ('+n+')</button>';
+    }).join('');
+    qFiltersEl.querySelectorAll(".q-filter").forEach(function(b){
+      b.addEventListener("click",function(){ qActive=b.getAttribute("data-qf"); renderQFilters(); renderQGrid(); sfx.click(); });
+    });
+  }
+  var letters=["A","B","C","D","E"];
+  function renderQGrid(){
+    if(!qGridEl) return;
+    var items=qData.map(function(x,i){return {d:x,i:i};})
+      .filter(function(o){ return qActive==="Todos"||o.d.tema.split("·")[0]===qActive; });
+    qGridEl.innerHTML=items.map(function(o){
+      var d=o.d, idx=o.i;
+      var optsHtml=d.opts.map(function(op,j){
+        return '<button class="opt" data-idx="'+idx+'" data-k="'+j+'"><span class="letter">'+letters[j]+'</span>'+op+'</button>';
+      }).join('');
+      var anHtml=d.an.map(function(a,j){
+        return '<div class="aline"><b>'+letters[j]+'.</b> '+a+'</div>';
+      }).join('');
+      return '<div class="q" data-idx="'+idx+'" data-correct="'+d.correct+'">'+
+        '<button class="flagbtn" data-flag="'+idx+'">⚑ marcar erro</button>'+
+        '<div class="qhead">QUESTÃO '+(idx+1)+' · '+d.tema+' <span class="lvl">'+d.nivel+'</span></div>'+
+        '<div class="stem">'+d.stem+'</div>'+optsHtml+
+        '<div class="expl"><b>Correta: '+letters[d.correct]+'.</b><div class="opt-analysis">'+anHtml+'</div></div>'+
+        '</div>';
+    }).join('');
+    qGridEl.querySelectorAll(".q").forEach(function(q){
+      var correct=parseInt(q.getAttribute("data-correct"),10),
+          expl=q.querySelector(".expl"), opts=q.querySelectorAll(".opt"), done=false;
+      opts.forEach(function(o){
+        o.addEventListener("click",function(){
+          if(done) return; done=true;
+          var k=parseInt(o.getAttribute("data-k"),10);
+          if(k===correct){ o.classList.add("correct"); sfx.correct(); }
+          else{
+            o.classList.add("wrong"); sfx.wrong();
+            opts.forEach(function(x){ if(parseInt(x.getAttribute("data-k"),10)===correct) x.classList.add("correct"); });
+          }
+          expl.classList.add("show");
+        });
+      });
+      var flagBtn=q.querySelector(".flagbtn");
+      flagBtn.addEventListener("click",function(e){
+        e.stopPropagation();
+        var idx=flagBtn.getAttribute("data-flag");
+        qFlags[idx]=!qFlags[idx];
+        flagBtn.classList.toggle("flagged",!!qFlags[idx]);
+        sfx.click();
+      });
+    });
+  }
+  renderQFilters(); renderQGrid();
+
+
+  /* ---- cases ---- */
+  document.querySelectorAll(".case").forEach(function(c){
+    var btn=c.querySelector(".reveal"), ans=c.querySelector(".ans");
+    btn.setAttribute("tabindex","0"); btn.setAttribute("role","button");
+    function show(){ ans.classList.add("show"); btn.style.display="none"; sfx.reveal(); }
+    btn.addEventListener("click",show);
+    btn.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();show();} });
+  });
+
+  /* ---- reveal on scroll ---- */
+  if(!reduce && "IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+    },{threshold:0.15});
+    document.querySelectorAll(".reveal-on-scroll").forEach(function(el){io.observe(el);});
+  } else {
+    document.querySelectorAll(".reveal-on-scroll").forEach(function(el){el.classList.add("in");});
+  }
+})();
+</script>
+</body>
+</html>
