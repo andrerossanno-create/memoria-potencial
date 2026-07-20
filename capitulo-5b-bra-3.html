@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- ================================================================
+  ATLAS MENTAL DA HIPERTENSÃO ARTERIAL
+  BLOCO 2 • TEMA 4 • CAPÍTULO 5B
+  BLOQUEADORES DOS RECEPTORES DA ANGIOTENSINA II (BRA)
+  "A Guerra dos Dois Reinos · O Cerco ao Castelo AT1"
+  Autor: Dr. André Rossanno
+  Arquivo único, autossuficiente, offline, sem dependências externas.
+================================================================= -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap. 5B — BRA · Atlas Mental da Hipertensão Arterial</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap');
+
+:root{
+  --bg:#eef2f7;--bg2:#e3e9f2;--paper:#ffffff;
+  --ink:#0f2942;--ink2:#3a5674;--line:#d7e0ec;
+  --blue:#1282A2;--blue-soft:#e2f1f6;--blue-deep:#0d6883;
+  --green:#1e8f5e;--green-soft:#e4f5ec;
+  --amber:#d98a04;--amber-soft:#fcf1dc;
+  --red:#c0392b;--red-soft:#fbe6e3;
+  --navy:#0f2942;--navy-soft:#e7edf4;
+  /* Reinos */
+  --at1:#c0392b;--at1-soft:#fbe6e3;--at1-deep:#8f2318;
+  --at2:#1e8f5e;--at2-soft:#e4f5ec;--at2-deep:#146b45;
+  --radius:16px;--radius-sm:10px;
+  --shadow:0 6px 22px rgba(15,41,66,.10);--shadow-lg:0 14px 40px rgba(15,41,66,.16);
+  --maxw:1080px;--fs:1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  background:radial-gradient(1200px 600px at 82% -10%,#f4dcd8 0,transparent 55%),radial-gradient(900px 520px at -8% 12%,#dcf0e6 0,transparent 55%),var(--bg);
+  color:var(--ink);line-height:1.55;font-size:calc(17px * var(--fs));-webkit-text-size-adjust:100%;}
+body.hi-contrast{--bg:#fff;--bg2:#f0f0f0;--ink:#000;--ink2:#233;--line:#889;}
+h1,h2,h3,h4{line-height:1.15;margin:0 0 .4em;font-weight:900;letter-spacing:-.01em}
+p{margin:0 0 .8em}
+a{color:var(--blue-deep)}
+.mono{font-family:'IBM Plex Mono',monospace}
+.sig{font-family:'Dancing Script',cursive;font-weight:700}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+section{padding:38px 0}
+.sec{scroll-margin-top:84px}
+.kick{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-deep);display:inline-flex;align-items:center;gap:8px;margin-bottom:10px}
+.kick::before{content:"";width:26px;height:2px;background:var(--blue);display:inline-block}
+.sechead{font-size:clamp(1.5rem,4.4vw,2.15rem);color:var(--navy)}
+.lead{font-size:1.06rem;color:var(--ink2);max-width:62ch}
+
+/* NAV */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.brand{display:flex;flex-direction:column;line-height:1;margin-right:auto}
+.brand b{font-size:.98rem;color:var(--navy)}
+.brand span{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--blue-deep);letter-spacing:.14em;margin-top:3px}
+.tbtns{display:flex;gap:6px;flex-wrap:wrap}
+.tb{border:1px solid var(--line);background:#fff;color:var(--ink2);font-family:inherit;font-weight:800;font-size:.74rem;cursor:pointer;padding:7px 10px;border-radius:999px;transition:.15s;white-space:nowrap}
+.tb:hover{border-color:var(--blue);color:var(--blue-deep)}
+.tb.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tb.on.mode-rev{background:var(--blue)}
+.tb.on.mode-prova{background:var(--at1)}
+.progress-rail{height:3px;background:var(--line)}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--at1),var(--at2));transition:width .3s}
+
+.drawer{position:fixed;inset:0 auto 0 0;width:290px;max-width:86vw;background:#fff;border-right:1px solid var(--line);transform:translateX(-102%);transition:.28s;z-index:80;overflow-y:auto;padding:16px 0;box-shadow:var(--shadow-lg)}
+.drawer.open{transform:none}
+.drawer h4{padding:6px 20px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-deep);font-family:'IBM Plex Mono',monospace}
+.drawer a{display:flex;gap:10px;align-items:center;padding:9px 20px;color:var(--ink);text-decoration:none;font-weight:700;font-size:.9rem;border-left:3px solid transparent}
+.drawer a:hover{background:var(--blue-soft);border-left-color:var(--blue)}
+.drawer a .n{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--ink2);min-width:20px}
+.scrim{position:fixed;inset:0;background:rgba(15,41,66,.4);z-index:70;opacity:0;pointer-events:none;transition:.28s}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer-close{margin:4px 16px 10px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-weight:800;cursor:pointer;font-family:inherit}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--navy-soft);color:var(--navy)}
+.pill.blue{background:var(--blue-soft);color:var(--blue-deep)}
+.pill.green{background:var(--at2-soft);color:var(--at2-deep)}
+.pill.amber{background:var(--amber-soft);color:var(--amber)}
+.pill.red{background:var(--at1-soft);color:var(--at1-deep)}
+
+.callout{border-radius:var(--radius-sm);padding:14px 16px;border-left:5px solid var(--blue);background:var(--blue-soft)}
+.callout.green{border-left-color:var(--at2);background:var(--at2-soft)}
+.callout.amber{border-left-color:var(--amber);background:var(--amber-soft)}
+.callout.red{border-left-color:var(--at1);background:var(--at1-soft)}
+.callout h4{margin:0 0 4px;font-size:1rem}
+.callout p{margin:0;font-size:.95rem;color:var(--ink)}
+
+.trad{font-size:.86rem;color:var(--ink2);border-left:3px solid var(--blue);padding-left:10px;margin:6px 0 0;font-style:italic}
+.trad b{font-style:normal;color:var(--blue-deep)}
+.gold{background:linear-gradient(180deg,#fff,#fffdf6);border:1px solid #f0e2bf;border-left:5px solid var(--amber)}
+.frase{font-size:1.12rem;font-weight:800;color:var(--navy);line-height:1.35}
+
+.btn{border:none;border-radius:10px;padding:11px 16px;font-family:inherit;font-weight:800;cursor:pointer;font-size:.92rem;transition:.15s}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.primary:hover{background:#153a5c}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--blue);color:var(--blue-deep)}
+.btn:focus-visible,.tb:focus-visible,a:focus-visible,.chip:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+.n-seal{display:flex;gap:5px;flex-wrap:wrap;margin:2px 0 14px}
+.n-seal .n{font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;padding:3px 7px;border-radius:6px;background:var(--navy-soft);color:var(--navy);border:1px solid var(--line)}
+.n-seal .n b{color:var(--blue-deep)}
+
+/* HERO — dois reinos */
+.hero{position:relative;overflow:hidden;color:#eaf2fb}
+.hero .wrap{padding:60px 18px 50px;position:relative;z-index:2}
+.hero-split{position:absolute;inset:0;z-index:1;display:grid;grid-template-columns:1fr 1fr}
+.hero-split .at1side{background:linear-gradient(180deg,#3a120c,#5c1a12)}
+.hero-split .at2side{background:linear-gradient(180deg,#0f3a28,#155c3d)}
+.hero-split .seam{position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-50%)}
+.hero .kick{color:#f0c9c2}
+.hero .kick::before{background:#f0c9c2}
+.hero h1{font-size:clamp(1.9rem,6vw,3.3rem);color:#fff;letter-spacing:-.02em;margin-bottom:.2em;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.hero .sub{font-size:clamp(1.05rem,2.6vw,1.32rem);color:#eef1ee;max-width:34ch;font-weight:700;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.hero .sig{color:#ffe;font-size:1.5rem;margin-top:18px;display:inline-block}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.hero .btn.primary{background:#fff;color:#3a120c}
+.hero .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
+.realm-tags{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.realm-tags span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35)}
+.realm-tags .t1{background:rgba(192,57,43,.4)}
+.realm-tags .t2{background:rgba(30,143,94,.4)}
+
+/* HUB */
+.hub{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.hub{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.hub{grid-template-columns:1fr}}
+.hub a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--ink);transition:.15s}
+.hub a:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
+.hub a .hn{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--blue-deep);letter-spacing:.1em}
+.hub a b{display:block;margin-top:4px;font-size:.98rem}
+.hub a span{font-size:.82rem;color:var(--ink2)}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:800;font-size:.85rem;cursor:pointer;font-family:inherit;color:var(--ink2)}
+.tab.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tabpane{display:none}
+.tabpane.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.acc{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;background:#fff}
+.acc>button{width:100%;text-align:left;background:#fff;border:none;padding:14px 16px;font-family:inherit;font-weight:800;font-size:.98rem;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--navy)}
+.acc>button:hover{background:var(--blue-soft)}
+.acc>button .ico{transition:.2s;color:var(--blue)}
+.acc.open>button .ico{transform:rotate(45deg)}
+.acc .body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc .body-in{padding:0 16px 16px}
+
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:760px){.spec{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.spec{grid-template-columns:1fr}}
+.spec div{border-radius:10px;padding:11px 12px;font-size:.85rem}
+.spec .s1{background:var(--navy-soft)}
+.spec .s2{background:var(--amber-soft)}
+.spec .s3{background:var(--blue-soft)}
+.spec .s4{background:var(--at2-soft)}
+.spec b{display:block;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;margin-bottom:4px;color:var(--ink2)}
+
+body[data-mode="revisao"] .rev-hide{display:none!important}
+body[data-mode="prova"] .prova-hide{display:none!important}
+body:not([data-mode="prova"]) .prova-only{display:none!important}
+body:not([data-mode="professor"]) .prof-only{display:none!important}
+.prof-only{border-left:4px solid var(--blue);background:#f2f9fb;border-radius:8px;padding:10px 14px;margin:10px 0}
+.prof-only .tag{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--blue-deep);text-transform:uppercase}
+
+body.no-motion *{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+footer{background:var(--navy);color:#cfe0ef;padding:36px 0;margin-top:20px}
+footer .sig{color:#f0c9c2;font-size:1.7rem}
+footer a{color:#8fd0e6}
+.disc{font-size:.8rem;color:#9db7cf;max-width:60ch;margin-top:10px}
+
+.center{text-align:center}.mt0{margin-top:0}.mb0{margin-bottom:0}
+.small{font-size:.85rem;color:var(--ink2)}
+.divider{height:1px;background:var(--line);margin:14px 0}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.reveal{max-height:0;overflow:hidden;transition:max-height .3s;margin-top:0}
+.reveal.on{max-height:400px;margin-top:10px}
+.reveal p{background:var(--navy-soft);border-radius:8px;padding:10px 12px;margin:0}
+ul.tick{list-style:none;margin:10px 0 0;padding:0}
+ul.tick li{position:relative;padding:5px 0 5px 24px;font-size:.94rem;border-bottom:1px dashed var(--line)}
+ul.tick li:last-child{border-bottom:none}
+ul.tick li::before{content:"›";position:absolute;left:6px;color:var(--blue);font-weight:900}
+</style>
+</head>
+<body data-mode="livre">
+
+<!-- NAV -->
+<div class="topbar">
+  <div class="wrap">
+    <button class="tb" id="menuBtn" aria-label="Abrir menu de seções">☰ Seções</button>
+    <div class="brand"><b>Atlas Mental · BRA</b><span>BLOCO 2 · TEMA 4 · CAP. 5B</span></div>
+    <div class="tbtns">
+      <button class="tb" data-mode-btn="professor" title="Conteúdo completo + notas">Professor</button>
+      <button class="tb" data-mode-btn="revisao" title="Só o essencial">Revisão</button>
+      <button class="tb" data-mode-btn="prova" title="Questões e desempenho">Prova</button>
+      <button class="tb" id="motionBtn" title="Reduzir animações">Movimento</button>
+      <button class="tb" id="fontBtn" title="Aumentar fonte">A+</button>
+      <button class="tb" id="contrastBtn" title="Alto contraste">◑</button>
+      <button class="tb" id="resetBtn" title="Apagar meu progresso">⟲</button>
+    </div>
+  </div>
+  <div class="progress-rail"><div class="progress-fill" id="progFill"></div></div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Índice do capítulo">
+  <button class="drawer-close" id="drawerClose">✕ Fechar</button>
+  <h4>A guerra dos dois reinos</h4>
+  <a href="#top"><span class="n">00</span> Entrada no reino</a>
+  <a href="#forja"><span class="n">01</span> A Forja continua acesa</a>
+  <a href="#dois-reinos"><span class="n">02</span> AT1 × AT2 · os dois portões</a>
+  <a href="#cerco"><span class="n">03</span> O cerco ao Castelo AT1</a>
+  <a href="#lab"><span class="n">04</span> Laboratório dos receptores</a>
+  <a href="#tosse"><span class="n">05</span> Por que menos tosse</a>
+  <h4>Clínica</h4>
+  <a href="#rim"><span class="n">06</span> Proteção renal · Lago</a>
+  <a href="#adversos"><span class="n">07</span> K⁺, creatinina, angioedema</a>
+  <a href="#gota"><span class="n">08</span> A Sala da Gota</a>
+  <a href="#olme"><span class="n">09</span> Enteropatia · olmesartana</a>
+  <a href="#cancer"><span class="n">10</span> Tribunal das Nitrosaminas</a>
+  <a href="#galeria"><span class="n">11</span> Galeria dos Sartans</a>
+  <a href="#relogio"><span class="n">12</span> O Relógio dos BRA</a>
+  <a href="#indicacoes"><span class="n">13</span> Indicações e contraindicações</a>
+  <a href="#duplo"><span class="n">14</span> Duplo bloqueio</a>
+  <a href="#diretriz"><span class="n">15</span> Tribunal da Diretriz · IECA=BRA?</a>
+  <a href="#prescrever"><span class="n">16</span> Consultório</a>
+  <a href="#evidencias"><span class="n">17</span> Tribunal das Evidências</a>
+  <h4>Treino</h4>
+  <a href="#palacio"><span class="n">18</span> Palácio da Memória</a>
+  <a href="#casos"><span class="n">19</span> Casos clínicos</a>
+  <a href="#arena"><span class="n">20</span> Arena TEC</a>
+  <a href="#decisoes"><span class="n">21</span> Mini-decisões</a>
+  <a href="#flash"><span class="n">22</span> Flashcards</a>
+  <a href="#pegadinhas"><span class="n">23</span> Armadilhas da banca</a>
+  <a href="#hipocampo"><span class="n">24</span> Hipocampo · revisão</a>
+  <a href="#comparacao"><span class="n">25</span> A Grande Comparação</a>
+  <a href="#conselho"><span class="n">26</span> Conselho do Reino</a>
+  <a href="#refs"><span class="n">27</span> Referências</a>
+</nav>
+
+<!-- ABERTURA CINEMATOGRÁFICA -->
+<div id="cine" class="cine" role="dialog" aria-label="Abertura animada">
+  <div class="cine-inner">
+    <button class="cine-skip" id="cineSkip">Pular introdução ›</button>
+    <svg id="cineSvg" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    <div class="cine-cap" id="cineCap"></div>
+    <div class="cine-dots" id="cineDots"></div>
+  </div>
+</div>
+<style>
+.cine{position:fixed;inset:0;z-index:120;background:radial-gradient(circle at 50% 40%,#2a1a20,#0d0a10);display:none;align-items:center;justify-content:center}
+.cine.on{display:flex}
+.cine-inner{width:min(520px,92vw);text-align:center;color:#f4eef0;position:relative}
+.cine-skip{position:absolute;top:-40px;right:0;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#f4eef0;border-radius:999px;padding:7px 14px;font-family:inherit;font-weight:800;cursor:pointer}
+#cineSvg{width:100%;height:auto;background:rgba(255,255,255,.04);border-radius:18px;border:1px solid rgba(255,255,255,.15)}
+.cine-cap{font-size:1.25rem;font-weight:800;margin-top:18px;min-height:2.6em}
+.cine-cap b{color:#f0c9c2}
+.cine-dots{display:flex;gap:7px;justify-content:center;margin-top:10px}
+.cine-dots i{width:8px;height:8px;border-radius:50%;background:#5a4a52;transition:.2s}
+.cine-dots i.on{background:#f0c9c2;transform:scale(1.3)}
+</style>
+
+<!-- HERO -->
+<header class="hero sec" id="top">
+  <div class="hero-split" aria-hidden="true">
+    <div class="at1side"></div><div class="at2side"></div><div class="seam"></div>
+  </div>
+  <div class="wrap">
+    <span class="kick">Atlas Mental da Hipertensão Arterial</span>
+    <h1>Bloqueadores dos Receptores da Angiotensina II</h1>
+    <p class="sub">A guerra dos dois reinos: o Portão AT1 cercado, o Jardim AT2 preservado.</p>
+    <div class="realm-tags">
+      <span class="t1">🏰 AT1 · aperta o reino</span>
+      <span class="t2">🌿 AT2 · abre caminhos</span>
+    </div>
+    <div class="hero-cta">
+      <button class="btn primary" id="startCine">▶ Entrar no reino dividido</button>
+      <a class="btn ghost" href="#dois-reinos">Ir aos dois portões</a>
+    </div>
+    <span class="sig">Dr. André Rossanno</span>
+  </div>
+</header>
+
+<!-- HUB -->
+<section class="sec wrap" id="hub">
+  <span class="kick">Como navegar</span>
+  <h2 class="sechead">Escolha por onde entrar</h2>
+  <p class="lead rev-hide">Se o IECA destruiu a fábrica, o BRA cerca o castelo. Aqui a Forja continua acesa — e tudo gira em torno de um portão bloqueado e um jardim preservado.</p>
+  <div class="hub" style="margin-top:16px">
+    <a href="#dois-reinos"><span class="hn">MECANISMO</span><b>AT1 × AT2</b><span>Os dois portões da Angiotensina II</span></a>
+    <a href="#galeria"><span class="hn">SARTANS</span><b>Galeria dos guardiões</b><span>Losartana, telmisartana, olmesartana…</span></a>
+    <a href="#rim"><span class="hn">SIMULADOR</span><b>O Lago Glomerular</b><span>Eferente, creatinina, albuminúria</span></a>
+    <a href="#arena"><span class="hn">TEC</span><b>Arena de questões</b><span>Casos, pegadinhas e desempenho</span></a>
+  </div>
+</section>
+
+<!-- FILOSOFIA -->
+<section class="sec wrap rev-hide" id="filosofia">
+  <div class="card gold">
+    <span class="kick">Filosofia</span>
+    <p class="frase">O IECA destruiu a fábrica. O BRA controla o reino.</p>
+    <p style="margin-top:10px;color:var(--ink)">A Forja continua acesa: a Angiotensina II não desaparece. O BRA apenas ocupa a fechadura do Portão AT1 — e a mensageira, sem entrar no castelo, segue até o Jardim AT2, que permanece aberto. Quem enxerga esses dois portões nunca mais esquece por que o BRA protege coração e rim, por que causa menos tosse e por que ainda pode elevar o potássio.</p>
+    <p class="sig" style="color:var(--blue-deep);font-size:1.5rem;margin:6px 0 0">— Dr. André Rossanno</p>
+  </div>
+</section>
+
+<!-- 01 · A FORJA CONTINUA ACESA -->
+<section class="sec wrap" id="forja">
+  <span class="kick">Capítulo 01 · O que mudou desde o IECA</span>
+  <h2 class="sechead">A Forja continua acesa</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N2</b> entendimento</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <p>No capítulo anterior, o IECA <b>destruiu a Forja da ECA</b>: menos Angiotensina II, mais bradicinina. Aqui, a história é outra.</p>
+      <p>A <b>Forja continua funcionando</b>. O fogo permanece aceso. A <b>Angiotensina II continua sendo produzida</b> — nada mudou ali. O detalhe que muda tudo está no que acontece <b>depois</b> que a mensageira nasce.</p>
+      <p class="trad"><b>Tradução:</b> o BRA não inibe a ECA e não reduz a formação de Ang II. Ele age no destino da mensagem, no receptor.</p>
+    </div>
+    <div class="card" style="background:linear-gradient(180deg,#fff,#fff8f6);border-left:4px solid var(--at1)">
+      <span class="pill red">A mensageira</span>
+      <p style="margin-top:8px">A Angiotensina II <b>não é a vilã</b>. Ela é uma mensageira poderosa que apenas leva ordens. <b>Quem decide o destino dessas ordens são os receptores.</b></p>
+      <p>Depois de nascer, ela precisa escolher um caminho. Existem apenas dois grandes portões: <b>AT1</b> ou <b>AT2</b>.</p>
+      <p class="mono small" style="margin-top:6px">Todo o capítulo gira em torno dessa decisão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · OS DOIS REINOS -->
+<section class="sec wrap" id="dois-reinos">
+  <span class="kick">Capítulo 02 · Os dois portões</span>
+  <h2 class="sechead">AT1, o Portão de Ferro · AT2, o Jardim</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N3</b> associação</span><span class="n"><b>N4</b> organização</span></div>
+  <p class="lead">Vilão e herói são simplificação mnemônica. Na fisiologia real, nenhum receptor é “bom” ou “mau” de forma absoluta — a Ang II é a mesma mensageira nos dois.</p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card" style="border-top:4px solid var(--at1);background:linear-gradient(180deg,#fff,#fff7f5)">
+      <span class="pill red">🏰 Portão AT1 · o General da Guerra</span>
+      <p style="margin-top:8px">Castelo militar, pedras escuras, correntes. Lema: <b>“Apertar é controlar.”</b> Quando a Ang II entra, uma sequência inevitável acontece:</p>
+      <ul class="tick">
+        <li>vasoconstrição · aldosterona · retenção de Na⁺/H₂O</li>
+        <li>ativação simpática · estresse oxidativo · inflamação</li>
+        <li>hipertrofia · fibrose · remodelamento</li>
+        <li>↑ pressão intraglomerular · proteinúria</li>
+      </ul>
+      <p class="frase" style="color:var(--at1-deep);margin-top:8px">AT1 APERTA O REINO.</p>
+      <p class="small">Não é “mal absoluto”: é resposta fisiológica que, excessiva e persistente, vira doença.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--at2);background:linear-gradient(180deg,#fff,#f5fbf8)">
+      <span class="pill green">🌿 Portão AT2 · o Arquiteto da Reconstrução</span>
+      <p style="margin-top:8px">Depois da muralha, um jardim: água corrente, luz, árvores. Lema: <b>“Proteger é equilibrar.”</b> Predominam respostas contrarregulatórias:</p>
+      <ul class="tick">
+        <li>vasodilatação · óxido nítrico</li>
+        <li>antiproliferação · antifibrose</li>
+        <li>modulação inflamatória · reparo tecidual</li>
+        <li>possível natriurese em alguns contextos</li>
+      </ul>
+      <p class="frase" style="color:var(--at2-deep);margin-top:8px">AT2 ABRE CAMINHOS.</p>
+      <div class="callout amber" style="margin-top:8px"><p><b>Sem exagero:</b> o AT2 não é um super-receptor mágico — é uma via que <b>frequentemente</b> se opõe ao AT1.</p></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <span class="pill blue">Tabela AT1 × AT2</span>
+    <div class="cmp">
+      <div class="cmp-row cmp-head"><span></span><b style="color:var(--at1-deep)">AT1 (aperta)</b><b style="color:var(--at2-deep)">AT2 (abre)</b></div>
+      <div class="cmp-row"><span>Vaso</span><b>vasoconstrição</b><b>vasodilatação / NO</b></div>
+      <div class="cmp-row"><span>Volume</span><b>aldosterona · retenção</b><b>possível natriurese</b></div>
+      <div class="cmp-row"><span>Coração/vaso</span><b>hipertrofia · fibrose</b><b>antifibrose · reparo</b></div>
+      <div class="cmp-row"><span>Proliferação</span><b>proliferação</b><b>antiproliferação</b></div>
+      <div class="cmp-row"><span>Simpático</span><b>↑ tônus</b><b>modulação</b></div>
+      <div class="cmp-row"><span>Glomérulo</span><b>↑ pressão intraglomerular</b><b>contrarregulação</b></div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><span class="pill amber">Recuperação ativa</span>
+      <p style="margin-top:8px"><b>Qual receptor o BRA bloqueia — e a Ang II deixa de existir?</b></p>
+      <button class="btn ghost reveal-btn" data-reveal="r-at">Ver resposta</button>
+      <div id="r-at" class="reveal"><p>O BRA bloqueia o <b>AT1</b>. A Ang II <b>não</b> deixa de existir: ela continua circulando e pode alcançar o <b>AT2</b> e outras vias não bloqueadas.</p></div>
+    </div>
+    <div class="card gold"><span class="pill amber">Mnemônico</span>
+      <p class="frase" style="font-size:1rem;margin-top:6px">AT1 APERTA TUDO</p>
+      <p class="small"><b>A</b>ldosterona · <b>P</b>ressão intraglomerular · <b>E</b>stresse oxidativo · <b>R</b>etenção de sódio · <b>T</b>ônus simpático · <b>A</b>ngiofibrose.</p>
+    </div>
+  </div>
+</section>
+<style>
+.cmp{margin-top:8px}
+.cmp-row{display:grid;grid-template-columns:1fr 1.2fr 1.2fr;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line);align-items:center}
+.cmp-row:last-child{border-bottom:none}
+.cmp-row span{font-size:.8rem;color:var(--ink2);font-weight:800}
+.cmp-row b{font-size:.86rem}
+.cmp-head{border-bottom:2px solid var(--line)}
+.cmp-head b{font-family:'IBM Plex Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:520px){.cmp-row{grid-template-columns:1fr;gap:2px}.cmp-row span{margin-top:4px}}
+</style>
+
+<!-- 03 · O CERCO -->
+<section class="sec wrap" id="cerco">
+  <span class="kick">Capítulo 03 · A cena que você nunca esquecerá</span>
+  <h2 class="sechead">O cerco ao Castelo AT1</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N2</b> entendimento</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <p>A Angiotensina II corre pelo reino e chega ao enorme <b>Portão AT1</b>. Levanta a mão para abrir. Mas há uma <b>chave já ocupando a fechadura</b> — essa chave é o <b>BRA</b>. A porta não abre. Ela insiste. Nada. Então segue caminhando até encontrar o <b>Portão AT2</b>, que permanece aberto.</p>
+      <p class="frase">O BRA não mata a Angiotensina II. Ele tira dela o acesso ao castelo AT1.</p>
+    </div>
+    <div class="card" style="background:linear-gradient(180deg,#fff,#fbf7f6)">
+      <span class="pill red">O grande conceito · repita</span>
+      <p style="margin-top:8px">O BRA:</p>
+      <ul class="tick">
+        <li><b>NÃO</b> destrói a Forja</li>
+        <li><b>NÃO</b> impede a formação de Ang II</li>
+        <li><b>NÃO</b> bloqueia a ECA</li>
+        <li><b>NÃO</b> interfere diretamente na degradação da bradicinina</li>
+        <li><b>NÃO</b> bloqueia o AT2</li>
+      </ul>
+      <p style="margin-top:8px">Ele apenas <b>impede que a Ang II utilize o receptor AT1</b>. Essa é a essência do capítulo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · LABORATÓRIO DOS RECEPTORES -->
+<section class="sec wrap" id="lab">
+  <span class="kick">Capítulo 04 · Laboratório dos receptores</span>
+  <h2 class="sechead">Ative os botões e veja a cascata mudar</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N4</b> organização</span></div>
+  <div class="card" style="margin-top:12px">
+    <div class="lab-ctrls">
+      <button class="chip alt" data-lab="at1">Ativar AT1</button>
+      <button class="chip alt" data-lab="bra">Ativar BRA</button>
+      <button class="chip alt" data-lab="at2">Ativar AT2</button>
+      <button class="chip ghost2" data-lab-reset>Reiniciar</button>
+    </div>
+    <div id="labStage" class="lab-stage"></div>
+    <p class="small" id="labMsg" style="min-height:2.4em;margin:8px 0 0"></p>
+  </div>
+</section>
+<style>
+.lab-ctrls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:999px;padding:8px 13px;font-family:inherit;font-weight:800;font-size:.82rem;cursor:pointer;transition:.15s}
+.chip.alt{background:#fff;color:var(--blue-deep)}
+.chip.alt.on{background:var(--at1);border-color:var(--at1);color:#fff}
+.chip.ghost2{background:#fff;border-color:var(--line);color:var(--ink2)}
+.lab-stage{display:flex;flex-wrap:wrap;gap:8px;min-height:60px}
+.lab-eff{border-radius:10px;padding:8px 12px;font-size:.85rem;font-weight:700;border:1px solid var(--line);transition:.25s;animation:fade .3s}
+.lab-eff.at1{background:var(--at1-soft);color:var(--at1-deep);border-color:#e7b6ae}
+.lab-eff.at2{background:var(--at2-soft);color:var(--at2-deep);border-color:#a9dcc3}
+.lab-eff.gone{opacity:.25;text-decoration:line-through}
+</style>
+
+<!-- 05 · TOSSE -->
+<section class="sec wrap" id="tosse">
+  <span class="kick">Capítulo 05 · A pergunta do corredor</span>
+  <h2 class="sechead">Por que o BRA causa menos tosse?</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N5</b> recuperação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card">
+      <p>O IECA inibe a ECA e, com isso, <b>acumula bradicinina e substância P</b> → tosse seca. O BRA <b>não inibe a ECA</b>: a bradicinina não se acumula de forma relevante.</p>
+      <div class="callout green" style="margin-top:8px"><h4>A frase tecnicamente correta</h4><p>O BRA <b>não aumenta a bradicinina</b> → por isso <b>muito menos tosse</b> e <b>muito menos angioedema</b>. Mas <b>angioedema ainda pode ocorrer raramente</b>.</p></div>
+    </div>
+    <div class="card"><span class="pill amber">Pegadinha</span>
+      <p style="margin-top:8px"><b>O BRA reduz a bradicinina para evitar tosse?</b></p>
+      <button class="btn ghost reveal-btn" data-reveal="r-brad">Ver resposta</button>
+      <div id="r-brad" class="reveal"><p><b>Não.</b> Ele simplesmente <b>não a aumenta</b> (não inibe a ECA). A ausência de acúmulo — e não uma “redução” — é o que evita a tosse.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · RIM / LAGO -->
+<section class="sec wrap" id="rim">
+  <span class="kick">Capítulo 06 · Proteção renal</span>
+  <h2 class="sechead">O Lago Glomerular — a mesma comporta eferente</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N4</b> organização</span><span class="n"><b>N6</b> aplicação</span></div>
+  <p class="lead">Com o AT1 bloqueado, a Angiotensina II não contrai a arteríola eferente. A comporta abre, a pressão intraglomerular cai — mesma hemodinâmica do IECA.</p>
+  <div class="grid" style="grid-template-columns:1.1fr .9fr;gap:16px;margin-top:14px" id="lagoGrid">
+    <div class="card"><svg id="lagoSvg" viewBox="0 0 360 260" role="img" aria-label="Simulador do glomérulo com arteríola aferente, eferente e pressão intraglomerular"></svg></div>
+    <div class="card">
+      <span class="pill blue">Controles</span>
+      <div class="lago-ctrls">
+        <button class="chip alt" data-lago="angII">Ang II no AT1</button>
+        <button class="chip alt" data-lago="bra">Ativar BRA</button>
+        <button class="chip alt" data-lago="volume">↓ Volemia</button>
+        <button class="chip alt" data-lago="aine">+ AINE</button>
+        <button class="chip alt" data-lago="estenose">Estenose bilateral</button>
+        <button class="chip ghost2" data-lago-reset>Reiniciar</button>
+      </div>
+      <div class="gauges">
+        <div class="gauge"><span>Pressão intraglomerular</span><div class="bar"><i id="gPig"></i></div></div>
+        <div class="gauge"><span>TFG</span><div class="bar"><i id="gTfg"></i></div></div>
+        <div class="gauge"><span>Albuminúria</span><div class="bar"><i id="gProt"></i></div></div>
+        <div class="gauge"><span>Risco de LRA</span><div class="bar"><i id="gLra"></i></div></div>
+      </div>
+      <p class="small" id="lagoMsg" style="min-height:3em;margin-top:8px"></p>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card gold"><span class="pill amber">O paradoxo renal (também aqui)</span>
+      <p class="frase" style="margin-top:8px">A creatinina pode subir no início — e o rim é protegido no longo prazo.</p>
+      <p class="trad"><b>Tradução:</b> bloqueio de AT1 → dilatação eferente → ↓ pressão intraglomerular → ↓ albuminúria. A TFG cai um pouco (creatinina sobe), mas a menor hiperpressão retarda a progressão.</p>
+    </div>
+    <div class="card"><span class="pill blue">Regra prática</span>
+      <div class="callout amber"><p>Alta de creatinina de <b>até ~30%</b> que <b>estabiliza</b> costuma ser aceitável no contexto certo — <b>não</b> é salvo-conduto automático. ↑ marcante → investigar volume, AINE e <b>estenose renal</b>.</p></div>
+      <p class="small" style="margin-top:6px">A “tríplice” <b>bloqueador do SRAA + AINE + diurético</b> em hipovolemia também precipita LRA com o BRA.</p>
+    </div>
+  </div>
+  <div class="spec rev-hide">
+    <div class="s1"><b>O aluno pensa</b>Creatinina subiu → o BRA é nefrotóxico → suspender.</div>
+    <div class="s2"><b>A banca tenta</b>Confundir efeito hemodinâmico esperado com lesão progressiva.</div>
+    <div class="s3"><b>O especialista observa</b>Volume, PA, tendência, K⁺, AINE, estenose renal.</div>
+    <div class="s4"><b>A conduta depende de</b>Estabilidade clínica e laboratorial — muitas vezes é observar.</div>
+  </div>
+</section>
+<style>
+.lago-ctrls{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}
+#lagoSvg{width:100%;height:auto}
+.gauges{display:grid;gap:9px}
+.gauge span{font-size:.78rem;font-weight:800;color:var(--ink2)}
+.gauge .bar{height:12px;background:var(--navy-soft);border-radius:999px;overflow:hidden;margin-top:3px}
+.gauge .bar i{display:block;height:100%;width:50%;border-radius:999px;background:var(--blue);transition:width .35s,background .35s}
+</style>
+
+<!-- 07 · ADVERSOS -->
+<section class="sec wrap" id="adversos">
+  <span class="kick">Capítulo 07 · O que o BRA compartilha com o IECA</span>
+  <h2 class="sechead">Potássio, creatinina e o angioedema raro</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N5</b> recuperação</span></div>
+  <div class="acc-group" style="margin-top:12px">
+    <div class="acc"><button aria-expanded="false"><span>🔺 Hipercalemia — sim, o BRA também</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <p class="mono" style="background:var(--navy-soft);border-radius:8px;padding:8px 10px">BRA → bloqueia AT1 → ↓ aldosterona → ↓ secreção distal de K⁺ → ↑ K⁺</p>
+        <p style="margin-top:8px"><b>Maior risco:</b> DRC, idoso, diabetes, hipovolemia; espironolactona/eplerenona, amilorida, suplementos de K⁺, <b>substitutos do sal (“sal light”)</b>, trimetoprim, AINE, outros bloqueadores do SRAA.</p>
+        <p class="mono small" style="margin-top:6px">Pegadinha — “BRA não mexe no potássio”? <b>Falso.</b></p>
+      </div></div>
+    </div>
+    <div class="acc"><button aria-expanded="false"><span>📈 Creatinina — hemodinâmica eferente</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <p>Pode subir no início (mesmo mecanismo do IECA). Interprete a <b>tendência</b>: até ~30% e estável costuma ser aceitável; ↑ marcante → pense em hipovolemia, AINE e <b>estenose renal bilateral</b>.</p>
+      </div></div>
+    </div>
+    <div class="acc"><button aria-expanded="false"><span>🚨 Angioedema — muito menos, mas não zero</span><span class="ico">＋</span></button>
+      <div class="body"><div class="body-in">
+        <div class="callout amber"><p>Como o BRA <b>não acumula bradicinina</b>, o angioedema é <b>muito menos comum</b> que com IECA — porém <b>pode ocorrer raramente</b>. Em quem já teve angioedema por IECA, o BRA pode ser considerado <b>com cautela</b> (há risco residual, menor, não nulo).</p></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · GOTA -->
+<section class="sec wrap" id="gota">
+  <span class="kick">Capítulo 08 · A Sala da Gota</span>
+  <h2 class="sechead">Losartana empurra o cristal de urato para fora</h2>
+  <div class="n-seal"><span class="n"><b>N1</b> impacto</span><span class="n"><b>N3</b> associação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card"><span class="pill blue">A cena</span>
+      <p style="margin-top:8px">Um cristal de ácido úrico repousa no túbulo renal. A <b>losartana</b> chega e ajuda a <b>empurrá-lo para fora</b>: inibição parcial da reabsorção de urato → <b>efeito uricosúrico</b>.</p>
+      <p class="trad"><b>Tradução:</b> entre os BRA, a losartana tem efeito uricosúrico clinicamente relevante — vantagem no hipertenso com hiperuricemia/gota.</p>
+    </div>
+    <div class="card"><span class="pill amber">Sem exagerar</span>
+      <p style="margin-top:8px">É uma <b>vantagem adicional</b>, não um tratamento da gota por si só. E lembre: a losartana é um dos BRA <b>menos potentes</b> e de <b>ação mais curta</b> (às vezes 2 tomadas/dia).</p>
+      <button class="btn ghost reveal-btn" data-reveal="r-gota">Qual BRA lembrar na gota?</button>
+      <div id="r-gota" class="reveal"><p><b>Losartana</b> — “a chave da gota”.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · OLMESARTANA -->
+<section class="sec wrap" id="olme">
+  <span class="kick">Capítulo 09 · Alerta de segurança</span>
+  <h2 class="sechead">A enteropatia da olmesartana</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N6</b> aplicação</span></div>
+  <div class="card" style="margin-top:12px;border-left:5px solid var(--amber)">
+    <span class="pill amber">🗜️ Olmesartana · a prensa</span>
+    <p style="margin-top:8px">Potente anti-hipertensivo — mas com um sinal de segurança específico: <b>enteropatia semelhante à doença celíaca (espru-símile)</b>. Manifesta-se com <b>diarreia crônica, perda de peso e má absorção</b>, às vezes com <b>atrofia vilositária</b> na biópsia e <b>sorologia celíaca negativa</b>. Pode surgir <b>meses a anos</b> após o início e <b>melhora ao suspender</b> o fármaco.</p>
+    <div class="callout amber" style="margin-top:8px"><h4>Regra clínica</h4><p>Diarreia crônica inexplicada em paciente usando olmesartana → <b>pense na enteropatia</b> antes de escalar a dose.</p></div>
+  </div>
+</section>
+
+<!-- 10 · TRIBUNAL DAS NITROSAMINAS -->
+<section class="sec wrap" id="cancer">
+  <span class="kick">Capítulo 10 · O Tribunal das Nitrosaminas</span>
+  <h2 class="sechead">“Os BRA causam câncer” — o julgamento</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N6</b> aplicação</span></div>
+  <div class="card" style="margin-top:12px">
+    <div class="tribunal">
+      <div class="trib-role acc"><button aria-expanded="false"><span>⚖️ A acusação</span><span class="ico">＋</span></button><div class="body"><div class="body-in"><p>Uma metanálise inicial sugeriu associação entre BRA e risco de câncer, gerando manchetes e preocupação.</p></div></div></div>
+      <div class="trib-role acc"><button aria-expanded="false"><span>🛡️ A defesa</span><span class="ico">＋</span></button><div class="body"><div class="body-in"><p>Análises posteriores apontaram <b>limitações metodológicas</b>; metanálises maiores e mais robustas <b>não sustentaram</b> o aumento de risco atribuível à molécula.</p></div></div></div>
+      <div class="trib-role acc"><button aria-expanded="false"><span>🧪 A reviravolta: nitrosaminas</span><span class="ico">＋</span></button><div class="body"><div class="body-in"><p>Anos depois, lotes de alguns sartans (ex.: valsartana) foram <b>recolhidos por contaminação com nitrosaminas</b> — impurezas geradas no <b>processo industrial</b>, não uma propriedade da molécula do BRA.</p></div></div></div>
+    </div>
+    <div class="callout green" style="margin-top:12px"><h4>Veredito</h4><p>Não confunda <b>molécula</b> com <b>impureza</b>. As metanálises maiores não confirmam risco de câncer da classe; os recalls foram de <b>lotes contaminados</b>.</p></div>
+    <p class="frase center" style="margin-top:10px">O réu era a impureza. Não o BRA.</p>
+  </div>
+</section>
+<style>
+.tribunal{display:grid;gap:10px}
+.trib-role{margin:0}
+</style>
+
+<!-- 11 · GALERIA DOS SARTANS -->
+<section class="sec wrap" id="galeria">
+  <span class="kick">Capítulo 11 · Galeria dos Sartans</span>
+  <h2 class="sechead">Seis guardiões, seis identidades</h2>
+  <div class="n-seal"><span class="n"><b>N3</b> associação</span><span class="n"><b>N4</b> organização</span></div>
+  <p class="lead">Cada BRA é um personagem — nunca apenas um nome. Toque para abrir o painel.</p>
+  <div class="callout" style="margin-top:8px"><p class="small">As <b>doses numéricas</b> devem ser confirmadas na diretriz/bula vigente. Aqui, o foco é o <b>perfil clínico</b> de cada sartan (potência relativa, duração, indicações e alertas) — o que a banca cobra.</p></div>
+  <div id="sartansGrid" class="grid g3" style="margin-top:14px"></div>
+</section>
+
+<!-- 12 · RELÓGIO DOS BRA -->
+<section class="sec wrap" id="relogio">
+  <span class="kick">Capítulo 12 · O Relógio dos BRA</span>
+  <h2 class="sechead">Duração relativa — quem cobre melhor as 24h</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span></div>
+  <p class="lead rev-hide">Meia-vida e duração farmacológica se traduzem em controle nas 24h (MAPA/MRPA). Ordem <b>qualitativa</b> — sem cravar horas fora de fonte.</p>
+  <div id="relogioList" class="card" style="margin-top:12px"></div>
+  <div class="callout amber" style="margin-top:10px"><p><b>Losartana</b> é a mais curta: nem sempre cobre 24h em dose única — alguns pacientes precisam de <b>2 tomadas/dia</b>. <b>Telmisartana</b> tem a maior meia-vida.</p></div>
+</section>
+
+<!-- 13 · INDICAÇÕES -->
+<section class="sec wrap" id="indicacoes">
+  <span class="kick">Capítulo 13 · A Ponte Clínica</span>
+  <h2 class="sechead">Indicações e contraindicações</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--at2)"><span class="pill green">Indicações preferenciais</span>
+      <ul class="tick">
+        <li><b>HAS</b> (1ª linha, isolado ou com BCC/tiazídico)</li>
+        <li><b>Tosse por IECA</b> — a troca clássica</li>
+        <li><b>ICFEr</b>, sobretudo intolerante a IECA (ou ARNI)</li>
+        <li><b>DRC com albuminúria</b> · <b>DM com albuminúria</b></li>
+        <li><b>HAS com HVE</b> (LIFE) · <b>pós-IAM</b> selecionado (VALIANT)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--at1)"><span class="pill red">Contraindicações / cautela</span>
+      <ul class="tick">
+        <li><b>Gestação</b> (fetotóxico, qualquer trimestre)</li>
+        <li><b>Hipercalemia grave</b> não controlada</li>
+        <li><b>Estenose bilateral</b> de artérias renais / rim único (cautela, risco de LRA)</li>
+        <li>DRC avançada — <b>monitorizar</b>, não é contraindicação</li>
+        <li>Angioedema prévio por IECA — considerar <b>com cautela</b></li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout amber" style="margin-top:12px"><h4>Não escreva “DRC contraindica BRA”</h4><p>A DRC albuminúrica é frequentemente <b>indicação</b> — exige vigilância de creatinina e potássio, não proibição.</p></div>
+</section>
+
+<!-- 14 · DUPLO BLOQUEIO -->
+<section class="sec wrap" id="duplo">
+  <span class="kick">Capítulo 14 · Mais bloqueio ≠ mais proteção</span>
+  <h2 class="sechead">Por que não combinar IECA + BRA</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card"><span class="pill red">O que os estudos mostraram</span>
+      <p style="margin-top:8px">Em <b>ONTARGET</b>, a combinação telmisartana + ramipril <b>não</b> superou a monoterapia e <b>aumentou</b> eventos renais e hipotensão. Em <b>VALIANT</b>, valsartana + captopril só somou efeitos adversos.</p>
+      <div class="callout amber" style="margin-top:8px"><p><b>Se o BRA protege o rim e o IECA também, somar os dois protege mais?</b> Não. Mais bloqueio do SRAA = <b>mais hiperK, mais hipotensão, mais LRA</b> — sem ganho líquido.</p></div>
+    </div>
+    <div class="card"><span class="pill amber">Recuperação ativa</span>
+      <p style="margin-top:8px"><b>Qual estudo é o pilar do “não combinar IECA + BRA de rotina”?</b></p>
+      <button class="btn ghost reveal-btn" data-reveal="r-duplo">Ver resposta</button>
+      <div id="r-duplo" class="reveal"><p><b>ONTARGET</b> (reforçado por VALIANT no pós-IAM).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 · TRIBUNAL DA DIRETRIZ -->
+<section class="sec wrap" id="diretriz">
+  <span class="kick">Capítulo 15 · O Tribunal da Diretriz</span>
+  <h2 class="sechead">IECA = BRA?</h2>
+  <div class="n-seal"><span class="n"><b>N2</b> entendimento</span><span class="n"><b>N7</b> consolidação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--at2)"><span class="pill green">✅ Para a hipertensão</span>
+      <p style="margin-top:8px">As diretrizes colocam IECA e BRA como classes de <b>1ª linha</b> e, em muitos cenários de HAS, os tratam como <b>alternativas equivalentes</b>.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--amber)"><span class="pill amber">❗ Mas equivalente ≠ intercambiável</span>
+      <p style="margin-top:8px">Nem sempre um substitui o outro sem consequências. Diferenciam-se por:</p>
+      <ul class="tick">
+        <li>tosse · angioedema · intolerância</li>
+        <li>ARNI (valsartana é a ponte)</li>
+        <li>evidências históricas específicas em ICFEr</li>
+        <li>experiência e disponibilidade</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 16 · CONSULTÓRIO -->
+<section class="sec wrap" id="prescrever">
+  <span class="kick">Capítulo 16 · Consultório</span>
+  <h2 class="sechead">Escolha o BRA certo para o paciente certo</h2>
+  <div class="n-seal"><span class="n"><b>N6</b> aplicação</span></div>
+  <div class="card" style="margin-top:12px" id="prescSim">
+    <span class="pill">Simulador de prescrição</span>
+    <p class="small" style="margin-top:6px">Escolha um paciente, decida a conduta e veja o retorno.</p>
+    <div class="presc-patients tabs" id="prescPatients" style="margin-top:10px"></div>
+    <div id="prescStage" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<!-- 17 · TRIBUNAL DAS EVIDÊNCIAS -->
+<section class="sec wrap" id="evidencias">
+  <span class="kick">Capítulo 17 · Tribunal das Evidências</span>
+  <h2 class="sechead">Os grandes estudos dos sartans</h2>
+  <div class="n-seal"><span class="n"><b>N4</b> organização</span><span class="n"><b>N6</b> aplicação</span></div>
+  <p class="lead">Toque em cada escudo para ver população, cenário e a leitura correta.</p>
+  <div id="shieldGrid" class="grid g3" style="margin-top:14px"></div>
+  <div class="callout amber" style="margin-top:12px"><h4>Leitura crítica</h4><p><b>“Não-inferior” ≠ superior</b>, e <b>“sem diferença” ≠ idênticos</b>. A escolha entre IECA e BRA depende de indicação, tolerância, custo e evidência específica.</p></div>
+</section>
+
+<!-- 18 · PALÁCIO -->
+<section class="sec wrap" id="palacio">
+  <span class="kick">Capítulo 18 · Palácio da Memória</span>
+  <h2 class="sechead">O reino em seis salas</h2>
+  <div class="n-seal"><span class="n"><b>N3</b> associação</span><span class="n"><b>N7</b> consolidação</span></div>
+  <p class="lead">Forja → Castelo AT1 → Cinco Generais → Jardim AT2 → Galeria dos Sartans → Ponte Clínica.</p>
+  <div class="rooms" id="rooms"></div>
+  <div id="roomPanel" class="card" style="margin-top:14px;display:none"></div>
+  <div class="badges" id="badges" style="margin-top:14px"></div>
+</section>
+<style>
+.rooms{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
+@media(max-width:760px){.rooms{grid-template-columns:1fr 1fr}}
+.room{color:#fff;border-radius:14px;padding:14px;cursor:pointer;text-align:center;transition:.18s;border:1px solid transparent}
+.room:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.room.r-forja{background:linear-gradient(180deg,#7a3a12,#5c2a0d)}
+.room.r-at1{background:linear-gradient(180deg,#7a241a,#5c1a12)}
+.room.r-gen{background:linear-gradient(180deg,#8f2f22,#6a221a)}
+.room.r-at2{background:linear-gradient(180deg,#155c3d,#0f3a28)}
+.room.r-gal{background:linear-gradient(180deg,#0d6883,#0a4f63)}
+.room.r-ponte{background:linear-gradient(180deg,#3a5674,#2a4057)}
+.room .em{font-size:1.6rem}
+.room b{display:block;margin-top:6px;font-size:.86rem}
+.room.visited{outline:2px solid var(--amber)}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{background:#fff;border:1px dashed var(--line);border-radius:999px;padding:7px 12px;font-size:.8rem;font-weight:800;color:var(--ink2);opacity:.5}
+.badge.on{opacity:1;border-style:solid;border-color:var(--at2);color:var(--at2-deep);background:var(--at2-soft)}
+</style>
+
+<!-- 19 · CASOS -->
+<section class="sec wrap" id="casos">
+  <span class="kick">Capítulo 19 · Raciocínio clínico</span>
+  <h2 class="sechead">Casos clínicos interativos</h2>
+  <div class="n-seal"><span class="n"><b>N6</b> aplicação</span></div>
+  <div id="caseNav" class="tabs" style="margin-top:12px"></div>
+  <div id="caseStage"></div>
+</section>
+
+<!-- 20 · ARENA -->
+<section class="sec wrap" id="arena">
+  <span class="kick">Capítulo 20 · Arena TEC</span>
+  <h2 class="sechead">Questões estilo prova — cada erro ensina</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div class="quiz-top"><div class="tabs" id="quizFilters"></div><div class="quiz-score" id="quizScore"></div></div>
+  <div id="quizStage"></div>
+  <div class="quiz-nav"><button class="btn ghost" id="quizPrev">‹ Anterior</button><span id="quizCount" class="mono"></span><button class="btn primary" id="quizNext">Próxima ›</button></div>
+</section>
+<style>
+.quiz-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.quiz-score{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.82rem;color:var(--ink2)}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:7px 0;font-family:inherit;font-size:.94rem;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--blue)}
+.opt.correct{background:var(--at2-soft);border-color:var(--at2)}
+.opt.wrong{background:var(--at1-soft);border-color:var(--at1)}
+.opt .mk{font-weight:900;margin-right:8px}
+.qexpl{margin-top:10px;border-radius:10px;padding:12px 14px;background:var(--navy-soft);font-size:.9rem;display:none}
+.qexpl.on{display:block}
+.qexpl .e{padding:4px 0;border-top:1px dashed var(--line);font-size:.85rem}
+.qexpl .e:first-child{border-top:none}
+</style>
+
+<!-- 21 · MINI-DECISÕES -->
+<section class="sec wrap" id="decisoes">
+  <span class="kick">Capítulo 21 · Decisão rápida</span>
+  <h2 class="sechead">Mini-decisões</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div id="decStage" class="grid g2" style="margin-top:12px"></div>
+</section>
+
+<!-- 22 · FLASHCARDS -->
+<section class="sec wrap" id="flash">
+  <span class="kick">Capítulo 22 · Memória ativa</span>
+  <h2 class="sechead">Flashcards</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span><span class="n"><b>N7</b> consolidação</span></div>
+  <div class="flash-ctrls">
+    <div class="tabs" id="flashFilters"></div>
+    <div class="flash-tools"><label class="mono small"><input type="checkbox" id="onlyHard"> só difíceis</label><button class="btn ghost" id="flashShuffle">Embaralhar</button></div>
+  </div>
+  <div id="flashStage" class="center"></div>
+  <div class="flash-nav"><button class="btn ghost" id="flashPrev">‹</button><span class="mono" id="flashCount"></span><button class="btn ghost" id="flashNext">›</button></div>
+</section>
+<style>
+.flash-ctrls{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.flash-tools{display:flex;gap:10px;align-items:center}
+.flashcard{max-width:520px;margin:0 auto;perspective:1200px}
+.flashcard .inner{position:relative;width:100%;min-height:220px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flashcard.flip .inner{transform:rotateY(180deg)}
+.flashcard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;border:1px solid var(--line);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#fff}
+.flashcard .back{transform:rotateY(180deg);background:var(--blue-soft)}
+.flashcard .face .q{font-size:1.12rem;font-weight:800;color:var(--navy)}
+.flashcard .face .a{font-size:1rem}
+.flashcard .tagm{position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.flash-rate{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.flash-rate button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-family:inherit;font-weight:800;cursor:pointer;font-size:.82rem}
+.flash-rate button.easy.on{background:var(--at2-soft);border-color:var(--at2);color:var(--at2-deep)}
+.flash-rate button.med.on{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.flash-rate button.hard.on{background:var(--at1-soft);border-color:var(--at1);color:var(--at1-deep)}
+.flash-nav{display:flex;justify-content:center;gap:16px;align-items:center;margin-top:14px}
+</style>
+
+<!-- 23 · PEGADINHAS -->
+<section class="sec wrap" id="pegadinhas">
+  <span class="kick">Capítulo 23 · Armadilhas da banca</span>
+  <h2 class="sechead">Verdadeiro ou falso — com correção</h2>
+  <div class="n-seal"><span class="n"><b>N5</b> recuperação</span></div>
+  <div id="pegStage" class="grid g2" style="margin-top:12px"></div>
+</section>
+
+<!-- 24 · HIPOCAMPO -->
+<section class="sec wrap" id="hipocampo">
+  <span class="kick">Capítulo 24 · Hipocampo</span>
+  <h2 class="sechead">Central de revisão espaçada</h2>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card"><span class="pill blue">Seu desempenho</span><div id="dash"></div></div>
+    <div class="card"><span class="pill amber">Revisão espaçada</span><p class="small">Marque o que já revisou. Estado salvo neste aparelho (sem notificações externas).</p><div id="spaced"></div></div>
+  </div>
+</section>
+
+<!-- 25 · A GRANDE COMPARAÇÃO -->
+<section class="sec wrap" id="comparacao">
+  <span class="kick">Capítulo 25 · A Grande Comparação</span>
+  <h2 class="sechead">IECA × BRA — dois caminhos, o mesmo objetivo</h2>
+  <div class="n-seal"><span class="n"><b>N7</b> consolidação</span></div>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card" style="border-top:4px solid var(--blue)">
+      <span class="pill blue">🏭 IECA · destrói a Forja</span>
+      <ul class="tick"><li>↓ Angiotensina II · ↑ bradicinina</li><li>✔ protege coração e rim</li><li>❌ tosse</li><li>❌ angioedema (mais comum)</li></ul>
+    </div>
+    <div class="card" style="border-top:4px solid var(--at1)">
+      <span class="pill red">🚪 BRA · cerca o Portão AT1</span>
+      <ul class="tick"><li>Ang II continua existindo · AT1 bloqueado · AT2 preservado</li><li>✔ protege coração e rim</li><li>✔ muito menos tosse</li><li>✔ muito menos angioedema (não zero)</li></ul>
+    </div>
+  </div>
+  <div class="card gold" style="margin-top:14px center">
+    <p class="frase center">Dois caminhos diferentes. O mesmo objetivo: impedir que a Angiotensina II cause dano cardiovascular e renal.</p>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <span class="pill amber">Frases de ouro</span>
+    <div id="goldPhrases"></div>
+  </div>
+</section>
+
+<!-- 26 · CONSELHO DO REINO -->
+<section class="sec wrap" id="conselho">
+  <span class="kick">Capítulo 26 · Conselho do Reino</span>
+  <h2 class="sechead">Cada personagem explica seu papel</h2>
+  <div class="n-seal"><span class="n"><b>N7</b> consolidação</span></div>
+  <div id="conselhoGrid" class="grid g3" style="margin-top:12px"></div>
+  <div class="card" style="margin-top:14px">
+    <span class="pill blue">Teste da memória — responda sem consultar</span>
+    <div id="memTest"></div>
+  </div>
+</section>
+
+<!-- 27 · REFERÊNCIAS -->
+<section class="sec wrap" id="refs">
+  <span class="kick">Capítulo 27 · Referências</span>
+  <h2 class="sechead">Fontes por tema</h2>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card small">
+      <p><b>SRAA / receptores AT1 e AT2</b><br>Fisiologia do sistema renina-angiotensina-aldosterona e vias contrarregulatórias.</p>
+      <p><b>Hipertensão / farmacologia / doses</b><br>Diretriz Brasileira de Hipertensão Arterial (2025) e diretrizes internacionais (ESC/ESH). Confirmar doses e recomendações na versão vigente.</p>
+      <p><b>DRC e albuminúria</b><br>Recomendações de nefrologia (KDIGO) para bloqueio do SRAA e quantificação da albuminúria (RAC).</p>
+    </div>
+    <div class="card small">
+      <p><b>Estudos com BRA</b><br>LIFE, RENAAL, IDNT, IRMA-2, Val-HeFT, VALIANT, VALUE, CHARM, SCOPE, ONTARGET, TRANSCEND.</p>
+      <p><b>Segurança</b><br>Enteropatia por olmesartana (sinal de segurança regulatório); nitrosaminas (recalls por contaminação industrial) — o sinal não implica risco da molécula.</p>
+      <p class="mono" style="font-size:.75rem;color:var(--ink2)">Doses e recomendações devem ser confirmadas na diretriz e bula vigentes no momento da prescrição.</p>
+    </div>
+  </div>
+  <div class="card gold" style="margin-top:14px">
+    <p class="small" style="margin:0">“A Medicina muda continuamente. Diretrizes evoluem, estudos são atualizados e novos tratamentos surgem. Mas quem compreende profundamente a fisiologia sempre consegue reconstruir o conhecimento. O Atlas Mental não ensina apenas respostas — ensina a pensar.”</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="pill blue">Atlas Mental da Hipertensão Arterial</span>
+    <p class="sig" style="margin:10px 0 0">Dr. André Rossanno</p>
+    <p style="margin:2px 0 0">Bloco 2 · Tema 4 · Capítulo 5B — Bloqueadores dos Receptores da Angiotensina II</p>
+    <p class="disc">Material educacional para médicos e estudantes de Medicina. A aplicação clínica exige avaliação individual, diretrizes locais, condições do paciente e julgamento médico. Produção digital assistida por inteligência artificial.</p>
+  </div>
+</footer>
+<script>
+/* ============================================================
+   DADOS — Cap. 5B (BRA) · A Guerra dos Dois Reinos
+============================================================ */
+
+/* ---- SARTANS (Galeria) — doses qualitativas/dependentes de diretriz ---- */
+const SARTANS = [
+  {nome:"Losartana", em:"💧", alcunha:"A Chave da Gota", cor:"blue",
+   dur:"curta-intermediária", pot:"menor potência relativa",
+   perfil:"Único BRA com efeito uricosúrico clinicamente relevante (inibe parcialmente a reabsorção de urato).",
+   quando:"Hipertenso com hiperuricemia ou gota. Ação mais curta — alguns pacientes precisam de 2 tomadas/dia.",
+   evid:"LIFE (regressão de HVE e desfechos vs. atenolol) · RENAAL (nefropatia diabética).",
+   pega:"É um dos BRA menos potentes e nem sempre cobre 24h em dose única.", tags:["gota","curta","2x"]},
+  {nome:"Valsartana", em:"🌉", alcunha:"A Ponte", cor:"green",
+   dur:"intermediária", pot:"potência intermediária-alta",
+   perfil:"Conecta HAS, insuficiência cardíaca e pós-IAM; é a molécula-base do ARNI (sacubitril/valsartana).",
+   quando:"HAS, ICFEr, pós-IAM. A ponte conceitual para o ARNI.",
+   evid:"Val-HeFT (IC) · VALIANT (pós-IAM) · VALUE (HAS de alto risco).",
+   pega:"No ARNI ela vem combinada ao sacubitril — não confundir valsartana isolada com ARNI.", tags:["ic","iam","ponte"]},
+  {nome:"Telmisartana", em:"🕐", alcunha:"O Senhor do Tempo", cor:"blue",
+   dur:"longa (a maior meia-vida da classe)", pot:"alta",
+   perfil:"Maior meia-vida entre os sartans → excelente cobertura de 24h, útil quando a duração importa.",
+   quando:"Quando controle nas 24h e adesão pesam (dose única, cobertura prolongada).",
+   evid:"ONTARGET (alto risco CV, vs./com ramipril) · TRANSCEND (intolerantes a IECA).",
+   pega:"ONTARGET mostrou que IECA+BRA juntos NÃO compensam — mais eventos renais/hipotensão.", tags:["24h","adesao","longa"]},
+  {nome:"Candesartana", em:"🛡️", alcunha:"O Escudo Cardíaco", cor:"green",
+   dur:"longa", pot:"alta (ligação forte ao receptor)",
+   perfil:"Forte afinidade e boa cobertura; presença marcante na insuficiência cardíaca.",
+   quando:"HAS e ICFEr; redução de desfechos cardiovasculares.",
+   evid:"CHARM (IC, incluindo intolerantes a IECA) · SCOPE (idosos).",
+   pega:"É referência de BRA em IC — associar candesartana ao 'escudo cardíaco'.", tags:["ic","longa"]},
+  {nome:"Irbesartana", em:"🧫", alcunha:"O Guardião do Rim", cor:"green",
+   dur:"longa", pot:"alta",
+   perfil:"Evidência marcante na nefropatia diabética (proteção renal).",
+   quando:"Nefropatia diabética com albuminúria; HAS.",
+   evid:"IDNT · IRMA-2 (nefropatia diabética / progressão de albuminúria).",
+   pega:"Associar irbesartana ao rim diabético — o 'guardião do rim'.", tags:["rim","longa"]},
+  {nome:"Olmesartana", em:"🗜️", alcunha:"A Prensa", cor:"amber",
+   dur:"longa", pot:"potência anti-hipertensiva alta",
+   perfil:"Grande potência anti-hipertensiva.",
+   quando:"HAS quando se busca queda pressórica robusta.",
+   evid:"Programas de HAS; sinal de segurança específico (ver alerta).",
+   pega:"ALERTA: enteropatia tipo espru-símile (diarreia crônica, perda de peso, atrofia vilositária) — pode surgir meses a anos depois e melhora ao suspender.", tags:["potente","enteropatia","longa"]}
+];
+
+/* ---- RELÓGIO DOS BRA (duração relativa — qualitativo) ---- */
+const RELOGIO = [
+  {n:"Telmisartana", nota:"maior meia-vida — cobertura de 24h mais robusta"},
+  {n:"Irbesartana", nota:"longa"},
+  {n:"Olmesartana", nota:"longa"},
+  {n:"Candesartana", nota:"longa, ligação forte ao receptor"},
+  {n:"Valsartana", nota:"intermediária"},
+  {n:"Losartana", nota:"a mais curta — às vezes 2 tomadas/dia"}
+];
+
+/* ---- CINCO GENERAIS DO AT1 ---- */
+const GENERAIS = [
+  {em:"🗡️", nome:"General Vasoconstrição", fis:"Contrai a musculatura lisa vascular → ↑ resistência periférica.", clin:"Hipertensão, ↑ pós-carga.", q:"O que o BRA faz a este general?", a:"Corta suas ordens ao bloquear o AT1 → vasodilatação relativa."},
+  {em:"🧂", nome:"General Aldosterona", fis:"↑ aldosterona → retém Na⁺/H₂O e espolia K⁺.", clin:"Volume e base da hipercalemia ao bloquear.", q:"Por que o BRA pode elevar o potássio?", a:"Bloqueio de AT1 → ↓ aldosterona → ↓ secreção distal de K⁺."},
+  {em:"🕸️", nome:"General Fibrose", fis:"Estímulo pró-fibrótico e inflamatório crônico.", clin:"Remodelamento, HVE, progressão de IC/DRC.", q:"Qual general liga o BRA à proteção cardíaca?", a:"O da Fibrose — menos remodelamento."},
+  {em:"🏗️", nome:"General Remodelamento", fis:"Reorganização deletéria de vaso e miocárdio.", clin:"HVE, dilatação ventricular pós-IAM.", q:"Remodelamento é bom ou ruim aqui?", a:"Deletério quando crônico — o BRA o atenua."},
+  {em:"⚡", nome:"General Simpático", fis:"Facilita a atividade adrenérgica.", clin:"↑ FC e vasoconstrição adicional.", q:"O AT1 amplifica qual sistema?", a:"O simpático."}
+];
+
+/* ---- SALAS DO PALÁCIO (6) ---- */
+const SALAS = [
+  {id:"s1", em:"🔥", nome:"A Forja Acesa", pill:"Ang II continua existindo",
+   html:`<p>Diferente do IECA, aqui a <b>Forja da ECA continua funcionando</b>. O fogo não se apaga: a <b>Angiotensina II segue sendo produzida</b>. O BRA não mexe na fábrica.</p>
+   <div class="callout"><h4>Conceito-âncora</h4><p>O BRA não destrói a Forja nem impede a formação de Ang II. Ele age depois, no destino da mensagem.</p></div>`},
+  {id:"s2", em:"🏰", nome:"O Castelo AT1", pill:"O portão bloqueado",
+   html:`<p>A Ang II corre até o <b>Portão de Ferro AT1</b> e tenta abrir. Mas a fechadura já está ocupada: <b>o BRA encaixou a chave</b>. O portão não abre. Ela insiste — nada.</p>
+   <p class="frase" style="font-size:1.05rem">O BRA não mata a Angiotensina II. Ele tira dela o acesso ao castelo AT1.</p>`},
+  {id:"s3", em:"⚔️", nome:"Os Cinco Generais", pill:"Sem ordens",
+   html:`<p>Vasoconstrição · Aldosterona · Fibrose · Remodelamento · Simpático. Com o portão bloqueado, <b>eles não recebem ordens</b> e perdem força.</p>
+   <p class="mono small">Frase de ouro: <b>AT1 APERTA TUDO</b> — Aldosterona, Pressão intraglomerular, Estresse oxidativo, Retenção de sódio, Tônus simpático, Angiofibrose.</p>`},
+  {id:"s4", em:"🌿", nome:"O Jardim AT2", pill:"Preservado",
+   html:`<p>A Ang II, sem entrar no AT1, segue caminhando e alcança o <b>Jardim AT2</b>, que permanece acessível: vasodilatação, óxido nítrico, antiproliferação, antifibrose, contrarregulação.</p>
+   <div class="callout amber"><h4>Sem exagero</h4><p>AT2 <b>não</b> é um super-herói mágico. É uma via fisiológica que frequentemente se contrapõe ao AT1 — nada além disso.</p></div>`},
+  {id:"s5", em:"🏛️", nome:"A Galeria dos Sartans", pill:"Seis guardiões",
+   html:`<p>Cada BRA é um personagem: <b>Losartana</b> (gota), <b>Valsartana</b> (a ponte IC/pós-IAM/ARNI), <b>Telmisartana</b> (tempo/24h), <b>Candesartana</b> (escudo cardíaco), <b>Irbesartana</b> (rim diabético), <b>Olmesartana</b> (prensa + alerta de enteropatia).</p>`},
+  {id:"s6", em:"🌉", nome:"A Ponte Clínica", pill:"Do reino ao hospital",
+   html:`<p>O estudante atravessa para o hospital: HAS, ICFEr, DRC, albuminúria, diabetes, pós-IAM, gota, hipercalemia. Todos os conceitos convergem aqui, no paciente real.</p>`}
+];
+
+/* ---- ESTUDOS (Tribunal das Evidências) ---- */
+const ESTUDOS = [
+  {nome:"LIFE", drug:"losartana", cenario:"HAS com HVE", pop:"Hipertensos com hipertrofia ventricular esquerda.",
+   leitura:"Losartana vs. atenolol: redução de desfechos (sobretudo AVC) e regressão de HVE. Marco do BRA na HAS com LOA."},
+  {nome:"RENAAL", drug:"losartana", cenario:"Nefropatia diabética", pop:"DM2 com nefropatia e proteinúria.",
+   leitura:"Losartana retardou a progressão da doença renal e reduziu a proteinúria."},
+  {nome:"IDNT", drug:"irbesartana", cenario:"Nefropatia diabética", pop:"DM2 com nefropatia estabelecida.",
+   leitura:"Irbesartana com proteção renal (progressão de DRC) — base do 'guardião do rim'."},
+  {nome:"IRMA-2", drug:"irbesartana", cenario:"Albuminúria no DM2", pop:"DM2 com microalbuminúria.",
+   leitura:"Irbesartana reduziu a progressão para albuminúria mais avançada (efeito dose-dependente)."},
+  {nome:"Val-HeFT", drug:"valsartana", cenario:"Insuficiência cardíaca", pop:"IC crônica.",
+   leitura:"Valsartana agregou benefício em desfechos de IC (sobretudo hospitalização)."},
+  {nome:"VALIANT", drug:"valsartana", cenario:"Pós-IAM", pop:"Pós-infarto com disfunção/IC.",
+   leitura:"Valsartana não-inferior ao captopril; a combinação dos dois só aumentou efeitos adversos."},
+  {nome:"VALUE", drug:"valsartana", cenario:"HAS de alto risco", pop:"Hipertensos de alto risco CV.",
+   leitura:"Comparação com anlodipino; reforça a importância do controle pressórico precoce."},
+  {nome:"CHARM", drug:"candesartana", cenario:"Insuficiência cardíaca", pop:"IC (incluindo intolerantes a IECA e FE preservada).",
+   leitura:"Candesartana reduziu desfechos de IC; alternativa em intolerantes a IECA (CHARM-Alternative)."},
+  {nome:"SCOPE", drug:"candesartana", cenario:"HAS no idoso", pop:"Idosos hipertensos.",
+   leitura:"Candesartana com benefício em desfechos (destaque para AVC não fatal)."},
+  {nome:"ONTARGET", drug:"telmisartana", cenario:"Alto risco CV", pop:"Alto risco (comparou telmisartana, ramipril e a combinação).",
+   leitura:"Telmisartana ~ ramipril; a COMBINAÇÃO IECA+BRA piorou desfechos renais/hipotensão sem ganho — pilar do 'não combinar'."},
+  {nome:"TRANSCEND", drug:"telmisartana", cenario:"Intolerantes a IECA", pop:"Alto risco intolerante a IECA.",
+   leitura:"Telmisartana como opção em quem não tolera IECA (ex.: tosse)."}
+];
+
+/* ---- PACIENTES DO SIMULADOR DE PRESCRIÇÃO ---- */
+const PRESC = [
+  {id:"tosse", nome:"HAS + tosse seca por enalapril (IECA)",
+   opts:[{t:"Trocar por um BRA (ex.: losartana/valsartana)", ok:true, fb:"Correto: o BRA não inibe a ECA, não acumula bradicinina → muito menos tosse. Troca clássica."},
+         {t:"Associar antitussígeno e manter o IECA", ok:false, fb:"Não trata a causa. A tosse é bradicinérgica; o BRA resolve pela via do mecanismo."}]},
+  {id:"gota", nome:"Hipertenso com gota / hiperuricemia",
+   opts:[{t:"Preferir losartana", ok:true, fb:"Correto: losartana tem efeito uricosúrico clinicamente relevante — vantagem neste perfil."},
+         {t:"Preferir olmesartana pela potência", ok:false, fb:"Potente, mas sem a vantagem do urato. Aqui a losartana é a escolha 'com bônus'."}]},
+  {id:"adesao", nome:"Baixa adesão, precisa de cobertura 24h",
+   opts:[{t:"Preferir telmisartana (maior meia-vida)", ok:true, fb:"Correto: cobertura prolongada em dose única favorece adesão e controle nas 24h."},
+         {t:"Preferir losartana 1×/dia", ok:false, fb:"Losartana é a mais curta — nem sempre cobre 24h em tomada única."}]},
+  {id:"icfer", nome:"ICFEr, intolerante a IECA (tosse)",
+   opts:[{t:"BRA com evidência em IC (candesartana/valsartana)", ok:true, fb:"Correto: CHARM-Alternative/Val-HeFT sustentam o BRA em IC quando o IECA não é tolerado (ou considerar ARNI)."},
+         {t:"Associar IECA + BRA para 'somar' proteção", ok:false, fb:"Não: duplo bloqueio de rotina piora rim/K⁺/hipotensão sem ganho (ONTARGET/VALIANT)."}]},
+  {id:"nefro", nome:"DM2 com nefropatia e albuminúria",
+   opts:[{t:"BRA com evidência renal (irbesartana/losartana)", ok:true, fb:"Correto: IDNT/IRMA-2 (irbesartana) e RENAAL (losartana) sustentam proteção renal."},
+         {t:"Evitar bloqueio do SRAA na DRC", ok:false, fb:"Ao contrário: albuminúria é justamente onde o bloqueio do SRAA mais protege (com vigilância)."}]},
+  {id:"diarreia", nome:"Em olmesartana, diarreia crônica + perda de peso",
+   opts:[{t:"Suspeitar de enteropatia por olmesartana e reavaliar", ok:true, fb:"Correto: quadro espru-símile (atrofia vilositária) que melhora ao suspender. Sinal de segurança específico."},
+         {t:"Aumentar a dose para controlar melhor a PA", ok:false, fb:"Erro: pode agravar a enteropatia. Investigar e trocar."}]},
+  {id:"gestante", nome:"Gestante hipertensa",
+   opts:[{t:"Não usar BRA; escolher opção compatível com gestação", ok:true, fb:"Correto: BRA é contraindicado na gestação (fetotoxicidade, como os IECA)."},
+         {t:"Manter losartana em dose baixa", ok:false, fb:"Erro grave: bloqueadores do SRAA são fetotóxicos. Suspender."}]},
+  {id:"hiperk", nome:"BRA + espironolactona, K⁺ = 5,9",
+   opts:[{t:"Confirmar K⁺, revisar fármacos/dieta e ajustar", ok:true, fb:"Correto: o BRA também eleva K⁺ (↓ aldosterona). Rever poupadores, sal 'light', AINE; estratificar."},
+         {t:"Ignorar: 'BRA não mexe no potássio'", ok:false, fb:"Falso: o BRA aumenta K⁺ sim — mesma via da aldosterona."}]},
+  {id:"cr", nome:"Iniciou BRA; creatinina subiu ~18% e estabilizou",
+   opts:[{t:"Interpretar como hemodinâmico e observar", ok:true, fb:"Correto: mesma hemodinâmica eferente do IECA. Até ~30% e estável costuma ser aceitável, com vigilância."},
+         {t:"Suspender imediatamente por nefrotoxicidade", ok:false, fb:"Precipitado: ↑ leve e estável é esperado; investigar só se marcante/instável."}]}
+];
+
+/* ---- QUESTOES_TEC (>=50) — BRA ---- */
+const QUESTOES_TEC = [
+// Mecanismo / receptores (10)
+{tema:"mecanismo",dif:"fácil",q:"O BRA atua principalmente por:",
+ op:["Inibir a ECA","Bloquear seletivamente o receptor AT1","Bloquear o receptor AT2","Inibir a renina","Antagonizar a aldosterona no receptor mineralocorticoide"],
+ c:1,ec:["Isso é o IECA.","Correto: antagonismo seletivo do AT1.","O BRA não bloqueia AT2.","Isso é o alisquireno.","Isso é a espironolactona."],
+ pega:"BRA = bloqueio de AT1, não da ECA.",key:"mecanismo"},
+{tema:"mecanismo",dif:"média",q:"Com o uso de BRA, a Angiotensina II:",
+ op:["Deixa de ser produzida","Continua sendo formada, mas não acessa o AT1","É degradada pela bradicinina","É convertida em renina","Passa a ativar a ECA"],
+ c:1,ec:["A Forja continua acesa.","Correto: ela circula e pode alcançar vias não bloqueadas (AT2).","Sem sentido.","Sem sentido.","Sem sentido."],
+ pega:"O BRA não mata a Ang II — tira o acesso ao AT1.",key:"angII"},
+{tema:"mecanismo",dif:"média",q:"O receptor AT2, de forma geral, associa-se a:",
+ op:["Vasoconstrição e fibrose","Vasodilatação, antifibrose e antiproliferação","Secreção de aldosterona","Retenção de sódio","Ativação simpática"],
+ c:1,ec:["Isso é AT1.","Correto (via contrarregulatória).","AT1.","AT1.","AT1."],
+ pega:"AT2 contrarregula — mas não é 'super-herói'.",key:"at2"},
+{tema:"mecanismo",dif:"difícil",q:"Sobre AT1 e AT2 sob BRA, assinale a correta:",
+ op:["O BRA bloqueia ambos igualmente","Ao bloquear AT1, mais Ang II fica disponível para estimular AT2 e outras vias","O AT2 é bloqueado preferencialmente","O BRA transforma AT1 em AT2","O AT2 media vasoconstrição"],
+ c:1,ec:["Só AT1.","Correto.","Não.","Sem sentido.","AT2 vasodilata."],
+ pega:"Bloqueio de AT1 pode deslocar Ang II para o AT2.",key:"at1at2"},
+{tema:"mecanismo",dif:"fácil",q:"Por que o BRA causa MENOS tosse que o IECA?",
+ op:["Porque bloqueia AT2","Porque não inibe a ECA, então não acumula bradicinina/substância P","Porque aumenta a bradicinina","Porque reduz a aldosterona","Porque é pró-fármaco"],
+ c:1,ec:["Não.","Correto.","Ao contrário do IECA, não acumula.","Não explica a tosse.","Irrelevante."],
+ pega:"Sem inibir a ECA → sem acúmulo de bradicinina → menos tosse.",key:"tosse-mec"},
+{tema:"mecanismo",dif:"média",q:"O BRA, em relação à bradicinina:",
+ op:["Aumenta seus níveis diretamente","Não aumenta relevantemente a bradicinina","Degrada a bradicinina","Converte bradicinina em Ang II","Depende da bradicinina para agir"],
+ c:1,ec:["Isso é característica do IECA.","Correto — por isso menos tosse/angioedema.","Não.","Sem sentido.","Não."],
+ pega:"BRA não eleva bradicinina de forma relevante.",key:"bradicinina"},
+{tema:"mecanismo",dif:"difícil",q:"Comparando estratégias, é correto afirmar que:",
+ op:["IECA e BRA agem no mesmo ponto do SRAA","IECA reduz a produção de Ang II; BRA bloqueia o receptor AT1","BRA reduz a formação de Ang II","IECA bloqueia o AT1","Ambos inibem a renina"],
+ c:1,ec:["Pontos diferentes.","Correto.","Não — quem reduz produção é o IECA.","Não — isso é o BRA.","Nenhum inibe renina diretamente."],
+ pega:"IECA fecha a fábrica; BRA fecha o portão AT1.",key:"ieca-bra"},
+{tema:"mecanismo",dif:"média",q:"'AT1 APERTA TUDO' resume efeitos do AT1, EXCETO:",
+ op:["Aldosterona","Pressão intraglomerular","Retenção de sódio","Natriurese e reparo tecidual","Tônus simpático"],
+ c:3,ec:["É AT1.","É AT1.","É AT1.","Correto: natriurese/reparo são do AT2.","É AT1."],
+ pega:"Natriurese/reparo = AT2.",key:"apertatudo"},
+{tema:"mecanismo",dif:"fácil",q:"O BRA bloqueia a ECA?",
+ op:["Sim, como o IECA","Não — age no receptor AT1","Sim, mas parcialmente","Só em altas doses","Depende do sartan"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Não — é característica de classe."],
+ pega:"BRA não inibe ECA (pegadinha clássica).",key:"eca"},
+{tema:"mecanismo",dif:"média",q:"O AT2, na visão fisiológica correta, deve ser entendido como:",
+ op:["Receptor sempre e absolutamente benéfico","Via contrarregulatória que frequentemente se opõe ao AT1","Alvo direto do BRA","Responsável pela vasoconstrição","Fonte da aldosterona"],
+ c:1,ec:["Exagero.","Correto.","O BRA não bloqueia AT2.","Não.","Não."],
+ pega:"AT2 não é herói absoluto.",key:"at2-real"},
+
+// Efeitos adversos / metabolismo (10)
+{tema:"adversos",dif:"média",q:"O BRA pode causar hipercalemia porque:",
+ op:["Aumenta a aldosterona","Reduz a aldosterona (via bloqueio de AT1)","Aumenta a TFG","Estimula o AT2","Degrada a bradicinina"],
+ c:1,ec:["Ao contrário.","Correto.","Não.","Não é o mecanismo.","Não."],
+ pega:"BRA eleva K⁺ sim — mesma via da aldosterona.",key:"hiperk"},
+{tema:"adversos",dif:"média",q:"Sobre creatinina ao iniciar BRA:",
+ op:["Nunca se altera","Pode subir inicialmente por queda da pressão intraglomerular","Sempre indica nefrotoxicidade","Cai obrigatoriamente","Confirma estenose bilateral sempre"],
+ c:1,ec:["Pode alterar.","Correto — hemodinâmico, como no IECA.","Não.","Não.","Não obrigatoriamente."],
+ pega:"↑ creatinina inicial é hemodinâmica, não 'veneno'.",key:"creatinina"},
+{tema:"adversos",dif:"média",q:"Sobre angioedema e BRA:",
+ op:["Nunca ocorre","É muito menos comum que com IECA, mas ainda pode ocorrer raramente","É mais comum que com IECA","Sempre responde a anti-histamínico","É mediado por histamina"],
+ c:1,ec:["Falso.","Correto.","Ao contrário.","Não necessariamente.","Predomínio bradicinérgico."],
+ pega:"BRA: muito menos angioedema, mas não zero.",key:"angioedema"},
+{tema:"adversos",dif:"difícil",q:"Enteropatia semelhante à doença celíaca (espru-símile) é sinal de segurança associado a:",
+ op:["Losartana","Olmesartana","Candesartana","Valsartana","Telmisartana"],
+ c:1,ec:["Não.","Correto: diarreia crônica, perda de peso, atrofia vilositária; melhora ao suspender.","Não.","Não.","Não."],
+ pega:"Olmesartana = alerta de enteropatia.",key:"enteropatia"},
+{tema:"adversos",dif:"média",q:"Diante de diarreia crônica e perda de peso em paciente usando olmesartana, deve-se:",
+ op:["Aumentar a dose","Suspeitar de enteropatia por olmesartana e reavaliar","Iniciar corticoide crônico","Trocar por outro alimento","Confirmar que é intolerância à lactose sempre"],
+ c:1,ec:["Piora.","Correto — melhora ao suspender.","Não é o passo inicial.","Não.","Não."],
+ pega:"Pense na enteropatia antes de escalar a dose.",key:"olme"},
+{tema:"adversos",dif:"fácil",q:"O BRA altera o potássio?",
+ op:["Nunca","Pode elevar o K⁺","Sempre reduz o K⁺","Só reduz","Só em jovens"],
+ c:1,ec:["Falso.","Correto.","Não.","Não.","Não."],
+ pega:"'BRA não mexe no K⁺' é falso.",key:"k"},
+{tema:"adversos",dif:"média",q:"Fator que MAIS aumenta o risco de hipercalemia com BRA:",
+ op:["Tiazídico isolado","Associação com espironolactona/suplemento de K⁺/AINE","Atividade física","Dieta hipossódica sem substituto","Uso de estatina"],
+ c:1,ec:["Tende a baixar K⁺.","Correto.","Não.","Depende do substituto.","Não."],
+ pega:"Poupador de K⁺ + BRA = cuidado.",key:"hiperk-risco"},
+{tema:"adversos",dif:"difícil",q:"Sobre a acusação de que 'BRAs causam câncer', a leitura atual é:",
+ op:["Confirmada em grandes metanálises","Não sustentada pelas metanálises maiores; o problema das nitrosaminas foi contaminação industrial, não a molécula","Prova-se causalidade direta","Aplica-se só à losartana","É motivo para suspender a classe"],
+ c:1,ec:["Não.","Correto: 'o réu era a impureza, não o BRA'.","Não.","Não.","Não."],
+ pega:"Nitrosaminas = impureza de fabricação, não o fármaco.",key:"cancer"},
+{tema:"adversos",dif:"fácil",q:"Comparado ao IECA, o BRA em geral apresenta:",
+ op:["Mais tosse","Menos tosse e menos angioedema","Mais angioedema","Igual perfil de tosse","Contraindicação na HAS"],
+ c:1,ec:["Ao contrário.","Correto.","Ao contrário.","Há diferença.","Não."],
+ pega:"BRA tolerabilidade: menos tosse/angioedema.",key:"tolerabilidade"},
+{tema:"adversos",dif:"média",q:"O uso de BRA na gestação é:",
+ op:["Seguro no 1º trimestre","Contraindicado (fetotoxicidade)","Preferível ao metildopa","Indicado na pré-eclâmpsia","Seguro se dose baixa"],
+ c:1,ec:["Não.","Correto — como os IECA.","Não.","Não.","Não."],
+ pega:"Bloqueadores do SRAA são fetotóxicos.",key:"gestacao"},
+
+// Renal / albuminúria / diabetes (8)
+{tema:"renal",dif:"média",q:"A proteção renal do BRA na doença albuminúrica decorre de:",
+ op:["Vasoconstrição da eferente","Dilatação da eferente → ↓ pressão intraglomerular → ↓ albuminúria","Aumento da TFG","Bloqueio do AT2","Aumento da aldosterona"],
+ c:1,ec:["Ao contrário.","Correto.","Não é o mecanismo.","Não.","Não."],
+ pega:"Mesma hemodinâmica eferente do IECA.",key:"renal"},
+{tema:"renal",dif:"média",q:"Estudo clássico de losartana em nefropatia diabética:",
+ op:["LIFE","RENAAL","ONTARGET","VALIANT","SCOPE"],
+ c:1,ec:["HVE/HAS.","Correto.","Alto risco.","Pós-IAM.","Idoso."],
+ pega:"RENAAL = losartana + rim diabético.",key:"renaal"},
+{tema:"renal",dif:"média",q:"Estudos de irbesartana na nefropatia/albuminúria do DM2:",
+ op:["CHARM e SCOPE","IDNT e IRMA-2","LIFE e VALUE","ONTARGET e TRANSCEND","Val-HeFT e VALIANT"],
+ c:1,ec:["Candesartana.","Correto.","Losartana/valsartana.","Telmisartana.","Valsartana."],
+ pega:"Irbesartana = 'guardião do rim' (IDNT/IRMA-2).",key:"idnt"},
+{tema:"renal",dif:"difícil",q:"↑ marcante de creatinina após iniciar BRA deve levantar suspeita de:",
+ op:["Estenose bilateral de artérias renais / rim único","Hipertireoidismo","Feocromocitoma","Anemia","Hipoglicemia"],
+ c:0,ec:["Correto — também hipovolemia, AINE.","Não.","Não.","Não.","Não."],
+ pega:"↑ creatinina forte → pense em doença renovascular.",key:"estenose"},
+{tema:"renal",dif:"média",q:"Em diabético SEM albuminúria e sem outra indicação específica, o BRA:",
+ op:["É obrigatório","Não é indicação automática; decidir pelo risco global","É contraindicado","Exige duplo bloqueio","Substitui o controle glicêmico"],
+ c:1,ec:["Não.","Correto.","Não.","Nunca.","Não."],
+ pega:"Benefício renal mora na albuminúria.",key:"dm"},
+{tema:"renal",dif:"fácil",q:"A queda da albuminúria sob BRA funciona como:",
+ op:["Sinal de toxicidade","Marcador de boa resposta","Indicação de suspensão","Sinal de estenose","Efeito da bradicinina"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Não."],
+ pega:"↓ albuminúria = resposta favorável.",key:"resposta"},
+{tema:"renal",dif:"média",q:"A DRC albuminúrica, em relação ao BRA, deve ser vista como:",
+ op:["Contraindicação absoluta","Frequentemente indicação, com monitorização de creatinina e K⁺","Irrelevante","Motivo para duplo bloqueio","Indicação de suspensão do SRAA"],
+ c:1,ec:["Não.","Correto.","Relevante.","Não.","Não."],
+ pega:"DRC = indicação com vigilância (como no IECA).",key:"drc"},
+{tema:"renal",dif:"difícil",q:"Paciente em BRA + AINE + diurético com hipovolemia evolui com LRA. O racional é:",
+ op:["Nefrite alérgica isolada","LRA hemodinâmica: AINE fecha aferente, BRA reduz tônus eferente, volume baixo derruba a filtração","Necrose tubular por contraste","Glomerulonefrite","Obstrução urinária"],
+ c:1,ec:["Não.","Correto.","Não.","Não.","Não."],
+ pega:"Tríplice (SRAA+AINE+diurético) também vale para o BRA.",key:"triplice"},
+
+// Estudos / evidências (8)
+{tema:"evidencias",dif:"média",q:"O estudo LIFE está associado a:",
+ op:["Telmisartana em alto risco","Losartana vs. atenolol na HAS com HVE","Candesartana na IC","Irbesartana no rim","Valsartana pós-IAM"],
+ c:1,ec:["ONTARGET.","Correto.","CHARM.","IDNT.","VALIANT."],
+ pega:"LIFE = losartana, HVE, menos AVC.",key:"life"},
+{tema:"evidencias",dif:"difícil",q:"A principal lição do ONTARGET sobre duplo bloqueio foi:",
+ op:["IECA+BRA reduz mortalidade","IECA+BRA aumentou eventos renais e hipotensão sem ganho líquido","BRA é inferior ao IECA","Telmisartana é ineficaz","Combinar é obrigatório na DRC"],
+ c:1,ec:["Não.","Correto.","Foram comparáveis.","Não.","Não."],
+ pega:"ONTARGET matou o duplo bloqueio de rotina.",key:"ontarget"},
+{tema:"evidencias",dif:"média",q:"CHARM-Alternative sustenta o uso de candesartana em:",
+ op:["HAS leve isolada","IC em pacientes intolerantes a IECA","Nefropatia diabética","Pós-IAM sem disfunção","Gestantes"],
+ c:1,ec:["Não é o foco.","Correto.","IDNT/RENAAL.","Não.","Contraindicado."],
+ pega:"Candesartana = escudo cardíaco (IC).",key:"charm"},
+{tema:"evidencias",dif:"média",q:"TRANSCEND avaliou telmisartana especialmente em:",
+ op:["Pacientes intolerantes a IECA","Nefropatia diabética","IC com FE preservada","Gestação","Crianças"],
+ c:0,ec:["Correto.","IDNT.","Não é o foco.","Não.","Não."],
+ pega:"TRANSCEND = intolerantes a IECA.",key:"transcend"},
+{tema:"evidencias",dif:"média",q:"VALIANT (valsartana, pós-IAM) mostrou que:",
+ op:["Valsartana é muito superior ao captopril","Valsartana foi não-inferior ao captopril; a combinação só aumentou efeitos adversos","A combinação é a melhor opção","BRA não serve no pós-IAM","Captopril é obrigatório"],
+ c:1,ec:["Não demonstrou superioridade.","Correto.","Não.","Serve.","Não."],
+ pega:"VALIANT reforça: não combinar IECA+BRA.",key:"valiant"},
+{tema:"evidencias",dif:"fácil",q:"Associação correta estudo → sartan:",
+ op:["RENAAL → irbesartana","IDNT → irbesartana","LIFE → valsartana","CHARM → losartana","ONTARGET → candesartana"],
+ c:1,ec:["RENAAL é losartana.","Correto.","LIFE é losartana.","CHARM é candesartana.","ONTARGET é telmisartana."],
+ pega:"IDNT = irbesartana (rim).",key:"assoc"},
+{tema:"evidencias",dif:"difícil",q:"Sobre 'IECA = BRA' nas diretrizes de HAS:",
+ op:["São idênticos em tudo","São 1ª linha e frequentemente alternativas equivalentes na HAS, mas 'equivalente' ≠ 'intercambiável' em todo cenário","BRA é sempre superior","IECA é sempre superior","Não podem ser 1ª linha"],
+ c:1,ec:["Não.","Correto: tosse, angioedema, intolerância, ARNI e evidências históricas diferenciam.","Não.","Não.","São 1ª linha."],
+ pega:"Equivalente não é intercambiável.",key:"equivalente"},
+{tema:"evidencias",dif:"média",q:"SCOPE está associado a candesartana em qual população?",
+ op:["Crianças","Idosos hipertensos","Gestantes","Atletas","Pós-transplante"],
+ c:1,ec:["Não.","Correto (destaque para AVC não fatal).","Não.","Não.","Não."],
+ pega:"SCOPE = candesartana no idoso.",key:"scope"},
+
+// Farmacologia dos sartans (8)
+{tema:"farmaco",dif:"média",q:"Qual BRA tem efeito uricosúrico clinicamente relevante?",
+ op:["Valsartana","Losartana","Telmisartana","Candesartana","Olmesartana"],
+ c:1,ec:["Não.","Correto — útil na gota/hiperuricemia.","Não.","Não.","Não."],
+ pega:"Losartana = 'a chave da gota'.",key:"losartana"},
+{tema:"farmaco",dif:"média",q:"Qual sartan tem a maior meia-vida (melhor cobertura de 24h)?",
+ op:["Losartana","Telmisartana","Captopril","Candesartana","Valsartana"],
+ c:1,ec:["A mais curta.","Correto.","É um IECA.","Longa, mas telmisartana lidera.","Intermediária."],
+ pega:"Telmisartana = 'senhor do tempo'.",key:"telmisartana"},
+{tema:"farmaco",dif:"fácil",q:"Qual BRA é a molécula-base do ARNI?",
+ op:["Losartana","Valsartana","Irbesartana","Candesartana","Olmesartana"],
+ c:1,ec:["Não.","Correto: sacubitril/valsartana.","Não.","Não.","Não."],
+ pega:"Valsartana = 'a ponte' para o ARNI.",key:"valsartana"},
+{tema:"farmaco",dif:"média",q:"Losartana, em relação à potência e duração:",
+ op:["É o BRA mais potente e mais longo","É um dos menos potentes e de ação mais curta (às vezes 2×/dia)","Tem a maior meia-vida","Sempre cobre 24h em dose única","É pró-fármaco inativo"],
+ c:1,ec:["Não.","Correto.","Isso é a telmisartana.","Nem sempre.","Tem metabólito ativo, mas a afirmação está errada."],
+ pega:"Losartana não é a mais potente.",key:"losartana-pot"},
+{tema:"farmaco",dif:"média",q:"O sartan associado ao alerta de enteropatia espru-símile é:",
+ op:["Olmesartana","Losartana","Valsartana","Candesartana","Irbesartana"],
+ c:0,ec:["Correto.","Não.","Não.","Não.","Não."],
+ pega:"Olmesartana = 'a prensa' + enteropatia.",key:"olmesartana"},
+{tema:"farmaco",dif:"fácil",q:"Candesartana é lembrada como o 'escudo cardíaco' por sua evidência em:",
+ op:["Nefropatia diabética","Insuficiência cardíaca","Gota","Gestação","AVC agudo"],
+ c:1,ec:["IDNT/RENAAL.","Correto (CHARM).","Losartana.","Contraindicado.","Não."],
+ pega:"Candesartana = IC.",key:"candesartana"},
+{tema:"farmaco",dif:"difícil",q:"Na escolha entre sartans, é correto:",
+ op:["Existe um BRA universalmente superior","A escolha considera perfil (gota→losartana; 24h→telmisartana; IC→candesartana/valsartana; rim→irbesartana), evidência, custo e tolerância","Todos têm a mesma meia-vida","Todos têm efeito uricosúrico","Potência é irrelevante"],
+ c:1,ec:["Não há.","Correto.","Não.","Só a losartana.","Importa."],
+ pega:"Sem 'melhor BRA' universal — casar perfil × paciente.",key:"escolha"},
+{tema:"farmaco",dif:"média",q:"'O réu era a impureza' resume qual tema dos BRA?",
+ op:["A tosse","As nitrosaminas / recalls por contaminação industrial","O efeito uricosúrico","A enteropatia","A hipercalemia"],
+ c:1,ec:["Não.","Correto — impureza de fabricação, não a molécula.","Não.","Não.","Não."],
+ pega:"Nitrosaminas = impureza, não o fármaco.",key:"nitrosaminas"},
+
+// Indicações / comparação / duplo bloqueio (8)
+{tema:"indicacoes",dif:"média",q:"Indicação preferencial clássica do BRA em vez do IECA:",
+ op:["Gestante","Paciente que desenvolveu tosse pelo IECA","Estenose bilateral grave","Hipercalemia grave","Choque"],
+ c:1,ec:["Contraindicado.","Correto: BRA causa menos tosse.","Cautela igual.","Contraindicação.","Não."],
+ pega:"Tosse por IECA → troca por BRA.",key:"troca"},
+{tema:"duplo",dif:"fácil",q:"A combinação IECA + BRA de rotina:",
+ op:["Aumenta a proteção renal","Não deve ser usada: mais hiperK/hipotensão/LRA sem ganho","É 1ª linha na HAS","Reduz o risco de angioedema","É obrigatória na ICFEr"],
+ c:1,ec:["Ao contrário.","Correto (ONTARGET/VALIANT).","Não.","Não.","Não."],
+ pega:"Duplo bloqueio de rotina: não.",key:"duplo"},
+{tema:"indicacoes",dif:"média",q:"São indicações do BRA, EXCETO:",
+ op:["HAS","ICFEr (sobretudo intolerante a IECA)","DRC com albuminúria","Gestação","Pós-IAM (contexto selecionado)"],
+ c:3,ec:["Indicação.","Indicação.","Indicação.","Correto: contraindicado.","Indicação."],
+ pega:"Gestação = contraindicação.",key:"indicacoes"},
+{tema:"indicacoes",dif:"difícil",q:"ICFEr com intolerância a IECA por tosse. Conduta razoável:",
+ op:["Insistir no IECA","BRA com evidência em IC (candesartana/valsartana) ou considerar ARNI","Associar IECA + BRA","Suspender todo bloqueio do SRAA","Iniciar dois BRA"],
+ c:1,ec:["A tosse persiste.","Correto.","Duplo bloqueio não.","Perde-se proteção.","Sem sentido."],
+ pega:"BRA/ARNI resgatam o intolerante a IECA.",key:"icfer"},
+{tema:"comparacao",dif:"média",q:"Diferença central entre IECA e BRA:",
+ op:["Ambos bloqueiam AT1","IECA reduz produção de Ang II (e ↑ bradicinina); BRA bloqueia o receptor AT1 (sem ↑ bradicinina)","IECA bloqueia AT2","BRA inibe a ECA","Nenhum protege o rim"],
+ c:1,ec:["Só o BRA age no AT1.","Correto.","Não — isso não ocorre.","Não — quem inibe a ECA é o IECA.","Ambos protegem."],
+ pega:"Forja destruída (IECA) × portão cercado (BRA).",key:"comparacao"},
+{tema:"comparacao",dif:"fácil",q:"Sobre proteção cardiorrenal, IECA e BRA:",
+ op:["Só o IECA protege","Só o BRA protege","Ambos oferecem proteção cardíaca e renal, por caminhos diferentes","Nenhum protege","Protegem apenas se combinados"],
+ c:2,ec:["Não.","Não.","Correto.","Não.","Não."],
+ pega:"Dois caminhos, mesmo objetivo.",key:"protecao"},
+{tema:"contra",dif:"média",q:"Contraindicação/forte cautela comum a IECA e BRA:",
+ op:["Tosse seca","Gestação e estenose bilateral de artérias renais","Cefaleia","Uso de estatina","Dislipidemia"],
+ c:1,ec:["Tosse é mais do IECA.","Correto.","Não.","Não.","Não."],
+ pega:"Gestação e estenose bilateral valem para os dois.",key:"contra"},
+{tema:"contra",dif:"difícil",q:"Paciente teve angioedema por IECA. Sobre iniciar um BRA:",
+ op:["É absolutamente seguro","Pode ser considerado com cautela; há risco residual (menor) de angioedema","É contraindicação idêntica","Garante novo angioedema","Deve-se combinar com IECA"],
+ c:1,ec:["Não é 'absolutamente'.","Correto: risco muito menor, mas não nulo — decisão individualizada.","Não é idêntico.","Não.","Nunca combinar."],
+ pega:"Pós-angioedema por IECA: BRA com cautela (risco residual).",key:"angio-cross"}
+];
+
+/* ---- FLASHCARDS (>=60) — BRA ---- */
+const FLASHCARDS = [
+{cat:"mecanismo",q:"O que o BRA bloqueia?",a:"O receptor AT1 (seletivamente). Não bloqueia a ECA nem o AT2."},
+{cat:"mecanismo",q:"O BRA reduz a produção de Ang II?",a:"Não. A Forja continua acesa; a Ang II continua sendo formada."},
+{cat:"mecanismo",q:"O que acontece com a Ang II sob BRA?",a:"Fica sem acesso ao AT1 e pode alcançar vias não bloqueadas, como o AT2."},
+{cat:"mecanismo",q:"Frase-âncora do BRA",a:"O BRA não mata a Angiotensina II — ele tira dela o acesso ao castelo AT1."},
+{cat:"mecanismo",q:"IECA × BRA em uma linha",a:"IECA destrói a Forja (↓ Ang II, ↑ bradicinina); BRA cerca o Portão AT1 (Ang II existe, AT2 preservado)."},
+{cat:"mecanismo",q:"AT1 APERTA TUDO",a:"Aldosterona · Pressão intraglomerular · Estresse oxidativo · Retenção de Na⁺ · Tônus simpático · Angiofibrose."},
+{cat:"mecanismo",q:"O que o AT2 faz (em geral)?",a:"Vasodilatação, óxido nítrico, antiproliferação, antifibrose, contrarregulação."},
+{cat:"mecanismo",q:"AT2 é um super-herói?",a:"Não. É uma via fisiológica que frequentemente se opõe ao AT1 — sem exagero."},
+{cat:"mecanismo",q:"Por que o BRA dá menos tosse?",a:"Não inibe a ECA → não acumula bradicinina/substância P."},
+{cat:"mecanismo",q:"O BRA aumenta a bradicinina?",a:"Não relevantemente — por isso menos tosse e muito menos angioedema."},
+{cat:"mecanismo",q:"O BRA bloqueia o AT2?",a:"Não. Bloqueia seletivamente o AT1."},
+{cat:"mecanismo",q:"Ang II é a vilã?",a:"Não. É uma mensageira poderosa; quem decide a resposta são os receptores."},
+{cat:"adversos",q:"O BRA pode elevar o potássio?",a:"Sim — bloqueio de AT1 → ↓ aldosterona → ↓ secreção distal de K⁺."},
+{cat:"adversos",q:"Creatinina ao iniciar BRA",a:"Pode subir inicialmente (dilatação eferente / ↓ pressão intraglomerular). Hemodinâmico, não 'veneno'."},
+{cat:"adversos",q:"BRA causa angioedema?",a:"Muito menos que o IECA, mas ainda pode ocorrer raramente."},
+{cat:"adversos",q:"Enteropatia espru-símile: qual sartan?",a:"Olmesartana (diarreia crônica, perda de peso, atrofia vilositária; melhora ao suspender)."},
+{cat:"adversos",q:"'BRA não mexe no potássio' é...",a:"Falso. O BRA eleva K⁺ sim."},
+{cat:"adversos",q:"BRA na gestação",a:"Contraindicado (fetotoxicidade), como os IECA."},
+{cat:"adversos",q:"Câncer e BRA: veredito atual",a:"Não sustentado pelas metanálises maiores. Nitrosaminas foram contaminação industrial — 'o réu era a impureza'."},
+{cat:"adversos",q:"↑ creatinina marcante após BRA sugere?",a:"Estenose renal (bilateral/rim único), hipovolemia, AINE."},
+{cat:"renal",q:"Como o BRA protege o rim albuminúrico?",a:"Dilata a eferente → ↓ pressão intraglomerular → ↓ albuminúria."},
+{cat:"renal",q:"Losartana no rim diabético",a:"RENAAL — retardou progressão da nefropatia e reduziu proteinúria."},
+{cat:"renal",q:"Irbesartana no rim diabético",a:"IDNT e IRMA-2 — proteção renal e redução da progressão da albuminúria."},
+{cat:"renal",q:"DRC albuminúrica e BRA",a:"Frequentemente indicação, com vigilância de creatinina e K⁺ (não é contraindicação)."},
+{cat:"renal",q:"Diabético sem albuminúria",a:"Sem indicação automática de BRA; decidir pelo risco global."},
+{cat:"renal",q:"Tríplice nefrotóxica também vale para BRA?",a:"Sim: bloqueador do SRAA + AINE + diurético em hipovolemia = LRA."},
+{cat:"estudos",q:"LIFE",a:"Losartana vs. atenolol na HAS com HVE — menos desfechos (destaque AVC) e regressão de HVE."},
+{cat:"estudos",q:"RENAAL",a:"Losartana na nefropatia diabética — proteção renal."},
+{cat:"estudos",q:"IDNT / IRMA-2",a:"Irbesartana na nefropatia/albuminúria do DM2."},
+{cat:"estudos",q:"Val-HeFT / VALIANT",a:"Valsartana na IC (Val-HeFT) e pós-IAM (VALIANT, não-inferior ao captopril; combinação piora)."},
+{cat:"estudos",q:"CHARM",a:"Candesartana na IC, incluindo intolerantes a IECA (CHARM-Alternative)."},
+{cat:"estudos",q:"SCOPE",a:"Candesartana no idoso hipertenso (destaque AVC não fatal)."},
+{cat:"estudos",q:"ONTARGET",a:"Telmisartana ~ ramipril; a COMBINAÇÃO IECA+BRA piorou rim/hipotensão sem ganho."},
+{cat:"estudos",q:"TRANSCEND",a:"Telmisartana em intolerantes a IECA."},
+{cat:"estudos",q:"VALUE",a:"Valsartana vs. anlodipino em HAS de alto risco — reforça o controle pressórico precoce."},
+{cat:"farmaco",q:"Losartana — identidade",a:"'A Chave da Gota': efeito uricosúrico; menos potente; ação mais curta (às vezes 2×/dia)."},
+{cat:"farmaco",q:"Telmisartana — identidade",a:"'O Senhor do Tempo': maior meia-vida, melhor cobertura de 24h."},
+{cat:"farmaco",q:"Candesartana — identidade",a:"'O Escudo Cardíaco': forte ligação ao receptor; evidência em IC."},
+{cat:"farmaco",q:"Irbesartana — identidade",a:"'O Guardião do Rim': nefropatia diabética (IDNT/IRMA-2)."},
+{cat:"farmaco",q:"Valsartana — identidade",a:"'A Ponte': HAS, IC, pós-IAM e molécula-base do ARNI."},
+{cat:"farmaco",q:"Olmesartana — identidade",a:"'A Prensa': potente; ALERTA de enteropatia espru-símile."},
+{cat:"farmaco",q:"Qual BRA para hipertenso com gota?",a:"Losartana (efeito uricosúrico)."},
+{cat:"farmaco",q:"Qual BRA quando a cobertura 24h importa?",a:"Telmisartana (maior meia-vida)."},
+{cat:"farmaco",q:"Losartana é o BRA mais potente?",a:"Não — é um dos menos potentes e de ação mais curta."},
+{cat:"farmaco",q:"Todo BRA dura 24h em dose única?",a:"Não — a losartana muitas vezes não; telmisartana cobre melhor."},
+{cat:"farmaco",q:"Nitrosaminas",a:"Impureza de fabricação que gerou recalls — não é a molécula do BRA que causa dano."},
+{cat:"comparacao",q:"Tosse por IECA: e agora?",a:"Trocar por BRA (não inibe ECA → sem acúmulo de bradicinina)."},
+{cat:"comparacao",q:"'IECA = BRA' na HAS significa?",a:"Ambos 1ª linha e frequentemente alternativas — mas equivalente ≠ intercambiável."},
+{cat:"comparacao",q:"Duplo bloqueio IECA + BRA",a:"Não de rotina: mais hiperK/hipotensão/LRA sem ganho (ONTARGET/VALIANT)."},
+{cat:"comparacao",q:"Proteção cardiorrenal",a:"IECA e BRA protegem coração e rim — por caminhos diferentes."},
+{cat:"comparacao",q:"Angioedema prévio por IECA e BRA",a:"BRA pode ser considerado com cautela; risco residual menor, não nulo."},
+{cat:"pegadinhas",q:"BRA bloqueia a ECA?",a:"Falso — bloqueia o AT1."},
+{cat:"pegadinhas",q:"BRA reduz a formação de Ang II?",a:"Falso — quem faz isso é o IECA."},
+{cat:"pegadinhas",q:"BRA bloqueia o AT2?",a:"Falso — só o AT1."},
+{cat:"pegadinhas",q:"AT2 é sempre absolutamente benéfico?",a:"Falso — é contrarregulatório, não mágico."},
+{cat:"frases",q:"Frase de ouro (AT1)",a:"AT1 aperta o reino."},
+{cat:"frases",q:"Frase de ouro (AT2)",a:"AT2 abre caminhos."},
+{cat:"frases",q:"Frase de ouro (mecanismo)",a:"O BRA não mata a Angiotensina II — ele tira dela o acesso ao castelo AT1."},
+{cat:"frases",q:"Frase de ouro (SRAA)",a:"Bloquear AT1 não significa desligar o SRAA — é redirecionar seu poder."},
+{cat:"frases",q:"Mnemônico dos sartans",a:"Losartana→gota · Telmisartana→tempo · Candesartana→coração · Irbesartana→rim · Valsartana→ponte · Olmesartana→prensa."},
+{cat:"frases",q:"Duologia 5A×5B",a:"5A: a Guerra da Forja (IECA). 5B: o Cerco ao Castelo AT1 (BRA)."}
+];
+
+/* ---- MINI_DECISOES (>=20) ---- */
+const MINI_DECISOES = [
+{cen:"HAS bem controlada com enalapril, mas tosse seca incômoda há semanas, sem outra causa.",op:["Antitussígeno e manter","Trocar por um BRA"],c:1,fb:"BRA não inibe a ECA → sem acúmulo de bradicinina → resolve a tosse."},
+{cen:"Hipertenso com gota recorrente e hiperuricemia.",op:["Olmesartana pela potência","Losartana pelo efeito uricosúrico"],c:1,fb:"Losartana ajuda a excretar urato — vantagem neste perfil."},
+{cen:"Paciente esquece doses; precisa de cobertura estável nas 24h.",op:["Losartana 1×/dia","Telmisartana (maior meia-vida)"],c:1,fb:"Telmisartana cobre melhor as 24h em dose única."},
+{cen:"Creatinina subiu 16% após iniciar BRA, K⁺ e PA ok, assintomático.",op:["Suspender já","Observar e reavaliar"],c:1,fb:"Hemodinâmico e tolerável — observe a tendência."},
+{cen:"Creatinina subiu 45% em dias, oligúria, hipotensão.",op:["Manter e reavaliar em 1 mês","Suspender e investigar (volume/AINE/estenose)"],c:1,fb:"Elevação marcante + instabilidade → investigar."},
+{cen:"Em olmesartana há meses, diarreia crônica e perda de peso.",op:["Aumentar a dose","Suspeitar de enteropatia e reavaliar"],c:1,fb:"Enteropatia espru-símile melhora ao suspender."},
+{cen:"K⁺ = 5,8 em BRA + espironolactona + AINE ocasional.",op:["Ignorar ('BRA não mexe no K⁺')","Revisar fármacos/dieta e ajustar"],c:1,fb:"O BRA também eleva K⁺; some os fatores (poupador, sal light, AINE)."},
+{cen:"Gestante de 8 semanas em losartana.",op:["Reduzir dose","Suspender e trocar por opção compatível"],c:1,fb:"Contraindicado na gestação — suspender."},
+{cen:"ICFEr, intolerante a IECA por tosse.",op:["Associar IECA + BRA","BRA com evidência em IC (candesartana/valsartana) ou ARNI"],c:1,fb:"Duplo bloqueio não; BRA/ARNI resgatam o intolerante."},
+{cen:"DM2 com albuminúria e HAS.",op:["Evitar bloqueio do SRAA","Preferir bloqueio do SRAA (BRA/IECA)"],c:1,fb:"Albuminúria é onde o SRAA mais protege (com vigilância)."},
+{cen:"Alguém pergunta se pode combinar IECA + BRA para 'proteger mais'.",op:["Sim, soma proteção","Não — ONTARGET/VALIANT mostraram dano sem ganho"],c:1,fb:"Duplo bloqueio de rotina: mais hiperK/hipotensão/LRA."},
+{cen:"Paciente leu que 'BRA causa câncer' e quer parar.",op:["Suspender imediatamente a classe","Explicar nitrosaminas (impureza) e as metanálises maiores"],c:1,fb:"O sinal veio de impureza industrial, não da molécula."},
+{cen:"Hipertenso jovem, sem comorbidades, boa adesão.",op:["Iniciar dois BRA","BRA (ou IECA) 1ª linha, isolado ou combinado com BCC/tiazídico"],c:1,fb:"1ª linha; combinação racional, nunca dois bloqueadores do SRAA."},
+{cen:"Nefropatia diabética estabelecida, escolher um BRA.",op:["Telmisartana pela duração","Irbesartana/losartana pela evidência renal"],c:1,fb:"IDNT/IRMA-2 (irbesartana) e RENAAL (losartana) sustentam o rim."},
+{cen:"Estenose bilateral de artérias renais conhecida.",op:["BRA como 1ª escolha","Evitar/investigar antes (risco de LRA)"],c:1,fb:"Cautela: mesmo risco do IECA nesse cenário."},
+{cen:"Paciente teve angioedema por IECA e precisa de anti-hipertensivo.",op:["Iniciar BRA sem qualquer ressalva","Considerar BRA com cautela (risco residual menor)"],c:1,fb:"Risco muito menor, mas não nulo — decisão individualizada."},
+{cen:"IC com FE preservada, intolerante a IECA.",op:["Descartar BRA","Candesartana é opção com evidência (CHARM)"],c:1,fb:"CHARM sustenta candesartana em IC, incluindo FE preservada."},
+{cen:"Precisa de queda pressórica robusta, sem contraindicação específica.",op:["Losartana por ser 'padrão'","Um BRA potente (ex.: olmesartana) — vigiando enteropatia"],c:1,fb:"Olmesartana é potente; lembrar do alerta de enteropatia."},
+{cen:"Pós-IAM com disfunção VE, intolerante a IECA.",op:["Nenhum bloqueio do SRAA","Valsartana (VALIANT, não-inferior ao captopril)"],c:1,fb:"Valsartana é opção; nunca combinar com o IECA."},
+{cen:"Paciente pergunta se 'IECA e BRA são iguais'.",op:["Sim, totalmente intercambiáveis","1ª linha e frequentemente equivalentes na HAS, mas nem sempre intercambiáveis"],c:1,fb:"Tosse, angioedema, ARNI e evidências históricas diferenciam."},
+{cen:"Losartana 1×/dia, mas PA sobe no fim do dia (MRPA).",op:["Trocar a classe","Rever cobertura: dividir em 2× ou migrar para BRA de ação mais longa"],c:1,fb:"Losartana é curta; ajuste de cobertura resolve."}
+];
+
+/* ---- CASOS_CLINICOS (10) ---- */
+const CASOS = [
+{tit:"Tosse pelo IECA",vin:"Homem, 54 anos, HAS controlada com enalapril, mas tosse seca há 5 semanas, sem febre/secreção, sem outra causa.",
+ q1:"Primeiro passo?",d1:["Suspender já e assumir a causa","Excluir diferenciais e avaliar relação temporal"],c1:1,
+ info:"Diferenciais afastados; tosse mantém e atrapalha o sono.",
+ q2:"Conduta?",d2:["Antitussígeno e manter o IECA","Trocar por um BRA"],c2:1,
+ disc:"O BRA não inibe a ECA → sem acúmulo de bradicinina → tosse resolve.",mem:"Tosse por IECA → BRA."},
+{tit:"Hipertenso com gota",vin:"Homem, 58 anos, HAS e crises de gota, ácido úrico elevado.",
+ q1:"Qual BRA tem vantagem aqui?",d1:["Olmesartana","Losartana"],c1:1,
+ info:"Pergunta por que a losartana.",
+ q2:"Racional?",d2:["É a mais potente","Tem efeito uricosúrico (excreta urato)"],c2:1,
+ disc:"Losartana inibe parcialmente a reabsorção de urato — vantagem clínica na hiperuricemia.",mem:"Losartana = a chave da gota."},
+{tit:"Baixa adesão",vin:"Mulher, 62 anos, HAS, esquece doses; PA sobe no fim do dia na MRPA.",
+ q1:"Melhor perfil?",d1:["Losartana 1×/dia","Telmisartana (24h)"],c1:1,
+ info:"Quer dose única com boa cobertura.",
+ q2:"Por quê?",d2:["Maior potência isolada","Maior meia-vida → cobertura de 24h"],c2:1,
+ disc:"Telmisartana tem a maior meia-vida da classe — melhor controle nas 24h.",mem:"Telmisartana = o senhor do tempo."},
+{tit:"Nefropatia diabética",vin:"Mulher, 60 anos, DM2, HAS, RAC elevado, TFGe 58.",
+ q1:"Classe preferida?",d1:["Bloqueio do SRAA (BRA/IECA)","BCC isolado"],c1:0,
+ info:"Inicia losartana; creatinina sobe ~14% e estabiliza.",
+ q2:"Conduta?",d2:["Suspender","Manter e monitorar"],c2:1,
+ disc:"Albuminúria favorece o bloqueio do SRAA (RENAAL/IDNT); ↑ leve e estável é esperado.",mem:"Albuminúria puxa o BRA; ↑ creatinina leve não assusta."},
+{tit:"Enteropatia por olmesartana",vin:"Homem, 65 anos, em olmesartana há 1 ano, diarreia crônica, perda de peso e desnutrição; investigação para doença celíaca negativa.",
+ q1:"Hipótese?",d1:["Síndrome do intestino irritável","Enteropatia por olmesartana (espru-símile)"],c1:1,
+ info:"Biópsia sugere atrofia vilositária; sorologia celíaca negativa.",
+ q2:"Conduta?",d2:["Aumentar a dose e manter","Suspender a olmesartana e reavaliar"],c2:1,
+ disc:"Quadro melhora após suspender o fármaco — sinal de segurança específico da olmesartana.",mem:"Olmesartana + diarreia crônica → pense na prensa."},
+{tit:"ICFEr intolerante a IECA",vin:"Homem, 64 anos, ICFEr sintomática, desenvolveu tosse com IECA.",
+ q1:"Opção razoável?",d1:["Associar IECA + BRA","BRA com evidência em IC (candesartana/valsartana) ou ARNI"],c1:1,
+ info:"Pergunta por que não somar IECA + BRA.",
+ q2:"Motivo?",d2:["Falta de eficácia do BRA","Duplo bloqueio piora rim/K⁺/hipotensão sem ganho"],c2:1,
+ disc:"CHARM-Alternative/Val-HeFT sustentam o BRA em IC; ONTARGET/VALIANT desaconselham o duplo bloqueio.",mem:"Intolerante a IECA → BRA/ARNI, nunca os dois juntos."},
+{tit:"O 'câncer' dos BRA",vin:"Paciente ansiosa leu que 'BRA causa câncer' e quer parar a valsartana.",
+ q1:"Conduta inicial?",d1:["Suspender toda a classe imediatamente","Esclarecer com base nas evidências"],c1:1,
+ info:"Ela cita as notícias de recall.",
+ q2:"Explicação correta?",d2:["A molécula é carcinogênica","Foi contaminação por nitrosaminas (impureza industrial); metanálises maiores não sustentam risco da molécula"],c2:1,
+ disc:"'O réu era a impureza, não o BRA'. Recalls foram de lotes contaminados, não da classe.",mem:"Nitrosaminas = impureza, não o fármaco."},
+{tit:"Hipercalemia com associação",vin:"Homem, 70 anos, IC, em valsartana + espironolactona, K⁺ = 5,9, sem ECG alterado.",
+ q1:"Conduta inicial?",d1:["Ignorar ('BRA não mexe no K⁺')","Confirmar K⁺ e revisar dieta/fármacos"],c1:1,
+ info:"Usa 'sal light' e AINE ocasional.",
+ q2:"Fatores em jogo?",d2:["Apenas a dose do BRA","Sal light + poupador + AINE somando K⁺"],c2:1,
+ disc:"O BRA reduz aldosterona e eleva K⁺; vários somadores exigem estratificação (nível/ECG).",mem:"BRA também sobe o potássio."},
+{tit:"Gestante hipertensa",vin:"Mulher, 30 anos, 10 semanas de gestação, em losartana.",
+ q1:"Conduta?",d1:["Manter em dose baixa","Suspender e trocar por opção compatível"],c1:1,
+ info:"Pergunta se é seguro após o 1º trimestre.",
+ q2:"Resposta correta?",d2:["Seguro após o 1º trimestre","Sem segurança — fetotóxico como o IECA"],c2:1,
+ disc:"Bloqueadores do SRAA são fetotóxicos em qualquer trimestre.",mem:"BRA na gestação = não."},
+{tit:"HAS com HVE",vin:"Homem, 61 anos, HAS de longa data, ECG/ECO com hipertrofia ventricular esquerda.",
+ q1:"Há BRA com evidência específica nesse cenário?",d1:["Não, é indiferente","Sim, losartana (LIFE)"],c1:1,
+ info:"Pergunta o desfecho de destaque.",
+ q2:"Qual foi?",d2:["Menos internação por gota","Regressão de HVE e menos desfechos (destaque AVC) vs. atenolol"],c2:1,
+ disc:"LIFE consolidou o BRA na HAS com lesão de órgão-alvo (HVE).",mem:"HVE → lembre LIFE (losartana)."}
+];
+
+/* ---- PEGADINHAS (>=20) ---- */
+const PEGADINHAS = [
+{af:"O BRA bloqueia a ECA.",v:false,cor:"O BRA bloqueia o receptor AT1; quem inibe a ECA é o IECA.",fix:"IECA na ECA; BRA no portão AT1."},
+{af:"O BRA reduz diretamente a formação de Angiotensina II.",v:false,cor:"Não — a Forja continua acesa. O BRA age no receptor.",fix:"A fábrica continua; o portão é que fecha."},
+{af:"O BRA bloqueia o receptor AT1.",v:true,cor:"Verdadeiro — é a essência do mecanismo.",fix:"AT1 = alvo do BRA."},
+{af:"O BRA também bloqueia o AT2.",v:false,cor:"Não — bloqueia seletivamente o AT1; o AT2 permanece acessível.",fix:"AT2 fica preservado."},
+{af:"O AT2 é sempre e absolutamente benéfico.",v:false,cor:"É uma via contrarregulatória, não um super-receptor.",fix:"AT2 contrarregula — sem exagero."},
+{af:"O BRA nunca causa angioedema.",v:false,cor:"É muito menos comum que com IECA, mas pode ocorrer raramente.",fix:"Muito menos, não zero."},
+{af:"O BRA não aumenta o potássio.",v:false,cor:"Aumenta sim — bloqueio de AT1 → ↓ aldosterona → ↑ K⁺.",fix:"BRA sobe o K⁺."},
+{af:"O BRA não altera a creatinina.",v:false,cor:"Pode elevá-la inicialmente (hemodinâmica eferente), como o IECA.",fix:"↑ creatinina inicial pode ocorrer."},
+{af:"Losartana é o BRA mais potente.",v:false,cor:"É um dos menos potentes e de ação mais curta.",fix:"Losartana ≠ mais potente."},
+{af:"Todo BRA cobre 24 horas em dose única.",v:false,cor:"Nem sempre — a losartana às vezes exige 2 tomadas; telmisartana cobre melhor.",fix:"Duração varia entre os sartans."},
+{af:"IECA + BRA devem ser combinados para bloquear tudo.",v:false,cor:"Duplo bloqueio de rotina piora rim/K⁺/hipotensão sem ganho (ONTARGET/VALIANT).",fix:"Mais bloqueio ≠ mais proteção."},
+{af:"O BRA causa mais tosse que o IECA.",v:false,cor:"Causa menos — não inibe a ECA, não acumula bradicinina.",fix:"BRA = menos tosse."},
+{af:"A enteropatia espru-símile é associada à losartana.",v:false,cor:"É associada à olmesartana.",fix:"Olmesartana = enteropatia."},
+{af:"O efeito uricosúrico relevante é da telmisartana.",v:false,cor:"É da losartana.",fix:"Losartana = gota."},
+{af:"Os BRA comprovadamente causam câncer.",v:false,cor:"Não sustentado pelas metanálises maiores; nitrosaminas foram contaminação industrial.",fix:"O réu era a impureza, não a molécula."},
+{af:"O BRA pode ser usado na gestação em dose baixa.",v:false,cor:"É contraindicado — fetotóxico, como os IECA.",fix:"SRAA fetotóxico = não na gestação."},
+{af:"DRC é contraindicação absoluta ao BRA.",v:false,cor:"A DRC albuminúrica é frequentemente indicação, com monitorização.",fix:"DRC exige vigilância, não proibição."},
+{af:"Após tosse pelo IECA, não se pode usar BRA.",v:false,cor:"Pelo contrário: a troca por BRA é a conduta clássica.",fix:"Tosse do IECA → troca por BRA."},
+{af:"O BRA reduz a bradicinina.",v:false,cor:"Ele não a aumenta relevantemente nem depende dela; não a 'reduz' como mecanismo.",fix:"BRA não mexe relevantemente na bradicinina."},
+{af:"'Equivalente' entre IECA e BRA significa 'sempre intercambiável'.",v:false,cor:"São 1ª linha e frequentemente alternativas, mas há cenários que os diferenciam.",fix:"Equivalente ≠ intercambiável."},
+{af:"Valsartana é a molécula-base do ARNI.",v:true,cor:"Verdadeiro — sacubitril/valsartana.",fix:"Valsartana = a ponte para o ARNI."},
+{af:"O BRA bloqueia o AT1 e, com isso, mais Ang II pode estimular o AT2.",v:true,cor:"Verdadeiro — a Ang II não some; parte é redirecionada.",fix:"Portão AT1 fechado, jardim AT2 aberto."}
+];
+
+/* ---- FRASES DE OURO ---- */
+const FRASES_OURO = [
+"AT1 aperta o reino. AT2 abre caminhos.",
+"O BRA não mata a Angiotensina II. Ele tira dela o acesso ao castelo AT1.",
+"IECA fecha a fábrica. BRA fecha o portão AT1. AT2 permanece no jardim.",
+"Bloquear AT1 não é desligar o SRAA — é redirecionar seu poder.",
+"Losartana lembra gota. Telmisartana lembra tempo. Candesartana lembra coração. Irbesartana lembra rim.",
+"Quem lembra do Portão nunca esquece o mecanismo.",
+"No tribunal das nitrosaminas, o réu era a impureza — não o BRA."
+];
+
+/* ---- TESTE DA MEMÓRIA ---- */
+const MEM_TEST = [
+{q:"O que o BRA bloqueia?",a:"O receptor AT1 (seletivamente)."},
+{q:"O BRA reduz a produção de Ang II?",a:"Não — a Forja continua acesa; ele age no receptor."},
+{q:"Por que o BRA causa menos tosse?",a:"Não inibe a ECA → não acumula bradicinina/substância P."},
+{q:"O BRA causa angioedema?",a:"Muito menos que o IECA, mas pode ocorrer raramente."},
+{q:"Por que o potássio sobe?",a:"Bloqueio de AT1 → ↓ aldosterona → ↓ secreção de K⁺."},
+{q:"Por que a creatinina pode subir?",a:"Dilatação eferente → ↓ pressão intraglomerular → ↓ TFG inicial."},
+{q:"Qual BRA para o hipertenso com gota?",a:"Losartana (uricosúrico)."},
+{q:"Qual BRA para cobertura de 24h?",a:"Telmisartana (maior meia-vida)."},
+{q:"Qual BRA na nefropatia diabética?",a:"Irbesartana (IDNT/IRMA-2) ou losartana (RENAAL)."},
+{q:"Qual BRA é a base do ARNI?",a:"Valsartana."},
+{q:"Qual BRA tem alerta de enteropatia?",a:"Olmesartana (espru-símile)."},
+{q:"Por que não combinar IECA + BRA?",a:"Mais hiperK/hipotensão/LRA sem ganho (ONTARGET/VALIANT)."},
+{q:"O que foi o caso das nitrosaminas?",a:"Contaminação industrial (impureza), não a molécula do BRA."},
+{q:"IECA = BRA na HAS?",a:"1ª linha e frequentemente equivalentes, mas equivalente ≠ intercambiável."},
+{q:"A imagem mental do BRA?",a:"Forja acesa → Ang II → Portão AT1 bloqueado → Jardim AT2 preservado."}
+];
+
+(function(){
+"use strict";
+var LS="atlasHAS_b2t4_cap5b_bra_v1";
+function load(){try{return JSON.parse(localStorage.getItem(LS))||{}}catch(e){return{}}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+var state=Object.assign({mode:"livre",font:1,contrast:false,motion:false,quiz:{},flash:{},rooms:[],spaced:{},cases:{},presc:{}},load());
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function safeScroll(el){if(el&&el.scrollIntoView){try{el.scrollIntoView({behavior:state.motion?"auto":"smooth",block:"start"})}catch(e){el.scrollIntoView()}}}
+
+/* ---------- prefs ---------- */
+function applyPrefs(){
+  document.body.setAttribute("data-mode",state.mode);
+  document.documentElement.style.setProperty("--fs",state.font);
+  document.body.classList.toggle("hi-contrast",!!state.contrast);
+  document.body.classList.toggle("no-motion",!!state.motion);
+  $$("[data-mode-btn]").forEach(function(b){
+    var on=b.getAttribute("data-mode-btn")===state.mode;
+    b.classList.toggle("on",on);
+    b.classList.remove("mode-rev","mode-prova");
+    if(on&&state.mode==="revisao")b.classList.add("mode-rev");
+    if(on&&state.mode==="prova")b.classList.add("mode-prova");
+  });
+  var mb=$("#motionBtn");if(mb)mb.classList.toggle("on",!!state.motion);
+  var cb=$("#contrastBtn");if(cb)cb.classList.toggle("on",!!state.contrast);
+}
+$$("[data-mode-btn]").forEach(function(b){b.addEventListener("click",function(){
+  var m=b.getAttribute("data-mode-btn");state.mode=(state.mode===m?"livre":m);save();applyPrefs();
+});});
+$("#motionBtn").addEventListener("click",function(){state.motion=!state.motion;save();applyPrefs();});
+$("#fontBtn").addEventListener("click",function(){state.font=state.font>=1.25?1:Math.round((state.font+0.1)*100)/100;save();applyPrefs();});
+$("#contrastBtn").addEventListener("click",function(){state.contrast=!state.contrast;save();applyPrefs();});
+$("#resetBtn").addEventListener("click",function(){
+  if(confirm("Apagar todo o seu progresso deste capítulo neste aparelho?")){
+    try{localStorage.removeItem(LS)}catch(e){}
+    state={mode:"livre",font:1,contrast:false,motion:false,quiz:{},flash:{},rooms:[],spaced:{},cases:{},presc:{}};
+    save();applyPrefs();renderAll();updateProgress();
+  }
+});
+
+/* ---------- drawer ---------- */
+function openDrawer(){$("#drawer").classList.add("open");$("#scrim").classList.add("on");}
+function closeDrawer(){$("#drawer").classList.remove("open");$("#scrim").classList.remove("on");}
+$("#menuBtn").addEventListener("click",openDrawer);
+$("#drawerClose").addEventListener("click",closeDrawer);
+$("#scrim").addEventListener("click",closeDrawer);
+$$("#drawer a").forEach(function(a){a.addEventListener("click",function(e){
+  e.preventDefault();var t=$(a.getAttribute("href"));closeDrawer();setTimeout(function(){safeScroll(t)},60);
+});});
+
+/* ---------- progress ---------- */
+function updateProgress(){
+  var secs=$$("section.sec, header.sec");var vh=window.innerHeight||600;var seen=0;
+  secs.forEach(function(s){var r=s.getBoundingClientRect();if(r.top< vh*0.6)seen++;});
+  var pct=secs.length?Math.min(100,Math.round(seen/secs.length*100)):0;
+  var f=$("#progFill");if(f)f.style.width=pct+"%";
+}
+window.addEventListener("scroll",updateProgress,{passive:true});
+
+/* ---------- reveal buttons ---------- */
+$$(".reveal-btn").forEach(function(b){b.addEventListener("click",function(){
+  var el=$("#"+b.getAttribute("data-reveal"));if(!el)return;
+  el.classList.toggle("on");b.textContent=el.classList.contains("on")?"Ocultar":b.textContent.replace("Ocultar","Ver resposta");
+});});
+
+/* ---------- accordions ---------- */
+$$(".acc").forEach(function(a){var btn=$("button",a),body=$(".body",a);if(!btn||!body)return;
+  btn.addEventListener("click",function(){
+    var open=a.classList.toggle("open");btn.setAttribute("aria-expanded",open?"true":"false");
+    var ico=$(".ico",btn);if(ico)ico.textContent=open?"✕":"＋";
+    body.style.maxHeight=open?(body.querySelector(".body-in").scrollHeight+24+"px"):"0";
+  });
+});
+
+/* ---------- cinematic opening ---------- */
+var cineFrames=[
+ {svg:'<circle cx="200" cy="120" r="30" fill="#c0392b"/><text x="200" y="126" text-anchor="middle" fill="#fff" font-size="13" font-family="monospace">Ang II</text>',cap:'Nasce a <b>Angiotensina II</b> — uma mensageira poderosa.'},
+ {svg:'<circle cx="120" cy="120" r="26" fill="#c0392b"/><text x="120" y="125" text-anchor="middle" fill="#fff" font-size="11" font-family="monospace">Ang II</text><rect x="250" y="70" width="90" height="100" rx="8" fill="#5c1a12" stroke="#f0c9c2"/><text x="295" y="125" text-anchor="middle" fill="#f0c9c2" font-size="16">🏰 AT1</text>',cap:'Ela corre até o <b>Portão de Ferro AT1</b>.'},
+ {svg:'<rect x="250" y="70" width="90" height="100" rx="8" fill="#5c1a12" stroke="#f0c9c2"/><text x="295" y="120" text-anchor="middle" fill="#f0c9c2" font-size="16">🏰 AT1</text><text x="295" y="150" text-anchor="middle" fill="#fff" font-size="26">🔒</text><circle cx="150" cy="120" r="26" fill="#c0392b"/><text x="150" y="125" text-anchor="middle" fill="#fff" font-size="11" font-family="monospace">Ang II</text>',cap:'Mas a fechadura já está ocupada: o <b>BRA</b> encaixou a chave.'},
+ {svg:'<rect x="250" y="70" width="90" height="100" rx="8" fill="#5c1a12" stroke="#f0c9c2"/><text x="295" y="125" text-anchor="middle" fill="#f0c9c2" font-size="16">🏰 AT1</text><text x="295" y="152" text-anchor="middle" fill="#fff" font-size="22">🔒</text><path d="M150 120 q40 -40 -10 -70" stroke="#f0c9c2" stroke-width="2" fill="none" stroke-dasharray="4 4"/><circle cx="110" cy="60" r="22" fill="#1e8f5e"/><text x="110" y="65" text-anchor="middle" fill="#fff" font-size="18">🌿</text>',cap:'Sem entrar, a Ang II segue caminho — rumo ao <b>Jardim AT2</b>.'},
+ {svg:'<rect x="40" y="60" width="120" height="120" rx="10" fill="#155c3d"/><text x="100" y="115" text-anchor="middle" fill="#fff" font-size="20">🌿 AT2</text><text x="100" y="145" text-anchor="middle" fill="#d6f0e2" font-size="10" font-family="monospace">preservado</text><rect x="230" y="60" width="120" height="120" rx="10" fill="#5c1a12"/><text x="290" y="115" text-anchor="middle" fill="#fff" font-size="20">🏰 AT1</text><text x="290" y="145" text-anchor="middle" fill="#f0c9c2" font-size="10" font-family="monospace">bloqueado</text>',cap:'<b>AT1 aperta o reino. AT2 abre caminhos.</b>'}
+];
+var cineIx=0;
+function renderCine(){
+  var f=cineFrames[cineIx];
+  $("#cineSvg").innerHTML=f.svg;
+  $("#cineCap").innerHTML=f.cap;
+  $("#cineDots").innerHTML=cineFrames.map(function(_,i){return '<i class="'+(i===cineIx?"on":"")+'"></i>'}).join("");
+}
+var cineTimer=null;
+function cineNext(){cineIx++;if(cineIx>=cineFrames.length){closeCine();return;}renderCine();schedule();}
+function schedule(){if(cineTimer)clearTimeout(cineTimer);if(!state.motion)cineTimer=setTimeout(cineNext,2600);}
+function openCine(){cineIx=0;$("#cine").classList.add("on");renderCine();schedule();}
+function closeCine(){if(cineTimer)clearTimeout(cineTimer);$("#cine").classList.remove("on");}
+$("#startCine").addEventListener("click",openCine);
+$("#cineSkip").addEventListener("click",closeCine);
+$("#cineSvg").addEventListener("click",cineNext);
+
+/* ---------- receptor lab ---------- */
+var labState={at1:false,bra:false,at2:false};
+var AT1_EFF=["Vasoconstrição","Aldosterona","Retenção de Na⁺","↑ Simpático","Fibrose / remodelamento","↑ Pressão intraglomerular"];
+var AT2_EFF=["Vasodilatação / NO","Antiproliferação","Antifibrose","Contrarregulação"];
+function renderLab(){
+  var stage=$("#labStage");if(!stage)return;var html="";var msg="";
+  if(labState.at1){
+    AT1_EFF.forEach(function(e){var gone=labState.bra?" gone":"";html+='<span class="lab-eff at1'+gone+'">'+e+'</span>';});
+  }
+  if(labState.at2||labState.bra){
+    AT2_EFF.forEach(function(e){html+='<span class="lab-eff at2">'+e+'</span>';});
+  }
+  if(!html)html='<span class="small">Ative um receptor para ver os efeitos.</span>';
+  stage.innerHTML=html;
+  if(labState.at1&&!labState.bra)msg="AT1 ativo: a Angiotensina II dispara toda a cascata de 'apertar o reino'.";
+  else if(labState.at1&&labState.bra)msg="Com o BRA, o AT1 fica bloqueado: os efeitos deletérios são cortados, e a Ang II pode ser redirecionada ao AT2.";
+  else if(labState.bra&&!labState.at1)msg="O BRA ocupa a fechadura do AT1. Sem AT1 ativo, predominam as vias contrarregulatórias do AT2.";
+  else if(labState.at2)msg="AT2 ativo: vasodilatação, antifibrose e reparo — a via que se opõe ao AT1 (sem ser 'super-herói').";
+  $("#labMsg").textContent=msg;
+}
+$$("[data-lab]").forEach(function(b){b.addEventListener("click",function(){
+  var k=b.getAttribute("data-lab");labState[k]=!labState[k];b.classList.toggle("on",labState[k]);renderLab();
+});});
+var labReset=$("[data-lab-reset]");if(labReset)labReset.addEventListener("click",function(){
+  labState={at1:false,bra:false,at2:false};$$("[data-lab]").forEach(function(b){b.classList.remove("on")});renderLab();
+});
+
+/* ---------- Lago Glomerular ---------- */
+var lago={angII:false,bra:false,volume:false,aine:false,estenose:false};
+function drawLago(){
+  var svg=$("#lagoSvg");if(!svg)return;
+  var affTight=lago.aine; // AINE contrai aferente
+  var effTight=lago.angII&&!lago.bra; // Ang II contrai eferente, BRA solta
+  var affW=affTight?7:14, effW=effTight?7:(lago.bra?18:12);
+  var pig=50; if(effTight)pig+=30; if(lago.bra)pig-=18; if(lago.volume)pig-=15; if(lago.aine)pig+=8;
+  if(lago.estenose){pig+=18; if(lago.bra)pig-=30;} // estenose: filtração depende da eferente contraída; o BRA a derruba
+  pig=Math.max(8,Math.min(100,pig));
+  svg.innerHTML=''+
+   '<defs></defs>'+
+   '<text x="180" y="20" text-anchor="middle" font-size="12" font-family="monospace" fill="#3a5674">Glomérulo</text>'+
+   '<ellipse cx="180" cy="120" rx="55" ry="46" fill="#e2f1f6" stroke="#1282A2" stroke-width="2"/>'+
+   '<path d="M40 150 q40 0 70 -20" stroke="#c0392b" stroke-width="'+affW+'" fill="none" stroke-linecap="round"/>'+
+   '<text x="55" y="175" font-size="10" font-family="monospace" fill="#8f2318">aferente</text>'+
+   '<path d="M250 100 q40 -10 70 10" stroke="#1e8f5e" stroke-width="'+effW+'" fill="none" stroke-linecap="round"/>'+
+   '<text x="270" y="80" font-size="10" font-family="monospace" fill="#146b45">eferente</text>'+
+   '<circle cx="180" cy="120" r="'+(10+pig*0.28)+'" fill="rgba(192,57,43,'+(0.15+pig/220)+')"/>'+
+   '<text x="180" y="124" text-anchor="middle" font-size="11" font-family="monospace" fill="#0f2942">PIG</text>'+
+   '<text x="180" y="250" text-anchor="middle" font-size="10" font-family="monospace" fill="#3a5674">'+(lago.bra?"BRA ativo — eferente relaxada":"AT1 livre")+'</text>';
+  var tfg=70; if(effTight)tfg+=10; if(lago.bra)tfg-=8; if(lago.volume)tfg-=18; if(lago.aine)tfg-=14;
+  if(lago.estenose){tfg-=15; if(lago.bra)tfg-=40;} // estenose já reduz a TFG; o BRA a despenca
+  tfg=Math.max(5,Math.min(100,tfg));
+  var prot=60; if(effTight)prot+=25; if(lago.bra)prot-=30; prot=Math.max(8,Math.min(100,prot));
+  var lra=10; if(lago.volume)lra+=25; if(lago.aine)lra+=25;
+  if(lago.estenose){lra+=25; if(lago.bra)lra+=45;} // estenose sozinha já é risco; com BRA, risco muito alto
+  if(lago.bra&&lago.volume&&lago.aine)lra+=10;
+  lra=Math.max(2,Math.min(100,lra));
+  setBar("gPig",pig,pig>75?"var(--at1)":"var(--blue)");
+  setBar("gTfg",tfg,tfg<35?"var(--amber)":"var(--at2)");
+  setBar("gProt",prot,prot>70?"var(--at1)":"var(--at2)");
+  setBar("gLra",lra,lra>60?"var(--at1)":(lra>35?"var(--amber)":"var(--at2)"));
+  var msg="";
+  if(lago.estenose&&lago.bra)msg="Estenose bilateral + BRA: nesse rim, a filtração DEPENDE da eferente contraída pela Ang II. Ao bloquear o AT1, a eferente relaxa, a TFG despenca e o risco de LRA dispara. É por isso que estenose bilateral é sinal de alerta para o BRA.";
+  else if(lago.estenose)msg="Estenose bilateral: a perfusão renal já está comprometida e a filtração passa a depender da vasoconstrição eferente mediada pela Ang II (PIG limítrofe, TFG reduzida, risco de LRA elevado). Agora ative o BRA e veja a TFG cair.";
+  else if(lago.bra&&lago.aine&&lago.volume)msg="Tríplice de risco: SRAA bloqueado + AINE (aferente contraída) + hipovolemia → LRA hemodinâmica.";
+  else if(lago.bra&&!lago.aine)msg="BRA relaxa a eferente → ↓ pressão intraglomerular e ↓ albuminúria. TFG pode cair um pouco (creatinina sobe) — proteção a longo prazo.";
+  else if(lago.angII&&!lago.bra)msg="Ang II no AT1 contrai a eferente → sobe a pressão intraglomerular e a albuminúria.";
+  else msg="Ajuste os controles e observe pressão intraglomerular, TFG, albuminúria e risco de LRA.";
+  $("#lagoMsg").textContent=msg;
+}
+function setBar(id,val,col){var el=$("#"+id);if(!el)return;el.style.width=val+"%";el.style.background=col;}
+$$("[data-lago]").forEach(function(b){b.addEventListener("click",function(){
+  var k=b.getAttribute("data-lago");lago[k]=!lago[k];b.classList.toggle("on",lago[k]);drawLago();
+});});
+var lagoReset=$("[data-lago-reset]");if(lagoReset)lagoReset.addEventListener("click",function(){
+  lago={angII:false,bra:false,volume:false,aine:false,estenose:false};$$("[data-lago]").forEach(function(b){b.classList.remove("on")});drawLago();
+});
+
+/* ---------- Galeria dos Sartans ---------- */
+function renderSartans(){
+  var g=$("#sartansGrid");if(!g||typeof SARTANS==="undefined")return;
+  g.innerHTML=SARTANS.map(function(s,i){
+    return '<div class="card sartan" data-s="'+i+'" style="cursor:pointer;border-top:4px solid var(--'+(s.cor==="green"?"at2":s.cor==="amber"?"amber":"blue")+')">'+
+      '<div style="font-size:1.8rem">'+s.em+'</div>'+
+      '<b style="font-size:1.05rem;color:var(--navy)">'+s.nome+'</b>'+
+      '<div class="pill '+(s.cor==="green"?"green":s.cor==="amber"?"amber":"blue")+'" style="margin:6px 0">'+s.alcunha+'</div>'+
+      '<p class="small" style="margin:4px 0 0">'+s.perfil+'</p>'+
+      '<div class="s-more" style="display:none;margin-top:8px">'+
+        '<p class="small"><b>Duração:</b> '+s.dur+' · <b>Potência:</b> '+s.pot+'</p>'+
+        '<p class="small"><b>Quando:</b> '+s.quando+'</p>'+
+        '<p class="small"><b>Evidência:</b> '+s.evid+'</p>'+
+        '<div class="callout amber" style="margin-top:6px"><p class="small"><b>Atenção:</b> '+s.pega+'</p></div>'+
+      '</div>'+
+      '<button class="btn ghost" style="margin-top:8px;font-size:.8rem">Ver perfil ›</button>'+
+    '</div>';
+  }).join("");
+  $$(".sartan",g).forEach(function(c){c.addEventListener("click",function(){
+    var m=$(".s-more",c),btn=$("button",c),open=m.style.display==="none";
+    m.style.display=open?"block":"none";btn.textContent=open?"Ocultar ‹":"Ver perfil ›";
+  });});
+}
+
+/* ---------- Relógio ---------- */
+function renderRelogio(){
+  var el=$("#relogioList");if(!el||typeof RELOGIO==="undefined")return;
+  el.innerHTML=RELOGIO.map(function(r,i){
+    var w=100-(i*14);
+    return '<div style="margin:8px 0"><div style="display:flex;justify-content:space-between"><b>'+r.n+'</b><span class="small">'+r.nota+'</span></div>'+
+      '<div class="bar" style="height:10px;background:var(--navy-soft);border-radius:999px;overflow:hidden;margin-top:3px"><i style="display:block;height:100%;width:'+w+'%;background:linear-gradient(90deg,var(--blue),var(--at2))"></i></div></div>';
+  }).join("");
+}
+
+/* ---------- Prescrição ---------- */
+function renderPresc(){
+  var nav=$("#prescPatients");if(!nav||typeof PRESC==="undefined")return;
+  nav.innerHTML=PRESC.map(function(p,i){return '<button class="tab'+(i===0?" on":"")+'" data-p="'+i+'">'+(i+1)+'</button>'}).join("");
+  $$("[data-p]",nav).forEach(function(b){b.addEventListener("click",function(){
+    $$("[data-p]",nav).forEach(function(x){x.classList.remove("on")});b.classList.add("on");
+    showPresc(parseInt(b.getAttribute("data-p"),10));
+  });});
+  showPresc(0);
+}
+function showPresc(i){
+  var p=PRESC[i],st=$("#prescStage");if(!p||!st)return;
+  st.innerHTML='<p style="font-weight:800">'+p.nome+'</p>'+
+    p.opts.map(function(o,j){return '<button class="opt" data-o="'+j+'"><span class="mk">'+(j===0?"A":"B")+'</span>'+o.t+'</button>'}).join("")+
+    '<div class="qexpl" id="prescFb"></div>';
+  $$(".opt",st).forEach(function(b){b.addEventListener("click",function(){
+    var j=parseInt(b.getAttribute("data-o"),10),o=p.opts[j];
+    $$(".opt",st).forEach(function(x){x.disabled=true;var k=parseInt(x.getAttribute("data-o"),10);if(p.opts[k].ok)x.classList.add("correct");else if(k===j)x.classList.add("wrong");});
+    var fb=$("#prescFb",st);fb.innerHTML='<div class="e">'+(o.ok?"✅ ":"❌ ")+o.fb+'</div>';fb.classList.add("on");
+    state.presc[p.id]=o.ok;save();
+  });});
+}
+
+/* ---------- Escudos (evidências) ---------- */
+function renderShields(){
+  var g=$("#shieldGrid");if(!g||typeof ESTUDOS==="undefined")return;
+  g.innerHTML=ESTUDOS.map(function(e,i){
+    return '<div class="card shield" data-e="'+i+'" style="cursor:pointer;text-align:center">'+
+      '<div style="font-size:1.5rem">🛡️</div><b style="color:var(--navy)">'+e.nome+'</b>'+
+      '<div class="pill blue" style="margin:6px auto">'+e.drug+'</div>'+
+      '<p class="small" style="margin:0">'+e.cenario+'</p>'+
+      '<div class="sh-more" style="display:none;margin-top:8px;text-align:left">'+
+        '<p class="small"><b>População:</b> '+e.pop+'</p>'+
+        '<p class="small"><b>Leitura:</b> '+e.leitura+'</p></div>';
+  }).join("")+'';
+  $$(".shield",g).forEach(function(c){c.addEventListener("click",function(){
+    var m=$(".sh-more",c);m.style.display=m.style.display==="none"?"block":"none";
+  });});
+}
+
+/* ---------- Palácio ---------- */
+function renderRooms(){
+  var el=$("#rooms");if(!el||typeof SALAS==="undefined")return;
+  var cls=["r-forja","r-at1","r-gen","r-at2","r-gal","r-ponte"];
+  el.innerHTML=SALAS.map(function(s,i){
+    return '<div class="room '+cls[i]+(state.rooms.indexOf(s.id)>=0?" visited":"")+'" data-room="'+i+'"><div class="em">'+s.em+'</div><b>'+s.nome+'</b></div>';
+  }).join("");
+  $$("[data-room]",el).forEach(function(r){r.addEventListener("click",function(){
+    var i=parseInt(r.getAttribute("data-room"),10),s=SALAS[i];
+    var p=$("#roomPanel");p.style.display="block";
+    p.innerHTML='<span class="pill">'+s.pill+'</span><h3 style="margin:8px 0">'+s.em+' '+s.nome+'</h3>'+s.html;
+    if(state.rooms.indexOf(s.id)<0){state.rooms.push(s.id);save();}
+    r.classList.add("visited");renderBadges();safeScroll(p);
+  });});
+  renderBadges();
+}
+function renderBadges(){
+  var el=$("#badges");if(!el||typeof SALAS==="undefined")return;
+  el.innerHTML=SALAS.map(function(s){return '<span class="badge'+(state.rooms.indexOf(s.id)>=0?" on":"")+'">'+s.em+' '+s.nome+'</span>'}).join("")+
+    (state.rooms.length===SALAS.length?'<span class="badge on">🏆 Reino completo</span>':'');
+}
+
+/* ---------- Casos ---------- */
+function renderCases(){
+  var nav=$("#caseNav");if(!nav||typeof CASOS==="undefined")return;
+  nav.innerHTML=CASOS.map(function(c,i){return '<button class="tab'+(i===0?" on":"")+'" data-c="'+i+'">Caso '+(i+1)+'</button>'}).join("");
+  $$("[data-c]",nav).forEach(function(b){b.addEventListener("click",function(){
+    $$("[data-c]",nav).forEach(function(x){x.classList.remove("on")});b.classList.add("on");
+    showCase(parseInt(b.getAttribute("data-c"),10));
+  });});
+  showCase(0);
+}
+function showCase(i){
+  var c=CASOS[i],st=$("#caseStage");if(!c||!st)return;
+  st.innerHTML='<div class="card"><span class="pill red">'+c.tit+'</span>'+
+    '<p style="margin-top:8px">'+c.vin+'</p>'+
+    '<p style="font-weight:800;margin-top:8px">'+c.q1+'</p><div id="cq1"></div>'+
+    '<div id="cq1info" style="display:none"><div class="callout" style="margin-top:8px"><p>'+c.info+'</p></div>'+
+      '<p style="font-weight:800;margin-top:10px">'+c.q2+'</p><div id="cq2"></div></div>'+
+    '<div id="cq2disc" style="display:none"><div class="callout green" style="margin-top:8px"><h4>Discussão</h4><p>'+c.disc+'</p></div>'+
+      '<p class="frase" style="margin-top:8px">🧠 '+c.mem+'</p></div></div>';
+  step(c,"cq1",c.d1,c.c1,function(){$("#cq1info").style.display="block";step(c,"cq2",c.d2,c.c2,function(){$("#cq2disc").style.display="block";});});
+}
+function step(c,id,opts,correct,after){
+  var box=$("#"+id);if(!box)return;
+  box.innerHTML=opts.map(function(o,j){return '<button class="opt" data-o="'+j+'"><span class="mk">'+(j===0?"A":"B")+'</span>'+o+'</button>'}).join("");
+  $$(".opt",box).forEach(function(b){b.addEventListener("click",function(){
+    var j=parseInt(b.getAttribute("data-o"),10);
+    $$(".opt",box).forEach(function(x){x.disabled=true;var k=parseInt(x.getAttribute("data-o"),10);if(k===correct)x.classList.add("correct");else if(k===j)x.classList.add("wrong");});
+    if(after)setTimeout(after,250);
+  });});
+}
+
+/* ---------- Quiz ---------- */
+var quizList=[],quizIx=0,quizFilter="todos";
+function initQuiz(){
+  if(typeof QUESTOES_TEC==="undefined")return;
+  var temas=["todos"].concat(uniq(QUESTOES_TEC.map(function(q){return q.tema})));
+  var qf=$("#quizFilters");
+  qf.innerHTML=temas.map(function(t){return '<button class="tab'+(t==="todos"?" on":"")+'" data-qf="'+t+'">'+t+'</button>'}).join("");
+  $$("[data-qf]",qf).forEach(function(b){b.addEventListener("click",function(){
+    $$("[data-qf]",qf).forEach(function(x){x.classList.remove("on")});b.classList.add("on");
+    quizFilter=b.getAttribute("data-qf");buildQuizList();quizIx=0;showQuiz();
+  });});
+  buildQuizList();showQuiz();
+}
+function buildQuizList(){quizList=QUESTOES_TEC.filter(function(q){return quizFilter==="todos"||q.tema===quizFilter});}
+function showQuiz(){
+  var st=$("#quizStage");if(!st||!quizList.length)return;
+  var q=quizList[quizIx];var ans=state.quiz[q.key];
+  st.innerHTML='<div class="card"><div class="tag-row"><span class="pill blue">'+q.tema+'</span><span class="pill '+(q.dif==="difícil"?"red":q.dif==="média"?"amber":"green")+'">'+q.dif+'</span></div>'+
+    '<p style="font-weight:800">'+q.q+'</p>'+
+    q.op.map(function(o,j){return '<button class="opt" data-o="'+j+'"><span class="mk">'+"ABCDE"[j]+'</span>'+o+'</button>'}).join("")+
+    '<div class="qexpl" id="qexpl"><div class="e"><b>Comentários:</b></div>'+q.ec.map(function(e,j){return '<div class="e"><b>'+"ABCDE"[j]+')</b> '+e+'</div>'}).join("")+
+    '<div class="e" style="background:var(--amber-soft);border-radius:8px;padding:6px 8px;margin-top:6px">🎯 <b>Pegadinha:</b> '+q.pega+'</div></div></div>';
+  var expl=$("#qexpl",st);
+  $$(".opt",st).forEach(function(b){
+    var j=parseInt(b.getAttribute("data-o"),10);
+    if(ans!=null){b.disabled=true;if(j===q.c)b.classList.add("correct");else if(j===ans)b.classList.add("wrong");expl.classList.add("on");}
+    b.addEventListener("click",function(){
+      if(state.quiz[q.key]!=null)return;
+      state.quiz[q.key]=j;save();
+      $$(".opt",st).forEach(function(x){x.disabled=true;var k=parseInt(x.getAttribute("data-o"),10);if(k===q.c)x.classList.add("correct");else if(k===j)x.classList.add("wrong");});
+      expl.classList.add("on");updateQuizScore();renderDash();
+    });
+  });
+  $("#quizCount").textContent=(quizIx+1)+" / "+quizList.length;
+  updateQuizScore();
+}
+function updateQuizScore(){
+  var done=0,ok=0;QUESTOES_TEC.forEach(function(q){if(state.quiz[q.key]!=null){done++;if(state.quiz[q.key]===q.c)ok++;}});
+  $("#quizScore").textContent="Respondidas "+done+"/"+QUESTOES_TEC.length+" · Acertos "+ok;
+}
+$("#quizNext").addEventListener("click",function(){if(quizIx<quizList.length-1){quizIx++;showQuiz();}});
+$("#quizPrev").addEventListener("click",function(){if(quizIx>0){quizIx--;showQuiz();}});
+
+/* ---------- Mini-decisões ---------- */
+function renderDec(){
+  var st=$("#decStage");if(!st||typeof MINI_DECISOES==="undefined")return;
+  st.innerHTML=MINI_DECISOES.map(function(d,i){
+    return '<div class="card" data-d="'+i+'"><span class="pill amber">Decisão '+(i+1)+'</span>'+
+      '<p style="margin-top:6px">'+d.cen+'</p>'+
+      d.op.map(function(o,j){return '<button class="opt" data-o="'+j+'"><span class="mk">'+(j===0?"A":"B")+'</span>'+o+'</button>'}).join("")+
+      '<div class="qexpl"></div></div>';
+  }).join("");
+  $$("[data-d]",st).forEach(function(card){
+    var i=parseInt(card.getAttribute("data-d"),10),d=MINI_DECISOES[i];
+    $$(".opt",card).forEach(function(b){b.addEventListener("click",function(){
+      var j=parseInt(b.getAttribute("data-o"),10);
+      $$(".opt",card).forEach(function(x){x.disabled=true;var k=parseInt(x.getAttribute("data-o"),10);if(k===d.c)x.classList.add("correct");else if(k===j)x.classList.add("wrong");});
+      var fb=$(".qexpl",card);fb.innerHTML='<div class="e">'+(j===d.c?"✅ ":"❌ ")+d.fb+'</div>';fb.classList.add("on");
+    });});
+  });
+}
+
+/* ---------- Flashcards ---------- */
+var flashList=[],flashIx=0,flashFilter="todos",onlyHard=false;
+function initFlash(){
+  if(typeof FLASHCARDS==="undefined")return;
+  var cats=["todos"].concat(uniq(FLASHCARDS.map(function(f){return f.cat})));
+  var ff=$("#flashFilters");
+  ff.innerHTML=cats.map(function(c){return '<button class="tab'+(c==="todos"?" on":"")+'" data-ff="'+c+'">'+c+'</button>'}).join("");
+  $$("[data-ff]",ff).forEach(function(b){b.addEventListener("click",function(){
+    $$("[data-ff]",ff).forEach(function(x){x.classList.remove("on")});b.classList.add("on");
+    flashFilter=b.getAttribute("data-ff");buildFlash();flashIx=0;showFlash();
+  });});
+  $("#onlyHard").addEventListener("change",function(){onlyHard=this.checked;buildFlash();flashIx=0;showFlash();});
+  $("#flashShuffle").addEventListener("click",function(){buildFlash();for(var i=flashList.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=flashList[i];flashList[i]=flashList[j];flashList[j]=t;}flashIx=0;showFlash();});
+  $("#flashPrev").addEventListener("click",function(){if(flashIx>0){flashIx--;showFlash();}});
+  $("#flashNext").addEventListener("click",function(){if(flashIx<flashList.length-1){flashIx++;showFlash();}});
+  buildFlash();showFlash();
+}
+function buildFlash(){
+  flashList=FLASHCARDS.map(function(f,i){return{f:f,i:i}}).filter(function(o){
+    if(flashFilter!=="todos"&&o.f.cat!==flashFilter)return false;
+    if(onlyHard&&state.flash["c"+o.i]!=="hard")return false;return true;
+  });
+}
+function showFlash(){
+  var st=$("#flashStage");if(!st)return;
+  if(!flashList.length){st.innerHTML='<p class="small">Nada aqui. (Marque alguns como difíceis para usar o filtro.)</p>';$("#flashCount").textContent="0 / 0";return;}
+  var o=flashList[flashIx],f=o.f,rate=state.flash["c"+o.i]||"";
+  st.innerHTML='<div class="flashcard" id="fc"><div class="inner">'+
+    '<div class="face front"><span class="tagm">'+f.cat+'</span><div class="q">'+f.q+'</div><p class="small" style="margin-top:10px">toque para virar</p></div>'+
+    '<div class="face back"><span class="tagm">resposta</span><div class="a">'+f.a+'</div></div></div></div>'+
+    '<div class="flash-rate"><button class="easy'+(rate==="easy"?" on":"")+'" data-r="easy">Fácil</button><button class="med'+(rate==="med"?" on":"")+'" data-r="med">Médio</button><button class="hard'+(rate==="hard"?" on":"")+'" data-r="hard">Difícil</button></div>';
+  $("#fc",st).addEventListener("click",function(){this.classList.toggle("flip");});
+  $$(".flash-rate button",st).forEach(function(b){b.addEventListener("click",function(){
+    state.flash["c"+o.i]=b.getAttribute("data-r");save();showFlash();renderDash();
+  });});
+  $("#flashCount").textContent=(flashIx+1)+" / "+flashList.length;
+}
+
+/* ---------- Pegadinhas ---------- */
+function renderPeg(){
+  var st=$("#pegStage");if(!st||typeof PEGADINHAS==="undefined")return;
+  st.innerHTML=PEGADINHAS.map(function(p,i){
+    return '<div class="card" data-pg="'+i+'"><p style="font-weight:800">"'+p.af+'"</p>'+
+      '<div style="display:flex;gap:8px;margin-top:6px"><button class="btn ghost" data-v="true">Verdadeiro</button><button class="btn ghost" data-v="false">Falso</button></div>'+
+      '<div class="qexpl"></div></div>';
+  }).join("");
+  $$("[data-pg]",st).forEach(function(card){
+    var i=parseInt(card.getAttribute("data-pg"),10),p=PEGADINHAS[i];
+    $$("[data-v]",card).forEach(function(b){b.addEventListener("click",function(){
+      var v=b.getAttribute("data-v")==="true",right=(v===p.v);
+      $$("[data-v]",card).forEach(function(x){x.disabled=true;});
+      b.style.borderColor=right?"var(--at2)":"var(--at1)";b.style.background=right?"var(--at2-soft)":"var(--at1-soft)";
+      var fb=$(".qexpl",card);fb.innerHTML='<div class="e">'+(right?"✅ Correto. ":"❌ ")+p.cor+'</div><div class="e">🔑 '+p.fix+'</div>';fb.classList.add("on");
+    });});
+  });
+}
+
+/* ---------- Dashboard + espaçada ---------- */
+function renderDash(){
+  var el=$("#dash");if(!el)return;
+  var qDone=0,qOk=0;if(typeof QUESTOES_TEC!=="undefined")QUESTOES_TEC.forEach(function(q){if(state.quiz[q.key]!=null){qDone++;if(state.quiz[q.key]===q.c)qOk++;}});
+  var hard=0;Object.keys(state.flash).forEach(function(k){if(state.flash[k]==="hard")hard++;});
+  var rooms=state.rooms.length,totalRooms=(typeof SALAS!=="undefined")?SALAS.length:6;
+  el.innerHTML='<div class="dash-row"><span>Questões respondidas</span><b>'+qDone+'</b></div>'+
+    '<div class="dash-row"><span>Acertos</span><b>'+qOk+'</b></div>'+
+    '<div class="dash-row"><span>Flashcards difíceis</span><b>'+hard+'</b></div>'+
+    '<div class="dash-row"><span>Salas visitadas</span><b>'+rooms+'/'+totalRooms+'</b></div>';
+}
+var SPACED=[{k:"hoje",t:"Hoje — ler o capítulo e visitar as 6 salas"},{k:"amanha",t:"Amanhã — refazer a Arena TEC e as pegadinhas"},{k:"d3",t:"Em 3 dias — flashcards difíceis + Galeria dos Sartans"},{k:"d7",t:"Em 7 dias — casos clínicos + A Grande Comparação"},{k:"d15",t:"Em 15 dias — simulado geral IECA + BRA"}];
+function renderSpaced(){
+  var el=$("#spaced");if(!el)return;
+  el.innerHTML=SPACED.map(function(s){return '<label class="sp-row"><input type="checkbox" data-sp="'+s.k+'"'+(state.spaced[s.k]?" checked":"")+'> '+s.t+'</label>'}).join("");
+  $$("[data-sp]",el).forEach(function(c){c.addEventListener("change",function(){state.spaced[c.getAttribute("data-sp")]=c.checked;save();});});
+}
+
+/* ---------- Frases de ouro ---------- */
+function renderGold(){
+  var el=$("#goldPhrases");if(!el||typeof FRASES_OURO==="undefined")return;
+  el.innerHTML=FRASES_OURO.map(function(f){return '<p class="frase" style="font-size:1rem;border-left:4px solid var(--amber);padding-left:12px;margin:8px 0">'+f+'</p>'}).join("");
+}
+
+/* ---------- Conselho do Reino ---------- */
+var CONSELHO=[
+ {em:"🩸",nome:"Renina",fala:"Eu inicio tudo, clivando o angiotensinogênio. O BRA não me toca."},
+ {em:"🏭",nome:"ECA (a Forja)",fala:"Continuo acesa: sigo produzindo Angiotensina II. O BRA não me inibe — isso era com o IECA."},
+ {em:"📨",nome:"Angiotensina II",fala:"Sou a mensageira. Não sou vilã: quem decide o efeito é o portão que eu uso."},
+ {em:"🏰",nome:"Receptor AT1",fala:"Sou o General da Guerra. Aperto tudo. Mas o BRA travou minha fechadura."},
+ {em:"🌿",nome:"Receptor AT2",fala:"Sou o Arquiteto. Abro caminhos e reparo — sem ser super-herói. Fico preservado."},
+ {em:"💊",nome:"BRA",fala:"Não destruo a fábrica. Ocupo o Portão AT1. A Ang II segue ao AT2."},
+ {em:"🧂",nome:"Aldosterona",fala:"Com o AT1 travado, caio — e o potássio pode subir."},
+ {em:"💧",nome:"Bradicinina",fala:"Não me acumulo com o BRA. Por isso: muito menos tosse."}
+];
+function renderConselho(){
+  var el=$("#conselhoGrid");if(!el)return;
+  el.innerHTML=CONSELHO.map(function(c){return '<div class="card" style="text-align:center"><div style="font-size:1.6rem">'+c.em+'</div><b>'+c.nome+'</b><p class="small" style="margin-top:6px">"'+c.fala+'"</p></div>'}).join("");
+}
+
+/* ---------- Teste da memória ---------- */
+function renderMemTest(){
+  var el=$("#memTest");if(!el||typeof MEM_TEST==="undefined")return;
+  el.innerHTML=MEM_TEST.map(function(m,i){
+    return '<div class="acc"><button aria-expanded="false"><span>'+(i+1)+'. '+m.q+'</span><span class="ico">＋</span></button><div class="body"><div class="body-in"><p>'+m.a+'</p></div></div></div>';
+  }).join("");
+  $$(".acc",el).forEach(function(a){var btn=$("button",a),body=$(".body",a);btn.addEventListener("click",function(){
+    var open=a.classList.toggle("open");btn.setAttribute("aria-expanded",open?"true":"false");
+    var ico=$(".ico",btn);if(ico)ico.textContent=open?"✕":"＋";
+    body.style.maxHeight=open?body.querySelector(".body-in").scrollHeight+24+"px":"0";
+  });});
+}
+
+/* ---------- utils ---------- */
+function uniq(a){var o={},r=[];a.forEach(function(x){if(!o[x]){o[x]=1;r.push(x);}});return r;}
+var dashStyle=document.createElement("style");
+dashStyle.textContent=".dash-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line)}.dash-row:last-child{border-bottom:none}.dash-row b{font-family:'IBM Plex Mono',monospace}.sp-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:.9rem;border-bottom:1px dashed var(--line);cursor:pointer}.sp-row:last-child{border-bottom:none}";
+document.head.appendChild(dashStyle);
+
+/* ---------- init ---------- */
+function renderAll(){
+  renderLab();drawLago();renderSartans();renderRelogio();renderPresc();renderShields();
+  renderRooms();renderCases();initQuiz();renderDec();initFlash();renderPeg();
+  renderDash();renderSpaced();renderGold();renderConselho();renderMemTest();
+}
+applyPrefs();renderAll();updateProgress();
+try{
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){updateProgress();}});},{threshold:.4});
+    $$("section.sec, header.sec").forEach(function(s){io.observe(s);});
+  }
+}catch(e){}
+})();
+
+</script>
+</body>
+</html>
