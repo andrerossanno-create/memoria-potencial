@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- ================================================================
+  ATLAS MENTAL DA HIPERTENSÃO ARTERIAL
+  BLOCO 2 • TEMA 4 • CAPÍTULO 5C
+  BETABLOQUEADORES
+  "Simpatópolis · A Torre da Adrenalina"
+  Autor: Dr. André Rossanno
+  Arquivo único, autossuficiente, offline, sem dependências externas.
+  LS_KEY: atlasHAS_b2t4_cap5c_bb_v1
+================================================================= -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap. 5C — Betabloqueadores · Atlas Mental da Hipertensão</title>
+<style>
+/* ====================== FONTES ====================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Dancing+Script:wght@600;700&display=swap');
+
+/* ====================== TOKENS ====================== */
+:root{
+  /* Identidade Bloco 2 */
+  --navy:#0f2740;          /* estrutura */
+  --navy-2:#1b3a5c;
+  --azul-atlas:#1282A2;    /* conceito / fisiologia / mecanismo */
+  --azul-soft:#e4f2f6;
+  --azul-deep:#0c6076;
+  --verde:#1e8f5e;         /* benefício / protege / indicação */
+  --verde-soft:#e3f5ec;
+  --ambar:#e8a13a;         /* pegadinha / atenção */
+  --ambar-soft:#fdf2df;
+  --vermelho:#c0392b;      /* perigo / contraindicação / limite */
+  --vermelho-soft:#fbe9e7;
+  --cinza:#5b6b7a;
+  --cinza-soft:#eef2f5;
+  --papel:#f7f9fb;         /* fundo claro */
+  --papel-2:#ffffff;
+  --linha:#d9e2ea;
+
+  /* Identidade própria do capítulo (Simpatópolis / adrenérgico) */
+  --adren:#d81e5b;         /* adrenalina / alerta simpático */
+  --adren-soft:#fde6ef;
+  --b1:#c0392b;            /* receptor beta-1 (coração) */
+  --b2:#1282A2;            /* receptor beta-2 (pulmão/vaso/glicose) */
+  --b3:#7a6bde;            /* beta-3 (metabólico) — uso pontual e didático */
+  /* três gerações (personagens) */
+  --brutamonte:#8a3f2a;    /* 1ª geração */
+  --cirurgiao:#2c6e8f;     /* 2ª geração */
+  --engenheiro:#1e8f5e;    /* 3ª geração */
+  --ouro:#c99a2e;          /* nebivolol / NO / destaque diplomata */
+
+  --radius:16px;
+  --radius-s:10px;
+  --shadow:0 8px 30px rgba(15,39,64,.10);
+  --shadow-s:0 3px 12px rgba(15,39,64,.08);
+  --maxw:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',system-ui,'Trebuchet MS',Arial,sans-serif;
+  color:var(--navy);
+  background:var(--papel);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body.reduz *{animation:none!important;transition:none!important}
+
+/* ====================== TIPOGRAFIA ====================== */
+h1,h2,h3,h4{font-weight:800;line-height:1.2;color:var(--navy)}
+.kicker{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--azul-atlas);font-weight:600;
+}
+.assinatura{font-family:'Dancing Script',cursive;font-weight:700}
+
+/* ====================== LAYOUT ====================== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:56px 0;border-bottom:1px solid var(--linha)}
+.sec-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.sechead{margin-bottom:28px}
+.sechead .num{
+  font-family:'IBM Plex Mono',monospace;color:var(--azul-atlas);
+  font-size:.8rem;font-weight:600;letter-spacing:.1em;
+}
+.sechead h2{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-top:6px}
+.sechead p.lead{color:var(--cinza);font-size:1.02rem;margin-top:8px;max-width:70ch}
+
+/* ====================== NAV ====================== */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(15,39,64,.96);backdrop-filter:blur(8px);
+  color:#fff;border-bottom:2px solid var(--adren);
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:.98rem;letter-spacing:.02em}
+.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--adren);box-shadow:0 0 0 4px rgba(216,30,91,.25);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(216,30,91,.30)}50%{box-shadow:0 0 0 8px rgba(216,30,91,0)}}
+.brand small{font-weight:600;color:#9fc6d6;font-family:'IBM Plex Mono',monospace;font-size:.7rem}
+.nav-toggles{display:flex;gap:8px;align-items:center}
+.tgl{
+  font-family:'Nunito';font-size:.74rem;font-weight:700;
+  background:rgba(255,255,255,.10);color:#dceaf0;border:1px solid rgba(255,255,255,.18);
+  padding:6px 10px;border-radius:20px;cursor:pointer;transition:.2s;white-space:nowrap;
+}
+.tgl:hover{background:rgba(255,255,255,.20)}
+.tgl.on{background:var(--adren);color:#fff;border-color:var(--adren)}
+.nav-menu-btn{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer}
+
+/* progress bar */
+.progressbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--adren),var(--ouro));z-index:70;transition:width .1s}
+
+/* ====================== HERO ====================== */
+.hero{
+  position:relative;overflow:hidden;color:#fff;text-align:center;
+  background:radial-gradient(1200px 500px at 50% -10%, #24425f 0%, var(--navy) 55%, #0a1c2e 100%);
+  padding:64px 20px 72px;border-bottom:none;
+}
+.hero .city{position:absolute;inset:0;opacity:.20;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:840px;margin:0 auto}
+.hero .kicker{color:var(--adren);letter-spacing:.22em}
+.hero h1{color:#fff;font-size:clamp(2.1rem,6vw,3.6rem);font-weight:900;margin:14px 0 6px;letter-spacing:-.01em}
+.hero .sub{color:#bcd4e2;font-size:clamp(1.05rem,2.6vw,1.35rem);font-weight:700}
+.hero .impacto{
+  margin:26px auto 0;max-width:640px;font-size:1.12rem;color:#eaf3f8;
+  border-left:3px solid var(--adren);padding:12px 20px;background:rgba(255,255,255,.05);
+  border-radius:0 12px 12px 0;text-align:left;
+}
+.breadcrumb{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#7fa8bd;letter-spacing:.1em;margin-bottom:6px}
+
+/* ====================== HUB ====================== */
+.hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:34px}
+.hub a{
+  display:flex;flex-direction:column;gap:4px;text-decoration:none;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;padding:14px 14px;color:#dbe8ef;transition:.2s;
+}
+.hub a:hover{background:rgba(216,30,91,.18);border-color:var(--adren);transform:translateY(-2px)}
+.hub a b{color:#fff;font-size:.95rem}
+.hub a span{font-size:.76rem;color:#9fc0d1}
+.hub a .h-ic{font-size:1.2rem}
+
+/* ====================== CARDS / BLOCOS ====================== */
+.card{background:var(--papel-2);border:1px solid var(--linha);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-s)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mini{font-size:.9rem}
+
+/* bloco de ensino curto */
+.teach{background:var(--papel-2);border:1px solid var(--linha);border-left:4px solid var(--azul-atlas);border-radius:0 12px 12px 0;padding:16px 18px;margin:14px 0}
+.teach .tag{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--azul-atlas)}
+.teach h4{margin:4px 0 6px;font-size:1.08rem}
+
+/* imagem mental */
+.mental{background:linear-gradient(180deg,var(--azul-soft),#fff);border:1px dashed var(--azul-atlas);border-radius:12px;padding:14px 18px;margin:14px 0}
+.mental .lbl{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--azul-deep);text-transform:uppercase;font-weight:600}
+.mental p{margin-top:4px}
+
+/* pegadinha */
+.pega{background:var(--ambar-soft);border:1px solid #f0d59a;border-left:4px solid var(--ambar);border-radius:0 12px 12px 0;padding:14px 18px;margin:14px 0}
+.pega .lbl{font-weight:800;color:#a9741a;font-size:.86rem;display:flex;align-items:center;gap:6px}
+.pega .lbl::before{content:"⚠";font-size:1rem}
+
+/* síntese 1 linha */
+.sintese{background:var(--navy);color:#eaf3f8;border-radius:12px;padding:12px 18px;margin:14px 0;font-weight:700;font-size:.98rem;display:flex;gap:10px;align-items:flex-start}
+.sintese::before{content:"➜";color:var(--adren);font-weight:900}
+
+/* badge N1-N7 */
+.nbadge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:600;letter-spacing:.06em;padding:2px 8px;border-radius:20px;background:var(--adren-soft);color:var(--adren);border:1px solid #f4b8ce;vertical-align:middle}
+
+/* badge de prova/exame */
+.exam-badge{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.06em;padding:4px 10px;border-radius:20px;background:var(--azul-soft);color:var(--azul-deep);border:1px solid #b8dbe4}
+
+/* pílulas de fármacos */
+.pill{display:inline-block;font-size:.8rem;font-weight:700;padding:4px 11px;border-radius:20px;margin:3px 4px 3px 0;border:1px solid}
+.pill.b1g{background:#f6e9e4;color:var(--brutamonte);border-color:#e0bcae}
+.pill.b2g{background:#e5eff3;color:var(--cirurgiao);border-color:#b7d3de}
+.pill.b3g{background:var(--verde-soft);color:var(--engenheiro);border-color:#a9dcc4}
+
+.prof-hide{}
+body.prof .prof-hide{display:none!important}
+
+/* Utilidades */
+.small{font-size:.84rem}
+.muted{color:var(--cinza)}
+.center{text-align:center}
+.mt8{margin-top:8px}.mt16{margin-top:16px}.mt24{margin-top:24px}
+.tagline{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza)}
+.ref{font-size:.8rem;color:var(--cinza);font-style:italic}
+
+/* ====================== RESPONSIVO ====================== */
+@media(max-width:820px){
+  .grid2,.grid3{grid-template-columns:1fr}
+  .nav-toggles{position:fixed;top:58px;right:0;flex-direction:column;background:var(--navy);padding:12px;border-radius:0 0 0 12px;display:none;box-shadow:var(--shadow)}
+  .nav-toggles.open{display:flex}
+  .nav-menu-btn{display:block}
+}
+</style>
+</head>
+<body>
+<div class="progressbar" id="progressbar"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Atlas Mental <small>· B2·T4·Cap.5C</small></span>
+    </div>
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="menu">☰</button>
+    <div class="nav-toggles" id="navToggles">
+      <button class="tgl" id="tSom" title="Sons de interface">🔊 Som</button>
+      <button class="tgl" id="tProf" title="Modo professor: oculta respostas">🎓 Professor</button>
+      <button class="tgl" id="tMov" title="Reduzir movimento">🎬 Reduzir mov.</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="topo">
+  <svg class="city" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#9fc0d1">
+      <rect x="40" y="220" width="60" height="180"/><rect x="120" y="160" width="70" height="240"/>
+      <rect x="210" y="250" width="50" height="150"/><rect x="280" y="120" width="80" height="280"/>
+      <rect x="380" y="200" width="60" height="200"/><rect x="460" y="90" width="90" height="310"/>
+      <rect x="570" y="180" width="55" height="220"/><rect x="645" y="140" width="75" height="260"/>
+      <rect x="740" y="230" width="60" height="170"/><rect x="820" y="110" width="85" height="290"/>
+      <rect x="925" y="200" width="60" height="200"/><rect x="1005" y="150" width="70" height="250"/>
+      <rect x="1095" y="240" width="60" height="160"/>
+    </g>
+    <g fill="#d81e5b" opacity=".8" class="win">
+      <rect x="140" y="185" width="10" height="10"/><rect x="300" y="150" width="10" height="10"/>
+      <rect x="480" y="120" width="10" height="10"/><rect x="665" y="170" width="10" height="10"/>
+      <rect x="840" y="140" width="10" height="10"/><rect x="1025" y="180" width="10" height="10"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <div class="breadcrumb">ATLAS MENTAL · BLOCO 2 · TEMA 4 · CAPÍTULO 5C</div>
+    <div class="kicker">Tratamento farmacológico da hipertensão</div>
+    <h1>Betabloqueadores</h1>
+    <div class="sub">Simpatópolis &amp; a Torre da Adrenalina</div>
+    <div class="impacto">
+      A adrenalina não é a inimiga. O problema é quando ela <b>nunca vai embora</b>.
+      Os betabloqueadores não a destroem — apenas trancam as fechaduras que ela tanto quer apertar.
+    </div>
+
+    <div class="hub">
+      <a href="#adrenalina"><span class="h-ic">🏙️</span><b>A cidade</b><span>Simpatópolis &amp; β</span></a>
+      <a href="#receptores"><span class="h-ic">🔌</span><b>Receptores</b><span>β1 · β2 · β3</span></a>
+      <a href="#mecanismos"><span class="h-ic">⚙️</span><b>6 mecanismos</b><span>como baixam a PA</span></a>
+      <a href="#geracoes"><span class="h-ic">🚪</span><b>3 gerações</b><span>os três irmãos</span></a>
+      <a href="#rio-akira"><span class="h-ic">🌊</span><b>Sala do rio</b><span>NAda ATÉ SO</span></a>
+      <a href="#micabe"><span class="h-ic">🛡️</span><b>MiCaBe</b><span>tríade da ICFEr</span></a>
+      <a href="#lab"><span class="h-ic">🔬</span><b>Laboratório</b><span>dos receptores</span></a>
+      <a href="#campeonato"><span class="h-ic">🏆</span><b>Campeonato</b><span>campeões por tema</span></a>
+      <a href="#indicacoes"><span class="h-ic">✅</span><b>Indicações</b><span>quem merece um BB</span></a>
+      <a href="#contra"><span class="h-ic">⛔</span><b>Contraindicações</b><span>portas fechadas</span></a>
+      <a href="#adversos"><span class="h-ic">🌡️</span><b>Efeitos adversos</b><span>o corpo acende</span></a>
+      <a href="#julgamento"><span class="h-ic">⚖️</span><b>Julgamento</b><span>do Atenolol</span></a>
+      <a href="#diretriz"><span class="h-ic">🔺</span><b>Diretriz 2025</b><span>a pirâmide</span></a>
+      <a href="#casos"><span class="h-ic">🩺</span><b>Casos &amp; Arena</b><span>bancos TEC</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== COMO USAR ===================== -->
+<section id="comousar" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// COMO USAR ESTE CAPÍTULO</span>
+      <h2>Suba a torre, andar por andar</h2>
+      <p class="lead">Cada andar entrega uma peça: fisiologia → mecanismo → personagem → decisão clínica. Use os botões do topo para <b>Som</b>, <b>Modo Professor</b> (oculta as respostas para você se testar) e <b>Reduzir movimento</b>. Seu progresso fica salvo neste dispositivo.</p>
+    </div>
+    <div class="grid3">
+      <div class="teach"><span class="tag">Aprender</span><h4>Blocos curtos</h4><p class="mini">Explicação → imagem mental → pergunta → pegadinha → síntese. Sempre a fisiologia antes do remédio.</p></div>
+      <div class="teach"><span class="tag">Fixar</span><h4>N1 a N7</h4><p class="mini">As âncoras de memória aparecem marcadas <span class="nbadge">N1</span> ao longo do texto, não em um capítulo isolado.</p></div>
+      <div class="teach"><span class="tag">Testar</span><h4>Arena TEC</h4><p class="mini">Casos, questões comentadas, mini-cards de revisão e o Hipocampo com seus erros e revisão espaçada.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FILOSOFIA (abertura) ===================== -->
+<section id="filosofia" style="background:linear-gradient(180deg,#fff, var(--azul-soft))">
+  <div class="sec-inner" style="max-width:780px">
+    <div class="sechead center">
+      <span class="num">// FILOSOFIA</span>
+      <h2>Antes de decorar, entenda o medo</h2>
+    </div>
+    <div class="card" style="border-left:4px solid var(--adren)">
+      <p>Todo betabloqueador nasce de uma mesma intuição humana: o corpo em alerta permanente adoece. O coração que corre sem perseguidor, a pressão que sobe sem esforço, a noite que não vem porque a mente não desliga — tudo isso é a adrenalina fazendo, sem necessidade, o que foi desenhada para fazer só diante do perigo.</p>
+      <p class="mt16">Estes remédios não silenciam a vida. Eles apenas devolvem ao organismo a pausa que ele esqueceu de tomar. Entender isso muda a forma como você prescreve: você não está "desligando" um paciente, está reensinando o corpo a descansar. E é por isso que, quando o descanso vira risco — na asma que fecha, no coração que já bate devagar demais — a mesma gentileza precisa saber recuar.</p>
+      <p class="mt16">Se você sair deste capítulo sabendo <i>quando oferecer o freio e quando poupá-lo</i>, terá aprendido mais do que uma classe de fármacos. Terá aprendido a escutar o simpático.</p>
+      <p class="mt24 assinatura" style="font-size:1.5rem;color:var(--adren);text-align:right">— Dr. André Rossanno</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 1. A CIDADE / ADRENALINA ===================== -->
+<section id="adrenalina">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 1 · A CIDADE</span>
+      <h2>Simpatópolis nunca dorme <span class="nbadge">N1</span></h2>
+      <p class="lead">Uma cidade em estado de guerra permanente. No centro, a Torre da Adrenalina. Ela aperta interruptores chamados β — e não aprendeu a desligá-los.</p>
+    </div>
+
+    <div class="mental">
+      <span class="lbl">Imagem mental</span>
+      <p>A <b style="color:var(--adren)">adrenalina</b> corre pela cidade apertando botões. Cada botão é um receptor β. Ela não é vilã: foi feita para salvar você do perigo. O problema é que, na hipertensão, ela <b>bate ponto todos os dias</b> — e nunca encerra o expediente.</p>
+    </div>
+
+    <div class="teach">
+      <span class="tag">A equação mestra</span>
+      <h4>PAM = DC × RVS</h4>
+      <p>Pressão Arterial Média = Débito Cardíaco × Resistência Vascular Sistêmica. E o débito, por sua vez: <b>DC = FC × VS</b> (frequência × volume sistólico). Qualquer coisa que reduza frequência, força de contração ou resistência dos vasos <b>reduz a pressão</b>. É exatamente aqui que os betabloqueadores entram.</p>
+    </div>
+
+    <div class="teach" style="border-left-color:var(--adren)">
+      <span class="tag" style="color:var(--adren)">A grande lição</span>
+      <h4>O betabloqueador não mata a adrenalina</h4>
+      <p>Ela continua viva, continua circulando, continua tentando apertar os botões. Só que agora as fechaduras têm <b>capas de proteção</b>. Ela aperta — e nada acontece. Guardar isto para sempre: <b>bloqueio de receptor, não destruição do hormônio.</b></p>
+    </div>
+
+    <div class="pega">
+      <span class="lbl">Pegadinha TEC</span>
+      <p class="mini">"O betabloqueador reduz os níveis de adrenalina/noradrenalina circulantes?" → Em geral <b>não</b> é esse o mecanismo. Ele ocupa o receptor. As catecolaminas seguem lá; o que muda é que não conseguem mais se acoplar.</p>
+    </div>
+
+    <div class="sintese">O coração corre porque a adrenalina aperta β. Trancar o β é devolver a pausa.</div>
+  </div>
+</section>
+
+<!-- ===================== 2. RECEPTORES ===================== -->
+<section id="receptores" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 2 · OS RECEPTORES</span>
+      <h2>β1, β2 e β3 — onde estão e o que fazem <span class="nbadge">N2</span></h2>
+      <p class="lead">Regra de contagem para nunca mais errar: <b>β1 = "1 coração"</b> (e rim). <b>β2 = "2, o resto do corpo"</b> (pulmão, vaso, fígado). β3 = o interruptor metabólico.</p>
+    </div>
+
+    <!-- COMPONENTE: trancar receptores -->
+    <div class="rec-lab">
+      <p class="rec-hint">Clique num receptor para <b>trancá-lo</b> (como faz o betabloqueador) e ver o que acontece:</p>
+      <div class="rec-row">
+        <button class="recchip" data-rec="b1"><span class="lock">🔓</span><b>β1</b><small>coração + rim</small></button>
+        <button class="recchip" data-rec="b2"><span class="lock">🔓</span><b>β2</b><small>pulmão, vaso, glicose</small></button>
+        <button class="recchip" data-rec="b3"><span class="lock">🔓</span><b>β3</b><small>metabólico / NO</small></button>
+      </div>
+      <div class="rec-out" id="recOut"><span class="muted mini">Nenhum receptor trancado — a adrenalina aperta tudo livremente.</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card" style="border-top:4px solid var(--b1)">
+        <div class="tagline" style="color:var(--b1)">β1 · O ACELERADOR</div>
+        <h3 style="color:var(--b1);margin:4px 0 8px">Coração &amp; rim</h3>
+        <p class="mini">Ativação de β1 sobe tudo o que acelera o coração — os "quatro tropismos" mais a renina:</p>
+        <ul class="mini" style="margin:10px 0 0 18px">
+          <li>↑ <b>Cronotropismo</b> — frequência cardíaca</li>
+          <li>↑ <b>Inotropismo</b> — força de contração</li>
+          <li>↑ <b>Dromotropismo</b> — velocidade de condução AV</li>
+          <li>↑ <b>Renina</b> — nas células justaglomerulares do rim</li>
+        </ul>
+        <div class="sintese" style="margin-top:14px;font-size:.9rem">Bloquear β1 = coração mais lento, mais suave, e menos renina.</div>
+      </div>
+
+      <div class="card" style="border-top:4px solid var(--b2)">
+        <div class="tagline" style="color:var(--b2)">β2 · O ESPALHADOR</div>
+        <h3 style="color:var(--b2);margin:4px 0 8px">Pulmão, vaso &amp; fígado</h3>
+        <p class="mini">β2 leva a mensagem ao corpo inteiro. Quando o remédio o <b>bloqueia</b>, aparecem os efeitos indesejados:</p>
+        <ul class="mini" style="margin:10px 0 0 18px">
+          <li><b>Broncoconstrição</b> — risco na asma / DPOC</li>
+          <li><b>Vasoconstrição periférica</b> — extremidades frias, piora de DAOP</li>
+          <li>↓ <b>Liberação de glicose</b> — mascara hipoglicemia, mexe no metabolismo</li>
+        </ul>
+        <div class="pega" style="margin-top:14px">
+          <span class="lbl">Pegadinha TEC</span>
+          <p class="mini">Os efeitos "ruins" do β2 são a razão de existir a cardiosseletividade. Mas atenção ao próximo andar: seletividade <b>não é absoluta</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt16" style="border-top:4px solid var(--b3)">
+      <div class="tagline" style="color:var(--b3)">β3 · O INTERRUPTOR METABÓLICO</div>
+      <h3 style="color:var(--b3);margin:4px 0 8px">O braço protetor que quase ninguém lembra</h3>
+      <p class="mini">Receptor acoplado à proteína Gs; ativado por catecolaminas (noradrenalina &gt; adrenalina) → ↑AMPc → PKA. Fica no tecido adiposo (principal), bexiga (detrusor), endotélio, músculo e células imunes. Seis funções: termogênese/lipólise, relaxamento do detrusor (base dos agonistas β3 na bexiga hiperativa), <b>vasodilatação dependente do endotélio via NO</b>, melhora da sensibilidade à insulina, ação anti-inflamatória e proteção cardiovascular.</p>
+      <div class="mental" style="margin-top:12px">
+        <span class="lbl">Por que isto importa aqui</span>
+        <p class="mini">O β3 é o "gancho" que explica que a modulação adrenérgica não é só freio — há um braço que <b>protege e relaxa via óxido nítrico</b>. Guarde esta ponte: ela reaparece no nebivolol, o Diplomata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.rec-lab{background:linear-gradient(180deg,var(--azul-soft),#fff);border:1px solid #b8dbe4;border-radius:16px;padding:18px;margin-bottom:20px}
+.rec-hint{font-size:.9rem;color:var(--navy);margin-bottom:12px}
+.rec-row{display:flex;gap:12px;flex-wrap:wrap}
+.recchip{flex:1;min-width:150px;display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border:2px solid var(--linha);border-radius:14px;padding:14px 10px;cursor:pointer;transition:.2s;font-family:'Nunito'}
+.recchip b{font-size:1.3rem;color:var(--navy)}
+.recchip small{font-size:.72rem;color:var(--cinza)}
+.recchip .lock{font-size:1.4rem;transition:transform .2s}
+.recchip:hover{border-color:var(--azul-atlas);transform:translateY(-2px)}
+.recchip.locked{border-color:var(--adren);background:var(--adren-soft)}
+.recchip.locked .lock{transform:scale(1.15)}
+.recchip[data-rec="b1"].locked{border-color:var(--b1);background:#f8ece8}
+.recchip[data-rec="b2"].locked{border-color:var(--b2);background:#e5eff3}
+.recchip[data-rec="b3"].locked{border-color:var(--b3);background:#efedfb}
+.rec-out{margin-top:14px;background:#fff;border-radius:12px;padding:14px 16px;min-height:56px;border:1px dashed var(--linha)}
+.rec-out .good{color:var(--verde);font-weight:700}
+.rec-out .bad{color:var(--vermelho);font-weight:700}
+.rec-out .item{margin:4px 0;font-size:.9rem}
+</style>
+
+<!-- ===================== 3. MECANISMOS ===================== -->
+<section id="mecanismos">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 3 · OS SEIS MECANISMOS</span>
+      <h2>Como os betabloqueadores baixam a pressão <span class="nbadge">N3</span></h2>
+      <p class="lead">Múltiplos mecanismos, efeito anti-hipertensivo sustentado. O primeiro é hemodinâmico e imediato; o principal, a longo prazo, é neuro-hormonal (a renina).</p>
+    </div>
+
+    <!-- COMPONENTE: coração que desacelera + cascata da renina -->
+    <div class="grid2" style="align-items:stretch">
+      <div class="card mech-demo">
+        <div class="tagline" style="color:var(--b1)">MECANISMO IMEDIATO · ↓ DÉBITO</div>
+        <div class="heart-wrap">
+          <svg viewBox="0 0 120 110" class="heart-svg" id="heartSvg" aria-hidden="true">
+            <path id="heartPath" d="M60 96 C10 60 18 22 44 22 C56 22 60 34 60 38 C60 34 64 22 76 22 C102 22 110 60 60 96 Z"
+              fill="#e2596b" stroke="#b63145" stroke-width="2"/>
+          </svg>
+          <div class="bpm"><span id="bpmVal">96</span><small>bpm</small></div>
+        </div>
+        <button class="btn-nav" id="heartBtn" style="width:100%">💊 Aplicar betabloqueador</button>
+        <p class="mini muted mt8" id="heartMsg">Coração em Simpatópolis: adrenalina no comando, ritmo acelerado.</p>
+      </div>
+
+      <div class="card mech-demo">
+        <div class="tagline" style="color:var(--verde)">MECANISMO PRINCIPAL CRÔNICO · ↓ RENINA</div>
+        <div class="cascade" id="cascade">
+          <div class="casc-node" data-step="0"><b>β1 renal</b><small>célula justaglomerular</small></div>
+          <div class="casc-arrow">↓</div>
+          <div class="casc-node" data-step="1"><b>Renina</b></div>
+          <div class="casc-arrow">↓</div>
+          <div class="casc-node" data-step="2"><b>Angiotensina II</b></div>
+          <div class="casc-arrow">↓</div>
+          <div class="casc-node" data-step="3"><b>Aldosterona</b><small>+ vasoconstrição</small></div>
+          <div class="casc-arrow">↓</div>
+          <div class="casc-node casc-end" data-step="4"><b id="cascPA">↑ PA</b></div>
+        </div>
+        <button class="btn-nav" id="cascBtn" style="width:100%;background:var(--verde)">🔒 Bloquear β1 renal</button>
+        <p class="mini muted mt8" id="cascMsg">Cascata ativa: a renina mantém a pressão lá em cima.</p>
+      </div>
+    </div>
+
+    <h4 class="center mt24" style="color:var(--cinza)">Os seis mecanismos em detalhe</h4>
+    <div class="grid3 mt16" id="mecGrid"></div>
+
+    <div class="teach mt24" style="border-left-color:var(--adren)">
+      <span class="tag" style="color:var(--adren)">O detalhe que cai em prova</span>
+      <h4>Só ALGUNS vasodilatam</h4>
+      <p>A vasodilatação (mecanismo 5) <b>não é da classe</b>. É de personagens específicos: <b>Nebivolol</b> (via óxido nítrico) e <b>Carvedilol / Labetalol</b> (via bloqueio α1). Nunca generalize "betabloqueador vasodilata".</p>
+    </div>
+
+    <div class="sintese">Começa baixando o débito (agudo). Sustenta baixando a renina e reajustando o barorreflexo (crônico). Por isso não se suspende de uma vez.</div>
+  </div>
+</section>
+<style>
+.mech-demo{display:flex;flex-direction:column}
+.heart-wrap{position:relative;display:flex;justify-content:center;align-items:center;padding:10px 0 4px;flex:1}
+.heart-svg{width:130px;height:120px;transform-origin:60px 60px;animation:beat .625s ease-in-out infinite}
+body.reduz .heart-svg{animation:none}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.12)}30%{transform:scale(1)}45%{transform:scale(1.06)}}
+.bpm{position:absolute;bottom:8px;right:14px;text-align:center;color:var(--b1);font-weight:900;font-size:1.5rem;line-height:1}
+.bpm small{display:block;font-size:.6rem;color:var(--cinza);font-weight:600}
+.cascade{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0}
+.casc-node{background:var(--vermelho-soft);border:1px solid #e5b4ab;border-radius:10px;padding:6px 14px;text-align:center;transition:.4s;min-width:180px}
+.casc-node b{font-size:.92rem;color:var(--navy)}
+.casc-node small{display:block;font-size:.68rem;color:var(--cinza)}
+.casc-node.casc-end{background:var(--vermelho);border-color:var(--vermelho)}
+.casc-node.casc-end b{color:#fff}
+.casc-arrow{color:var(--vermelho);font-weight:900;line-height:1}
+.cascade.blocked .casc-node{background:var(--cinza-soft);border-color:var(--linha);opacity:.4}
+.cascade.blocked .casc-arrow{opacity:.25}
+.cascade.blocked .casc-node[data-step="0"]{opacity:1;background:var(--verde-soft);border-color:var(--verde)}
+.cascade.blocked .casc-node.casc-end{background:var(--verde);border-color:var(--verde);opacity:1}
+.cascade.blocked .casc-node.casc-end b{color:#fff}
+/* personagens SVG */
+.char-card{position:relative}
+.char-svg{display:block;width:96px;height:96px;margin:0 auto 4px}
+/* simulador de dose */
+.dose-sim .dose-bars{display:flex;flex-direction:column;gap:12px}
+.dose-bar-row{display:flex;align-items:center;gap:12px}
+.dose-lbl{font-weight:800;font-size:.82rem;min-width:120px;text-align:right}
+.dose-track{flex:1;background:var(--cinza-soft);border-radius:20px;height:22px;overflow:hidden}
+.dose-fill{height:100%;width:0;border-radius:20px;transition:width .5s ease}
+.b1fill{background:var(--b1)}
+.b2fill{background:var(--b2)}
+.dose-range{width:100%;margin-top:20px;accent-color:var(--adren)}
+.dose-scale{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--cinza);margin-top:4px}
+.dose-msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:.9rem;font-weight:700;text-align:center;transition:.3s}
+.dose-msg.low{background:var(--verde-soft);color:var(--verde)}
+.dose-msg.mid{background:var(--ambar-soft);color:#a9741a}
+.dose-msg.high{background:var(--vermelho-soft);color:var(--vermelho)}
+/* barras CAFE */
+.cafe-bars{margin-top:14px}
+.cafe-row{display:flex;align-items:center;gap:10px;margin:8px 0}
+.cafe-name{font-size:.8rem;color:#eaf3f8;min-width:150px}
+.cafe-track{flex:1;background:rgba(255,255,255,.1);border-radius:20px;height:20px;overflow:hidden}
+.cafe-fill{height:100%;width:0;border-radius:20px;transition:width .9s ease}
+.cafe-num{font-family:'IBM Plex Mono',monospace;font-weight:600;color:#fff;min-width:48px;text-align:right}
+</style>
+
+<!-- ===================== 4. AS TRÊS GERAÇÕES ===================== -->
+<section id="geracoes" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 4 · OS TRÊS IRMÃOS</span>
+      <h2>As três gerações <span class="nbadge">N2</span></h2>
+      <p class="lead">Três portas, três personagens. O aluno nunca mais confunde as gerações quando elas viram gente.</p>
+    </div>
+
+    <div class="grid3">
+      <div class="card char-card" style="border-top:5px solid var(--brutamonte)">
+        <svg class="char-svg" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="34" r="16" fill="#c98a72"/>
+          <path d="M28 96 C28 66 40 56 50 56 C60 56 72 66 72 96 Z" fill="#8a3f2a"/>
+          <rect x="30" y="28" width="40" height="7" rx="3" fill="#5e2a1c"/>
+          <rect x="12" y="60" width="8" height="26" rx="2" fill="#5e2a1c" transform="rotate(-18 16 73)"/>
+          <rect x="6" y="52" width="20" height="12" rx="2" fill="#7a7f85" transform="rotate(-18 16 58)"/>
+          <rect x="80" y="60" width="8" height="26" rx="2" fill="#5e2a1c" transform="rotate(18 84 73)"/>
+          <rect x="74" y="52" width="20" height="12" rx="2" fill="#7a7f85" transform="rotate(18 84 58)"/>
+        </svg>
+        <h3 class="center" style="color:var(--brutamonte)">O Brutamonte</h3>
+        <p class="center small muted">1ª geração · não cardiosseletivo</p>
+        <p class="mini mt8">Dois martelos: bate em <b>β1 e β2</b>, sem escolher ninguém.</p>
+        <div class="mt8">
+          <span class="pill b1g">Propranolol</span>
+          <span class="pill b1g">Nadolol</span>
+          <span class="pill b1g">Pindolol</span>
+        </div>
+        <p class="mini mt8"><b>Propranolol</b>: o mais lipofílico → mais SNC e broncoespasmo. <b>Nadolol</b>: meia-vida longa, dose única. <b>Pindolol</b>: tem ISA (atividade simpaticomimética intrínseca).</p>
+      </div>
+
+      <div class="card char-card" style="border-top:5px solid var(--cirurgiao)">
+        <svg class="char-svg" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="34" r="16" fill="#d8b49a"/>
+          <path d="M34 22 A16 16 0 0 1 66 22 L34 22 Z" fill="#2c6e8f"/>
+          <rect x="38" y="40" width="24" height="8" rx="4" fill="#8fb8c9"/>
+          <path d="M30 96 C30 66 40 56 50 56 C60 56 70 66 70 96 Z" fill="#2c6e8f"/>
+          <rect x="74" y="40" width="4" height="34" rx="2" fill="#c9d2d8" transform="rotate(20 76 57)"/>
+          <path d="M74 38 l6 4 -3 5 z" fill="#9aa4ab" transform="rotate(20 76 57)"/>
+        </svg>
+        <h3 class="center" style="color:var(--cirurgiao)">O Cirurgião</h3>
+        <p class="center small muted">2ª geração · cardiosseletivo</p>
+        <p class="mini mt8">Bisturi preciso: corta <b>só β1</b>. Poupa o pulmão — enquanto a dose permitir.</p>
+        <div class="mt8">
+          <span class="pill b2g">Atenolol</span>
+          <span class="pill b2g">Metoprolol</span>
+          <span class="pill b2g">Bisoprolol</span>
+        </div>
+        <p class="mini mt8"><b>Atenolol</b>: hidrofílico, o "réu" das evidências. <b>Metoprolol</b>: o <b>succinato</b> é o de ICFEr. <b>Bisoprolol</b>: altíssima seletividade β1, dose única.</p>
+      </div>
+
+      <div class="card char-card" style="border-top:5px solid var(--engenheiro)">
+        <svg class="char-svg" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="34" r="16" fill="#cdae8f"/>
+          <path d="M32 26 Q50 10 68 26 L64 20 Q50 12 36 20 Z" fill="#c99a2e"/>
+          <rect x="34" y="20" width="32" height="8" rx="3" fill="#c99a2e"/>
+          <path d="M30 96 C30 66 40 56 50 56 C60 56 70 66 70 96 Z" fill="#1e8f5e"/>
+          <rect x="76" y="46" width="5" height="30" rx="2" fill="#7a7f85" transform="rotate(24 78 61)"/>
+          <path d="M74 44 a6 6 0 1 1 8 6 l-3 -3 z" fill="#9aa4ab" transform="rotate(24 78 61)"/>
+        </svg>
+        <h3 class="center" style="color:var(--engenheiro)">O Engenheiro</h3>
+        <p class="center small muted">3ª geração · vasodilatador</p>
+        <p class="mini mt8">Não só freia — <b>remodela a circulação</b>.</p>
+        <div class="mt8">
+          <span class="pill b3g">Carvedilol</span>
+          <span class="pill b3g">Nebivolol</span>
+        </div>
+        <p class="mini mt8"><b>Carvedilol</b>: não-seletivo + <b>bloqueio α1</b> → vasodilata. <b>Nebivolol</b>: cardiosseletivo + <b>óxido nítrico</b> → vasodilata e preserva o metabolismo.</p>
+      </div>
+    </div>
+
+    <div class="pega mt16">
+      <span class="lbl">Pegadinha TEC — a mais cobrada da classe</span>
+      <p class="mini"><b>Carvedilol é cardiosseletivo?</b> NÃO. Ele é 3ª geração e <i>moderno</i>, mas continua <b>não-seletivo</b> (β1+β2), com bloqueio α1 por cima. "Moderno" ≠ "cardiosseletivo".</p>
+    </div>
+
+    <div class="pega">
+      <span class="lbl">Pegadinha TEC — cardiosseletividade</span>
+      <p class="mini">Cardiosseletividade é <b>relativa e dose-dependente</b>. Em dose alta, o β1-seletivo passa a bloquear β2 também. Por isso nunca se diz que cardiosseletivo é "seguro" na asma — é "preferível quando indispensável", com cautela.</p>
+    </div>
+
+    <!-- COMPONENTE: simulador de seletividade dose-dependente -->
+    <div class="card mt16 dose-sim">
+      <h4 class="center">Simulador: a seletividade escorrega com a dose</h4>
+      <p class="center mini muted">Um cardiosseletivo (ex.: bisoprolol). Arraste a dose e veja o β2 começar a ser atingido.</p>
+      <div class="dose-bars mt16">
+        <div class="dose-bar-row"><span class="dose-lbl" style="color:var(--b1)">β1 (coração)</span><div class="dose-track"><div class="dose-fill b1fill" id="b1fill"></div></div></div>
+        <div class="dose-bar-row"><span class="dose-lbl" style="color:var(--b2)">β2 (pulmão/vaso)</span><div class="dose-track"><div class="dose-fill b2fill" id="b2fill"></div></div></div>
+      </div>
+      <input type="range" min="1" max="3" value="1" step="1" id="doseSlider" class="dose-range">
+      <div class="dose-scale"><span>Dose baixa</span><span>Média</span><span>Alta</span></div>
+      <div class="dose-msg" id="doseMsg"></div>
+    </div>
+
+    <!-- Seletividade — mapa -->
+    <div class="card mt16">
+      <h4 class="center">O mapa da seletividade</h4>
+      <div class="grid2 mt16">
+        <div style="border:1px solid #e0bcae;border-radius:12px;padding:14px;background:#faf1ec">
+          <div class="tagline center" style="color:var(--brutamonte)">NÃO CARDIOSSELETIVOS · β1 + β2</div>
+          <p class="center mini mt8">Carvedilol · Propranolol · Pindolol</p>
+          <p class="center small muted">agem também em pulmão, músculo e vasos</p>
+        </div>
+        <div style="border:1px solid #b7d3de;border-radius:12px;padding:14px;background:#eef6f9">
+          <div class="tagline center" style="color:var(--cirurgiao)">CARDIOSSELETIVOS · só β1</div>
+          <p class="center mini mt8">Succinato de metoprolol · Bisoprolol · Nebivolol · Atenolol</p>
+          <p class="center small muted">agem sobretudo em coração, cérebro e rim</p>
+        </div>
+      </div>
+      <p class="ref center mt8">Fidelidade à aula: o metoprolol da classificação é o <b>succinato</b>.</p>
+    </div>
+
+    <!-- Propriedades -->
+    <div class="grid3 mt16">
+      <div class="teach"><span class="tag">Lipofílicos</span><h4>Mais SNC</h4><p class="mini">Propranolol, metoprolol, carvedilol. Atravessam a barreira hematoencefálica → insônia, pesadelos, fadiga. Metabolismo hepático.</p></div>
+      <div class="teach"><span class="tag">Hidrofílicos</span><h4>Menos SNC</h4><p class="mini">Atenolol, nadolol. Menos efeitos centrais; excreção renal → atenção na DRC.</p></div>
+      <div class="teach"><span class="tag">ISA</span><h4>Agonismo parcial</h4><p class="mini">Ex.: pindolol. Menos bradicardia de repouso; hoje pouco usado e evitado no pós-IAM.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SALA DO AKIRA · O RIO (hidrofílicos) ===================== -->
+<section id="rio-akira">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// SALA DOS MNEMÔNICOS · PROF. AKIRA</span>
+      <h2>Quem <span style="color:var(--azul-atlas)">NA</span>da <span style="color:var(--azul-atlas)">ATÉ</span> <span style="color:var(--vermelho)">SO</span> passa pelo rim <span class="nbadge">N5</span></h2>
+      <p class="lead">O Prof. Akira aparece à beira do rio de Simpatópolis: "os fármacos que <b>nadam pela água</b> são os hidrofílicos — e todo nadador, cedo ou tarde, desemboca no <b>rim</b>."</p>
+    </div>
+
+    <div class="akira-intro">
+      <svg class="akira-svg" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="32" r="15" fill="#e2c6a0"/>
+        <path d="M35 24 Q50 6 65 24 Q58 16 50 16 Q42 16 35 24 Z" fill="#2b2b2b"/>
+        <rect x="40" y="30" width="8" height="3" rx="1" fill="#2b2b2b"/><rect x="52" y="30" width="8" height="3" rx="1" fill="#2b2b2b"/>
+        <path d="M30 96 C30 66 40 56 50 56 C60 56 70 66 70 96 Z" fill="#3a5a7a"/>
+        <path d="M50 56 l-6 40 h12 z" fill="#e8eef2" opacity=".5"/>
+      </svg>
+      <p class="mini"><b>Prof. Akira:</b> "Não decore uma lista solta. Veja o rio. Três nadadores atravessam a correnteza rumo ao rim gigante — mas repare bem no terceiro. Ele nada junto, mas não é da mesma laia."</p>
+    </div>
+
+    <!-- Rio animado -->
+    <div class="rio-wrap">
+      <svg class="rio-svg" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#8fd3e8"/><stop offset="1" stop-color="#4d9fc4"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="600" height="220" fill="#eaf4f8"/>
+        <rect x="0" y="40" width="480" height="140" fill="url(#agua)"/>
+        <path class="onda" d="M0 50 Q30 44 60 50 T120 50 T180 50 T240 50 T300 50 T360 50 T420 50 T480 50" stroke="#bfe6f0" stroke-width="3" fill="none" opacity=".7"/>
+        <path class="onda onda2" d="M0 150 Q30 144 60 150 T120 150 T180 150 T240 150 T300 150 T360 150 T420 150 T480 150" stroke="#bfe6f0" stroke-width="3" fill="none" opacity=".7"/>
+        <!-- rim gigante -->
+        <g transform="translate(480,60)">
+          <path d="M60 50 C60 12 30 6 18 24 C6 6 -18 14 -14 46 C-18 78 6 96 30 88 C54 96 78 74 60 50 Z" fill="#b5476a"/>
+          <path d="M22 40 C34 40 40 48 40 56" stroke="#f0c9d6" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <text x="14" y="122" font-family="IBM Plex Mono" font-size="13" fill="#7a3049" font-weight="600">RIM</text>
+        </g>
+        <!-- nadadores -->
+        <g class="swimmer sw1"><circle cx="0" cy="0" r="11" fill="#1282A2"/><text x="-9" y="4" font-family="Nunito" font-size="9" fill="#fff" font-weight="800">NA</text></g>
+        <g class="swimmer sw2"><circle cx="0" cy="0" r="11" fill="#1282A2"/><text x="-11" y="4" font-family="Nunito" font-size="9" fill="#fff" font-weight="800">ATÉ</text></g>
+        <g class="swimmer sw3"><circle cx="0" cy="0" r="13" fill="#c0392b" stroke="#7a1f16" stroke-width="2"/><text x="-8" y="4" font-family="Nunito" font-size="9" fill="#fff" font-weight="800">SO</text></g>
+      </svg>
+      <div class="rio-legend">
+        <span class="pill b2g" style="border-color:#1282A2"><b>NA</b> = Nadolol</span>
+        <span class="pill b2g" style="border-color:#1282A2"><b>ATÉ</b> = Atenolol</span>
+        <span class="pill" style="background:var(--vermelho-soft);color:var(--vermelho);border:1px solid #e5b4ab"><b>SO</b> = Sotalol ⚠</span>
+      </div>
+    </div>
+
+    <div class="grid3 mt16">
+      <div class="teach"><span class="tag">Por que "nadam"</span><h4>Hidrofílicos</h4><p class="mini">Solúveis em água, não atravessam bem a barreira hematoencefálica.</p></div>
+      <div class="teach"><span class="tag">Consequência boa</span><h4>Menos SNC</h4><p class="mini">Menos insônia, pesadelos, fadiga e depressão que os lipofílicos.</p></div>
+      <div class="teach" style="border-left-color:var(--ambar)"><span class="tag" style="color:#a9741a">Consequência a vigiar</span><h4>Eliminação renal → DRC</h4><p class="mini">Saem pelo rim. Na doença renal crônica há risco de acúmulo — ajustar dose.</p></div>
+    </div>
+
+    <!-- SOTALOL: o estranho no rio -->
+    <div class="card mt16 sotalol-alert">
+      <div class="sot-head">
+        <span class="sot-badge">⚠ O ESTRANHO NO RIO</span>
+        <h3 style="color:var(--vermelho);margin-top:6px">Sotalol nada junto — mas não é da turma</h3>
+      </div>
+      <p class="mini">Ele compartilha a hidrofilia e a rota renal, por isso entra no mnemônico. Mas <b>não é um betabloqueador de hipertensão</b> como os outros dois:</p>
+      <div class="grid2 mt8">
+        <div class="teach" style="border-left-color:var(--vermelho)"><span class="tag" style="color:var(--vermelho)">Classe diferente</span><h4>Antiarrítmico Classe III</h4><p class="mini">Bloqueia canais de K⁺ (ação Classe III) além do bloqueio β (Classe II). Na prática é usado como <b>antiarrítmico</b> (FA, arritmias ventriculares), não para tratar HAS.</p></div>
+        <div class="teach" style="border-left-color:var(--vermelho)"><span class="tag" style="color:var(--vermelho)">Risco próprio</span><h4>Prolonga o QT</h4><p class="mini">Traz risco de <b>torsades de pointes</b> — um perigo proarrítmico que Nadolol e Atenolol <b>não</b> têm.</p></div>
+      </div>
+      <div class="pega mt16">
+        <span class="lbl">Pegadinha TEC — "SOBe o QT"</span>
+        <p class="mini">O <b>SO</b> (Sotalol) é o único que <b>SOBe o QT</b>, porque é Classe III. Nadolol e Atenolol causam bradicardia/hipotensão por bloqueio beta; o Sotalol acrescenta a torsades. Nunca trate o Sotalol como "só mais um hidrofílico que passa pelo rim".</p>
+      </div>
+    </div>
+
+    <div class="sintese">Os três nadam pelo rim (hidrofílicos, menos SNC, cautela na DRC). Mas o SO carrega uma segunda bandeira: Classe III, SOBe o QT.</div>
+  </div>
+</section>
+
+<!-- ===================== TABELA DE DOSES ===================== -->
+<section id="doses">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// PRESCRIÇÃO · DOSES</span>
+      <h2>Doses habituais por geração</h2>
+      <p class="lead">Referência da Diretriz Brasileira de HAS 2025. Lembre: a prova cobra o <b>cenário de escolha</b>, quase nunca a dose exata.</p>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem">
+        <thead>
+          <tr style="background:var(--navy);color:#fff;text-align:left">
+            <th style="padding:12px 16px">Classe / Medicamento</th>
+            <th style="padding:12px 16px">Dose diária (mg)</th>
+            <th style="padding:12px 16px">Doses/dia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--azul-soft)"><td colspan="3" style="padding:8px 16px;font-weight:800;color:var(--brutamonte)">1ª geração · não cardiosseletivo</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Propranolol</td><td style="padding:10px 16px">80 – 320</td><td style="padding:10px 16px">2 a 3</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Nadolol</td><td style="padding:10px 16px">40 – 160</td><td style="padding:10px 16px">1</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Pindolol</td><td style="padding:10px 16px">10 – 60</td><td style="padding:10px 16px">1</td></tr>
+          <tr style="background:var(--azul-soft)"><td colspan="3" style="padding:8px 16px;font-weight:800;color:var(--cirurgiao)">2ª geração · cardiosseletivo</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Atenolol</td><td style="padding:10px 16px">50 – 100</td><td style="padding:10px 16px">1 a 2</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Metoprolol</td><td style="padding:10px 16px">50 – 200</td><td style="padding:10px 16px">1</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Bisoprolol</td><td style="padding:10px 16px">5 – 20</td><td style="padding:10px 16px">1</td></tr>
+          <tr style="background:var(--azul-soft)"><td colspan="3" style="padding:8px 16px;font-weight:800;color:var(--engenheiro)">3ª geração</td></tr>
+          <tr style="border-bottom:1px solid var(--linha)"><td style="padding:10px 16px">Nebivolol</td><td style="padding:10px 16px">2,5 – 10</td><td style="padding:10px 16px">1</td></tr>
+          <tr><td style="padding:10px 16px">Carvedilol</td><td style="padding:10px 16px">6,25 – 50</td><td style="padding:10px 16px">1 a 2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SALA MICABE (tríade da ICFEr) ===================== -->
+<section id="micabe" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// SALA DOS MNEMÔNICOS · PROF. AKIRA</span>
+      <h2><span style="color:var(--engenheiro)">MiCaBe</span> usar betabloqueador <span class="nbadge">N5</span></h2>
+      <p class="lead">O Prof. Akira leva você ao leito de um coração fraco: "na insuficiência cardíaca com fração reduzida, nem todo BB entra. Só três guardiões têm a chave — e você já sabe o nome deles: <b>MiCaBe</b>."</p>
+    </div>
+
+    <div class="micabe-phrase">
+      "Na insuficiência cardíaca, <b>MiCaBe</b> usar betabloqueador."
+    </div>
+
+    <!-- os três guardiões -->
+    <div class="grid3 mt24" id="micabeGrid">
+      <div class="card char-card mica-card" data-k="mi" style="border-top:5px solid var(--cirurgiao)">
+        <svg class="char-svg" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="32" r="15" fill="#d8b49a"/>
+          <path d="M32 96 C32 66 42 56 50 56 C58 56 68 66 68 96 Z" fill="#2c6e8f"/>
+          <rect x="36" y="60" width="28" height="20" rx="3" fill="#fff" opacity=".85"/>
+          <text x="50" y="74" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#2c6e8f" font-weight="700">SR</text>
+        </svg>
+        <div class="mica-syl" style="color:var(--cirurgiao)">Mi</div>
+        <h4 class="center">Metoprolol <span style="color:var(--vermelho)">SUCCINATO</span></h4>
+        <div class="mica-lock">⚠ succinato — o tartarato NÃO serve</div>
+        <p class="mini mica-exp" style="display:none">Só o <b>succinato</b> (liberação prolongada) tem evidência de desfecho em ICFEr. O tartarato é para angina / controle de FC.</p>
+      </div>
+      <div class="card char-card mica-card" data-k="ca" style="border-top:5px solid var(--engenheiro)">
+        <svg class="char-svg" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="32" r="15" fill="#cdae8f"/>
+          <path d="M30 96 C30 66 40 56 50 56 C60 56 70 66 70 96 Z" fill="#1e8f5e"/>
+          <path d="M40 62 h20 v6 h-20 z" fill="#fff" opacity=".8"/>
+        </svg>
+        <div class="mica-syl" style="color:var(--engenheiro)">Ca</div>
+        <h4 class="center">Carvedilol</h4>
+        <div class="mica-lock" style="background:var(--verde-soft);color:var(--engenheiro);border-color:#a9dcc4">3ª geração · α1 + β</div>
+        <p class="mini mica-exp" style="display:none">Não-seletivo com bloqueio α1 (vasodilata). 3ª geração, um dos pilares da ICFEr.</p>
+      </div>
+      <div class="card char-card mica-card" data-k="be" style="border-top:5px solid var(--cirurgiao)">
+        <svg class="char-svg" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="32" r="15" fill="#d8b49a"/>
+          <path d="M32 96 C32 66 42 56 50 56 C58 56 68 66 68 96 Z" fill="#2c6e8f"/>
+          <circle cx="50" cy="68" r="8" fill="#fff" opacity=".85"/><text x="50" y="71" text-anchor="middle" font-family="Nunito" font-size="8" fill="#2c6e8f" font-weight="800">β1</text>
+        </svg>
+        <div class="mica-syl" style="color:var(--cirurgiao)">Be</div>
+        <h4 class="center">Bisoprolol</h4>
+        <div class="mica-lock" style="background:#e5eff3;color:var(--cirurgiao);border-color:#b7d3de">altíssima seletividade β1</div>
+        <p class="mini mica-exp" style="display:none">O mais cardiosseletivo dos três; dose única diária.</p>
+      </div>
+    </div>
+    <p class="center small muted mt8">clique em cada guardião para o racional</p>
+
+    <div class="mental mt16">
+      <span class="lbl">Imagem mental</span>
+      <p>Três guardiões cercam o coração fraco de Simpatópolis. <b>Mi</b>-<b>Ca</b>-<b>Be</b>: o único jeito de o betabloqueador entrar na sala da insuficiência cardíaca. Quem não é MiCaBe fica na porta.</p>
+    </div>
+
+    <div class="pega mt16">
+      <span class="lbl">Pegadinha TEC — qual metoprolol?</span>
+      <p class="mini">Na IC, é o <b>SUCCINATO</b>. O tartarato NÃO tem a evidência de desfecho em ICFEr. E cuidado com o oposto: <b>não</b> é "todo BB serve na IC" — são exatamente estes três clássicos (o nebivolol entra por porta própria, veja abaixo).</p>
+    </div>
+
+    <div class="sintese">IC com FE reduzida = <b>MiCaBe</b> (Metoprolol succinato · Carvedilol · Bisoprolol) + nebivolol à parte.</div>
+
+    <!-- sub-ala SENIORS -->
+    <div class="card mt24 seniors-card">
+      <div class="tagline" style="color:var(--ouro)">ALA SÊNIOR · O DIPLOMATA</div>
+      <h3 style="color:var(--ouro);margin:4px 0 8px">Nebivolol — entra na IC por uma porta própria</h3>
+      <p class="mini">Ele <b>não</b> faz parte do MiCaBe, e isso é de propósito. Seu passaporte para a insuficiência cardíaca é o estudo <b>SENIORS</b>: nebivolol em <b>idosos</b> com IC (incluindo fração preservada e reduzida), com redução do desfecho combinado de morte ou hospitalização cardiovascular.</p>
+      <div class="pega mt8">
+        <span class="lbl">Pegadinha TEC</span>
+        <p class="mini">Se a questão listar "os BB com evidência clássica na ICFEr", a resposta é MiCaBe. O nebivolol aparece pela via do SENIORS (idosos) — some, mas não é um dos três clássicos do mnemônico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LABORATÓRIO DOS RECEPTORES ===================== -->
+<style>
+/* Prof Akira intro */
+.akira-intro{display:flex;gap:16px;align-items:center;background:var(--azul-soft);border:1px solid #b8dbe4;border-radius:14px;padding:14px 18px;margin-bottom:18px}
+.akira-svg{width:72px;height:72px;flex-shrink:0}
+/* Rio */
+.rio-wrap{background:#eaf4f8;border:1px solid #b8dbe4;border-radius:16px;padding:14px;overflow:hidden}
+.rio-svg{width:100%;height:auto;display:block}
+.swimmer{--start:-40px}
+.sw1{animation:swim 6s linear infinite}
+.sw2{animation:swim 6s linear infinite;animation-delay:1.4s}
+.sw3{animation:swim 6s linear infinite;animation-delay:2.8s}
+@keyframes swim{0%{transform:translate(-40px,95px)}100%{transform:translate(510px,95px)}}
+.sw1{transform:translate(-40px,70px)}.sw2{transform:translate(-40px,110px)}.sw3{transform:translate(-40px,150px)}
+.onda{animation:ondula 3s ease-in-out infinite alternate}
+.onda2{animation:ondula 3s ease-in-out infinite alternate-reverse}
+@keyframes ondula{0%{transform:translateX(0)}100%{transform:translateX(-30px)}}
+body.reduz .swimmer,body.reduz .onda,body.reduz .onda2{animation:none}
+body.reduz .sw1{transform:translate(150px,70px)}body.reduz .sw2{transform:translate(260px,110px)}body.reduz .sw3{transform:translate(370px,150px)}
+.rio-legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+/* Sotalol alert */
+.sotalol-alert{border:2px solid var(--vermelho);border-left:6px solid var(--vermelho);background:linear-gradient(180deg,var(--vermelho-soft),#fff)}
+.sot-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.08em;background:var(--vermelho);color:#fff;padding:4px 12px;border-radius:20px}
+/* MiCaBe */
+.micabe-phrase{text-align:center;font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;color:var(--navy);background:linear-gradient(180deg,var(--verde-soft),#fff);border:1px dashed var(--engenheiro);border-radius:14px;padding:18px;margin-top:8px}
+.mica-card{cursor:pointer;transition:.2s;position:relative}
+.mica-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.mica-syl{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:2rem;font-weight:700;line-height:1}
+.mica-lock{text-align:center;font-size:.72rem;font-weight:700;background:var(--vermelho-soft);color:var(--vermelho);border:1px solid #e5b4ab;border-radius:20px;padding:4px 10px;margin:8px auto 0;display:inline-block;width:100%}
+.mica-card.open .mica-exp{display:block!important;margin-top:8px}
+.seniors-card{border:1px solid #e6d6a8;border-left:4px solid var(--ouro);background:linear-gradient(180deg,#fdf8ec,#fff)}
+</style>
+
+<!-- ===================== LABORATÓRIO DOS RECEPTORES ===================== -->
+<section id="lab" style="background:linear-gradient(180deg,var(--navy),#0a1c2e);color:#fff;border-bottom:none">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num" style="color:#7fc3d6">// LABORATÓRIO DOS RECEPTORES</span>
+      <h2 style="color:#fff">Clique num receptor e veja o que acontece</h2>
+      <p class="lead" style="color:#bcd4e2">Onde ele está, o que a ativação faz, o que muda quando o betabloqueador o ocupa — e qual a consequência clínica.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+      <button class="labbtn" data-r="b1">β1</button>
+      <button class="labbtn" data-r="b2">β2</button>
+      <button class="labbtn" data-r="a1">α1</button>
+      <button class="labbtn" data-r="no">NO</button>
+      <button class="labbtn" data-r="renina">Renina</button>
+    </div>
+    <div id="labView" class="card" style="margin-top:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#eaf3f8;min-height:150px"></div>
+  </div>
+</section>
+<style>
+.labbtn{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1.05rem;background:rgba(255,255,255,.08);color:#dbe8ef;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:12px 22px;cursor:pointer;transition:.2s}
+.labbtn:hover{background:rgba(216,30,91,.25);border-color:var(--adren)}
+.labbtn.on{background:var(--adren);color:#fff;border-color:var(--adren);transform:translateY(-2px)}
+#labView h3{color:#fff}
+#labView .row{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin-top:12px;font-size:.94rem}
+#labView .row .k{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.06em;color:#7fc3d6;text-transform:uppercase;padding-top:2px}
+</style>
+
+<!-- ===================== 5. CAMPEONATO ===================== -->
+<section id="campeonato">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 5 · O CAMPEONATO</span>
+      <h2>Campeões por característica <span class="nbadge">N6</span></h2>
+      <p class="lead">Não existe "o melhor betabloqueador". Existe o melhor <b>para cada coisa</b>. Clique num troféu para ver o porquê fisiológico.</p>
+    </div>
+    <div class="grid3" id="champGrid"></div>
+    <div class="pega mt16">
+      <span class="lbl">Regra do campeonato</span>
+      <p class="mini">Nenhuma categoria termina em "logo, o nebivolol é o melhor". Termina em "para <b>esta</b> característica, o campeão é X". O nebivolol vence várias — mas não é superior universal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6. INDICAÇÕES ===================== -->
+<section id="indicacoes" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 6 · QUEM MERECE UM BB</span>
+      <h2>A Sala das Indicações <span class="nbadge">N7</span></h2>
+      <p class="lead">A prova quase nunca pergunta a dose. Pergunta: <b>em qual paciente o betabloqueador é a melhor escolha?</b> Clique em cada porta para o racional.</p>
+    </div>
+    <div class="grid3" id="indGrid"></div>
+    <div class="pega mt16">
+      <span class="lbl">Pegadinha TEC — hipertensão portal</span>
+      <p class="mini">Para varizes de esôfago o BB é <b>não seletivo</b> (propranolol, nadolol): aqui o efeito β2 esplâncnico é <i>desejado</i> para reduzir a pressão portal. Cardiosseletivo não serve nessa indicação.</p>
+    </div>
+    <div class="pega">
+      <span class="lbl">Pegadinha TEC — apneia do sono</span>
+      <p class="mini">AOS não é indicação "automática". É "<b>pode ser considerado</b>" em cenário específico, sobretudo quando há HAS associada e outra indicação para BB.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 7. CONTRAINDICAÇÕES ===================== -->
+<section id="contra">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 7 · PORTAS FECHADAS</span>
+      <h2>Contraindicações e precauções</h2>
+      <p class="lead">Agora a porta fica vermelha. Quatro grandes contraindicações da aula — mais as precauções que caem em prova.</p>
+    </div>
+    <div class="grid2">
+      <div class="card" style="border-left:4px solid var(--vermelho)">
+        <h4 style="color:var(--vermelho)">🫁 Broncopatia grave ou descompensada</h4>
+        <p class="mini">Asma grave, DPOC descompensado. Broncoespasmo é efeito β2. <b>Se indispensável, usar cardiosseletivo</b> — e mesmo assim com cautela, porque a seletividade some em dose alta.</p>
+      </div>
+      <div class="card" style="border-left:4px solid var(--vermelho)">
+        <h4 style="color:var(--vermelho)">🫀 Bloqueio sinoatrial ou atrioventricular</h4>
+        <p class="mini">BSA/BAV avançado sem marcapasso. O ↓dromotropismo agrava o bloqueio de condução.</p>
+      </div>
+      <div class="card" style="border-left:4px solid var(--vermelho)">
+        <h4 style="color:var(--vermelho)">💓 Bradicardia (FC &lt; 50 bpm)</h4>
+        <p class="mini">O BB reduz ainda mais a frequência. Coração já lento é porta fechada.</p>
+      </div>
+      <div class="card" style="border-left:4px solid var(--ambar)">
+        <h4 style="color:#a9741a">🦵 Doença arterial obstrutiva periférica</h4>
+        <p class="mini">Contraindicação <b>relativa</b>, e <b>exceto para os BB com ação vasodilatadora</b> (carvedilol, nebivolol). Nos não vasodilatadores, a vasoconstrição β2 piora a perfusão distal.</p>
+      </div>
+    </div>
+
+    <div class="grid3 mt16">
+      <div class="teach" style="border-left-color:var(--vermelho)"><span class="tag" style="color:var(--vermelho)">Não iniciar</span><h4>IC agudamente descompensada / choque</h4><p class="mini">Na descompensação aguda, não iniciar BB. Introduzir só com o paciente estável e compensado.</p></div>
+      <div class="teach" style="border-left-color:var(--ambar)"><span class="tag" style="color:#a9741a">Cautela</span><h4>Diabético com hipoglicemias</h4><p class="mini">O BB (sobretudo não seletivo) <b>mascara</b> tremor e taquicardia da hipoglicemia, restando a sudorese. Preferir cardiosseletivo/vasodilatador.</p></div>
+      <div class="teach" style="border-left-color:var(--adren)"><span class="tag" style="color:var(--adren)">Nunca</span><h4>Retirada abrupta</h4><p class="mini">Suspensão súbita → <b>efeito rebote</b> (taquicardia, crise hipertensiva, isquemia por up-regulation). Sempre desmame gradual.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 8. EFEITOS ADVERSOS ===================== -->
+<section id="adversos" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 8 · O CORPO ACENDE</span>
+      <h2>Efeitos adversos por sistema</h2>
+      <p class="lead">Cada órgão que acende tem uma fisiologia por trás. Não é lista — é mapa.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h4 style="color:var(--b1)">Cardiovascular &amp; condução</h4>
+        <ul class="mini" style="margin:8px 0 0 18px"><li>Bradicardia (↓cronotropismo)</li><li>Distúrbios da condução AV (↓dromotropismo)</li><li>Vasoconstrição periférica / frieza (β2, nos não vasodilatadores)</li></ul>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--b2)">Respiratório</h4>
+        <ul class="mini" style="margin:8px 0 0 18px"><li>Broncoespasmo (bloqueio β2)</li></ul>
+        <h4 style="color:var(--ambar);margin-top:12px">Metabólico</h4>
+        <ul class="mini" style="margin:8px 0 0 18px"><li>Intolerância à glicose e novos casos de diabetes</li><li>Hipertrigliceridemia</li><li>↑ LDL e ↓ HDL</li></ul>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--brutamonte)">SNC (sobretudo lipofílicos)</h4>
+        <ul class="mini" style="margin:8px 0 0 18px"><li>Insônia · pesadelos</li><li>Depressão (mais ligada aos lipofílicos)</li><li>Astenia / fadiga</li></ul>
+      </div>
+      <div class="card">
+        <h4 style="color:var(--adren)">Sexual</h4>
+        <ul class="mini" style="margin:8px 0 0 18px"><li>Disfunção erétil — classe associada a maior risco, <b>exceto nebivolol</b></li></ul>
+      </div>
+    </div>
+
+    <div class="pega mt16">
+      <span class="lbl">Pegadinha TEC — não generalize</span>
+      <p class="mini"><b>Todo BB piora glicose/lipídios?</b> Não. O impacto metabólico é maior nos clássicos (propranolol, atenolol, metoprolol). Os vasodilatadores de 3ª geração (nebivolol, carvedilol) têm perfil mais neutro/favorável.</p>
+    </div>
+
+    <!-- Pódio disfunção erétil -->
+    <div class="card mt16">
+      <h4 class="center">O pódio da disfunção erétil</h4>
+      <div class="grid3 mt16">
+        <div style="border:1px solid #e5b4ab;border-radius:12px;padding:14px;background:var(--vermelho-soft)">
+          <div class="tagline" style="color:var(--vermelho)">⚠ MAIOR RISCO</div>
+          <ol class="mini" style="margin:8px 0 0 18px">
+            <li><b>Betabloqueadores</b> (exceto nebivolol) — classe mais associada à DE</li>
+            <li>Ação central (clonidina, α-metildopa) — papel negativo bem documentado</li>
+            <li>Antialdosterona (espironolactona, eplerenona) — efeito antiandrogênico</li>
+          </ol>
+        </div>
+        <div style="border:1px solid var(--linha);border-radius:12px;padding:14px;background:var(--cinza-soft)">
+          <div class="tagline" style="color:var(--cinza)">NEUTROS</div>
+          <p class="mini mt8">Tiazídicos e bloqueadores dos canais de cálcio — posição intermediária.</p>
+        </div>
+        <div style="border:1px solid #a9dcc4;border-radius:12px;padding:14px;background:var(--verde-soft)">
+          <div class="tagline" style="color:var(--verde)">✓ MENOR RISCO / BENÉFICO</div>
+          <ol class="mini" style="margin:8px 0 0 18px">
+            <li><b>BRA</b> — perfil mais favorável em homens e mulheres</li>
+            <li><b>IECA</b> — efeito neutro ou até positivo</li>
+            <li><b>Nebivolol</b> — único BB vasodilatador via NO</li>
+          </ol>
+        </div>
+      </div>
+      <p class="ref center mt8">O nebivolol é a exceção da própria classe: o "Diplomata" preserva a função erétil via óxido nítrico.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEBIVOLOL — O DIPLOMATA ===================== -->
+<section id="diplomata">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// SALA ESPECIAL · O DIPLOMATA</span>
+      <h2>Nebivolol — o que ele carrega na lanterna azul</h2>
+      <p class="lead">Enquanto os outros apenas dizem "parem", o nebivolol diz "respirem". Mas cuidado: isto é <b>racional fisiológico</b>, não coroa de melhor de todos.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--ouro)">
+      <p class="mini">Ele associa bloqueio β1 cardiosseletivo à <b>liberação de óxido nítrico endotelial</b>. O NO relaxa a parede arterial → vasodilatação → menor resistência periférica. Desse mesmo mecanismo derivam as vantagens: perfil metabólico mais neutro (glicose e lipídios), menor impacto na função erétil, e melhor tolerância vascular.</p>
+      <div class="grid3 mt16">
+        <div class="teach" style="border-left-color:var(--ouro)"><span class="tag" style="color:var(--ouro)">Endotélio</span><h4>↑ NO</h4><p class="mini">Vasodilatação dependente do endotélio; conversa direta com o β3 do Andar 2.</p></div>
+        <div class="teach" style="border-left-color:var(--ouro)"><span class="tag" style="color:var(--ouro)">Metabolismo</span><h4>Mais neutro</h4><p class="mini">Menos efeito adverso sobre glicose e perfil lipídico que os clássicos.</p></div>
+        <div class="teach" style="border-left-color:var(--ouro)"><span class="tag" style="color:var(--ouro)">Função sexual</span><h4>Preservada</h4><p class="mini">Único BB que escapa do "maior risco" de disfunção erétil.</p></div>
+      </div>
+      <div class="pega mt16">
+        <span class="lbl">Pegadinha TEC</span>
+        <p class="mini"><b>Nebivolol é o melhor betabloqueador?</b> Não existe essa afirmação. É o de <b>perfil hemodinâmico e metabólico mais favorável</b> em certos cenários. "Melhor perfil" ≠ "melhor em tudo".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 9. JULGAMENTO DO ATENOLOL ===================== -->
+<section id="julgamento" style="background:linear-gradient(180deg,#12263a,#0a1c2e);color:#fff;border-bottom:none">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num" style="color:#e6a9b8">// ANDAR 9 · O TRIBUNAL</span>
+      <h2 style="color:#fff">O Julgamento do Atenolol <span class="nbadge">N4</span></h2>
+      <p class="lead" style="color:#cbd9e4">Sala escura. O Atenolol no banco dos réus. A acusação: "você fez os betabloqueadores perderem espaço." A defesa: "grande parte das evidências usou principalmente <b>a mim</b> — não julguem a classe inteira pelo réu."</p>
+    </div>
+
+    <div class="card" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);color:#eaf3f8">
+      <p class="mini" style="color:#e6a9b8;font-weight:800;letter-spacing:.04em">A PROVA CONTRA A CLASSE (na HAS não complicada)</p>
+
+      <div class="grid2 mt16">
+        <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px">
+          <h4 style="color:#fff">Metanálise Lindholm — 2005</h4>
+          <p class="small" style="color:#9fc0d1">Lancet. 2005;366:1545-1553 · 13 ensaios, ~106.000 pacientes · predomínio de atenolol</p>
+          <ul class="mini" style="margin:10px 0 0 18px">
+            <li>vs. placebo: ↓19% AVC, pequena ↓ eventos CV, <b>sem</b> ↓ mortalidade</li>
+            <li>vs. outros anti-HAS: <b>AVC ↑16%</b> (RR 1,16; IC95% 1,03–1,30)</li>
+            <li>Mortalidade sem redução; IAM sem diferença</li>
+          </ul>
+          <p class="small mt8" style="color:#e6a9b8">Conclusão: atenolol não deveria ser 1ª escolha na HAS não complicada.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px">
+          <h4 style="color:#fff">Cochrane (Wiysonge) — 2017</h4>
+          <p class="small" style="color:#9fc0d1">Cochrane Database Syst Rev. 2017;1:CD002003 · 97.507 pacientes · <b>¾ usavam atenolol</b></p>
+          <ul class="mini" style="margin:10px 0 0 18px">
+            <li>BB vs. BCC: <b>AVC ↑24%</b> (RR 1,24; 1,11–1,40) · NNTH 180 em 5 anos</li>
+            <li>BB vs. IECA/BRA: <b>AVC ↑30%</b> (RR 1,30; 1,11–1,53) · NNTH 65 em 5 anos</li>
+          </ul>
+          <p class="small mt8" style="color:#e6a9b8">Conclusão: na HAS não complicada, outras classes são preferíveis.</p>
+        </div>
+      </div>
+
+      <div class="grid2 mt16">
+        <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px">
+          <h4 style="color:#fff">LIFE — 2002</h4>
+          <p class="small" style="color:#9fc0d1">Lancet. 2002;359:995-1003 · 9.193 hipertensos com HVE · losartana vs. atenolol</p>
+          <ul class="mini" style="margin:10px 0 0 18px">
+            <li><b>PA igual</b> entre os grupos, mas losartana superior:</li>
+            <li>AVC <b>−25%</b> (p=0,001) · desfecho CV combinado <b>−13%</b> (p=0,021)</li>
+            <li>Maior regressão de HVE · ↓ diabetes incidente (p=0,01)</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:12px;padding:16px">
+          <h4 style="color:#fff">ASCOT-BPLA — 2005</h4>
+          <p class="small" style="color:#9fc0d1">Lancet. 2005;366:895-906 · 19.257 hipertensos de alto risco</p>
+          <p class="small mt8">Anlodipino ± perindopril <b>vs.</b> atenolol ± bendroflumetiazida:</p>
+          <ul class="mini" style="margin:8px 0 0 18px">
+            <li>Mortalidade total −24% · MCV −27% · AVC −23%</li>
+            <li>Eventos coronários −16% · diabetes novo −30%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:rgba(216,30,91,.14);border:1px solid rgba(216,30,91,.4);border-radius:12px;padding:16px;margin-top:16px">
+        <h4 style="color:#fff">Subestudo CAFE (ASCOT) — a pista mecanística</h4>
+        <p class="small" style="color:#cbd9e4">Circulation. 2006;113:1213-1225 · 2.143 participantes · pressão central por tonometria</p>
+        <p class="mini mt8">Redução da pressão sistólica <b>central (aórtica)</b>. A pressão do braço caía parecida — a do <b>centro</b> caía menos com atenolol (p&lt;0,001):</p>
+        <div class="cafe-bars">
+          <div class="cafe-row">
+            <span class="cafe-name">Atenolol ± diurético</span>
+            <div class="cafe-track"><div class="cafe-fill" data-val="9" style="background:var(--adren)"></div></div>
+            <span class="cafe-num">−9,0</span>
+          </div>
+          <div class="cafe-row">
+            <span class="cafe-name">Amlodipino ± perindopril</span>
+            <div class="cafe-track"><div class="cafe-fill" data-val="13.7" style="background:var(--verde)"></div></div>
+            <span class="cafe-num">−13,7</span>
+          </div>
+          <p class="small center" style="color:#9fc0d1;margin-top:6px">mmHg de redução na pressão central · quanto maior a barra, melhor</p>
+        </div>
+      </div>
+
+      <div class="mental" style="margin-top:16px;background:rgba(255,255,255,.06);border-color:#7fc3d6">
+        <span class="lbl" style="color:#7fc3d6">O veredito equilibrado</span>
+        <p class="mini" style="color:#eaf3f8">Os BB não são 1ª linha na HAS <b>não complicada</b> porque protegem menos contra AVC e reduzem menos a pressão central. MAS as evidências são majoritariamente do <b>atenolol</b>; os vasodilatadores têm perfil diferente; e a classe segue <b>essencial</b> nas indicações específicas. Não se condena a família inteira pelo réu — nem se absolve tudo por causa de um.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 10. DIRETRIZ 2025 ===================== -->
+<section id="diretriz" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ANDAR 10 · A PIRÂMIDE</span>
+      <h2>Onde o BB está na Diretriz Brasileira 2025</h2>
+      <p class="lead">A base de 1ª linha tem três classes. O betabloqueador entra <b>ao lado</b>, como opção adicional — não por ser ruim, mas por priorização de desfecho na HAS não complicada.</p>
+    </div>
+    <div class="card">
+      <div style="max-width:520px;margin:0 auto">
+        <div style="background:#5b2a86;color:#fff;text-align:center;padding:8px;border-radius:8px 8px 0 0;font-weight:700;font-size:.85rem">α1B · VD (vasodilatador direto) · α2A</div>
+        <div style="background:var(--vermelho);color:#fff;text-align:center;padding:10px;font-weight:700">Espironolactona <span class="small" style="opacity:.85">(4ª droga · HAS resistente)</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px">
+          <div style="background:var(--azul-atlas);color:#fff;text-align:center;padding:12px 6px;font-weight:700">TIAZ*</div>
+          <div style="background:#5b7fb0;color:#fff;text-align:center;padding:12px 6px;font-weight:700">IECA ou BRA</div>
+          <div style="background:var(--azul-deep);color:#fff;text-align:center;padding:12px 6px;font-weight:700">BCC</div>
+        </div>
+        <div style="background:var(--cinza-soft);text-align:center;padding:10px;border-radius:0 0 8px 8px;font-weight:700;color:var(--navy)">Mudanças no estilo de vida</div>
+        <div class="center mt16">
+          <span style="display:inline-block;background:var(--ambar);color:#fff;border-radius:50%;width:64px;height:64px;line-height:64px;font-weight:900">BB**</span>
+          <p class="small muted mt8">entra como opção adicional, fora da base de 1ª linha</p>
+        </div>
+      </div>
+      <p class="ref center mt16">Diretriz Brasileira de Hipertensão Arterial — 2025</p>
+    </div>
+    <div class="sintese mt16">Os BB deixaram de ser rotina de 1ª linha na HAS não complicada. Entram quando há indicação clínica que os justifique — e aí são insubstituíveis.</div>
+  </div>
+</section>
+
+<!-- ===================== A GRANDE PERGUNTA ===================== -->
+<section id="grande-pergunta">
+  <div class="sec-inner" style="max-width:820px">
+    <div class="sechead center">
+      <span class="num">// SÍNTESE</span>
+      <h2>Por que os BB não são a primeira opção na HAS?</h2>
+    </div>
+    <div class="grid2">
+      <div class="card"><h4 class="center" style="color:var(--vermelho)">Contra a 1ª linha</h4>
+        <ol class="mini" style="margin:10px 0 0 18px"><li>Protegem menos contra AVC que BCC e IECA/BRA (Lindholm, Cochrane)</li><li>Reduzem menos a pressão central (CAFE)</li><li>Pior perfil metabólico dos clássicos — novos casos de diabetes (LIFE, ASCOT)</li><li>Boa parte da má fama vem do atenolol especificamente</li></ol>
+      </div>
+      <div class="card"><h4 class="center" style="color:var(--verde)">Ainda essenciais</h4>
+        <ol class="mini" style="margin:10px 0 0 18px"><li>Pós-IAM e angina</li><li>ICFEr (os 4 com evidência)</li><li>Controle de FC na fibrilação atrial</li><li>Tremor, hipertireoidismo, migrânea, varizes de esôfago…</li></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CASOS ===================== -->
+<section id="casos" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ARENA · CASOS CLÍNICOS</span>
+      <h2>A Sala das Decisões</h2>
+      <p class="lead">Um paciente aparece. Você decide. Só depois surge a explicação — pensando como cardiologista, não como decorador.</p>
+    </div>
+    <div id="caseBox" class="card"></div>
+    <div class="center mt16">
+      <button class="btn-nav" id="casePrev">◀ Anterior</button>
+      <span id="caseCount" class="tagline" style="margin:0 12px"></span>
+      <button class="btn-nav" id="caseNext">Próximo ▶</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUIZ ===================== -->
+<section id="quiz">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// ARENA TEC · QUESTÕES</span>
+      <h2>Questões comentadas</h2>
+      <p class="lead">Cada alternativa comentada. Filtre por tema, marque as difíceis e veja seu desempenho no Hipocampo.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="quizFilters"></div>
+    <div id="quizBox" class="card"></div>
+    <div class="center mt16">
+      <button class="btn-nav" id="qPrev">◀</button>
+      <span id="qCount" class="tagline" style="margin:0 12px"></span>
+      <button class="btn-nav" id="qNext">▶</button>
+    </div>
+  </div>
+</section>
+<style>
+.btn-nav{font-family:'Nunito';font-weight:700;font-size:.86rem;background:var(--navy);color:#fff;border:none;border-radius:20px;padding:8px 18px;cursor:pointer;transition:.2s}
+.btn-nav:hover{background:var(--azul-atlas)}
+.btn-nav:disabled{opacity:.4;cursor:not-allowed}
+.opt{display:block;width:100%;text-align:left;background:var(--papel);border:1px solid var(--linha);border-radius:10px;padding:12px 14px;margin:8px 0;cursor:pointer;font-family:'Nunito';font-size:.94rem;transition:.15s}
+.opt:hover{border-color:var(--azul-atlas);background:var(--azul-soft)}
+.opt.correct{background:var(--verde-soft);border-color:var(--verde)}
+.opt.wrong{background:var(--vermelho-soft);border-color:var(--vermelho)}
+.opt .exp{display:none;margin-top:8px;font-size:.84rem;color:var(--cinza);border-top:1px dashed var(--linha);padding-top:8px}
+.opt.revealed .exp{display:block}
+.qfilter{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;background:var(--cinza-soft);border:1px solid var(--linha);border-radius:20px;padding:5px 12px;cursor:pointer}
+.qfilter.on{background:var(--azul-atlas);color:#fff;border-color:var(--azul-atlas)}
+</style>
+
+<!-- ===================== FLASHCARDS (grade exposta) ===================== -->
+<section id="flashcards" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// MEMÓRIA · MINI-CARDS</span>
+      <h2>Revisão rápida — pergunta e resposta à vista</h2>
+      <p class="lead">Perguntas básicas, respostas expostas. Filtre por tema e passe os olhos. Toque num card para destacá-lo enquanto se testa.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px" id="fcFilters"></div>
+    <div class="mfc-count tagline" id="fcCount"></div>
+    <div class="mfc-grid" id="fcGrid"></div>
+  </div>
+</section>
+<style>
+.mfc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
+.mfc{background:#fff;border:1px solid var(--linha);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-s);transition:.2s;cursor:pointer;border-left:4px solid var(--azul-atlas)}
+.mfc:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.mfc.mark{border-left-color:var(--adren);background:linear-gradient(180deg,var(--adren-soft),#fff)}
+.mfc .mfc-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--azul-deep);background:var(--azul-soft);padding:5px 12px;display:block}
+.mfc .mfc-q{font-weight:800;font-size:.95rem;padding:12px 14px 4px;color:var(--navy)}
+.mfc .mfc-a{font-size:.88rem;padding:0 14px 14px;color:var(--cinza);line-height:1.5}
+.mfc .mfc-a::before{content:"→ ";color:var(--verde);font-weight:900}
+.mfc-count{margin:4px 0 0}
+/* modo professor: esconde só a resposta */
+body.prof .mfc .mfc-a{filter:blur(5px);transition:filter .2s}
+body.prof .mfc:hover .mfc-a,body.prof .mfc.mark .mfc-a{filter:none}
+</style>
+
+<!-- ===================== HIPOCAMPO ===================== -->
+<section id="hipocampo">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num">// HIPOCAMPO</span>
+      <h2>Seu painel de erros &amp; revisão espaçada</h2>
+      <p class="lead">O que você errou fica aqui, junto com a fila de revisão. Marque o que já revisou.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h4>📊 Desempenho</h4>
+        <div id="statBox" class="mt8"></div>
+        <button class="btn-nav mt16" id="resetBtn" style="background:var(--vermelho)">Reiniciar progresso</button>
+      </div>
+      <div class="card">
+        <h4>🗓️ Revisão espaçada</h4>
+        <p class="mini muted">Marque conforme revisar este capítulo:</p>
+        <div id="spacedBox" class="mt8"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVISÃO 60s ===================== -->
+<section id="revisao60" style="background:linear-gradient(180deg,var(--navy),#0a1c2e);color:#fff;border-bottom:none">
+  <div class="sec-inner">
+    <div class="sechead">
+      <span class="num" style="color:#7fc3d6">// REVISÃO DE 60 SEGUNDOS</span>
+      <h2 style="color:#fff">Se você só tem um minuto</h2>
+    </div>
+    <div class="grid2">
+      <ul class="mini" style="line-height:2;list-style:none">
+        <li>🔑 BB <b>ocupa</b> o receptor — não mata a adrenalina.</li>
+        <li>❤️ β1 = coração+rim (crono/ino/dromo + renina). β2 = pulmão/vaso/glicose.</li>
+        <li>⚙️ Baixa PA por 6 vias; <b>↓renina</b> é a principal crônica.</li>
+        <li>🔨🔪🛠️ Brutamonte (não-seletivo) · Cirurgião (β1) · Engenheiro (vasodilatador).</li>
+        <li>⚠️ Carvedilol NÃO é cardiosseletivo. Seletividade some em dose alta.</li>
+      </ul>
+      <ul class="mini" style="line-height:2;list-style:none">
+        <li>💙 Nebivolol = NO = "Diplomata". Não é "o melhor".</li>
+        <li>💔 ICFEr só com bisoprolol, carvedilol, metoprolol <b>succinato</b>, nebivolol.</li>
+        <li>⚖️ ¾ das evidências ruins = atenolol. Pressão central cai menos (CAFE).</li>
+        <li>⛔ Contra: broncopatia grave, BSA/BAV, FC&lt;50, DAOP (exceto vasodilatador).</li>
+        <li>🔺 Fora da 1ª linha na HAS não complicada — essencial nas indicações específicas. Nunca suspender de uma vez.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FILOSOFIA FINAL ===================== -->
+<section id="filosofia-final" style="background:linear-gradient(180deg,#fff,var(--adren-soft))">
+  <div class="sec-inner center" style="max-width:720px">
+    <div class="sechead center"><span class="num">// PARA GUARDAR</span><h2>O freio que sabe recuar</h2></div>
+    <p>Você começou este capítulo diante de uma cidade em alerta. Termina sabendo que o cuidado, às vezes, é oferecer uma pausa — e, às vezes, é ter a humildade de não oferecê-la. O bom prescritor de betabloqueador não é o que sabe todas as doses. É o que reconhece, no paciente à sua frente, se aquele coração precisa de freio ou já está freando demais.</p>
+    <p class="mt24 assinatura" style="font-size:1.6rem;color:var(--adren)">— Dr. André Rossanno</p>
+  </div>
+</section>
+
+<!-- ===================== GLOSSÁRIO / REFS / FOOTER ===================== -->
+<section id="glossario">
+  <div class="sec-inner">
+    <div class="sechead"><span class="num">// GLOSSÁRIO</span><h2>Termos-chave</h2></div>
+    <div class="grid2" id="glossBox"></div>
+  </div>
+</section>
+
+<section id="referencias" style="background:var(--papel-2)">
+  <div class="sec-inner">
+    <div class="sechead"><span class="num">// REFERÊNCIAS</span><h2>Fontes</h2></div>
+    <ul class="ref" style="line-height:1.9;list-style:none">
+      <li>Diretriz Brasileira de Hipertensão Arterial — 2025.</li>
+      <li>Lindholm LH, et al. <i>Lancet.</i> 2005;366:1545-1553.</li>
+      <li>Wiysonge CS, et al. <i>Cochrane Database Syst Rev.</i> 2017;1:CD002003.</li>
+      <li>LIFE Study Investigators. <i>Lancet.</i> 2002;359:995-1003.</li>
+      <li>Dahlöf B, et al. (ASCOT-BPLA). <i>Lancet.</i> 2005;366:895-906.</li>
+      <li>McEniery CM, et al. (CAFE/ASCOT). <i>Circulation.</i> 2006;113:1213-1225.</li>
+    </ul>
+  </div>
+</section>
+
+<footer style="background:var(--navy);color:#cbd9e4;text-align:center;padding:40px 20px">
+  <p class="assinatura" style="font-size:1.5rem;color:#fff">Atlas Mental da Hipertensão Arterial</p>
+  <p class="small mt8">Bloco 2 · Tema 4 · Capítulo 5C — Betabloqueadores</p>
+  <p class="small muted mt8">— Dr. André Rossanno · material de estudo para o TEC 2026</p>
+  <p class="small muted mt16">Voltar ao <a href="#topo" style="color:#7fc3d6">topo da torre ↑</a></p>
+</footer>
+
+<script>
+/* ============================================================
+   ATLAS MENTAL · CAP 5C BETABLOQUEADORES · lógica e dados
+   ============================================================ */
+const LS_KEY='atlasHAS_b2t4_cap5c_bb_v1';
+const store=JSON.parse(localStorage.getItem(LS_KEY)||'{}');
+function save(){localStorage.setItem(LS_KEY,JSON.stringify(store));}
+
+/* -------- SOM (Web Audio) -------- */
+let audioOn=false, actx=null;
+function beep(freq=440,dur=.08,type='sine',vol=.05){
+  if(!audioOn)return;
+  try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+    const o=actx.createOscillator(),g=actx.createGain();
+    o.type=type;o.frequency.value=freq;g.gain.value=vol;
+    o.connect(g);g.connect(actx.destination);o.start();
+    g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+dur);
+    o.stop(actx.currentTime+dur);
+  }catch(e){}
+}
+const okSound=()=>{beep(660,.09,'sine',.05);setTimeout(()=>beep(880,.09,'sine',.04),90);};
+const noSound=()=>beep(180,.16,'sawtooth',.04);
+const clickSound=()=>beep(520,.05,'triangle',.03);
+
+/* -------- TOGGLES -------- */
+const tSom=document.getElementById('tSom'),tProf=document.getElementById('tProf'),tMov=document.getElementById('tMov');
+tSom.onclick=()=>{audioOn=!audioOn;tSom.classList.toggle('on',audioOn);if(audioOn)okSound();};
+tProf.onclick=()=>{document.body.classList.toggle('prof');tProf.classList.toggle('on');clickSound();};
+tMov.onclick=()=>{document.body.classList.toggle('reduz');tMov.classList.toggle('on');clickSound();};
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.body.classList.add('reduz');tMov.classList.add('on');}
+document.getElementById('navMenuBtn').onclick=()=>document.getElementById('navToggles').classList.toggle('open');
+
+/* -------- PROGRESS BAR -------- */
+const pb=document.getElementById('progressbar');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  pb.style.width=pct+'%';
+});
+
+/* ============================================================
+   DADOS
+   ============================================================ */
+const MECANISMOS=[
+  {n:1,t:'↓ Débito cardíaco',s:'efeito INICIAL',d:'Bloqueio β1 no coração → ↓FC, ↓contratilidade, ↓DC → ↓PA.',c:'var(--b1)'},
+  {n:2,t:'↓ Liberação de renina',s:'MECANISMO PRINCIPAL crônico',d:'Bloqueio β1 nas células justaglomerulares → ↓renina → ↓angiotensina II → ↓aldosterona → ↓vasoconstrição e ↓retenção de Na⁺/água.',c:'var(--verde)'},
+  {n:3,t:'↓ Atividade simpática central',s:'',d:'Ação em centros cardiovasculares do SNC → ↓descarga simpática → ↓vasoconstrição e ↓FC.',c:'var(--azul-atlas)'},
+  {n:4,t:'↓ Liberação de noradrenalina',s:'pré-sináptica',d:'Bloqueio de receptores β pré-sinápticos → ↓noradrenalina → ↓estímulo vasoconstritor e cardíaco.',c:'var(--adren)'},
+  {n:5,t:'Vasodilatação',s:'só ALGUNS',d:'Nebivolol → ↑óxido nítrico. Carvedilol e Labetalol → bloqueio α1. → ↑vasodilatação e ↓resistência vascular periférica.',c:'var(--engenheiro)'},
+  {n:6,t:'Reajuste dos barorreceptores',s:'uso crônico',d:'Uso crônico melhora a sensibilidade barorreflexa → ↓hiperatividade simpática → ↓vasoconstrição → ↓PA.',c:'var(--ouro)'}
+];
+const mecGrid=document.getElementById('mecGrid');
+MECANISMOS.forEach(m=>{
+  const el=document.createElement('div');el.className='card';el.style.borderTop='4px solid '+m.c;
+  el.innerHTML=`<div style="font-family:'IBM Plex Mono';font-weight:600;color:${m.c};font-size:.8rem">MECANISMO ${m.n}</div>
+    <h4 style="margin:6px 0;color:${m.c}">${m.t}</h4>
+    ${m.s?`<div class="tagline" style="margin-bottom:6px">${m.s}</div>`:''}
+    <p class="mini">${m.d}</p>`;
+  mecGrid.appendChild(el);
+});
+
+const LAB={
+  b1:{t:'β1 — o acelerador cardíaco',onde:'Coração e aparelho justaglomerular (rim).',ativa:'↑ frequência (crono), ↑ força (ino), ↑ condução AV (dromo), ↑ renina.',bloq:'Coração mais lento e suave; menos renina → menos angiotensina/aldosterona.',clin:'Base do efeito anti-hipertensivo, antianginoso e antiarrítmico dos BB.'},
+  b2:{t:'β2 — o espalhador sistêmico',onde:'Pulmão, musculatura lisa vascular, fígado, músculo esquelético.',ativa:'Broncodilatação, vasodilatação, liberação de glicose.',bloq:'Broncoconstrição, vasoconstrição periférica, ↓liberação de glicose.',clin:'Explica broncoespasmo (asma/DPOC), frieza/piora de DAOP e mascaramento de hipoglicemia.'},
+  a1:{t:'α1 — o tônus vascular',onde:'Musculatura lisa dos vasos.',ativa:'Vasoconstrição (↑ resistência periférica).',bloq:'Vasodilatação → ↓ resistência vascular periférica.',clin:'Carvedilol e labetalol bloqueiam α1 → braço vasodilatador da 3ª geração.'},
+  no:{t:'NO — óxido nítrico',onde:'Endotélio vascular.',ativa:'Relaxa a musculatura lisa → vasodilatação dependente do endotélio.',bloq:'(não se bloqueia; o nebivolol AUMENTA a liberação de NO)',clin:'Mecanismo do nebivolol: vasodilatação + perfil metabólico e erétil favorável.'},
+  renina:{t:'Renina — a alavanca do SRAA',onde:'Células justaglomerulares do rim (controle β1).',ativa:'↑ renina → ↑ angiotensina II → ↑ aldosterona → retém sódio/água e vasoconstringe.',bloq:'BB ↓ renina (via β1) → efeito anti-hipertensivo sustentado, "a montante".',clin:'Conecta com IECA/BRA: mesma cascata, ponto de ataque diferente.'}
+};
+const labView=document.getElementById('labView');
+function showLab(r){
+  const d=LAB[r];
+  labView.innerHTML=`<h3>${d.t}</h3>
+    <div class="row"><span class="k">Onde está</span><span>${d.onde}</span>
+    <span class="k">Ativação</span><span>${d.ativa}</span>
+    <span class="k">Bloqueio</span><span>${d.bloq}</span>
+    <span class="k">Clínica</span><span>${d.clin}</span></div>`;
+}
+document.querySelectorAll('.labbtn').forEach(b=>{
+  b.onclick=()=>{document.querySelectorAll('.labbtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');showLab(b.dataset.r);clickSound();};
+});
+showLab('b1');document.querySelector('.labbtn').classList.add('on');
+
+const CHAMP=[
+  {t:'🏆 Melhor evidência em ICFEr',w:'Bisoprolol · Carvedilol · Metoprolol succinato · Nebivolol',d:'Os quatro com evidência de desfecho em IC de fração reduzida. Iniciar compensado, dose baixa, titulação lenta.'},
+  {t:'🏆 Mais cardiosseletivo',w:'Bisoprolol',d:'Altíssima seletividade β1 — o "cirurgião" mais preciso.'},
+  {t:'🏆 Vasodilatação por NO',w:'Nebivolol',d:'Único que libera óxido nítrico endotelial.'},
+  {t:'🏆 Bloqueio α1',w:'Carvedilol (e labetalol)',d:'Vasodilatação por antagonismo α1.'},
+  {t:'🏆 Melhor perfil metabólico',w:'Nebivolol',d:'Impacto neutro/favorável sobre glicose e lipídios.'},
+  {t:'🏆 Menor disfunção erétil',w:'Nebivolol',d:'Exceção da classe, via NO.'},
+  {t:'🏆 Mais lipofílico',w:'Propranolol',d:'Mais efeitos no SNC e mais broncoespasmo relativo.'},
+  {t:'🏆 Mais hidrofílico',w:'Atenolol / Nadolol',d:'Menos SNC; excreção renal (ajuste em DRC).'},
+  {t:'🏆 Comodidade (dose única, longa ação)',w:'Nadolol',d:'Meia-vida longa, 1×/dia (não cardiosseletivo).'},
+  {t:'🏆 Reduz pressão central',w:'Vasodilatadores > atenolol',d:'Ligação com o subestudo CAFE: atenolol reduz menos a pressão aórtica.'},
+  {t:'🏆 Hipertensão portal / varizes',w:'Não seletivos (propranolol, nadolol)',d:'O efeito β2 esplâncnico é desejado para reduzir a pressão portal.'}
+];
+const champGrid=document.getElementById('champGrid');
+CHAMP.forEach(c=>{
+  const el=document.createElement('div');el.className='card';el.style.cursor='pointer';el.style.borderTop='4px solid var(--ouro)';
+  el.innerHTML=`<h4>${c.t}</h4><p style="font-weight:800;color:var(--ouro);margin:6px 0">${c.w}</p><p class="mini prof-hide" style="display:none">${c.d}</p>`;
+  const exp=el.querySelector('.mini');
+  el.onclick=()=>{exp.style.display=exp.style.display==='none'?'block':'none';clickSound();};
+  champGrid.appendChild(el);
+});
+
+const INDIC=[
+  {t:'Angina',ic:'💢',d:'↓FC e ↓contratilidade → ↓consumo miocárdico de O₂ → menos isquemia e dor.'},
+  {t:'Pós-IAM',ic:'❤️',d:'Reduz remodelamento, arritmias e mortalidade. Classe consagrada na cardioproteção.'},
+  {t:'ICFEr',ic:'🫀',d:'Só bisoprolol, carvedilol, metoprolol SUCCINATO e nebivolol. Iniciar compensado, dose baixa, titular devagar.'},
+  {t:'Fibrilação atrial',ic:'📈',d:'Controle de frequência: bloqueio do nó AV (↓dromotropismo).'},
+  {t:'Arritmias',ic:'⚡',d:'Efeito antiarrítmico pela redução do automatismo e da condução.'},
+  {t:'Hipertireoidismo',ic:'🦋',d:'Controla sintomas adrenérgicos (taquicardia, tremor); propranolol ainda ↓ conversão T4→T3.'},
+  {t:'Tremor essencial',ic:'🤲',d:'Propranolol reduz a amplitude do tremor.'},
+  {t:'Migrânea',ic:'🤕',d:'Profilaxia — propranolol é clássico.'},
+  {t:'Ansiedade de desempenho',ic:'😰',d:'Controla sintomas somáticos (taquicardia, tremor); propranolol pontual.'},
+  {t:'Prolapso de valva mitral',ic:'🫀',d:'Controle de palpitações e arritmias sintomáticas.'},
+  {t:'Varizes de esôfago',ic:'🩸',d:'Hipertensão portal — usar NÃO seletivo (propranolol/nadolol).'},
+  {t:'DRC em diálise',ic:'🩺',d:'Controle pressórico e de desfecho; atenção à depuração dos hidrofílicos.'},
+  {t:'Deseja engravidar',ic:'🤰',d:'IECA/BRA são contraindicados na gravidez; BB/metildopa entram (labetalol preferido; atenolol evitado por restrição de crescimento).'},
+  {t:'Apneia obstrutiva do sono',ic:'😴',d:'Pode ser considerado em cenário específico, sobretudo com HAS associada e outra indicação para BB.'}
+];
+const indGrid=document.getElementById('indGrid');
+INDIC.forEach(i=>{
+  const el=document.createElement('div');el.className='card';el.style.cursor='pointer';el.style.borderLeft='4px solid var(--verde)';
+  el.innerHTML=`<h4>${i.ic} ${i.t}</h4><p class="mini" style="display:none;margin-top:6px">${i.d}</p><span class="small" style="color:var(--verde)">clique para o porquê →</span>`;
+  const exp=el.querySelector('.mini'),hint=el.querySelector('.small');
+  el.onclick=()=>{const open=exp.style.display==='none';exp.style.display=open?'block':'none';hint.style.display=open?'none':'inline';clickSound();};
+  indGrid.appendChild(el);
+});
+
+/* ============================================================
+   COMPONENTE: trancar receptores
+   ============================================================ */
+const REC_EFF={
+  b1:{good:['↓ frequência cardíaca (cronotropismo)','↓ força de contração (inotropismo)','↓ condução AV (dromotropismo)','↓ renina → ↓ pressão'],bad:[]},
+  b2:{good:[],bad:['broncoconstrição (risco na asma/DPOC)','vasoconstrição periférica (frieza, piora de DAOP)','↓ liberação de glicose (mascara hipoglicemia)']},
+  b3:{good:[],bad:['perde-se o braço protetor: vasodilatação via NO, sensibilidade à insulina — por isso quase nenhum BB o bloqueia de propósito']}
+};
+const recLocked={b1:false,b2:false,b3:false};
+const recOut=document.getElementById('recOut');
+function renderRec(){
+  const any=Object.values(recLocked).some(v=>v);
+  if(!any){recOut.innerHTML='<span class="muted mini">Nenhum receptor trancado — a adrenalina aperta tudo livremente.</span>';return;}
+  let html='';
+  for(const r of ['b1','b2','b3']){
+    if(!recLocked[r])continue;
+    const e=REC_EFF[r];
+    html+=`<div class="item"><b>${r.toUpperCase()} trancado:</b> `;
+    if(e.good.length)html+=e.good.map(g=>`<span class="good">✓ ${g}</span>`).join(' · ');
+    if(e.bad.length)html+=(e.good.length?' — ':'')+e.bad.map(b=>`<span class="bad">✗ ${b}</span>`).join(' · ');
+    html+='</div>';
+  }
+  recOut.innerHTML=html;
+}
+document.querySelectorAll('.recchip').forEach(chip=>{
+  chip.onclick=()=>{
+    const r=chip.dataset.rec;recLocked[r]=!recLocked[r];
+    chip.classList.toggle('locked',recLocked[r]);
+    chip.querySelector('.lock').textContent=recLocked[r]?'🔒':'🔓';
+    renderRec();recLocked[r]?okSound():clickSound();
+  };
+});
+
+/* ============================================================
+   COMPONENTE: coração que desacelera
+   ============================================================ */
+const heartSvg=document.getElementById('heartSvg'),bpmVal=document.getElementById('bpmVal'),heartMsg=document.getElementById('heartMsg'),heartBtn=document.getElementById('heartBtn');
+let heartOn=false;
+heartBtn.onclick=()=>{
+  heartOn=!heartOn;
+  if(heartOn){
+    heartSvg.style.animationDuration='1s';bpmVal.textContent='60';
+    heartMsg.textContent='Betabloqueador aplicado: β1 trancado, coração desacelera de 96 → 60 bpm. Menos consumo de O₂.';
+    heartBtn.textContent='↩ Remover betabloqueador';heartBtn.style.background='var(--verde)';okSound();
+  }else{
+    heartSvg.style.animationDuration='.625s';bpmVal.textContent='96';
+    heartMsg.textContent='Coração em Simpatópolis: adrenalina no comando, ritmo acelerado.';
+    heartBtn.textContent='💊 Aplicar betabloqueador';heartBtn.style.background='';clickSound();
+  }
+};
+
+/* ============================================================
+   COMPONENTE: cascata da renina
+   ============================================================ */
+const cascade=document.getElementById('cascade'),cascBtn=document.getElementById('cascBtn'),cascMsg=document.getElementById('cascMsg'),cascPA=document.getElementById('cascPA');
+let cascBlocked=false;
+cascBtn.onclick=()=>{
+  cascBlocked=!cascBlocked;
+  cascade.classList.toggle('blocked',cascBlocked);
+  if(cascBlocked){
+    cascPA.textContent='↓ PA';
+    cascMsg.textContent='β1 renal bloqueado: a renina despenca, toda a cascata se apaga e a pressão cai. É o mecanismo crônico principal.';
+    cascBtn.textContent='↩ Reativar β1 renal';cascBtn.style.background='';okSound();
+  }else{
+    cascPA.textContent='↑ PA';
+    cascMsg.textContent='Cascata ativa: a renina mantém a pressão lá em cima.';
+    cascBtn.textContent='🔒 Bloquear β1 renal';cascBtn.style.background='var(--verde)';clickSound();
+  }
+};
+
+/* ============================================================
+   COMPONENTE: simulador de seletividade dose-dependente
+   ============================================================ */
+const doseSlider=document.getElementById('doseSlider'),b1fill=document.getElementById('b1fill'),b2fill=document.getElementById('b2fill'),doseMsg=document.getElementById('doseMsg');
+const DOSE=[
+  {b1:70,b2:8,cls:'low',msg:'Dose baixa: bloqueia sobretudo β1. Cardiosseletividade preservada — pulmão praticamente poupado.'},
+  {b1:85,b2:35,cls:'mid',msg:'Dose média: β1 quase saturado e o β2 já começa a ser atingido. A seletividade começa a escorregar.'},
+  {b1:95,b2:75,cls:'high',msg:'Dose alta: a cardiosseletividade se perde — o β2 é fortemente bloqueado. Por isso nenhum BB é "seguro" na asma em dose alta.'}
+];
+function renderDose(){
+  const d=DOSE[doseSlider.value-1];
+  b1fill.style.width=d.b1+'%';b2fill.style.width=d.b2+'%';
+  doseMsg.className='dose-msg '+d.cls;doseMsg.textContent=d.msg;
+}
+doseSlider.oninput=()=>{renderDose();clickSound();};
+renderDose();
+
+/* ============================================================
+   COMPONENTE: barras CAFE (animam ao entrar na tela)
+   ============================================================ */
+(function(){
+  const fills=document.querySelectorAll('.cafe-fill');
+  const maxv=13.7;
+  const animate=()=>fills.forEach(f=>{f.style.width=(parseFloat(f.dataset.val)/maxv*100)+'%';});
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){animate();io.disconnect();}});},{threshold:.3});
+    const t=document.querySelector('.cafe-bars');if(t)io.observe(t);
+  }else{animate();}
+})();
+
+/* ============================================================
+   COMPONENTE: MiCaBe (guardiões da ICFEr)
+   ============================================================ */
+document.querySelectorAll('.mica-card').forEach(card=>{
+  card.onclick=()=>{card.classList.toggle('open');clickSound();};
+});
+
+/* ============================================================
+   BANCO DE CASOS
+   ============================================================ */
+const CASOS=[
+{tit:'Hipertenso jovem, sem comorbidades',hist:'Homem, 38 anos, HAS estágio 1, sem outras doenças. Deve começar com betabloqueador?',dec:'Não como 1ª escolha',exp:'Na HAS não complicada, o BB NÃO é 1ª linha. Preferir tiazídico, IECA/BRA ou BCC — protegem mais contra AVC e reduzem melhor a pressão central.'},
+{tit:'Hipertenso + pós-IAM recente',hist:'Homem, 60 anos, HAS, infarto há 3 semanas, FE preservada.',dec:'BB indicado',exp:'Pós-IAM é indicação consagrada: reduz remodelamento, arritmias e mortalidade. Aqui o BB é escolha, não coadjuvante.'},
+{tit:'Hipertenso + ICFEr',hist:'Mulher, 66 anos, IC com FE 30%, compensada.',dec:'BB de IC, dose baixa e titulação',exp:'Somente bisoprolol, carvedilol, metoprolol SUCCINATO ou nebivolol. Iniciar com paciente compensado, dose baixa, titular lentamente. Nunca na descompensação aguda.'},
+{tit:'Hipertenso + asma',hist:'Homem, 45 anos, asma persistente moderada.',dec:'Evitar; se indispensável, cardiosseletivo',exp:'Broncoespasmo é efeito β2. Broncopatia grave/descompensada é contraindicação. Se for indispensável, cardiosseletivo com cautela — lembrando que a seletividade cai em dose alta.'},
+{tit:'Hipertenso + FA de alta resposta',hist:'Mulher, 70 anos, FA com FC 130 bpm.',dec:'BB para controle de FC',exp:'Bloqueio do nó AV (↓dromotropismo) controla a resposta ventricular. Indicação clássica.'},
+{tit:'Hipertenso + disfunção erétil',hist:'Homem, 52 anos, HAS, queixa de DE, precisa de um BB por outra indicação.',dec:'Nebivolol',exp:'A classe (exceto nebivolol) é a mais associada à DE. Se um BB é necessário, o nebivolol é o de perfil favorável, via NO.'},
+{tit:'Hipertenso + DAOP sintomática',hist:'Homem, 68 anos, claudicação intermitente.',dec:'Evitar não vasodilatador; considerar carvedilol/nebivolol',exp:'DAOP é contraindicação relativa, exceto para os BB com ação vasodilatadora. Nos não vasodilatadores, a vasoconstrição β2 piora a perfusão.'},
+{tit:'Tremor essencial + HAS',hist:'Mulher, 55 anos, tremor de ação incapacitante e HAS leve.',dec:'Propranolol',exp:'Propranolol reduz a amplitude do tremor essencial e trata a HAS ao mesmo tempo — dois coelhos.'},
+{tit:'Hipertireoidismo + taquicardia',hist:'Mulher, 34 anos, tireotoxicose, FC 120, tremor.',dec:'Propranolol',exp:'Controla sintomas adrenérgicos e ainda reduz a conversão periférica de T4 em T3.'},
+{tit:'Migrânea frequente + HAS',hist:'Mulher, 40 anos, ≥4 crises/mês, HAS leve.',dec:'Propranolol profilático',exp:'Profilaxia de migrânea é indicação clássica do propranolol, com benefício pressórico associado.'},
+{tit:'Hipertenso com bradicardia',hist:'Homem, 72 anos, FC de repouso 44 bpm, HAS.',dec:'Contraindicado',exp:'FC < 50 bpm é contraindicação. O BB baixaria ainda mais a frequência. Escolher outra classe.'},
+{tit:'Cirrótico com varizes de esôfago',hist:'Homem, 58 anos, cirrose, varizes de médio calibre.',dec:'Propranolol/nadolol (não seletivo)',exp:'Aqui o efeito β2 esplâncnico é desejado para ↓pressão portal. Cardiosseletivo NÃO serve nesta indicação.'},
+{tit:'Hipertenso diabético',hist:'Homem, 61 anos, DM2, precisa intensificar a HAS e há indicação para BB.',dec:'Preferir vasodilatador (nebivolol/carvedilol)',exp:'Os clássicos pioram glicose/lipídios e mascaram hipoglicemia. Os vasodilatadores têm perfil metabólico mais neutro.'},
+{tit:'Ansiedade de desempenho',hist:'Músico, 29 anos, taquicardia e tremor antes de apresentações.',dec:'Propranolol pontual',exp:'Controle dos sintomas somáticos adrenérgicos. Uso pontual, não contínuo.'},
+{tit:'Suspensão do betabloqueador',hist:'Paciente em uso crônico de metoprolol quer parar "de uma vez".',dec:'Desmame gradual',exp:'Suspensão abrupta → efeito rebote (taquicardia, crise hipertensiva, isquemia) por up-regulation de receptores. Reduzir progressivamente.'},
+{tit:'Gestante em uso de IECA',hist:'Mulher, 31 anos, planejando gravidez, em uso de enalapril.',dec:'Trocar — IECA/BRA contraindicados',exp:'IECA/BRA são teratogênicos. Migrar para opções seguras na gestação (metildopa, labetalol). Evitar atenolol por restrição de crescimento fetal.'},
+{tit:'DRC dialítica + HAS',hist:'Homem, 64 anos, em hemodiálise, HAS de difícil controle.',dec:'BB útil, atenção à depuração',exp:'BB têm papel no controle pressórico e de desfecho; atenção aos hidrofílicos (atenolol, nadolol) pela excreção renal.'},
+{tit:'Prolapso mitral sintomático',hist:'Mulher, 33 anos, palpitações e extrassístoles sintomáticas.',dec:'BB para sintomas',exp:'Controle de palpitações e arritmias sintomáticas no prolapso de valva mitral.'},
+{tit:'Hipertenso + AOS',hist:'Homem, 55 anos, apneia obstrutiva e HAS.',dec:'Pode ser considerado',exp:'Não é indicação automática. Considerar em cenário específico, sobretudo com HAS associada e outra indicação para BB.'},
+{tit:'Idoso com HVE',hist:'Homem, 74 anos, HAS e hipertrofia ventricular esquerda ao ECG.',dec:'Lembrar o LIFE',exp:'No LIFE, com MESMA queda de PA, a losartana superou o atenolol em AVC e desfecho CV, com maior regressão de HVE. O que importa não é só baixar o número — é a estratégia.'}
+];
+
+/* ============================================================
+   BANCO DE QUESTÕES (Arena TEC)
+   ============================================================ */
+const QUESTOES=[
+{tema:'mecanismo',q:'O principal mecanismo crônico dos betabloqueadores para redução sustentada da PA é:',alts:[
+ {t:'Redução do débito cardíaco',c:false,e:'É o efeito INICIAL, não o principal crônico.'},
+ {t:'Redução da liberação de renina',c:true,e:'Bloqueio β1 nas células justaglomerulares → ↓renina → ↓AngII/aldosterona. Mecanismo principal a longo prazo.'},
+ {t:'Bloqueio direto dos canais de cálcio',c:false,e:'Isso é dos BCC, não dos BB.'},
+ {t:'Aumento da excreção renal de sódio',c:false,e:'Efeito de diuréticos, não o mecanismo central dos BB.'},
+ {t:'Vasodilatação por óxido nítrico',c:false,e:'Só de alguns (nebivolol) — não é o mecanismo da classe.'}]},
+{tema:'classificacao',q:'Assinale a alternativa correta sobre o carvedilol:',alts:[
+ {t:'É cardiosseletivo de 3ª geração',c:false,e:'Erro clássico. Ele é 3ª geração, mas NÃO é cardiosseletivo.'},
+ {t:'É não-seletivo com bloqueio α1 adicional',c:true,e:'Bloqueia β1, β2 e α1 → vasodilatação. "Moderno" não é sinônimo de cardiosseletivo.'},
+ {t:'Libera óxido nítrico',c:false,e:'Quem libera NO é o nebivolol.'},
+ {t:'É o BB de escolha para varizes de esôfago',c:false,e:'Varizes pedem não seletivo simples (propranolol/nadolol).'},
+ {t:'Possui atividade simpaticomimética intrínseca',c:false,e:'ISA é do pindolol.'}]},
+{tema:'classificacao',q:'Em relação à cardiosseletividade dos betabloqueadores:',alts:[
+ {t:'É absoluta e mantida em qualquer dose',c:false,e:'É relativa e dose-dependente.'},
+ {t:'Permite uso livre e seguro em asmáticos',c:false,e:'Nunca "livre"; em dose alta perde seletividade.'},
+ {t:'É relativa e diminui em doses altas',c:true,e:'Em dose alta o β1-seletivo passa a bloquear β2. Por isso "preferível se indispensável", com cautela.'},
+ {t:'Só existe na 3ª geração',c:false,e:'Bisoprolol, metoprolol e atenolol são cardiosseletivos de 2ª geração.'},
+ {t:'Torna o fármaco vasodilatador',c:false,e:'Seletividade e vasodilatação são propriedades distintas.'}]},
+{tema:'ic',q:'Quais betabloqueadores têm evidência de benefício na IC com fração de ejeção reduzida?',alts:[
+ {t:'Atenolol, propranolol e pindolol',c:false,e:'Nenhum deles tem essa indicação.'},
+ {t:'Bisoprolol, carvedilol, metoprolol succinato e nebivolol',c:true,e:'São os quatro com evidência em ICFEr.'},
+ {t:'Apenas o carvedilol',c:false,e:'São quatro, não um.'},
+ {t:'Metoprolol tartarato e atenolol',c:false,e:'O de ICFEr é o SUCCINATO; atenolol não entra.'},
+ {t:'Todos os betabloqueadores',c:false,e:'A classe inteira não serve — apenas os quatro.'}]},
+{tema:'ic',q:'Sobre o metoprolol na insuficiência cardíaca:',alts:[
+ {t:'Qualquer formulação serve',c:false,e:'Não. A formulação importa.'},
+ {t:'O tartarato é o de escolha',c:false,e:'É o succinato (liberação prolongada), não o tartarato.'},
+ {t:'O succinato (liberação prolongada) é o de escolha',c:true,e:'A evidência de desfecho em ICFEr é com o succinato.'},
+ {t:'É contraindicado em toda IC',c:false,e:'É indicado na ICFEr compensada, com titulação.'},
+ {t:'Deve ser iniciado na descompensação aguda',c:false,e:'Iniciar apenas com paciente estável/compensado.'}]},
+{tema:'evidencia',q:'No estudo LIFE (2002), a superioridade da losartana sobre o atenolol ocorreu:',alts:[
+ {t:'Por maior redução da PA braquial',c:false,e:'A PA foi semelhante entre os grupos.'},
+ {t:'Apesar de redução semelhante da PA',c:true,e:'Com PA igual, a losartana reduziu mais AVC e desfecho CV e regrediu mais a HVE.'},
+ {t:'Apenas em pacientes sem HVE',c:false,e:'A população tinha HVE ao ECG.'},
+ {t:'Somente na mortalidade total',c:false,e:'Os desfechos principais foram AVC e desfecho CV combinado.'},
+ {t:'Por aumentar a incidência de diabetes',c:false,e:'Ao contrário: reduziu diabetes incidente.'}]},
+{tema:'evidencia',q:'O subestudo CAFE (ASCOT) demonstrou que o atenolol, comparado a amlodipino/perindopril:',alts:[
+ {t:'Reduziu mais a pressão central',c:false,e:'Reduziu MENOS a pressão central.'},
+ {t:'Reduziu menos a pressão central (aórtica)',c:true,e:'−9,0 vs −13,7 mmHg (p<0,001), apesar de PA braquial semelhante.'},
+ {t:'Não teve diferença de pressão central',c:false,e:'Houve diferença significativa.'},
+ {t:'Aumentou a pressão central',c:false,e:'Reduziu, apenas menos que a outra estratégia.'},
+ {t:'Só afetou a pressão diastólica',c:false,e:'O desfecho foi pressão sistólica central.'}]},
+{tema:'evidencia',q:'A principal ressalva ao interpretar as metanálises desfavoráveis aos BB na HAS é:',alts:[
+ {t:'Foram feitas apenas com nebivolol',c:false,e:'Ao contrário — predomínio de atenolol.'},
+ {t:'Grande parte das evidências usou atenolol',c:true,e:'Cerca de ¾ dos participantes usavam atenolol, limitando a extrapolação para toda a classe.'},
+ {t:'Incluíram só pacientes com ICFEr',c:false,e:'Eram hipertensos, contexto de HAS não complicada.'},
+ {t:'Não tiveram significância estatística',c:false,e:'Os resultados foram significativos.'},
+ {t:'Compararam BB apenas com placebo',c:false,e:'Compararam também com BCC e IECA/BRA.'}]},
+{tema:'adversos',q:'Qual betabloqueador tem MENOR associação com disfunção erétil?',alts:[
+ {t:'Propranolol',c:false,e:'Clássico, faz parte do grupo de maior risco.'},
+ {t:'Atenolol',c:false,e:'Também no grupo de maior risco.'},
+ {t:'Nebivolol',c:true,e:'Exceção da classe, via liberação de NO — perfil favorável.'},
+ {t:'Metoprolol',c:false,e:'Grupo de maior risco.'},
+ {t:'Nadolol',c:false,e:'Não seletivo clássico, sem essa vantagem.'}]},
+{tema:'adversos',q:'Sobre o efeito metabólico dos betabloqueadores:',alts:[
+ {t:'Todos pioram igualmente glicose e lipídios',c:false,e:'Não se generaliza.'},
+ {t:'O impacto é maior nos clássicos e menor nos vasodilatadores',c:true,e:'Propranolol/atenolol/metoprolol pioram mais; nebivolol/carvedilol têm perfil mais neutro.'},
+ {t:'Todos melhoram o perfil lipídico',c:false,e:'Os clássicos tendem a ↑TG, ↑LDL, ↓HDL.'},
+ {t:'Nenhum interfere na glicemia',c:false,e:'Podem causar intolerância à glicose e novos casos de DM.'},
+ {t:'Só o nebivolol piora a glicemia',c:false,e:'É justamente o de melhor perfil.'}]},
+{tema:'contra',q:'São contraindicações ao uso de betabloqueadores, EXCETO:',alts:[
+ {t:'Bradicardia com FC < 50 bpm',c:false,e:'É contraindicação verdadeira.'},
+ {t:'Bloqueio atrioventricular avançado',c:false,e:'Contraindicação verdadeira.'},
+ {t:'Broncopatia grave descompensada',c:false,e:'Contraindicação verdadeira (β2).'},
+ {t:'Angina estável',c:true,e:'Angina é INDICAÇÃO, não contraindicação.'},
+ {t:'DAOP grave com BB não vasodilatador',c:false,e:'Contraindicação relativa verdadeira.'}]},
+{tema:'contra',q:'Paciente com DAOP precisa de betabloqueador. A conduta mais adequada:',alts:[
+ {t:'Contraindicar qualquer BB de forma absoluta',c:false,e:'É contraindicação relativa, não absoluta.'},
+ {t:'Preferir um BB com ação vasodilatadora',c:true,e:'Carvedilol/nebivolol são a exceção; os não vasodilatadores pioram a perfusão por β2.'},
+ {t:'Usar propranolol em dose alta',c:false,e:'Não seletivo agrava a vasoconstrição.'},
+ {t:'Usar atenolol sem restrição',c:false,e:'Não vasodilatador, pior escolha aqui.'},
+ {t:'Suspender toda medicação anti-hipertensiva',c:false,e:'Conduta inadequada.'}]},
+{tema:'indicacao',q:'Para profilaxia de varizes de esôfago em cirrótico, o betabloqueador indicado é:',alts:[
+ {t:'Cardiosseletivo (bisoprolol)',c:false,e:'Aqui se quer o efeito β2 esplâncnico.'},
+ {t:'Não seletivo (propranolol/nadolol)',c:true,e:'O bloqueio β2 esplâncnico reduz a pressão portal.'},
+ {t:'Nebivolol pela vasodilatação',c:false,e:'Não é a escolha para hipertensão portal.'},
+ {t:'Carvedilol exclusivamente pelo α1',c:false,e:'A base é o não-seletivo clássico.'},
+ {t:'Qualquer betabloqueador serve igualmente',c:false,e:'Não; a seletividade importa nesta indicação.'}]},
+{tema:'diretriz',q:'Na Diretriz Brasileira de HAS 2025, os betabloqueadores:',alts:[
+ {t:'São 1ª linha para todos os hipertensos',c:false,e:'Não são 1ª linha na HAS não complicada.'},
+ {t:'Foram retirados do arsenal terapêutico',c:false,e:'Continuam essenciais em indicações específicas.'},
+ {t:'Não são 1ª linha na HAS não complicada, mas essenciais em indicações específicas',c:true,e:'Saíram da base de rotina; entram como opção adicional e permanecem indispensáveis em pós-IAM, ICFEr, FA etc.'},
+ {t:'São preferíveis a IECA/BRA na HAS jovem',c:false,e:'IECA/BRA/BCC/tiazídico são preferíveis.'},
+ {t:'Substituem a espironolactona na HAS resistente',c:false,e:'A 4ª droga clássica na HAS resistente é a espironolactona.'}]},
+{tema:'mecanismo',q:'A vasodilatação como mecanismo anti-hipertensivo aplica-se a qual(is) betabloqueador(es)?',alts:[
+ {t:'Todos, por serem simpaticolíticos',c:false,e:'Não é propriedade da classe.'},
+ {t:'Nebivolol (NO) e carvedilol/labetalol (α1)',c:true,e:'Nebivolol via óxido nítrico; carvedilol e labetalol via bloqueio α1.'},
+ {t:'Apenas atenolol',c:false,e:'Atenolol não vasodilata.'},
+ {t:'Apenas propranolol',c:false,e:'Propranolol não vasodilata.'},
+ {t:'Nenhum betabloqueador vasodilata',c:false,e:'Alguns vasodilatam, sim.'}]},
+{tema:'contra',q:'Sobre a suspensão de betabloqueadores em uso crônico:',alts:[
+ {t:'Pode ser feita abruptamente sem risco',c:false,e:'Não. Há risco de rebote.'},
+ {t:'Deve ser gradual pelo risco de efeito rebote',c:true,e:'Suspensão súbita → taquicardia, crise hipertensiva, isquemia por up-regulation.'},
+ {t:'Nunca causa sintomas ao ser interrompida',c:false,e:'Pode causar rebote adrenérgico.'},
+ {t:'Só o nebivolol precisa de desmame',c:false,e:'Vale para a classe.'},
+ {t:'O rebote só ocorre em diabéticos',c:false,e:'É um fenômeno de classe, independente de DM.'}]},
+{tema:'classificacao',q:'A atividade simpaticomimética intrínseca (ISA) é característica de qual fármaco?',alts:[
+ {t:'Bisoprolol',c:false,e:'Alta seletividade β1, sem ISA relevante.'},
+ {t:'Pindolol',c:true,e:'Pindolol tem ISA; hoje pouco usado e evitado no pós-IAM.'},
+ {t:'Carvedilol',c:false,e:'Não é o exemplo de ISA.'},
+ {t:'Nebivolol',c:false,e:'Caracteriza-se pela liberação de NO, não por ISA.'},
+ {t:'Atenolol',c:false,e:'Não é o exemplo clássico de ISA.'}]},
+{tema:'adversos',q:'Homem diabético em uso de propranolol tem hipoglicemia. O que o BB tende a mascarar?',alts:[
+ {t:'A sudorese',c:false,e:'A sudorese é mediada por via colinérgica e tende a permanecer.'},
+ {t:'Tremor e taquicardia',c:true,e:'Os sinais adrenérgicos (tremor, taquicardia) são mascarados; a sudorese permanece como alerta.'},
+ {t:'A cefaleia',c:false,e:'Não é o sinal adrenérgico mascarado.'},
+ {t:'A poliúria',c:false,e:'Não se relaciona ao bloqueio adrenérgico da hipoglicemia.'},
+ {t:'Nenhum sintoma',c:false,e:'Mascara justamente os adrenérgicos.'}]},
+{tema:'indicacao',q:'Qual condição NÃO é, isoladamente, uma boa indicação de betabloqueador como 1ª escolha?',alts:[
+ {t:'Pós-infarto do miocárdio',c:false,e:'Indicação forte.'},
+ {t:'ICFEr compensada',c:false,e:'Indicação forte (fármacos específicos).'},
+ {t:'HAS não complicada no jovem',c:true,e:'Aqui o BB não é 1ª linha — preferir tiazídico/IECA/BRA/BCC.'},
+ {t:'Controle de FC na FA',c:false,e:'Indicação clássica.'},
+ {t:'Tremor essencial',c:false,e:'Indicação (propranolol).'}]}
+];
+
+/* ============================================================
+   BANCO DE FLASHCARDS
+   ============================================================ */
+const FLASH=[
+{cat:'mecanismo',q:'Como o BB reduz a PA de forma imediata?',a:'↓ débito cardíaco (bloqueio β1: ↓FC e ↓contratilidade). É o efeito inicial.'},
+{cat:'mecanismo',q:'Qual o principal mecanismo crônico dos BB?',a:'↓ liberação de renina (bloqueio β1 justaglomerular) → ↓AngII → ↓aldosterona.'},
+{cat:'mecanismo',q:'O BB "mata" a adrenalina?',a:'Não. Ele ocupa o receptor; a catecolamina continua circulando, mas não se acopla.'},
+{cat:'mecanismo',q:'Quais BB reduzem a PA por vasodilatação?',a:'Nebivolol (NO) e carvedilol/labetalol (bloqueio α1). Só alguns.'},
+{cat:'mecanismo',q:'Papel do reajuste barorreflexo no uso crônico?',a:'Melhora a sensibilidade barorreflexa → ↓hiperatividade simpática → ↓PA.'},
+{cat:'mecanismo',q:'PAM = ?',a:'Débito cardíaco × resistência vascular sistêmica (DC × RVS). E DC = FC × VS.'},
+{cat:'receptor',q:'Efeitos da ativação de β1?',a:'↑cronotropismo, ↑inotropismo, ↑dromotropismo e ↑renina. Coração + rim.'},
+{cat:'receptor',q:'Efeitos do bloqueio de β2?',a:'Broncoconstrição, vasoconstrição periférica e ↓liberação de glicose.'},
+{cat:'receptor',q:'Onde ficam os receptores β1?',a:'Coração e aparelho justaglomerular renal.'},
+{cat:'receptor',q:'Onde ficam os receptores β2?',a:'Pulmão, musculatura lisa vascular, fígado e músculo esquelético.'},
+{cat:'receptor',q:'O que o nebivolol faz com o NO?',a:'Aumenta a liberação de óxido nítrico endotelial → vasodilatação.'},
+{cat:'receptor',q:'Função protetora do β3?',a:'Vasodilatação via NO, melhora da sensibilidade à insulina, termogênese, ação anti-inflamatória.'},
+{cat:'classe',q:'A que geração pertence o carvedilol e qual sua peculiaridade?',a:'3ª geração; não-seletivo (β1+β2) com bloqueio α1. NÃO é cardiosseletivo.'},
+{cat:'classe',q:'Cite os BB de 1ª geração (não cardiosseletivos).',a:'Propranolol, nadolol, pindolol.'},
+{cat:'classe',q:'Cite os BB de 2ª geração (cardiosseletivos).',a:'Atenolol, metoprolol, bisoprolol.'},
+{cat:'classe',q:'Cite os BB de 3ª geração (vasodilatadores).',a:'Carvedilol (α1) e nebivolol (NO).'},
+{cat:'classe',q:'A cardiosseletividade é absoluta?',a:'Não — é relativa e dose-dependente; some em dose alta.'},
+{cat:'classe',q:'Qual BB tem ISA e o que significa?',a:'Pindolol. ISA = atividade simpaticomimética intrínseca (agonismo parcial). Evitar no pós-IAM.'},
+{cat:'classe',q:'Diferença lipofílico × hidrofílico?',a:'Lipofílicos (propranolol, metoprolol, carvedilol): mais SNC, metabolismo hepático. Hidrofílicos (atenolol, nadolol): menos SNC, excreção renal.'},
+{cat:'classe',q:'Qual o metoprolol da ICFEr?',a:'O succinato (liberação prolongada), não o tartarato.'},
+{cat:'ic',q:'Quais 4 BB têm evidência em ICFEr?',a:'Bisoprolol, carvedilol, metoprolol succinato e nebivolol.'},
+{cat:'ic',q:'Como iniciar BB na ICFEr?',a:'Paciente compensado, dose baixa, titulação lenta. Nunca na descompensação aguda.'},
+{cat:'evidencia',q:'Qual o achado central do LIFE (2002)?',a:'Com PA igual, losartana > atenolol em AVC (−25%) e desfecho CV (−13%); maior regressão de HVE.'},
+{cat:'evidencia',q:'O que mostrou o subestudo CAFE?',a:'Atenolol reduz MENOS a pressão central (−9,0) que amlodipino/perindopril (−13,7 mmHg), apesar de PA braquial semelhante.'},
+{cat:'evidencia',q:'Por que cuidado ao condenar toda a classe de BB na HAS?',a:'~¾ das evidências desfavoráveis usaram atenolol; não se extrapola direto para todos.'},
+{cat:'evidencia',q:'Resultado da Cochrane 2017 (BB vs IECA/BRA)?',a:'AVC ↑30% (RR 1,30), NNTH 65 em 5 anos.'},
+{cat:'evidencia',q:'Conclusão da metanálise de Lindholm (2005)?',a:'Atenolol não deveria ser 1ª escolha na HAS não complicada; AVC ↑16% vs outros anti-HAS.'},
+{cat:'evidencia',q:'Resumo do ASCOT-BPLA (2005)?',a:'Anlodipino±perindopril > atenolol±bendroflumetiazida: ↓mortalidade, ↓AVC, ↓coronários, ↓diabetes novo.'},
+{cat:'indicacao',q:'Por que o BB é bom na angina?',a:'↓FC e ↓contratilidade → ↓consumo de O₂ → menos isquemia.'},
+{cat:'indicacao',q:'Qual BB para varizes de esôfago?',a:'Não seletivo (propranolol/nadolol) — o efeito β2 esplâncnico ↓pressão portal.'},
+{cat:'indicacao',q:'Qual BB para tremor essencial, hipertireoidismo e migrânea?',a:'Propranolol.'},
+{cat:'indicacao',q:'BB na fibrilação atrial serve para quê?',a:'Controle de frequência (bloqueio do nó AV, ↓dromotropismo).'},
+{cat:'indicacao',q:'Gestante/deseja engravidar: BB ou IECA/BRA?',a:'BB/metildopa (labetalol preferido); IECA/BRA são contraindicados. Evitar atenolol.'},
+{cat:'contra',q:'Quatro contraindicações principais aos BB?',a:'Broncopatia grave/descompensada, BSA/BAV, bradicardia (FC<50), DAOP (exceto vasodilatadores).'},
+{cat:'contra',q:'Como suspender um BB crônico?',a:'Gradualmente — suspensão abrupta causa efeito rebote (taquicardia, crise, isquemia).'},
+{cat:'contra',q:'BB na IC agudamente descompensada?',a:'Não iniciar na descompensação. Introduzir só com paciente estável.'},
+{cat:'contra',q:'DAOP e BB: qual a exceção?',a:'BB vasodilatadores (carvedilol, nebivolol) podem ser usados; os não vasodilatadores pioram a perfusão.'},
+{cat:'adversos',q:'Efeitos metabólicos adversos dos BB clássicos?',a:'Intolerância à glicose, novos casos de DM, ↑triglicérides, ↑LDL, ↓HDL.'},
+{cat:'adversos',q:'Efeitos no SNC dos BB lipofílicos?',a:'Insônia, pesadelos, depressão, fadiga.'},
+{cat:'adversos',q:'Qual BB escapa do risco de disfunção erétil?',a:'Nebivolol (via NO). O resto da classe está no grupo de maior risco.'},
+{cat:'adversos',q:'O que o BB mascara na hipoglicemia?',a:'Tremor e taquicardia (sinais adrenérgicos); a sudorese permanece.'},
+{cat:'diretriz',q:'Posição dos BB na Diretriz BR HAS 2025?',a:'Fora da base de 1ª linha (TIAZ/IECA-BRA/BCC); entram como opção adicional. Essenciais em indicações específicas.'},
+{cat:'diretriz',q:'Por que os BB saíram da 1ª linha na HAS não complicada?',a:'Protegem menos contra AVC, reduzem menos a pressão central e têm pior perfil metabólico (dados sobretudo do atenolol).'}
+];
+
+/* ============================================================
+   GLOSSÁRIO
+   ============================================================ */
+const GLOSS=[
+{t:'Cardiosseletividade',d:'Preferência de bloqueio por β1 sobre β2. Relativa e dose-dependente — some em doses altas.'},
+{t:'ISA',d:'Atividade simpaticomimética intrínseca: agonismo parcial do receptor (ex.: pindolol). Menos bradicardia de repouso; evitar pós-IAM.'},
+{t:'Lipofilicidade',d:'Capacidade de atravessar a barreira hematoencefálica → mais efeitos no SNC e metabolismo hepático (propranolol, metoprolol, carvedilol).'},
+{t:'Cronotropismo / Inotropismo / Dromotropismo',d:'Frequência / força de contração / velocidade de condução. β1 aumenta os três; o bloqueio os reduz.'},
+{t:'ICFEr',d:'Insuficiência cardíaca com fração de ejeção reduzida. BB de evidência: bisoprolol, carvedilol, metoprolol succinato, nebivolol.'},
+{t:'Pressão central',d:'Pressão aórtica; pode diferir da braquial. Atenolol a reduz menos (subestudo CAFE).'},
+{t:'Efeito rebote',d:'Piora adrenérgica (taquicardia, crise hipertensiva, isquemia) após suspensão abrupta do BB. Exige desmame gradual.'},
+{t:'NNTH',d:'Número necessário para causar dano: quantos pacientes tratados para um evento adverso adicional.'},
+{t:'Óxido nítrico (NO)',d:'Vasodilatador endotelial. O nebivolol aumenta sua liberação — base do seu perfil favorável.'},
+{t:'DAOP',d:'Doença arterial obstrutiva periférica. Contraindicação relativa aos BB, exceto os vasodilatadores.'}
+];
+
+/* ============================================================
+   WIDGET: CASOS
+   ============================================================ */
+let caseIdx=0;
+const caseBox=document.getElementById('caseBox');
+function renderCase(){
+  const c=CASOS[caseIdx];
+  caseBox.innerHTML=`<div class="tagline">CASO ${caseIdx+1} · ${c.tit}</div>
+    <p class="mt8" style="font-size:1.05rem">${c.hist}</p>
+    <button class="btn-nav mt16" id="caseReveal">Revelar decisão</button>
+    <div id="caseAns" style="display:none" class="mt16">
+      <div class="sintese" style="background:var(--verde)">${c.dec}</div>
+      <p class="mini mt8">${c.exp}</p>
+    </div>`;
+  document.getElementById('caseReveal').onclick=function(){
+    document.getElementById('caseAns').style.display='block';this.style.display='none';clickSound();
+  };
+  document.getElementById('caseCount').textContent=`${caseIdx+1} / ${CASOS.length}`;
+}
+document.getElementById('casePrev').onclick=()=>{caseIdx=(caseIdx-1+CASOS.length)%CASOS.length;renderCase();clickSound();};
+document.getElementById('caseNext').onclick=()=>{caseIdx=(caseIdx+1)%CASOS.length;renderCase();clickSound();};
+renderCase();
+
+/* ============================================================
+   WIDGET: QUIZ
+   ============================================================ */
+store.answered=store.answered||{};store.wrong=store.wrong||{};
+let quizFilter='todos',quizIdx=0,quizList=QUESTOES.map((q,i)=>i);
+const quizTemas=['todos',...new Set(QUESTOES.map(q=>q.tema))];
+const qFilters=document.getElementById('quizFilters');
+quizTemas.forEach(t=>{
+  const b=document.createElement('button');b.className='qfilter'+(t==='todos'?' on':'');b.textContent=t;
+  b.onclick=()=>{quizFilter=t;document.querySelectorAll('#quizFilters .qfilter').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+    quizList=QUESTOES.map((q,i)=>i).filter(i=>t==='todos'||QUESTOES[i].tema===t);quizIdx=0;renderQuiz();clickSound();};
+  qFilters.appendChild(b);
+});
+const quizBox=document.getElementById('quizBox');
+function renderQuiz(){
+  if(!quizList.length){quizBox.innerHTML='<p class="muted">Sem questões neste filtro.</p>';return;}
+  const gi=quizList[quizIdx],q=QUESTOES[gi];
+  quizBox.innerHTML=`<div class="tagline">QUESTÃO ${quizIdx+1}/${quizList.length} · ${q.tema}</div>
+    <p class="mt8" style="font-weight:700;font-size:1.02rem">${q.q}</p>
+    <div id="opts"></div>`;
+  const opts=document.getElementById('opts');
+  q.alts.forEach((a,ai)=>{
+    const btn=document.createElement('button');btn.className='opt';
+    btn.innerHTML=`<b>${String.fromCharCode(65+ai)})</b> ${a.t}<div class="exp">${a.e}</div>`;
+    btn.onclick=()=>{
+      if(btn.classList.contains('revealed'))return;
+      document.querySelectorAll('#opts .opt').forEach(o=>{o.classList.add('revealed');});
+      q.alts.forEach((aa,idx)=>{const o=opts.children[idx];if(aa.c)o.classList.add('correct');else if(idx===ai)o.classList.add('wrong');});
+      store.answered[gi]=true;
+      if(!a.c){store.wrong[gi]=true;noSound();}else{delete store.wrong[gi];okSound();}
+      save();renderStats();
+    };
+    opts.appendChild(btn);
+  });
+  document.getElementById('qCount').textContent=`${quizIdx+1} / ${quizList.length}`;
+}
+document.getElementById('qPrev').onclick=()=>{quizIdx=(quizIdx-1+quizList.length)%quizList.length;renderQuiz();clickSound();};
+document.getElementById('qNext').onclick=()=>{quizIdx=(quizIdx+1)%quizList.length;renderQuiz();clickSound();};
+renderQuiz();
+
+/* ============================================================
+   WIDGET: FLASHCARDS
+   ============================================================ */
+let fcFilter='todos';
+const fcCats=['todos',...new Set(FLASH.map(f=>f.cat))];
+const fcFilters=document.getElementById('fcFilters');
+const fcGrid=document.getElementById('fcGrid');
+fcCats.forEach(c=>{
+  const b=document.createElement('button');b.className='qfilter'+(c==='todos'?' on':'');b.textContent=c;
+  b.onclick=()=>{fcFilter=c;document.querySelectorAll('#fcFilters .qfilter').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderFc();clickSound();};
+  fcFilters.appendChild(b);
+});
+function renderFc(){
+  const list=FLASH.filter(f=>fcFilter==='todos'||f.cat===fcFilter);
+  fcGrid.innerHTML='';
+  list.forEach(f=>{
+    const el=document.createElement('div');el.className='mfc';
+    el.innerHTML=`<span class="mfc-cat">${f.cat}</span><div class="mfc-q">${f.q}</div><div class="mfc-a">${f.a}</div>`;
+    el.onclick=()=>{el.classList.toggle('mark');clickSound();};
+    fcGrid.appendChild(el);
+  });
+  document.getElementById('fcCount').textContent=`${list.length} card${list.length!==1?'s':''}`;
+}
+renderFc();
+
+/* ============================================================
+   HIPOCAMPO: stats + revisão espaçada
+   ============================================================ */
+const statBox=document.getElementById('statBox');
+function renderStats(){
+  const ans=Object.keys(store.answered).length,wr=Object.keys(store.wrong).length;
+  const pct=ans?Math.round((ans-wr)/ans*100):0;
+  statBox.innerHTML=`<p class="mini">Questões respondidas: <b>${ans}/${QUESTOES.length}</b></p>
+    <p class="mini">Acertos: <b style="color:var(--verde)">${ans-wr}</b> · Erros: <b style="color:var(--vermelho)">${wr}</b></p>
+    <div style="background:var(--cinza-soft);border-radius:20px;height:14px;margin-top:8px;overflow:hidden">
+      <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--verde),var(--azul-atlas))"></div>
+    </div>
+    <p class="mini mt8">${pct}% de acerto</p>
+    ${wr?`<p class="mini mt8" style="color:var(--vermelho)">Revise os temas que você errou na Arena TEC.</p>`:''}`;
+}
+renderStats();
+
+store.spaced=store.spaced||{d0:false,d1:false,d7:false};
+const spacedBox=document.getElementById('spacedBox');
+function renderSpaced(){
+  const items=[['d0','Hoje — primeira leitura'],['d1','Amanhã — revisão rápida'],['d7','Em 7 dias — consolidação']];
+  spacedBox.innerHTML=items.map(([k,l])=>`<label class="mini" style="display:flex;align-items:center;gap:8px;margin:6px 0;cursor:pointer">
+    <input type="checkbox" data-k="${k}" ${store.spaced[k]?'checked':''}> ${l}</label>`).join('');
+  spacedBox.querySelectorAll('input').forEach(ch=>ch.onchange=()=>{store.spaced[ch.dataset.k]=ch.checked;save();clickSound();});
+}
+renderSpaced();
+
+document.getElementById('resetBtn').onclick=()=>{
+  if(confirm('Reiniciar todo o progresso deste capítulo?')){
+    localStorage.removeItem(LS_KEY);store.answered={};store.wrong={};store.spaced={d0:false,d1:false,d7:false};
+    renderStats();renderSpaced();noSound();
+  }
+};
+
+/* ============================================================
+   GLOSSÁRIO
+   ============================================================ */
+const glossBox=document.getElementById('glossBox');
+GLOSS.forEach(g=>{
+  const el=document.createElement('div');el.className='teach';
+  el.innerHTML=`<h4>${g.t}</h4><p class="mini">${g.d}</p>`;
+  glossBox.appendChild(el);
+});
+
+/* ============================================================
+   IntersectionObserver: reveal suave
+   ============================================================ */
+if(!document.body.classList.contains('reduz')){
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='none';io.unobserve(e.target);}});
+  },{threshold:.08});
+  document.querySelectorAll('section .card, section .teach').forEach(el=>{
+    el.style.opacity=0;el.style.transform='translateY(14px)';el.style.transition='opacity .5s, transform .5s';
+    io.observe(el);
+  });
+}
+</script>
+</body>
+</html>
