@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Reino dos Lípides — Do Hambúrguer à Placa | Atlas Mental</title>
+<!--
+  ATLAS MENTAL · CARDIOLOGIA · DISLIPIDEMIA E ATEROSCLEROSE
+  Capítulo 1 — O Reino dos Lípides: metabolismo das lipoproteínas e aterogênese
+  Arquivo único autossuficiente. Sem bibliotecas externas. Mobile-first.
+  Fontes: Nunito (display+corpo) · IBM Plex Mono (kickers) · Dancing Script (assinatura)
+  LS_KEY: atlasLip_cap1_v1
+  Dr. André Rossanno
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#081326;      /* fundo cinematográfico */
+  --noite2:#0e2140;
+  --noite3:#132c52;
+  --carta:#fbfaf6;      /* cartas claras */
+  --carta2:#f0eee6;
+  --tinta:#0d2137;      /* texto sobre carta */
+  --tinta2:#41556b;
+  --azul:#1282A2;       /* Azul Atlas — conceito/mecanismo */
+  --azul-claro:#a9dced;
+  --azul-fundo:#e7f4f8;
+  --verde:#1e8f5e;      /* proteção */
+  --verde-fundo:#e6f5ee;
+  --ouro:#c8891a;       /* pegadinha/atenção */
+  --ouro-fundo:#fdf3de;
+  --vermelho:#c0392b;   /* perigo */
+  --vermelho-fundo:#fbeae7;
+  --vermelho-escuro:#7d1f16;
+  --cinza:#8a97a6;
+  --linha:rgba(255,255,255,.14);
+  --raio:16px;
+  --sombra:0 10px 34px rgba(0,0,0,.34);
+  --max:980px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:76px}
+body{
+  margin:0; background:var(--noite); color:#e9f0f7;
+  font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1100px 520px at 50% -10%, #16345f 0%, transparent 62%);
+  background-attachment:fixed;
+}
+body.reduz *{animation:none!important; transition:none!important}
+body.prof .prof-hide{display:none!important}
+img,svg{max-width:100%}
+h1,h2,h3,h4{line-height:1.2; margin:0 0 .5rem}
+p{margin:0 0 .85rem}
+a{color:var(--azul-claro)}
+.wrap{max-width:var(--max); margin:0 auto; padding:0 16px}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky; top:0; z-index:60; background:rgba(8,19,38,.93); backdrop-filter:blur(10px); border-bottom:1px solid var(--linha)}
+.nav-in{max-width:var(--max); margin:0 auto; padding:9px 16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.brand{font-weight:900; letter-spacing:.4px; font-size:.95rem; margin-right:auto; display:flex; align-items:center; gap:8px}
+.brand b{color:var(--vermelho); font-size:1.15rem; line-height:1}
+.tbtn{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.6px; text-transform:uppercase;
+  background:transparent; color:#bcd0e4; border:1px solid var(--linha); border-radius:999px; padding:6px 10px; cursor:pointer}
+.tbtn.on{background:var(--azul); border-color:var(--azul); color:#fff}
+.tbtn:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ouro); outline-offset:2px}
+.prog{height:3px; background:transparent}
+.prog i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--vermelho),var(--ouro),var(--verde)); transition:width .18s}
+
+/* ---------- HERO ---------- */
+.hero{padding:52px 0 34px; text-align:center; position:relative; overflow:hidden}
+.kicker{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:2.6px; text-transform:uppercase; color:var(--azul-claro); margin-bottom:14px}
+.hero h1{font-size:clamp(2rem,7.6vw,3.5rem); font-weight:900; letter-spacing:-1.2px}
+.hero h1 em{font-style:normal; color:var(--vermelho); text-shadow:0 0 26px rgba(192,57,43,.5)}
+.hero .sub{color:#b9cadd; max-width:640px; margin:10px auto 0}
+.tagline{margin:26px auto 0; max-width:660px; border-left:3px solid var(--vermelho); padding:12px 16px; text-align:left;
+  background:rgba(192,57,43,.10); border-radius:0 12px 12px 0; font-size:1.06rem; font-weight:700}
+.hero-meta{margin-top:22px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap}
+.pill{font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:1px; text-transform:uppercase;
+  border:1px solid var(--linha); border-radius:999px; padding:5px 11px; color:#c6d6e6}
+
+/* ---------- SEÇÕES ---------- */
+section{padding:34px 0 6px}
+.sechead{display:flex; align-items:baseline; gap:12px; margin:0 0 18px; border-bottom:1px solid var(--linha); padding-bottom:10px}
+.sechead .num{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--vermelho); font-weight:600}
+.sechead h2{font-size:clamp(1.25rem,4.4vw,1.75rem); font-weight:900; margin:0}
+.ato{font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:2px; text-transform:uppercase; color:var(--ouro); margin-bottom:6px}
+
+.card{background:var(--carta); color:var(--tinta); border-radius:var(--raio); padding:18px; box-shadow:var(--sombra); margin:0 0 16px}
+.card h3{font-size:1.12rem; font-weight:900; color:var(--tinta)}
+.card p:last-child{margin-bottom:0}
+.dark{background:var(--noite2); color:#e9f0f7; border:1px solid var(--linha); box-shadow:none}
+.dark h3{color:#fff}
+
+.tag{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:1.2px; text-transform:uppercase;
+  padding:3px 9px; border-radius:999px; margin-bottom:8px; font-weight:600}
+.t-az{background:var(--azul-fundo); color:#0b5f76}
+.t-vm{background:var(--vermelho-fundo); color:var(--vermelho-escuro)}
+.t-vd{background:var(--verde-fundo); color:#12603f}
+.t-ou{background:var(--ouro-fundo); color:#8a5c05}
+
+.imag{border-left:4px solid var(--azul); background:var(--azul-fundo); padding:12px 14px; border-radius:0 12px 12px 0; margin:12px 0}
+.imag b{color:#0b5f76}
+.peg{border-left:4px solid var(--ouro); background:var(--ouro-fundo); padding:12px 14px; border-radius:0 12px 12px 0; margin:12px 0}
+.peg b{color:#8a5c05}
+.perigo{border-left:4px solid var(--vermelho); background:var(--vermelho-fundo); padding:12px 14px; border-radius:0 12px 12px 0; margin:12px 0}
+.prot{border-left:4px solid var(--verde); background:var(--verde-fundo); padding:12px 14px; border-radius:0 12px 12px 0; margin:12px 0}
+.sintese{margin-top:12px; padding:10px 14px; background:var(--tinta); color:#fff; border-radius:10px; font-weight:800; font-size:.95rem}
+.sintese::before{content:"⟶ "; color:var(--ouro)}
+
+.hub{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+.hub a{display:block; text-decoration:none; background:var(--noite2); border:1px solid var(--linha); border-radius:12px; padding:12px; color:#e9f0f7; transition:.16s}
+.hub a:hover{border-color:var(--vermelho); transform:translateY(-2px)}
+.hub a span{display:block; font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--ouro); letter-spacing:1.2px}
+.hub a b{font-size:.95rem}
+
+/* elenco */
+.elenco{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px}
+.pers{background:var(--carta); color:var(--tinta); border-radius:14px; padding:14px; box-shadow:var(--sombra); border-top:5px solid var(--cinza); cursor:pointer; transition:.16s}
+.pers:hover{transform:translateY(-3px)}
+.pers .ico{font-size:1.9rem; line-height:1}
+.pers h4{margin:6px 0 2px; font-size:1rem; font-weight:900}
+.pers .fn{font-size:.82rem; color:var(--tinta2)}
+.pers .det{display:none; margin-top:9px; padding-top:9px; border-top:1px dashed #cfd6de; font-size:.86rem}
+.pers.open .det{display:block}
+.pers.vil{border-top-color:var(--vermelho)} .pers.her{border-top-color:var(--verde)}
+.pers.neu{border-top-color:var(--azul)} .pers.enz{border-top-color:var(--ouro)}
+
+/* tabelas */
+.tb{width:100%; border-collapse:collapse; font-size:.9rem; background:var(--carta); color:var(--tinta); border-radius:12px; overflow:hidden}
+.tb th{background:var(--tinta); color:#fff; padding:9px; text-align:left; font-size:.78rem; text-transform:uppercase; letter-spacing:.6px}
+.tb td{padding:9px; border-top:1px solid #e3e0d8}
+.tb tr:hover td{background:#f2efe6}
+.scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:14px}
+
+/* botões */
+.btn{background:var(--azul); color:#fff; border:0; border-radius:10px; padding:9px 15px; font-family:inherit; font-weight:800; font-size:.9rem; cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent; border:1px solid var(--azul); color:var(--azul)}
+.btn.vm{background:var(--vermelho)} .btn.vd{background:var(--verde)} .btn.ou{background:var(--ouro)}
+.btnrow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0}
+
+/* muralha (assinatura) */
+.muralha{background:#06101f; border:1px solid var(--linha); border-radius:var(--raio); padding:14px; margin-bottom:16px}
+.mur-stage{font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:1.6px; text-transform:uppercase; color:var(--ouro)}
+.mur-title{font-size:1.15rem; font-weight:900; margin:2px 0 4px}
+.mur-txt{font-size:.92rem; color:#bfd1e2; min-height:64px}
+.mur-ctrl{display:flex; gap:10px; align-items:center; margin-top:10px}
+.mur-ctrl input[type=range]{flex:1; accent-color:var(--vermelho)}
+.legenda{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:8px; margin-top:12px}
+.lg{display:flex; gap:9px; align-items:flex-start; background:#0e2140; border:1px solid var(--linha); border-radius:10px; padding:9px 11px}
+.lg i{width:13px; height:13px; border-radius:3px; flex:0 0 13px; margin-top:4px}
+.lg b{display:block; font-size:.86rem; line-height:1.3}
+.lg span{display:block; color:#9fb4c9; font-size:.76rem; line-height:1.35}
+.lg.novo{border-color:var(--ouro); background:rgba(200,137,26,.12)}
+.lg.novo b::after{content:" ← novo"; font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--ouro); letter-spacing:.8px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}
+
+/* batalha */
+.batalha{display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:14px; overflow:hidden; box-shadow:var(--sombra)}
+.rei{padding:14px}
+.rei.est{background:var(--verde-fundo); color:#12603f}
+.rei.ins{background:var(--vermelho-fundo); color:var(--vermelho-escuro)}
+.rei h4{font-size:1rem; margin-bottom:8px}
+.rei ul{margin:0; padding-left:18px; font-size:.87rem}
+.rei li{margin-bottom:5px}
+.linhabat{display:grid; grid-template-columns:1fr 62px 1fr; align-items:center; gap:6px; background:var(--carta); color:var(--tinta);
+  border-top:1px solid #e3e0d8; padding:8px 10px; font-size:.86rem}
+.linhabat .mid{text-align:center; font-family:'IBM Plex Mono',monospace; font-size:.58rem; color:var(--tinta2); letter-spacing:.5px}
+.up{color:var(--vermelho); font-weight:900} .dn{color:var(--verde); font-weight:900}
+.batwrap{background:var(--carta); border-radius:14px; overflow:hidden; box-shadow:var(--sombra); margin-bottom:14px}
+.bathead{display:grid; grid-template-columns:1fr 62px 1fr; background:var(--tinta); color:#fff; padding:9px 10px; font-size:.76rem; font-weight:800; text-transform:uppercase; letter-spacing:.6px}
+.bathead div:nth-child(2){text-align:center}
+.bathead div:nth-child(3){text-align:right}
+.linhabat div:nth-child(3){text-align:right}
+
+/* palácio */
+.salas{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+.sala{background:var(--noite2); border:1px solid var(--linha); border-radius:12px; padding:12px; cursor:pointer; transition:.16s}
+.sala:hover{border-color:var(--ouro)}
+.sala .n{font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:var(--ouro); letter-spacing:1.4px}
+.sala b{display:block; font-size:.95rem; margin:3px 0}
+.sala .c{display:none; font-size:.84rem; color:#bfd1e2; margin-top:7px; padding-top:7px; border-top:1px dashed var(--linha)}
+.sala.open .c{display:block}
+
+/* flashcards */
+.fgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+.fc{perspective:1200px; height:172px; cursor:pointer}
+.fc-in{position:relative; width:100%; height:100%; transition:transform .55s; transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-f,.fc-b{position:absolute; inset:0; backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; justify-content:center; box-shadow:var(--sombra); font-size:.92rem}
+.fc-f{background:var(--carta); color:var(--tinta); font-weight:800}
+.fc-b{background:var(--tinta); color:#fff; transform:rotateY(180deg)}
+.fc-f small,.fc-b small{font-family:'IBM Plex Mono',monospace; font-size:.56rem; letter-spacing:1.2px; text-transform:uppercase; opacity:.7; display:block; margin-bottom:6px}
+
+/* quiz */
+.q{background:var(--carta); color:var(--tinta); border-radius:14px; padding:16px; box-shadow:var(--sombra); margin-bottom:14px}
+.q .en{font-weight:800; margin-bottom:10px}
+.opt{display:block; width:100%; text-align:left; background:#fff; border:1.5px solid #ddd8cc; border-radius:10px; padding:10px 12px; margin-bottom:7px; font-family:inherit; font-size:.9rem; cursor:pointer; color:var(--tinta)}
+.opt:hover{border-color:var(--azul)}
+.opt.ok{background:var(--verde-fundo); border-color:var(--verde); font-weight:800}
+.opt.no{background:var(--vermelho-fundo); border-color:var(--vermelho)}
+.coment{display:none; margin-top:10px; padding:11px 13px; background:var(--azul-fundo); border-left:4px solid var(--azul); border-radius:0 10px 10px 0; font-size:.89rem}
+.coment.show{display:block}
+.qmeta{font-family:'IBM Plex Mono',monospace; font-size:.6rem; letter-spacing:1.1px; text-transform:uppercase; color:var(--tinta2); margin-bottom:6px}
+
+/* caso */
+.caso{background:var(--carta); color:var(--tinta); border-radius:14px; padding:16px; box-shadow:var(--sombra); margin-bottom:12px; border-left:5px solid var(--vermelho)}
+.caso .resp{display:none; margin-top:10px; padding-top:10px; border-top:1px dashed #cfd6de; font-size:.9rem}
+.caso.open .resp{display:block}
+
+/* hipocampo */
+.dash{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:10px; margin-bottom:14px}
+.kpi{background:var(--noite2); border:1px solid var(--linha); border-radius:12px; padding:12px; text-align:center}
+.kpi b{display:block; font-size:1.7rem; font-weight:900; color:var(--ouro)}
+.kpi span{font-family:'IBM Plex Mono',monospace; font-size:.58rem; letter-spacing:1px; text-transform:uppercase; color:#9fb4c9}
+.chk{display:flex; gap:9px; align-items:flex-start; background:var(--noite2); border:1px solid var(--linha); border-radius:10px; padding:10px; margin-bottom:7px; cursor:pointer}
+.chk input{margin-top:4px; accent-color:var(--verde); width:17px; height:17px}
+.chk.done{opacity:.55; text-decoration:line-through}
+
+/* filosofia */
+.filo{background:linear-gradient(160deg,#0e2140,#0a182e); border:1px solid var(--linha); border-radius:var(--raio); padding:24px; text-align:center}
+.filo p{font-size:1.08rem; font-weight:700; color:#e9f0f7; max-width:640px; margin:0 auto .9rem}
+.assin{font-family:'Dancing Script',cursive; font-size:1.85rem; color:var(--ouro); margin-top:14px}
+.frase{border-left:3px solid var(--ouro); padding:10px 14px; margin:12px 0; font-style:italic; font-weight:700; color:#e2ecf6; background:rgba(200,137,26,.08); border-radius:0 10px 10px 0}
+
+/* fluxo */
+.fluxo{display:flex; flex-wrap:wrap; gap:6px; align-items:center; justify-content:center; margin:14px 0}
+.fx{background:var(--noite2); border:1px solid var(--linha); border-radius:10px; padding:7px 11px; font-size:.82rem; font-weight:800}
+.fx.v{border-color:var(--vermelho); color:#ffb3a8} .fx.g{border-color:var(--verde); color:#9fe3c2}
+.fx.a{border-color:var(--azul); color:var(--azul-claro)}
+.seta{color:var(--ouro); font-weight:900}
+
+footer{margin-top:44px; padding:28px 0 40px; border-top:1px solid var(--linha); text-align:center; color:#9fb4c9; font-size:.86rem}
+footer .assin{font-size:1.6rem}
+@media(max-width:600px){
+  body{font-size:16px}
+  .batalha{grid-template-columns:1fr}
+  .hero{padding:34px 0 24px}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand"><b>◉</b> ATLAS MENTAL · LÍPIDES</div>
+    <button class="tbtn" id="btProf" onclick="toggleProf()">Modo professor</button>
+    <button class="tbtn" id="btMov" onclick="toggleMov()">Reduzir movimento</button>
+    <button class="tbtn" onclick="irTopo()">↑ Topo</button>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Cardiologia · Dislipidemia · Capítulo 1</div>
+    <h1>O Reino dos <em>Lípides</em></h1>
+    <p class="sub">Do hambúrguer à placa rota. Um filme em três atos sobre caminhões de gordura, um vilão de crachá vermelho e a muralha que decide quem vive.</p>
+    <div class="tagline">"O colesterol não mata porque entope. Ele mata porque constrói uma bomba-relógio dentro da parede da artéria."</div>
+    <div class="hero-meta">
+      <span class="pill">3 ciclos</span><span class="pill">Elenco de 12</span>
+      <span class="pill">Palácio de 15 salas</span><span class="pill">TEC 2026</span>
+    </div>
+  </div>
+</header>
+
+<section id="hub"><div class="wrap">
+  <div class="sechead"><span class="num">00</span><h2>Por onde caminhar</h2></div>
+  <div class="hub">
+    <a href="#filosofia"><span>Antes de tudo</span><b>Filosofia</b></a>
+    <a href="#anatomia"><span>Ato I</span><b>O caminhão por dentro</b></a>
+    <a href="#elenco"><span>Ato I</span><b>O elenco</b></a>
+    <a href="#crachas"><span>Ato I</span><b>Os crachás (Apo)</b></a>
+    <a href="#ciclos"><span>Ato II</span><b>Os 3 ciclos</b></a>
+    <a href="#apob"><span>Ato II</span><b>ApoB = 👎</b></a>
+    <a href="#muralha"><span>Ato III</span><b>A Muralha</b></a>
+    <a href="#batalha"><span>Ato III</span><b>Estável × Instável</b></a>
+    <a href="#palacio"><span>Memória</span><b>Palácio 15 salas</b></a>
+    <a href="#niveis"><span>Memória</span><b>N1–N7</b></a>
+    <a href="#casos"><span>Treino</span><b>Casos clínicos</b></a>
+    <a href="#arena"><span>Treino</span><b>Arena TEC</b></a>
+    <a href="#flash"><span>Treino</span><b>Flashcards</b></a>
+    <a href="#pegadinhas"><span>Treino</span><b>Pegadinhas</b></a>
+    <a href="#hipocampo"><span>Fixação</span><b>Hipocampo</b></a>
+    <a href="#revisao"><span>Fixação</span><b>Revisão de 60s</b></a>
+  </div>
+  <div class="card dark" style="margin-top:14px">
+    <span class="tag t-az">Como usar</span>
+    <p style="margin-bottom:6px">Não leia. <b>Assista.</b> Sempre que aparecer uma pergunta, pare, feche os olhos e responda em voz alta <b>antes</b> de continuar. A resposta que você constrói vale dez vezes a resposta que você lê.</p>
+    <p style="margin-bottom:0; font-size:.9rem; color:#9fb4c9">Toque nos cards do elenco, nas salas do palácio e nos flashcards — quase tudo aqui abre.</p>
+  </div>
+</div></section>
+
+<section id="filosofia"><div class="wrap">
+  <div class="sechead"><span class="num">01</span><h2>Filosofia</h2></div>
+  <div class="filo">
+    <p>Durante anos ensinaram você que o colesterol "entope o cano". É uma mentira confortável — e é por isso que ela é fácil de esquecer.</p>
+    <p>A verdade é mais lenta e mais assustadora: a gordura <b>atravessa</b> a parede, <b>fica presa</b> lá dentro e passa décadas em silêncio enquanto o corpo tenta consertar o estrago. O infarto não é o dia em que o cano fechou. É o dia em que a obra desabou.</p>
+    <p>Quem entende isso nunca mais olha um LDL de 160 como um número de laboratório. Olha como tempo de exposição — e tempo, ao contrário de dose, não volta atrás.</p>
+    <div class="assin">— Dr. André Rossanno</div>
+  </div>
+</div></section>
+
+<section id="anatomia"><div class="wrap">
+  <div class="ato">Ato I · o elenco entra em cena</div>
+  <div class="sechead"><span class="num">02</span><h2>O caminhão por dentro</h2></div>
+
+  <div class="card">
+    <span class="tag t-az">N1 · âncora</span>
+    <h3>Gordura não nada. Gordura pega carona.</h3>
+    <p>Colesterol e triglicérides são <b>hidrofóbicos</b> — não se dissolvem no sangue. Para viajar, precisam de um veículo. Esse veículo é a <b>lipoproteína</b>.</p>
+    <div class="imag"><b>Imagem mental:</b> um caminhão-tanque. Por <b>dentro</b>, a carga oleosa (triglicérides + ésteres de colesterol). Por <b>fora</b>, uma lona que aceita água (fosfolípides + colesterol livre). E, encaixado na lona, o <b>crachá do motorista</b>: a apolipoproteína.</div>
+    <div class="fluxo">
+      <span class="fx v">Núcleo: TG + éster de colesterol</span><span class="seta">+</span>
+      <span class="fx a">Casca: fosfolípide + colesterol livre</span><span class="seta">+</span>
+      <span class="fx g">Crachá: apolipoproteína</span>
+    </div>
+    <p style="margin-bottom:6px"><b>Pergunte-se agora:</b> se o caminhão é feito de gordura por dentro e proteína por fora... quem é mais <b>denso</b>: o cheio de gordura ou o cheio de proteína?</p>
+    <div class="prot"><b>Regra de ouro da densidade:</b> gordura <b>flutua</b>, proteína <b>afunda</b>. Quanto mais triglicéride, <b>menos</b> densa e <b>maior</b> a partícula (quilomícron). Quanto mais proteína, <b>mais</b> densa e menor (HDL). O nome das lipoproteínas é literalmente a sua densidade: <i>Very Low</i> → <i>Intermediate</i> → <i>Low</i> → <i>High</i>.</div>
+    <div class="sintese">Quilomícron = o maior e mais leve. HDL = a menor e mais pesada. Todo o resto está no meio do caminho.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-vm">O papel do crachá</span>
+    <h3>A apolipoproteína não é enfeite — é identidade</h3>
+    <p>O crachá faz três coisas: <b>estrutura</b> a partícula, <b>ativa</b> enzimas e — o mais importante para a prova — <b>abre a fechadura</b> do receptor certo. Trocar o crachá é trocar o destino do caminhão.</p>
+    <div class="peg"><b>Pegadinha TEC:</b> o examinador adora perguntar "qual a principal apoproteína de X". Não decore uma lista solta — decore a <b>família</b>: quem nasce no intestino usa <b>B48</b>; quem nasce no fígado usa <b>B100</b>; quem limpa usa <b>A</b>.</div>
+  </div>
+</div></section>
+
+<section id="elenco"><div class="wrap">
+  <div class="sechead"><span class="num">03</span><h2>O elenco</h2></div>
+  <p style="color:#b9cadd; margin-bottom:14px">Toque em cada personagem para abrir a ficha.</p>
+  <div class="elenco" id="elencoGrid"></div>
+  <div class="card" style="margin-top:16px">
+    <span class="tag t-ou">Mnemônico inevitável</span>
+    <h3>Baby 48 e Bandido 100</h3>
+    <p><b>B48 = "Baby 48"</b> — acabou de nascer, veio do <b>intestino</b>, é o quilomícron recém-saído da comida. Bebê não é bandido: o quilomícron por si só é grande demais para entrar na parede.</p>
+    <p style="margin-bottom:0"><b>B100 = "Bandido 100"</b> — tudo que carrega ApoB100 é <b>potencialmente aterogênico</b>: VLDL, IDL, LDL e Lp(a). Cem por cento bandido.</p>
+    <div class="imag"><b>Detalhe que fixa:</b> o "48" não é aleatório — a ApoB48 é a versão truncada, com cerca de <b>48%</b> do comprimento da ApoB100. O bebê é literalmente metade do bandido.</div>
+    <div class="sintese">Viu B100 no enunciado? Pense em placa. Viu B48? Pense em jantar.</div>
+  </div>
+</div></section>
+
+<section id="crachas"><div class="wrap">
+  <div class="sechead"><span class="num">04</span><h2>Os crachás e as origens</h2></div>
+
+  <div class="card">
+    <span class="tag t-az">N2 · dual coding</span>
+    <h3>Quem é filho de quem</h3>
+    <p>Metade das questões de lipoproteína são resolvidas sabendo apenas <b>de onde cada partícula nasce</b>. Repare que só duas nascem de um órgão; as outras nascem umas das outras.</p>
+    <div class="scroll">
+    <table class="tb">
+      <thead><tr><th>Lipoproteína</th><th>Origem</th><th>Principal apoproteína</th></tr></thead>
+      <tbody>
+        <tr><td><b>Quilomícron</b></td><td>Intestino</td><td>B48</td></tr>
+        <tr><td><b>VLDL</b></td><td>Fígado</td><td>B100</td></tr>
+        <tr><td><b>IDL</b></td><td>VLDL (filha)</td><td>B100</td></tr>
+        <tr><td><b>LDL</b></td><td>IDL (neta)</td><td>B100</td></tr>
+        <tr><td><b>HDL</b></td><td>Fígado <i>e</i> intestino</td><td>A-I e A-II</td></tr>
+        <tr><td><b>Lp(a)</b></td><td>Fígado</td><td>B100 <span style="color:var(--vermelho)">+ apo(a)</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="imag"><b>Imagem mental:</b> uma árvore genealógica com dois troncos. Tronco do <b>intestino</b> → só o quilomícron. Tronco do <b>fígado</b> → VLDL, Lp(a) e (junto com o intestino) HDL. Do VLDL desce a linhagem: <b>VLDL → IDL → LDL</b>. Avó, mãe, filha — todas com o mesmo sobrenome B100.</div>
+    <div class="peg"><b>Pegadinha:</b> HDL é a única com origem <b>dupla</b> (fígado <b>e</b> intestino) e a única cujo crachá não é B — é <b>A-I e A-II</b>. E a Lp(a) é a única que tem <b>dois</b> crachás.</div>
+    <div class="sintese">Cinco partículas, um sobrenome (B100). Uma exceção que limpa (A-I/A-II) e um bebê que só janta (B48).</div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-vm">Personagem especial</span>
+    <h3>Lp(a) — o clone com passaporte falso</h3>
+    <p>Pegue uma LDL. Solde nela, de forma covalente, uma proteína chamada <b>apo(a)</b>. Pronto: você criou a Lp(a).</p>
+    <p>A apo(a) tem uma semelhança estrutural incômoda com o <b>plasminogênio</b> — a proteína que o corpo usa para dissolver coágulo. Resultado: a Lp(a) é aterogênica <b>como LDL</b> e ainda atrapalha a fibrinólise.</p>
+    <div class="perigo"><b>Por que ela assusta:</b> o nível de Lp(a) é determinado essencialmente por <b>genética</b> — dieta e estatina praticamente não mexem nele. É o "risco que você herdou". Por isso as diretrizes recomendam dosar <b>ao menos uma vez na vida</b>.</div>
+    <div class="imag"><b>Imagem mental:</b> um caminhão LDL com um <b>crachá extra falsificado</b> pendurado. Ele entra na parede como bandido — e, quando o bombeiro (plasmina) chega para desmanchar o trombo, ele mostra o crachá falso e ocupa a vaga. O incêndio não é apagado.</div>
+    <div class="sintese">Lp(a) = LDL + passaporte falso de plasminogênio: entope como LDL e trombosa como nenhuma outra.</div>
+  </div>
+</div></section>
+<section id="ciclos"><div class="wrap">
+  <div class="ato">Ato II · as três estradas</div>
+  <div class="sechead"><span class="num">05</span><h2>Os 3 ciclos do metabolismo dos lípides</h2></div>
+
+  <div class="card dark">
+    <p style="margin-bottom:8px"><b>Pare aqui.</b> Feche os olhos. Existem exatamente três estradas no reino:</p>
+    <div class="fluxo">
+      <span class="fx v">1 · Via intestinal (exógena)</span>
+      <span class="fx a">2 · Via hepática (endógena)</span>
+      <span class="fx g">3 · Transporte reverso</span>
+    </div>
+    <p style="margin-bottom:0; font-size:.92rem; color:#bfd1e2">Uma traz de fora. Uma distribui de dentro. Uma <b>devolve</b>. Se você lembrar só disso, já reconstrói o capítulo inteiro.</p>
+  </div>
+
+  <div class="btnrow" role="tablist" aria-label="Ciclos do metabolismo lipídico">
+    <button class="btn vm" onclick="abrirCiclo(0)" id="cbt0">Via intestinal</button>
+    <button class="btn ghost" onclick="abrirCiclo(1)" id="cbt1">Via hepática</button>
+    <button class="btn ghost" onclick="abrirCiclo(2)" id="cbt2">Transporte reverso</button>
+  </div>
+  <div id="cicloBox"></div>
+
+  <div class="card">
+    <span class="tag t-ou">A tesoura e a segunda tesoura</span>
+    <h3>Duas lipases, dois cortes, duas partículas</h3>
+    <p>A confusão clássica: <b>quem</b> corta <b>o quê</b>. Guarde a sequência de corte como uma linha de produção.</p>
+    <div class="fluxo">
+      <span class="fx a">VLDL</span><span class="seta">— LPL →</span>
+      <span class="fx a">IDL</span><span class="seta">— lipase hepática →</span>
+      <span class="fx v">LDL</span>
+    </div>
+    <div class="imag"><b>Imagem mental:</b> a <b>LPL (lipoproteína lipase)</b> é uma tesoura gigante presa na <b>parede dos capilares</b> do músculo e do tecido adiposo — ela corta o caminhão de fora, na rua, e joga <b>ácidos graxos livres</b> para os tecidos. Já a <b>lipase hepática</b> é a tesoura de dentro da fábrica: dá o último acabamento e entrega a LDL pronta.</div>
+    <div class="peg"><b>Pegadinha:</b> a LPL trabalha em <b>dois</b> substratos — quilomícron <b>e</b> VLDL. Já a lipase hepática só entra no fim (IDL → LDL). Em slides antigos a lipase hepática aparece abreviada como <b>HPL</b>; é a mesma enzima.</div>
+    <p style="margin-bottom:0"><b>Quem liga a tesoura?</b> A LPL só corta quando é ativada pela <b>ApoC-II</b>. Sem ApoC-II funcionante, os triglicérides sobem a níveis extremos.</p>
+    <div class="sintese">LPL corta na rua e alimenta o tecido. Lipase hepática dá o último corte e cria o vilão.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-vd">N2 · o faxineiro</span>
+    <h3>LCAT e CETP — o chaveiro e o corretor</h3>
+    <p>A HDL nasce quase vazia, como um disco murcho. Para carregar colesterol, precisa <b>esterificá-lo</b> — trancar o colesterol dentro do núcleo para que ele não escape. Quem faz isso é a <b>LCAT</b>.</p>
+    <div class="imag"><b>LCAT = o chaveiro.</b> Ele pega o colesterol livre que a HDL recolheu da superfície das células (inclusive do macrófago já entupido) e o <b>tranca</b> como éster no porão do caminhão. Caminhão trancado = caminhão que não perde carga no caminho.</div>
+    <div class="imag"><b>CETP = o corretor de imóveis.</b> Ele faz uma <b>troca</b>: entrega colesterol esterificado da HDL para a VLDL/LDL e recebe triglicérides de volta. Um negócio que, do ponto de vista da artéria, é péssimo — o colesterol volta para o lado bandido.</div>
+    <div class="peg"><b>Pegadinha de raciocínio:</b> por isso, quando os triglicérides estão altos, a HDL costuma cair. Muito VLDL circulando = muita troca via CETP = HDL empobrecida em colesterol, enriquecida em TG e rapidamente degradada. <b>TG alto e HDL baixo andam de mãos dadas — e a CETP é o motivo.</b></div>
+    <div class="sintese">LCAT tranca o colesterol dentro da HDL. A CETP devolve parte dele para o inimigo.</div>
+  </div>
+</div></section>
+
+<section id="apob"><div class="wrap">
+  <div class="sechead"><span class="num">06</span><h2>O veredito: ApoB = 👎</h2></div>
+  <div class="card">
+    <span class="tag t-vm">N6 · o vilão tem nome</span>
+    <h3>Cada partícula aterogênica carrega exatamente <b>uma</b> ApoB</h3>
+    <p>Essa é a frase que muda tudo. Não importa se o caminhão está cheio ou vazio de colesterol: se ele é VLDL, IDL, LDL ou Lp(a), ele tem <b>uma única</b> molécula de ApoB100.</p>
+    <p><b>Consequência direta:</b> dosar ApoB é <b>contar caminhões</b>. Dosar LDL-colesterol é <b>pesar a carga</b>. E quem fura a parede da artéria é o caminhão — não a carga que ele leva dentro.</p>
+    <div class="perigo"><b>O cenário clássico da discordância:</b> paciente com síndrome metabólica ou diabetes tem partículas de LDL <b>pequenas e densas</b>. Cada uma carrega pouco colesterol. O LDL-c sai "aceitável" no exame — mas o número de partículas (ApoB) está alto. O risco é do ApoB, não do número tranquilizador.</div>
+    <div class="imag"><b>Imagem mental:</b> duas frotas atravessando o mesmo portão. Frota A: 10 caminhões enormes e lotados. Frota B: 40 caminhõezinhos meio vazios. Pesando a carga, elas empatam. Mas quem <b>arromba</b> o portão é o número de veículos batendo nele — e a frota B bate quatro vezes mais.</div>
+    <div class="prot"><b>Alternativa de bolso:</b> quando não há ApoB disponível, o <b>colesterol não-HDL</b> (colesterol total − HDL) é o substituto prático: ele soma todas as partículas com B100 num único número, e não exige jejum.</div>
+    <div class="sintese">ApoB conta partículas. LDL-c pesa carga. Na dúvida, confie em quem conta.</div>
+  </div>
+</div></section>
+<section id="muralha"><div class="wrap">
+  <div class="ato">Ato III · a invasão da cidade</div>
+  <div class="sechead"><span class="num">07</span><h2>A Muralha — 9 quadros do filme</h2></div>
+  <p style="color:#b9cadd; margin-bottom:12px">Arraste a linha do tempo. Cada quadro é uma década de silêncio comprimida em um segundo.</p>
+
+  <div class="muralha">
+    <svg id="murSvg" viewBox="0 0 720 400" role="img" aria-label="Corte transversal de arteria em evolucao" style="width:100%; display:block; background:#0a1a2e; border-radius:10px"></svg>
+    <div class="legenda" id="murLegenda"></div>
+    <div style="margin-top:12px">
+      <div class="mur-stage" id="murStage">Quadro 0 de 8</div>
+      <div class="mur-title" id="murTitle">Artéria saudável</div>
+      <div class="mur-txt" id="murTxt">O endotélio é um muro vivo, liso e antitrombótico. Enquanto ele estiver íntegro, nada disso aqui acontece.</div>
+      <div class="mur-ctrl">
+        <button class="btn ghost" onclick="murPasso(-1)" aria-label="Quadro anterior">◀</button>
+        <input type="range" id="murRange" min="0" max="8" value="0" step="1" aria-label="Linha do tempo da aterogênese" oninput="murSet(this.value)">
+        <button class="btn vm" onclick="murPasso(1)" aria-label="Próximo quadro">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-az">N4 · gere antes de ler</span>
+    <h3>Pare e responda</h3>
+    <p style="margin-bottom:6px">Você é o LDL. Acabou de atravessar o endotélio de uma artéria coronária. <b>O que decide se você vai ficar preso lá dentro?</b></p>
+    <div class="prot"><b>Resposta:</b> a <b>retenção</b>. A ApoB100 tem cargas positivas que se grudam nos <b>proteoglicanos</b> da matriz da íntima. Não é o "entrar" que importa — partículas entram e saem o tempo todo. É o <b>ficar</b>. Quanto mais partículas circulando (ApoB) e quanto mais tempo, maior a chance de uma delas grudar e nunca mais sair.</div>
+    <div class="frase">"A aterosclerose não começa quando o LDL entra. Começa quando o LDL decide morar."</div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-vm">A sequência que cai na prova</span>
+    <h3>Da retenção ao trombo, sem pular etapa</h3>
+    <div class="scroll">
+    <table class="tb">
+      <thead><tr><th>Etapa</th><th>Quem entra em cena</th><th>Personagem</th></tr></thead>
+      <tbody>
+        <tr><td>1. Retenção subendotelial</td><td>ApoB100 + proteoglicanos</td><td>Caminhão atolado no barro</td></tr>
+        <tr><td>2. Oxidação</td><td>LDL oxidada (LDLox)</td><td>Caminhão incendiado</td></tr>
+        <tr><td>3. Alarme endotelial</td><td>VCAM-1, ICAM-1, selectina P</td><td>Sirene e velcro na muralha</td></tr>
+        <tr><td>4. Recrutamento</td><td>MCP-1 (quimiocina)</td><td>Rádio chamando os bombeiros</td></tr>
+        <tr><td>5. Entrada e diferenciação</td><td>Monócito → macrófago (M-CSF)</td><td>Bombeiro vira catador</td></tr>
+        <tr><td>6. Captação sem freio</td><td>Receptores <i>scavenger</i> (SR-A, CD36)</td><td>Porta sem tranca</td></tr>
+        <tr><td>7. Célula espumosa</td><td>Estria gordurosa</td><td>Depósito tóxico</td></tr>
+        <tr><td>8. Morte celular</td><td>Núcleo lipídico e necrótico</td><td>Lixão radioativo</td></tr>
+        <tr><td>9. Reparo</td><td>Célula muscular lisa + colágeno</td><td>Pedreiros erguendo a capa</td></tr>
+        <tr><td>10. Sabotagem</td><td>Metaloproteinases + linfócito T (IFN-γ)</td><td>Cupins e o engenheiro traidor</td></tr>
+        <tr><td>11. Ruptura</td><td>Fator tecidual exposto</td><td>Muralha cede</td></tr>
+        <tr><td>12. Trombo</td><td>Plaquetas + fibrina</td><td>A cidade para</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="peg"><b>O detalhe que separa quem entendeu:</b> o receptor <i>scavenger</i> do macrófago <b>não sofre retroalimentação negativa</b> pelo colesterol intracelular — ao contrário do receptor de LDL clássico. O macrófago come, come e come até virar espuma e morrer. Ele não sabe dizer "chega".</div>
+    <div class="sintese">O macrófago entrou para apagar o incêndio e virou o combustível.</div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-ou">Destrua o conceito antigo</span>
+    <h3>"A placa cresce devagarzinho até fechar o cano" — falso</h3>
+    <p><b>O que ensinavam:</b> uma curva suave e contínua, o lúmen fechando milímetro a milímetro até a dor aparecer.</p>
+    <p><b>O que sabemos hoje:</b> a placa cresce <b>em saltos</b>. Rupturas pequenas, subclínicas, que trombosam, cicatrizam e são incorporadas — cada uma um degrau na escada. Silêncio, degrau, silêncio, degrau.</p>
+    <div class="imag"><b>E tem mais — o remodelamento de Glagov:</b> nas fases iniciais a artéria <b>se expande para fora</b> para acomodar a placa. O lúmen permanece normal na angiografia enquanto a parede já está doente. A doença é da <b>parede</b>, não do buraco.</div>
+    <div class="perigo"><b>Consequência clínica pesada:</b> a maioria dos infartos nasce de placas que <b>não</b> eram as mais obstrutivas. Uma lesão de 40% inflamada e de capa fina é mais perigosa que uma de 80% calcificada e fibrosada. Grau de estenose prevê <b>angina</b>; composição da placa prevê <b>infarto</b>.</div>
+    <div class="frase">"A angiografia mostra o buraco. A doença está na parede."</div>
+  </div>
+</div></section>
+
+<section id="batalha"><div class="wrap">
+  <div class="sechead"><span class="num">08</span><h2>Reino da Estabilidade × Reino da Instabilidade</h2></div>
+  <p style="color:#b9cadd; margin-bottom:12px">Não é uma tabela. É uma guerra de nove frentes. Toque em cada linha para ver por quê.</p>
+
+  <div class="batwrap">
+    <div class="bathead"><div>🟢 Placa estável</div><div>frente</div><div>Placa instável 🔴</div></div>
+    <div id="batGrid"></div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-vm">General Colágeno × General Inflamação</span>
+    <h3>Quem realmente decide o desfecho</h3>
+    <p>Só existem duas forças na muralha: quem <b>constrói</b> colágeno e quem <b>destrói</b> colágeno.</p>
+    <div class="prot"><b>Do lado da construção:</b> a <b>célula muscular lisa</b>. Ela migra da média para a íntima e fabrica o colágeno da capa fibrosa. Pedreiro fiel. Placa com muita CML = placa estável.</div>
+    <div class="perigo"><b>Do lado da destruição:</b> o <b>macrófago</b>, que libera <b>metaloproteinases de matriz (MMP)</b> — os cupins que digerem o colágeno já feito. E o <b>linfócito T</b>, que libera <b>interferon-γ</b> e <b>inibe a síntese de colágeno novo</b> pela célula muscular lisa.</div>
+    <div class="imag"><b>Imagem mental final:</b> os pedreiros erguem a muralha tijolo a tijolo. Os cupins comem por baixo. E, no alto, o engenheiro traidor (linfócito T) grita para os pedreiros: <b>"parem de trabalhar"</b>. A muralha não cai porque foi atacada — cai porque a manutenção parou.</div>
+    <div class="peg"><b>Pegadinha:</b> a estatina reduz eventos muito antes de reduzir o tamanho da placa. Ela não "desentope": ela <b>estabiliza</b> — engrossa a capa, esfria a inflamação, desliga os cupins. Benefício de composição, não de calibre.</div>
+    <div class="frase">"Toda placa nasce do colesterol. Mas quem decide se ela permanecerá silenciosa ou destruirá uma vida é a eterna batalha entre o colágeno e a inflamação."</div>
+  </div>
+
+  <div class="card">
+    <span class="tag t-ou">A exceção que o examinador ama</span>
+    <h3>Nem toda síndrome coronariana vem de ruptura</h3>
+    <p>Existe um segundo mecanismo: a <b>erosão</b>. Aqui a capa fibrosa está <b>íntegra</b> — o que falha é o endotélio, que descama e expõe a matriz subjacente. Forma-se trombo sobre uma placa rica em proteoglicanos, com <b>pouca</b> inflamação e <b>pouco</b> núcleo lipídico.</p>
+    <div class="peg"><b>Perfil típico da erosão:</b> mais frequente em <b>mulheres</b>, mais jovens, tabagistas; placa menos inflamada. É o motivo pelo qual um paciente pode infartar com um perfil lipídico pouco impressionante.</div>
+    <div class="sintese">Ruptura = a muralha arrebentou. Erosão = a pele da muralha descascou. Os dois terminam em trombo.</div>
+  </div>
+</div></section>
+<section id="palacio"><div class="wrap">
+  <div class="ato">Memória</div>
+  <div class="sechead"><span class="num">09</span><h2>Palácio da Memória — A Cidade Arterial</h2></div>
+  <div class="card dark">
+    <p style="margin-bottom:6px">Antes de tocar nas salas, <b>construa o lugar</b>: você está diante de um corredor de 15 portas, cada uma com uma janela para dentro de uma artéria em um momento diferente da vida.</p>
+    <p style="margin-bottom:0; font-size:.92rem; color:#bfd1e2">Caminhe sempre na mesma direção. A ordem é o que sustenta a memória — não os detalhes.</p>
+  </div>
+  <div class="salas" id="salasGrid"></div>
+  <div class="card" style="margin-top:16px">
+    <span class="tag t-az">Percurso rápido</span>
+    <p style="margin-bottom:0">Recite em voz alta, sem olhar: <b>muro → caminhão entra → caminhão queima → sirene → bombeiro → catador → espuma → estria → lixão → muralha → reino verde → reino vermelho → rachadura → coágulo → cidade escura.</b></p>
+  </div>
+</div></section>
+
+<section id="niveis"><div class="wrap">
+  <div class="sechead"><span class="num">10</span><h2>Os sete níveis de memória</h2></div>
+  <div class="card">
+    <p><b>N1 · Essencial</b> — Três ciclos: intestinal, hepático, reverso. Seis partículas, seis crachás.</p>
+    <p><b>N2 · O que mais cai</b> — B48 no intestino; B100 em VLDL/IDL/LDL/Lp(a); A-I e A-II na HDL. LPL corta duas vezes; lipase hepática, uma.</p>
+    <p><b>N3 · Pegadinhas</b> — HDL tem origem dupla. Lp(a) tem dois crachás. Placa que rompe geralmente não é a mais obstrutiva. <i>Scavenger</i> não tem freio.</p>
+    <p><b>N4 · Questões difíceis</b> — Discordância ApoB × LDL-c nas partículas pequenas e densas. CETP explicando TG alto com HDL baixo.</p>
+    <p><b>N5 · Integração clínica</b> — Por que a estatina salva antes de "desentupir". Por que erosão infarta com placa pouco inflamada.</p>
+    <p><b>N6 · Emoção</b> — O bombeiro que vira combustível. O engenheiro que manda parar a obra.</p>
+    <p style="margin-bottom:0"><b>N7 · Peso</b> — Cada ano com ApoB alto é um ano de retenção. A conta não é de dose. É de <b>tempo × concentração</b>.</p>
+  </div>
+</div></section>
+
+<section id="casos"><div class="wrap">
+  <div class="ato">Treino</div>
+  <div class="sechead"><span class="num">11</span><h2>Casos clínicos</h2></div>
+  <p style="color:#b9cadd; margin-bottom:12px">Leia o caso. Responda mentalmente. <b>Depois</b> toque para abrir.</p>
+  <div id="casosGrid"></div>
+</div></section>
+
+<section id="arena"><div class="wrap">
+  <div class="sechead"><span class="num">12</span><h2>Arena TEC</h2></div>
+  <div class="dash">
+    <div class="kpi"><b id="kQtd">0</b><span>respondidas</span></div>
+    <div class="kpi"><b id="kAcerto">0</b><span>acertos</span></div>
+    <div class="kpi"><b id="kPct">—</b><span>aproveitamento</span></div>
+  </div>
+  <div id="arenaGrid"></div>
+</div></section>
+
+<section id="flash"><div class="wrap">
+  <div class="sechead"><span class="num">13</span><h2>Flashcards</h2></div>
+  <div class="btnrow">
+    <button class="btn ghost" onclick="embaralhar()">Embaralhar</button>
+    <button class="btn ghost" onclick="virarTodos(false)">Fechar todos</button>
+  </div>
+  <div class="fgrid" id="flashGrid"></div>
+</div></section>
+
+<section id="pegadinhas"><div class="wrap">
+  <div class="sechead"><span class="num">14</span><h2>⚠️ Pegadinhas do TEC</h2></div>
+  <div class="card" id="pegBox"></div>
+</div></section>
+
+<section id="hipocampo"><div class="wrap">
+  <div class="ato">Fixação</div>
+  <div class="sechead"><span class="num">15</span><h2>Hipocampo — sua fila pessoal</h2></div>
+  <div class="card dark">
+    <h3>O que você errou aqui</h3>
+    <div id="filaErros"><p style="color:#9fb4c9; margin:0">Nada por enquanto. Responda a Arena TEC e o que você errar aparece aqui, pronto para revisar.</p></div>
+    <div class="btnrow"><button class="btn ghost" onclick="zerarProgresso()">Reiniciar progresso</button></div>
+  </div>
+  <h3 style="margin:20px 0 10px">Revisão espaçada</h3>
+  <div id="chkGrid"></div>
+</div></section>
+
+<section id="revisao"><div class="wrap">
+  <div class="sechead"><span class="num">16</span><h2>Revisão de 60 segundos</h2></div>
+  <div class="card">
+    <p><b>0–10s.</b> Gordura não nada: precisa de caminhão. Núcleo oleoso, casca anfipática, crachá apo.</p>
+    <p><b>10–20s.</b> Intestino faz quilomícron (B48). Fígado faz VLDL, Lp(a) e parte da HDL (A-I/A-II). VLDL → IDL → LDL, todos B100.</p>
+    <p><b>20–30s.</b> LPL corta quilomícron e VLDL nos capilares. Lipase hepática dá o último corte: IDL → LDL. ApoC-II liga a LPL.</p>
+    <p><b>30–40s.</b> Transporte reverso: HDL recolhe, LCAT tranca, fígado recebe. CETP troca e devolve colesterol ao inimigo — por isso TG alto derruba a HDL.</p>
+    <p><b>40–50s.</b> ApoB = uma por partícula = conta caminhões. LDL-c pesa carga. Nas partículas pequenas e densas os dois discordam, e quem manda é o ApoB.</p>
+    <p style="margin-bottom:0"><b>50–60s.</b> Retenção → oxidação → VCAM/ICAM/selectina P → MCP-1 → macrófago → espuma → núcleo necrótico → capa fibrosa. Colágeno estabiliza; MMP e inflamação derrubam. Rompe a que é fina e inflamada, não a mais estreita.</p>
+  </div>
+  <div class="card dark">
+    <h3>Frases para levar no bolso</h3>
+    <div class="frase">"Gordura flutua, proteína afunda — o nome da lipoproteína é a sua própria densidade."</div>
+    <div class="frase">"O LDL espalha riqueza em colesterol, mas pode semear doença."</div>
+    <div class="frase">"O HDL não brilha porque acumula. Brilha porque devolve."</div>
+    <div class="frase">"O macrófago entra como bombeiro e sai como incêndio."</div>
+    <div class="frase">"Não conte o quanto de colesterol existe. Conte quantas partículas batem na parede."</div>
+    <div class="frase">"A placa não avisa pelo tamanho. Avisa pela companhia que anda com ela."</div>
+  </div>
+</div></section>
+
+<section id="glossario"><div class="wrap">
+  <div class="sechead"><span class="num">17</span><h2>Glossário e referências</h2></div>
+  <div class="card" id="glossBox"></div>
+  <div class="card dark">
+    <h3>Fontes que sustentam este capítulo</h3>
+    <p style="font-size:.9rem; margin-bottom:6px">Conteúdo construído a partir das capturas da aula de metabolismo lipídico e aterosclerose enviadas pelo autor, alinhado a:</p>
+    <p style="font-size:.9rem; margin-bottom:0; color:#bfd1e2">Atualização da Diretriz Brasileira de Dislipidemias e Prevenção da Aterosclerose (SBC) · Diretriz Brasileira de Hipertensão Arterial 2025 · ESC/EAS Dyslipidaemias Guidelines · <i>Braunwald's Heart Disease</i>, capítulos de biologia vascular e aterosclerose. Números de corte e metas de LDL variam entre diretrizes e não são objeto deste capítulo — aqui o objeto é o <b>mecanismo</b>.</p>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <p style="margin-bottom:4px">Atlas Mental · Cardiologia · Dislipidemia — Capítulo 1</p>
+    <p style="font-size:.8rem; color:#7f95ad">Material de estudo gratuito. Não substitui diretriz, bula ou julgamento clínico.</p>
+    <div class="assin">Dr. André Rossanno</div>
+  </div>
+</footer>
+<script>
+/* ================= ATLAS MENTAL · LÍPIDES CAP.1 · JS ================= */
+var LS_KEY = 'atlasLip_cap1_v1';
+var estado = { respondidas:{}, erros:[], chk:{}, };
+try{ var raw = localStorage.getItem(LS_KEY); if(raw){ estado = Object.assign(estado, JSON.parse(raw)); } }catch(e){}
+function salvar(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(estado)); }catch(e){} }
+
+/* ---------- ELENCO ---------- */
+var ELENCO = [
+ {ico:'🚚', n:'Quilomícron', cl:'neu', fn:'O caminhão-cegonha do porto', det:'Nasce no <b>intestino</b> depois da refeição. O maior e menos denso de todos. Crachá <b>B48</b>. Carrega triglicérides da dieta. Grande demais para atravessar a parede arterial — não é aterogênico por si só.'},
+ {ico:'🏭', n:'VLDL', cl:'vil', fn:'O caminhão da fábrica', det:'Sai do <b>fígado</b> carregado de triglicérides próprios. Crachá <b>B100</b>. É o começo da linhagem bandida. Seus remanescentes já são aterogênicos.'},
+ {ico:'🧍', n:'IDL', cl:'vil', fn:'O adolescente indeciso', det:'Estágio intermediário: já perdeu triglicérides para a LPL, mas ainda não virou LDL. Crachá <b>B100</b>. Ou volta para o fígado, ou segue e vira LDL.'},
+ {ico:'😈', n:'LDL', cl:'vil', fn:'O vilão de crachá vermelho', det:'O produto final da linhagem hepática. Crachá <b>B100</b>. Pequena o bastante para atravessar o endotélio e ficar retida na íntima. <b>É o principal causador da aterosclerose</b> — não um marcador, um causador.'},
+ {ico:'😇', n:'HDL', cl:'her', fn:'O caminhão da limpeza', det:'Origem <b>dupla</b>: fígado <b>e</b> intestino. Crachá <b>A-I e A-II</b>. Nasce quase vazia e vai recolhendo colesterol pelo caminho — inclusive de dentro do macrófago entupido. Devolve ao fígado.'},
+ {ico:'🎭', n:'Lp(a)', cl:'vil', fn:'O clone com passaporte falso', det:'LDL + <b>apo(a)</b> soldada à B100. Origem <b>hepática</b>. Aterogênica como LDL e ainda atrapalha a fibrinólise por imitar o plasminogênio. Nível definido pela genética.'},
+ {ico:'✂️', n:'LPL', cl:'enz', fn:'A tesoura da rua', det:'Lipoproteína lipase, presa ao <b>endotélio dos capilares</b> do músculo e do tecido adiposo. Corta <b>quilomícron</b> e <b>VLDL</b>, liberando ácidos graxos livres para os tecidos. Ativada pela <b>ApoC-II</b>.'},
+ {ico:'🔪', n:'Lipase hepática', cl:'enz', fn:'A tesoura de acabamento', det:'Dá o último corte: <b>IDL → LDL</b>. Em slides antigos aparece como "HPL". Só entra no fim da linha de produção.'},
+ {ico:'🔑', n:'LCAT', cl:'enz', fn:'O chaveiro', det:'Esterifica o colesterol livre recolhido pela HDL, trancando-o no núcleo da partícula. Sem LCAT, a HDL não amadurece.'},
+ {ico:'🤝', n:'CETP', cl:'enz', fn:'O corretor de imóveis', det:'Troca <b>éster de colesterol da HDL</b> por <b>triglicérides da VLDL/LDL</b>. Devolve colesterol ao lado bandido — é o elo que liga triglicéride alto a HDL baixo.'},
+ {ico:'🚪', n:'Receptor de LDL', cl:'her', fn:'A porta do fígado', det:'Retira LDL e IDL da circulação reconhecendo a <b>ApoB100</b> (e a ApoE). <b>Tem freio</b>: quando a célula está cheia de colesterol, ela reduz seus receptores.'},
+ {ico:'🕳️', n:'Receptor scavenger', cl:'vil', fn:'A porta sem tranca', det:'SR-A e CD36 no macrófago. Captam <b>LDL oxidada</b> e <b>não</b> são regulados pelo colesterol intracelular. Por isso o macrófago come até virar célula espumosa.'}
+];
+
+/* ---------- CICLOS ---------- */
+var CICLOS = [
+ { t:'Via intestinal (exógena) — "o jantar entra na cidade"',
+   fx:['🍔 Dieta','Intestino','Quilomícron (B48)','LPL','Ácidos graxos → tecidos','Quilomícron remanescente','Fígado'],
+   corpo:'<p>Você come. A gordura da comida é emulsificada pela bile, quebrada pela lipase pancreática e absorvida pelo enterócito. Lá dentro, ela é reembalada em um caminhão gigante: o <b>quilomícron</b>.</p>'+
+   '<div class="imag"><b>Imagem mental:</b> o hambúrguer vira caixas no porto. O <b>quilomícron</b> é o caminhão-cegonha que sai carregado — tão grande que nem cabe direto no sangue: ele entra primeiro pelo <b>sistema linfático</b> e só depois desemboca na circulação.</div>'+
+   '<p>Nos capilares do músculo e do tecido adiposo, a <b>LPL</b> corta a carga e entrega <b>ácidos graxos livres</b> aos tecidos. O caminhão vai esvaziando até virar <b>quilomícron remanescente</b>, que volta ao fígado e é recolhido lá (via ApoE).</p>'+
+   '<div class="peg"><b>Pegadinha:</b> essa via é <b>pós-prandial</b>. É por isso que triglicérides sem jejum sobem — e por isso o quilomícron não deveria aparecer em um lipidograma de jejum adequado.</div>'+
+   '<div class="sintese">A via intestinal traz gordura de fora e a distribui como combustível.</div>' },
+ { t:'Via hepática (endógena) — "a fábrica não para"',
+   fx:['Fígado','VLDL (B100)','LPL','IDL','Lipase hepática','LDL','Receptor LDL ou parede arterial'],
+   corpo:'<p>Mesmo em jejum, o fígado continua exportando gordura. Ele monta a <b>VLDL</b>, com crachá <b>B100</b>, e a lança na circulação.</p>'+
+   '<div class="imag"><b>Imagem mental:</b> a fábrica hepática despacha caminhões dia e noite. A cada quarteirão a <b>LPL</b> tira um pouco de carga: o caminhão encolhe, fica mais denso e vira <b>IDL</b>. O adolescente indeciso: parte volta para casa (fígado), parte segue estrada e passa pela <b>lipase hepática</b>, que faz o último corte e cria a <b>LDL</b>.</div>'+
+   '<p>Agora a LDL tem dois destinos possíveis: ser recolhida pelo <b>receptor de LDL</b> (fígado) ou <b>vazar</b> para a íntima arterial e ficar retida. Todo o capítulo seguinte é sobre o segundo destino.</p>'+
+   '<div class="perigo"><b>Ponto-chave:</b> quanto <b>menos</b> receptores de LDL o fígado expressa, mais LDL fica circulando. É exatamente isso que acontece na hipercolesterolemia familiar — e é exatamente isso que a estatina reverte, ao forçar o hepatócito a fabricar mais receptores.</div>'+
+   '<div class="sintese">Uma única linha de produção: VLDL → IDL → LDL. Duas tesouras, um vilão no fim.</div>' },
+ { t:'Transporte reverso — "o caminhão do lixo"',
+   fx:['Macrófago / tecidos','HDL nascente','LCAT','HDL madura','Fígado','Bile'],
+   corpo:'<p>Enquanto todo mundo distribui, alguém precisa <b>recolher</b>. A HDL nasce quase vazia e circula encostando nas células — inclusive no macrófago já abarrotado dentro da placa — e retira colesterol livre da membrana (via transportadores ABCA1/ABCG1).</p>'+
+   '<div class="imag"><b>Imagem mental:</b> o caminhão do lixo passa devagar pela cidade. Em cada esquina alguém joga um saco. O <b>LCAT</b> é o funcionário que <b>tranca</b> cada saco no compartimento (esterificação) para nada voar de volta. O caminhão engorda e vira <b>HDL madura</b>.</div>'+
+   '<p>Destino final: o <b>fígado</b>, que recebe o colesterol e o elimina pela <b>bile</b>. Esse é o único caminho real de saída do colesterol do corpo.</p>'+
+   '<div class="peg"><b>Pegadinha moderna:</b> o que protege não é o <b>número</b> de HDL-colesterol, e sim a <b>capacidade de efluxo</b> — a função do caminhão. Estudos com drogas que apenas elevam o HDL-c (inclusive inibidores de CETP) não entregaram o benefício esperado. HDL alto não é passe livre; HDL disfuncional existe.</div>'+
+   '<div class="sintese">A única saída do colesterol é pela bile — e quem o leva até lá é a HDL.</div>' }
+];
+
+/* ---------- MURALHA ---------- */
+var MUR = [
+ {t:'Artéria saudável', e:0, txt:'O endotélio é um muro vivo: liso, antitrombótico, produtor de óxido nítrico. Enquanto ele estiver íntegro e o ApoB estiver baixo, nada disso acontece.'},
+ {t:'Retenção subendotelial', e:14, txt:'Partículas com ApoB100 atravessam o endotélio e — o que importa — <b>ficam presas</b> nos proteoglicanos da íntima. Não é entrar. É morar.'},
+ {t:'Oxidação', e:24, txt:'Presa e sem saída, a LDL é modificada: oxidada. O caminhão pega fogo. A LDL oxidada é agora um sinal de perigo para o sistema imune.'},
+ {t:'Alarme na muralha', e:36, txt:'O endotélio ativado expõe <b>VCAM-1, ICAM-1 e selectina P</b> — velcro para leucócitos — e libera <b>MCP-1</b>, a quimiocina que chama o monócito para dentro.'},
+ {t:'O bombeiro entra', e:52, txt:'O monócito adere, atravessa o endotélio e, sob ação do M-CSF, vira <b>macrófago</b>. Ele veio limpar a bagunça.'},
+ {t:'Célula espumosa e estria gordurosa', e:74, txt:'O macrófago capta LDL oxidada pelos receptores <i>scavenger</i>, que <b>não têm freio</b>. Ele se enche de gordura e vira <b>célula espumosa</b>. Muitas delas juntas = <b>estria gordurosa</b>, a primeira lesão visível.'},
+ {t:'Núcleo lipídico e necrótico', e:96, txt:'As células espumosas morrem e não são removidas a tempo. Sobra um núcleo de lipídio, restos celulares e fator tecidual: material altamente trombogênico esperando ser exposto.'},
+ {t:'A capa fibrosa', e:112, txt:'A célula muscular lisa migra da média, vira fibroblasto e produz <b>colágeno</b>, erguendo a capa que separa o núcleo do sangue. Ao mesmo tempo, as <b>metaloproteinases</b> dos macrófagos comem esse colágeno e o linfócito T (IFN-γ) manda os pedreiros pararem.'},
+ {t:'Ruptura e trombo', e:112, txt:'A capa afina até ceder. O núcleo trombogênico encontra o sangue, o fator tecidual dispara a coagulação e o <b>trombo</b> se forma em segundos. O que levou trinta anos termina em três minutos.'}
+];
+var CAMADAS = [
+ {k:'ldl',    s:1, c:'#f0c419', n:'LDL retida (ApoB100)',            d:'Presa aos proteoglicanos da íntima'},
+ {k:'ox',     s:2, c:'#e0592a', n:'LDL oxidada',                     d:'Ligante dos receptores scavenger'},
+ {k:'ad',     s:3, c:'#5fd0a8', n:'VCAM-1 · ICAM-1 · selectina P',   d:'Velcro do endotélio ativado'},
+ {k:'mcp',    s:3, c:'#a9dced', n:'MCP-1',                           d:'Quimiocina que chama o monócito'},
+ {k:'mono',   s:4, c:'#9fb4c9', n:'Monócito → macrófago',            d:'Atravessa o endotélio sob M-CSF'},
+ {k:'esp',    s:5, c:'#d9d2b6', n:'Célula espumosa · estria',        d:'Captação sem freio de LDL oxidada'},
+ {k:'nuc',    s:6, c:'#5b3d18', n:'Núcleo lipídico e necrótico',     d:'Lipídio, restos celulares e fator tecidual'},
+ {k:'capa',   s:7, c:'#7fb3ff', n:'Capa fibrosa',                    d:'Colágeno produzido pela célula muscular lisa'},
+ {k:'trombo', s:8, c:'#8b0f0f', n:'Ruptura e trombo',                d:'Fator tecidual exposto ao sangue'}
+];
+var murI = 0;
+
+function svgTxt(x,y,txt,cor,tam,anc){
+  return '<text x="'+x+'" y="'+y+'" fill="'+cor+'" font-size="'+(tam||11)+'" font-family="monospace" text-anchor="'+(anc||'middle')+'" letter-spacing="0.6">'+txt+'</text>';
+}
+function desenhaMuralha(i){
+  var s = MUR[i], e = s.e;
+  var W = 720;
+  var yMediaTop = 44, hMedia = 46;
+  var yIntima = yMediaTop + hMedia;      /* 90 */
+  var H = 58 + e;                        /* espessura da íntima */
+  var yEndo = yIntima + H;
+  var hEndo = 8;
+  var yLum = yEndo + hEndo;
+  var yLumFim = 336;
+  var hLum = Math.max(40, yLumFim - yLum);
+  var cxP = 360;
+  var o = [];
+
+  /* fundo e camadas fixas */
+  o.push('<rect x="0" y="0" width="720" height="400" fill="#0a1a2e"/>');
+  o.push('<rect x="0" y="'+yMediaTop+'" width="720" height="'+hMedia+'" fill="#2b4160"/>');
+  o.push('<rect x="0" y="352" width="720" height="46" fill="#2b4160"/>');
+  o.push(svgTxt(14, yMediaTop+27, 'MÉDIA · músculo liso', '#93a9c2', 11, 'start'));
+  /* íntima */
+  o.push('<rect x="0" y="'+yIntima+'" width="720" height="'+H+'" fill="#e9e2cf"/>');
+  o.push(svgTxt(14, yIntima+18, 'ÍNTIMA', '#8a7c5c', 11, 'start'));
+  /* lúmen */
+  o.push('<rect x="0" y="'+yLum+'" width="720" height="'+hLum+'" fill="#6b1a12"/>');
+  o.push(svgTxt(14, yLum+22, (e<36 ? 'LÚMEN · fluxo livre' : (e<96 ? 'LÚMEN · parede já doente' : 'LÚMEN · reduzido')), '#ffb3a8', 11, 'start'));
+
+  var meio = yIntima + H*0.52;
+
+  /* LDL retida / oxidada */
+  if(i>=1){
+    var cor = (i>=2) ? '#e0592a' : '#f0c419';
+    var yP = (i>=5) ? yIntima + 20 : meio;
+    for(var a=0;a<9;a++){ o.push('<circle cx="'+(120+a*60)+'" cy="'+yP+'" r="8" fill="'+cor+'"/>'); }
+  }
+  /* moléculas de adesão + MCP-1 */
+  if(i>=3){
+    for(var b=0;b<13;b++){ o.push('<rect x="'+(70+b*46)+'" y="'+(yEndo-6)+'" width="7" height="6" rx="1" fill="#5fd0a8"/>'); }
+    for(var b2=0;b2<7;b2++){ o.push('<circle cx="'+(110+b2*80)+'" cy="'+(yLum+14)+'" r="3.5" fill="#a9dced"/>'); }
+  }
+  /* monócitos */
+  if(i>=4){
+    for(var c=0;c<5;c++){ o.push('<circle cx="'+(150+c*105)+'" cy="'+(yLum+30)+'" r="12" fill="#9fb4c9"/>'); }
+    o.push('<circle cx="255" cy="'+(yEndo-14)+'" r="12" fill="#9fb4c9"/>');
+  }
+  /* células espumosas */
+  if(i>=5){
+    for(var f=0;f<6;f++){
+      var cxf = 130 + f*93, cyf = yIntima + H*0.42;
+      o.push('<circle cx="'+cxf+'" cy="'+cyf+'" r="19" fill="#d9d2b6"/>');
+      o.push('<circle cx="'+(cxf-6)+'" cy="'+(cyf-4)+'" r="4" fill="#f0c419"/><circle cx="'+(cxf+7)+'" cy="'+(cyf+5)+'" r="4" fill="#f0c419"/>');
+    }
+  }
+  /* núcleo necrótico */
+  if(i>=6){
+    o.push('<ellipse cx="'+cxP+'" cy="'+(yIntima + H*0.66)+'" rx="230" ry="'+(H*0.24)+'" fill="#5b3d18"/>');
+  }
+  /* capa fibrosa */
+  if(i>=7){
+    var esp = (i>=8) ? 5 : 13;
+    o.push('<rect x="110" y="'+(yEndo-esp-6)+'" width="500" height="'+esp+'" rx="2" fill="#7fb3ff"/>');
+  }
+  /* ruptura e trombo */
+  if(i>=8){
+    o.push('<path d="M348 '+(yEndo-24)+' L372 '+(yEndo-8)+' L354 '+(yEndo-8)+' L382 '+(yEndo+14)+'" stroke="#fff" stroke-width="4" fill="none" stroke-linejoin="round"/>');
+    o.push('<ellipse cx="368" cy="'+(yLum+34)+'" rx="110" ry="30" fill="#8b0f0f"/>');
+    o.push(svgTxt(368, yLum+39, 'TROMBO', '#fff', 12));
+  }
+  /* legenda do quadro no topo, fora de qualquer camada */
+  o.push('<rect x="0" y="0" width="720" height="'+yMediaTop+'" fill="#0a1a2e"/>');
+  o.push(svgTxt(14, 27, 'QUADRO ' + i + ' — ' + s.t.toUpperCase(), '#e0a02c', 13, 'start'));
+
+  document.getElementById('murSvg').innerHTML = o.join('');
+
+  /* legenda em texto, aberta, fora do desenho */
+  var chips = CAMADAS.filter(function(cm){
+    if(cm.s > i) return false;
+    if(cm.k === 'ldl' && i >= 2) return false;
+    return true;
+  }).map(function(cm){
+    var desc = cm.d;
+    if(cm.k === 'capa' && i >= 8) desc = 'Afinada pelas metaloproteinases — rompida';
+    return '<div class="lg'+(cm.s === i ? ' novo' : '')+'"><i style="background:'+cm.c+'"></i><div><b>'+cm.n+'</b><span>'+desc+'</span></div></div>';
+  }).join('');
+  document.getElementById('murLegenda').innerHTML = chips ||
+    '<div class="lg"><i style="background:#5fd0a8"></i><div><b>Endotélio íntegro</b><span>Nenhum elemento da placa presente</span></div></div>';
+
+  document.getElementById('murStage').textContent = 'Quadro ' + i + ' de 8';
+  document.getElementById('murTitle').textContent = s.t;
+  document.getElementById('murTxt').innerHTML = s.txt;
+  document.getElementById('murRange').value = i;
+}
+function murSet(v){ murI = parseInt(v,10); desenhaMuralha(murI); }
+function murPasso(d){ murI = Math.min(8, Math.max(0, murI + d)); desenhaMuralha(murI); }
+
+/* ---------- BATALHA ---------- */
+var BAT = [
+ {f:'Colágeno', e:'Abundante ▲', i:'Escasso ▼', pq:'O colágeno é o tijolo da capa fibrosa. Sem tijolo, não existe muralha — só uma película sobre um núcleo trombogênico.'},
+ {f:'Atividade inflamatória (macrófagos, linfócitos)', e:'Baixa ▼', i:'Intensa ▲', pq:'Macrófago libera metaloproteinase; linfócito T libera IFN-γ e inibe a síntese de colágeno. Inflamação é, ao mesmo tempo, demolição e paralisação da obra.'},
+ {f:'Capa fibrosa', e:'Espessa ▲', i:'Fina ▼', pq:'A espessura da capa é o que separa o sangue do fator tecidual. Capa fina é o marcador morfológico mais direto de vulnerabilidade.'},
+ {f:'Núcleo lipídico e necrótico', e:'Pequeno ▼', i:'Grande ▲', pq:'Quanto maior o núcleo, maior a carga trombogênica pronta para ser exposta e menor a sustentação mecânica da capa.'},
+ {f:'Moléculas de adesão (VCAM-1, ICAM-1, selectina P)', e:'Poucas ▼', i:'Muitas ▲', pq:'São o velcro que prende leucócitos ao endotélio. Mais velcro = mais células inflamatórias entrando na placa.'},
+ {f:'Vascularização (neovasos)', e:'Escassa ▼', i:'Rica ▲', pq:'Neovasos que brotam da adventícia são frágeis e permeáveis: causam hemorragia intraplaca, que expande o núcleo de repente — um dos degraus do crescimento em saltos.'},
+ {f:'Quimiocinas (MCP-1)', e:'Baixas ▼', i:'Altas ▲', pq:'MCP-1 é o rádio que chama o monócito. Mais chamado, mais macrófago, mais destruição.'},
+ {f:'Metaloproteinases (MMP)', e:'Baixas ▼', i:'Altas ▲', pq:'São os cupins: digerem o colágeno já construído. Capa que perde colágeno mais rápido do que repõe é capa que vai romper.'},
+ {f:'Célula muscular lisa', e:'Muitas ▲', i:'Poucas ▼', pq:'A CML é o pedreiro: migra da média e fabrica colágeno. Placa rica em CML é placa que se conserta sozinha.'}
+];
+
+/* ---------- PALÁCIO ---------- */
+var SALAS = [
+ {n:'Sala 1', t:'O muro liso', c:'Artéria normal. Endotélio íntegro, brilhante, escorregadio. Nada gruda. Sinta a calma antes do filme começar.'},
+ {n:'Sala 2', t:'O caminhão entra', c:'Um caminhão amarelo (LDL) atravessa uma fresta do muro e <b>atola no barro</b> — os proteoglicanos da íntima. Ele não consegue mais sair.'},
+ {n:'Sala 3', t:'O caminhão pega fogo', c:'Preso, o caminhão é incendiado: LDL oxidada. Fumaça preta subindo dentro da parede.'},
+ {n:'Sala 4', t:'A sirene', c:'Luzes vermelhas piscando no muro: VCAM-1, ICAM-1 e selectina P. Um velcro gigante cobre a superfície interna.'},
+ {n:'Sala 5', t:'O rádio', c:'Uma voz metálica repete um endereço: MCP-1 chamando monócitos. Você ouve sirenes se aproximando de fora.'},
+ {n:'Sala 6', t:'O bombeiro', c:'O monócito atravessa o muro, tira o capacete e vira <b>macrófago</b>. Ele veio ajudar. Guarde a cara dele — vai mudar.'},
+ {n:'Sala 7', t:'A porta sem tranca', c:'Receptor <i>scavenger</i>: uma porta escancarada que não fecha nunca. O macrófago engole caminhão queimado sem parar.'},
+ {n:'Sala 8', t:'A espuma', c:'O macrófago está inchado, translúcido, cheio de bolhas de gordura: <b>célula espumosa</b>. Muitas delas formam uma faixa amarela — a estria gordurosa.'},
+ {n:'Sala 9', t:'O lixão', c:'As espumas morreram. Sobrou um poço escuro de gordura, restos e fator tecidual: o <b>núcleo necrótico</b>. Não entre.'},
+ {n:'Sala 10', t:'Os pedreiros', c:'Células musculares lisas chegam da média com carrinhos de tijolo (colágeno) e levantam uma parede sobre o poço: a <b>capa fibrosa</b>.'},
+ {n:'Sala 11', t:'O reino verde', c:'Placa estável: muralha grossa, poucos macrófagos, poço pequeno, pedreiros trabalhando. Silêncio produtivo.'},
+ {n:'Sala 12', t:'O reino vermelho', c:'Placa instável: muralha fina, cupins (MMP) por toda parte, poço enorme, neovasos sangrando. Cheiro de fumaça.'},
+ {n:'Sala 13', t:'A rachadura', c:'Um som seco. A capa cede. Pela fenda, o sangue enxerga o núcleo pela primeira vez.'},
+ {n:'Sala 14', t:'O coágulo', c:'Fator tecidual exposto: plaquetas e fibrina fecham a rua em segundos. Um tampão vermelho-escuro ocupa o lúmen.'},
+ {n:'Sala 15', t:'A cidade escura', c:'Miocárdio sem fluxo. Luzes se apagando bairro por bairro. É aqui que termina o filme — e é aqui que começa o plantão.'}
+];
+
+/* ---------- CASOS ---------- */
+var CASOS = [
+ {t:'Caso 1 — O exame "tranquilo"', c:'Homem, 54 anos, diabético, obesidade abdominal. LDL-c 108 mg/dL, HDL-c 32, triglicérides 310. Ele traz o exame aliviado: "meu colesterol ruim está quase normal, doutor".', p:'Por que esse perfil é mais perigoso do que parece?', r:'Porque com triglicérides altos as partículas de LDL tornam-se <b>pequenas e densas</b>: cada uma carrega pouco colesterol, então o LDL-c subestima o <b>número</b> de partículas. O ApoB (ou o colesterol não-HDL) revelaria a carga real de partículas aterogênicas. Além disso, o HDL baixo aqui é consequência da troca via <b>CETP</b> — não um problema independente.'},
+ {t:'Caso 2 — A tesoura sem interruptor', c:'Lactente com triglicérides extremamente elevados, plasma leitoso, episódios recorrentes de dor abdominal e pancreatite. Colesterol pouco alterado.', p:'Qual eixo fisiopatológico explica o quadro?', r:'Falha na depuração de quilomícrons: <b>deficiência de LPL</b> ou de seu ativador <b>ApoC-II</b>. Sem a tesoura funcionando, os caminhões da via intestinal não são esvaziados e se acumulam. O risco dominante aqui é <b>pancreatite</b>, não doença coronariana — quilomícron é grande demais para entrar na parede arterial.'},
+ {t:'Caso 3 — A angiografia enganosa', c:'Homem de 61 anos infarta. O cateterismo mostra oclusão trombótica em segmento que, em exame feito dois anos antes, apresentava lesão de apenas 40%.', p:'Como explicar ao paciente que a lesão "pequena" causou o infarto?', r:'Porque o grau de estenose mede o <b>buraco</b>, e a doença está na <b>parede</b>. Placas de capa fina, núcleo necrótico grande e inflamação intensa rompem mesmo sem estenose importante — e o remodelamento de Glagov mantém o lúmen aparentemente normal por anos. Estenose prevê angina; composição prevê infarto.'},
+ {t:'Caso 4 — Herança que estatina não apaga', c:'Mulher de 38 anos, sem tabagismo, IMC normal, LDL-c 118. Pai infartou aos 44, irmão aos 49. Perfil lipídico "quase bom".', p:'O que falta pedir?', r:'<b>Lp(a)</b>. Ela é aterogênica como LDL, pró-trombótica por mimetizar o plasminogênio, e seu nível é definido geneticamente — não responde a dieta nem, de forma relevante, à estatina. As diretrizes recomendam medir ao menos uma vez na vida, sobretudo com história familiar precoce.'},
+ {t:'Caso 5 — Por que a estatina salvou antes de "desentupir"', c:'Paciente pós-síndrome coronariana inicia estatina de alta potência. Em 3 meses o risco de novo evento já caiu, mas a angiotomografia mostra a placa praticamente do mesmo tamanho.', p:'Contradição?', r:'Não. O benefício precoce vem da <b>estabilização</b>: menos partículas ApoB entrando, menos inflamação, menos metaloproteinase, capa mais espessa e núcleo menos ativo. O calibre pode nem mudar. O que muda é a probabilidade de a muralha ceder.'},
+ {t:'Caso 6 — A mulher que infartou com placa pouco inflamada', c:'Mulher de 46 anos, tabagista, infarto sem supra. O estudo intracoronário mostra trombo sobre placa com capa <b>íntegra</b>, rica em proteoglicanos, com pouco núcleo lipídico.', p:'Qual mecanismo?', r:'<b>Erosão de placa</b>, não ruptura. O endotélio descama e expõe a matriz, formando trombo sobre uma placa pouco inflamada. É mais comum em mulheres, mais jovens e tabagistas — e é o motivo pelo qual um lipidograma pouco impressionante não exclui evento agudo.'},
+ {t:'Caso 7 — O caminhão que não encontra a porta', c:'Adolescente com LDL-c muito elevado desde a infância, arco corneano, xantomas tendíneos e história familiar de eventos precoces em três gerações.', p:'Onde está o defeito, em termos de personagens?', r:'Na <b>porta do fígado</b>: redução no número ou na função do <b>receptor de LDL</b> (ou defeito na própria ApoB100 que o receptor reconhece). O caminhão circula sem conseguir estacionar, o tempo de exposição arterial explode e a doença aparece décadas antes.'},
+ {t:'Caso 8 — Triglicérides que sobem o risco por outra porta', c:'Homem de 50 anos, TG 480, LDL-c 96, não-HDL 176.', p:'Onde mora o risco aterogênico aqui?', r:'Nos <b>remanescentes</b>: VLDL parcialmente lipolisada e IDL, todas com <b>ApoB100</b> e pequenas o bastante para entrar na parede. O LDL-c não as enxerga; o <b>colesterol não-HDL</b> (176) as inclui. Por isso ele é o alvo mais confiável quando os TG estão altos.'},
+ {t:'Caso 9 — HDL alto não é passe livre', c:'Homem de 58 anos, HDL-c 78 mg/dL, orgulhoso: "meu colesterol bom é altíssimo". Fuma há 30 anos, LDL-c 165.', p:'O HDL compensa?', r:'Não. O que protege é a <b>função</b> de efluxo, não o número. HDL disfuncional existe, o tabagismo compromete o transporte reverso, e nenhum HDL alto anula uma exposição prolongada a ApoB elevado. Intervenções que apenas elevam o HDL-c não reduziram eventos.'},
+ {t:'Caso 10 — Duas frotas, mesmo peso', c:'Dois pacientes têm LDL-c idêntico de 130 mg/dL. O primeiro tem ApoB baixo; o segundo, ApoB alto.', p:'Quem tem mais risco e por quê?', r:'O segundo. O mesmo colesterol distribuído em <b>mais partículas</b> significa mais veículos com ApoB100 colidindo com o endotélio e disponíveis para retenção. O que fura a parede é a partícula, não o colesterol que ela carrega.'}
+];
+
+/* ---------- QUESTÕES ---------- */
+var QUESTOES = [
+ {e:'Qual é a principal apoproteína dos quilomícrons?', o:['ApoB100','ApoB48','ApoA-I','ApoE'], c:1, x:'B48 = "Baby 48": nasce no intestino, na refeição. É a forma truncada da ApoB100 (cerca de 48% do comprimento).'},
+ {e:'A Lp(a) tem como apoproteína principal:', o:['ApoA-II','ApoC-II','ApoB100 + apo(a)','ApoB48'], c:2, x:'Lp(a) é uma LDL com apo(a) ligada covalentemente à ApoB100 — dois crachás na mesma partícula.'},
+ {e:'Qual lipoproteína tem origem tanto hepática quanto intestinal?', o:['VLDL','LDL','HDL','IDL'], c:2, x:'A HDL é a única com origem dupla, e a única cuja apoproteína principal não é da família B (A-I e A-II).'},
+ {e:'A conversão de IDL em LDL depende principalmente de:', o:['LPL','Lipase hepática','LCAT','CETP'], c:1, x:'A LPL age antes (quilomícron e VLDL). A lipase hepática — "HPL" em alguns slides — dá o último corte: IDL → LDL.'},
+ {e:'A LPL é ativada por qual apoproteína?', o:['ApoA-I','ApoB100','ApoC-II','ApoE'], c:2, x:'ApoC-II liga a tesoura. Sua deficiência cursa com hipertrigliceridemia grave e pancreatite.'},
+ {e:'Sobre o receptor scavenger do macrófago, é correto afirmar:', o:['É regulado negativamente pelo colesterol intracelular','Não sofre retroalimentação pelo colesterol intracelular','Reconhece apenas ApoA-I','Só existe no hepatócito'], c:1, x:'Justamente por não ter freio é que o macrófago capta LDL oxidada até virar célula espumosa e morrer.'},
+ {e:'Qual molécula é a quimiocina responsável por recrutar monócitos para a íntima?', o:['VCAM-1','MCP-1','Selectina P','ICAM-1'], c:1, x:'VCAM-1, ICAM-1 e selectina P são moléculas de adesão (o velcro). MCP-1 é o rádio que chama.'},
+ {e:'Comparada à placa estável, a placa instável apresenta:', o:['Mais colágeno e capa espessa','Mais células musculares lisas','Mais metaloproteinases e capa fina','Menos moléculas de adesão'], c:2, x:'Instabilidade = mais MMP, mais inflamação, mais neovasos, núcleo maior, capa fina e menos CML/colágeno.'},
+ {e:'A CETP promove:', o:['Esterificação do colesterol na HDL','Troca de éster de colesterol da HDL por triglicérides da VLDL/LDL','Hidrólise dos triglicérides do quilomícron','Captação hepática de IDL'], c:1, x:'É o corretor: devolve colesterol ao lado aterogênico. Explica a associação entre TG alto e HDL baixo.'},
+ {e:'A esterificação do colesterol captado pela HDL é feita por:', o:['LCAT','CETP','LPL','Lipase hepática'], c:0, x:'LCAT = chaveiro: tranca o colesterol como éster no núcleo da HDL, permitindo sua maturação.'},
+ {e:'Qual afirmação sobre ApoB está correta?', o:['Cada partícula aterogênica contém várias moléculas de ApoB','Cada partícula aterogênica contém uma única molécula de ApoB','ApoB só existe na LDL','ApoB é a principal apoproteína da HDL'], c:1, x:'Uma ApoB por partícula: por isso dosar ApoB equivale a contar partículas aterogênicas.'},
+ {e:'Em paciente com triglicérides muito elevados, qual alvo lipídico é mais confiável que o LDL-c?', o:['Colesterol total','Colesterol não-HDL','HDL-c','Relação CT/HDL apenas'], c:1, x:'O não-HDL soma todas as partículas com B100, incluindo remanescentes de VLDL e IDL, que o LDL-c não captura.'},
+ {e:'O evento inicial da aterogênese é melhor descrito como:', o:['Deposição passiva de gordura no lúmen','Retenção subendotelial de partículas com ApoB','Trombose sobre endotélio normal','Proliferação primária de células musculares lisas'], c:1, x:'Não é o "entrar", é o "ficar": a ApoB100 se liga a proteoglicanos da íntima e a partícula é retida.'},
+ {e:'Sobre a estria gordurosa, é correto:', o:['É composta principalmente por trombo organizado','É formada por acúmulo de células espumosas','Surge apenas após os 60 anos','É irreversível por definição'], c:1, x:'É a primeira lesão visível, formada por macrófagos repletos de lipídio (e algumas CML).'},
+ {e:'Qual célula é a principal produtora do colágeno da capa fibrosa?', o:['Macrófago','Linfócito T','Célula muscular lisa','Célula endotelial'], c:2, x:'A CML migra da média para a íntima e fabrica a matriz. Placa rica em CML tende a ser estável.'},
+ {e:'O interferon-γ liberado por linfócitos T contribui para instabilidade porque:', o:['Aumenta a produção de colágeno','Inibe a síntese de colágeno pelas células musculares lisas','Reduz a expressão de MMP','Estimula o efluxo de colesterol'], c:1, x:'É o "engenheiro traidor": manda os pedreiros pararem, enquanto as MMP demolem o que já foi feito.'},
+ {e:'Sobre o crescimento da placa aterosclerótica:', o:['É linear e contínuo','Ocorre em saltos, com rupturas subclínicas incorporadas','Só ocorre após estenose de 50%','Depende exclusivamente do LDL-c'], c:1, x:'Crescimento em degraus. Hemorragia intraplaca e rupturas silenciosas cicatrizadas somam volume de repente.'},
+ {e:'O remodelamento positivo (Glagov) implica que:', o:['O lúmen reduz precocemente','A artéria expande externamente e o lúmen se mantém normal por anos','A placa sempre calcifica','A angiografia superestima a doença'], c:1, x:'Por isso a angiografia pode ser "normal" com parede já doente — e por isso a doença é da parede.'},
+ {e:'Qual mecanismo explica síndrome coronariana aguda com capa fibrosa íntegra?', o:['Ruptura de placa','Erosão de placa','Dissecção espontânea sempre','Vasoespasmo isolado'], c:1, x:'Na erosão, o endotélio descama e expõe a matriz rica em proteoglicanos; a placa costuma ser menos inflamada. Mais comum em mulheres jovens e tabagistas.'},
+ {e:'Sobre o quilomícron, é correto afirmar:', o:['É a lipoproteína mais densa','É altamente aterogênico por atravessar o endotélio','É a maior e menos densa, e não atravessa o endotélio íntegro','Contém ApoB100'], c:2, x:'Grande demais para entrar na íntima. Seu excesso associa-se sobretudo a pancreatite, e seus <b>remanescentes</b> é que têm potencial aterogênico.'},
+ {e:'Qual é a via final de eliminação do colesterol do organismo?', o:['Urina','Suor','Excreção biliar após captação hepática','Descamação intestinal apenas'], c:2, x:'O transporte reverso termina no fígado, que elimina o colesterol pela bile. É a única saída relevante.'},
+ {e:'Por que elevar farmacologicamente o HDL-c não reduziu eventos como se esperava?', o:['Porque o HDL não participa do transporte reverso','Porque o que protege é a capacidade de efluxo, não o nível','Porque o HDL é aterogênico','Porque o HDL não é medido corretamente'], c:1, x:'Número não é função. HDL disfuncional existe, e intervenções que só elevam o HDL-c (inclusive inibidores de CETP) não entregaram o benefício previsto.'}
+];
+
+/* ---------- FLASHCARDS ---------- */
+var FLASH = [
+ ['Apoproteína do quilomícron','ApoB48 — "Baby 48", nasce no intestino'],
+ ['Apoproteínas da HDL','ApoA-I e ApoA-II'],
+ ['Apoproteína de VLDL, IDL, LDL e Lp(a)','ApoB100 — "Bandido 100"'],
+ ['Origem da VLDL','Fígado'],
+ ['Origem da IDL','VLDL (após ação da LPL)'],
+ ['Origem da LDL','IDL (após lipase hepática)'],
+ ['Origem da HDL','Fígado <b>e</b> intestino (origem dupla)'],
+ ['Origem da Lp(a)','Fígado'],
+ ['Quem ativa a LPL?','ApoC-II'],
+ ['Onde fica a LPL?','No endotélio dos capilares do músculo e tecido adiposo'],
+ ['Enzima que converte IDL em LDL','Lipase hepática ("HPL" em slides antigos)'],
+ ['Função da LCAT','Esterifica o colesterol na HDL (o chaveiro)'],
+ ['Função da CETP','Troca éster de colesterol da HDL por TG da VLDL/LDL'],
+ ['Por que TG alto costuma vir com HDL baixo?','Excesso de VLDL → mais troca via CETP → HDL empobrecida e degradada'],
+ ['Os 3 ciclos do metabolismo lipídico','Via intestinal (exógena) · via hepática (endógena) · transporte reverso'],
+ ['Qual lipoproteína é a maior e menos densa?','Quilomícron'],
+ ['Qual é a mais densa?','HDL (mais proteína)'],
+ ['Quantas ApoB por partícula aterogênica?','Exatamente uma — por isso ApoB conta partículas'],
+ ['Substituto prático do ApoB','Colesterol não-HDL (CT − HDL), sem necessidade de jejum'],
+ ['Evento inicial da aterogênese','Retenção subendotelial de partículas com ApoB100 pelos proteoglicanos'],
+ ['Moléculas de adesão da aterogênese','VCAM-1, ICAM-1 e selectina P'],
+ ['Quimiocina que recruta monócitos','MCP-1'],
+ ['Receptores que geram a célula espumosa','Scavenger (SR-A, CD36) — sem retroalimentação'],
+ ['Primeira lesão visível da aterosclerose','Estria gordurosa (acúmulo de células espumosas)'],
+ ['Quem produz o colágeno da capa fibrosa?','Célula muscular lisa migrada da média'],
+ ['Quem degrada o colágeno da capa?','Metaloproteinases de matriz (MMP), dos macrófagos'],
+ ['Papel do linfócito T na instabilidade','Libera IFN-γ e inibe a síntese de colágeno pela CML'],
+ ['Cinco marcas da placa instável','Capa fina · núcleo grande · muita inflamação · muita MMP · muitos neovasos'],
+ ['Cinco marcas da placa estável','Capa espessa · núcleo pequeno · muito colágeno · muita CML · pouca inflamação'],
+ ['O que dispara o trombo após a ruptura?','Exposição do fator tecidual do núcleo necrótico'],
+ ['Remodelamento de Glagov','A artéria expande para fora; o lúmen parece normal apesar da placa'],
+ ['A placa que rompe é a mais obstrutiva?','Geralmente não — capa fina e inflamação pesam mais que grau de estenose'],
+ ['Erosão de placa','Trombo com capa íntegra, endotélio descamado, placa pouco inflamada; mais comum em mulheres jovens e tabagistas'],
+ ['Por que a Lp(a) é pró-trombótica?','A apo(a) mimetiza o plasminogênio e interfere na fibrinólise'],
+ ['Lp(a) responde a dieta ou estatina?','Praticamente não — é determinada por genética; dosar ao menos uma vez na vida'],
+ ['Via final de eliminação do colesterol','Excreção biliar após captação hepática'],
+ ['Por que a estatina reduz eventos precocemente?','Por estabilização da placa (menos ApoB, menos inflamação, capa mais espessa), não por "desentupir"'],
+ ['Risco dominante do excesso de quilomícrons','Pancreatite (a partícula é grande demais para entrar na íntima)']
+];
+
+/* ---------- PEGADINHAS ---------- */
+var PEGS = [
+ 'A HDL é a <b>única</b> com origem dupla (fígado <b>e</b> intestino) e a única sem apoproteína da família B.',
+ 'A Lp(a) tem <b>dois</b> crachás: ApoB100 <b>e</b> apo(a).',
+ 'B48 tem esse nome por ser ~48% do comprimento da B100 — não é um número aleatório.',
+ 'A LPL atua em <b>dois</b> substratos (quilomícron e VLDL); a lipase hepática, só na IDL.',
+ 'Quem ativa a LPL é a <b>ApoC-II</b>, não a ApoB.',
+ 'O receptor <i>scavenger</i> <b>não</b> tem retroalimentação negativa; o receptor de LDL <b>tem</b>.',
+ 'VCAM-1, ICAM-1 e selectina P são <b>adesão</b>. MCP-1 é <b>quimiotaxia</b>. O examinador troca os dois.',
+ 'A placa que rompe geralmente <b>não</b> é a mais estenótica — composição pesa mais que calibre.',
+ 'Remodelamento de Glagov: lúmen normal na angiografia com parede já doente.',
+ 'Nem toda SCA vem de ruptura: a <b>erosão</b> ocorre com capa íntegra e pouca inflamação.',
+ 'HDL-c alto não é passe livre — o que protege é a <b>capacidade de efluxo</b>.',
+ 'LDL-c pode ser "aceitável" com ApoB alto nas partículas pequenas e densas.',
+ 'Quilomícron em excesso → risco de <b>pancreatite</b>; são os <b>remanescentes</b> que aterogenizam.',
+ 'A estatina reduz eventos antes de mudar o tamanho da placa: benefício de <b>composição</b>.',
+ 'A CETP explica a dupla "TG alto + HDL baixo" — não são dois problemas independentes.',
+ 'A célula muscular lisa é <b>protetora</b> na placa madura (faz colágeno), mesmo sendo "proliferação".'
+];
+
+/* ---------- GLOSSÁRIO ---------- */
+var GLOSS = [
+ ['ApoB100','Apoproteína estrutural de VLDL, IDL, LDL e Lp(a). Uma por partícula; liga-se ao receptor de LDL e aos proteoglicanos da íntima.'],
+ ['ApoB48','Versão truncada da B100, exclusiva do quilomícron, de origem intestinal.'],
+ ['ApoC-II','Ativadora da LPL.'],
+ ['ApoE','Permite a captação hepática de remanescentes.'],
+ ['LPL','Lipoproteína lipase; hidrolisa TG de quilomícrons e VLDL no endotélio capilar.'],
+ ['Lipase hepática','Converte IDL em LDL; aparece como "HPL" em alguns slides.'],
+ ['LCAT','Esterifica colesterol na HDL, permitindo sua maturação.'],
+ ['CETP','Transfere éster de colesterol da HDL para VLDL/LDL em troca de TG.'],
+ ['Colesterol não-HDL','Colesterol total menos HDL; estima todas as partículas com ApoB.'],
+ ['Proteoglicanos','Componentes da matriz da íntima que retêm partículas com ApoB100.'],
+ ['LDL oxidada','Partícula modificada na íntima; ligante dos receptores scavenger.'],
+ ['Receptor scavenger','SR-A e CD36 do macrófago; captam LDLox sem freio.'],
+ ['Célula espumosa','Macrófago repleto de lipídio; unidade da estria gordurosa.'],
+ ['Núcleo necrótico','Massa de lipídio, restos celulares e fator tecidual; trombogênico.'],
+ ['Capa fibrosa','Camada de colágeno produzida pela CML que separa o núcleo do sangue.'],
+ ['MMP','Metaloproteinases de matriz; degradam colágeno e afinam a capa.'],
+ ['Remodelamento de Glagov','Expansão externa da artéria que preserva o lúmen nas fases iniciais.'],
+ ['Erosão de placa','SCA com capa íntegra e descamação endotelial.']
+];
+
+var CHECK = [
+ ['hoje','Hoje — recitar os 3 ciclos em voz alta, sem olhar'],
+ ['hoje2','Hoje — desenhar VLDL → IDL → LDL nomeando as duas lipases'],
+ ['amanha','Amanhã — percorrer as 15 salas do palácio de olhos fechados'],
+ ['amanha2','Amanhã — refazer a Arena TEC só com as questões que errei'],
+ ['d7','Em 7 dias — explicar para alguém por que ApoB conta partículas'],
+ ['d7b','Em 7 dias — listar as 9 frentes da batalha estável × instável'],
+ ['d30','Em 30 dias — reconstruir o capítulo inteiro em 3 minutos de narração']
+];
+
+/* ================= RENDER ================= */
+function esc(s){ return s; }
+
+function renderElenco(){
+  document.getElementById('elencoGrid').innerHTML = ELENCO.map(function(p,i){
+    return '<div class="pers '+p.cl+'" onclick="this.classList.toggle(\'open\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'){this.classList.toggle(\'open\')}">'+
+      '<div class="ico">'+p.ico+'</div><h4>'+p.n+'</h4><div class="fn">'+p.fn+'</div><div class="det">'+p.det+'</div></div>';
+  }).join('');
+}
+
+function abrirCiclo(i){
+  for(var k=0;k<3;k++){
+    var b = document.getElementById('cbt'+k);
+    b.className = 'btn ' + (k===i ? (k===0?'vm':(k===1?'':'vd')) : 'ghost');
+    if(k===i && k===1){ b.className = 'btn'; }
+  }
+  var c = CICLOS[i];
+  var fx = c.fx.map(function(f,j){
+    var cls = i===0 ? 'v' : (i===1 ? 'a' : 'g');
+    return '<span class="fx '+cls+'">'+f+'</span>' + (j < c.fx.length-1 ? '<span class="seta">→</span>' : '');
+  }).join('');
+  document.getElementById('cicloBox').innerHTML =
+    '<div class="card"><span class="tag '+(i===0?'t-vm':(i===1?'t-az':'t-vd'))+'">Ciclo '+(i+1)+'</span><h3>'+c.t+'</h3>'+
+    '<div class="fluxo">'+fx+'</div>'+c.corpo+'</div>';
+}
+
+function renderBatalha(){
+  document.getElementById('batGrid').innerHTML = BAT.map(function(b,i){
+    return '<div class="linhabat" onclick="togglePq('+i+')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'){togglePq('+i+')}">'+
+      '<div class="'+(b.e.indexOf('▲')>=0?'dn':'dn')+'">'+b.e+'</div>'+
+      '<div class="mid">'+b.f.split(' (')[0]+'</div>'+
+      '<div class="up">'+b.i+'</div>'+
+      '</div><div class="coment" id="pq'+i+'" style="margin:0 10px 8px"><b>'+b.f+'</b> — '+b.pq+'</div>';
+  }).join('');
+}
+function togglePq(i){ document.getElementById('pq'+i).classList.toggle('show'); }
+
+function renderSalas(){
+  document.getElementById('salasGrid').innerHTML = SALAS.map(function(s){
+    return '<div class="sala" onclick="this.classList.toggle(\'open\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'){this.classList.toggle(\'open\')}">'+
+      '<div class="n">'+s.n+'</div><b>'+s.t+'</b><div class="c">'+s.c+'</div></div>';
+  }).join('');
+}
+
+function renderCasos(){
+  document.getElementById('casosGrid').innerHTML = CASOS.map(function(c,i){
+    return '<div class="caso" onclick="this.classList.toggle(\'open\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'){this.classList.toggle(\'open\')}">'+
+      '<div class="qmeta">'+c.t+'</div><p>'+c.c+'</p><p style="color:var(--azul); font-weight:800; margin-bottom:0">'+c.p+'</p>'+
+      '<div class="resp"><b>Resposta:</b> '+c.r+'</div></div>';
+  }).join('');
+}
+
+function renderArena(){
+  document.getElementById('arenaGrid').innerHTML = QUESTOES.map(function(q,i){
+    var opts = q.o.map(function(o,j){ return '<button class="opt" id="o'+i+'_'+j+'" onclick="responder('+i+','+j+')">'+o+'</button>'; }).join('');
+    return '<div class="q"><div class="qmeta">Questão '+(i+1)+' de '+QUESTOES.length+'</div><div class="en">'+q.e+'</div>'+opts+
+      '<div class="coment" id="c'+i+'"><b>Comentário:</b> '+q.x+'</div></div>';
+  }).join('');
+  QUESTOES.forEach(function(q,i){ if(estado.respondidas[i] !== undefined){ pintar(i, estado.respondidas[i]); } });
+  atualizarKPI();
+}
+function pintar(i, escolha){
+  var q = QUESTOES[i];
+  for(var j=0;j<q.o.length;j++){
+    var b = document.getElementById('o'+i+'_'+j);
+    if(!b) continue;
+    b.classList.remove('ok','no');
+    if(j === q.c) b.classList.add('ok');
+    if(j === escolha && escolha !== q.c) b.classList.add('no');
+  }
+  document.getElementById('c'+i).classList.add('show');
+}
+function responder(i, j){
+  if(estado.respondidas[i] !== undefined) return;
+  estado.respondidas[i] = j;
+  if(j !== QUESTOES[i].c && estado.erros.indexOf(i) < 0){ estado.erros.push(i); }
+  salvar(); pintar(i, j); atualizarKPI(); renderErros();
+}
+function atualizarKPI(){
+  var ks = Object.keys(estado.respondidas), ac = 0;
+  ks.forEach(function(k){ if(estado.respondidas[k] === QUESTOES[k].c) ac++; });
+  document.getElementById('kQtd').textContent = ks.length;
+  document.getElementById('kAcerto').textContent = ac;
+  document.getElementById('kPct').textContent = ks.length ? Math.round(ac/ks.length*100)+'%' : '—';
+}
+function renderErros(){
+  var box = document.getElementById('filaErros');
+  if(!estado.erros.length){ box.innerHTML = '<p style="color:#9fb4c9; margin:0">Nada por enquanto. Responda a Arena TEC e o que você errar aparece aqui, pronto para revisar.</p>'; return; }
+  box.innerHTML = estado.erros.map(function(i){
+    return '<div class="frase" style="border-left-color:var(--vermelho)"><b>Q'+(i+1)+'.</b> '+QUESTOES[i].e+'<br><span style="font-weight:400; font-size:.9rem">'+QUESTOES[i].x+'</span></div>';
+  }).join('');
+}
+
+var flashOrdem = [];
+function renderFlash(){
+  if(!flashOrdem.length){ flashOrdem = FLASH.map(function(_,i){ return i; }); }
+  document.getElementById('flashGrid').innerHTML = flashOrdem.map(function(i){
+    var f = FLASH[i];
+    return '<div class="fc" onclick="this.classList.toggle(\'flip\')" role="button" tabindex="0" onkeydown="if(event.key===\'Enter\'){this.classList.toggle(\'flip\')}">'+
+      '<div class="fc-in"><div class="fc-f"><small>Pergunta</small>'+f[0]+'</div><div class="fc-b"><small>Resposta</small>'+f[1]+'</div></div></div>';
+  }).join('');
+}
+function embaralhar(){
+  flashOrdem = FLASH.map(function(_,i){ return i; });
+  for(var i = flashOrdem.length - 1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = flashOrdem[i]; flashOrdem[i] = flashOrdem[j]; flashOrdem[j] = t; }
+  renderFlash();
+}
+function virarTodos(on){
+  var els = document.querySelectorAll('.fc');
+  for(var i=0;i<els.length;i++){ if(on) els[i].classList.add('flip'); else els[i].classList.remove('flip'); }
+}
+
+function renderPegs(){
+  document.getElementById('pegBox').innerHTML = PEGS.map(function(p){ return '<div class="peg" style="margin:8px 0">'+p+'</div>'; }).join('');
+}
+function renderGloss(){
+  document.getElementById('glossBox').innerHTML = '<div class="scroll"><table class="tb"><thead><tr><th>Termo</th><th>Definição</th></tr></thead><tbody>'+
+    GLOSS.map(function(g){ return '<tr><td><b>'+g[0]+'</b></td><td>'+g[1]+'</td></tr>'; }).join('') + '</tbody></table></div>';
+}
+function renderChk(){
+  document.getElementById('chkGrid').innerHTML = CHECK.map(function(c){
+    var on = !!estado.chk[c[0]];
+    return '<label class="chk'+(on?' done':'')+'" id="ck_'+c[0]+'"><input type="checkbox" '+(on?'checked':'')+' onchange="marcar(\''+c[0]+'\', this.checked)"><span>'+c[1]+'</span></label>';
+  }).join('');
+}
+function marcar(k, v){ estado.chk[k] = v; salvar(); var el = document.getElementById('ck_'+k); if(v) el.classList.add('done'); else el.classList.remove('done'); }
+
+function zerarProgresso(){
+  estado = { respondidas:{}, erros:[], chk:{} };
+  salvar();
+  renderArena(); renderErros(); renderChk();
+}
+
+/* ---------- UI ---------- */
+function toggleProf(){ document.body.classList.toggle('prof'); document.getElementById('btProf').classList.toggle('on'); }
+function toggleMov(){ document.body.classList.toggle('reduz'); document.getElementById('btMov').classList.toggle('on'); }
+function irTopo(){ window.scrollTo({top:0, behavior:'smooth'}); }
+window.addEventListener('scroll', function(){
+  var h = document.documentElement;
+  var p = h.scrollTop / Math.max(1, (h.scrollHeight - h.clientHeight));
+  document.getElementById('progBar').style.width = (p*100) + '%';
+});
+if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.body.classList.add('reduz'); var bm = document.getElementById('btMov'); if(bm) bm.classList.add('on');
+}
+
+/* ---------- INIT ---------- */
+renderElenco();
+abrirCiclo(0);
+desenhaMuralha(0);
+renderBatalha();
+renderSalas();
+renderCasos();
+renderArena();
+renderFlash();
+renderPegs();
+renderGloss();
+renderChk();
+renderErros();
+</script>
+</body>
+</html>
