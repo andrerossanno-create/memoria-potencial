@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encefalopatia Hipertensiva — Simulação Longitudinal da Sala Vermelha | Atlas Mental</title>
+<meta name="author" content="Dr. André Rossanno">
+<meta name="copyright" content="© 2026 Dr. André Rossanno — Atlas Mental / Memória Potencial. Licença CC BY-NC-ND: uso comercial e obras derivadas proibidos.">
+<meta name="license" content="CC BY-NC-ND 4.0">
+<meta name="description" content="Aula-simulação em tempo real de emergência hipertensiva neurológica: MOV, ABCDE, oxigenoterapia, escolha da droga IV, titulação, reconciliação, ponte IV→oral e desmame. Método André Rossanno.">
+<!--
+  HANDOFF — Atlas Mental / Emergências Hipertensivas
+  Capítulo: Encefalopatia Hipertensiva — "As 48 Horas da Sala Vermelha"
+  Arquivo standalone. Zero recurso externo. Zero @import. Fontes declaradas só por family.
+  LS_KEY: atlasEH_salavermelha_v1
+  Prefixo de classe obrigatório: eh-
+  Paleta: navy profundo / petróleo / ciano estrutural / verde=correto-proteção /
+          âmbar=pegadinha / vermelho=perigo / violeta=neuro (cérebro, autorregulação)
+  Assinatura visual: MONITOR DE CABECEIRA fixo (PA/FC/SpO2/relógio) que muda com a cena.
+-->
+<style>
+:root{
+  --bg:#070E17; --bg2:#0A1522;
+  --panel:#0F1D2B; --panel2:#16293A; --panel3:#1D3549;
+  --line:rgba(150,190,220,.18); --line2:rgba(150,190,220,.32);
+  --ciano:#35D6E8; --ciano-d:#0E7C8C; --ciano-soft:rgba(53,214,232,.12);
+  --verde:#21C08B; --verde-soft:rgba(33,192,139,.13);
+  --ambar:#F2B138; --ambar-soft:rgba(242,177,56,.13);
+  --vermelho:#E8453C; --vermelho-soft:rgba(232,69,60,.13);
+  --neuro:#8C6BF0; --neuro-soft:rgba(140,107,240,.14);
+  --txt:#E7F0F7; --txt2:#A9BFD1; --txt3:#7E97AB;
+  --ouro:#D9A441;
+  --r:14px; --r2:22px;
+  --ff:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --fm:'IBM Plex Mono','Courier New',monospace;
+  --fs:'Dancing Script','Brush Script MT',cursive;
+  --sh:0 10px 34px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:112px}
+body{
+  margin:0;background:
+    radial-gradient(1100px 620px at 82% -8%, rgba(53,214,232,.10), transparent 60%),
+    radial-gradient(900px 560px at 8% 6%, rgba(140,107,240,.10), transparent 62%),
+    var(--bg);
+  color:var(--txt);font-family:var(--ff);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+body.eh-reduz *{animation:none!important;transition:none!important}
+img,svg{max-width:100%}
+h1,h2,h3,h4{line-height:1.18;margin:0 0 .5em}
+h2{font-size:1.62rem;font-weight:900;letter-spacing:-.01em}
+h3{font-size:1.16rem;font-weight:800}
+p{margin:0 0 .9em}
+b,strong{color:#fff;font-weight:800}
+a{color:var(--ciano)}
+.eh-wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.eh-mono{font-family:var(--fm)}
+
+/* ---------- NAV ---------- */
+.eh-nav{position:sticky;top:0;z-index:60;background:rgba(7,14,23,.93);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+.eh-navin{max-width:1080px;margin:0 auto;padding:9px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.eh-brand{font-weight:900;font-size:.95rem;letter-spacing:.01em;display:flex;align-items:center;gap:8px}
+.eh-brand span{color:var(--vermelho)}
+.eh-navbtns{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}
+.eh-nb{background:var(--panel2);border:1px solid var(--line);color:var(--txt2);border-radius:999px;
+  padding:5px 12px;font-size:.76rem;font-family:var(--fm);cursor:pointer;transition:.18s}
+.eh-nb:hover{border-color:var(--ciano);color:var(--ciano)}
+.eh-nb.on{background:var(--ciano-soft);border-color:var(--ciano);color:var(--ciano)}
+.eh-prog{height:3px;background:linear-gradient(90deg,var(--vermelho),var(--ambar),var(--verde));width:0%;transition:width .25s}
+
+/* ---------- MONITOR DE CABECEIRA (assinatura) ---------- */
+.eh-mon{position:sticky;top:47px;z-index:55;background:linear-gradient(180deg,#050B12,#08131E);
+  border-bottom:1px solid var(--line);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.eh-monin{max-width:1080px;margin:0 auto;padding:7px 18px;display:flex;align-items:center;gap:14px;overflow-x:auto}
+.eh-monecg{flex:0 0 92px;height:34px}
+.eh-vital{flex:0 0 auto;text-align:left;min-width:74px}
+.eh-vk{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;color:var(--txt3);display:block}
+.eh-vv{font-family:var(--fm);font-weight:700;font-size:1.02rem;line-height:1.1}
+.eh-vpa .eh-vv{color:var(--vermelho)}
+.eh-vfc .eh-vv{color:var(--verde)}
+.eh-vsp .eh-vv{color:var(--ciano)}
+.eh-vgl .eh-vv{color:var(--neuro)}
+.eh-vt .eh-vv{color:var(--ambar)}
+.eh-monlab{margin-left:auto;font-family:var(--fm);font-size:.66rem;color:var(--txt3);white-space:nowrap;text-align:right}
+@keyframes ehblip{0%,100%{opacity:.25}50%{opacity:1}}
+.eh-blip{animation:ehblip 1.6s infinite}
+
+/* ---------- HERO ---------- */
+.eh-hero{padding:56px 0 34px;position:relative;overflow:hidden}
+.eh-kick{font-family:var(--fm);font-size:.74rem;letter-spacing:.22em;color:var(--vermelho);text-transform:uppercase;margin-bottom:14px}
+.eh-hero h1{font-size:clamp(2rem,6.4vw,3.5rem);font-weight:900;letter-spacing:-.025em;margin-bottom:.24em}
+.eh-hero h1 em{font-style:normal;color:var(--vermelho)}
+.eh-lead{font-size:1.08rem;color:var(--txt2);max-width:690px}
+.eh-heroph{margin-top:22px;padding:16px 20px;border-left:3px solid var(--vermelho);background:linear-gradient(90deg,var(--vermelho-soft),transparent);
+  font-size:1.06rem;font-weight:800;color:#fff;border-radius:0 var(--r) var(--r) 0}
+.eh-crumb{font-family:var(--fm);font-size:.7rem;color:var(--txt3);letter-spacing:.1em;margin-top:24px}
+
+/* ---------- SEÇÕES ---------- */
+.eh-sec{padding:44px 0;border-top:1px solid var(--line)}
+.eh-sh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.eh-sn{font-family:var(--fm);font-size:.72rem;color:var(--ciano);letter-spacing:.18em;border:1px solid var(--ciano-d);
+  padding:2px 9px;border-radius:999px}
+.eh-sub{color:var(--txt2);margin:-2px 0 20px;font-size:.99rem}
+.eh-star{color:var(--ouro);font-size:.8rem;letter-spacing:.06em}
+
+/* ---------- CARDS ---------- */
+.eh-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:20px 22px;margin:14px 0;box-shadow:var(--sh)}
+.eh-card.eh-flat{box-shadow:none}
+.eh-grid{display:grid;gap:14px}
+.eh-g2{grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.eh-g3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.eh-g4{grid-template-columns:repeat(auto-fit,minmax(158px,1fr))}
+.eh-box{border-radius:var(--r);padding:14px 16px;border-left:4px solid var(--line2);background:var(--panel2)}
+.eh-perigo{border-left-color:var(--vermelho);background:var(--vermelho-soft)}
+.eh-ok{border-left-color:var(--verde);background:var(--verde-soft)}
+.eh-peg{border-left-color:var(--ambar);background:var(--ambar-soft)}
+.eh-conc{border-left-color:var(--ciano);background:var(--ciano-soft)}
+.eh-neu{border-left-color:var(--neuro);background:var(--neuro-soft)}
+.eh-tag{display:inline-block;font-family:var(--fm);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;margin-bottom:8px;border:1px solid currentColor}
+.eh-t-perigo{color:var(--vermelho)} .eh-t-ok{color:var(--verde)} .eh-t-peg{color:var(--ambar)}
+.eh-t-conc{color:var(--ciano)} .eh-t-neu{color:var(--neuro)} .eh-t-br{color:var(--verde)}
+.eh-frase{font-size:1.1rem;font-weight:900;color:#fff;text-align:center;padding:16px;border-radius:var(--r);
+  background:linear-gradient(135deg,rgba(53,214,232,.10),rgba(140,107,240,.10));border:1px dashed var(--line2);margin:16px 0}
+.eh-sint{font-family:var(--fm);font-size:.84rem;color:var(--ciano);border-top:1px dashed var(--line2);padding-top:10px;margin-top:12px}
+.eh-fonte{display:inline-block;font-family:var(--fm);font-size:.62rem;color:var(--txt3);border:1px solid var(--line);
+  border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}
+
+/* ---------- BOTÕES ---------- */
+.eh-btn{background:var(--panel3);border:1px solid var(--line2);color:var(--txt);border-radius:10px;padding:9px 15px;
+  font-family:var(--ff);font-weight:700;font-size:.88rem;cursor:pointer;transition:.16s}
+.eh-btn:hover{border-color:var(--ciano);color:var(--ciano)}
+.eh-btn.eh-pri{background:var(--ciano);color:#04222A;border-color:var(--ciano)}
+.eh-btn.eh-pri:hover{filter:brightness(1.12);color:#04222A}
+.eh-btn.eh-dang{background:var(--vermelho);color:#fff;border-color:var(--vermelho)}
+.eh-btn:disabled{opacity:.42;cursor:not-allowed}
+.eh-btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.eh-chip{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.82rem;
+  cursor:pointer;font-family:var(--fm);transition:.16s;color:var(--txt2)}
+.eh-chip:hover{border-color:var(--ciano)}
+.eh-chip.on{background:var(--ciano-soft);border-color:var(--ciano);color:var(--ciano)}
+.eh-chip.done{border-color:var(--verde);color:var(--verde)}
+
+/* ---------- HUB ---------- */
+.eh-hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(184px,1fr));gap:11px}
+.eh-hubc{background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;cursor:pointer;
+  text-align:left;transition:.18s;color:var(--txt)}
+.eh-hubc:hover{transform:translateY(-2px);border-color:var(--ciano);box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.eh-hubn{font-family:var(--fm);font-size:.64rem;color:var(--txt3);letter-spacing:.16em;display:block;margin-bottom:4px}
+.eh-hubt{font-weight:800;font-size:.95rem;display:block}
+.eh-hubd{font-size:.79rem;color:var(--txt3);display:block;margin-top:3px;line-height:1.4}
+
+/* ---------- FILME / CENAS ---------- */
+.eh-stage{background:linear-gradient(180deg,#050B12,#0C1B29);border:1px solid var(--line);border-radius:var(--r2);padding:18px;margin:14px 0}
+.eh-steps{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.eh-step{width:38px;height:38px;border-radius:11px;background:var(--panel2);border:1px solid var(--line);color:var(--txt2);
+  font-family:var(--fm);font-weight:700;cursor:pointer;transition:.16s}
+.eh-step:hover{border-color:var(--ciano)}
+.eh-step.on{background:var(--ciano);color:#04222A;border-color:var(--ciano)}
+.eh-step.seen{border-color:var(--verde);color:var(--verde)}
+.eh-arrows{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px}
+.eh-arrow{width:44px;height:44px;border-radius:50%;background:var(--panel2);border:1px solid var(--line2);color:var(--txt);
+  font-size:1.1rem;cursor:pointer}
+.eh-arrow:hover{border-color:var(--ciano);color:var(--ciano)}
+.eh-dots{display:flex;gap:6px}
+.eh-dot{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.eh-dot.on{background:var(--ciano)}
+.eh-cena{min-height:120px}
+.eh-cenat{font-family:var(--fm);font-size:.7rem;letter-spacing:.18em;color:var(--ambar);text-transform:uppercase}
+.eh-cenah{font-size:1.24rem;font-weight:900;margin:6px 0 8px}
+.eh-cenab{color:var(--txt2)}
+
+/* ---------- TABELAS ---------- */
+.eh-tw{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
+table.eh-tb{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+table.eh-tb th{background:var(--panel3);color:var(--ciano);font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;padding:9px 11px;text-align:left;border-bottom:1px solid var(--line2)}
+table.eh-tb td{padding:9px 11px;border-bottom:1px solid var(--line);color:var(--txt2);vertical-align:top}
+table.eh-tb tr:hover td{background:rgba(53,214,232,.05)}
+
+/* ---------- CONTROLES ---------- */
+.eh-slider{width:100%;accent-color:var(--ciano);margin:10px 0}
+.eh-readout{font-family:var(--fm);font-size:1.5rem;font-weight:700;color:var(--ciano)}
+.eh-meter{height:9px;background:var(--panel3);border-radius:99px;overflow:hidden;margin:6px 0}
+.eh-fill{height:100%;border-radius:99px;transition:width .35s,background .35s}
+.eh-lbl{font-family:var(--fm);font-size:.68rem;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase}
+input[type=number],select{background:var(--panel2);border:1px solid var(--line2);color:var(--txt);border-radius:9px;
+  padding:8px 10px;font-family:var(--fm);font-size:.92rem;width:100%}
+
+/* ---------- ESCADA DO O2 ---------- */
+.eh-escada{display:flex;flex-direction:column-reverse;gap:4px;margin:14px 0}
+.eh-degrau{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:9px;background:var(--panel2);
+  border:1px solid var(--line);transition:.2s;cursor:pointer}
+.eh-degrau.on{background:var(--ciano-soft);border-color:var(--ciano);transform:translateX(6px)}
+.eh-dgl{font-family:var(--fm);font-weight:700;min-width:78px;color:var(--ciano)}
+.eh-dgb{flex:1;height:10px;background:var(--panel3);border-radius:99px;overflow:hidden}
+.eh-dgf{height:100%;background:linear-gradient(90deg,var(--ciano-d),var(--ciano))}
+.eh-dgv{font-family:var(--fm);min-width:52px;text-align:right;color:var(--txt2)}
+
+/* ---------- FLASHCARDS 3D ---------- */
+.eh-fcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:12px}
+.eh-fc{perspective:1000px;height:176px;cursor:pointer}
+.eh-fcin{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.eh-fc.flip .eh-fcin{transform:rotateY(180deg)}
+.eh-fcf,.eh-fcb{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);padding:15px;
+  display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);font-size:.9rem}
+.eh-fcf{background:var(--panel2)}
+.eh-fcb{background:linear-gradient(145deg,#0D2B33,#123846);transform:rotateY(180deg);border-color:var(--ciano-d);color:var(--txt)}
+.eh-fccat{font-family:var(--fm);font-size:.58rem;letter-spacing:.15em;color:var(--ciano);margin-bottom:7px;text-transform:uppercase}
+
+/* ---------- QUESTÕES ---------- */
+.eh-alt{display:block;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+  border-radius:11px;padding:11px 13px;margin:7px 0;cursor:pointer;font-size:.9rem;font-family:var(--ff);transition:.16s}
+.eh-alt:hover{border-color:var(--ciano)}
+.eh-alt.certa{background:var(--verde-soft);border-color:var(--verde)}
+.eh-alt.errada{background:var(--vermelho-soft);border-color:var(--vermelho)}
+.eh-expl{border-left:3px solid var(--ciano);background:var(--ciano-soft);padding:12px 14px;border-radius:0 var(--r) var(--r) 0;margin-top:10px;font-size:.9rem}
+
+/* ---------- ACORDEÃO ---------- */
+.eh-acc{border:1px solid var(--line);border-radius:var(--r);margin:9px 0;overflow:hidden;background:var(--panel)}
+.eh-acch{width:100%;text-align:left;background:var(--panel2);border:0;color:var(--txt);padding:13px 15px;
+  font-weight:800;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;font-family:var(--ff)}
+.eh-acch:hover{color:var(--ciano)}
+.eh-accb{max-height:0;overflow:hidden;transition:max-height .35s}
+.eh-accin{padding:14px 16px;font-size:.93rem;color:var(--txt2)}
+.eh-ico{font-family:var(--fm);color:var(--ciano);flex:0 0 auto}
+
+/* ---------- DIÁRIO DA UTI ---------- */
+.eh-diario{position:relative;padding-left:26px}
+.eh-diario:before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(180deg,var(--vermelho),var(--ambar),var(--verde))}
+.eh-ent{position:relative;margin:0 0 20px}
+.eh-ent:before{content:'';position:absolute;left:-22px;top:9px;width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--ciano)}
+.eh-hora{font-family:var(--fm);font-size:.72rem;letter-spacing:.16em;color:var(--ambar);text-transform:uppercase}
+.eh-enth{font-weight:900;font-size:1.06rem;margin:3px 0 7px}
+.eh-vitl{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0}
+.eh-vpill{font-family:var(--fm);font-size:.72rem;padding:3px 9px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);color:var(--txt2)}
+
+/* ---------- PALÁCIO ---------- */
+.eh-sala{background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:14px;cursor:pointer;transition:.18s}
+.eh-sala:hover{border-color:var(--neuro);transform:translateY(-2px)}
+.eh-salaico{font-size:1.7rem;display:block;margin-bottom:6px}
+.eh-salan{font-family:var(--fm);font-size:.62rem;color:var(--neuro);letter-spacing:.15em}
+.eh-salat{font-weight:800;font-size:.94rem;margin:3px 0}
+.eh-salad{font-size:.82rem;color:var(--txt3);display:none}
+.eh-sala.open .eh-salad{display:block}
+
+/* ---------- CHECKLIST ---------- */
+.eh-ck{display:flex;gap:10px;align-items:flex-start;padding:9px 11px;border-radius:10px;background:var(--panel2);
+  border:1px solid var(--line);margin:6px 0;cursor:pointer;transition:.16s}
+.eh-ck:hover{border-color:var(--ciano)}
+.eh-ck.on{background:var(--verde-soft);border-color:var(--verde)}
+.eh-ckb{width:19px;height:19px;border-radius:5px;border:2px solid var(--line2);flex:0 0 auto;margin-top:2px;
+  font-size:.72rem;text-align:center;line-height:16px;color:var(--verde)}
+.eh-ck.on .eh-ckb{border-color:var(--verde)}
+.eh-ckt{font-size:.9rem}
+.eh-ckp{font-family:var(--fm);font-size:.7rem;color:var(--txt3);margin-left:auto;flex:0 0 auto}
+
+/* ---------- FILOSOFIA / ASSINATURA ---------- */
+.eh-filo{background:linear-gradient(140deg,rgba(140,107,240,.10),rgba(53,214,232,.06));border:1px solid var(--line2);
+  border-radius:var(--r2);padding:26px 24px}
+.eh-filo p{color:var(--txt2);font-size:1.01rem}
+.eh-assin{font-family:var(--fs);font-size:1.7rem;color:var(--ouro);text-align:right;margin-top:12px}
+
+/* ---------- FOOTER ---------- */
+.eh-foot{border-top:1px solid var(--line);padding:30px 0 44px;text-align:center;color:var(--txt3);font-size:.85rem}
+.eh-foot .eh-fsig{font-family:var(--fs);font-size:1.5rem;color:var(--ouro);display:block;margin-bottom:6px}
+
+/* ---------- UTIL ---------- */
+.eh-hide{display:none!important}
+.eh-c{text-align:center}
+.eh-muted{color:var(--txt3);font-size:.85rem}
+.eh-big{font-family:var(--fm);font-size:2.1rem;font-weight:700;color:var(--ciano);line-height:1.1}
+.eh-prof{border:1px dashed var(--ouro);background:rgba(217,164,65,.07);border-radius:var(--r);padding:13px 15px;margin:12px 0}
+body.eh-noprof .eh-prof{display:none}
+:focus-visible{outline:2px solid var(--ciano);outline-offset:2px}
+@media(max-width:640px){
+  body{font-size:16px}
+  .eh-sec{padding:34px 0}
+  .eh-card{padding:16px 15px;border-radius:16px}
+  .eh-monin{gap:10px;padding:6px 12px}
+  .eh-vital{min-width:64px}
+  .eh-vv{font-size:.92rem}
+  h2{font-size:1.38rem}
+}
+</style>
+<!--
+  © 2026 Dr. André Rossanno — Atlas Mental · memoriapotencial.com.br
+  Licenciado sob CC BY-NC-ND 4.0 (Atribuição · Não Comercial · Sem Derivações).
+  A reprodução total ou parcial deste material para fins comerciais, com ou sem
+  modificação, é expressamente proibida. Autoria e origem devem ser preservadas.
+-->
+</head>
+<body>
+<nav class="eh-nav">
+  <div class="eh-navin">
+    <div class="eh-brand"><span>■</span> Atlas Mental · Sala Vermelha</div>
+    <div class="eh-navbtns">
+      <button class="eh-nb" id="btnProf" onclick="toggleProf()">Modo professor</button>
+      <button class="eh-nb" id="btnMov" onclick="toggleMov()">Reduzir movimento</button>
+      <button class="eh-nb" onclick="go('hub')">Mapa</button>
+      <button class="eh-nb" onclick="zerar()">Reiniciar</button>
+    </div>
+  </div>
+  <div class="eh-prog" id="progBar"></div>
+</nav>
+
+<div class="eh-mon" id="monitor">
+  <div class="eh-monin">
+    <svg class="eh-monecg" viewBox="0 0 120 40" aria-hidden="true">
+      <polyline id="ecgLine" points="0,20 14,20 20,20 24,6 28,34 32,20 46,20 52,18 58,20 74,20 80,20 84,8 88,32 92,20 120,20"
+        fill="none" stroke="#21C08B" stroke-width="2"/>
+    </svg>
+    <div class="eh-vital eh-vpa"><span class="eh-vk">PA</span><span class="eh-vv" id="mPA">228/134</span></div>
+    <div class="eh-vital eh-vfc"><span class="eh-vk">FC</span><span class="eh-vv" id="mFC">102</span></div>
+    <div class="eh-vital eh-vsp"><span class="eh-vk">SpO₂</span><span class="eh-vv" id="mSP">87%</span></div>
+    <div class="eh-vital eh-vgl"><span class="eh-vk">NEURO</span><span class="eh-vv" id="mGL">Confuso</span></div>
+    <div class="eh-vital eh-vt"><span class="eh-vk">Relógio</span><span class="eh-vv" id="mT">T = 0</span></div>
+    <div class="eh-monlab" id="mLab">Admissão · sala vermelha</div>
+  </div>
+</div>
+
+<header class="eh-hero">
+  <div class="eh-wrap">
+    <div class="eh-kick">Emergência hipertensiva neurológica · Diretriz Brasileira de HA 2025</div>
+    <h1>As 48 horas da <em>sala vermelha</em></h1>
+    <p class="eh-lead">Homem, 58 anos, 70 kg. Chega confuso, com PA 228/134 mmHg e SpO₂ de 87%. Você não vai ler sobre encefalopatia hipertensiva: você vai <b>acompanhar esse paciente</b> de casa até o momento em que a bomba de infusão é desligada e ele sai da UTI andando.</p>
+    <div class="eh-heroph">Este caso não é uma fotografia. É um filme. A cada decisão que você toma, o paciente responde — e a resposta muda a decisão seguinte.</div>
+    <div class="eh-crumb">MÉTODO ANDRÉ ROSSANNO · N1→N7 · SIMULAÇÃO LONGITUDINAL + OSCE EM 3 NÍVEIS</div>
+  </div>
+</header>
+
+<section class="eh-sec" id="filosofia">
+  <div class="eh-wrap">
+    <div class="eh-filo">
+      <div class="eh-kick" style="color:var(--neuro)">Filosofia</div>
+      <p>Existe um instante, na sala vermelha, em que o médico deixa de pensar e passa a executar. Esse instante não é escolha: é o ponto em que o susto ocupa o lugar do raciocínio. O que sobra ali é exatamente aquilo que você treinou até virar reflexo — e nada além disso.</p>
+      <p>Por isso esta aula não te entrega uma conduta pronta. Ela te entrega uma <b>sequência</b>. Monitor, oxigênio se precisar, veia. Depois via aérea, respiração, circulação, o exame neurológico que denuncia o cérebro, a exposição. Depois a pergunta que organiza tudo: <b>qual órgão está sofrendo agora?</b></p>
+      <p>Repare que a pressão de 228/134 mmHg não é o diagnóstico. Ela é o alarme. O diagnóstico é o cérebro perdendo a autorregulação enquanto a esposa segura a mão dele no corredor. Tratar o número é fácil; qualquer um derruba uma pressão. O difícil é derrubá-la <i>na medida em que aquele cérebro suporta</i> — nem menos, porque incha, nem mais, porque isquemia.</p>
+      <p>E existe uma segunda metade da história que quase ninguém ensina: como sair. Colocar o paciente na bomba é o capítulo fácil. Tirá-lo dela — construir a ponte oral, esperar o efeito, descer a infusão em degraus, vigiar o rebote, entender por que ele descompensou — é o que separa quem estabiliza de quem apenas adia a próxima emergência.</p>
+      <p>Se ao final você lembrar de uma única frase, que seja esta: nenhum paciente é salvo por uma droga. Ele é salvo por uma sequência de decisões corretas, tomadas por alguém que continuou reavaliando quando o monitor já parecia bonito.</p>
+      <div class="eh-assin">— Dr. André Rossanno</div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="hub">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">MAPA</span><h2>Por onde você quer entrar</h2></div>
+    <p class="eh-sub">A ordem abaixo é a ordem real do plantão. Você pode pular, mas o paciente não pula.</p>
+    <div class="eh-hub">
+      <button class="eh-hubc" onclick="go('filme')"><span class="eh-hubn">CENA 01</span><span class="eh-hubt">O filme em 10 cenas</span><span class="eh-hubd">De casa até a sala vermelha</span></button>
+      <button class="eh-hubc" onclick="go('mov')"><span class="eh-hubn">CENA 02</span><span class="eh-hubt">MOV</span><span class="eh-hubd">Monitor · oxigênio · veia</span></button>
+      <button class="eh-hubc" onclick="go('oxigenio')"><span class="eh-hubn">CENA 03</span><span class="eh-hubt">Oxigenoterapia</span><span class="eh-hubd">Escada do cateter · Venturi</span></button>
+      <button class="eh-hubc" onclick="go('abcde')"><span class="eh-hubn">CENA 04</span><span class="eh-hubt">ABCDE</span><span class="eh-hubd">O D entrega a encefalopatia</span></button>
+      <button class="eh-hubc" onclick="go('barragem')"><span class="eh-hubn">CENA 05</span><span class="eh-hubt">A barragem</span><span class="eh-hubd">Autorregulação cerebral</span></button>
+      <button class="eh-hubc" onclick="go('exames')"><span class="eh-hubn">CENA 06</span><span class="eh-hubt">Exames e diferenciais</span><span class="eh-hubd">O que você não pode perder</span></button>
+      <button class="eh-hubc" onclick="go('nomenclatura')"><span class="eh-hubn">CENA 07</span><span class="eh-hubt">Nomenclatura 2025</span><span class="eh-hubd">O fim da "urgência"</span></button>
+      <button class="eh-hubc" onclick="go('drogas')"><span class="eh-hubn">CENA 08</span><span class="eh-hubt">Qual droga IV?</span><span class="eh-hubd">Arterial × venoso · o ideal</span></button>
+      <button class="eh-hubc" onclick="go('bomba')"><span class="eh-hubn">CENA 09</span><span class="eh-hubt">A bomba</span><span class="eh-hubd">µg/kg/min ↔ mL/h</span></button>
+      <button class="eh-hubc" onclick="go('titulacao')"><span class="eh-hubn">CENA 10</span><span class="eh-hubt">Titulação</span><span class="eh-hubd">Simulador da primeira hora</span></button>
+      <button class="eh-hubc" onclick="go('diario')"><span class="eh-hubn">CENA 11</span><span class="eh-hubt">O diário da UTI</span><span class="eh-hubd">48 horas, hora a hora</span></button>
+      <button class="eh-hubc" onclick="go('reconciliacao')"><span class="eh-hubn">CENA 12</span><span class="eh-hubt">Reconciliação</span><span class="eh-hubd">A sacola da esposa</span></button>
+      <button class="eh-hubc" onclick="go('ponte')"><span class="eh-hubn">CENA 13</span><span class="eh-hubt">A ponte IV → oral</span><span class="eh-hubd">Construir antes de sair</span></button>
+      <button class="eh-hubc" onclick="go('desmame')"><span class="eh-hubn">CENA 14</span><span class="eh-hubt">O desmame</span><span class="eh-hubd">Os 5 portões do OFF</span></button>
+      <button class="eh-hubc" onclick="go('erros')"><span class="eh-hubn">CENA 15</span><span class="eh-hubt">Erros fatais</span><span class="eh-hubd">O que reprova e o que mata</span></button>
+      <button class="eh-hubc" onclick="go('palacio')"><span class="eh-hubn">CENA 16</span><span class="eh-hubt">Palácio da memória</span><span class="eh-hubd">A casa do caso</span></button>
+      <button class="eh-hubc" onclick="go('osce')"><span class="eh-hubn">CENA 17</span><span class="eh-hubt">OSCE</span><span class="eh-hubd">Checklist com pontuação</span></button>
+      <button class="eh-hubc" onclick="go('banco')"><span class="eh-hubn">CENA 18</span><span class="eh-hubt">Treino</span><span class="eh-hubd">Questões · flashcards · casos</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="filme">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO I</span><h2>O filme em 10 cenas</h2><span class="eh-star">★★★★☆</span></div>
+    <p class="eh-sub">A doença não começa na porta do hospital. Avance com os números ou com as setas — o monitor no topo da tela acompanha cada cena.</p>
+
+    <div class="eh-stage">
+      <div class="eh-steps" id="cenaSteps"></div>
+      <div class="eh-cena" id="cenaBox"></div>
+      <div class="eh-arrows">
+        <button class="eh-arrow" onclick="cenaMove(-1)" aria-label="Cena anterior">◀</button>
+        <div class="eh-dots" id="cenaDots"></div>
+        <button class="eh-arrow" onclick="cenaMove(1)" aria-label="Próxima cena">▶</button>
+      </div>
+      <p class="eh-muted eh-c" style="margin-top:10px">Cena <span id="cenaNum">1</span> de 10</p>
+    </div>
+
+    <div class="eh-box eh-peg">
+      <span class="eh-tag eh-t-peg">Pegadinha estrutural</span>
+      <p style="margin:0"><b>228/134 mmHg na farmácia não fecha emergência hipertensiva.</b> O número abre a suspeita. O que define emergência é a <b>lesão aguda de órgão-alvo em progressão</b> — aqui, o cérebro. Um paciente pode ter 240/130 sem nenhuma lesão aguda, e outro pode ter lesão aguda com 170/100. Quem manda é o órgão, não o manômetro.</p>
+    </div>
+
+    <div class="eh-frase">"O doente não escolhe um capítulo do livro para adoecer."</div>
+  </div>
+</section>
+<section class="eh-sec" id="mov">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO II</span><h2>MOV — a ordem para começar</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Antes do ABCDE, antes da hipótese, antes da droga: coloque o paciente no MOV.</p>
+
+    <div class="eh-grid eh-g3">
+      <div class="eh-box eh-conc">
+        <span class="eh-tag eh-t-conc">M — Monitor</span>
+        <p style="margin:0">Monitor cardíaco com ritmo, PA não invasiva <b>seriada</b> (não uma medida só), oximetria contínua e frequência respiratória. Sem medida seriada não existe titulação — existe apenas mexer na bomba.</p>
+      </div>
+      <div class="eh-box eh-conc">
+        <span class="eh-tag eh-t-conc">O — Oxigênio</span>
+        <p style="margin:0">Oxigênio é <b>medicamento</b>, não decoração de sala vermelha. Se a SpO₂ está adequada, não é obrigatório suplementar. Neste caso, com <b>87% em ar ambiente</b>, existe indicação clara — e a decisão seguinte é qual dispositivo, qual fluxo, qual meta.</p>
+      </div>
+      <div class="eh-box eh-conc">
+        <span class="eh-tag eh-t-conc">V — Veia</span>
+        <p style="margin:0">Acesso venoso confiável, coleta de exames no mesmo momento da punção e um acesso compatível com infusão contínua titulável. Se possível, um segundo acesso: a droga vasoativa não divide via com bolus.</p>
+      </div>
+    </div>
+
+    <div class="eh-frase">"MOV não é uma sigla para decorar. É uma ordem para começar."</div>
+
+    <div class="eh-card">
+      <h3>Os dois problemas simultâneos</h3>
+      <p>Este paciente chega com <b>hipoxemia</b> e com <b>emergência hipertensiva neurológica</b>. O erro clássico é deixar um roubar a cena do outro.</p>
+      <div class="eh-grid eh-g2">
+        <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">Erro A</span><p style="margin:0">A PA de 228/134 hipnotiza a equipe e a SpO₂ de 87% fica meia hora sem resposta.</p></div>
+        <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">Erro B</span><p style="margin:0">A equipe se ocupa da oxigenação, e a encefalopatia segue progredindo sem droga IV titulável.</p></div>
+      </div>
+      <div class="eh-sint">Síntese: hipóxia e hipertensão são tratadas em paralelo, não em fila.</div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="oxigenio">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO II · b</span><h2>Oxigenoterapia como decisão</h2><span class="eh-star">★★★★☆</span></div>
+    <p class="eh-sub">SpO₂ 87% em ar ambiente, ex-tabagista pesado (50–60 maços-ano), sem diagnóstico prévio de DPOC. O que você faz?</p>
+
+    <div class="eh-card">
+      <h3>👃 O nariz tem uma escada</h3>
+      <p>No cateter nasal, a FiO₂ real depende do volume corrente, da frequência respiratória, do padrão ventilatório, de o paciente respirar pela boca e do fluxo inspiratório. A regra abaixo é <b>aproximação didática</b>, não medida.</p>
+      <label class="eh-lbl" for="o2Fluxo">Fluxo no cateter nasal (L/min)</label>
+      <input class="eh-slider" type="range" id="o2Fluxo" min="0" max="6" step="1" value="0" oninput="o2Update()">
+      <div class="eh-escada" id="escadaO2"></div>
+      <div class="eh-box eh-peg" style="margin-top:12px">
+        <span class="eh-tag eh-t-peg">Trave isto</span>
+        <p style="margin:0"><b>Cateter nasal: litro não é FiO₂ exata.</b> Chão em 21%, cada litro sobe cerca de 3–4 pontos. "No cateter, cada litro sobe um degrau — mas a escada balança."</p>
+      </div>
+    </div>
+
+    <div class="eh-card">
+      <h3>🎯 Quando escolher a máscara de Venturi</h3>
+      <p>Venturi entra quando queremos <b>FiO₂ mais previsível</b>: preocupação com DPOC, retenção crônica de CO₂, ou necessidade de controlar a oferta com precisão enquanto se investiga.</p>
+      <div class="eh-grid eh-g2">
+        <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">Errado</span><p style="margin:0">"Venturi a 6 L/min, então a FiO₂ é tanto — fiz a conta pelo litro."</p></div>
+        <div class="eh-box eh-ok"><span class="eh-tag eh-t-ok">Correto</span><p style="margin:0">Na Venturi, a FiO₂ é determinada pelo <b>adaptador/jato</b>, desde que se use o fluxo mínimo recomendado pelo fabricante daquele bico.</p></div>
+      </div>
+      <div class="eh-frase">"No cateter, o litro estima. Na Venturi, o bico define."</div>
+      <div class="eh-tw">
+        <table class="eh-tb">
+          <thead><tr><th>Adaptador (FiO₂)</th><th>Fluxo mínimo orientativo</th><th>Leitura clínica</th></tr></thead>
+          <tbody>
+            <tr><td>24%</td><td>≈ 3–4 L/min</td><td>Oferta muito controlada; útil quando há medo real de retenção</td></tr>
+            <tr><td>28%</td><td>≈ 4–6 L/min</td><td>Degrau habitual de partida quando se quer previsibilidade</td></tr>
+            <tr><td>31%</td><td>≈ 6 L/min</td><td>Ajuste fino intermediário</td></tr>
+            <tr><td>35%</td><td>≈ 8 L/min</td><td>Hipoxemia que não respondeu ao degrau anterior</td></tr>
+            <tr><td>40%</td><td>≈ 10 L/min</td><td>Já sinaliza necessidade de reavaliar a causa da hipoxemia</td></tr>
+            <tr><td>50%</td><td>≈ 12–15 L/min</td><td>Teto do dispositivo: pense em suporte ventilatório</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="eh-muted">Cores e fluxos <b>variam entre fabricantes</b>. Nunca decore a cor: confira o adaptador em uso. O que se memoriza é o conceito — Venturi = FiO₂ fixada pelo adaptador.</p>
+    </div>
+
+    <div class="eh-card">
+      <h3>Ex-tabagista ≠ retentor de CO₂</h3>
+      <p>Antes de tratar este paciente como DPOC, pergunte: tem diagnóstico prévio? usa broncodilatador? tem gasometria antiga? tem hipercapnia crônica? tem bicarbonato cronicamente elevado?</p>
+      <div class="eh-btnrow"><button class="eh-btn eh-pri" onclick="revelar('gaso1')">Ver a gasometria que chegou</button></div>
+      <div id="gaso1" class="eh-hide">
+        <div class="eh-box eh-conc">
+          <p style="margin:0 0 8px"><b class="eh-mono">pH 7,38 · PaCO₂ 45 mmHg · PaO₂ reduzida · HCO₃⁻ sem grande elevação</b></p>
+          <p style="margin:0">Não há evidência suficiente de retenção crônica. A história de tabagismo, isolada, não autoriza o rótulo. Portanto:</p>
+        </div>
+        <div class="eh-grid eh-g2" style="margin-top:10px">
+          <div class="eh-box eh-ok"><span class="eh-tag eh-t-ok">Sem risco de hipercapnia</span><p style="margin:0">Meta habitual de SpO₂ <b>≈ 94–98%</b>.</p></div>
+          <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">DPOC conhecida ou risco claro</span><p style="margin:0">Considerar alvo <b>88–92%</b> enquanto a gasometria é avaliada.</p></div>
+        </div>
+        <div class="eh-sint">Neste caso: Venturi 28% → SpO₂ 91%, FR 24, ventilação espontânea mantida. Segue-se investigando a causa da hipoxemia (congestão? EAP incipiente? atelectasia? outra).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="abcde">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO III</span><h2>ABCDE — e o D entrega a encefalopatia</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Clique em cada letra. O que muda a conduta neste paciente aparece em destaque.</p>
+
+    <div class="eh-acc">
+      <button class="eh-acch" onclick="acc(this)">A — Airway: via aérea <span class="eh-ico">＋</span></button>
+      <div class="eh-accb"><div class="eh-accin">Ele fala? Protege a via aérea? Vomitou? Qual o Glasgow? Existe risco de broncoaspiração num paciente que já vomitou e está confuso? <b>Confusão que progride é indicação de reavaliação frequente da via aérea</b> — a decisão de intubar pode aparecer, e a hipertensão não é motivo para adiá-la se a via aérea estiver ameaçada.</div></div>
+    </div>
+    <div class="eh-acc">
+      <button class="eh-acch" onclick="acc(this)">B — Breathing: respiração <span class="eh-ico">＋</span></button>
+      <div class="eh-accb"><div class="eh-accin">FR 26, SpO₂ 87%, ausculta, expansibilidade, sinais de edema agudo de pulmão. Aqui é onde se pergunta se a hipoxemia é <b>consequência hemodinâmica</b> da própria crise (congestão) ou uma causa paralela. Radiografia de tórax e gasometria entram neste ponto.</div></div>
+    </div>
+    <div class="eh-acc">
+      <button class="eh-acch" onclick="acc(this)">C — Circulation: circulação <span class="eh-ico">＋</span></button>
+      <div class="eh-accb"><div class="eh-accin">PA seriada nos dois braços, FC, perfusão, pulsos, ECG, acessos. Procure ativamente o que muda a droga: síndrome coronariana aguda, dissecção de aorta, edema agudo de pulmão. <b>Diferença de pulsos ou de PA entre membros muda tudo</b>.</div></div>
+    </div>
+    <div class="eh-acc">
+      <button class="eh-acch" onclick="acc(this)">D — Disability: o centro da estação <span class="eh-ico">＋</span></button>
+      <div class="eh-accb"><div class="eh-accin"><b>GLICEMIA CAPILAR IMEDIATAMENTE</b> — hipoglicemia imita qualquer coisa e é o erro mais barato de evitar. Depois: Glasgow, pupilas, motricidade, face, fala, sensibilidade, déficit focal, crise convulsiva, nível de consciência, comportamento. É aqui que a encefalopatia hipertensiva se entrega: alteração <b>difusa e flutuante</b>, sem déficit focal grosseiro.</div></div>
+    </div>
+    <div class="eh-acc">
+      <button class="eh-acch" onclick="acc(this)">E — Exposure: exposição <span class="eh-ico">＋</span></button>
+      <div class="eh-accb"><div class="eh-accin">Temperatura, exame geral, edema, sinais de trauma, fundoscopia quando factível (hemorragias, exsudatos, papiledema apontam para hipertensão acelerada/maligna), sinais de doença sistêmica.</div></div>
+    </div>
+
+    <div class="eh-frase">"D de Disability é onde a encefalopatia se entrega."</div>
+
+    <div class="eh-box eh-conc">
+      <span class="eh-tag eh-t-conc">O ponto de virada</span>
+      <p style="margin:0">Qual órgão-alvo está sofrendo? <b>Cérebro.</b> Qual síndrome? <b>Emergência hipertensiva neurológica.</b> Hipótese: <b>encefalopatia hipertensiva</b> — diagnóstico que se confirma, na prática, quando os sintomas revertem com a redução controlada da PA e as outras causas foram afastadas.</p>
+    </div>
+  </div>
+</section>
+<section class="eh-sec" id="barragem">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO IV</span><h2>A barragem da autorregulação</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Arraste a pressão arterial média e veja o que acontece com o fluxo sanguíneo cerebral — no normotenso e no hipertenso crônico.</p>
+
+    <div class="eh-card">
+      <label class="eh-lbl" for="pamSlider">Pressão arterial média (mmHg)</label>
+      <input class="eh-slider" type="range" id="pamSlider" min="40" max="190" step="2" value="165" oninput="autoreg()">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end">
+        <div><span class="eh-lbl">PAM</span><div class="eh-readout" id="pamVal">165</div></div>
+        <div style="flex:1;min-width:220px">
+          <span class="eh-lbl">Fluxo cerebral — normotenso</span>
+          <div class="eh-meter"><div class="eh-fill" id="fluxoN" style="width:60%;background:var(--verde)"></div></div>
+          <span class="eh-lbl">Fluxo cerebral — hipertenso crônico (curva deslocada à direita)</span>
+          <div class="eh-meter"><div class="eh-fill" id="fluxoH" style="width:60%;background:var(--neuro)"></div></div>
+        </div>
+      </div>
+      <div class="eh-box eh-neu" id="autoregMsg" style="margin-top:14px"></div>
+    </div>
+
+    <div class="eh-grid eh-g2">
+      <div class="eh-card eh-flat">
+        <span class="eh-tag eh-t-perigo">Subiu demais</span>
+        <p>PA ultrapassa o limite superior da autorregulação → a arteríola não consegue mais contrair → <b>vasodilatação forçada</b> → hiperperfusão → disfunção endotelial → quebra da barreira hematoencefálica → extravasamento → <b>edema vasogênico</b>. É a barragem estourando.</p>
+        <div class="eh-sint">Subiu demais: o cérebro incha.</div>
+      </div>
+      <div class="eh-card eh-flat">
+        <span class="eh-tag eh-t-neu">Baixou demais</span>
+        <p>No hipertenso crônico a curva inteira está deslocada para a direita: ele mantém fluxo em pressões que derrubariam um normotenso, mas <b>perde fluxo em pressões que um normotenso toleraria bem</b>. Levar 228/134 para 120/70 de forma abrupta pode produzir isquemia por hipoperfusão.</p>
+        <div class="eh-sint">Baixou demais: o cérebro isquemia.</div>
+      </div>
+    </div>
+
+    <div class="eh-frase">"Subiu demais, incha. Baixou demais, isquemia. Não normalize a pressão — resgate a autorregulação."</div>
+
+    <div class="eh-box eh-peg">
+      <span class="eh-tag eh-t-peg">Por que a meta é percentual, e não um número bonito</span>
+      <p style="margin:0">A meta de reduzir cerca de <b>20–25%</b> não é um capricho estatístico: é a tentativa de trazer a PA de volta para <b>dentro</b> da faixa de autorregulação daquele paciente, que ninguém consegue medir à beira-leito. Como não sabemos onde fica o platô dele, descemos por etapas e usamos o exame neurológico como sensor.</p>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="exames">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO V</span><h2>Quais exames você quer?</h2><span class="eh-star">★★★★☆</span></div>
+    <p class="eh-sub">Selecione o que você pediria agora. O painel comenta cada escolha — inclusive as que faltaram.</p>
+
+    <div class="eh-card">
+      <div id="examesGrid" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <div class="eh-btnrow"><button class="eh-btn eh-pri" onclick="conferirExames()">Conferir a lista</button><button class="eh-btn" onclick="limparExames()">Limpar</button></div>
+      <div id="examesFb"></div>
+    </div>
+
+    <div class="eh-grid eh-g2">
+      <div class="eh-box eh-conc"><span class="eh-tag eh-t-conc">TC de crânio</span><p style="margin:0">Exclui o desastre estrutural: hemorragia, AVC extenso, lesão com efeito de massa. <b>É o exame que muda a conduta agora</b> — porque hemorragia e isquemia têm metas pressóricas próprias, diferentes da encefalopatia.</p></div>
+      <div class="eh-box eh-neu"><span class="eh-tag eh-t-neu">Ressonância</span><p style="margin:0">Mostra o mapa do edema. Mais sensível para o padrão de edema vasogênico posterior (PRES), que pode acompanhar a encefalopatia hipertensiva. Não é o exame da primeira hora, mas é o que costuma explicar a cegueira cortical.</p></div>
+    </div>
+
+    <h3 style="margin-top:26px">O quadro que você não pode perder</h3>
+    <div class="eh-tw">
+      <table class="eh-tb">
+        <thead><tr><th>Diagnóstico</th><th>O que aponta para ele</th><th>Por que não pode passar</th></tr></thead>
+        <tbody>
+          <tr><td><b>Encefalopatia hipertensiva</b></td><td>Quadro difuso, subagudo, sem déficit focal; melhora com redução controlada da PA</td><td>Diagnóstico de exclusão + resposta terapêutica</td></tr>
+          <tr><td>AVC isquêmico</td><td>Déficit focal súbito, território vascular definido</td><td>Meta pressórica e janela de trombólise são <b>completamente diferentes</b></td></tr>
+          <tr><td>Hemorragia intraparenquimatosa</td><td>Cefaleia + déficit + rebaixamento rápido; TC fecha</td><td>Conduta pressórica própria; risco de expansão do hematoma</td></tr>
+          <tr><td>Hemorragia subaracnóidea</td><td>Cefaleia explosiva em trovoada, rigidez de nuca</td><td>TC precoce e punção lombar quando indicado</td></tr>
+          <tr><td>PRES</td><td>Alteração visual, convulsão, edema posterior na RM</td><td>Sobreposição frequente; muda o seguimento por imagem</td></tr>
+          <tr><td>Hipoglicemia</td><td>Glicemia capilar</td><td>Custa 30 segundos e resolve o caso inteiro</td></tr>
+          <tr><td>Distúrbio eletrolítico (Na⁺)</td><td>Sódio, contexto de diurético</td><td>Paciente em tiazídico tem hiponatremia até prova em contrário</td></tr>
+          <tr><td>Encefalopatia urêmica</td><td>Ureia/creatinina, contexto de DRC</td><td>Explica confusão sem exigir redução agressiva da PA</td></tr>
+          <tr><td>Encefalite / intoxicação</td><td>Febre, contexto, história de substâncias</td><td>Tratamento é etiológico, não pressórico</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="eh-sint">Regra de ouro do diferencial: <b>déficit focal grosseiro afasta a encefalopatia hipertensiva até prova em contrário</b> e joga o caso para o território do AVC.</div>
+  </div>
+</section>
+
+<section class="eh-sec" id="nomenclatura">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">2025</span><h2>O que mudou no nome</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Detalhe pequeno no texto, detalhe grande na prova.</p>
+    <div class="eh-grid eh-g2">
+      <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">Termo aposentado</span><p style="margin:0"><b>"Urgência hipertensiva"</b> sai de cena na Diretriz Brasileira de Hipertensão Arterial 2025.<span class="eh-fonte">🇧🇷 DBHA 2025</span></p></div>
+      <div class="eh-box eh-ok"><span class="eh-tag eh-t-ok">Termo novo</span><p style="margin:0"><b>"Elevação importante da PA sem lesão de órgão-alvo"</b> — descreve o que é, em vez de sugerir uma pressa que não existe.</p></div>
+    </div>
+    <div class="eh-card">
+      <p><b>Emergência hipertensiva</b> permanece definida pela presença de <b>lesão aguda de órgão-alvo</b>, com necessidade de internação e tratamento imediato.<span class="eh-fonte">🇧🇷 DBHA 2025</span></p>
+      <p>Por que a troca importa clinicamente? Porque a palavra "urgência" empurrava o plantonista para uma conduta agressiva em quem não precisava dela: captopril sublingual em série, nifedipino de ação rápida, alta com a pressão "normalizada". A nova nomenclatura devolve o paciente sem lesão de órgão-alvo ao seu ritmo correto — redução <b>gradual, por via oral, ao longo de dias</b>, com seguimento marcado.</p>
+      <div class="eh-box eh-peg" style="margin-top:8px"><span class="eh-tag eh-t-peg">Pegadinha clássica</span><p style="margin:0">Baixar rápido a pressão de quem <b>não</b> tem lesão aguda de órgão-alvo não traz benefício demonstrado e pode causar isquemia. O alvo do pronto-socorro nunca foi o número da tela.</p></div>
+      <div class="eh-sint">Um paciente, duas histórias: com LOA aguda → UTI e droga IV titulável. Sem LOA aguda → ajuste oral, reconciliação e consulta próxima.</div>
+    </div>
+  </div>
+</section>
+<section class="eh-sec" id="drogas">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO VI</span><h2>Qual droga IV — e por que "vasodilatador venoso" é a pergunta errada</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">A pergunta que escolhe a droga nunca é "qual você tem na gaveta?". É <b>qual órgão está sofrendo</b>.</p>
+
+    <div class="eh-card">
+      <h3>Primeiro, a anatomia do efeito</h3>
+      <p>Todo anti-hipertensivo IV age em algum ponto do circuito. Onde ele age determina o que ele serve para tratar — e o que ele estraga.</p>
+      <div class="eh-grid eh-g3">
+        <div class="eh-box eh-conc"><span class="eh-tag eh-t-conc">Lado arterial</span><p style="margin:0">Dilata arteríola → cai a <b>resistência periférica</b> → cai a pós-carga e cai a PA de forma previsível. É o que a emergência <b>neurológica</b> precisa: você quer controlar pressão, não descongestionar pulmão.</p></div>
+        <div class="eh-box eh-neu"><span class="eh-tag eh-t-neu">Lado venoso</span><p style="margin:0">Dilata veia de capacitância → cai o <b>retorno venoso</b> e a pré-carga → alivia congestão pulmonar e consumo miocárdico. Excelente no edema agudo de pulmão e na isquemia. Péssimo como ferramenta principal de controle pressórico.</p></div>
+        <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">E no crânio?</span><p style="margin:0">A venodilatação também acontece <b>dentro do crânio</b>: aumenta o volume sanguíneo cerebral e pode elevar a pressão intracraniana em um cérebro já edemaciado. Por isso venodilatador puro é uma escolha desconfortável na encefalopatia.</p></div>
+      </div>
+      <div class="eh-frase">"O médico escolhe pelo compartimento. A bomba só obedece."</div>
+    </div>
+
+    <div class="eh-card">
+      <h3>🎛️ Selecione o órgão-alvo</h3>
+      <p class="eh-muted">Cada botão devolve o raciocínio, não apenas o nome da droga.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="orgaoChips"></div>
+      <div id="orgaoOut" style="margin-top:14px"></div>
+    </div>
+
+    <h3 style="margin-top:30px">O elenco, com nome e defeito</h3>
+    <div class="eh-tw">
+      <table class="eh-tb">
+        <thead><tr><th>Droga</th><th>Onde age</th><th>Serve muito para</th><th>Onde ela te trai</th></tr></thead>
+        <tbody>
+          <tr><td><b>Nitroprussiato de sódio</b> 🔴</td><td>Arterial <b>e</b> venoso (doador de NO)</td><td>Emergência neurológica, hipertensão grave com necessidade de titulação minuto a minuto, disfunção ventricular</td><td>Metabolização a cianeto → tiocianato (dose alta, uso prolongado, disfunção renal/hepática); potencial de aumentar PIC pela venodilatação cerebral; roubo coronariano; fotossensível; rebote se desligado sem ponte</td></tr>
+          <tr><td><b>Nitroglicerina</b> 🟢</td><td>Predominantemente <b>venoso</b>; arterial só em doses altas</td><td>Edema agudo de pulmão, síndrome coronariana aguda</td><td>Controle pressórico pobre e imprevisível; cefaleia intensa que <b>contamina o exame neurológico</b>; taquifilaxia em 24–48 h; venodilatação cerebral</td></tr>
+          <tr><td><b>Nicardipino</b> IV 🌎</td><td>Arterial (di-hidropiridínico)</td><td>Emergência neurológica — controle previsível, sem metabólito tóxico e sem venodilatação relevante</td><td>Início e término mais lentos que o nitroprussiato (~10–15 min); disponibilidade limitada no Brasil</td></tr>
+          <tr><td><b>Clevidipino</b> 🌎</td><td>Arterial (DHP ultracurto)</td><td>Titulação muito fina; meia-vida de minutos</td><td>Emulsão lipídica (atenção a restrição lipídica e alergia a soja/ovo); custo e disponibilidade</td></tr>
+          <tr><td><b>Labetalol</b> 🌎</td><td>Bloqueio α₁ + β</td><td>Emergência neurológica com taquicardia; crises adrenérgicas <b>depois</b> do alfa</td><td>Bradicardia, bloqueio AV, broncoespasmo, IC descompensada; efeito menos "desligável" que o nitroprussiato</td></tr>
+          <tr><td><b>Esmolol</b></td><td>β₁ ultracurto</td><td>Companheiro do vasodilatador na dissecção de aorta (frequência antes de tudo)</td><td>Não é droga de primeira linha para o cérebro; mesmos cuidados dos betabloqueadores</td></tr>
+          <tr><td><b>Hidralazina</b></td><td>Arteriolar direto, em bolus</td><td>Cenário obstétrico, ambientes sem bomba</td><td><b>Não é titulável</b>: efeito imprevisível e prolongado, taquicardia reflexa, queda em degrau. Má escolha quando você precisa de controle fino sobre um cérebro edemaciado</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="eh-muted">🇧🇷 = conduta ancorada na Diretriz Brasileira 2025 · 🌎 = perspectiva internacional (ESC/AHA), citada como contexto e não como recomendação nacional.</p>
+
+    <div class="eh-card" style="border-color:var(--ciano)">
+      <span class="eh-tag eh-t-conc">A resposta direta</span>
+      <h3>Qual é a droga ideal <i>neste</i> paciente?</h3>
+      <p><b>1. O ideal farmacológico.</b> Para uma emergência hipertensiva <b>neurológica</b>, o agente ideal seria: arterial-seletivo, de início rápido e término previsível, sem metabólito tóxico, sem venodilatação cerebral significativa e sem depender da função renal. Isso descreve, hoje, os di-hidropiridínicos intravenosos — <b>nicardipino</b> e <b>clevidipino</b> — e, como alternativa quando há taquicardia e nenhuma contraindicação, o <b>labetalol</b>.<span class="eh-fonte">🌎 internacional</span></p>
+      <p><b>2. O ideal disponível.</b> No Brasil, essas opções são pouco acessíveis na maioria das salas vermelhas, e o <b>nitroprussiato de sódio</b> segue sendo o agente mais utilizado na encefalopatia hipertensiva.<span class="eh-fonte">🇧🇷 prática nacional</span> Ele não é uma escolha ruim: é uma escolha que exige disciplina — menor dose eficaz, menor tempo possível, vigilância de acidose e de função renal, proteção da luz e um plano de saída desde a primeira hora.</p>
+      <p><b>3. O que não é a droga deste caso.</b> A <b>nitroglicerina</b> — o "vasodilatador venoso" — não é o agente principal da encefalopatia hipertensiva. Ela controla mal a pressão arterial, provoca cefaleia intensa que se confunde com o próprio quadro que você está monitorando, sofre taquifilaxia em 24–48 horas e dilata o compartimento venoso cerebral. Ela entra aqui apenas como <b>coadjuvante</b>, se surgir congestão pulmonar ou isquemia miocárdica associadas — que é justamente o que a SpO₂ de 87% deste paciente obriga a procurar.</p>
+      <div class="eh-box eh-peg" style="margin-top:10px"><span class="eh-tag eh-t-peg">A frase que resolve a dúvida na prova</span><p style="margin:0"><b>Cérebro pede arteríola. Pulmão congesto pede veia.</b> Se o órgão que está sofrendo é o encéfalo, escolha quem baixa resistência de forma titulável — e reserve o nitrato venoso para quando o alvo for a congestão.</p></div>
+      <div class="eh-sint">Neste caso: droga IV titulável em bomba, com nitroprussiato como agente disponível, meta de redução ≈20–25% na primeira hora e reavaliação neurológica como sensor de segurança.<span class="eh-fonte">🇧🇷 DBHA 2025</span></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>⚠️ Nitroprussiato: os quatro cuidados que ninguém pode esquecer</h3>
+      <div class="eh-grid eh-g2">
+        <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">1 · Cianeto e tiocianato</span><p style="margin:0">A molécula libera cianeto, detoxificado a tiocianato e depurado pelo rim. O risco cresce com <b>dose alta, uso prolongado e disfunção renal</b>. Sinais de alerta: acidose metabólica com ânion gap, agitação inexplicada, piora neurológica <i>apesar</i> da queda pressórica, instabilidade. Em geral se evita ultrapassar ≈2 µg/kg/min por tempo prolongado.</p></div>
+        <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">2 · Pressão intracraniana</span><p style="margin:0">A venodilatação cerebral pode elevar a PIC. Num cérebro com edema vasogênico, isso pede exatamente o que já fazemos: menor dose eficaz, queda controlada e reavaliação neurológica frequente.</p></div>
+        <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">3 · Luz</span><p style="margin:0">Solução fotossensível: frasco e equipo protegidos, solução trocada conforme rotina institucional. Mudança de cor = descarte.</p></div>
+        <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">4 · Rebote</span><p style="margin:0">Desligar uma infusão de meia-vida ultracurta sem terapia oral funcionando produz volta da pressão em minutos, muitas vezes acima do ponto de partida. O desmame é um procedimento, não um clique.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="bomba">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO VII</span><h2>A bomba: o médico pensa em dose, a bomba mostra volume</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Dois personagens opostos, o mesmo castelo, idiomas diferentes.</p>
+
+    <div class="eh-grid eh-g2">
+      <div class="eh-card eh-flat" style="border-left:4px solid var(--vermelho)">
+        <span class="eh-tag eh-t-perigo">🔴 Nipride</span>
+        <h3>Nome grande, ampola pequena</h3>
+        <p class="eh-mono" style="color:var(--txt)">50 mg / 2 mL<br>2 mL + 248 mL = 250 mL<br>50.000 µg ÷ 250 mL = <b>200 µg/mL</b></p>
+        <div class="eh-frase" style="margin:10px 0 0;font-size:1rem">NIPRIDE: 2 + 248</div>
+      </div>
+      <div class="eh-card eh-flat" style="border-left:4px solid var(--verde)">
+        <span class="eh-tag eh-t-ok">🟢 Tridil</span>
+        <h3>Nome pequeno, ampola grande</h3>
+        <p class="eh-mono" style="color:var(--txt)">50 mg / 10 mL<br>10 mL + 240 mL = 250 mL<br>50.000 µg ÷ 250 mL = <b>200 µg/mL</b></p>
+        <div class="eh-frase" style="margin:10px 0 0;font-size:1rem">TRIDIL: 10 + 240</div>
+      </div>
+    </div>
+    <div class="eh-box eh-peg">
+      <span class="eh-tag eh-t-peg">A armadilha que reprova</span>
+      <p style="margin:0">As duas soluções do exemplo didático chegam a <b>200 µg/mL</b>. Mas o <b>Nipride se prescreve em µg/kg/min</b> e o <b>Tridil em µg/min</b>. Trocar as unidades num paciente de 70 kg significa errar a dose em 70 vezes. Mesmo castelo, idiomas diferentes.</p>
+    </div>
+
+    <div class="eh-card">
+      <h3>🧮 Calculadora da bomba</h3>
+      <div class="eh-grid eh-g4">
+        <div><label class="eh-lbl" for="calcPeso">Peso (kg)</label><input type="number" id="calcPeso" value="70" min="1" max="250" oninput="calcBomba()"></div>
+        <div><label class="eh-lbl" for="calcConc">Concentração (µg/mL)</label><input type="number" id="calcConc" value="200" min="1" oninput="calcBomba()"></div>
+        <div><label class="eh-lbl" for="calcUn">Unidade da dose</label>
+          <select id="calcUn" onchange="calcBomba()">
+            <option value="kg">µg/kg/min (Nipride)</option>
+            <option value="min">µg/min (Tridil)</option>
+          </select>
+        </div>
+        <div><label class="eh-lbl" for="calcDose">Dose</label><input type="number" id="calcDose" value="1" min="0" step="0.1" oninput="calcBomba()"></div>
+      </div>
+      <div style="margin-top:16px;display:flex;gap:22px;flex-wrap:wrap;align-items:flex-end">
+        <div><span class="eh-lbl">Velocidade na bomba</span><div class="eh-big" id="calcOut">21,0 mL/h</div></div>
+        <div style="flex:1;min-width:230px"><div class="eh-box eh-conc" id="calcPasso" style="font-family:var(--fm);font-size:.82rem"></div></div>
+      </div>
+    </div>
+
+    <div class="eh-grid eh-g2">
+      <div class="eh-card eh-flat">
+        <h3>🏋️ Escada dos 70 kg (Nipride, 200 µg/mL)</h3>
+        <div class="eh-tw"><table class="eh-tb" style="min-width:auto">
+          <thead><tr><th>Dose</th><th>µg/min</th><th>Bomba</th></tr></thead>
+          <tbody>
+            <tr><td>0,3 µg/kg/min</td><td>21</td><td><b>6,3 mL/h</b></td></tr>
+            <tr><td>0,5 µg/kg/min</td><td>35</td><td><b>10,5 mL/h</b></td></tr>
+            <tr><td>1,0 µg/kg/min</td><td>70</td><td><b>21 mL/h</b></td></tr>
+            <tr><td>2,0 µg/kg/min</td><td>140</td><td><b>42 mL/h</b></td></tr>
+          </tbody></table></div>
+        <div class="eh-frase" style="font-size:1rem">"70 quilos, um micro: vinte e um na bomba."</div>
+        <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">Leia antes de usar</span><p style="margin:0"><b>Isto é conversão, não dose inicial.</b> A escada existe para traduzir dose em volume e conferir prescrição. Na encefalopatia hipertensiva a partida é <b>baixa</b> — em torno de 0,3 µg/kg/min (≈6 mL/h neste paciente) — com titulação em degraus guiada pela PA e pelo exame neurológico. Ninguém abre a bomba em 21 mL/h porque "é a conta do 1 micro".</p></div>
+      </div>
+      <div class="eh-card eh-flat">
+        <h3>🟢 Escada do Tridil (200 µg/mL)</h3>
+        <div class="eh-tw"><table class="eh-tb" style="min-width:auto">
+          <thead><tr><th>Dose</th><th>Bomba</th></tr></thead>
+          <tbody>
+            <tr><td>10 µg/min</td><td><b>3 mL/h</b></td></tr>
+            <tr><td>20 µg/min</td><td><b>6 mL/h</b></td></tr>
+            <tr><td>50 µg/min</td><td><b>15 mL/h</b></td></tr>
+            <tr><td>100 µg/min</td><td><b>30 mL/h</b></td></tr>
+          </tbody></table></div>
+        <div class="eh-box eh-conc"><p style="margin:0">Regra mental: <b>dose em µg/min × 0,3 = mL/h</b> (válida só para 200 µg/mL).</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="eh-sec" id="titulacao">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO VIII</span><h2>Titulação: a primeira hora, decisão por decisão</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Cada escolha produz uma nova resposta clínica. Não existe "aumentar porque não chegou a 25%".</p>
+
+    <div class="eh-card">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+        <div><span class="eh-lbl">Relógio</span><div class="eh-readout" id="titRel">T = 0</div></div>
+        <div><span class="eh-lbl">PA</span><div class="eh-readout" id="titPA" style="color:var(--vermelho)">228/134</div></div>
+        <div><span class="eh-lbl">PAM</span><div class="eh-readout" id="titPAM">165</div></div>
+        <div><span class="eh-lbl">Queda acumulada</span><div class="eh-readout" id="titQueda" style="color:var(--verde)">0%</div></div>
+        <div><span class="eh-lbl">Bomba</span><div class="eh-readout" id="titBomba" style="color:var(--ambar)">0 mL/h</div></div>
+      </div>
+      <div class="eh-box eh-neu" id="titCena"></div>
+      <div class="eh-btnrow" id="titOpts"></div>
+      <div id="titFb"></div>
+      <div class="eh-btnrow"><button class="eh-btn" onclick="titReset()">Recomeçar a primeira hora</button></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>A tabela temporal do caso</h3>
+      <div class="eh-tw">
+        <table class="eh-tb">
+          <thead><tr><th>Relógio</th><th>PA</th><th>PAM</th><th>Queda</th><th>Estado neurológico</th><th>Decisão</th></tr></thead>
+          <tbody>
+            <tr><td>0 min</td><td>228/134</td><td>165</td><td>—</td><td>Confuso, agitado, cefaleia intensa</td><td>Inicia infusão em dose baixa</td></tr>
+            <tr><td>15 min</td><td>218/130</td><td>159</td><td>≈4%</td><td>Ainda confuso</td><td>Resposta insuficiente, sem hipoperfusão → titula</td></tr>
+            <tr><td>30 min</td><td>205/122</td><td>150</td><td>≈9%</td><td>Menos agitado</td><td>Mantém o degrau, reavalia</td></tr>
+            <tr><td>60 min</td><td>190/114</td><td>139</td><td>≈16%</td><td>Cefaleia reduzindo, visão melhorando</td><td>Chegando à faixa desejada; desacelera a descida</td></tr>
+            <tr><td>2–6 h</td><td>≈175/105</td><td>≈128</td><td>≈22%</td><td>Orientado por períodos</td><td>Estabiliza; começa a planejar a ponte oral</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">O erro do percentual mecânico</span><p style="margin:0">A meta de 20–25% é um <b>teto de segurança</b>, não uma cota a ser cumprida. Se o paciente melhorou neurologicamente com 15% de queda, você não precisa "completar" os 25%. Se ele piorou neurologicamente com 18%, você já desceu demais <b>para ele</b>.</p></div>
+      <div class="eh-sint">Titular = decidir, observar, decidir de novo. Sem a segunda observação, você não titulou: você apenas mexeu na bomba.</div>
+    </div>
+
+    <div class="eh-frase">"A melhora do monitor não substitui a melhora do paciente."</div>
+  </div>
+</section>
+<section class="eh-sec" id="diario">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO IX</span><h2>O diário da UTI — 48 horas</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Esta é a parte que quase nunca é ensinada: o que acontece <b>depois</b> da primeira hora. Leia como plantão, não como resumo.</p>
+
+    <div class="eh-diario">
+
+      <article class="eh-ent">
+        <div class="eh-hora">T = 0 · sala vermelha</div>
+        <h3 class="eh-enth">A porta abre</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 228/134</span><span class="eh-vpill">FC 102</span><span class="eh-vpill">FR 26</span><span class="eh-vpill">SpO₂ 87% AA</span><span class="eh-vpill">Tax 36,7 °C</span><span class="eh-vpill">70 kg</span></div>
+        <p>Ele entra sentado na maca, inquieto, tentando tirar a máscara que ainda nem foi colocada. Repete a mesma pergunta pela terceira vez: "por que a gente veio aqui mesmo?". A esposa fala antes de qualquer um perguntar: "ele está falando coisas sem sentido". Essa frase é o gatilho do caso — é ela que transforma "pressão alta" em "cérebro em sofrimento".</p>
+        <p>Enquanto a técnica instala o monitor, você já verbaliza a sequência: <b>monitor, oxigênio, veia</b>. Máscara de Venturi 28%, dois acessos calibrosos, coleta na punção. Glicemia capilar antes de qualquer hipótese sofisticada — 118 mg/dL, e um diferencial barato sai da mesa.</p>
+        <div class="eh-box eh-conc"><p style="margin:0"><b>Decisão registrada:</b> emergência hipertensiva com lesão aguda de órgão-alvo neurológico. Indicação de UTI e de anti-hipertensivo intravenoso titulável. Meta inicial: redução de aproximadamente 20–25% da PAM na primeira hora, guiada pelo exame neurológico.<span class="eh-fonte">🇧🇷 DBHA 2025</span></p></div>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 10 min</div>
+        <h3 class="eh-enth">A bomba começa devagar</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 226/132</span><span class="eh-vpill">SpO₂ 90% (Venturi 28%)</span><span class="eh-vpill">Bomba 6 mL/h</span></div>
+        <p>A infusão começa em dose baixa — <b>0,3 µg/kg/min</b>, que num paciente de 70 kg com solução de 200 µg/mL significa 6,3 mL/h na bomba. Começar baixo não é timidez: é reconhecer que você não sabe onde fica o platô de autorregulação deste homem. Quem começa alto descobre o limite pelo caminho errado, com o paciente rebaixando.</p>
+        <p>O residente pergunta por que não usamos nitroglicerina, já que "ele está com saturação baixa e deve estar congesto". Boa pergunta, resposta importante: <b>a hipoxemia ainda não tem causa definida</b>, e o órgão que está sofrendo agora é o cérebro. Nitrato venoso controla mal a pressão, provoca cefaleia que se confunde com o quadro neurológico e dilata o compartimento venoso cerebral. Se aparecer congestão pulmonar franca, ele volta à mesa — como coadjuvante.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 30 min</div>
+        <h3 class="eh-enth">A primeira reavaliação de verdade</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 205/122</span><span class="eh-vpill">PAM 150 (−9%)</span><span class="eh-vpill">Bomba 12 mL/h</span><span class="eh-vpill">SpO₂ 92%</span></div>
+        <p>Você não olha só o número. Pergunta o nome dele, o mês, onde está. Ele acerta o nome, erra o mês, e agora responde na primeira tentativa — antes precisava de três. <b>Isso é resposta clínica</b>, e vale mais do que os 9% de queda.</p>
+        <p>Radiografia de tórax à beira-leito: congestão discreta, sem padrão de edema agudo. ECG sem supra, com sinais de sobrecarga ventricular esquerda — coerente com anos de hipertensão. Troponina colhida, primeira amostra sem elevação relevante. A hipoxemia começa a ganhar explicação: congestão leve num ventrículo hipertrofiado, sob pressão brutal de pós-carga. Ela deve melhorar <b>com a queda da pressão</b>, e não com mais oxigênio.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 1 h</div>
+        <h3 class="eh-enth">O teto da primeira hora</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 190/114</span><span class="eh-vpill">PAM 139 (−16%)</span><span class="eh-vpill">Bomba 12 mL/h</span><span class="eh-vpill">SpO₂ 94%</span></div>
+        <p>A cefaleia caiu de "insuportável" para "chata". Ele já enxerga os dedos que você levanta, coisa que há uma hora ele não conseguia. A tentação é aumentar a bomba para completar os 25%. <b>Não aumente.</b> O paciente está melhorando com 16%; a meta não é uma cota.</p>
+        <div class="eh-box eh-ok"><p style="margin:0"><b>Regra prática:</b> quando o exame neurológico melhora, a pressão pode continuar descendo — mas devagar e sozinha. Quando o exame neurológico piora enquanto a pressão cai, <b>reduza a infusão imediatamente</b>: você passou do platô dele.</p></div>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 2 h · tomografia</div>
+        <h3 class="eh-enth">Excluindo o desastre estrutural</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 186/110</span><span class="eh-vpill">Bomba 10 mL/h</span></div>
+        <p>TC de crânio sem contraste: <b>sem hemorragia, sem sinais precoces de isquemia extensa, sem lesão com efeito de massa</b>. Isso não confirma encefalopatia hipertensiva — apenas remove os diagnósticos que teriam metas pressóricas diferentes e mudariam tudo. É exatamente para isso que a TC serve na primeira hora.</p>
+        <p>Laboratório volta: creatinina 1,6 mg/dL (sem valor prévio para comparar), ureia elevada, potássio 3,2 mEq/L, sódio 133 mEq/L, magnésio no limite inferior, hemograma sem anemia hemolítica microangiopática, urina com proteinúria discreta. O potássio de 3,2 e o sódio de 133 num paciente que usa tiazídico não são coincidência — são <b>pistas do que estava acontecendo em casa</b>.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 4 h</div>
+        <h3 class="eh-enth">O platô confortável</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 178/106</span><span class="eh-vpill">PAM 130 (−21%)</span><span class="eh-vpill">Bomba 9 mL/h</span><span class="eh-vpill">SpO₂ 95% Venturi 28%</span></div>
+        <p>Ele dorme, acorda quando chamado, sabe onde está. Reposição cuidadosa de potássio e magnésio em curso, com controle laboratorial programado. Débito urinário adequado. A saturação subiu junto com a queda da pós-carga — a hipoxemia era, em boa parte, hemodinâmica. Reduzimos a Venturi para 24% e observamos.</p>
+        <p>Aqui começa, silenciosamente, a parte mais importante do plantão: <b>a pergunta de saída</b>. Não "quando ele melhora", mas <b>"o que precisa estar pronto para eu poder desligar esta bomba?"</b>. A resposta tem três partes: função renal e eletrólitos conhecidos, causa da descompensação identificada, terapia oral definida e absorvível. Nenhuma delas se resolve às pressas às três da manhã.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 6 h · a esposa chega com a sacola</div>
+        <h3 class="eh-enth">A cena que explica o caso</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 172/102</span><span class="eh-vpill">Bomba 8 mL/h</span><span class="eh-vpill">Orientado em pessoa e lugar</span></div>
+        <p>Ela coloca uma sacola de mercado sobre a mesa. Dentro: quatro caixas, dois blísteres soltos, uma receita de sete meses atrás e uma caixa de anti-inflamatório comprada na farmácia. É a hora da <b>reconciliação de tempo 2</b>. O que se descobre está detalhado na cena seguinte — e muda o plano de alta inteiro.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 12 h</div>
+        <h3 class="eh-enth">O paciente que voltou</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 168/98</span><span class="eh-vpill">PAM 121 (−27%)</span><span class="eh-vpill">Bomba 7 mL/h</span><span class="eh-vpill">SpO₂ 96% cateter 2 L</span><span class="eh-vpill">Sem convulsão</span></div>
+        <p>Ele está acordado, conversa, reclama do horário da comida — sinal clínico subestimado de melhora. Cefaleia mínima. Visão praticamente normal. Nenhuma nova crise convulsiva. Diurese adequada, creatinina estável, potássio corrigido para 3,9.</p>
+        <p>A pergunta do professor: <b>qual é o próximo passo?</b> Não é reduzir a bomba. É <b>construir a ponte</b>. Reduzir a infusão antes de existir droga oral funcionando é mandar o helicóptero embora antes da ponte estar de pé.</p>
+        <div class="eh-box eh-conc"><p style="margin:0"><b>Checagem antes da ponte:</b> o paciente deglute com segurança? o trato gastrointestinal está funcionando? a função renal está conhecida e estável? o potássio está corrigido? a volemia está avaliada? a frequência cardíaca permite betabloqueio, se for o caso? Se qualquer resposta for "não sei", a ponte espera.</p></div>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 14 h · início da terapia oral</div>
+        <h3 class="eh-enth">A ponte começa a ser construída</h3>
+        <p>Primeira dose oral administrada. A escolha não copia a receita antiga: ela reconstrói o esquema a partir do que aprendemos nas últimas 14 horas — função renal atual, potássio, volemia, o motivo da descompensação. A ordem de reintrodução e o racional estão detalhados na cena "A ponte IV → oral".</p>
+        <p>E então vem a parte que exige paciência: <b>não se mexe na bomba agora</b>. Espera-se o efeito da droga oral aparecer. Anti-hipertensivo oral não age em cinco minutos, e quem desce a infusão junto com a primeira dose não está fazendo ponte — está trocando de andaime no meio do vão.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 18 h · primeiro degrau para baixo</div>
+        <h3 class="eh-enth">O desmame de verdade</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 158/92</span><span class="eh-vpill">Bomba 7 → 5 mL/h</span></div>
+        <p>A pressão caiu <b>sem que ninguém aumentasse a infusão</b>. Isso é o sinal que estávamos esperando: a droga oral começou a sustentar. Agora sim, primeiro degrau para baixo. Reduz-se a bomba e observa-se por um intervalo definido antes do degrau seguinte — nunca dois degraus na mesma reavaliação.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 24 h</div>
+        <h3 class="eh-enth">Um degrau de cada vez</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 152/90</span><span class="eh-vpill">Bomba 5 → 3 mL/h</span><span class="eh-vpill">Creatinina estável</span></div>
+        <p>Segunda dose oral do dia administrada e absorvida. O paciente já senta na poltrona. A infusão está em dose quase simbólica — e é justamente aí que mora a armadilha: <b>uma dose baixa parece dispensável, mas ainda está segurando alguma coisa</b>. Só o teste do degrau seguinte mostra o quanto.</p>
+        <p>Reavaliação de segurança do nitroprussiato: 24 horas de infusão, doses baixas o tempo todo, gasometria sem acidose com ânion gap, sem agitação inexplicada, função renal estável. Nenhum sinal sugerindo acúmulo de metabólitos — mas o relógio conta, e ele é mais um argumento para sair da droga.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 30 h</div>
+        <h3 class="eh-enth">Último degrau antes do OFF</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 146/88</span><span class="eh-vpill">Bomba 3 → 1,5 mL/h</span></div>
+        <p>Ajuste na terapia oral: uma das classes tem a dose otimizada, com o cuidado de não empilhar duas mudanças na mesma reavaliação. Regra do plantão: <b>uma variável por vez</b>. Se você mexe na bomba e na dose oral simultaneamente e a pressão despenca, não existe forma de saber quem foi o responsável.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 36 h · O F F</div>
+        <h3 class="eh-enth">O helicóptero vai embora</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 142/86</span><span class="eh-vpill">Bomba desligada</span><span class="eh-vpill">SpO₂ 97% ar ambiente</span></div>
+        <p>Infusão suspensa. E agora começa a <b>janela de vigilância do rebote</b>: como a droga tem meia-vida ultracurta, se a terapia oral não estiver segurando, a pressão volta em minutos — muitas vezes acima do ponto onde estava. Medida de PA em intervalos curtos por algumas horas, acesso mantido e solução ainda disponível no quarto, protegida da luz, até a estabilidade se confirmar.</p>
+        <div class="eh-box eh-peg"><p style="margin:0"><b>Não descarte a solução no minuto do OFF.</b> Guardar a via e a droga por algumas horas não é insegurança: é reconhecer que o desmame pode falhar e que reinstalar tudo às pressas custa tempo que o cérebro não tem.</p></div>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 40 h</div>
+        <h3 class="eh-enth">Passou no teste</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 138/84 → 144/86 → 140/85</span><span class="eh-vpill">Sem infusão há 4 h</span></div>
+        <p>Quatro horas sem droga intravenosa e a pressão oscila numa faixa segura, sem escalada. O paciente caminha até o banheiro acompanhado, sem tontura e sem hipotensão postural — teste simples e frequentemente esquecido em quem sai de vasodilatador contínuo direto para quatro anti-hipertensivos orais.</p>
+      </article>
+
+      <article class="eh-ent">
+        <div class="eh-hora">T + 48 h · saída da UTI</div>
+        <h3 class="eh-enth">A última cena</h3>
+        <div class="eh-vitl"><span class="eh-vpill">PA 136/84</span><span class="eh-vpill">FC 74</span><span class="eh-vpill">SpO₂ 97% AA</span><span class="eh-vpill">Neurológico normal</span></div>
+        <p>Ele está sentado, conversando, respirando em ar ambiente, sem infusão, com a terapia oral organizada em uma tabela impressa que a esposa vai levar para casa — nome, dose, horário, para que serve, e o que fazer se acabar a caixa. A ressonância, realizada na véspera, mostrou alterações compatíveis com edema vasogênico posterior, já em regressão — o mapa daquilo que, 48 horas antes, o deixou sem enxergar.</p>
+        <p>O professor faz a pergunta final: <b>o que salvou esse paciente?</b></p>
+        <div class="eh-box eh-ok"><p style="margin:0">Não foi uma droga. Foi reconhecer a deterioração neurológica em vez de tratar um número; foi tratar hipóxia e hipertensão em paralelo; foi descer a pressão na medida em que <i>aquele</i> cérebro suportava; foi descobrir por que ele descompensou; e foi construir a ponte antes de mandar o helicóptero embora. Foi uma <b>sequência de decisões corretas</b>.</p></div>
+      </article>
+
+    </div>
+
+    <div class="eh-frase">"Na sala vermelha, você não trata uma pressão. Você trata uma história em movimento."</div>
+  </div>
+</section>
+<section class="eh-sec" id="reconciliacao">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO X</span><h2>Reconciliação medicamentosa — em três tempos</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Reconciliação não é um momento na papeleta da alta. É um processo que começa na porta.</p>
+
+    <div class="eh-grid eh-g3">
+      <div class="eh-box eh-conc"><span class="eh-tag eh-t-conc">Tempo 1 · entrada</span>
+        <p style="margin:0 0 6px"><b>Objetivo: segurança imediata.</b></p>
+        <p style="margin:0">O que usa? Última dose? Alergias? Anticoagulante? Alguma droga relevante? Parou algum anti-hipertensivo? Trinta segundos de perguntas que evitam a próxima catástrofe.</p></div>
+      <div class="eh-box eh-neu"><span class="eh-tag eh-t-neu">Tempo 2 · após estabilizar</span>
+        <p style="margin:0 0 6px"><b>Objetivo: entender por que descompensou.</b></p>
+        <p style="margin:0">Com familiar, receita, foto, prontuário ou embalagem na mão: nome, dose, horário, adesão, mudanças recentes, quem prescreveu, automedicação, substâncias que elevam a PA.</p></div>
+      <div class="eh-box eh-ok"><span class="eh-tag eh-t-ok">Tempo 3 · antes da transição</span>
+        <p style="margin:0 0 6px"><b>Objetivo: evitar a recorrência.</b></p>
+        <p style="margin:0">O que retorna, o que sai, o que troca, em que dose, com qual monitorização e com qual seguimento marcado.</p></div>
+    </div>
+
+    <div class="eh-frase">"Reconciliação não é um momento. É um processo."</div>
+
+    <div class="eh-card">
+      <h3>🧰 R-E-M-E-D-I-O — a ferramenta de bolso</h3>
+      <div class="eh-tw"><table class="eh-tb">
+        <thead><tr><th>Letra</th><th>Pergunta</th><th>O que ela captura</th></tr></thead>
+        <tbody>
+          <tr><td><b>R</b></td><td>Remédio: qual?</td><td>Nome real — não "um comprimido branco para pressão"</td></tr>
+          <tr><td><b>E</b></td><td>Exata dose?</td><td>Metade de comprimido, dose dobrada por conta própria, apresentação trocada</td></tr>
+          <tr><td><b>M</b></td><td>Momento da última dose?</td><td>Distingue má adesão de interrupção aguda</td></tr>
+          <tr><td><b>E</b></td><td>Esquece?</td><td>Adesão real, sem julgamento na voz</td></tr>
+          <tr><td><b>D</b></td><td>Drogas que aumentam a PA?</td><td>AINE, descongestionante, corticoide, estimulante, anabolizante, álcool, ilícitas</td></tr>
+          <tr><td><b>I</b></td><td>Interações?</td><td>O que sabota o anti-hipertensivo que ele toma direitinho</td></tr>
+          <tr><td><b>O</b></td><td>Organização em casa?</td><td>Quem separa, quem compra, quem lembra — e o que acontece quando essa pessoa viaja</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>🛍️ A sacola da esposa</h3>
+      <p class="eh-muted">Clique em cada item. A história aparece por partes — como na vida real.</p>
+      <div class="eh-grid eh-g4" id="sacolaGrid"></div>
+      <div id="sacolaOut" style="margin-top:12px"></div>
+      <div id="sacolaVeredito" class="eh-hide">
+        <div class="eh-box eh-perigo" style="margin-top:14px">
+          <span class="eh-tag eh-t-perigo">Por que ele chegou a 228/134</span>
+          <p style="margin:0 0 8px">Não foi "falha do esquema de quatro drogas". Foram três sabotagens somadas:</p>
+          <p style="margin:0">1 · A caixa de um dos anti-hipertensivos acabou há cinco dias e ninguém comprou. 2 · Ele começou a usar um anti-inflamatório por dor lombar, sem contar a ninguém — retenção de sódio e antagonismo direto do efeito anti-hipertensivo. 3 · Ele passou a tomar tudo à noite porque "de manhã esquecia", e nos últimos dias dormiu antes de tomar.</p>
+        </div>
+        <div class="eh-box eh-ok" style="margin-top:10px"><p style="margin:0"><b>Consequência prática:</b> este paciente <b>não</b> tem, por enquanto, hipertensão resistente verdadeira. Ele tem pseudorresistência por interrupção + fármaco sabotador. Rotular de resistente agora seria começar a investigação inteira pelo lugar errado.</p></div>
+      </div>
+      <div class="eh-frase">"Reconciliar não é copiar. É entender."</div>
+    </div>
+
+    <div class="eh-card">
+      <h3>🏰 Os quatro guardiões da pressão</h3>
+      <p>O esquema que ele já usava tem uma lógica que vale memorizar como um castelo com quatro defesas:</p>
+      <div class="eh-grid eh-g4">
+        <div class="eh-box eh-conc"><b>1 · Portão do SRAA</b><br><span class="eh-muted">IECA ou BRA</span></div>
+        <div class="eh-box eh-conc"><b>2 · Portão do cálcio</b><br><span class="eh-muted">BCC di-hidropiridínico</span></div>
+        <div class="eh-box eh-conc"><b>3 · Torre do sal e da água</b><br><span class="eh-muted">Tiazídico / tiazídico-símile</span></div>
+        <div class="eh-box eh-neu"><b>4 · Masmorra da aldosterona</b><br><span class="eh-muted">Espironolactona — a quarta droga</span></div>
+      </div>
+      <div class="eh-box eh-peg" style="margin-top:12px"><span class="eh-tag eh-t-peg">Trave a numeração</span><p style="margin:0">Trio de ouro = SRAA + cálcio + volume. A espironolactona é o <b>quarto</b> medicamento preferencial quando o trio otimizado não controla. Chamá-la de "quinta droga" é erro clássico de prova.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="ponte">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO XI</span><h2>A ponte IV → oral</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">A bomba resgata. O oral sustenta. E a ponte se constrói <b>antes</b> de o helicóptero levantar voo.</p>
+
+    <div class="eh-card">
+      <h3>Os cinco pilares antes da primeira dose oral</h3>
+      <div class="eh-grid eh-g3">
+        <div class="eh-box eh-ok"><b>1 · Trato funcionante</b><p style="margin:6px 0 0">Deglutição segura, sem vômitos, sem rebaixamento. Paciente que aspira não recebe ponte oral.</p></div>
+        <div class="eh-box eh-ok"><b>2 · Função renal conhecida</b><p style="margin:6px 0 0">Creatinina e sua tendência. Ela decide dose, decide diurético e decide o quanto você pode confiar em bloqueio do SRAA agora.</p></div>
+        <div class="eh-box eh-ok"><b>3 · Potássio corrigido</b><p style="margin:6px 0 0">Reintroduzir bloqueador do SRAA + espironolactona com potássio desconhecido é apostar contra a própria prescrição.</p></div>
+        <div class="eh-box eh-ok"><b>4 · Volemia avaliada</b><p style="margin:6px 0 0">Congesto pede diurético; depletado (vômitos + tiazídico) pede o contrário. O mesmo comprimido tem sinais opostos conforme a volemia.</p></div>
+        <div class="eh-box eh-ok"><b>5 · Neurologia estável</b><p style="margin:6px 0 0">Quem ainda flutua de consciência não deve ser exposto à imprevisibilidade da absorção oral como única sustentação.</p></div>
+        <div class="eh-box eh-peg"><b>+ Frequência cardíaca</b><p style="margin:6px 0 0">Se houver indicação de betabloqueador, a FC precisa permitir. E existe uma classe que nunca é reintroduzida no susto: ver o alerta abaixo.</p></div>
+      </div>
+    </div>
+
+    <div class="eh-card">
+      <h3>Ordem de reintrodução — o raciocínio, não a receita</h3>
+      <p>Não se volta com as quatro drogas de uma vez, e não se copia a receita antiga. Reintroduz-se <b>em camadas</b>, uma variável por reavaliação, para que cada mudança tenha um efeito rastreável.</p>
+      <div class="eh-tw"><table class="eh-tb">
+        <thead><tr><th>Camada</th><th>O que entra</th><th>Por quê primeiro</th><th>O que vigiar</th></tr></thead>
+        <tbody>
+          <tr><td>1ª</td><td>Bloqueador de canal de cálcio di-hidropiridínico de ação prolongada</td><td>Efeito anti-hipertensivo confiável, não depende de função renal, não mexe em potássio, seguro na fase aguda</td><td>Edema, cefaleia, taquicardia reflexa</td></tr>
+          <tr><td>2ª</td><td>IECA ou BRA</td><td>Retoma a proteção de órgão-alvo; escolha guiada pela creatinina e pelo potássio já conhecidos</td><td>Creatinina, potássio, hipotensão</td></tr>
+          <tr><td>3ª</td><td>Diurético tiazídico/tiazídico-símile</td><td>Trata o componente de volume que sabotava o esquema, uma vez corrigidos sódio e potássio</td><td>Na⁺, K⁺, volemia</td></tr>
+          <tr><td>4ª</td><td>Espironolactona</td><td>Volta por último: é a droga com maior risco de hipercalemia num rim que acabou de sofrer</td><td>Potássio e creatinina seriados</td></tr>
+        </tbody>
+      </table></div>
+      <div class="eh-box eh-peg"><span class="eh-tag eh-t-peg">A classe que não pode ser esquecida no caminho</span><p style="margin:0">Se o paciente usava <b>betabloqueador</b> ou <b>agonista α₂ central (clonidina)</b> em casa e essas drogas foram suspensas, a reintrodução tem prioridade e a retirada nunca é abrupta: <b>rebote</b> é uma causa clássica de crise hipertensiva iatrogênica. Sempre pergunte especificamente por elas na reconciliação.</p></div>
+      <div class="eh-sint">A ponte não é uma lista de comprimidos. É uma sequência com ordem, intervalo e sensor de segurança em cada degrau.</div>
+    </div>
+
+    <div class="eh-card">
+      <h3>🌉 A imagem</h3>
+      <p>O nitroprussiato é o <b>helicóptero de resgate</b>: tira o paciente do penhasco em minutos, mas ninguém mora dentro de um helicóptero. A terapia oral é a <b>ponte</b>, e a casa fica do outro lado. O paciente precisa atravessar <b>caminhando</b> — e só depois que ele estiver do outro lado é que o helicóptero levanta voo.</p>
+      <div class="eh-frase">"Não mande o helicóptero embora antes de construir a ponte."</div>
+    </div>
+  </div>
+</section>
+<section class="eh-sec" id="desmame">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ATO XII</span><h2>Como sair da bomba — o desmame</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">A pergunta que o aluno precisa aprender a responder: <b>quando eu posso fazer OFF?</b></p>
+
+    <div class="eh-card" style="border-color:var(--verde)">
+      <h3>🚪 Os cinco portões do OFF</h3>
+      <p class="eh-muted">Marque os que já estão cumpridos neste paciente. O veredito aparece embaixo.</p>
+      <div id="portoesBox"></div>
+      <div class="eh-box eh-conc" id="portoesOut" style="margin-top:12px"></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>A sequência correta, em nove passos</h3>
+      <ol style="color:var(--txt2);padding-left:20px">
+        <li><b>Estabilização clínica</b> — não apenas pressórica: consciência, respiração, perfusão, diurese.</li>
+        <li><b>Melhora da lesão de órgão-alvo</b> — no caso, o exame neurológico. É o desfecho que importa.</li>
+        <li><b>PA em faixa segura e estável</b>, sem necessidade de aumentar a infusão nas últimas horas.</li>
+        <li><b>Introdução planejada da terapia oral</b>, com dose e horário definidos e absorção garantida.</li>
+        <li><b>Esperar o efeito aparecer</b> — a queda pressórica que acontece <i>sem</i> você mexer na bomba é o sinal verde.</li>
+        <li><b>Reduzir a infusão em degraus</b>, um degrau por reavaliação, com intervalo definido.</li>
+        <li><b>Monitorar rebote</b> a cada degrau: se a PA sobe, o degrau volta e a oral é ajustada.</li>
+        <li><b>Ajustar a terapia oral</b> — uma variável por vez, nunca bomba e comprimido no mesmo minuto.</li>
+        <li><b>OFF</b> — e então a janela de vigilância, com o acesso mantido.</li>
+      </ol>
+      <div class="eh-box eh-perigo"><span class="eh-tag eh-t-perigo">O erro que devolve o paciente à sala vermelha</span><p style="margin:0">Desligar o vasodilatador IV porque "a pressão está boa", sem terapia oral funcionando. Com uma droga de meia-vida ultracurta, a pressão volta em minutos — e volta com um cérebro que já foi agredido uma vez nas últimas horas.</p></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>🎚️ Simulador de desmame</h3>
+      <p class="eh-muted">Você está com a infusão a 7 mL/h e o paciente estável. Decida a cada etapa.</p>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px">
+        <div><span class="eh-lbl">Bomba</span><div class="eh-readout" id="dmBomba">7 mL/h</div></div>
+        <div><span class="eh-lbl">PA</span><div class="eh-readout" id="dmPA" style="color:var(--vermelho)">168/98</div></div>
+        <div><span class="eh-lbl">Oral ativa</span><div class="eh-readout" id="dmOral" style="color:var(--ambar)">nenhuma</div></div>
+        <div><span class="eh-lbl">Horas na droga</span><div class="eh-readout" id="dmHoras" style="color:var(--verde)">12 h</div></div>
+      </div>
+      <div class="eh-btnrow" id="dmOpts"></div>
+      <div id="dmFb"></div>
+      <div class="eh-btnrow"><button class="eh-btn" onclick="dmReset()">Reiniciar o desmame</button></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>Quando o desmame falha</h3>
+      <div class="eh-grid eh-g2">
+        <div class="eh-box eh-peg"><b>A PA volta a subir a cada redução</b><p style="margin:6px 0 0">A terapia oral está insuficiente — em dose, em número de classes ou em absorção. Volte o degrau, otimize o oral, espere. Não é fracasso: é informação.</p></div>
+        <div class="eh-box eh-peg"><b>A PA cai demais ao reduzir</b><p style="margin:6px 0 0">Parece contraintuitivo, mas acontece: a oral já estava sustentando sozinha e a infusão virou excesso. Acelere o desmame e reavalie a necessidade de tantas classes ao mesmo tempo.</p></div>
+        <div class="eh-box eh-perigo"><b>Rebote desproporcional</b><p style="margin:6px 0 0">Pense em <b>retirada abrupta prévia</b> de betabloqueador ou clonidina, em dor não tratada, em bexiga cheia, em hipóxia, em ansiedade — causas reversíveis que imitam falha terapêutica.</p></div>
+        <div class="eh-box eh-perigo"><b>Piora neurológica sem hipertensão</b><p style="margin:6px 0 0">Reavalie o diagnóstico: houve evento novo? há distúrbio metabólico? há sinal de acúmulo de metabólito do nitroprussiato (acidose com ânion gap, agitação, instabilidade)?</p></div>
+      </div>
+    </div>
+
+    <div class="eh-frase">"A bomba resgata. O oral sustenta. Se você não reavalia, você não está titulando — está apenas mexendo na bomba."</div>
+  </div>
+</section>
+
+<section class="eh-sec" id="erros">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ALERTA</span><h2>Erros fatais</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">Cada linha aqui já matou ou deixou sequela em algum plantão.</p>
+    <div class="eh-grid eh-g2" id="errosGrid"></div>
+  </div>
+</section>
+
+<section class="eh-sec" id="palacio">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">N3</span><h2>Palácio da memória — a casa do caso</h2><span class="eh-star">★★★★☆</span></div>
+    <p class="eh-sub">Percorra os cômodos na ordem. Clique em cada um para abrir o conteúdo guardado ali.</p>
+    <div class="eh-grid eh-g3" id="palacioGrid"></div>
+    <div class="eh-btnrow"><button class="eh-btn eh-pri" onclick="abrirPalacio()">Abrir todas as salas</button><button class="eh-btn" onclick="fecharPalacio()">Fechar</button></div>
+  </div>
+</section>
+
+<section class="eh-sec" id="n1n7">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">MÉTODO</span><h2>N1 → N7 aplicados a este caso</h2></div>
+    <div class="eh-grid eh-g2">
+      <div class="eh-box eh-conc"><b>N1 · Âncora semântica</b><p style="margin:6px 0 0">Uma frase organiza o capítulo inteiro: <i>o número toca o alarme, o órgão define o perigo</i>.</p></div>
+      <div class="eh-box eh-conc"><b>N2 · Conceito + imagem</b><p style="margin:6px 0 0">Barragem estourando (edema), cérebro escurecendo (isquemia), escada do nariz (FiO₂), helicóptero e ponte (desmame).</p></div>
+      <div class="eh-box eh-neu"><b>N3 · Palácio</b><p style="margin:6px 0 0">Porta → cama → janela → farmácia → corredor → sala vermelha → quarto do cérebro → bancada → ponte → casa.</p></div>
+      <div class="eh-box eh-ok"><b>N4 · Teste ativo</b><p style="margin:6px 0 0">Cada seção termina em pergunta, decisão ou cálculo — nunca em parágrafo.</p></div>
+      <div class="eh-box eh-peg"><b>N5 · Intercalação</b><p style="margin:6px 0 0">A encefalopatia nunca aparece sozinha: sempre ao lado de AVC, HIC, HSA, PRES, hipoglicemia e uremia.</p></div>
+      <div class="eh-box eh-perigo"><b>N6 · Emoção e narrativa</b><p style="margin:6px 0 0">A esposa que diz "ele está falando coisas sem sentido" é o gatilho auditivo do caso. Você vai lembrar dela na prova.</p></div>
+      <div class="eh-box eh-conc"><b>N7 · Três formulações</b><p style="margin:6px 0 0">O mesmo conteúdo aparece como cena clínica, como cálculo de bomba e como questão comentada.</p></div>
+    </div>
+  </div>
+</section>
+<section class="eh-sec" id="osce">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">ESTAÇÃO</span><h2>OSCE em três níveis</h2><span class="eh-star">★★★★★</span></div>
+    <p class="eh-sub">A mesma cena, três exigências diferentes.</p>
+    <div class="eh-grid eh-g3">
+      <div class="eh-box eh-conc"><b>Iniciante</b><p style="margin:6px 0 0">Objetivo: <b>reconhecer a gravidade</b>. Identificar deterioração neurológica, pedir ajuda, iniciar MOV, medir glicemia.</p></div>
+      <div class="eh-box eh-neu"><b>Intermediário</b><p style="margin:6px 0 0">Objetivo: <b>organizar</b>. MOV + ABCDE + investigação dirigida + hipótese de lesão de órgão-alvo + neuroimagem.</p></div>
+      <div class="eh-box eh-ok"><b>Interno / residente</b><p style="margin:6px 0 0">Objetivo: <b>conduzir</b>. Decidir a droga, calcular a bomba, titular, reavaliar, reconciliar, construir a ponte, desmamar e planejar a saída.</p></div>
+    </div>
+
+    <div class="eh-card">
+      <h3>Checklist com pontuação — 20 itens · 32 pontos</h3>
+      <p class="eh-muted">Marque o que foi executado. Itens de peso 2 têm impacto dobrado.</p>
+      <div id="checklistBox"></div>
+      <div class="eh-box eh-conc" style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div><span class="eh-lbl">Pontuação</span><div class="eh-big" id="ckScore">0 / 32</div></div>
+          <div style="flex:1;min-width:200px"><div class="eh-meter"><div class="eh-fill" id="ckFill" style="width:0%;background:var(--verde)"></div></div><span class="eh-muted" id="ckMsg">Comece marcando os itens executados.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="debriefing">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">DEPOIS</span><h2>Debriefing</h2></div>
+    <p class="eh-sub">A simulação só vira aprendizado quando termina em conversa.</p>
+    <div class="eh-grid eh-g3">
+      <div class="eh-box eh-conc"><b>1 · O que você viu?</b></div>
+      <div class="eh-box eh-conc"><b>2 · O que você pensou?</b></div>
+      <div class="eh-box eh-conc"><b>3 · O que você decidiu?</b></div>
+      <div class="eh-box eh-conc"><b>4 · O que você fez?</b></div>
+      <div class="eh-box eh-conc"><b>5 · O que aconteceu depois?</b></div>
+      <div class="eh-box eh-neu"><b>+ As três perguntas finais</b><p style="margin:6px 0 0">Qual dado mudou sua decisão? Qual dado você deixou passar? Se ele chegasse amanhã de novo, o que você faria diferente?</p></div>
+    </div>
+    <div class="eh-prof">
+      <b>Modo professor · roteiro de 50 minutos</b>
+      <p style="margin:8px 0 0">0–5 min: exibir só as cenas 1 a 5 e perguntar "isso é emergência?". 5–15: MOV e oxigenoterapia com a escada do cateter no telão. 15–22: ABCDE e o D. 22–30: barragem da autorregulação com o slider. 30–38: escolha da droga (peça para defenderem nitroglicerina e derrube o argumento com o compartimento venoso). 38–45: cálculo da bomba ao vivo, com pesos diferentes. 45–50: os cinco portões do OFF e a pergunta final do caso.</p>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="banco">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">TREINO</span><h2>Arena, flashcards e casos</h2></div>
+
+    <h3 style="margin-top:18px">Arena de questões</h3>
+    <div class="eh-btnrow" id="qFiltros"></div>
+    <div class="eh-card" id="qBox"></div>
+    <div class="eh-btnrow">
+      <button class="eh-btn" onclick="qNav(-1)">◀ Anterior</button>
+      <button class="eh-btn eh-pri" onclick="qNav(1)">Próxima ▶</button>
+      <button class="eh-btn" onclick="qSoErradas()">Só as que errei</button>
+    </div>
+    <p class="eh-muted" id="qStat"></p>
+
+    <h3 style="margin-top:30px">Flashcards</h3>
+    <div class="eh-btnrow"><button class="eh-btn eh-pri" id="btnFcExp" onclick="fcExpor()">Mostrar todas as respostas</button></div>
+    <div class="eh-btnrow" id="fcFiltros"></div>
+    <div class="eh-fcgrid" id="fcGrid"></div>
+
+    <h3 style="margin-top:30px">Casos rápidos</h3>
+    <div id="casosBox"></div>
+
+    <h3 style="margin-top:30px">Mini-decisões</h3>
+    <p class="eh-muted">Uma pergunta, duas saídas. Escolha antes de ver o comentário.</p>
+    <div id="decBox"></div>
+
+    <h3 style="margin-top:30px">Pegadinhas</h3>
+    <div class="eh-grid eh-g2" id="pegGrid"></div>
+  </div>
+</section>
+
+<section class="eh-sec" id="hipocampo">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">HIPOCAMPO</span><h2>Seus erros, sua fila</h2></div>
+    <div class="eh-card">
+      <div class="eh-grid eh-g3">
+        <div><span class="eh-lbl">Questões respondidas</span><div class="eh-big" id="hcResp">0</div></div>
+        <div><span class="eh-lbl">Acertos</span><div class="eh-big" id="hcAcertos" style="color:var(--verde)">0</div></div>
+        <div><span class="eh-lbl">Na fila de revisão</span><div class="eh-big" id="hcFila" style="color:var(--ambar)">0</div></div>
+      </div>
+      <div id="hcLista" style="margin-top:14px"></div>
+    </div>
+    <div class="eh-card">
+      <h3>Revisão espaçada</h3>
+      <div id="espacada"></div>
+    </div>
+  </div>
+</section>
+
+<section class="eh-sec" id="rev60">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">60 s</span><h2>Revisão de 60 segundos</h2></div>
+    <p class="eh-sub">Se você só tiver um minuto antes da prova ou do plantão, leia isto.</p>
+    <div class="eh-card" id="rev60Box"></div>
+    <div class="eh-frase">"O conhecimento sob pressão cai ao nível do treinamento."</div>
+  </div>
+</section>
+
+<section class="eh-sec" id="refs">
+  <div class="eh-wrap">
+    <div class="eh-sh"><span class="eh-sn">FONTES</span><h2>Referências e como elas foram usadas</h2></div>
+    <div class="eh-card">
+      <p><b>🇧🇷 Fonte soberana.</b> Diretriz Brasileira de Hipertensão Arterial – 2025 (SBC/SBN/SBH), Arq Bras Cardiol 2025;122(9):e20250624 — Capítulo 11 (Crise hipertensiva, incluindo encefalopatia hipertensiva) e Capítulo 7 (Tratamento medicamentoso). Dela vêm: a definição de emergência hipertensiva pela lesão aguda de órgão-alvo, a substituição do termo "urgência hipertensiva" por "elevação importante da PA sem lesão de órgão-alvo", a meta geral de &lt;130/80 mmHg no tratamento crônico e a lógica do tratamento em quatro classes.</p>
+      <p><b>🌎 Perspectiva internacional.</b> Diretrizes e documentos europeus e norte-americanos aparecem apenas nas caixas assinaladas, para citar agentes como nicardipino, clevidipino e labetalol como opções de primeira linha <b>fora</b> do Brasil. Onde houver divergência, a recomendação brasileira prevalece e está sinalizada.</p>
+      <p><b>⚠️ Conteúdo dependente de contexto local.</b> Diluições, cores de adaptadores de Venturi, concentrações e velocidades de bomba variam por instituição e por fabricante. Os valores usados aqui são <b>exemplos didáticos</b> e devem ser conferidos no protocolo do seu serviço antes de qualquer prescrição.</p>
+      <div class="eh-box eh-peg"><p style="margin:0">Este material é educacional. Nenhuma dose aqui substitui bula, protocolo institucional ou julgamento clínico à beira-leito.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="eh-foot">
+  <div class="eh-wrap">
+    <span class="eh-fsig">Dr. André Rossanno</span>
+    Atlas Mental · Emergências Hipertensivas · memoriapotencial.com.br<br>
+    <span class="eh-muted">"Na emergência, o monitor mostra o número. O médico precisa enxergar a história."</span><br><br>
+    <span class="eh-muted" style="font-size:.78rem">© 2026 Dr. André Rossanno | Material educacional — uso comercial proibido<br>Licença CC BY-NC-ND 4.0 · Atribuição · Não Comercial · Sem Derivações</span>
+  </div>
+</footer>
+<script>
+/* ============ DADOS — parte 1 ============ */
+var LS_KEY='atlasEH_salavermelha_v1';
+var estado={vistas:{},questoes:{},fila:[],espacada:{},checklist:{}};
+
+var CENAS=[
+ {t:'3 dias antes · em casa',h:'"Não estou me sentindo muito bem"',
+  b:'Mal-estar difuso. Cabeça pesada. Cefaleia leve que ele atribui ao calor. Cansaço e irritabilidade discreta. Ele continua a rotina, vai trabalhar, não procura ninguém. <b>Nenhum déficit focal</b>: sem hemiparesia, sem afasia, sem desvio facial. É assim que a maior parte das emergências começa — sem drama.',
+  m:{pa:'—',fc:'—',sp:'—',gl:'Lúcido',t:'D −3',lab:'Em casa · sem medida de PA'}},
+ {t:'A manhã · ao acordar',h:'A cefaleia muda de categoria',
+  b:'Ele dorme mal e acorda com cefaleia <b>importante</b>, diferente das anteriores. Não é a dor de sempre. Vem náusea logo depois. Vômito. A cefaleia matinal pode se relacionar a aumento da pressão intracraniana, mas <b>não é sinal específico obrigatório</b> — serve como pista, não como diagnóstico.',
+  m:{pa:'—',fc:'—',sp:'—',gl:'Lúcido',t:'D 0 · 07h',lab:'Quarto · cefaleia + vômito'}},
+ {t:'Meia hora depois',h:'"Não estou enxergando direito"',
+  b:'Visão embaçada que progride. Ele erra a porta do banheiro. Pode evoluir com grande dificuldade visual ou até cegueira cortical transitória. <b>👁 olho aberto + 🧠 córtex occipital apagado</b>: ele olha, mas o cérebro não consegue enxergar. Esse é o sintoma que mais tarde vai casar com o achado da ressonância.',
+  m:{pa:'—',fc:'—',sp:'—',gl:'Visão ↓',t:'D 0 · 07h30',lab:'Alteração visual'}},
+ {t:'A farmácia',h:'228/134 mmHg',
+  b:'A família decide medir a pressão na farmácia da esquina. O balconista mede duas vezes e chama alguém. <b>Pausa do professor:</b> isso, sozinho, define emergência hipertensiva? <b>Não.</b> O número chama atenção. A pergunta correta é outra: <b>existe lesão aguda de órgão-alvo?</b>',
+  m:{pa:'228/134',fc:'—',sp:'—',gl:'Visão ↓',t:'D 0 · 08h',lab:'Farmácia · primeira medida'}},
+ {t:'No carro, a caminho',h:'"Ele está falando coisas sem sentido"',
+  b:'Cefaleia pior. Náusea. Novo vômito. Confusão. Irritabilidade. Ele repete as mesmas perguntas. A esposa diz a frase que deve funcionar como <b>gatilho auditivo</b> do caso. Guarde-a: em qualquer prova ou plantão, essa frase transforma "crise hipertensiva" em <b>emergência neurológica</b>.',
+  m:{pa:'228/134',fc:'98',sp:'—',gl:'Confuso',t:'D 0 · 08h30',lab:'A caminho do hospital'}},
+ {t:'A porta da emergência',h:'Sala vermelha',
+  b:'PA 228/134 · FC 102 · FR 26 · <b>SpO₂ 87% em ar ambiente</b> · Tax 36,7 °C · 70 kg. Confuso, agitado, cefaleia intensa, náusea, alteração visual, dispneia leve. Sem déficit focal grosseiro inicialmente. Essa saturação muda imediatamente a abordagem.',
+  m:{pa:'228/134',fc:'102',sp:'87%',gl:'Confuso',t:'T = 0',lab:'Admissão · sala vermelha'}},
+ {t:'Os primeiros 3 minutos',h:'M · O · V',
+  b:'Monitor com PA seriada, oxigênio porque agora <b>existe indicação</b>, veia com coleta na punção. E, no mesmo movimento, <b>glicemia capilar</b>: 118 mg/dL. Um diferencial caro sai da mesa por 30 segundos de trabalho.',
+  m:{pa:'228/134',fc:'102',sp:'90%',gl:'Confuso',t:'T + 3 min',lab:'MOV instalado'}},
+ {t:'ABCDE',h:'O D entrega o diagnóstico',
+  b:'Via aérea pérvia mas com risco (vomitou, confuso). Respiração com FR 26 e hipoxemia. Circulação com PA seriada e ECG. <b>Disability</b>: Glasgow flutuante, pupilas simétricas, sem déficit focal, alteração difusa do comportamento. Exposição sem trauma. Órgão-alvo identificado: <b>cérebro</b>.',
+  m:{pa:'226/132',fc:'100',sp:'91%',gl:'Glasgow ↓',t:'T + 8 min',lab:'ABCDE concluído'}},
+ {t:'A decisão',h:'Droga IV titulável em bomba',
+  b:'Emergência hipertensiva com encefalopatia. Indicação de UTI e anti-hipertensivo intravenoso titulável, com meta de redução de aproximadamente <b>20–25%</b> na primeira hora, sem normalizar a pressão. A escolha do agente e a diluição estão nas cenas 08 e 09 do mapa.',
+  m:{pa:'226/132',fc:'100',sp:'92%',gl:'Confuso',t:'T + 10 min',lab:'Infusão iniciada · 6 mL/h'}},
+ {t:'48 horas depois',h:'A última cena',
+  b:'Acordado, conversando, respirando em ar ambiente, sem infusão, com terapia oral organizada e causa da descompensação identificada. <b>O que salvou esse paciente não foi uma droga.</b> Foi uma sequência de decisões corretas — e a disposição de reavaliar quando o monitor já parecia bonito.',
+  m:{pa:'136/84',fc:'74',sp:'97%',gl:'Normal',t:'T + 48 h',lab:'Alta da UTI'}}
+];
+
+var EXAMES=[
+ {n:'Glicemia capilar',ok:1,c:'Obrigatório e imediato. Hipoglicemia imita encefalopatia e custa 30 segundos.'},
+ {n:'ECG',ok:1,c:'Procura isquemia, sobrecarga ventricular e arritmia — e muda a droga se houver SCA.'},
+ {n:'Gasometria arterial',ok:1,c:'Aqui é mandatória: SpO₂ 87% e ex-tabagista pesado. Responde a pergunta da retenção de CO₂.'},
+ {n:'Hemograma',ok:1,c:'Anemia, plaquetopenia e esquizócitos apontam microangiopatia — hipertensão acelerada/maligna.'},
+ {n:'Ureia e creatinina',ok:1,c:'Define lesão renal aguda, guia a droga e guia toda a ponte oral.'},
+ {n:'Sódio e potássio',ok:1,c:'Paciente em tiazídico: hiponatremia e hipocalemia até prova em contrário.'},
+ {n:'Magnésio',ok:1,c:'Frequentemente esquecido; acompanha a hipocalemia do diurético e influencia arritmias.'},
+ {n:'Urina tipo I / proteinúria',ok:1,c:'Hematúria e proteinúria sinalizam lesão renal aguda hipertensiva.'},
+ {n:'Troponina',ok:1,c:'Pertinente: dispneia + hipertensão grave. Define se há lesão miocárdica associada.'},
+ {n:'Radiografia de tórax',ok:1,c:'Congestão? edema agudo? alargamento de mediastino? Muda a droga e explica a hipoxemia.'},
+ {n:'TC de crânio sem contraste',ok:1,c:'Exclui hemorragia, AVC e lesão estrutural. É o exame que muda a conduta agora.'},
+ {n:'Fundoscopia',ok:1,c:'Quando factível: hemorragias, exsudatos e papiledema apontam hipertensão acelerada/maligna.'},
+ {n:'RM de crânio',ok:2,c:'Não é da primeira hora, mas é o exame que mostra o mapa do edema (padrão de PRES). Programe-a.'},
+ {n:'BNP / NT-proBNP',ok:2,c:'Conforme o contexto: ajuda quando a dúvida é insuficiência cardíaca × outra causa de dispneia.'},
+ {n:'Captopril sublingual',ok:0,c:'Não é exame e não é conduta aqui. Emergência com LOA aguda pede droga IV titulável, não dose oral em série.'},
+ {n:'Nifedipino de ação rápida',ok:0,c:'Queda abrupta e imprevisível da PA, com risco de isquemia cerebral e coronariana. Não faça.'},
+ {n:'Punção lombar imediata',ok:0,c:'Não é rotina aqui. Entra se a suspeita for HSA com TC não diagnóstica ou infecção do SNC.'},
+ {n:'Angiotomografia de aorta',ok:2,c:'Só se houver suspeita clínica de dissecção: dor torácica/dorsal, assimetria de pulsos ou de PA.'}
+];
+
+var ORGAOS=[
+ {k:'Cérebro — encefalopatia',cor:'neu',t:'Emergência hipertensiva neurológica',
+  b:'<b>Objetivo:</b> reduzir ≈20–25% na primeira hora, sem normalizar, usando o exame neurológico como sensor.<br><b>Perfil ideal:</b> agente arterial-seletivo, titulável, previsível, sem venodilatação cerebral relevante e sem metabólito tóxico.<br><b>🌎 Internacional:</b> nicardipino, clevidipino ou labetalol como primeira linha.<br><b>🇧🇷 Brasil:</b> nitroprussiato é o mais utilizado — com menor dose eficaz, menor tempo e plano de saída desde a primeira hora.<br><b>Evite:</b> nitroglicerina como agente principal, hidralazina em bolus, qualquer redução abrupta.'},
+ {k:'Coração — SCA',cor:'perigo',t:'Isquemia miocárdica',
+  b:'<b>Aqui o nitrato venoso brilha:</b> nitroglicerina reduz pré-carga, alivia consumo de oxigênio e trata a dor isquêmica.<br>Betabloqueador conforme indicação e ausência de contraindicação.<br><b>Evite:</b> nitroprussiato como primeira escolha (potencial de roubo coronariano) e qualquer droga que provoque taquicardia reflexa isolada.'},
+ {k:'Pulmão — EAP',cor:'conc',t:'Edema agudo de pulmão hipertensivo',
+  b:'<b>Alvo é a congestão:</b> vasodilatador com forte componente venoso (nitroglicerina) + diurético de alça + ventilação não invasiva quando indicada.<br>A pós-carga também precisa cair — o coração está lutando contra uma parede.<br><b>Evite:</b> betabloqueador na fase de congestão franca.'},
+ {k:'Aorta — dissecção',cor:'perigo',t:'Dissecção aguda de aorta',
+  b:'<b>Frequência antes da pressão:</b> betabloqueador IV primeiro (esmolol), e só depois o vasodilatador.<br>Meta muito mais agressiva que nas outras emergências: reduzir rapidamente PA sistólica e dP/dt.<br><b>Erro grave:</b> vasodilatador isolado → taquicardia reflexa → aumenta a força de cisalhamento e propaga a dissecção.'},
+ {k:'Cérebro — AVC isquêmico',cor:'peg',t:'AVC isquêmico agudo',
+  b:'<b>Regra oposta à da encefalopatia:</b> a pressão elevada pode estar mantendo a penumbra.<br>Só se reduz em situações específicas — trombólise/trombectomia programada ou níveis muito extremos.<br><b>Erro grave:</b> aplicar aqui a meta de 20–25% da encefalopatia. São doenças diferentes com pressões diferentes.'},
+ {k:'Rim / múltiplos órgãos',cor:'conc',t:'Hipertensão acelerada-maligna',
+  b:'Retinopatia grave, lesão renal aguda, microangiopatia. Redução controlada em ambiente monitorado, com droga IV titulável e reavaliação renal seriada.<br>Pense em causa secundária desde o primeiro dia.'},
+ {k:'Crise adrenérgica',cor:'perigo',t:'Feocromocitoma, cocaína, retirada de clonidina',
+  b:'<b>Alfa antes de beta, sempre.</b> Betabloqueador isolado deixa o alfa sem oposição e a pressão sobe.<br>No rebote por retirada de clonidina, a solução costuma ser reintroduzir a droga suspensa.'}
+];
+
+var TITPASSOS=[
+ {rel:'T = 0',pa:'228/134',pam:165,bomba:0,
+  cena:'Diagnóstico firmado: encefalopatia hipertensiva. Paciente confuso, agitado, cefaleia intensa. Acesso pronto, bomba pronta. Qual é a sua primeira ordem?',
+  opts:[
+   {t:'Iniciar em dose baixa (0,3 µg/kg/min ≈ 6 mL/h) e reavaliar em minutos',bom:1,fb:'Correto. Começar baixo respeita o fato de você não saber onde fica o platô de autorregulação dele.',prox:1},
+   {t:'Iniciar direto em 2 µg/kg/min (42 mL/h) para "resolver logo"',bom:0,fb:'Perigoso. Queda abrupta em hipertenso crônico com curva deslocada pode produzir hipoperfusão cerebral — e você não tem como voltar o tempo.',prox:1},
+   {t:'Dar captopril sublingual e observar',bom:0,fb:'Erro clássico. Há lesão aguda de órgão-alvo em progressão: a conduta é droga IV titulável em ambiente monitorado, não dose oral em série.',prox:1}
+  ]},
+ {rel:'T + 15 min',pa:'218/130',pam:159,bomba:6,
+  cena:'Queda de apenas ≈4% da PAM. Paciente segue confuso. Sem sinais de hipoperfusão: perfusão periférica boa, diurese presente, sem palidez, sem taquicardia nova. O que você faz?',
+  opts:[
+   {t:'Titular a infusão para o degrau seguinte e reavaliar',bom:1,fb:'Correto — e repare no raciocínio: não é "não atingi 25%, aumento". É "a PA segue muito elevada, a resposta foi insuficiente, não há hipoperfusão e o paciente permanece sintomático".',prox:2},
+   {t:'Manter e esperar mais 30 minutos sem tocar em nada',bom:0,fb:'Espera demais. Com o cérebro sintomático e sem sinal de hipoperfusão, esperar é deixar o edema trabalhar.',prox:2},
+   {t:'Dobrar a infusão para pegar os 25% de uma vez',bom:0,fb:'Percentual mecânico. A meta é um teto de segurança, não uma cota a cumprir no relógio.',prox:2}
+  ]},
+ {rel:'T + 30 min',pa:'205/122',pam:150,bomba:12,
+  cena:'Queda acumulada ≈9%. Ele já responde na primeira tentativa e a cefaleia diminuiu. SpO₂ 92% na Venturi 28%. Qual a próxima decisão?',
+  opts:[
+   {t:'Manter o degrau atual e reavaliar em 15 minutos, incluindo exame neurológico',bom:1,fb:'Correto. Está caindo na velocidade certa e melhorando clinicamente: quem está indo bem não precisa de mais dose.',prox:3},
+   {t:'Aumentar de novo, porque ainda está acima de 180 de sistólica',bom:0,fb:'O número acima de 180 não é, sozinho, indicação de mais dose quando a queda está progredindo e o paciente melhora.',prox:3},
+   {t:'Reduzir a infusão pela metade, porque já melhorou',bom:0,fb:'Cedo demais. Você acabou de estabelecer o degrau que está funcionando; retirá-lo agora devolve a pressão.',prox:3}
+  ]},
+ {rel:'T + 60 min',pa:'190/114',pam:139,bomba:12,
+  cena:'Queda acumulada ≈16%. Cefaleia bem menor, visão melhorando, orientado em pessoa. Você atingiu 16% — a meta "é" 20–25%. E agora?',
+  opts:[
+   {t:'Desacelerar: manter/reduzir levemente e deixar a PA descer de forma gradual nas próximas horas',bom:1,fb:'Correto. Ele melhorou com 16%. A meta é teto, não cota. Daqui em diante a redução é gradual e guiada pela clínica.',prox:4},
+   {t:'Aumentar a infusão até fechar exatamente 25%',bom:0,fb:'Este é o erro mais comum da estação: perseguir o percentual em um paciente que já respondeu. Você pode passar do platô dele.',prox:4},
+   {t:'Desligar a bomba, já que melhorou',bom:0,fb:'Sem terapia oral funcionando, desligar produz rebote em minutos. Desmame é procedimento, não clique.',prox:4}
+  ]},
+ {rel:'T + 90 min',pa:'168/98',pam:121,bomba:9,
+  cena:'Enquanto você conversa com a família, a enfermagem avisa: a PA caiu para 132/78 e o paciente ficou sonolento, difícil de despertar. O que aconteceu e o que você faz?',
+  opts:[
+   {t:'Reduzir imediatamente a infusão e reavaliar o neurológico — provável hipoperfusão por queda excessiva',bom:1,fb:'Correto. Piora neurológica junto com queda pressórica = você passou do platô de autorregulação DELE. A infusão desce, a PA sobe um pouco e o exame melhora. Este é o sensor mais importante da estação.',prox:5},
+   {t:'Manter, porque 132/78 é uma pressão "normal"',bom:0,fb:'Normal para quem? Para este cérebro, hoje, 132/78 pode ser hipoperfusão. Normalidade populacional não é normalidade individual na fase aguda.',prox:5},
+   {t:'Pedir TC de crânio urgente antes de mexer na bomba',bom:0,fb:'A imagem pode entrar depois, mas a primeira medida é corrigir a causa mais provável e reversível em segundos — a própria infusão.',prox:5}
+  ]},
+ {rel:'Fim da primeira hora',pa:'—',pam:0,bomba:0,fim:1,
+  cena:'Você concluiu a fase de titulação. A partir daqui a história continua no <b>Diário da UTI</b>: exames, reconciliação, ponte oral e desmame.',opts:[]}
+];
+
+var SACOLA=[
+ {n:'💊 Caixa 1 — BRA',r:'Blíster com 6 comprimidos restantes. Data de compra recente. Ele tomava, mas passou a tomar à noite.'},
+ {n:'💊 Caixa 2 — anlodipino',r:'Caixa cheia, praticamente intacta. "Esta aqui ele reclamava que inchava o pé."'},
+ {n:'💊 Caixa 3 — clortalidona',r:'<b>Caixa vazia há cinco dias.</b> Ninguém comprou outra. "Achei que ele tinha pegado no posto."'},
+ {n:'💊 Caixa 4 — espironolactona',r:'Meia caixa. Horário confuso: às vezes de manhã, às vezes junto com o resto à noite.'},
+ {n:'📄 Receita antiga',r:'Emitida há sete meses, com doses que já não correspondem ao que ele vinha tomando.'},
+ {n:'🩹 Anti-inflamatório',r:'<b>Comprado por conta própria</b> para dor lombar, em uso há cerca de dez dias. Ninguém sabia.'},
+ {n:'🧂 Sal e cozinha',r:'"Ele reclama que a comida é sem gosto e põe sal na mesa." Consumo de sódio provavelmente alto.'},
+ {n:'😴 Sono',r:'Ronco alto, pausas percebidas pela esposa, sonolência diurna. Fica anotado para investigação de apneia depois.'}
+];
+
+var PORTOES=[
+ {t:'Lesão de órgão-alvo em melhora',d:'O exame neurológico melhorou de forma consistente — não apenas o número no monitor.'},
+ {t:'PA em faixa segura e estável',d:'Sem necessidade de aumentar a infusão nas últimas horas, sem oscilações bruscas.'},
+ {t:'Terapia oral iniciada e absorvida',d:'Droga escolhida, dose administrada, trato funcionante e tempo suficiente para o efeito aparecer.'},
+ {t:'Causa da descompensação identificada',d:'Reconciliação feita: você sabe por que ele chegou a 228/134 e o que corrigir.'},
+ {t:'Efeito da oral já demonstrado',d:'A pressão caiu sem que ninguém aumentasse a bomba. Este é o sinal verde real.'}
+];
+
+var DMPASSOS={
+ inicio:{bomba:7,pa:'168/98',oral:'nenhuma',horas:12,
+  cena:'Paciente estável há 6 horas, orientado, creatinina e potássio conhecidos. Infusão a 7 mL/h. Qual o primeiro movimento do desmame?',
+  opts:[
+   {t:'Iniciar a terapia oral e NÃO mexer na bomba ainda',bom:1,prox:'esperou',fb:'Correto. A ponte se constrói antes de o helicóptero sair. A bomba só desce depois que o oral mostrar efeito.'},
+   {t:'Reduzir a bomba para 5 mL/h e ver o que acontece',bom:0,prox:'reboteA',fb:'Você retirou apoio sem colocar apoio. Sem oral funcionando, isso é apenas testar a paciência do cérebro.'},
+   {t:'Desligar a bomba de uma vez, já que ele está estável',bom:0,prox:'reboteB',fb:'Meia-vida ultracurta + zero oral = rebote em minutos.'}
+  ]},
+ esperou:{bomba:7,pa:'160/94',oral:'1ª camada',horas:14,
+  cena:'Primeira dose oral administrada há algumas horas. A PA caiu de 168/98 para 160/94 <b>sem você mexer na bomba</b>. O que esse dado significa e o que fazer?',
+  opts:[
+   {t:'Significa que o oral está agindo — agora sim, reduzir um degrau e observar',bom:1,prox:'degrau1',fb:'Exatamente. Queda espontânea da PA sob dose fixa de infusão é o sinal verde do desmame.'},
+   {t:'Significa nada; aumentar a dose oral e a bomba juntos',bom:0,prox:'confuso',fb:'Duas variáveis ao mesmo tempo: se algo der errado, você não saberá quem foi.'},
+   {t:'Reduzir a bomba em três degraus de uma vez para ganhar tempo',bom:0,prox:'reboteA',fb:'Ganhar tempo aqui é o mesmo que perder o paciente de vista. Um degrau por reavaliação.'}
+  ]},
+ degrau1:{bomba:5,pa:'156/92',oral:'1ª camada',horas:18,
+  cena:'Bomba a 5 mL/h, PA estável, paciente bem. Passaram-se algumas horas e a segunda dose oral foi dada. Próximo passo?',
+  opts:[
+   {t:'Novo degrau para baixo (3 mL/h) e observar com PA seriada',bom:1,prox:'degrau2',fb:'Correto: degraus sucessivos, cada um com sua janela de observação.'},
+   {t:'Manter 5 mL/h indefinidamente porque "está bom assim"',bom:0,prox:'parado',fb:'Estagnar prolonga a exposição à droga IV sem benefício — e o tempo é um dos fatores de risco do nitroprussiato.'}
+  ]},
+ degrau2:{bomba:3,pa:'148/88',oral:'2ª camada',horas:24,
+  cena:'Bomba a 3 mL/h. PA 148/88, estável. A dose já parece "simbólica". Você desliga agora?',
+  opts:[
+   {t:'Descer mais um degrau (1,5 mL/h), observar e só então desligar',bom:1,prox:'off',fb:'Correto. Dose baixa ainda segura alguma coisa; o último degrau é o teste antes do OFF.'},
+   {t:'Desligar direto — 3 mL/h não faz diferença',bom:0,prox:'reboteC',fb:'Faz diferença justamente porque a droga é potente por miligrama. "Quase nada" ainda é alguma coisa.'}
+  ]},
+ off:{bomba:0,pa:'142/86',oral:'2ª camada',horas:36,
+  cena:'<b>OFF.</b> Infusão suspensa com PA 142/86. O que você faz nas próximas horas?',
+  opts:[
+   {t:'PA seriada em intervalos curtos, acesso mantido e solução disponível até confirmar estabilidade',bom:1,prox:'fim',fb:'Correto. A janela de vigilância do rebote é parte do procedimento, não um extra.'},
+   {t:'Retirar o acesso, descartar a solução e liberar da monitorização',bom:0,prox:'reboteC',fb:'Se o desmame falhar, você vai precisar de tudo isso de volta — e às pressas.'}
+  ]},
+ fim:{bomba:0,pa:'138/84',oral:'esquema completo',horas:40,fim:1,
+  cena:'<b>Desmame concluído.</b> Quatro horas sem droga IV, pressão em faixa segura, sem hipotensão postural ao caminhar. O paciente está pronto para sair da UTI com o esquema oral organizado e o seguimento marcado.',opts:[]},
+ reboteA:{bomba:5,pa:'186/110',oral:'nenhuma',horas:12,
+  cena:'<b>Rebote.</b> A PA voltou a 186/110 em menos de vinte minutos e o paciente refere cefaleia de novo. O que fazer?',
+  opts:[
+   {t:'Voltar o degrau da infusão, estabilizar e só então iniciar a terapia oral',bom:1,prox:'inicio',fb:'Correto — e guarde a lição: o degrau que você retirou era o degrau que estava sustentando.'},
+   {t:'Insistir na redução, porque "ele precisa aprender a ficar sem"',bom:0,prox:'reboteB',fb:'O paciente não precisa aprender nada. A fisiologia não negocia.'}
+  ]},
+ reboteB:{bomba:0,pa:'232/138',oral:'nenhuma',horas:12,
+  cena:'<b>Rebote grave.</b> PA acima do valor de admissão, paciente novamente confuso. Este é exatamente o cenário que o desmame estruturado existe para evitar.',
+  opts:[{t:'Reinstalar a infusão, reestabilizar e recomeçar o desmame do jeito certo',bom:1,prox:'inicio',fb:'Recomeçando — desta vez com a ponte antes do helicóptero.'}]},
+ reboteC:{bomba:0,pa:'174/104',oral:'2ª camada',horas:36,
+  cena:'A PA subiu para 174/104 nas primeiras horas após o OFF, sem acesso pronto e sem solução no quarto. A equipe corre.',
+  opts:[{t:'Reinstalar, estabilizar e refazer o último degrau com janela de vigilância',bom:1,prox:'off',fb:'Corrigido. A janela de vigilância pós-OFF é o que separa um desmame de um susto.'}]},
+ confuso:{bomba:9,pa:'134/80',oral:'2 camadas',horas:14,
+  cena:'A PA caiu para 134/80 e o paciente ficou sonolento. Você mexeu na bomba e no oral ao mesmo tempo — quem causou a queda?',
+  opts:[{t:'Não dá para saber. Reduzir a infusão, reavaliar e voltar a mudar uma variável por vez',bom:1,prox:'degrau1',fb:'Exato: a lição é o método. Uma variável por reavaliação.'}]},
+ parado:{bomba:5,pa:'150/90',oral:'1ª camada',horas:30,
+  cena:'Trinta horas de infusão sem progresso no desmame. Nada de errado aconteceu — mas nada de certo também.',
+  opts:[{t:'Retomar os degraus com intervalo definido',bom:1,prox:'degrau2',fb:'Retomado. Tempo em droga IV não é neutro.'}]}
+};
+
+var ERROS=[
+ {t:'Tratar apenas o número',d:'Baixar a pressão sem perguntar qual órgão está sofrendo. É o erro que gera tanto o excesso quanto a omissão.'},
+ {t:'Dar captopril e mandar observar',d:'Em paciente com lesão aguda de órgão-alvo, dose oral em série substitui a titulação por torcida.'},
+ {t:'Reduzir abruptamente para 120/80',d:'Em hipertenso crônico com a curva de autorregulação deslocada, "normalizar" pode significar isquemiar.'},
+ {t:'Esquecer a glicemia capilar',d:'O diferencial mais barato do plantão. Trinta segundos evitam horas de investigação errada.'},
+ {t:'Ignorar déficit focal',d:'Déficit focal muda a doença, muda a meta pressórica e muda a janela terapêutica. Não é detalhe.'},
+ {t:'Não monitorizar de verdade',d:'Uma medida de PA a cada 40 minutos não é titulação. É sorteio.'},
+ {t:'Confundir µg/kg/min com µg/min',d:'Num paciente de 70 kg, o erro de unidade é um erro de 70 vezes na dose.'},
+ {t:'Desligar o vasodilatador IV sem ponte oral',d:'Meia-vida ultracurta + nada por via oral = rebote em minutos, às vezes acima do valor inicial.'},
+ {t:'Copiar a prescrição antiga',d:'Devolver ao paciente exatamente o esquema que falhou, sem descobrir por que falhou, garante o retorno dele.'},
+ {t:'Tratar ex-tabagista como retentor de CO₂',d:'A história de tabagismo não autoriza o rótulo de DPOC nem a meta de 88–92% sem evidência.'},
+ {t:'Perseguir o percentual em quem já melhorou',d:'A meta de 20–25% é teto de segurança. Quem melhorou com 15% não precisa "completar" a cota.'},
+ {t:'Escolher a droga pela gaveta',d:'A droga é escolhida pelo órgão-alvo. Usar nitrato venoso como agente principal de emergência neurológica é escolher pelo hábito.'}
+];
+
+var PALACIO=[
+ {i:'🚪',n:'PORTA',t:'Três dias de mal-estar',d:'O pródromo inespecífico: cabeça pesada, cansaço, irritabilidade. Nenhum déficit focal.'},
+ {i:'🛏️',n:'CAMA',t:'Acorda com cefaleia',d:'Cefaleia matinal importante, diferente das outras, seguida de náusea e vômito.'},
+ {i:'🪟',n:'JANELA',t:'Não consegue enxergar',d:'Olho aberto, córtex occipital apagado. Cegueira cortical transitória é possível.'},
+ {i:'💊',n:'FARMÁCIA',t:'228/134',d:'O número que chama atenção mas não fecha diagnóstico. A pergunta é sobre lesão de órgão-alvo.'},
+ {i:'🚑',n:'CORREDOR',t:'"Falando coisas sem sentido"',d:'A frase da esposa é o gatilho auditivo do caso.'},
+ {i:'🚨',n:'SALA VERMELHA',t:'M · O · V',d:'Monitor. Oxigênio se precisar — aqui precisa, SpO₂ 87%. Veia. Depois ABCDE, com glicemia no D.'},
+ {i:'🧠',n:'QUARTO DO CÉREBRO',t:'Barragem estourada',d:'Falha da autorregulação → hiperperfusão → quebra da barreira → edema vasogênico.'},
+ {i:'🧪',n:'BANCADA',t:'2 + 248 · 10 + 240',d:'Nipride: 2 mL + 248 mL. Tridil: 10 mL + 240 mL. Ambos 200 µg/mL no exemplo didático — idiomas diferentes.'},
+ {i:'🏋️',n:'HOMEM DE 70 KG',t:'Um micro, vinte e um',d:'70 kg + 200 µg/mL + 1 µg/kg/min = 21 mL/h.'},
+ {i:'🌉',n:'PONTE',t:'IV → oral',d:'Constrói-se antes de desligar. Cinco pilares: trato, rim, potássio, volemia, neurologia.'},
+ {i:'🚁',n:'HELIPONTO',t:'O OFF',d:'Cinco portões antes de desligar. Depois do OFF, janela de vigilância do rebote com acesso mantido.'},
+ {i:'🏠',n:'CASA',t:'Trio de ouro + espironolactona',d:'SRAA + cálcio + volume, e a aldosterona como quarta droga. Com reconciliação, não com cópia.'}
+];
+
+var CHECKLIST=[
+ {t:'Reconhece a deterioração neurológica como sinal de gravidade',p:2},
+ {t:'Executa MOV antes de qualquer outra coisa',p:2},
+ {t:'Decide oxigênio com dispositivo, fluxo e meta definidos',p:1},
+ {t:'Executa ABCDE de forma estruturada',p:1},
+ {t:'Mede glicemia capilar precocemente',p:2},
+ {t:'Realiza exame neurológico dirigido (Glasgow, pupilas, déficit focal)',p:2},
+ {t:'Identifica o órgão-alvo acometido e nomeia a síndrome',p:2},
+ {t:'Diferencia de AVC isquêmico e hemorrágico',p:2},
+ {t:'Solicita neuroimagem apropriada',p:1},
+ {t:'Solicita exames sistêmicos pertinentes ao caso',p:1},
+ {t:'Indica tratamento intravenoso titulável em ambiente monitorado',p:2},
+ {t:'Define a meta pressórica correta (≈20–25% na primeira hora)',p:2},
+ {t:'Não normaliza a PA abruptamente',p:2},
+ {t:'Calcula corretamente a bomba (µg/kg/min ↔ mL/h)',p:2},
+ {t:'Reavalia o estado neurológico a cada mudança de dose',p:2},
+ {t:'Faz reconciliação medicamentosa em camadas',p:1},
+ {t:'Reintroduz a terapia oral de forma racional, não copiada',p:1},
+ {t:'Planeja o desmame com ponte oral antes do OFF',p:2},
+ {t:'Investiga a causa da descompensação',p:1},
+ {t:'Comunica-se adequadamente com paciente e família',p:1}
+];
+</script>
+<script>
+/* ============ DADOS — parte 2 · bancos ============ */
+var QUESTOES=[
+{id:1,nivel:'facil',tema:'conceito',q:'Homem de 58 anos chega ao pronto-socorro com PA 228/134 mmHg, confuso, com cefaleia e alteração visual. O que define este quadro como emergência hipertensiva?',
+ alts:['O valor absoluto da pressão arterial sistólica acima de 220 mmHg','A presença de lesão aguda de órgão-alvo em progressão','A necessidade de internação hospitalar','O fato de o paciente já usar quatro anti-hipertensivos','A elevação simultânea de sistólica e diastólica'],c:1,
+ expl:'A emergência hipertensiva é definida pela presença de lesão aguda de órgão-alvo, e não por um valor de corte pressórico. O número apenas levanta a suspeita.',peg:'Nenhum valor de PA, isoladamente, define emergência hipertensiva.'},
+{id:2,nivel:'facil',tema:'nomenclatura',q:'Segundo a Diretriz Brasileira de Hipertensão Arterial 2025, o que aconteceu com o termo "urgência hipertensiva"?',
+ alts:['Foi mantido, com nova definição','Foi substituído por "elevação importante da PA sem lesão de órgão-alvo"','Passou a designar apenas quadros com PA acima de 200/120','Foi incorporado ao conceito de emergência hipertensiva','Passou a designar apenas quadros em gestantes'],c:1,
+ expl:'A diretriz de 2025 substituiu o termo, justamente para retirar a ideia de pressa em pacientes sem lesão aguda de órgão-alvo. A emergência hipertensiva permanece definida pela lesão aguda.',peg:'Trocar o nome mudou a conduta: sem LOA aguda, a redução é gradual e oral.'},
+{id:3,nivel:'inter',tema:'meta',q:'Na encefalopatia hipertensiva, qual é a meta inicial de redução pressórica?',
+ alts:['Normalizar a PA para menos de 130/80 mmHg em uma hora','Reduzir aproximadamente 20–25%, principalmente na primeira hora','Reduzir 50% da PAM em 30 minutos','Reduzir a PA sistólica para menos de 140 mmHg imediatamente','Manter a PA inalterada até a tomografia'],c:1,
+ expl:'A meta é uma redução controlada de aproximadamente 20–25%, sobretudo na primeira hora, para devolver a PA à faixa de autorregulação sem provocar hipoperfusão.',peg:'"Normalizar" na primeira hora é o erro que provoca isquemia cerebral.'},
+{id:4,nivel:'tec',tema:'fisiopatologia',q:'Qual mecanismo explica o edema cerebral da encefalopatia hipertensiva?',
+ alts:['Vasoconstrição arteriolar máxima com isquemia citotóxica','Ultrapassagem do limite superior da autorregulação, com vasodilatação forçada, hiperperfusão e quebra da barreira hematoencefálica','Obstrução venosa cerebral por trombose de seio','Aumento primário da produção de líquor','Ruptura de aneurisma sacular com irritação meníngea'],c:1,
+ expl:'Acima do limite superior da autorregulação, a arteríola não sustenta mais a vasoconstrição: ocorre vasodilatação forçada, hiperperfusão, disfunção endotelial e extravasamento — edema vasogênico.',peg:'O edema é vasogênico, não citotóxico. Isso o diferencia do AVC isquêmico.'},
+{id:5,nivel:'tec',tema:'fisiopatologia',q:'Por que o hipertenso crônico tolera pressões elevadas, mas sofre com quedas que um normotenso suportaria?',
+ alts:['Porque tem menor massa cerebral','Porque a curva de autorregulação está deslocada para a direita','Porque tem maior produção de óxido nítrico','Porque a barreira hematoencefálica é mais permeável','Porque o fluxo cerebral independe da PAM nesses pacientes'],c:1,
+ expl:'A exposição crônica desloca toda a curva de autorregulação para a direita: o platô começa e termina em pressões mais altas. Por isso "normalizar" pode significar hipoperfundir.',peg:'A curva desloca inteira — o limite inferior sobe junto com o superior.'},
+{id:6,nivel:'inter',tema:'abordagem',q:'Qual exame deve ser realizado imediatamente em todo paciente com alteração aguda do nível de consciência?',
+ alts:['Tomografia de crânio','Glicemia capilar','Gasometria arterial','Eletroencefalograma','Punção lombar'],c:1,
+ expl:'A glicemia capilar leva segundos, é feita à beira-leito e afasta um diagnóstico que imita qualquer quadro neurológico.',peg:'É o item mais esquecido e mais barato do checklist do D.'},
+{id:7,nivel:'inter',tema:'oxigenio',q:'Em um cateter nasal, o que determina a FiO₂ ofertada?',
+ alts:['Exclusivamente o fluxo em litros por minuto','O fluxo, mas modulado por volume corrente, frequência e padrão ventilatório do paciente','O diâmetro da narina do paciente','O adaptador acoplado ao dispositivo','A pressão do gás na rede hospitalar'],c:1,
+ expl:'A regra de 21% + 3–4% por litro é aproximação didática. A FiO₂ real varia com o padrão ventilatório e com a respiração pela boca.',peg:'"No cateter, cada litro sobe um degrau — mas a escada balança."'},
+{id:8,nivel:'tec',tema:'oxigenio',q:'Na máscara de Venturi, o que define a FiO₂ ofertada?',
+ alts:['O fluxo em litros por minuto, calculado como no cateter nasal','O adaptador/jato utilizado, desde que respeitado o fluxo mínimo do fabricante','A cor do tubo conector','O volume corrente do paciente','A umidificação do circuito'],c:1,
+ expl:'Na Venturi, a FiO₂ é fixada pelo adaptador. O fluxo apenas precisa ser suficiente para que o dispositivo funcione conforme especificado.',peg:'"No cateter, o litro estima. Na Venturi, o bico define." Cores variam entre fabricantes.'},
+{id:9,nivel:'tec',tema:'oxigenio',q:'Paciente ex-tabagista de 55 maços-ano, sem diagnóstico de DPOC, com gasometria mostrando pH 7,38, PaCO₂ 45 mmHg e HCO₃⁻ sem grande elevação. Qual meta de SpO₂ adotar?',
+ alts:['88–92%, pelo risco presumido de retenção de CO₂','Aproximadamente 94–98%, pois não há evidência de hipercapnia crônica','Acima de 99%, para maximizar a oferta','Qualquer valor acima de 85%','Não há necessidade de meta definida'],c:1,
+ expl:'Sem evidência de retenção crônica, aplica-se a meta habitual. História de tabagismo, isolada, não autoriza o rótulo de retentor.',peg:'Ex-tabagista não é sinônimo automático de DPOC nem de retentor de CO₂.'},
+{id:10,nivel:'tec',tema:'droga',q:'Qual característica torna a nitroglicerina inadequada como agente principal na encefalopatia hipertensiva?',
+ alts:['Meia-vida excessivamente longa','Ação predominantemente venosa, com controle pressórico pobre, cefaleia intensa e venodilatação cerebral','Necessidade de acesso venoso central','Contraindicação absoluta em hipertensos crônicos','Risco de intoxicação por cianeto'],c:1,
+ expl:'A nitroglicerina age sobretudo no compartimento venoso: alivia congestão e isquemia, mas controla mal a PA, provoca cefaleia que contamina o exame neurológico e pode aumentar o volume sanguíneo cerebral.',peg:'Cérebro pede arteríola. Pulmão congesto pede veia.'},
+{id:11,nivel:'tec',tema:'droga',q:'Sobre o nitroprussiato de sódio na encefalopatia hipertensiva, é correto afirmar:',
+ alts:['É um vasodilatador exclusivamente arterial','É o agente mais utilizado no Brasil nessa indicação, exigindo menor dose eficaz, menor tempo e vigilância de metabólitos','Não sofre fotodegradação','Pode ser desligado abruptamente sem risco de rebote','É contraindicado em hipertensos crônicos'],c:1,
+ expl:'É vasodilatador arterial e venoso, doador de óxido nítrico, de início imediato e meia-vida ultracurta. No Brasil, permanece o agente mais usado nessa emergência, com os cuidados de dose, tempo, luz e vigilância de cianeto/tiocianato.',peg:'Meia-vida ultracurta é vantagem na titulação e armadilha no desligamento.'},
+{id:12,nivel:'dificil',tema:'droga',q:'Paciente em nitroprussiato há 30 horas, com creatinina em elevação, desenvolve agitação, acidose metabólica com ânion gap aumentado e piora neurológica apesar da queda pressórica. Qual a principal hipótese?',
+ alts:['Progressão da encefalopatia hipertensiva','Acúmulo de metabólitos do nitroprussiato (cianeto/tiocianato)','Hipoglicemia','Rebote por retirada de betabloqueador','Hipernatremia'],c:1,
+ expl:'A tríade de uso prolongado + disfunção renal + acidose com ânion gap e piora neurológica apesar da melhora pressórica sugere toxicidade por metabólitos.',peg:'Piora neurológica com PA melhorando: pense na droga, não só na doença.'},
+{id:13,nivel:'inter',tema:'droga',q:'Qual seria o perfil farmacológico ideal do agente intravenoso para uma emergência hipertensiva neurológica?',
+ alts:['Venodilatador potente, de longa duração','Arterial-seletivo, titulável, previsível, sem metabólito tóxico e sem venodilatação cerebral relevante','Bolus intermitente com efeito prolongado','Agente que provoque taquicardia reflexa para manter o débito','Droga de ação exclusivamente central'],c:1,
+ expl:'Esse perfil descreve os di-hidropiridínicos intravenosos (nicardipino, clevidipino) e, em situações selecionadas, o labetalol. No Brasil, a disponibilidade limitada mantém o nitroprussiato como agente mais usado.',peg:'"Ideal farmacológico" e "ideal disponível" podem não ser a mesma droga — e a prova pode cobrar os dois.'},
+{id:14,nivel:'dificil',tema:'droga',q:'Por que a hidralazina em bolus é uma escolha ruim na encefalopatia hipertensiva?',
+ alts:['Porque não reduz a pressão arterial','Porque não é titulável: efeito imprevisível e prolongado, com queda em degrau e taquicardia reflexa','Porque é contraindicada em qualquer paciente hipertenso','Porque provoca bradicardia grave','Porque só age no compartimento venoso'],c:1,
+ expl:'Quando você precisa de controle fino sobre um cérebro edemaciado, precisa de uma droga que possa ser aumentada e reduzida em minutos. A hidralazina não oferece isso.',peg:'Não titulável = você não consegue voltar atrás se descer demais.'},
+{id:15,nivel:'tec',tema:'bomba',q:'Nitroprussiato 50 mg diluído em 250 mL. Qual a concentração final da solução?',
+ alts:['100 µg/mL','200 µg/mL','250 µg/mL','500 µg/mL','50 µg/mL'],c:1,
+ expl:'50 mg = 50.000 µg. 50.000 ÷ 250 mL = 200 µg/mL.',peg:'Converter mg em µg antes de dividir é onde o erro costuma nascer.'},
+{id:16,nivel:'tec',tema:'bomba',q:'Paciente de 70 kg, solução de 200 µg/mL, dose de 1 µg/kg/min. Qual a velocidade da bomba?',
+ alts:['10,5 mL/h','21 mL/h','42 mL/h','6,3 mL/h','70 mL/h'],c:1,
+ expl:'1 × 70 = 70 µg/min → × 60 = 4.200 µg/h → ÷ 200 µg/mL = 21 mL/h.',peg:'"70 quilos, um micro: vinte e um na bomba."'},
+{id:17,nivel:'dificil',tema:'bomba',q:'Mesma solução de 200 µg/mL, mas agora nitroglicerina prescrita a 50 µg/min. Qual a velocidade da bomba?',
+ alts:['5 mL/h','15 mL/h','21 mL/h','30 mL/h','50 mL/h'],c:1,
+ expl:'50 µg/min × 60 = 3.000 µg/h ÷ 200 µg/mL = 15 mL/h. Regra mental para 200 µg/mL: dose em µg/min × 0,3 = mL/h.',peg:'Nitroglicerina é prescrita em µg/min, não em µg/kg/min. Trocar a unidade em 70 kg erra por 70 vezes.'},
+{id:18,nivel:'inter',tema:'bomba',q:'Ampola de nitroprussiato de 50 mg em 2 mL. Como preparar 250 mL da solução didática?',
+ alts:['2 mL + 248 mL de diluente','10 mL + 240 mL de diluente','2 mL + 250 mL de diluente','5 mL + 245 mL de diluente','20 mL + 230 mL de diluente'],c:0,
+ expl:'2 + 248 = 250 mL. Para a nitroglicerina de 50 mg em 10 mL, a conta é 10 + 240.',peg:'Nipride: nome grande, ampola pequena (2+248). Tridil: nome pequeno, ampola grande (10+240).'},
+{id:19,nivel:'inter',tema:'titulacao',q:'Após 15 minutos de infusão, a PAM caiu apenas 4%, o paciente segue confuso e não há sinais de hipoperfusão. Qual a conduta?',
+ alts:['Manter a dose e reavaliar apenas em uma hora','Titular a infusão para o degrau seguinte e reavaliar','Suspender a infusão e trocar de droga','Administrar bolus de anti-hipertensivo oral','Normalizar a PA imediatamente'],c:1,
+ expl:'A justificativa correta não é "não atingi 25%": é PA ainda muito elevada, resposta insuficiente, ausência de hipoperfusão e paciente neurologicamente sintomático.',peg:'Titular por percentual é diferente de titular por raciocínio.'},
+{id:20,nivel:'dificil',tema:'titulacao',q:'Durante a titulação, a PA cai de 190/114 para 132/78 e o paciente fica sonolento e difícil de despertar. Qual a interpretação e a conduta?',
+ alts:['Melhora esperada; manter a infusão','Provável hipoperfusão cerebral por queda excessiva; reduzir a infusão e reavaliar o exame neurológico','Sedação residual; aguardar','Início de AVC isquêmico; indicar trombólise imediatamente','Efeito adverso irrelevante da droga'],c:1,
+ expl:'Piora neurológica simultânea à queda pressórica indica que se ultrapassou o limite inferior de autorregulação daquele paciente. A conduta imediata é reduzir a infusão.',peg:'132/78 é "normal" para a população, não necessariamente para este cérebro hoje.'},
+{id:21,nivel:'inter',tema:'diferencial',q:'Qual achado torna a encefalopatia hipertensiva improvável e obriga a considerar AVC?',
+ alts:['Cefaleia intensa','Náusea e vômito','Déficit neurológico focal grosseiro','Alteração visual','Confusão flutuante'],c:2,
+ expl:'A encefalopatia hipertensiva costuma cursar com quadro difuso e flutuante. Déficit focal aponta para território vascular definido e muda toda a conduta pressórica.',peg:'AVC isquêmico tem regra pressórica oposta: a pressão pode estar sustentando a penumbra.'},
+{id:22,nivel:'inter',tema:'imagem',q:'Qual o papel da tomografia de crânio sem contraste na primeira hora?',
+ alts:['Confirmar a encefalopatia hipertensiva','Excluir hemorragia, AVC e lesão estrutural com efeito de massa','Demonstrar edema vasogênico posterior','Substituir o exame neurológico','Definir a dose da droga intravenosa'],c:1,
+ expl:'A TC exclui o desastre estrutural, que tem metas pressóricas próprias. A ressonância é que mostra melhor o mapa do edema.',peg:'TC exclui o desastre. RM mostra o mapa.'},
+{id:23,nivel:'tec',tema:'imagem',q:'A alteração visual grave, às vezes com cegueira cortical transitória, costuma corresponder a que achado de imagem?',
+ alts:['Infarto de tronco cerebral','Edema vasogênico de predomínio posterior (padrão de PRES)','Hemorragia subaracnóidea','Hidrocefalia obstrutiva','Trombose de seio sagital'],c:1,
+ expl:'O padrão de encefalopatia posterior reversível envolve preferencialmente regiões parieto-occipitais, o que explica clinicamente o distúrbio visual.',peg:'Olho aberto, córtex occipital apagado.'},
+{id:24,nivel:'inter',tema:'reconciliacao',q:'Quando deve ser feita a reconciliação medicamentosa em um paciente com emergência hipertensiva?',
+ alts:['Somente no momento da alta','Já na admissão, de forma progressiva, em camadas até a transição de cuidado','Apenas se houver suspeita de intoxicação','Somente após 48 horas de internação','Apenas pelo farmacêutico clínico'],c:1,
+ expl:'Tempo 1 na entrada (segurança imediata), tempo 2 após estabilizar (entender a descompensação) e tempo 3 antes da transição (evitar recorrência).',peg:'Reconciliação não é um momento. É um processo.'},
+{id:25,nivel:'tec',tema:'reconciliacao',q:'Paciente em uso regular de quatro anti-hipertensivos chega com PA 228/134. Antes de rotulá-lo como hipertensão resistente verdadeira, o que deve ser investigado?',
+ alts:['Apenas a técnica de medida da PA','Adesão, interrupção recente, doses, horários, uso de AINE/descongestionante/corticoide, sal, álcool e causas secundárias','Somente a presença de apneia do sono','Apenas a função renal','Apenas a possibilidade de efeito do avental branco'],c:1,
+ expl:'Pseudorresistência é tão frequente quanto a resistência verdadeira. Interrupção de medicação e uso de fármacos que elevam a PA são causas clássicas.',peg:'Rotular como resistente sem excluir sabotadores começa a investigação pelo lugar errado.'},
+{id:26,nivel:'facil',tema:'esquema',q:'No esquema clássico de quatro drogas para hipertensão de difícil controle, qual é a posição da espironolactona?',
+ alts:['Primeira droga, junto com o diurético','Segunda droga, substituindo o BCC','Quarta droga, associada ao trio de ouro otimizado','Quinta droga, após betabloqueador','Não faz parte do esquema'],c:2,
+ expl:'Trio de ouro = bloqueador do SRAA + BCC + diurético tiazídico/símile. A espironolactona é o quarto medicamento preferencial quando o trio otimizado não controla.',peg:'Chamá-la de "quinta droga" é erro clássico de prova.'},
+{id:27,nivel:'dificil',tema:'ponte',q:'Qual condição deve ser satisfeita ANTES de iniciar a redução da infusão intravenosa?',
+ alts:['A pressão arterial estar normalizada','A terapia oral ter sido iniciada e já demonstrar efeito','O paciente ter completado 24 horas de internação','A tomografia ter sido repetida','O paciente estar em jejum'],c:1,
+ expl:'A ponte é construída antes de o helicóptero sair. O sinal verde é a queda pressórica que ocorre sem que ninguém aumente a bomba.',peg:'Queda espontânea sob dose fixa de infusão = a oral está sustentando.'},
+{id:28,nivel:'tec',tema:'ponte',q:'Na reintrodução da terapia oral após a fase aguda, qual é o princípio central?',
+ alts:['Reintroduzir simultaneamente todas as drogas da receita anterior','Reintroduzir em camadas, uma variável por reavaliação, guiado por função renal, potássio, volemia e causa da descompensação','Substituir todo o esquema por uma classe nova','Manter apenas o diurético','Aguardar a alta hospitalar para qualquer ajuste'],c:1,
+ expl:'Copiar a receita antiga devolve ao paciente o esquema que falhou. Reconciliar é entender, não copiar.',peg:'Duas mudanças na mesma reavaliação tornam impossível saber quem causou o efeito.'},
+{id:29,nivel:'dificil',tema:'ponte',q:'Qual classe, se estava em uso domiciliar e foi suspensa, exige atenção especial pelo risco de rebote?',
+ alts:['Diurético tiazídico','Betabloqueador e agonista α₂ central (clonidina)','Bloqueador de canal de cálcio di-hidropiridínico','Bloqueador do receptor de angiotensina','Estatina'],c:1,
+ expl:'A retirada abrupta de betabloqueador ou de clonidina provoca hipertensão rebote com hiperatividade adrenérgica — causa clássica de crise hipertensiva iatrogênica.',peg:'Sempre pergunte especificamente por essas duas classes na reconciliação.'},
+{id:30,nivel:'tec',tema:'desmame',q:'Quando é seguro desligar o vasodilatador intravenoso?',
+ alts:['Assim que a PA atinge valor considerado normal','Quando a terapia oral já sustenta a PA e o paciente permanece estável sem necessidade da droga IV','Após exatamente 24 horas de infusão','Quando o paciente solicitar','Assim que a tomografia for normal'],c:1,
+ expl:'O critério é funcional, não cronológico nem numérico: a oral sustenta e o paciente permanece estável.',peg:'"A PA está boa" não é critério de OFF — é apenas o efeito da droga que ainda está correndo.'},
+{id:31,nivel:'dificil',tema:'desmame',q:'Após o OFF, qual é a conduta correta nas horas seguintes?',
+ alts:['Retirar o acesso e descartar a solução imediatamente','Manter PA seriada em intervalos curtos, acesso venoso e solução disponível até confirmar estabilidade','Liberar o paciente da monitorização','Reduzir toda a terapia oral pela metade','Repetir a neuroimagem de rotina'],c:1,
+ expl:'Como a droga tem meia-vida ultracurta, o rebote pode ocorrer em minutos. A janela de vigilância faz parte do procedimento.',peg:'Desmame é procedimento com pós-operatório, não um clique no equipamento.'},
+{id:32,nivel:'dificil',tema:'desmame',q:'Durante o desmame, a cada redução da infusão a PA volta a subir. Qual a interpretação mais provável?',
+ alts:['A droga intravenosa perdeu eficácia','A terapia oral ainda é insuficiente em dose, número de classes ou absorção','O paciente desenvolveu hipertensão maligna','Houve erro de diluição','O esfigmomanômetro está descalibrado'],c:1,
+ expl:'Voltar o degrau, otimizar a terapia oral e esperar o efeito. A falha do desmame é informação sobre a ponte, não fracasso do médico.',peg:'Antes de culpar a doença, revise dor, bexiga cheia, hipóxia, ansiedade e retirada abrupta de betabloqueador/clonidina.'},
+{id:33,nivel:'inter',tema:'abordagem',q:'Paciente com emergência hipertensiva neurológica e SpO₂ de 87% em ar ambiente. Qual a abordagem correta?',
+ alts:['Tratar primeiro a pressão e depois a oxigenação','Tratar primeiro a oxigenação e adiar a droga intravenosa','Tratar ambos em paralelo, com oxigênio titulado e droga IV titulável','Intubar imediatamente todos os casos','Aguardar a gasometria antes de qualquer intervenção'],c:2,
+ expl:'Hipóxia e hipertensão são tratadas simultaneamente. Deixar uma roubar a cena da outra é o erro descrito na estação.',peg:'"O doente não escolhe um capítulo do livro para adoecer."'},
+{id:34,nivel:'tec',tema:'exames',q:'Em paciente com emergência hipertensiva em uso crônico de diurético tiazídico, quais distúrbios devem ser ativamente procurados?',
+ alts:['Hipercalemia e hipernatremia','Hipocalemia e hiponatremia','Hipercalcemia e acidose','Hipofosfatemia isolada','Nenhum, se a função renal for normal'],c:1,
+ expl:'Tiazídicos causam classicamente hipocalemia e hiponatremia, ambas com impacto direto na conduta e na reintrodução do esquema oral.',peg:'Corrigir potássio antes de reintroduzir bloqueador do SRAA e espironolactona.'},
+{id:35,nivel:'dificil',tema:'droga',q:'Em qual emergência hipertensiva o betabloqueador intravenoso deve ser administrado ANTES do vasodilatador?',
+ alts:['Encefalopatia hipertensiva','Edema agudo de pulmão','Dissecção aguda de aorta','AVC isquêmico','Hipertensão acelerada-maligna'],c:2,
+ expl:'Na dissecção, controlar frequência e dP/dt vem antes: vasodilatador isolado gera taquicardia reflexa e aumenta a força de cisalhamento sobre a aorta.',peg:'Vasodilatador isolado na dissecção propaga a dissecção.'},
+{id:36,nivel:'dificil',tema:'droga',q:'Paciente com crise adrenérgica por feocromocitoma. Qual a sequência correta de bloqueio?',
+ alts:['Betabloqueio isolado','Alfa-bloqueio antes do betabloqueio','Betabloqueio antes do alfa-bloqueio','Apenas diurético de alça','Apenas bloqueador de canal de cálcio'],c:1,
+ expl:'Betabloqueio isolado deixa o receptor alfa sem oposição, com vasoconstrição e elevação paradoxal da PA. Alfa vem primeiro, sempre.',peg:'"Alfa antes de beta" vale para feocromocitoma e para crises adrenérgicas em geral.'}
+];
+
+var FLASHCARDS=[
+{c:'Definição',f:'O que define emergência hipertensiva?',v:'Lesão AGUDA de órgão-alvo em progressão — não o valor da PA.'},
+{c:'Definição',f:'O que a DBHA 2025 fez com o termo "urgência hipertensiva"?',v:'Substituiu por "elevação importante da PA sem lesão de órgão-alvo".'},
+{c:'Meta',f:'Meta de redução na encefalopatia hipertensiva',v:'≈20–25%, principalmente na primeira hora. Sem normalizar.'},
+{c:'Meta',f:'A meta de 20–25% é cota ou teto?',v:'Teto de segurança. Quem melhorou com 15% não precisa completar 25%.'},
+{c:'Fisiopatologia',f:'Tipo de edema da encefalopatia hipertensiva',v:'Vasogênico (extravasamento por quebra da barreira), não citotóxico.'},
+{c:'Fisiopatologia',f:'Por que o hipertenso crônico não tolera queda rápida?',v:'Curva de autorregulação deslocada à direita: o limite inferior também subiu.'},
+{c:'Fisiopatologia',f:'Frase que resume a autorregulação',v:'Subiu demais, incha. Baixou demais, isquemia.'},
+{c:'MOV',f:'O que é MOV?',v:'Monitor · Oxigênio se precisar · Veia. É ordem para começar, não sigla para decorar.'},
+{c:'MOV',f:'Oxigênio é obrigatório em toda sala vermelha?',v:'Não. É medicamento: só com indicação. Aqui, SpO₂ 87% dá a indicação.'},
+{c:'ABCDE',f:'Qual letra entrega a encefalopatia?',v:'D de Disability — e a glicemia capilar vem antes de tudo nela.'},
+{c:'Oxigênio',f:'Regra didática da FiO₂ no cateter nasal',v:'≈21% + 3–4% por litro/min. Aproximação, não medida.'},
+{c:'Oxigênio',f:'Escada do cateter (0 a 6 L)',v:'21 · 24 · 28 · 32 · 36 · 40 · 44 %.'},
+{c:'Oxigênio',f:'O que define a FiO₂ na Venturi?',v:'O adaptador/jato, com o fluxo mínimo do fabricante. O litro não calcula.'},
+{c:'Oxigênio',f:'Meta de SpO₂ sem risco de hipercapnia',v:'≈94–98%.'},
+{c:'Oxigênio',f:'Meta de SpO₂ com DPOC/risco de retenção',v:'88–92% enquanto se avalia a gasometria.'},
+{c:'Oxigênio',f:'Ex-tabagista pesado é retentor de CO₂?',v:'Não automaticamente. Precisa de evidência: gasometria, hipercapnia, HCO₃ cronicamente alto.'},
+{c:'Droga',f:'Compartimento que interessa na emergência neurológica',v:'Arterial. Cérebro pede arteríola; pulmão congesto pede veia.'},
+{c:'Droga',f:'Perfil ideal do agente na emergência neurológica',v:'Arterial-seletivo, titulável, previsível, sem metabólito tóxico, sem venodilatação cerebral.'},
+{c:'Droga',f:'Agentes de primeira linha no cenário internacional',v:'Nicardipino, clevidipino e labetalol.'},
+{c:'Droga',f:'Agente mais utilizado no Brasil na encefalopatia',v:'Nitroprussiato de sódio — com menor dose, menor tempo e plano de saída desde o início.'},
+{c:'Droga',f:'Por que nitroglicerina não é o agente principal aqui?',v:'Venodilatador: controla mal a PA, dá cefaleia que confunde o exame, sofre taquifilaxia e dilata veia cerebral.'},
+{c:'Droga',f:'Quando a nitroglicerina brilha',v:'Edema agudo de pulmão e síndrome coronariana aguda.'},
+{c:'Droga',f:'Quatro cuidados do nitroprussiato',v:'Cianeto/tiocianato · pressão intracraniana · fotossensibilidade · rebote ao desligar.'},
+{c:'Droga',f:'Sinais de toxicidade por metabólito do nitroprussiato',v:'Acidose com ânion gap, agitação, instabilidade e piora neurológica APESAR da queda pressórica.'},
+{c:'Droga',f:'Por que hidralazina em bolus é ruim aqui?',v:'Não é titulável: queda em degrau, efeito prolongado e taquicardia reflexa.'},
+{c:'Droga',f:'Emergência em que o betabloqueador vem antes',v:'Dissecção aguda de aorta — frequência e dP/dt antes da pressão.'},
+{c:'Droga',f:'Regra da crise adrenérgica',v:'Alfa antes de beta. Sempre.'},
+{c:'Bomba',f:'Diluição didática do Nipride',v:'2 mL + 248 mL = 250 mL → 200 µg/mL. "Nome grande, ampola pequena."'},
+{c:'Bomba',f:'Diluição didática do Tridil',v:'10 mL + 240 mL = 250 mL → 200 µg/mL. "Nome pequeno, ampola grande."'},
+{c:'Bomba',f:'70 kg, 200 µg/mL, 1 µg/kg/min = ?',v:'21 mL/h. "70 quilos, um micro: vinte e um na bomba."'},
+{c:'Bomba',f:'Escada dos 70 kg',v:'0,3 → 6,3 · 0,5 → 10,5 · 1 → 21 · 2 → 42 mL/h.'},
+{c:'Bomba',f:'Regra mental do Tridil a 200 µg/mL',v:'Dose em µg/min × 0,3 = mL/h.'},
+{c:'Bomba',f:'Unidades: Nipride × Tridil',v:'Nipride em µg/kg/min · Tridil em µg/min. Mesmo castelo, idiomas diferentes.'},
+{c:'Titulação',f:'Justificativa correta para subir a dose',v:'PA ainda muito alta + resposta insuficiente + sem hipoperfusão + paciente sintomático.'},
+{c:'Titulação',f:'Melhor marcador de resposta',v:'PA + sintomas + estado neurológico + perfusão. Nunca o número isolado.'},
+{c:'Titulação',f:'PA caiu e o paciente piorou. O que fazer?',v:'Reduzir a infusão imediatamente: passou do platô de autorregulação dele.'},
+{c:'Diferencial',f:'Achado que afasta encefalopatia hipertensiva',v:'Déficit neurológico focal grosseiro → pense AVC.'},
+{c:'Diferencial',f:'Papel da TC na primeira hora',v:'Excluir o desastre estrutural: hemorragia, AVC, lesão com efeito de massa.'},
+{c:'Diferencial',f:'Papel da RM',v:'Mostrar o mapa do edema — padrão vasogênico posterior (PRES).'},
+{c:'Diferencial',f:'Diferencial mais barato do plantão',v:'Glicemia capilar.'},
+{c:'Reconciliação',f:'Os três tempos',v:'Entrada (segurança) · após estabilizar (entender) · antes da transição (evitar recorrência).'},
+{c:'Reconciliação',f:'R-E-M-E-D-I-O',v:'Remédio · Exata dose · Momento da última dose · Esquece? · Drogas que sobem a PA · Interações · Organização em casa.'},
+{c:'Reconciliação',f:'Sabotadores clássicos do controle pressórico',v:'AINE, descongestionante, corticoide, estimulante, álcool, excesso de sódio, interrupção de caixa.'},
+{c:'Esquema',f:'Trio de ouro',v:'Bloqueador do SRAA + BCC di-hidropiridínico + diurético tiazídico/símile.'},
+{c:'Esquema',f:'Posição da espironolactona',v:'QUARTA droga preferencial. Nunca "quinta".'},
+{c:'Ponte',f:'Cinco pilares antes da primeira dose oral',v:'Trato funcionante · função renal · potássio · volemia · neurologia estável.'},
+{c:'Ponte',f:'Ordem de reintrodução em camadas',v:'BCC → IECA/BRA → tiazídico → espironolactona por último (risco de hipercalemia).'},
+{c:'Ponte',f:'Classes cuja suspensão causa rebote',v:'Betabloqueador e agonista α₂ central (clonidina).'},
+{c:'Desmame',f:'Sinal verde para descer a bomba',v:'A PA cai sem que ninguém aumente a infusão — a oral está sustentando.'},
+{c:'Desmame',f:'Critério de OFF',v:'Terapia oral sustentando a PA e paciente estável sem necessidade da droga IV.'},
+{c:'Desmame',f:'Conduta após o OFF',v:'PA seriada em intervalos curtos, acesso mantido e solução disponível até confirmar estabilidade.'},
+{c:'Desmame',f:'Imagem do desmame',v:'A bomba é o helicóptero. A oral é a ponte. Não mande o helicóptero embora antes da ponte.'}
+];
+
+var CASOS=[
+{q:'Mulher de 62 anos, PA 220/126, assintomática, exame neurológico normal, sem dor torácica, sem dispneia, exames sem alteração aguda. Conduta?',
+ r:'Elevação importante da PA <b>sem</b> lesão de órgão-alvo. Não há indicação de droga IV nem de redução rápida. Ajuste oral, reconciliação, orientação e seguimento próximo. Baixar rápido aqui não traz benefício e pode causar isquemia.'},
+{q:'Homem de 58 anos, confuso, PA 232/130, hemiparesia direita de instalação súbita há 90 minutos. Isso é encefalopatia hipertensiva?',
+ r:'Provavelmente não. O déficit focal aponta AVC. A conduta muda completamente: neuroimagem urgente, avaliação de janela para reperfusão e metas pressóricas próprias do AVC — não os 20–25% da encefalopatia.'},
+{q:'Paciente em nitroprussiato, PA 175/100, ainda confuso, com SpO₂ 88% e estertores difusos que surgiram há 20 minutos. O que mudou?',
+ r:'Surgiu um segundo órgão-alvo: congestão pulmonar. Reavalie ausculta, radiografia e volemia. Aqui o nitrato venoso e o diurético de alça passam a ter papel — como adição ao controle pressórico, sem abandonar o alvo neurológico.'},
+{q:'Após 40 horas de infusão em paciente com creatinina 2,8, surge acidose metabólica com ânion gap, agitação e piora do nível de consciência apesar de PA 150/90. Hipótese?',
+ r:'Toxicidade por metabólitos do nitroprussiato (cianeto/tiocianato). Reduzir/suspender a droga, acelerar a transição para alternativa, avaliar suporte e considerar a investigação específica conforme o protocolo institucional.'},
+{q:'Paciente estável, PA 150/92, em infusão a 4 mL/h há 6 horas, sem nenhuma droga oral. O plantonista desliga a bomba. Vinte minutos depois: 198/118. Por quê?',
+ r:'Rebote por retirada de vasodilatador de meia-vida ultracurta sem ponte oral. A conduta é reinstalar, estabilizar, iniciar a oral e recomeçar o desmame em degraus.'},
+{q:'Homem com encefalopatia hipertensiva e frequência cardíaca de 48 bpm, com história de asma. Labetalol é boa opção?',
+ r:'Não. Bradicardia e broncoespasmo são contraindicações relevantes ao betabloqueio. Prefira um agente arterial titulável sem efeito cronotrópico negativo.'},
+{q:'Paciente com PA 228/134, cefaleia intensa e rigidez de nuca de início súbito e explosivo. TC inicial sem alterações. Conduta?',
+ r:'A cefaleia em trovoada com rigidez de nuca obriga a considerar hemorragia subaracnóidea mesmo com TC inicial normal. Prossiga a investigação conforme protocolo (punção lombar ou angio conforme o caso) antes de assumir encefalopatia hipertensiva.'},
+{q:'Durante a titulação a PA está em 186/108 e o paciente adormece profundamente. FC 52, perfusão lentificada. O que você pensa?',
+ r:'Sonolência com bradicardia e má perfusão em PA ainda alta não é hipoperfusão por queda excessiva. Procure outra causa: metabólica, tóxica, hipóxica ou evento neurológico novo. Reavalie glicemia, gasometria e imagem.'},
+{q:'Esposa informa que ele parou clonidina há três dias porque acabou a caixa. Como isso muda o raciocínio?',
+ r:'Passa a existir uma causa específica e reversível: hipertensão rebote por retirada de agonista α₂ central. A reintrodução da droga suspensa costuma ser parte central da solução, e a retirada futura deve ser gradual.'},
+{q:'Paciente controlado com 145/88 na infusão a 3 mL/h, já em duas classes orais absorvidas, sem melhora adicional há 8 horas. Manter assim é seguro?',
+ r:'Manter indefinidamente prolonga a exposição à droga IV sem benefício. Retome os degraus com intervalo definido — o tempo em nitroprussiato é, por si só, um fator de risco.'},
+{q:'Interno pergunta: "por que não damos captopril sublingual enquanto a bomba não chega?"',
+ r:'Porque a dose oral não é titulável e a queda é imprevisível em um cérebro que perdeu autorregulação. Em emergência com LOA aguda, a resposta é organizar o acesso e a bomba, não improvisar uma queda que você não consegue reverter.'},
+{q:'Após 48 h, PA 138/84 em esquema oral, ressonância com edema posterior em regressão. O que ainda falta antes da alta hospitalar?',
+ r:'Confirmar estabilidade, ajustar doses, investigar a causa da descompensação e causas secundárias quando indicado, avaliar adesão, educar sobre sinais de alarme, entregar o esquema por escrito e marcar seguimento.'}
+];
+
+var DECISOES=[
+{q:'PA 228/134, confuso, SpO₂ 87%. Você trata primeiro a pressão ou a oxigenação?',a:'Os dois em paralelo',b:'Primeiro a pressão',ok:'a',r:'Hipóxia e hipertensão são tratadas simultaneamente. Nenhuma das duas espera a outra.'},
+{q:'Queda de 16% na primeira hora, com melhora neurológica clara. Você aumenta a bomba?',a:'Não — desacelera',b:'Sim, até 25%',ok:'a',r:'A meta é teto, não cota. Ele já respondeu.'},
+{q:'PA caiu e o paciente ficou sonolento. Você mantém ou reduz a infusão?',a:'Reduz imediatamente',b:'Mantém, pois a PA está boa',ok:'a',r:'Piora neurológica com queda pressórica = passou do platô de autorregulação dele.'},
+{q:'Paciente com encefalopatia e sem congestão pulmonar. Nitroglicerina como agente principal?',a:'Não',b:'Sim',ok:'a',r:'Venodilatador controla mal a PA e contamina o exame neurológico com cefaleia.'},
+{q:'Surge edema agudo de pulmão durante a internação. Nitrato venoso entra?',a:'Sim, agora faz sentido',b:'Não, nunca neste caso',ok:'a',r:'Mudou o alvo: agora existe congestão, e o compartimento venoso passa a ser útil.'},
+{q:'Ex-tabagista sem gasometria alterada. Alvo de SpO₂ 88–92%?',a:'Não, use 94–98%',b:'Sim, por segurança',ok:'a',r:'Sem evidência de retenção crônica, o alvo restritivo não se justifica.'},
+{q:'Venturi 28%: você calcula a FiO₂ pelo fluxo?',a:'Não, pelo adaptador',b:'Sim, pelo litro',ok:'a',r:'Na Venturi, o bico define; o fluxo só precisa atender o mínimo do fabricante.'},
+{q:'Paciente confuso e ainda sem via oral segura. Inicia a ponte oral?',a:'Não, espera',b:'Sim, para sair logo da bomba',ok:'a',r:'Ponte com trato inseguro é risco de aspiração e de absorção imprevisível.'},
+{q:'Potássio 3,2 mEq/L. Reintroduz espironolactona agora?',a:'Corrige e reavalia primeiro',b:'Sim, imediatamente',ok:'a',r:'A ordem importa: a espironolactona volta por último, com potássio e creatinina conhecidos.'},
+{q:'A PA caiu sozinha sob dose fixa de infusão. Isso significa o quê?',a:'A oral começou a sustentar',b:'A bomba está com defeito',ok:'a',r:'É o sinal verde do desmame — pode descer o primeiro degrau.'},
+{q:'Bomba a 3 mL/h. Você desliga direto?',a:'Faz mais um degrau antes',b:'Desliga, é dose simbólica',ok:'a',r:'Dose baixa de droga potente ainda segura pressão. O último degrau é o teste.'},
+{q:'Logo após o OFF, você retira o acesso venoso?',a:'Não, mantém na janela de vigilância',b:'Sim, para dar alta da UTI',ok:'a',r:'Se o desmame falhar, reinstalar às pressas custa tempo que o cérebro não tem.'},
+{q:'A PA sobe a cada redução da infusão. Você insiste na redução?',a:'Volta o degrau e otimiza a oral',b:'Insiste, ele precisa se acostumar',ok:'a',r:'A falha do desmame é informação sobre a ponte, não teimosia a ser vencida.'},
+{q:'Paciente usava clonidina e parou há 3 dias. Isso muda a conduta?',a:'Sim, considerar rebote e reintrodução',b:'Não, é detalhe da anamnese',ok:'a',r:'Rebote por retirada de α₂ central é causa específica, reversível e frequentemente esquecida.'},
+{q:'Ele usa quatro drogas e chegou a 228/134. Rotula como hipertensão resistente verdadeira?',a:'Não antes de excluir sabotadores',b:'Sim, por definição',ok:'a',r:'Interrupção de caixa, AINE e horários trocados produzem pseudorresistência.'},
+{q:'Na alta da UTI, você entrega a mesma receita de antes?',a:'Não — reconstruída e por escrito',b:'Sim, era o esquema dele',ok:'a',r:'Devolver o esquema que falhou, sem entender por que falhou, garante o retorno.'}
+];
+
+var PEGADINHAS=[
+'PA muito alta não define emergência: quem define é a lesão aguda de órgão-alvo.',
+'"Urgência hipertensiva" saiu da nomenclatura brasileira em 2025 — o termo atual é elevação importante da PA sem lesão de órgão-alvo.',
+'A meta de 20–25% é teto de segurança, não cota a ser cumprida.',
+'Normalizar a PA na primeira hora é o erro que causa isquemia no hipertenso crônico.',
+'Edema da encefalopatia é vasogênico; o do AVC isquêmico precoce é citotóxico.',
+'Déficit focal grosseiro afasta encefalopatia hipertensiva até prova em contrário.',
+'Oxigênio não é obrigatório em toda sala vermelha: é medicamento com indicação.',
+'No cateter nasal, litro não é FiO₂ exata — é estimativa que varia com o padrão ventilatório.',
+'Na Venturi, calcular FiO₂ pelo fluxo é erro: quem define é o adaptador.',
+'Cores de adaptadores de Venturi variam entre fabricantes; nunca decore a cor.',
+'Ex-tabagista não é sinônimo de DPOC nem de retentor de CO₂.',
+'Nitroglicerina é predominantemente venodilatadora: péssimo agente principal para o cérebro.',
+'Nitroprussiato é arterial E venoso — e o componente venoso pode elevar a pressão intracraniana.',
+'Nipride em µg/kg/min, Tridil em µg/min: trocar a unidade em 70 kg erra a dose em 70 vezes.',
+'Piora neurológica com PA melhorando sugere a droga (metabólitos), não só a doença.',
+'Hidralazina em bolus não é titulável: você não consegue voltar atrás se descer demais.',
+'Na dissecção de aorta, o betabloqueador vem antes do vasodilatador.',
+'Na crise adrenérgica, alfa vem antes de beta — sempre.',
+'A espironolactona é a quarta droga do esquema, nunca a quinta.',
+'Desligar o vasodilatador IV sem ponte oral produz rebote em minutos, às vezes acima do valor inicial.',
+'Reconciliação não é tarefa da alta: começa na porta da sala vermelha.',
+'Antes de rotular hipertensão resistente, exclua interrupção de medicação, AINE e excesso de sódio.'
+];
+
+var REV60=[
+'Emergência = lesão aguda de órgão-alvo. O número só toca o alarme.',
+'2025: "urgência hipertensiva" virou elevação importante da PA sem LOA.',
+'Encefalopatia: reduzir ≈20–25%, sobretudo na primeira hora, sem normalizar.',
+'Subiu demais, incha. Baixou demais, isquemia.',
+'MOV antes do ABCDE. Glicemia capilar dentro do D.',
+'SpO₂ 87% + ex-tabagista: trate, colha gasometria, mas não presuma DPOC.',
+'Cateter estima (21% + 3–4%/L). Venturi define (adaptador).',
+'Meta de SpO₂ 94–98% sem risco de retenção; 88–92% se houver.',
+'Cérebro pede arteríola; pulmão congesto pede veia.',
+'Ideal internacional: nicardipino/clevidipino/labetalol. Realidade brasileira: nitroprussiato bem usado.',
+'Nitroprussiato: cianeto, PIC, luz e rebote.',
+'Nipride 2+248 · Tridil 10+240 · ambos 200 µg/mL no exemplo didático.',
+'70 kg, 1 µg/kg/min, 200 µg/mL = 21 mL/h.',
+'Titular = decidir, observar, decidir de novo.',
+'PA cai e o paciente piora → reduza a infusão.',
+'TC exclui o desastre; RM mostra o mapa do edema.',
+'Reconciliação em três tempos: entrada, estabilização, transição.',
+'Trio de ouro + espironolactona como quarta droga.',
+'A ponte oral se constrói antes do OFF; o sinal verde é a PA cair sozinha.',
+'Depois do OFF, janela de vigilância com acesso mantido.',
+'Não mande o helicóptero embora antes de construir a ponte.'
+];
+
+var ESPACADA=[
+{d:'Hoje',itens:['Refazer o cálculo da bomba com 3 pesos diferentes','Repetir a escada do cateter de cabeça','Listar os 5 portões do OFF sem olhar']},
+{d:'Amanhã',itens:['Explicar em voz alta por que nitroglicerina não é o agente principal','Refazer a arena de questões só com as que errou','Reconstruir a ordem de reintrodução oral em camadas']},
+{d:'Em 7 dias',itens:['Percorrer o palácio inteiro de memória','Simular a titulação e o desmame do zero','Escrever o plano de alta do caso em 10 linhas']}
+];
+</script>
+<script>
+/* ============ LÓGICA ============ */
+function salvar(){try{localStorage.setItem(LS_KEY,JSON.stringify(estado));}catch(e){}}
+function carregar(){try{var s=localStorage.getItem(LS_KEY);if(s){var o=JSON.parse(s);if(o&&typeof o==='object'){estado=Object.assign(estado,o);}}}catch(e){}}
+function go(id){var el=document.getElementById(id);if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}}
+function toggleProf(){document.body.classList.toggle('eh-noprof');var b=document.getElementById('btnProf');b.classList.toggle('on',!document.body.classList.contains('eh-noprof'));}
+function toggleMov(){document.body.classList.toggle('eh-reduz');document.getElementById('btnMov').classList.toggle('on',document.body.classList.contains('eh-reduz'));}
+function zerar(){if(!confirm('Reiniciar todo o progresso salvo deste capítulo?'))return;estado={vistas:{},questoes:{},fila:[],espacada:{},checklist:{}};salvar();location.reload();}
+function revelar(id){var el=document.getElementById(id);if(el)el.classList.remove('eh-hide');}
+function acc(btn){var b=btn.nextElementSibling;var ic=btn.querySelector('.eh-ico');var aberto=b.style.maxHeight&&b.style.maxHeight!=='0px';
+  if(aberto){b.style.maxHeight='0px';if(ic)ic.textContent='＋';}else{b.style.maxHeight=b.scrollHeight+40+'px';if(ic)ic.textContent='✕';}}
+
+/* ---- monitor ---- */
+function setMonitor(m){
+  document.getElementById('mPA').textContent=m.pa;
+  document.getElementById('mFC').textContent=m.fc;
+  document.getElementById('mSP').textContent=m.sp;
+  document.getElementById('mGL').textContent=m.gl;
+  document.getElementById('mT').textContent=m.t;
+  document.getElementById('mLab').textContent=m.lab;
+}
+
+/* ---- filme ---- */
+var cenaAtual=0;
+function renderCenas(){
+  var st=document.getElementById('cenaSteps'),dt=document.getElementById('cenaDots');
+  st.innerHTML='';dt.innerHTML='';
+  for(var i=0;i<CENAS.length;i++){
+    var b=document.createElement('button');b.className='eh-step';b.textContent=(i+1);
+    b.setAttribute('aria-label','Cena '+(i+1));
+    (function(n){b.onclick=function(){cenaGo(n);};})(i);
+    st.appendChild(b);
+    var d=document.createElement('span');d.className='eh-dot';dt.appendChild(d);
+  }
+  cenaGo(0);
+}
+function cenaGo(n){
+  cenaAtual=Math.max(0,Math.min(CENAS.length-1,n));
+  var c=CENAS[cenaAtual];
+  document.getElementById('cenaBox').innerHTML='<div class="eh-cenat">'+c.t+'</div><div class="eh-cenah">'+c.h+'</div><div class="eh-cenab">'+c.b+'</div>';
+  document.getElementById('cenaNum').textContent=(cenaAtual+1);
+  var steps=document.querySelectorAll('#cenaSteps .eh-step');
+  var dots=document.querySelectorAll('#cenaDots .eh-dot');
+  estado.vistas['cena'+cenaAtual]=1;salvar();
+  for(var i=0;i<steps.length;i++){
+    steps[i].classList.toggle('on',i===cenaAtual);
+    steps[i].classList.toggle('seen',!!estado.vistas['cena'+i]&&i!==cenaAtual);
+    if(dots[i])dots[i].classList.toggle('on',i===cenaAtual);
+  }
+  setMonitor(c.m);
+}
+function cenaMove(d){cenaGo(cenaAtual+d);}
+
+/* ---- escada do O2 ---- */
+var FIO2=[21,24,28,32,36,40,44];
+function o2Update(){
+  var f=parseInt(document.getElementById('o2Fluxo').value,10);
+  var box=document.getElementById('escadaO2');box.innerHTML='';
+  for(var i=0;i<FIO2.length;i++){
+    var pct=Math.round((FIO2[i]-18)/(44-18)*100);
+    var d=document.createElement('div');
+    d.className='eh-degrau'+(i===f?' on':'');
+    d.innerHTML='<span class="eh-dgl">'+(i===0?'Ar ambiente':i+' L/min')+'</span>'+
+      '<span class="eh-dgb"><span class="eh-dgf" style="width:'+pct+'%"></span></span>'+
+      '<span class="eh-dgv">≈'+FIO2[i]+'%</span>';
+    (function(n){d.onclick=function(){document.getElementById('o2Fluxo').value=n;o2Update();};})(i);
+    box.appendChild(d);
+  }
+}
+
+/* ---- autorregulação ---- */
+function autoreg(){
+  var pam=parseInt(document.getElementById('pamSlider').value,10);
+  document.getElementById('pamVal').textContent=pam;
+  function fluxo(low,high){
+    if(pam<low)return Math.max(20,100*pam/low);
+    if(pam>high)return Math.min(185,100+(pam-high)*2.2);
+    return 100;
+  }
+  var fn=fluxo(60,125),fh=fluxo(95,150);
+  function pinta(el,v){
+    var w=Math.min(100,v/185*100);
+    el.style.width=w+'%';
+    el.style.background=v>125?'var(--vermelho)':(v<97?'var(--neuro)':'var(--verde)');
+  }
+  pinta(document.getElementById('fluxoN'),fn);
+  pinta(document.getElementById('fluxoH'),fh);
+  var m='';
+  if(fh>125){m='<b>Hiperperfusão no hipertenso crônico.</b> A PAM ultrapassou o limite superior da autorregulação dele: vasodilatação forçada, quebra da barreira hematoencefálica e edema vasogênico. É a barragem estourando — o cenário da admissão deste paciente.';}
+  else if(fh<97){m='<b>Hipoperfusão no hipertenso crônico.</b> Repare: o normotenso ainda mantém fluxo nesta PAM, mas este cérebro não. É exatamente por isso que "normalizar" a pressão na primeira hora pode isquemiar.';}
+  else if(fn>125){m='<b>Faixa segura para o hipertenso crônico, alta para o normotenso.</b> A mesma PAM produz consequências opostas em cérebros diferentes — a curva dele está deslocada à direita.';}
+  else{m='<b>Ambos dentro do platô.</b> O fluxo cerebral está preservado nos dois. Esta é a faixa para onde queremos trazer o paciente — devagar.';}
+  document.getElementById('autoregMsg').innerHTML=m;
+}
+
+/* ---- exames ---- */
+var examesSel={};
+function renderExames(){
+  var g=document.getElementById('examesGrid');g.innerHTML='';
+  for(var i=0;i<EXAMES.length;i++){
+    var b=document.createElement('button');b.className='eh-chip';b.textContent=EXAMES[i].n;
+    (function(n){b.onclick=function(){examesSel[n]=!examesSel[n];this.classList.toggle('on',!!examesSel[n]);};})(i);
+    g.appendChild(b);
+  }
+}
+function limparExames(){examesSel={};document.getElementById('examesFb').innerHTML='';
+  var cs=document.querySelectorAll('#examesGrid .eh-chip');for(var i=0;i<cs.length;i++)cs[i].classList.remove('on');}
+function conferirExames(){
+  var bons=0,total=0,html='';
+  for(var i=0;i<EXAMES.length;i++){
+    var e=EXAMES[i];
+    if(e.ok===1)total++;
+    if(examesSel[i]){
+      var cls=e.ok===1?'eh-ok':(e.ok===2?'eh-conc':'eh-perigo');
+      var lbl=e.ok===1?'Essencial':(e.ok===2?'Conforme contexto':'Não faça');
+      if(e.ok===1)bons++;
+      html+='<div class="eh-box '+cls+'" style="margin:8px 0"><b>'+e.n+' — '+lbl+'</b><br>'+e.c+'</div>';
+    }
+  }
+  var faltou='';
+  for(var j=0;j<EXAMES.length;j++){if(EXAMES[j].ok===1&&!examesSel[j])faltou+='<li>'+EXAMES[j].n+'</li>';}
+  if(faltou)html+='<div class="eh-box eh-peg" style="margin:8px 0"><b>Ficou de fora e faria falta:</b><ul style="margin:6px 0 0">'+faltou+'</ul></div>';
+  html='<div class="eh-box eh-conc" style="margin:10px 0"><b>'+bons+' de '+total+'</b> exames essenciais marcados.</div>'+html;
+  document.getElementById('examesFb').innerHTML=html;
+}
+
+/* ---- órgão-alvo → droga ---- */
+function renderOrgaos(){
+  var g=document.getElementById('orgaoChips');g.innerHTML='';
+  for(var i=0;i<ORGAOS.length;i++){
+    var b=document.createElement('button');b.className='eh-chip';b.textContent=ORGAOS[i].k;
+    (function(n,btn){btn.onclick=function(){
+      var cs=document.querySelectorAll('#orgaoChips .eh-chip');for(var k=0;k<cs.length;k++)cs[k].classList.remove('on');
+      btn.classList.add('on');
+      var o=ORGAOS[n];
+      document.getElementById('orgaoOut').innerHTML='<div class="eh-box eh-'+o.cor+'"><b>'+o.t+'</b><p style="margin:8px 0 0">'+o.b+'</p></div>';
+    };})(i,b);
+    g.appendChild(b);
+  }
+  g.firstChild.click();
+}
+
+/* ---- calculadora ---- */
+function calcBomba(){
+  var peso=parseFloat(document.getElementById('calcPeso').value)||0;
+  var conc=parseFloat(document.getElementById('calcConc').value)||1;
+  var dose=parseFloat(document.getElementById('calcDose').value)||0;
+  var un=document.getElementById('calcUn').value;
+  var ugmin=un==='kg'?dose*peso:dose;
+  var ugh=ugmin*60;
+  var mlh=ugh/conc;
+  document.getElementById('calcOut').textContent=(Math.round(mlh*10)/10).toString().replace('.',',')+' mL/h';
+  var p='';
+  if(un==='kg'){p='1) '+dose+' × '+peso+' kg = '+(Math.round(ugmin*10)/10)+' µg/min<br>';}
+  else{p='1) dose já está em µg/min = '+ugmin+' µg/min<br>';}
+  p+='2) × 60 = '+(Math.round(ugh))+' µg/h<br>3) ÷ '+conc+' µg/mL = <b>'+(Math.round(mlh*10)/10)+' mL/h</b>';
+  document.getElementById('calcPasso').innerHTML=p;
+}
+
+/* ---- titulação ---- */
+var titIdx=0;
+function titRender(){
+  var p=TITPASSOS[titIdx];
+  document.getElementById('titRel').textContent=p.rel;
+  document.getElementById('titPA').textContent=p.pa;
+  document.getElementById('titPAM').textContent=p.pam?p.pam:'—';
+  document.getElementById('titBomba').textContent=p.bomba+' mL/h';
+  var q=p.pam?Math.round((165-p.pam)/165*100):0;
+  document.getElementById('titQueda').textContent=q+'%';
+  document.getElementById('titCena').innerHTML=p.cena;
+  var o=document.getElementById('titOpts');o.innerHTML='';
+  document.getElementById('titFb').innerHTML='';
+  for(var i=0;i<p.opts.length;i++){
+    var b=document.createElement('button');b.className='eh-btn';b.textContent=p.opts[i].t;
+    (function(n){b.onclick=function(){titEsc(n);};})(i);
+    o.appendChild(b);
+  }
+}
+function titEsc(n){
+  var op=TITPASSOS[titIdx].opts[n];
+  document.getElementById('titFb').innerHTML='<div class="eh-box '+(op.bom?'eh-ok':'eh-perigo')+'" style="margin-top:10px"><b>'+(op.bom?'✔ Boa decisão':'✖ Cuidado')+'</b><p style="margin:6px 0 0">'+op.fb+'</p></div>'+
+    '<div class="eh-btnrow"><button class="eh-btn eh-pri" onclick="titProx('+op.prox+')">Avançar o relógio ▶</button></div>';
+}
+function titProx(n){titIdx=n;titRender();}
+function titReset(){titIdx=0;titRender();}
+
+/* ---- sacola ---- */
+var sacolaAbertos=0;
+function renderSacola(){
+  var g=document.getElementById('sacolaGrid');g.innerHTML='';
+  for(var i=0;i<SACOLA.length;i++){
+    var b=document.createElement('button');b.className='eh-hubc';b.innerHTML='<span class="eh-hubt">'+SACOLA[i].n+'</span>';
+    (function(n,btn){btn.onclick=function(){
+      if(btn.classList.contains('done'))return;
+      btn.classList.add('done');btn.style.borderColor='var(--verde)';
+      sacolaAbertos++;
+      var d=document.createElement('div');d.className='eh-box eh-conc';d.style.margin='8px 0';
+      d.innerHTML='<b>'+SACOLA[n].n+'</b><p style="margin:6px 0 0">'+SACOLA[n].r+'</p>';
+      document.getElementById('sacolaOut').appendChild(d);
+      if(sacolaAbertos>=4)document.getElementById('sacolaVeredito').classList.remove('eh-hide');
+    };})(i,b);
+    g.appendChild(b);
+  }
+}
+
+/* ---- portões do OFF ---- */
+var portoesSel={};
+function renderPortoes(){
+  var g=document.getElementById('portoesBox');g.innerHTML='';
+  for(var i=0;i<PORTOES.length;i++){
+    var d=document.createElement('div');d.className='eh-ck';
+    d.innerHTML='<span class="eh-ckb"></span><span class="eh-ckt"><b>'+(i+1)+' · '+PORTOES[i].t+'</b><br><span class="eh-muted">'+PORTOES[i].d+'</span></span>';
+    (function(n,el){el.onclick=function(){portoesSel[n]=!portoesSel[n];el.classList.toggle('on',!!portoesSel[n]);
+      el.querySelector('.eh-ckb').textContent=portoesSel[n]?'✔':'';portoesUpd();};})(i,d);
+    g.appendChild(d);
+  }
+  portoesUpd();
+}
+function portoesUpd(){
+  var n=0;for(var k in portoesSel){if(portoesSel[k])n++;}
+  var m;
+  if(n===PORTOES.length)m='<b style="color:var(--verde)">Pode fazer o OFF.</b> Os cinco portões estão abertos: lesão em melhora, PA estável, oral iniciada e absorvida, causa identificada e efeito da oral demonstrado. Desligue e mantenha a janela de vigilância com acesso preservado.';
+  else if(n>=3)m='<b style="color:var(--ambar)">Ainda não.</b> '+n+' de 5 portões. O desmame pode começar a ser <i>planejado</i>, mas desligar agora é apostar contra o rebote.';
+  else m='<b style="color:var(--vermelho)">Nem pense em desligar.</b> '+n+' de 5 portões. Neste ponto, mexer na bomba para baixo é retirar apoio sem ter colocado apoio.';
+  document.getElementById('portoesOut').innerHTML=m;
+}
+
+/* ---- desmame ---- */
+var dmEstado='inicio';
+function dmRender(){
+  var p=DMPASSOS[dmEstado];
+  document.getElementById('dmBomba').textContent=p.bomba+' mL/h';
+  document.getElementById('dmPA').textContent=p.pa;
+  document.getElementById('dmOral').textContent=p.oral;
+  document.getElementById('dmHoras').textContent=p.horas+' h';
+  var o=document.getElementById('dmOpts');o.innerHTML='';
+  document.getElementById('dmFb').innerHTML='<div class="eh-box eh-neu">'+p.cena+'</div>';
+  for(var i=0;i<p.opts.length;i++){
+    var b=document.createElement('button');b.className='eh-btn';b.textContent=p.opts[i].t;
+    (function(n){b.onclick=function(){dmEsc(n);};})(i);
+    o.appendChild(b);
+  }
+}
+function dmEsc(n){
+  var op=DMPASSOS[dmEstado].opts[n];
+  document.getElementById('dmFb').innerHTML+='<div class="eh-box '+(op.bom?'eh-ok':'eh-perigo')+'" style="margin-top:10px"><b>'+(op.bom?'✔':'✖')+'</b> '+op.fb+'</div>'+
+   '<div class="eh-btnrow"><button class="eh-btn eh-pri" onclick="dmVai(\''+op.prox+'\')">Continuar ▶</button></div>';
+  document.getElementById('dmOpts').innerHTML='';
+}
+function dmVai(s){dmEstado=s;dmRender();}
+function dmReset(){dmEstado='inicio';dmRender();}
+
+/* ---- erros / palácio / checklist ---- */
+function renderErros(){
+  var g=document.getElementById('errosGrid');g.innerHTML='';
+  for(var i=0;i<ERROS.length;i++){
+    var d=document.createElement('div');d.className='eh-box eh-perigo';
+    d.innerHTML='<span class="eh-tag eh-t-perigo">❌ Erro '+(i+1)+'</span><b>'+ERROS[i].t+'</b><p style="margin:6px 0 0">'+ERROS[i].d+'</p>';
+    g.appendChild(d);
+  }
+}
+function renderPalacio(){
+  var g=document.getElementById('palacioGrid');g.innerHTML='';
+  for(var i=0;i<PALACIO.length;i++){
+    var s=PALACIO[i];
+    var d=document.createElement('div');d.className='eh-sala';
+    d.innerHTML='<span class="eh-salaico">'+s.i+'</span><span class="eh-salan">'+s.n+'</span><span class="eh-salat">'+s.t+'</span><span class="eh-salad">'+s.d+'</span>';
+    d.onclick=function(){this.classList.toggle('open');};
+    g.appendChild(d);
+  }
+}
+function abrirPalacio(){var s=document.querySelectorAll('#palacioGrid .eh-sala');for(var i=0;i<s.length;i++)s[i].classList.add('open');}
+function fecharPalacio(){var s=document.querySelectorAll('#palacioGrid .eh-sala');for(var i=0;i<s.length;i++)s[i].classList.remove('open');}
+
+function renderChecklist(){
+  var g=document.getElementById('checklistBox');g.innerHTML='';
+  for(var i=0;i<CHECKLIST.length;i++){
+    var it=CHECKLIST[i];
+    var d=document.createElement('div');d.className='eh-ck'+(estado.checklist[i]?' on':'');
+    d.innerHTML='<span class="eh-ckb">'+(estado.checklist[i]?'✔':'')+'</span><span class="eh-ckt">'+(i+1)+'. '+it.t+'</span><span class="eh-ckp">'+it.p+' pt</span>';
+    (function(n,el){el.onclick=function(){estado.checklist[n]=!estado.checklist[n];el.classList.toggle('on',!!estado.checklist[n]);
+      el.querySelector('.eh-ckb').textContent=estado.checklist[n]?'✔':'';salvar();ckUpd();};})(i,d);
+    g.appendChild(d);
+  }
+  ckUpd();
+}
+function ckUpd(){
+  var tot=0,got=0;
+  for(var i=0;i<CHECKLIST.length;i++){tot+=CHECKLIST[i].p;if(estado.checklist[i])got+=CHECKLIST[i].p;}
+  var pct=Math.round(got/tot*100);
+  document.getElementById('ckScore').textContent=got+' / '+tot;
+  document.getElementById('ckFill').style.width=pct+'%';
+  var m;
+  if(pct>=90)m='Desempenho de quem conduz a estação inteira, do MOV ao plano de saída.';
+  else if(pct>=70)m='Aprovação provável. Reveja os itens de peso 2 que ficaram em branco — são eles que decidem.';
+  else if(pct>=40)m='Faltam pilares. Volte às cenas de MOV, meta pressórica e desmame.';
+  else m='Comece marcando os itens executados.';
+  document.getElementById('ckMsg').textContent=m;
+  document.getElementById('ckFill').style.background=pct>=70?'var(--verde)':(pct>=40?'var(--ambar)':'var(--vermelho)');
+}
+
+/* ---- questões ---- */
+var qIdx=0,qLista=[],qFiltro='todas',qSoErr=false;
+function qAplicaFiltro(){
+  qLista=[];
+  for(var i=0;i<QUESTOES.length;i++){
+    var q=QUESTOES[i];
+    if(qFiltro!=='todas'&&q.nivel!==qFiltro)continue;
+    if(qSoErr&&!(estado.questoes[q.id]&&estado.questoes[q.id]==='erro'))continue;
+    qLista.push(q);
+  }
+  if(!qLista.length)qLista=QUESTOES.slice(0);
+  qIdx=0;qRender();
+}
+function renderQFiltros(){
+  var g=document.getElementById('qFiltros');g.innerHTML='';
+  var fs=[['todas','Todas'],['facil','Fácil'],['inter','Intermediária'],['tec','Nível TEC'],['dificil','Difícil']];
+  for(var i=0;i<fs.length;i++){
+    var b=document.createElement('button');b.className='eh-chip'+(fs[i][0]===qFiltro?' on':'');b.textContent=fs[i][1];
+    (function(v){b.onclick=function(){qFiltro=v;qSoErr=false;renderQFiltros();qAplicaFiltro();};})(fs[i][0]);
+    g.appendChild(b);
+  }
+}
+function qRender(){
+  var q=qLista[qIdx];if(!q)return;
+  var h='<div class="eh-lbl">Questão '+(qIdx+1)+' de '+qLista.length+' · '+q.tema+' · '+q.nivel+'</div><h3 style="margin-top:6px">'+q.q+'</h3>';
+  for(var i=0;i<q.alts.length;i++){
+    h+='<button class="eh-alt" id="alt'+i+'" onclick="qResp('+i+')">'+String.fromCharCode(65+i)+') '+q.alts[i]+'</button>';
+  }
+  h+='<div id="qExpl"></div>';
+  document.getElementById('qBox').innerHTML=h;
+  qStatUpd();
+}
+function qResp(i){
+  var q=qLista[qIdx];
+  var certo=(i===q.c);
+  for(var k=0;k<q.alts.length;k++){
+    var el=document.getElementById('alt'+k);
+    el.onclick=null;
+    if(k===q.c)el.classList.add('certa');
+    else if(k===i)el.classList.add('errada');
+  }
+  estado.questoes[q.id]=certo?'ok':'erro';
+  if(!certo&&estado.fila.indexOf(q.id)<0)estado.fila.push(q.id);
+  if(certo){var p=estado.fila.indexOf(q.id);if(p>=0)estado.fila.splice(p,1);}
+  salvar();
+  document.getElementById('qExpl').innerHTML='<div class="eh-expl"><b>'+(certo?'✔ Correto.':'✖ Alternativa correta: '+String.fromCharCode(65+q.c)+'.')+'</b><p style="margin:6px 0 0">'+q.expl+'</p><p style="margin:8px 0 0;color:var(--ambar)"><b>Pegadinha:</b> '+q.peg+'</p></div>';
+  hcUpd();qStatUpd();
+}
+function qNav(d){qIdx=(qIdx+d+qLista.length)%qLista.length;qRender();}
+function qSoErradas(){qSoErr=!qSoErr;qAplicaFiltro();}
+function qStatUpd(){
+  var r=0,a=0;
+  for(var k in estado.questoes){r++;if(estado.questoes[k]==='ok')a++;}
+  document.getElementById('qStat').textContent='Respondidas: '+r+' de '+QUESTOES.length+' · acertos: '+a+(qSoErr?' · filtro: só as que errei':'');
+}
+
+/* ---- flashcards ---- */
+var fcCat='todas';
+function renderFcFiltros(){
+  var cats=['todas'];
+  for(var i=0;i<FLASHCARDS.length;i++){if(cats.indexOf(FLASHCARDS[i].c)<0)cats.push(FLASHCARDS[i].c);}
+  var g=document.getElementById('fcFiltros');g.innerHTML='';
+  for(var j=0;j<cats.length;j++){
+    var b=document.createElement('button');b.className='eh-chip'+(cats[j]===fcCat?' on':'');b.textContent=cats[j]==='todas'?'Todas ('+FLASHCARDS.length+')':cats[j];
+    (function(v){b.onclick=function(){fcCat=v;renderFcFiltros();renderFc();};})(cats[j]);
+    g.appendChild(b);
+  }
+}
+var fcAberto=false;
+function fcExpor(){
+  fcAberto=!fcAberto;
+  document.getElementById('btnFcExp').textContent=fcAberto?'Voltar ao modo virar':'Mostrar todas as respostas';
+  renderFc();
+}
+function renderFc(){
+  var g=document.getElementById('fcGrid');g.innerHTML='';
+  for(var i=0;i<FLASHCARDS.length;i++){
+    var f=FLASHCARDS[i];
+    if(fcCat!=='todas'&&f.c!==fcCat)continue;
+    var d=document.createElement('div');d.className='eh-fc';
+    d.innerHTML='<div class="eh-fcin"><div class="eh-fcf"><span class="eh-fccat">'+f.c+'</span><b>'+f.f+'</b><span class="eh-muted" style="margin-top:8px">toque para virar</span></div>'+
+                '<div class="eh-fcb"><span class="eh-fccat">resposta</span>'+f.v+'</div></div>';
+    d.onclick=function(){this.classList.toggle('flip');};
+    if(fcAberto)d.classList.add('flip');
+    g.appendChild(d);
+  }
+}
+
+/* ---- casos, decisões, pegadinhas, rev60 ---- */
+function renderCasos(){
+  var g=document.getElementById('casosBox');g.innerHTML='';
+  for(var i=0;i<CASOS.length;i++){
+    var d=document.createElement('div');d.className='eh-acc';
+    d.innerHTML='<button class="eh-acch" onclick="acc(this)">Caso '+(i+1)+' · '+CASOS[i].q+' <span class="eh-ico">＋</span></button>'+
+      '<div class="eh-accb"><div class="eh-accin">'+CASOS[i].r+'</div></div>';
+    g.appendChild(d);
+  }
+}
+function renderDec(){
+  var g=document.getElementById('decBox');g.innerHTML='';
+  for(var i=0;i<DECISOES.length;i++){
+    var dd=DECISOES[i];
+    var d=document.createElement('div');d.className='eh-card eh-flat';
+    d.innerHTML='<b>'+(i+1)+'. '+dd.q+'</b><div class="eh-btnrow">'+
+      '<button class="eh-btn" data-o="a">'+dd.a+'</button><button class="eh-btn" data-o="b">'+dd.b+'</button></div><div class="eh-decfb"></div>';
+    (function(item,el){
+      var bs=el.querySelectorAll('.eh-btn');
+      for(var k=0;k<bs.length;k++){
+        (function(btn){btn.onclick=function(){
+          var esc=btn.getAttribute('data-o');
+          var certo=(esc===item.ok);
+          el.querySelector('.eh-decfb').innerHTML='<div class="eh-box '+(certo?'eh-ok':'eh-perigo')+'"><b>'+(certo?'✔ Correto':'✖ Reveja')+'</b> — '+item.r+'</div>';
+        };})(bs[k]);
+      }
+    })(dd,d);
+    g.appendChild(d);
+  }
+}
+function renderPeg(){
+  var g=document.getElementById('pegGrid');g.innerHTML='';
+  for(var i=0;i<PEGADINHAS.length;i++){
+    var d=document.createElement('div');d.className='eh-box eh-peg';
+    d.innerHTML='<span class="eh-tag eh-t-peg">⚠ '+(i+1)+'</span>'+PEGADINHAS[i];
+    g.appendChild(d);
+  }
+}
+function renderRev60(){
+  var g=document.getElementById('rev60Box');
+  var h='<ol style="color:var(--txt2);padding-left:20px;margin:0">';
+  for(var i=0;i<REV60.length;i++)h+='<li style="margin-bottom:5px">'+REV60[i]+'</li>';
+  g.innerHTML=h+'</ol>';
+}
+function renderEspacada(){
+  var g=document.getElementById('espacada');g.innerHTML='';
+  for(var i=0;i<ESPACADA.length;i++){
+    var bloco=ESPACADA[i];
+    var t=document.createElement('div');t.innerHTML='<div class="eh-lbl" style="margin-top:10px">'+bloco.d+'</div>';
+    g.appendChild(t);
+    for(var j=0;j<bloco.itens.length;j++){
+      var key=i+'_'+j;
+      var d=document.createElement('div');d.className='eh-ck'+(estado.espacada[key]?' on':'');
+      d.innerHTML='<span class="eh-ckb">'+(estado.espacada[key]?'✔':'')+'</span><span class="eh-ckt">'+bloco.itens[j]+'</span>';
+      (function(k,el){el.onclick=function(){estado.espacada[k]=!estado.espacada[k];el.classList.toggle('on',!!estado.espacada[k]);
+        el.querySelector('.eh-ckb').textContent=estado.espacada[k]?'✔':'';salvar();};})(key,d);
+      g.appendChild(d);
+    }
+  }
+}
+
+/* ---- hipocampo ---- */
+function hcUpd(){
+  var r=0,a=0;
+  for(var k in estado.questoes){r++;if(estado.questoes[k]==='ok')a++;}
+  document.getElementById('hcResp').textContent=r;
+  document.getElementById('hcAcertos').textContent=a;
+  document.getElementById('hcFila').textContent=estado.fila.length;
+  var h='';
+  if(!estado.fila.length){h='<p class="eh-muted">Nenhuma questão na fila. Responda a arena para montar sua lista de revisão.</p>';}
+  else{
+    h='<p class="eh-muted">Temas que voltaram a te derrubar:</p>';
+    for(var i=0;i<estado.fila.length;i++){
+      var id=estado.fila[i];
+      for(var j=0;j<QUESTOES.length;j++){
+        if(QUESTOES[j].id===id){h+='<div class="eh-box eh-peg" style="margin:6px 0"><b>'+QUESTOES[j].tema+'</b> — '+QUESTOES[j].peg+'</div>';}
+      }
+    }
+  }
+  document.getElementById('hcLista').innerHTML=h;
+}
+
+/* ---- progresso de leitura ---- */
+function progresso(){
+  var h=document.documentElement;
+  var pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progBar').style.width=Math.min(100,Math.max(0,pct))+'%';
+}
+
+/* ---- init ---- */
+(function init(){
+  carregar();
+  document.body.classList.add('eh-noprof');
+  renderCenas();
+  o2Update();
+  autoreg();
+  renderExames();
+  renderOrgaos();
+  calcBomba();
+  titRender();
+  renderSacola();
+  renderPortoes();
+  dmRender();
+  renderErros();
+  renderPalacio();
+  renderChecklist();
+  renderQFiltros();
+  qAplicaFiltro();
+  renderFcFiltros();
+  renderFc();
+  renderCasos();
+  renderDec();
+  renderPeg();
+  renderRev60();
+  renderEspacada();
+  hcUpd();
+  window.addEventListener('scroll',progresso,{passive:true});
+  progresso();
+  document.addEventListener('keydown',function(e){
+    var st=document.getElementById('filme');if(!st)return;
+    var r=st.getBoundingClientRect();
+    if(r.top<window.innerHeight&&r.bottom>0){
+      if(e.key==='ArrowRight'){cenaMove(1);}
+      if(e.key==='ArrowLeft'){cenaMove(-1);}
+    }
+  });
+})();
+</script>
+</body>
+</html>
