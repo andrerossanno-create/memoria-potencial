@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dr. André Rossanno">
+<meta name="copyright" content="© 2026 Dr. André Rossanno — Atlas Mental / Memória Potencial">
+<meta name="description" content="Semiologia cardiovascular básica: inspeção e palpação passo a passo para o 2º período de Medicina. Atlas Mental — Memória Potencial.">
+<title>Semiologia CV Básica — O Mapa do Beira-Leito | Atlas Mental</title>
+<!--
+  ================================================================
+  ATLAS MENTAL · MEMÓRIA POTENCIAL
+  Semiologia Cardiovascular Básica — Inspeção e Palpação
+  © 2026 Dr. André Rossanno. Licença CC BY-NC-ND.
+  Material educacional gratuito. Uso comercial proibido.
+  Cópia, redistribuição modificada ou revenda não autorizadas.
+  ================================================================
+  HANDOFF: arquivo único autossuficiente. Sem libs externas.
+  Fontes: Nunito + IBM Plex Mono + Dancing Script.
+  Semântica de cor: vermelho=perigo/arterial · azul=venoso/conceito
+  verde=normal/protege · âmbar=pegadinha. Sem roxo/lilás/rosa.
+  Público-alvo: acadêmico de 2º período. Nível básico, resumido.
+  LS_KEY: atlasSemioCV_basico_v1
+  ================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f2233; --navy2:#1c3a52; --paper:#f4f7f9; --card:#ffffff;
+  --line:#dbe3ea; --ink:#17252f; --cinza:#5b6b7a;
+  --art:#c0392b; --art-soft:#fdecea; --art-deep:#8e2a1f;
+  --ven:#1f6fb2; --ven-soft:#e9f2fa; --ven-deep:#154d7d;
+  --atlas:#1282A2; --atlas-soft:#e6f4f8;
+  --verde:#1e8f5e; --verde-soft:#e7f6ee;
+  --ambar:#c98a00; --ambar-soft:#fdf4dd;
+  --r:16px; --sh:0 2px 10px rgba(15,34,51,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:76px}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  font-size:17px; line-height:1.6; -webkit-text-size-adjust:100%;
+}
+body.reduz *{animation:none!important; transition:none!important}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:960px; margin:0 auto; padding:0 16px}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky; top:0; z-index:60; background:rgba(15,34,51,.97);
+  color:#fff; border-bottom:2px solid var(--atlas);
+}
+.nav-in{max-width:960px; margin:0 auto; padding:9px 16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.brand{font-weight:900; font-size:15px; letter-spacing:.3px; line-height:1.15}
+.brand small{display:block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:#8fc7d8; font-weight:400; letter-spacing:1px; text-transform:uppercase}
+.nav-sp{flex:1}
+.tgl{
+  background:transparent; border:1px solid rgba(255,255,255,.3); color:#dceaf1;
+  font-family:'IBM Plex Mono',monospace; font-size:10.5px; padding:5px 9px;
+  border-radius:999px; cursor:pointer; font-weight:600;
+}
+.tgl[aria-pressed="true"]{background:var(--atlas); border-color:var(--atlas); color:#fff}
+.tgl:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #ffcf4d; outline-offset:2px}
+.prog{height:4px; background:rgba(255,255,255,.15)}
+.prog i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--ven),var(--atlas),var(--art)); transition:width .25s}
+
+/* ---------- HERO ---------- */
+.hero{background:var(--navy); color:#fff; padding:34px 0 40px; position:relative; overflow:hidden}
+.hero .kick{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2.5px; color:#79c3d8; text-transform:uppercase}
+.hero h1{font-size:clamp(30px,7.5vw,50px); line-height:1.03; margin:10px 0 6px; font-weight:900; letter-spacing:-.5px}
+.hero h1 em{font-style:normal; color:#ffcf4d}
+.hero .sub{color:#b9cede; font-size:16px; max-width:600px}
+.hero .frase{
+  margin-top:20px; padding:14px 16px; border-left:4px solid var(--art);
+  background:rgba(255,255,255,.06); border-radius:0 12px 12px 0;
+  font-size:17px; font-weight:700; max-width:640px;
+}
+.hero .frase b{color:#ffcf4d}
+.hero-svg{width:100%; max-width:560px; margin:20px auto 0; display:block}
+
+/* ---------- HUB ---------- */
+.hub{display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:9px; margin:-26px 0 30px}
+.hub a{
+  background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:11px 12px; text-decoration:none; color:var(--ink); box-shadow:var(--sh);
+  display:block; transition:transform .15s, border-color .15s;
+}
+.hub a:hover{transform:translateY(-2px); border-color:var(--atlas)}
+.hub a b{display:block; font-size:14px; font-weight:800; line-height:1.2}
+.hub a span{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--cinza); letter-spacing:.6px}
+
+/* ---------- SEÇÕES ---------- */
+section{padding:26px 0 6px}
+.sechead{display:flex; align-items:flex-start; gap:12px; margin-bottom:14px}
+.sechead .num{
+  flex:none; width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+  background:var(--navy); color:#ffcf4d; font-family:'IBM Plex Mono',monospace;
+  font-weight:600; font-size:15px;
+}
+.sechead h2{margin:0; font-size:clamp(21px,4.6vw,28px); font-weight:900; line-height:1.15; letter-spacing:-.3px}
+.sechead .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--atlas); text-transform:uppercase; display:block; margin-bottom:2px}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:16px; box-shadow:var(--sh); margin-bottom:12px}
+.card h3{margin:0 0 8px; font-size:17px; font-weight:800}
+.card p{margin:0 0 8px}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+ul.tight{margin:0 0 8px; padding-left:20px}
+ul.tight li{margin-bottom:5px}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* callouts */
+.box{border-radius:14px; padding:13px 15px; margin:10px 0; border-left:5px solid; font-size:15.5px}
+.box b.tag{display:block; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.6px; text-transform:uppercase; margin-bottom:4px}
+.b-red{background:var(--art-soft); border-color:var(--art)} .b-red b.tag{color:var(--art-deep)}
+.b-amb{background:var(--ambar-soft); border-color:var(--ambar)} .b-amb b.tag{color:#8a6100}
+.b-grn{background:var(--verde-soft); border-color:var(--verde)} .b-grn b.tag{color:#136b45}
+.b-blu{background:var(--atlas-soft); border-color:var(--atlas)} .b-blu b.tag{color:#0b6379}
+.b-ven{background:var(--ven-soft); border-color:var(--ven)} .b-ven b.tag{color:var(--ven-deep)}
+
+.sintese{
+  background:var(--navy); color:#fff; border-radius:14px; padding:12px 15px; margin:12px 0;
+  font-weight:700; font-size:15.5px; display:flex; gap:10px; align-items:flex-start;
+}
+.sintese span{color:#ffcf4d; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:1.4px; flex:none; padding-top:4px}
+
+/* números */
+.numbig{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:clamp(24px,5vw,32px); line-height:1}
+.numrow{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+.numcard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px; text-align:center}
+.numcard .lbl{font-size:12px; color:var(--cinza); font-weight:700; text-transform:uppercase; letter-spacing:.5px}
+.numcard .foot{font-size:12px; color:var(--cinza); margin-top:4px; line-height:1.35}
+
+/* tabela */
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--card)}
+table{border-collapse:collapse; width:100%; min-width:520px; font-size:14.5px}
+th,td{padding:10px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+thead th{background:var(--navy); color:#fff; font-size:12px; letter-spacing:.6px; text-transform:uppercase}
+thead th:nth-child(2){color:#9ed0f2} thead th:nth-child(3){color:#ffb3a8}
+tbody tr:last-child td{border-bottom:none}
+td:first-child{font-weight:800}
+
+/* botões genéricos */
+.btn{
+  font-family:'Nunito',sans-serif; font-weight:800; font-size:14px; cursor:pointer;
+  border-radius:999px; padding:9px 16px; border:2px solid var(--navy);
+  background:var(--navy); color:#fff; transition:.15s;
+}
+.btn:hover{background:var(--navy2)}
+.btn.ghost{background:transparent; color:var(--navy)}
+.btn.ghost:hover{background:#e7edf2}
+.btn.small{font-size:12.5px; padding:7px 12px}
+
+/* laboratório interativo */
+.lab{background:linear-gradient(180deg,#fff,#eef4f8); border:2px solid var(--atlas); border-radius:18px; padding:16px; margin:12px 0}
+.lab-t{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--atlas); text-transform:uppercase; font-weight:600}
+.lab h3{margin:3px 0 10px; font-size:18px; font-weight:900}
+.ctrl{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0}
+input[type=range]{width:100%; max-width:340px; accent-color:var(--atlas); height:28px}
+.readout{font-family:'IBM Plex Mono',monospace; font-size:13px; background:var(--navy); color:#ffcf4d; padding:6px 10px; border-radius:8px; display:inline-block}
+.verdict{border-radius:12px; padding:10px 13px; font-weight:700; font-size:15px; margin-top:10px; border:1px solid var(--line); background:#fff}
+.verdict.ok{background:var(--verde-soft); border-color:var(--verde)}
+.verdict.warn{background:var(--ambar-soft); border-color:var(--ambar)}
+.verdict.bad{background:var(--art-soft); border-color:var(--art)}
+
+.assinatura{font-family:'Dancing Script',cursive; font-size:26px; color:var(--navy); margin-top:8px}
+
+/* filosofia */
+.filo{background:#fff; border:1px solid var(--line); border-left:5px solid #ffcf4d; border-radius:0 var(--r) var(--r) 0; padding:18px 20px; box-shadow:var(--sh)}
+.filo p{font-size:16.5px; margin:0 0 10px}
+.filo p em{color:var(--navy); font-weight:700; font-style:normal}
+
+footer{background:var(--navy); color:#a9c2d3; margin-top:36px; padding:26px 0 30px; font-size:13.5px}
+footer b{color:#fff}
+footer .lic{font-family:'IBM Plex Mono',monospace; font-size:11px; color:#7f9cb0; margin-top:10px; line-height:1.6}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navegação principal">
+  <div class="nav-in">
+    <div class="brand">Mapa do Beira-Leito<small>Atlas Mental · Semiologia CV</small></div>
+    <div class="nav-sp"></div>
+    <button class="tgl" id="tProf" aria-pressed="false" onclick="toggleProf()">modo professor</button>
+    <button class="tgl" id="tMov" aria-pressed="false" onclick="toggleMov()">reduzir movimento</button>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">Semiologia cardiovascular · nível 1 · 2º período</div>
+    <h1>O exame começa <em>antes</em><br>do estetoscópio.</h1>
+    <p class="sub">Inspeção e palpação do sistema cardiovascular, na ordem exata em que sua mão percorre o paciente — do primeiro olhar até a ponta dos dedos.</p>
+    <div class="frase">Uma pergunta guia o módulo inteiro:<br><b>Onde eu olho → o que eu faço → o que eu procuro → o que aquilo significa.</b></div>
+
+    <svg class="hero-svg" viewBox="0 0 560 150" role="img" aria-label="Rota do exame: olhar, pescoço, precórdio, pulsos, extremidades">
+      <line x1="40" y1="75" x2="520" y2="75" stroke="#2b4a63" stroke-width="3" stroke-dasharray="7 7"/>
+      <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#b9cede" text-anchor="middle">
+        <circle cx="55" cy="75" r="16" fill="#1c3a52" stroke="#79c3d8" stroke-width="2"/><text x="55" y="79" font-size="14">👁️</text><text x="55" y="112">OLHAR</text>
+        <circle cx="171" cy="75" r="16" fill="#1c3a52" stroke="#1f6fb2" stroke-width="2"/><text x="171" y="79" font-size="14">🩵</text><text x="171" y="112">PESCOÇO</text>
+        <circle cx="287" cy="75" r="16" fill="#1c3a52" stroke="#c0392b" stroke-width="2"/><text x="287" y="79" font-size="14">🫀</text><text x="287" y="112">PRECÓRDIO</text>
+        <circle cx="403" cy="75" r="16" fill="#1c3a52" stroke="#ffcf4d" stroke-width="2"/><text x="403" y="79" font-size="14">🩸</text><text x="403" y="112">PULSOS</text>
+        <circle cx="519" cy="75" r="16" fill="#1c3a52" stroke="#1e8f5e" stroke-width="2"/><text x="519" y="79" font-size="14">🖐️</text><text x="519" y="112">PONTA DOS DEDOS</text>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <nav class="hub" aria-label="Atalhos das estações">
+    <a href="#e1"><span>ESTAÇÃO 01</span><b>O primeiro olhar</b></a>
+    <a href="#e2"><span>ESTAÇÃO 02</span><b>Janela cervical</b></a>
+    <a href="#e3"><span>ESTAÇÃO 03</span><b>Jugular</b></a>
+    <a href="#e4"><span>ESTAÇÃO 04</span><b>Carótida</b></a>
+    <a href="#e5"><span>ESTAÇÃO 05</span><b>Precórdio</b></a>
+    <a href="#e6"><span>ESTAÇÃO 06</span><b>Ictus cordis</b></a>
+    <a href="#e7"><span>ESTAÇÃO 07</span><b>Ventrículo direito</b></a>
+    <a href="#e8"><span>ESTAÇÃO 08</span><b>Frêmito</b></a>
+    <a href="#e9"><span>ESTAÇÃO 09</span><b>Mapa dos pulsos</b></a>
+    <a href="#e10"><span>ESTAÇÃO 10</span><b>F.R.A.T.E.C.S.</b></a>
+    <a href="#e11"><span>ESTAÇÃO 11</span><b>Ondas de pulso</b></a>
+    <a href="#e12"><span>ESTAÇÃO 12</span><b>Perfusão</b></a>
+    <a href="#palacio"><span>MEMÓRIA</span><b>Palácio do corpo</b></a>
+    <a href="#pegadinhas"><span>ARMADILHAS</span><b>As 8 pegadinhas</b></a>
+    <a href="#quiz"><span>TESTE</span><b>Arena de questões</b></a>
+    <a href="#flash"><span>REVISÃO</span><b>Flashcards</b></a>
+  </nav>
+
+  <section id="filosofia">
+    <div class="sechead">
+      <div class="num">00</div>
+      <div><span class="eyebrow">Antes de começar</span><h2>Por que esta aula existe</h2></div>
+    </div>
+    <div class="filo">
+      <p>No segundo período ninguém espera que você feche diagnósticos. Espera-se outra coisa, mais difícil de ensinar: que você <em>encoste no paciente com um roteiro na cabeça</em>.</p>
+      <p>A maior parte dos erros de exame físico não vem de ignorância. Vem de desordem — o aluno palpa o ictus, lembra da jugular, volta ao pescoço, esquece os pulsos do pé. O paciente percebe. E o achado se perde.</p>
+      <p>Por isso este módulo não é uma lista de sinais. É uma <em>rota</em>. Sempre a mesma, sempre na mesma direção: de cima para baixo, do olho para a mão, do centro para a periferia. Quando a rota vira automática, sua cabeça fica livre para a parte que interessa — pensar.</p>
+      <p>Aprenda a sequência agora. Os nomes bonitos você aprende depois; eles vão ter onde se pendurar.</p>
+      <div class="assinatura">— Dr. André Rossanno</div>
+    </div>
+    <div class="box b-blu"><b class="tag">Como usar</b>Leia uma estação por vez e <b>mexa nos laboratórios azuis</b> — eles existem para você errar aqui, e não no paciente. No fim há 8 pegadinhas, um banco de questões, flashcards de revisão e um checklist de repetição espaçada que salva seu progresso neste navegador.</div>
+  </section>
+
+  <section id="e1">
+    <div class="sechead">
+      <div class="num">01</div>
+      <div><span class="eyebrow">Estação 1 · antes de tocar</span><h2>O primeiro olhar</h2></div>
+    </div>
+
+    <div class="card">
+      <h3>📍 Onde? A cena montada</h3>
+      <ul class="tight">
+        <li>Paciente em decúbito dorsal, tronco elevado a <b>30–45°</b>.</li>
+        <li>Examinador <b>à direita</b> do paciente — sempre o mesmo lado, sempre a mesma rotina.</li>
+        <li>Tórax exposto, com o pudor preservado. Luz que possa incidir <b>de lado</b> (tangencial).</li>
+        <li>Ambiente silencioso: você ainda vai auscultar aqui.</li>
+      </ul>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 01 · posicione o paciente</div>
+      <h3>Por que 45° e não deitado?</h3>
+      <p style="margin:0 0 6px">Arraste a inclinação e veja o que acontece com a coluna de sangue da veia jugular (em azul).</p>
+      <svg viewBox="0 -26 400 236" style="width:100%;max-width:420px;display:block" role="img" aria-label="Paciente reclinado com a coluna venosa jugular">
+        <line x1="20" y1="176" x2="380" y2="176" stroke="#c3cfd8" stroke-width="4" stroke-linecap="round"/>
+        <rect x="250" y="140" width="120" height="36" rx="10" fill="#dfe8ee"/>
+        <g id="upperBody" transform="rotate(0 250 176)">
+          <rect x="104" y="140" width="150" height="36" rx="8" fill="#dfe8ee"/>
+          <rect x="82" y="146" width="26" height="26" rx="7" fill="#e8eff4"/>
+          <circle cx="58" cy="154" r="21" fill="#e8eff4"/>
+          <circle cx="49" cy="150" r="2.6" fill="#5b6b7a"/>
+          <circle cx="212" cy="141" r="4" fill="#c0392b"/>
+          <g id="louisLbl"><text x="220" y="133" font-family="IBM Plex Mono, monospace" font-size="9" fill="#8e2a1f">ângulo de Louis</text></g>
+          <line id="jugLost" x1="58" y1="152" x2="58" y2="152" stroke="#1f6fb2" stroke-width="7" stroke-linecap="round" stroke-dasharray="5 5" opacity="0"/>
+          <line id="jugCol" x1="104" y1="152" x2="60" y2="152" stroke="#1f6fb2" stroke-width="9" stroke-linecap="round" opacity=".92"/>
+          <circle id="jugTop" cx="60" cy="152" r="5" fill="#154d7d" stroke="#154d7d" stroke-width="2"/>
+        </g>
+      </svg>
+      <div class="ctrl">
+        <input type="range" id="incl" min="0" max="90" step="15" value="45" aria-label="Inclinação do tronco em graus">
+        <span class="readout" id="inclOut">45°</span>
+      </div>
+      <div class="verdict ok" id="inclVer"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>👁️ O rosto entrega coisas</h3>
+        <ul class="tight">
+          <li><b>Fácies mitral:</b> bochechas avermelhadas com lábios arroxeados — clássica da estenose mitral importante.</li>
+          <li><b>Ortopneia:</b> o paciente não deita. Sentou-se sozinho antes de você pedir.</li>
+          <li><b>Posição genupeitoral</b> (tronco inclinado para frente): alivia a dor da pericardite.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🫁 O tórax também</h3>
+        <ul class="tight">
+          <li><b>Pectus excavatum:</b> esterno afundado — pode empurrar o ictus para a esquerda.</li>
+          <li><b>Pectus carinatum:</b> esterno projetado, em quilha.</li>
+          <li><b>Tórax em tonel:</b> hiperinsuflado — o ictus quase some.</li>
+          <li><b>Cifoscoliose:</b> deforma tudo e engana o iniciante.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box b-amb"><b class="tag">Pegadinha</b>Tórax deformado <b>muda a posição dos achados</b>, não a doença. Um ictus fora do lugar num pectus excavatum pode ser um coração perfeitamente normal empurrado de lado.</div>
+
+    <div class="sintese"><span>SÍNTESE</span>Antes de tocar, você já colheu três dados: como ele está deitado, como está o rosto, como é o tórax.</div>
+  </section>
+
+  <section id="e2">
+    <div class="sechead">
+      <div class="num">02</div>
+      <div><span class="eyebrow">Estação 2 · pescoço</span><h2>A janela cervical: dois mundos no mesmo pescoço</h2></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card" style="border-left:5px solid var(--ven)">
+        <h3 style="color:var(--ven-deep)">🔵 Jugular — o mundo do VOLUME</h3>
+        <p>Mostra o que acontece no <b>átrio direito</b>. É o manômetro do corpo: se há sangue demais represado, a coluna sobe.</p>
+        <div class="readout" style="background:var(--ven)">se enxerga · não se palpa</div>
+      </div>
+      <div class="card" style="border-left:5px solid var(--art)">
+        <h3 style="color:var(--art-deep)">🔴 Carótida — o mundo da PRESSÃO</h3>
+        <p>Mostra a <b>ejeção do ventrículo esquerdo</b>. É o soco que o coração dá no sangue a cada sístole.</p>
+        <div class="readout" style="background:var(--art)">se palpa · não se mede pela vista</div>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 02 · três testes de cabeceira</div>
+      <h3>Como saber se aquilo que pulsa é veia ou artéria</h3>
+      <p style="margin:0 0 8px">Toque um teste e compare as duas colunas.</p>
+      <div class="ctrl">
+        <button class="btn small" onclick="testeCervical('insp')">Pedir para inspirar</button>
+        <button class="btn small" onclick="testeCervical('comp')">Comprimir a base do pescoço</button>
+        <button class="btn small" onclick="testeCervical('sentar')">Sentar o paciente</button>
+        <button class="btn small ghost" onclick="testeCervical('onda')">Olhar a forma da onda</button>
+      </div>
+      <div class="grid2">
+        <div class="card" style="margin:0;border-left:5px solid var(--ven)"><h3 style="font-size:15px;color:var(--ven-deep)">🔵 Jugular</h3><p id="tcVen" style="min-height:48px">Escolha um teste acima.</p></div>
+        <div class="card" style="margin:0;border-left:5px solid var(--art)"><h3 style="font-size:15px;color:var(--art-deep)">🔴 Carótida</h3><p id="tcArt" style="min-height:48px">Escolha um teste acima.</p></div>
+      </div>
+    </div>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>O que comparo</th><th>Pulso venoso jugular</th><th>Pulso arterial carotídeo</th></tr></thead>
+        <tbody>
+          <tr><td>Como avalio</td><td>Inspeção — quase nunca palpável</td><td>Palpação — bate no dedo</td></tr>
+          <tr><td>Forma da onda</td><td>Ondulante, com mais de um movimento por batimento</td><td>Um pico único e rápido por batimento</td></tr>
+          <tr><td>Compressão leve na base</td><td>Some acima do ponto comprimido</td><td>Continua batendo</td></tr>
+          <tr><td>Inspiração</td><td>A coluna desce</td><td>Praticamente não muda</td></tr>
+          <tr><td>Mudar a inclinação</td><td>A altura da coluna muda muito</td><td>Amplitude igual</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sintese"><span>SÍNTESE</span>Jugular é olho e é volume. Carótida é dedo e é pressão.</div>
+  </section>
+
+  <section id="e3">
+    <div class="sechead">
+      <div class="num">03</div>
+      <div><span class="eyebrow">Estação 3 · sistema venoso</span><h2>Jugular: o manômetro que dá para ver</h2></div>
+    </div>
+
+    <div class="card">
+      <h3>✋ A técnica, em cinco passos</h3>
+      <ol class="tight" style="padding-left:22px">
+        <li>Tronco a <b>45°</b>, cabeça levemente girada para o lado oposto ao que você examina.</li>
+        <li>Procure a <b>jugular interna direita</b> — é a mais fiel ao átrio direito.</li>
+        <li>Ache o <b>topo</b> da coluna que oscila.</li>
+        <li>Meça a altura <b>vertical</b> desse topo até o <b>ângulo de Louis</b> (a saliência entre o manúbrio e o corpo do esterno).</li>
+        <li>Some 5 cm — é a distância aproximada do ângulo de Louis até o centro do átrio direito.</li>
+      </ol>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 03 · a régua do ângulo de Louis</div>
+      <h3>Meça e converta</h3>
+      <svg viewBox="0 0 300 190" style="width:100%;max-width:330px;display:block" role="img" aria-label="Régua vertical a partir do ângulo de Louis">
+        <line x1="120" y1="170" x2="120" y2="20" stroke="#c3cfd8" stroke-width="2"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b6b7a">
+          <line x1="114" y1="170" x2="126" y2="170" stroke="#c0392b" stroke-width="3"/><text x="132" y="174" fill="#8e2a1f">0 · ângulo de Louis</text>
+          <line x1="116" y1="154" x2="124" y2="154" stroke="#c3cfd8" stroke-width="2"/><text x="132" y="158">2 cm</text>
+          <line x1="114" y1="138" x2="126" y2="138" stroke="#1e8f5e" stroke-width="3"/><text x="132" y="142" fill="#136b45">3 cm · limite normal</text>
+          <line x1="116" y1="122" x2="124" y2="122" stroke="#c3cfd8" stroke-width="2"/><text x="132" y="126">5 cm</text>
+          <line x1="116" y1="90" x2="124" y2="90" stroke="#c3cfd8" stroke-width="2"/><text x="132" y="94">9 cm</text>
+        </g>
+        <rect id="colBar" x="96" y="130" width="16" height="40" rx="7" fill="#1f6fb2"/>
+        <circle id="colTop" cx="104" cy="130" r="6" fill="#154d7d"/>
+      </svg>
+      <div class="ctrl">
+        <input type="range" id="louis" min="0" max="9" step="0.5" value="2" aria-label="Altura da coluna acima do ângulo de Louis, em centímetros">
+        <span class="readout" id="louisOut">2 cm</span>
+      </div>
+      <div class="verdict ok" id="louisVer"></div>
+    </div>
+
+    <div class="numrow">
+      <div class="numcard">
+        <div class="lbl">Altura acima do Louis</div>
+        <div class="numbig" style="color:var(--ven)">até 3 cm</div>
+        <div class="foot">Alguns autores aceitam até 4 cm. Acima disso: pressão venosa aumentada.</div>
+      </div>
+      <div class="numcard">
+        <div class="lbl">PVC estimada</div>
+        <div class="numbig" style="color:var(--verde)">até 8–9 cmH₂O</div>
+        <div class="foot">Altura medida + 5 cm.</div>
+      </div>
+      <div class="numcard">
+        <div class="lbl">Refluxo hepatojugular</div>
+        <div class="numbig" style="color:var(--ambar)">≥ 3–4 cm</div>
+        <div class="foot">Elevação que se <b>mantém</b> durante toda a compressão.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🫀 Refluxo hepatojugular (abdominojugular)</h3>
+      <p>Comprima com firmeza o quadrante superior direito do abdome por <b>10 a 15 segundos</b>, com o paciente respirando normal — sem prender a respiração.</p>
+      <div class="box b-grn" style="margin:8px 0"><b class="tag">Positivo</b>A coluna sobe <b>≥ 3–4 cm e permanece alta</b> enquanto você comprime, caindo de vez quando você solta. Traduz um ventrículo direito que não dá conta do sangue que chega.</div>
+      <div class="box b-amb" style="margin:0"><b class="tag">Pegadinha</b>Subir e <b>voltar sozinho</b> nos primeiros segundos é resposta normal. Se você chamar isso de positivo, quase todo mundo terá insuficiência direita.</div>
+    </div>
+
+    <div class="box b-blu"><b class="tag">Guarde para o futuro</b><b>Sinal de Kussmaul:</b> a jugular deveria descer na inspiração. Quando ela <b>sobe</b>, o sinal é de que o coração está preso — pericardite constritiva, infarto de ventrículo direito. Você não precisa dominar isso agora; precisa nunca mais achar normal.</div>
+
+    <div class="sintese"><span>SÍNTESE</span>Meça sempre do ângulo de Louis, nunca da clavícula: até 3 cm é normal, e o refluxo só conta se for sustentado.</div>
+  </section>
+
+  <section id="e4">
+    <div class="sechead">
+      <div class="num">04</div>
+      <div><span class="eyebrow">Estação 4 · sistema arterial</span><h2>Carótida: sentindo a ejeção</h2></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>✋ Como palpar</h3>
+        <ul class="tight">
+          <li><b>Onde:</b> no sulco entre a traqueia e o músculo esternocleidomastóideo, no <b>terço inferior</b> do pescoço.</li>
+          <li><b>Com o quê:</b> polpas do indicador e do médio. Pressão suave.</li>
+          <li><b>O que avaliar:</b> amplitude (força), contorno (rápido ou arrastado) e a parede do vaso.</li>
+          <li>Em idoso ou vasculopata: <b>ausculte antes</b> de palpar, procurando sopro.</li>
+        </ul>
+      </div>
+      <div class="card" style="border:2px solid var(--art);background:var(--art-soft)">
+        <h3 style="color:var(--art-deep)">🚫 Nunca faça isso na carótida</h3>
+        <div class="box b-red" style="background:#fff;margin:8px 0"><b class="tag">Regra 1</b><b>Nunca palpe as duas ao mesmo tempo.</b> Você pode reduzir o fluxo cerebral e derrubar o paciente.</div>
+        <div class="box b-red" style="background:#fff;margin:0"><b class="tag">Regra 2</b><b>Nunca massageie o seio carotídeo</b> por conta própria — no terço superior, perto da bifurcação. Risco de bradicardia grave e de soltar placa de ateroma.</div>
+      </div>
+    </div>
+
+    <div class="sintese"><span>SÍNTESE</span>Uma carótida de cada vez, terço inferior, dedo leve.</div>
+  </section>
+
+  <section id="e5">
+    <div class="sechead">
+      <div class="num">05</div>
+      <div><span class="eyebrow">Estação 5 · tórax</span><h2>O precórdio: o coração empurrando a parede</h2></div>
+    </div>
+
+    <div class="card">
+      <p><b>A ideia:</b> o coração se mexe dentro de uma caixa fechada. Parte desse movimento chega à superfície. Inspecionar e palpar o precórdio é traduzir mecânica interna em movimento de pele.</p>
+      <div class="grid3" style="margin-top:10px">
+        <div class="box b-blu" style="margin:0"><b class="tag">Inspeção tangencial</b>Olho e luz de lado, quase rente à pele. É assim que pulsações discretas aparecem.</div>
+        <div class="box b-amb" style="margin:0"><b class="tag">Abaulamento</b>Parede projetada para fora. Sugere coração aumentado desde a infância, quando as cartilagens ainda cediam.</div>
+        <div class="box b-red" style="margin:0"><b class="tag">Pulsação anormal</b>Batimento visível na base, na borda esternal ou no epigástrio.</div>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 05 · mapa do tórax</div>
+      <h3>Toque cada região e veja o que mora ali</h3>
+      <svg viewBox="0 0 320 250" style="width:100%;max-width:340px;display:block" role="img" aria-label="Mapa das regiões do precórdio">
+        <path d="M60 20 Q160 4 260 20 L272 200 Q160 236 48 200 Z" fill="#eef3f7" stroke="#c3cfd8" stroke-width="2"/>
+        <line x1="160" y1="14" x2="160" y2="215" stroke="#c3cfd8" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <g id="mapaZonas" style="cursor:pointer">
+          <g onclick="zona('base')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')zona('base')">
+            <rect x="96" y="42" width="128" height="40" rx="10" fill="#e9f2fa" stroke="#1f6fb2" stroke-width="2"/>
+            <text x="160" y="61" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="#154d7d">BASE</text>
+            <text x="160" y="75" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b6b7a">2º EIC direito e esquerdo</text>
+          </g>
+          <g onclick="zona('borda')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')zona('borda')">
+            <rect x="118" y="94" width="106" height="40" rx="10" fill="#fdf4dd" stroke="#c98a00" stroke-width="2"/>
+            <text x="171" y="113" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="#8a6100">BORDA ESTERNAL</text>
+            <text x="171" y="127" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b6b7a">3º ao 5º EIC esquerdo</text>
+          </g>
+          <g onclick="zona('apice')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')zona('apice')">
+            <circle cx="206" cy="168" r="30" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+            <text x="206" y="166" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="14" fill="#8e2a1f">ÁPICE</text>
+            <text x="206" y="180" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#5b6b7a">5º EIC · LHC</text>
+          </g>
+        </g>
+        <text x="160" y="228" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#5b6b7a">a varredura desce: base → borda → ápice</text>
+      </svg>
+      <div class="verdict" id="zonaVer">Toque uma região do tórax.</div>
+    </div>
+
+    <div class="sintese"><span>SÍNTESE</span>Sempre de cima para baixo: base, borda esternal, ápice. Nunca comece pelo ictus.</div>
+  </section>
+
+  <section id="e6">
+    <div class="sechead">
+      <div class="num">06</div>
+      <div><span class="eyebrow">Estação 6 · o choque da ponta</span><h2>Ictus cordis</h2></div>
+    </div>
+
+    <div class="card">
+      <h3>O que é</h3>
+      <p>É a ponta do <b>ventrículo esquerdo</b> batendo na parede do tórax durante a sístole. É o único ponto em que você literalmente sente o coração trabalhar.</p>
+      <h3 style="margin-top:12px">Como achar</h3>
+      <ol class="tight" style="padding-left:22px">
+        <li>Espalme a mão sobre a região do ápice e espere o impulso encontrar a sua palma.</li>
+        <li>Delimite com as <b>polpas do indicador e do médio</b>.</li>
+        <li>Não achou? <b>Manobra de Pachón:</b> vire o paciente em decúbito lateral esquerdo — o ápice se aproxima da parede.</li>
+      </ol>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 06 · onde deveria estar</div>
+      <h3>Posicione o ictus e receba o veredito</h3>
+      <p style="margin:0 0 8px;font-size:15px">Linhas de referência no eixo horizontal, espaços intercostais no vertical. Toque um quadrado.</p>
+      <div id="grade" class="grade" role="group" aria-label="Grade costal"></div>
+      <div class="verdict" id="gradeVer">Escolha um ponto.</div>
+      <div class="box b-blu" style="margin-top:10px"><b class="tag">Biotipo importa</b><b>Normolíneo:</b> 5º EIC na linha hemiclavicular. <b>Brevilíneo</b> (baixo e largo): sobe para o 4º. <b>Longilíneo</b> (alto e magro): desce para o 6º e fica mais medial.</div>
+    </div>
+
+    <div class="lab" style="border-color:var(--art)">
+      <div class="lab-t" style="color:var(--art)">Laboratório 07 · o pentágono do ictus</div>
+      <h3>Cinco perguntas, sempre nesta ordem</h3>
+      <svg viewBox="0 0 300 240" style="width:100%;max-width:320px;display:block" role="img" aria-label="Pentágono com os cinco componentes do ictus">
+        <polygon points="150,26 268,110 223,238 77,238 32,110" fill="none" stroke="#dbe3ea" stroke-width="2"/>
+        <g id="pentag" style="cursor:pointer" font-family="Nunito" font-weight="800" font-size="11" text-anchor="middle">
+          <g onclick="penta(0)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')penta(0)"><circle cx="150" cy="26" r="24" fill="#fdecea" stroke="#c0392b" stroke-width="2"/><text x="150" y="24" fill="#8e2a1f">LOCAL</text><text x="150" y="36" fill="#8e2a1f">1</text></g>
+          <g onclick="penta(1)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')penta(1)"><circle cx="268" cy="110" r="24" fill="#e9f2fa" stroke="#1f6fb2" stroke-width="2"/><text x="268" y="108" fill="#154d7d">EXTENSÃO</text><text x="268" y="120" fill="#154d7d">2</text></g>
+          <g onclick="penta(2)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')penta(2)"><circle cx="223" cy="238" r="24" fill="#e7f6ee" stroke="#1e8f5e" stroke-width="2"/><text x="223" y="236" fill="#136b45">FORÇA</text><text x="223" y="248" fill="#136b45">3</text></g>
+          <g onclick="penta(3)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')penta(3)"><circle cx="77" cy="238" r="24" fill="#fdf4dd" stroke="#c98a00" stroke-width="2"/><text x="77" y="236" fill="#8a6100">MOBILID.</text><text x="77" y="248" fill="#8a6100">4</text></g>
+          <g onclick="penta(4)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')penta(4)"><circle cx="32" cy="110" r="24" fill="#e6f4f8" stroke="#1282A2" stroke-width="2"/><text x="32" y="108" fill="#0b6379">DURAÇÃO</text><text x="32" y="120" fill="#0b6379">5</text></g>
+        </g>
+        <text x="150" y="126" text-anchor="middle" font-family="Dancing Script" font-size="22" fill="#0f2233">o pentágono</text>
+        <text x="150" y="146" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5b6b7a">toque cada vértice</text>
+      </svg>
+      <div class="verdict" id="pentaVer">Toque um vértice do pentágono.</div>
+    </div>
+
+    <div class="box b-amb"><b class="tag">A pegadinha central do ictus</b>Duas alterações, dois mecanismos opostos:<br><b>Deslocado para baixo e para fora + extenso</b> = câmara <b>dilatada</b> (sobrecarga de volume).<br><b>No lugar, porém forte e demorado</b> = parede <b>hipertrofiada</b> (sobrecarga de pressão).</div>
+
+    <div class="sintese"><span>SÍNTESE</span>Local, extensão, força, mobilidade, duração — cinco perguntas, sempre na mesma ordem.</div>
+  </section>
+
+  <section id="e7">
+    <div class="sechead">
+      <div class="num">07</div>
+      <div><span class="eyebrow">Estação 7 · o outro ventrículo</span><h2>O ventrículo direito na parede do tórax</h2></div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <h3 style="color:var(--art-deep)">Impulsão paraesternal</h3>
+        <p><b>📍 Onde:</b> borda esternal esquerda, 3º ao 5º EIC.</p>
+        <p><b>✋ Como:</b> apoie a região hipotenar da mão e sinta se ela é levantada.</p>
+        <p><b>🫀 Significa:</b> ventrículo direito sobrecarregado, empurrando o esterno.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--ambar)">Pulsação epigástrica</h3>
+        <p><b>📍 Onde:</b> logo abaixo do apêndice xifoide.</p>
+        <p><b>✋ Como:</b> polpas dos dedos dirigidas para cima, sob o rebordo.</p>
+        <p><b>🫀 Significa:</b> impulso de cima para baixo sugere ventrículo direito; de trás para frente, aorta abdominal.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--ven-deep)">Retração sistólica apical</h3>
+        <p><b>📍 Onde:</b> na região do ápice.</p>
+        <p><b>✋ Como:</b> a parede <b>afunda</b> na sístole em vez de projetar.</p>
+        <p><b>🫀 Significa:</b> ventrículo direito muito aumentado ocupando o precórdio.</p>
+      </div>
+    </div>
+
+    <div class="sintese"><span>SÍNTESE</span>Ápice é ventrículo esquerdo. Borda esternal e epigástrio são o território do direito.</div>
+  </section>
+
+  <section id="e8">
+    <div class="sechead">
+      <div class="num">08</div>
+      <div><span class="eyebrow">Estação 8 · a ponte</span><h2>Frêmito: o sopro que a mão escuta</h2></div>
+    </div>
+
+    <div class="card">
+      <h3>A cadeia, em quatro elos</h3>
+      <svg viewBox="0 0 560 78" style="width:100%;display:block" role="img" aria-label="Fluxo, turbulência, vibração, mão do examinador">
+        <g font-family="Nunito" font-weight="800" font-size="13" text-anchor="middle">
+          <rect x="6" y="18" width="112" height="40" rx="12" fill="#e6f4f8" stroke="#1282A2" stroke-width="2"/><text x="62" y="43" fill="#0b6379">FLUXO</text>
+          <rect x="150" y="18" width="128" height="40" rx="12" fill="#e6f4f8" stroke="#1282A2" stroke-width="2"/><text x="214" y="43" fill="#0b6379">TURBULÊNCIA</text>
+          <rect x="310" y="18" width="112" height="40" rx="12" fill="#e6f4f8" stroke="#1282A2" stroke-width="2"/><text x="366" y="43" fill="#0b6379">VIBRAÇÃO</text>
+          <rect x="454" y="18" width="100" height="40" rx="12" fill="#0f2233"/><text x="504" y="43" fill="#ffcf4d">SUA MÃO</text>
+          <g stroke="#c3cfd8" stroke-width="3" stroke-linecap="round"><path d="M124 38h20"/><path d="M284 38h20"/><path d="M428 38h20"/></g>
+        </g>
+      </svg>
+      <ul class="tight" style="margin-top:10px">
+        <li><b>Onde da mão:</b> região palmar logo abaixo dos dedos (articulações metacarpofalângicas) ou as eminências tenar e hipotenar.</li>
+        <li><b>Onde do tórax:</b> passe por todos os focos, da base ao ápice.</li>
+        <li><b>Sensação:</b> aquele ronronar de gato.</li>
+        <li><b>Quando:</b> sistólico, diastólico ou contínuo — sempre confira com o pulso carotídeo para saber em que tempo você está.</li>
+      </ul>
+      <div class="box b-grn" style="margin:10px 0 0"><b class="tag">A regra de ouro</b>Se há frêmito, o sopro é <b>alto</b>: grau ≥ IV de VI na escala de Levine. O contrário não vale — sopro sem frêmito continua podendo ser importante.</div>
+    </div>
+
+    <div class="sintese"><span>SÍNTESE</span>Antes de o estetoscópio ouvir o sopro, a mão pode senti-lo vibrar.</div>
+  </section>
+
+<style>
+.grade{display:grid; grid-template-columns:58px repeat(3,1fr); gap:6px; max-width:460px}
+.ghead{font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--cinza); display:grid; place-items:center; text-align:center; line-height:1.2; padding:2px}
+.gcell{
+  border:2px solid var(--line); background:#fff; border-radius:10px; min-height:46px;
+  cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--cinza); font-weight:600;
+}
+.gcell:hover{border-color:var(--atlas)}
+.gcell.sel{background:var(--navy); color:#ffcf4d; border-color:var(--navy)}
+.chips{display:flex; gap:7px; flex-wrap:wrap; margin:10px 0}
+.chip{
+  border:2px solid var(--line); background:#fff; border-radius:12px; padding:8px 12px; cursor:pointer;
+  font-weight:900; font-size:18px; color:var(--navy); min-width:52px; line-height:1.1;
+}
+.chip small{display:block; font-family:'IBM Plex Mono',monospace; font-size:8px; font-weight:600; color:var(--cinza); letter-spacing:.4px}
+.chip.sel{background:var(--verde); border-color:var(--verde); color:#fff}
+.chip.sel small{color:#d6f0e3}
+.nail{cursor:pointer; touch-action:none; user-select:none}
+.pega{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--ambar); border-radius:0 14px 14px 0; padding:12px 15px; margin-bottom:9px}
+.pega b{display:block; color:#8a6100; font-size:15px}
+.pega span{font-size:15px}
+.sala{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px 15px; margin-bottom:9px; display:flex; gap:12px; align-items:flex-start}
+.sala .ic{font-size:26px; flex:none}
+.sala b{display:block; font-size:15.5px}
+.sala em{font-style:normal; color:var(--cinza); font-size:14px}
+.q{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px; margin-bottom:12px}
+.q .qh{font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--atlas); letter-spacing:1.6px; margin-bottom:6px}
+.q .qt{font-weight:800; margin-bottom:10px; font-size:16px}
+.opt{
+  display:block; width:100%; text-align:left; background:#fff; border:2px solid var(--line);
+  border-radius:11px; padding:10px 13px; margin-bottom:7px; cursor:pointer; font-size:15px;
+  font-family:'Nunito',sans-serif; transition:.12s;
+}
+.opt:hover{border-color:var(--atlas)}
+.opt.right{background:var(--verde-soft); border-color:var(--verde); font-weight:700}
+.opt.wrong{background:var(--art-soft); border-color:var(--art)}
+.opt:disabled{cursor:default}
+.fb{display:none; margin-top:8px; font-size:14.5px; background:#f1f5f8; border-radius:11px; padding:10px 13px; border-left:4px solid var(--atlas)}
+.fb.on{display:block}
+.mfc-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:9px}
+.mfc{background:var(--card); border:1px solid var(--line); border-radius:13px; padding:11px 13px; border-top:4px solid var(--atlas)}
+.mfc b{display:block; font-size:14.5px; margin-bottom:4px}
+.mfc span{font-size:14px; color:#33485a}
+.chk{display:flex; gap:10px; align-items:flex-start; background:#fff; border:1px solid var(--line); border-radius:12px; padding:11px 13px; margin-bottom:7px; cursor:pointer}
+.chk input{width:20px; height:20px; accent-color:var(--verde); margin-top:2px; flex:none}
+.chk.done{background:var(--verde-soft); border-color:var(--verde)}
+.prof-only{display:none}
+body.prof .prof-only{display:block}
+</style>
+
+  <section id="e9">
+    <div class="sechead">
+      <div class="num">09</div>
+      <div><span class="eyebrow">Estação 9 · periferia</span><h2>O mapa dos pulsos</h2></div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 08 · sete pontos que você precisa achar de olhos fechados</div>
+      <h3>Toque cada ponto do corpo</h3>
+      <svg viewBox="0 0 240 300" style="width:100%;max-width:250px;display:block" role="img" aria-label="Corpo humano com os pontos de palpação de pulso">
+        <circle cx="120" cy="26" r="17" fill="#eef3f7" stroke="#c3cfd8" stroke-width="2"/>
+        <path d="M104 46 h32 l22 16 v58 l-10 4 v46 h-56 v-46 l-10 -4 v-58 z" fill="#eef3f7" stroke="#c3cfd8" stroke-width="2"/>
+        <path d="M82 66 l-14 60 6 42" fill="none" stroke="#c3cfd8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M158 66 l14 60 -6 42" fill="none" stroke="#c3cfd8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M104 170 l-8 62 4 54" fill="none" stroke="#c3cfd8" stroke-width="12" stroke-linecap="round"/>
+        <path d="M136 170 l8 62 -4 54" fill="none" stroke="#c3cfd8" stroke-width="12" stroke-linecap="round"/>
+        <g id="pulsePts" style="cursor:pointer">
+          <circle cx="110" cy="46" r="8" fill="#c0392b" onclick="pulso('carotideo')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('carotideo')"/>
+          <circle cx="74" cy="120" r="8" fill="#c98a00" onclick="pulso('braquial')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('braquial')"/>
+          <circle cx="76" cy="164" r="8" fill="#c98a00" onclick="pulso('radial')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('radial')"/>
+          <circle cx="106" cy="176" r="8" fill="#c0392b" onclick="pulso('femoral')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('femoral')"/>
+          <circle cx="98" cy="232" r="8" fill="#1f6fb2" onclick="pulso('popliteo')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('popliteo')"/>
+          <circle cx="99" cy="278" r="8" fill="#1f6fb2" onclick="pulso('tibial')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('tibial')"/>
+          <circle cx="140" cy="288" r="8" fill="#1f6fb2" onclick="pulso('pedioso')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')pulso('pedioso')"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#5b6b7a">
+          <text x="176" y="46">🔴 centrais</text><text x="176" y="60">🟡 membro sup.</text><text x="176" y="74">🔵 membro inf.</text>
+        </g>
+      </svg>
+      <div class="verdict" id="pulsoVer">Toque um ponto colorido.</div>
+    </div>
+
+    <div class="box b-grn"><b class="tag">Regra da simetria</b>Pulsos periféricos se palpam <b>dos dois lados ao mesmo tempo</b>, comparando. É assim que se percebe assimetria e o atraso entre o pulso radial e o femoral — pista de coartação da aorta.</div>
+    <div class="box b-red"><b class="tag">A exceção</b>A carótida <b>nunca</b> entra nessa regra. Uma de cada vez.</div>
+
+    <div class="sintese"><span>SÍNTESE</span>Compare sempre os dois lados — menos na carótida.</div>
+  </section>
+
+  <section id="e10">
+    <div class="sechead">
+      <div class="num">10</div>
+      <div><span class="eyebrow">Estação 10 · checklist</span><h2>F.R.A.T.E.C.S. — o pulso em sete perguntas</h2></div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 09 · rode o algoritmo</div>
+      <h3>Toque as sete letras, na ordem</h3>
+      <div class="chips" id="fratecs"></div>
+      <div class="verdict" id="fratVer">Comece pelo F.</div>
+    </div>
+
+    <div class="sintese"><span>SÍNTESE</span>Peguei o pulso — meu cérebro roda sozinho: F-R-A-T-E-C-S.</div>
+  </section>
+
+  <section id="e11">
+    <div class="sechead">
+      <div class="num">11</div>
+      <div><span class="eyebrow">Estação 11 · forma da onda</span><h2>Dois pulsos que você precisa reconhecer</h2></div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 10 · onda em movimento</div>
+      <h3>Toque em reproduzir e compare o traçado</h3>
+      <div class="grid2" style="margin-top:8px">
+        <div class="card" style="margin:0">
+          <h3 style="color:var(--art-deep)">Célere / martelo d'água</h3>
+          <p style="font-size:14.5px">Sobe num estalo e despenca. Muito sangue sai, e parte dele volta.<br><b>Clássico da insuficiência aórtica.</b></p>
+          <svg viewBox="0 0 260 90" style="width:100%">
+            <path id="wCel" d="M8 76 L48 12 L64 78 L128 74 L168 12 L184 78 L252 74" fill="none" stroke="#c0392b" stroke-width="3.5" stroke-linejoin="round"/>
+            <circle id="dCel" r="6" fill="#8e2a1f"/>
+          </svg>
+        </div>
+        <div class="card" style="margin:0">
+          <h3 style="color:var(--ambar)">Parvus et tardus</h3>
+          <p style="font-size:14.5px">Pequeno (<i>parvus</i>) e atrasado (<i>tardus</i>). O sangue custa a passar.<br><b>Clássico da estenose aórtica importante.</b></p>
+          <svg viewBox="0 0 260 90" style="width:100%">
+            <path id="wPar" d="M8 76 Q56 66 88 46 Q112 62 140 76 Q188 66 220 46 Q236 62 252 76" fill="none" stroke="#c98a00" stroke-width="3.5"/>
+            <circle id="dPar" r="6" fill="#8a6100"/>
+          </svg>
+        </div>
+      </div>
+      <div class="ctrl"><button class="btn small" id="btnWave" onclick="toggleWave()">▶ Reproduzir</button></div>
+    </div>
+
+    <div class="grid3">
+      <div class="card"><h3 style="font-size:15px">Pulso alternante</h3><p style="font-size:14.5px">Uma onda forte, uma fraca, em ritmo regular. Sinal de ventrículo esquerdo em falência.</p></div>
+      <div class="card"><h3 style="font-size:15px">Pulso paradoxal</h3><p style="font-size:14.5px">A pressão sistólica cai <b>mais de 10 mmHg</b> na inspiração. Pensa em tamponamento cardíaco.</p></div>
+      <div class="card"><h3 style="font-size:15px">Pulso filiforme</h3><p style="font-size:14.5px">Fino, rápido e difícil de achar. É o pulso do paciente em choque.</p></div>
+    </div>
+
+    <div class="box b-amb"><b class="tag">Pegadinha do nome</b>O pulso paradoxal não tem nada de paradoxo: na inspiração a pressão <b>já cai um pouco em qualquer pessoa</b>. O que existe ali é exagero do normal.</div>
+  </section>
+
+  <section id="e12">
+    <div class="sechead">
+      <div class="num">12</div>
+      <div><span class="eyebrow">Estação 12 · o fim da linha</span><h2>Perfusão: o sangue chegou?</h2></div>
+    </div>
+
+    <div class="lab">
+      <div class="lab-t">Laboratório 11 · meça um enchimento capilar</div>
+      <h3>Pressione a unha, solte e cronometre</h3>
+      <p style="margin:0 0 8px;font-size:15px">Segure o dedo por 5 segundos, solte e toque em <b>“voltou a cor”</b> no instante em que a unha ficar rosada de novo.</p>
+      <svg viewBox="0 0 200 120" class="nail" id="nailSvg" style="width:100%;max-width:220px;display:block" role="button" tabindex="0" aria-label="Leito ungueal — pressione e segure">
+        <path d="M40 96 q0 -60 60 -60 q60 0 60 60 z" fill="#f0d7cf" stroke="#c3cfd8" stroke-width="2"/>
+        <rect id="nailBed" x="66" y="46" width="68" height="46" rx="16" fill="#e8a397" stroke="#c3cfd8" stroke-width="1.5"/>
+        <text x="100" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5b6b7a" id="nailMsg">segure aqui</text>
+      </svg>
+      <div class="ctrl">
+        <button class="btn small" id="btnTec" onclick="tecStop()" disabled>voltou a cor</button>
+        <span class="readout" id="tecOut">0,0 s</span>
+        <button class="btn small ghost" onclick="tecReset()">recomeçar</button>
+      </div>
+      <div class="verdict" id="tecVer">Normal: até 3 segundos.</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Cor e temperatura</h3>
+        <ul class="tight">
+          <li>Sinta a temperatura subindo pelo membro: onde o frio termina, a má perfusão termina.</li>
+          <li><b>Cianose periférica:</b> extremidades frias, ponta dos dedos e leito ungueal.</li>
+          <li><b>Cianose central:</b> língua e mucosas, com extremidades quentes. Muda completamente o raciocínio.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Teste de Allen</h3>
+        <ol class="tight" style="padding-left:20px">
+          <li>Comprima <b>radial e ulnar</b> ao mesmo tempo, no punho.</li>
+          <li>Peça para abrir e fechar a mão até ela empalidecer.</li>
+          <li>Solte <b>só a ulnar</b> e conte.</li>
+        </ol>
+        <div class="box b-grn" style="margin:8px 0 0"><b class="tag">Normal</b>A cor volta em <b>menos de 7 a 10 segundos</b> — a ulnar sozinha nutre a mão. É o que autoriza puncionar a radial.</div>
+      </div>
+    </div>
+
+    <div class="box b-amb"><b class="tag">Pegadinha</b>Enchimento capilar lento <b>sozinho</b> não fecha diagnóstico de choque: mão fria, sala gelada e idade avançada atrasam o retorno da cor em gente saudável.</div>
+
+    <div class="sintese"><span>SÍNTESE</span>O exame começou olhando o paciente inteiro e termina perguntando se o sangue chegou à ponta dos dedos.</div>
+  </section>
+
+  <section id="palacio">
+    <div class="sechead">
+      <div class="num">🧠</div>
+      <div><span class="eyebrow">Memorização · N3 loci</span><h2>O palácio é o próprio paciente</h2></div>
+    </div>
+    <p style="margin-top:-4px;color:var(--cinza)">Você não precisa de um palácio imaginário: o corpo à sua frente já é o mapa. Cinco salas, de cima para baixo.</p>
+    <div class="sala"><span class="ic">👁️</span><div><b>Sala 1 — A porta</b><em>Antes de tocar: 45°, rosto, formato do tórax.</em></div></div>
+    <div class="sala"><span class="ic">🩵</span><div><b>Sala 2 — A janela dupla (pescoço)</b><em>Azul à esquerda é volume e se olha. Vermelho à direita é pressão e se palpa — uma de cada vez.</em></div></div>
+    <div class="sala"><span class="ic">🫀</span><div><b>Sala 3 — O salão (tórax)</b><em>Desce em três degraus: base, borda esternal, ápice. No ápice mora o pentágono.</em></div></div>
+    <div class="sala"><span class="ic">🩸</span><div><b>Sala 4 — Os corredores (pulsos)</b><em>Sete pontos, sempre em par. FRATECS toca como alarme em cada um.</em></div></div>
+    <div class="sala"><span class="ic">🖐️</span><div><b>Sala 5 — A ponta dos dedos</b><em>Cor, temperatura, enchimento capilar. O sangue chegou até aqui?</em></div></div>
+
+    <div class="box b-blu"><b class="tag">Regra de geografia</b>PESCOÇO = hemodinâmica · TÓRAX = mecânica do coração · EXTREMIDADES = entrega do sangue.</div>
+
+    <div class="card prof-only" style="border:2px dashed var(--atlas)">
+      <h3>👩‍🏫 Nota para quem ensina</h3>
+      <p style="font-size:15px">Ancoragem N1–N7 deste módulo: <b>N1</b> rota espacial única como âncora semântica · <b>N2</b> cor fixa (azul venoso, vermelho arterial, âmbar pegadinha) · <b>N3</b> palácio no próprio corpo · <b>N4</b> laboratórios e quiz com devolutiva imediata · <b>N5</b> pares contrastantes (jugular×carótida, dilatação×hipertrofia, célere×parvus) · <b>N6</b> frases-âncora e erro simulado · <b>N7</b> mesmo conteúdo em três formatos: laboratório, questão e flashcard.</p>
+    </div>
+  </section>
+
+  <section id="pegadinhas">
+    <div class="sechead">
+      <div class="num">⚠️</div>
+      <div><span class="eyebrow">As armadilhas</span><h2>Oito erros que quase todo mundo comete</h2></div>
+    </div>
+    <div class="pega"><b>1. Medir a jugular pela clavícula</b><span>A referência é o <b>ângulo de Louis</b>. Medir de outro ponto inventa números.</span></div>
+    <div class="pega"><b>2. Chamar de refluxo hepatojugular a subida que volta sozinha</b><span>Só conta se a elevação <b>se mantém</b> durante toda a compressão.</span></div>
+    <div class="pega"><b>3. Palpar as duas carótidas juntas</b><span>A regra da comparação bilateral tem exatamente essa exceção.</span></div>
+    <div class="pega"><b>4. Confundir deslocamento com propulsão</b><span>Deslocado e extenso = dilatação. Forte e demorado no lugar = hipertrofia.</span></div>
+    <div class="pega"><b>5. Procurar o ictus com o paciente sentado</b><span>Comece a 30–45°; se não achar, decúbito lateral esquerdo (Pachón).</span></div>
+    <div class="pega"><b>6. Achar que todo sopro tem frêmito</b><span>Frêmito indica sopro alto (≥ IV/VI). A recíproca é falsa.</span></div>
+    <div class="pega"><b>7. Tratar cianose periférica e central como a mesma coisa</b><span>Extremidade fria é periférica. Língua e mucosas é central — e é mais grave.</span></div>
+    <div class="pega"><b>8. Fechar choque só pelo enchimento capilar</b><span>Frio ambiente e idade atrasam o retorno da cor em pessoas saudáveis.</span></div>
+  </section>
+
+  <section id="quiz">
+    <div class="sechead">
+      <div class="num">🎯</div>
+      <div><span class="eyebrow">Testagem ativa · N4</span><h2>Arena de questões</h2></div>
+    </div>
+    <p style="margin-top:-4px;color:var(--cinza)">Responda antes de reler. Errar aqui é a parte útil.</p>
+    <div id="quizBox"></div>
+    <div class="verdict" id="quizScore">0 de 0 respondidas.</div>
+  </section>
+
+  <section id="flash">
+    <div class="sechead">
+      <div class="num">⚡</div>
+      <div><span class="eyebrow">Revisão rápida</span><h2>Flashcards — pergunta e resposta à vista</h2></div>
+    </div>
+    <p style="margin-top:-4px;color:var(--cinza)">Para conteúdo básico, esconder a resposta atrapalha. Leia de cima a baixo, cobrindo a linha de baixo com o dedo se quiser se testar.</p>
+    <div class="chips" id="fFilt"></div>
+    <div class="mfc-grid" id="flashBox"></div>
+  </section>
+
+  <section id="revisao">
+    <div class="sechead">
+      <div class="num">⏱️</div>
+      <div><span class="eyebrow">Fechamento</span><h2>Revisão de 60 segundos</h2></div>
+    </div>
+    <div class="card">
+      <ol class="tight" style="padding-left:22px;font-size:15.5px">
+        <li><b>45°</b>, examinador à direita, tórax exposto e luz de lado.</li>
+        <li>Pescoço: jugular é <b>olho e volume</b>; carótida é <b>dedo e pressão</b>, uma de cada vez.</li>
+        <li>Coluna venosa <b>até 3 cm</b> acima do ângulo de Louis; PVC ≈ altura + 5.</li>
+        <li>Refluxo hepatojugular positivo é o <b>sustentado</b>.</li>
+        <li>Tórax de cima para baixo: base → borda esternal → ápice.</li>
+        <li>Ictus: <b>5º EIC na linha hemiclavicular</b>, 1–2 polpas digitais.</li>
+        <li>Pentágono: local, extensão, força, mobilidade, duração.</li>
+        <li>Borda esternal e epigástrio = <b>ventrículo direito</b>.</li>
+        <li>Frêmito = sopro <b>≥ IV/VI</b>.</li>
+        <li>Pulsos aos pares, com <b>F.R.A.T.E.C.S.</b> em cada um.</li>
+        <li>Célere = insuficiência aórtica · parvus et tardus = estenose aórtica.</li>
+        <li>Enchimento capilar <b>até 3 s</b>; Allen normal em menos de 7–10 s.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="espacada">
+    <div class="sechead">
+      <div class="num">📆</div>
+      <div><span class="eyebrow">Repetição espaçada · N7</span><h2>Seu plano de revisão</h2></div>
+    </div>
+    <div id="chkBox"></div>
+    <div class="ctrl"><button class="btn small ghost" onclick="resetProg()">apagar meu progresso</button></div>
+  </section>
+
+  <section id="ponte">
+    <div class="card" style="background:var(--navy);border:none;color:#fff;text-align:center;padding:26px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2.4px;color:#79c3d8">PRÓXIMO MÓDULO</div>
+      <h2 style="margin:8px 0;font-size:26px;color:#fff">🩺 Ausculta cardíaca</h2>
+      <p style="color:#b9cede;margin:0">Depois de olhar e tocar, chegou a hora de ouvir. Focos, B1 e B2, desdobramentos, B3, B4 — e então os sopros.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>Atlas Mental · Memória Potencial</b><br>
+    Semiologia Cardiovascular Básica — Inspeção e Palpação. Material de apoio para o ciclo básico.
+    <div style="font-family:'Dancing Script',cursive;font-size:26px;color:#fff;margin-top:10px">Dr. André Rossanno</div>
+    <div class="lic">
+      © 2026 Dr. André Rossanno | Material educacional — uso comercial proibido.<br>
+      Licença CC BY-NC-ND: pode compartilhar com atribuição, sem uso comercial e sem modificações.<br>
+      Este material não substitui livro-texto nem supervisão clínica.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= Atlas Mental · Semiologia CV Básica =================
+   © 2026 Dr. André Rossanno — CC BY-NC-ND. Uso comercial proibido.
+   ====================================================================== */
+var LS_KEY='atlasSemioCV_basico_v1';
+
+/* ---------- toggles ---------- */
+function toggleProf(){var b=document.getElementById('tProf'),on=document.body.classList.toggle('prof');b.setAttribute('aria-pressed',on)}
+function toggleMov(){var b=document.getElementById('tMov'),on=document.body.classList.toggle('reduz');b.setAttribute('aria-pressed',on);if(on&&waveOn)toggleWave()}
+
+/* ---------- progresso de leitura ---------- */
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+  document.getElementById('progBar').style.width=Math.min(100,Math.max(0,p*100))+'%';
+},{passive:true});
+
+/* ---------- LAB 1 · inclinação ---------- */
+var INCL={
+  0:{l:66,t:'bad',m:'Deitado a 0°: a coluna venosa enche todo o pescoço e o topo se perde acima da mandíbula. Você não consegue medir nada.'},
+  15:{l:54,t:'warn',m:'15°: ainda alto. O topo costuma ficar escondido pelo ângulo da mandíbula.'},
+  30:{l:42,t:'ok',m:'30°: já dá para trabalhar. Em paciente com pressão venosa alta, esta pode ser a melhor posição.'},
+  45:{l:34,t:'ok',m:'45°: a posição padrão. O topo da coluna aparece no meio do pescoço, onde dá para medir.'},
+  60:{l:24,t:'warn',m:'60°: a coluna desce. Em paciente normal, o topo já pode sumir atrás da clavícula.'},
+  90:{l:10,t:'bad',m:'Sentado a 90°: a coluna colapsa. Ver turgência aqui é sinal de pressão venosa muito alta.'}
+};
+var JAW=46; /* limite visivel da coluna: acima disso o topo se perde na mandibula */
+function setIncl(){
+  var a=+document.getElementById('incl').value,d=INCL[a],rot=a*0.62;
+  document.getElementById('inclOut').textContent=a+'°';
+  /* rotacao POSITIVA em SVG = tronco sobe (cabeca a esquerda do pivo) */
+  document.getElementById('upperBody').setAttribute('transform','rotate('+rot+' 250 176)');
+  document.getElementById('louisLbl').setAttribute('transform','rotate('+(-rot)+' 220 133)');
+  var vis=Math.min(d.l,JAW),perdido=d.l>JAW;
+  document.getElementById('jugCol').setAttribute('x2',104-vis);
+  var lost=document.getElementById('jugLost');
+  lost.setAttribute('x1',104-vis);lost.setAttribute('x2',104-d.l);
+  lost.setAttribute('opacity',perdido?'0.45':'0');
+  var top=document.getElementById('jugTop');
+  top.setAttribute('cx',104-d.l);
+  top.setAttribute('fill',perdido?'#ffffff':'#154d7d');
+  var v=document.getElementById('inclVer');v.className='verdict '+d.t;v.textContent=d.m;
+}
+
+/* ---------- LAB 2 · testes cervicais ---------- */
+var TC={
+  insp:['A coluna <b>desce</b>. A pressão dentro do tórax fica negativa e puxa o sangue para dentro.','Praticamente não muda. A ejeção do ventrículo esquerdo não depende disso.'],
+  comp:['<b>Some</b> acima do ponto comprimido — é uma veia, e veia se fecha com quase nada.','Continua batendo igual. Artéria não colaba com pressão leve.'],
+  sentar:['A altura <b>cai bastante</b>. Por isso a posição precisa estar padronizada em 45°.','Amplitude igual. Postura não altera a força do pulso.'],
+  onda:['Ondulante, com mais de um movimento por batimento. Parece uma água balançando.','Um pico único, rápido e definido. Parece um soco.']
+};
+function testeCervical(k){
+  document.getElementById('tcVen').innerHTML=TC[k][0];
+  document.getElementById('tcArt').innerHTML=TC[k][1];
+}
+
+/* ---------- LAB 3 · régua de Louis ---------- */
+function setLouis(){
+  var h=+document.getElementById('louis').value;
+  document.getElementById('louisOut').textContent=h.toString().replace('.',',')+' cm';
+  var px=h*16,y=170-px;
+  document.getElementById('colBar').setAttribute('y',y);
+  document.getElementById('colBar').setAttribute('height',Math.max(4,px));
+  document.getElementById('colTop').setAttribute('cy',y);
+  var v=document.getElementById('louisVer'),pvc=(h+5).toString().replace('.',',');
+  if(h<=3){v.className='verdict ok';v.innerHTML='Coluna de <b>'+h.toString().replace('.',',')+' cm</b> → PVC estimada <b>'+pvc+' cmH₂O</b>. Dentro do normal.';}
+  else if(h<=4){v.className='verdict warn';v.innerHTML='Coluna de <b>'+h.toString().replace('.',',')+' cm</b> → PVC estimada <b>'+pvc+' cmH₂O</b>. Zona limítrofe: alguns autores ainda aceitam, mas anote e reavalie.';}
+  else{v.className='verdict bad';v.innerHTML='Coluna de <b>'+h.toString().replace('.',',')+' cm</b> → PVC estimada <b>'+pvc+' cmH₂O</b>. Pressão venosa aumentada — procure insuficiência cardíaca direita e sobrecarga de volume.';}
+}
+
+/* ---------- LAB 5 · zonas do tórax ---------- */
+var ZONA={
+  base:'<b>BASE — 2º espaço intercostal, direito e esquerdo.</b> É a região das grandes artérias que saem do coração: aorta à direita, pulmonar à esquerda. Pulsação visível aqui levanta a suspeita de aneurisma da aorta.',
+  borda:'<b>BORDA ESTERNAL ESQUERDA — 3º ao 5º espaço.</b> Território do <b>ventrículo direito</b> e da valva tricúspide. É aqui que se procura a impulsão paraesternal.',
+  apice:'<b>ÁPICE — 5º espaço intercostal, na linha hemiclavicular.</b> Território do <b>ventrículo esquerdo</b>. É onde mora o ictus cordis.'
+};
+function zona(k){document.getElementById('zonaVer').innerHTML=ZONA[k]}
+
+/* ---------- LAB 6 · grade costal ---------- */
+var COLS=['Paraesternal','Hemiclavicular','Axilar ant.'],ROWS=['3º EIC','4º EIC','5º EIC','6º EIC'];
+function montaGrade(){
+  var g=document.getElementById('grade'),h='<div class="ghead"></div>';
+  COLS.forEach(function(c){h+='<div class="ghead">'+c+'</div>'});
+  ROWS.forEach(function(r,ri){
+    h+='<div class="ghead">'+r+'</div>';
+    COLS.forEach(function(c,ci){h+='<button class="gcell" data-r="'+ri+'" data-c="'+ci+'" onclick="pickGrade(this,'+ri+','+ci+')">·</button>'});
+  });
+  g.innerHTML=h;
+}
+function pickGrade(el,r,c){
+  Array.prototype.forEach.call(document.querySelectorAll('.gcell'),function(b){b.classList.remove('sel')});
+  el.classList.add('sel');
+  var v=document.getElementById('gradeVer'),m,t;
+  if(r===2&&c===1){t='ok';m='✅ <b>5º EIC na linha hemiclavicular.</b> É o lugar do ictus no normolíneo. Extensão esperada: 1 a 2 polpas digitais.';}
+  else if(r===1&&c===1){t='warn';m='🟡 <b>4º EIC hemiclavicular.</b> Aceitável no brevilíneo — o baixo e largo tem o coração mais horizontalizado.';}
+  else if(r===3&&c===1){t='warn';m='🟡 <b>6º EIC hemiclavicular.</b> Aceitável no longilíneo, que costuma ter o ictus mais baixo e um pouco mais medial.';}
+  else if(c===0){t='warn';m='🟡 <b>Região paraesternal.</b> Medial demais para o ictus do ventrículo esquerdo. Impulso forte aqui é território do <b>ventrículo direito</b>.';}
+  else if(c===2){t='bad';m='❌ <b>Linha axilar anterior.</b> Ictus deslocado para fora — pense em <b>dilatação do ventrículo esquerdo</b>. Meça a extensão: costuma passar de 2 polpas.';}
+  else{t='bad';m='❌ <b>3º EIC.</b> Alto demais para ictus. Reveja a contagem dos espaços começando pelo ângulo de Louis, que marca o 2º espaço.';}
+  v.className='verdict '+t;v.innerHTML=m;
+}
+
+/* ---------- LAB 7 · pentágono ---------- */
+var PENTA=[
+ {t:'1 · LOCALIZAÇÃO',n:'5º EIC na linha hemiclavicular (normolíneo).',a:'Deslocado para baixo e para fora → dilatação do ventrículo esquerdo.'},
+ {t:'2 · EXTENSÃO',n:'1 a 2 polpas digitais, cerca de 2 cm.',a:'Mais que 2 polpas → sobrecarga de volume, câmara dilatada.'},
+ {t:'3 · FORÇA (intensidade)',n:'Impulso suave, que só levanta o dedo de leve.',a:'Ictus propulsivo, que ergue o dedo com vigor → hipertrofia do ventrículo esquerdo.'},
+ {t:'4 · MOBILIDADE',n:'Anda 1 a 2 cm quando o paciente vira em decúbito lateral (Pachón).',a:'Ictus fixo, que não se move → aderência pericárdica ou coração muito aumentado.'},
+ {t:'5 · DURAÇÃO',n:'Ocupa menos da metade da sístole — um toque rápido.',a:'Sustentado, que fica no dedo → sobrecarga de <b>pressão</b>, hipertrofia.'}
+];
+function penta(i){
+  var p=PENTA[i],v=document.getElementById('pentaVer');
+  v.className='verdict';
+  v.innerHTML='<b>'+p.t+'</b><br><span style="color:#136b45">Normal:</span> '+p.n+'<br><span style="color:#8e2a1f">Alterado:</span> '+p.a;
+}
+
+/* ---------- LAB 8 · pulsos ---------- */
+var PULSO={
+  carotideo:'<b>Carotídeo</b> — pulso <b>central</b>. Sulco entre a traqueia e o esternocleidomastóideo, terço inferior. Avalia amplitude e contorno. <b>Uma de cada vez.</b>',
+  braquial:'<b>Braquial</b> — fossa antecubital, medial ao tendão do bíceps. É onde se ausculta a pressão arterial.',
+  radial:'<b>Radial</b> — face lateral do punho. É o pulso da rotina: frequência e ritmo.',
+  femoral:'<b>Femoral</b> — pulso <b>central</b>, no trígono femoral, abaixo do ligamento inguinal. Compare com o radial: atraso sugere coartação da aorta.',
+  popliteo:'<b>Poplíteo</b> — fossa poplítea, com o joelho semifletido. É o mais difícil de achar; use as duas mãos.',
+  tibial:'<b>Tibial posterior</b> — logo atrás do maléolo medial.',
+  pedioso:'<b>Pedioso</b> — dorso do pé, lateralmente ao tendão do extensor do hálux. Ausente em parte das pessoas saudáveis: avalie junto com o tibial posterior.'
+};
+function pulso(k){document.getElementById('pulsoVer').innerHTML=PULSO[k]}
+
+/* ---------- LAB 9 · FRATECS ---------- */
+var FRAT=[
+ ['F','FREQUÊNCIA','Conte 60 segundos. Adulto em repouso: 60 a 100 bpm.'],
+ ['R','RITMO','Regular ou irregular. Irregular e sem padrão nenhum levanta fibrilação atrial.'],
+ ['A','AMPLITUDE','O volume da onda: amplo, normal ou filiforme.'],
+ ['T','TENSÃO','A força necessária para apagar o pulso — dá uma ideia grosseira da pressão sistólica.'],
+ ['E','ESTADO DO VASO','A parede da artéria: lisa e elástica, ou endurecida e tortuosa.'],
+ ['C','CELERIDADE','A forma da onda: sobe rápido e cai rápido, ou sobe devagar e se arrasta?'],
+ ['S','SIMETRIA','Compare os dois lados. Diferença é achado, não detalhe.']
+];
+function montaFrat(){
+  var w=document.getElementById('fratecs'),h='';
+  FRAT.forEach(function(f,i){h+='<button class="chip" id="fc'+i+'" onclick="fratShow('+i+')">'+f[0]+'<small>'+f[1].slice(0,7)+'</small></button>'});
+  w.innerHTML=h;
+}
+function fratShow(i){
+  document.getElementById('fc'+i).classList.add('sel');
+  document.getElementById('fratVer').innerHTML='<b>'+FRAT[i][0]+' — '+FRAT[i][1]+'</b><br>'+FRAT[i][2];
+}
+
+/* ---------- LAB 10 · ondas ---------- */
+var waveOn=false,waveRAF=null,waveT=0;
+function toggleWave(){
+  var b=document.getElementById('btnWave');
+  if(waveOn){waveOn=false;cancelAnimationFrame(waveRAF);b.textContent='▶ Reproduzir';return}
+  if(document.body.classList.contains('reduz')){b.textContent='▶ Reproduzir';return}
+  waveOn=true;b.textContent='⏸ Pausar';stepWave();
+}
+function stepWave(){
+  if(!waveOn)return;
+  waveT=(waveT+0.004)%1;
+  [['wCel','dCel'],['wPar','dPar']].forEach(function(p){
+    var path=document.getElementById(p[0]),dot=document.getElementById(p[1]);
+    var pt=path.getPointAtLength(waveT*path.getTotalLength());
+    dot.setAttribute('cx',pt.x);dot.setAttribute('cy',pt.y);
+  });
+  waveRAF=requestAnimationFrame(stepWave);
+}
+
+/* ---------- LAB 11 · enchimento capilar ---------- */
+var tecState='idle',tecStart=0,tecAlvo=0,tecRAF=null,tecHold=0;
+var nail=document.getElementById('nailSvg'),bed=document.getElementById('nailBed'),msg=document.getElementById('nailMsg');
+function tecDown(e){e.preventDefault();if(tecState!=='idle')return;tecState='press';tecHold=Date.now();bed.setAttribute('fill','#fbfbfb');msg.textContent='segurando…'}
+function tecUp(){
+  if(tecState!=='press')return;
+  if(Date.now()-tecHold<1200){tecReset();msg.textContent='segure por 5 segundos';return}
+  tecState='run';tecStart=Date.now();tecAlvo=1200+Math.random()*3300;
+  document.getElementById('btnTec').disabled=false;msg.textContent='observe a cor voltar';
+  tecAnim();
+}
+function tecAnim(){
+  if(tecState!=='run')return;
+  var f=Math.min(1,(Date.now()-tecStart)/tecAlvo);
+  var r=Math.round(251+(232-251)*f),g=Math.round(251+(163-251)*f),b2=Math.round(251+(151-251)*f);
+  bed.setAttribute('fill','rgb('+r+','+g+','+b2+')');
+  document.getElementById('tecOut').textContent=((Date.now()-tecStart)/1000).toFixed(1).replace('.',',')+' s';
+  tecRAF=requestAnimationFrame(tecAnim);
+}
+function tecStop(){
+  if(tecState!=='run')return;
+  tecState='done';cancelAnimationFrame(tecRAF);
+  var t=(Date.now()-tecStart)/1000,real=tecAlvo/1000,v=document.getElementById('tecVer');
+  document.getElementById('btnTec').disabled=true;msg.textContent='toque em recomeçar';
+  bed.setAttribute('fill','#e8a397');
+  var erro=Math.abs(t-real),txt='Você marcou <b>'+t.toFixed(1).replace('.',',')+' s</b>; o retorno real levou <b>'+real.toFixed(1).replace('.',',')+' s</b>. ';
+  txt+=erro<0.6?'Boa precisão. ':'Diferença de '+erro.toFixed(1).replace('.',',')+' s — treine contando "mil e um, mil e dois". ';
+  if(real<=3){v.className='verdict ok';txt+='Enchimento <b>normal</b> (até 3 s).'}
+  else{v.className='verdict bad';txt+='Enchimento <b>lentificado</b> (acima de 3 s): investigue perfusão, mas nunca isolado.'}
+  v.innerHTML=txt;
+}
+function tecReset(){
+  tecState='idle';cancelAnimationFrame(tecRAF);bed.setAttribute('fill','#e8a397');
+  msg.textContent='segure aqui';document.getElementById('btnTec').disabled=true;
+  document.getElementById('tecOut').textContent='0,0 s';
+  var v=document.getElementById('tecVer');v.className='verdict';v.textContent='Normal: até 3 segundos.';
+}
+
+/* ---------- QUESTÕES ---------- */
+var QUESTOES=[
+ {q:'Você vê algo pulsando no pescoço e precisa decidir se é veia ou artéria. Qual manobra resolve mais rápido?',o:['Pedir para o paciente prender a respiração','Comprimir levemente a base do pescoço','Palpar com força as duas laterais ao mesmo tempo','Medir a pressão arterial'],c:1,e:'Compressão leve apaga a coluna venosa acima do ponto comprimido; a artéria continua batendo. Palpar as duas carótidas juntas nunca é opção.'},
+ {q:'A partir de qual referência se mede a altura da coluna venosa jugular?',o:['Da clavícula','Do ângulo da mandíbula','Do ângulo de Louis','Do mamilo'],c:2,e:'O ângulo de Louis (junção manúbrio-esternal) fica cerca de 5 cm acima do centro do átrio direito, o que permite estimar a PVC.'},
+ {q:'Coluna venosa a 2 cm acima do ângulo de Louis. A PVC estimada é:',o:['2 cmH₂O','5 cmH₂O','7 cmH₂O','12 cmH₂O'],c:2,e:'Altura medida + 5 cm = 7 cmH₂O. Normal é até 8–9.'},
+ {q:'O refluxo hepatojugular só é considerado positivo quando:',o:['A jugular sobe no primeiro segundo e volta','A elevação se mantém durante toda a compressão','O paciente sente dor no fígado','A carótida fica mais forte'],c:1,e:'Subir e voltar sozinho é resposta normal. O que importa é a elevação sustentada, que cai quando você solta.'},
+ {q:'Onde fica o ictus cordis de um adulto normolíneo?',o:['4º EIC na linha paraesternal esquerda','5º EIC na linha hemiclavicular esquerda','5º EIC na linha axilar média','2º EIC direito'],c:1,e:'No brevilíneo sobe para o 4º; no longilíneo desce para o 6º e fica mais medial.'},
+ {q:'Ictus no lugar habitual, mas forte e que permanece no dedo durante boa parte da sístole. O achado sugere:',o:['Dilatação por sobrecarga de volume','Hipertrofia por sobrecarga de pressão','Derrame pericárdico','Tórax em tonel'],c:1,e:'Força e duração falam de pressão (hipertrofia). Deslocamento e extensão falam de volume (dilatação).'},
+ {q:'Você não consegue palpar o ictus. A manobra indicada é:',o:['Sentar o paciente e inclinar para frente','Decúbito lateral esquerdo (Pachón)','Pedir para prender a respiração em inspiração','Elevar as pernas'],c:1,e:'O decúbito lateral esquerdo aproxima o ápice da parede torácica.'},
+ {q:'Impulsão palpável na borda esternal esquerda, do 3º ao 5º espaço, indica sobretudo:',o:['Ventrículo esquerdo dilatado','Ventrículo direito sobrecarregado','Aneurisma de aorta abdominal','Estenose de carótida'],c:1,e:'Ápice é ventrículo esquerdo; borda esternal esquerda e epigástrio são território do direito.'},
+ {q:'A presença de frêmito permite afirmar que o sopro é:',o:['Diastólico','De grau ≥ IV de VI','Inocente','Sempre de origem mitral'],c:1,e:'Frêmito indica sopro alto. O contrário não vale: sopro sem frêmito ainda pode ser importante.'},
+ {q:'Qual pulso NUNCA deve ser palpado bilateralmente ao mesmo tempo?',o:['Radial','Femoral','Carotídeo','Pedioso'],c:2,e:'Comprimir as duas carótidas pode reduzir o fluxo cerebral e provocar síncope, além do risco de resposta vagal e de embolia de placa.'},
+ {q:'Pulso de amplitude pequena e ascensão lenta, arrastada. O nome e a doença clássica são:',o:['Célere — insuficiência aórtica','Parvus et tardus — estenose aórtica','Alternante — pericardite','Filiforme — hipertensão'],c:1,e:'Parvus (pequeno) e tardus (lento): o sangue custa a atravessar a valva estreitada.'},
+ {q:'Pulso em martelo d’água, que sobe num estalo e colapsa, associa-se classicamente a:',o:['Estenose mitral','Insuficiência aórtica','Tamponamento cardíaco','Choque séptico'],c:1,e:'Grande volume ejetado e refluxo diastólico rápido produzem a subida abrupta seguida de queda.'},
+ {q:'No algoritmo F.R.A.T.E.C.S., o que a letra T avalia?',o:['Temperatura da pele','Tensão: a força necessária para apagar o pulso','Tempo de enchimento capilar','Turgência jugular'],c:1,e:'Tensão dá uma noção grosseira da pressão sistólica. Enchimento capilar e turgência são outras etapas do exame.'},
+ {q:'Enchimento capilar de 4 segundos, isoladamente, permite concluir que o paciente está em choque?',o:['Sim, acima de 3 segundos fecha o diagnóstico','Não — é um dado a mais, influenciado por frio e idade','Sim, se a jugular estiver colabada','Não, porque o valor normal é até 6 segundos'],c:1,e:'O valor normal é até 3 segundos, mas ambiente frio, idade e vasoconstrição periférica atrasam o retorno em pessoas saudáveis.'},
+ {q:'Qual é a posição padrão para avaliar a turgência jugular?',o:['Decúbito dorsal a 0°','Tronco elevado a 30–45°','Sentado a 90°','Decúbito lateral esquerdo'],c:1,e:'A 0° a coluna transborda e o topo se perde; a 90° ela colapsa. A 30–45° o topo aparece no meio do pescoço.'},
+ {q:'Cianose de língua e mucosas, com extremidades quentes, caracteriza:',o:['Cianose periférica','Cianose central','Fenômeno de Raynaud','Fácies mitral'],c:1,e:'Periférica é de extremidade fria, por má perfusão local; central envolve mucosas e traduz problema de oxigenação sistêmica.'}
+];
+function montaQuiz(){
+  var b=document.getElementById('quizBox'),h='';
+  QUESTOES.forEach(function(q,i){
+    h+='<div class="q"><div class="qh">QUESTÃO '+(i+1)+' DE '+QUESTOES.length+'</div><div class="qt">'+q.q+'</div>';
+    q.o.forEach(function(o,j){h+='<button class="opt" id="o'+i+'_'+j+'" onclick="resp('+i+','+j+')">'+o+'</button>'});
+    h+='<div class="fb" id="fb'+i+'"></div></div>';
+  });
+  b.innerHTML=h;
+}
+var respondidas={};
+function resp(i,j){
+  if(respondidas[i])return;
+  respondidas[i]=true;
+  var q=QUESTOES[i];
+  for(var k=0;k<q.o.length;k++){
+    var el=document.getElementById('o'+i+'_'+k);el.disabled=true;
+    if(k===q.c)el.classList.add('right');
+    else if(k===j)el.classList.add('wrong');
+  }
+  var fb=document.getElementById('fb'+i);
+  fb.className='fb on';
+  fb.innerHTML=(j===q.c?'<b style="color:#136b45">Correto.</b> ':'<b style="color:#8e2a1f">Resposta certa: '+q.o[q.c]+'.</b> ')+q.e;
+  var n=Object.keys(respondidas).length;
+  document.getElementById('quizScore').textContent=n+' de '+QUESTOES.length+' respondidas.';
+}
+
+/* ---------- FLASHCARDS ---------- */
+var FLASH=[
+ ['Posição','Ângulo padrão para o exame cardiovascular','Tronco elevado a 30–45°, examinador à direita.'],
+ ['Posição','Manobra de Pachón','Decúbito lateral esquerdo, para aproximar o ápice da parede e achar o ictus.'],
+ ['Pescoço','Jugular em uma palavra','Volume — e se avalia com o olho.'],
+ ['Pescoço','Carótida em uma palavra','Pressão — e se avalia com o dedo.'],
+ ['Pescoço','Referência para medir a jugular','Ângulo de Louis, a saliência entre manúbrio e corpo do esterno.'],
+ ['Pescoço','Altura normal da coluna venosa','Até 3 cm acima do ângulo de Louis (alguns aceitam 4).'],
+ ['Pescoço','Como estimar a PVC','Altura medida + 5 cm. Normal até 8–9 cmH₂O.'],
+ ['Pescoço','Refluxo hepatojugular positivo','Elevação de ≥ 3–4 cm que se mantém durante toda a compressão.'],
+ ['Pescoço','Sinal de Kussmaul','Jugular que sobe na inspiração em vez de descer.'],
+ ['Pescoço','As duas proibições da carótida','Nunca as duas ao mesmo tempo; nunca massagear o seio carotídeo.'],
+ ['Tórax','Ordem da varredura do precórdio','Base → borda esternal esquerda → ápice.'],
+ ['Tórax','Onde fica a base','2º espaço intercostal, direito e esquerdo.'],
+ ['Tórax','O que é inspeção tangencial','Olhar com a luz quase rente à pele, para revelar pulsações discretas.'],
+ ['Ictus','Localização normal','5º EIC na linha hemiclavicular esquerda (normolíneo).'],
+ ['Ictus','Extensão normal','1 a 2 polpas digitais, cerca de 2 cm.'],
+ ['Ictus','Os cinco componentes','Localização, extensão, força, mobilidade e duração.'],
+ ['Ictus','Deslocado e extenso significa','Dilatação — sobrecarga de volume.'],
+ ['Ictus','Propulsivo e sustentado significa','Hipertrofia — sobrecarga de pressão.'],
+ ['VD','Impulsão paraesternal','Borda esternal esquerda, 3º ao 5º EIC: ventrículo direito sobrecarregado.'],
+ ['VD','Pulsação epigástrica','De cima para baixo é ventrículo direito; de trás para frente é aorta abdominal.'],
+ ['Frêmito','O que é','A vibração de um sopro, sentida pela mão. Sensação de ronronar de gato.'],
+ ['Frêmito','O que garante sobre o sopro','Que ele é alto: grau ≥ IV de VI na escala de Levine.'],
+ ['Pulsos','Pulsos centrais','Carotídeo e femoral.'],
+ ['Pulsos','Regra e exceção','Sempre bilateral e comparativo — exceto a carótida.'],
+ ['Pulsos','Atraso radiofemoral sugere','Coartação da aorta.'],
+ ['Pulsos','F.R.A.T.E.C.S.','Frequência, Ritmo, Amplitude, Tensão, Estado do vaso, Celeridade, Simetria.'],
+ ['Ondas','Pulso célere / martelo d’água','Sobe e cai abruptamente — insuficiência aórtica.'],
+ ['Ondas','Parvus et tardus','Pequeno e de subida lenta — estenose aórtica importante.'],
+ ['Ondas','Pulso paradoxal','Queda da sistólica acima de 10 mmHg na inspiração — tamponamento.'],
+ ['Perfusão','Enchimento capilar normal','Até 3 segundos.'],
+ ['Perfusão','Teste de Allen normal','Cor volta em menos de 7 a 10 segundos ao liberar a ulnar.'],
+ ['Perfusão','Cianose central × periférica','Central: língua e mucosas. Periférica: extremidades frias.']
+];
+var fTema='TODOS';
+function montaFlash(){
+  var temas=['TODOS'];FLASH.forEach(function(f){if(temas.indexOf(f[0])<0)temas.push(f[0])});
+  document.getElementById('fFilt').innerHTML=temas.map(function(t){
+    return '<button class="chip'+(t===fTema?' sel':'')+'" style="font-size:13px;font-weight:800" onclick="filtFlash(\''+t+'\')">'+t+'</button>';
+  }).join('');
+  document.getElementById('flashBox').innerHTML=FLASH.filter(function(f){return fTema==='TODOS'||f[0]===fTema})
+    .map(function(f){return '<div class="mfc"><b>'+f[1]+'</b><span>'+f[2]+'</span></div>'}).join('');
+}
+function filtFlash(t){fTema=t;montaFlash()}
+
+/* ---------- CHECKLIST ESPAÇADO ---------- */
+var CHK=[
+ ['hoje','Hoje','Percorrer as 12 estações e mexer em todos os laboratórios'],
+ ['hoje2','Hoje','Responder a arena de questões inteira'],
+ ['hoje3','Hoje','Recitar a rota em voz alta sem olhar: olhar → pescoço → tórax → pulsos → dedos'],
+ ['am','Amanhã','Ler só os flashcards e as 8 pegadinhas'],
+ ['am2','Amanhã','Examinar um colega do começo ao fim, cronometrando'],
+ ['d7','Em 7 dias','Refazer a arena de questões sem consultar'],
+ ['d7b','Em 7 dias','Desenhar o pentágono do ictus de memória'],
+ ['d7c','Em 7 dias','Aplicar a rota em um paciente real, com supervisão']
+];
+function montaChk(){
+  var s={};try{s=JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){s={}}
+  document.getElementById('chkBox').innerHTML=CHK.map(function(c){
+    var on=!!s[c[0]];
+    return '<label class="chk'+(on?' done':'')+'" for="ck_'+c[0]+'"><input type="checkbox" id="ck_'+c[0]+'" '+(on?'checked':'')+' onchange="salvaChk(\''+c[0]+'\',this)"><span><b style="font-family:\'IBM Plex Mono\',monospace;font-size:10px;letter-spacing:1.4px;color:#5b6b7a">'+c[1].toUpperCase()+'</b><br>'+c[2]+'</span></label>';
+  }).join('');
+}
+function salvaChk(k,el){
+  var s={};try{s=JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){s={}}
+  s[k]=el.checked;
+  try{localStorage.setItem(LS_KEY,JSON.stringify(s))}catch(e){}
+  el.parentNode.classList.toggle('done',el.checked);
+}
+function resetProg(){try{localStorage.removeItem(LS_KEY)}catch(e){}montaChk()}
+
+/* ---------- INIT ---------- */
+(function init(){
+  document.getElementById('incl').addEventListener('input',setIncl);
+  document.getElementById('louis').addEventListener('input',setLouis);
+  setIncl();setLouis();montaGrade();montaFrat();montaQuiz();montaFlash();montaChk();
+  document.getElementById('quizScore').textContent='0 de '+QUESTOES.length+' respondidas.';
+  nail.addEventListener('pointerdown',tecDown);
+  nail.addEventListener('pointerup',tecUp);
+  nail.addEventListener('pointerleave',function(){if(tecState==='press')tecReset()});
+  nail.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();if(tecState==='idle'){tecDown(e);tecHold=Date.now()-2000}else if(tecState==='press'){tecUp()}}});
+})();
+</script>
+</body>
+</html>
