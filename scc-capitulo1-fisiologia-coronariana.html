@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Mental de Cardiologia — Síndrome Coronariana Crônica · Capítulo 1</title>
+<meta name="description" content="Atlas Mental de Cardiologia — Síndrome Coronariana Crônica, Capítulo 1: Introdução e Fisiologia Coronariana. Dr. André Rossanno.">
+<!--
+  ============================================================
+  ATLAS MENTAL DE CARDIOLOGIA
+  Síndrome Coronariana Crônica — Capítulo 1
+  Introdução e Fisiologia Coronariana
+  Autor: Dr. André Rossanno
+  Arquivo único · CSS + JS embutidos · funciona offline
+  LS_KEY: atlasCardio_scc_cap1_v1
+  Metáfora central: A CIDADE CORONÁRIA
+  Fonte principal: Diretriz Brasileira de Síndrome Coronariana Crônica (SBC, 2025)
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --branco:#ffffff;
+  --papel:#f4f7fb;
+  --papel2:#eaf0f7;
+  --navy:#0d2340;          /* conceitos fundamentais */
+  --navy2:#173a63;
+  --azul:#1282A2;          /* azul Atlas — fisiologia/cálculo */
+  --azul-claro:#e3f2f7;
+  --vermelho:#c0392b;      /* isquemia, alerta, erro */
+  --vermelho-claro:#fdecea;
+  --verde:#1e8f5e;         /* fisiologia preservada, acerto */
+  --verde-claro:#e7f6ee;
+  --dourado:#a5761a;       /* números, pegadinhas, prova */
+  --dourado-vivo:#d9a324;
+  --dourado-claro:#fdf5e2;
+  --roxo:#6b3fa0;          /* microcirculação, ANOCA, INOCA */
+  --roxo-claro:#f1ebfa;
+  --cinza:#5b6b7f;
+  --linha:#d6e0ea;
+  --sombra:0 4px 18px rgba(13,35,64,.09);
+  --sombra-forte:0 10px 34px rgba(13,35,64,.16);
+  --r:16px;
+  --disp:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --assin:'Dancing Script','Brush Script MT',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{
+  margin:0;background:var(--papel);color:var(--navy);
+  font-family:var(--disp);font-size:17px;line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+body.reduz *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+img{max-width:100%}
+h1,h2,h3,h4{line-height:1.22;margin:0 0 10px}
+h2{font-size:1.5rem;font-weight:900;letter-spacing:-.4px}
+h3{font-size:1.16rem;font-weight:800}
+p{margin:0 0 12px}
+a{color:var(--azul)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* ============ NAV ============ */
+nav.top{
+  position:sticky;top:0;z-index:60;background:rgba(13,35,64,.97);
+  color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.25);
+  backdrop-filter:blur(6px);
+}
+.navrow{display:flex;align-items:center;gap:10px;padding:9px 16px;max-width:1180px;margin:0 auto}
+.brand{font-weight:900;font-size:.95rem;letter-spacing:-.3px;white-space:nowrap}
+.brand small{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:1.4px;color:#9fc6d6;font-weight:400}
+.navspace{flex:1}
+.navbtn{
+  background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;padding:6px 12px;font-family:var(--disp);font-weight:700;font-size:.76rem;
+  cursor:pointer;white-space:nowrap;
+}
+.navbtn:hover{background:rgba(255,255,255,.2)}
+.navbtn.on{background:var(--dourado-vivo);color:#2b1d00;border-color:var(--dourado-vivo)}
+.navbtn:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--dourado-vivo);outline-offset:2px}
+.barra{height:4px;background:rgba(255,255,255,.14)}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--azul),var(--dourado-vivo));transition:width .25s}
+#menuLat{
+  position:fixed;top:0;left:0;bottom:0;width:290px;max-width:86vw;background:var(--navy);color:#fff;
+  z-index:80;transform:translateX(-102%);transition:transform .3s;overflow-y:auto;padding:16px 14px 40px;
+}
+#menuLat.open{transform:none}
+#menuLat h4{font-family:var(--mono);font-size:.66rem;letter-spacing:1.6px;color:#8fb8cc;margin:16px 0 6px}
+#menuLat a{display:block;color:#e8f1f7;text-decoration:none;padding:7px 9px;border-radius:8px;font-size:.9rem;font-weight:600}
+#menuLat a:hover{background:rgba(255,255,255,.1)}
+#backdrop{position:fixed;inset:0;background:rgba(4,12,24,.55);z-index:70;display:none}
+#backdrop.on{display:block}
+
+/* ============ HERO ============ */
+.hero{
+  background:
+    radial-gradient(circle at 78% 22%, rgba(18,130,162,.20), transparent 46%),
+    radial-gradient(circle at 14% 84%, rgba(192,57,43,.16), transparent 44%),
+    linear-gradient(160deg,#0b1e38,#0d2340 55%,#122c4e);
+  color:#fff;padding:44px 0 40px;position:relative;overflow:hidden;
+}
+.hero .kick{font-family:var(--mono);font-size:.68rem;letter-spacing:2.6px;color:#7fc4dc;margin-bottom:10px}
+.hero h1{font-size:2.05rem;font-weight:900;letter-spacing:-1px;margin-bottom:4px}
+.hero .sub{font-size:1.05rem;color:#c9dcea;font-weight:600}
+.hero .cap{
+  display:inline-block;margin-top:12px;background:rgba(217,163,36,.16);border:1px solid rgba(217,163,36,.5);
+  color:#f0c85e;border-radius:999px;padding:5px 14px;font-family:var(--mono);font-size:.7rem;letter-spacing:1.4px;
+}
+.hero .autor{font-family:var(--assin);font-size:1.6rem;color:#f0c85e;margin-top:14px}
+.impacto{
+  margin:26px 0 0;padding:18px 20px;border-left:4px solid var(--dourado-vivo);
+  background:rgba(255,255,255,.06);border-radius:0 12px 12px 0;font-size:1.08rem;font-style:italic;color:#eaf3fa;
+}
+.pergunta-abertura{
+  margin-top:20px;background:rgba(192,57,43,.14);border:1px solid rgba(192,57,43,.45);
+  border-radius:14px;padding:16px 18px;
+}
+.pergunta-abertura .lab{font-family:var(--mono);font-size:.66rem;letter-spacing:1.8px;color:#f3a79a}
+.pergunta-abertura p{font-size:1.06rem;font-weight:700;color:#fff;margin:6px 0 0}
+
+/* ============ HUB ============ */
+.hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:22px 0 0}
+.hub a{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;
+  padding:11px 12px;color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;display:block;
+}
+.hub a:hover{background:rgba(255,255,255,.16)}
+.hub a span{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:1.4px;color:#8fc9dd;font-weight:400}
+
+/* ============ SEÇÕES ============ */
+section{padding:34px 0 8px}
+.sechead{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+.sechead .num{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:1.4px;background:var(--navy);color:#fff;
+  border-radius:8px;padding:5px 9px;white-space:nowrap;margin-top:4px;
+}
+.sechead .n{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:1.4px;color:var(--azul);
+  border:1px solid var(--azul);border-radius:999px;padding:2px 8px;margin-left:8px;vertical-align:middle;
+}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--r);padding:18px;box-shadow:var(--sombra);margin-bottom:14px}
+.card.azul{border-left:5px solid var(--azul)}
+.card.verm{border-left:5px solid var(--vermelho)}
+.card.verde{border-left:5px solid var(--verde)}
+.card.our{border-left:5px solid var(--dourado-vivo)}
+.card.roxo{border-left:5px solid var(--roxo)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+.tag{
+  display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:1.4px;
+  border-radius:999px;padding:3px 9px;margin-bottom:8px;
+}
+.t-azul{background:var(--azul-claro);color:#0b5f77}
+.t-verm{background:var(--vermelho-claro);color:#8e2b20}
+.t-verde{background:var(--verde-claro);color:#146443}
+.t-our{background:var(--dourado-claro);color:#7d5810}
+.t-roxo{background:var(--roxo-claro);color:#4d2a77}
+.num-destaque{
+  font-family:var(--mono);font-weight:600;background:var(--dourado-claro);color:#7d5810;
+  border-bottom:2px solid var(--dourado-vivo);border-radius:4px;padding:1px 6px;
+}
+.sintese{
+  background:var(--navy);color:#fff;border-radius:12px;padding:12px 16px;font-weight:700;margin:12px 0 0;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.sintese b{color:var(--dourado-vivo);font-family:var(--mono);font-size:.66rem;letter-spacing:1.4px;white-space:nowrap;padding-top:4px}
+ul.lista{margin:0 0 10px;padding-left:20px}
+ul.lista li{margin-bottom:6px}
+.mini{font-size:.85rem;color:var(--cinza)}
+
+/* ============ FILOSOFIA ============ */
+.filo-bloco{
+  background:linear-gradient(155deg,#0b1e38,#123055);color:#fff;border-radius:18px;padding:22px 22px 18px;
+  border:1px solid rgba(217,163,36,.35);position:relative;overflow:hidden;margin:16px 0;
+}
+.filo-bloco::before{
+  content:'\201C';position:absolute;top:-26px;right:12px;font-size:9rem;color:rgba(217,163,36,.16);
+  font-family:Georgia,serif;line-height:1;
+}
+.filo-bloco p{font-size:1.1rem;font-style:italic;color:#f2f7fb;position:relative;z-index:1;margin-bottom:8px}
+.filo-assin{font-family:var(--assin);font-size:1.3rem;color:var(--dourado-vivo);text-align:right}
+.filo-inline{
+  border-left:3px solid var(--dourado-vivo);background:var(--dourado-claro);
+  padding:12px 16px;border-radius:0 12px 12px 0;font-style:italic;color:#5f4409;margin:16px 0;font-size:1rem;
+}
+.filo-inline .a{display:block;font-family:var(--assin);font-size:1.1rem;color:var(--dourado);font-style:normal;text-align:right;margin-top:4px}
+.filo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px}
+.filo-card{
+  background:linear-gradient(150deg,#0c2140,#16375c);border:1px solid rgba(217,163,36,.3);border-radius:14px;
+  padding:18px 16px 12px;color:#eef5fa;position:relative;opacity:0;transform:translateY(10px);
+  animation:sobe .5s forwards;
+}
+@keyframes sobe{to{opacity:1;transform:none}}
+.filo-card .asp{font-family:Georgia,serif;font-size:2.4rem;color:var(--dourado-vivo);line-height:.6;display:block;height:18px}
+.filo-card p{font-style:italic;font-size:.97rem;margin:6px 0 6px}
+.filo-card .s{font-family:var(--assin);color:var(--dourado-vivo);text-align:right;font-size:1.05rem}
+.btn-pausa{
+  background:var(--dourado-claro);border:1px dashed var(--dourado);color:#7d5810;border-radius:999px;
+  padding:7px 16px;font-family:var(--disp);font-weight:800;font-size:.82rem;cursor:pointer;margin-top:8px;
+}
+.btn-pausa:hover{background:#fbecc6}
+.pausa-out{
+  margin-top:10px;background:#0c2140;color:#eef5fa;border-radius:12px;padding:14px 16px;font-style:italic;
+  border:1px solid rgba(217,163,36,.34);display:none;
+}
+.pausa-out.on{display:block}
+.pausa-out .s{font-family:var(--assin);color:var(--dourado-vivo);text-align:right;font-style:normal;font-size:1.05rem}
+
+/* ============ BOTÕES ============ */
+.btn{
+  background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 16px;
+  font-family:var(--disp);font-weight:800;font-size:.88rem;cursor:pointer;
+}
+.btn:hover{background:var(--navy2)}
+.btn.g{background:var(--dourado-vivo);color:#2b1d00}
+.btn.a{background:var(--azul)}
+.btn.v{background:var(--vermelho)}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--linha)}
+.btn.sm{padding:6px 12px;font-size:.78rem}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* ============ REVELAR ============ */
+.reveal{display:none;margin-top:10px;padding:14px;background:var(--papel);border-radius:12px;border:1px dashed var(--linha)}
+.reveal.on{display:block}
+
+/* ============ FENÓTIPOS ============ */
+.feno-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.feno{
+  background:var(--branco);border:1px solid var(--linha);border-left:4px solid var(--azul);border-radius:12px;
+  padding:12px;cursor:pointer;text-align:left;font-family:var(--disp);font-size:.9rem;font-weight:700;color:var(--navy);
+  transition:transform .15s,box-shadow .15s;
+}
+.feno:hover{transform:translateY(-2px);box-shadow:var(--sombra)}
+.feno.sel{background:var(--azul-claro)}
+.feno.rx{border-left-color:var(--roxo)}
+.feno small{display:block;font-weight:400;color:var(--cinza);margin-top:4px;font-size:.8rem}
+#fenoOut{margin-top:12px}
+
+/* ============ ARTÉRIA / CICLO / SVG ============ */
+.svgbox{background:var(--branco);border:1px solid var(--linha);border-radius:14px;padding:10px;overflow-x:auto}
+.svgbox svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.seg-btns{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.seg-btns button{
+  border:1px solid var(--linha);background:var(--branco);border-radius:999px;padding:6px 12px;
+  font-family:var(--disp);font-weight:700;font-size:.8rem;cursor:pointer;color:var(--navy);
+}
+.seg-btns button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.seg-btns button.rx.on{background:var(--roxo);border-color:var(--roxo)}
+.pulse-seg{animation:pulseSeg 1.6s infinite}
+@keyframes pulseSeg{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* ============ BALANÇA ============ */
+.balanca{background:var(--branco);border:1px solid var(--linha);border-radius:14px;padding:14px}
+.bal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.bal-row{grid-template-columns:1fr}}
+.prato{border-radius:12px;padding:12px;border:1px solid var(--linha)}
+.prato.dem{background:var(--vermelho-claro);border-color:#f0c2bb}
+.prato.of{background:var(--verde-claro);border-color:#bfe3d0}
+.prato h4{margin:0 0 6px}
+.slider-row{display:flex;align-items:center;gap:10px;margin:8px 0}
+.slider-row label{font-size:.82rem;font-weight:700;min-width:118px}
+input[type=range]{flex:1;accent-color:var(--azul)}
+.medidor{height:22px;border-radius:999px;background:var(--papel2);overflow:hidden;position:relative;margin-top:6px}
+.medidor i{display:block;height:100%;transition:width .3s}
+.medidor.dem i{background:linear-gradient(90deg,#e08e82,var(--vermelho))}
+.medidor.of i{background:linear-gradient(90deg,#7fd0ab,var(--verde))}
+.saldo{margin-top:12px;border-radius:12px;padding:12px;text-align:center;font-weight:800}
+.saldo.ok{background:var(--verde-claro);color:#146443}
+.saldo.risco{background:var(--dourado-claro);color:#7d5810}
+.saldo.isq{background:var(--vermelho-claro);color:#8e2b20}
+
+/* ============ TABELA ============ */
+.tabela{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--branco)}
+.tabela th,.tabela td{border:1px solid var(--linha);padding:9px 10px;text-align:left;vertical-align:top}
+.tabela th{background:var(--navy);color:#fff;font-size:.78rem;letter-spacing:.4px}
+.tabela tr:nth-child(even) td{background:#fafcfe}
+.tabwrap{overflow-x:auto;border-radius:12px;border:1px solid var(--linha)}
+
+/* ============ ICEBERG ============ */
+.iceberg{background:linear-gradient(180deg,#eaf4fb 0%,#eaf4fb 38%,#cfe6f2 38%,#9cc9e0 100%);border-radius:16px;padding:0;overflow:hidden;border:1px solid var(--linha)}
+.ice-part{padding:14px 16px}
+.ice-sup{background:rgba(255,255,255,.55)}
+.ice-inf{background:rgba(30,80,120,.10)}
+.ice-lab{font-family:var(--mono);font-size:.64rem;letter-spacing:1.6px;color:#2b5f7e}
+.ice-item{background:var(--branco);border-radius:10px;padding:9px 12px;margin:7px 0;font-weight:700;font-size:.9rem;border-left:4px solid var(--roxo)}
+.ice-item.top{border-left-color:var(--vermelho)}
+.linha-agua{height:3px;background:repeating-linear-gradient(90deg,#3d87b3 0 10px,transparent 10px 18px)}
+
+/* ============ PALÁCIO ============ */
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.pal{
+  background:linear-gradient(150deg,#12304f,#1c4570);color:#fff;border-radius:14px;padding:14px 12px;
+  cursor:pointer;border:1px solid rgba(255,255,255,.14);text-align:left;font-family:var(--disp);
+}
+.pal:hover{border-color:var(--dourado-vivo)}
+.pal .ic{font-size:1.6rem;display:block}
+.pal b{display:block;font-size:.92rem;margin-top:4px}
+.pal small{color:#9ec4d9;font-size:.76rem}
+.pal.on{outline:2px solid var(--dourado-vivo)}
+#palOut{margin-top:12px}
+
+/* ============ FLASHCARDS ============ */
+.fc-scene{perspective:1200px;height:200px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.fc-scene.flip .fc-inner{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:18px;
+  display:flex;flex-direction:column;justify-content:center;border:1px solid var(--linha);overflow:auto;
+}
+.fc-front{background:var(--branco)}
+.fc-back{background:var(--navy);color:#fff;transform:rotateY(180deg);border-color:var(--navy)}
+.fc-face .q{font-weight:800;font-size:1.02rem}
+.fc-face .a{font-size:.95rem}
+.fc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;flex-wrap:wrap;gap:8px}
+.fc-count{font-family:var(--mono);font-size:.75rem;color:var(--cinza)}
+
+/* ============ QUESTÕES ============ */
+.alt{
+  display:block;width:100%;text-align:left;background:var(--branco);border:1.5px solid var(--linha);
+  border-radius:12px;padding:11px 13px;margin-bottom:8px;cursor:pointer;font-family:var(--disp);
+  font-size:.92rem;color:var(--navy);
+}
+.alt:hover{border-color:var(--azul)}
+.alt.certa{background:var(--verde-claro);border-color:var(--verde)}
+.alt.errada{background:var(--vermelho-claro);border-color:var(--vermelho)}
+.alt b{font-family:var(--mono);margin-right:6px;color:var(--azul)}
+.coment{margin-top:10px;background:var(--papel);border-radius:12px;padding:13px;border-left:4px solid var(--azul);display:none}
+.coment.on{display:block}
+.coment .peg{background:var(--dourado-claro);border-radius:8px;padding:8px 10px;margin-top:8px;color:#7d5810;font-size:.88rem}
+.placar{
+  display:flex;gap:14px;flex-wrap:wrap;background:var(--navy);color:#fff;border-radius:12px;padding:10px 14px;
+  font-family:var(--mono);font-size:.8rem;margin-bottom:12px;
+}
+.placar b{color:var(--dourado-vivo)}
+
+/* ============ VERDADEIRO/FALSO ============ */
+.vf{background:var(--branco);border:1px solid var(--linha);border-radius:14px;padding:14px;margin-bottom:10px}
+.vf .afirm{font-weight:700;margin-bottom:8px}
+.vf .just{display:none;margin-top:10px;font-size:.9rem;border-top:1px dashed var(--linha);padding-top:10px}
+.vf .just.on{display:block}
+.vf .just .arm{background:var(--dourado-claro);border-radius:8px;padding:8px 10px;margin-top:8px;color:#7d5810}
+.vf .just .mem{background:var(--navy);color:#fff;border-radius:8px;padding:8px 10px;margin-top:8px;font-weight:700}
+.selo{font-family:var(--mono);font-size:.7rem;letter-spacing:1.2px;border-radius:999px;padding:3px 10px}
+.selo.f{background:var(--vermelho-claro);color:#8e2b20}
+.selo.v{background:var(--verde-claro);color:#146443}
+
+/* ============ CASOS ============ */
+.caso{background:var(--branco);border:1px solid var(--linha);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:var(--sombra)}
+.caso .cabec{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.etapa{border-left:3px solid var(--azul);padding-left:12px;margin:12px 0}
+.etapa.hide{display:none}
+.dados{background:var(--papel);border-radius:10px;padding:10px 12px;font-size:.9rem;margin-bottom:8px}
+.mapa-fisio{background:var(--navy);color:#fff;border-radius:12px;padding:14px;margin-top:10px}
+.mapa-fisio h4{color:var(--dourado-vivo);margin-bottom:8px}
+.mapa-fisio ol{margin:0;padding-left:20px}
+
+/* ============ CHECKLIST / REVISÃO ============ */
+.chk{display:flex;gap:10px;align-items:flex-start;background:var(--branco);border:1px solid var(--linha);border-radius:12px;padding:11px 13px;margin-bottom:8px;cursor:pointer}
+.chk input{margin-top:5px;width:18px;height:18px;accent-color:var(--verde)}
+.chk.done{background:var(--verde-claro);border-color:#bfe3d0}
+.rev60{background:linear-gradient(150deg,#0c2140,#15375d);color:#fff;border-radius:18px;padding:22px}
+.rev60 ol{padding-left:22px;margin:0}
+.rev60 li{margin-bottom:9px;font-size:.98rem}
+.rev60 b{color:var(--dourado-vivo)}
+
+/* ============ MODO PROFESSOR ============ */
+.prof{display:none;background:#fff8e6;border:1px dashed var(--dourado);border-radius:12px;padding:12px 14px;margin:10px 0;color:#5f4409;font-size:.92rem}
+body.professor .prof{display:block}
+.prof b{color:#7d5810}
+.prof .roteiro{font-style:italic}
+#projetor{
+  position:fixed;inset:0;z-index:120;background:#07172b;color:#fff;display:none;
+  flex-direction:column;align-items:center;justify-content:center;padding:34px;text-align:center;
+}
+#projetor.on{display:flex}
+#projetor .frase{font-size:clamp(1.4rem,4.4vw,2.6rem);font-style:italic;max-width:960px;line-height:1.35}
+#projetor .s{font-family:var(--assin);font-size:2rem;color:var(--dourado-vivo);margin-top:22px}
+#projetor .ctrl{position:absolute;bottom:26px;display:flex;gap:10px}
+
+/* ============ RODAPÉ ============ */
+footer{background:var(--navy);color:#cfe0ee;padding:30px 0 40px;margin-top:34px}
+footer .assin{font-family:var(--assin);font-size:1.8rem;color:var(--dourado-vivo)}
+footer .ref{font-size:.82rem;color:#93b3c9}
+
+/* ============ TOAST ============ */
+#toast{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);opacity:0;
+  background:var(--navy);color:#fff;padding:11px 18px;border-radius:999px;z-index:200;font-weight:700;
+  transition:.25s;pointer-events:none;font-size:.88rem;
+}
+#toast.on{opacity:1;transform:translateX(-50%)}
+
+/* ============ IMPRESSÃO ============ */
+@media print{
+  nav.top,#menuLat,#backdrop,.btn,.btn-pausa,.navbtn,.seg-btns,#projetor,#toast,.hub{display:none!important}
+  body{background:#fff;font-size:11pt}
+  .card,.caso,.vf{box-shadow:none;break-inside:avoid}
+  .reveal,.coment,.just{display:block!important}
+  .hero{background:#0d2340!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{page-break-inside:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="backdrop" onclick="fecharMenu()"></div>
+
+<aside id="menuLat" aria-label="Índice do capítulo">
+  <h4>ÍNDICE — CAPÍTULO 1</h4>
+  <a href="#abertura" onclick="fecharMenu()">Abertura</a>
+  <a href="#balancinha" onclick="fecharMenu()">A balança em 20 segundos</a>
+  <a href="#nomenclatura" onclick="fecharMenu()">1 · Evolução da nomenclatura</a>
+  <a href="#fenotipos" onclick="fecharMenu()">2 · Quem é da SCC?</a>
+  <a href="#anatomia" onclick="fecharMenu()">3 · Anatomia essencial</a>
+  <a href="#macromicro" onclick="fecharMenu()">4 · Macro e microcirculação</a>
+  <a href="#ciclo" onclick="fecharMenu()">5 · Diástole e sístole</a>
+  <a href="#subendo" onclick="fecharMenu()">6 · Subendocárdio</a>
+  <a href="#extracao" onclick="fecharMenu()">7 · Extração de O₂</a>
+  <a href="#balanca" onclick="fecharMenu()">8 · Oferta × demanda</a>
+  <a href="#anemia" onclick="fecharMenu()">9 · Anemia e hipoxemia</a>
+  <a href="#tonus" onclick="fecharMenu()">10 · Tônus coronariano</a>
+  <a href="#reserva" onclick="fecharMenu()">11 · Reserva de fluxo</a>
+  <a href="#anoca" onclick="fecharMenu()">12 · Angina sem obstrução</a>
+  <a href="#metricas" onclick="fecharMenu()">13 · FFR · CFR · IMR</a>
+  <h4>MEMORIZAÇÃO</h4>
+  <a href="#palacio" onclick="fecharMenu()">Palácio: Cidade Coronária</a>
+  <a href="#frases" onclick="fecharMenu()">Frases de fixação</a>
+  <a href="#pegadinhas" onclick="fecharMenu()">Pegadinhas para o TEC</a>
+  <a href="#flashcards" onclick="fecharMenu()">Flashcards</a>
+  <h4>TREINO</h4>
+  <a href="#questoes" onclick="fecharMenu()">Questões</a>
+  <a href="#casos" onclick="fecharMenu()">Casos progressivos</a>
+  <a href="#revisao" onclick="fecharMenu()">Revisão em 60 segundos</a>
+  <a href="#checklist" onclick="fecharMenu()">Checklist de domínio</a>
+  <a href="#filosofia" onclick="fecharMenu()">Filosofia do Atlas (acervo)</a>
+  <h4>FERRAMENTAS</h4>
+  <a href="#" onclick="event.preventDefault();window.print();fecharMenu()">Imprimir / salvar em PDF</a>
+  <a href="#" onclick="event.preventDefault();zerarProgresso();fecharMenu()">Apagar progresso</a>
+</aside>
+
+<nav class="top">
+  <div class="navrow">
+    <button class="navbtn" onclick="abrirMenu()" aria-label="Abrir índice">☰ Índice</button>
+    <div class="brand">Atlas Mental de Cardiologia<small>SÍNDROME CORONARIANA CRÔNICA · CAP. 1</small></div>
+    <div class="navspace"></div>
+    <button class="navbtn" id="btnProf" onclick="toggleProfessor()">Modo Professor</button>
+    <button class="navbtn" id="btnMov" onclick="toggleMov()">Reduzir movimento</button>
+    <button class="navbtn" onclick="window.print()">PDF</button>
+  </div>
+  <div class="barra"><i id="barraProg"></i></div>
+</nav>
+
+<header class="hero" id="abertura">
+  <div class="wrap">
+    <div class="kick">ATLAS MENTAL · MEMÓRIA POTENCIAL</div>
+    <h1>Síndrome Coronariana Crônica</h1>
+    <div class="sub">Capítulo 1 — Introdução e Fisiologia Coronariana</div>
+    <div class="cap">A CIDADE CORONÁRIA · N1 → N7</div>
+    <div class="autor">Dr. André Rossanno</div>
+
+    <div class="impacto">“O coração não armazena oxigênio: cada batimento depende de uma entrega que precisa chegar no tempo certo.”</div>
+
+    <div class="pergunta-abertura">
+      <div class="lab">PERGUNTA QUE ABRE O CAPÍTULO</div>
+      <p>Como um paciente pode apresentar angina típica mesmo sem uma obstrução coronariana importante?</p>
+      <div class="btnrow"><button class="btn g sm" onclick="rev('respAbert',this)">Guardar a pergunta e seguir</button></div>
+      <div class="reveal" id="respAbert" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#eaf3fa">
+        A resposta não está na abertura — está no caminho. Ela será construída na seção 12, depois que a fisiologia da entrega de oxigênio estiver montada. Guarde a pergunta: ela é o fio do capítulo.
+      </div>
+    </div>
+
+    <div class="hub">
+      <a href="#balancinha"><span>N1 · ABERTURA</span>A balança em 20 segundos</a>
+      <a href="#macromicro"><span>N2 · CONCEITO</span>Macro e microcirculação</a>
+      <a href="#balanca"><span>N3 · FISIOLOGIA</span>Oferta × demanda</a>
+      <a href="#anoca"><span>N4 · CLÍNICA</span>ANOCA e INOCA</a>
+      <a href="#pegadinhas"><span>N5 · PEGADINHAS</span>Armadilhas do TEC</a>
+      <a href="#flashcards"><span>N6 · RECUPERAÇÃO</span>Flashcards e questões</a>
+      <a href="#casos"><span>N7 · DOMÍNIO</span>Casos progressivos</a>
+      <a href="#revisao"><span>SÍNTESE</span>Revisão em 60 s</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="comousar">
+  <div class="card our">
+    <span class="tag t-our">COMO ESTUDAR ESTE CAPÍTULO</span>
+    <h3>Sete níveis, um único mapa</h3>
+    <p class="mini">N1 visão panorâmica · N2 conceitos fundamentais · N3 fisiologia aplicada · N4 integração clínica · N5 pegadinhas de prova · N6 recuperação ativa · N7 domínio por casos. Cada seção traz o nível a que pertence. Leia na ordem na primeira vez; depois, entre por qualquer porta.</p>
+    <p class="mini">Seu progresso — flashcards, questões, casos e checklist — fica salvo neste navegador. Nada é enviado para fora do aparelho.</p>
+    <div class="prof"><b>Roteiro oral:</b> <span class="roteiro">“Hoje não vamos decorar uma doença. Vamos entender uma cidade que precisa entregar oxigênio a cada batimento — e descobrir de quantos jeitos diferentes essa entrega pode falhar.”</span></div>
+  </div>
+</section>
+
+
+<section id="balancinha">
+  <div class="sechead">
+    <div class="num">EM 20 s</div>
+    <div><h2>Tudo neste capítulo cabe em uma balança <span class="n">N1</span></h2><p class="mini">Toque em um cenário e veja para que lado a Cidade Coronária pende.</p></div>
+  </div>
+
+  <div class="card">
+    <div class="seg-btns" id="cenBtns"></div>
+    <div class="svgbox">
+      <svg viewBox="0 0 600 230" role="img" aria-label="Balança entre oferta e demanda de oxigênio">
+        <rect x="270" y="110" width="60" height="14" rx="6" fill="#0d2340"/>
+        <path d="M300 110 L 268 196 L 332 196 Z" fill="#0d2340"/>
+        <rect x="240" y="196" width="120" height="12" rx="6" fill="#0d2340"/>
+        <line id="viga" x1="120" y1="100" x2="480" y2="100" stroke="#0d2340" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="300" cy="100" r="10" fill="#a5761a"/>
+        <g id="pratoDem">
+          <line x1="0" y1="0" x2="0" y2="26" stroke="#0d2340" stroke-width="3"/>
+          <path d="M-52 26 L 52 26 L 38 60 L -38 60 Z" fill="#fdecea" stroke="#c0392b" stroke-width="3"/>
+          <text x="0" y="49" text-anchor="middle" font-size="13" font-weight="700" fill="#8e2b20">DEMANDA</text>
+        </g>
+        <g id="pratoOf">
+          <line x1="0" y1="0" x2="0" y2="26" stroke="#0d2340" stroke-width="3"/>
+          <path d="M-52 26 L 52 26 L 38 60 L -38 60 Z" fill="#e7f6ee" stroke="#1e8f5e" stroke-width="3"/>
+          <text x="0" y="49" text-anchor="middle" font-size="13" font-weight="700" fill="#146443">OFERTA</text>
+        </g>
+        <text id="cenTitulo" x="300" y="26" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#5b6b7f">REPOUSO — CORAÇÃO SAUDÁVEL</text>
+      </svg>
+    </div>
+    <div class="sintese" id="cenOut"><b>LEITURA</b><span></span></div>
+    <p class="mini" style="margin:10px 0 0">A balança completa, com todos os determinantes de cada prato, está na <a href="#balanca">seção 8</a>. Aqui só interessa fixar o movimento: <b>isquemia é um desequilíbrio</b>, e ele pode nascer sem que a anatomia mude.</p>
+  </div>
+
+  <div class="filo-inline">“Doença não é apenas aquilo que aparece na imagem; é também aquilo que falha durante o esforço.”<span class="a">— Dr. André Rossanno</span></div>
+</section>
+
+<section id="nomenclatura">
+  <div class="sechead">
+    <div class="num">01</div>
+    <div><h2>Evolução da nomenclatura <span class="n">N1</span></h2><p class="mini">Por que deixamos de dizer “doença estável”.</p></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card verm">
+      <span class="tag t-verm">ONTEM</span>
+      <h3>DAC estável</h3>
+      <p class="mini">Sugeria uma placa parada, um paciente parado e um risco parado. O adjetivo tranquilizava mais do que descrevia.</p>
+    </div>
+    <div class="card azul">
+      <span class="tag t-azul">DEPOIS</span>
+      <h3>Doença arterial coronariana crônica</h3>
+      <p class="mini">Reconheceu a cronicidade, mas ainda ancorava tudo na artéria epicárdica obstruída.</p>
+    </div>
+    <div class="card verde">
+      <span class="tag t-verde">HOJE</span>
+      <h3>Síndrome coronariana crônica</h3>
+      <p class="mini">Termo adotado pela Diretriz Brasileira de Síndrome Coronariana Crônica (SBC, 2025), acompanhando a evolução internacional.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Por que “síndrome” descreve melhor?</h3>
+    <ul class="lista">
+      <li>Porque a condição é <b>dinâmica</b>: alterna períodos estáveis e instáveis, e pode ser modificada por tratamento, isquemia silenciosa e eventos agudos.</li>
+      <li>Porque é <b>heterogênea</b>: reúne pacientes muito diferentes sob o mesmo teto.</li>
+      <li>Porque tem <b>apresentações múltiplas</b>: angina de esforço, equivalente anginoso, disfunção ventricular, assintomático com exame alterado.</li>
+    </ul>
+    <div class="card verm" style="margin-bottom:0">
+      <span class="tag t-verm">ARMADILHA CONCEITUAL</span>
+      <p style="margin:0">Síndrome coronariana crônica <b>não é sinônimo absoluto</b> de DAC obstrutiva. Há SCC com coronárias epicárdicas sem obstrução relevante — e há obstrução anatômica sem repercussão funcional demonstrada.</p>
+    </div>
+    <div class="sintese"><b>SÍNTESE</b><span>Trocamos um adjetivo que acalmava (“estável”) por um substantivo que descreve (“síndrome”).</span></div>
+    <div class="prof"><b>Pergunte à turma:</b> “Se o paciente está há cinco anos sem sintomas, ele tem doença estável ou doença silenciosa?” <span class="roteiro">Deixe a sala responder antes de mostrar o terceiro card.</span></div>
+    <button class="btn-pausa" onclick="pausaPensar('p1','nomenclatura')">Pausa para pensar</button>
+    <div class="pausa-out" id="pausa_p1"></div>
+  </div>
+</section>
+
+<section id="fenotipos">
+  <div class="sechead">
+    <div class="num">02</div>
+    <div><h2>Quem pertence ao espectro da SCC? <span class="n">N1</span></h2><p class="mini">Toque em cada fenótipo para abrir o retrato clínico.</p></div>
+  </div>
+
+  <div class="feno-grid" id="fenoGrid"></div>
+  <div id="fenoOut"></div>
+
+  <div class="card roxo">
+    <span class="tag t-roxo">DUAS SIGLAS QUE NÃO SÃO GÊMEAS</span>
+    <div class="grid2">
+      <div>
+        <h3>ANOCA</h3>
+        <p class="mini"><b>A</b>ngina with <b>N</b>on-<b>O</b>bstructive <b>C</b>oronary <b>A</b>rteries — angina (sintoma) com artérias coronárias sem obstrução relevante.</p>
+      </div>
+      <div>
+        <h3>INOCA</h3>
+        <p class="mini"><b>I</b>schemia with <b>N</b>on-<b>O</b>bstructive <b>C</b>oronary <b>A</b>rteries — isquemia (objetivamente demonstrada) com artérias coronárias sem obstrução relevante.</p>
+      </div>
+    </div>
+    <p style="margin-bottom:0"><b>Relacionadas, não idênticas.</b> ANOCA parte do sintoma; INOCA parte da demonstração de isquemia. Pode haver angina sem isquemia documentada e isquemia documentada em paciente pouco sintomático.</p>
+    <div class="prof"><b>Pegadinha didática:</b> a prova adora trocar as duas. Ancore pelo “A de angina, sintoma” e “I de isquemia, evidência”.</div>
+  </div>
+  <div class="filo-inline">“O diagnóstico começa quando deixamos de procurar apenas o que é visível.”<span class="a">— Dr. André Rossanno</span></div>
+</section>
+
+<section id="anatomia">
+  <div class="sechead">
+    <div class="num">03</div>
+    <div><h2>Anatomia coronariana essencial <span class="n">N2</span></h2><p class="mini">O necessário para entender perfusão, isquemia e exames — nem um ramo a mais.</p></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card verm">
+      <span class="tag t-verm">SISTEMA ESQUERDO</span>
+      <h3>Tronco da coronária esquerda</h3>
+      <ul class="lista">
+        <li><b>Descendente anterior (DA)</b> — parede anterior, ápice e boa parte do septo. A avenida mais movimentada da cidade.</li>
+        <li><b>Ramos diagonais</b> — parede anterolateral.</li>
+        <li><b>Ramos septais</b> — septo interventricular; entram para dentro do músculo.</li>
+        <li><b>Circunflexa (Cx)</b> — parede lateral e, conforme a dominância, parte da inferior.</li>
+        <li><b>Ramos marginais</b> — parede lateral do VE.</li>
+      </ul>
+    </div>
+    <div class="card azul">
+      <span class="tag t-azul">SISTEMA DIREITO</span>
+      <h3>Coronária direita (CD)</h3>
+      <ul class="lista">
+        <li>Irriga o VD e, na maioria das pessoas, a parede inferior do VE.</li>
+        <li>Ramos relevantes: artéria do nó sinusal, artéria do nó atrioventricular, marginais agudas e descendente posterior.</li>
+      </ul>
+      <h3 style="margin-top:12px">Dominância</h3>
+      <p class="mini" style="margin-bottom:0">Define-se pela artéria que origina a <b>descendente posterior</b>. Dominância direita é a mais comum; existe dominância esquerda e codominância. Muda o território sob risco e a leitura dos exames.</p>
+    </div>
+  </div>
+  <div class="sintese"><b>SÍNTESE</b><span>Anatomia aqui serve para responder uma pergunta: quando esta avenida fecha, qual bairro fica sem entrega?</span></div>
+</section>
+
+<section id="macromicro">
+  <div class="sechead">
+    <div class="num">04</div>
+    <div><h2>Macrocirculação e microcirculação <span class="n">N2</span></h2><p class="mini">Uma artéria contínua, do epicárdio ao capilar. Toque em cada segmento.</p></div>
+  </div>
+
+  <div class="filo-inline">“Na cardiologia, anatomia sem fisiologia é um mapa sem movimento.”<span class="a">— Dr. André Rossanno</span></div>
+
+  <div class="seg-btns" role="tablist">
+    <button class="on" data-seg="epi" onclick="selSeg('epi',this)">Epicárdicas &gt; 400 μm</button>
+    <button class="rx" data-seg="peq" onclick="selSeg('peq',this)">Pequenas artérias &lt; 400 μm</button>
+    <button class="rx" data-seg="art" onclick="selSeg('art',this)">Arteríolas &lt; 100 μm</button>
+    <button class="rx" data-seg="cap" onclick="selSeg('cap',this)">Capilares &lt; 10 μm</button>
+  </div>
+
+  <div class="svgbox">
+    <svg viewBox="0 0 900 250" role="img" aria-label="Árvore coronariana da artéria epicárdica até os capilares">
+      <defs>
+        <linearGradient id="gEpi" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#c0392b"/><stop offset="1" stop-color="#b3352a"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="255" height="250" fill="#e8f1f8"/>
+      <rect x="255" y="0" width="645" height="250" fill="#f2ecfa"/>
+      <text x="128" y="26" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#1282A2">MACROCIRCULAÇÃO</text>
+      <text x="575" y="26" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#6b3fa0">MICROCIRCULAÇÃO</text>
+      <line x1="255" y1="34" x2="255" y2="250" stroke="#c9b8e3" stroke-width="2" stroke-dasharray="5 5"/>
+
+      <!-- vaso principal afinando -->
+      <g id="segEpi">
+        <path d="M10 130 C 70 118, 150 122, 250 128" stroke="url(#gEpi)" stroke-width="26" fill="none" stroke-linecap="round"/>
+        <text x="128" y="185" text-anchor="middle" font-size="12" fill="#0d2340" font-weight="700">Transporte</text>
+      </g>
+      <g id="segPeq">
+        <path d="M250 128 C 320 134, 380 120, 440 130" stroke="#c0392b" stroke-width="15" fill="none" stroke-linecap="round"/>
+        <path d="M300 124 l -18 -26 M340 132 l 20 -30" stroke="#c0392b" stroke-width="4" fill="none"/>
+        <text x="345" y="185" text-anchor="middle" font-size="12" fill="#0d2340" font-weight="700">Regulação</text>
+      </g>
+      <g id="segArt">
+        <path d="M440 130 C 500 138, 560 122, 630 130" stroke="#c0392b" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M490 126 l -16 -22 M545 128 l 18 -24 M600 127 l -14 -20" stroke="#c0392b" stroke-width="3" fill="none"/>
+        <text x="535" y="185" text-anchor="middle" font-size="12" fill="#0d2340" font-weight="700">Resistência</text>
+      </g>
+      <g id="segCap">
+        <path d="M630 130 C 680 130, 700 100, 740 106 M630 130 C 680 132, 706 152, 748 150 M630 130 C 690 126, 730 128, 770 128 M740 106 C 790 100, 820 118, 800 132 M748 150 C 800 156, 830 140, 800 132 M770 128 C 800 126, 812 128, 800 132"
+              stroke="#c0392b" stroke-width="3" fill="none"/>
+        <text x="740" y="185" text-anchor="middle" font-size="12" fill="#0d2340" font-weight="700">Troca</text>
+      </g>
+
+      <text x="128" y="215" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5b6b7f">&gt; 400 μm</text>
+      <text x="345" y="215" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5b6b7f">&lt; 400 μm</text>
+      <text x="535" y="215" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5b6b7f">&lt; 100 μm</text>
+      <text x="740" y="215" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5b6b7f">&lt; 10 μm</text>
+
+      <!-- barras de métricas -->
+      <line x1="12" y1="238" x2="250" y2="238" stroke="#1282A2" stroke-width="4"/>
+      <text x="131" y="233" text-anchor="middle" font-size="11" fill="#1282A2" font-weight="700">FFR</text>
+      <line x1="262" y1="238" x2="820" y2="238" stroke="#6b3fa0" stroke-width="4"/>
+      <text x="540" y="233" text-anchor="middle" font-size="11" fill="#6b3fa0" font-weight="700">IMR</text>
+      <line x1="838" y1="20" x2="838" y2="238" stroke="#a5761a" stroke-width="4"/>
+      <text x="868" y="130" text-anchor="middle" font-size="11" fill="#a5761a" font-weight="700">CFR</text>
+    </svg>
+  </div>
+  <div id="segOut" class="card azul" style="margin-top:12px"></div>
+
+  <div class="card our">
+    <span class="tag t-our">ONDE MORA A RESISTÊNCIA</span>
+    <p>As artérias epicárdicas são condutos: em condições normais contribuem pouco para a resistência total. <b>A maior parte da resistência coronariana é regulada na microcirculação</b>, sobretudo nas pequenas artérias e arteríolas — é ali que o fluxo é distribuído conforme a necessidade metabólica local.</p>
+    <p style="margin-bottom:0" class="mini">Consequência prática: uma coronariografia impecável descreve os condutos. Ela não descreve o que acontece nos controladores de resistência.</p>
+    <div class="sintese"><b>SÍNTESE</b><span>As avenidas transportam; os semáforos decidem quanto passa.</span></div>
+    <button class="btn-pausa" onclick="pausaPensar('p2','macro')">Pausa para pensar</button>
+    <div class="pausa-out" id="pausa_p2"></div>
+  </div>
+</section>
+
+<section id="ciclo">
+  <div class="sechead">
+    <div class="num">05</div>
+    <div><h2>Perfusão na diástole e na sístole <span class="n">N3</span></h2><p class="mini">O horário de entrega da Cidade Coronária.</p></div>
+  </div>
+
+  <div class="svgbox">
+    <svg viewBox="0 0 640 260" role="img" aria-label="Coração alternando sístole e diástole e o fluxo coronariano">
+      <text x="320" y="22" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="12" fill="#5b6b7f" id="cicloLabel">DIÁSTOLE — as entregas entram</text>
+      <g id="coracao">
+        <path id="miocardio" d="M180 60 C 120 60, 100 130, 150 180 C 185 216, 230 236, 250 250 C 270 236, 315 216, 350 180 C 400 130, 380 60, 320 60 C 288 60, 262 82, 250 100 C 238 82, 212 60, 180 60 Z"
+              fill="#f0c1bb" stroke="#c0392b" stroke-width="3"/>
+        <path id="cavidade" d="M215 110 C 190 130, 195 175, 250 210 C 305 175, 310 130, 285 110 C 268 122, 232 122, 215 110 Z" fill="#fdecea"/>
+        <path id="coronaria" d="M250 66 C 300 70, 340 104, 344 150" stroke="#c0392b" stroke-width="9" fill="none" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(400,50)">
+        <text x="0" y="0" font-size="12" font-weight="700" fill="#0d2340">Fluxo coronariano do VE</text>
+        <rect x="0" y="12" width="200" height="20" fill="#eef3f8" rx="6"/>
+        <rect id="barraFluxo" x="0" y="12" width="176" height="20" fill="#1e8f5e" rx="6"/>
+        <text x="0" y="58" font-size="12" font-weight="700" fill="#0d2340">Compressão intramiocárdica</text>
+        <rect x="0" y="70" width="200" height="20" fill="#eef3f8" rx="6"/>
+        <rect id="barraComp" x="0" y="70" width="34" height="20" fill="#c0392b" rx="6"/>
+        <text x="0" y="118" font-size="12" font-weight="700" fill="#0d2340">Perfusão do subendocárdio</text>
+        <rect x="0" y="130" width="200" height="20" fill="#eef3f8" rx="6"/>
+        <rect id="barraSub" x="0" y="130" width="168" height="20" fill="#1e8f5e" rx="6"/>
+        <text id="cicloNota" x="0" y="182" font-size="11" fill="#5b6b7f">Relaxamento: as ruas intramiocárdicas estão abertas.</text>
+      </g>
+    </svg>
+  </div>
+  <div class="btnrow">
+    <button class="btn a" id="btnCiclo" onclick="toggleCiclo()">Iniciar o ciclo cardíaco</button>
+    <button class="btn ghost sm" onclick="passoCiclo()">Avançar uma fase</button>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="card verde">
+      <span class="tag t-verde">DIÁSTOLE</span>
+      <ul class="lista" style="margin-bottom:0">
+        <li>Miocárdio relaxado.</li>
+        <li>Menor compressão dos vasos intramiocárdicos.</li>
+        <li><b>Predomínio da perfusão coronariana do ventrículo esquerdo.</b></li>
+      </ul>
+    </div>
+    <div class="card verm">
+      <span class="tag t-verm">SÍSTOLE</span>
+      <ul class="lista" style="margin-bottom:0">
+        <li>Contração miocárdica.</li>
+        <li>Compressão dos vasos intramiocárdicos.</li>
+        <li>Redução importante do fluxo, <b>especialmente no subendocárdio</b>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card azul">
+    <span class="tag t-azul">PRESSÃO DE PERFUSÃO CORONARIANA DO VE</span>
+    <p style="font-family:var(--mono);font-size:1.02rem;background:var(--azul-claro);padding:12px;border-radius:10px">
+      Pressão de perfusão ≈ pressão diastólica aórtica − pressão diastólica final do VE
+    </p>
+    <p class="mini">Evite a abreviação “PAo − PAD”: em português, PAD também é lida como pressão arterial diastólica, e a ambiguidade custa questão.</p>
+    <div class="grid3">
+      <div class="card verm" style="margin:0"><b>Hipotensão diastólica</b><p class="mini" style="margin:0">Reduz a pressão de entrada da cidade.</p></div>
+      <div class="card verm" style="margin:0"><b>↑ pressão diastólica final do VE</b><p class="mini" style="margin:0">Aumenta a contrapressão; o gradiente encolhe pelos dois lados.</p></div>
+      <div class="card verm" style="margin:0"><b>Taquicardia</b><p class="mini" style="margin:0">Encurta a diástole — menos tempo de entrega.</p></div>
+    </div>
+    <div class="sintese"><b>SÍNTESE</b><span>A coronária do VE trabalha principalmente na diástole: gradiente de entrada menos contrapressão, dentro de uma janela de tempo.</span></div>
+    <div class="prof"><b>Pergunte à turma:</b> “Um paciente em choque, taquicárdico e com PA diastólica de 40 mmHg — quantos componentes da perfusão coronariana já estão comprometidos?” <span class="roteiro">Resposta: os três — entrada, contrapressão e tempo.</span></div>
+    <button class="btn-pausa" onclick="pausaPensar('p3','ciclo')">Pausa para pensar</button>
+    <div class="pausa-out" id="pausa_p3"></div>
+  </div>
+</section>
+
+<section id="subendo">
+  <div class="sechead">
+    <div class="num">06</div>
+    <div><h2>Subendocárdio: o primeiro território a sofrer <span class="n">N3</span></h2><p class="mini">O bairro do porão da Cidade Coronária.</p></div>
+  </div>
+
+  <div class="filo-inline">“O subendocárdio é o primeiro a sofrer porque profundidade também significa vulnerabilidade.”<span class="a">— Dr. André Rossanno</span></div>
+
+  <div class="svgbox">
+    <svg viewBox="0 0 620 220" role="img" aria-label="Parede miocárdica em três camadas">
+      <rect x="60" y="30" width="500" height="46" fill="#e7f6ee" stroke="#1e8f5e"/>
+      <rect x="60" y="76" width="500" height="46" fill="#fdf5e2" stroke="#a5761a"/>
+      <rect x="60" y="122" width="500" height="52" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+      <text x="80" y="58" font-size="14" font-weight="700" fill="#146443">Subepicárdio</text>
+      <text x="80" y="104" font-size="14" font-weight="700" fill="#7d5810">Mesocárdio</text>
+      <text x="80" y="146" font-size="14" font-weight="700" fill="#8e2b20">Subendocárdio</text>
+      <text x="80" y="164" font-size="11" fill="#8e2b20">mais comprimido · mais distante · mais exigente</text>
+      <text x="310" y="196" text-anchor="middle" font-size="12" fill="#0d2340" font-weight="700">↑ Pressão intracavitária empurra de dentro para fora</text>
+      <path d="M300 186 L 300 176" stroke="#0d2340" stroke-width="2"/>
+      <text x="580" y="58" font-size="11" fill="#5b6b7f" text-anchor="end">EPICÁRDIO</text>
+      <text x="580" y="146" font-size="11" fill="#5b6b7f" text-anchor="end">CAVIDADE</text>
+    </svg>
+  </div>
+
+  <div class="card verm">
+    <h3>Cinco razões para a vulnerabilidade</h3>
+    <ul class="lista">
+      <li>Sofre <b>maior compressão</b> durante a sístole.</li>
+      <li><b>Depende mais da perfusão diastólica</b> — perde mais quando a diástole encurta.</li>
+      <li>Está submetido a <b>maior tensão parietal</b>.</li>
+      <li>Encontra-se <b>mais próximo da pressão intracavitária</b>.</li>
+      <li>Apresenta <b>maior demanda metabólica relativa</b>.</li>
+    </ul>
+    <p><b>Consequências:</b> a isquemia por desequilíbrio moderado ou difuso costuma <b>começar no subendocárdio</b>. E a oclusão coronariana persistente pode fazer a necrose progredir do subendocárdio para o subepicárdio, podendo culminar em dano transmural.</p>
+    <div class="card our" style="margin-bottom:0">
+      <span class="tag t-our">NÃO EXAGERE</span>
+      <p style="margin:0" class="mini">Nem toda isquemia crônica é exclusivamente subendocárdica, e nem toda oclusão total termina em necrose transmural: <b>duração, reperfusão e circulação colateral</b> modificam o desfecho.</p>
+    </div>
+    <div class="sintese"><b>MEMORIZE</b><span>“O subendocárdio mora no porão: é mais comprimido e é o último a receber a entrega.”</span></div>
+  </div>
+</section>
+
+<section id="extracao">
+  <div class="sechead">
+    <div class="num">07</div>
+    <div><h2>Extração miocárdica de oxigênio <span class="n">N3</span></h2><p class="mini">Por que o coração aumenta o fluxo em vez de extrair mais.</p></div>
+  </div>
+
+  <div class="card our">
+    <p style="font-size:1.05rem">Em repouso, o miocárdio já extrai aproximadamente <span class="num-destaque">60–80%</span> do oxigênio que chega pelo sangue arterial.</p>
+    <p>Isso significa que a reserva de extração é pequena. Quando o consumo aumenta, <b>o coração não tem para onde crescer na extração</b>: a adaptação principal é aumentar o fluxo coronariano.</p>
+    <div class="btnrow"><button class="btn a" onclick="animarCascata()">Ver a cascata da adaptação</button></div>
+    <div id="cascata" style="margin-top:12px"></div>
+    <div class="sintese"><b>SÍNTESE</b><span>“O coração já extrai 60–80%; quando precisa de mais, ele aumenta o fluxo.”</span></div>
+    <div class="prof"><b>Nota didática:</b> compare com o músculo esquelético, que tem margem de extração para crescer no esforço. O miocárdio gastou essa margem no repouso — por isso depende tanto de vasodilatação.</div>
+  </div>
+</section>
+
+<section id="balanca">
+  <div class="sechead">
+    <div class="num">08</div>
+    <div><h2>A balança entre oferta e demanda <span class="n">N3</span></h2><p class="mini">Mova os controles e veja de que lado a cidade quebra.</p></div>
+  </div>
+
+  <div class="filo-inline">“A frequência cardíaca cobra duas vezes: aumenta o trabalho e reduz o tempo disponível para alimentar o próprio coração.”<span class="a">— Dr. André Rossanno</span></div>
+
+  <div class="balanca">
+    <div class="card our" style="margin-bottom:12px">
+      <span class="tag t-our">A FREQUÊNCIA FICA NO CENTRO DA BALANÇA</span>
+      <div class="slider-row">
+        <label for="sFC">Frequência cardíaca</label>
+        <input type="range" id="sFC" min="50" max="160" value="70" oninput="calcBalanca()">
+        <b style="font-family:var(--mono);min-width:66px;text-align:right" id="vFC">70 bpm</b>
+      </div>
+      <p class="mini" style="margin:0">Ela é o único controle que aparece nos dois pratos: <b>aumenta a demanda</b> e <b>encurta a diástole</b>, reduzindo a oportunidade de oferta.</p>
+    </div>
+
+    <div class="bal-row">
+      <div class="prato dem">
+        <h4>Demanda de O₂ — <span style="font-family:var(--mono)">FCT</span></h4>
+        <p class="mini"><b>F</b>requência · <b>C</b>ontratilidade · <b>T</b>ensão parietal</p>
+        <div class="slider-row"><label for="sContr">Contratilidade</label><input type="range" id="sContr" min="0" max="100" value="40" oninput="calcBalanca()"></div>
+        <div class="slider-row"><label for="sTens">Tensão parietal</label><input type="range" id="sTens" min="0" max="100" value="40" oninput="calcBalanca()"></div>
+        <div class="medidor dem"><i id="mDem" style="width:40%"></i></div>
+        <p class="mini" style="margin-top:8px;margin-bottom:0">Tensão parietal depende de <b>pressão ventricular</b>, <b>raio da cavidade</b> e <b>espessura da parede</b> (Lei de Laplace: quanto maior a pressão e o raio, maior a tensão; a parede mais espessa distribui a carga).</p>
+      </div>
+      <div class="prato of">
+        <h4>Oferta de O₂</h4>
+        <p class="mini" style="font-family:var(--mono)">Oferta = fluxo coronariano × conteúdo arterial de O₂</p>
+        <div class="slider-row"><label for="sHb">Hemoglobina</label><input type="range" id="sHb" min="20" max="100" value="85" oninput="calcBalanca()"></div>
+        <div class="slider-row"><label for="sSat">Saturação arterial</label><input type="range" id="sSat" min="40" max="100" value="97" oninput="calcBalanca()"></div>
+        <div class="slider-row"><label for="sPP">Pressão de perfusão</label><input type="range" id="sPP" min="20" max="100" value="80" oninput="calcBalanca()"></div>
+        <div class="medidor of"><i id="mOf" style="width:80%"></i></div>
+        <p class="mini" style="margin-top:8px;margin-bottom:0">O fluxo depende de pressão de perfusão, resistência coronariana, duração da diástole, frequência cardíaca, circulação colateral e integridade macro e microvascular.</p>
+      </div>
+    </div>
+    <div class="saldo ok" id="saldoBal">Equilíbrio preservado — a cidade entrega no prazo.</div>
+    <p class="mini" style="margin-top:8px">Simulador conceitual: as barras ilustram a direção das relações fisiológicas, não medem fluxo real em mL/min.</p>
+  </div>
+
+  <div class="card azul" style="margin-top:14px">
+    <span class="tag t-azul">CONTEÚDO ARTERIAL DE O₂ — OPCIONAL, MAS ESCLARECEDOR</span>
+    <p style="font-family:var(--mono);background:var(--azul-claro);padding:12px;border-radius:10px">CaO₂ ≈ (1,34 × Hb × SaO₂) + (0,003 × PaO₂)</p>
+    <p>O componente ligado diretamente à PaO₂ (oxigênio dissolvido) é <b>pequeno</b>. A PaO₂ se torna clinicamente relevante para o conteúdo quando sua queda reduz a <b>saturação</b> — e é a saturação, multiplicada pela hemoglobina, que carrega o volume de oxigênio.</p>
+    <div class="sintese"><b>MEMORIZE</b><span>“FCT aumenta o consumo: frequência, contratilidade e tensão.” · “A frequência rouba dos dois lados.”</span></div>
+    <button class="btn-pausa" onclick="pausaPensar('p4','balanca')">Pausa para pensar</button>
+    <div class="pausa-out" id="pausa_p4"></div>
+  </div>
+</section>
+
+<section id="anemia">
+  <div class="sechead">
+    <div class="num">09</div>
+    <div><h2>Anemia, hipoxemia e isquemia sem nova obstrução <span class="n">N4</span></h2><p class="mini">Mini-caso de integração.</p></div>
+  </div>
+
+  <div class="card verm">
+    <div class="dados">
+      <b>Caso relâmpago.</b> Homem de 68 anos, DAC conhecida, em uso regular das medicações. Chega com dor torácica em repouso. FC 118 bpm, PA 96×54 mmHg, hemoglobina 6,8 g/dL por sangramento digestivo. Não há, na avaliação inicial, evidência de nova trombose coronariana.
+    </div>
+    <p style="font-weight:800;font-size:1.05rem">Por que pode ocorrer isquemia mesmo sem piora anatômica da estenose?</p>
+    <div class="btnrow"><button class="btn" onclick="rev('respAnemia',this)">Pensei — mostrar o mecanismo</button></div>
+    <div class="reveal" id="respAnemia">
+      <ul class="lista">
+        <li><b>Menor hemoglobina</b> reduz o conteúdo arterial de oxigênio: cada unidade de fluxo carrega menos carga.</li>
+        <li><b>Hipoxemia relevante</b>, quando presente, reduz a saturação e também o conteúdo arterial.</li>
+        <li><b>Taquicardia</b> aumenta a demanda e encurta a diástole — perde nos dois pratos.</li>
+        <li><b>Hipotensão</b> reduz a pressão de perfusão de entrada.</li>
+        <li><b>Elevação da pressão diastólica final do VE</b> aumenta a contrapressão e dificulta especialmente a perfusão subendocárdica.</li>
+      </ul>
+      <p style="margin-bottom:0"><b>Leitura clínica:</b> a estenose que era tolerada em condições normais deixou de ser tolerada quando o restante da equação mudou. A anatomia é a mesma; a fisiologia, não.</p>
+    </div>
+    <div class="prof"><b>Pergunte à turma:</b> “Qual é a primeira conduta que melhora a isquemia deste paciente — mais nitrato ou tratar o sangramento?” <span class="roteiro">Conduza para o conceito: aqui o alvo é a causa do desequilíbrio.</span></div>
+  </div>
+</section>
+
+<section id="tonus">
+  <div class="sechead">
+    <div class="num">10</div>
+    <div><h2>Controle do tônus coronariano <span class="n">N2</span></h2><p class="mini">Quem abre e quem fecha os semáforos.</p></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card verde">
+      <span class="tag t-verde">VASODILATADORES</span>
+      <ul class="lista" style="margin-bottom:0">
+        <li>Óxido nítrico</li>
+        <li>Prostaciclina</li>
+        <li>Adenosina</li>
+        <li>Fator hiperpolarizante derivado do endotélio</li>
+        <li>Hipercapnia, acidose e demais metabólitos locais</li>
+      </ul>
+    </div>
+    <div class="card verm">
+      <span class="tag t-verm">VASOCONSTRITORES</span>
+      <ul class="lista" style="margin-bottom:0">
+        <li>Endotelina</li>
+        <li>Tromboxano A₂</li>
+        <li>Serotonina</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <p style="margin-bottom:0">Nenhuma dessas listas funciona isolada. O tônus final resulta da conversa entre <b>endotélio</b>, <b>metabolismo local</b>, <b>musculatura lisa vascular</b> e <b>sistema autonômico</b>. Quando o endotélio adoece, o mesmo estímulo que deveria dilatar pode acabar constringindo — e é daí que nasce boa parte da isquemia sem obstrução.</p>
+    <div class="sintese"><b>SÍNTESE</b><span>O semáforo não é o problema; o problema é quando ele deixa de responder ao trânsito.</span></div>
+  </div>
+</section>
+
+<section id="reserva">
+  <div class="sechead">
+    <div class="num">11</div>
+    <div><h2>Reserva de fluxo coronariano <span class="n">N3</span></h2><p class="mini">Arraste a gravidade da estenose e observe as duas linhas.</p></div>
+  </div>
+
+  <div class="filo-inline">“A reserva coronariana representa aquilo que o coração ainda consegue oferecer quando o repouso deixa de ser suficiente.”<span class="a">— Dr. André Rossanno</span></div>
+
+  <div class="card azul">
+    <p><b>Definição.</b> Reserva de fluxo coronariano é a <b>razão</b> entre o fluxo durante hiperemia máxima e o fluxo em repouso.</p>
+    <p style="font-family:var(--mono);background:var(--azul-claro);padding:12px;border-radius:10px;margin-bottom:8px">CFR (RFC) = fluxo hiperêmico ÷ fluxo basal</p>
+    <p class="mini" style="margin-bottom:0">Em condições normais, o fluxo coronariano pode aumentar aproximadamente <span class="num-destaque">4–5 vezes</span>. Repare: é uma <b>razão</b>, não uma diferença absoluta.</p>
+  </div>
+
+  <div class="svgbox">
+    <svg viewBox="0 0 640 300" role="img" aria-label="Gráfico de fluxo coronariano conforme a gravidade da estenose">
+      <line x1="60" y1="250" x2="600" y2="250" stroke="#0d2340" stroke-width="2"/>
+      <line x1="60" y1="30" x2="60" y2="250" stroke="#0d2340" stroke-width="2"/>
+      <text x="330" y="284" text-anchor="middle" font-size="12" fill="#0d2340" font-weight="700">Gravidade progressiva da estenose →</text>
+      <text x="20" y="140" font-size="12" fill="#0d2340" font-weight="700" transform="rotate(-90 20 140)">Fluxo coronariano</text>
+      <path id="curvaHiper" d="" fill="none" stroke="#1e8f5e" stroke-width="3"/>
+      <path id="curvaBasal" d="" fill="none" stroke="#1282A2" stroke-width="3"/>
+      <path id="areaReserva" d="" fill="rgba(165,118,26,.25)" stroke="none"/>
+      <line id="linhaEst" x1="60" y1="30" x2="60" y2="250" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 4"/>
+      <circle id="ptHiper" cx="60" cy="60" r="5" fill="#1e8f5e"/>
+      <circle id="ptBasal" cx="60" cy="210" r="5" fill="#1282A2"/>
+      <text x="470" y="52" font-size="12" fill="#1e8f5e" font-weight="700">Fluxo hiperêmico</text>
+      <text x="470" y="228" font-size="12" fill="#1282A2" font-weight="700">Fluxo basal</text>
+      <text x="330" y="150" text-anchor="middle" font-size="12" fill="#7d5810" font-weight="700">área = reserva coronariana</text>
+    </svg>
+  </div>
+  <div class="slider-row" style="margin-top:6px">
+    <label for="sEst">Estenose</label>
+    <input type="range" id="sEst" min="0" max="95" value="20" oninput="desenhaReserva()">
+    <b style="font-family:var(--mono);min-width:60px;text-align:right" id="vEst">20%</b>
+  </div>
+  <div class="card our" id="estOut" style="margin-top:6px"></div>
+
+  <div class="card verm">
+    <span class="tag t-verm">CORREÇÃO CONCEITUAL OBRIGATÓRIA</span>
+    <h3>80–90% não é limiar universal de isquemia</h3>
+    <ul class="lista">
+      <li>A <b>perda da reserva coronariana</b> e a isquemia ao esforço podem ocorrer <b>antes</b> desse patamar.</li>
+      <li>O intervalo de 80–90% ilustra lesão <b>muito grave</b>, na qual até o fluxo basal pode ficar comprometido no modelo fisiológico clássico.</li>
+      <li>A repercussão funcional <b>não é definida apenas pela porcentagem visual</b> da estenose.</li>
+      <li>Modificam o impacto: <b>morfologia e comprimento da lesão, calibre do vaso, território irrigado, microcirculação e circulação colateral</b>.</li>
+    </ul>
+    <div class="sintese"><b>SÍNTESE</b><span>A porcentagem descreve a foto da avenida. A reserva descreve o que sobra de trânsito quando a cidade acelera.</span></div>
+    <button class="btn-pausa" onclick="pausaPensar('p5','reserva')">Pausa para pensar</button>
+    <div class="pausa-out" id="pausa_p5"></div>
+  </div>
+</section>
+
+<section id="anoca">
+  <div class="sechead">
+    <div class="num">12</div>
+    <div><h2>Angina sem obstrução coronariana relevante <span class="n">N4</span></h2><p class="mini">A pergunta da abertura, agora com fisiologia embaixo.</p></div>
+  </div>
+
+  <div class="card roxo">
+    <p style="font-weight:800;font-size:1.05rem">Como um paciente pode apresentar angina típica sem obstrução coronariana importante?</p>
+    <p>Porque a entrega de oxigênio pode falhar em pontos que a angiografia não mede:</p>
+    <ul class="lista">
+      <li><b>Disfunção microvascular</b> — as pequenas vias não conseguem reduzir resistência quando o esforço exige.</li>
+      <li><b>Redução da reserva coronariana</b> — o sistema perde a capacidade de multiplicar o fluxo.</li>
+      <li><b>Resistência microvascular aumentada</b>.</li>
+      <li><b>Disfunção endotelial</b> — vasodilatação dependente do endotélio alterada.</li>
+      <li><b>Vasoespasmo epicárdico</b> — fechamento súbito e transitório de uma avenida.</li>
+      <li><b>Vasoespasmo microvascular</b> — o mesmo fenômeno nas ruas pequenas.</li>
+    </ul>
+    <p style="margin-bottom:0">ANOCA e INOCA são clinicamente relevantes e foram <b>historicamente subdiagnosticadas</b>, com frequência importante em mulheres. Chamar essa angina de “não cardíaca” apenas porque a coronariografia foi normal é um erro conceitual com consequência clínica.</p>
+  </div>
+
+  <div class="iceberg">
+    <div class="ice-part ice-sup">
+      <div class="ice-lab">ACIMA DA LINHA D'ÁGUA — O QUE A ANGIOGRAFIA VÊ</div>
+      <div class="ice-item top">DAC obstrutiva epicárdica</div>
+    </div>
+    <div class="linha-agua"></div>
+    <div class="ice-part ice-inf">
+      <div class="ice-lab">ABAIXO DA LINHA D'ÁGUA — O QUE PRECISA SER PROCURADO</div>
+      <div class="ice-item">Disfunção endotelial</div>
+      <div class="ice-item">Vasodilatação anormal (reserva reduzida)</div>
+      <div class="ice-item">Vasoespasmo epicárdico e microvascular</div>
+      <div class="ice-item">Disfunção microvascular</div>
+      <div class="ice-item">Isquemia sem obstrução significativa</div>
+    </div>
+  </div>
+  <p class="mini">O iceberg é um mapa conceitual do que fica submerso. Percentuais de prevalência variam conforme população estudada e método diagnóstico — não os trate como números universais.</p>
+
+  <div class="card">
+    <div class="sintese"><b>MEMORIZE</b><span>“Angiografia normal não significa fisiologia coronariana normal.”</span></div>
+    <div class="prof"><b>Momento alto da aula:</b> volte à pergunta da abertura projetada no início e responda-a agora, em voz alta, junto com a turma.</div>
+  </div>
+</section>
+
+<section id="metricas">
+  <div class="sechead">
+    <div class="num">13</div>
+    <div><h2>FFR, CFR/RFC e IMR <span class="n">N4</span></h2><p class="mini">Três exames, três perguntas diferentes.</p></div>
+  </div>
+
+  <div class="tabwrap">
+    <table class="tabela">
+      <thead><tr><th>Métrica</th><th>Pergunta que responde</th><th>Foco</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b style="color:var(--azul)">FFR</b></td>
+          <td>A estenose epicárdica limita o fluxo?</td>
+          <td>Macrovasculatura / lesão epicárdica</td>
+          <td>Avaliação feita durante hiperemia.</td>
+        </tr>
+        <tr>
+          <td><b style="color:var(--dourado)">CFR / RFC</b></td>
+          <td>Quanto o sistema coronariano consegue aumentar o fluxo?</td>
+          <td>Resposta integrada da macro e da microcirculação</td>
+          <td>Pode estar reduzida por doença epicárdica <b>ou</b> microvascular — sozinha, não distingue.</td>
+        </tr>
+        <tr>
+          <td><b style="color:var(--roxo)">IMR</b></td>
+          <td>Qual é a resistência mínima da microcirculação?</td>
+          <td>Microvasculatura</td>
+          <td>Ajuda a identificar disfunção microvascular.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mini">Pontos de corte, protocolos e algoritmos de decisão ficam para capítulo posterior. Aqui interessa a <b>pergunta</b> que cada método responde.</p>
+  <div class="sintese"><b>MEMORIZE</b><span>“FFR olha a avenida; IMR olha as ruas pequenas; CFR avalia a capacidade global de aumentar o tráfego.”</span></div>
+  <button class="btn-pausa" onclick="pausaPensar('p6','metricas')">Pausa para pensar</button>
+  <div class="pausa-out" id="pausa_p6"></div>
+</section>
+
+<section id="palacio">
+  <div class="sechead">
+    <div class="num">PALÁCIO</div>
+    <div><h2>Palácio da Memória: a Cidade Coronária <span class="n">N3 · N6</span></h2><p class="mini">Sete ambientes. Entre em cada um e recupere o conceito de dentro da cena.</p></div>
+  </div>
+  <div class="pal-grid" id="palGrid"></div>
+  <div id="palOut"></div>
+</section>
+
+<section id="frases">
+  <div class="sechead">
+    <div class="num">FIXAÇÃO</div>
+    <div><h2>Frases de fixação <span class="n">N6</span></h2><p class="mini">Oito linhas que devem sair da memória sem esforço.</p></div>
+  </div>
+  <div class="grid2">
+    <div class="card azul"><p style="margin:0;font-weight:700">“A coronária do VE trabalha principalmente na diástole.”</p></div>
+    <div class="card verm"><p style="margin:0;font-weight:700">“O subendocárdio mora no porão: é o primeiro a sofrer.”</p></div>
+    <div class="card our"><p style="margin:0;font-weight:700">“O coração já extrai 60–80%; quando precisa de mais, aumenta o fluxo.”</p></div>
+    <div class="card verm"><p style="margin:0;font-weight:700">“FCT aumenta o consumo: frequência, contratilidade e tensão.”</p></div>
+    <div class="card our"><p style="margin:0;font-weight:700">“A frequência rouba dos dois lados: aumenta a demanda e encurta a entrega.”</p></div>
+    <div class="card verde"><p style="margin:0;font-weight:700">“Reserva coronariana são as pistas extras abertas durante o esforço.”</p></div>
+    <div class="card roxo"><p style="margin:0;font-weight:700">“Angiografia normal não significa fisiologia coronariana normal.”</p></div>
+    <div class="card azul"><p style="margin:0;font-weight:700">“FFR olha a avenida; IMR olha as ruas pequenas; CFR avalia a capacidade global de aumentar o tráfego.”</p></div>
+  </div>
+</section>
+
+<section id="pegadinhas">
+  <div class="sechead">
+    <div class="num">TEC</div>
+    <div><h2>Pegadinhas para o TEC <span class="n">N5</span></h2><p class="mini">Verdadeiro ou falso. Decida antes de abrir a justificativa.</p></div>
+  </div>
+  <div id="vfGrid"></div>
+</section>
+
+<section id="flashcards">
+  <div class="sechead">
+    <div class="num">CARDS</div>
+    <div><h2>Flashcards <span class="n">N6</span></h2><p class="mini">Toque no card para virar. Os que você errar voltam com mais frequência.</p></div>
+  </div>
+  <div class="card">
+    <div class="fc-count" id="fcInfo">card 1</div>
+    <div class="fc-scene" id="fcScene" onclick="virarCard()" role="button" tabindex="0" aria-label="Virar flashcard">
+      <div class="fc-inner">
+        <div class="fc-face fc-front"><div class="q" id="fcQ"></div><div class="mini" style="margin-top:10px">Toque para ver a resposta</div></div>
+        <div class="fc-face fc-back"><div class="a" id="fcA"></div></div>
+      </div>
+    </div>
+    <div class="fc-meta">
+      <div class="btnrow" style="margin:0">
+        <button class="btn v sm" onclick="marcarCard('errei')">Errei</button>
+        <button class="btn g sm" onclick="marcarCard('quase')">Quase</button>
+        <button class="btn sm" style="background:var(--verde)" onclick="marcarCard('acertei')">Acertei</button>
+      </div>
+      <div class="btnrow" style="margin:0">
+        <button class="btn ghost sm" onclick="pularCard()">Pular</button>
+        <button class="btn ghost sm" onclick="reiniciarFlash()">Recomeçar baralho</button>
+      </div>
+    </div>
+    <div class="fc-count" id="fcStats" style="margin-top:10px"></div>
+  </div>
+</section>
+
+<section id="questoes">
+  <div class="sechead">
+    <div class="num">ARENA</div>
+    <div><h2>Questões <span class="n">N6</span></h2><p class="mini">Cinco conceituais, cinco de integração fisiológica, cinco clínicas em nível TEC.</p></div>
+  </div>
+  <div class="card our" id="fraseDesafioQ" style="font-style:italic"></div>
+  <div class="placar">
+    <span>Respondidas <b id="qResp">0</b>/15</span>
+    <span>Acertos <b id="qAcertos">0</b></span>
+    <span>Aproveitamento <b id="qPerc">—</b></span>
+  </div>
+  <div id="qGrid"></div>
+  <div class="btnrow"><button class="btn ghost sm" onclick="reiniciarQuestoes()">Refazer todas as questões</button></div>
+</section>
+
+<section id="casos">
+  <div class="sechead">
+    <div class="num">CASOS</div>
+    <div><h2>Casos clínicos progressivos <span class="n">N7</span></h2><p class="mini">Dados iniciais → hipótese de mecanismo → novos dados → mapa fisiológico.</p></div>
+  </div>
+  <div class="card our" id="fraseDesafioC" style="font-style:italic"></div>
+  <div id="casosGrid"></div>
+</section>
+
+<section id="revisao">
+  <div class="sechead">
+    <div class="num">60 s</div>
+    <div><h2>Revisão em 60 segundos</h2><p class="mini">O que precisa estar de pé antes de fechar o capítulo.</p></div>
+  </div>
+  <div class="rev60">
+    <ol>
+      <li>Síndrome coronariana crônica é <b>heterogênea e dinâmica</b> — não é sinônimo de DAC obstrutiva.</li>
+      <li>A perfusão do VE <b>predomina na diástole</b>.</li>
+      <li>O <b>subendocárdio</b> é o primeiro território vulnerável.</li>
+      <li>Extração miocárdica de O₂ em repouso: <b>60–80%</b>.</li>
+      <li>Aumento da demanda exige, principalmente, <b>aumento do fluxo</b>.</li>
+      <li>Consumo: <b>frequência, contratilidade e tensão</b> (FCT).</li>
+      <li>Oferta: <b>fluxo coronariano × conteúdo arterial de O₂</b>.</li>
+      <li>A <b>frequência cardíaca</b> piora os dois lados da balança.</li>
+      <li>Reserva normal: aproximadamente <b>4–5 vezes</b> o fluxo basal.</li>
+      <li><b>Isquemia pode existir sem obstrução epicárdica significativa.</b></li>
+      <li><b>FFR, CFR e IMR</b> respondem perguntas diferentes.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="checklist">
+  <div class="sechead">
+    <div class="num">DOMÍNIO</div>
+    <div><h2>Checklist de domínio</h2><p class="mini">Marque apenas o que você conseguiria explicar em voz alta, sem consultar.</p></div>
+  </div>
+  <div id="chkGrid"></div>
+  <div class="card azul" id="chkResumo"></div>
+</section>
+
+<section id="filosofia">
+  <div class="sechead">
+    <div class="num">FILOSOFIA</div>
+    <div><h2>Filosofia do Atlas</h2><p class="mini">O acervo de frases autorais do Atlas Mental. Use antes de começar uma revisão ou entre blocos de estudo.</p></div>
+  </div>
+  <div class="btnrow" style="margin-bottom:14px">
+    <button class="btn g" onclick="sortearFrase()">Sortear uma frase para começar a revisão</button>
+    <button class="btn ghost" onclick="mostrarTodasFrases()">Ver todas as frases</button>
+    <button class="btn ghost" onclick="projetarFrase()">Projetar em tela cheia</button>
+  </div>
+  <div id="filoSorteio"></div>
+  <div class="filo-grid" id="filoGrid"></div>
+</section>
+
+<section id="encerramento">
+  <div class="filo-bloco">
+    <p style="font-size:1.24rem">“Sob pressão, o conhecimento não sobe ao nível da expectativa; ele cai ao nível do treinamento.”</p>
+    <p>“O conhecimento ganha valor quando consegue atravessar a pressão e chegar à conduta.”</p>
+    <div class="filo-assin">— Dr. André Rossanno</div>
+  </div>
+  <div class="card">
+    <h3>Ponte para o Capítulo 2</h3>
+    <p class="mini" style="margin-bottom:0">Com a fisiologia da entrega montada, o próximo capítulo pode enfrentar a pergunta seguinte: <b>como investigar</b> esse paciente — probabilidade pré-teste, escolha entre teste anatômico e funcional, e o que fazer quando a coronariografia vem “normal”.</p>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<div id="projetor" role="dialog" aria-modal="true" aria-label="Frase projetada">
+  <div class="frase" id="projFrase"></div>
+  <div class="s">— Dr. André Rossanno</div>
+  <div class="ctrl">
+    <button class="btn g" onclick="projetarFrase()">Próxima frase</button>
+    <button class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" onclick="fecharProjetor()">Fechar</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="btnrow" style="margin-bottom:18px">
+      <button class="btn g" onclick="projetarFrase()">Projetar frase</button>
+      <button class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.35)" onclick="window.print()">Imprimir / salvar em PDF</button>
+      <button class="btn v" onclick="zerarProgresso()">Apagar progresso</button>
+    </div>
+    <p style="color:#fff;font-weight:800;margin-bottom:2px">Atlas Mental de Cardiologia</p>
+    <p style="margin-bottom:2px">Síndrome Coronariana Crônica — Capítulo 1</p>
+    <div class="assin">Dr. André Rossanno</div>
+    <p class="ref" style="margin-top:14px">
+      Referência principal: Diretriz Brasileira de Síndrome Coronariana Crônica (SBC, 2025). Conceitos internacionais (ESC/ACC/AHA) citados apenas quando há divergência relevante, sempre após a posição da SBC. Material didático autoral, com síntese em linguagem própria — não reproduz textos das diretrizes. Uso educacional.
+    </p>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+/* =====================================================================
+   ATLAS MENTAL — SCC CAP.1 · BANCOS DE DADOS
+   ===================================================================== */
+const LS_KEY = 'atlasCardio_scc_cap1_v1';
+
+const FRASES = [
+ "Sob pressão, o conhecimento não sobe ao nível da expectativa; ele cai ao nível do treinamento.",
+ "Conhecimento sem treinamento é uma resposta que talvez não apareça quando mais precisamos dela.",
+ "A medicina não exige apenas saber. Exige decidir quando o tempo deixou de ser confortável.",
+ "O diagnóstico começa quando deixamos de procurar apenas o que é visível.",
+ "Uma coronária sem obstrução não representa necessariamente uma circulação sem doença.",
+ "A angiografia mostra a estrada; a fisiologia revela se o oxigênio conseguiu chegar.",
+ "Nem toda isquemia nasce de uma artéria fechada. Às vezes, o problema está nas pequenas vias que ninguém decidiu investigar.",
+ "Na cardiologia, anatomia sem fisiologia é um mapa sem movimento.",
+ "O coração não armazena oxigênio: cada batimento depende de uma entrega que precisa chegar no tempo certo.",
+ "A frequência cardíaca cobra duas vezes: aumenta o trabalho e reduz o tempo disponível para alimentar o próprio coração.",
+ "O subendocárdio é o primeiro a sofrer porque profundidade também significa vulnerabilidade.",
+ "A reserva coronariana representa aquilo que o coração ainda consegue oferecer quando o repouso deixa de ser suficiente.",
+ "Doença não é apenas aquilo que aparece na imagem; é também aquilo que falha durante o esforço.",
+ "O exame revela uma parte da verdade. O raciocínio clínico precisa reconstruir o restante.",
+ "O médico que apenas reconhece padrões encontra respostas conhecidas; aquele que compreende mecanismos consegue responder ao inesperado.",
+ "Memorizar um número é útil. Entender por que ele existe é o que permite recuperá-lo sob pressão.",
+ "O aluno pergunta qual é a resposta. O médico pergunta qual mecanismo tornou aquela resposta inevitável.",
+ "Aprender cardiologia não é colecionar condutas; é compreender o movimento que transforma fisiologia em doença.",
+ "Quanto mais urgente for a decisão, mais profundo deve ter sido o treinamento.",
+ "O conhecimento ganha valor quando consegue atravessar a pressão e chegar à conduta."
+];
+/* frases ligadas ao conteúdo de cada bloco (botão "Pausa para pensar") */
+const PAUSAS = {
+  nomenclatura:[3,17,12],
+  macro:[7,5,6],
+  ciclo:[8,9,13],
+  balanca:[9,15,1],
+  reserva:[11,4,12],
+  metricas:[5,13,14]
+};
+/* frases de treino/decisão/raciocínio, sorteadas antes dos desafios */
+const FRASES_DESAFIO = [0,1,2,15,16,18,19,14];
+
+const FENOTIPOS = [
+ {t:"Angina de esforço com DAC obstrutiva", d:"Angina ou equivalente anginoso induzido por esforço, com obstrução epicárdica demonstrada.", x:"O fenótipo clássico: a avenida está estreitada e o problema aparece quando a cidade acelera. A reserva já não cobre a demanda do esforço.", rx:false},
+ {t:"Fase crônica após síndrome coronariana aguda", d:"Paciente estabilizado depois de um evento agudo.", x:"O evento passou, a síndrome continua. Estabilizado não é curado: o risco segue e o tratamento é de longo prazo.", rx:false},
+ {t:"Após intervenção coronária percutânea", d:"Paciente previamente tratado com angioplastia e stent.", x:"Tratar a lesão não apaga a doença. Reestenose, progressão em outros territórios e disfunção microvascular continuam possíveis.", rx:false},
+ {t:"Após cirurgia de revascularização", d:"Paciente com pontes de safena ou artérias mamárias.", x:"Novas avenidas foram construídas — mas o restante da cidade e as pequenas vias continuam sob os mesmos fatores de risco.", rx:false},
+ {t:"Disfunção de VE / IC isquêmica", d:"Disfunção ventricular esquerda ou insuficiência cardíaca de etiologia isquêmica.", x:"Aqui a pressão diastólica final do VE elevada vira contrapressão: dificulta a própria perfusão subendocárdica e alimenta o ciclo.", rx:false},
+ {t:"Assintomático com teste anatômico alterado", d:"Sem sintomas, mas com doença coronariana demonstrada por método anatômico.", x:"A ausência de sintoma não exclui a síndrome — e não define, sozinha, a repercussão funcional da lesão.", rx:false},
+ {t:"Assintomático com teste funcional alterado", d:"Sem sintomas, com isquemia demonstrada por método funcional.", x:"Isquemia silenciosa existe. O paciente não relata; o miocárdio sim.", rx:false},
+ {t:"Angina sem DAC obstrutiva", d:"Angina ou equivalente anginoso sem obstrução epicárdica relevante.", x:"É onde a angiografia deixa de responder e a fisiologia precisa ser interrogada.", rx:true},
+ {t:"ANOCA", d:"Angina com artérias coronárias não obstrutivas.", x:"Parte do SINTOMA. A pergunta que se abre: qual mecanismo — microvascular, vasoespástico, endotelial?", rx:true},
+ {t:"INOCA", d:"Isquemia com artérias coronárias não obstrutivas.", x:"Parte da ISQUEMIA DEMONSTRADA. Conceito relacionado à ANOCA, porém não obrigatoriamente idêntico.", rx:true}
+];
+
+const SEGMENTOS = {
+ epi:{t:"Artérias epicárdicas — acima de ~400 μm",f:"Função principal: TRANSPORTE.",x:"São as grandes avenidas, na superfície do coração. Em condições normais contribuem pouco para a resistência total. É aqui que a coronariografia enxerga bem e onde o FFR responde: esta estenose limita o fluxo?",c:"azul"},
+ peq:{t:"Pequenas artérias — abaixo de ~400 μm",f:"Função principal: REGULAÇÃO / distribuição.",x:"Vias intermediárias, já dentro da microcirculação. Respondem sobretudo a variações de pressão e começam a assumir parcela relevante da resistência.",c:"roxo"},
+ art:{t:"Arteríolas — abaixo de ~100 μm",f:"Função principal: REGULAÇÃO da resistência.",x:"São os semáforos da cidade: respondem a metabólitos locais e ajustam quanto de fluxo cada território recebe. Concentram a maior parte da regulação da resistência coronariana.",c:"roxo"},
+ cap:{t:"Capilares — abaixo de ~10 μm",f:"Função principal: TROCA.",x:"O endereço final da entrega. É aqui que o oxigênio deixa a hemoglobina e chega ao miócito. Nenhum exame anatômico das avenidas garante que a entrega chegou até aqui.",c:"roxo"}
+};
+
+const PALACIO = [
+ {ic:"🏛️",n:"Portão da Cidade",s:"Fenótipos da SCC",img:"Um portão largo com dez faixas de entrada, cada uma com um paciente diferente — e todas levando à mesma cidade.",c:"Síndrome coronariana crônica é um espectro heterogêneo: do angioplastiado ao assintomático com teste alterado, do pós-SCA à ANOCA/INOCA.",f:"“Mesma cidade, dez portões de entrada.”",p:"Cite três fenótipos que não têm obstrução epicárdica relevante."},
+ {ic:"🛣️",n:"Grandes Avenidas",s:"Coronárias epicárdicas e FFR",img:"Avenidas largas na superfície, com faixas bem sinalizadas e um sensor de fluxo instalado logo depois de um estreitamento.",c:"As epicárdicas transportam. O FFR pergunta se aquele estreitamento limita o fluxo, medido durante hiperemia.",f:"“FFR olha a avenida.”",p:"O FFR avalia macro ou microcirculação? Em que condição é medido?"},
+ {ic:"🚦",n:"Central dos Semáforos",s:"Arteríolas, resistência e IMR",img:"Uma sala cheia de semáforos que abrem e fecham conforme o trânsito pede — alguns emperrados no vermelho.",c:"A maior parte da resistência coronariana é regulada na microcirculação, sobretudo pequenas artérias e arteríolas. O IMR mede a resistência mínima dessa microcirculação.",f:"“IMR olha as ruas pequenas.”",p:"Onde é regulada a maior parte da resistência coronariana?"},
+ {ic:"📦",n:"Centro de Entregas",s:"Capilares, Hb, SaO₂ e CaO₂",img:"Um galpão onde caminhões (hemoglobina) descarregam caixas de oxigênio em endereços minúsculos.",c:"Oferta = fluxo × conteúdo arterial de O₂. O conteúdo depende principalmente de hemoglobina e saturação; o dissolvido ligado à PaO₂ é pequeno.",f:"“Sem caminhão não há entrega, mesmo com a estrada livre.”",p:"Escreva a fórmula do CaO₂ e diga qual componente é quantitativamente pequeno."},
+ {ic:"🕰️",n:"Relógio da Cidade",s:"Diástole, sístole e FC",img:"Um relógio gigante na praça: quando os ponteiros aceleram, a janela de entrega encolhe.",c:"A perfusão do VE predomina na diástole. Taquicardia encurta a diástole e aumenta a demanda ao mesmo tempo.",f:"“A frequência rouba dos dois lados.”",p:"Por que a taquicardia prejudica a oferta e a demanda simultaneamente?"},
+ {ic:"🏚️",n:"Bairro do Porão",s:"Subendocárdio",img:"O bairro mais fundo da cidade, sob o peso de todos os andares, com a rua mais estreita e a última entrega do dia.",c:"O subendocárdio é o primeiro território a sofrer: maior compressão sistólica, maior dependência da diástole, maior tensão parietal e maior demanda relativa.",f:"“O subendocárdio mora no porão.”",p:"Cite três razões da vulnerabilidade do subendocárdio."},
+ {ic:"🛤️",n:"Pistas Extras",s:"Reserva coronariana",img:"Pistas reversíveis que só abrem na hora do rush — e uma placa avisando quantas ainda restam.",c:"Reserva de fluxo coronariano = fluxo hiperêmico ÷ fluxo basal; normalmente o fluxo pode aumentar cerca de 4–5 vezes. A reserva cai antes do fluxo basal.",f:"“Reserva são as pistas extras do esforço.”",p:"A reserva é uma razão ou uma diferença? Qual o valor normal aproximado?"}
+];
+
+const VF = [
+ {a:"A perfusão coronariana do VE ocorre exclusivamente na diástole.",v:false,
+  j:"Predomina na diástole, mas não é exclusiva: existe fluxo sistólico, sobretudo nas camadas mais externas e na coronária direita, cuja pressão de perfusão sofre menos compressão relativa.",
+  arm:"A palavra “exclusivamente”. Predomínio não é exclusividade.",
+  mem:"Predomina na diástole — não é só na diástole."},
+ {a:"O subepicárdio é sempre a primeira região a sofrer isquemia.",v:false,
+  j:"É o subendocárdio o primeiro território vulnerável, por maior compressão sistólica, maior dependência da perfusão diastólica, maior tensão parietal, proximidade da pressão intracavitária e maior demanda relativa.",
+  arm:"Inverter as camadas e usar “sempre”.",
+  mem:"Do porão para o telhado: a necrose progride do subendocárdio para o subepicárdio."},
+ {a:"Diante do aumento da demanda, o coração responde principalmente aumentando muito a extração de O₂.",v:false,
+  j:"Como já extrai 60–80% em repouso, sobra pouca margem de extração. A adaptação principal é aumentar o fluxo coronariano por vasodilatação arteriolar.",
+  arm:"Transferir para o coração a lógica do músculo esquelético, que ainda tem margem de extração.",
+  mem:"Extração já está no teto; o que cresce é o fluxo."},
+ {a:"Reserva coronariana é a diferença absoluta entre fluxo basal e fluxo hiperêmico.",v:false,
+  j:"É uma RAZÃO: fluxo hiperêmico dividido pelo fluxo basal. Por isso um fluxo basal elevado (taquicardia, anemia) pode reduzir a razão sem que a capacidade hiperêmica tenha mudado.",
+  arm:"Trocar razão por diferença — erro clássico e silencioso.",
+  mem:"Reserva se divide, não se subtrai."},
+ {a:"Uma estenose visual menor que 80% nunca produz isquemia.",v:false,
+  j:"A perda da reserva e a isquemia ao esforço podem ocorrer antes desse patamar. O intervalo de 80–90% ilustra lesão muito grave, na qual até o fluxo basal pode cair no modelo clássico — não é limiar universal.",
+  arm:"Transformar um número ilustrativo em regra absoluta.",
+  mem:"A porcentagem não decide sozinha; a fisiologia decide."},
+ {a:"Coronariografia sem obstrução exclui causa coronariana para a angina.",v:false,
+  j:"Disfunção microvascular, disfunção endotelial e vasoespasmo (epicárdico ou microvascular) produzem angina e isquemia com coronárias não obstrutivas — ANOCA e INOCA.",
+  arm:"Confundir ausência de obstrução com ausência de doença.",
+  mem:"Angiografia normal ≠ fisiologia normal."},
+ {a:"CFR reduzida identifica obrigatoriamente uma estenose epicárdica.",v:false,
+  j:"A CFR é uma resposta integrada de macro e microcirculação: pode estar reduzida por doença epicárdica, por doença microvascular ou por ambas. Distinguir exige informação adicional, como o IMR.",
+  arm:"Atribuir a uma medida integrada a especificidade de uma medida focal.",
+  mem:"CFR mostra que o sistema falhou; não diz onde."},
+ {a:"A frequência cardíaca influencia simultaneamente oferta e demanda.",v:true,
+  j:"Aumenta a demanda (é o F do FCT) e reduz a oferta ao encurtar a diástole, que é a janela de perfusão do VE.",
+  arm:"É a única afirmação verdadeira que costuma ser marcada como falsa por parecer “boa demais”.",
+  mem:"A frequência rouba dos dois lados."},
+ {a:"A PaO₂ é o principal componente quantitativo do conteúdo arterial de oxigênio.",v:false,
+  j:"O componente dissolvido ligado à PaO₂ é pequeno (0,003 × PaO₂). O peso está em 1,34 × Hb × SaO₂. A PaO₂ importa para o conteúdo quando sua queda reduz a saturação.",
+  arm:"Confundir pressão parcial com conteúdo.",
+  mem:"Quem carrega oxigênio é o caminhão (Hb), não o ar entre as caixas."},
+ {a:"ANOCA e INOCA são exatamente a mesma definição.",v:false,
+  j:"São conceitos relacionados, mas não obrigatoriamente idênticos: ANOCA parte da angina (sintoma) e INOCA parte da isquemia demonstrada, ambos com coronárias não obstrutivas.",
+  arm:"Tratar as duas siglas como sinônimos perfeitos.",
+  mem:"A de angina; I de isquemia."}
+];
+</script>
+
+<script>
+const FLASHCARDS = [
+ {q:"Em qual fase do ciclo cardíaco predomina a perfusão coronariana do ventrículo esquerdo? Por quê?",a:"Na diástole. O miocárdio relaxado comprime menos os vasos intramiocárdicos, permitindo a maior parte da entrega."},
+ {q:"Escreva a pressão de perfusão coronariana do VE de forma didática.",a:"Pressão diastólica aórtica menos pressão diastólica final do VE. Entrada menos contrapressão."},
+ {q:"Três situações que reduzem a perfusão coronariana do VE por mecanismos diferentes.",a:"Hipotensão diastólica (menor entrada), aumento da pressão diastólica final do VE (maior contrapressão) e taquicardia (menor tempo de diástole)."},
+ {q:"Por que o subendocárdio é o primeiro território a sofrer?",a:"Maior compressão sistólica, maior dependência da perfusão diastólica, maior tensão parietal, proximidade da pressão intracavitária e maior demanda metabólica relativa."},
+ {q:"Qual a extração miocárdica de oxigênio em repouso?",a:"Aproximadamente 60–80% do oxigênio arterial."},
+ {q:"Se a extração já é de 60–80% em repouso, como o coração atende ao aumento da demanda?",a:"Aumentando o fluxo coronariano: mais metabólitos vasodilatadores, menor resistência arteriolar, mais fluxo, mais oferta."},
+ {q:"O que significa o mnemônico FCT?",a:"Determinantes da demanda miocárdica de O₂: Frequência, Contratilidade e Tensão parietal."},
+ {q:"De que depende a tensão parietal?",a:"Pressão ventricular, raio da cavidade e espessura da parede (Lei de Laplace)."},
+ {q:"Escreva a equação conceitual da oferta miocárdica de O₂.",a:"Oferta = fluxo coronariano × conteúdo arterial de O₂."},
+ {q:"De que depende principalmente o conteúdo arterial de O₂?",a:"Da hemoglobina e da saturação arterial de O₂; o oxigênio dissolvido, ligado à PaO₂, contribui pouco."},
+ {q:"Escreva a fórmula do CaO₂.",a:"CaO₂ ≈ (1,34 × Hb × SaO₂) + (0,003 × PaO₂)."},
+ {q:"Quando a PaO₂ passa a ser clinicamente relevante para o conteúdo arterial de O₂?",a:"Quando sua queda é suficiente para reduzir a saturação arterial."},
+ {q:"Seis determinantes do fluxo coronariano.",a:"Pressão de perfusão, resistência coronariana, duração da diástole, frequência cardíaca, circulação colateral e integridade macro e microvascular."},
+ {q:"Por que a frequência cardíaca fica no centro da balança?",a:"Porque aumenta a demanda de O₂ e encurta a diástole, reduzindo a janela de oferta — piora os dois pratos."},
+ {q:"Defina reserva de fluxo coronariano.",a:"Razão entre o fluxo durante hiperemia máxima e o fluxo em repouso: CFR = hiperêmico ÷ basal."},
+ {q:"Qual o aumento de fluxo esperado em condições normais?",a:"Aproximadamente 4 a 5 vezes o fluxo basal."},
+ {q:"O que acontece com fluxo basal e reserva em uma estenose intermediária?",a:"O fluxo basal pode permanecer preservado por vasodilatação compensatória, mas a reserva já está reduzida."},
+ {q:"Por que 80–90% não é limiar universal de isquemia?",a:"Porque a perda de reserva e a isquemia ao esforço podem ocorrer antes; esse intervalo ilustra lesão muito grave, em que até o fluxo basal pode cair. Morfologia, comprimento, calibre, território, microcirculação e colaterais modificam o impacto."},
+ {q:"Limites de calibre: epicárdicas, pequenas artérias, arteríolas e capilares.",a:"Epicárdicas acima de ~400 μm; pequenas artérias abaixo de 400 μm; arteríolas abaixo de 100 μm; capilares abaixo de 10 μm."},
+ {q:"Função principal de cada compartimento coronariano.",a:"Epicárdicas: transporte. Pequenas artérias e arteríolas: regulação da resistência e distribuição. Capilares: troca."},
+ {q:"Onde é regulada a maior parte da resistência coronariana?",a:"Na microcirculação, sobretudo pequenas artérias e arteríolas."},
+ {q:"Cite cinco vasodilatadores coronarianos.",a:"Óxido nítrico, prostaciclina, adenosina, fator hiperpolarizante derivado do endotélio e metabólitos locais (hipercapnia/acidose)."},
+ {q:"Cite três vasoconstritores coronarianos.",a:"Endotelina, tromboxano A₂ e serotonina."},
+ {q:"O que significa ANOCA?",a:"Angina com artérias coronárias não obstrutivas — parte do sintoma."},
+ {q:"O que significa INOCA?",a:"Isquemia com artérias coronárias não obstrutivas — parte da isquemia demonstrada. Relacionada à ANOCA, mas não obrigatoriamente idêntica."},
+ {q:"Qual pergunta o FFR responde?",a:"A estenose epicárdica limita o fluxo? Foco na macrovasculatura, avaliado durante hiperemia."},
+ {q:"Qual pergunta a CFR/RFC responde?",a:"Quanto o sistema coronariano consegue aumentar o fluxo? Resposta integrada de macro e microcirculação — pode estar reduzida por qualquer uma das duas."},
+ {q:"Qual pergunta o IMR responde?",a:"Qual a resistência mínima da microcirculação? Ajuda a identificar disfunção microvascular."},
+ {q:"Cite quatro mecanismos de angina sem obstrução epicárdica relevante.",a:"Disfunção microvascular, reserva coronariana reduzida, disfunção endotelial e vasoespasmo epicárdico ou microvascular."},
+ {q:"Por que “síndrome” descreve melhor do que “doença estável”?",a:"Porque a condição é dinâmica, heterogênea e com apresentações múltiplas — não apenas uma placa epicárdica fixa."}
+];
+
+const QUESTOES = [
+ {g:"Conceitual",e:"Sobre a perfusão coronariana do ventrículo esquerdo, assinale a melhor afirmativa.",
+  o:["Ocorre exclusivamente durante a sístole, quando a pressão aórtica é máxima.",
+     "Predomina na diástole, porque a menor compressão intramiocárdica permite maior fluxo.",
+     "É independente da duração do ciclo cardíaco.",
+     "É determinada apenas pela pressão sistólica aórtica.",
+     "Ocorre igualmente em sístole e diástole em todas as camadas."],
+  c:1,
+  com:"Na diástole o miocárdio relaxa, a compressão dos vasos intramiocárdicos diminui e a perfusão do VE predomina. A pressão de perfusão é aproximadamente a diastólica aórtica menos a pressão diastólica final do VE.",
+  err:"A: inverte as fases. C: a duração da diástole é determinante — por isso taquicardia prejudica. D: a pressão relevante é a diastólica, não a sistólica. E: a distribuição transmural é heterogênea, com desvantagem para o subendocárdio.",
+  peg:"“Exclusivamente” e “apenas” quase sempre marcam a alternativa errada em fisiologia coronariana."},
+ {g:"Conceitual",e:"A extração miocárdica de oxigênio em repouso é de aproximadamente 60–80%. A principal consequência fisiológica é:",
+  o:["O coração aumenta muito a extração quando a demanda cresce.",
+     "O coração depende principalmente do aumento do fluxo coronariano quando a demanda cresce.",
+     "O miocárdio armazena oxigênio para períodos de esforço.",
+     "A saturação venosa do seio coronário é habitualmente elevada.",
+     "A oferta de oxigênio independe da hemoglobina."],
+  c:1,
+  com:"Com a extração já próxima do teto, resta pouca margem de aumento. A adaptação principal ao aumento do consumo é vasodilatação arteriolar com aumento do fluxo.",
+  err:"A: inverte o conceito. C: o miocárdio não armazena oxigênio. D: justamente por extrair muito, a saturação venosa coronariana é baixa. E: a oferta é fluxo × conteúdo arterial, e o conteúdo depende fortemente da hemoglobina.",
+  peg:"A alternativa D é o mesmo conceito visto pelo espelho: extração alta significa sangue venoso coronariano pobre em O₂."},
+ {g:"Conceitual",e:"São determinantes principais da demanda miocárdica de oxigênio:",
+  o:["Hemoglobina, saturação e pressão de perfusão.",
+     "Frequência cardíaca, contratilidade e tensão parietal.",
+     "Circulação colateral, resistência microvascular e diástole.",
+     "Pressão diastólica aórtica, PaO₂ e viscosidade.",
+     "Fração de ejeção, débito urinário e pós-carga renal."],
+  c:1,
+  com:"FCT: Frequência, Contratilidade e Tensão parietal. A tensão parietal, por sua vez, depende de pressão ventricular, raio da cavidade e espessura da parede.",
+  err:"A e D listam determinantes de OFERTA. C mistura determinantes de fluxo. E não corresponde ao conceito.",
+  peg:"A prova troca os pratos da balança: pede demanda e oferece a lista da oferta."},
+ {g:"Conceitual",e:"Reserva de fluxo coronariano (CFR/RFC) é corretamente definida como:",
+  o:["A diferença absoluta entre fluxo hiperêmico e fluxo basal.",
+     "A razão entre fluxo hiperêmico e fluxo basal.",
+     "O percentual de estenose que produz isquemia.",
+     "A resistência mínima da microcirculação.",
+     "O gradiente pressórico através da estenose durante hiperemia."],
+  c:1,
+  com:"CFR é uma razão: fluxo hiperêmico ÷ fluxo basal. Em condições normais o fluxo pode aumentar cerca de 4–5 vezes.",
+  err:"A: diferença, não razão — erro clássico. C: percentual de estenose é medida anatômica. D: descreve o IMR. E: aproxima-se do conceito medido pelo FFR.",
+  peg:"Por ser razão, um fluxo basal elevado (taquicardia, anemia) reduz a CFR mesmo sem mudança na capacidade hiperêmica."},
+ {g:"Conceitual",e:"Sobre ANOCA e INOCA, é correto afirmar:",
+  o:["São sinônimos exatos e intercambiáveis.",
+     "ANOCA parte da angina e INOCA da isquemia demonstrada, ambos com coronárias não obstrutivas.",
+     "Ambos exigem obstrução epicárdica maior que 50%.",
+     "São diagnósticos de exclusão sem substrato fisiopatológico.",
+     "Ocorrem predominantemente em homens jovens."],
+  c:1,
+  com:"São conceitos relacionados, porém não obrigatoriamente idênticos: um ancora no sintoma, o outro na demonstração objetiva de isquemia — ambos na ausência de obstrução relevante.",
+  err:"A: relacionados não é igual a idênticos. C: por definição não há obstrução relevante. D: há substrato — microvascular, endotelial, vasoespástico. E: a frequência é relevante em mulheres, historicamente subdiagnosticada.",
+  peg:"“Sinônimos exatos” é a armadilha; o adjetivo “exatos” derruba a alternativa."},
+ {g:"Integração",e:"Paciente evolui de 70 para 130 bpm. Sobre o efeito no equilíbrio oferta-demanda:",
+  o:["Aumenta a demanda e aumenta proporcionalmente a oferta.",
+     "Aumenta a demanda e reduz a janela de perfusão diastólica.",
+     "Não altera a demanda, apenas o débito cardíaco.",
+     "Aumenta a oferta por elevar a pressão diastólica aórtica.",
+     "Reduz a demanda por encurtar a sístole."],
+  c:1,
+  com:"A frequência é o único determinante presente nos dois pratos: eleva o consumo (F do FCT) e encurta a diástole, reduzindo o tempo de entrega — sobretudo para o subendocárdio.",
+  err:"A: a oferta não acompanha proporcionalmente. C: frequência é determinante direto da demanda. D: taquicardia não eleva a pressão diastólica de perfusão. E: inverte o efeito.",
+  peg:"“A frequência rouba dos dois lados” resolve a questão em dois segundos."},
+ {g:"Integração",e:"Sobre o conteúdo arterial de oxigênio, assinale a melhor afirmativa.",
+  o:["A PaO₂ é o principal componente quantitativo do conteúdo.",
+     "O conteúdo depende principalmente da hemoglobina e da saturação; o dissolvido é pequeno.",
+     "O conteúdo independe da hemoglobina quando a SaO₂ é normal.",
+     "O conteúdo é determinado pela pressão de perfusão coronariana.",
+     "Elevar a PaO₂ com SaO₂ já em 98% aumenta substancialmente o conteúdo."],
+  c:1,
+  com:"CaO₂ ≈ (1,34 × Hb × SaO₂) + (0,003 × PaO₂). O termo dissolvido é pequeno; a PaO₂ importa quando sua queda reduz a saturação.",
+  err:"A e E: superestimam o oxigênio dissolvido. C: hemoglobina baixa reduz o conteúdo mesmo com saturação normal. D: pressão de perfusão é determinante de fluxo, não de conteúdo.",
+  peg:"Confundir pressão parcial com conteúdo é o erro mais rentável em prova."},
+ {g:"Integração",e:"Qual combinação reduz mais diretamente a pressão de perfusão coronariana do VE?",
+  o:["Hipertensão sistólica isolada com FC 60 bpm.",
+     "Hipotensão diastólica associada a pressão diastólica final do VE elevada.",
+     "Bradicardia com pressão diastólica final do VE normal.",
+     "Aumento isolado da PaO₂.",
+     "Vasodilatação arteriolar em repouso."],
+  c:1,
+  com:"O gradiente é aproximadamente pressão diastólica aórtica menos pressão diastólica final do VE. Baixar a primeira e elevar a segunda comprime o gradiente pelos dois lados.",
+  err:"A: a pressão sistólica não define a perfusão coronariana do VE. C: bradicardia até prolonga a diástole. D: não altera pressão de perfusão. E: reduz resistência, favorecendo o fluxo.",
+  peg:"A questão testa se o aluno lembra que existem duas pressões na conta, não uma."},
+ {g:"Integração",e:"Sobre a distribuição da resistência na circulação coronariana:",
+  o:["A maior parte da resistência está nas artérias epicárdicas normais.",
+     "A maior parte da resistência é regulada na microcirculação, sobretudo pequenas artérias e arteríolas.",
+     "Os capilares são o principal sítio de regulação da resistência.",
+     "A resistência é fixa e não se modifica com o metabolismo.",
+     "A resistência é determinada exclusivamente pelo tônus simpático."],
+  c:1,
+  com:"Epicárdicas são condutos de transporte e, quando normais, contribuem pouco para a resistência total. Pequenas artérias e arteríolas concentram a regulação; capilares fazem troca.",
+  err:"A: apenas com estenose significativa a epicárdica passa a pesar. C: capilares trocam, não regulam. D: a resistência é dinâmica e metabolicamente modulada. E: há endotélio, metabólitos e musculatura lisa além do autonômico.",
+  peg:"Essa é a base conceitual de toda a ANOCA/INOCA: a doença pode estar onde a angiografia não vê."},
+ {g:"Integração",e:"Em estenose de gravidade intermediária, é esperado que:",
+  o:["Fluxo basal e reserva estejam ambos abolidos.",
+     "O fluxo basal possa estar preservado por vasodilatação compensatória, com reserva já reduzida.",
+     "A reserva esteja preservada até que a estenose atinja 90%.",
+     "Não haja isquemia em nenhuma circunstância.",
+     "A vasodilatação distal aumente a reserva coronariana."],
+  c:1,
+  com:"A vasodilatação arteriolar distal compensa em repouso e mantém o fluxo basal — ao custo de consumir a reserva. Quando o esforço exige hiperemia, a margem já foi gasta e a isquemia aparece.",
+  err:"A: descreve lesão crítica. C: a reserva cai antes disso. D: a isquemia ao esforço é justamente o cenário típico. E: a vasodilatação usada em repouso reduz a reserva disponível.",
+  peg:"O paciente “normal em repouso” não é paciente sem doença — é paciente sem margem."},
+ {g:"Clínica · TEC",e:"Homem de 70 anos com DAC conhecida, sem alteração recente do padrão anginoso, chega com dor em repouso. FC 122 bpm, PA 94×52 mmHg, Hb 6,5 g/dL por sangramento digestivo. Qual o mecanismo mais provável?",
+  o:["Nova ruptura de placa com trombose oclusiva, obrigatoriamente.",
+     "Isquemia por desequilíbrio entre oferta e demanda, sem necessidade de nova obstrução.",
+     "Vasoespasmo coronariano puro como única explicação.",
+     "Erro de medida: anemia não altera a oferta miocárdica de O₂.",
+     "Pericardite aguda."],
+  c:1,
+  com:"Hemoglobina baixa reduz o conteúdo arterial de O₂; taquicardia eleva a demanda e encurta a diástole; hipotensão reduz a pressão de perfusão. A anatomia não mudou — a fisiologia mudou.",
+  err:"A: possível, mas não obrigatória, e o quadro explica-se sem ela. C: não há elemento que sustente vasoespasmo como única causa. D: contraria a equação da oferta. E: não corresponde à apresentação.",
+  peg:"A palavra “obrigatoriamente” na alternativa A é o gatilho — o desequilíbrio explica isquemia sem novo evento anatômico."},
+ {g:"Clínica · TEC",e:"Mulher de 58 anos, angina típica aos esforços, teste funcional sugestivo de isquemia e coronariografia sem obstrução relevante. A conduta conceitualmente correta é:",
+  o:["Concluir que a dor não tem origem cardíaca e encerrar a investigação coronariana.",
+     "Considerar mecanismos de ANOCA/INOCA, como disfunção microvascular, endotelial ou vasoespasmo.",
+     "Indicar angioplastia empírica da lesão mais evidente.",
+     "Atribuir o quadro a ansiedade, por ser mulher de meia-idade.",
+     "Repetir a coronariografia em 30 dias."],
+  c:1,
+  com:"Angiografia sem obstrução não exclui causa coronariana. O passo conceitual é interrogar a fisiologia: microcirculação, função endotelial e vasomotricidade.",
+  err:"A: erro clássico e clinicamente custoso. C: não há alvo anatômico e a intervenção não trata microcirculação. D: viés histórico responsável por subdiagnóstico. E: repetir o mesmo exame não responde a pergunta nova.",
+  peg:"A alternativa A é a resposta “automática” de quem estudou anatomia e não fisiologia."},
+ {g:"Clínica · TEC",e:"Paciente com miocardiopatia isquêmica, FE 28%, PA 88×50 mmHg e pressão diastólica final do VE elevada. O território miocárdico mais ameaçado e a razão são:",
+  o:["Subepicárdio, por maior distância das coronárias epicárdicas.",
+     "Subendocárdio, por menor gradiente de perfusão e maior compressão e demanda relativa.",
+     "Ápice, exclusivamente por dominância coronariana.",
+     "Ventrículo direito, por depender apenas da sístole.",
+     "Nenhum: com FE reduzida a demanda cai e protege o miocárdio."],
+  c:1,
+  com:"Pressão diastólica aórtica baixa reduz a entrada e pressão diastólica final do VE elevada aumenta a contrapressão: o gradiente de perfusão encolhe pelos dois lados, e quem paga primeiro é o subendocárdio.",
+  err:"A: o subepicárdio é o menos vulnerável. C: dominância não define camada. D: o VD tem perfusão relativamente mais preservada em sístole, mas não é o ponto aqui. E: dilatação e maior tensão parietal aumentam a demanda.",
+  peg:"A alternativa E soa fisiológica, mas confunde fração de ejeção com consumo de oxigênio."},
+ {g:"Clínica · TEC",e:"Paciente com CFR reduzida e sem estenose epicárdica significativa. A interpretação mais adequada é:",
+  o:["A CFR reduzida confirma, por si só, estenose epicárdica não vista.",
+     "A CFR é resposta integrada; nesse contexto, disfunção microvascular deve ser considerada, e o IMR ajuda a caracterizá-la.",
+     "A CFR reduzida indica necessariamente vasoespasmo.",
+     "A CFR não tem relação com a microcirculação.",
+     "O achado é irrelevante na ausência de estenose."],
+  c:1,
+  com:"A CFR informa que o sistema perdeu capacidade de multiplicar o fluxo, sem dizer onde. Sem estenose relevante, a microcirculação entra em primeiro plano — e o IMR foca a resistência microvascular.",
+  err:"A: confunde medida integrada com localizadora. C: vasoespasmo é uma hipótese entre outras. D: contraria o conceito. E: reserva reduzida tem significado clínico próprio.",
+  peg:"Cada método responde uma pergunta; a prova cobra exatamente quem responde o quê."},
+ {g:"Clínica · TEC",e:"Sobre a progressão da isquemia e da necrose miocárdica, assinale a melhor afirmativa.",
+  o:["Toda oclusão coronariana total resulta obrigatoriamente em necrose transmural.",
+     "A necrose pode progredir do subendocárdio para o subepicárdio, mas duração, reperfusão e circulação colateral modificam o resultado.",
+     "A isquemia crônica é sempre exclusivamente subendocárdica.",
+     "A circulação colateral não altera a extensão do dano.",
+     "A reperfusão precoce não modifica a progressão da necrose."],
+  c:1,
+  com:"A progressão típica é do subendocárdio para fora, mas o desfecho final depende de tempo de oclusão, presença de reperfusão e de circulação colateral.",
+  err:"A e C: absolutizam padrões que são apenas típicos. D e E: negam dois dos principais modificadores do dano.",
+  peg:"Todas as alternativas erradas contêm um absoluto — “obrigatoriamente”, “sempre”, “não altera”, “não modifica”."}
+];
+
+const CASOS = [
+ {t:"Caso 1 — A avenida intermediária",
+  e1:"Homem, 62 anos, hipertenso e dislipidêmico. Angina aos esforços moderados há 4 meses, ausente em repouso. Exame físico sem alterações. ECG de repouso normal.",
+  p:"Qual o mecanismo mais provável do sintoma?",
+  op:["Fluxo basal já comprometido em repouso","Reserva coronariana consumida pela vasodilatação compensatória","Vasoespasmo epicárdico isolado"],
+  c:1,
+  e2:"Coronariografia: lesão de 55% no terço médio da descendente anterior. Avaliação funcional demonstra limitação de fluxo durante hiperemia.",
+  fin:"Estenose intermediária com repercussão funcional: em repouso a vasodilatação distal manteve o fluxo basal, ao custo da reserva. Quando o esforço exigiu hiperemia, a margem não existia mais.",
+  mapa:["Estenose intermediária eleva a resistência do conduto","Arteríolas distais dilatam para manter o fluxo basal","A reserva de fluxo é consumida em repouso","No esforço, a demanda sobe e não há mais margem hiperêmica","Isquemia de esforço, com repouso assintomático"]},
+ {t:"Caso 2 — A coronariografia que veio limpa",
+  e1:"Mulher, 56 anos, angina típica aos esforços há 8 meses, com boa resposta a repouso. Fatores de risco: hipertensão e história familiar. Cintilografia com defeito de perfusão sob estresse.",
+  p:"Antes da coronariografia, qual hipótese você já mantém aberta?",
+  op:["Se a angiografia for normal, a dor não é cardíaca","Isquemia com coronárias não obstrutivas (INOCA)","Somente doença de tronco pode explicar o quadro"],
+  c:1,
+  e2:"Coronariografia: irregularidades parietais discretas, sem obstrução relevante. Avaliação fisiológica adicional evidencia reserva de fluxo reduzida com resistência microvascular aumentada.",
+  fin:"INOCA por disfunção microvascular. O sintoma é anginoso, a isquemia foi demonstrada e as avenidas estão livres — o problema está nas ruas pequenas e nos semáforos.",
+  mapa:["Angina típica com isquemia demonstrada","Coronariografia sem obstrução relevante","Reserva de fluxo reduzida","Resistência microvascular aumentada","Diagnóstico funcional: INOCA por disfunção microvascular"]},
+ {t:"Caso 3 — Quando a fisiologia muda e a anatomia não",
+  e1:"Homem, 71 anos, DAC conhecida, angina previamente estável em grandes esforços. Há 2 dias, melena. Hoje: dor torácica em repouso, FC 124 bpm, PA 92×50 mmHg, palidez importante.",
+  p:"Qual a explicação mais provável para a dor em repouso?",
+  op:["Progressão anatômica rápida da estenose","Desequilíbrio entre oferta e demanda sem novo evento obstrutivo","Dissecção coronariana espontânea"],
+  c:1,
+  e2:"Hemoglobina 6,4 g/dL. Sem supradesnivelamento de ST. Marcadores com elevação discreta. Endoscopia confirma sangramento por úlcera péptica.",
+  fin:"Isquemia por desequilíbrio: hemoglobina baixa reduz o conteúdo arterial de O₂, a taquicardia aumenta a demanda e encurta a diástole, e a hipotensão reduz a pressão de perfusão. A estenose que era tolerada deixou de ser.",
+  mapa:["Queda da hemoglobina reduz o conteúdo arterial de O₂","Taquicardia aumenta a demanda e encurta a diástole","Hipotensão reduz a pressão de perfusão","Estenose previamente tolerada torna-se limitante","Alvo terapêutico principal: corrigir a causa do desequilíbrio"]},
+ {t:"Caso 4 — O gradiente que encolheu dos dois lados",
+  e1:"Mulher, 74 anos, miocardiopatia isquêmica, FE 26%, internada por descompensação. PA 86×48 mmHg, congestão pulmonar, pressão de enchimento do VE clinicamente elevada. Refere desconforto torácico intermitente.",
+  p:"Qual o principal mecanismo de sofrimento miocárdico neste momento?",
+  op:["Redução da pressão de perfusão com aumento da contrapressão diastólica","Aumento isolado da extração de O₂","Vasoconstrição capilar por hipocapnia"],
+  c:0,
+  e2:"Ecocardiograma confirma VE dilatado com pressões de enchimento elevadas. A frequência oscila entre 105 e 115 bpm.",
+  fin:"O gradiente de perfusão encolheu pelos dois lados: pressão diastólica aórtica baixa (menos entrada) e pressão diastólica final do VE elevada (mais contrapressão), com taquicardia encurtando a janela. O subendocárdio é o primeiro a sentir.",
+  mapa:["Pressão diastólica aórtica baixa reduz a entrada","Pressão diastólica final do VE elevada aumenta a contrapressão","Taquicardia encurta a diástole","Dilatação eleva a tensão parietal e a demanda","Isquemia subendocárdica alimenta a disfunção — o ciclo se fecha"]}
+];
+
+const CHECKLIST = [
+ "Quem está incluído na síndrome coronariana crônica?",
+ "Por que a perfusão do VE predomina na diástole?",
+ "Por que o subendocárdio sofre primeiro?",
+ "Quais são os determinantes da demanda de O₂?",
+ "Quais são os determinantes da oferta de O₂?",
+ "Por que a frequência cardíaca atua dos dois lados da balança?",
+ "Por que o coração aumenta o fluxo em vez da extração?",
+ "O que significa reserva coronariana e qual seu valor normal aproximado?",
+ "Por que a gravidade funcional não depende somente do percentual visual da estenose?",
+ "Como diferenciar ANOCA de INOCA?",
+ "O que FFR, CFR/RFC e IMR avaliam, respectivamente?"
+];
+</script>
+
+<script>
+/* =====================================================================
+   ESTADO E PERSISTÊNCIA
+   ===================================================================== */
+let S = {flash:{i:0,st:{},fila:[]}, q:{}, chk:[], casos:{}, prof:false, mov:false};
+function salvar(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }catch(e){} }
+function carregar(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw){ const d = JSON.parse(raw); if(d && typeof d==='object'){ S = Object.assign(S,d); } }
+  }catch(e){}
+  if(!S.flash || typeof S.flash!=='object') S.flash={i:0,st:{},fila:[]};
+  if(!S.flash.st) S.flash.st={};
+  if(!Array.isArray(S.flash.fila) || !S.flash.fila.length) S.flash.fila = FLASHCARDS.map((_,i)=>i);
+  if(!S.q) S.q={};
+  if(!Array.isArray(S.chk)) S.chk=[];
+  if(!S.casos) S.casos={};
+}
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),1900);
+}
+function zerarProgresso(){
+  if(!confirm('Apagar todo o progresso deste capítulo (flashcards, questões, casos e checklist)? Esta ação não pode ser desfeita.')) return;
+  try{ localStorage.removeItem(LS_KEY); }catch(e){}
+  S = {flash:{i:0,st:{},fila:FLASHCARDS.map((_,i)=>i)}, q:{}, chk:[], casos:{}, prof:S.prof, mov:S.mov};
+  salvar(); renderTudo(); toast('Progresso apagado.');
+}
+
+/* =====================================================================
+   NAVEGAÇÃO, MODOS E UTILITÁRIOS
+   ===================================================================== */
+function abrirMenu(){ document.getElementById('menuLat').classList.add('open'); document.getElementById('backdrop').classList.add('on'); }
+function fecharMenu(){ document.getElementById('menuLat').classList.remove('open'); document.getElementById('backdrop').classList.remove('on'); }
+function toggleProfessor(){
+  S.prof = !S.prof; document.body.classList.toggle('professor', S.prof);
+  document.getElementById('btnProf').classList.toggle('on', S.prof);
+  salvar(); toast(S.prof ? 'Modo Professor ativo — notas e roteiros visíveis.' : 'Modo Professor desativado.');
+}
+function toggleMov(){
+  S.mov = !S.mov; document.body.classList.toggle('reduz', S.mov);
+  document.getElementById('btnMov').classList.toggle('on', S.mov);
+  if(S.mov && cicloTimer){ toggleCiclo(); }
+  salvar();
+}
+function rev(id, btn){
+  const el=document.getElementById(id); if(!el) return;
+  el.classList.toggle('on');
+  if(btn) btn.textContent = el.classList.contains('on') ? 'Ocultar' : 'Mostrar resposta';
+}
+function sortInt(n){ return Math.floor(Math.random()*n); }
+
+/* =====================================================================
+   FILOSOFIA DO ATLAS
+   ===================================================================== */
+function cardFrase(i, delay){
+  return '<div class="filo-card" style="animation-delay:'+(delay||0)+'ms">'+
+         '<span class="asp">&#8220;</span><p>'+FRASES[i]+'</p><div class="s">— Dr. André Rossanno</div></div>';
+}
+function mostrarTodasFrases(){
+  document.getElementById('filoGrid').innerHTML = FRASES.map((f,i)=>cardFrase(i, i*35)).join('');
+}
+function sortearFrase(){
+  const i = sortInt(FRASES.length);
+  document.getElementById('filoSorteio').innerHTML =
+    '<div class="filo-bloco"><p>'+FRASES[i]+'</p><div class="filo-assin">— Dr. André Rossanno</div></div>';
+}
+function pausaPensar(alvo, bloco){
+  const lista = PAUSAS[bloco] || FRASES_DESAFIO;
+  const i = lista[sortInt(lista.length)];
+  const el = document.getElementById('pausa_'+alvo);
+  el.innerHTML = '<p style="margin:0">“'+FRASES[i]+'”</p><div class="s">— Dr. André Rossanno</div>';
+  el.classList.add('on');
+}
+function fraseDesafio(idEl){
+  const i = FRASES_DESAFIO[sortInt(FRASES_DESAFIO.length)];
+  const el = document.getElementById(idEl); if(!el) return;
+  el.innerHTML = '<span class="tag t-our">FRASE ANTES DO DESAFIO</span><p style="margin:0">“'+FRASES[i]+'”</p>'+
+                 '<div style="text-align:right;font-family:var(--assin);font-size:1.1rem;color:var(--dourado)">— Dr. André Rossanno</div>';
+}
+let projIdx = -1;
+function projetarFrase(){
+  projIdx = sortInt(FRASES.length);
+  document.getElementById('projFrase').textContent = '“'+FRASES[projIdx]+'”';
+  document.getElementById('projetor').classList.add('on');
+}
+function fecharProjetor(){ document.getElementById('projetor').classList.remove('on'); }
+
+/* =====================================================================
+   BALANÇA DE ABERTURA — CENÁRIOS
+   ===================================================================== */
+const CENARIOS = [
+ {b:"Repouso", t:"REPOUSO — CORAÇÃO SAUDÁVEL", a:0,
+  x:"Extração já em 60–80%, entrega em dia. A cidade trabalha com folga — e é essa folga que se chama reserva."},
+ {b:"Esforço, coração normal", t:"ESFORÇO — RESERVA DISPONÍVEL", a:-4,
+  x:"A demanda sobe, mas o fluxo pode aumentar 4–5 vezes: os dois pratos sobem juntos e a balança se mantém. Nenhum sintoma."},
+ {b:"Esforço com estenose", t:"ESFORÇO — RESERVA JÁ CONSUMIDA", a:11,
+  x:"Em repouso a vasodilatação distal manteve o fluxo basal, ao custo da reserva. No esforço não sobrou margem: angina."},
+ {b:"Taquicardia + anemia", t:"TAQUICARDIA E ANEMIA — SEM NOVA OBSTRUÇÃO", a:16,
+  x:"A frequência aumenta a demanda e encurta a diástole; a hemoglobina baixa reduz o conteúdo de O₂. Isquemia com a mesma anatomia de ontem."},
+ {b:"Coronária livre, ruas pequenas doentes", t:"ANOCA / INOCA — AVENIDA LIVRE", a:9,
+  x:"As grandes avenidas estão abertas na angiografia, mas os semáforos não abrem quando o esforço pede. A balança pende assim mesmo."}
+];
+let cenAtual = 0;
+function renderCenBtns(){
+  document.getElementById('cenBtns').innerHTML = CENARIOS.map((c,i)=>
+    '<button id="cen'+i+'" onclick="cenario('+i+')">'+c.b+'</button>').join('');
+}
+function cenario(i){
+  cenAtual = i;
+  const c = CENARIOS[i];
+  CENARIOS.forEach((_,k)=>{ const b=document.getElementById('cen'+k); if(b) b.classList.toggle('on', k===i); });
+  const cx=300, cy=100, L=180, rad=c.a*Math.PI/180;
+  const lx=cx-L*Math.cos(rad), ly=cy+L*Math.sin(rad);
+  const rx=cx+L*Math.cos(rad), ry=cy-L*Math.sin(rad);
+  const viga=document.getElementById('viga');
+  viga.setAttribute('x1',lx.toFixed(1)); viga.setAttribute('y1',ly.toFixed(1));
+  viga.setAttribute('x2',rx.toFixed(1)); viga.setAttribute('y2',ry.toFixed(1));
+  const pd=document.getElementById('pratoDem'), po=document.getElementById('pratoOf');
+  pd.setAttribute('transform','translate('+lx.toFixed(1)+','+ly.toFixed(1)+')');
+  po.setAttribute('transform','translate('+rx.toFixed(1)+','+ry.toFixed(1)+')');
+  if(!S.mov){ pd.style.transition='transform .45s'; po.style.transition='transform .45s'; viga.style.transition='all .45s'; }
+  document.getElementById('cenTitulo').textContent = c.t;
+  const out=document.getElementById('cenOut');
+  out.className = 'sintese';
+  out.innerHTML = '<b>'+(c.a>6?'DESEQUILÍBRIO':(c.a>0?'MARGEM ESTREITA':'EQUILÍBRIO'))+'</b><span>'+c.x+'</span>';
+}
+
+/* =====================================================================
+   FENÓTIPOS
+   ===================================================================== */
+function renderFenotipos(){
+  document.getElementById('fenoGrid').innerHTML = FENOTIPOS.map((f,i)=>
+    '<button class="feno'+(f.rx?' rx':'')+'" id="feno'+i+'" onclick="selFeno('+i+')"><b>'+f.t+'</b><small>'+f.d+'</small></button>'
+  ).join('');
+}
+function selFeno(i){
+  FENOTIPOS.forEach((_,k)=>document.getElementById('feno'+k).classList.remove('sel'));
+  document.getElementById('feno'+i).classList.add('sel');
+  const f = FENOTIPOS[i];
+  document.getElementById('fenoOut').innerHTML =
+    '<div class="card '+(f.rx?'roxo':'azul')+'"><span class="tag '+(f.rx?'t-roxo':'t-azul')+'">FENÓTIPO</span><h3>'+f.t+'</h3><p style="margin:0">'+f.x+'</p></div>';
+}
+
+/* =====================================================================
+   SEGMENTOS DA ÁRVORE CORONARIANA
+   ===================================================================== */
+const MAPA_SEG = {epi:'segEpi', peq:'segPeq', art:'segArt', cap:'segCap'};
+function selSeg(k, btn){
+  document.querySelectorAll('.seg-btns button').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  Object.values(MAPA_SEG).forEach(id=>{ const g=document.getElementById(id); if(g) g.classList.remove('pulse-seg'); });
+  const g=document.getElementById(MAPA_SEG[k]); if(g) g.classList.add('pulse-seg');
+  const s = SEGMENTOS[k];
+  document.getElementById('segOut').className = 'card '+(s.c==='roxo'?'roxo':'azul');
+  document.getElementById('segOut').innerHTML =
+    '<span class="tag '+(s.c==='roxo'?'t-roxo':'t-azul')+'">'+s.f+'</span><h3>'+s.t+'</h3><p style="margin:0">'+s.x+'</p>';
+}
+
+/* =====================================================================
+   CICLO CARDÍACO
+   ===================================================================== */
+let cicloTimer=null, emDiastole=true;
+function aplicaFase(){
+  const lab=document.getElementById('cicloLabel'), nota=document.getElementById('cicloNota');
+  const mio=document.getElementById('miocardio'), cav=document.getElementById('cavidade'), cor=document.getElementById('coronaria');
+  const bf=document.getElementById('barraFluxo'), bc=document.getElementById('barraComp'), bs=document.getElementById('barraSub');
+  if(emDiastole){
+    lab.textContent='DIÁSTOLE — as entregas entram';
+    mio.setAttribute('fill','#f0c1bb'); cav.setAttribute('transform','');
+    cor.setAttribute('stroke-width','9');
+    bf.setAttribute('width','176'); bf.setAttribute('fill','#1e8f5e');
+    bc.setAttribute('width','34');
+    bs.setAttribute('width','168'); bs.setAttribute('fill','#1e8f5e');
+    nota.textContent='Relaxamento: as ruas intramiocárdicas estão abertas.';
+  }else{
+    lab.textContent='SÍSTOLE — as ruas estão comprimidas';
+    mio.setAttribute('fill','#e29b92'); cav.setAttribute('transform','translate(250,160) scale(.62) translate(-250,-160)');
+    cor.setAttribute('stroke-width','4');
+    bf.setAttribute('width','52'); bf.setAttribute('fill','#c0392b');
+    bc.setAttribute('width','182');
+    bs.setAttribute('width','18'); bs.setAttribute('fill','#c0392b');
+    nota.textContent='Contração: compressão intramiocárdica, com queda maior no subendocárdio.';
+  }
+}
+function passoCiclo(){ emDiastole=!emDiastole; aplicaFase(); }
+function toggleCiclo(){
+  const b=document.getElementById('btnCiclo');
+  if(cicloTimer){ clearInterval(cicloTimer); cicloTimer=null; b.textContent='Iniciar o ciclo cardíaco'; return; }
+  b.textContent='Pausar o ciclo';
+  cicloTimer=setInterval(()=>{ emDiastole=!emDiastole; aplicaFase(); }, emDiastole?900:1200);
+}
+
+/* =====================================================================
+   CASCATA DA ADAPTAÇÃO METABÓLICA
+   ===================================================================== */
+const CASCATA = ["Consumo de O₂ aumenta","Metabólitos vasodilatadores aumentam","Resistência arteriolar diminui","Fluxo coronariano aumenta","Oferta de O₂ aumenta"];
+function animarCascata(){
+  const box=document.getElementById('cascata'); box.innerHTML='';
+  CASCATA.forEach((t,i)=>{
+    setTimeout(()=>{
+      const d=document.createElement('div');
+      d.className='card '+(i===CASCATA.length-1?'verde':'azul');
+      d.style.marginBottom='8px';
+      d.innerHTML='<b style="font-family:var(--mono);color:var(--azul)">'+(i+1)+'</b> &nbsp;'+t;
+      box.appendChild(d);
+    }, S.mov ? 0 : i*420);
+  });
+}
+
+/* =====================================================================
+   BALANÇA OFERTA × DEMANDA
+   ===================================================================== */
+function calcBalanca(){
+  const fc=+document.getElementById('sFC').value;
+  const contr=+document.getElementById('sContr').value;
+  const tens=+document.getElementById('sTens').value;
+  const hb=+document.getElementById('sHb').value;
+  const sat=+document.getElementById('sSat').value;
+  const pp=+document.getElementById('sPP').value;
+  document.getElementById('vFC').textContent = fc+' bpm';
+
+  const fcN=(fc-50)/110;
+  const demanda = 0.45*fcN + 0.30*(contr/100) + 0.25*(tens/100);
+  const conteudo = (hb/100)*(sat/100);
+  const tempoDiast = 1 - 0.5*fcN;
+  const oferta = conteudo * (0.45 + 0.55*(pp/100)) * tempoDiast;
+
+  const dPct=Math.round(Math.min(100,Math.max(4,demanda*100)));
+  const oPct=Math.round(Math.min(100,Math.max(4,oferta*100)));
+  document.getElementById('mDem').style.width=dPct+'%';
+  document.getElementById('mOf').style.width=oPct+'%';
+
+  const s=document.getElementById('saldoBal');
+  const margem = oPct - dPct;
+  if(margem >= 25){ s.className='saldo ok'; s.textContent='Equilíbrio preservado — a cidade entrega no prazo (margem '+margem+' pontos).'; }
+  else if(margem >= 5){ s.className='saldo risco'; s.textContent='Margem estreita — reserva sendo consumida. Um esforço a mais e a entrega atrasa (margem '+margem+' pontos).'; }
+  else { s.className='saldo isq'; s.textContent='Desequilíbrio — demanda supera a oferta. É aqui que nasce a isquemia, com ou sem nova obstrução (margem '+margem+' pontos).'; }
+}
+
+/* =====================================================================
+   RESERVA DE FLUXO CORONARIANO
+   ===================================================================== */
+function fluxoBasal(e){ return e<=80 ? 1 : Math.max(0.28, 1 - (e-80)/15*0.72); }
+function fluxoHiper(e){
+  let h;
+  if(e<=25) h=4.5;
+  else h = 4.5*(1 - Math.pow((e-25)/72, 1.5));
+  return Math.max(fluxoBasal(e), h);
+}
+function xEst(e){ return 60 + (e/95)*540; }
+function yFlu(f){ return 250 - f*44; }
+function desenhaReserva(){
+  const e=+document.getElementById('sEst').value;
+  document.getElementById('vEst').textContent = e+'%';
+  let ph='', pb='', area='';
+  for(let i=0;i<=95;i++){
+    const px=xEst(i).toFixed(1);
+    ph += (i===0?'M':'L')+px+' '+yFlu(fluxoHiper(i)).toFixed(1)+' ';
+    pb += (i===0?'M':'L')+px+' '+yFlu(fluxoBasal(i)).toFixed(1)+' ';
+  }
+  area = ph;
+  for(let i=95;i>=0;i--){ area += 'L'+xEst(i).toFixed(1)+' '+yFlu(fluxoBasal(i)).toFixed(1)+' '; }
+  area += 'Z';
+  document.getElementById('curvaHiper').setAttribute('d', ph);
+  document.getElementById('curvaBasal').setAttribute('d', pb);
+  document.getElementById('areaReserva').setAttribute('d', area);
+  const x=xEst(e);
+  const l=document.getElementById('linhaEst');
+  l.setAttribute('x1',x); l.setAttribute('x2',x);
+  document.getElementById('ptHiper').setAttribute('cx',x);
+  document.getElementById('ptHiper').setAttribute('cy',yFlu(fluxoHiper(e)));
+  document.getElementById('ptBasal').setAttribute('cx',x);
+  document.getElementById('ptBasal').setAttribute('cy',yFlu(fluxoBasal(e)));
+
+  const cfr = (fluxoHiper(e)/fluxoBasal(e));
+  let txt;
+  if(e<25) txt='<b>Estenose discreta.</b> Fluxo basal e reserva relativamente preservados. O paciente pode ser assintomático mesmo em esforços intensos.';
+  else if(e<55) txt='<b>Estenose intermediária.</b> O fluxo basal segue preservado por vasodilatação compensatória, mas a reserva já começou a cair — e é a reserva que sustenta o esforço.';
+  else if(e<80) txt='<b>Estenose importante.</b> Reserva acentuadamente reduzida: a hiperemia não consegue mais multiplicar o fluxo. Aqui a isquemia ao esforço é esperada.';
+  else txt='<b>Estenose crítica.</b> Além da reserva praticamente abolida, o próprio fluxo basal começa a cair — território de isquemia mesmo em repouso no modelo fisiológico clássico.';
+  document.getElementById('estOut').innerHTML =
+    '<span class="tag t-our">RESERVA ESTIMADA ≈ '+cfr.toFixed(1)+'×</span>'+txt+
+    '<p class="mini" style="margin:8px 0 0">Modelo conceitual e didático: a curva ilustra a relação entre gravidade da estenose, fluxo basal e capacidade hiperêmica. Não substitui avaliação fisiológica invasiva nem representa valores individuais.</p>';
+}
+
+/* =====================================================================
+   PALÁCIO DA MEMÓRIA
+   ===================================================================== */
+function renderPalacio(){
+  document.getElementById('palGrid').innerHTML = PALACIO.map((p,i)=>
+    '<button class="pal" id="pal'+i+'" onclick="selPal('+i+')"><span class="ic">'+p.ic+'</span><b>'+p.n+'</b><small>'+p.s+'</small></button>'
+  ).join('');
+}
+function selPal(i){
+  PALACIO.forEach((_,k)=>document.getElementById('pal'+k).classList.remove('on'));
+  document.getElementById('pal'+i).classList.add('on');
+  const p=PALACIO[i];
+  document.getElementById('palOut').innerHTML =
+    '<div class="card azul"><span class="tag t-azul">'+p.ic+' &nbsp;'+p.n.toUpperCase()+'</span>'+
+    '<p><b>Imagem mental.</b> '+p.img+'</p>'+
+    '<p><b>Conceito.</b> '+p.c+'</p>'+
+    '<div class="sintese"><b>FRASE</b><span>'+p.f+'</span></div>'+
+    '<div class="card our" style="margin:12px 0 0"><b>Recuperação ativa:</b> '+p.p+
+    '<div class="btnrow"><button class="btn sm ghost" onclick="this.parentNode.parentNode.querySelector(\'.rec\').classList.toggle(\'on\')">Já respondi em voz alta</button></div>'+
+    '<div class="reveal rec">Responda antes de conferir no texto da seção correspondente — a recuperação vale mais do que a releitura.</div></div></div>';
+}
+
+/* =====================================================================
+   PEGADINHAS (VERDADEIRO OU FALSO)
+   ===================================================================== */
+function renderVF(){
+  document.getElementById('vfGrid').innerHTML = VF.map((v,i)=>
+    '<div class="vf"><div class="afirm">'+(i+1)+'. '+v.a+'</div>'+
+    '<div class="btnrow" style="margin-top:0"><button class="btn sm" onclick="respVF('+i+',true)">Verdadeiro</button>'+
+    '<button class="btn sm ghost" onclick="respVF('+i+',false)">Falso</button></div>'+
+    '<div class="just" id="vf'+i+'"></div></div>'
+  ).join('');
+}
+function respVF(i, escolha){
+  const v=VF[i], el=document.getElementById('vf'+i);
+  const acertou = (escolha===v.v);
+  el.innerHTML =
+    '<span class="selo '+(v.v?'v':'f')+'">'+(v.v?'VERDADEIRO':'FALSO')+'</span> '+
+    '<b style="color:'+(acertou?'var(--verde)':'var(--vermelho)')+'"> &nbsp;'+(acertou?'Você acertou.':'Reveja com calma.')+'</b>'+
+    '<p style="margin-top:8px">'+v.j+'</p>'+
+    '<div class="arm"><b>Onde está a armadilha:</b> '+v.arm+'</div>'+
+    '<div class="mem">'+v.mem+'</div>';
+  el.classList.add('on');
+}
+
+/* =====================================================================
+   FLASHCARDS
+   ===================================================================== */
+function cardAtual(){ return S.flash.fila[S.flash.i % S.flash.fila.length]; }
+function renderCard(){
+  if(!S.flash.fila.length) S.flash.fila = FLASHCARDS.map((_,i)=>i);
+  const idx = cardAtual(), c = FLASHCARDS[idx];
+  document.getElementById('fcScene').classList.remove('flip');
+  document.getElementById('fcQ').textContent = c.q;
+  document.getElementById('fcA').textContent = c.a;
+  document.getElementById('fcInfo').textContent = 'card '+((S.flash.i % S.flash.fila.length)+1)+' de '+S.flash.fila.length+' · baralho de '+FLASHCARDS.length;
+  let ac=0, qa=0, er=0;
+  Object.values(S.flash.st).forEach(v=>{ if(v==='acertei')ac++; else if(v==='quase')qa++; else if(v==='errei')er++; });
+  document.getElementById('fcStats').textContent = 'acertei '+ac+' · quase '+qa+' · errei '+er;
+}
+function virarCard(){ document.getElementById('fcScene').classList.toggle('flip'); }
+function marcarCard(r){
+  const idx = cardAtual();
+  S.flash.st[idx] = r;
+  if(r==='errei'){ S.flash.fila.splice(Math.min(S.flash.i+2, S.flash.fila.length), 0, idx); }
+  else if(r==='quase'){ S.flash.fila.splice(Math.min(S.flash.i+5, S.flash.fila.length), 0, idx); }
+  S.flash.i = (S.flash.i+1) % S.flash.fila.length;
+  salvar(); renderCard();
+}
+function pularCard(){ S.flash.i = (S.flash.i+1) % S.flash.fila.length; salvar(); renderCard(); }
+function reiniciarFlash(){
+  S.flash = {i:0, st:{}, fila:FLASHCARDS.map((_,i)=>i)};
+  salvar(); renderCard(); toast('Baralho reiniciado.');
+}
+
+/* =====================================================================
+   QUESTÕES
+   ===================================================================== */
+const LETRAS=['A','B','C','D','E'];
+function renderQuestoes(){
+  document.getElementById('qGrid').innerHTML = QUESTOES.map((q,i)=>
+    '<div class="card" id="qc'+i+'"><span class="tag t-azul">QUESTÃO '+(i+1)+' · '+q.g+'</span>'+
+    '<p style="font-weight:700">'+q.e+'</p>'+
+    q.o.map((o,k)=>'<button class="alt" id="q'+i+'a'+k+'" onclick="responder('+i+','+k+')"><b>'+LETRAS[k]+'</b>'+o+'</button>').join('')+
+    '<div class="coment" id="qcom'+i+'"></div></div>'
+  ).join('');
+  Object.keys(S.q).forEach(k=>{ const i=+k; if(!isNaN(i) && QUESTOES[i]) pintarQuestao(i, S.q[k]); });
+  atualizarPlacar();
+}
+function pintarQuestao(i, escolha){
+  const q=QUESTOES[i];
+  q.o.forEach((_,k)=>{
+    const b=document.getElementById('q'+i+'a'+k); if(!b) return;
+    b.classList.remove('certa','errada');
+    if(k===q.c) b.classList.add('certa');
+    else if(k===escolha) b.classList.add('errada');
+  });
+  const com=document.getElementById('qcom'+i);
+  com.innerHTML = '<b style="color:'+(escolha===q.c?'var(--verde)':'var(--vermelho)')+'">'+
+    (escolha===q.c?'Resposta correta.':'Alternativa correta: '+LETRAS[q.c]+'.')+'</b>'+
+    '<p style="margin:8px 0 0">'+q.com+'</p>'+
+    '<p style="margin:8px 0 0" class="mini"><b>Por que as demais não servem:</b> '+q.err+'</p>'+
+    '<div class="peg"><b>Onde está a pegadinha:</b> '+q.peg+'</div>'+
+    '<p class="mini" style="margin:8px 0 0">Referência conceitual: Diretriz Brasileira de Síndrome Coronariana Crônica (SBC, 2025).</p>';
+  com.classList.add('on');
+}
+function responder(i, k){
+  if(S.q[i]!==undefined) return;
+  S.q[i]=k; salvar(); pintarQuestao(i,k); atualizarPlacar();
+}
+function atualizarPlacar(){
+  const chaves=Object.keys(S.q).filter(k=>QUESTOES[+k]);
+  const n=chaves.length;
+  const ac=chaves.filter(k=>S.q[k]===QUESTOES[+k].c).length;
+  document.getElementById('qResp').textContent=n;
+  document.getElementById('qAcertos').textContent=ac;
+  document.getElementById('qPerc').textContent = n? Math.round(ac/n*100)+'%' : '—';
+}
+function reiniciarQuestoes(){
+  if(!confirm('Refazer todas as questões? As respostas atuais serão apagadas.')) return;
+  S.q={}; salvar(); renderQuestoes(); fraseDesafio('fraseDesafioQ'); toast('Questões reiniciadas.');
+}
+
+/* =====================================================================
+   CASOS CLÍNICOS PROGRESSIVOS
+   ===================================================================== */
+function renderCasos(){
+  document.getElementById('casosGrid').innerHTML = CASOS.map((c,i)=>
+    '<div class="caso"><div class="cabec"><h3 style="margin:0">'+c.t+'</h3><span class="tag t-azul" style="margin:0">N7 · DOMÍNIO</span></div>'+
+    '<div class="dados">'+c.e1+'</div>'+
+    '<p style="font-weight:700">'+c.p+'</p>'+
+    c.op.map((o,k)=>'<button class="alt" id="c'+i+'o'+k+'" onclick="escolherHip('+i+','+k+')">'+o+'</button>').join('')+
+    '<div class="etapa hide" id="cet'+i+'"></div></div>'
+  ).join('');
+  Object.keys(S.casos).forEach(k=>{ const i=+k; if(!isNaN(i)&&CASOS[i]) abrirCaso(i, S.casos[k]); });
+}
+function abrirCaso(i, escolha){
+  const c=CASOS[i];
+  c.op.forEach((_,k)=>{
+    const b=document.getElementById('c'+i+'o'+k); if(!b) return;
+    b.classList.remove('certa','errada');
+    if(k===c.c) b.classList.add('certa'); else if(k===escolha) b.classList.add('errada');
+  });
+  const el=document.getElementById('cet'+i);
+  el.innerHTML =
+    '<span class="tag t-our">NOVOS DADOS LIBERADOS</span><div class="dados">'+c.e2+'</div>'+
+    '<p><b>Fechamento:</b> '+c.fin+'</p>'+
+    '<div class="mapa-fisio"><h4>Mapa fisiológico do caso</h4><ol>'+c.mapa.map(m=>'<li>'+m+'</li>').join('')+'</ol></div>';
+  el.classList.remove('hide');
+}
+function escolherHip(i,k){
+  if(S.casos[i]!==undefined) return;
+  S.casos[i]=k; salvar(); abrirCaso(i,k);
+}
+
+/* =====================================================================
+   CHECKLIST
+   ===================================================================== */
+function renderChk(){
+  document.getElementById('chkGrid').innerHTML = CHECKLIST.map((c,i)=>
+    '<label class="chk'+(S.chk[i]?' done':'')+'" id="chk'+i+'"><input type="checkbox" '+(S.chk[i]?'checked':'')+' onchange="marcarChk('+i+',this.checked)"><span>'+c+'</span></label>'
+  ).join('');
+  resumoChk();
+}
+function marcarChk(i, val){
+  S.chk[i]=val; salvar();
+  document.getElementById('chk'+i).classList.toggle('done', val);
+  resumoChk();
+}
+function resumoChk(){
+  const n=S.chk.filter(Boolean).length;
+  const el=document.getElementById('chkResumo');
+  let msg;
+  if(n===CHECKLIST.length) msg='<b>Capítulo dominado.</b> Volte em 24 horas e refaça apenas os flashcards marcados como “errei” — a repetição espaçada é o que transforma compreensão em recuperação sob pressão.';
+  else if(n>=CHECKLIST.length-3) msg='<b>Quase lá.</b> Faltam poucos itens. Releia apenas as seções correspondentes aos que ficaram em aberto.';
+  else msg='Marque somente o que conseguir explicar em voz alta, sem consultar. O checklist mede recuperação, não leitura.';
+  el.innerHTML = '<b style="font-family:var(--mono)">'+n+' de '+CHECKLIST.length+' itens dominados.</b><p style="margin:8px 0 0">'+msg+'</p>';
+}
+
+/* =====================================================================
+   BARRA DE PROGRESSO E INICIALIZAÇÃO
+   ===================================================================== */
+function progressoScroll(){
+  const h=document.documentElement;
+  const total=h.scrollHeight-h.clientHeight;
+  const p= total>0 ? (h.scrollTop/total)*100 : 0;
+  document.getElementById('barraProg').style.width=p+'%';
+}
+function renderTudo(){
+  renderFenotipos(); renderPalacio(); renderVF(); renderCard(); renderQuestoes(); renderCasos(); renderChk();
+}
+function init(){
+  carregar();
+  document.body.classList.toggle('professor', !!S.prof);
+  document.body.classList.toggle('reduz', !!S.mov);
+  document.getElementById('btnProf').classList.toggle('on', !!S.prof);
+  document.getElementById('btnMov').classList.toggle('on', !!S.mov);
+
+  sortearFrase();
+  renderTudo();
+  renderCenBtns(); cenario(0);
+  selFeno(0);
+  selSeg('epi', document.querySelector('.seg-btns button'));
+  aplicaFase();
+  calcBalanca();
+  desenhaReserva();
+  selPal(0);
+  fraseDesafio('fraseDesafioQ'); fraseDesafio('fraseDesafioC');
+  window.addEventListener('scroll', progressoScroll, {passive:true});
+  progressoScroll();
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){ fecharMenu(); fecharProjetor(); }
+  });
+  const sc=document.getElementById('fcScene');
+  sc.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); virarCard(); } });
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', init); else init();
+</script>
+</body>
+</html>
