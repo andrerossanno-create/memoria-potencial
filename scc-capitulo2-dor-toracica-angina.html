@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Atlas de Síndrome Coronariana Crônica — Capítulo 2: Avaliação da Dor Torácica e Angina. Da semiologia ao desequilíbrio oferta × demanda. TEC 2026.">
+<title>Tribunal do Tórax — Dor Torácica e Angina | Atlas de Síndrome Coronariana Crônica</title>
+<!--
+  ============================================================
+  ATLAS MENTAL — SÍNDROME CORONARIANA CRÔNICA
+  Capítulo 2 — Avaliação da Dor Torácica e Angina
+  Palácio: O TRIBUNAL DO TÓRAX
+  Autor: Dr. André Rossanno | memoriapotencial.com.br
+  Arquivo único autossuficiente. Sem bibliotecas externas.
+  LS_KEY: atlasCardio_scc_cap2_v1
+  Continuação de: Cap.1 Fisiologia Coronariana (Cidade Coronária)
+  Próximo: Cap.3 Hotel dos Disfarces · Cap.4 Cassino de Bayes
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy:#12233d;          /* conceito / estrutura */
+  --navy-2:#1c3557;
+  --navy-soft:#e7edf6;
+  --azul:#1282A2;          /* Azul Atlas — mecanismo */
+  --azul-soft:#e2f2f7;
+  --vermelho:#c0392b;      /* perigo / isquemia / não posso perder */
+  --vermelho-soft:#fdecea;
+  --verde:#1e8f5e;         /* favorável / oferta preservada / acerto */
+  --verde-soft:#e6f6ee;
+  --dourado:#b8860b;       /* pegadinha TEC */
+  --dourado-soft:#fdf4dc;
+  --roxo:#6b3fa0;          /* memorização / palácio */
+  --roxo-soft:#f1eafa;
+  --tinta:#1b2430;
+  --tinta-2:#4a5766;
+  --cinza:#7b8794;
+  --linha:#dde3ec;
+  --papel:#f7f9fc;
+  --branco:#ffffff;
+  --sombra:0 2px 4px rgba(18,35,61,.05), 0 8px 24px rgba(18,35,61,.07);
+  --sombra-alta:0 8px 18px rgba(18,35,61,.10), 0 20px 48px rgba(18,35,61,.13);
+  --r:16px; --r-s:10px;
+  --disp:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --assin:'Dancing Script','Segoe Script',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--papel); color:var(--tinta);
+  font-family:var(--disp); font-size:17px; line-height:1.62;
+  overflow-x:hidden;
+}
+body.reduz *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+h1,h2,h3,h4{line-height:1.2; margin:0 0 .4em; font-weight:900; letter-spacing:-.015em}
+p{margin:0 0 .85em}
+a{color:var(--azul)}
+:focus-visible{outline:3px solid var(--azul); outline-offset:3px; border-radius:6px}
+img,svg{max-width:100%}
+button{font-family:inherit; font-size:inherit; cursor:pointer}
+.wrap{max-width:1060px; margin:0 auto; padding:0 18px}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky; top:0; z-index:60; background:rgba(18,35,61,.97);
+  backdrop-filter:saturate(140%) blur(6px); color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.nav-in{max-width:1060px; margin:0 auto; padding:9px 18px; display:flex; align-items:center; gap:12px}
+.brand{display:flex; align-items:center; gap:9px; font-weight:900; font-size:.95rem; letter-spacing:-.02em; margin-right:auto; min-width:0}
+.brand .bmark{
+  width:30px;height:30px;flex:0 0 30px;border-radius:8px;
+  background:linear-gradient(150deg,var(--vermelho),#7d1f16);
+  display:grid;place-items:center;font-size:15px;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset
+}
+.brand span.txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand small{display:block;font-weight:600;font-size:.66rem;color:#9fb4d1;letter-spacing:.06em;text-transform:uppercase}
+.navbtn{
+  background:rgba(255,255,255,.10); color:#fff; border:1px solid rgba(255,255,255,.20);
+  border-radius:999px; padding:6px 12px; font-size:.76rem; font-weight:700; white-space:nowrap;
+}
+.navbtn:hover{background:rgba(255,255,255,.2)}
+.navbtn.on{background:var(--dourado); border-color:var(--dourado); color:#231a02}
+.navbtn.on.prof{background:var(--roxo); border-color:var(--roxo); color:#fff}
+.progresso{height:4px; background:rgba(255,255,255,.14)}
+.progresso i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--dourado),var(--vermelho)); transition:width .18s linear}
+/* mini balança do nav — assinatura do capítulo */
+.mini-bal{display:flex;align-items:center;gap:5px;font-size:.68rem;font-family:var(--mono);color:#cfe0f2}
+.mini-bal svg{width:38px;height:22px;overflow:visible}
+.mini-bal .viga{transition:transform .5s cubic-bezier(.34,1.3,.64,1); transform-origin:19px 8px}
+
+/* ============ HERO ============ */
+.hero{
+  background:
+    radial-gradient(1200px 380px at 50% -10%, rgba(192,57,43,.20), transparent 60%),
+    linear-gradient(175deg,#12233d 0%, #0d1a2e 100%);
+  color:#fff; padding:44px 0 0; position:relative; overflow:hidden;
+}
+.kicker{font-family:var(--mono); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:#e0b64b; margin-bottom:14px}
+.hero h1{font-size:clamp(2rem,7vw,3.5rem); margin:0 0 6px; color:#fff}
+.hero h1 em{font-style:normal; color:#ff8a7a}
+.hero .sub{color:#b9cbe4; font-size:1.02rem; max-width:640px; margin:0 0 22px}
+.portas{display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:620px; margin:0 auto 8px}
+.porta{
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18);
+  border-radius:14px 14px 4px 4px; padding:20px 12px; text-align:center; color:#fff;
+  transition:transform .25s, background .25s, box-shadow .25s; position:relative;
+}
+.porta:hover,.porta:focus-visible{transform:translateY(-4px); background:rgba(255,255,255,.13)}
+.porta .ic{font-size:2rem; display:block; line-height:1.1}
+.porta b{display:block; font-size:1.02rem; margin-top:5px}
+.porta small{display:block; color:#a9bdd6; font-size:.76rem}
+.porta.card-c{box-shadow:inset 0 -3px 0 var(--vermelho)}
+.porta.card-n{box-shadow:inset 0 -3px 0 var(--azul)}
+.lema{
+  text-align:center; font-weight:900; font-size:clamp(1.05rem,4.2vw,1.6rem);
+  letter-spacing:-.02em; margin:22px auto 6px; max-width:720px; color:#fff
+}
+.alarme{
+  margin:16px auto 0; max-width:720px; background:rgba(192,57,43,.22);
+  border:1px solid rgba(255,138,122,.45); border-radius:12px; padding:12px 16px;
+  display:flex; gap:11px; align-items:center; font-weight:800; color:#ffd9d2; font-size:.95rem;
+}
+.alarme .dot{width:11px;height:11px;flex:0 0 11px;border-radius:50%;background:#ff5b45; animation:pulsa 1.5s infinite}
+@keyframes pulsa{0%,100%{box-shadow:0 0 0 0 rgba(255,91,69,.7)}70%{box-shadow:0 0 0 12px rgba(255,91,69,0)}}
+.paciente{display:block; margin:26px auto -2px; width:min(100%,560px)}
+.hero-fade{height:34px;background:linear-gradient(180deg,transparent,var(--papel))}
+
+/* ============ SEÇÕES ============ */
+section{padding:40px 0 8px}
+.sechead{display:flex; align-items:flex-start; gap:13px; margin-bottom:16px}
+.sechead .num{
+  font-family:var(--mono); font-size:.72rem; font-weight:600; letter-spacing:.08em;
+  background:var(--navy); color:#fff; border-radius:8px; padding:6px 9px; flex:0 0 auto; margin-top:5px;
+}
+.sechead h2{font-size:clamp(1.35rem,4.6vw,2rem); margin:0}
+.sechead p{color:var(--tinta-2); margin:4px 0 0; font-size:.95rem}
+.card{background:var(--branco); border:1px solid var(--linha); border-radius:var(--r); padding:18px; box-shadow:var(--sombra); margin-bottom:14px}
+.card.pad-s{padding:14px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px}
+.grid4{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px}
+.t-mono{font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--cinza); font-weight:600}
+.hr{height:1px;background:var(--linha);margin:22px 0;border:0}
+
+/* caixas semânticas */
+.box{border-radius:var(--r-s); padding:14px 16px; margin:12px 0; border-left:5px solid}
+.box h4{margin:0 0 5px; font-size:1rem}
+.box p:last-child{margin-bottom:0}
+.box.conceito{background:var(--navy-soft); border-color:var(--navy)}
+.box.mec{background:var(--azul-soft); border-color:var(--azul)}
+.box.perigo{background:var(--vermelho-soft); border-color:var(--vermelho)}
+.box.bom{background:var(--verde-soft); border-color:var(--verde)}
+.box.tec{background:var(--dourado-soft); border-color:var(--dourado)}
+.box.mem{background:var(--roxo-soft); border-color:var(--roxo)}
+.box .t-mono{margin-bottom:3px; display:block}
+
+.frase{
+  text-align:center; font-weight:800; font-size:clamp(1.02rem,3.6vw,1.32rem);
+  color:var(--navy); background:linear-gradient(180deg,#fff,#f2f6fc);
+  border:1px solid var(--linha); border-radius:var(--r); padding:22px 20px; margin:22px 0;
+  position:relative; line-height:1.42;
+}
+.frase:before{content:'“'; font-size:3.4rem; color:var(--dourado); opacity:.5; position:absolute; top:-6px; left:14px; font-family:Georgia,serif}
+.frase .aut{display:block; margin-top:8px; font-family:var(--assin); font-size:1.15rem; font-weight:600; color:var(--tinta-2)}
+.frase.escura{background:linear-gradient(165deg,#12233d,#0d1a2e); color:#fff; border-color:#0d1a2e}
+.frase.escura .aut{color:#e0b64b}
+
+.btn{
+  background:var(--navy); color:#fff; border:0; border-radius:999px; padding:11px 20px;
+  font-weight:800; font-size:.92rem; transition:transform .12s, filter .2s;
+}
+.btn:hover{filter:brightness(1.14)} .btn:active{transform:scale(.97)}
+.btn.ghost{background:#fff; color:var(--navy); border:2px solid var(--navy)}
+.btn.ouro{background:var(--dourado); color:#231a02}
+.btn.roxo{background:var(--roxo)}
+.btn.verm{background:var(--vermelho)}
+.btn.verde{background:var(--verde)}
+.btn.sm{padding:8px 14px; font-size:.82rem}
+.btn[disabled]{opacity:.45; cursor:default}
+.btnrow{display:flex; flex-wrap:wrap; gap:9px; align-items:center}
+
+.reveal{display:none; margin-top:12px; animation:sobe .32s ease}
+.reveal.show{display:block}
+@keyframes sobe{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tag{display:inline-block; font-family:var(--mono); font-size:.68rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:6px; background:var(--navy-soft); color:var(--navy)}
+.tag.v{background:var(--vermelho-soft); color:var(--vermelho)}
+.tag.g{background:var(--verde-soft); color:var(--verde)}
+.tag.o{background:var(--dourado-soft); color:#7a5a06}
+.tag.r{background:var(--roxo-soft); color:var(--roxo)}
+.tag.a{background:var(--azul-soft); color:#0a5f78}
+</style>
+<style>
+/* ============ COMPONENTES ============ */
+/* -- Balança oferta × demanda -- */
+.balanca-wrap{display:grid; grid-template-columns:1fr; gap:14px}
+.bal-svg{width:100%; max-width:520px; margin:0 auto; display:block; overflow:visible}
+.bal-viga{transition:transform .55s cubic-bezier(.34,1.25,.64,1); transform-origin:260px 96px}
+.bal-prato{transition:transform .55s cubic-bezier(.34,1.25,.64,1)}
+.bal-status{
+  text-align:center; font-weight:900; font-size:1.05rem; padding:11px; border-radius:var(--r-s);
+  background:var(--verde-soft); color:var(--verde); transition:background .3s,color .3s;
+}
+.bal-status.isq{background:var(--vermelho-soft); color:var(--vermelho)}
+.bal-status.lim{background:var(--dourado-soft); color:#7a5a06}
+.chip{
+  border:2px solid var(--linha); background:#fff; border-radius:999px; padding:8px 13px;
+  font-size:.85rem; font-weight:700; color:var(--tinta-2); transition:all .18s;
+}
+.chip:hover{border-color:var(--cinza)}
+.chip.on-d{background:var(--vermelho); border-color:var(--vermelho); color:#fff}
+.chip.on-o{background:var(--azul); border-color:var(--azul); color:#fff}
+.chipwrap{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:10px 0}
+
+/* -- FCT halteres -- */
+.fct{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px}
+.fct .h{background:var(--vermelho-soft); border:1px solid #f3c8c2; border-radius:var(--r-s); padding:14px; text-align:center}
+.fct .h .l{font-size:2.1rem; font-weight:900; color:var(--vermelho); line-height:1; font-family:var(--mono)}
+.fct .h b{display:block; margin-top:5px}
+.fct .h small{color:var(--tinta-2); font-size:.82rem; display:block; margin-top:3px}
+
+/* -- entregadores de oferta -- */
+.entreg{background:var(--azul-soft); border:1px solid #bfe0ea; border-radius:var(--r-s); padding:14px; text-align:center; position:relative; transition:filter .3s, opacity .3s}
+.entreg .ic{font-size:1.9rem}
+.entreg b{display:block; color:#0a5f78}
+.entreg small{display:block; color:var(--tinta-2); font-size:.8rem}
+.entreg.sabotado{background:var(--vermelho-soft); border-color:#f3c8c2; filter:saturate(.7)}
+.entreg.sabotado b{color:var(--vermelho)}
+.entreg .sab{display:none; font-family:var(--mono); font-size:.68rem; color:var(--vermelho); font-weight:600; margin-top:4px}
+.entreg.sabotado .sab{display:block}
+
+/* -- ladra de duas mãos -- */
+.ladra{display:grid; grid-template-columns:1fr; gap:12px; align-items:center}
+.mao{border-radius:var(--r-s); padding:13px 15px; border-left:5px solid var(--vermelho); background:var(--vermelho-soft)}
+.mao b{color:var(--vermelho)}
+.fc-slider{width:100%; accent-color:var(--vermelho)}
+.ciclo{width:100%; max-width:460px; margin:0 auto; display:block}
+.ciclo .sis{fill:var(--navy)} .ciclo .dia{fill:var(--verde)}
+
+/* -- guardas 3A -- */
+.guardas{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px}
+.guarda{
+  border:2px dashed var(--linha); border-radius:var(--r); padding:16px; text-align:center;
+  background:#fff; transition:all .22s;
+}
+.guarda .lamp{width:34px;height:34px;border-radius:50%;margin:0 auto 8px;background:#dfe5ee; transition:all .3s}
+.guarda.on{border-style:solid; border-color:var(--verde); background:var(--verde-soft)}
+.guarda.on .lamp{background:radial-gradient(circle at 35% 30%,#7ee2b0,var(--verde)); box-shadow:0 0 0 6px rgba(30,143,94,.15)}
+.guarda b{display:block; font-size:1.05rem; color:var(--navy)}
+.guarda small{color:var(--tinta-2); font-size:.83rem}
+.veredito{text-align:center; font-weight:900; font-size:1.15rem; padding:14px; border-radius:var(--r-s); background:var(--navy-soft); color:var(--navy); margin-top:12px}
+.veredito.tip{background:var(--vermelho-soft); color:var(--vermelho)}
+.veredito.atip{background:var(--dourado-soft); color:#7a5a06}
+.veredito.nao{background:var(--verde-soft); color:var(--verde)}
+
+/* -- rampa × bomba -- */
+.rampa-box{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px}
+.curva{width:100%; height:150px; display:block}
+.curva path{fill:none; stroke-width:3.5; stroke-linecap:round}
+.curva .dorA{stroke:var(--vermelho); stroke-dasharray:420; stroke-dashoffset:420}
+.curva.run .dorA{animation:desenha 2.4s ease forwards}
+.curva .dorB{stroke:#7d1f16; stroke-dasharray:420; stroke-dashoffset:420}
+.curva.run .dorB{animation:desenha .45s ease forwards}
+@keyframes desenha{to{stroke-dashoffset:0}}
+
+/* -- SePAM -- */
+.sepam{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px}
+.sepam .p{background:#fff; border:1px solid var(--linha); border-left:5px solid var(--dourado); border-radius:var(--r-s); padding:13px}
+.sepam .p .letra{font-family:var(--mono); font-size:1.5rem; font-weight:600; color:var(--dourado); line-height:1}
+
+/* -- nitrato juiz -- */
+.juiz{text-align:center; padding:8px}
+.martelo{display:inline-block; font-size:2.6rem; transform-origin:80% 80%}
+.martelo.bate{animation:bate .6s ease}
+@keyframes bate{0%{transform:rotate(-38deg)}45%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}100%{transform:rotate(0)}}
+.falso-frase{font-size:clamp(1rem,3.8vw,1.35rem); font-weight:900; color:var(--navy); transition:all .4s; display:inline-block; padding:6px 4px}
+.falso-frase.quebrada{color:var(--cinza); text-decoration:line-through; text-decoration-color:var(--vermelho); text-decoration-thickness:4px; transform:rotate(-1.2deg) scale(.96); opacity:.65}
+
+/* -- precipitantes -- */
+.prec{background:#fff; border:1px solid var(--linha); border-radius:var(--r-s); padding:14px; display:flex; flex-direction:column; gap:9px}
+.prec .top{display:flex; align-items:center; gap:9px}
+.prec .top .ic{font-size:1.6rem}
+.prec .top b{font-size:1rem}
+.prec .op{display:flex; gap:7px; flex-wrap:wrap}
+.prec .op .btn.sm{flex:1 1 auto}
+.prec .fb{display:none; font-size:.88rem; border-radius:8px; padding:9px 11px; background:var(--navy-soft)}
+.prec.done .fb{display:block}
+.prec.done .op{display:none}
+.prec .fb .verd{font-weight:900; display:block; margin-bottom:3px}
+
+/* -- palácio -- */
+.salas{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px}
+.sala{
+  background:linear-gradient(165deg,#fff,#faf7ff); border:1px solid #e3d9f2; border-left:5px solid var(--roxo);
+  border-radius:var(--r-s); padding:15px; cursor:pointer; transition:transform .2s, box-shadow .2s;
+}
+.sala:hover{transform:translateY(-3px); box-shadow:var(--sombra-alta)}
+.sala .n{font-family:var(--mono); font-size:.7rem; color:var(--roxo); font-weight:600; letter-spacing:.1em}
+.sala h4{margin:4px 0 5px; color:var(--navy)}
+.sala .cena{font-size:.88rem; color:var(--tinta-2)}
+.sala .ancora{display:none; margin-top:9px; padding-top:9px; border-top:1px dashed #d9cbef; font-size:.86rem; color:var(--roxo); font-weight:700}
+.sala.aberta .ancora{display:block}
+
+/* -- flashcards 3D -- */
+.fc-area{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px}
+.flash{perspective:1100px; height:190px}
+.flash .in{position:relative; width:100%; height:100%; transition:transform .55s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d; cursor:pointer}
+.flash.vira .in{transform:rotateY(180deg)}
+.flash .f,.flash .v{
+  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:var(--r); padding:16px; display:flex; flex-direction:column; justify-content:center;
+  border:1px solid var(--linha); background:#fff; box-shadow:var(--sombra); overflow:auto;
+}
+.flash .f{font-weight:800; color:var(--navy); font-size:1rem; text-align:center}
+.flash .v{transform:rotateY(180deg); background:linear-gradient(160deg,#12233d,#1c3557); color:#fff; font-size:.95rem}
+.flash .v b{color:#ffd873}
+.fc-bar{display:flex; gap:8px; justify-content:center; margin-top:9px; flex-wrap:wrap}
+.fc-meta{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px}
+.fc-tema{font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--cinza); margin-bottom:6px; text-align:center}
+
+/* -- quiz -- */
+.q{background:#fff; border:1px solid var(--linha); border-radius:var(--r); padding:17px; margin-bottom:13px; box-shadow:var(--sombra)}
+.q .enun{font-weight:700; margin-bottom:11px}
+.q .alt{
+  display:block; width:100%; text-align:left; background:#fff; border:2px solid var(--linha);
+  border-radius:10px; padding:11px 13px; margin-bottom:8px; font-size:.93rem; color:var(--tinta); transition:all .18s;
+}
+.q .alt:hover:not([disabled]){border-color:var(--navy); background:var(--navy-soft)}
+.q .alt.certa{border-color:var(--verde); background:var(--verde-soft); font-weight:700}
+.q .alt.errada{border-color:var(--vermelho); background:var(--vermelho-soft); opacity:.9}
+.q .alt .k{font-family:var(--mono); font-weight:600; margin-right:7px; color:var(--cinza)}
+.q .coment{display:none; margin-top:11px}
+.q.resp .coment{display:block; animation:sobe .3s ease}
+.placar{display:flex; gap:14px; flex-wrap:wrap; align-items:center; background:var(--navy); color:#fff; border-radius:var(--r); padding:13px 17px; margin-bottom:14px; font-weight:700}
+.placar .n{font-family:var(--mono); font-size:1.35rem; color:#ffd873}
+
+/* -- casos -- */
+.caso{border:1px solid var(--linha); border-left:5px solid var(--azul); border-radius:var(--r-s); background:#fff; padding:16px; margin-bottom:12px; box-shadow:var(--sombra)}
+.caso .hist{background:var(--papel); border-radius:9px; padding:12px; font-size:.94rem; margin-bottom:10px}
+.caso .perg{font-weight:800; color:var(--navy); margin-bottom:9px}
+
+/* -- checklist / hipocampo -- */
+.check{display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border:1px solid var(--linha); border-radius:10px; background:#fff; margin-bottom:8px; cursor:pointer}
+.check input{margin-top:4px; accent-color:var(--verde); width:18px; height:18px; flex:0 0 18px}
+.check.done{background:var(--verde-soft); border-color:#b8e3cd}
+.check.done span{text-decoration:line-through; color:var(--tinta-2)}
+
+/* -- revisão 60s -- */
+.r60{background:linear-gradient(165deg,#12233d,#0d1a2e); color:#fff; border-radius:var(--r); padding:22px}
+.r60 .item{display:flex; gap:12px; align-items:baseline; padding:11px 0; border-bottom:1px dashed rgba(255,255,255,.18)}
+.r60 .item:last-child{border:0}
+.r60 .item .k{font-family:var(--mono); font-size:.72rem; color:#e0b64b; flex:0 0 108px; letter-spacing:.06em}
+.r60 .item .v{font-weight:800}
+
+/* -- desafio final -- */
+.desafio{background:#080d16; color:#fff; border-radius:var(--r); padding:34px 20px; text-align:center}
+.desafio h3{font-size:clamp(1.1rem,4.4vw,1.6rem); color:#fff; max-width:640px; margin:0 auto 20px}
+.cascata{display:none; margin-top:22px; text-align:left; max-width:620px; margin-left:auto; margin-right:auto}
+.cascata.show{display:block}
+.casc-l{opacity:0; transform:translateY(10px); animation:sobe2 .5s ease forwards}
+@keyframes sobe2{to{opacity:1;transform:none}}
+.casc-l{background:rgba(255,255,255,.06); border-left:4px solid var(--vermelho); border-radius:8px; padding:10px 13px; margin-bottom:8px; font-weight:700}
+.casc-l.o{border-color:var(--azul)}
+.casc-fim{background:var(--vermelho); border:0; text-align:center; font-size:1.05rem; font-weight:900; padding:14px; border-radius:10px; margin-top:12px}
+
+/* -- filosofia -- */
+.filo-card{background:linear-gradient(165deg,#12233d,#0d1a2e); color:#fff; border-radius:var(--r); padding:26px 22px; text-align:center; border:1px solid #0d1a2e}
+.filo-card p{font-size:clamp(1.05rem,3.8vw,1.35rem); font-weight:800; margin:0 0 10px; line-height:1.45}
+.filo-card .aut{font-family:var(--assin); font-size:1.2rem; color:#e0b64b}
+.filo-lista{display:none; margin-top:14px}
+.filo-lista.show{display:grid; gap:9px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.filo-lista div{background:#fff; border:1px solid var(--linha); border-left:4px solid var(--dourado); border-radius:10px; padding:11px 13px; font-size:.9rem; font-weight:600; color:var(--navy)}
+.projetor{position:fixed; inset:0; z-index:200; background:#080d16; display:none; place-items:center; padding:30px; text-align:center}
+.projetor.on{display:grid}
+.projetor p{font-size:clamp(1.4rem,6vw,3rem); font-weight:900; color:#fff; max-width:900px; line-height:1.3}
+.projetor .aut{font-family:var(--assin); font-size:1.6rem; color:#e0b64b; margin-top:16px; display:block}
+.projetor .fechar{position:absolute; top:16px; right:16px}
+
+/* -- pausa para pensar -- */
+.pausa{border:1px dashed var(--cinza); border-radius:var(--r-s); padding:13px 15px; background:#fff; margin:14px 0; text-align:center}
+.pausa .q{background:none;border:0;box-shadow:none;padding:0;margin:0 0 9px;font-weight:800;color:var(--navy)}
+
+/* -- modo professor -- */
+body.prof .prof-hide{display:none!important}
+body.prof .prof-only{display:block!important}
+.prof-only{display:none}
+.prof-nota{background:var(--roxo-soft); border-left:4px solid var(--roxo); border-radius:8px; padding:11px 13px; font-size:.9rem; margin-top:10px}
+.prof-nota b{color:var(--roxo)}
+
+/* -- hub -- */
+.hub{display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:9px}
+.hub a{
+  display:block; text-decoration:none; background:#fff; border:1px solid var(--linha); border-radius:12px;
+  padding:12px 13px; color:var(--navy); font-weight:800; font-size:.88rem; transition:all .18s;
+}
+.hub a:hover{transform:translateY(-2px); box-shadow:var(--sombra-alta); border-color:var(--navy)}
+.hub a small{display:block; font-weight:600; color:var(--cinza); font-size:.72rem; font-family:var(--mono)}
+
+/* -- mapa de causas -- */
+.mapa{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px}
+.col-causa{border-radius:var(--r); padding:15px; border:1px solid var(--linha); background:#fff}
+.col-causa.cardio{border-top:4px solid var(--vermelho)}
+.col-causa.naocardio{border-top:4px solid var(--azul)}
+.causa{
+  display:flex; gap:9px; align-items:flex-start; padding:9px 10px; border-radius:9px; margin-bottom:6px;
+  background:var(--papel); cursor:pointer; transition:background .18s; font-size:.9rem;
+}
+.causa:hover{background:var(--navy-soft)}
+.causa .kill{font-size:.9rem}
+.causa .nm{font-weight:700; color:var(--navy)}
+.causa .dsc{display:none; font-size:.85rem; color:var(--tinta-2); margin-top:3px}
+.causa.ab .dsc{display:block}
+.causa.mortal{background:var(--vermelho-soft)}
+.causa.mortal .nm{color:var(--vermelho)}
+
+/* -- rodapé -- */
+footer{background:var(--navy); color:#fff; margin-top:44px; padding:34px 0 30px; text-align:center}
+footer .assin{font-family:var(--assin); font-size:1.9rem; color:#e0b64b; margin:6px 0}
+footer small{color:#9fb4d1; display:block; margin-top:8px; font-size:.8rem}
+footer a{color:#cfe0f2}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 14px}
+  .brand small{display:none}
+  .hero{padding-top:30px}
+  .r60 .item{flex-direction:column; gap:2px}
+  .r60 .item .k{flex:none}
+}
+@media print{
+  .nav,.hub,.btn,.projetor{display:none!important}
+  .reveal,.coment,.cascata,.filo-lista{display:block!important}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div class="projetor" id="projetor" aria-hidden="true">
+  <button class="btn ghost sm fechar" onclick="fecharProjetor()">Fechar</button>
+  <div><p id="projTxt"></p><span class="aut">— Dr. André Rossanno</span></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <span class="bmark" aria-hidden="true">⚖️</span>
+      <span class="txt">Tribunal do Tórax<small>Atlas SCC · Capítulo 2</small></span>
+    </div>
+    <div class="mini-bal" title="Sua balança oferta × demanda">
+      <svg viewBox="0 0 38 22" aria-hidden="true">
+        <line x1="19" y1="8" x2="19" y2="20" stroke="#8fa8c6" stroke-width="2"/>
+        <g class="viga" id="miniViga">
+          <line x1="4" y1="8" x2="34" y2="8" stroke="#e0b64b" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="4" cy="8" r="3" fill="#c0392b"/><circle cx="34" cy="8" r="3" fill="#1282A2"/>
+        </g>
+      </svg>
+    </div>
+    <button class="navbtn" id="btnMov" onclick="toggleMov()" title="Reduzir animações">🎞️</button>
+    <button class="navbtn prof" id="btnProf" onclick="toggleProf()">🎓 Professor</button>
+  </div>
+  <div class="progresso"><i id="barra"></i></div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Atlas de Síndrome Coronariana Crônica · TEC 2026</div>
+    <h1>Avaliação da <em>dor torácica</em> e da angina</h1>
+    <p class="sub">Da semiologia ao desequilíbrio oferta × demanda. Você não vai ler este capítulo: você vai julgá-lo, caso por caso.</p>
+
+    <svg class="paciente" viewBox="0 0 560 190" role="img" aria-label="Paciente entrando na emergência com a mão sobre o tórax, diante de duas portas">
+      <rect x="0" y="168" width="560" height="22" fill="#0a1526"/>
+      <g id="pacienteFig" transform="translate(60,0)">
+        <ellipse cx="46" cy="172" rx="30" ry="6" fill="#000" opacity=".35"/>
+        <circle cx="46" cy="52" r="17" fill="#f0c9a8"/>
+        <path d="M29 46q17-16 34 0 2-18-17-18t-17 18z" fill="#2c3a4d"/>
+        <path d="M32 70h28q10 0 10 12v44q0 8-8 8H30q-8 0-8-8V82q0-12 10-12z" fill="#6c8db3"/>
+        <path d="M30 134h32l4 34h-12l-4-22-4 22H26z" fill="#2c3a4d"/>
+        <path d="M62 78q14 8 12 26" stroke="#6c8db3" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <path d="M30 78q-12 10-6 24" stroke="#6c8db3" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <g id="maoTorax">
+          <circle cx="49" cy="100" r="11" fill="#f0c9a8"/>
+          <path d="M42 96q7-5 14 0" stroke="#d9a97f" stroke-width="2" fill="none"/>
+        </g>
+        <g id="dorPulso" opacity=".85">
+          <circle cx="49" cy="100" r="17" fill="none" stroke="#ff5b45" stroke-width="2.5">
+            <animate attributeName="r" values="14;28;14" dur="1.9s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".9;0;.9" dur="1.9s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+      </g>
+      <text x="300" y="176" fill="#8fa8c6" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3">SALA DE EMERGÊNCIA</text>
+    </svg>
+
+    <div class="lema">«Dor torácica é uma porta, não um diagnóstico.»</div>
+
+    <div class="portas">
+      <a class="porta card-c" href="#mapa"><span class="ic">❤️</span><b>CARDÍACA</b><small>coronária, pericárdio, valva, músculo</small></a>
+      <a class="porta card-n" href="#mapa"><span class="ic">🫁</span><b>NÃO CARDÍACA</b><small>aorta, pulmão, esôfago, parede</small></a>
+    </div>
+
+    <div class="alarme"><span class="dot" aria-hidden="true"></span><span>ANTES DE PROCURAR O PROVÁVEL, RECONHEÇA O PERIGOSO.</span></div>
+    <div style="height:26px"></div>
+  </div>
+  <div class="hero-fade"></div>
+</header>
+
+<div class="wrap">
+  <div class="card" style="margin-top:-6px">
+    <div class="t-mono" style="margin-bottom:9px">Rota do capítulo — 13 estações</div>
+    <nav class="hub" aria-label="Índice do capítulo">
+      <a href="#mapa"><small>01</small>Duas portas</a>
+      <a href="#balanca"><small>02</small>A balança</a>
+      <a href="#oferta"><small>03</small>Oferta</a>
+      <a href="#taqui"><small>04</small>A ladra</a>
+      <a href="#hve"><small>05</small>HVE</a>
+      <a href="#precip"><small>06</small>Precipitantes</a>
+      <a href="#tresA"><small>07</small>Os 3 A</a>
+      <a href="#rampa"><small>08</small>A rampa</a>
+      <a href="#sepam"><small>09</small>SePAM</a>
+      <a href="#nitrato"><small>10</small>Nitrato</a>
+      <a href="#df"><small>11</small>Pré-teste</a>
+      <a href="#clinico"><small>12</small>Anamnese</a>
+      <a href="#exame"><small>13</small>Exame físico</a>
+      <a href="#palacio"><small>★</small>Palácio</a>
+      <a href="#flash"><small>★</small>Flashcards</a>
+      <a href="#arena"><small>★</small>Arena TEC</a>
+      <a href="#casos"><small>★</small>Casos</a>
+      <a href="#r60"><small>★</small>Revisão 60s</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ===================== 01 MAPA ===================== -->
+<section id="mapa"><div class="wrap">
+  <div class="sechead"><span class="num">01</span><div>
+    <h2>Dor torácica não é sinônimo de angina</h2>
+    <p>Toda dor torácica começa como uma pergunta aberta. Clique em cada causa para ver a pista que a denuncia.</p>
+  </div></div>
+
+  <div class="box perigo"><span class="t-mono">🚨 Regra de entrada</span>
+    <p style="margin:0"><b>Existem duas listas simultâneas na sua cabeça:</b> a das causas <b>mais prováveis</b> e a das causas que <b>matam mais rápido</b>. Elas quase nunca são a mesma lista — e a segunda é a que decide a ordem da sua conduta.</p>
+  </div>
+
+  <div class="mapa">
+    <div class="col-causa cardio">
+      <div class="t-mono" style="color:var(--vermelho)">❤️ Cardíacas</div>
+      <div id="listaCardio"></div>
+    </div>
+    <div class="col-causa naocardio">
+      <div class="t-mono" style="color:var(--azul)">🫁 Não cardíacas</div>
+      <div id="listaNaoCardio"></div>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:5px solid var(--vermelho)">
+    <h3 style="color:var(--vermelho); margin-bottom:6px">🚨 A prateleira do "não posso perder"</h3>
+    <p style="font-size:.94rem; color:var(--tinta-2)">Cinco diagnósticos que, se você não pensar neles nos primeiros minutos, podem não te dar segunda chance. Reconhecê-los depende da apresentação clínica — nenhum deles tem um único sinal obrigatório.</p>
+    <div class="grid3" id="killers"></div>
+    <div class="prof-nota prof-only"><b>Pergunta para a turma:</b> "Qual desses cinco pode se apresentar com exame físico completamente normal?" — resposta: praticamente todos, em algum momento da evolução. É exatamente por isso que a lista é mental, não física.</div>
+  </div>
+
+  <div class="pausa">
+    <p class="q">Antes de seguir: por que "dor torácica" nunca deve aparecer sozinha como hipótese diagnóstica em uma evolução?</p>
+    <button class="btn ghost sm" onclick="rev('p-mapa')">Revelar raciocínio</button>
+    <div class="reveal" id="p-mapa"><div class="box conceito" style="text-align:left; margin:0">
+      Porque ela é um <b>sintoma-porta</b>: descreve por onde o paciente entrou, não onde ele está. Escrever "dor torácica" como hipótese congela o raciocínio no corredor. O que muda a conduta é a frase seguinte: <i>quais portas eu abri, quais fechei e com que grau de confiança.</i>
+    </div></div>
+  </div>
+
+  <div class="frase">A história clínica não é uma coleção de sintomas. É fisiopatologia contada pelo paciente.<span class="aut">— Dr. André Rossanno</span></div>
+</div></section>
+
+<!-- ===================== 02 BALANÇA ===================== -->
+<section id="balanca"><div class="wrap">
+  <div class="sechead"><span class="num">02</span><div>
+    <h2>A grande balança do oxigênio</h2>
+    <p>O núcleo do capítulo. Tudo o que vem depois é uma variação desta imagem.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="balanca-wrap">
+      <svg class="bal-svg" viewBox="0 0 520 210" role="img" aria-label="Viga que sobe do lado da demanda e desce do lado da oferta conforme os fatores marcados">
+        <rect x="185" y="184" width="150" height="13" rx="6" fill="var(--navy)"/>
+        <path d="M215 184 L305 184 L260 100 Z" fill="#dde3ec"/>
+        <g class="bal-viga" id="viga">
+          <line x1="60" y1="100" x2="460" y2="100" stroke="var(--navy)" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="260" cy="100" r="11" fill="var(--dourado)"/>
+          <g class="bal-prato" id="pratoD">
+            <rect x="52" y="60" width="136" height="36" rx="9" fill="var(--vermelho)"/>
+            <text x="120" y="84" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Nunito, sans-serif">🔥 DEMANDA</text>
+            <text x="120" y="50" text-anchor="middle" font-size="15" font-weight="800" fill="var(--vermelho)" font-family="IBM Plex Mono, monospace" id="setaD"></text>
+          </g>
+          <g class="bal-prato" id="pratoO">
+            <rect x="332" y="60" width="136" height="36" rx="9" fill="var(--azul)"/>
+            <text x="400" y="84" text-anchor="middle" fill="#fff" font-size="14" font-weight="800" font-family="Nunito, sans-serif">🩸 OFERTA</text>
+            <text x="400" y="50" text-anchor="middle" font-size="15" font-weight="800" fill="var(--azul)" font-family="IBM Plex Mono, monospace" id="setaO"></text>
+          </g>
+        </g>
+      </svg>
+
+      <div class="box conceito" style="margin:6px 0 2px"><span class="t-mono">Como ler esta viga</span><p style="margin:0; font-size:.9rem">A altura de cada lado mostra o <b>tamanho</b> daquele lado. A demanda <b>sobe</b> quando você a aumenta; a oferta <b>desce</b> quando você a sabota. Isquemia é o momento em que a demanda passa por cima da oferta.</p></div>
+      <div class="t-mono" style="text-align:center">Clique nos fatores abaixo</div>
+      <div class="chipwrap" id="chipsDemanda"></div>
+      <div class="chipwrap" id="chipsOferta"></div>
+      <div class="bal-status" id="balStatus">Equilíbrio: oferta acompanha a demanda. Sem isquemia.</div>
+      <div class="btnrow" style="justify-content:center"><button class="btn ghost sm" onclick="resetBalanca()">Zerar a balança</button></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="tag v">Lado esquerdo</span>
+      <h3 style="margin-top:8px">Demanda = <span style="font-family:var(--mono); color:var(--vermelho)">FCT</span></h3>
+      <div class="fct">
+        <div class="h"><span class="l">F</span><b>Frequência</b><small>quantas vezes por minuto o coração se contrai</small></div>
+        <div class="h"><span class="l">C</span><b>Contratilidade</b><small>com quanta força cada contração acontece</small></div>
+        <div class="h"><span class="l">T</span><b>Tensão parietal</b><small>pressão e raio contra espessura da parede</small></div>
+      </div>
+      <div class="box mem" style="margin-bottom:0"><span class="t-mono">🟣 Imagem mental</span>
+        <p style="margin:0">Três halteres empilhados no prato vermelho. <b>Quanto mais rápido, mais forte e mais tensionado, mais oxigênio o coração pede.</b></p>
+      </div>
+    </div>
+    <div class="card">
+      <span class="tag">Quem carrega halteres para o prato</span>
+      <h3 style="margin-top:8px">Situações que elevam o consumo</h3>
+      <ul style="margin:0 0 10px; padding-left:20px; font-size:.95rem">
+        <li><b>Exercício</b> — o exemplo clássico: sobe FC, contratilidade e PA juntas.</li>
+        <li><b>Estresse emocional</b> — descarga adrenérgica, mesmo parado.</li>
+        <li><b>Atividade sexual</b> — esforço físico e adrenérgico somados.</li>
+        <li><b>Hipertensão</b> — pós-carga alta eleva a tensão parietal.</li>
+        <li><b>Hipertireoidismo</b> — estado hipercinético crônico.</li>
+        <li><b>Hipertermia</b> — metabolismo e FC acelerados.</li>
+        <li><b>Taquicardia de qualquer causa</b> — o caso especial da estação 04.</li>
+      </ul>
+      <div class="box tec" style="margin-bottom:0"><span class="t-mono">🟡 Pegadinha TEC</span>
+        <p style="margin:0">A tensão parietal é a parcela que os alunos esquecem — e é justamente por ela que <b>hipertensão e dilatação ventricular</b> aumentam consumo sem que a frequência mude nada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pausa">
+    <p class="q">Um paciente com estenose coronariana fixa sente angina só ao subir escada. A placa muda de tamanho quando ele sobe?</p>
+    <button class="btn ghost sm" onclick="rev('p-bal')">Revelar raciocínio</button>
+    <div class="reveal" id="p-bal"><div class="box mec" style="text-align:left; margin:0">
+      Não. A obstrução é a mesma às 8h e às 18h. O que muda é o <b>lado esquerdo da balança</b>: a demanda sobe e encontra um teto de oferta que já estava reduzido. Angina, aqui, não é um evento novo na artéria — é um encontro entre uma limitação antiga e uma exigência nova.
+    </div></div>
+  </div>
+
+  <div class="frase escura">O coração não sabe se faltou oxigênio porque pediu demais ou porque recebeu de menos. Ele responde à diferença.<span class="aut">— Dr. André Rossanno</span></div>
+</div></section>
+
+<!-- ===================== 03 OFERTA ===================== -->
+<section id="oferta"><div class="wrap">
+  <div class="sechead"><span class="num">03</span><div>
+    <h2>Os quatro entregadores de oxigênio</h2>
+    <p>A oferta não é uma coisa só. São quatro entregas independentes — e cada uma tem seu sabotador.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="grid4" id="entregadores"></div>
+    <div class="t-mono" style="text-align:center; margin:14px 0 8px">Clique em um sabotador e veja qual entregador cai</div>
+    <div class="chipwrap" id="chipsSab"></div>
+    <div id="sabTexto" class="box conceito" style="display:none"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <span class="tag a">Mecanismo</span>
+      <h3 style="margin-top:8px">Por que a diástole é um "entregador"</h3>
+      <p style="font-size:.95rem">O ventrículo esquerdo comprime seus próprios vasos durante a sístole. Por isso sua perfusão <b>predomina na diástole</b> — não é exclusiva dela, mas depende fortemente do tempo diastólico disponível.</p>
+      <svg class="ciclo" viewBox="0 0 400 78" role="img" aria-label="Comparação da proporção sístole e diástole em 60 e 150 batimentos por minuto">
+        <text x="0" y="12" font-size="10" font-family="IBM Plex Mono, monospace" fill="#7b8794">FC 60 bpm — diástole ocupa ~70% do ciclo</text>
+        <rect x="0" y="18" width="115" height="14" rx="4" class="sis"/><rect x="117" y="18" width="266" height="14" rx="4" class="dia"/>
+        <text x="0" y="58" font-size="10" font-family="IBM Plex Mono, monospace" fill="#7b8794">FC 150 bpm — diástole ocupa ~38% do ciclo</text>
+        <rect x="0" y="64" width="237" height="14" rx="4" class="sis"/><rect x="239" y="64" width="144" height="14" rx="4" class="dia"/>
+      </svg>
+      <div class="box perigo" style="margin-bottom:0"><span class="t-mono">🔴 O detalhe que cai em prova</span>
+        <p style="margin:0">Quando a FC sobe, a sístole encurta pouco. Quem é espremida é a <b>diástole</b>. O tempo de perfusão coronariana some antes do tempo de ejeção.</p>
+      </div>
+    </div>
+    <div class="card">
+      <span class="tag a">Mecanismo</span>
+      <h3 style="margin-top:8px">O tônus: a estrada também se mexe</h3>
+      <p style="font-size:.95rem">O calibre coronariano não é fixo. O endotélio saudável libera <b>óxido nítrico (NO)</b>, que vasodilata e ajusta o fluxo à demanda. Com disfunção endotelial, a balança do tônus pende para vasoconstritores (endotelina, estímulo alfa-adrenérgico), e a mesma placa passa a limitar mais.</p>
+      <div class="box mem" style="margin-bottom:0"><span class="t-mono">🟣 Imagem mental</span>
+        <p style="margin:0">O NO é o <b>fiscal que abre as cancelas</b> quando o trânsito aumenta. Endotélio doente = fiscal ausente: as cancelas ficam meio fechadas justamente na hora do pico.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pausa">
+    <p class="q">Por que a anemia pode precipitar angina sem que a estenose coronariana tenha mudado nada?</p>
+    <button class="btn ghost sm" onclick="rev('p-of')">Revelar raciocínio</button>
+    <div class="reveal" id="p-of"><div class="box mec" style="text-align:left; margin:0">
+      Porque o oxigênio que chega ao miocárdio depende do <b>conteúdo arterial de O₂</b>, e esse conteúdo é carregado principalmente pela hemoglobina. Menos hemoglobina = menos oxigênio entregue por mililitro de sangue, com o mesmo fluxo. A estrada continua igual; os caminhões é que chegam meio vazios.
+    </div></div>
+  </div>
+</div></section>
+
+<!-- ===================== 04 TAQUICARDIA ===================== -->
+<section id="taqui"><div class="wrap">
+  <div class="sechead"><span class="num">04</span><div>
+    <h2>Taquicardia: a ladra de duas mãos</h2>
+    <p>De todos os personagens deste capítulo, este é o único que rouba dos dois lados da balança ao mesmo tempo.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="ladra">
+      <div>
+        <label class="t-mono" for="fcRange">Frequência cardíaca — arraste</label>
+        <input class="fc-slider" type="range" id="fcRange" min="50" max="180" value="70" step="5" oninput="atualizaFC(this.value)" aria-label="Frequência cardíaca em batimentos por minuto">
+        <div style="display:flex; justify-content:space-between; font-family:var(--mono); font-size:.75rem; color:var(--cinza)"><span>50</span><span id="fcVal" style="color:var(--vermelho); font-weight:700; font-size:1.1rem">70 bpm</span><span>180</span></div>
+      </div>
+      <svg viewBox="0 0 420 74" style="width:100%; max-width:460px; margin:6px auto; display:block" role="img" aria-label="Proporção entre sístole e diástole conforme a frequência cardíaca">
+        <text x="0" y="11" font-size="10" font-family="IBM Plex Mono, monospace" fill="#7b8794">1 ciclo cardíaco</text>
+        <rect x="0" y="18" width="420" height="22" rx="5" fill="#eef2f7"/>
+        <rect id="barSis" x="0" y="18" width="140" height="22" rx="5" fill="#12233d"/>
+        <rect id="barDia" x="142" y="18" width="278" height="22" rx="5" fill="#1e8f5e"/>
+        <text x="4" y="34" font-size="11" fill="#fff" font-weight="700" font-family="Nunito, sans-serif">SÍSTOLE</text>
+        <text id="lblDia" x="150" y="34" font-size="11" fill="#fff" font-weight="700" font-family="Nunito, sans-serif">DIÁSTOLE (perfusão)</text>
+        <text id="txtDia" x="0" y="60" font-size="12" font-family="IBM Plex Mono, monospace" fill="#1e8f5e">diástole ocupa 66% do ciclo</text>
+      </svg>
+      <div class="grid2">
+        <div class="mao"><b>🖐️ Mão esquerda — sobe a DEMANDA</b><p style="margin:4px 0 0; font-size:.92rem">Mais batimentos por minuto = mais trabalho por minuto = mais consumo de O₂.</p></div>
+        <div class="mao" style="border-color:var(--azul); background:var(--azul-soft)"><b style="color:var(--azul)">🤚 Mão direita — derruba a OFERTA</b><p style="margin:4px 0 0; font-size:.92rem">A diástole encurta desproporcionalmente e o tempo de perfusão coronariana desaparece.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="frase">Taquicardia cobra duas vezes: aumenta o consumo e rouba a diástole.<span class="aut">— Dr. André Rossanno</span></div>
+  <div class="box tec"><span class="t-mono">🟡 Pegadinha TEC</span>
+    <p style="margin:0">Numa questão sobre precipitantes, taquicardia costuma ser oferecida como "aumenta a demanda". Está certo — mas <b>incompleto</b>. Se a alternativa disser "aumenta a demanda <i>e</i> reduz o tempo de perfusão", é essa que você marca.</p>
+  </div>
+</div></section>
+
+<!-- ===================== 05 HVE ===================== -->
+<section id="hve"><div class="wrap">
+  <div class="sechead"><span class="num">05</span><div>
+    <h2>O coração marombeiro</h2>
+    <p>Hipertrofia ventricular esquerda: o músculo que cresceu para resolver um problema e criou outro.</p>
+  </div></div>
+
+  <div class="grid2">
+    <div class="card" style="text-align:center">
+      <svg viewBox="0 0 240 190" style="width:100%; max-width:250px" role="img" aria-label="Ventrículo hipertrofiado carregando cilindros de oxigênio">
+        <path d="M120 24c30-24 78-10 82 30 4 44-46 82-82 112-36-30-86-68-82-112 4-40 52-54 82-30z" fill="#c0392b" opacity=".18"/>
+        <path d="M120 46c22-18 58-8 61 22 3 33-34 61-61 84-27-23-64-51-61-84 3-30 39-40 61-22z" fill="#c0392b"/>
+        <ellipse cx="120" cy="112" rx="16" ry="26" fill="#7d1f16"/>
+        <g stroke="#12233d" stroke-width="7" stroke-linecap="round">
+          <line x1="46" y1="126" x2="20" y2="126"/><line x1="194" y1="126" x2="220" y2="126"/>
+        </g>
+        <rect x="4" y="112" width="18" height="30" rx="5" fill="#1282A2"/><rect x="218" y="112" width="18" height="30" rx="5" fill="#1282A2"/>
+        <text x="13" y="132" font-size="9" fill="#fff" text-anchor="middle" font-family="Nunito, sans-serif">O₂</text>
+        <text x="227" y="132" font-size="9" fill="#fff" text-anchor="middle" font-family="Nunito, sans-serif">O₂</text>
+        <text x="120" y="182" text-anchor="middle" font-size="13" font-weight="800" fill="#12233d" font-family="Nunito, sans-serif">MAIS MÚSCULO, MAIS FOME</text>
+      </svg>
+    </div>
+    <div class="card">
+      <h3>Três motivos, não um</h3>
+      <ol style="padding-left:20px; font-size:.95rem">
+        <li><b>Mais massa para nutrir.</b> Cada grama de miocárdio a mais é consumo a mais, em repouso e no esforço.</li>
+        <li><b>O subendocárdio fica mais longe.</b> A camada mais interna é a última a receber e a primeira a sofrer — e a hipertrofia aumenta essa distância e a pressão que a comprime.</li>
+        <li><b>A reserva de fluxo cai.</b> A microcirculação não cresce na mesma proporção da massa, então a capacidade de aumentar o fluxo sob demanda fica reduzida.</li>
+      </ol>
+      <div class="box perigo" style="margin-bottom:0"><span class="t-mono">🔴 Consequência clínica</span>
+        <p style="margin:0">Por isso um hipertenso com HVE pode ter <b>angina e isquemia demonstrável mesmo com coronárias epicárdicas sem obstrução importante</b>. A doença, aqui, é do equilíbrio — não necessariamente da placa.</p>
+      </div>
+    </div>
+  </div>
+  <div class="frase">HVE: mais músculo, mais fome.<span class="aut">— Dr. André Rossanno</span></div>
+</div></section>
+
+<!-- ===================== 06 PRECIPITANTES ===================== -->
+<section id="precip"><div class="wrap">
+  <div class="sechead"><span class="num">06</span><div>
+    <h2>Os sabotadores da balança</h2>
+    <p>Oito precipitantes. Para cada um, uma única pergunta: <b>aumentou a fome ou diminuiu a entrega?</b> Decida antes de ver.</p>
+  </div></div>
+  <div class="grid2" id="precGrid"></div>
+  <div class="btnrow" style="justify-content:center; margin:12px 0"><span class="t-mono" id="precPlacar">0 de 8 respondidos</span></div>
+  <div class="frase">Todo precipitante de angina aumenta a fome ou diminui a entrega. Alguns fazem as duas coisas — e esses são os perigosos.<span class="aut">— Dr. André Rossanno</span></div>
+</div></section>
+
+<!-- ===================== 07 3A ===================== -->
+<section id="tresA"><div class="wrap">
+  <div class="sechead"><span class="num">07</span><div>
+    <h2>Os três guardas da angina</h2>
+    <p>Três perguntas interrogam toda dor torácica. Acenda os guardas que a história do seu paciente satisfaz.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="guardas">
+      <button class="guarda" id="g1" onclick="toggleGuarda(1)" aria-pressed="false">
+        <span class="lamp" aria-hidden="true"></span><b>1 · APERTA</b>
+        <small>Desconforto retroesternal com qualidade compatível</small>
+      </button>
+      <button class="guarda" id="g2" onclick="toggleGuarda(2)" aria-pressed="false">
+        <span class="lamp" aria-hidden="true"></span><b>2 · APARECE</b>
+        <small>Desencadeado por esforço ou estresse emocional</small>
+      </button>
+      <button class="guarda" id="g3" onclick="toggleGuarda(3)" aria-pressed="false">
+        <span class="lamp" aria-hidden="true"></span><b>3 · APAGA</b>
+        <small>Alivia com repouso ou nitrato</small>
+      </button>
+    </div>
+    <div class="veredito" id="vered">Nenhum critério marcado.</div>
+    <div class="reveal show" style="margin-top:14px">
+      <div class="grid3">
+        <div class="box conceito" style="margin:0"><b>APERTA</b><p style="margin:4px 0 0; font-size:.9rem">Pressão, aperto, peso, queimação, "um bloco no peito". <b>O paciente não precisa usar a palavra "dor"</b> — muitos negam dor e descrevem desconforto.</p></div>
+        <div class="box conceito" style="margin:0"><b>APARECE</b><p style="margin:4px 0 0; font-size:.9rem">Esforço físico, estresse emocional, frio, refeição volumosa. O gatilho é aquilo que <b>eleva o consumo</b>.</p></div>
+        <div class="box conceito" style="margin:0"><b>APAGA</b><p style="margin:4px 0 0; font-size:.9rem">Repouso ou nitrato, em <b>poucos minutos</b>. Se some em segundos ou demora meia hora parado, o padrão já não fecha.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="box tec" style="margin-top:0"><span class="t-mono">🟡 Terminologia — leia com atenção</span>
+      <p>A divisão <b>típica / atípica / não anginosa</b> é a classificação clínica tradicional e continua sendo cobrada. Mas há um movimento contemporâneo de abandonar o rótulo "atípica", porque ele foi historicamente lido como "provavelmente não é o coração" — e isso atrasou diagnóstico, sobretudo em mulheres.</p>
+      <p style="margin:0">A leitura contemporânea prefere descrever a dor como <b>cardíaca, possivelmente cardíaca ou não cardíaca</b>, e tratar os três critérios como <b>modificadores de probabilidade</b>, não como um carimbo. Para o TEC: saiba nomear a classificação tradicional <i>e</i> saiba por que ela vem sendo criticada.</p>
+    </div>
+    <div class="box perigo" style="margin-top:0"><span class="t-mono">🔴 Armadilha de linguagem</span>
+      <p style="margin:0">"Dor atípica" nunca significou "dor benigna". Significa apenas que faltou um dos três critérios. Um paciente diabético de 70 anos com dispneia aos esforços e sem dor pode ter DAC grave — e receberia o rótulo de "não anginosa" numa leitura preguiçosa.</p>
+    </div>
+  </div>
+
+  <div class="pausa">
+    <p class="q">Uma paciente de 62 anos descreve "cansaço e um peso no peito" ao subir ladeira, que passa quando ela para. Quantos guardas acenderam?</p>
+    <button class="btn ghost sm" onclick="rev('p-3a')">Revelar raciocínio</button>
+    <div class="reveal" id="p-3a"><div class="box mec" style="text-align:left; margin:0">
+      Os três. "Peso no peito" satisfaz o APERTA (qualidade compatível, sem a palavra "dor"), "ao subir ladeira" satisfaz o APARECE e "passa quando para" satisfaz o APAGA. Repare que o mais fácil de perder aqui é o primeiro — se você exigir a palavra "dor", perde a paciente.
+    </div></div>
+  </div>
+</div></section>
+
+<!-- ===================== 08 RAMPA ===================== -->
+<section id="rampa"><div class="wrap">
+  <div class="sechead"><span class="num">08</span><div>
+    <h2>A rampa e a bomba</h2>
+    <p>Duas curvas de intensidade × tempo. A diferença entre elas dirige o raciocínio inteiro.</p>
+  </div></div>
+
+  <div class="rampa-box">
+    <div class="card">
+      <span class="tag v">Padrão anginoso</span><h3 style="margin-top:8px">A rampa 🛝</h3>
+      <svg class="curva" id="curvaA" viewBox="0 0 300 120" role="img" aria-label="Curva em rampa: dor sobe progressivamente ao longo de minutos">
+        <line x1="24" y1="100" x2="290" y2="100" stroke="#dde3ec" stroke-width="2"/>
+        <line x1="24" y1="8" x2="24" y2="100" stroke="#dde3ec" stroke-width="2"/>
+        <path class="dorA" d="M24 100 C 90 96, 130 60, 170 34 S 240 18, 286 16"/>
+        <text x="150" y="116" font-size="9" fill="#7b8794" font-family="IBM Plex Mono, monospace" text-anchor="middle">minutos</text>
+      </svg>
+      <p style="font-size:.94rem; margin:0">A demanda sobe, o teto de oferta é alcançado e o desconforto <b>cresce progressivamente</b>, atingindo o máximo em minutos. Cede em minutos com repouso.</p>
+    </div>
+    <div class="card">
+      <span class="tag v">Padrão de alerta</span><h3 style="margin-top:8px">A bomba 💣</h3>
+      <svg class="curva" id="curvaB" viewBox="0 0 300 120" role="img" aria-label="Curva abrupta: dor máxima desde o primeiro instante">
+        <line x1="24" y1="100" x2="290" y2="100" stroke="#dde3ec" stroke-width="2"/>
+        <line x1="24" y1="8" x2="24" y2="100" stroke="#dde3ec" stroke-width="2"/>
+        <path class="dorB" d="M24 100 L34 14 L286 14"/>
+        <text x="150" y="116" font-size="9" fill="#7b8794" font-family="IBM Plex Mono, monospace" text-anchor="middle">segundos</text>
+      </svg>
+      <p style="font-size:.94rem; margin:0"><b>Máxima desde o primeiro instante.</b> Isso é pouco característico de angina estável e deve levantar imediatamente síndrome aórtica aguda, TEP, pneumotórax — conforme o contexto.</p>
+    </div>
+  </div>
+  <div class="btnrow" style="justify-content:center"><button class="btn sm" onclick="animaCurvas()">▶ Animar as duas curvas</button></div>
+  <div class="box mem"><span class="t-mono">🟣 Âncora de duração</span>
+    <p style="margin:0"><b>Segundos ❌ · Minutos ❤️ · Horas contínuas ❌.</b> Não como regra absoluta, mas como padrão semiológico: a angina estável habita a janela dos minutos.</p>
+  </div>
+</div></section>
+
+<!-- ===================== 09 SEPAM ===================== -->
+<section id="sepam"><div class="wrap">
+  <div class="sechead"><span class="num">09</span><div>
+    <h2>SePAM — os quatro que empurram para longe</h2>
+    <p>Características que <b>reduzem</b> a probabilidade de angina clássica. Reduzem. Não zeram.</p>
+  </div></div>
+  <div class="sepam">
+    <div class="p"><span class="letra">Se</span><b> Segundos</b><p style="margin:4px 0 0; font-size:.9rem">Dor de segundos — ou, no outro extremo, contínua por horas e dias sem variação.</p></div>
+    <div class="p"><span class="letra">P</span><b> Pleurítica</b><p style="margin:4px 0 0; font-size:.9rem">Varia claramente com a respiração. Aponta pleura, pericárdio, parede.</p></div>
+    <div class="p"><span class="letra">A</span><b> Abrupta</b><p style="margin:4px 0 0; font-size:.9rem">Máxima desde o início, sem rampa. A curva da bomba.</p></div>
+    <div class="p"><span class="letra">M</span><b> Movimento / palpação</b><p style="margin:4px 0 0; font-size:.9rem">Reproduzida ao mover o tronco ou ao apertar o ponto exato.</p></div>
+  </div>
+  <div class="box perigo"><span class="t-mono">⚠️ Trava obrigatória</span>
+    <p style="margin:0"><b>Nenhuma dessas características, isoladamente, exclui síndrome coronariana.</b> Elas mudam probabilidade. Uma parede dolorosa à palpação e uma coronária ocluída podem coexistir no mesmo tórax — e a parede é bem mais fácil de encontrar.</p>
+  </div>
+  <div class="frase">SePAM empurra a história para longe da angina clássica. Empurrar não é fechar a porta.<span class="aut">— Dr. André Rossanno</span></div>
+</div></section>
+
+<!-- ===================== 10 NITRATO ===================== -->
+<section id="nitrato"><div class="wrap">
+  <div class="sechead"><span class="num">10</span><div>
+    <h2>A armadilha do nitrato</h2>
+    <p>A pegadinha mais reciclada da dor torácica. Aperte o martelo.</p>
+  </div></div>
+  <div class="card juiz">
+    <div style="font-size:2.6rem">💊⚖️</div>
+    <p class="falso-frase" id="fraseNitrato">“Melhorou comigo. Então é coronária.”</p>
+    <div style="margin:10px 0"><span class="martelo" id="martelo" aria-hidden="true">🔨</span></div>
+    <button class="btn verm" id="btnMartelo" onclick="baterMartelo()">Bater o martelo</button>
+    <div class="reveal" id="revNitrato">
+      <div class="box perigo" style="text-align:left"><span class="t-mono">❌ Falso</span>
+        <p>A melhora com nitrato <b>não confirma etiologia coronariana</b>. O nitrato é um doador de óxido nítrico e relaxa musculatura lisa em vários territórios — inclusive o <b>esôfago</b>. Espasmo esofágico difuso pode aliviar com nitrato exatamente como a angina.</p>
+        <p style="margin:0">E o inverso também é verdadeiro: <b>não melhorar</b> com nitrato não exclui DAC. A resposta ao tratamento é uma pista, não uma sentença.</p>
+      </div>
+      <div class="box tec" style="text-align:left"><span class="t-mono">🟡 Pegadinha TEC</span>
+        <p style="margin:0">Formato clássico da questão: "dor retroesternal que cedeu após nitrato sublingual — isso confirma origem coronariana?" A resposta é <b>não</b>, e a justificativa esperada cita explicitamente o espasmo esofágico.</p>
+      </div>
+      <div class="frase" style="margin-bottom:0">NITRATO ALIVIA.<br>NITRATO NÃO AUTENTICA.<span class="aut">— Dr. André Rossanno</span></div>
+    </div>
+    <div class="prof-nota prof-only" style="text-align:left"><b>Como explicar em 30 segundos:</b> "Nitrato não tem crachá de cardiologista. Ele relaxa músculo liso onde encontrar — coronária, esôfago, veia. Se ele resolvesse só problema de coronária, teríamos um teste diagnóstico de 3 reais."</div>
+  </div>
+</div></section>
+
+<!-- ===================== 11 DIAMOND-FORRESTER ===================== -->
+<section id="df"><div class="wrap">
+  <div class="sechead"><span class="num">11</span><div>
+    <h2>Do perfil clínico à probabilidade pré-teste</h2>
+    <p>Idade + sexo + característica da dor. A lógica primeiro; os números, em segundo plano.</p>
+  </div></div>
+
+  <div class="card">
+    <div class="grid3" style="align-items:center">
+      <div class="box conceito" style="margin:0; text-align:center"><b>👴 IDADE</b><p style="margin:3px 0 0; font-size:.88rem">Prevalência de DAC sobe com a idade</p></div>
+      <div class="box conceito" style="margin:0; text-align:center"><b>♂️♀️ SEXO</b><p style="margin:3px 0 0; font-size:.88rem">Prevalências diferentes por faixa etária</p></div>
+      <div class="box conceito" style="margin:0; text-align:center"><b>❤️ TIPO DA DOR</b><p style="margin:3px 0 0; font-size:.88rem">Quantos dos 3 A a história satisfaz</p></div>
+    </div>
+    <div style="text-align:center; font-size:1.8rem; margin:6px 0">⬇️</div>
+    <div class="box mem" style="text-align:center"><b>PROBABILIDADE PRÉ-TESTE DE DAC OBSTRUTIVA</b>
+      <p style="margin:4px 0 0; font-size:.92rem">Um número <b>antes</b> de qualquer exame — e é ele que dá sentido ao resultado que vem depois.</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card" style="border-left:5px solid var(--cinza)">
+      <span class="tag">📜 O que o material histórico mostra</span>
+      <h3 style="margin-top:8px">Diamond & Forrester (1979)</h3>
+      <p style="font-size:.94rem">Combinaram idade, sexo e tipo de dor em uma tabela de probabilidade pré-teste, e propuseram uma lógica de decisão em três faixas: probabilidade <b>muito baixa</b> (testar rende pouco), <b>intermediária</b> (o teste é mais útil) e <b>muito alta</b> (um teste negativo dificilmente muda a conduta). Os cortes clássicos citados nas aulas são &lt;10%, 10–90% e &gt;90%.</p>
+      <p style="margin:0; font-size:.94rem">A contribuição que permanece é <b>conceitual</b>: o mesmo exame vale coisas diferentes em pacientes diferentes.</p>
+    </div>
+    <div class="card" style="border-left:5px solid var(--verde)">
+      <span class="tag g">🆕 Como o raciocínio é feito atualmente</span>
+      <h3 style="margin-top:8px">O que mudou</h3>
+      <ul style="font-size:.94rem; padding-left:19px; margin-bottom:8px">
+        <li>Os modelos originais <b>superestimavam</b> a prevalência de DAC obstrutiva nas populações contemporâneas — as estimativas atuais são bem mais baixas para os mesmos perfis.</li>
+        <li>Os modelos contemporâneos incorporam mais variáveis (fatores de risco, sintomas como dispneia, dados de exames básicos) e não apenas a tríade original.</li>
+        <li>As faixas de decisão foram redesenhadas: hoje há um grupo de <b>probabilidade muito baixa</b> em que a conduta razoável é <b>não testar</b>, e o teste é reservado a quem tem incerteza suficiente para que o resultado mude a decisão.</li>
+      </ul>
+      <div class="box tec" style="margin:0"><span class="t-mono">🟡 Para o TEC</span>
+        <p style="margin:0">Antes de fechar cortes numéricos, <b>confira a Diretriz Brasileira de Síndrome Coronariana Crônica vigente da SBC</b> — é ela que manda na prova. Aqui a orientação é deliberadamente conceitual: não decore os percentuais de 1979 como se fossem recomendação atual.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box conceito"><span class="t-mono">🔗 Ponte para o próximo capítulo</span>
+    <p style="margin:0">Tudo o que vem <b>depois</b> da probabilidade pré-teste — sensibilidade, especificidade, valores preditivos, Bayes e a escolha entre teste anatômico e funcional — é o assunto do <b>Cassino de Bayes</b>. Aqui você aprendeu a construir o número. Lá você aprende a movê-lo.</p>
+  </div>
+  <div class="frase escura">Antes do exame, o paciente já carrega uma probabilidade. O exame apenas a desloca.<span class="aut">— Dr. André Rossanno</span></div>
+</div></section>
+
+<!-- ===================== 12 e 13 ===================== -->
+<section id="clinico"><div class="wrap">
+  <div class="sechead"><span class="num">12</span><div>
+    <h2>Angina é um diagnóstico clínico — e nem por isso dispensa exames</h2>
+    <p>Duas frases que parecem se contradizer e não se contradizem.</p>
+  </div></div>
+  <div class="grid2">
+    <div class="box bom" style="margin-top:0"><span class="t-mono">✅ O que a frase quer dizer</span>
+      <p style="margin:0">A <b>caracterização da angina começa e se decide na anamnese</b>. Nenhum exame vai te dizer se o desconforto aparece ao esforço e cede em minutos. Essa informação só existe na conversa.</p>
+    </div>
+    <div class="box perigo" style="margin-top:0"><span class="t-mono">❌ O que ela não quer dizer</span>
+      <p style="margin:0">Não significa "não preciso de exame nenhum". Os exames respondem <b>outras perguntas</b>: existe DAC obstrutiva? há isquemia? qual a anatomia? qual o risco? há um diagnóstico alternativo? qual a função ventricular?</p>
+    </div>
+  </div>
+  <div class="box conceito"><span class="t-mono">🧭 A separação que organiza tudo</span>
+    <p style="margin:0"><b>A anamnese define se a síndrome é angina.</b> Os exames definem <b>o que está por trás dela e o que fazer a respeito</b>. Confundir esses dois papéis é a origem de metade dos pedidos de exame sem pergunta clínica.</p>
+  </div>
+</div></section>
+
+<section id="exame"><div class="wrap">
+  <div class="sechead"><span class="num">13</span><div>
+    <h2>Exame físico: normal é comum, inútil nunca</h2>
+    <p>Na DAC crônica estável o exame físico pode ser inteiramente normal. Ele continua sendo obrigatório.</p>
+  </div></div>
+  <div class="card">
+    <div class="grid3">
+      <div class="box mec" style="margin:0"><b>Diferenciais</b><p style="margin:3px 0 0; font-size:.88rem">Atrito pericárdico, dor reproduzível, assimetria de pulsos, enfisema subcutâneo, vesículas em faixa.</p></div>
+      <div class="box mec" style="margin:0"><b>Sopro aórtico</b><p style="margin:3px 0 0; font-size:.88rem">Estenose aórtica e cardiomiopatia hipertrófica causam angina com coronárias livres.</p></div>
+      <div class="box mec" style="margin:0"><b>Sinais de IC</b><p style="margin:3px 0 0; font-size:.88rem">B3, estase jugular, crepitações, edema — mudam prognóstico e conduta.</p></div>
+      <div class="box mec" style="margin:0"><b>Doença vascular sistêmica</b><p style="margin:3px 0 0; font-size:.88rem">Sopro carotídeo, aneurisma de aorta palpável, pulsos periféricos reduzidos.</p></div>
+      <div class="box mec" style="margin:0"><b>DAP e ITB</b><p style="margin:3px 0 0; font-size:.88rem">Doença arterial periférica é marcador de aterosclerose difusa e eleva o risco.</p></div>
+      <div class="box mec" style="margin:0"><b>Comorbidades visíveis</b><p style="margin:3px 0 0; font-size:.88rem">Xantomas, arco corneano precoce, obesidade central, estigmas de tireoide.</p></div>
+    </div>
+    <div class="frase" style="margin-bottom:0">Um exame normal não apaga uma boa história.<span class="aut">— Dr. André Rossanno</span></div>
+  </div>
+  <div class="pausa">
+    <p class="q">Paciente de 58 anos com angina típica clássica e exame físico rigorosamente normal. Isso reduz a probabilidade de DAC?</p>
+    <button class="btn ghost sm" onclick="rev('p-ex')">Revelar raciocínio</button>
+    <div class="reveal" id="p-ex"><div class="box mec" style="text-align:left; margin:0">
+      Praticamente nada. Na DAC crônica estável, o exame físico normal é o <b>achado esperado</b> — ele não tem poder de reduzir uma probabilidade construída por uma história típica. O valor do exame aqui foi outro: ele afastou sopro de estenose aórtica, sinais de IC e dor de parede. Exame físico normal é informação sobre o que <i>não</i> está acontecendo, não sobre a coronária.
+    </div></div>
+  </div>
+</div></section>
+
+<!-- ===================== PALÁCIO ===================== -->
+<section id="palacio"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>O Tribunal do Tórax</h2>
+    <p>Sete salas. Feche os olhos e percorra: cada sala devolve um bloco inteiro do capítulo. Clique para ver a âncora.</p>
+  </div></div>
+  <div class="salas" id="salasGrid"></div>
+  <div class="btnrow" style="justify-content:center; margin-top:12px">
+    <button class="btn roxo sm" onclick="abrirTodasSalas()">Abrir todas as salas</button>
+    <button class="btn ghost sm" onclick="fecharTodasSalas()">Fechar e tentar de memória</button>
+  </div>
+</div></section>
+
+<!-- ===================== FLASHCARDS ===================== -->
+<section id="flash"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>Flashcards</h2>
+    <p>Responda mentalmente antes de virar. Errar aqui é barato; errar na prova, não.</p>
+  </div></div>
+  <div class="card pad-s">
+    <div class="fc-meta">
+      <div><span class="t-mono">Filtrar tema</span>
+        <select id="fcFiltro" onchange="montaFlash()" style="margin-left:8px; padding:7px 10px; border-radius:8px; border:1px solid var(--linha); font-family:inherit; font-weight:700">
+          <option value="todos">Todos</option>
+          <option value="balanca">Balança / oferta × demanda</option>
+          <option value="semio">Semiologia da dor</option>
+          <option value="difer">Diferenciais</option>
+          <option value="prob">Probabilidade e exame físico</option>
+          <option value="rever">Só os meus difíceis</option>
+        </select>
+      </div>
+      <div class="t-mono" id="fcContagem"></div>
+    </div>
+    <div class="fc-area" id="fcArea"></div>
+  </div>
+</div></section>
+
+<!-- ===================== ARENA TEC ===================== -->
+<section id="arena"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>Arena TEC</h2>
+    <p>Comentário completo em toda questão: por que a certa está certa, por que as outras não servem e onde mora a pegadinha.</p>
+  </div></div>
+  <div class="placar">
+    <span>Acertos <span class="n" id="plAcertos">0</span></span>
+    <span>Respondidas <span class="n" id="plTotal">0</span></span>
+    <span style="margin-left:auto"><button class="btn ouro sm" onclick="reiniciarArena()">Recomeçar</button></span>
+  </div>
+  <div id="arenaGrid"></div>
+</div></section>
+
+<!-- ===================== CASOS ===================== -->
+<section id="casos"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>Casos progressivos</h2>
+    <p>Oito histórias. Formule sua resposta em voz alta antes de revelar o raciocínio.</p>
+  </div></div>
+  <div id="casosGrid"></div>
+</div></section>
+
+<!-- ===================== HIPOCAMPO ===================== -->
+<section id="hipocampo"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>Hipocampo — o que revisar e quando</h2>
+    <p>Seu progresso fica salvo neste navegador. Marque o que já revisou.</p>
+  </div></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Onde você está</h3>
+      <div id="dashboard"></div>
+      <div class="btnrow" style="margin-top:10px"><button class="btn ghost sm" onclick="zerarProgresso()">Zerar todo o progresso</button></div>
+    </div>
+    <div class="card">
+      <h3>Revisão espaçada</h3>
+      <div id="checklist"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== REVISÃO 60s ===================== -->
+<section id="r60"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>Se a prova começasse agora</h2>
+    <p>Sessenta segundos. Só o que não pode faltar.</p>
+  </div></div>
+  <div class="r60">
+    <div class="item"><span class="k">ANGINA</span><span class="v">Demanda &gt; oferta de O₂ no miocárdio</span></div>
+    <div class="item"><span class="k">DEMANDA</span><span class="v">FCT — Frequência · Contratilidade · Tensão parietal</span></div>
+    <div class="item"><span class="k">OFERTA</span><span class="v">Sangue (Hb) + O₂ + coronária + diástole</span></div>
+    <div class="item"><span class="k">TAQUICARDIA</span><span class="v">↑ demanda E ↓ diástole — rouba dos dois lados</span></div>
+    <div class="item"><span class="k">HVE</span><span class="v">Mais músculo, mais fome — e subendocárdio mais vulnerável</span></div>
+    <div class="item"><span class="k">3 A</span><span class="v">Aperta + Aparece + Apaga → típica · 2 → atípica · 0–1 → não anginosa</span></div>
+    <div class="item"><span class="k">SePAM</span><span class="v">Segundos · Pleurítica · Abrupta · Movimento — afastam, não excluem</span></div>
+    <div class="item"><span class="k">NITRATO</span><span class="v">Alivia, não autentica — espasmo esofágico também responde</span></div>
+    <div class="item"><span class="k">EXAME FÍSICO</span><span class="v">Normal é o esperado na DAC crônica; não apaga a história</span></div>
+    <div class="item"><span class="k">PRÉ-TESTE</span><span class="v">Idade + sexo + tipo da dor; cortes de 1979 são históricos</span></div>
+    <div class="item"><span class="k">A PORTA</span><span class="v">Dor torácica ≠ angina. Antes do provável, o perigoso.</span></div>
+  </div>
+</div></section>
+
+<!-- ===================== DESAFIO FINAL ===================== -->
+<section id="desafio"><div class="wrap">
+  <div class="desafio">
+    <div class="t-mono" style="color:#e0b64b">Desafio final</div>
+    <h3>Por que um paciente com anemia + taquicardia pode ter angina mesmo sem nenhuma mudança na estenose coronariana?</h3>
+    <button class="btn ouro" id="btnDesafio" onclick="abrirDesafio()">Eu consigo explicar</button>
+    <div class="cascata" id="cascata">
+      <div class="casc-l o" style="animation-delay:.05s">🩸 <b>ANEMIA</b> → ↓ hemoglobina → ↓ conteúdo arterial de O₂ → <b>↓ OFERTA</b></div>
+      <div class="casc-l" style="animation-delay:.55s">⚡ <b>TAQUICARDIA</b> → mais ciclos por minuto → <b>↑ DEMANDA</b></div>
+      <div class="casc-l o" style="animation-delay:1.05s">⏱️ <b>TAQUICARDIA</b> → diástole encurtada → menos tempo de perfusão → <b>↓ OFERTA</b></div>
+      <div class="casc-fim" style="animation-delay:1.55s">A BALANÇA QUEBRA → ISQUEMIA → ANGINA</div>
+      <p style="margin-top:14px; color:#b9cbe4; font-size:.94rem">A placa não cresceu um milímetro. Três setas se somaram — duas contra a oferta, uma a favor da demanda — e o teto que antes bastava deixou de bastar. Se você consegue narrar isso sem olhar, o capítulo cumpriu sua função.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== FILOSOFIA ===================== -->
+<section id="filosofia"><div class="wrap">
+  <div class="sechead"><span class="num">★</span><div>
+    <h2>Filosofia do Atlas</h2>
+    <p>As frases que sustentam o capítulo. Sorteie uma para abrir a revisão.</p>
+  </div></div>
+  <div class="filo-card">
+    <p id="filoTxt">—</p>
+    <span class="aut" id="filoAut">— Dr. André Rossanno</span>
+  </div>
+  <div class="btnrow" style="justify-content:center; margin:12px 0">
+    <button class="btn ouro sm" onclick="sortearFrase()">🎲 Sortear outra</button>
+    <button class="btn ghost sm" onclick="toggleFiloLista()" id="btnFiloLista">Ver todas</button>
+    <button class="btn roxo sm prof-only" onclick="projetarFrase()">Projetar em tela cheia</button>
+  </div>
+  <div class="filo-lista" id="filoLista"></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="t-mono" style="color:#9fb4d1">Atlas de Síndrome Coronariana Crônica · Capítulo 2</div>
+    <h3 style="color:#fff; margin:8px 0 0">Avaliação da Dor Torácica e Angina</h3>
+    <p style="color:#b9cbe4; max-width:560px; margin:8px auto 0; font-size:.94rem">Não memorize apenas que o esforço causa angina. Veja a balança inclinando: a demanda sobe, a oferta encontra seu teto e o miocárdio protesta.</p>
+    <div class="assin">Dr. André Rossanno</div>
+    <small>memoriapotencial.com.br · material de estudo para o TEC 2026<br>Confira sempre a Diretriz Brasileira de Síndrome Coronariana Crônica vigente da SBC antes de fechar condutas e cortes numéricos.</small>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================
+   ESTADO E PERSISTÊNCIA
+   ========================================================== */
+const LS_KEY='atlasCardio_scc_cap2_v1';
+let S={flash:{},quiz:{},prec:{},check:{},prof:false,mov:false};
+function carregar(){try{const r=localStorage.getItem(LS_KEY); if(r){const o=JSON.parse(r); S=Object.assign(S,o||{});}}catch(e){}}
+function salvar(){try{localStorage.setItem(LS_KEY,JSON.stringify(S));}catch(e){}}
+carregar();
+
+function rev(id){const el=document.getElementById(id); if(!el)return; el.classList.toggle('show');}
+
+/* ---- toggles ---- */
+function toggleProf(){
+  S.prof=!S.prof; document.body.classList.toggle('prof',S.prof);
+  const b=document.getElementById('btnProf'); b.classList.toggle('on',S.prof);
+  b.textContent=S.prof?'🎓 Professor ON':'🎓 Professor'; salvar();
+}
+function toggleMov(){
+  S.mov=!S.mov; document.body.classList.toggle('reduz',S.mov);
+  const b=document.getElementById('btnMov'); b.classList.toggle('on',S.mov);
+  b.title=S.mov?'Animações reduzidas':'Reduzir animações'; salvar();
+}
+
+/* ---- barra de progresso ---- */
+function barraProgresso(){
+  const h=document.documentElement;
+  const t=h.scrollHeight-h.clientHeight;
+  const p=t>0?(h.scrollTop/t)*100:0;
+  const b=document.getElementById('barra'); if(b)b.style.width=p.toFixed(1)+'%';
+}
+window.addEventListener('scroll',barraProgresso,{passive:true});
+
+/* ==========================================================
+   01 — MAPA DE CAUSAS
+   ========================================================== */
+const CAUSAS_C=[
+ {n:'Doença aterosclerótica / síndromes coronarianas',d:'O protagonista deste atlas. Angina por desequilíbrio entre oferta e demanda, com ou sem instabilização de placa.',k:true},
+ {n:'Pericardite',d:'Dor que piora deitado e à inspiração, melhora inclinado para frente, pode irradiar para o trapézio.'},
+ {n:'Angina vasoespástica (Prinzmetal)',d:'Espasmo de artéria epicárdica. Dor tipicamente em repouso, muitas vezes de madrugada, em pacientes mais jovens.'},
+ {n:'Doença microvascular / vasomotora',d:'Isquemia sem obstrução epicárdica significativa. Explica boa parte das anginas com coronariografia "normal".'},
+ {n:'Anomalias coronarianas',d:'Origem ou trajeto anômalo. Causa a lembrar em jovem com angina ou síncope ao esforço.'},
+ {n:'Doença valvar aórtica (sobretudo estenose)',d:'Angina com coronárias livres: hipertrofia aumenta demanda e a obstrução reduz a oferta. Procure o sopro.'},
+ {n:'Cardiomiopatia hipertrófica',d:'Massa aumentada, microcirculação insuficiente e obstrução dinâmica. Angina, síncope e dispneia ao esforço.'}
+];
+const CAUSAS_N=[
+ {n:'Síndrome aórtica aguda / dissecção',d:'Início abrupto, intensidade máxima já no começo, possível irradiação dorsal. Um dos "não posso perder".',k:true},
+ {n:'Embolia pulmonar',d:'Dor pleurítica, dispneia súbita, taquicardia. Pode cursar com sobrecarga aguda de VD.',k:true},
+ {n:'Pneumotórax e doenças pleurais',d:'Dor pleurítica com dispneia; no hipertensivo, instabilidade hemodinâmica.',k:true},
+ {n:'Musculoesquelética / costocondrite',d:'Dor reproduzível à palpação ou ao movimento do tronco. Favorece parede — não exclui coronária.'},
+ {n:'DRGE',d:'Queimação retroesternal, relação com refeições e decúbito. Sobreposição de sintomas com a angina é regra, não exceção.'},
+ {n:'Espasmo esofágico difuso',d:'O grande imitador: dor retroesternal intensa que pode ceder com nitrato.'},
+ {n:'Síndrome de Boerhaave',d:'Ruptura esofágica após vômitos vigorosos. Dor intensa, enfisema subcutâneo, quadro grave.',k:true},
+ {n:'Gastrointestinal / biliar',d:'Cólica biliar, pancreatite, úlcera péptica — podem projetar dor no andar superior e no tórax.'},
+ {n:'Psicogênica / transtorno de pânico',d:'Diagnóstico de exclusão cuidadosa. Nunca é o primeiro rótulo em um paciente com fatores de risco.'}
+];
+const KILLERS=[
+ {i:'🫀',n:'Síndrome coronariana aguda',d:'A causa cardíaca que precisa ser considerada em toda dor torácica com perfil compatível.'},
+ {i:'⚡',n:'Síndrome aórtica aguda',d:'Abrupta e máxima desde o início; procure assimetria de pulsos e sopro de insuficiência aórtica.'},
+ {i:'🫁',n:'Embolia pulmonar',d:'Pleurítica + dispneia + taquicardia, muitas vezes sem achado radiológico evidente.'},
+ {i:'🎈',n:'Pneumotórax hipertensivo',d:'Diagnóstico clínico: hipotensão, hipoxemia, murmúrio abolido. Não espere imagem.'},
+ {i:'🍽️',n:'Ruptura esofágica (Boerhaave)',d:'Vômito vigoroso seguido de dor torácica intensa e sinais de mediastinite.'}
+];
+function montaCausas(){
+  const f=(arr,el)=>{
+    const alvo=document.getElementById(el); if(!alvo)return;
+    alvo.innerHTML=arr.map((c,i)=>`<div class="causa${c.k?' mortal':''}" tabindex="0" role="button" data-cz="${el}-${i}">
+      <span class="kill">${c.k?'🚨':'•'}</span>
+      <span><span class="nm">${c.n}</span><span class="dsc">${c.d}</span></span></div>`).join('');
+  };
+  f(CAUSAS_C,'listaCardio'); f(CAUSAS_N,'listaNaoCardio');
+  document.querySelectorAll('.causa').forEach(c=>{
+    const t=()=>c.classList.toggle('ab');
+    c.addEventListener('click',t);
+    c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+  });
+  const k=document.getElementById('killers');
+  if(k)k.innerHTML=KILLERS.map(x=>`<div class="box perigo" style="margin:0"><b>${x.i} ${x.n}</b><p style="margin:3px 0 0; font-size:.87rem">${x.d}</p></div>`).join('');
+}
+
+/* ==========================================================
+   02 — BALANÇA
+   ========================================================== */
+const DEMANDA=[
+ {n:'Exercício',p:2},{n:'Estresse emocional',p:1},{n:'Atividade sexual',p:1},
+ {n:'Hipertensão',p:1},{n:'Hipertireoidismo',p:1},{n:'Hipertermia',p:1},
+ {n:'Taquicardia',p:2,dual:true}
+];
+const OFERTA_S=[
+ {n:'Anemia',p:2},{n:'Hipoxemia',p:2},{n:'Estenose coronariana',p:2},
+ {n:'Vasoespasmo',p:2},{n:'Disfunção endotelial',p:1}
+];
+let balD=new Set(), balO=new Set();
+function montaChips(){
+  const cd=document.getElementById('chipsDemanda'), co=document.getElementById('chipsOferta');
+  if(cd)cd.innerHTML='<span class="t-mono" style="width:100%;text-align:center;color:var(--vermelho)">🔥 sobe a demanda</span>'+
+    DEMANDA.map((d,i)=>`<button class="chip" data-d="${i}">${d.n}${d.dual?' ⚡':''}</button>`).join('');
+  if(co)co.innerHTML='<span class="t-mono" style="width:100%;text-align:center;color:var(--azul)">🩸 derruba a oferta</span>'+
+    OFERTA_S.map((d,i)=>`<button class="chip" data-o="${i}">${d.n}</button>`).join('');
+  document.querySelectorAll('[data-d]').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.d; balD.has(i)?balD.delete(i):balD.add(i);
+    b.classList.toggle('on-d',balD.has(i)); atualizaBalanca();
+  }));
+  document.querySelectorAll('[data-o]').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.o; balO.has(i)?balO.delete(i):balO.add(i);
+    b.classList.toggle('on-o',balO.has(i)); atualizaBalanca();
+  }));
+}
+function atualizaBalanca(){
+  let d=0,o=0,dual=false;
+  balD.forEach(i=>{d+=DEMANDA[i].p; if(DEMANDA[i].dual){o+=1;dual=true;}});
+  balO.forEach(i=>o+=OFERTA_S[i].p);
+  const net=d+o;
+  /* positivo = horário = lado da DEMANDA sobe e lado da OFERTA desce */
+  const ang=Math.max(-14,Math.min(14,net*2.0));
+  const v=document.getElementById('viga');
+  if(v){
+    v.style.transform=`rotate(${ang}deg)`;
+    const pd=document.getElementById('pratoD'), po=document.getElementById('pratoO');
+    if(pd){pd.style.transformOrigin='120px 100px'; pd.style.transform=`rotate(${-ang}deg)`;}
+    if(po){po.style.transformOrigin='400px 100px'; po.style.transform=`rotate(${-ang}deg)`;}
+  }
+  const sd=document.getElementById('setaD'), so=document.getElementById('setaO');
+  if(sd)sd.textContent=d?'▲ +'+d:'';
+  if(so)so.textContent=o?'▼ −'+o:'';
+  const mv=document.getElementById('miniViga'); if(mv)mv.style.transform=`rotate(${ang*0.7}deg)`;
+  const st=document.getElementById('balStatus');
+  if(st){
+    st.className='bal-status';
+    if(net===0){st.textContent='Equilíbrio: oferta acompanha a demanda. Sem isquemia.';}
+    else if(net<=2){st.classList.add('lim'); st.textContent='Reserva sendo consumida. O paciente ainda não sente — a margem é que está menor.';}
+    else{st.classList.add('isq'); st.textContent='Demanda ultrapassou a oferta disponível → ISQUEMIA → angina.'+(dual?' Repare: a taquicardia entrou dos dois lados.':'');}
+  }
+}
+function resetBalanca(){
+  balD.clear(); balO.clear();
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on-d','on-o'));
+  atualizaBalanca();
+}
+
+/* ==========================================================
+   03 — ENTREGADORES E SABOTADORES
+   ========================================================== */
+const ENTREG=[
+ {id:'sangue',i:'🩸',n:'SANGUE',d:'hemoglobina suficiente para carregar O₂'},
+ {id:'o2',i:'💨',n:'OXIGÊNIO',d:'saturação e oxigenação adequadas'},
+ {id:'coron',i:'🛣️',n:'CORONÁRIA',d:'estrada aberta e com tônus normal'},
+ {id:'diast',i:'⏱️',n:'DIÁSTOLE',d:'tempo suficiente para perfundir'}
+];
+const SABOT=[
+ {n:'Anemia',alvo:'sangue',t:'Menos hemoglobina, menor conteúdo arterial de O₂. O fluxo pode estar normal e ainda assim chega menos oxigênio por mililitro.'},
+ {n:'Hipoxemia',alvo:'o2',t:'A hemoglobina existe, mas chega dessaturada. Caminhão cheio, carga vazia.'},
+ {n:'Estenose aterosclerótica',alvo:'coron',t:'Estreitamento fixo: o fluxo basal costuma ser mantido, mas a reserva para aumentar sob demanda cai.'},
+ {n:'Vasoespasmo',alvo:'coron',t:'Fechamento súbito e reversível da estrada — pode ocorrer em repouso e sem placa importante.'},
+ {n:'Disfunção endotelial',alvo:'coron',t:'Menos óxido nítrico e predomínio vasoconstritor: a artéria estreita justamente quando deveria dilatar.'},
+ {n:'Taquicardia',alvo:'diast',t:'A diástole encurta desproporcionalmente e o tempo de perfusão desaparece. É o sabotador que também está no outro prato.'}
+];
+function montaEntregadores(){
+  const e=document.getElementById('entregadores');
+  if(e)e.innerHTML=ENTREG.map(x=>`<div class="entreg" id="ent-${x.id}"><span class="ic">${x.i}</span><b>${x.n}</b><small>${x.d}</small><span class="sab" id="sab-${x.id}"></span></div>`).join('');
+  const c=document.getElementById('chipsSab');
+  if(c)c.innerHTML=SABOT.map((s,i)=>`<button class="chip" data-s="${i}">${s.n}</button>`).join('');
+  document.querySelectorAll('[data-s]').forEach(b=>b.addEventListener('click',()=>{
+    const s=SABOT[+b.dataset.s];
+    document.querySelectorAll('.entreg').forEach(el=>el.classList.remove('sabotado'));
+    document.querySelectorAll('.chip[data-s]').forEach(el=>el.classList.remove('on-o'));
+    b.classList.add('on-o');
+    const alvo=document.getElementById('ent-'+s.alvo);
+    if(alvo){alvo.classList.add('sabotado'); const tag=document.getElementById('sab-'+s.alvo); if(tag)tag.textContent='⛔ '+s.n;}
+    const tx=document.getElementById('sabTexto');
+    if(tx){tx.style.display='block'; tx.innerHTML=`<span class="t-mono">${s.n} → derruba ${s.alvo==='sangue'?'o SANGUE':s.alvo==='o2'?'o OXIGÊNIO':s.alvo==='coron'?'a CORONÁRIA':'a DIÁSTOLE'}</span><p style="margin:4px 0 0">${s.t}</p>`;}
+  }));
+}
+
+/* ==========================================================
+   04 — TAQUICARDIA
+   ========================================================== */
+function atualizaFC(v){
+  const fc=+v, ciclo=60/fc;
+  let sis=0.30-(fc-60)*0.0006; sis=Math.max(0.19,Math.min(sis,0.32));
+  sis=Math.min(sis,ciclo*0.85);
+  const dia=Math.max(ciclo-sis,0.02);
+  const pctS=(sis/ciclo)*100, pctD=100-pctS;
+  const L=420;
+  const bs=document.getElementById('barSis'), bd=document.getElementById('barDia');
+  if(bs)bs.setAttribute('width',String((pctS/100)*L));
+  if(bd){bd.setAttribute('x',String((pctS/100)*L+2)); bd.setAttribute('width',String(Math.max((pctD/100)*L-2,2)));}
+  const lbl=document.getElementById('lblDia');
+  if(lbl){lbl.setAttribute('x',String((pctS/100)*L+6)); lbl.textContent=pctD>34?'DIÁSTOLE (perfusão)':'DIÁST.';}
+  const fv=document.getElementById('fcVal'); if(fv)fv.textContent=fc+' bpm';
+  const t=document.getElementById('txtDia');
+  if(t){
+    t.textContent=`diástole ocupa ${pctD.toFixed(0)}% do ciclo`+(fc>=120?' — janela de perfusão criticamente curta':fc>=100?' — a janela já está encolhendo':'');
+    t.setAttribute('fill',fc>=120?'#c0392b':fc>=100?'#b8860b':'#1e8f5e');
+  }
+  if(bd)bd.setAttribute('fill',fc>=120?'#c0392b':fc>=100?'#b8860b':'#1e8f5e');
+}
+
+/* ==========================================================
+   06 — PRECIPITANTES
+   ========================================================== */
+const PREC=[
+ {i:'🩸',n:'Anemia',r:'entrega',t:'Menos hemoglobina → menor conteúdo arterial de O₂ → menos oxigênio entregue com o mesmo fluxo.'},
+ {i:'🫁',n:'Hipoxemia',r:'entrega',t:'A hemoglobina chega dessaturada. A entrega cai sem que a demanda tenha mudado.'},
+ {i:'🔥',n:'Hipertermia',r:'fome',t:'Metabolismo acelerado e taquicardia associada elevam o consumo miocárdico.'},
+ {i:'🦋',n:'Hipertireoidismo',r:'fome',t:'Estado hipercinético: sobem frequência e contratilidade de forma sustentada.'},
+ {i:'⚡',n:'Taquicardia',r:'ambos',t:'A ladra de duas mãos: eleva o consumo por minuto E encurta a diástole, reduzindo o tempo de perfusão.'},
+ {i:'🩺',n:'Hipertensão',r:'fome',t:'Pós-carga elevada aumenta a tensão parietal — o "T" do FCT — e com ela o consumo.'},
+ {i:'❄️',n:'Cocaína',r:'ambos',t:'Descarga simpática com taquicardia e hipertensão (mais fome) somada a vasoconstrição e vasoespasmo coronariano (menos entrega). Pode causar isquemia até com coronárias sem placa.'},
+ {i:'🔀',n:'Fístula arteriovenosa',r:'ambos',t:'Estado de alto débito: o coração trabalha mais (mais fome) e o shunt somado à taquicardia compromete a perfusão efetiva (menos entrega).'}
+];
+function montaPrec(){
+  const g=document.getElementById('precGrid'); if(!g)return;
+  g.innerHTML=PREC.map((p,i)=>`<div class="prec" id="prec-${i}">
+    <div class="top"><span class="ic">${p.i}</span><b>${p.n}</b></div>
+    <div class="t-mono">Aumentou a fome ou diminuiu a entrega?</div>
+    <div class="op">
+      <button class="btn sm verm" onclick="respPrec(${i},'fome')">🔥 Fome</button>
+      <button class="btn sm" style="background:var(--azul)" onclick="respPrec(${i},'entrega')">🩸 Entrega</button>
+      <button class="btn sm roxo" onclick="respPrec(${i},'ambos')">⚖️ As duas</button>
+    </div>
+    <div class="fb" id="fb-${i}"></div></div>`).join('');
+  Object.keys(S.prec||{}).forEach(k=>{const i=+k; if(PREC[i])pintaPrec(i,S.prec[k]);});
+  placarPrec();
+}
+function respPrec(i,esc){S.prec[i]=esc; salvar(); pintaPrec(i,esc); placarPrec();}
+function pintaPrec(i,esc){
+  const p=PREC[i], el=document.getElementById('prec-'+i), fb=document.getElementById('fb-'+i);
+  if(!el||!fb)return;
+  const ok=esc===p.r;
+  const nome=r=>r==='fome'?'aumentou a FOME':r==='entrega'?'diminuiu a ENTREGA':'faz AS DUAS COISAS';
+  fb.innerHTML=`<span class="verd" style="color:${ok?'var(--verde)':'var(--vermelho)'}">${ok?'✅ Isso mesmo':'❌ Não é bem isso'} — ${nome(p.r)}</span>${p.t}`;
+  fb.style.background=ok?'var(--verde-soft)':'var(--vermelho-soft)';
+  el.classList.add('done');
+}
+function placarPrec(){
+  const n=Object.keys(S.prec||{}).length;
+  const el=document.getElementById('precPlacar'); if(el)el.textContent=`${n} de ${PREC.length} respondidos`;
+}
+
+/* ==========================================================
+   07/08/10 — GUARDAS, CURVAS, NITRATO
+   ========================================================== */
+let guardas=[false,false,false];
+function toggleGuarda(n){
+  guardas[n-1]=!guardas[n-1];
+  const b=document.getElementById('g'+n);
+  b.classList.toggle('on',guardas[n-1]); b.setAttribute('aria-pressed',String(guardas[n-1]));
+  const q=guardas.filter(Boolean).length;
+  const v=document.getElementById('vered'); v.className='veredito';
+  if(q===3){v.classList.add('tip'); v.innerHTML='🟢🟢🟢 <b>ANGINA TÍPICA</b> — os três critérios presentes.';}
+  else if(q===2){v.classList.add('atip'); v.innerHTML='🟢🟢⚫ <b>ANGINA ATÍPICA</b> — dois critérios. Atípica nunca quis dizer benigna.';}
+  else if(q===1){v.classList.add('nao'); v.innerHTML='🟢⚫⚫ <b>DOR NÃO ANGINOSA</b> — um critério. Probabilidade menor, porta ainda não fechada.';}
+  else{v.textContent='Nenhum critério marcado.';}
+}
+function animaCurvas(){
+  ['curvaA','curvaB'].forEach(id=>{const c=document.getElementById(id); if(!c)return; c.classList.remove('run'); void c.getBoundingClientRect(); c.classList.add('run');});
+}
+function baterMartelo(){
+  const m=document.getElementById('martelo'), f=document.getElementById('fraseNitrato');
+  if(m){m.classList.remove('bate'); void m.getBoundingClientRect(); m.classList.add('bate');}
+  setTimeout(()=>{ if(f)f.classList.add('quebrada'); rev('revNitrato'); const b=document.getElementById('btnMartelo'); if(b)b.disabled=true; }, S.mov?0:300);
+}
+</script>
+
+<script>
+/* ==========================================================
+   PALÁCIO — O TRIBUNAL DO TÓRAX
+   ========================================================== */
+const SALAS=[
+ {n:'SALA 1',t:'O saguão das duas portas',c:'Um paciente com a mão no peito diante de duas portas: ❤️ cardíaca e 🫁 não cardíaca. Sobre elas, um alarme vermelho piscando.',a:'Dor torácica é uma porta, não um diagnóstico. Antes do provável, o perigoso.'},
+ {n:'SALA 2',t:'A balança do oxigênio',c:'Uma balança gigante no centro do tribunal. À esquerda, três halteres empilhados. À direita, quatro entregadores com caixas.',a:'DEMANDA = FCT · OFERTA = sangue + O₂ + coronária + diástole.'},
+ {n:'SALA 3',t:'A ladra de duas mãos',c:'Uma figura encapuzada rouba um haltere com uma mão e, com a outra, arranca as horas do relógio da diástole.',a:'Taquicardia assalta os dois lados da balança.'},
+ {n:'SALA 4',t:'O coração marombeiro',c:'Um ventrículo hipertrofiado levanta pesos e pede dois cilindros de oxigênio ao mesmo tempo. Suas camadas internas estão pálidas.',a:'HVE: mais músculo, mais fome — e o subendocárdio paga a conta.'},
+ {n:'SALA 5',t:'Os três guardas',c:'Três guardas com lanternas interrogam o paciente na porta: aperta? aparece? apaga? Cada resposta acende uma lâmpada verde.',a:'3🟢 típica · 2🟢 atípica · 0–1🟢 não anginosa.'},
+ {n:'SALA 6',t:'A rampa e a bomba',c:'Um corredor com uma rampa suave subindo por minutos. Ao lado, uma bomba que já explodiu no primeiro segundo.',a:'Angina sobe uma rampa. Dor máxima desde o início pede outro diagnóstico.'},
+ {n:'SALA 7',t:'O juiz de comprimido',c:'Um comprimido de nitrato vestido de juiz declara "é coronária!" — e um martelo quebra a sentença ao meio.',a:'Nitrato alivia. Nitrato não autentica.'}
+];
+function montaSalas(){
+  const g=document.getElementById('salasGrid'); if(!g)return;
+  g.innerHTML=SALAS.map((s,i)=>`<div class="sala" id="sala-${i}" tabindex="0" role="button">
+    <div class="n">${s.n}</div><h4>${s.t}</h4><div class="cena">${s.c}</div>
+    <div class="ancora">🔑 ${s.a}</div></div>`).join('');
+  document.querySelectorAll('.sala').forEach(s=>{
+    const t=()=>s.classList.toggle('aberta');
+    s.addEventListener('click',t);
+    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+  });
+}
+function abrirTodasSalas(){document.querySelectorAll('.sala').forEach(s=>s.classList.add('aberta'));}
+function fecharTodasSalas(){document.querySelectorAll('.sala').forEach(s=>s.classList.remove('aberta'));}
+
+/* ==========================================================
+   FLASHCARDS
+   ========================================================== */
+const FLASH=[
+ {t:'balanca',f:'A equação da angina em uma linha',v:'Demanda miocárdica de O₂ <b>maior</b> que a oferta disponível. Só isso — todo o resto do capítulo é quem empurra cada lado.'},
+ {t:'balanca',f:'O que é FCT?',v:'Os três determinantes da <b>demanda</b>: <b>F</b>requência cardíaca · <b>C</b>ontratilidade · <b>T</b>ensão parietal.'},
+ {t:'balanca',f:'Os quatro componentes da oferta',v:'<b>Sangue</b> (hemoglobina) + <b>O₂</b> (saturação) + <b>coronária</b> (fluxo e tônus) + <b>diástole</b> (tempo de perfusão).'},
+ {t:'balanca',f:'Por que a taquicardia é "a ladra de duas mãos"?',v:'Porque <b>aumenta a demanda</b> (mais ciclos por minuto) e <b>reduz a oferta</b> (encurta a diástole, que é quando o VE é perfundido).'},
+ {t:'balanca',f:'Em que fase do ciclo o ventrículo esquerdo é perfundido?',v:'Predominantemente na <b>diástole</b> — não exclusivamente. Na sístole o próprio músculo comprime seus vasos.'},
+ {t:'balanca',f:'Como a anemia precipita angina?',v:'Reduz a hemoglobina e portanto o <b>conteúdo arterial de O₂</b>. Mesmo fluxo, menos oxigênio entregue por mililitro.'},
+ {t:'balanca',f:'Como a hipoxemia difere da anemia na balança?',v:'Na anemia falta o <b>carregador</b> (Hb); na hipoxemia o carregador existe mas chega <b>dessaturado</b>. Ambas derrubam a oferta.'},
+ {t:'balanca',f:'Três motivos pelos quais a HVE favorece isquemia',v:'1) mais massa para nutrir · 2) subendocárdio mais distante e mais comprimido · 3) microcirculação que não acompanha o crescimento → <b>reserva de fluxo reduzida</b>.'},
+ {t:'balanca',f:'Qual camada do miocárdio sofre primeiro?',v:'O <b>subendocárdio</b> — última a receber e a mais comprimida durante a sístole.'},
+ {t:'balanca',f:'Papel do óxido nítrico (NO) na oferta',v:'Vasodilatação dependente do endotélio, ajustando o calibre coronariano à demanda. Sem ele, predomina o tônus vasoconstritor.'},
+ {t:'balanca',f:'De que depende a tensão parietal?',v:'Da <b>pressão</b> e do <b>raio</b> da cavidade, dividido pela <b>espessura</b> da parede (relação de Laplace). Por isso HAS e dilatação aumentam consumo.'},
+ {t:'balanca',f:'Por que a cocaína é especialmente perigosa?',v:'Combina descarga simpática (taquicardia + hipertensão = <b>mais fome</b>) com vasoconstrição e vasoespasmo coronariano (<b>menos entrega</b>). Pode causar isquemia sem placa obstrutiva.'},
+ {t:'balanca',f:'Como uma fístula arteriovenosa precipita angina?',v:'Estado de <b>alto débito</b>: o coração trabalha mais e a perfusão efetiva cai. Fome e entrega comprometidas ao mesmo tempo.'},
+ {t:'balanca',f:'Por que o hipertireoidismo entra na lista?',v:'Estado hipercinético sustentado: sobem frequência e contratilidade, dois terços do FCT.'},
+ {t:'balanca',f:'Como a estenose aórtica causa angina com coronárias livres?',v:'Hipertrofia aumenta a demanda enquanto a obstrução limita o débito e a perfusão coronariana. Procure o <b>sopro</b>.'},
+ {t:'semio',f:'Os 3 A da angina',v:'<b>APERTA</b> (qualidade compatível) · <b>APARECE</b> (esforço ou estresse) · <b>APAGA</b> (repouso ou nitrato).'},
+ {t:'semio',f:'Classificação tradicional pelos 3 critérios',v:'3 critérios = <b>típica</b> · 2 = <b>atípica</b> · 0–1 = <b>não anginosa</b>. Terminologia tradicional, hoje criticada por sugerir benignidade.'},
+ {t:'semio',f:'O paciente precisa usar a palavra "dor"?',v:'<b>Não.</b> Peso, aperto, pressão, queimação, desconforto ou "um bloco no peito" contam. Muitos negam dor e têm angina.'},
+ {t:'semio',f:'Duração típica da angina estável',v:'<b>Minutos.</b> Segundos ❌ · horas contínuas sem variação ❌. Padrão semiológico, não regra absoluta.'},
+ {t:'semio',f:'A curva da angina × a curva de alerta',v:'Angina <b>sobe uma rampa</b> em minutos. Dor <b>máxima desde o primeiro instante</b> aponta para síndrome aórtica, TEP, pneumotórax.'},
+ {t:'semio',f:'SePAM — o que significa?',v:'<b>Se</b>gundos (ou muito prolongada) · <b>P</b>leurítica · <b>A</b>brupta e máxima desde o início · <b>M</b>ovimento/palpação reproduzindo.'},
+ {t:'semio',f:'SePAM exclui síndrome coronariana?',v:'<b>Não.</b> Reduz probabilidade. Nenhuma característica isolada fecha a porta da coronária.'},
+ {t:'semio',f:'A dor melhorou com nitrato. Confirma DAC?',v:'<b>Não.</b> O nitrato relaxa musculatura lisa em vários territórios — o <b>espasmo esofágico</b> também responde. Nitrato alivia, não autentica.'},
+ {t:'semio',f:'A dor NÃO melhorou com nitrato. Exclui DAC?',v:'<b>Também não.</b> A resposta ao tratamento é pista, não sentença — nos dois sentidos.'},
+ {t:'semio',f:'Gatilhos que satisfazem o "APARECE"',v:'Esforço físico, estresse emocional, atividade sexual, frio, refeição volumosa — tudo que <b>eleva o consumo</b>.'},
+ {t:'difer',f:'Pleurítica + dispneia súbita + taquicardia',v:'<b>Embolia pulmonar</b> até prova em contrário. Pode cursar com sobrecarga aguda de VD.'},
+ {t:'difer',f:'Piora deitado, piora à inspiração, melhora inclinado para frente',v:'<b>Pericardite</b>. Pode irradiar para o trapézio.'},
+ {t:'difer',f:'Abrupta, máxima desde o início, irradiando para o dorso',v:'<b>Síndrome aórtica aguda / dissecção</b>. Procure assimetria de pulsos e sopro de insuficiência aórtica.'},
+ {t:'difer',f:'O grande imitador que responde a nitrato',v:'<b>Espasmo esofágico difuso</b> — dor retroesternal intensa que pode ceder exatamente como a angina.'},
+ {t:'difer',f:'Dor reproduzida à palpação: o que concluir?',v:'<b>Favorece</b> causa musculoesquelética. <b>Não exclui</b> isoladamente doença coronariana — parede e coronária coexistem no mesmo tórax.'},
+ {t:'difer',f:'Angina em repouso, de madrugada, em paciente jovem',v:'Pense em <b>angina vasoespástica (Prinzmetal)</b> — espasmo de artéria epicárdica.'},
+ {t:'difer',f:'Os cinco "não posso perder"',v:'Síndrome coronariana aguda · síndrome aórtica aguda · embolia pulmonar · pneumotórax hipertensivo · ruptura esofágica (Boerhaave).'},
+ {t:'difer',f:'Angina com coronariografia sem obstrução: e agora?',v:'Considere <b>doença microvascular/vasomotora</b>, vasoespasmo, HVE, estenose aórtica, cardiomiopatia hipertrófica. Coronária livre não significa dor não cardíaca.'},
+ {t:'prob',f:'As três variáveis do modelo de Diamond-Forrester',v:'<b>Idade + sexo + característica da dor</b> → probabilidade pré-teste de DAC obstrutiva.'},
+ {t:'prob',f:'Qual a principal crítica aos modelos históricos?',v:'<b>Superestimam</b> a prevalência de DAC obstrutiva nas populações atuais. Os cortes clássicos (&lt;10 / 10–90 / &gt;90%) são históricos, não recomendação contemporânea.'},
+ {t:'prob',f:'Exame físico normal na DAC crônica estável',v:'É o achado <b>esperado</b>. Não reduz relevantemente a probabilidade construída por uma história típica.'},
+ {t:'prob',f:'Então para que serve o exame físico?',v:'Diagnósticos diferenciais, sopros (estenose aórtica, CMH), sinais de IC, doença vascular sistêmica e periférica, comorbidades e estigmas.'},
+ {t:'prob',f:'"Angina é diagnóstico clínico" — o que isso significa?',v:'Que a <b>caracterização</b> se faz na anamnese. Não significa dispensar exames: eles respondem outras perguntas (isquemia, anatomia, risco, função, diferenciais).'}
+];
+function montaFlash(){
+  const area=document.getElementById('fcArea'); if(!area)return;
+  const f=document.getElementById('fcFiltro').value;
+  let lista=FLASH.map((c,i)=>({...c,i}));
+  if(f==='rever') lista=lista.filter(c=>S.flash[c.i]==='rever');
+  else if(f!=='todos') lista=lista.filter(c=>c.t===f);
+  const temaNome={balanca:'Balança',semio:'Semiologia',difer:'Diferenciais',prob:'Probabilidade'};
+  if(!lista.length){area.innerHTML='<div class="box conceito" style="grid-column:1/-1">Nenhum card aqui ainda. Marque cards como <b>revisar</b> para montar sua fila.</div>';}
+  else area.innerHTML=lista.map(c=>`<div>
+    <div class="fc-tema">${temaNome[c.t]||''}</div>
+    <div class="flash" id="fl-${c.i}" onclick="viraFlash(${c.i})" tabindex="0" role="button" aria-label="Flashcard: ${c.f.replace(/"/g,'')}">
+      <div class="in"><div class="f">${c.f}</div><div class="v">${c.v}</div></div>
+    </div>
+    <div class="fc-bar">
+      <button class="btn sm verde" onclick="marcaFlash(${c.i},'sei')">Sei ✓</button>
+      <button class="btn sm ouro" onclick="marcaFlash(${c.i},'rever')">Revisar ↻</button>
+      <span class="t-mono" id="st-${c.i}">${S.flash[c.i]==='sei'?'✅ sei':S.flash[c.i]==='rever'?'↻ revisar':''}</span>
+    </div></div>`).join('');
+  document.querySelectorAll('.flash').forEach(el=>el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault(); el.classList.toggle('vira');}
+  }));
+  const cg=document.getElementById('fcContagem');
+  const sei=Object.values(S.flash||{}).filter(v=>v==='sei').length;
+  if(cg)cg.textContent=`${lista.length} cards exibidos · ${sei}/${FLASH.length} marcados como sei`;
+}
+function viraFlash(i){const el=document.getElementById('fl-'+i); if(el)el.classList.toggle('vira');}
+function marcaFlash(i,v){
+  S.flash[i]=v; salvar();
+  const st=document.getElementById('st-'+i); if(st)st.textContent=v==='sei'?'✅ sei':'↻ revisar';
+  atualizaDashboard();
+  const cg=document.getElementById('fcContagem');
+  const sei=Object.values(S.flash||{}).filter(x=>x==='sei').length;
+  if(cg)cg.textContent=cg.textContent.replace(/\d+\/\d+ marcados/,`${sei}/${FLASH.length} marcados`);
+}
+</script>
+
+<script>
+/* ==========================================================
+   ARENA TEC
+   ========================================================== */
+const QUESTOES=[
+{e:'Paciente de 54 anos com dor retroesternal que cedeu completamente 3 minutos após nitrato sublingual. Qual a interpretação correta?',
+ a:['Confirma origem coronariana da dor','Confirma espasmo esofágico','Não confirma etiologia coronariana; outras causas também respondem','Exclui causas não cardíacas'],c:2,
+ w:['A melhora com nitrato não tem poder confirmatório: o fármaco relaxa musculatura lisa em vários territórios.','A resposta ao nitrato tampouco confirma o esôfago — ela é inespecífica nos dois sentidos.','','Ao contrário: causas não cardíacas como o espasmo esofágico estão entre as que respondem.'],
+ cm:'A resposta ao nitrato é um dado terapêutico, não diagnóstico. Ela desloca pouquíssimo a probabilidade.',p:'A alternativa "confirma DAC" é a mais escolhida sob pressão porque reproduz uma frase de enfermaria. A palavra-chave da questão é <b>confirma</b>.'},
+{e:'Qual conjunto define a demanda miocárdica de oxigênio?',
+ a:['Hemoglobina, saturação e fluxo coronariano','Frequência cardíaca, contratilidade e tensão parietal','Pressão diastólica e tempo de perfusão','Débito cardíaco e resistência vascular sistêmica'],c:1,
+ w:['Esses são componentes da oferta, não da demanda.','','Descrevem determinantes da perfusão, ou seja, do lado da oferta.','São variáveis hemodinâmicas globais, não os determinantes clássicos do consumo miocárdico.'],
+ cm:'FCT: frequência, contratilidade e tensão parietal. A tensão parietal é a parcela mais esquecida e explica o papel da hipertensão e da dilatação ventricular.',p:'Trocar demanda por oferta é o erro mais frequente do tema.'},
+{e:'Por que a taquicardia ocupa posição especial entre os precipitantes de angina?',
+ a:['Porque aumenta a demanda de oxigênio','Porque reduz o tempo diastólico de perfusão','Porque aumenta a demanda E reduz a oferta','Porque provoca vasoespasmo coronariano'],c:2,
+ w:['Correto, mas incompleto — é apenas metade do mecanismo.','Também correto e também incompleto.','','O vasoespasmo não é o mecanismo principal da taquicardia; ele pertence a outros precipitantes, como a cocaína.'],
+ cm:'A taquicardia atua nos dois pratos: mais ciclos por minuto elevam o consumo, e a diástole encurtada reduz o tempo de perfusão coronariana.',p:'Quando duas alternativas estão certas mas uma as engloba, a questão está pedindo a mais completa.'},
+{e:'Paciente com DAC crônica estável e angina previsível aos grandes esforços evolui com angina aos pequenos esforços após quadro de sangramento digestivo com Hb de 7 g/dL. O mecanismo predominante é:',
+ a:['Progressão aguda da placa aterosclerótica','Redução do conteúdo arterial de oxigênio','Vasoespasmo coronariano','Aumento da contratilidade miocárdica'],c:1,
+ w:['Nada na história indica instabilização de placa; a mudança clínica acompanha a anemia.','','Não há elemento sugerindo espasmo neste cenário.','A contratilidade não é o motor da mudança aqui; a anemia atua na oferta.'],
+ cm:'Menos hemoglobina significa menos oxigênio transportado por mililitro de sangue. A estenose é a mesma; o que mudou foi a carga que chega até ela.',p:'A questão testa se você entende que a angina pode piorar sem que a coronária tenha mudado.'},
+{e:'Sobre a classificação clínica tradicional da dor torácica, assinale a correta:',
+ a:['Dor atípica significa dor de origem provavelmente benigna','Dor típica exige os três critérios: qualidade compatível, desencadeada por esforço e aliviada por repouso ou nitrato','Dor não anginosa exclui doença arterial coronariana','A classificação substitui a estimativa de probabilidade pré-teste'],c:1,
+ w:['"Atípica" indica apenas que falta um critério — nunca significou benignidade, e essa leitura já atrasou diagnósticos.','','Nenhuma categoria de dor exclui DAC; todas apenas modificam probabilidade.','A classificação alimenta a estimativa de probabilidade pré-teste; não a substitui.'],
+ cm:'Três critérios = típica, dois = atípica, zero ou um = não anginosa. É uma escala de probabilidade, não um carimbo diagnóstico.',p:'A alternativa sobre "benigna" existe justamente para punir a leitura literal do termo atípica.'},
+{e:'Homem de 60 anos com dor torácica reproduzida exatamente à palpação da junção costocondral. Qual conduta de raciocínio é a correta?',
+ a:['Excluir síndrome coronariana e liberar o paciente','Considerar causa musculoesquelética como mais provável, sem excluir isoladamente doença coronariana','Solicitar apenas radiografia de tórax e encerrar a investigação','Concluir por costocondrite, já que a palpação é diagnóstica'],c:1,
+ w:['Nenhuma característica isolada exclui SCA — e a palpação é a mais superestimada delas.','','A radiografia não responde à pergunta sobre a coronária.','A palpação favorece a parede, mas não tem poder diagnóstico definitivo.'],
+ cm:'Dor reproduzível à palpação desloca a probabilidade para a parede torácica, mas parede dolorida e coronária doente coexistem com frequência em pacientes com fatores de risco.',p:'O "M" do SePAM está aqui — e o enunciado esconde que o paciente tem 60 anos.'},
+{e:'Qual afirmação sobre a perfusão coronariana do ventrículo esquerdo é correta?',
+ a:['Ocorre exclusivamente na sístole','Ocorre predominantemente na diástole','É independente da frequência cardíaca','É maior no subepicárdio durante a sístole apenas'],c:1,
+ w:['Durante a sístole a contração comprime os vasos intramurais e limita o fluxo.','','A frequência determina o tempo diastólico disponível e portanto influencia diretamente a perfusão.','A afirmação inverte a fisiologia e ignora o gradiente subendocárdico.'],
+ cm:'Predominantemente, não exclusivamente — essa nuance costuma diferenciar a alternativa correta da armadilha.',p:'Alternativas com "exclusivamente", "sempre" e "nunca" quase sempre carregam o exagero que as invalida.'},
+{e:'Paciente de 45 anos, tabagista, com dor torácica súbita, pleurítica, dispneia e taquicardia. Qual diagnóstico não pode deixar de ser considerado?',
+ a:['Angina estável','Embolia pulmonar','Espasmo esofágico difuso','Costocondrite'],c:1,
+ w:['O padrão pleurítico e súbito não corresponde à angina estável.','','O espasmo esofágico não explica dispneia súbita com taquicardia.','A costocondrite não causa hipoxemia nem instabilidade.'],
+ cm:'Dor pleurítica de início súbito com dispneia e taquicardia é apresentação de TEP até prova em contrário — e a sobrecarga aguda de VD pode participar da dor.',p:'A presença de "pleurítica" faz muitos candidatos descartarem tudo que é grave. Pleurítica também mata.'},
+{e:'Sobre a hipertrofia ventricular esquerda e a isquemia miocárdica:',
+ a:['A HVE protege contra isquemia por aumentar a força de contração','A HVE aumenta a demanda de O₂ e reduz a reserva de fluxo, tornando o subendocárdio vulnerável','A HVE só causa angina quando há estenose coronariana associada','A HVE não altera o consumo miocárdico de oxigênio'],c:1,
+ w:['O aumento de massa é fator de risco para isquemia, não proteção.','','Pode haver angina e isquemia demonstrável sem obstrução epicárdica significativa.','Mais massa significa necessariamente mais consumo.'],
+ cm:'Mais músculo, mais fome — somado a uma microcirculação que não cresceu na mesma proporção e a um subendocárdio mais comprimido.',p:'A alternativa "só com estenose associada" ignora toda a fisiologia microvascular.'},
+{e:'Qual das características abaixo torna o diagnóstico de angina estável clássica menos provável?',
+ a:['Desconforto retroesternal em aperto','Alívio em poucos minutos com repouso','Dor máxima já no primeiro instante','Desencadeamento por estresse emocional'],c:2,
+ w:['É exatamente o padrão de qualidade esperado.','É o "APAGA" dos três critérios.','','Estresse emocional é gatilho clássico, tanto quanto o esforço.'],
+ cm:'A angina sobe uma rampa em minutos. Intensidade máxima desde o início é o "A" do SePAM e direciona para síndrome aórtica, TEP ou pneumotórax conforme o contexto.',p:'Menos provável ≠ excluído. A questão pede probabilidade, não exclusão.'},
+{e:'Mulher de 68 anos, diabética, refere apenas dispneia progressiva aos esforços que melhora ao parar, sem dor torácica. A conduta de raciocínio mais adequada é:',
+ a:['Descartar DAC, pois não há dor torácica','Considerar apresentação equivalente anginosa e prosseguir a avaliação','Classificar como dor não anginosa e liberar','Atribuir à ansiedade'],c:1,
+ w:['Ausência de dor não descarta isquemia, especialmente em diabéticos e idosos.','','Não há sequer dor a ser classificada; o raciocínio se apoiaria em uma categoria que não se aplica.','Ansiedade nunca é primeira hipótese em paciente com fatores de risco e sintoma reprodutível ao esforço.'],
+ cm:'Dispneia desencadeada por esforço e aliviada pelo repouso pode ser a única manifestação de isquemia — o equivalente anginoso, mais comum em diabéticos, idosos e mulheres.',p:'A questão testa se você aprendeu que o "APERTA" não exige a palavra dor... nem exige dor.'},
+{e:'Sobre a estimativa de probabilidade pré-teste de DAC obstrutiva:',
+ a:['Depende exclusivamente do resultado do exame solicitado','Combina idade, sexo e características da dor, entre outras variáveis nos modelos contemporâneos','Os cortes de <10%, 10–90% e >90% são a recomendação atual universal','É irrelevante quando o paciente tem fatores de risco'],c:1,
+ w:['A probabilidade pré-teste existe antes e independentemente do exame — é justamente o que dá sentido ao resultado.','','Esses cortes são históricos; os modelos contemporâneos foram recalibrados porque os antigos superestimavam a prevalência.','Fatores de risco entram no cálculo em vez de dispensá-lo.'],
+ cm:'O modelo clássico usava a tríade idade-sexo-tipo de dor. Os contemporâneos incorporam mais variáveis e trabalham com prevalências mais baixas.',p:'Decorar os percentuais de 1979 como se fossem conduta atual é a armadilha clássica deste tópico.'},
+{e:'Paciente de 38 anos com dor retroesternal intensa em repouso, de madrugada, recorrente, com coronariografia prévia sem lesões obstrutivas. Hipótese principal:',
+ a:['Angina estável clássica','Angina vasoespástica (Prinzmetal)','Costocondrite','Dor psicogênica'],c:1,
+ w:['A angina estável é desencadeada por esforço, não por repouso noturno.','','Não há relação com palpação ou movimento na história.','Diagnóstico de exclusão que não se sustenta diante de um padrão tão característico.'],
+ cm:'Espasmo de artéria epicárdica: dor em repouso, muitas vezes noturna, em pacientes mais jovens, com coronárias frequentemente sem obstrução significativa.',p:'Coronariografia sem obstrução não significa "não é o coração".'},
+{e:'Qual achado de exame físico mais fortemente sugere uma causa cardíaca alternativa de angina com coronárias livres?',
+ a:['Dor à palpação da parede torácica','Sopro sistólico ejetivo em foco aórtico com irradiação para carótidas','Murmúrio vesicular abolido em hemitórax','Enfisema subcutâneo cervical'],c:1,
+ w:['Aponta parede torácica, não causa cardíaca alternativa.','','Sugere pneumotórax, causa não cardíaca.','Sugere ruptura esofágica, causa não cardíaca.'],
+ cm:'Estenose aórtica causa angina por combinação de hipertrofia (mais demanda) e obstrução (menos oferta), mesmo com coronárias normais.',p:'A questão exige separar "causa cardíaca alternativa" de "causa não cardíaca".'},
+{e:'Sobre o exame físico na DAC crônica estável:',
+ a:['Costuma ser normal e, ainda assim, é indispensável','Um exame normal reduz substancialmente a probabilidade de DAC','A presença de B4 confirma isquemia','Exame normal dispensa investigação adicional'],c:0,
+ w:['','Exame normal é o achado esperado e não tem poder de derrubar uma história típica.','B4 é inespecífica e pode ocorrer em várias condições com alteração de complacência ventricular.','A investigação é definida pela probabilidade pré-teste e pela pergunta clínica, não pela normalidade do exame.'],
+ cm:'O exame físico aqui trabalha para os diferenciais, comorbidades, valvopatias, sinais de IC e doença vascular — não para confirmar a coronária.',p:'"Um exame normal não apaga uma boa história" é exatamente o que esta questão cobra.'},
+{e:'A frase "angina é um diagnóstico clínico" significa que:',
+ a:['Nenhum exame complementar é necessário na avaliação do paciente','A caracterização da síndrome se faz na anamnese, sem que isso dispense exames para outras perguntas','Exames complementares são desnecessários quando a dor é típica','O diagnóstico deve ser confirmado apenas pela coronariografia'],c:1,
+ w:['A frase se refere à caracterização da dor, não à dispensa de investigação.','','Dor típica aumenta a probabilidade pré-teste e frequentemente indica mais investigação, não menos.','A coronariografia responde à anatomia, não à existência da síndrome anginosa.'],
+ cm:'A anamnese define se a síndrome é angina. Os exames definem o que está por trás dela, qual o risco e o que fazer.',p:'A alternativa "nenhum exame é necessário" transforma uma frase pedagógica em erro clínico.'},
+{e:'Paciente refere dor torácica que piora ao deitar e à inspiração profunda e melhora ao sentar-se inclinado para frente, com irradiação para o trapézio. Diagnóstico mais provável:',
+ a:['Pericardite','Angina estável','Dissecção de aorta','DRGE'],c:0,
+ w:['','Nada nesse padrão posicional e respiratório corresponde à angina.','A dissecção é abrupta e máxima desde o início, com irradiação tipicamente dorsal.','A DRGE piora em decúbito, mas não tem esse padrão respiratório nem a irradiação para trapézio.'],
+ cm:'Piora em decúbito, piora à inspiração, melhora inclinado para frente e irradiação para o trapézio compõem o quadro clássico.',p:'A DRGE é a distratora esperta: ela também piora deitado.'},
+{e:'Sobre o uso de cocaína e dor torácica:',
+ a:['Causa isquemia apenas em pacientes com placas obstrutivas prévias','Atua exclusivamente aumentando a demanda','Combina aumento de demanda com vasoconstrição e vasoespasmo coronariano','Não se relaciona a isquemia miocárdica'],c:2,
+ w:['Pode causar isquemia mesmo com coronárias sem obstrução significativa.','A vasoconstrição coronariana é parte central do mecanismo.','','A associação é bem estabelecida.'],
+ cm:'Descarga simpática eleva frequência e pressão (mais fome) enquanto a vasoconstrição e o vasoespasmo reduzem a entrega. Os dois pratos ao mesmo tempo.',p:'Sempre que uma alternativa disser "exclusivamente", desconfie: neste capítulo, os agentes mais perigosos agem dos dois lados.'},
+{e:'Qual das situações abaixo eleva o consumo miocárdico de oxigênio principalmente por aumento da tensão parietal?',
+ a:['Anemia','Hipertensão arterial','Hipoxemia','Vasoespasmo coronariano'],c:1,
+ w:['A anemia atua na oferta, reduzindo o conteúdo arterial de O₂.','','A hipoxemia também atua na oferta.','O vasoespasmo reduz a oferta por fechamento da estrada.'],
+ cm:'Pós-carga elevada aumenta a tensão que a parede precisa gerar — o "T" do FCT — e com ela o consumo.',p:'Três das quatro alternativas são do lado da oferta. A questão pergunta pela demanda.'},
+{e:'Um paciente com angina estável mantém a mesma estenose coronariana ao longo de um ano, mas passa a ter angina com esforços menores após iniciar quadro de fibrilação atrial com resposta ventricular de 130 bpm. A explicação é:',
+ a:['A placa progrediu rapidamente','A taquiarritmia aumentou a demanda e reduziu o tempo diastólico de perfusão','O paciente desenvolveu espasmo esofágico','A frequência elevada aumentou a oferta coronariana'],c:1,
+ w:['Nada na história sugere progressão anatômica; a mudança acompanha o início da arritmia.','','O quadro é claramente relacionado ao esforço e à frequência.','A frequência elevada reduz o tempo de perfusão — não o aumenta.'],
+ cm:'O mesmo mecanismo da ladra de duas mãos, agora com uma arritmia no comando. A anatomia não mudou; a balança sim.',p:'A alternativa sobre progressão da placa é atraente porque a angina piorou — mas piora clínica não é sinônimo de mudança anatômica.'}
+];
+function montaArena(){
+  const g=document.getElementById('arenaGrid'); if(!g)return;
+  g.innerHTML=QUESTOES.map((q,i)=>`<div class="q" id="q-${i}">
+    <div class="t-mono">Questão ${String(i+1).padStart(2,'0')}</div>
+    <p class="enun">${q.e}</p>
+    <div id="alts-${i}">${q.a.map((a,j)=>`<button class="alt" id="alt-${i}-${j}" onclick="responder(${i},${j})"><span class="k">${'ABCD'[j]}</span>${a}</button>`).join('')}</div>
+    <div class="coment" id="cm-${i}"></div></div>`).join('');
+  Object.keys(S.quiz||{}).forEach(k=>{const i=+k; if(QUESTOES[i])pintaQuestao(i,S.quiz[k]);});
+  atualizaPlacar();
+}
+function responder(i,j){ if(S.quiz[i]!==undefined)return; S.quiz[i]=j; salvar(); pintaQuestao(i,j); atualizaPlacar(); atualizaDashboard(); }
+function pintaQuestao(i,j){
+  const q=QUESTOES[i], el=document.getElementById('q-'+i); if(!el)return;
+  el.classList.add('resp');
+  q.a.forEach((_,k)=>{
+    const b=document.getElementById(`alt-${i}-${k}`); if(!b)return;
+    b.disabled=true;
+    if(k===q.c)b.classList.add('certa');
+    else if(k===j)b.classList.add('errada');
+  });
+  const erradas=q.a.map((a,k)=>k===q.c?null:`<li><b>${'ABCD'[k]}</b> — ${q.w[k]}</li>`).filter(Boolean).join('');
+  const cm=document.getElementById('cm-'+i);
+  cm.innerHTML=`<div class="box ${j===q.c?'bom':'perigo'}"><span class="t-mono">${j===q.c?'✅ Você acertou':'❌ Resposta correta: '+'ABCD'[q.c]}</span><p style="margin:0">${q.cm}</p></div>
+    <div class="box conceito"><span class="t-mono">Por que as outras não servem</span><ul style="margin:4px 0 0; padding-left:18px; font-size:.9rem">${erradas}</ul></div>
+    <div class="box tec" style="margin-bottom:0"><span class="t-mono">🟡 A pegadinha</span><p style="margin:0">${q.p}</p></div>`;
+}
+function atualizaPlacar(){
+  const tot=Object.keys(S.quiz||{}).length;
+  let ac=0; Object.keys(S.quiz||{}).forEach(k=>{if(QUESTOES[+k]&&S.quiz[k]===QUESTOES[+k].c)ac++;});
+  const a=document.getElementById('plAcertos'), t=document.getElementById('plTotal');
+  if(a)a.textContent=ac; if(t)t.textContent=tot+'/'+QUESTOES.length;
+}
+function reiniciarArena(){S.quiz={}; salvar(); montaArena(); atualizaDashboard();}
+
+/* ==========================================================
+   CASOS
+   ========================================================== */
+const CASOS=[
+{t:'Caso 1 — a angina de manual',h:'Homem de 61 anos, hipertenso e dislipidêmico, refere peso retroesternal ao caminhar duas quadras em ritmo rápido, sempre no mesmo esforço, que cede em cerca de 3 minutos ao parar. Exame físico normal.',
+ p:'Quantos dos 3 A estão presentes e o que o exame normal acrescenta?',
+ r:'Os três: qualidade compatível (peso retroesternal), desencadeamento por esforço e alívio com repouso em minutos. Angina típica pela classificação tradicional, com probabilidade pré-teste alta pelo perfil. O exame físico normal <b>não subtrai nada</b> dessa probabilidade — ele apenas afastou sopro de estenose aórtica, sinais de IC e dor de parede. A previsibilidade do limiar ("sempre no mesmo esforço") é o dado que caracteriza estabilidade.'},
+{t:'Caso 2 — a anemia que mudou o limiar',h:'Mulher de 70 anos com DAC crônica conhecida e angina estável aos grandes esforços há dois anos. Nas últimas duas semanas passou a ter angina ao andar dentro de casa. Hemoglobina 7,2 g/dL, com sangramento digestivo crônico. Sem alterações novas ao exame.',
+ p:'Qual o mecanismo e o que ele muda na conduta imediata?',
+ r:'A estenose provavelmente não mudou. A anemia reduziu o <b>conteúdo arterial de O₂</b>, derrubando a oferta — e o limiar de esforço que antes bastava deixou de bastar. Conduta: tratar o precipitante é parte do tratamento da angina, não um desvio dele. Ignorar a anemia e apenas escalonar antianginoso seria tratar o prato errado da balança.'},
+{t:'Caso 3 — a arritmia no comando',h:'Homem de 66 anos com DAC crônica estável chega com palpitações e desconforto torácico. Ritmo irregular, FC 138 bpm, PA 132×80 mmHg.',
+ p:'Por que a taquiarritmia compromete oferta E demanda ao mesmo tempo?',
+ r:'<b>Demanda:</b> mais ciclos por minuto significam mais trabalho e mais consumo. <b>Oferta:</b> a diástole encurta desproporcionalmente à sístole, e é na diástole que o VE é predominantemente perfundido — o tempo de perfusão desaparece justamente quando o consumo aumentou. Some-se, na fibrilação atrial, a perda da contribuição atrial ao enchimento. É o único precipitante clássico que ataca os dois pratos simultaneamente.'},
+{t:'Caso 4 — o nitrato que não prova nada',h:'Homem de 48 anos, sem fatores de risco relevantes, com dor retroesternal intensa que começa após refeições volumosas, dura de 20 a 40 minutos, ocorre em repouso e não guarda relação com esforço. Recebeu nitrato sublingual no pronto-socorro e a dor cedeu.',
+ p:'A resposta ao nitrato fechou o diagnóstico de DAC?',
+ r:'Não. O nitrato relaxa musculatura lisa em vários territórios, incluindo o esôfago — e o <b>espasmo esofágico difuso</b> responde a ele. A história aqui aponta para causa esofágica: relação com refeições, repouso, ausência de gatilho de esforço, duração longa. A resposta terapêutica não é sinônimo de confirmação etiológica. <b>Nitrato alivia, nitrato não autentica.</b>'},
+{t:'Caso 5 — pistas em conflito',h:'Homem de 63 anos, diabético e tabagista, com desconforto retroesternal aos esforços há dois meses. No exame, a palpação da junção costocondral esquerda reproduz parte do desconforto.',
+ p:'A palpação positiva permite encerrar o caso como dor de parede?',
+ r:'Não. Ela <b>favorece</b> componente musculoesquelético e reduz a probabilidade — mas em um diabético tabagista de 63 anos com desconforto claramente relacionado ao esforço, a probabilidade pré-teste partiu de um patamar alto demais para ser zerada por um achado de parede. Duas coisas podem ser verdadeiras ao mesmo tempo: a parede dói e a coronária está doente. O "M" do SePAM empurra; não fecha a porta.'},
+{t:'Caso 6 — quando a dor não é o sintoma',h:'Mulher de 72 anos, diabética de longa data, refere que há três meses precisa parar no meio da ladeira por falta de ar, que melhora ao repousar. Nega dor torácica em qualquer momento.',
+ p:'Como classificar esse quadro?',
+ r:'Como possível <b>equivalente anginoso</b>. Dispneia desencadeada por esforço e aliviada pelo repouso reproduz exatamente a lógica dos 3 A — muda apenas o sintoma que o miocárdio escolheu para protestar. Rotular como "não anginosa" porque não há dor é o erro que faz diabéticos, idosos e mulheres chegarem tarde. Investigar isquemia é obrigatório aqui.'},
+{t:'Caso 7 — a curva errada',h:'Homem de 58 anos, hipertenso, com dor torácica de início súbito enquanto assistia televisão, descrita como máxima desde o primeiro segundo, irradiando para o dorso. PA 190×110 mmHg no braço direito e 150×90 mmHg no esquerdo.',
+ p:'Qual a curva de dor e o que ela obriga a considerar?',
+ r:'A curva da <b>bomba</b>, não da rampa: intensidade máxima no primeiro instante. Isso é pouco característico de angina estável e obriga a considerar <b>síndrome aórtica aguda</b> — reforçada pela irradiação dorsal e pelo diferencial de pressão entre os membros. Aqui a semiologia da curva vale mais do que qualquer característica isolada da qualidade da dor.'},
+{t:'Caso 8 — o caso que não fecha em um critério',h:'Mulher de 55 anos, hipertensa, com desconforto torácico em queimação que aparece tanto ao subir escada quanto à noite ao deitar, às vezes após jantar tardio. Melhora parcialmente com antiácido e também com repouso.',
+ p:'Como raciocinar diante de pistas que apontam para dois lados?',
+ r:'Reconhecendo que a resposta correta é <b>coexistência possível</b>, não escolha forçada. Há elementos de DRGE (queimação, relação com decúbito e jantar tardio, melhora com antiácido) e elementos de angina (aparece ao esforço, melhora com repouso). A sobreposição de sintomas entre esôfago e coração é a regra, não a exceção. A conduta é estimar a probabilidade pré-teste de DAC pelo perfil completo e investigar, sem deixar que a melhora com antiácido funcione como alta hospitalar. <b>Uma pista muda probabilidades; o conjunto constrói diagnósticos.</b>'}
+];
+function montaCasos(){
+  const g=document.getElementById('casosGrid'); if(!g)return;
+  g.innerHTML=CASOS.map((c,i)=>`<div class="caso">
+    <div class="t-mono">${c.t}</div>
+    <div class="hist">${c.h}</div>
+    <div class="perg">❓ ${c.p}</div>
+    <button class="btn ghost sm" onclick="rev('caso-${i}')">Revelar raciocínio</button>
+    <div class="reveal" id="caso-${i}"><div class="box mec" style="margin-bottom:0">${c.r}</div></div>
+  </div>`).join('');
+}
+</script>
+
+<script>
+/* ==========================================================
+   FILOSOFIA
+   ========================================================== */
+const FRASES=[
+ 'Dor torácica é uma porta, não um diagnóstico.',
+ 'Antes de procurar o provável, reconheça o perigoso.',
+ 'Angina nasce quando a necessidade ultrapassa a entrega.',
+ 'O coração não sabe se faltou oxigênio porque pediu demais ou porque recebeu de menos. Ele responde à diferença.',
+ 'Taquicardia cobra duas vezes: aumenta o consumo e rouba a diástole.',
+ 'HVE: mais músculo, mais fome.',
+ 'Todo precipitante de angina aumenta a fome ou diminui a entrega.',
+ 'A história clínica não é uma coleção de sintomas. É fisiopatologia contada pelo paciente.',
+ 'Nitrato alivia. Nitrato não autentica.',
+ 'Um exame normal não apaga uma boa história.',
+ 'Uma característica muda probabilidades; o conjunto constrói diagnósticos.',
+ 'A anamnese decide se é angina. Os exames decidem o que há por trás dela.',
+ 'Quem não estima a probabilidade antes do exame não interpreta o resultado: apenas o obedece.',
+ 'Coronária livre não é o mesmo que dor não cardíaca.',
+ 'O paciente não precisa dizer a palavra dor para estar tendo isquemia.',
+ 'Reconhecer padrões é o começo. Reconhecer exceções é o que separa memória de raciocínio.',
+ 'Atípica nunca quis dizer benigna — e essa confusão já custou vidas.',
+ 'A placa não mudou de tamanho quando ele subiu a escada. A balança é que mudou de lado.',
+ 'Diante de pistas conflitantes, a pergunta certa não é qual delas está mentindo, mas qual conduta sobrevive às duas.',
+ 'Trate o precipitante e você terá tratado a angina — às vezes sem tocar na coronária.'
+];
+let filoAtual=0;
+function sortearFrase(){
+  let n; do{n=Math.floor(Math.random()*FRASES.length);}while(n===filoAtual&&FRASES.length>1);
+  filoAtual=n; const t=document.getElementById('filoTxt'); if(t)t.textContent='“'+FRASES[n]+'”';
+}
+function toggleFiloLista(){
+  const l=document.getElementById('filoLista'), b=document.getElementById('btnFiloLista');
+  if(!l)return;
+  const abrindo=!l.classList.contains('show');
+  if(abrindo&&!l.dataset.pronto){ l.innerHTML=FRASES.map(f=>`<div>“${f}”</div>`).join(''); l.dataset.pronto='1'; }
+  l.classList.toggle('show'); if(b)b.textContent=abrindo?'Esconder':'Ver todas';
+}
+function projetarFrase(){
+  const p=document.getElementById('projetor'), t=document.getElementById('projTxt');
+  if(t)t.textContent='“'+FRASES[filoAtual]+'”';
+  if(p){p.classList.add('on'); p.setAttribute('aria-hidden','false');}
+}
+function fecharProjetor(){
+  const p=document.getElementById('projetor');
+  if(p){p.classList.remove('on'); p.setAttribute('aria-hidden','true');}
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharProjetor();});
+
+/* ==========================================================
+   DESAFIO FINAL
+   ========================================================== */
+function abrirDesafio(){
+  const c=document.getElementById('cascata'), b=document.getElementById('btnDesafio');
+  if(c)c.classList.add('show'); if(b)b.disabled=true;
+}
+
+/* ==========================================================
+   HIPOCAMPO — DASHBOARD E CHECKLIST
+   ========================================================== */
+const CHECKS=[
+ {q:'hoje',t:'Reconstruir a balança de memória: FCT de um lado, os quatro entregadores do outro.'},
+ {q:'hoje',t:'Recitar os 3 A e dizer, para cada um, um exemplo que satisfaz e um que não satisfaz.'},
+ {q:'hoje',t:'Explicar em voz alta por que a taquicardia rouba dos dois lados.'},
+ {q:'amanhã',t:'Percorrer as 7 salas do Tribunal do Tórax sem abrir as âncoras.'},
+ {q:'amanhã',t:'Refazer os 8 precipitantes respondendo "fome ou entrega" antes de ver.'},
+ {q:'amanhã',t:'Listar os cinco "não posso perder" em 20 segundos.'},
+ {q:'7 dias',t:'Refazer a Arena TEC inteira mirando comentário, não só gabarito.'},
+ {q:'7 dias',t:'Explicar a um colega por que exame físico normal não reduz a probabilidade na DAC crônica.'},
+ {q:'7 dias',t:'Narrar o desafio final (anemia + taquicardia) do início ao fim sem consultar.'}
+];
+function montaChecklist(){
+  const g=document.getElementById('checklist'); if(!g)return;
+  let html='', ultimo='';
+  CHECKS.forEach((c,i)=>{
+    if(c.q!==ultimo){html+=`<div class="t-mono" style="margin:10px 0 6px">⏱️ ${c.q}</div>`; ultimo=c.q;}
+    const on=S.check[i]?' done':'';
+    html+=`<label class="check${on}" id="ck-${i}"><input type="checkbox" ${S.check[i]?'checked':''} onchange="marcaCheck(${i},this.checked)"><span>${c.t}</span></label>`;
+  });
+  g.innerHTML=html;
+}
+function marcaCheck(i,v){
+  S.check[i]=v?1:0; salvar();
+  const el=document.getElementById('ck-'+i); if(el)el.classList.toggle('done',v);
+  atualizaDashboard();
+}
+function atualizaDashboard(){
+  const d=document.getElementById('dashboard'); if(!d)return;
+  const respQ=Object.keys(S.quiz||{}).length;
+  let ac=0; Object.keys(S.quiz||{}).forEach(k=>{if(QUESTOES[+k]&&S.quiz[k]===QUESTOES[+k].c)ac++;});
+  const sei=Object.values(S.flash||{}).filter(v=>v==='sei').length;
+  const rever=Object.values(S.flash||{}).filter(v=>v==='rever').length;
+  const prec=Object.keys(S.prec||{}).length;
+  const ck=Object.values(S.check||{}).filter(Boolean).length;
+  const linha=(l,v,tot,cor)=>`<div style="margin-bottom:9px">
+    <div style="display:flex;justify-content:space-between;font-size:.86rem;font-weight:700"><span>${l}</span><span style="font-family:var(--mono)">${v}/${tot}</span></div>
+    <div style="height:8px;background:#eef2f7;border-radius:5px;overflow:hidden"><i style="display:block;height:100%;width:${tot?(v/tot*100):0}%;background:${cor}"></i></div></div>`;
+  d.innerHTML=
+    linha('Questões respondidas',respQ,QUESTOES.length,'var(--navy)')+
+    linha('Acertos na Arena',ac,QUESTOES.length||1,'var(--verde)')+
+    linha('Flashcards dominados',sei,FLASH.length,'var(--dourado)')+
+    linha('Precipitantes decididos',prec,PREC.length,'var(--vermelho)')+
+    linha('Itens de revisão concluídos',ck,CHECKS.length,'var(--azul)')+
+    (rever?`<div class="box tec" style="margin:8px 0 0"><b>${rever} card(s)</b> na sua fila de revisão. Use o filtro <b>"Só os meus difíceis"</b> nos flashcards.</div>`:'');
+}
+function zerarProgresso(){
+  if(!confirm('Isso apaga suas respostas, flashcards e checklist deste capítulo neste navegador. Continuar?'))return;
+  S={flash:{},quiz:{},prec:{},check:{},prof:S.prof,mov:S.mov}; salvar();
+  montaFlash(); montaArena(); montaPrec(); montaChecklist(); atualizaDashboard();
+}
+
+/* ==========================================================
+   INIT
+   ========================================================== */
+function init(){
+  montaCausas(); montaChips(); montaEntregadores(); montaPrec();
+  montaSalas(); montaFlash(); montaArena(); montaCasos(); montaChecklist();
+  atualizaBalanca(); atualizaFC(70); atualizaDashboard(); sortearFrase(); barraProgresso();
+  if(S.prof){document.body.classList.add('prof'); const b=document.getElementById('btnProf'); b.classList.add('on'); b.textContent='🎓 Professor ON';}
+  if(S.mov){document.body.classList.add('reduz'); document.getElementById('btnMov').classList.add('on');}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
+</script>
+</body>
+</html>
