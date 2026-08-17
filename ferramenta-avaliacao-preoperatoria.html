@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulário de Avaliação Cardiovascular Pré-operatória — Dr. André Rossanno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FORMULÁRIO DE COLETA — AVALIAÇÃO CV PRÉ-OPERATÓRIA
+   Etapa 1 do projeto. Este arquivo NÃO decide nada:
+   ele apenas captura, de forma completa e estruturada, todas as
+   variáveis que o motor de decisão (etapa 3) vai precisar.
+   Autor: Dr. André Rossanno
+   ============================================================ */
+:root{
+  --tinta:#16232e;
+  --tinta2:#53646f;
+  --linha:#b7c4cd;
+  --linha-clara:#dde5ea;
+  --azul:#1282A2;
+  --azul-fraco:#e7f2f6;
+  --vermelho:#b3261e;
+  --vermelho-fraco:#fbeceb;
+  --papel:#ffffff;
+  --fundo:#e9eef1;
+  --serif:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--fundo);
+  font-family:var(--serif);
+  color:var(--tinta);
+  font-size:15px;
+  line-height:1.35;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ---------- barra de ferramentas (nunca impressa) ---------- */
+.barra{
+  position:sticky;top:0;z-index:50;
+  background:var(--tinta);color:#fff;
+  padding:10px 16px;
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+}
+.barra .marca{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-right:auto}
+.btn{
+  font-family:var(--serif);font-weight:700;font-size:13px;
+  background:#fff;color:var(--tinta);border:0;border-radius:3px;
+  padding:8px 14px;cursor:pointer;
+}
+.btn:hover{background:var(--azul);color:#fff}
+.btn.fantasma{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.btn.fantasma:hover{background:var(--vermelho);border-color:var(--vermelho)}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--azul);outline-offset:1px}
+
+.aviso-tela{
+  max-width:820px;margin:18px auto 0;padding:12px 16px;
+  background:#fff;border-left:4px solid var(--azul);
+  font-size:13.5px;color:var(--tinta2);
+}
+.aviso-tela b{color:var(--tinta)}
+
+/* ---------- folha ---------- */
+.folha{
+  max-width:820px;margin:18px auto 60px;
+  background:var(--papel);
+  padding:26px 30px 40px;
+  box-shadow:0 2px 14px rgba(0,0,0,.12);
+}
+
+/* ---------- cabeçalho ---------- */
+.cab{border-bottom:2.5px solid var(--tinta);padding-bottom:10px;margin-bottom:6px}
+.cab h1{
+  font-size:19px;font-weight:900;letter-spacing:-.01em;margin:0 0 2px;
+  text-transform:uppercase;
+}
+.cab .sub{font-size:12.5px;color:var(--tinta2);font-weight:600}
+.cab .autor{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--azul);margin-top:6px}
+.cab-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.cab-id{font-family:var(--mono);font-size:10px;color:var(--tinta2);text-align:right;line-height:1.7;white-space:nowrap}
+
+.trilho{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;
+  color:var(--tinta2);margin:10px 0 18px;text-transform:uppercase;
+  border-bottom:1px solid var(--linha-clara);padding-bottom:10px;
+}
+.trilho b{color:var(--azul);font-weight:600}
+
+/* ---------- seções ---------- */
+section{margin:0 0 16px;break-inside:avoid}
+.sec-cab{display:flex;align-items:baseline;gap:10px;border-bottom:1.5px solid var(--tinta);padding-bottom:3px;margin-bottom:9px}
+.sec-num{
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  background:var(--tinta);color:#fff;padding:1px 6px;border-radius:2px;
+}
+.sec-tit{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.sec-perg{
+  margin-left:auto;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--azul);
+}
+.nota{font-size:11.5px;color:var(--tinta2);font-style:italic;margin:-3px 0 8px}
+
+/* ---------- campos ---------- */
+.g{display:grid;gap:7px 14px;margin-bottom:8px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+.g4{grid-template-columns:1fr 1fr 1fr 1fr}
+.g-2-1{grid-template-columns:2fr 1fr}
+.g-3-1{grid-template-columns:3fr 1fr}
+.campo{display:flex;flex-direction:column;gap:1px;min-width:0}
+.rot{font-family:var(--mono);font-size:8.6px;letter-spacing:.09em;text-transform:uppercase;color:var(--tinta2)}
+.ln,input.ln,textarea{
+  font-family:var(--serif);font-size:13.5px;color:var(--tinta);
+  border:0;border-bottom:1px solid var(--linha);background:transparent;
+  padding:2px 2px 3px;width:100%;min-height:22px;
+}
+input[readonly]{background:var(--azul-fraco);border-bottom-color:var(--azul)}
+textarea{border:1px solid var(--linha);padding:6px;resize:vertical;line-height:1.5}
+.pauta{min-height:56px}
+.pauta-g{min-height:96px}
+
+/* checkbox */
+.cx{display:inline-flex;align-items:flex-start;gap:5px;font-size:12.7px;line-height:1.25;padding:1.5px 0;break-inside:avoid}
+input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;
+  width:11px;height:11px;flex:0 0 11px;margin:2px 0 0;
+  border:1.2px solid var(--tinta);border-radius:1px;background:#fff;cursor:pointer;
+  print-color-adjust:exact;-webkit-print-color-adjust:exact;
+}
+input[type=checkbox]:checked{background:var(--tinta)}
+input[type=checkbox]:checked::after{content:"";display:block;width:100%;height:100%;box-shadow:inset 0 0 0 2px #fff}
+.lista{display:grid;gap:1px 12px}
+.l2{grid-template-columns:1fr 1fr}
+.l3{grid-template-columns:1fr 1fr 1fr}
+.l4{grid-template-columns:1fr 1fr 1fr 1fr}
+
+/* blocos especiais */
+.bloco{border:1px solid var(--linha);padding:9px 11px;margin:8px 0;break-inside:avoid}
+.bloco > .bt{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--tinta2);margin-bottom:6px}
+.alerta{border:1.5px solid var(--vermelho);background:var(--vermelho-fraco);print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.alerta > .bt{color:var(--vermelho);font-weight:600}
+.calc{border:1px solid var(--azul);background:var(--azul-fraco);print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.calc > .bt{color:var(--azul);font-weight:600}
+.condicional{border-left:3px solid var(--azul);background:#f7fbfc;padding:8px 11px;margin:7px 0 9px;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.condicional .gatilho{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--azul);margin-bottom:5px}
+
+/* marcador de campo crítico para o motor de decisão */
+.crit::after{content:"◆";color:var(--azul);font-size:8px;vertical-align:super;margin-left:2px}
+
+/* tabelas */
+table{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0}
+th{
+  font-family:var(--mono);font-size:8.6px;letter-spacing:.07em;text-transform:uppercase;
+  text-align:left;font-weight:500;color:var(--tinta2);
+  border-bottom:1.2px solid var(--tinta);padding:3px 4px;
+}
+td{border-bottom:1px solid var(--linha-clara);padding:0;vertical-align:middle}
+td input{border:0;border-bottom:0;font-size:12.5px;padding:5px 4px;width:100%;background:transparent;min-height:26px}
+td.fx{padding:5px 4px;font-size:12px}
+td.fx b{font-weight:700}
+td.fx small{display:block;color:var(--tinta2);font-size:10px;font-weight:400}
+tr.grupo td{
+  background:#f0f4f6;font-family:var(--mono);font-size:8.8px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--tinta2);padding:3px 4px;
+  print-color-adjust:exact;-webkit-print-color-adjust:exact;
+}
+.dasi td{border-bottom:1px solid var(--linha-clara)}
+.dasi td.peso{font-family:var(--mono);font-size:11px;text-align:right;width:46px;color:var(--tinta2);padding:4px}
+.dasi td.mk{width:26px;text-align:center;padding:4px}
+.dasi td.txt{padding:4px 4px;font-size:12.3px}
+
+.resultado{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.res-item{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--tinta2)}
+.res-item span{
+  display:inline-block;min-width:52px;border-bottom:1.4px solid var(--tinta);
+  font-size:15px;font-weight:700;color:var(--tinta);text-align:center;
+  font-family:var(--serif);margin-left:5px;padding:0 5px;
+}
+
+/* resumo processado */
+.resumo{break-before:page;page-break-before:always}
+.rl{display:grid;grid-template-columns:118px 1fr;gap:0 12px;padding:5px 0;border-bottom:1px solid var(--linha-clara);break-inside:avoid}
+.rl dt{font-family:var(--mono);font-size:8.8px;letter-spacing:.09em;text-transform:uppercase;color:var(--tinta2);padding-top:2px}
+.rl dd{margin:0;font-size:12.8px;line-height:1.45}
+.rl dd .vazio{color:#9aa8b1;font-style:italic}
+.rl dd b{font-weight:800}
+.rl.destaque{background:var(--vermelho-fraco);border-bottom-color:#e8c4c1;padding:6px 8px;margin:4px -8px;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.rl.destaque dt{color:var(--vermelho)}
+.r-cabecalho{border-bottom:1.5px solid var(--tinta);padding-bottom:6px;margin-bottom:4px}
+.r-cabecalho .rn{font-size:16px;font-weight:900}
+.r-cabecalho .rs{font-size:12.5px;color:var(--tinta2);margin-top:2px}
+.r-titulo{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--azul);margin:12px 0 2px}
+.pendencias{border:1.5px solid var(--azul);background:var(--azul-fraco);padding:9px 12px;margin-top:14px;break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.pendencias .pt{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--azul);font-weight:600;margin-bottom:5px}
+.pendencias ul{margin:0;padding-left:17px;font-size:12.3px;line-height:1.5}
+.pendencias .completo{font-size:12.5px;color:#2e7d52;font-weight:700}
+body.so-resumo .folha > section:not(.resumo){display:none}
+body.so-resumo .resumo{break-before:auto;page-break-before:auto}
+
+/* anexos de referência */
+.anexo{border-top:2.5px solid var(--tinta);margin-top:28px;padding-top:14px}
+.anexo .sel{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--azul)}
+.anexo h2{font-size:15px;font-weight:900;text-transform:uppercase;margin:3px 0 2px;letter-spacing:-.005em}
+.anexo .chamada{font-size:12.5px;color:var(--tinta2);margin-bottom:10px}
+table.ref{font-size:11.7px}
+table.ref td{padding:5px 5px;vertical-align:top;border-bottom:1px solid var(--linha-clara)}
+table.ref td:first-child{font-weight:800;width:23%}
+table.ref td small{display:block;color:var(--tinta2);font-size:10px;font-weight:400;margin-top:2px}
+.faixa{border-left:4px solid var(--linha);padding:8px 11px;margin:9px 0;break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.faixa .ft{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-bottom:4px}
+.faixa .fn{font-size:13.5px;font-weight:900;text-transform:uppercase;letter-spacing:.02em}
+.faixa .fp{font-family:var(--mono);font-size:11px;font-weight:600}
+.faixa ul{margin:3px 0 0;padding-left:16px;font-size:12.2px;line-height:1.45}
+.faixa li{margin-bottom:1px}
+.f-baixo{border-left-color:#2e7d52;background:#f1f8f4}
+.f-baixo .fn,.f-baixo .fp{color:#2e7d52}
+.f-inter{border-left-color:#b8860b;background:#fdf7e8}
+.f-inter .fn,.f-inter .fp{color:#8a6508}
+.f-alto{border-left-color:var(--vermelho);background:var(--vermelho-fraco)}
+.f-alto .fn,.f-alto .fp{color:var(--vermelho)}
+.ressalva{border:1px dashed var(--linha);padding:8px 11px;margin-top:10px;font-size:11.8px;color:var(--tinta2)}
+.ressalva b{color:var(--tinta)}
+body.sem-anexo .anexo{display:none}
+
+.assin{margin-top:22px;display:grid;grid-template-columns:1.6fr 1fr;gap:26px;align-items:end;break-inside:avoid}
+.linha-assin{border-top:1px solid var(--tinta);padding-top:4px;font-size:11.5px;text-align:center;color:var(--tinta2)}
+.rodape{
+  margin-top:18px;padding-top:8px;border-top:1px solid var(--linha-clara);
+  font-size:10px;color:var(--tinta2);display:flex;justify-content:space-between;gap:12px;
+}
+.legenda{font-family:var(--mono);font-size:9px;color:var(--tinta2);margin-top:4px}
+
+/* ---------- mobile ---------- */
+@media (max-width:680px){
+  .folha{padding:18px 15px 30px;margin:10px 0 40px;box-shadow:none}
+  .aviso-tela{margin:12px 10px 0}
+  .g2,.g3,.g4,.g-2-1,.g-3-1{grid-template-columns:1fr}
+  .l2,.l3,.l4{grid-template-columns:1fr}
+  .sec-perg{display:none}
+  table,thead,tbody,tr,td,th{display:block}
+  thead{display:none}
+  tr{border-bottom:1.5px solid var(--linha);padding:5px 0}
+  td{border:0}
+  td.fx{font-weight:700}
+  .dasi td{display:table-cell}
+  .dasi tr{display:table-row}
+}
+
+/* ---------- impressão ---------- */
+@page{size:A4;margin:11mm 12mm}
+@media print{
+  body{background:#fff;font-size:10pt}
+  .barra,.aviso-tela,.so-tela{display:none !important}
+  .folha{box-shadow:none;margin:0;padding:0;max-width:none;width:100%}
+  section{break-inside:avoid}
+  .bloco,.condicional,table,.assin,.faixa{break-inside:avoid}
+  .anexo{break-before:page;page-break-before:always;border-top:0}
+  .ln,input.ln{border-bottom:1px solid #8b9aa5}
+  textarea{border:1px solid #8b9aa5}
+  input[readonly]{background:#eef5f8}
+  h1{font-size:15pt}
+}
+</style>
+</head>
+<body>
+
+<div class="barra">
+  <span class="marca">Formulário pré-operatório · v1 · etapa 1 do projeto</span>
+  <button class="btn" onclick="window.print()">Imprimir / Salvar em PDF</button>
+  <button class="btn" id="btnResumo">Imprimir só o resumo</button>
+  <button class="btn fantasma" id="btnAnexo">Anexos na impressão: incluir</button>
+  <button class="btn fantasma" id="btnLimpar">Apagar dados deste dispositivo</button>
+</div>
+
+<div class="aviso-tela">
+  <b>Como usar.</b> Imprima em branco para preencher à mão no ambulatório ou preencha na tela — os campos calculados (idade, IMC, DASI, METs, RCRI) se atualizam sozinhos e o que você digita fica salvo <b>apenas neste dispositivo/navegador</b>, sem servidor. Os campos marcados com <span style="color:#1282A2">◆</span> são os que o motor de decisão da etapa seguinte não consegue funcionar sem. Este formulário <b>coleta</b>: ele não classifica risco nem recomenda exames. O campo de assinatura sai em branco — quem imprime assina. No fim há dois anexos de referência (qual escore usar; risco do procedimento) que podem ser tirados da impressão pelo botão da barra.
+</div>
+
+<div class="folha">
+
+  <div class="cab">
+    <div class="cab-topo">
+      <div>
+        <h1>Avaliação Cardiovascular Pré-operatória</h1>
+        <div class="sub">Formulário de coleta estruturada — cirurgia não cardíaca em adultos</div>
+        <div class="autor">Avaliação cardiológica · uso ambulatorial e hospitalar</div>
+      </div>
+      <div class="cab-id">
+        Ficha nº ________<br>
+        Data ___/___/______<br>
+        Folha ____ de ____
+      </div>
+    </div>
+  </div>
+
+  <div class="trilho">
+    Sequência da avaliação &nbsp;→&nbsp;
+    <b>1</b> quem é · <b>2</b> qual cirurgia · <b>3</b> quão urgente · <b>4</b> há doença instável ·
+    <b>5</b> que carrega · <b>6</b> o que sente · <b>7</b> o que examino ·
+    <b>8</b> o que consegue fazer · <b>9</b> escores · <b>10</b> o que já toma · <b>11</b> o que já tenho
+  </div>
+
+  <!-- 1 -->
+  <section data-sec="id">
+    <div class="sec-cab"><span class="sec-num">01</span><span class="sec-tit">Identificação</span><span class="sec-perg">Quem é o paciente?</span></div>
+    <div class="g g-3-1">
+      <div class="campo"><span class="rot">Nome completo</span><input class="ln" id="nome"></div>
+      <div class="campo"><span class="rot">Registro / prontuário</span><input class="ln" id="registro"></div>
+    </div>
+    <div class="g g4">
+      <div class="campo"><span class="rot">Data de nascimento</span><input class="ln" id="dn" type="date"></div>
+      <div class="campo"><span class="rot crit">Idade</span><input class="ln" id="idade" readonly></div>
+      <div class="campo"><span class="rot">Sexo</span><input class="ln" id="sexo"></div>
+      <div class="campo"><span class="rot">Telefone / contato</span><input class="ln" id="fone"></div>
+    </div>
+    <div class="g g4">
+      <div class="campo"><span class="rot">Peso (kg)</span><input class="ln" id="peso" inputmode="decimal"></div>
+      <div class="campo"><span class="rot">Altura (m)</span><input class="ln" id="altura" inputmode="decimal"></div>
+      <div class="campo"><span class="rot">IMC (kg/m²)</span><input class="ln" id="imc" readonly></div>
+      <div class="campo"><span class="rot">Hospital / serviço</span><input class="ln" id="hospital"></div>
+    </div>
+    <div class="g g3">
+      <div class="campo"><span class="rot">Médico solicitante</span><input class="ln" id="solicitante"></div>
+      <div class="campo"><span class="rot">Cirurgião</span><input class="ln" id="cirurgiao"></div>
+      <div class="campo"><span class="rot">Anestesiologista (se conhecido)</span><input class="ln" id="anestesista"></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section data-sec="proc">
+    <div class="sec-cab"><span class="sec-num">02</span><span class="sec-tit">Procedimento proposto</span><span class="sec-perg">Qual cirurgia?</span></div>
+    <div class="g g-2-1">
+      <div class="campo"><span class="rot crit">Procedimento (descrição do cirurgião)</span><input class="ln" id="proc"></div>
+      <div class="campo"><span class="rot">Data prevista</span><input class="ln" id="dataCx" type="date"></div>
+    </div>
+    <div class="g g3">
+      <div class="campo"><span class="rot">Especialidade / território</span><input class="ln" id="territorio" placeholder="ex.: vascular suprainguinal, intraperitoneal, ortopédica de grande porte"></div>
+      <div class="campo"><span class="rot">Via de acesso prevista</span><input class="ln" id="via" placeholder="aberta / videolaparoscópica / endovascular / percutânea"></div>
+      <div class="campo"><span class="rot">Duração e sangramento esperados</span><input class="ln" id="duracao"></div>
+    </div>
+    <div class="bloco">
+      <div class="bt crit">Caráter do procedimento — marque um</div>
+      <div class="lista l4">
+        <label class="cx"><input type="checkbox" data-g="carater"><span><b>Eletiva</b> — pode ser adiada por semanas/meses</span></label>
+        <label class="cx"><input type="checkbox" data-g="carater"><span><b>Tempo-sensível</b> — adiar semanas piora o desfecho</span></label>
+        <label class="cx"><input type="checkbox" data-g="carater"><span><b>Urgência</b> — horas a dias</span></label>
+        <label class="cx"><input type="checkbox" data-g="carater"><span><b>Emergência</b> — risco de vida imediato</span></label>
+      </div>
+      <div class="legenda">Este campo é o primeiro portão da avaliação: em urgência/emergência, adiar pode custar mais do que operar.</div>
+    </div>
+    <div class="g g2">
+      <div class="campo"><span class="rot">Anestesia prevista</span><input class="ln" id="anestesia" placeholder="geral / neuraxial / bloqueio periférico / sedação"></div>
+      <div class="campo"><span class="rot">Já houve tentativa/adiamento prévio deste procedimento? Por quê?</span><input class="ln" id="adiamento"></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section data-sec="inst">
+    <div class="sec-cab"><span class="sec-num">03</span><span class="sec-tit">Condições cardiovasculares instáveis</span><span class="sec-perg">Existe doença instável?</span></div>
+    <div class="nota">Rastreio ativo, feito antes de qualquer escore. Uma marcação aqui muda toda a conduta seguinte.</div>
+    <div class="bloco alerta">
+      <div class="bt">Marque tudo que estiver presente no momento da avaliação</div>
+      <div class="lista l2">
+        <label class="cx"><input type="checkbox"><span>Dor torácica em repouso, em crescendo ou de início recente</span></label>
+        <label class="cx"><input type="checkbox"><span>Síndrome coronariana aguda em curso ou recente — data: ____/____/______</span></label>
+        <label class="cx"><input type="checkbox"><span>Insuficiência cardíaca descompensada / congestão atual</span></label>
+        <label class="cx"><input type="checkbox"><span>Piora recente e inexplicada da dispneia ou da classe funcional</span></label>
+        <label class="cx"><input type="checkbox"><span>Arritmia sintomática ou com repercussão hemodinâmica</span></label>
+        <label class="cx"><input type="checkbox"><span>Bradiarritmia sintomática / bloqueio avançado / pausas</span></label>
+        <label class="cx"><input type="checkbox"><span>Sopro novo ou valvopatia grave suspeita/conhecida sintomática</span></label>
+        <label class="cx"><input type="checkbox"><span>Síncope de provável causa cardíaca</span></label>
+        <label class="cx"><input type="checkbox"><span>Hipertensão grave com repercussão clínica/lesão aguda</span></label>
+        <label class="cx"><input type="checkbox"><span>Hipoxemia, instabilidade hemodinâmica ou hipoperfusão</span></label>
+        <label class="cx"><input type="checkbox"><span>Suspeita de tromboembolismo agudo (TVP/TEP)</span></label>
+        <label class="cx"><input type="checkbox"><span>Outra condição CV aguda: ______________________</span></label>
+      </div>
+      <div style="margin-top:7px">
+        <label class="cx"><input type="checkbox"><span><b>Nenhuma das condições acima foi identificada nesta avaliação.</b></span></label>
+      </div>
+      <div class="campo" style="margin-top:6px"><span class="rot">Se alguma marcada — descreva início, evolução e o que já foi feito</span><textarea class="pauta" id="instavelTxt"></textarea></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section data-sec="hist">
+    <div class="sec-cab"><span class="sec-num">04</span><span class="sec-tit">História cardiovascular e comorbidades</span><span class="sec-perg">Que bagagem ele carrega?</span></div>
+    <div class="lista l3">
+      <label class="cx"><input type="checkbox" id="hx_dac"><span>DAC conhecida</span></label>
+      <label class="cx"><input type="checkbox"><span>IAM prévio — ano: ______</span></label>
+      <label class="cx"><input type="checkbox" id="hx_stent"><span>ICP / stent prévio</span></label>
+      <label class="cx"><input type="checkbox"><span>Cirurgia de revascularização (CRM) — ano: ______</span></label>
+      <label class="cx"><input type="checkbox" id="hx_ic"><span>Insuficiência cardíaca</span></label>
+      <label class="cx"><input type="checkbox"><span>Miocardiopatia / FEVE reduzida</span></label>
+      <label class="cx"><input type="checkbox" id="hx_avc"><span>AVC ou AIT prévio</span></label>
+      <label class="cx"><input type="checkbox"><span>Doença arterial periférica</span></label>
+      <label class="cx"><input type="checkbox"><span>Aneurisma / doença de aorta</span></label>
+      <label class="cx"><input type="checkbox" id="hx_valv"><span>Valvopatia — qual: ____________</span></label>
+      <label class="cx"><input type="checkbox"><span>Prótese valvar — tipo/ano: ________</span></label>
+      <label class="cx"><input type="checkbox"><span>Fibrilação / flutter atrial</span></label>
+      <label class="cx"><input type="checkbox"><span>Outra arritmia: ______________</span></label>
+      <label class="cx"><input type="checkbox" id="hx_disp"><span>Marca-passo / CDI / TRC</span></label>
+      <label class="cx"><input type="checkbox"><span>Hipertensão arterial</span></label>
+      <label class="cx"><input type="checkbox" id="hx_dm"><span>Diabetes mellitus</span></label>
+      <label class="cx"><input type="checkbox" id="hx_ins"><span>Diabetes <b>em uso de insulina</b></span></label>
+      <label class="cx"><input type="checkbox"><span>Dislipidemia</span></label>
+      <label class="cx"><input type="checkbox" id="hx_drc"><span>Doença renal crônica — estágio: ____</span></label>
+      <label class="cx"><input type="checkbox"><span>Diálise</span></label>
+      <label class="cx"><input type="checkbox"><span>Doença pulmonar (DPOC/asma/DPI)</span></label>
+      <label class="cx"><input type="checkbox"><span>Apneia obstrutiva do sono</span></label>
+      <label class="cx"><input type="checkbox"><span>Hipertensão pulmonar</span></label>
+      <label class="cx"><input type="checkbox"><span>TEV prévio (TVP/TEP) — ano: ______</span></label>
+      <label class="cx"><input type="checkbox"><span>Hepatopatia</span></label>
+      <label class="cx"><input type="checkbox"><span>Anemia conhecida</span></label>
+      <label class="cx"><input type="checkbox"><span>Coagulopatia / distúrbio hemorrágico</span></label>
+      <label class="cx"><input type="checkbox"><span>Neoplasia ativa / em tratamento</span></label>
+      <label class="cx"><input type="checkbox"><span>Tabagismo — atual / ex ( ____ anos-maço)</span></label>
+      <label class="cx"><input type="checkbox"><span>Etilismo relevante</span></label>
+    </div>
+
+    <div class="condicional">
+      <div class="gatilho">Preencher somente se ICP/stent marcado ◆</div>
+      <div class="g g4">
+        <div class="campo"><span class="rot crit">Data da ICP</span><input class="ln" type="date" id="icpData"></div>
+        <div class="campo"><span class="rot crit">Contexto</span><input class="ln" placeholder="SCA ou DAC crônica"></div>
+        <div class="campo"><span class="rot crit">Tipo</span><input class="ln" placeholder="stent farmacológico / convencional / balão"></div>
+        <div class="campo"><span class="rot">Vaso(s) e complexidade</span><input class="ln" placeholder="TCE, bifurcação, multiarterial…"></div>
+      </div>
+      <div class="g g2">
+        <div class="campo"><span class="rot crit">Antiagregação atual e desde quando</span><input class="ln" placeholder="AAS / clopidogrel / ticagrelor / prasugrel"></div>
+        <div class="campo"><span class="rot">Houve trombose de stent, reestenose ou nova ICP?</span><input class="ln"></div>
+      </div>
+    </div>
+
+    <div class="condicional">
+      <div class="gatilho">Preencher somente se dispositivo cardíaco implantável</div>
+      <div class="g g4">
+        <div class="campo"><span class="rot">Tipo</span><input class="ln" placeholder="MP / CDI / TRC"></div>
+        <div class="campo"><span class="rot">Fabricante e modelo</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Dependência de estimulação</span><input class="ln" placeholder="sim / não / desconhecida"></div>
+        <div class="campo"><span class="rot">Última revisão</span><input class="ln" type="date"></div>
+      </div>
+    </div>
+
+    <div class="condicional">
+      <div class="gatilho">Preencher somente se valvopatia ou prótese</div>
+      <div class="g g3">
+        <div class="campo"><span class="rot">Lesão e gravidade</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Sintomática?</span><input class="ln" placeholder="sim / não / duvidoso"></div>
+        <div class="campo"><span class="rot">Último ecocardiograma</span><input class="ln" type="date"></div>
+      </div>
+    </div>
+
+    <div class="g g2">
+      <div class="campo"><span class="rot">Cirurgias e anestesias prévias — houve intercorrência?</span><input class="ln"></div>
+      <div class="campo"><span class="rot">Alergias</span><input class="ln"></div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section data-sec="sint">
+    <div class="sec-cab"><span class="sec-num">05</span><span class="sec-tit">Sintomas atuais</span><span class="sec-perg">O que ele sente hoje?</span></div>
+    <div class="nota">Marque presente/ausente para cada item — a ausência registrada vale tanto quanto a presença.</div>
+    <table>
+      <thead><tr><th style="width:34%">Sintoma</th><th style="width:14%">Presente</th><th>Desde quando, em que esforço, evolução recente</th></tr></thead>
+      <tbody>
+        <tr><td class="fx"><b>Dor/desconforto torácico</b><small>caracterizar: tipo, gatilho, alívio</small></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Dispneia aos esforços</b><small>classe funcional NYHA: ____</small></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Ortopneia</b></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Dispneia paroxística noturna</b></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Síncope ou pré-síncope</b></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Palpitações</b></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Edema de membros inferiores</b></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Claudicação</b></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+        <tr><td class="fx"><b>Queda recente da capacidade funcional</b><small>o que fazia há 6 meses e não faz mais</small></td><td class="fx"><label class="cx"><input type="checkbox"><span>sim</span></label> &nbsp;<label class="cx"><input type="checkbox"><span>não</span></label></td><td><input></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6 -->
+  <section data-sec="ef">
+    <div class="sec-cab"><span class="sec-num">06</span><span class="sec-tit">Exame físico</span><span class="sec-perg">O que eu vejo à beira do leito?</span></div>
+    <div class="g g4">
+      <div class="campo"><span class="rot">PA sentado (mmHg)</span><input class="ln"></div>
+      <div class="campo"><span class="rot">PA em pé / outro braço</span><input class="ln"></div>
+      <div class="campo"><span class="rot">FC (bpm) e ritmo</span><input class="ln"></div>
+      <div class="campo"><span class="rot">FR / SpO₂ (ar ambiente)</span><input class="ln"></div>
+    </div>
+    <div class="lista l3" style="margin-top:5px">
+      <label class="cx"><input type="checkbox"><span>Sopro — foco/intensidade/irradiação: ____________</span></label>
+      <label class="cx"><input type="checkbox"><span>Ritmo irregular</span></label>
+      <label class="cx"><input type="checkbox"><span>B3 / B4</span></label>
+      <label class="cx"><input type="checkbox"><span>Turgência jugular</span></label>
+      <label class="cx"><input type="checkbox"><span>Estertores pulmonares</span></label>
+      <label class="cx"><input type="checkbox"><span>Edema periférico — cacifo ____/4</span></label>
+      <label class="cx"><input type="checkbox"><span>Hepatomegalia / ascite</span></label>
+      <label class="cx"><input type="checkbox"><span>Ictus desviado ou sustentado</span></label>
+      <label class="cx"><input type="checkbox"><span>Sinais de hipoperfusão</span></label>
+      <label class="cx"><input type="checkbox"><span>Pulsos periféricos diminuídos/ausentes</span></label>
+      <label class="cx"><input type="checkbox"><span>Sopro carotídeo</span></label>
+      <label class="cx"><input type="checkbox"><span>Sinais de doença vascular / lesões tróficas</span></label>
+      <label class="cx"><input type="checkbox"><span>Exame cardiovascular sem alterações</span></label>
+      <label class="cx"><input type="checkbox"><span>Via aérea/pescoço com particularidade</span></label>
+      <label class="cx"><input type="checkbox"><span>Palidez / sinais de anemia</span></label>
+    </div>
+    <div class="campo" style="margin-top:6px"><span class="rot">Outros achados relevantes</span><textarea class="pauta"></textarea></div>
+  </section>
+
+  <!-- 7 -->
+  <section data-sec="cf">
+    <div class="sec-cab"><span class="sec-num">07</span><span class="sec-tit">Capacidade funcional</span><span class="sec-perg">O que ele consegue fazer?</span></div>
+    <div class="nota">Perguntar por atividades concretas, não por impressão geral. Se a resposta for "não faz", registrar <b>por quê</b> — limitação cardíaca, ortopédica, neurológica ou simplesmente falta de oportunidade mudam completamente a leitura.</div>
+
+    <div class="bloco">
+      <div class="bt">Âncoras práticas — o paciente consegue, sem parar por sintoma cardiovascular?</div>
+      <div class="lista l2">
+        <label class="cx"><input type="checkbox"><span>Cuidar de si (banho, vestir-se, comer)</span></label>
+        <label class="cx"><input type="checkbox"><span>Caminhar dentro de casa</span></label>
+        <label class="cx"><input type="checkbox"><span>Caminhar 1–2 quarteirões no plano</span></label>
+        <label class="cx"><input type="checkbox"><span>Subir <b>um</b> lance de escada</span></label>
+        <label class="cx"><input type="checkbox"><span>Subir <b>dois</b> lances de escada sem parar</span></label>
+        <label class="cx"><input type="checkbox"><span>Caminhada rápida / subir ladeira</span></label>
+        <label class="cx"><input type="checkbox"><span>Trabalho doméstico pesado</span></label>
+        <label class="cx"><input type="checkbox"><span>Exercício moderado regular</span></label>
+        <label class="cx"><input type="checkbox"><span>Esporte extenuante</span></label>
+      </div>
+      <div class="g g2" style="margin-top:6px">
+        <div class="campo"><span class="rot crit">O que limita, quando limita</span><input class="ln" placeholder="dispneia / dor torácica / fadiga / dor articular / não teve oportunidade"></div>
+        <div class="campo"><span class="rot">Comparação com 6–12 meses atrás</span><input class="ln" placeholder="igual / pior / melhor"></div>
+      </div>
+    </div>
+
+    <div class="bloco calc">
+      <div class="bt">DASI — Duke Activity Status Index (marque o que o paciente <em>consegue</em> fazer)</div>
+      <table class="dasi">
+        <tbody>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="2.75"></td><td class="txt">Cuidar de si mesmo: comer, vestir-se, tomar banho, usar o banheiro</td><td class="peso">2,75</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="1.75"></td><td class="txt">Andar dentro de casa</td><td class="peso">1,75</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="2.75"></td><td class="txt">Caminhar um ou dois quarteirões no plano</td><td class="peso">2,75</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="5.50"></td><td class="txt">Subir um lance de escada ou uma ladeira</td><td class="peso">5,50</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="8.00"></td><td class="txt">Correr uma curta distância</td><td class="peso">8,00</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="2.70"></td><td class="txt">Tarefas domésticas leves: tirar pó, lavar louça</td><td class="peso">2,70</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="3.50"></td><td class="txt">Tarefas domésticas moderadas: aspirar, varrer, carregar compras</td><td class="peso">3,50</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="8.00"></td><td class="txt">Tarefas domésticas pesadas: esfregar o chão, mover móveis pesados</td><td class="peso">8,00</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="4.50"></td><td class="txt">Trabalho no quintal: rastelar folhas, capinar, empurrar cortador</td><td class="peso">4,50</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="5.25"></td><td class="txt">Ter relação sexual</td><td class="peso">5,25</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="6.00"></td><td class="txt">Esporte recreativo moderado: dança, boliche, golfe, tênis em duplas</td><td class="peso">6,00</td></tr>
+          <tr><td class="mk"><input type="checkbox" class="dasi-i" data-p="7.50"></td><td class="txt">Esporte extenuante: natação, tênis individual, futebol, basquete</td><td class="peso">7,50</td></tr>
+        </tbody>
+      </table>
+      <div class="resultado" style="margin-top:6px">
+        <span class="res-item">Escore DASI <span id="dasiSoma">___</span></span>
+        <span class="res-item">VO₂ pico estimado (mL/kg/min) <span id="dasiVo2">___</span></span>
+        <span class="res-item">METs estimados <span id="dasiMets">___</span></span>
+      </div>
+      <div class="legenda">Escore = soma dos pesos marcados (máx. 58,2). VO₂ pico = 0,43 × DASI + 9,6. METs = VO₂ ÷ 3,5. Reconferir os pesos contra o artigo original antes do uso definitivo.</div>
+    </div>
+
+    <div class="bloco">
+      <div class="bt">Leitura da capacidade funcional — registrar a categoria, não a conduta</div>
+      <div class="lista l3">
+        <label class="cx"><input type="checkbox" data-g="cf"><span><b>Boa</b> / adequada</span></label>
+        <label class="cx"><input type="checkbox" data-g="cf"><span><b>Reduzida</b></span></label>
+        <label class="cx"><input type="checkbox" data-g="cf"><span><b>Indeterminada</b> — não avaliável por outro motivo</span></label>
+      </div>
+      <div class="legenda">Capacidade funcional reduzida, isoladamente, não indica teste de isquemia.</div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section data-sec="esc">
+    <div class="sec-cab"><span class="sec-num">08</span><span class="sec-tit">Escores e fragilidade</span><span class="sec-perg">Quanto pesa o risco clínico?</span></div>
+    <div class="bloco calc">
+      <div class="bt">RCRI — Revised Cardiac Risk Index (1 ponto por item)</div>
+      <div class="lista l2">
+        <label class="cx"><input type="checkbox" class="rcri"><span>Cirurgia de alto risco pelo critério do RCRI (intraperitoneal, intratorácica ou vascular suprainguinal)</span></label>
+        <label class="cx"><input type="checkbox" class="rcri"><span>História de doença isquêmica do coração</span></label>
+        <label class="cx"><input type="checkbox" class="rcri"><span>História de insuficiência cardíaca</span></label>
+        <label class="cx"><input type="checkbox" class="rcri"><span>História de doença cerebrovascular (AVC/AIT)</span></label>
+        <label class="cx"><input type="checkbox" class="rcri"><span>Diabetes em uso de insulina</span></label>
+        <label class="cx"><input type="checkbox" class="rcri"><span>Creatinina pré-operatória &gt; 2,0 mg/dL</span></label>
+      </div>
+      <div class="resultado" style="margin-top:6px">
+        <span class="res-item">RCRI <span id="rcriSoma">___</span></span>
+        <span class="res-item" style="align-self:center">a interpretação percentual será feita na etapa de estratificação, citando a fonte</span>
+      </div>
+    </div>
+
+    <div class="nota">Qual escore usar depende do tipo de cirurgia — ver <b>Anexo A</b>. Regra curta: RCRI para cirurgia não cardíaca <b>não vascular</b>; em cirurgia <b>arterial/vascular</b> o RCRI subestima, e o índice vascular-específico discrimina melhor.</div>
+
+    <div class="bloco">
+      <div class="bt">Dados adicionais para modelos por procedimento (NSQIP / MICA) — preencher se disponíveis</div>
+      <div class="g g4">
+        <div class="campo"><span class="rot">Classe ASA</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Estado funcional (independente / parcial / dependente)</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Creatinina (mg/dL) e data</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Dependência de O₂ / ventilação</span><input class="ln"></div>
+      </div>
+      <div class="g g2">
+        <div class="campo"><span class="rot">Escore aplicado e resultado</span><input class="ln" placeholder="ex.: ACS NSQIP — risco de evento cardíaco X%"></div>
+        <div class="campo"><span class="rot">Data do cálculo</span><input class="ln" type="date"></div>
+      </div>
+    </div>
+
+    <div class="condicional">
+      <div class="gatilho">Preencher somente em cirurgia arterial / vascular ◆ — variáveis do índice vascular-específico (VSG-CRI)</div>
+      <div class="lista l3">
+        <label class="cx"><input type="checkbox"><span>Doença coronariana</span></label>
+        <label class="cx"><input type="checkbox"><span>Insuficiência cardíaca</span></label>
+        <label class="cx"><input type="checkbox"><span>DPOC</span></label>
+        <label class="cx"><input type="checkbox"><span>Creatinina elevada / DRC</span></label>
+        <label class="cx"><input type="checkbox"><span>Diabetes em uso de insulina</span></label>
+        <label class="cx"><input type="checkbox"><span>Tabagismo atual</span></label>
+        <label class="cx"><input type="checkbox"><span>Revascularização coronariana prévia (ICP ou CRM)</span></label>
+        <label class="cx"><input type="checkbox"><span>Betabloqueador em uso prévio</span></label>
+        <label class="cx"><input type="checkbox"><span>Cirurgia arterial aberta (não endovascular)</span></label>
+      </div>
+      <div class="g g2" style="margin-top:6px">
+        <div class="campo"><span class="rot">Território e tipo de intervenção</span><input class="ln" placeholder="aorta aberta / EVAR / MMII aberta / endovascular periférica / carótida"></div>
+        <div class="campo"><span class="rot">Resultado do índice vascular, se calculado</span><input class="ln"></div>
+      </div>
+      <div class="legenda">Conferir a versão e os pesos do índice na publicação original antes de calcular; este bloco apenas garante que as variáveis sejam colhidas na consulta.</div>
+    </div>
+
+    <div class="bloco">
+      <div class="bt">Rastreio de fragilidade — não usar idade como substituto</div>
+      <div class="lista l2">
+        <label class="cx"><input type="checkbox"><span>Perda de peso não intencional no último ano</span></label>
+        <label class="cx"><input type="checkbox"><span>Exaustão / sensação de esgotamento habitual</span></label>
+        <label class="cx"><input type="checkbox"><span>Fraqueza (dificuldade para levantar-se da cadeira sem apoio)</span></label>
+        <label class="cx"><input type="checkbox"><span>Lentidão da marcha</span></label>
+        <label class="cx"><input type="checkbox"><span>Baixo nível de atividade física</span></label>
+        <label class="cx"><input type="checkbox"><span>Quedas no último ano — quantas: ____</span></label>
+        <label class="cx"><input type="checkbox"><span>Dependência para atividades básicas de vida diária</span></label>
+        <label class="cx"><input type="checkbox"><span>Déficit cognitivo conhecido ou suspeito</span></label>
+        <label class="cx"><input type="checkbox"><span>Polifarmácia (≥ 5 medicamentos)</span></label>
+        <label class="cx"><input type="checkbox"><span>Mora sozinho / suporte social frágil</span></label>
+      </div>
+      <div class="g g3" style="margin-top:6px">
+        <div class="campo"><span class="rot">Escala de fragilidade usada e resultado (se aplicada)</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Velocidade de marcha ou teste de levantar-se</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Impressão global</span><input class="ln" placeholder="robusto / vulnerável / frágil"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section data-sec="med">
+    <div class="sec-cab"><span class="sec-num">09</span><span class="sec-tit">Medicações em uso</span><span class="sec-perg">O que ele já toma?</span></div>
+    <div class="nota">A coluna "conduta" fica em branco nesta etapa: ela será preenchida depois, junto com a decisão. Registre <b>dose e horário da última tomada</b> dos antitrombóticos e do iSGLT2 — sem isso nenhuma recomendação é possível.</div>
+    <table>
+      <thead>
+        <tr><th style="width:30%">Medicação</th><th style="width:16%">Dose e posologia</th><th style="width:20%">Indicação</th><th style="width:16%">Última dose (data/hora)</th><th>Conduta perioperatória</th></tr>
+      </thead>
+      <tbody>
+        <tr class="grupo"><td colspan="5">Cardiovasculares e metabólicos</td></tr>
+        <tr><td><input placeholder="betabloqueador"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="IECA / BRA / ARNI"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="diurético"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="antagonista mineralocorticoide"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="bloqueador de canal de cálcio"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="estatina / outro hipolipemiante"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="antiarrítmico"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="grupo"><td colspan="5">Antidiabéticos ◆ — atenção ao iSGLT2</td></tr>
+        <tr><td><input placeholder="iSGLT2 (dapagliflozina, empagliflozina…)"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="metformina"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="insulina — esquema"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input placeholder="outro antidiabético (AR GLP-1, iDPP4, SU)"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="grupo"><td colspan="5">Antiagregantes e anticoagulantes ◆</td></tr>
+        <tr class="antitrom"><td><input placeholder="AAS"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="antitrom"><td><input placeholder="clopidogrel / ticagrelor / prasugrel"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="antitrom"><td><input placeholder="varfarina (INR: ____ em ___/___)"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="antitrom"><td><input placeholder="DOAC — qual"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="antitrom"><td><input placeholder="heparina / enoxaparina"></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr class="grupo"><td colspan="5">Demais medicações, fitoterápicos e suplementos</td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+        <tr><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+      </tbody>
+    </table>
+
+    <div class="condicional">
+      <div class="gatilho">Preencher se anticoagulado ◆</div>
+      <div class="g g4">
+        <div class="campo"><span class="rot">Indicação</span><input class="ln" placeholder="FA / TEV / prótese valvar / outra"></div>
+        <div class="campo"><span class="rot">Fármaco e dose exata</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Clearance de creatinina estimado</span><input class="ln" id="ccl"></div>
+        <div class="campo"><span class="rot">Eventos trombóticos ou hemorrágicos prévios</span><input class="ln"></div>
+      </div>
+      <div class="g g2">
+        <div class="campo"><span class="rot">CHA₂DS₂-VA / HAS-BLED, se calculados</span><input class="ln"></div>
+        <div class="campo"><span class="rot">Risco hemorrágico do procedimento, segundo o cirurgião</span><input class="ln"></div>
+      </div>
+    </div>
+    <div class="campo"><span class="rot">Adesão ao tratamento e uso irregular relatado</span><input class="ln"></div>
+  </section>
+
+  <!-- 10 -->
+  <section data-sec="ex">
+    <div class="sec-cab"><span class="sec-num">10</span><span class="sec-tit">Exames já disponíveis</span><span class="sec-perg">O que eu já tenho em mãos?</span></div>
+    <div class="nota">Registrar apenas o que <b>já existe</b>. A decisão sobre quais exames pedir vem depois — e só entra se puder mudar a conduta.</div>
+    <table>
+      <thead><tr><th style="width:26%">Exame</th><th style="width:14%">Data</th><th>Resultado relevante</th></tr></thead>
+      <tbody>
+        <tr><td class="fx"><b>Hemograma</b><small>Hb / Ht / plaquetas</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Função renal e eletrólitos</b><small>creatinina, ureia, TFGe, Na, K</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Glicemia / HbA1c</b></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Coagulograma</b><small>INR / TTPa</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>ECG</b><small>ritmo, FC, condução, sobrecargas, alterações de ST-T</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Radiografia de tórax</b></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Ecocardiograma</b><small>FEVE, valvas, PSAP, função diastólica</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Biomarcadores</b><small>BNP / NT-proBNP / troponina us</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Teste de isquemia</b><small>qual modalidade</small></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Angiotomografia / cineangiocoronariografia</b></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Outro</b></td><td><input></td><td><input></td></tr>
+        <tr><td class="fx"><b>Outro</b></td><td><input></td><td><input></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 11 -->
+  <section data-sec="sint_av">
+    <div class="sec-cab"><span class="sec-num">11</span><span class="sec-tit">Síntese do avaliador</span><span class="sec-perg">O que muda a conduta?</span></div>
+    <div class="g g3">
+      <div class="campo"><span class="rot crit">Risco do procedimento (do procedimento, não do paciente)</span><input class="ln" id="riscoProc" placeholder="baixo / intermediário / alto"></div>
+      <div class="campo"><span class="rot">RCRI</span><input class="ln" id="rcriEco" readonly></div>
+      <div class="campo"><span class="rot">Capacidade funcional</span><input class="ln" placeholder="boa / reduzida / indeterminada"></div>
+    </div>
+    <div class="campo"><span class="rot">Condições cardiovasculares relevantes identificadas</span><textarea class="pauta"></textarea></div>
+    <div class="campo"><span class="rot">Fatores modificáveis antes da cirurgia</span><textarea class="pauta"></textarea></div>
+    <div class="campo"><span class="rot">Exames solicitados — e qual decisão cada um pode mudar</span><textarea class="pauta-g"></textarea></div>
+    <div class="campo"><span class="rot">Orientações medicamentosas</span><textarea class="pauta-g"></textarea></div>
+    <div class="campo"><span class="rot">Conclusão e recomendações perioperatórias</span><textarea class="pauta-g"></textarea></div>
+
+    <div class="assin">
+      <div class="linha-assin">Assinatura e carimbo</div>
+      <div class="linha-assin">Data ___/___/______</div>
+    </div>
+    <div class="g g2" style="margin-top:12px">
+      <div class="campo"><span class="rot">Médico avaliador</span><input class="ln" id="avaliador" placeholder="Dr(a)."></div>
+      <div class="campo"><span class="rot">CRM / UF · especialidade</span><input class="ln" id="crm"></div>
+    </div>
+  </section>
+
+  <!-- RESUMO PROCESSADO -->
+  <section class="resumo" data-sec="resumo">
+    <div class="sec-cab"><span class="sec-num">12</span><span class="sec-tit">Resumo processado</span><span class="sec-perg">O que foi colhido</span></div>
+    <div class="nota so-tela">Compilação automática do que você marcou acima — atualiza sozinha a cada campo preenchido. É compilação, não interpretação: nenhuma linha aqui classifica risco nem indica exame.</div>
+    <div id="resumoCorpo"></div>
+    <div class="pendencias" id="resumoPend"></div>
+  </section>
+
+  <!-- ANEXO A -->
+  <section class="anexo" id="anexos">
+    <div class="sel">Anexo A · referência de bolso</div>
+    <h2>Qual escore usar em qual cirurgia</h2>
+    <div class="chamada">Nenhum destes escores indica exame. Todos respondem à mesma pergunta — <em>qual a probabilidade de evento cardiovascular neste paciente, nesta cirurgia</em> — e diferem no que foi usado para derivá-los. O erro comum é aplicar um índice fora da população em que ele foi construído.</div>
+
+    <table class="ref">
+      <thead><tr><th style="width:23%">Índice</th><th style="width:31%">Onde funciona melhor</th><th>Onde não usar / limitação</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>RCRI (Lee)<small>6 variáveis, à beira do leito</small></td>
+          <td>Cirurgia não cardíaca <b>não vascular</b> de médio e grande porte. É o índice de referência das diretrizes e o que este formulário calcula na Seção 08.</td>
+          <td>Desempenho fraco em <b>cirurgia vascular arterial</b> — tende a subestimar. Não foi construído para emergência. Trata todas as cirurgias "de alto risco" como uma categoria única, sem distinguir uma colecistectomia de uma esofagectomia.</td>
+        </tr>
+        <tr>
+          <td>Gupta / NSQIP MICA<small>idade, estado funcional, creatinina, ASA, tipo de procedimento</small></td>
+          <td>Quando se quer estimativa de <b>IAM ou parada cardíaca</b> perioperatória com granularidade por tipo de procedimento, incluindo cirurgias que o RCRI agrupa mal.</td>
+          <td>Não inclui IAM prévio, insuficiência cardíaca nem AVC entre as variáveis — pode <b>subestimar em cardiopata conhecido</b>. Derivado de população norte-americana.</td>
+        </tr>
+        <tr>
+          <td>ACS NSQIP Surgical Risk Calculator<small>calculadora por código de procedimento, ~20 variáveis</small></td>
+          <td>Quando importam desfechos <b>além do cardíaco</b> (mortalidade, complicações, tempo de internação, alta para reabilitação) e quando se quer conversar risco com paciente e cirurgião em números concretos.</td>
+          <td>Exige acesso <b>online</b> — não roda offline junto com este formulário. Calibração variável fora da população de origem; os dados de entrada precisam ser fiéis, senão o número engana.</td>
+        </tr>
+        <tr>
+          <td>Índice vascular-específico<small>VSG-CRI — Vascular Study Group</small></td>
+          <td><b>Cirurgia arterial</b>: aorta, revascularização de membros inferiores, carótida, procedimentos endovasculares. Foi derivado nessa população e discrimina melhor que o RCRI aqui.</td>
+          <td>Não usar fora do território vascular. Menos difundido — confira a versão e os pesos na publicação original antes de calcular.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="bloco" style="margin-top:12px">
+      <div class="bt">Escolha rápida</div>
+      <div class="lista l2">
+        <label class="cx"><input type="checkbox"><span><b>Cirurgia geral, ortopédica, urológica, ginecológica, torácica</b> → RCRI. Some o NSQIP se quiser número por procedimento para conversar com o paciente.</span></label>
+        <label class="cx"><input type="checkbox"><span><b>Cirurgia arterial / vascular</b> → índice vascular-específico. Se usar o RCRI aqui, registre que ele pode subestimar.</span></label>
+        <label class="cx"><input type="checkbox"><span><b>Cardiopata conhecido</b> (IAM, IC, AVC prévios) → RCRI captura isso; o MICA, não. Não troque um pelo outro sem notar a diferença.</span></label>
+        <label class="cx"><input type="checkbox"><span><b>Urgência / emergência</b> → nenhum índice foi validado neste cenário. O escore vira contexto, não decisão: o que manda é o tempo disponível.</span></label>
+      </div>
+    </div>
+
+    <div class="ressalva">
+      <b>Antes de transformar escore em conduta:</b> um índice estima probabilidade de evento — ele não diz que exame pedir. A pergunta seguinte continua sendo a mesma: <b>o resultado deste exame mudaria alguma coisa</b> no manejo, no timing, no tratamento ou na monitorização? Nunca some pontos de índices diferentes, e sempre registre qual índice gerou o percentual citado no parecer.
+    </div>
+  </section>
+
+  <!-- ANEXO B -->
+  <section class="anexo">
+    <div class="sel">Anexo B · referência de bolso</div>
+    <h2>Risco inerente ao procedimento</h2>
+    <div class="chamada">Este é o risco <b>da cirurgia</b>, estimado antes de olhar para o paciente — a probabilidade de morte cardiovascular ou infarto em 30 dias em um paciente médio submetido àquele procedimento. Ele se soma ao risco clínico, mas não se confunde com ele: uma cirurgia de alto risco em paciente hígido e uma cirurgia de baixo risco em cardiopata grave são situações diferentes, e nenhuma das duas se resolve olhando só uma das colunas.</div>
+
+    <div class="faixa f-baixo">
+      <div class="ft"><span class="fn">Baixo</span><span class="fp">&lt; 1% de evento cardiovascular em 30 dias</span></div>
+      <ul>
+        <li>Procedimentos superficiais e de pele</li>
+        <li>Mama</li>
+        <li>Odontológicos</li>
+        <li>Endócrinos: tireoide</li>
+        <li>Oftalmológicos</li>
+        <li>Reconstrutivos / plásticos menores</li>
+        <li>Carótida <b>assintomática</b> (endarterectomia ou stent)</li>
+        <li>Ginecológicos menores</li>
+        <li>Ortopédicos menores (ex.: meniscectomia)</li>
+        <li>Urológicos menores (ex.: ressecção transuretral de próstata)</li>
+        <li>Varizes de membros inferiores</li>
+      </ul>
+    </div>
+
+    <div class="faixa f-inter">
+      <div class="ft"><span class="fn">Intermediário</span><span class="fp">1 – 5% de evento cardiovascular em 30 dias</span></div>
+      <ul>
+        <li>Intraperitoneais: colecistectomia, esplenectomia, correção de hérnia hiatal</li>
+        <li>Carótida <b>sintomática</b> (endarterectomia ou stent)</li>
+        <li>Angioplastia arterial periférica</li>
+        <li>Correção endovascular de aneurisma (EVAR)</li>
+        <li>Cabeça e pescoço</li>
+        <li>Neurocirurgia e ortopedia de grande porte: quadril, coluna</li>
+        <li>Urológicas e ginecológicas de grande porte</li>
+        <li>Transplante renal</li>
+        <li>Intratorácicas de menor porte</li>
+      </ul>
+    </div>
+
+    <div class="faixa f-alto">
+      <div class="ft"><span class="fn">Alto</span><span class="fp">&gt; 5% de evento cardiovascular em 30 dias</span></div>
+      <ul>
+        <li>Cirurgia de aorta e vascular de grande porte</li>
+        <li>Revascularização aberta de membros inferiores, amputação, tromboembolectomia</li>
+        <li>Duodenopancreatectomia</li>
+        <li>Ressecção hepática, cirurgia de vias biliares</li>
+        <li>Esofagectomia</li>
+        <li>Correção de perfuração de víscera</li>
+        <li>Adrenalectomia</li>
+        <li>Cistectomia total</li>
+        <li>Pneumonectomia</li>
+        <li>Transplante pulmonar ou hepático</li>
+      </ul>
+    </div>
+
+    <div class="ressalva">
+      <b>Quatro observações que mudam a leitura da tabela.</b>
+      &nbsp;<b>1.</b> A faixa descreve o procedimento em condições eletivas: <b>urgência e emergência deslocam o risco para cima</b>, e a mesma operação feita às pressas não pertence mais à mesma linha.
+      &nbsp;<b>2.</b> Duração prolongada, grande perda volêmica e sangramento esperado agravam o que a tabela mostra.
+      &nbsp;<b>3.</b> Via de acesso importa: a abordagem endovascular ou videolaparoscópica costuma pesar menos que a aberta equivalente.
+      &nbsp;<b>4.</b> Nem toda diretriz usa três faixas — a americana trabalha com corte binário, <b>baixo (&lt;1%)</b> contra <b>elevado (≥1%)</b>, o que junta em uma só categoria o que aqui aparece como intermediário e alto. Ao citar uma faixa no parecer, diga qual classificação usou.
+      <br><br>
+      <b>Antes do uso definitivo:</b> confira esta lista contra a tabela de procedimentos da diretriz brasileira vigente — a alocação de itens específicos varia entre edições e entre diretrizes, e nenhum sistema deve reproduzir de memória uma tabela que existe publicada.
+    </div>
+  </section>
+
+  <!-- caderno de campo -->
+  <section class="so-tela" style="margin-top:22px">
+    <div class="sec-cab"><span class="sec-num">◆</span><span class="sec-tit">Caderno de campo</span><span class="sec-perg">Para a próxima versão</span></div>
+    <div class="nota">Enquanto usa o formulário com pacientes reais: o que faltou, o que sobrou, que campo você teve que improvisar na margem. É daqui que sai a especificação clínica do sistema.</div>
+    <div class="campo"><span class="rot">Anotações</span><textarea class="pauta-g" id="caderno"></textarea></div>
+  </section>
+
+  <div class="rodape">
+    <span>Instrumento de coleta clínica. Não substitui a avaliação médica individualizada nem gera, por si, recomendação de conduta.</span>
+    <span>Formulário desenvolvido por Dr. André Rossanno · v2 · 2026</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var CHAVE = "preopFormularioV1";
+
+  /* ---------- cálculos ---------- */
+  function num(v){ v = String(v||"").replace(",", "."); var n = parseFloat(v); return isFinite(n) ? n : null; }
+
+  function calcIdade(){
+    var dn = document.getElementById("dn").value, alvo = document.getElementById("idade");
+    if(!dn){ alvo.value = ""; return; }
+    var d = new Date(dn + "T00:00:00"), h = new Date();
+    if(isNaN(d.getTime())){ alvo.value = ""; return; }
+    var a = h.getFullYear() - d.getFullYear();
+    var m = h.getMonth() - d.getMonth();
+    if(m < 0 || (m === 0 && h.getDate() < d.getDate())) a--;
+    alvo.value = (a >= 0 && a < 130) ? a + " anos" : "";
+  }
+
+  function calcImc(){
+    var p = num(document.getElementById("peso").value),
+        a = num(document.getElementById("altura").value),
+        alvo = document.getElementById("imc");
+    if(a && a > 3) a = a/100;              /* aceita 170 ou 1,70 */
+    if(!p || !a){ alvo.value = ""; return; }
+    alvo.value = (p/(a*a)).toFixed(1).replace(".", ",");
+  }
+
+  function calcDasi(){
+    var itens = document.querySelectorAll(".dasi-i"), soma = 0, algum = false;
+    itens.forEach(function(i){ if(i.checked){ soma += parseFloat(i.dataset.p); algum = true; } });
+    var vo2 = 0.43*soma + 9.6, mets = vo2/3.5;
+    document.getElementById("dasiSoma").textContent = algum ? soma.toFixed(2).replace(".", ",") : "___";
+    document.getElementById("dasiVo2").textContent  = algum ? vo2.toFixed(1).replace(".", ",")  : "___";
+    document.getElementById("dasiMets").textContent = algum ? mets.toFixed(1).replace(".", ",") : "___";
+  }
+
+  function calcRcri(){
+    var n = 0, algum = false;
+    document.querySelectorAll(".rcri").forEach(function(i){ if(i.checked){ n++; algum = true; } });
+    document.getElementById("rcriSoma").textContent = algum ? String(n) : "___";
+    document.getElementById("rcriEco").value = algum ? (n + (n === 1 ? " ponto" : " pontos")) : "";
+  }
+
+  /* ---------- grupos de escolha única (comportam-se como rádio, mas desmarcáveis) ---------- */
+  document.querySelectorAll("input[data-g]").forEach(function(cx){
+    cx.addEventListener("change", function(){
+      if(!cx.checked) return;
+      document.querySelectorAll('input[data-g="' + cx.dataset.g + '"]').forEach(function(o){
+        if(o !== cx) o.checked = false;
+      });
+      salvar();
+    });
+  });
+
+  /* ---------- persistência local ---------- */
+  function campos(){ return Array.prototype.slice.call(document.querySelectorAll("input, textarea")); }
+
+  function salvar(){
+    try{
+      var dados = campos().map(function(c){
+        return c.type === "checkbox" ? (c.checked ? 1 : 0) : c.value;
+      });
+      localStorage.setItem(CHAVE, JSON.stringify(dados));
+    }catch(e){ /* modo privado ou storage cheio: segue sem salvar */ }
+  }
+
+  function carregar(){
+    var bruto;
+    try{ bruto = localStorage.getItem(CHAVE); }catch(e){ return; }
+    if(!bruto) return;
+    var dados;
+    try{ dados = JSON.parse(bruto); }catch(e){ return; }
+    var cs = campos();
+    if(!Array.isArray(dados) || dados.length !== cs.length) return;   /* versão diferente: ignora */
+    cs.forEach(function(c, i){
+      if(c.hasAttribute("readonly")) return;
+      if(c.type === "checkbox") c.checked = !!dados[i];
+      else c.value = dados[i];
+    });
+  }
+
+  function recalcular(){ calcIdade(); calcImc(); calcDasi(); calcRcri(); montarResumo(); }
+
+  document.addEventListener("input", function(){ recalcular(); salvar(); });
+  document.addEventListener("change", function(){ recalcular(); salvar(); });
+
+  document.getElementById("btnLimpar").addEventListener("click", function(){
+    if(!confirm("Apagar todos os campos preenchidos neste dispositivo? Esta ação não pode ser desfeita.")) return;
+    campos().forEach(function(c){ if(c.type === "checkbox") c.checked = false; else c.value = ""; });
+    try{ localStorage.removeItem(CHAVE); }catch(e){}
+    recalcular();
+  });
+
+  /* ---------- anexos na impressão ---------- */
+  var CHAVE_ANEXO = "preopAnexoImpressao";
+  var btnAnexo = document.getElementById("btnAnexo");
+
+  function pintarBotaoAnexo(){
+    var oculto = document.body.classList.contains("sem-anexo");
+    btnAnexo.textContent = "Anexos na impressão: " + (oculto ? "excluir" : "incluir");
+    btnAnexo.setAttribute("aria-pressed", oculto ? "false" : "true");
+  }
+
+  try{
+    if(localStorage.getItem(CHAVE_ANEXO) === "0") document.body.classList.add("sem-anexo");
+  }catch(e){}
+
+  btnAnexo.addEventListener("click", function(){
+    var oculto = document.body.classList.toggle("sem-anexo");
+    try{ localStorage.setItem(CHAVE_ANEXO, oculto ? "0" : "1"); }catch(e){}
+    pintarBotaoAnexo();
+  });
+  pintarBotaoAnexo();
+
+  /* ============================================================
+     RESUMO PROCESSADO — camada documental.
+     Só compila o que foi marcado acima. Não classifica risco,
+     não indica exame, não conclui nada por conta própria.
+     ============================================================ */
+  function sec(nome){ return document.querySelector('section[data-sec="' + nome + '"]'); }
+
+  function txtRotulo(cx){
+    var s = cx.closest("label") ? cx.closest("label").querySelector("span") : null;
+    if(!s) return "";
+    return s.textContent.replace(/\s+/g, " ").replace(/\s*—\s*_+.*$/, "").replace(/:\s*_+/g, "").trim();
+  }
+
+  function marcados(nome, filtro){
+    var raiz = sec(nome); if(!raiz) return [];
+    var lista = [];
+    raiz.querySelectorAll('label.cx input[type=checkbox]').forEach(function(cx){
+      if(!cx.checked) return;
+      var t = txtRotulo(cx);
+      if(!t) return;
+      if(filtro && !filtro(t, cx)) return;
+      lista.push(t);
+    });
+    return lista;
+  }
+
+  function esc(t){
+    return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  function linha(rot, valor, destaque){
+    var vazio = !valor || !String(valor).trim();
+    return '<div class="rl' + (destaque && !vazio ? " destaque" : "") + '">' +
+             '<dt>' + esc(rot) + '</dt>' +
+             '<dd>' + (vazio ? '<span class="vazio">não registrado</span>' : valor) + '</dd>' +
+           '</div>';
+  }
+
+  function titulo(t){ return '<div class="r-titulo">' + esc(t) + '</div>'; }
+
+  function val(id){ var e = document.getElementById(id); return e ? e.value.trim() : ""; }
+
+  function grupoEscolhido(g){
+    var m = document.querySelector('input[data-g="' + g + '"]:checked');
+    return m ? txtRotulo(m) : "";
+  }
+
+  function montarResumo(){
+    var alvo = document.getElementById("resumoCorpo");
+    if(!alvo) return;
+    var h = "";
+
+    /* cabeçalho */
+    var nome = val("nome") || "Paciente não identificado";
+    var ident = [];
+    if(val("idade")) ident.push(val("idade"));
+    if(val("sexo")) ident.push(val("sexo"));
+    if(val("imc")) ident.push("IMC " + val("imc") + " kg/m²");
+    if(val("registro")) ident.push("reg. " + val("registro"));
+    h += '<div class="r-cabecalho"><div class="rn">' + esc(nome) + '</div>' +
+         '<div class="rs">' + (ident.length ? esc(ident.join(" · ")) : "dados antropométricos não registrados") + '</div></div>';
+
+    /* procedimento */
+    var carater = grupoEscolhido("carater");
+    var procLinha = val("proc") || "";
+    if(val("territorio")) procLinha += (procLinha ? " — " : "") + val("territorio");
+    if(val("via")) procLinha += (procLinha ? " · " : "") + val("via");
+    h += titulo("Procedimento");
+    h += linha("Cirurgia", esc(procLinha));
+    h += linha("Caráter", carater ? "<b>" + esc(carater) + "</b>" : "", /^(Urgência|Emergência|Tempo-sensível)/.test(carater));
+    h += linha("Data prevista", esc(val("dataCx")));
+    h += linha("Risco atribuído", esc(val("riscoProc")));
+    h += linha("Anestesia", esc(val("anestesia")));
+
+    /* instabilidade */
+    var inst = marcados("inst", function(t){ return !/^Nenhuma das condições/.test(t); });
+    var negou = marcados("inst", function(t){ return /^Nenhuma das condições/.test(t); }).length > 0;
+    h += titulo("Condições cardiovasculares instáveis");
+    if(inst.length){
+      h += linha("Presentes", "<b>" + esc(inst.join(" · ")) + "</b>", true);
+      if(val("instavelTxt")) h += linha("Descrição", esc(val("instavelTxt")));
+    } else if(negou){
+      h += linha("Rastreio", "Nenhuma condição instável identificada nesta avaliação.");
+    } else {
+      h += linha("Rastreio", "");
+    }
+
+    /* antecedentes */
+    var hist = marcados("hist");
+    h += titulo("Antecedentes e comorbidades");
+    h += linha("Marcados", hist.length ? esc(hist.join(" · ")) : "");
+    if(document.getElementById("hx_stent") && document.getElementById("hx_stent").checked){
+      h += linha("ICP / stent", val("icpData") ? "data " + esc(val("icpData")) : "<b>data da ICP não registrada</b>", !val("icpData"));
+    }
+
+    /* sintomas — só os marcados como presentes */
+    var sintomas = [];
+    var rSint = sec("sint");
+    if(rSint){
+      rSint.querySelectorAll("tbody tr").forEach(function(tr){
+        var cxs = tr.querySelectorAll('input[type=checkbox]');
+        if(cxs.length < 1 || !cxs[0].checked) return;
+        var b = tr.querySelector("td.fx b");
+        var detalhe = tr.querySelector("td:last-child input");
+        var t = b ? b.textContent.trim() : "";
+        if(detalhe && detalhe.value.trim()) t += " (" + detalhe.value.trim() + ")";
+        if(t) sintomas.push(t);
+      });
+    }
+    h += titulo("Sintomas");
+    h += linha("Presentes", sintomas.length ? "<b>" + esc(sintomas.join(" · ")) + "</b>" : "Nenhum sintoma marcado como presente.");
+
+    /* exame físico */
+    var sv = [];
+    var rEf = sec("ef");
+    if(rEf){
+      rEf.querySelectorAll(".campo input.ln").forEach(function(i){
+        if(i.value.trim()){
+          var r = i.parentElement.querySelector(".rot");
+          sv.push((r ? r.textContent.replace(/\s+/g," ").trim() + ": " : "") + i.value.trim());
+        }
+      });
+    }
+    var achados = marcados("ef");
+    h += titulo("Exame físico");
+    h += linha("Sinais vitais", esc(sv.join(" · ")));
+    h += linha("Achados", achados.length ? esc(achados.join(" · ")) : "");
+
+    /* capacidade funcional */
+    var dasi = document.getElementById("dasiSoma").textContent;
+    var mets = document.getElementById("dasiMets").textContent;
+    var cfTxt = (dasi !== "___")
+      ? "DASI " + dasi + " · " + mets + " METs estimados"
+      : "";
+    h += titulo("Capacidade funcional");
+    h += linha("DASI", esc(cfTxt));
+    h += linha("Categoria", grupoEscolhido("cf") ? "<b>" + esc(grupoEscolhido("cf")) + "</b>" : "");
+    var limita = sec("cf") ? sec("cf").querySelector('input[placeholder*="dispneia"]') : null;
+    h += linha("O que limita", limita ? esc(limita.value.trim()) : "");
+
+    /* escores e fragilidade */
+    var rcri = document.getElementById("rcriSoma").textContent;
+    var itensRcri = marcados("esc", function(t, cx){ return cx.classList.contains("rcri"); });
+    h += titulo("Escores e fragilidade");
+    h += linha("RCRI", rcri === "___" ? "" : "<b>" + esc(rcri) + "</b>" + (itensRcri.length ? " — " + esc(itensRcri.join("; ")) : " (nenhum item marcado)"));
+    var fragil = marcados("esc", function(t, cx){
+      return !cx.classList.contains("rcri") && !cx.closest(".condicional");
+    });
+    h += linha("Fragilidade", fragil.length ? esc(fragil.length + " marcador(es): " + fragil.join(" · ")) : "");
+    var vasc = marcados("esc", function(t, cx){ return !!cx.closest(".condicional"); });
+    if(vasc.length) h += linha("Índice vascular", esc(vasc.join(" · ")));
+
+    /* medicações */
+    var meds = [];
+    var faltaDose = [];
+    var rMed = sec("med");
+    if(rMed){
+      rMed.querySelectorAll("tbody tr").forEach(function(tr){
+        if(tr.classList.contains("grupo")) return;
+        var ins = tr.querySelectorAll("input");
+        if(ins.length < 4) return;
+        var nomeM = ins[0].value.trim();
+        if(!nomeM) return;
+        var partes = [nomeM];
+        if(ins[1].value.trim()) partes.push(ins[1].value.trim());
+        if(ins[2].value.trim()) partes.push(ins[2].value.trim());
+        if(ins[3].value.trim()) partes.push("última dose " + ins[3].value.trim());
+        else if(tr.classList.contains("antitrom")) faltaDose.push(nomeM);
+        meds.push(partes.join(" · "));
+      });
+    }
+    h += titulo("Medicações em uso");
+    h += linha("Registradas", meds.length ? esc(meds.join(" | ")) : "");
+
+    /* exames já disponíveis */
+    var exames = [];
+    var rEx = sec("ex");
+    if(rEx){
+      rEx.querySelectorAll("tbody tr").forEach(function(tr){
+        var b = tr.querySelector("td.fx b");
+        var ins = tr.querySelectorAll("input");
+        if(ins.length < 2) return;
+        var data = ins[0].value.trim(), res = ins[1].value.trim();
+        if(!data && !res) return;
+        exames.push((b ? b.textContent.trim() : "Exame") + (data ? " (" + data + ")" : "") + (res ? ": " + res : ""));
+      });
+    }
+    h += titulo("Exames já disponíveis");
+    h += linha("Em mãos", exames.length ? esc(exames.join(" | ")) : "Nenhum exame registrado.");
+
+    alvo.innerHTML = h;
+    montarPendencias(faltaDose);
+  }
+
+  function montarPendencias(faltaDose){
+    var alvo = document.getElementById("resumoPend");
+    if(!alvo) return;
+    var p = [];
+
+    if(!val("nome")) p.push("Nome do paciente");
+    if(!val("idade")) p.push("Data de nascimento / idade");
+    if(!val("proc")) p.push("Procedimento proposto");
+    if(!grupoEscolhido("carater")) p.push("Caráter do procedimento — eletiva, tempo-sensível, urgência ou emergência");
+
+    var rInst = sec("inst");
+    var algumInst = rInst && rInst.querySelector('label.cx input[type=checkbox]:checked');
+    if(!algumInst) p.push("Rastreio de condições instáveis — nada marcado, nem a linha de ausência");
+
+    if(!grupoEscolhido("cf")) p.push("Categoria da capacidade funcional");
+    if(!val("riscoProc")) p.push("Risco atribuído ao procedimento (Seção 11)");
+
+    var stent = document.getElementById("hx_stent");
+    if(stent && stent.checked && !val("icpData")) p.push("Data da ICP — sem ela não há decisão possível sobre antiagregação");
+
+    if(faltaDose && faltaDose.length) p.push("Última dose de: " + faltaDose.join(", "));
+
+    var temAntico = false;
+    var rMed = sec("med");
+    if(rMed){
+      rMed.querySelectorAll("tr.antitrom").forEach(function(tr){
+        var ins = tr.querySelectorAll("input");
+        if(ins[0] && ins[0].value.trim() && /varfarina|doac|apixab|rivarox|dabig|edox/i.test(ins[0].placeholder + " " + ins[0].value)) temAntico = true;
+      });
+    }
+    if(temAntico && !val("ccl")) p.push("Clearance de creatinina — obrigatório antes de qualquer conduta com anticoagulante");
+
+    if(!val("avaliador")) p.push("Médico avaliador e CRM");
+
+    if(p.length){
+      alvo.innerHTML = '<div class="pt">Pendências antes de decidir</div><ul>' +
+        p.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
+    } else {
+      alvo.innerHTML = '<div class="pt">Pendências antes de decidir</div>' +
+        '<div class="completo">Todos os campos críticos foram preenchidos.</div>';
+    }
+  }
+
+  /* ---------- imprimir só o resumo ---------- */
+  document.getElementById("btnResumo").addEventListener("click", function(){
+    montarResumo();
+    document.body.classList.add("so-resumo");
+    window.print();
+    setTimeout(function(){ document.body.classList.remove("so-resumo"); }, 1200);
+  });
+  window.addEventListener("afterprint", function(){
+    document.body.classList.remove("so-resumo");
+  });
+
+  carregar();
+  recalcular();
+})();
+</script>
+</body>
+</html>
