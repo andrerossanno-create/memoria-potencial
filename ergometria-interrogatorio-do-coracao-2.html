@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Teste Ergométrico — O Interrogatório do Coração | Hipocampo Supremo da Memorização · TEC 2026</title>
+<meta name="description" content="Capítulo interativo sobre teste ergométrico: fisiologia do esforço, curvas de FC e PA, ST, critérios de interrupção, capacidade funcional e prognóstico. Dr. André Rossanno.">
+<!--
+  ============================================================
+  HIPOCAMPO SUPREMO DA MEMORIZAÇÃO — DAC / SÍNDROME CORONARIANA CRÔNICA
+  TESTE ERGOMÉTRICO — "O INTERROGATÓRIO DO CORAÇÃO"
+  Autor: Dr. André Rossanno · TEC 2026
+  Arquivo único, offline, sem bibliotecas externas, sem CDN, sem imagens.
+  Progresso em localStorage (chave LS_KEY abaixo).
+  ------------------------------------------------------------
+  FONTE PRINCIPAL: Carvalho T, Freitas OGA, Chalela WA, et al.
+  Diretriz Brasileira de Ergometria em População Adulta - 2024.
+  Arq Bras Cardiol. 2024;121(3):e20240110. DOI: 10.36660/abc.20240110
+  (texto integral recuperado via PubMed Central, PMC11656589).
+  Todos os pontos numéricos marcados "SBC 2024 OK" foram conferidos
+  contra o texto integral da diretriz. O unico item marcado
+  "NAO CONSTA NA SBC 2024" e a escala verbal de METs, de uso didatico.
+  ============================================================
+-->
+<style>
+:root{
+  /* --- paleta funcional do capítulo (§44 do prompt) --- */
+  --papel:#f6f7f9;
+  --branco:#ffffff;
+  --tinta:#111c2e;          /* navy estrutural */
+  --tinta2:#33415c;
+  --cinza:#e6e9ef;
+  --cinza2:#f0f2f6;
+  --texto:#1d2735;
+  --suave:#5b6779;
+
+  --azul:#10758f;           /* fisiologia normal / conceito */
+  --azul-esc:#0b5468;
+  --azul-luz:#e8f4f8;
+
+  --verde:#1e8f5e;          /* recuperação / resposta preservada */
+  --verde-luz:#e7f6ee;
+
+  --ambar:#b57500;          /* atenção / resposta anormal */
+  --ambar-luz:#fff4dd;
+
+  --vermelho:#c0392b;       /* interrupção / perigo */
+  --vermelho-esc:#8f2418;
+  --vermelho-luz:#fdeceb;
+
+  --roxo:#6b4fa1;           /* prognóstico */
+  --roxo-luz:#f0ecf9;
+
+  --sombra:0 2px 4px rgba(17,28,46,.06), 0 8px 24px rgba(17,28,46,.07);
+  --sombra-alta:0 10px 40px rgba(17,28,46,.16);
+  --raio:16px;
+  --max:1080px;
+  --nav-h:56px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px)}
+body{
+  margin:0;background:var(--papel);color:var(--texto);
+  font-family:'Nunito','Trebuchet MS',Arial,sans-serif;
+  font-size:17px;line-height:1.62;-webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Nunito','Trebuchet MS',Arial,sans-serif;line-height:1.2;margin:0 0 .5em}
+h2{font-size:1.6rem;font-weight:900;color:var(--tinta)}
+h3{font-size:1.16rem;font-weight:800;color:var(--tinta)}
+h4{font-size:1rem;font-weight:800;color:var(--tinta)}
+p{margin:0 0 .85em}
+b,strong{color:var(--tinta);font-weight:800}
+.mono{font-family:'IBM Plex Mono','Courier New',monospace}
+.assin{font-family:'Dancing Script','Brush Script MT',cursive;font-size:1.5rem;color:var(--tinta)}
+a{color:var(--azul-esc)}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px;border-radius:6px}
+button{font-family:inherit;font-size:1rem;cursor:pointer;border:0;background:none;color:inherit}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+section.sec{padding:38px 0 10px;scroll-margin-top:70px}
+.sechead{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;border-top:3px solid var(--cinza);padding-top:16px}
+.secnum{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.78rem;font-weight:700;letter-spacing:.08em;
+  background:var(--tinta);color:#fff;padding:5px 9px;border-radius:8px;white-space:nowrap;margin-top:4px}
+.sechead .kick{font-family:'IBM Plex Mono','Courier New',monospace;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--suave);display:block;margin-bottom:2px}
+.card{background:var(--branco);border:1px solid var(--cinza);border-radius:var(--raio);padding:18px;box-shadow:var(--sombra);margin:0 0 16px}
+.grid{display:grid;gap:14px}
+@media(min-width:760px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+.center{text-align:center}
+.mini{font-size:.86rem;color:var(--suave)}
+.tiny{font-size:.78rem;color:var(--suave)}
+
+/* ---------- nav ---------- */
+nav.top{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--cinza);height:var(--nav-h);display:flex;align-items:center}
+nav.top .wrap{display:flex;align-items:center;gap:10px;width:100%}
+.brand{display:flex;align-items:center;gap:8px;font-weight:900;color:var(--tinta);font-size:.9rem;line-height:1.1}
+.brand small{display:block;font-weight:600;font-size:.66rem;color:var(--suave);letter-spacing:.04em}
+.navbtns{margin-left:auto;display:flex;gap:6px;align-items:center}
+.nbtn{border:1px solid var(--cinza);background:#fff;border-radius:999px;padding:6px 11px;font-size:.76rem;font-weight:800;color:var(--tinta2)}
+.nbtn.on{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+.progbar{position:fixed;top:var(--nav-h);left:0;height:3px;background:linear-gradient(90deg,var(--azul),var(--verde));width:0;z-index:59;transition:width .2s}
+#menuPanel{display:none;position:fixed;inset:var(--nav-h) 0 0 0;background:rgba(255,255,255,.985);z-index:58;overflow:auto;padding:18px 0 60px}
+#menuPanel.open{display:block}
+.menugrid{display:grid;gap:8px}
+@media(min-width:640px){.menugrid{grid-template-columns:1fr 1fr}}
+.menugrid a{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--texto);
+  border:1px solid var(--cinza);border-radius:12px;padding:10px 12px;background:#fff;font-weight:700;font-size:.92rem}
+.menugrid a span.n{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:#fff;background:var(--tinta2);padding:3px 6px;border-radius:6px}
+
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(160deg,#0d1728 0%,#16283f 55%,#12384a 100%);color:#fff;padding:34px 0 30px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:2rem;font-weight:900;letter-spacing:-.01em;margin-bottom:6px}
+@media(min-width:760px){.hero h1{font-size:2.7rem}}
+.hero .kick{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#7fd3e8}
+.hero p{color:#cfd9e6;max-width:640px}
+.hero b,.hero strong{color:#fff}
+.heroline{border-left:3px solid #7fd3e8;padding-left:14px;margin:18px 0 0;font-size:1.05rem;color:#eaf3f8;font-weight:700}
+.heromonitor{margin:18px 0 0;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px}
+.heromonitor svg{display:block;width:100%;height:auto}
+.hero .kpis{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hero .kpis a{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 13px;font-size:.76rem;font-weight:700;color:#eaf3f8;text-decoration:none;cursor:pointer;transition:background .15s,border-color .15s,transform .12s;-webkit-tap-highlight-color:transparent}
+.hero .kpis a:hover,.hero .kpis a:focus-visible{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.45);transform:translateY(-1px);outline:none}
+.hero .kpis a:active{transform:translateY(0) scale(.97)}
+
+/* ---------- botões ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--azul);color:#fff;
+  border-radius:12px;padding:12px 18px;font-weight:800;font-size:.95rem;min-height:46px;transition:transform .12s,filter .15s}
+.btn:hover{filter:brightness(1.07)}.btn:active{transform:translateY(1px)}
+.btn.ghost{background:#fff;color:var(--tinta);border:2px solid var(--cinza)}
+.btn.verde{background:var(--verde)}
+.btn.vermelho{background:var(--vermelho)}
+.btn.ambar{background:var(--ambar)}
+.btn.roxo{background:var(--roxo)}
+.btn.tinta{background:var(--tinta)}
+.btn.sm{padding:8px 13px;min-height:38px;font-size:.85rem;border-radius:10px}
+.btn.wide{width:100%}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+
+/* ---------- caixas semânticas ---------- */
+.box{border-radius:14px;padding:14px 16px;margin:0 0 14px;border-left:6px solid}
+.box.azul{background:var(--azul-luz);border-color:var(--azul)}
+.box.verde{background:var(--verde-luz);border-color:var(--verde)}
+.box.ambar{background:var(--ambar-luz);border-color:var(--ambar)}
+.box.vermelho{background:var(--vermelho-luz);border-color:var(--vermelho)}
+.box.roxo{background:var(--roxo-luz);border-color:var(--roxo)}
+.box .rot{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;display:block;margin-bottom:4px}
+.box.azul .rot{color:var(--azul-esc)}.box.verde .rot{color:var(--verde)}
+.box.ambar .rot{color:var(--ambar)}.box.vermelho .rot{color:var(--vermelho)}.box.roxo .rot{color:var(--roxo)}
+
+.carimbo{border:3px dashed var(--vermelho);color:var(--vermelho);border-radius:14px;padding:16px;text-align:center;
+  font-weight:900;font-size:1.25rem;letter-spacing:.02em;background:#fff;transform:rotate(-1.2deg);margin:16px 0}
+.carimbo small{display:block;font-size:.8rem;font-weight:700;letter-spacing:0;color:var(--tinta2);margin-top:6px;transform:rotate(0)}
+
+.frase{background:var(--tinta);color:#fff;border-radius:14px;padding:16px 18px;margin:16px 0;font-weight:800;font-size:1.05rem;line-height:1.4}
+.frase b,.frase strong{color:#ffd98a}
+.frase .aut{display:block;font-family:'Dancing Script','Brush Script MT',cursive;font-weight:400;font-size:1.2rem;color:#9fd8e8;margin-top:8px}
+
+.verificar{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.06em;
+  background:var(--ambar-luz);color:var(--ambar);border:1px solid var(--ambar);border-radius:6px;padding:2px 6px;margin-left:6px;vertical-align:middle}
+.conferido{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.06em;
+  background:var(--verde-luz);color:var(--verde);border:1px solid var(--verde);border-radius:6px;padding:2px 6px;margin-left:6px;vertical-align:middle}
+.foradiretriz{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.06em;
+  background:rgba(100,116,139,.12);color:#475569;border:1px solid #94a3b8;border-radius:6px;padding:2px 6px;margin-left:6px;vertical-align:middle}
+
+/* ---------- chips / pills ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{border:2px solid var(--cinza);background:#fff;border-radius:999px;padding:8px 14px;font-weight:800;font-size:.86rem;color:var(--tinta2);min-height:40px}
+.chip.on{background:var(--azul);color:#fff;border-color:var(--azul)}
+.chip.on.verde{background:var(--verde);border-color:var(--verde)}
+.chip.on.vermelho{background:var(--vermelho);border-color:var(--vermelho)}
+.chip.on.ambar{background:var(--ambar);border-color:var(--ambar)}
+.chip.on.roxo{background:var(--roxo);border-color:var(--roxo)}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:800;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.pill.azul{background:var(--azul-luz);color:var(--azul-esc)}
+.pill.verde{background:var(--verde-luz);color:var(--verde)}
+.pill.ambar{background:var(--ambar-luz);color:var(--ambar)}
+.pill.vermelho{background:var(--vermelho-luz);color:var(--vermelho)}
+.pill.roxo{background:var(--roxo-luz);color:var(--roxo)}
+
+/* ---------- gráfico ---------- */
+svg{overflow:hidden}
+.chartbox{background:#fff;border:1px solid var(--cinza);border-radius:var(--raio);padding:12px;box-shadow:var(--sombra)}
+.chartbox svg{display:block;width:100%;height:auto;touch-action:pan-y}
+.readout{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.readout div{background:var(--cinza2);border-radius:10px;padding:6px 10px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:700}
+.readout div b{font-family:'Nunito',sans-serif}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;font-size:.8rem;font-weight:700}
+.legend i{display:inline-block;width:14px;height:4px;border-radius:2px;margin-right:5px;vertical-align:middle}
+
+/* ---------- estações ---------- */
+.estacoes{display:grid;gap:10px}
+@media(min-width:700px){.estacoes{grid-template-columns:repeat(3,1fr)}}
+.est{border:1px solid var(--cinza);border-radius:14px;background:#fff;padding:14px;text-align:left;box-shadow:var(--sombra);transition:transform .12s}
+.est:hover{transform:translateY(-2px)}
+.est .n{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--suave);letter-spacing:.12em}
+.est .t{font-weight:900;color:var(--tinta);font-size:1.02rem;margin:2px 0 4px}
+.est .q{color:var(--azul-esc);font-weight:700;font-size:.9rem}
+.est .resp{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--cinza);font-size:.9rem}
+.est.open .resp{display:block}
+
+/* ---------- quiz / recuperação ativa ---------- */
+.qbox{border:1px solid var(--cinza);border-radius:14px;background:#fff;padding:14px;margin:0 0 12px;box-shadow:var(--sombra)}
+.qbox .pergunta{font-weight:800;color:var(--tinta);margin-bottom:10px}
+.alts{display:grid;gap:8px}
+.alt{text-align:left;border:2px solid var(--cinza);background:#fff;border-radius:12px;padding:11px 13px;font-size:.93rem;font-weight:600;line-height:1.4}
+.alt:hover{border-color:var(--azul)}
+.alt.certa{border-color:var(--verde);background:var(--verde-luz)}
+.alt.errada{border-color:var(--vermelho);background:var(--vermelho-luz)}
+.alt.marcada{border-color:var(--tinta2)}
+.coment{display:none;margin-top:10px;background:var(--cinza2);border-radius:12px;padding:12px;font-size:.9rem}
+.coment.show{display:block}
+.coment .porque{margin-top:8px;font-size:.85rem;color:var(--tinta2)}
+
+/* ---------- flashcards ---------- */
+.fcgrid{display:grid;gap:12px}
+@media(min-width:700px){.fcgrid{grid-template-columns:1fr 1fr}}
+.fc{perspective:1200px;min-height:150px}
+.fc .inner{position:relative;width:100%;min-height:150px;transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.fc.flip .inner{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;
+  border:1px solid var(--cinza);box-shadow:var(--sombra)}
+.fc .front{background:#fff}
+.fc .back{background:var(--tinta);color:#fff;transform:rotateY(180deg)}
+.fc .back b,.fc .back strong{color:#ffd98a}
+.fc .tag{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;color:var(--suave);margin-bottom:6px}
+.fc .back .tag{color:#9fd8e8}
+
+/* ---------- simulador ---------- */
+.sim{background:linear-gradient(165deg,#101d31,#173049);border-radius:18px;padding:16px;color:#fff;box-shadow:var(--sombra-alta)}
+.sim b,.sim strong{color:#fff}
+.sim .painel{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+@media(min-width:700px){.sim .painel{grid-template-columns:repeat(6,1fr)}}
+.sim .met{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:9px;text-align:center}
+.sim .met .lab{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:#9fd8e8}
+.sim .met .val{font-size:1.28rem;font-weight:900;line-height:1.15}
+.sim .met.alerta{background:rgba(192,57,43,.28);border-color:#e2705f}
+.sim .met.ok{background:rgba(30,143,94,.24);border-color:#5ec99a}
+.sim .estagio{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.12em;color:#9fd8e8}
+.sim .clin{background:rgba(255,255,255,.07);border-radius:12px;padding:10px 12px;font-size:.92rem;margin-bottom:10px;border-left:4px solid #7fd3e8}
+.sim .feedback{border-radius:12px;padding:12px;margin-top:10px;font-size:.92rem;display:none}
+.sim .feedback.show{display:block}
+.sim .feedback.bom{background:rgba(30,143,94,.22);border:1px solid #5ec99a}
+.sim .feedback.ruim{background:rgba(192,57,43,.24);border:1px solid #e2705f}
+.sim .feedback.neutro{background:rgba(181,117,0,.24);border:1px solid #e6b45a}
+.sim .caixa-clara{background:#fff;color:var(--texto);border-radius:12px;padding:12px;margin-top:10px}
+.sim .caixa-clara b,.sim .caixa-clara strong{color:var(--tinta)}
+
+/* ---------- palácio ---------- */
+.palacio{background:var(--tinta);border-radius:18px;padding:16px;color:#fff}
+.palacio b,.palacio strong{color:#ffd98a}
+.salas{display:grid;gap:10px}
+@media(min-width:700px){.salas{grid-template-columns:repeat(4,1fr)}}
+.sala{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:12px;text-align:center;color:#fff}
+.sala .ic{font-size:1.7rem;display:block}
+.sala .nm{font-weight:900;font-size:.9rem;margin-top:4px}
+.sala .sub{font-size:.74rem;color:#9fd8e8;font-family:'IBM Plex Mono',monospace}
+.sala.on{background:#fff;color:var(--texto);border-color:#fff}
+.sala.on .sub{color:var(--azul-esc)}
+
+/* ---------- tabela ---------- */
+.tabela{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--sombra)}
+.tabela th{background:var(--tinta);color:#fff;text-align:left;padding:10px;font-size:.8rem;letter-spacing:.04em}
+.tabela td{padding:10px;border-top:1px solid var(--cinza);vertical-align:top}
+.tabela tr:nth-child(even) td{background:#fbfcfd}
+.scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 14px}
+
+/* ---------- modo professor ---------- */
+.profbox{display:none;background:#fff8e8;border:1px dashed var(--ambar);border-radius:12px;padding:12px;margin:10px 0;font-size:.9rem}
+body.professor .profbox{display:block}
+.profbox .rot{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.14em;color:var(--ambar);font-weight:700;display:block;margin-bottom:4px}
+
+/* ---------- hipocampo ---------- */
+.dash{display:grid;gap:10px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:700px){.dash{grid-template-columns:repeat(4,1fr)}}
+.dash .d{background:#fff;border:1px solid var(--cinza);border-radius:14px;padding:12px;text-align:center}
+.dash .d .v{font-size:1.6rem;font-weight:900;color:var(--tinta)}
+.dash .d .l{font-size:.74rem;color:var(--suave);font-family:'IBM Plex Mono',monospace;letter-spacing:.06em}
+.check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--cinza);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+.check input{margin-top:4px;width:20px;height:20px;accent-color:var(--verde)}
+.check.done{background:var(--verde-luz);border-color:var(--verde)}
+
+/* ---------- rodapé ---------- */
+footer{background:var(--tinta);color:#cfd9e6;padding:34px 0;margin-top:40px;text-align:center}
+footer b{color:#fff}
+footer .assin{color:#ffd98a}
+
+/* ---------- utilidades ---------- */
+.hidden{display:none !important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+body.reduzmov *{animation:none !important;transition:none !important}
+@media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.dash-anim{stroke-dasharray:6 6;animation:march 1.6s linear infinite}
+@keyframes march{to{stroke-dashoffset:-24}}
+@media print{nav.top,.progbar,.btn,.navbtns{display:none !important}body{background:#fff}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span style="font-size:1.3rem">🏃</span>
+      <span>Teste Ergométrico<small>Hipocampo Supremo · TEC 2026</small></span>
+    </div>
+    <div class="navbtns">
+      <button class="nbtn" id="btnProf" onclick="toggleProf()" title="Camada extra de explicação">👨‍🏫 Professor</button>
+      <button class="nbtn" id="btnMov" onclick="toggleMov()" title="Reduzir animações">🎞️</button>
+      <button class="nbtn" id="btnMenu" onclick="toggleMenu()">☰ Seções</button>
+    </div>
+  </div>
+</nav>
+<div class="progbar" id="progbar"></div>
+<div id="menuPanel"><div class="wrap"><div class="menugrid" id="menuGrid"></div>
+  <div class="btnrow" style="margin-top:16px"><button class="btn ghost sm" onclick="reiniciarProgresso()">↺ Reiniciar meu progresso</button></div>
+</div></div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kick">DAC · Síndrome Coronariana Crônica · Capítulo do Teste Ergométrico</span>
+    <h1>O Interrogatório do Coração</h1>
+    <p>O teste ergométrico não é um ECG feito enquanto alguém corre. É um <b>experimento fisiológico provocado</b>: a esteira aumenta a demanda e observa se o sistema cardiovascular tem reserva para responder.</p>
+    <div class="heromonitor" aria-hidden="true">
+      <svg viewBox="0 0 900 200" role="img">
+        <defs>
+          <linearGradient id="gfc" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#7fd3e8"/><stop offset="60%" stop-color="#ffd98a"/><stop offset="100%" stop-color="#5ec99a"/>
+          </linearGradient>
+        </defs>
+        <g stroke="rgba(255,255,255,.10)" stroke-width="1">
+          <line x1="0" y1="50" x2="900" y2="50"/><line x1="0" y1="100" x2="900" y2="100"/><line x1="0" y1="150" x2="900" y2="150"/>
+        </g>
+        <path d="M20,160 L120,150 L240,120 L360,90 L480,62 L560,44 L600,42 L660,84 L720,112 L790,136 L870,150"
+              fill="none" stroke="url(#gfc)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="600" cy="42" r="7" fill="#ffd98a"/>
+        <text x="600" y="26" fill="#ffd98a" font-family="monospace" font-size="16" text-anchor="middle">PICO</text>
+        <text x="30" y="182" fill="#9fd8e8" font-family="monospace" font-size="15">REPOUSO</text>
+        <text x="470" y="182" fill="#9fd8e8" font-family="monospace" font-size="15">ESFORÇO</text>
+        <text x="760" y="182" fill="#9fd8e8" font-family="monospace" font-size="15">RECUPERAÇÃO</text>
+      </svg>
+    </div>
+    <div class="kpis">
+      <a href="#s05" title="Estação 1 · frequência cardíaca">FC</a><a href="#s10" title="Estação 2 · comportamento da pressão">PAS · PAD</a><a href="#s17" title="Estação 4 · leitura do segmento ST">Segmento ST</a><a href="#s19" title="Estação 5 · sintomas e critérios de interrupção">Sintomas</a><a href="#s21" title="Arritmias na mesa prognóstica">Arritmias</a><a href="#s20" title="Capacidade funcional em METs">METs</a><a href="#s15" title="Estação 6 · a sala da recuperação">Recuperação</a>
+    </div>
+    <p class="heroline">Ao terminar este capítulo, você deve olhar um gráfico de FC, PA ou ST e <b>enxergar o paciente correndo por trás dele</b>.</p>
+    <div class="btnrow" style="margin-top:18px">
+      <a class="btn" href="#s01">Começar pelo desafio ▸</a>
+      <a class="btn ghost" href="#s22" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)">Ir direto ao simulador</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ 01 DESAFIO INICIAL ============ -->
+<section class="sec" id="s01">
+  <div class="sechead"><span class="secnum">01</span><div><span class="kick">Antes de qualquer explicação</span><h2>Preveja o exame inteiro</h2></div></div>
+  <div class="card">
+    <div class="box azul"><span class="rot">Paciente</span>
+      Homem, <b>55 anos</b>, dor torácica aos esforços. ECG de repouso sem alterações importantes. Ele sobe na esteira.
+    </div>
+    <p><b>Antes de ler o capítulo</b>, escreva mentalmente o que você espera que aconteça. Depois marque sua aposta:</p>
+    <div id="prev01"></div>
+    <div class="btnrow"><button class="btn" onclick="revelar01()">Revelar a fisiologia esperada</button></div>
+    <div id="res01" class="hidden">
+      <div class="box verde"><span class="rot">Resposta esperada em exercício dinâmico</span>
+        <b>FC ↑</b> progressivamente com a carga · <b>PAS ↑</b> progressivamente · <b>PAD</b> praticamente estável (pequena variação para mais ou para menos) ·
+        <b>ECG</b> sem alteração isquêmica do ST · <b>ao parar</b>: FC cai, PAS cai, e o ECG continua sendo observado.
+      </div>
+      <p class="mini">Se você acertou a forma das quatro curvas antes de ver, já entendeu o essencial. O resto do capítulo é aprender <b>por que</b> cada curva tem essa forma — e o que significa quando ela sai do roteiro.</p>
+    </div>
+    <div class="profbox"><span class="rot">Modo professor</span>
+      Peça isso ao aluno <b>antes</b> de mostrar qualquer slide. A previsão errada cria o "erro produtivo": o cérebro marca o conceito quando a expectativa é violada. Se o aluno já vê a resposta pronta, ele reconhece — não aprende.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 FISIOLOGIA DO ESFORÇO ============ -->
+<section class="sec" id="s02">
+  <div class="sechead"><span class="secnum">02</span><div><span class="kick">O motor por trás das curvas</span><h2>Fisiologia do esforço, na ordem certa</h2></div></div>
+
+  <div class="card">
+    <h3>A sequência que quase todo mundo inverte</h3>
+    <div id="fisioLinha"></div>
+    <div class="btnrow">
+      <button class="btn sm" onclick="fisioStep(-1)">◂ Voltar</button>
+      <button class="btn sm" onclick="fisioStep(1)">Avançar ▸</button>
+      <button class="btn sm ghost" onclick="fisioStep(0)">↺ Reiniciar</button>
+    </div>
+    <div id="fisioTexto" class="box azul"></div>
+    <div class="box ambar"><span class="rot">Pegadinha de sequência</span>
+      No <b>início</b> do exercício, o primeiro evento é a <b>retirada vagal</b>. A elevação da atividade simpática vem em seguida e domina o esforço mais intenso. Na <b>recuperação</b>, o processo se inverte: <b>reativação vagal</b> + retirada progressiva do simpático.
+    </div>
+    <div class="profbox"><span class="rot">Como eu explico em 30 segundos</span>
+      "O coração em repouso está com o freio de mão puxado (vago). Começar a correr é primeiro <b>soltar o freio</b>; só depois é <b>pisar no acelerador</b> (simpático). Parar de correr é puxar o freio de novo — e é por isso que a queda da FC no primeiro minuto é uma medida do freio."
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4>Por que a PAS sobe</h4>
+      <p class="mini">↑ débito cardíaco (↑FC + ↑contratilidade + ↑retorno venoso pela bomba muscular) empurrando sangue contra a árvore arterial → o pico de pressão de cada sístole aumenta.</p>
+      <div class="pill azul">PAS = pressão gerada pela ejeção</div>
+    </div>
+    <div class="card">
+      <h4>Por que a PAD quase não muda</h4>
+      <p class="mini">A vasodilatação metabólica nos músculos ativos <b>derruba a resistência periférica</b>. Mesmo com muito mais fluxo, a pressão de repouso da árvore arterial na diástole não precisa subir — pode inclusive cair um pouco.</p>
+      <div class="pill azul">PAD ≈ resistência periférica</div>
+    </div>
+  </div>
+
+  <div class="frase">A sistólica sobe; a diastólica segura.<span class="aut">— Dr. André Rossanno</span></div>
+</section>
+
+<!-- ============ 03 GRÁFICO-MÃE ============ -->
+<section class="sec" id="s03">
+  <div class="sechead"><span class="secnum">03</span><div><span class="kick">O componente central do capítulo</span><h2>O gráfico-mãe</h2></div></div>
+  <div class="card">
+    <p>Uma linha do tempo única: <span class="mono">PRÉ · ⅓ inicial · ⅓ médio · ⅓ final · PICO · 1 min · 2 min · 4 min · 6 min</span>. Escolha as variáveis, <b>desenhe a curva mentalmente</b> e só então mostre.</p>
+    <div class="chips" id="chipsSerie"></div>
+    <div class="chips" id="chipsCaso"></div>
+    <div class="btnrow">
+      <button class="btn ambar" onclick="desenharMentalmente()">✏️ Desenhe mentalmente a curva</button>
+      <button class="btn" id="btnMostrarCurva" onclick="mostrarCurva()">Mostrar curva</button>
+    </div>
+    <div id="veuMae" class="box ambar hidden"><span class="rot">Antes de mostrar</span>
+      Em voz alta: <b>sobe, desce ou fica estável?</b> · <b>onde é o ponto de inflexão?</b> · <b>o que acontece depois que a esteira para?</b> Só então toque em "Mostrar curva".
+    </div>
+    <div class="chartbox" id="maeBox">
+      <div id="maeChart"></div>
+      <div class="legend" id="maeLegend"></div>
+      <div class="readout" id="maeReadout"></div>
+      <p class="tiny">Toque (ou passe o mouse) sobre o gráfico para ler tempo, carga, FC, PAS, PAD, ST e METs de cada momento.</p>
+    </div>
+    <div id="maeNota" class="box azul" style="margin-top:14px"></div>
+  </div>
+</section>
+
+<!-- ============ 04 AS SEIS ESTAÇÕES ============ -->
+<section class="sec" id="s04">
+  <div class="sechead"><span class="secnum">04</span><div><span class="kick">A metáfora do capítulo</span><h2>A esteira faz seis perguntas</h2></div></div>
+  <div class="card">
+    <p>Cada estágio é uma nova pergunta feita ao coração. O laudo é o conjunto das seis respostas — nunca de uma só. Toque em cada estação.</p>
+    <div class="estacoes" id="estacoes"></div>
+    <div class="frase" style="margin-top:16px">Um teste ergométrico com seis respostas e um único olhar para o ST é um exame lido pela metade.<span class="aut">— Dr. André Rossanno</span></div>
+  </div>
+</section>
+
+<!-- ============ 05 FREQUÊNCIA CARDÍACA ============ -->
+<section class="sec" id="s05">
+  <div class="sechead"><span class="secnum">05</span><div><span class="kick">Estação 1 · "Você consegue acelerar?"</span><h2>Frequência cardíaca máxima prevista</h2></div></div>
+
+  <div class="card">
+    <h3>A estimativa clássica</h3>
+    <p class="mono" style="font-size:1.3rem;font-weight:800;color:var(--azul-esc)">FC máx ≈ 220 − idade</p>
+    <p class="mini">É uma <b>estimativa populacional</b>, não uma medida. A dispersão é grande: a diretriz descreve <b>margem de erro de ±10 a 15 bpm</b> nas fórmulas, e lembra que a FC máxima estimada <b>não deve ser usada como único critério de interrupção</b> nem como medida de eficácia do teste. Mulheres costumam ter valores estimados menores.<span class="conferido">SBC 2024 ✓</span></p>
+    <div class="box azul"><span class="rot">Calculadora</span>
+      <label class="mini" for="idadeFC">Idade do paciente</label>
+      <input id="idadeFC" type="number" value="55" min="10" max="99" inputmode="numeric"
+        style="width:100%;padding:10px;border-radius:10px;border:2px solid var(--cinza);font-size:1.1rem;font-weight:800;margin:6px 0 10px">
+      <label class="mini" for="fcRep">FC de repouso (para Karvonen)</label>
+      <input id="fcRep" type="number" value="72" min="30" max="120" inputmode="numeric"
+        style="width:100%;padding:10px;border-radius:10px;border:2px solid var(--cinza);font-size:1.1rem;font-weight:800;margin:6px 0 10px">
+      <div class="btnrow"><button class="btn sm" onclick="calcFC()">Calcular</button></div>
+      <div id="saidaFC" class="readout"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="box ambar"><span class="rot">⚠️ Pegadinha clássica</span>
+      <b>220 − idade NÃO é a fórmula de Karvonen.</b>
+    </div>
+    <div class="grid g2">
+      <div class="box azul"><span class="rot">220 − idade</span>
+        Estimativa da <b>FC máxima</b>. Responde: "até onde este coração poderia acelerar?" Serve como <b>referência do esforço atingido</b> no teste ergométrico.
+      </div>
+      <div class="box verde"><span class="rot">Karvonen</span>
+        Trabalha com a <b>reserva cronotrópica</b>:<br>
+        <span class="mono">FC reserva = FC máx − FC repouso</span><br>
+        <span class="mono">FC alvo = FC rep + %×(FC máx − FC rep)</span><br>
+        Usada sobretudo para <b>prescrever intensidade de exercício</b>, não para julgar o teste.
+      </div>
+    </div>
+    <p class="mini">A diretriz traz <b>quatro</b> equações: para ambos os sexos, <b>220 − idade</b> e <b>208 − (0,7 × idade)</b>; específicas por sexo, <b>mulheres 192 − (0,7 × idade)</b> e <b>homens 201 − (0,6 × idade)</b>. O alvo de referência é <b>≥ 85% da FCmax estimada</b>. Guarde: <b>fórmula ≠ medida</b>.<span class="conferido">SBC 2024 ✓</span></p>
+  </div>
+</section>
+
+<!-- ============ 06 OS 85% ============ -->
+<section class="sec" id="s06">
+  <div class="sechead"><span class="secnum">06</span><div><span class="kick">O ponto que mais gera confusão</span><h2>Os famosos 85%</h2></div></div>
+  <div class="card">
+    <p>85% da FC máxima <b>prevista</b> é a referência clássica de que o paciente foi submetido a um <b>estresse suficiente</b> para que um exame sem alterações tenha valor razoável para afastar isquemia. É um marcador de <b>qualidade do estresse</b>.</p>
+    <div class="carimbo">❌ 85% NÃO É BOTÃO STOP
+      <small>Atingir uma porcentagem da FC máxima prevista não é, isoladamente, critério de interrupção do teste.</small>
+    </div>
+    <p>Quando é apropriado e seguro, o esforço pode continuar até:</p>
+    <ul>
+      <li><b>limitação clínica</b> (sintoma que impede prosseguir);</li>
+      <li><b>exaustão</b> / capacidade máxima tolerada;</li>
+      <li>ou o surgimento de um <b>critério formal de interrupção</b>.</li>
+    </ul>
+    <div class="box verde"><span class="rot">O que você ganha ao não parar em 85%</span>
+      Capacidade funcional real (METs) · comportamento da PA em cargas mais altas · sintomas no limite · arritmias dependentes de carga · reserva cronotrópica · dados prognósticos (inclusive o tempo de exercício, que entra no Duke).
+    </div>
+    <div class="frase">85 não é botão STOP.<span class="aut">— Dr. André Rossanno</span></div>
+    <div class="profbox"><span class="rot">Erro provável do aluno</span>
+      Confundir <b>meta de esforço submáximo</b> (usada em protocolos específicos, como pós-IAM precoce, quando se quer limitar deliberadamente o estresse) com <b>critério de parada de um teste máximo limitado por sintomas</b>. São contextos diferentes: no teste limitado por sintomas, o alvo é a limitação do paciente, não um número de FC.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 SUBMÁXIMO / NÃO DIAGNÓSTICO ============ -->
+<section class="sec" id="s07">
+  <div class="sechead"><span class="secnum">07</span><div><span class="kick">Submáximo ≠ inútil</span><h2>"Não diagnóstico" não é "negativo"</h2></div></div>
+  <div class="card">
+    <div class="box azul"><span class="rot">Caso</span>
+      Homem, <b>40 anos</b>. FC máx estimada = 220 − 40 = <b>180 bpm</b>. 85% ≈ <b>153 bpm</b>. O exame terminou com <b>FC = 140 bpm</b>.
+    </div>
+    <div id="q07"></div>
+    <div class="grid g2" style="margin-top:12px">
+      <div class="box ambar"><span class="rot">Se NÃO apareceu nada</span>
+        Esforço insuficiente + ausência de achados = <b>sensibilidade limitada</b> para excluir isquemia. O laudo correto é <b>teste submáximo / não diagnóstico para isquemia</b> — <u>nunca</u> "teste normal" ou "negativo".
+      </div>
+      <div class="box vermelho"><span class="rot">Se APARECEU achado convincente</span>
+        Angina típica + infra de ST convincente com FC 140 → <b>existe informação diagnóstica relevante</b>. Não atingir 85% não apaga o achado. Pelo contrário: isquemia em <b>carga baixa</b> costuma ser mais preocupante, não menos.
+      </div>
+    </div>
+    <div class="frase">O 85% não absolve um ST culpado.<span class="aut">— Dr. André Rossanno</span></div>
+    <div class="profbox"><span class="rot">Ponte com probabilidade</span>
+      Isso é Bayes na prática: um teste interrompido cedo tem <b>menor poder de reduzir</b> a probabilidade pós-teste (VPN cai), mas mantém o poder de <b>aumentá-la</b> quando o achado é convincente. Achado positivo em teste curto e achado ausente em teste curto não têm o mesmo peso.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 INCOMPETÊNCIA CRONOTRÓPICA ============ -->
+<section class="sec" id="s08">
+  <div class="sechead"><span class="secnum">08</span><div><span class="kick">Estação 1, resposta anormal</span><h2>A esteira acelera. O coração não.</h2></div></div>
+
+  <div class="card">
+    <div class="chartbox" style="box-shadow:none;border:none;padding:0">
+      <svg viewBox="0 0 900 300" role="img" aria-label="Velocímetro cardíaco preso por uma corrente enquanto a esteira acelera">
+        <rect x="0" y="0" width="900" height="300" fill="#0f1c2e" rx="16"/>
+        <text x="30" y="42" fill="#7fd3e8" font-family="monospace" font-size="18" letter-spacing="3">ESTEIRA</text>
+        <rect x="30" y="60" width="300" height="26" rx="13" fill="#1f3a55"/>
+        <rect x="30" y="60" width="300" height="26" rx="13" fill="none" stroke="#7fd3e8" stroke-width="2" class="dash-anim"/>
+        <text x="30" y="120" fill="#fff" font-family="Nunito,sans-serif" font-size="30" font-weight="900">"ACELERA!"</text>
+        <text x="30" y="156" fill="#9fd8e8" font-family="monospace" font-size="16">carga ↑ ↑ ↑ · demanda ↑ ↑ ↑</text>
+        <!-- velocímetro -->
+        <circle cx="640" cy="150" r="108" fill="#16283f" stroke="#7fd3e8" stroke-width="3"/>
+        <path d="M560 210 A108 108 0 1 1 720 210" fill="none" stroke="#2b4b6b" stroke-width="12" stroke-linecap="round"/>
+        <text x="640" y="112" fill="#9fd8e8" font-family="monospace" font-size="14" text-anchor="middle">FC</text>
+        <line x1="640" y1="150" x2="576" y2="112" stroke="#ffd98a" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="640" cy="150" r="10" fill="#ffd98a"/>
+        <text x="640" y="196" fill="#fff" font-family="Nunito,sans-serif" font-size="26" font-weight="900" text-anchor="middle">quase parado</text>
+        <!-- corrente -->
+        <path d="M400 150 L536 150" stroke="#e2705f" stroke-width="10" stroke-linecap="round" stroke-dasharray="18 10"/>
+        <text x="360" y="212" fill="#e2705f" font-family="monospace" font-size="15">β-BLOQ · NÓ SINUSAL · CHAGAS · AUTONÔMICO · DAC</text>
+        <text x="30" y="270" fill="#ffd98a" font-family="Nunito,sans-serif" font-size="26" font-weight="900">A ESTEIRA ACELERA. O CORAÇÃO NÃO.</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>O conceito não cabe em um número</h3>
+    <p>A diretriz define resposta cronotrópica deprimida / incompetência cronotrópica por <b>qualquer um</b> de três critérios: <b>1)</b> FC atingida no esforço menor que <b>dois desvios-padrão</b> da FC máxima prevista; <b>2)</b> <b>não atingir 85%</b> da FC prevista para a idade; <b>3)</b> <b>índice cronotrópico &lt; 0,80</b>.<span class="conferido">SBC 2024 ✓</span></p>
+    <div class="box azul"><span class="rot">Índice cronotrópico</span>
+      <span class="mono">IC = (FC pico − FC repouso) / (FC máx prevista − FC repouso)</span><br>
+      Ele corrige pela FC de repouso e pelo esforço realizado. Na diretriz, o valor de <b>normalidade é ICr ≥ 80%</b> — e a leitura fica limitada em vigência de betabloqueador, antiarrítmico, FA/flutter, marca-passo com sensor, CDI e BAVT congênito.<span class="conferido">SBC 2024 ✓</span>
+      <div class="btnrow"><button class="btn sm" onclick="calcIC()">Calcular com os dados da seção 05</button></div>
+      <div id="saidaIC" class="readout"></div>
+    </div>
+    <div class="box ambar"><span class="rot">Interprete sempre com o contexto</span>
+      Esforço realmente alcançado · idade · FC basal · <b>medicamentos</b> · capacidade funcional · reserva cronotrópica · condição clínica. Um atleta com bradicardia de repouso e excelente capacidade funcional é um cenário diferente de um sedentário que parou aos 3 METs com FC de 105.
+    </div>
+    <h4>Causas de resposta cronotrópica inadequada</h4>
+    <div class="chips" id="chipsCrono"></div>
+    <div id="cronoDet" class="box azul"></div>
+  </div>
+</section>
+
+<!-- ============ 09 QUEDA DA FC COM A CARGA ============ -->
+<section class="sec" id="s09">
+  <div class="sechead"><span class="secnum">09</span><div><span class="kick">Um sinal que pede explicação</span><h2>A FC cai enquanto a carga sobe</h2></div></div>
+  <div class="card">
+    <p>Se a carga aumenta e a FC <b>cai</b> (ou fica persistentemente aquém do esperado), isso é uma resposta anormal que exige interpretação — e, em determinadas situações, <b>interrupção</b> do exame.</p>
+    <div class="box vermelho"><span class="rot">Não simplifique</span>
+      "FC caiu = DAC" está <b>errado</b>. O achado abre uma investigação, não fecha um diagnóstico.
+    </div>
+    <div class="grid g2">
+      <div class="box azul"><span class="rot">O que considerar</span>
+        Doença cardiovascular estrutural · distúrbios de condução e do nó sinusal · disfunção autonômica · fármacos · resposta vasovagal · isquemia relevante, conforme o contexto.
+      </div>
+      <div class="box ambar"><span class="rot">O que muda a leitura</span>
+        Queda <b>isolada, transitória e assintomática</b> ao mudar de estágio ≠ queda <b>progressiva e persistente</b> com carga crescente, acompanhada de sintomas ou de queda da PA. A segunda é a que preocupa.
+      </div>
+    </div>
+    <div class="frase">A carga sobe, a FC deve acompanhar.<span class="aut">— Dr. André Rossanno</span></div>
+  </div>
+</section>
+
+<!-- ============ 10 PRESSÃO ARTERIAL ============ -->
+<section class="sec" id="s10">
+  <div class="sechead"><span class="secnum">10</span><div><span class="kick">Estação 2 · "Você consegue gerar pressão?"</span><h2>🩸 O elevador da pressão</h2></div></div>
+  <div class="card">
+    <p>Duas curvas, dois significados. Mova a carga e observe os dois andares subirem de forma <b>diferente</b>.</p>
+    <label class="mini" for="cargaPA">Carga do exercício</label>
+    <input id="cargaPA" type="range" min="0" max="100" value="0" step="1" oninput="elevadorPA()" style="width:100%;accent-color:var(--azul);height:36px">
+    <div id="elevador"></div>
+    <div class="readout" id="saidaPA"></div>
+    <div class="box azul" style="margin-top:12px"><span class="rot">Mecanismo</span>
+      ↑ débito cardíaco → <b>↑ PAS</b>. Ao mesmo tempo, a vasodilatação metabólica no músculo em atividade <b>reduz a resistência periférica</b> → a <b>PAD</b> tende a permanecer aproximadamente estável, com pequena variação.
+    </div>
+    <p class="tiny">Os valores exibidos aqui são ilustrativos do <b>comportamento</b> das curvas, não cortes diagnósticos. Os cortes formais estão na seção 11.</p>
+  </div>
+</section>
+
+<!-- ============ 11 RESPOSTA PRESSÓRICA ============ -->
+<section class="sec" id="s11">
+  <div class="sechead"><span class="secnum">11</span><div><span class="kick">Definições formais</span><h2>Os cinco comportamentos da pressão</h2></div></div>
+  <div class="card">
+    <div class="chips" id="chipsPA"></div>
+    <div id="paDet" class="box azul"></div>
+    <div class="box verde"><span class="rot">Números conferidos na diretriz</span>
+      Os cortes desta seção foram conferidos na <b>Diretriz Brasileira de Ergometria em População Adulta — SBC 2024</b> (Tabela 32). Em resumo:
+      <ul style="margin:6px 0 0;padding-left:18px">
+        <li><b>Normal no esforço</b>: PAS &lt; 210 mmHg (homens) e &lt; 190 mmHg (mulheres); PAD inalterada ou oscilando até ±10 mmHg.</li>
+        <li><b>Hipertensiva/exagerada</b>: PAS ≥ 210 (homens) ou ≥ 190 (mulheres); e/ou PAD com elevação ≥ 15 mmHg ou PAD &gt; 90 mmHg.</li>
+        <li><b>Deprimida</b>: reserva pressórica sistólica (PAS pico − PAS repouso) &lt; 35 mmHg, ou PAS máxima &lt; 140 mmHg, ou platô da PAS com reserva &lt; 35 mmHg.</li>
+        <li><b>Hipotensão/queda intraesforço</b>: PAS que cai abaixo do repouso, ou elevação inicial seguida de <b>queda ≥ 20 mmHg</b>.</li>
+        <li><b>Interrupção</b>: PAS &gt; 250 mmHg; PAD ≥ 120 mmHg em normotensos ou ≥ 140 mmHg em hipertensos.</li>
+        <li>Não realizar o teste com <b>PAS ≥ 180 e/ou PAD &gt; 110 mmHg</b> no repouso.</li>
+      </ul><span class="conferido">SBC 2024 ✓</span>
+    </div>
+  </div>
+
+  <!-- ===== 12 PLACAS ===== -->
+  <div class="card" id="s12">
+    <h3>As duas placas que não são a mesma placa</h3>
+    <div class="grid g2">
+      <div class="box ambar" style="border-left-width:10px"><span class="rot">⚠️ Placa amarela</span>
+        <b style="font-size:1.1rem">RESPOSTA ANORMAL</b><br>
+        Muda a <b>interpretação</b> e o <b>prognóstico</b>. Entra no laudo. Não obriga, por si só, a parar o exame.
+      </div>
+      <div class="box vermelho" style="border-left-width:10px"><span class="rot">🛑 Placa vermelha</span>
+        <b style="font-size:1.1rem">INTERROMPER O TESTE</b><br>
+        Muda a <b>conduta imediata</b> dentro da sala. É uma decisão de <b>segurança</b>, tomada em tempo real.
+      </div>
+    </div>
+    <div id="jogoPlacas"></div>
+  </div>
+</section>
+
+<!-- ============ 13 QUEDA DA PAS ============ -->
+<section class="sec" id="s13">
+  <div class="sechead"><span class="secnum">13</span><div><span class="kick">O achado mais temido da curva pressórica</span><h2>A PAS sobe… e depois cai</h2></div></div>
+  <div class="card">
+    <p>O padrão que preocupa: elevação inicial adequada e, <b>com incremento da carga</b>, queda da PAS <b>≥ 20 mmHg</b> em relação ao valor mais alto atingido — exatamente a redação da diretriz, que também lista esse achado como <b>critério de interrupção</b>. Se assintomática, confirmar a queda em pelo menos mais uma medida antes de valorizar.<span class="conferido">SBC 2024 ✓</span></p>
+    <div class="box ambar"><span class="rot">⚠️ Aula × Diretriz</span>
+      Circulam <b>dois números</b> na literatura: queda ≥ 10 mmHg em relação ao estágio anterior (critério clássico, mais sensível) e queda ≥ 20 mmHg em relação ao pico. <b>Resolvido:</b> a SBC 2024 adota <b>≥ 20 mmHg</b> após elevação inicial — e acrescenta uma distinção que vale ouro na prova: queda da PAS <b>sem</b> queda da PAD costuma ser <b>isquemia</b>; queda da PAS <b>com</b> queda da PAD aponta mais para <b>déficit inotrópico</b> (ex.: valvopatia). Na CMH, a hipotensão é definida como queda da PAS &gt; 20 mmHg. A lógica fisiológica, essa sim, é a mesma nos dois casos.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+    <p><b>O que a curva está dizendo:</b> o coração não conseguiu aumentar (ou sustentar) o débito cardíaco frente à queda progressiva da resistência periférica do músculo em exercício.</p>
+    <div class="grid g3" id="personagensPAS"></div>
+    <div class="box vermelho" style="margin-top:12px"><span class="rot">Trave importante</span>
+      A queda da PAS no esforço é um achado <b>preocupante e prognosticamente relevante</b> — mas <b>não é etiologicamente específico</b>. Ela diz "a bomba falhou sob carga", não "a coronária está obstruída".
+    </div>
+    <div class="profbox"><span class="rot">Pergunta para os alunos</span>
+      "Por que uma queda de 20 mmHg no esforço assusta mais do que uma PA de 90/60 medida em repouso no consultório?" — Resposta: porque no esforço a demanda está máxima e a resposta esperada é oposta. O valor absoluto importa menos que a <b>direção contra a expectativa fisiológica</b>.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 RESPOSTA HIPERTENSIVA ============ -->
+<section class="sec" id="s14">
+  <div class="sechead"><span class="secnum">14</span><div><span class="kick">Quando a curva sobe demais</span><h2>Resposta hipertensiva ao exercício</h2></div></div>
+  <div class="card">
+    <div class="chartbox">
+      <div id="chartHiper"></div>
+      <p class="tiny">Curva de PAS: comportamento esperado (azul) × resposta exagerada (âmbar).</p>
+    </div>
+    <p style="margin-top:12px">Elevação exagerada da PAS e/ou comportamento anormal da PAD durante o esforço. Cortes da SBC 2024: <b>PAS ≥ 210 mmHg em homens</b> e <b>≥ 190 mmHg em mulheres</b>, independentemente de protocolo e ergômetro; <b>PAD com elevação ≥ 15 mmHg ou valor &gt; 90 mmHg</b> partindo de PAD normal em repouso. Referência útil de inclinação: a PAS sobe cerca de <b>10 mmHg por MET</b> (≈ 6,2 mmHg/MET acima de 10 METs).<span class="conferido">SBC 2024 ✓</span></p>
+    <div class="box roxo"><span class="rot">Por que isso importa</span>
+      Associação descrita com <b>maior risco de desenvolver hipertensão arterial</b> no futuro em normotensos, além de relação com perfil cardiovascular e com marcadores de rigidez arterial/lesão de órgão-alvo em parte dos estudos. Interpretar sempre com <b>PA basal, sexo, idade, medicação e contexto clínico</b>.
+    </div>
+    <div class="box ambar"><span class="rot">Não confunda</span>
+      "Resposta hipertensiva" (achado de laudo, placa amarela) ≠ "PA que obriga interromper" (placa vermelha). São dois patamares de valor diferentes.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15 RECUPERAÇÃO ============ -->
+<section class="sec" id="s15">
+  <div class="sechead"><span class="secnum">15</span><div><span class="kick">Estação 6 · "Você consegue voltar ao basal?"</span><h2>🌿 A sala da recuperação</h2></div></div>
+
+  <div class="card" style="border-left:6px solid var(--verde)">
+    <div class="frase" style="background:var(--verde);margin-top:0">Parou a esteira, não terminou o teste.<span class="aut" style="color:#d9f5e7">— Dr. André Rossanno</span></div>
+    <p>A recuperação é <b>parte do exame</b>, não epílogo decorativo. Nela ocorre reativação vagal + retirada simpática progressiva, e a monitorização deve ser mantida por tempo apropriado, com registro de FC, PA, sintomas e ECG.</p>
+    <div class="grid g3">
+      <div class="box verde"><span class="rot">FC</span> Queda progressiva. A magnitude da queda no <b>1º minuto</b> é o índice mais estudado — queda pequena = pior prognóstico. Cortes da SBC 2024, que dependem do modo de recuperação: <b>ativa</b> (caminhando) normal &gt; 12 bpm (lenta ≤ 12); <b>passiva deitado</b> normal &gt; 18 bpm (lenta ≤ 18); <b>2º minuto sentado</b> normal ≥ 22 bpm (lenta ≤ 21). Queda abrupta e assintomática em bem condicionados é normal.<span class="conferido">SBC 2024 ✓</span></div>
+      <div class="box verde"><span class="rot">PAS</span> Queda progressiva até se aproximar do basal.</div>
+      <div class="box ambar"><span class="rot">ECG</span> Continua sendo o exame. Alterações podem <b>surgir</b> ou <b>persistir</b> aqui.</div>
+    </div>
+    <div class="profbox"><span class="rot">Analogia para o quadro</span>
+      "O esforço mostra o motor. A recuperação mostra o <b>freio</b>. Paciente que sobe bem e não desce é como carro que acelera mas não desacelera: o problema não está na potência, está no controle autonômico."
+    </div>
+  </div>
+
+  <!-- ST na recuperação -->
+  <div class="card" id="s15b">
+    <h3>Quando a esteira já parou e o ST aparece</h3>
+    <div id="cenaRecST"></div>
+    <div class="btnrow"><button class="btn vermelho" onclick="revelarRecST()">Avançar para 2 min de recuperação</button></div>
+    <div id="recSTtexto" class="hidden">
+      <div class="box vermelho"><span class="rot">A isquemia deixa pegadas</span>
+        Alterações do ST <b>na recuperação</b> têm relevância diagnóstica e não devem ser descartadas por terem aparecido "fora do esforço". Alteração que <b>persiste</b> vários minutos na recuperação é um dado adicional, não um dado menor.
+      </div>
+      <p class="mini">Por isso o registro do ECG na recuperação é sistemático e não opcional — e por isso o paciente não é liberado assim que a esteira para.</p>
+    </div>
+    <div class="frase">Não veja apenas quanto desceu. Veja como, quando e onde.<span class="aut">— Dr. André Rossanno</span></div>
+  </div>
+
+  <!-- PA na recuperação -->
+  <div class="card">
+    <h3>A pressão na recuperação</h3>
+    <div class="grid g2">
+      <div class="box verde"><span class="rot">Esperado</span> PAS cai progressivamente, aproximando-se do valor basal ao longo dos minutos de observação.</div>
+      <div class="box ambar"><span class="rot">Anormal / paradoxal</span> Números da SBC 2024: <b>normal</b> = PAS do 3º min / PAS do pico <b>≤ 0,9</b>, com PAS &lt; 160 e PAD &lt; 90 mmHg no 5º min. <b>Recuperação lenta</b> = razão &gt; 0,9, ou PAS ≥ 160 / PAD ≥ 90 no 5º min. <b>Paradoxal</b> = PAS do 3º min / PAS do 1º min <b>≥ 1</b> (preditora de DAC, IAM, AVC e morte CV). <b>PAD ≥ 90 no 5º min</b> = resposta hipertensiva diastólica na recuperação.<span class="conferido">SBC 2024 ✓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 DUPLO PRODUTO ============ -->
+<section class="sec" id="s16">
+  <div class="sechead"><span class="secnum">16</span><div><span class="kick">Estação 3 · o preço do esforço</span><h2>Duplo produto</h2></div></div>
+  <div class="card">
+    <p class="mono" style="font-size:1.3rem;font-weight:800;color:var(--azul-esc)">DP = FC × PAS</p>
+    <div class="chartbox" style="box-shadow:none;border:none;padding:0;margin-bottom:12px">
+      <svg viewBox="0 0 900 200" role="img" aria-label="Dois trabalhadores empurrando a caixa da demanda miocárdica de oxigênio">
+        <rect width="900" height="200" rx="14" fill="#eef4f7"/>
+        <rect x="380" y="45" width="380" height="110" rx="12" fill="#10758f"/>
+        <text x="570" y="95" fill="#fff" font-family="Nunito,sans-serif" font-size="24" font-weight="900" text-anchor="middle">DEMANDA MIOCÁRDICA</text>
+        <text x="570" y="128" fill="#cfeaf2" font-family="Nunito,sans-serif" font-size="24" font-weight="900" text-anchor="middle">DE O₂</text>
+        <text x="120" y="80" font-size="48" text-anchor="middle">❤️</text>
+        <text x="120" y="118" font-family="monospace" font-size="20" text-anchor="middle" fill="#c0392b">FC</text>
+        <text x="240" y="80" font-size="48" text-anchor="middle">🩸</text>
+        <text x="240" y="118" font-family="monospace" font-size="20" text-anchor="middle" fill="#c0392b">PAS</text>
+        <path d="M300 100 L370 100" stroke="#111c2e" stroke-width="6" marker-end="url(#seta)"/>
+        <defs><marker id="seta" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#111c2e"/></marker></defs>
+        <text x="150" y="175" font-family="Nunito,sans-serif" font-size="19" font-weight="800" fill="#111c2e">Empurram juntos</text>
+      </svg>
+    </div>
+    <div class="box azul"><span class="rot">Calcule</span>
+      <div class="grid g2">
+        <div><label class="mini" for="dpFC">FC no pico</label><input id="dpFC" type="number" value="150" inputmode="numeric" style="width:100%;padding:9px;border-radius:10px;border:2px solid var(--cinza);font-weight:800"></div>
+        <div><label class="mini" for="dpPAS">PAS no pico</label><input id="dpPAS" type="number" value="180" inputmode="numeric" style="width:100%;padding:9px;border-radius:10px;border:2px solid var(--cinza);font-weight:800"></div>
+      </div>
+      <div class="btnrow"><button class="btn sm" onclick="calcDP()">Calcular duplo produto</button></div>
+      <div id="saidaDP" class="readout"></div>
+    </div>
+    <div class="box ambar"><span class="rot">O que o DP é e o que ele não é</span>
+      É um <b>índice indireto</b> do consumo miocárdico de oxigênio, correlacionado com ele — <b>não</b> é uma medição direta de MVO₂ (que depende também de contratilidade, tensão parietal e outros determinantes).
+    </div>
+    <div class="box roxo"><span class="rot">DP &lt; 25.000</span>
+      Conferido: a SBC 2024 afirma que o <b>DP máximo</b> (em geral obtido no pico), quando <b>inferior a 25.000 bpm·mmHg</b>, associa-se a <b>pior prognóstico</b>, e recomenda uso <b>seriado</b> do índice. Ainda assim, interprete o <i>porquê</i> do DP baixo (parou cedo? betabloqueado? não gerou pressão?): a diretriz lista como limitantes o uso de betabloqueador e antiarrítmico, hipertensão descontrolada e FA/flutter não controlados — e orienta <b>não calcular o DP durante taquiarritmias</b>. Em contextos específicos (pós-angioplastia e pós-revascularização), DP &lt; 25.000 sugere mau resultado, obstrução de ponte ou disfunção de VE.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+    <div class="frase">FC × PAS = o preço cardíaco do esforço.<span class="aut">— Dr. André Rossanno</span></div>
+  </div>
+</section>
+
+<!-- ============ 17 ECG / SEGMENTO ST ============ -->
+<section class="sec" id="s17">
+  <div class="sechead"><span class="secnum">17</span><div><span class="kick">Estação 4 · "Existe sofrimento elétrico?"</span><h2>Ler o ST como se lê uma medida</h2></div></div>
+
+  <div class="card">
+    <h3>Nunca "infra = positivo"</h3>
+    <p>Antes de dizer se é isquêmico, o traçado precisa passar por oito perguntas. Toque em cada uma.</p>
+    <div class="chips" id="chipsST"></div>
+    <div id="stDet" class="box azul"></div>
+  </div>
+
+  <div class="card">
+    <h3>A régua: onde se mede</h3>
+    <div class="chartbox">
+      <div id="reguaST"></div>
+      <div class="chips" id="chipsMorf" style="margin-top:10px"></div>
+      <div class="readout" id="saidaST"></div>
+    </div>
+    <div class="box azul" style="margin-top:12px"><span class="rot">Critérios de medida usados neste capítulo</span>
+      <ul style="margin:6px 0 0;padding-left:18px">
+        <li><b>Onde se mede</b>: no <b>ponto Y</b> — 60 ou 80 ms após o ponto J, conforme a FC do momento (em geral 60 ms em crianças/jovens e 80 ms em adultos/idosos).</li>
+        <li><b>Horizontal (retificado) ou descendente</b>: ≥ 1 mm aferido no ponto Y.</li>
+        <li><b>Ascendente lento</b>: ≥ 1,5 mm se risco pré-teste moderado/alto; ≥ 2 mm se risco baixo (aferido no ponto Y a 80 ms do J).</li>
+        <li><b>Infra &lt; 1,0 mm</b> não preenche critério de isquemia.</li>
+        <li><b>Supradesnivelamento</b>: ≥ 1,0 mm medido a <b>60 ms após o ponto J</b>, em <b>2 ou mais derivações</b> — e, na SBC 2024, <b>independentemente da presença de onda Q</b>.</li>
+      </ul><span class="conferido">SBC 2024 ✓</span>
+      <div class="tiny" style="margin-top:8px">Três correções que a diretriz impõe sobre a versão simplificada que circula em aula: a medida é no <b>ponto Y</b> (não no ponto J); o supra vale <b>com ou sem onda Q</b> (a onda Q muda a <i>interpretação</i> — isquemia peri-infarto, viabilidade, discinesia —, não o critério de medida); e o antigo "convexo ≥ 2 mm no nadir" <b>não é critério de positividade</b> — ver a caixa do sinal de corcunda, abaixo.</div>
+    </div>
+    <div class="box ambar"><span class="rot">O ascendente é o único que muda com Bayes</span>
+      Repare: a régua do <b>ST ascendente</b> muda conforme a probabilidade pré-teste. Isso é o teorema de Bayes embutido dentro do critério de positividade — o mesmo traçado "atende" ou "não atende" dependendo de quem é o paciente.
+    </div>
+    <div class="box ambar"><span class="rot">Sinal de corcunda do ST</span>
+      Infra ascendente seguido de uma onda em forma de <b>corcunda</b> logo após o ponto J, atribuído a repolarização atrial exagerada. Em pessoas assintomáticas e sem cardiopatia, associa-se a hipertensão de repouso e a resposta hipertensiva ao esforço, sendo provável <b>falso-positivo</b> para DAC obstrutiva, com bom prognóstico. Mas atenção ao contexto: foi associado a disfunção diastólica do VE e, <b>na cardiomiopatia hipertrófica</b>, a risco de morte súbita. A própria diretriz diz que o sinal <b>carece de estudos adicionais</b>.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+    <div class="box vermelho"><span class="rot">Trave clássica de prova</span>
+      O <b>infradesnivelamento não localiza</b> a artéria culpada (a isquemia subendocárdica é difusa). Já as derivações do <b>supra</b> têm correlação com segmentos anatomovasculares do VE — a diretriz sugere descrição topográfica. Guarde dois pares de alto rendimento: <b>supra em aVR</b> (sensibilidade de 100% para lesão de tronco, com especificidade baixa) e <b>supra em V1 com infra em aVR e V4–V6</b>, associado a tronco ou DA proximal.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+    <div class="box verde"><span class="rot">O ST na recuperação, conferido</span>
+      Normalização precoce do infra no <b>1º minuto</b> = menor carga isquêmica e maior chance de falso-positivo. Persistência <b>&gt; 3 minutos</b> = DAC grave. Recorrência após ter sumido = DAC grave. Infra <b>apenas na recuperação</b> tem a mesma acurácia do infra do esforço — mas, se aparece só <b>após o 3º minuto</b>, cresce a chance de falso-positivo.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 18 CM5 ============ -->
+<section class="sec" id="s18">
+  <div class="sechead"><span class="secnum">18</span><div><span class="kick">A derivação bipolar do esforço</span><h2>CM5</h2></div></div>
+  <div class="card">
+    <div class="grid g2">
+      <div>
+        <div class="chartbox" style="box-shadow:none">
+          <svg viewBox="0 0 360 280" role="img" aria-label="Posição dos eletrodos da derivação CM5: negativo no manúbrio, positivo em V5">
+            <ellipse cx="180" cy="150" rx="120" ry="118" fill="#f2f5f8" stroke="#c9d3dd" stroke-width="2"/>
+            <circle cx="180" cy="42" r="26" fill="#e7edf3" stroke="#c9d3dd" stroke-width="2"/>
+            <circle cx="180" cy="72" r="12" fill="#111c2e"/>
+            <text x="180" y="102" text-anchor="middle" font-family="monospace" font-size="13" fill="#111c2e">M — manúbrio (−)</text>
+            <circle cx="248" cy="176" r="12" fill="#c0392b"/>
+            <text x="248" y="208" text-anchor="middle" font-family="monospace" font-size="13" fill="#c0392b">V5 (+)</text>
+            <line x1="180" y1="72" x2="248" y2="176" stroke="#10758f" stroke-width="3" stroke-dasharray="6 5"/>
+            <text x="120" y="150" font-family="Nunito,sans-serif" font-size="16" font-weight="800" fill="#10758f">CM5</text>
+            <text x="180" y="262" text-anchor="middle" font-family="monospace" font-size="12" fill="#5b6779">vetor alinhado ao eixo do VE</text>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <div class="box azul"><span class="rot">Por que ela detecta mais</span>
+          O par manúbrio (−) → V5 (+) gera um vetor amplo e alinhado com a massa do ventrículo esquerdo, com <b>maior amplitude do QRS</b> e menos artefato de movimento. Grande parte dos infradesnivelamentos do esforço aparece em V5 e derivações vizinhas.
+        </div>
+        <div class="box ambar"><span class="rot">O trade-off</span>
+          ↑ sensibilidade <b>pode vir acompanhada de</b> ↓ especificidade: mais achados detectados incluem mais <b>falsos-positivos</b>. Sensibilidade sem custo não existe.
+        </div>
+        <div class="box vermelho"><span class="rot">Nunca conclua</span>
+          "CM5 positiva = DAC confirmada" está <b>errado</b>. CM5 é onde você <b>vê</b>, não o que você <b>prova</b>. O achado ainda precisa ser interpretado com morfologia, carga, sintomas, recuperação e probabilidade pré-teste.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 19 CRITÉRIOS DE INTERRUPÇÃO ============ -->
+<section class="sec" id="s19">
+  <div class="sechead"><span class="secnum">19</span><div><span class="kick">Estação 5 · a decisão dentro da sala</span><h2>🚨 O botão vermelho da esteira</h2></div></div>
+
+  <div class="card">
+    <h3>Não decore a lista. Faça a pergunta.</h3>
+    <div class="frase" style="background:var(--vermelho)">O paciente está perdendo a capacidade de compensar?<span class="aut" style="color:#ffd7d1">— Dr. André Rossanno</span></div>
+    <div class="grid g3" id="sistemasComp"></div>
+    <p class="mini">Cada sistema tem uma forma própria de avisar que a compensação está acabando. Quando isso acontece, <b>a esteira perde a prioridade</b>.</p>
+  </div>
+
+  <div class="card">
+    <h3>As três famílias de critérios</h3>
+    <div class="chips" id="chipsFam"></div>
+    <div id="famLista"></div>
+    <div class="box ambar"><span class="rot">Importantíssimo</span>
+      Números conferidos na SBC 2024 (Tabela 36): <b>PAS &gt; 250 mmHg</b>; <b>PAD ≥ 120 mmHg</b> em normotensos ou <b>≥ 140 mmHg</b> em hipertensos; <b>queda da PAS ≥ 20 mmHg</b> após elevação inicial (se assintomática, confirmar em nova medida); <b>dessaturação com SpO₂ ≤ 92%</b> partindo de oximetria basal normal; <b>infra ≥ 3 mm (0,3 mV)</b> adicionais ao repouso; <b>supra ≥ 2 mm (0,2 mV)</b> em derivação sem evidência de infarto prévio; exaustão física com <b>Borg ≥ 18</b>; TV não sustentada (≥ 3 batimentos / &lt; 30 s) ou sustentada (≥ 30 s); FA ou flutter esforço-induzidos; BAV de 2º e 3º graus induzidos; portadores de CDI, interromper <b>10 bpm abaixo</b> da FC de acionamento do dispositivo; queda persistente da FC com incremento de carga.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+    <div class="profbox"><span class="rot">Como eu organizo no quadro</span>
+      Três colunas: <b>o que o paciente diz</b> (sintomas) · <b>o que eu vejo e meço</b> (exame físico e hemodinâmica) · <b>o que o monitor mostra</b> (ECG). O aluno que memoriza 30 itens soltos erra; o aluno que sabe as três fontes de informação reconstrói a lista sozinho.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 20 CAPACIDADE FUNCIONAL ============ -->
+<section class="sec" id="s20">
+  <div class="sechead"><span class="secnum">20</span><div><span class="kick">O teste é mais do que isquemia</span><h2>Capacidade funcional e METs</h2></div></div>
+  <div class="card">
+    <p class="mono" style="font-size:1.15rem;font-weight:800;color:var(--azul-esc)">1 MET ≈ 3,5 mL O₂ · kg⁻¹ · min⁻¹</p>
+    <p>É o consumo de oxigênio em repouso. Toda a capacidade funcional do teste é expressa como múltiplos desse consumo basal.</p>
+    <label class="mini" for="metRange">Arraste até os METs atingidos pelo paciente</label>
+    <input id="metRange" type="range" min="1" max="16" value="7" step="0.5" oninput="metUpdate()" style="width:100%;accent-color:var(--azul);height:36px">
+    <div id="metPainel"></div>
+    <div class="box azul" style="margin-top:10px"><span class="rot">Faixas usadas neste capítulo</span>
+      &lt; 4 METs = ruim · 4–7 = regular · 7–10 = boa · &gt; 10 = excelente<span class="foradiretriz">NÃO CONSTA NA SBC 2024</span>
+      <div class="tiny" style="margin-top:8px">Escala didática de uso consagrado, <b>não</b> uma tabela da SBC 2024 — a diretriz classifica aptidão cardiorrespiratória pelo <b>VO₂</b> (1 MET = 3,5 mL/kg/min) e não publica essa régua verbal. O que a diretriz <b>sim</b> afirma: pacientes que atingem <b>≥ 10 METs</b>, sobretudo idosos, têm baixas taxas de eventos e mortalidade <b>independentemente de isquemia induzida</b>; e &lt; 4 METs marca baixa capacidade funcional na avaliação pré-operatória. Use a escala como atalho de raciocínio, não como citação de diretriz.</div>
+    </div>
+    <div class="box vermelho"><span class="rot">Trave</span>
+      <b>Baixa capacidade funcional ≠ isquemia.</b> A esteira tem quatro pernas: cardíaca, pulmonar, musculoesquelética e condicionamento/motivação. Um paciente pode parar aos 4 METs por artrose de joelho, DPOC ou descondicionamento — sem nenhuma DAC.
+    </div>
+    <div class="box roxo"><span class="rot">Por que isso é tão importante</span>
+      A capacidade funcional é um dos preditores prognósticos mais consistentes de todo o exame — em várias séries, com peso <b>maior</b> do que o próprio comportamento do ST.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 21 PROGNÓSTICO + DUKE ============ -->
+<section class="sec" id="s21">
+  <div class="sechead"><span class="secnum">21</span><div><span class="kick">A mesa prognóstica</span><h2>Sete informações, um único laudo</h2></div></div>
+
+  <div class="card">
+    <p>Um único número raramente conta toda a história. Toque em cada componente para ver o que ele acrescenta.</p>
+    <div class="chips" id="chipsProg"></div>
+    <div id="progDet" class="box roxo"></div>
+    <div class="frase">O ST é uma testemunha. O laudo é o julgamento do conjunto.<span class="aut">— Dr. André Rossanno</span></div>
+  </div>
+
+  <div class="card">
+    <h3>Duke Treadmill Score</h3>
+    <p class="mono" style="font-size:1.05rem;font-weight:800;color:var(--azul-esc)">DTS = tempo (min, Bruce) − 5 × (desvio máximo do ST em mm) − 4 × (índice de angina)</p>
+    <p class="mini">Índice de angina: <b>0</b> = sem angina · <b>1</b> = angina durante o esforço · <b>2</b> = angina limitante. Tempo em minutos no <b>protocolo de Bruce</b> (em outro protocolo, converter os METs para o equivalente em Bruce). O escore integra <b>capacidade de exercício + isquemia elétrica + sintoma</b>, e não apenas o ST. Indicação da diretriz: pacientes <b>sintomáticos</b>, ambos os sexos, <b>45 a 75 anos</b> — com limitações importantes em assintomáticos, baixo risco pré-teste, pós-revascularização cirúrgica e pós-IAM recente.<span class="conferido">SBC 2024 ✓</span></p>
+    <div class="box roxo">
+      <div class="grid g3">
+        <div><label class="mini" for="dkTempo">Tempo de exercício (min)</label><input id="dkTempo" type="number" value="9" step="0.5" inputmode="decimal" style="width:100%;padding:9px;border-radius:10px;border:2px solid var(--cinza);font-weight:800"></div>
+        <div><label class="mini" for="dkST">Desvio máximo do ST (mm)</label><input id="dkST" type="number" value="1" step="0.5" inputmode="decimal" style="width:100%;padding:9px;border-radius:10px;border:2px solid var(--cinza);font-weight:800"></div>
+        <div><label class="mini" for="dkAng">Índice de angina</label>
+          <select id="dkAng" style="width:100%;padding:10px;border-radius:10px;border:2px solid var(--cinza);font-weight:800;background:#fff">
+            <option value="0">0 — sem angina</option><option value="1">1 — angina não limitante</option><option value="2">2 — angina limitante</option>
+          </select>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btn roxo sm" onclick="calcDuke()">Calcular Duke</button><button class="btn ghost sm" onclick="casoDuke()">🎲 Caso aleatório para calcular</button></div>
+      <div id="saidaDuke"></div>
+    </div>
+    <div class="box ambar"><span class="rot">Faixas de risco</span>
+      ≥ +5 <b>baixo risco</b> (sobrevida em 5 anos ≈ 97%, mortalidade anual ≤ 1%) · −10 a +4 <b>risco intermediário</b> (sobrevida ≈ 90%) · ≤ −11 <b>alto risco</b> (sobrevida ≈ 67%, mortalidade anual ≥ 5%). A pontuação possível vai de ≥ +15 a ≤ −25.<span class="conferido">SBC 2024 ✓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 22 SIMULADOR ============ -->
+<section class="sec" id="s22">
+  <div class="sechead"><span class="secnum">22</span><div><span class="kick">O coração do capítulo</span><h2>Simulador de teste ergométrico</h2></div></div>
+  <div class="card">
+    <p>Você é quem conduz o exame. A cada estágio, decida: <b>continuar</b> ou <b>interromper</b>. Parar cedo demais custa informação diagnóstica; passar de um critério claro custa segurança.</p>
+    <div class="chips" id="chipsSimCaso"></div>
+    <div class="sim" id="simBox"></div>
+    <div id="simLaudo"></div>
+  </div>
+</section>
+
+<!-- ============ 23 ADIVINHE O GRÁFICO ============ -->
+<section class="sec" id="s23">
+  <div class="sechead"><span class="secnum">23</span><div><span class="kick">Do fenômeno para a curva</span><h2>Adivinhe o gráfico</h2></div></div>
+  <div class="card">
+    <p>Leia a história. Antes de olhar as opções, <b>desenhe a curva na cabeça</b>. Depois escolha.</p>
+    <div id="adivinhe"></div>
+    <div class="btnrow"><button class="btn ghost sm" onclick="proxAdivinhe()">Próxima história ▸</button></div>
+  </div>
+</section>
+
+<!-- ============ 24 MODO INVERSO ============ -->
+<section class="sec" id="s24">
+  <div class="sechead"><span class="secnum">24</span><div><span class="kick">Da curva para o fenômeno</span><h2>Conte a história deste coração</h2></div></div>
+  <div class="card">
+    <p>Agora o caminho inverso — o que realmente se faz na frente de um laudo. Olhe o gráfico e responda <b>em voz alta</b> antes de revelar.</p>
+    <div class="chartbox"><div id="invChart"></div><div class="readout" id="invReadout"></div></div>
+    <div class="box ambar" style="margin-top:12px"><span class="rot">Responda antes de revelar</span>
+      1. A resposta cronotrópica foi adequada? · 2. E a pressórica? · 3. Em que momento o problema apareceu? · 4. Que mecanismos explicam? · 5. Havia indicação de interromper? · 6. O que isso muda no diagnóstico e no prognóstico?
+    </div>
+    <div class="btnrow">
+      <button class="btn" onclick="revelarInverso()">Revelar a leitura</button>
+      <button class="btn ghost" onclick="proxInverso()">Outro traçado ▸</button>
+    </div>
+    <div id="invResp"></div>
+  </div>
+</section>
+
+<!-- ============ 25 PALÁCIO ============ -->
+<section class="sec" id="s25">
+  <div class="sechead"><span class="secnum">25</span><div><span class="kick">Memória espacial</span><h2>🏛️ O Ginásio do Coração</h2></div></div>
+  <div class="card">
+    <p>Oito objetos, oito conceitos. Percorra sempre na mesma ordem: quem entra pela porta, sobe na esteira, olha o velocímetro, o manômetro, o tanque, o chão, o alarme e sai pela sala verde.</p>
+    <div class="palacio">
+      <div class="salas" id="salas"></div>
+      <div id="salaDet" style="margin-top:14px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 26 PEGADINHAS ============ -->
+<section class="sec" id="s26">
+  <div class="sechead"><span class="secnum">26</span><div><span class="kick">Onde o TEC costuma pegar</span><h2>🔥 Pegadinhas</h2></div></div>
+  <div class="card">
+    <p>Cada afirmação abaixo está <b>errada</b> por um motivo específico. Tente formular o motivo antes de abrir.</p>
+    <div id="pegadinhas"></div>
+  </div>
+</section>
+
+<!-- ============ 27 RECUPERAÇÃO ATIVA / EBBINGHAUS ============ -->
+<section class="sec" id="s27">
+  <div class="sechead"><span class="secnum">27</span><div><span class="kick">Testagem, não releitura</span><h2>Recuperação ativa e revisão espaçada</h2></div></div>
+
+  <div class="card">
+    <h3>Rodada de perguntas</h3>
+    <div class="chips" id="chipsQuiz"></div>
+    <div id="quizArea"></div>
+    <div class="btnrow">
+      <button class="btn" onclick="proxQuestao()">Próxima ▸</button>
+      <button class="btn ambar" onclick="soErros()">🔁 Revisar meus erros</button>
+      <button class="btn ghost" onclick="soFragil()">🧠 Só o que estou esquecendo</button>
+    </div>
+    <div id="quizStatus" class="mini"></div>
+  </div>
+
+  <div class="card">
+    <h3>Flashcards</h3>
+    <div class="chips" id="chipsFlash"></div>
+    <div class="fcgrid" id="flashGrid"></div>
+  </div>
+
+  <div class="card">
+    <h3>🧠 Hipocampo — seu painel</h3>
+    <div class="dash" id="dashboard"></div>
+    <h4 style="margin-top:16px">Checklist de revisão espaçada</h4>
+    <div id="checklist"></div>
+  </div>
+</section>
+
+<!-- ============ 28 FRASES E FILOSOFIA ============ -->
+<section class="sec" id="s28">
+  <div class="sechead"><span class="secnum">28</span><div><span class="kick">O que fica depois que os números somem</span><h2>Frases-âncora e filosofia</h2></div></div>
+  <div class="card">
+    <h3>As sete âncoras do capítulo</h3>
+    <div id="ancoras"></div>
+  </div>
+  <div class="card">
+    <div class="btnrow"><button class="btn tinta" onclick="sortearFrase()">🎲 Sortear uma frase para começar a revisão</button>
+      <button class="btn ghost" onclick="verTodasFrases()">Ver todas</button></div>
+    <div id="fraseSorteada"></div>
+    <div id="todasFrases" class="hidden"></div>
+  </div>
+</section>
+
+<!-- ============ 29 FINAL ============ -->
+<section class="sec" id="s29">
+  <div class="sechead"><span class="secnum">29</span><div><span class="kick">Reconstrução final</span><h2>🧠 Teste ergométrico em 30 segundos</h2></div></div>
+  <div class="card">
+    <div class="grid g2">
+      <div class="box azul"><span class="rot">Esforço</span>
+        FC ↑ → PAS ↑ → PAD ≈ → demanda miocárdica ↑ → DP ↑ →<br>
+        observar sintomas + ECG + arritmias → reconhecer critérios de interrupção.
+      </div>
+      <div class="box verde"><span class="rot">Recuperação</span>
+        FC ↓ → PAS ↓ → seguir o ECG → procurar alterações tardias →<br>
+        medir a queda da FC no 1º minuto → só então encerrar.
+      </div>
+    </div>
+    <div class="frase" style="font-size:1.2rem">Você consegue contar a história do teste sem olhar nenhum número?</div>
+    <div class="btnrow"><button class="btn vermelho wide" onclick="desafioFinal()">SIM, TESTE-ME.</button></div>
+    <div id="desafioFinalArea"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.18em">HIPOCAMPO SUPREMO DA MEMORIZAÇÃO</p>
+    <p><b>DAC / TESTE ERGOMÉTRICO • TEC 2026</b></p>
+    <p class="assin">Dr. André Rossanno</p>
+    <p class="tiny" style="color:#8fa3ba;max-width:660px;margin:14px auto 0">
+      <b style="color:#eaf3f8">Fonte principal.</b> Carvalho T, Freitas OGA, Chalela WA, Hossri CAC, Milani M, Buglia S, et al.
+      <i>Diretriz Brasileira de Ergometria em População Adulta — 2024.</i> Arq Bras Cardiol. 2024;121(3):e20240110.
+      DOI: 10.36660/abc.20240110 — texto integral recuperado via PubMed Central (PMC11656589).
+    </p>
+    <p class="tiny" style="color:#8fa3ba;max-width:660px;margin:10px auto 0">
+      Os itens marcados <span style="color:#7ee0ad">SBC 2024 ✓</span> foram conferidos contra o texto integral da diretriz.
+      O item marcado <span style="color:#cbd5e1">NÃO CONSTA NA SBC 2024</span> é escala didática de uso consagrado, não citação de diretriz.
+      Material de estudo — não substitui a leitura da diretriz nem o julgamento clínico individual.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   TESTE ERGOMÉTRICO — O INTERROGATÓRIO DO CORAÇÃO
+   Dr. André Rossanno · TEC 2026 · arquivo único, offline
+   ============================================================ */
+const LS_KEY='atlasCardio_ergometria_interrogatorio_v1';
+let P={quiz:{},flash:{},check:{},salas:[],prof:false,mov:false,vistos:[]};
+try{const s=localStorage.getItem(LS_KEY);if(s)P=Object.assign(P,JSON.parse(s));}catch(e){}
+function salvar(){try{localStorage.setItem(LS_KEY,JSON.stringify(P));}catch(e){}}
+function reiniciarProgresso(){if(confirm('Apagar todo o seu progresso salvo neste capítulo?')){P={quiz:{},flash:{},check:{},salas:[],prof:P.prof,mov:P.mov,vistos:[]};salvar();location.reload();}}
+const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ---------- nav ---------- */
+const SECOES=[['s01','Preveja o exame'],['s02','Fisiologia do esforço'],['s03','O gráfico-mãe'],['s04','As seis estações'],
+['s05','FC máxima e Karvonen'],['s06','Os 85%'],['s07','Submáximo ≠ negativo'],['s08','Incompetência cronotrópica'],
+['s09','FC que cai com a carga'],['s10','O elevador da pressão'],['s11','Respostas pressóricas'],['s13','Queda da PAS'],
+['s14','Resposta hipertensiva'],['s15','A sala da recuperação'],['s16','Duplo produto'],['s17','Segmento ST'],['s18','CM5'],
+['s19','Critérios de interrupção'],['s20','METs e capacidade funcional'],['s21','Prognóstico e Duke'],['s22','Simulador'],
+['s23','Adivinhe o gráfico'],['s24','Conte a história'],['s25','Ginásio do Coração'],['s26','Pegadinhas'],
+['s27','Revisão e flashcards'],['s28','Frases e filosofia'],['s29','30 segundos finais']];
+$('#menuGrid').innerHTML=SECOES.map((s,i)=>`<a href="#${s[0]}" onclick="toggleMenu()"><span class="n">${String(i+1).padStart(2,'0')}</span>${s[1]}</a>`).join('');
+function toggleMenu(){$('#menuPanel').classList.toggle('open');}
+function toggleProf(){P.prof=!P.prof;document.body.classList.toggle('professor',P.prof);$('#btnProf').classList.toggle('on',P.prof);salvar();}
+function toggleMov(){P.mov=!P.mov;document.body.classList.toggle('reduzmov',P.mov);$('#btnMov').classList.toggle('on',P.mov);salvar();}
+if(P.prof){document.body.classList.add('professor');$('#btnProf').classList.add('on');}
+if(P.mov){document.body.classList.add('reduzmov');$('#btnMov').classList.add('on');}
+addEventListener('scroll',()=>{const h=document.documentElement;const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;$('#progbar').style.width=Math.min(100,p)+'%';},{passive:true});
+
+/* ============================================================
+   MOTOR DE CURVAS
+   ============================================================ */
+const ETAPAS=['PRÉ','⅓ ini','⅓ méd','⅓ fin','PICO','1 min','2 min','4 min','6 min'];
+const SERIES={
+  fc:{lab:'FC',un:'bpm',cor:'#c0392b',min:40,max:200},
+  pas:{lab:'PAS',un:'mmHg',cor:'#10758f',min:70,max:270},
+  pad:{lab:'PAD',un:'mmHg',cor:'#6b4fa1',min:40,max:140},
+  st:{lab:'ST',un:'mm',cor:'#b57500',min:-4,max:2},
+  mets:{lab:'METs',un:'METs',cor:'#1e8f5e',min:0,max:16}
+};
+const CASOS_CURVA=[
+ {id:'normal',nome:'Resposta normal',
+  fc:[72,98,124,150,168,134,114,96,84], pas:[128,150,168,186,198,172,156,140,132],
+  pad:[80,80,78,78,76,78,80,80,80], st:[0,0,0,0,0,0,0,0,0], mets:[1,3,6,9,11.5,null,null,null,null],
+  nota:'FC e PAS sobem de forma progressiva e proporcional à carga; a PAD praticamente não se move; o ST permanece na linha de base; ao parar, FC e PAS caem de maneira ordenada. É o roteiro que todos os outros casos violam.'},
+ {id:'dac',nome:'Infra de ST no esforço',
+  fc:[76,100,126,152,166,140,124,104,90], pas:[136,156,174,190,196,176,160,146,138],
+  pad:[84,84,82,82,80,82,82,84,84], st:[0,-0.3,-1.2,-2.1,-2.6,-2.2,-1.5,-0.6,-0.1], mets:[1,3,6,8.5,10,null,null,null,null],
+  nota:'Hemodinâmica preservada — FC e PAS se comportam bem. O que muda é o ST: infradesnivelamento que aparece com a carga, aprofunda até o pico e leva vários minutos para voltar. A curva do ST é o achado; a recuperação lenta é o agravante.'},
+ {id:'crono',nome:'Incompetência cronotrópica',
+  fc:[70,80,88,96,102,96,92,86,80], pas:[132,148,160,170,176,160,150,140,134],
+  pad:[82,82,82,80,80,82,82,82,82], st:[0,0,0,-0.2,-0.3,-0.2,0,0,0], mets:[1,3,5,6.5,7,null,null,null,null],
+  nota:'A esteira acelera e a FC quase não acompanha: no pico, o paciente chega a cerca de 102 bpm. A pressão sobe, o ST está quieto — o defeito está na resposta cronotrópica, e a queda lenta na recuperação reforça a suspeita de disfunção autonômica.'},
+ {id:'bb',nome:'Em uso de betabloqueador',
+  fc:[54,66,78,90,98,88,80,70,62], pas:[124,140,152,164,170,152,142,132,126],
+  pad:[76,76,74,74,74,74,76,76,76], st:[0,0,0,0,0,0,0,0,0], mets:[1,3,6,9,11,null,null,null,null],
+  nota:'FC basal baixa, teto de FC baixo — mas boa capacidade funcional (11 METs) e curva pressórica normal. Aqui o "não atingiu 85%" tem explicação farmacológica; o laudo precisa dizer isso, e o exame não deve ser chamado simplesmente de negativo.'},
+ {id:'hiper',nome:'Resposta hipertensiva',
+  fc:[78,104,128,152,170,140,120,100,88], pas:[146,178,202,226,242,206,184,164,150],
+  pad:[92,94,96,98,100,96,94,92,90], st:[0,0,0,-0.2,-0.3,-0.2,0,0,0], mets:[1,3,6,9,11,null,null,null,null],
+  nota:'A PAS dispara desde o início e o pico é muito elevado; a PAD, que deveria ficar estável, também sobe alguns milímetros. Cronotropismo e ST normais. É achado de laudo com implicação prognóstica — e o ponto em que se pergunta se algum corte de interrupção foi ultrapassado.'},
+ {id:'queda',nome:'PAS que sobe e depois cai',
+  fc:[80,104,126,146,156,140,128,112,98], pas:[130,152,176,180,154,140,132,128,126],
+  pad:[84,84,84,82,78,80,82,84,84], st:[0,-0.2,-0.8,-1.8,-2.4,-2.0,-1.2,-0.5,0], mets:[1,3,5.5,7,7.5,null,null,null,null],
+  nota:'A PAS sobe bem até 180 mmHg e depois DESPENCA 26 mmHg enquanto a carga ainda aumenta. Isso é a bomba falhando sob demanda máxima — e vem acompanhada de infra de ST. Curva que combina placa amarela e placa vermelha ao mesmo tempo.'},
+ {id:'recup',nome:'Alteração só na recuperação',
+  fc:[74,100,128,154,172,152,138,116,96], pas:[130,152,172,188,198,180,166,148,138],
+  pad:[80,80,78,78,78,78,80,80,80], st:[0,0,0,-0.2,-0.4,-1.4,-2.2,-1.8,-0.9], mets:[1,3,6,9,11.5,null,null,null,null],
+  nota:'Durante o esforço, quase nada. O ST só desce DEPOIS que a esteira parou, aprofunda no 2º minuto e ainda está alterado no 6º. Quem desliga o monitor no pico não vê nada e assina um laudo errado.'},
+ {id:'baixa',nome:'Baixa capacidade funcional, ST limpo',
+  fc:[82,106,124,136,142,126,114,100,90], pas:[134,150,162,170,174,158,148,138,134],
+  pad:[84,84,82,82,82,82,84,84,84], st:[0,0,0,0,0,0,0,0,0], mets:[1,2.5,3.5,4,4.2,null,null,null,null],
+  nota:'Parou com 4,2 METs, sem qualquer alteração do ST. Não há isquemia elétrica documentada — mas há uma informação prognóstica pesada: a capacidade funcional. A pergunta seguinte é POR QUE ele parou: coração, pulmão, articulação ou condicionamento?'}
+];
+function idxCaso(id){return Math.max(0,CASOS_CURVA.findIndex(c=>c.id===id));}
+
+const NARROW=()=>(typeof window!=='undefined'&&window.innerWidth<620);
+const ETAPAS_S=['PRÉ','⅓i','⅓m','⅓f','PICO','1′','2′','4′','6′'];
+function chartSVG(caso,series,opt){
+  opt=opt||{}; const nw=NARROW();
+  const W=nw?560:900, H=nw?Math.round((opt.h||360)*1.18):(opt.h||360), pl=nw?38:52, pr=nw?12:14, pt=18, pb=nw?50:46;
+  const n=ETAPAS.length, iw=W-pl-pr, ih=H-pt-pb;
+  const X=i=>pl+i*iw/(n-1);
+  const Y=(v,k)=>{const s=SERIES[k];return pt+ih-((v-s.min)/(s.max-s.min))*ih;};
+  let g='';
+  for(let i=0;i<=4;i++){const y=pt+ih*i/4;g+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="#e6e9ef" stroke-width="1"/>`;}
+  g+=`<rect x="${X(4)}" y="${pt}" width="${X(8)-X(4)}" height="${ih}" fill="#1e8f5e" opacity=".055"/>`;
+  g+=`<line x1="${X(4)}" y1="${pt}" x2="${X(4)}" y2="${pt+ih}" stroke="#1e8f5e" stroke-width="2" stroke-dasharray="5 4"/>`;
+  g+=`<text x="${X(4)+6}" y="${pt+14}" font-family="monospace" font-size="${nw?14:16}" fill="#1e8f5e">${nw?'RECUP.':'RECUPERAÇÃO'}</text>`;
+  (nw?ETAPAS_S:ETAPAS).forEach((e,i)=>{g+=`<text x="${X(i)}" y="${H-26}" font-family="monospace" font-size="${nw?15:17}" fill="#5b6779" text-anchor="middle">${e}</text>`;});
+  g+=`<text x="${X(2)}" y="${H-6}" font-family="monospace" font-size="${nw?14:16}" fill="#5b6779" text-anchor="middle">${nw?'ESFORÇO ▸':'ESFORÇO — carga crescente ▸'}</text>`;
+  series.forEach(k=>{
+    const s=SERIES[k], d=caso[k]; let path='',pts='';
+    d.forEach((v,i)=>{ if(v===null||v===undefined)return;
+      path+=(path?' L':'M')+X(i)+','+Y(v,k).toFixed(1);
+      pts+=`<circle cx="${X(i)}" cy="${Y(v,k).toFixed(1)}" r="4.5" fill="#fff" stroke="${s.cor}" stroke-width="2.5"/>`;});
+    g+=`<path d="${path}" fill="none" stroke="${s.cor}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>${pts}`;
+    const last=d.map((v,i)=>[v,i]).filter(a=>a[0]!==null).pop();
+    g+=`<text x="${pl-6}" y="${Y(d[0],k)+4}" font-family="monospace" font-size="${nw?15:17}" fill="${s.cor}" text-anchor="end" font-weight="700">${s.lab}</text>`;
+  });
+  if(opt.idx!=null){const x=X(opt.idx);g+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${pt+ih}" stroke="#111c2e" stroke-width="2" opacity=".55"/>`;}
+  ETAPAS.forEach((e,i)=>{const x0=(X(i)+X(Math.max(0,i-1)))/2,x1=(X(i)+X(Math.min(n-1,i+1)))/2;
+    g+=`<rect x="${x0}" y="${pt}" width="${Math.max(6,x1-x0)}" height="${ih}" fill="transparent" style="cursor:pointer" data-i="${i}"/>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Curvas do teste ergométrico">${g}</svg>`;
+}
+function ligarHover(host,cb){
+  const svg=host.querySelector('svg'); if(!svg)return;
+  svg.querySelectorAll('rect[data-i]').forEach(r=>{
+    const i=+r.dataset.i;
+    r.addEventListener('mouseenter',()=>cb(i));
+    r.addEventListener('touchstart',e=>{cb(i);},{passive:true});
+    r.addEventListener('click',()=>cb(i));
+  });
+}
+function readoutHTML(caso,i){
+  const st=caso.st[i], mets=caso.mets[i];
+  return `<div><b>Momento</b> ${ETAPAS[i]}</div>
+  <div><b>FC</b> ${caso.fc[i]} bpm</div>
+  <div><b>PA</b> ${caso.pas[i]}/${caso.pad[i]} mmHg</div>
+  <div><b>ST</b> ${st===0?'linha de base':(st>0?'+':'')+st.toFixed(1)+' mm'}</div>
+  <div><b>METs</b> ${mets==null?'—':mets}</div>
+  <div><b>DP</b> ${(caso.fc[i]*caso.pas[i]).toLocaleString('pt-BR')}</div>`;
+}
+
+/* ---------- 01 previsão ---------- */
+const PREV=[
+ {q:'FC durante o esforço',o:['Sobe progressivamente','Fica estável','Cai'],c:0},
+ {q:'PAS durante o esforço',o:['Sobe progressivamente','Fica estável','Cai'],c:0},
+ {q:'PAD durante o esforço',o:['Sobe junto com a PAS','Fica aproximadamente estável','Cai pela metade'],c:1},
+ {q:'Ao terminar o exercício',o:['FC e PAS caem progressivamente','FC cai e PAS sobe','Nada mais precisa ser observado'],c:0}
+];
+$('#prev01').innerHTML=PREV.map((p,i)=>`<div class="qbox"><div class="pergunta">${p.q}</div><div class="alts">
+ ${p.o.map((o,j)=>`<button class="alt" data-p="${i}" data-j="${j}" onclick="apostar(${i},${j})">${o}</button>`).join('')}
+</div></div>`).join('');
+function apostar(i,j){$$(`[data-p="${i}"]`).forEach(b=>b.classList.remove('marcada'));$(`[data-p="${i}"][data-j="${j}"]`).classList.add('marcada');}
+function revelar01(){
+  PREV.forEach((p,i)=>{$$(`[data-p="${i}"]`).forEach((b,j)=>{if(j===p.c)b.classList.add('certa');else if(b.classList.contains('marcada'))b.classList.add('errada');});});
+  $('#res01').classList.remove('hidden');
+}
+
+/* ---------- 02 fisiologia ---------- */
+const FISIO=[
+ {t:'REPOUSO',c:'#10758f',txt:'Predomínio relativo do <b>controle vagal</b> sobre o nó sinusal. FC baixa, débito cardíaco basal, resistência periférica alta. O sistema está com o freio puxado.'},
+ {t:'PRIMEIROS SEGUNDOS',c:'#b57500',txt:'<b>RETIRADA VAGAL.</b> Este é o primeiro evento — não a descarga simpática. Soltar o freio explica a elevação inicial rápida da FC.'},
+ {t:'ESFORÇO CRESCENTE',c:'#c0392b',txt:'Agora sim, <b>↑ atividade simpática</b>: ↑ FC, ↑ contratilidade, ↑ débito cardíaco, ↑ PAS. Ao mesmo tempo, a <b>vasodilatação metabólica</b> nos músculos ativos derruba a resistência vascular — por isso a PAD quase não se move.'},
+ {t:'PICO',c:'#c0392b',txt:'FC próxima do teto individual, PAS máxima, <b>duplo produto máximo</b>. É o momento de maior demanda miocárdica de O₂ — e por isso o momento em que o desequilíbrio oferta/demanda tem mais chance de se manifestar.'},
+ {t:'RECUPERAÇÃO',c:'#1e8f5e',txt:'Inversão do processo: <b>reativação vagal</b> + retirada progressiva do simpático → queda da FC (o 1º minuto é o mais informativo) e queda progressiva da PAS. O ECG segue sendo registrado.'}
+];
+let fisioI=0;
+function fisioStep(d){ fisioI = d===0?0:Math.min(FISIO.length-1,Math.max(0,fisioI+d)); renderFisio(); }
+function renderFisio(){
+  const W=900,H=90,step=W/FISIO.length;
+  let g=`<line x1="30" y1="45" x2="870" y2="45" stroke="#e6e9ef" stroke-width="6" stroke-linecap="round"/>`;
+  FISIO.forEach((f,i)=>{const x=40+i*(820/(FISIO.length-1));
+    g+=`<circle cx="${x}" cy="45" r="${i===fisioI?15:9}" fill="${i<=fisioI?f.c:'#cfd6e0'}"/>`;
+    g+=`<text x="${x}" y="82" text-anchor="middle" font-family="monospace" font-size="17" fill="${i===fisioI?f.c:'#8b96a5'}">${f.t.split(' ')[0]}</text>`;});
+  $('#fisioLinha').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">${g}</svg>`;
+  const f=FISIO[fisioI];
+  $('#fisioTexto').innerHTML=`<span class="rot">${f.t}</span>${f.txt}`;
+  $('#fisioTexto').style.borderColor=f.c;
+}
+renderFisio();
+
+/* ---------- 03 gráfico-mãe ---------- */
+let MAE={caso:0,series:['fc'],idx:4,revelado:true};
+function renderChips(){
+  $('#chipsSerie').innerHTML=Object.keys(SERIES).map(k=>`<button class="chip ${MAE.series.includes(k)?'on':''}" onclick="toggleSerie('${k}')">${SERIES[k].lab}</button>`).join('');
+  $('#chipsCaso').innerHTML=CASOS_CURVA.map((c,i)=>`<button class="chip ${MAE.caso===i?'on':''}" onclick="setCasoMae(${i})">${c.nome}</button>`).join('');
+}
+function toggleSerie(k){ if(MAE.series.includes(k)){ if(MAE.series.length>1) MAE.series=MAE.series.filter(x=>x!==k);} else MAE.series.push(k); renderChips(); renderMae(); }
+function setCasoMae(i){ MAE.caso=i; renderChips(); renderMae(); }
+function desenharMentalmente(){ MAE.revelado=false; $('#veuMae').classList.remove('hidden'); $('#maeBox').classList.add('hidden'); $('#maeNota').innerHTML=''; }
+function mostrarCurva(){ MAE.revelado=true; $('#veuMae').classList.add('hidden'); $('#maeBox').classList.remove('hidden'); renderMae(); }
+function maeHover(i){
+  const c=CASOS_CURVA[MAE.caso]; MAE.idx=i;
+  $('#maeChart').innerHTML=chartSVG(c,MAE.series,{idx:i});
+  ligarHover($('#maeChart'),maeHover);
+  $('#maeReadout').innerHTML=readoutHTML(c,i);
+}
+function renderMae(){
+  const c=CASOS_CURVA[MAE.caso];
+  $('#maeChart').innerHTML=chartSVG(c,MAE.series,{idx:MAE.idx});
+  ligarHover($('#maeChart'),maeHover);
+  $('#maeLegend').innerHTML=MAE.series.map(k=>`<span><i style="background:${SERIES[k].cor}"></i>${SERIES[k].lab} (${SERIES[k].un})</span>`).join('');
+  $('#maeReadout').innerHTML=readoutHTML(c,MAE.idx);
+  $('#maeNota').innerHTML=`<span class="rot">${c.nome}</span>${c.nota}`;
+}
+renderChips();renderMae();
+
+/* ---------- 04 estações ---------- */
+const ESTACOES=[
+ {n:'Estação 1',t:'❤️ Frequência cardíaca',q:'"Você consegue acelerar?"',r:'Avalia a <b>reserva cronotrópica</b>. Resposta inadequada abre uma lista de causas (fármacos, nó sinusal, disautonomia, DAC) e tem peso prognóstico próprio.'},
+ {n:'Estação 2',t:'🩸 Pressão arterial',q:'"Você consegue gerar pressão adequadamente?"',r:'PAS reflete a capacidade de aumentar o débito; PAD reflete a resistência periférica. Subir demais é achado; <b>cair</b> é alarme.'},
+ {n:'Estação 3',t:'🫀 Coronárias',q:'"Você consegue entregar O₂ quando a demanda sobe?"',r:'Aqui entra o duplo produto: FC × PAS é o preço que o miocárdio está pagando. A pergunta é se a oferta acompanha.'},
+ {n:'Estação 4',t:'⚡ ECG',q:'"Existe sofrimento elétrico provocado pelo esforço?"',r:'O ST é medido, não olhado: linha de base, ponto J, momento, magnitude, morfologia, derivações, duração e relação com a carga.'},
+ {n:'Estação 5',t:'🗣️ Sintomas',q:'"O paciente manifesta o desequilíbrio?"',r:'Angina típica induzida tem valor independente. Dispneia desproporcional, pré-síncope, claudicação e exaustão precoce também informam — e podem ser critério de interrupção.'},
+ {n:'Estação 6',t:'🌿 Recuperação',q:'"Depois do estresse, você volta ao basal?"',r:'Queda da FC no 1º minuto, comportamento da PAS e ECG na recuperação. Parte do exame, não epílogo.'}
+];
+$('#estacoes').innerHTML=ESTACOES.map((e,i)=>`<button class="est" onclick="this.classList.toggle('open')">
+ <span class="n">${e.n}</span><div class="t">${e.t}</div><div class="q">${e.q}</div><div class="resp">${e.r}</div></button>`).join('');
+
+/* ---------- 05 FC ---------- */
+function calcFC(){
+  const id=+$('#idadeFC').value||0, rep=+$('#fcRep').value||0;
+  const fcm=220-id, p85=Math.round(fcm*0.85), res=fcm-rep;
+  const k60=Math.round(rep+0.6*res), k80=Math.round(rep+0.8*res), tan=Math.round(208-0.7*id);
+  $('#saidaFC').innerHTML=`
+  <div><b>FC máx (220−idade)</b> ${fcm} bpm</div>
+  <div><b>85% da prevista</b> ${p85} bpm</div>
+  <div><b>FC reserva</b> ${res} bpm</div>
+  <div><b>Karvonen 60%</b> ${k60} bpm</div>
+  <div><b>Karvonen 80%</b> ${k80} bpm</div>
+  <div><b>Tanaka (208−0,7×idade)</b> ${tan} bpm</div>`;
+}
+calcFC();
+function calcIC(){
+  const id=+$('#idadeFC').value||0, rep=+$('#fcRep').value||0;
+  const pico=+prompt('FC atingida no pico do exame (bpm)?','130');
+  if(!pico){return;}
+  const fcm=220-id, ic=((pico-rep)/(fcm-rep));
+  $('#saidaIC').innerHTML=`<div><b>FC pico</b> ${pico} bpm</div><div><b>% da FC máx prevista</b> ${Math.round(pico/fcm*100)}%</div>
+  <div><b>Índice cronotrópico</b> ${ic.toFixed(2)}</div>
+  <div style="background:#fff4dd">Interprete com esforço realizado, fármacos e contexto — não isoladamente</div>`;
+}
+
+/* ---------- 07 caso submáximo ---------- */
+$('#q07').innerHTML=`<div class="qbox"><div class="pergunta">O exame obrigatoriamente "não serve"?</div><div class="alts">
+ <button class="alt" onclick="resp07(0)">Sim — abaixo de 85% o exame é sempre não diagnóstico</button>
+ <button class="alt" onclick="resp07(1)">Não necessariamente — depende do que apareceu durante o esforço</button>
+ <button class="alt" onclick="resp07(2)">Não — abaixo de 85% o exame pode ser laudado como negativo</button>
+</div><div class="coment" id="c07"></div></div>`;
+function resp07(i){
+  const alts=$$('#q07 .alt'); alts[1].classList.add('certa'); if(i!==1)alts[i].classList.add('errada');
+  $('#c07').classList.add('show');
+  $('#c07').innerHTML=`<b>Resposta: não necessariamente.</b> "Submáximo" limita o poder do exame de <b>afastar</b> isquemia, porque o estresse pode ter sido insuficiente para revelar o defeito. Mas se surgiram achados convincentes (angina típica + infra de ST característico), a informação diagnóstica existe e é relevante — inclusive porque isquemia em carga baixa costuma ser mais preocupante.
+  <div class="porque">Por que a alternativa 3 é a pior de todas: laudar como <b>negativo</b> um exame submáximo transforma "não sabemos" em "não tem", e é assim que paciente coronariano vai para casa com falsa segurança.</div>`;
+  registrar('q07',i===1);
+}
+</script>
+
+<script>
+/* ---------- 08 causas de resposta cronotrópica inadequada ---------- */
+const CRONO=[
+ {n:'β-bloqueador',t:'Causa <b>farmacológica</b> — a mais comum e a primeira a ser perguntada. Também bloqueadores de canal de cálcio não di-idropiridínicos, ivabradina, amiodarona e outros. Sem essa informação, o laudo cronotrópico fica sem denominador.'},
+ {n:'Doença do nó sinusal',t:'O marca-passo natural não acelera. Frequentemente acompanhada de bradicardia de repouso, pausas ou síndrome bradi-taqui. A esteira é justamente o teste que expõe essa incompetência.'},
+ {n:'Disfunção autonômica',t:'Falha do balanço vagal-simpático. Costuma aparecer junto com <b>recuperação lenta da FC</b> no primeiro minuto — os dois lados do mesmo controle.'},
+ {n:'Doença de Chagas',t:'Acometimento do sistema de condução e disautonomia; em área endêmica, entra obrigatoriamente na lista diante de resposta cronotrópica anormal, sobretudo com arritmias associadas.'},
+ {n:'DAC',t:'Isquemia extensa pode limitar a resposta cronotrópica. Mas é <b>uma</b> das causas — nunca a conclusão automática.'},
+ {n:'Outras',t:'Hipotireoidismo, descondicionamento grave, insuficiência cardíaca avançada, idade avançada, doenças infiltrativas, esforço insuficiente por limitação não cardíaca. E o oposto: <b>atletas</b> têm bradicardia de repouso fisiológica e podem exibir padrões próprios — contexto é tudo.'}
+];
+$('#chipsCrono').innerHTML=CRONO.map((c,i)=>`<button class="chip" onclick="verCrono(${i},this)">${c.n}</button>`).join('');
+function verCrono(i,el){ $$('#chipsCrono .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on');
+  $('#cronoDet').innerHTML=`<span class="rot">${CRONO[i].n}</span>${CRONO[i].t}`; }
+verCrono(0,$('#chipsCrono .chip'));
+
+/* ---------- 10 elevador da pressão ---------- */
+function elevadorPA(){
+  const c=+$('#cargaPA').value;
+  const pas=Math.round(128+0.72*c), pad=Math.round(80-2*(c/100)), dp=Math.round((72+0.95*c)*pas);
+  const hS=Math.min(1,(pas-100)/120), hD=Math.min(1,(pad-40)/120);
+  $('#elevador').innerHTML=`<svg viewBox="0 0 600 260" style="width:100%;height:auto">
+   <rect width="600" height="260" rx="14" fill="#f2f5f8"/>
+   <rect x="90" y="30" width="140" height="200" rx="10" fill="#e3e9ef"/>
+   <rect x="90" y="${230-200*hS}" width="140" height="${200*hS}" rx="10" fill="#10758f"/>
+   <text x="160" y="${Math.max(48,224-200*hS)}" text-anchor="middle" font-family="Nunito,sans-serif" font-size="26" font-weight="900" fill="#0b5468">${pas}</text>
+   <text x="160" y="252" text-anchor="middle" font-family="monospace" font-size="15" fill="#0b5468">PAS</text>
+   <rect x="360" y="30" width="140" height="200" rx="10" fill="#e3e9ef"/>
+   <rect x="360" y="${230-200*hD}" width="140" height="${200*hD}" rx="10" fill="#6b4fa1"/>
+   <text x="430" y="${Math.max(48,224-200*hD)}" text-anchor="middle" font-family="Nunito,sans-serif" font-size="26" font-weight="900" fill="#4b3579">${pad}</text>
+   <text x="430" y="252" text-anchor="middle" font-family="monospace" font-size="15" fill="#4b3579">PAD</text>
+   <text x="300" y="24" text-anchor="middle" font-family="monospace" font-size="14" fill="#5b6779">carga ${c}%</text>
+  </svg>`;
+  $('#saidaPA').innerHTML=`<div><b>PAS</b> ${pas} mmHg</div><div><b>PAD</b> ${pad} mmHg</div>
+  <div><b>Δ PAS</b> +${pas-128} mmHg</div><div><b>Δ PAD</b> ${pad-80} mmHg</div><div><b>DP estimado</b> ${dp.toLocaleString('pt-BR')}</div>`;
+}
+elevadorPA();
+
+/* ---------- 11 respostas pressóricas ---------- */
+const RESP_PA=[
+ {n:'1. Esperada',cor:'verde',t:'<b>PAS sobe progressivamente</b> com o incremento da carga; <b>PAD estável</b> ou com pequena variação. É a assinatura de um sistema com reserva: a bomba aumenta o débito enquanto a periferia abre.'},
+ {n:'2. Hipertensiva',cor:'ambar',t:'PAS <b>≥ 210 mmHg em homens</b> ou <b>≥ 190 mmHg em mulheres</b>; e/ou PAD com elevação <b>≥ 15 mmHg</b> ou valor <b>&gt; 90 mmHg</b>. É <b>achado de laudo</b> com implicação prognóstica (HAS futura, HVE, IAM, FA, AVC, morte CV) — não é, por si, ordem de parar. Curiosidade que cai em prova: em pacientes com DAC suspeita ou conhecida, a resposta hipertensiva associou-se a lesões <b>menos</b> graves.<span class="conferido">SBC 2024 ✓</span>'},
+ {n:'3. Deprimida',cor:'ambar',t:'Reserva pressórica sistólica (PAS pico − PAS repouso) <b>&lt; 35 mmHg</b>, ou PAS máxima <b>&lt; 140 mmHg</b>, ou <b>platô</b> da PAS (2 ou mais estágios, ou &gt; 3 minutos em rampa) com reserva &lt; 35 mmHg. Associa-se a DAC grave e pior prognóstico. Na cardiomiopatia hipertrófica, o critério é falhar em elevar a PAS em pelo menos <b>20 mmHg</b> do repouso ao pico.<span class="conferido">SBC 2024 ✓</span>'},
+ {n:'4. Hipotensiva',cor:'vermelho',t:'Três formas na diretriz: <b>1)</b> queda da PAS abaixo do repouso <b>sem</b> queda da PAD — costuma ser <b>isquemia</b>; <b>2)</b> queda da PAS <b>com</b> queda da PAD — costuma ser <b>déficit inotrópico</b> (p. ex., valvopatia); <b>3)</b> elevação inicial seguida de <b>queda ≥ 20 mmHg</b>. Incidência de 2% a 6%; exige <b>suspensão imediata</b> do esforço e decúbito dorsal.<span class="conferido">SBC 2024 ✓</span>'},
+ {n:'5. Critérios de interrupção',cor:'vermelho',t:'<b>PAS &gt; 250 mmHg</b>; <b>PAD ≥ 120 mmHg</b> em normotensos ou <b>≥ 140 mmHg</b> em hipertensos; e queda da PAS <b>≥ 20 mmHg</b> após elevação inicial. Repare no degrau: hipertensiva é <b>≥ 210/190</b> (laudo), interromper é <b>&gt; 250</b> (segurança) — nunca misture os dois. E não realizar o teste se, no repouso, <b>PAS ≥ 180 e/ou PAD &gt; 110 mmHg</b>.<span class="conferido">SBC 2024 ✓</span>'}
+];
+$('#chipsPA').innerHTML=RESP_PA.map((r,i)=>`<button class="chip" onclick="verPA(${i},this)">${r.n}</button>`).join('');
+function verPA(i,el){ $$('#chipsPA .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on');
+  const r=RESP_PA[i]; const d=$('#paDet'); d.className='box '+r.cor; d.innerHTML=`<span class="rot">${r.n}</span>${r.t}`; }
+verPA(0,$('#chipsPA .chip'));
+
+/* ---------- 12 jogo das placas ---------- */
+const PLACAS=[
+ {t:'PAS de 206 mmHg no pico, paciente confortável, sem sintomas',r:'a',x:'Resposta hipertensiva é achado de laudo com valor prognóstico. Só vira placa vermelha quando ultrapassa os limites pressóricos formais de interrupção da diretriz.'},
+ {t:'PAS sobe até 180 e depois cai para 154 com aumento da carga',r:'v',x:'Queda pressórica significativa durante incremento de carga: a bomba não sustenta o débito. Placa vermelha — e ainda por cima achado prognóstico grave.'},
+ {t:'Infra de ST horizontal de 1 mm, teste bem tolerado, sem sintomas',r:'a',x:'É o achado diagnóstico do exame — entra no laudo e muda a probabilidade pós-teste. A decisão de parar depende de magnitude, extensão, sintomas e comportamento hemodinâmico.'},
+ {t:'Taquicardia ventricular sustentada durante o esforço',r:'v',x:'Arritmia com risco imediato. Interromper, monitorizar e assistir — sem discussão.'},
+ {t:'FC de 98 bpm no pico em paciente de 50 anos sem betabloqueador',r:'a',x:'Resposta cronotrópica inadequada é achado importante e prognóstico, mas não é, por si, ordem de parada.'},
+ {t:'Ataxia, vertigem persistente e palidez com sudorese fria',r:'v',x:'O sistema nervoso central e a perfusão avisando que a compensação acabou. Critério clássico de interrupção.'},
+ {t:'Angina que começa leve e vai ficando moderada/intensa',r:'v',x:'Angina progressiva/limitante é critério de interrupção. Insistir aqui é trocar informação por risco.'},
+ {t:'PAD sobe de 84 para 96 mmHg ao longo do esforço',r:'a',x:'Comportamento anormal da PAD (que deveria ficar estável) — achado a ser descrito. Vira placa vermelha apenas nos valores de corte da diretriz.'},
+ {t:'Queda da FC no 1º minuto de recuperação de apenas 8 bpm',r:'a',x:'Marcador prognóstico da recuperação — e o exame já terminou. Nada a interromper, muito a laudar.'},
+ {t:'Supradesnivelamento de ST ≥ 1 mm em derivação sem onda Q anormal',r:'v',x:'Sugere isquemia transmural/grave em território correspondente. Interromper e agir.'}
+];
+let placaI=0,placaAcertos=0;
+function renderPlacas(){
+  if(placaI>=PLACAS.length){
+    $('#jogoPlacas').innerHTML=`<div class="box verde"><span class="rot">Rodada concluída</span>
+     Você classificou corretamente <b>${placaAcertos} de ${PLACAS.length}</b>.
+     <div class="btnrow"><button class="btn sm ghost" onclick="placaI=0;placaAcertos=0;renderPlacas()">↺ Jogar de novo</button></div></div>`;
+    return;
+  }
+  const p=PLACAS[placaI];
+  $('#jogoPlacas').innerHTML=`<div class="qbox" style="margin-top:14px">
+   <div class="mini mono">SITUAÇÃO ${placaI+1}/${PLACAS.length}</div>
+   <div class="pergunta">${p.t}</div>
+   <div class="btnrow"><button class="btn ambar" onclick="respPlaca('a')">⚠️ Resposta anormal</button>
+   <button class="btn vermelho" onclick="respPlaca('v')">🛑 Interromper o teste</button></div>
+   <div class="coment" id="cPlaca"></div></div>`;
+}
+function respPlaca(r){
+  const p=PLACAS[placaI], ok=r===p.r;
+  if(ok)placaAcertos++;
+  registrar('placa'+placaI,ok);
+  const c=$('#cPlaca'); c.classList.add('show');
+  c.innerHTML=`<b style="color:${ok?'var(--verde)':'var(--vermelho)'}">${ok?'✔ Correto':'✘ Não é essa placa'}</b> — ${p.x}
+   <div class="btnrow"><button class="btn sm" onclick="placaI++;renderPlacas()">Próxima ▸</button></div>`;
+}
+renderPlacas();
+
+/* ---------- 13 personagens da queda da PAS ---------- */
+const PERSON=[
+ {ic:'❤️',n:'DAC importante',t:'Isquemia extensa (multiarterial ou de tronco) reduz a função sistólica sob demanda: o débito não acompanha a queda da resistência periférica.'},
+ {ic:'💪',n:'Cardiomiopatia hipertrófica',t:'Obstrução dinâmica da via de saída que piora com o aumento da contratilidade e a redução do volume — a pressão cai justamente quando o esforço aumenta.'},
+ {ic:'🚪',n:'Estenose aórtica',t:'Obstrução fixa à ejeção: o débito não pode aumentar além do limite da válvula, e a vasodilatação periférica derruba a pressão.'}
+];
+$('#personagensPAS').innerHTML=PERSON.map(p=>`<div class="card" style="margin:0">
+ <div style="font-size:2rem">${p.ic}</div><h4>${p.n}</h4><p class="mini">${p.t}</p></div>`).join('')+
+ `<div class="card" style="margin:0;border-left:6px solid var(--roxo)"><div style="font-size:2rem">🧩</div><h4>E outras</h4>
+ <p class="mini">Disfunção ventricular de qualquer etiologia, arritmias, hipovolemia, fármacos, resposta vasovagal, doenças estruturais diversas.</p></div>`;
+
+/* ---------- 14 gráfico da resposta hipertensiva ---------- */
+function renderHiper(){
+  const normal=CASOS_CURVA[idxCaso('normal')], hiper=CASOS_CURVA[idxCaso('hiper')];
+  const fake={pas:normal.pas,fc:normal.fc,pad:normal.pad,st:normal.st,mets:normal.mets};
+  let svg=chartSVG(hiper,['pas'],{h:300});
+  const extra=chartSVG(fake,['pas'],{h:300}).match(/<path d="[^"]+" fill="none" stroke="#10758f"[^>]+>/);
+  if(extra){svg=svg.replace('</svg>',extra[0].replace('stroke="#10758f"','stroke="#8fb9c8" stroke-dasharray="7 6"')+'</svg>');}
+  $('#chartHiper').innerHTML=svg;
+}
+renderHiper();
+
+/* ---------- 15 ST na recuperação ---------- */
+$('#cenaRecST').innerHTML=`<div class="box verde"><span class="rot">Cena</span>
+ A esteira parou. O paciente respira aliviado, o técnico solta a barra de apoio, o estudante fecha o caderno e pensa: "acabou".</div>`;
+function revelarRecST(){
+  $('#recSTtexto').classList.remove('hidden');
+  $('#cenaRecST').innerHTML=`<div class="chartbox"><svg viewBox="0 0 900 220" style="width:100%;height:auto">
+   <rect width="900" height="220" fill="#fff"/>
+   ${(()=>{let g='';for(let x=0;x<=900;x+=20)g+=`<line x1="${x}" y1="0" x2="${x}" y2="220" stroke="${x%100===0?'#f1c4bd':'#fae4e0'}" stroke-width="${x%100===0?1.4:1}"/>`;
+   for(let y=0;y<=220;y+=20)g+=`<line x1="0" y1="${y}" x2="900" y2="${y}" stroke="${y%100===0?'#f1c4bd':'#fae4e0'}" stroke-width="${y%100===0?1.4:1}"/>`;return g;})()}
+   <path d="M20,120 L120,120 L140,112 L160,120 L200,120 L210,130 L220,40 L232,150 L244,120 L300,140 L340,150 L420,138 L440,120 L520,120 L530,130 L540,40 L552,150 L564,120 L620,142 L660,152 L740,140 L760,120 L880,120"
+     fill="none" stroke="#111c2e" stroke-width="3"/>
+   <text x="300" y="185" fill="#c0392b" font-family="Nunito,sans-serif" font-size="34" font-weight="900">ST ↓</text>
+   <text x="430" y="185" fill="#c0392b" font-family="monospace" font-size="17">infra que apareceu DEPOIS da corrida</text>
+  </svg></div>
+  <div class="frase" style="background:var(--vermelho);margin-top:12px">A isquemia pode deixar pegadas depois da corrida.<span class="aut" style="color:#ffd7d1">— Dr. André Rossanno</span></div>`;
+}
+
+/* ---------- 16 duplo produto ---------- */
+function calcDP(){
+  const fc=+$('#dpFC').value||0, pas=+$('#dpPAS').value||0, dp=fc*pas;
+  let leitura;
+  if(dp<25000) leitura='Abaixo de 25.000 — antes de rotular, pergunte <b>por quê</b>: parou cedo? está betabloqueado? não gerou pressão? não acelerou? O número sozinho não diz.';
+  else if(dp<40000) leitura='Faixa habitualmente alcançada em testes com bom esforço.';
+  else leitura='Duplo produto alto — muita demanda gerada. Verifique se a curva pressórica atendeu critério de resposta hipertensiva ou de interrupção.';
+  $('#saidaDP').innerHTML=`<div><b>Duplo produto</b> ${dp.toLocaleString('pt-BR')}</div><div style="background:#f0ecf9">${leitura}</div>`;
+}
+calcDP();
+</script>
+
+<script>
+/* ---------- 17 as oito perguntas do ST ---------- */
+const ST8=[
+ {n:'Linha de base',t:'Sem uma linha de base estável não existe medida. Artefato de movimento, oscilação respiratória e ruído invalidam o desnível antes mesmo de discutir morfologia.'},
+ {n:'Ponto J',t:'É a junção entre o fim do QRS e o início do ST — o ponto de referência de tudo. Durante o esforço, é normal o ponto J descer um pouco, com ST ascendendo rapidamente de volta à linha de base.'},
+ {n:'Onde medir',t:'A medida se faz no <b>ponto J</b> e/ou em <b>J + 80 ms</b> (2 quadradinhos), conforme a morfologia. No convexo, mede-se o <b>nadir</b>. Medir no lugar errado transforma traçado normal em "isquemia".'},
+ {n:'Magnitude',t:'Quanto desviou, em milímetros, a partir da linha de base — sempre em complexos consecutivos e reprodutíveis, não em um batimento isolado.'},
+ {n:'Morfologia',t:'Ascendente, horizontal/retificado, descendente, convexo. É a morfologia que define <b>qual régua</b> se aplica — e o quanto o achado preocupa.'},
+ {n:'Derivações',t:'Em quantas e em quais. Atenção: o <b>infra não localiza</b> a artéria culpada. Só o supra em derivação sem onda Q anormal tem valor topográfico.'},
+ {n:'Relação com a carga',t:'Apareceu com que FC, que carga, quantos METs? Isquemia em <b>carga baixa</b> é um dado prognóstico diferente de isquemia no pico do esforço máximo.'},
+ {n:'Duração / recuperação',t:'Quanto tempo levou para normalizar. Alteração que persiste vários minutos na recuperação pesa mais do que uma que desaparece no primeiro minuto.'}
+];
+$('#chipsST').innerHTML=ST8.map((s,i)=>`<button class="chip" onclick="verST(${i},this)">${i+1}. ${s.n}</button>`).join('');
+function verST(i,el){ $$('#chipsST .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on');
+  $('#stDet').innerHTML=`<span class="rot">${ST8[i].n}</span>${ST8[i].t}`; }
+verST(0,$('#chipsST .chip'));
+
+/* ---------- régua do ST ---------- */
+const MORF={
+ asc:{n:'Ascendente',pt:'J+80 ms',forma:m=>({j:-(m+0.8),y80:-m,nadir:null}),
+   crit:(m,r)=>({alvo:r==='baixo'?2.0:1.5,ok:m>=(r==='baixo'?2.0:1.5)}),
+   txt:'É a morfologia <b>menos específica</b> — pode ocorrer fisiologicamente no esforço. Por isso a régua é mais exigente, e é a <b>única que muda conforme a probabilidade pré-teste</b>: ≥1,5 mm se o risco pré-teste é moderado/alto, ≥2 mm se é baixo. Bayes dentro do critério.'},
+ hor:{n:'Horizontal / retificado',pt:'ponto J ou J+80 ms',forma:m=>({j:-m,y80:-m,nadir:null}),
+   crit:m=>({alvo:1.0,ok:m>=1.0}),
+   txt:'Padrão <b>clássico de isquemia</b>. O ST perde a concavidade e caminha paralelo à linha de base. Régua de 1 mm.'},
+ desc:{n:'Descendente',pt:'ponto J',forma:m=>({j:-m,y80:-(m+1.0),nadir:null}),
+   crit:m=>({alvo:1.0,ok:m>=1.0}),
+   txt:'Morfologia com <b>maior associação com isquemia</b> entre as clássicas: o ST se afasta progressivamente da linha de base. Mede-se já no ponto J.'},
+ conv:{n:'Convexo',pt:'nadir',forma:m=>({j:-(m*0.45),y80:-(m*0.9),nadir:-m}),
+   crit:m=>({alvo:2.0,ok:m>=2.0}),
+   txt:'Concavidade invertida, com a maior profundidade no meio do segmento. A medida é feita no <b>nadir</b>, com régua de 2 mm.'},
+ supra:{n:'Supradesnivelamento',pt:'junção J/ST',forma:m=>({j:m,y80:m,nadir:null}),
+   crit:m=>({alvo:1.0,ok:m>=1.0}),
+   txt:'Em derivação <b>sem onda Q anormal</b>, sugere isquemia transmural e tem <b>valor topográfico</b> — é a única situação em que o ST localiza. Critério de interrupção e de ação imediata.'}
+};
+let stAtual='hor', stMag=1.5, stRisco='mod';
+$('#chipsMorf').innerHTML=Object.keys(MORF).map(k=>`<button class="chip ${k===stAtual?'on':''}" data-m="${k}" onclick="setMorf('${k}')">${MORF[k].n}</button>`).join('')+
+ `<span style="flex-basis:100%;height:0"></span>
+  <button class="chip" id="riscoBtn" onclick="toggleRisco()">Risco pré-teste: <b id="riscoLab">moderado/alto</b></button>`;
+function setMorf(k){stAtual=k;$$('#chipsMorf .chip[data-m]').forEach(c=>c.classList.toggle('on',c.dataset.m===k));renderRegua();}
+function toggleRisco(){stRisco=stRisco==='mod'?'baixo':'mod';$('#riscoLab').textContent=stRisco==='mod'?'moderado/alto':'baixo';renderRegua();}
+function renderRegua(){
+  const M=MORF[stAtual], f=M.forma(stMag), yv=mm=>140-mm*20, nw=NARROW();
+  const J=400, Y80=J+40;
+  let grid='';
+  for(let x=0;x<=900;x+=20)grid+=`<line x1="${x}" y1="0" x2="${x}" y2="260" stroke="${x%100===0?'#eec8c2':'#fae7e3'}" stroke-width="${x%100===0?1.4:1}"/>`;
+  for(let y=0;y<=260;y+=20)grid+=`<line x1="0" y1="${y}" x2="900" y2="${y}" stroke="${y%100===0?'#eec8c2':'#fae7e3'}" stroke-width="${y%100===0?1.4:1}"/>`;
+  const yJ=yv(f.j), y80=yv(f.y80);
+  let stPath;
+  if(f.nadir!=null){ stPath=`M${J},${yJ} Q${J+20},${yv(f.nadir)} ${Y80},${y80} T${Y80+70},${yv(f.y80+1.4)}`; }
+  else { stPath=`M${J},${yJ} L${Y80},${y80} Q${Y80+40},${y80} ${Y80+90},${yv(f.y80+ (stAtual==='supra'?1.6:1.3))}`; }
+  const g=`${grid}
+   <path d="M40,140 L150,140 Q180,124 210,140 L300,140 L318,146 L336,44 L360,178 L${J},${yJ}" fill="none" stroke="#111c2e" stroke-width="3.4"/>
+   <path d="${stPath}" fill="none" stroke="#111c2e" stroke-width="3.4"/>
+   <path d="M${Y80+90},${yv(f.y80+(stAtual==='supra'?1.6:1.3))} L860,140" fill="none" stroke="#111c2e" stroke-width="3.4"/>
+   <line x1="40" y1="140" x2="860" y2="140" stroke="#10758f" stroke-width="1.6" stroke-dasharray="6 6"/>
+   <text x="${nw?250:46}" y="132" font-family="monospace" font-size="16" fill="#10758f">linha de base</text>
+   <line x1="${J}" y1="20" x2="${J}" y2="240" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="4 4"/>
+   <circle cx="${J}" cy="${yJ}" r="6" fill="#c0392b"/><text x="${J-8}" y="34" text-anchor="end" font-family="monospace" font-size="17" fill="#c0392b">ponto J</text>
+   <line x1="${Y80}" y1="20" x2="${Y80}" y2="240" stroke="#6b4fa1" stroke-width="1.6" stroke-dasharray="4 4"/>
+   <circle cx="${Y80}" cy="${y80}" r="6" fill="#6b4fa1"/><text x="${Y80+8}" y="34" font-family="monospace" font-size="17" fill="#6b4fa1">J + 80 ms</text>
+   <path d="M${J},248 L${Y80},248" stroke="#6b4fa1" stroke-width="3"/><text x="${J+2}" y="242" font-family="monospace" font-size="15" fill="#6b4fa1">2 quadradinhos</text>
+   ${f.nadir!=null?`<circle cx="${J+30}" cy="${yv(f.nadir)}" r="6" fill="#b57500"/><text x="${J+38}" y="${yv(f.nadir)+5}" font-family="monospace" font-size="16" fill="#b57500">nadir</text>`:''}`;
+  $('#reguaST').innerHTML=`<svg viewBox="${nw?'236 16 404 248':'0 0 900 260'}" style="width:100%;height:auto">${g}</svg>
+   <label class="mini" for="stMagR">Magnitude no ponto de medida: <b>${stMag.toFixed(1)} mm</b></label>
+   <input id="stMagR" type="range" min="0.5" max="3.5" step="0.1" value="${stMag}" oninput="stMag=+this.value;renderRegua()" style="width:100%;accent-color:#c0392b;height:34px">`;
+  const c=M.crit(stMag,stRisco);
+  $('#saidaST').innerHTML=`<div><b>Morfologia</b> ${M.n}</div><div><b>Mede-se em</b> ${M.pt}</div>
+   <div><b>Régua</b> ≥ ${c.alvo.toFixed(1)} mm${stAtual==='asc'?' (risco '+(stRisco==='mod'?'moderado/alto':'baixo')+')':''}</div>
+   <div style="background:${c.ok?'#e7f6ee':'#fff4dd'}"><b>${c.ok?'✔ ATENDE o critério':'✘ NÃO atende o critério'}</b></div>
+   <div style="flex-basis:100%;background:#fff;border:1px solid var(--cinza);font-family:Nunito,sans-serif;font-weight:400">${M.txt}</div>`;
+}
+renderRegua();
+
+/* ---------- 19 critérios de interrupção ---------- */
+const SISTEMAS=[
+ {ic:'🧠',n:'Cérebro',t:'Pré-síncope, síncope, ataxia, vertigem persistente, confusão. Perfusão cerebral cedendo.'},
+ {ic:'❤️',n:'Coração',t:'Angina moderada/intensa ou progressiva, isquemia elétrica importante, arritmia grave.'},
+ {ic:'🫁',n:'Pulmão',t:'Dispneia precoce ou desproporcional, broncoespasmo, estertores, dessaturação relevante quando monitorizada.'},
+ {ic:'🩸',n:'Hemodinâmica',t:'Queda da PAS com incremento de carga, PA excessivamente elevada, palidez, sudorese fria, má perfusão.'},
+ {ic:'⚡',n:'Eletricidade',t:'TV, FV, FA/flutter induzidos, BAV de alto grau, novo bloqueio de ramo clinicamente relevante, queda persistente da FC.'},
+ {ic:'🦵',n:'Periferia',t:'Claudicação limitante, dor ou fadiga muscular que impedem prosseguir, exaustão. O motivo é legítimo e entra no laudo.'}
+];
+$('#sistemasComp').innerHTML=SISTEMAS.map(s=>`<div class="card" style="margin:0">
+ <div style="font-size:1.8rem">${s.ic}</div><h4>${s.n}</h4><p class="mini">${s.t}</p></div>`).join('');
+
+const FAMILIAS={
+ A:{n:'A. Sintomas',cor:'ambar',itens:['Exaustão importante / esforço percebido no limite','Dor ou fadiga muscular limitante','Claudicação limitante','Ataxia','Vertigem persistente','Náusea importante','Pré-síncope','Síncope','Dor torácica crescente ou limitante','Angina moderada a intensa','Dispneia precoce ou desproporcional ao esforço']},
+ B:{n:'B. Exame físico e hemodinâmica',cor:'vermelho',itens:['Palidez','Sudorese fria desproporcional','Sinais de má perfusão','Taquipneia desproporcional','Broncoespasmo','Estertores pulmonares','Surgimento de sopro','Aparecimento de B3 ou B4','Comportamento anormal da PAS (queda com incremento de carga)','PAS excessivamente elevada','PAD excessivamente elevada','Dessaturação relevante quando a saturação é monitorizada']},
+ C:{n:'C. ECG',cor:'roxo',itens:['Infradesnivelamento importante do segmento ST','Supradesnivelamento relevante em derivações sem onda Q patológica prévia','Taquiarritmias supraventriculares relevantes','Fibrilação atrial ou flutter induzidos pelo esforço','Taquicardia ventricular não sustentada','Taquicardia ventricular sustentada','Fibrilação ventricular','Bloqueio atrioventricular de alto grau induzido pelo esforço','Novo bloqueio de ramo clinicamente relevante','Queda persistente da FC com incremento da carga','Situações especiais em portadores de CDI (zona de terapia do dispositivo)']}
+};
+$('#chipsFam').innerHTML=Object.keys(FAMILIAS).map((k,i)=>`<button class="chip ${i===0?'on':''}" data-f="${k}" onclick="verFam('${k}')">${FAMILIAS[k].n}</button>`).join('');
+function verFam(k){ $$('#chipsFam .chip').forEach(c=>c.classList.toggle('on',c.dataset.f===k));
+  const f=FAMILIAS[k];
+  $('#famLista').innerHTML=`<div class="box ${f.cor}"><span class="rot">${f.n}</span>
+   <ul style="margin:6px 0 0;padding-left:18px">${f.itens.map(i=>`<li>${i}</li>`).join('')}</ul>
+   <p class="tiny" style="margin-top:8px">Valores numéricos: conferir na diretriz.</p></div>`; }
+verFam('A');
+
+/* ---------- 20 METs ---------- */
+const MET_EQ=[
+ {max:2,eq:'atividades de autocuidado, andar dentro de casa devagar'},
+ {max:4,eq:'caminhar em terreno plano a 3–5 km/h, tarefas domésticas leves'},
+ {max:7,eq:'subir um lance de escadas sem parar, caminhar rápido, jardinagem pesada, carregar compras'},
+ {max:10,eq:'corrida leve, natação, ciclismo moderado, esportes recreativos'},
+ {max:99,eq:'corrida sustentada, esportes competitivos, treino vigoroso regular'}
+];
+function metUpdate(){
+  const v=+$('#metRange').value;
+  let cls,cor;
+  if(v<4){cls='RUIM';cor='vermelho';} else if(v<7){cls='REGULAR';cor='ambar';} else if(v<=10){cls='BOA';cor='azul';} else {cls='EXCELENTE';cor='verde';}
+  const eq=MET_EQ.find(e=>v<=e.max).eq;
+  const vo2=(v*3.5).toFixed(1);
+  $('#metPainel').innerHTML=`<div class="box ${cor}"><span class="rot">${v} METs — capacidade funcional ${cls}</span>
+   Consumo estimado de O₂ ≈ <b>${vo2} mL/kg/min</b>.<br>Equivalente clínico aproximado: ${eq}.
+   <div class="tiny" style="margin-top:6px">Equivalências são aproximações para dar sentido ao número — não substituem a estimativa formal do protocolo utilizado.</div></div>`;
+}
+metUpdate();
+
+/* ---------- 21 mesa prognóstica ---------- */
+const PROG=[
+ {n:'Capacidade funcional',t:'Um dos preditores mais fortes de todo o exame — em várias séries, com peso maior que o próprio ST. Poucos METs pesam mesmo com ECG limpo.'},
+ {n:'Resposta da FC',t:'Incompetência cronotrópica e queda lenta da FC no 1º minuto de recuperação são marcadores prognósticos independentes.'},
+ {n:'Resposta da PA',t:'Queda pressórica no esforço é o achado hemodinâmico mais grave; resposta hipertensiva informa risco futuro de HAS e perfil cardiovascular.'},
+ {n:'Segmento ST',t:'Magnitude, morfologia, número de derivações, carga em que apareceu e tempo até normalizar. Isquemia precoce e persistente pesa mais.'},
+ {n:'Sintomas',t:'Angina típica induzida tem valor independente e entra no Duke. Dor atípica isolada não tem o mesmo peso.'},
+ {n:'Arritmias',t:'Arritmias complexas induzidas pelo esforço e na recuperação têm valor prognóstico — sem serem diagnósticas de DAC.'},
+ {n:'Recuperação',t:'FC, PA, ST e sintomas nos minutos após a esteira. Muitos achados só existem aqui.'}
+];
+$('#chipsProg').innerHTML=PROG.map((p,i)=>`<button class="chip" onclick="verProg(${i},this)">${p.n}</button>`).join('');
+function verProg(i,el){ $$('#chipsProg .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on');
+  $('#progDet').innerHTML=`<span class="rot">${PROG[i].n}</span>${PROG[i].t}`; }
+verProg(0,$('#chipsProg .chip'));
+
+function calcDuke(){
+  const t=+$('#dkTempo').value||0, st=+$('#dkST').value||0, a=+$('#dkAng').value||0;
+  const dts=t-5*st-4*a;
+  let faixa,cor;
+  if(dts>=5){faixa='BAIXO RISCO';cor='verde';}
+  else if(dts>=-10){faixa='RISCO INTERMEDIÁRIO';cor='ambar';}
+  else {faixa='ALTO RISCO';cor='vermelho';}
+  $('#saidaDuke').innerHTML=`<div class="box ${cor}" style="margin-top:12px"><span class="rot">Duke Treadmill Score</span>
+   <span class="mono">${t} − 5×${st} − 4×${a} = </span><b style="font-size:1.4rem">${dts.toFixed(1)}</b> → <b>${faixa}</b>
+   <div class="tiny" style="margin-top:6px">Repare no que o escore está dizendo: <b>tempo de exercício soma</b>, ST e angina subtraem. Um paciente que corre 12 minutos com 1 mm de infra pode ficar em faixa melhor que outro que parou em 4 minutos sem alteração alguma.<span class="conferido">SBC 2024 ✓</span></div></div>`;
+}
+function casoDuke(){
+  const t=(Math.round(Math.random()*20)+4)/2, st=Math.round(Math.random()*5)/2, a=Math.floor(Math.random()*3);
+  $('#dkTempo').value=t; $('#dkST').value=st; $('#dkAng').value=a;
+  $('#saidaDuke').innerHTML=`<div class="box azul" style="margin-top:12px"><span class="rot">Calcule antes de conferir</span>
+   Protocolo de Bruce · tempo <b>${t} min</b> · desvio máximo do ST <b>${st} mm</b> · angina <b>${a===0?'ausente':a===1?'não limitante':'limitante'}</b>.
+   Faça a conta de cabeça e só então toque em "Calcular Duke".</div>`;
+}
+</script>
+
+<script>
+/* ============================================================
+   22 SIMULADOR
+   ============================================================ */
+const SIM=[
+{n:'1 · Resposta normal',ap:'Homem, 58 anos, dor torácica aos esforços. FC basal 72 · PA 138/82 · ECG basal interpretável.',
+ est:[
+ {l:'Repouso',fc:72,pas:138,pad:82,m:1,st:0,s:'assintomático',p:0,x:'Basal registrado. Nada a decidir ainda — mas confira ECG interpretável, PA e ausência de contraindicação.'},
+ {l:'Estágio 1',fc:98,pas:154,pad:82,m:4,st:0,s:'assintomático',p:0,x:'FC e PAS acompanham a carga, PAD estável. Roteiro fisiológico perfeito.'},
+ {l:'Estágio 2',fc:126,pas:172,pad:80,m:7,st:0,s:'assintomático',p:0,x:'Progressão adequada. Nada justifica parar.'},
+ {l:'Estágio 3',fc:152,pas:188,pad:80,m:10,st:0,s:'leve cansaço',p:0,x:'Já ultrapassou 85% da FC prevista (≈138 bpm) — e continuar aqui é justamente o que agrega capacidade funcional e dado prognóstico.'},
+ {l:'Estágio 4 — pico',fc:168,pas:198,pad:78,m:11.5,st:0,s:'exaustão',p:1,x:'Exaustão limitante: motivo legítimo de encerramento. Teste máximo limitado por sintomas, com excelente capacidade funcional.'}],
+ rec:'FC cai 26 bpm no 1º minuto; PAS desce progressivamente; ST permanece na linha de base durante os 6 minutos.',
+ laudo:'Teste máximo, sem evidência eletrocardiográfica de isquemia, excelente capacidade funcional (11,5 METs), cronotropismo e resposta pressórica adequados, recuperação normal.',cls:'verde'},
+
+{n:'2 · DAC com infra típico',ap:'Homem, 62 anos, angina aos médios esforços. FC basal 76 · PA 142/84.',
+ est:[
+ {l:'Repouso',fc:76,pas:142,pad:84,m:1,st:0,s:'assintomático',p:0,x:'Basal sem alterações.'},
+ {l:'Estágio 1',fc:100,pas:158,pad:84,m:4,st:-0.3,s:'assintomático',p:0,x:'Desnível mínimo, ainda sem critério. Prosseguir.'},
+ {l:'Estágio 2',fc:126,pas:174,pad:82,m:7,st:-1.2,s:'desconforto leve',p:0,x:'Infra de 1,2 mm horizontal já atende critério de positividade — mas o exame ainda é tolerado e pode agregar informação de carga.'},
+ {l:'Estágio 3',fc:152,pas:190,pad:82,m:9,st:-2.4,s:'angina moderada',p:1,x:'Infra progressivo em múltiplas derivações + angina moderada. Aqui a informação adicional não compensa o risco: interromper.'}],
+ rec:'ST ainda com 1,5 mm de infra no 4º minuto de recuperação — persistência prolongada, dado adicional de gravidade.',
+ laudo:'Teste positivo para isquemia miocárdica: infra horizontal progressivo com angina, em carga intermediária, com normalização lenta na recuperação.',cls:'vermelho'},
+
+{n:'3 · Achado antes dos 85%',ap:'Homem, 40 anos, dor torácica atípica. FC máx prevista 180 · 85% ≈ 153 bpm.',
+ est:[
+ {l:'Repouso',fc:70,pas:130,pad:80,m:1,st:0,s:'assintomático',p:0,x:'Basal normal.'},
+ {l:'Estágio 1',fc:104,pas:150,pad:80,m:4,st:-0.4,s:'assintomático',p:0,x:'Sem critério ainda.'},
+ {l:'Estágio 2',fc:140,pas:168,pad:78,m:7,st:-2.2,s:'angina típica',p:1,x:'FC = 140 bpm, abaixo dos 153 (85%). E daí? Infra de 2,2 mm com angina típica é achado convincente. Os 85% não absolvem um ST culpado — interromper e valorizar.'}],
+ rec:'Infra persiste por 3 minutos; angina cede em 2 minutos.',
+ laudo:'Teste positivo para isquemia em <b>baixa carga</b> — situação de maior preocupação prognóstica, e não de menor, apesar de o paciente não ter atingido 85% da FC prevista.',cls:'vermelho'},
+
+{n:'4 · Incompetência cronotrópica',ap:'Mulher, 66 anos, fadiga progressiva. Sem betabloqueador. FC basal 70 · FC máx prevista 154.',
+ est:[
+ {l:'Repouso',fc:70,pas:132,pad:82,m:1,st:0,s:'assintomática',p:0,x:'Basal normal.'},
+ {l:'Estágio 1',fc:80,pas:148,pad:82,m:3,st:0,s:'assintomática',p:0,x:'A FC subiu 10 bpm para uma carga que costuma exigir bem mais.'},
+ {l:'Estágio 2',fc:92,pas:162,pad:80,m:5,st:0,s:'cansaço',p:0,x:'A esteira acelera, o coração não. Continuar aqui é o que documenta a incompetência cronotrópica.'},
+ {l:'Estágio 3 — pico',fc:102,pas:176,pad:80,m:7,st:-0.3,s:'exaustão',p:1,x:'FC pico 102 = 66% da prevista, sem fármaco que justifique. Exaustão limitante encerra o exame.'}],
+ rec:'Queda de apenas 7 bpm no 1º minuto — recuperação lenta, reforçando disfunção autonômica.',
+ laudo:'Sem evidência de isquemia pelo ST, porém com <b>resposta cronotrópica inadequada</b> e recuperação lenta da FC. Investigar fármacos, nó sinusal, disautonomia e cardiopatia estrutural.',cls:'ambar'},
+
+{n:'5 · Em uso de betabloqueador',ap:'Homem, 60 anos, coronariopata conhecido, em uso de metoprolol. FC basal 54.',
+ est:[
+ {l:'Repouso',fc:54,pas:124,pad:76,m:1,st:0,s:'assintomático',p:0,x:'Bradicardia de repouso esperada pelo fármaco.'},
+ {l:'Estágio 1',fc:70,pas:142,pad:76,m:4,st:0,s:'assintomático',p:0,x:'Resposta amortecida, coerente com o betabloqueio.'},
+ {l:'Estágio 2',fc:86,pas:158,pad:74,m:8,st:0,s:'assintomático',p:0,x:'Boa capacidade funcional apesar da FC baixa. Não pare por causa do número.'},
+ {l:'Estágio 3 — pico',fc:98,pas:170,pad:74,m:11,st:0,s:'exaustão',p:1,x:'Exaustão com 11 METs. Excelente capacidade funcional em vigência de betabloqueador.'}],
+ rec:'Queda progressiva da FC e da PAS, sem alterações do ST.',
+ laudo:'Sem isquemia documentada, boa capacidade funcional. O laudo <b>deve registrar o uso de betabloqueador</b>: o teste é submáximo em termos de FC por razão farmacológica, e chamá-lo simplesmente de "negativo" seria enganoso.',cls:'azul'},
+
+{n:'6 · Resposta hipertensiva',ap:'Homem, 52 anos, hipertenso em investigação. PA basal 146/92.',
+ est:[
+ {l:'Repouso',fc:78,pas:146,pad:92,m:1,st:0,s:'assintomático',p:0,x:'PA basal já elevada — atenção ao comportamento durante a carga.'},
+ {l:'Estágio 1',fc:104,pas:178,pad:94,m:4,st:0,s:'assintomático',p:0,x:'Subida rápida da PAS já no primeiro estágio.'},
+ {l:'Estágio 2',fc:128,pas:204,pad:96,m:7,st:0,s:'assintomático',p:0,x:'Resposta hipertensiva caracterizada — placa amarela. Ainda não é ordem de parar.'},
+ {l:'Estágio 3',fc:152,pas:242,pad:112,m:9,st:-0.3,s:'cefaleia',p:1,x:'Valores pressóricos muito elevados com sintoma: entra na faixa de interrupção da diretriz. Conferir os cortes exatos na SBC 2024.'}],
+ rec:'PAS cai lentamente, ainda 190 mmHg no 4º minuto.',
+ laudo:'Resposta hipertensiva ao exercício, com interrupção por valores pressóricos elevados. Sem isquemia documentada. Achado associado a risco de HAS futura e a perfil cardiovascular desfavorável.',cls:'ambar'},
+
+{n:'7 · PAS que sobe e cai',ap:'Homem, 70 anos, dispneia aos esforços e sopro sistólico. FC basal 80.',
+ est:[
+ {l:'Repouso',fc:80,pas:130,pad:84,m:1,st:0,s:'assintomático',p:0,x:'Sopro sistólico anotado — atenção redobrada ao comportamento pressórico.'},
+ {l:'Estágio 1',fc:104,pas:152,pad:84,m:3,st:-0.2,s:'assintomático',p:0,x:'Resposta ainda adequada.'},
+ {l:'Estágio 2',fc:126,pas:180,pad:84,m:5.5,st:-0.8,s:'leve dispneia',p:0,x:'Pico pressórico de 180 mmHg. Guarde este número: ele é a referência da queda.'},
+ {l:'Estágio 3',fc:146,pas:154,pad:82,m:7,st:-1.8,s:'dispneia e tontura',p:1,x:'Queda de 26 mmHg em relação ao valor máximo, com a carga aumentando, somada a infra e sintomas. Interromper imediatamente.'}],
+ rec:'PAS permanece baixa nos primeiros minutos; ST normaliza em 4 minutos.',
+ laudo:'Resposta pressórica hipotensiva durante o esforço com isquemia associada — achado de alto risco. Investigar DAC grave, disfunção ventricular e obstrução à ejeção (estenose aórtica, cardiomiopatia hipertrófica).',cls:'vermelho'},
+
+{n:'8 · Arritmia induzida',ap:'Mulher, 64 anos, palpitações aos esforços. FC basal 74.',
+ est:[
+ {l:'Repouso',fc:74,pas:134,pad:80,m:1,st:0,s:'extrassístoles isoladas',p:0,x:'Extrassístoles isoladas em repouso: registrar e observar o comportamento com a carga.'},
+ {l:'Estágio 1',fc:100,pas:152,pad:80,m:4,st:0,s:'extrassístoles mais frequentes',p:0,x:'Aumento da densidade de extrassístoles com o esforço — merece atenção, ainda não critério.'},
+ {l:'Estágio 2',fc:132,pas:170,pad:78,m:7,st:0,s:'pares e salvas',p:0,x:'Pares e salvas curtas: o exame já está informando. Monitorização redobrada.'},
+ {l:'Estágio 3',fc:150,pas:158,pad:78,m:8,st:-0.4,s:'TVNS repetitiva com tontura',p:1,x:'TV não sustentada repetitiva, com sintoma e queda pressórica. Interromper.'}],
+ rec:'Salvas desaparecem no 2º minuto de recuperação; ritmo sinusal estável.',
+ laudo:'Arritmia ventricular complexa induzida pelo esforço, com repercussão hemodinâmica. Tem valor prognóstico e exige investigação — mas <b>não é diagnóstica de DAC</b> por si só.',cls:'vermelho'},
+
+{n:'9 · Só na recuperação',ap:'Homem, 57 anos, dor torácica atípica. FC basal 74. Boa capacidade funcional prévia.',
+ est:[
+ {l:'Repouso',fc:74,pas:130,pad:80,m:1,st:0,s:'assintomático',p:0,x:'Basal normal.'},
+ {l:'Estágio 1',fc:100,pas:152,pad:80,m:4,st:0,s:'assintomático',p:0,x:'Progressão normal.'},
+ {l:'Estágio 2',fc:128,pas:172,pad:78,m:7,st:0,s:'assintomático',p:0,x:'Nada a assinalar.'},
+ {l:'Estágio 3 — pico',fc:172,pas:198,pad:78,m:11.5,st:-0.4,s:'exaustão',p:1,x:'Exaustão com boa capacidade funcional e ST praticamente limpo. Muita gente encerraria a monitorização agora — e erraria.'}],
+ rec:'1º minuto: infra de 1,4 mm. 2º minuto: 2,2 mm horizontal. 6º minuto: ainda 0,9 mm.',
+ laudo:'Teste com <b>isquemia documentada na recuperação</b>. Se o registro tivesse sido encerrado ao parar a esteira, o exame teria sido laudado como normal. A recuperação é parte do exame.',cls:'vermelho'},
+
+{n:'10 · Baixa capacidade funcional',ap:'Mulher, 68 anos, sedentária, dispneia progressiva. FC basal 82.',
+ est:[
+ {l:'Repouso',fc:82,pas:134,pad:84,m:1,st:0,s:'assintomática',p:0,x:'Basal sem alterações.'},
+ {l:'Estágio 1',fc:106,pas:150,pad:84,m:2.5,st:0,s:'dispneia leve',p:0,x:'Dispneia já em carga muito baixa.'},
+ {l:'Estágio 2',fc:130,pas:164,pad:82,m:4,st:0,s:'dispneia e fadiga de membros',p:0,x:'Continue enquanto for tolerado e seguro: cada estágio a mais é informação prognóstica.'},
+ {l:'Estágio 2 (fim)',fc:142,pas:174,pad:82,m:4.2,st:0,s:'exaustão / dispneia limitante',p:1,x:'Limitação clínica: motivo legítimo de encerramento. Registre exatamente o que impediu prosseguir.'}],
+ rec:'FC cai 14 bpm no 1º minuto; ST sem alterações.',
+ laudo:'Sem evidência de isquemia pelo ST, porém com <b>capacidade funcional ruim (4,2 METs)</b> — dado prognóstico relevante por si só. A pergunta seguinte é o mecanismo: cardíaco, pulmonar, musculoesquelético ou descondicionamento.',cls:'ambar'}
+];
+function miniST(st){
+  const base=70, d=-st*11, W=420, H=110;
+  let g='';
+  for(let x=0;x<=W;x+=14)g+=`<line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#fae7e3" stroke-width="1"/>`;
+  for(let y=0;y<=H;y+=14)g+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#fae7e3" stroke-width="1"/>`;
+  for(let k=0;k<3;k++){const o=k*140;
+    g+=`<path d="M${10+o},${base} L${40+o},${base} L${48+o},${base+4} L${58+o},${base-42} L${68+o},${base+18} L${76+o},${base+d} L${100+o},${base+d} Q${112+o},${base+d-14} ${124+o},${base} L${140+o},${base}" fill="none" stroke="#111c2e" stroke-width="2.6"/>`;}
+  g+=`<line x1="0" y1="${base}" x2="${W}" y2="${base}" stroke="#10758f" stroke-width="1" stroke-dasharray="5 5"/>`;
+  const rot = st===0?'ST na linha de base':(st>0?`supra de ${st.toFixed(1)} mm`:`infra de ${Math.abs(st).toFixed(1)} mm`);
+  g+=`<text x="${W-8}" y="18" text-anchor="end" font-family="monospace" font-size="15" fill="${st<=-1||st>=1?'#c0392b':'#5b6779'}">${rot}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Traçado esquemático: ${rot}">${g}</svg>`;
+}
+let simC=0,simE=0,simDec=[],simFim=false;
+$('#chipsSimCaso').innerHTML=SIM.map((s,i)=>`<button class="chip ${i===0?'on':''}" data-s="${i}" onclick="setSim(${i})">${s.n}</button>`).join('');
+function setSim(i){simC=i;simE=0;simDec=[];simFim=false;$$('#chipsSimCaso .chip').forEach(c=>c.classList.toggle('on',+c.dataset.s===i));$('#simLaudo').innerHTML='';renderSim();}
+function renderSim(){
+  const c=SIM[simC], e=c.est[simE], fim=simE>=c.est.length-1;
+  const dp=(e.fc*e.pas).toLocaleString('pt-BR');
+  $('#simBox').innerHTML=`
+   <div class="estagio">CASO ${simC+1} · ${e.l.toUpperCase()} — estágio ${simE+1}/${c.est.length}</div>
+   <div class="clin" style="margin-top:8px">${c.ap}</div>
+   <div class="painel">
+    <div class="met"><div class="lab">FC</div><div class="val">${e.fc}</div></div>
+    <div class="met"><div class="lab">PAS</div><div class="val">${e.pas}</div></div>
+    <div class="met"><div class="lab">PAD</div><div class="val">${e.pad}</div></div>
+    <div class="met"><div class="lab">METs</div><div class="val">${e.m}</div></div>
+    <div class="met ${e.st<=-1?'alerta':''}"><div class="lab">ST</div><div class="val">${e.st===0?'—':e.st.toFixed(1)}</div></div>
+    <div class="met"><div class="lab">DUPLO PRODUTO</div><div class="val" style="font-size:1rem">${dp}</div></div>
+   </div>
+   <div class="clin"><b>Paciente:</b> ${e.s}</div>
+   <div style="background:#fff;border-radius:12px;padding:8px;margin-bottom:10px">${miniST(e.st)}</div>
+   <div class="btnrow">
+    <button class="btn verde" onclick="decidirSim('seguir')">▶ Continuar o teste</button>
+    <button class="btn vermelho" onclick="decidirSim('parar')">🛑 Interromper</button>
+   </div>
+   <div class="feedback" id="simFb"></div>`;
+}
+function decidirSim(d){
+  const c=SIM[simC], e=c.est[simE], fb=$('#simFb');
+  fb.classList.add('show');
+  let cls,txt;
+  if(e.p&&d==='parar'){cls='bom';txt='<b>✔ Decisão correta.</b> ';}
+  else if(e.p&&d==='seguir'){cls='ruim';txt='<b>✘ Você ultrapassou um limite de segurança.</b> Havia critério para encerrar aqui. ';}
+  else if(!e.p&&d==='parar'){cls='neutro';txt='<b>⚠ Você perdeu informação diagnóstica.</b> Não havia critério de interrupção neste estágio; parar aqui custa capacidade funcional, comportamento pressórico e dado prognóstico. ';}
+  else {cls='bom';txt='<b>✔ Continuar era o certo.</b> ';}
+  fb.className='feedback show '+cls;
+  fb.innerHTML=txt+e.x+`<div class="btnrow">${simE<c.est.length-1?`<button class="btn sm ghost" onclick="simE++;renderSim()">Próximo estágio ▸</button>`:''}
+   <button class="btn sm" onclick="fecharSim()">Ver laudo e recuperação</button></div>`;
+  simDec.push({e:simE,d:d,ok:(e.p&&d==='parar')||(!e.p&&d==='seguir')});
+  registrar('sim'+simC+'_'+simE,(e.p&&d==='parar')||(!e.p&&d==='seguir'));
+}
+function fecharSim(){
+  const c=SIM[simC], acertos=simDec.filter(d=>d.ok).length;
+  $('#simLaudo').innerHTML=`<div class="box verde" style="margin-top:14px;border-color:var(--verde)"><span class="rot">🌿 Recuperação</span>${c.rec}</div>
+   <div class="box ${c.cls}"><span class="rot">Laudo</span>${c.laudo}</div>
+   <div class="box azul"><span class="rot">Suas decisões</span>${acertos} de ${simDec.length} decisões alinhadas com os critérios.
+   <div class="btnrow"><button class="btn sm ghost" onclick="setSim(${simC})">↺ Refazer este caso</button>
+   ${simC<SIM.length-1?`<button class="btn sm" onclick="setSim(${simC+1})">Próximo caso ▸</button>`:''}</div></div>`;
+  const alvo=$('#simLaudo'); if(alvo&&alvo.scrollIntoView)alvo.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+renderSim();
+
+/* ============================================================
+   23 ADIVINHE O GRÁFICO
+   ============================================================ */
+const ADIV=[
+ {h:'A FC aumenta adequadamente. A PAS sobe progressivamente. A PAD praticamente não muda. Depois de interromper o exercício, FC e PAS diminuem.',c:'normal',s:['fc','pas'],o:['normal','crono','queda','hiper']},
+ {h:'A PAS sobe até 180 mmHg e depois cai 26 mmHg apesar do aumento da carga.',c:'queda',s:['pas'],o:['queda','hiper','normal','baixa']},
+ {h:'A esteira acelera até o fim, mas a FC no pico mal ultrapassa 100 bpm, sem uso de betabloqueador.',c:'crono',s:['fc'],o:['crono','bb','normal','dac']},
+ {h:'Durante todo o esforço o ST está limpo. O infradesnivelamento só aparece depois que a esteira para, e ainda persiste no sexto minuto.',c:'recup',s:['st'],o:['recup','dac','normal','queda']},
+ {h:'A PAS parte de 146 e chega a 242 mmHg no pico; a PAD, que deveria ficar estável, sobe até 100.',c:'hiper',s:['pas','pad'],o:['hiper','queda','normal','dac']},
+ {h:'FC de repouso 54 bpm, pico de 98 bpm — porém o paciente atinge 11 METs sem sintomas e sem alteração do ST.',c:'bb',s:['fc'],o:['bb','crono','baixa','normal']},
+ {h:'O ST desce progressivamente com a carga, chega a 2,6 mm de infra no pico e leva vários minutos para voltar.',c:'dac',s:['st'],o:['dac','recup','normal','queda']},
+ {h:'Hemodinâmica e ST normais, mas o paciente para com 4,2 METs.',c:'baixa',s:['mets','fc'],o:['baixa','crono','normal','bb']}
+];
+let adivI=0;
+function renderAdiv(){
+  const a=ADIV[adivI], ops=a.o.slice().sort(()=>Math.random()-0.5);
+  $('#adivinhe').innerHTML=`<div class="box azul"><span class="rot">História ${adivI+1}/${ADIV.length}</span>${a.h}</div>
+   <div class="grid g2">${ops.map(id=>{const c=CASOS_CURVA[idxCaso(id)];
+     return `<div class="chartbox" style="cursor:pointer" onclick="respAdiv('${id}')">
+      ${chartSVG(c,a.s,{h:250})}<div class="tiny center">toque neste gráfico se for este o paciente</div></div>`;}).join('')}</div>
+   <div class="coment" id="cAdiv"></div>`;
+}
+function respAdiv(id){
+  const a=ADIV[adivI], ok=id===a.c, c=CASOS_CURVA[idxCaso(a.c)];
+  const el=$('#cAdiv'); el.classList.add('show');
+  el.innerHTML=`<b style="color:${ok?'var(--verde)':'var(--vermelho)'}">${ok?'✔ É esse mesmo':'✘ Não é esse'}</b> — a curva correta é <b>${c.nome}</b>. ${c.nota}`;
+  registrar('adiv'+adivI,ok);
+}
+function proxAdivinhe(){adivI=(adivI+1)%ADIV.length;renderAdiv();}
+renderAdiv();
+
+/* ============================================================
+   24 MODO INVERSO
+   ============================================================ */
+let invI=1;
+function renderInv(){
+  const c=CASOS_CURVA[invI];
+  $('#invChart').innerHTML=chartSVG(c,['fc','pas','st'],{idx:4});
+  ligarHover($('#invChart'),i=>{$('#invReadout').innerHTML=readoutHTML(c,i);});
+  $('#invReadout').innerHTML=readoutHTML(c,4);
+  $('#invResp').innerHTML='';
+}
+function proxInverso(){invI=(invI+1)%CASOS_CURVA.length;renderInv();}
+function revelarInverso(){
+  const c=CASOS_CURVA[invI];
+  const cron=c.fc[4]-c.fc[0], pasD=c.pas[4]-Math.max(...c.pas.slice(0,5)), stMin=Math.min(...c.st);
+  $('#invResp').innerHTML=`<div class="box azul" style="margin-top:12px"><span class="rot">Leitura estruturada — ${c.nome}</span>
+   <b>Cronotropismo:</b> FC de ${c.fc[0]} → ${c.fc[4]} bpm (variação de ${cron} bpm); queda de ${c.fc[4]-c.fc[5]} bpm no 1º minuto.<br>
+   <b>Pressórica:</b> PAS de ${c.pas[0]} → pico de ${Math.max(...c.pas.slice(0,5))} mmHg${pasD<0?` e <b style="color:var(--vermelho)">queda de ${Math.abs(pasD)} mmHg antes do fim do esforço</b>`:''}; PAD de ${c.pad[0]} → ${c.pad[4]} mmHg.<br>
+   <b>ST:</b> desvio máximo de ${stMin.toFixed(1)} mm${stMin<=-1?` (${c.st[6]<=-1?'ainda alterado no 2º minuto de recuperação':'com normalização mais rápida'})`:' — sem desvio relevante'}.<br>
+   <b>Capacidade funcional:</b> ${c.mets[4]} METs.<br><br>${c.nota}</div>`;
+  registrar('inv'+invI,true);
+}
+renderInv();
+</script>
+
+<script>
+/* ============================================================
+   25 PALÁCIO — GINÁSIO DO CORAÇÃO
+   ============================================================ */
+const SALAS=[
+ {ic:'🚪',n:'A porta',s:'ECG basal',p:'O que precisa estar garantido antes de o paciente subir na esteira?',r:'ECG basal interpretável (BRE, marca-passo, pré-excitação e outras alterações comprometem a leitura do ST), ausência de contraindicação, PA aferida, história e medicações registradas. A porta é o filtro: quem entra sem isso gera exame que não pode ser lido.'},
+ {ic:'🏃',n:'A esteira',s:'capacidade funcional',p:'Quantos METs ele alcançou — e por que parou?',r:'Capacidade funcional é um dos dados prognósticos mais fortes do exame. E o motivo da parada faz parte do resultado: cardíaco, pulmonar, musculoesquelético ou condicionamento.'},
+ {ic:'⏱️',n:'O velocímetro',s:'frequência cardíaca',p:'A FC acompanhou a carga? E caiu adequadamente ao parar?',r:'Reserva cronotrópica no esforço + queda da FC no 1º minuto de recuperação. Dois lados do mesmo controle autonômico.'},
+ {ic:'🎚️',n:'O manômetro gigante',s:'pressão arterial',p:'A PAS subiu? A PAD ficou quieta? Alguma queda?',r:'PAS deve subir progressivamente; PAD aproximadamente estável. Subir demais = placa amarela. Cair com aumento de carga = placa vermelha.'},
+ {ic:'🫧',n:'O tanque de oxigênio',s:'duplo produto',p:'Qual foi o preço cardíaco do esforço?',r:'DP = FC × PAS, índice indireto da demanda miocárdica de O₂. Valor baixo pede explicação: parou cedo, betabloqueado ou não gerou pressão?'},
+ {ic:'📉',n:'O chão com a linha ST',s:'isquemia',p:'Como, quando e onde o ST desviou?',r:'Morfologia (ascendente/horizontal/descendente/convexo), ponto de medida (J ou J+80 ms, nadir no convexo), magnitude, derivações, carga de aparecimento e tempo de normalização.'},
+ {ic:'🚨',n:'O alarme vermelho',s:'critérios de interrupção',p:'O paciente está perdendo a capacidade de compensar?',r:'Sintomas · exame físico e hemodinâmica · ECG. Cérebro, coração, pulmão, hemodinâmica, eletricidade e periferia — cada um avisa do seu jeito.'},
+ {ic:'🌿',n:'A sala verde',s:'recuperação',p:'O que aconteceu depois que a esteira parou?',r:'Queda da FC no 1º minuto, comportamento da PAS, alterações do ST que surgem ou persistem, sintomas tardios. Parte do exame — não epílogo.'}
+];
+function renderSalas(){
+  $('#salas').innerHTML=SALAS.map((s,i)=>`<button class="sala ${P.salas.includes(i)?'on':''}" onclick="verSala(${i})">
+   <span class="ic">${s.ic}</span><div class="nm">${s.n}</div><div class="sub">${s.s}</div></button>`).join('');
+}
+function verSala(i){
+  const s=SALAS[i];
+  if(!P.salas.includes(i)){P.salas.push(i);salvar();renderSalas();updateDash();}
+  $('#salaDet').innerHTML=`<div class="box azul" style="margin:0"><span class="rot">${s.ic} ${s.n} — ${s.s}</span>
+   <b>${s.p}</b><div style="margin-top:8px">${s.r}</div></div>`;
+}
+renderSalas();
+
+/* ============================================================
+   26 PEGADINHAS
+   ============================================================ */
+const PEG=[
+ {a:'"220 − idade é a fórmula de Karvonen."',x:'220 − idade é a <b>estimativa da FC máxima</b>. Karvonen usa a <b>reserva</b> (FCmáx − FCrepouso) e serve sobretudo para prescrever intensidade de exercício. Conceitos e finalidades diferentes.'},
+ {a:'"Atingiu 85% da FC prevista, deve interromper."',x:'85% não é botão STOP. É referência de <b>estresse suficiente</b>. O teste limitado por sintomas segue até limitação clínica, exaustão ou critério formal de interrupção.'},
+ {a:'"Não atingiu 85%, então nenhum achado pode ser diagnóstico."',x:'O esforço submáximo limita o poder de <b>excluir</b> isquemia — não apaga um achado convincente. Infra típico com angina em FC baixa é mais preocupante, não menos.'},
+ {a:'"A PAD deve subir junto com a PAS."',x:'Em exercício dinâmico normal, a PAD tende a ficar <b>aproximadamente estável</b> (pode até cair um pouco), porque a vasodilatação metabólica reduz a resistência periférica.'},
+ {a:'"Quando o exercício termina, termina a interpretação."',x:'A recuperação é parte do exame: queda da FC no 1º minuto, comportamento da PAS e alterações do ST que <b>surgem ou persistem</b> após a esteira parar.'},
+ {a:'"CM5 aumenta a sensibilidade sem qualquer custo."',x:'Maior sensibilidade costuma vir com <b>perda de especificidade</b> — mais falsos-positivos. CM5 é onde você vê melhor, não o que prova o diagnóstico.'},
+ {a:'"FC inadequadamente baixa no esforço = DAC."',x:'Betabloqueador, doença do nó sinusal, disautonomia, doença de Chagas, hipotireoidismo, descondicionamento e DAC — múltiplas causas. O achado abre investigação.'},
+ {a:'"Queda da PAS no esforço significa obrigatoriamente DAC."',x:'É achado preocupante e prognosticamente relevante, mas <b>não é etiologicamente específico</b>: DAC grave, cardiomiopatia hipertrófica, estenose aórtica, disfunção ventricular, arritmias e outras causas.'},
+ {a:'"Infra de ST em V5 localiza a lesão na artéria correspondente."',x:'O <b>infradesnivelamento não localiza</b> — a isquemia subendocárdica é difusa. Somente o supra em derivação sem onda Q anormal tem valor topográfico.'},
+ {a:'"Teste sem infra de ST é um teste normal."',x:'Ausência de infra ≠ exame normal. Restam capacidade funcional, cronotropismo, resposta pressórica, arritmias, sintomas e recuperação — cada um com peso prognóstico próprio.'},
+ {a:'"Duplo produto baixo indica sempre pior prognóstico."',x:'O limiar de DP &lt; 25.000 é descrito em <b>contextos específicos</b>. Antes de rotular, pergunte por que o DP ficou baixo: parou cedo? betabloqueado? não gerou pressão?'},
+ {a:'"Baixa capacidade funcional significa isquemia."',x:'A esteira tem quatro pernas: cardíaca, pulmonar, musculoesquelética e condicionamento. Baixos METs pesam no prognóstico, mas não diagnosticam DAC.'}
+];
+$('#pegadinhas').innerHTML=PEG.map((p,i)=>`<div class="qbox">
+ <div class="pergunta">🔥 ${i+1}. ${p.a}</div>
+ <div class="btnrow"><button class="btn sm ambar" onclick="abrirPeg(${i})">Por que está errado?</button></div>
+ <div class="coment" id="peg${i}"></div></div>`).join('');
+function abrirPeg(i){const c=$('#peg'+i);c.classList.add('show');c.innerHTML='<b style="color:var(--vermelho)">❌ Errado.</b> '+PEG[i].x;registrar('peg'+i,true);}
+
+/* ============================================================
+   27 QUESTÕES
+   ============================================================ */
+const Q=[
+{c:'Fisiologia',q:'No início do exercício dinâmico, qual é o primeiro mecanismo responsável pelo aumento da FC?',
+ o:['Aumento da atividade simpática','Retirada do tônus vagal','Liberação de catecolaminas adrenais','Aumento do retorno venoso'],r:1,
+ e:'A retirada vagal vem primeiro; a ativação simpática predomina depois, no esforço mais intenso.',
+ p:'Na recuperação, o espelho: reativação vagal primeiro — daí a importância da queda da FC no 1º minuto.'},
+{c:'Fisiologia',q:'Por que a PAD tende a permanecer estável durante o exercício dinâmico?',
+ o:['Porque o débito cardíaco não aumenta','Porque a vasodilatação metabólica reduz a resistência periférica','Porque a FC sobe','Porque a volemia cai'],r:1,
+ e:'A vasodilatação nos músculos ativos compensa o aumento do fluxo, mantendo a PAD aproximadamente estável.',
+ p:'Comportamento diferente do exercício isométrico, em que a PAD pode subir mais.'},
+{c:'FC',q:'Homem de 60 anos. Qual a FC máxima prevista pela estimativa clássica e o valor de 85%?',
+ o:['170 e 145 bpm','160 e 136 bpm','180 e 153 bpm','150 e 128 bpm'],r:1,
+ e:'220 − 60 = 160 bpm; 85% de 160 = 136 bpm.',
+ p:'Estimativa populacional, não medida individual — a dispersão é grande.'},
+{c:'FC',q:'A fórmula de Karvonen é utilizada principalmente para:',
+ o:['Definir critério de interrupção do teste','Estimar a FC máxima','Prescrever intensidade de exercício a partir da reserva de FC','Calcular o duplo produto'],r:2,
+ e:'Karvonen trabalha com a FC de reserva (FCmáx − FCrepouso) para definir faixas-alvo de treinamento.',
+ p:'Nunca chame 220 − idade de Karvonen.'},
+{c:'85%',q:'Paciente atinge 85% da FC máxima prevista, assintomático, ST normal, tolerando bem o esforço. A conduta habitual é:',
+ o:['Interromper imediatamente, pois o alvo foi atingido','Prosseguir, se seguro, até limitação clínica ou critério de interrupção','Interromper e repetir com protocolo mais leve','Interromper e solicitar cintilografia'],r:1,
+ e:'85% não é critério de interrupção. Prosseguir agrega capacidade funcional, comportamento hemodinâmico em cargas altas e dado prognóstico.',
+ p:'Pare por sintoma, por critério formal ou por exaustão — não por um percentual.'},
+{c:'85%',q:'Homem de 40 anos interrompe o teste com FC de 140 bpm (85% previsto ≈ 153), apresentando angina típica e infra de ST horizontal de 2 mm. O laudo correto é:',
+ o:['Teste submáximo, não diagnóstico','Teste negativo para isquemia','Teste positivo para isquemia em baixa carga','Teste inconclusivo, repetir em 30 dias'],r:2,
+ e:'Achado convincente durante o esforço tem valor diagnóstico independentemente de o paciente ter atingido 85%.',
+ p:'O 85% não absolve um ST culpado — e isquemia em carga baixa é pior, não melhor.'},
+{c:'Cronotropismo',q:'Sobre incompetência cronotrópica, é correto afirmar:',
+ o:['É definida exclusivamente por FC < 85% da prevista','Deve ser interpretada com esforço atingido, fármacos, idade e contexto clínico','É diagnóstica de DAC','Não tem valor prognóstico'],r:1,
+ e:'A definição operacional mais citada usa o percentual da FC prevista e/ou o índice cronotrópico, mas a interpretação exige contexto — sobretudo o uso de fármacos.',
+ p:'Betabloqueador é a primeira pergunta antes de rotular incompetência cronotrópica.'},
+{c:'Cronotropismo',q:'Queda progressiva da FC durante o incremento da carga deve ser interpretada como:',
+ o:['Achado fisiológico em atletas','Sinônimo de DAC','Resposta anormal que exige investigação e pode motivar interrupção','Erro de registro do equipamento'],r:2,
+ e:'Abre investigação de doença cardiovascular, distúrbios de condução, disautonomia, fármacos e isquemia — sem fechar diagnóstico.',
+ p:'Quando persistente com aumento de carga, entra entre os critérios de interrupção.'},
+{c:'Pressão',q:'Resposta hipotensiva ao esforço (queda da PAS com incremento da carga) sugere principalmente:',
+ o:['Boa reserva cardiovascular','Incapacidade de aumentar/sustentar o débito cardíaco','Vasoconstrição periférica excessiva','Ansiedade do paciente'],r:1,
+ e:'A pressão cai porque o débito não acompanha a queda da resistência periférica do músculo em exercício.',
+ p:'Preocupante e prognóstico — mas não etiologicamente específico: DAC grave, CMH, estenose aórtica, disfunção ventricular.'},
+{c:'Pressão',q:'A diferença entre "resposta pressórica anormal" e "critério pressórico de interrupção" é que:',
+ o:['São sinônimos','A primeira muda o laudo; a segunda muda a conduta imediata na sala','A primeira é mais grave','Apenas a segunda entra no laudo'],r:1,
+ e:'Placa amarela = achado com implicação prognóstica. Placa vermelha = decisão de segurança em tempo real. Os valores de corte são diferentes.',
+ p:'Misturar os dois cortes é uma das confusões mais cobradas.'},
+{c:'Recuperação',q:'Qual afirmação sobre a recuperação está correta?',
+ o:['A monitorização pode ser encerrada assim que a esteira para','Alterações do ST que surgem na recuperação não têm valor diagnóstico','A queda da FC no 1º minuto tem valor prognóstico','A PAS deve subir na recuperação'],r:2,
+ e:'A magnitude da queda da FC no primeiro minuto é um marcador prognóstico consolidado; o corte depende do protocolo de recuperação.',
+ p:'Alteração do ST na recuperação conta — e persistência prolongada pesa mais.'},
+{c:'Recuperação',q:'Paciente com ST normal durante todo o esforço apresenta infra horizontal de 2,2 mm no 2º minuto de recuperação. A leitura correta é:',
+ o:['Achado irrelevante, pois ocorreu fora do esforço','Isquemia documentada, com valor diagnóstico','Artefato obrigatório','Falso-positivo por hiperventilação'],r:1,
+ e:'A recuperação é parte do exame; alterações que surgem nela têm relevância diagnóstica e devem ser laudadas.',
+ p:'Se o registro parasse com a esteira, o exame teria sido chamado de normal.'},
+{c:'ST',q:'A medida do desnível do ST no ponto J + 80 ms corresponde, no papel, a:',
+ o:['1 quadradinho após o ponto J','2 quadradinhos após o ponto J','1 quadradão após o ponto J','No próprio ponto J'],r:1,
+ e:'Cada quadradinho equivale a 40 ms — portanto 80 ms = 2 quadradinhos.',
+ p:'Medir no lugar errado transforma variação fisiológica em "isquemia".'},
+{c:'ST',q:'Qual morfologia de infradesnivelamento é a menos específica para isquemia e tem critério dependente da probabilidade pré-teste?',
+ o:['Horizontal','Descendente','Ascendente','Convexo'],r:2,
+ e:'O ST ascendente pode ocorrer fisiologicamente no esforço; por isso exige maior magnitude, e o corte muda conforme o risco pré-teste.',
+ p:'É Bayes embutido dentro do critério de positividade.'},
+{c:'ST',q:'Sobre o valor topográfico das alterações do ST no teste ergométrico:',
+ o:['O infra localiza a artéria culpada','Nem infra nem supra localizam','O supra em derivação sem onda Q anormal pode ter valor topográfico','Apenas alterações em V5 localizam'],r:2,
+ e:'A isquemia subendocárdica que gera o infra é difusa; o supra em derivação sem onda Q anormal sugere isquemia transmural no território correspondente.',
+ p:'"Infra em D2, D3 e aVF = coronária direita" é erro clássico no ergométrico.'},
+{c:'CM5',q:'A derivação CM5 caracteriza-se por:',
+ o:['Aumentar a sensibilidade, podendo reduzir a especificidade','Aumentar sensibilidade e especificidade','Ser diagnóstica de DAC quando positiva','Substituir o ECG de 12 derivações'],r:0,
+ e:'O par manúbrio (−) → V5 (+) amplia a detecção de alterações do ST, ao custo de mais falsos-positivos.',
+ p:'CM5 é onde você vê melhor — não o que prova o diagnóstico.'},
+{c:'Duplo produto',q:'O duplo produto (FC × PAS) é:',
+ o:['Uma medida direta do consumo miocárdico de O₂','Um índice indireto da demanda miocárdica de O₂','Um índice de capacidade funcional','Equivalente aos METs'],r:1,
+ e:'Correlaciona-se com o MVO₂, mas não o mede: contratilidade e tensão parietal também determinam o consumo.',
+ p:'DP < 25.000 é limiar descrito em contextos específicos, não regra universal.'},
+{c:'METs',q:'Um MET corresponde aproximadamente a:',
+ o:['3,5 mL O₂/kg/min','35 mL O₂/kg/min','3,5 L O₂/min','1 kcal/min'],r:0,
+ e:'É o consumo de oxigênio em repouso, referência para expressar a capacidade funcional.',
+ p:'Baixa capacidade funcional pesa no prognóstico mesmo com ST limpo — mas não diagnostica isquemia.'},
+{c:'Prognóstico',q:'No Duke Treadmill Score, qual componente <b>soma</b> pontos?',
+ o:['Desvio do ST','Angina limitante','Tempo de exercício','Idade'],r:2,
+ e:'DTS = tempo − 5×(desvio do ST) − 4×(índice de angina). Apenas o tempo de exercício soma.',
+ p:'É a forma matemática de dizer que capacidade funcional protege.'},
+{c:'Prognóstico',q:'Paciente completa 12 minutos de Bruce, com 1 mm de infra e sem angina. Duke Treadmill Score e faixa:',
+ o:['+7 — baixo risco','−7 — risco intermediário','+12 — baixo risco','−11 — alto risco'],r:0,
+ e:'12 − 5×1 − 4×0 = +7 → faixa de baixo risco.',
+ p:'Repare como o tempo de exercício "carrega" o escore mesmo com ST alterado.'}
+];
+let qFiltro='todas',qI=0,qLista=Q.map((_,i)=>i);
+$('#chipsQuiz').innerHTML=['todas',...new Set(Q.map(q=>q.c))].map((c,i)=>`<button class="chip ${i===0?'on':''}" data-q="${c}" onclick="filtrarQ('${c}')">${c==='todas'?'Todas':c}</button>`).join('');
+function filtrarQ(c){qFiltro=c;$$('#chipsQuiz .chip').forEach(x=>x.classList.toggle('on',x.dataset.q===c));
+  qLista=Q.map((q,i)=>i).filter(i=>c==='todas'||Q[i].c===c);qI=0;renderQ();}
+function renderQ(){
+  if(!qLista.length){$('#quizArea').innerHTML='<div class="box verde">Nada nesta fila agora. Troque o filtro ou responda mais questões.</div>';return;}
+  const i=qLista[qI%qLista.length],q=Q[i];
+  $('#quizArea').innerHTML=`<div class="qbox"><div class="mini mono">${q.c.toUpperCase()} · ${qI%qLista.length+1}/${qLista.length}</div>
+   <div class="pergunta">${q.q}</div>
+   <div class="alts">${q.o.map((o,j)=>`<button class="alt" data-a="${j}" onclick="respQ(${i},${j})">${String.fromCharCode(65+j)}) ${o}</button>`).join('')}</div>
+   <div class="coment" id="cQ"></div></div>`;
+  atualizarStatus();
+}
+function respQ(i,j){
+  const q=Q[i],ok=j===q.r;
+  $$('#quizArea .alt').forEach((b,k)=>{if(k===q.r)b.classList.add('certa');else if(k===j)b.classList.add('errada');b.onclick=null;});
+  const c=$('#cQ');c.classList.add('show');
+  c.innerHTML=`<b style="color:${ok?'var(--verde)':'var(--vermelho)'}">${ok?'✔ Correto':'✘ Incorreto'}</b> — ${q.e}
+   <div class="porque">🔥 <b>Pegadinha:</b> ${q.p}</div>`;
+  registrar('Q'+i,ok);
+}
+function proxQuestao(){qI++;renderQ();}
+function soErros(){qLista=Q.map((q,i)=>i).filter(i=>P.quiz['Q'+i]&&P.quiz['Q'+i].ok===false);qI=0;
+  if(!qLista.length){$('#quizArea').innerHTML='<div class="box verde">Sem erros registrados ainda — responda algumas questões primeiro.</div>';atualizarStatus();return;}renderQ();}
+function soFragil(){qLista=Q.map((q,i)=>i).filter(i=>!P.quiz['Q'+i]||P.quiz['Q'+i].ok===false);qI=0;
+  if(!qLista.length){$('#quizArea').innerHTML='<div class="box verde">Você já acertou todas ao menos uma vez. Use "Revisar meus erros" depois de alguns dias.</div>';atualizarStatus();return;}renderQ();}
+function atualizarStatus(){
+  const resp=Q.filter((q,i)=>P.quiz['Q'+i]).length, ac=Q.filter((q,i)=>P.quiz['Q'+i]&&P.quiz['Q'+i].ok).length;
+  $('#quizStatus').textContent=`Respondidas: ${resp}/${Q.length} · acertos: ${ac} · na fila agora: ${qLista.length}`;
+}
+renderQ();
+</script>
+
+<script>
+/* ---------- re-render dos gráficos ao mudar a largura da tela ---------- */
+let _rzT=null,_rzW=window.innerWidth;
+window.addEventListener('resize',()=>{
+  if(Math.abs(window.innerWidth-_rzW)<40)return; _rzW=window.innerWidth;
+  clearTimeout(_rzT);
+  _rzT=setTimeout(()=>{try{renderMae();renderInv();renderAdiv();renderHiper();renderRegua();}catch(e){}},220);
+},{passive:true});
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+const FLASH=[
+{c:'Fisiologia',f:'Primeiro evento do aumento da FC no início do exercício',v:'<b>Retirada vagal</b> — a ativação simpática vem depois.'},
+{c:'Fisiologia',f:'O que acontece com a PAD no exercício dinâmico normal?',v:'Permanece <b>aproximadamente estável</b> (pequena variação), pela vasodilatação metabólica que reduz a resistência periférica.'},
+{c:'Fisiologia',f:'O que domina a recuperação nos primeiros minutos?',v:'<b>Reativação vagal</b> + retirada progressiva do simpático → queda da FC e da PAS.'},
+{c:'FC',f:'FC máxima prevista (estimativa clássica)',v:'<b>220 − idade</b>. Estimativa populacional, com grande dispersão individual.'},
+{c:'FC',f:'Fórmula de Karvonen',v:'FC alvo = FC repouso + % × (FC máx − FC repouso). Usa a <b>reserva</b> e serve para prescrever intensidade.'},
+{c:'FC',f:'O que significam os 85% da FC máxima prevista?',v:'Referência de <b>estresse suficiente</b> para que um exame sem alterações tenha bom poder de afastar isquemia. <b>Não</b> é critério de interrupção.'},
+{c:'FC',f:'Índice cronotrópico',v:'(FC pico − FC repouso) / (FC máx prevista − FC repouso). Corrige pela FC basal e pelo esforço realizado.'},
+{c:'FC',f:'Cinco causas de resposta cronotrópica inadequada',v:'Betabloqueador · doença do nó sinusal · disfunção autonômica · doença de Chagas · DAC (e outras: hipotireoidismo, descondicionamento, IC avançada).'},
+{c:'FC',f:'FC que cai enquanto a carga sobe',v:'Resposta <b>anormal</b> que exige investigação e, quando persistente, pode ser critério de interrupção. Não é sinônimo de DAC.'},
+{c:'Pressão',f:'Comportamento esperado da PA no esforço',v:'PAS sobe progressivamente com a carga; PAD aproximadamente estável.'},
+{c:'Pressão',f:'Resposta hipotensiva ao esforço — o que significa fisiologicamente?',v:'O coração não conseguiu aumentar ou sustentar o débito frente à queda da resistência periférica. Achado grave, <b>sem especificidade etiológica</b>.'},
+{c:'Pressão',f:'Três "personagens" clássicos por trás da queda da PAS',v:'DAC importante · cardiomiopatia hipertrófica · estenose aórtica (além de disfunção ventricular, arritmias e outras causas).'},
+{c:'Pressão',f:'Placa amarela × placa vermelha',v:'Amarela = <b>resposta anormal</b> (muda o laudo e o prognóstico). Vermelha = <b>interromper</b> (decisão de segurança). Cortes diferentes.'},
+{c:'Pressão',f:'Resposta hipertensiva ao exercício — relevância',v:'Associada a maior risco de <b>desenvolver HAS</b> no futuro e a perfil cardiovascular desfavorável. Cortes diferem por sexo — conferir na diretriz.'},
+{c:'Recuperação',f:'Por que a monitorização continua depois que a esteira para?',v:'Porque FC, PA, sintomas e ST continuam informando — e há alterações que só aparecem (ou só persistem) na recuperação.'},
+{c:'Recuperação',f:'Qual índice da recuperação tem mais valor prognóstico consolidado?',v:'A <b>queda da FC no 1º minuto</b>. O corte depende do protocolo de recuperação (ativa × decúbito).'},
+{c:'Recuperação',f:'ST que aparece só na recuperação',v:'Tem <b>relevância diagnóstica</b>. Persistência por vários minutos pesa mais do que normalização rápida.'},
+{c:'Duplo produto',f:'Fórmula e significado do duplo produto',v:'DP = FC × PAS. Índice <b>indireto</b> da demanda miocárdica de O₂ — não é medida direta de MVO₂.'},
+{c:'Duplo produto',f:'DP < 25.000',v:'Limiar associado a pior prognóstico em <b>determinados contextos</b> de coronariopatas. Antes de rotular, pergunte por que o DP ficou baixo.'},
+{c:'ST',f:'Onde se mede o desnível do ST?',v:'No <b>ponto J</b> e/ou em <b>J + 80 ms</b> (2 quadradinhos), conforme a morfologia; no convexo, mede-se o <b>nadir</b>.'},
+{c:'ST',f:'Critério do infra horizontal/retificado',v:'<b>1 mm</b> no ponto J ou em J+80 ms.'},
+{c:'ST',f:'Critério do infra descendente',v:'<b>1 mm no ponto J</b>. É a morfologia com maior associação com isquemia entre as clássicas.'},
+{c:'ST',f:'Critério do infra ascendente',v:'<b>≥1,5 mm</b> em J+80 ms se risco pré-teste moderado/alto; <b>≥2 mm</b> se risco baixo. Única régua que muda com Bayes.'},
+{c:'ST',f:'Critério do padrão convexo',v:'<b>≥2 mm</b> medidos no <b>nadir</b>.'},
+{c:'ST',f:'Critério do supradesnivelamento',v:'<b>≥1 mm</b> na junção J/ST em derivação <b>sem onda Q anormal</b> — e é a única alteração com valor topográfico.'},
+{c:'ST',f:'O infra localiza a artéria culpada?',v:'<b>Não.</b> A isquemia subendocárdica é difusa. Só o supra em derivação sem Q anormal localiza.'},
+{c:'CM5',f:'Como se posiciona a CM5?',v:'Eletrodo negativo no <b>manúbrio esternal</b>, positivo em <b>V5</b> — vetor amplo alinhado ao VE.'},
+{c:'CM5',f:'Trade-off da CM5',v:'↑ sensibilidade, podendo vir com <b>↓ especificidade</b> (mais falsos-positivos).'},
+{c:'METs',f:'Quanto vale 1 MET?',v:'≈ <b>3,5 mL O₂/kg/min</b> — o consumo de oxigênio em repouso.'},
+{c:'METs',f:'Faixas de capacidade funcional usadas neste capítulo',v:'&lt;4 ruim · 4–7 regular · 7–10 boa · &gt;10 excelente.'},
+{c:'Prognóstico',f:'Fórmula do Duke Treadmill Score',v:'tempo (min, Bruce) − 5 × (desvio máximo do ST em mm) − 4 × (índice de angina: 0/1/2).'},
+{c:'Prognóstico',f:'Faixas do Duke',v:'≥ +5 baixo risco · −10 a +4 intermediário · ≤ −11 alto risco.'},
+{c:'Prognóstico',f:'Sete componentes da mesa prognóstica',v:'Capacidade funcional · FC · PA · ST · sintomas · arritmias · recuperação.'},
+{c:'Interrupção',f:'A pergunta que substitui a lista de critérios',v:'<b>"O paciente está perdendo a capacidade de compensar?"</b> — cérebro, coração, pulmão, hemodinâmica, eletricidade e periferia.'},
+{c:'Interrupção',f:'As três famílias de critérios de interrupção',v:'<b>A</b> sintomas · <b>B</b> exame físico e hemodinâmica · <b>C</b> ECG.'},
+{c:'Laudo',f:'Teste submáximo sem achados — como laudar?',v:'<b>Não diagnóstico para isquemia</b>. Nunca "negativo" ou "normal".'}
+];
+let flFiltro='todos';
+$('#chipsFlash').innerHTML=['todos',...new Set(FLASH.map(f=>f.c))].map((c,i)=>`<button class="chip ${i===0?'on':''}" data-fl="${c}" onclick="filtrarFl('${c}')">${c==='todos'?'Todos':c}</button>`).join('');
+function filtrarFl(c){flFiltro=c;$$('#chipsFlash .chip').forEach(x=>x.classList.toggle('on',x.dataset.fl===c));renderFlash();}
+function renderFlash(){
+  const lista=FLASH.map((f,i)=>[f,i]).filter(([f])=>flFiltro==='todos'||f.c===flFiltro);
+  $('#flashGrid').innerHTML=lista.map(([f,i])=>`<div class="fc" id="fc${i}" onclick="virar(${i})">
+   <div class="inner"><div class="face front"><div class="tag">${f.c}</div><div style="font-weight:800">${f.f}</div>
+    <div class="tiny" style="margin-top:8px">toque para virar</div></div>
+   <div class="face back"><div class="tag">${f.c}</div><div>${f.v}</div></div></div></div>`).join('');
+}
+function virar(i){const el=$('#fc'+i);el.classList.toggle('flip');
+  if(el.classList.contains('flip')){P.flash[i]=true;salvar();updateDash();}}
+renderFlash();
+
+/* ============================================================
+   HIPOCAMPO
+   ============================================================ */
+function registrar(id,ok){P.quiz[id]={ok:!!ok,t:Date.now()};salvar();updateDash();if(typeof atualizarStatus==='function')atualizarStatus();}
+function updateDash(){
+  const keys=Object.keys(P.quiz), ac=keys.filter(k=>P.quiz[k].ok).length, er=keys.length-ac;
+  const fl=Object.keys(P.flash).length, sl=P.salas.length;
+  $('#dashboard').innerHTML=`
+   <div class="d"><div class="v">${keys.length}</div><div class="l">INTERAÇÕES</div></div>
+   <div class="d"><div class="v" style="color:var(--verde)">${ac}</div><div class="l">ACERTOS</div></div>
+   <div class="d"><div class="v" style="color:var(--vermelho)">${er}</div><div class="l">ERROS</div></div>
+   <div class="d"><div class="v">${fl}/${FLASH.length}</div><div class="l">FLASHCARDS</div></div>`;
+}
+const CHECK=[
+ {q:'hoje',t:'HOJE — refazer o simulador nos casos 2, 7 e 9 (infra típico, queda da PAS e alteração só na recuperação)'},
+ {q:'hoje',t:'HOJE — desenhar de memória as quatro curvas do caso normal (FC, PAS, PAD, ST) num papel em branco'},
+ {q:'hoje',t:'HOJE — recitar as réguas do ST: horizontal, descendente, ascendente (com os dois cortes), convexo e supra'},
+ {q:'amanha',t:'AMANHÃ — responder as questões de Pressão e Recuperação sem reler o capítulo'},
+ {q:'amanha',t:'AMANHÃ — percorrer o Ginásio do Coração nas oito salas, em ordem, dizendo o conceito de cada objeto'},
+ {q:'amanha',t:'AMANHÃ — explicar em voz alta a diferença entre placa amarela e placa vermelha, com dois exemplos de cada'},
+ {q:'sete',t:'7 DIAS — rodar "Adivinhe o gráfico" inteiro e acertar as oito histórias'},
+ {q:'sete',t:'7 DIAS — calcular três Duke Treadmill Scores de cabeça e classificar a faixa de risco'},
+ {q:'sete',t:'7 DIAS — revisar apenas os erros registrados no Hipocampo'}
+];
+function renderCheck(){
+  $('#checklist').innerHTML=CHECK.map((c,i)=>`<label class="check ${P.check[i]?'done':''}">
+   <input type="checkbox" ${P.check[i]?'checked':''} onchange="marcarCheck(${i},this.checked)"><span>${c.t}</span></label>`).join('');
+}
+function marcarCheck(i,v){P.check[i]=v;salvar();renderCheck();}
+renderCheck();updateDash();
+
+/* ============================================================
+   28 FRASES E FILOSOFIA
+   ============================================================ */
+const ANCORAS=[
+ ['FC','A carga sobe, a FC deve acompanhar.'],
+ ['PA','A sistólica sobe; a diastólica segura.'],
+ ['85%','85 não é botão STOP.'],
+ ['Recuperação','Parou a esteira, não terminou o teste.'],
+ ['Duplo produto','FC × PAS = o preço cardíaco do esforço.'],
+ ['ST','Não veja apenas quanto desceu. Veja como, quando e onde.'],
+ ['Interrupção','Quando a compensação começa a falhar, a esteira perde a prioridade.']
+];
+$('#ancoras').innerHTML=ANCORAS.map(a=>`<div class="box azul" style="margin-bottom:10px"><span class="rot">${a[0]}</span>
+ <b style="font-size:1.06rem">${a[1]}</b></div>`).join('');
+const FILO=[
+ 'Doença escondida no repouso pode se revelar quando a fisiologia é obrigada a mostrar sua reserva.',
+ 'O esforço não cria a doença. Ele revela o limite que o repouso escondia.',
+ 'Um exame não é um número. É uma história fisiológica acontecendo no tempo.',
+ 'O médico experiente não pergunta apenas "o ST baixou?". Pergunta o que aconteceu com o paciente enquanto a demanda aumentava.',
+ 'No teste ergométrico, o diagnóstico mora na resposta ao desafio.',
+ 'Interpretar um exame é reconstruir, em silêncio, tudo o que aconteceu com aquele corpo enquanto ninguém olhava para o gráfico.',
+ 'Todo laudo que cabe em uma palavra escondeu alguma coisa.'
+];
+function sortearFrase(){
+  const f=FILO[Math.floor(Math.random()*FILO.length)];
+  $('#fraseSorteada').innerHTML=`<div class="frase">${f}<span class="aut">— Dr. André Rossanno</span></div>`;
+}
+function verTodasFrases(){
+  const el=$('#todasFrases');el.classList.toggle('hidden');
+  el.innerHTML=FILO.map(f=>`<div class="box roxo">${f}<div class="assin" style="font-size:1.1rem;margin-top:4px">— Dr. André Rossanno</div></div>`).join('');
+}
+sortearFrase();
+
+/* ============================================================
+   29 DESAFIO FINAL
+   ============================================================ */
+function desafioFinal(){
+  const i=Math.floor(Math.random()*CASOS_CURVA.length), c=CASOS_CURVA[i];
+  const picoPAS=Math.max(...c.pas.slice(0,5)), quedaPAS=c.pas[4]-picoPAS;
+  const pctFC=Math.round(c.fc[4]/(220-58)*100);
+  const stMin=Math.min(...c.st), stRec=Math.min(...c.st.slice(5));
+  $('#desafioFinalArea').innerHTML=`
+   <div class="chartbox" style="margin-top:14px">${chartSVG(c,['fc','pas','st'],{h:320})}
+    <p class="tiny">Paciente de 58 anos, dor torácica aos esforços. Este é o traçado — nenhuma outra informação será dada.</p></div>
+   <div class="box ambar"><span class="rot">Conte a história antes de abrir</span>
+    Diga em voz alta: cronotropismo · resposta pressórica · ST (quando, quanto, até quando) · capacidade funcional · houve indicação de interromper · o que você escreveria no laudo.</div>
+   <div class="btnrow"><button class="btn" onclick="abrirDesafio(${i})">Abrir a resposta</button>
+    <button class="btn ghost" onclick="desafioFinal()">🎲 Outro caso</button></div>
+   <div id="respFinal"></div>`;
+  window._df={i,pctFC,quedaPAS,stMin,stRec};
+}
+function abrirDesafio(i){
+  const c=CASOS_CURVA[i], d=window._df;
+  $('#respFinal').innerHTML=`<div class="box verde" style="margin-top:12px"><span class="rot">${c.nome}</span>
+   <b>Cronotropismo:</b> FC pico ${c.fc[4]} bpm ≈ ${d.pctFC}% da prevista para 58 anos; queda de ${c.fc[4]-c.fc[5]} bpm no 1º minuto.<br>
+   <b>Pressórica:</b> pico de ${Math.max(...c.pas.slice(0,5))} mmHg${d.quedaPAS<0?` com <b style="color:var(--vermelho)">queda de ${Math.abs(d.quedaPAS)} mmHg ainda no esforço</b>`:''}; PAD de ${c.pad[0]} → ${c.pad[4]} mmHg.<br>
+   <b>ST:</b> desvio máximo ${d.stMin.toFixed(1)} mm${d.stRec<=-1?`; ainda ${Math.abs(d.stRec).toFixed(1)} mm na recuperação`:''}.<br>
+   <b>Capacidade funcional:</b> ${c.mets[4]} METs.<br><br>${c.nota}</div>
+   <div class="frase">Se você contou essa história antes de abrir, o capítulo cumpriu o objetivo.<span class="aut">— Dr. André Rossanno</span></div>`;
+  registrar('final'+i,true);
+}
+</script>
+</body>
+</html>
