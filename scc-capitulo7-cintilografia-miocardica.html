@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cintilografia Miocárdica de Perfusão — Atlas Mental · SCC Cap.7 · Dr. André Rossanno</title>
+<meta name="description" content="Capítulo interativo de cintilografia miocárdica de perfusão para o TEC 2026. Anatomia mostra a estrada; perfusão mostra o trânsito.">
+<!--
+  ATLAS MENTAL — SÍNDROME CORONARIANA CRÔNICA · CAPÍTULO 7
+  CINTILOGRAFIA MIOCÁRDICA DE PERFUSÃO — "O MAPA DO TRÂNSITO"
+  Autor: Dr. André Rossanno · memoriapotencial.com.br
+  Arquivo único, offline, sem bibliotecas externas, sem imagens.
+  LS_KEY: atlasCardio_scc_cap7_v1
+  HIERARQUIA DE FONTES: SBC SCC 2025 > SBC Ergometria 2024 > ESC 2024/internacional.
+  Badges .conferir marcam pontos numéricos que dependem da redação da diretriz.
+-->
+<style>
+:root{
+  /* estrutura */
+  --navy:#0f2740; --navy-2:#173a5c; --ink:#16202b; --muted:#5b6b7c;
+  --paper:#f6f8fa; --card:#ffffff; --line:#dfe6ed; --line-2:#c9d5e0;
+  /* semântica do Atlas */
+  --blue:#1282A2; --blue-txt:#10758f; --blue-soft:#e6f3f7; --blue-deep:#0b5468;
+  --red:#c0392b; --red-soft:#fdecea; --red-deep:#8e2a20;
+  --green:#1e8f5e; --green-soft:#e7f6ef; --green-deep:#146c46;
+  --gold:#a8781a; --gold-soft:#fdf4de; --gold-deep:#7d5910;
+  --purple:#6b4c9a; --purple-soft:#f1ecf9; --purple-deep:#513a75;
+  /* ESCALA DE PERFUSÃO (convenção de mapa nuclear — independente da semântica de UI) */
+  --p0:#1b1f3b; --p1:#3f2a7a; --p2:#c0392b; --p3:#e8892a; --p4:#f7d774; --p5:#fdf6dd;
+  /* tipografia */
+  --disp:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --body:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+  --sign:'Dancing Script','Segoe Script','Brush Script MT',cursive;
+  --r:14px; --sh:0 1px 2px rgba(15,39,64,.06),0 6px 18px rgba(15,39,64,.07);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:17px;line-height:1.62;overflow-x:hidden;
+}
+img,svg{max-width:100%}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.18;margin:0 0 .4em;letter-spacing:-.015em}
+h2{font-size:1.6rem;font-weight:900}
+h3{font-size:1.16rem;font-weight:800;color:var(--navy)}
+p{margin:0 0 .9em}
+b,strong{color:var(--navy)}
+a{color:var(--blue-txt)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+button{font-family:inherit;font-size:1rem;cursor:pointer}
+
+/* ============ LAYOUT ============ */
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+section.st{padding:34px 0 10px;scroll-margin-top:74px}
+.kick{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-txt);font-weight:700;display:block;margin-bottom:6px}
+.lede{font-size:1.06rem;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--sh);margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start}
+@media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr}}
+hr.rule{border:0;border-top:1px solid var(--line);margin:26px 0}
+
+/* ============ NAV + BULL'S EYE DE PROGRESSO ============ */
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:960px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:10px}
+.brand{font-family:var(--disp);font-weight:900;font-size:.95rem;color:var(--navy);line-height:1.1;flex:1;min-width:0}
+.brand small{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;font-weight:400}
+.navbtn{background:#fff;border:1px solid var(--line-2);border-radius:999px;padding:5px 11px;font-size:.76rem;font-weight:700;color:var(--navy);white-space:nowrap}
+.navbtn[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.navbtn:hover{border-color:var(--blue)}
+#miniEye{width:34px;height:34px;flex:0 0 auto}
+.progbar{height:3px;background:var(--line);position:relative}
+.progbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width .25s}
+
+/* ============ HERO ============ */
+.hero{background:linear-gradient(160deg,#0b1e33 0%,#12324f 55%,#0f2740 100%);color:#eef4f8;padding:38px 0 30px;position:relative;overflow:hidden}
+.hero b,.hero strong{color:inherit}
+.hero h1{font-size:2.05rem;font-weight:900;color:#fff;margin-bottom:.25em}
+.hero .sub{color:#a9c3d6;font-size:1.02rem;max-width:44ch}
+.hero .eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:#7fd0e8;text-transform:uppercase}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}
+@media(max-width:720px){.hero-grid{grid-template-columns:1fr}.hero h1{font-size:1.7rem}}
+.hero-quote{margin-top:16px;border-left:3px solid #7fd0e8;padding-left:14px;font-family:var(--disp);font-size:1.06rem;font-style:italic;color:#dbe9f2}
+.hero-quote span{display:block;font-family:var(--mono);font-style:normal;font-size:.66rem;letter-spacing:.14em;color:#7fd0e8;margin-top:6px;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.chip{display:inline-block;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);color:#dbe9f2;border-radius:999px;padding:5px 11px;font-size:.76rem;font-weight:700;text-decoration:none}
+.chip:hover{background:rgba(127,208,232,.2);border-color:#7fd0e8;color:#fff}
+.chip:active{transform:translateY(1px)}
+
+.heroq{margin-top:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:12px 14px}
+.heroq p{margin:0 0 8px;font-size:.93rem;color:#dbe9f2}
+.heroq #hqFb:empty{display:none}
+.heroq b,.heroq strong{color:#dbe9f2}
+.hqdica{display:block;margin-top:8px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:#7fd0e8;text-transform:uppercase}
+.qz .kick{margin-bottom:2px}
+.qzplacar{background:#eef2f6;border-radius:9px;padding:8px;margin:0 0 12px}
+/* ============ CAIXAS SEMÂNTICAS ============ */
+.box{border-radius:12px;padding:14px 16px;margin:14px 0;border-left:5px solid}
+.box h4{margin:0 0 .35em;font-size:1rem}
+.box p:last-child{margin-bottom:0}
+.b-blue{background:var(--blue-soft);border-color:var(--blue)}
+.b-blue h4{color:var(--blue-deep)}
+.b-red{background:var(--red-soft);border-color:var(--red)}
+.b-red h4{color:var(--red-deep)}
+.b-green{background:var(--green-soft);border-color:var(--green)}
+.b-green h4{color:var(--green-deep)}
+.b-gold{background:var(--gold-soft);border-color:var(--gold)}
+.b-gold h4{color:var(--gold-deep)}
+.b-purple{background:var(--purple-soft);border-color:var(--purple)}
+.b-purple h4{color:var(--purple-deep)}
+.b-gray{background:#f0f3f6;border-color:var(--line-2)}
+.b-gray h4{color:var(--navy)}
+
+/* ============ BADGES DE FONTE ============ */
+.src{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:2px 7px;border-radius:5px;vertical-align:middle;margin:0 3px}
+.s-sbc25{background:var(--green-soft);color:var(--green-deep);border:1px solid var(--green)}
+.s-sbc24{background:var(--blue-soft);color:var(--blue-deep);border:1px solid var(--blue)}
+.s-int{background:#eef0f3;color:var(--muted);border:1px solid var(--line-2)}
+.s-hist{background:#f3ecdf;color:var(--gold-deep);border:1px solid var(--gold)}
+.s-tec{background:var(--gold-soft);color:var(--gold-deep);border:1px solid var(--gold)}
+.conferir{background:#fff3cd;color:#7a5c00;border:1px dashed #b8860b;cursor:help}
+
+/* ============ BOTÕES E RESPOSTAS ============ */
+.opts{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+.opt{background:#fff;border:2px solid var(--line-2);border-radius:11px;padding:10px 16px;font-weight:800;color:var(--navy);transition:.16s}
+.opt:hover{border-color:var(--blue);transform:translateY(-1px)}
+.opt.ok{background:var(--green-soft);border-color:var(--green);color:var(--green-deep)}
+.opt.no{background:var(--red-soft);border-color:var(--red);color:var(--red-deep)}
+.opt.part{background:var(--gold-soft);border-color:var(--gold);color:var(--gold-deep)}
+.reveal{display:none;margin-top:10px;animation:fade .3s ease}
+.reveal.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 17px;font-weight:800;transition:.16s}
+.btn:hover{background:var(--blue-txt)}
+.btn b,.btn strong{color:inherit}
+.btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--line-2)}
+.btn.ghost:hover{border-color:var(--blue);background:var(--blue-soft)}
+.btn.sm{padding:7px 13px;font-size:.85rem;border-radius:9px}
+
+/* ============ PARE E RECUPERE ============ */
+.recall{background:linear-gradient(135deg,#241a3d,#3a2a5e);color:#efe9f8;border-radius:var(--r);padding:18px;margin:22px 0}
+.recall b,.recall strong{color:inherit}
+.recall .kick{color:#c8b3f0}
+.recall h3{color:#fff;font-size:1.05rem;margin-bottom:.5em}
+.rq{border-top:1px solid rgba(255,255,255,.16);padding:10px 0}
+.rq:first-of-type{border-top:0}
+.rq .q{font-weight:800;display:block;margin-bottom:6px}
+.rq .a{display:none;background:rgba(255,255,255,.1);border-radius:9px;padding:9px 12px;font-size:.95rem}
+.rq .a.on{display:block}
+.rq .a b,.rq .a strong{color:#ffe9a8}
+.rq button{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);color:#efe9f8;border-radius:8px;padding:5px 12px;font-size:.8rem;font-weight:700}
+.rq button:hover{background:rgba(200,179,240,.3)}
+.diff{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.diff button{font-size:.72rem;padding:4px 10px}
+.diff button[aria-pressed="true"]{background:#c8b3f0;color:#241a3d;border-color:#c8b3f0}
+
+/* ============ MODO PROFESSOR ============ */
+.profbox{display:none;background:#fffdf5;border:1px dashed var(--gold);border-radius:11px;padding:13px 15px;margin:12px 0}
+body.prof .profbox{display:block}
+.profbox .kick{color:var(--gold-deep)}
+.profbox dt{font-weight:800;color:var(--navy);margin-top:8px;font-size:.9rem}
+.profbox dd{margin:0 0 4px;font-size:.93rem;color:#4a4232}
+
+/* ============ SVG / FIGURAS ============ */
+figure{margin:16px 0}
+figcaption{font-size:.84rem;color:var(--muted);margin-top:7px;text-align:center}
+.svgbox{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;box-shadow:var(--sh)}
+.svgbox.dark{background:#101828;border-color:#243044}
+.seg{cursor:pointer;transition:.18s}
+.seg:hover{filter:brightness(1.25)}
+.seg.sel{stroke:#fff;stroke-width:3}
+.legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:10px;font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+.scalebar{display:flex;height:14px;border-radius:7px;overflow:hidden;border:1px solid var(--line-2);max-width:340px;margin:8px auto 0}
+.scalebar i{flex:1}
+
+/* utilitários */
+.tt{font-family:var(--mono);font-size:.86em;background:#eef2f6;padding:1px 6px;border-radius:5px}
+.center{text-align:center}
+.sign{font-family:var(--sign);font-size:1.25rem;color:var(--navy)}
+.small{font-size:.86rem;color:var(--muted)}
+body.reduzmov *{animation-duration:.001s !important;transition-duration:.001s !important}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001s !important;transition-duration:.001s !important}}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<nav class="nav">
+  <div class="in">
+    <svg id="miniEye" viewBox="0 0 100 100" role="img" aria-label="Progresso do capítulo"></svg>
+    <div class="brand">Cintilografia Miocárdica<small>Atlas Mental · SCC · Cap. 7</small></div>
+    <button class="navbtn" id="btnMenu" aria-expanded="false">Índice e ajustes</button>
+  </div>
+  <div class="progbar"><i id="progFill"></i></div>
+</nav>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Capítulo 7 · Síndrome Coronariana Crônica</span>
+      <h1>O mapa do trânsito</h1>
+      <p class="sub">A cintilografia miocárdica de perfusão não fotografa a estenose. Ela observa a consequência funcional da circulação coronária sobre o miocárdio.</p>
+      <div class="hero-quote">“O estresse não cria a doença. O estresse revela a falta de reserva.”<span>Dr. André Rossanno</span></div>
+      <div class="chips">
+        <a class="chip" href="#s03">Repouso × estresse</a>
+        <a class="chip" href="#s04">GATED-SPECT</a>
+        <a class="chip" href="#s06">Bull's eye</a>
+        <a class="chip" href="#s08">Territórios</a>
+        <a class="chip" href="#s11">Artefatos</a>
+        <a class="chip" href="#s12">BRE</a>
+      </div>
+    </div>
+    <figure style="margin:0">
+      <svg id="heroEye" viewBox="0 0 260 260" role="img" aria-label="Mapa polar do ventrículo esquerdo com um defeito, clicável"></svg>
+      <div class="heroq">
+        <p id="hqP">Toque em qualquer segmento hipocaptante deste mapa.</p>
+        <p id="hqFb" aria-live="polite"></p>
+        <button class="chip" id="hqNovo" type="button">Sortear outro mapa</button>
+        <span class="hqdica">Centro = ápice · periferia = base · septal à esquerda</span>
+      </div>
+    </figure>
+  </div>
+</header>
+
+<!-- ============================ ÍNDICE ============================ -->
+<div class="wrap">
+<div class="card" id="menuBox" hidden>
+  <span class="kick">Ajustes</span>
+  <div class="opts" style="margin-top:4px">
+    <button class="navbtn" id="btnProf" aria-pressed="false">Modo professor</button>
+    <button class="navbtn" id="btnMov" aria-pressed="false">Reduzir movimento</button>
+  </div>
+  <p class="small" style="margin:2px 0 14px">O modo professor abre caixas extras com como explicar em 30 segundos, erro comum do aluno e pergunta para a sala.</p>
+  <span class="kick">Índice do capítulo</span>
+  <div class="grid3" id="menuGrid"></div>
+</div>
+</div>
+
+<main class="wrap">
+
+<!-- ============================ ABERTURA DINÂMICA ============================ -->
+<section class="st" id="abertura">
+  <span class="kick">Antes de qualquer explicação</span>
+  <h2>A cintilografia mostra a placa coronária?</h2>
+  <p class="lede">Responda pelo que você acredita hoje. Depois a gente conversa.</p>
+
+  <div class="opts" id="opAbre">
+    <button class="opt" data-v="sim">Sim</button>
+    <button class="opt" data-v="nao">Não</button>
+    <button class="opt" data-v="dep">Depende</button>
+  </div>
+
+  <div class="reveal" id="rvAbre">
+    <div class="box b-blue">
+      <h4>Não diretamente.</h4>
+      <p>A cintilografia miocárdica de perfusão não enxerga a parede do vaso. Ela mede a <b>distribuição relativa do fluxo</b> no músculo e como essa distribuição se comporta quando você exige mais do coração.</p>
+      <p style="margin-bottom:0">Quem escolheu <b>“depende”</b> não está errado no espírito: um defeito reversível extenso <i>sugere fortemente</i> uma obstrução relevante em algum ponto da árvore. Mas isso é inferência sobre a consequência — não é a visualização da placa.</p>
+    </div>
+    <p>O que ela responde, então:</p>
+    <div class="grid2">
+      <div class="card" style="margin:0">
+        <h3>Ela responde</h3>
+        <ul>
+          <li>Como o fluxo se <b>distribui</b> entre as regiões</li>
+          <li>Se alguma região perde terreno <b>no estresse</b></li>
+          <li>Se o defeito é <b>reversível</b> ou <b>persistente</b></li>
+          <li>Qual a <b>função ventricular</b> (quando GATED)</li>
+          <li>Qual o <b>prognóstico</b> associado ao padrão</li>
+        </ul>
+      </div>
+      <div class="card" style="margin:0">
+        <h3>Ela não responde</h3>
+        <ul>
+          <li>Onde exatamente está a placa</li>
+          <li>Quantos por cento a estenose tem</li>
+          <li>Se a placa é vulnerável</li>
+          <li>Se existe aterosclerose não obstrutiva</li>
+          <li>Se a coronária é anatomicamente normal</li>
+        </ul>
+      </div>
+    </div>
+
+    <figure>
+      <div class="svgbox"><svg id="svgEstrada" viewBox="0 0 720 210" role="img" aria-label="Comparação entre angiotomografia, que mostra a estrada, e cintilografia, que mostra o trânsito"></svg></div>
+      <figcaption>Angiotomografia = a estrada. Perfusão = o trânsito. Duas perguntas diferentes sobre a mesma cidade.</figcaption>
+    </figure>
+
+    <div class="box b-gold">
+      <h4>Frase-âncora</h4>
+      <p style="margin-bottom:0">“Anatomia mostra a estrada. Perfusão mostra o trânsito.” Guarde essa — ela resolve sozinha umas quatro pegadinhas deste capítulo.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================ 02 · RADIOFÁRMACO ============================ -->
+<section class="st" id="s02">
+  <span class="kick">Estação 02</span>
+  <h2>O que exatamente está brilhando?</h2>
+  <p class="lede">Antes de interpretar cores, entenda o que produz a cor.</p>
+
+  <p>O radiotraçador é injetado na veia e chega ao miocárdio <b>carregado pelo fluxo coronário</b>. A quantidade que fica retida em cada região depende de duas condições que precisam ocorrer juntas:</p>
+
+  <div class="grid2">
+    <div class="box b-blue" style="margin-top:0"><h4>1 · Chegou até ali</h4><p style="margin-bottom:0">Sem fluxo, o traçador não é entregue. A entrega acompanha a perfusão regional.</p></div>
+    <div class="box b-green" style="margin-top:0"><h4>2 · Havia célula viva para reter</h4><p style="margin-bottom:0">A captação exige miócito com membrana e mitocôndria funcionantes. Cicatriz não retém.</p></div>
+  </div>
+
+  <figure>
+    <div class="svgbox"><svg id="svgTracer" viewBox="0 0 720 220" role="img" aria-label="Sequência: fluxo, entrega do traçador, captação celular e formação da imagem"></svg></div>
+    <figcaption>Fluxo → entrega → captação → imagem. A imagem é o último elo, não o primeiro.</figcaption>
+  </figure>
+
+  <div class="box b-red">
+    <h4>Trava de raciocínio</h4>
+    <p style="margin-bottom:0">Como a imagem depende <b>dessa cadeia inteira</b>, qualquer coisa que interrompa qualquer elo produz uma região escura. Fluxo baixo produz. Célula morta produz. Um obstáculo entre o coração e o detector também produz. Por isso <b>escuro é um sinal, não é ainda um diagnóstico</b>.</p>
+  </div>
+
+  <div class="box b-gray">
+    <h4>Um detalhe honesto sobre a palavra “relativa”</h4>
+    <p style="margin-bottom:0">O SPECT convencional não mede mililitros por minuto por grama. Ele compara cada região com a região de <b>maior captação do próprio paciente</b>, que recebe 100%. Essa escolha é o motivo de quase todas as armadilhas que vêm mais adiante — guarde-a.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“O traçador é um passageiro do sangue que só desce em endereço habitado. Se o ônibus não passa, ou se a casa está vazia, aquele quarteirão fica apagado.”</dd>
+      <dt>Erro comum do aluno</dt><dd>Achar que o mapa mede fluxo absoluto. Ele mede proporção interna.</dd>
+      <dt>Pergunta para a sala</dt><dd>“Se todas as regiões perderem metade do fluxo ao mesmo tempo, o que acontece com esse mapa?” (guarde a resposta para a estação da isquemia balanceada).</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================ 03 · REPOUSO × ESTRESSE ============================ -->
+<section class="st" id="s03">
+  <span class="kick">Estação 03</span>
+  <h2>O experimento central: repouso × estresse</h2>
+  <p class="lede">Tudo neste exame é uma comparação entre duas fotografias do mesmo coração em dois estados de exigência.</p>
+
+  <p>Uma região com estenose relevante pode receber fluxo <b>suficiente em repouso</b>. O sistema compensa dilatando as arteríolas distais — gasta reserva para manter a normalidade. Quando o estresse pede mais fluxo, a região normal ainda tem para onde crescer; a região comprometida já gastou o que tinha.</p>
+
+  <figure>
+    <div class="svgbox">
+      <div class="cmp2">
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Repouso</div><svg id="eyeRest" viewBox="0 0 220 220" role="img" aria-label="Mapa polar em repouso"></svg></div>
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Estresse</div><svg id="eyeStress" viewBox="0 0 220 220" role="img" aria-label="Mapa polar no estresse"></svg></div>
+      </div>
+      <div class="scalebar" aria-hidden="true"><i style="background:var(--p0)"></i><i style="background:var(--p1)"></i><i style="background:var(--p2)"></i><i style="background:var(--p3)"></i><i style="background:var(--p4)"></i><i style="background:var(--p5)"></i></div>
+      <div class="legend"><span>← menor captação</span><span>maior captação →</span></div>
+    </div>
+    <figcaption>Escolha um padrão e observe as duas fotografias.</figcaption>
+  </figure>
+
+  <div class="opts" id="opPadrao">
+    <button class="opt" data-p="A">Padrão A</button>
+    <button class="opt" data-p="B">Padrão B</button>
+    <button class="opt" data-p="C">Padrão C</button>
+  </div>
+  <div class="reveal" id="rvPadrao"></div>
+
+  <div class="box b-blue">
+    <h4>A lógica em uma linha</h4>
+    <p style="margin-bottom:0">O que <b>aparece ou piora no estresse</b> e melhora no repouso é o <b>componente dinâmico</b> — isquemia induzível. O que <b>não muda</b> entre as duas fotografias é o componente persistente, e exige a investigação da estação 10.</p>
+  </div>
+</section>
+
+<div class="recall" data-recall="r1">
+  <span class="kick">Pare e recupere</span>
+  <h3>Sem rolar para cima</h3>
+  <div class="rq"><span class="q">Por que uma estenose grave pode ter perfusão normal em repouso?</span><button data-rq>Revelar</button><div class="a">Porque a vasodilatação arteriolar distal compensa e mantém o fluxo basal — às custas da reserva. A falta só aparece quando se exige mais.</div></div>
+  <div class="rq"><span class="q">O SPECT mede fluxo absoluto ou relativo?</span><button data-rq>Revelar</button><div class="a">Relativo: cada região é comparada com a de maior captação do próprio paciente.</div></div>
+  <div class="rq"><span class="q">Complete: escuro é um ______, não é ainda um ______.</span><button data-rq>Revelar</button><div class="a">Escuro é um <b>sinal</b>, não é ainda um <b>diagnóstico</b>.</div></div>
+</div>
+
+<!-- ============================ 05 · GATED-SPECT ============================ -->
+<section class="st" id="s04">
+  <span class="kick">Estação 04 · O pulo do gato 🐈</span>
+  <h2>GATED-SPECT: a pergunta que salva o laudo</h2>
+  <p class="lede">A aquisição é sincronizada com o ECG e dividida em quadros dentro do ciclo cardíaco. Deixa de ser uma foto e passa a ser um filme.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgGated" viewBox="0 0 720 230" role="img" aria-label="Traçado de ECG sincronizando quadros do ciclo cardíaco com um ventrículo que contrai e espessa"></svg></div>
+    <figcaption>Cada complexo dispara a divisão do ciclo em quadros. O somatório dos batimentos monta o filme.</figcaption>
+  </figure>
+
+  <p>Com isso, o exame passa a informar também:</p>
+  <div class="grid2">
+    <div class="box b-blue" style="margin-top:0"><h4>Movimento regional</h4><p style="margin-bottom:0">A parede se desloca para dentro?</p></div>
+    <div class="box b-blue" style="margin-top:0"><h4>Espessamento sistólico</h4><p style="margin-bottom:0">A parede engrossa na sístole? Este é o parâmetro mais discriminativo dos dois.</p></div>
+    <div class="box b-blue" style="margin-top:0"><h4>Volumes e FEVE</h4><p style="margin-bottom:0">Diastólico final, sistólico final e fração de ejeção.</p></div>
+    <div class="box b-blue" style="margin-top:0"><h4>Comportamento pós-estresse</h4><p style="margin-bottom:0">Permite comparar a função depois do estresse com a de repouso.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>A pergunta do pulo do gato</h3>
+    <p>Defeito de perfusão <b>persistente</b> na parede inferior. No GATED, aquela parede <b>contrai e espessa normalmente</b>. Em que você pensa primeiro?</p>
+    <div class="opts" id="opGato">
+      <button class="opt" data-v="inf">Infarto inferior antigo</button>
+      <button class="opt" data-v="art">Artefato de atenuação</button>
+      <button class="opt" data-v="isq">Isquemia grave</button>
+    </div>
+    <div class="reveal" id="rvGato">
+      <div class="box b-green" style="margin-top:0">
+        <h4>Artefato de atenuação ganha muita força.</h4>
+        <p>Cicatriz transmural não engrossa. Se a parede engrossa bem, há músculo contrátil e organizado ali — e a hipocaptação passa a exigir outra explicação, sendo a atenuação por tecido interposto a mais frequente.</p>
+        <p style="margin-bottom:0"><b>Não é prova definitiva.</b> Um infarto pequeno, não transmural, pode preservar boa parte do espessamento. O GATED reduz muito a probabilidade de cicatriz extensa — ele não zera a de qualquer cicatriz.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box b-purple">
+    <h4>Imagem mental para guardar</h4>
+    <p style="margin-bottom:0">A perfusão pergunta <b>“quanto chegou?”</b>. O GATED pergunta <b>“essa parede está realmente doente?”</b>. Duas perguntas, um exame — e a segunda frequentemente corrige a leitura da primeira.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“Perfusão é a conta de luz do bairro. O GATED é ir até lá ver se as pessoas estão andando dentro de casa.”</dd>
+      <dt>Erro comum do aluno</dt><dd>Confundir movimento com espessamento. Uma parede pode ser arrastada pela vizinha e parecer que se move; engrossar, não.</dd>
+      <dt>Aplicação clínica</dt><dd>Sempre que o laudo trouxer defeito persistente, procure a frase sobre motilidade e espessamento antes de escrever “infarto prévio”.</dd>
+    </dl>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================ 06 · OS TRÊS EIXOS ============================ -->
+<section class="st" id="s05">
+  <span class="kick">Estação 05</span>
+  <h2>Os três planos: onde estou olhando?</h2>
+  <p class="lede">Antes de dizer qual parede está escura, você precisa saber que corte está na sua frente. Esta é a habilidade que separa quem lê de quem adivinha.</p>
+
+  <div class="grid3">
+    <button class="opt" data-eixo="sa" style="width:100%">Eixo curto</button>
+    <button class="opt" data-eixo="vla" style="width:100%">Eixo longo vertical</button>
+    <button class="opt" data-eixo="hla" style="width:100%">Eixo longo horizontal</button>
+  </div>
+
+  <figure>
+    <div class="svgbox"><svg id="svgEixo" viewBox="0 0 640 300" role="img" aria-label="Esquema do plano de corte selecionado com as paredes rotuladas"></svg></div>
+    <figcaption id="capEixo">Toque em um dos três planos acima.</figcaption>
+  </figure>
+
+  <div id="eixoTxt"></div>
+
+  <div class="box b-purple">
+    <h4>As duas âncoras verbais</h4>
+    <p><b>Rosquinha com SAL</b> — no eixo curto o ventrículo vira um anel. Em cima, anterior; embaixo, inferior; à esquerda, <b>S</b>eptal; à direita, <b>L</b>ateral. O “A” do meio é o ápice que você não está vendo neste corte, porque ele está fora do plano.</p>
+    <p style="margin-bottom:0"><b>A → A → I</b> no vertical (Anterior, Ápice, Inferior) e <b>S → A → L</b> no horizontal (Septal, Ápice, Lateral). Repare que os dois eixos longos <i>compartilham o ápice no meio</i> e discordam nas bordas: um mostra a dupla anterior/inferior, o outro a dupla septal/lateral.</p>
+  </div>
+
+  <div class="box b-gray">
+    <h4>Por que “vertical” aparece deitado e “horizontal” aparece em pé</h4>
+    <p style="margin-bottom:0">Os nomes descrevem o <b>plano em que o ventrículo foi fatiado</b>, e não a posição da imagem na tela. O eixo longo vertical corta o coração no plano vertical e é exibido deitado, com o ápice à esquerda; o eixo longo horizontal corta no plano horizontal e é exibido com o <b>ápice para cima</b>. Quem tenta deduzir a orientação da tela a partir do nome erra as duas.</p>
+  </div>
+
+  <div class="box b-gold">
+    <h4>Pegadinha de orientação</h4>
+    <p style="margin-bottom:0">Convenções de exibição existem e são padronizadas, mas <b>confira sempre os rótulos do laudo</b> antes de afirmar uma parede. Chamar “inferior” o que era “anterior” troca a artéria e troca a conduta.</p>
+  </div>
+</section>
+
+<!-- ============================ 07 · BULL'S EYE ============================ -->
+<section class="st" id="s06">
+  <span class="kick">Estação 06</span>
+  <h2>Bull's eye: o ventrículo aberto em um mapa</h2>
+  <p class="lede">Imagine descascar o ventrículo esquerdo em anéis, do ápice até a base, e deitar todos eles no mesmo plano, um dentro do outro.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgDesdobra" viewBox="0 0 640 260" role="img" aria-label="O cone ventricular sendo achatado em um mapa polar"></svg></div>
+    <figcaption><button class="btn sm ghost" id="btnDesdobra">Achatar o ventrículo</button></figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="box b-blue" style="margin-top:0"><h4>Centro</h4><p style="margin-bottom:0">Ápice — a ponta do cone vira o miolo do alvo.</p></div>
+    <div class="box b-blue" style="margin-top:0"><h4>Periferia</h4><p style="margin-bottom:0">Base — o anel mais externo, o mais próximo dos planos valvares.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>Duas perguntas rápidas</h3>
+    <p><b>Onde fica a base no bull's eye?</b></p>
+    <div class="opts" id="opBase"><button class="opt" data-v="c">No centro</button><button class="opt" data-v="p">Na periferia</button></div>
+    <div class="reveal" id="rvBase"><div class="box b-green" style="margin-top:0"><h4>Periferia.</h4><p style="margin-bottom:0">Ápice no centro, base na borda. Anéis intermediários = regiões apicais e médias.</p></div></div>
+  </div>
+
+  <div class="box b-red">
+    <h4>Correção obrigatória de uma simplificação frequente</h4>
+    <p>“Bull's eye azul = isquemia” é falso por dois motivos independentes.</p>
+    <p><b>Primeiro:</b> o bull's eye é apenas uma <b>representação polar bidimensional</b> — uma forma de desenhar, não um exame. Ele pode representar perfusão, mas também espessamento sistólico, motilidade regional, <i>strain</i>, viabilidade, escore por segmento ou qualquer outra variável regional. Ecocardiografia e ressonância também usam mapas polares.</p>
+    <p style="margin-bottom:0"><b>Segundo:</b> a cor depende da <b>variável representada e da escala escolhida pelo laboratório</b>. Não existe uma cor universal de isquemia. Antes de interpretar cor, leia o que o mapa está codificando e qual a escala.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Imagem mental</dt><dd>Um chapéu cônico prensado numa mesa: a ponta encosta no centro, a aba vira o círculo externo.</dd>
+      <dt>Pergunta para a sala</dt><dd>“Se eu mostrar um bull's eye sem legenda, o que eu ainda não sei?” — a variável e a escala.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================ 08 · 17 SEGMENTOS ============================ -->
+<section class="st" id="s07">
+  <span class="kick">Estação 07</span>
+  <h2>Os 17 segmentos</h2>
+  <p class="lede">Seis basais, seis médios, quatro apicais e o ápice verdadeiro. Toque em qualquer segmento do mapa.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svg17" viewBox="0 0 300 300" role="img" aria-label="Mapa polar de 17 segmentos, clicável"></svg></div>
+    <figcaption>Anterior em cima · septal à esquerda · lateral à direita · inferior embaixo.</figcaption>
+  </figure>
+
+  <div class="card" id="segInfo" aria-live="polite">
+    <span class="kick">Segmento</span>
+    <h3 id="segNome">Nenhum selecionado</h3>
+    <p id="segTxt" class="small">Toque em um segmento do mapa para ver nome, anel e território arterial mais provável.</p>
+  </div>
+
+  <div class="opts">
+    <button class="opt" id="btnPintaTerr">Pintar por território</button>
+    <button class="opt" id="btnPintaAnel">Pintar por anel</button>
+    <button class="opt" id="btnQuiz17">Modo treino: onde está o segmento?</button>
+  </div>
+  <div class="reveal" id="rvQuiz17"></div>
+
+  <div class="box b-gray">
+    <h4>Por que 17 e não 16</h4>
+    <p style="margin-bottom:0">O 17º segmento é o <b>ápice verdadeiro</b>, o miolo do mapa. Modelos de 16 segmentos existem e são usados em alguns contextos ecocardiográficos; para perfusão e para os escores somados que virão adiante, o modelo de 17 é o padrão de referência. <span class="src conferir" title="Conferir a redação e a numeração na diretriz vigente antes de publicar">Conferir SBC 2025</span></p>
+  </div>
+</section>
+
+<!-- ============================ 09 · TERRITÓRIOS ============================ -->
+<section class="st" id="s08">
+  <span class="kick">Estação 08</span>
+  <h2>Três encanadores, três andares</h2>
+  <p class="lede">Personagens para fixar a topografia — e um aviso que vale mais que os três juntos.</p>
+
+  <div class="grid3">
+    <div class="card" style="margin:0;border-top:4px solid var(--red)">
+      <h3 style="color:var(--red-deep)">DA</h3>
+      <p class="small" style="font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Desce pela frente</p>
+      <p style="margin-bottom:0">Anterior, anterosseptal, septal e boa parte do ápice. É a artéria da <b>fachada</b> do prédio.</p>
+    </div>
+    <div class="card" style="margin:0;border-top:4px solid var(--blue)">
+      <h3 style="color:var(--blue-deep)">Cx</h3>
+      <p class="small" style="font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Contorna a lateral</p>
+      <p style="margin-bottom:0">Parede lateral e, conforme a dominância, parte da inferolateral. É a artéria que <b>dá a volta pelo quintal</b>.</p>
+    </div>
+    <div class="card" style="margin:0;border-top:4px solid var(--green)">
+      <h3 style="color:var(--green-deep)">CD</h3>
+      <p class="small" style="font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)">Desce para o andar inferior</p>
+      <p style="margin-bottom:0">Parede inferior e, conforme a dominância, a inferosseptal. É a artéria do <b>porão</b>.</p>
+    </div>
+  </div>
+
+  <div class="box b-red">
+    <h4>O aviso que vale mais que os três personagens</h4>
+    <p style="margin-bottom:0"><b>Parede sugere artéria. Parede não prova artéria.</b> A correspondência entre segmento e coronária é <i>probabilística</i>, não anatômica obrigatória. Ela varia com a dominância, com o comprimento da DA (uma DA longa que envolve o ápice “rouba” a inferoapical), com o calibre dos ramos diagonais e marginais, com anomalias e com o leito colateral. Escreva “território provável da …”, nunca “lesão da …”.</p>
+  </div>
+
+  <div class="card">
+    <h3>Dominância: o interruptor que troca o dono da parede</h3>
+    <div class="opts" id="opDom">
+      <button class="opt" data-d="dir">Dominância direita</button>
+      <button class="opt" data-d="esq">Dominância esquerda</button>
+      <button class="opt" data-d="cod">Codominância</button>
+    </div>
+    <div class="reveal" id="rvDom"></div>
+  </div>
+</section>
+
+<div class="recall" data-recall="r2">
+  <span class="kick">Pare e recupere</span>
+  <h3>Três perguntas</h3>
+  <div class="rq"><span class="q">Centro do bull's eye = ?</span><button data-rq>Revelar</button><div class="a">Ápice. A base fica na periferia.</div></div>
+  <div class="rq"><span class="q">No eixo curto, o que está à esquerda e à direita da rosquinha?</span><button data-rq>Revelar</button><div class="a">Septal à esquerda, lateral à direita. Anterior em cima, inferior embaixo — <b>SAL na rosquinha</b>.</div></div>
+  <div class="rq"><span class="q">Um defeito lateral prova lesão de circunflexa?</span><button data-rq>Revelar</button><div class="a">Não. Sugere o território provável da Cx. Dominância, anatomia e colaterais mudam o dono da parede.</div></div>
+</div>
+
+<hr class="rule">
+
+<!-- ============================ 10 · DEFEITO REVERSÍVEL ============================ -->
+<section class="st" id="s09">
+  <span class="kick">Estação 09</span>
+  <h2>Defeito reversível</h2>
+  <p class="lede">Aceso no repouso, escuro no estresse. O achado mais próximo de uma resposta direta que este exame oferece.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgRev" viewBox="0 0 640 240" role="img" aria-label="Parede acesa em repouso e escura no estresse, com a curva de reserva de fluxo"></svg></div>
+    <figcaption><button class="btn sm ghost" id="btnRev">Alternar repouso ⇄ estresse</button></figcaption>
+  </figure>
+
+  <div class="box b-green">
+    <h4>A fisiologia por trás</h4>
+    <p style="margin-bottom:0">Fluxo <b>suficiente em repouso</b> — a região está compensada. Reserva <b>insuficiente no estresse</b> — quando a demanda sobe ou o vasodilatador recruta a hiperemia, a região comprometida não acompanha o aumento das vizinhas. O contraste relativo entre elas aumenta, e o defeito aparece.</p>
+  </div>
+
+  <div class="box b-blue">
+    <h4>Vocabulário preciso</h4>
+    <p style="margin-bottom:0">Chame de <b>isquemia induzível</b> ou <b>defeito reversível</b>. Evite “isquemia ativa” — o paciente não está isquêmico agora; ele demonstrou que fica isquêmico quando exigido. É exatamente essa a informação valiosa.</p>
+  </div>
+</section>
+
+<!-- ============================ 11 · DEFEITO FIXO ============================ -->
+<section class="st" id="s10">
+  <span class="kick">Estação 10</span>
+  <h2>Defeito fixo: a estação das três portas</h2>
+  <p class="lede">Escuro no repouso, escuro no estresse. Agora vem a pergunta que a prova adora.</p>
+
+  <div class="card">
+    <h3>É infarto?</h3>
+    <div class="opts" id="opFixo">
+      <button class="opt" data-v="sim">Sim, é infarto</button>
+      <button class="opt" data-v="nao">Não necessariamente</button>
+    </div>
+    <div class="reveal" id="rvFixo">
+      <div class="box b-green" style="margin-top:0">
+        <h4>Não necessariamente.</h4>
+        <p style="margin-bottom:0">O defeito persistente <b>levanta principalmente cicatriz / infarto prévio</b> — essa é a hipótese mais frequente e não deve ser minimizada. Mas duas outras portas precisam estar abertas no seu raciocínio antes do laudo.</p>
+      </div>
+      <div class="grid3" style="margin-top:14px">
+        <div class="card" style="margin:0;border-top:4px solid var(--red)">
+          <h3 style="color:var(--red-deep)">Porta 1 · Cicatriz</h3>
+          <p style="margin-bottom:0">Defeito persistente <b>+ alteração de movimento e de espessamento</b> na mesma região. Quanto mais grave e mais extenso o defeito, e quanto pior o espessamento, mais coerente a cicatriz.</p>
+        </div>
+        <div class="card" style="margin:0;border-top:4px solid var(--purple)">
+          <h3 style="color:var(--purple-deep)">Porta 2 · Miocárdio viável disfuncional</h3>
+          <p style="margin-bottom:0">Músculo vivo, cronicamente hipoperfundido ou atordoado, com captação reduzida e função ruim — mas com potencial de recuperar. Muda completamente o valor de revascularizar aquela parede.</p>
+        </div>
+        <div class="card" style="margin:0;border-top:4px solid var(--gold)">
+          <h3 style="color:var(--gold-deep)">Porta 3 · Artefato</h3>
+          <p style="margin-bottom:0">Captação aparentemente reduzida <b>com função preservada</b>. Tecido interposto, posicionamento, movimento. É a porta da estação 11.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box b-purple">
+    <h4>O caminho de decisão</h4>
+    <p style="margin-bottom:0">Diante de um defeito persistente, faça sempre a mesma pergunta em sequência: <b>a parede engrossa?</b> Se engrossa bem, a porta 3 sobe muito. Se não engrossa, resta separar cicatriz de viabilidade — e aí entram protocolos e métodos dedicados de viabilidade, não a simples leitura da perfusão em duas fases.</p>
+  </div>
+</section>
+
+<!-- ============================ 12 · ARTEFATOS ============================ -->
+<section class="st" id="s11">
+  <span class="kick">Estação 11</span>
+  <h2>Como desmontar um artefato</h2>
+  <p class="lede">Tudo que fica entre o coração e o detector absorve fótons. O resultado é uma sombra que imita doença.</p>
+
+  <div class="grid2">
+    <div class="card" style="margin:0">
+      <h3>Atenuação anterior (mamária)</h3>
+      <p>Tecido mamário denso funciona como uma <b>placa que se interpõe à frente</b> do coração. Tende a produzir hipocaptação <b>anterior e anterolateral</b>, com localização e intensidade variáveis conforme volume, densidade e posicionamento — inclusive entre as duas aquisições do mesmo paciente.</p>
+      <div class="svgbox" style="padding:8px"><svg id="svgMama" viewBox="0 0 320 170" role="img" aria-label="Tecido interposto à frente do coração atenuando a parede anterior"></svg></div>
+    </div>
+    <div class="card" style="margin:0">
+      <h3>Atenuação diafragmática</h3>
+      <p>O diafragma e as vísceras abdominais funcionam como uma <b>almofada que empurra e absorve por baixo</b>, produzindo hipocaptação <b>inferior</b>. Mais provável conforme o <i>habitus</i> corporal e a anatomia — clássica, mas não exclusiva, do homem com maior circunferência abdominal.</p>
+      <div class="svgbox" style="padding:8px"><svg id="svgDiaf" viewBox="0 0 320 170" role="img" aria-label="Diafragma elevado atenuando a parede inferior"></svg></div>
+    </div>
+  </div>
+
+  <p style="margin-top:18px">Além desses dois clássicos, entram na conta: <b>movimento do paciente</b> durante a aquisição, <b>atividade extracardíaca</b> adjacente (alça intestinal, fígado) confundindo a normalização, <b>mau posicionamento</b>, <b>truncamento</b> do campo e diferenças de posição entre as duas aquisições.</p>
+
+  <div class="card">
+    <h3>Os três instrumentos</h3>
+    <div class="opts" id="opInstr">
+      <button class="opt" data-i="1">1 · Prona</button>
+      <button class="opt" data-i="2">2 · GATED</button>
+      <button class="opt" data-i="3">3 · Correção de atenuação</button>
+    </div>
+    <div class="reveal" id="rvInstr"></div>
+  </div>
+
+  <div class="box b-gold">
+    <h4>Pegadinha TEC</h4>
+    <p style="margin-bottom:0">Nenhum dos três instrumentos “prova” artefato isoladamente. Eles <b>deslocam probabilidade</b>. O raciocínio correto é convergente: defeito inferior + parede que engrossa + defeito que some em prona + correção de atenuação que normaliza = artefato altamente provável. Um único desses achados, sozinho, é apenas um argumento.</p>
+  </div>
+</section>
+
+<!-- ============================ 13 · BRE ============================ -->
+<section class="st" id="s12">
+  <span class="kick">Estação 12</span>
+  <h2>Bloqueio de ramo esquerdo: a parede de tijolos no septo</h2>
+  <p class="lede">O BRE é capaz de produzir hipocaptação septal sem que exista doença obstrutiva relevante da descendente anterior.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgBre" viewBox="0 0 640 220" role="img" aria-label="Ativação septal tardia no bloqueio de ramo esquerdo produzindo falso defeito septal"></svg></div>
+    <figcaption>Ativação tardia e desorganizada do septo → movimento septal anômalo → falso defeito.</figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>BRE + hipocaptação septal = lesão de DA?</h3>
+    <div class="opts" id="opBre">
+      <button class="opt" data-v="sim">Sim</button>
+      <button class="opt" data-v="nao">Não automaticamente</button>
+    </div>
+    <div class="reveal" id="rvBre">
+      <div class="box b-green" style="margin-top:0">
+        <h4>Não automaticamente.</h4>
+        <p>Três fenômenos se somam no BRE: <b>dissincronia</b> de ativação, <b>movimento septal anômalo</b> e alteração do padrão de espessamento — e, com eles, um <b>falso defeito de perfusão septal</b>. Some-se que o septo do paciente com BRE frequentemente também está estruturalmente alterado.</p>
+        <p style="margin-bottom:0">Isso não significa o oposto: o paciente com BRE <b>pode</b> ter doença de DA. Significa que o defeito septal, nesse contexto, perde poder discriminativo e não deve carregar sozinho a conclusão.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:22px">Qual estresse escolher no paciente com BRE?</h3>
+  <div class="grid3">
+    <div class="box b-red" style="margin-top:0"><h4>Exercício</h4><p style="margin-bottom:0">Aumenta a frequência cardíaca — e o falso defeito septal do BRE tende a se acentuar com FC mais alta.</p></div>
+    <div class="box b-red" style="margin-top:0"><h4>Dobutamina</h4><p style="margin-bottom:0">Mesmo problema: age aumentando FC e contratilidade.</p></div>
+    <div class="box b-green" style="margin-top:0"><h4>Vasodilatador</h4><p style="margin-bottom:0"><b>Preferido</b> para a avaliação de perfusão nesse cenário, porque produz hiperemia sem depender de taquicardia.</p></div>
+  </div>
+
+  <div class="box b-purple">
+    <h4>Frase para levar para a prova</h4>
+    <p style="margin-bottom:0"><b>“BRE + perfusão = pense em vasodilatação, não em taquicardia.”</b> Vale igualmente para o paciente com marcapasso em estimulação ventricular, que compartilha o mesmo problema de ativação.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“O septo do BRE contrai fora de hora. Se você acelera o coração, você piora o descompasso. O vasodilatador não pede sincronia — pede fluxo.”</dd>
+      <dt>Erro comum do aluno</dt><dd>Trocar “o BRE causa falso defeito septal” por “no BRE o septo nunca é isquêmico”.</dd>
+      <dt>Pegadinha</dt><dd>Questão que oferece “esteira” como resposta correta para BRE. Não é.</dd>
+    </dl>
+  </div>
+</section>
+
+<div class="recall" data-recall="r3">
+  <span class="kick">Pare e recupere</span>
+  <h3>Fechando o primeiro bloco</h3>
+  <div class="rq"><span class="q">Defeito fixo com espessamento normal — hipótese que sobe?</span><button data-rq>Revelar</button><div class="a">Artefato de atenuação. Cicatriz transmural não engrossa.</div></div>
+  <div class="rq"><span class="q">BRE tende a dar falso defeito em qual parede?</span><button data-rq>Revelar</button><div class="a">Septal.</div></div>
+  <div class="rq"><span class="q">Estressor preferido no BRE para avaliar perfusão?</span><button data-rq>Revelar</button><div class="a">Vasodilatador. Exercício e dobutamina acentuam o artefato ao elevar a FC.</div></div>
+  <div class="rq"><span class="q">Os três instrumentos que desmontam artefato?</span><button data-rq>Revelar</button><div class="a">Prona, GATED (movimento e espessamento) e correção de atenuação quando disponível.</div></div>
+</div>
+
+
+<hr class="rule">
+
+<!-- ============================ 13 · ISQUEMIA BALANCEADA ============================ -->
+<section class="st" id="s13">
+  <span class="kick">Estação 13</span>
+  <h2>Isquemia balanceada: quando o mapa se cala</h2>
+  <p class="lede">A consequência mais perigosa de medir perfusão <b>relativa</b>. Guarde a frase da estação 02 — cada região é comparada com a de maior captação do próprio paciente.</p>
+
+  <p>Três corredores disputam a mesma prova. Todos correm 50% mais devagar que o normal.</p>
+  <figure>
+    <div class="svgbox"><svg id="svgCorredores" viewBox="0 0 640 200" role="img" aria-label="Três corredores representando DA, Cx e CD, todos igualmente lentos"></svg></div>
+    <figcaption><button class="btn sm ghost" id="btnCorre">Dar a largada</button></figcaption>
+  </figure>
+
+  <div class="card">
+    <h3>Quem parece pior?</h3>
+    <div class="opts" id="opBal">
+      <button class="opt" data-v="da">A DA</button>
+      <button class="opt" data-v="cx">A Cx</button>
+      <button class="opt" data-v="cd">A CD</button>
+      <button class="opt" data-v="ninguem">Ninguém</button>
+    </div>
+    <div class="reveal" id="rvBal">
+      <div class="box b-red" style="margin-top:0">
+        <h4>Ninguém — e é exatamente esse o problema.</h4>
+        <p>Se todas as regiões reduzem o fluxo de maneira semelhante, o <b>contraste regional desaparece</b>. Como não existe uma região de referência preservada, o mapa se normaliza pelo território menos comprometido e devolve uma imagem <b>aparentemente normal ou menos impressionante do que a doença</b>.</p>
+        <p style="margin-bottom:0">Associação clássica: doença <b>multiarterial</b>, lesão de <b>tronco</b> e doença extensa e difusa.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px">Veja acontecer</h3>
+  <p>Reduza o fluxo território por território e observe o mapa relativo à direita.</p>
+  <div class="opts" id="opTerrBal">
+    <button class="opt" data-t="DA">Comprometer DA</button>
+    <button class="opt" data-t="Cx">Comprometer Cx</button>
+    <button class="opt" data-t="CD">Comprometer CD</button>
+  </div>
+  <figure>
+    <div class="svgbox">
+      <div class="cmp2">
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Fluxo real</div><svg id="eyeAbs" viewBox="0 0 220 220" role="img" aria-label="Fluxo absoluto por território"></svg></div>
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Mapa relativo</div><svg id="eyeRel" viewBox="0 0 220 220" role="img" aria-label="Mapa relativo, normalizado pelo território de maior captação"></svg></div>
+      </div>
+      <p class="small center" id="balMsg" style="margin:10px 0 0" aria-live="polite">Nenhum território comprometido. Os dois mapas coincidem.</p>
+    </div>
+    <figcaption>À esquerda, o fluxo que o coração realmente recebe. À direita, o que o SPECT convencional consegue mostrar.</figcaption>
+  </figure>
+
+  <div class="box b-purple">
+    <h4>Onde o PET entra</h4>
+    <p style="margin-bottom:0">Métodos capazes de <b>quantificação de fluxo em termos absolutos</b> — em especial o PET — não dependem do contraste entre vizinhos e por isso enxergam a redução global que o mapa relativo esconde. É a razão prática pela qual a palavra <b>single</b> da sigla SPECT tem consequência clínica (estação 27).</p>
+  </div>
+</section>
+
+<!-- ============================ 14 · NORMAL ≠ NORMAL ============================ -->
+<section class="st" id="s14">
+  <span class="kick">Estação 14</span>
+  <h2>Cintilografia normal não significa coronária normal</h2>
+  <p class="lede">Uma placa que merece estar pendurada na sala de laudos.</p>
+
+  <div class="box b-red">
+    <h4>NORMAL NÃO SIGNIFICA AUSÊNCIA DE ATEROSCLEROSE</h4>
+    <p style="margin-bottom:0">O exame avalia a <b>consequência funcional</b> da circulação sobre o miocárdio. Ele não visualiza a parede do vaso.</p>
+  </div>
+
+  <p>Um exame normal é compatível com:</p>
+  <ul>
+    <li><b>DAC não obstrutiva</b> — placas presentes, sem repercussão de fluxo</li>
+    <li><b>Placas vulneráveis</b>, que não estenosam mas podem romper</li>
+    <li><b>DAC obstrutiva sem isquemia induzível</b> no dia e nas condições do exame</li>
+    <li><b>Isquemia balanceada</b>, pelo motivo da estação anterior</li>
+    <li><b>Doença microvascular</b> — ponte com ANOCA/INOCA do Capítulo 1</li>
+  </ul>
+
+  <div class="box b-green">
+    <h4>O que o exame normal realmente entrega</h4>
+    <p style="margin-bottom:0">Ele entrega <b>prognóstico</b>. Um estudo de perfusão normal, em condições adequadas de estresse, associa-se historicamente a baixa taxa de eventos no seguimento — e essa é uma informação clínica valiosa por si só, ainda que não seja um atestado anatômico. <span class="src conferir" title="Conferir contra a redação da diretriz vigente antes de publicar">Conferir SBC 2025</span></p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“O mapa do trânsito estava fluindo no dia do teste. Isso não quer dizer que não existam buracos na estrada.”</dd>
+      <dt>Erro comum do aluno</dt><dd>Ler “normal” como alta definitiva e suspender a investigação de um paciente com quadro clínico convincente.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================ 15 · TID ============================ -->
+<section class="st" id="s15">
+  <span class="kick">Estação 15</span>
+  <h2>TID: o balão de alerta</h2>
+  <p class="lede"><i>Transient ischemic dilation</i> — dilatação isquêmica transitória. A cavidade aparece maior nas imagens pós-estresse do que nas de repouso.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgTid" viewBox="0 0 640 220" role="img" aria-label="Cavidade ventricular em repouso e aparentemente maior após o estresse"></svg></div>
+    <figcaption><button class="btn sm ghost" id="btnTid">Comparar repouso ⇄ pós-estresse</button></figcaption>
+  </figure>
+
+  <h3>Dois mecanismos, não um</h3>
+  <div class="grid2">
+    <div class="box b-blue" style="margin-top:0"><h4>Disfunção ventricular transitória</h4><p style="margin-bottom:0">O ventrículo realmente dilata depois de uma isquemia extensa induzida — atordoamento pós-isquêmico com aumento verdadeiro da cavidade.</p></div>
+    <div class="box b-purple" style="margin-top:0"><h4>Isquemia subendocárdica difusa</h4><p style="margin-bottom:0">A camada subendocárdica capta menos de forma difusa; a cavidade <b>parece</b> maior porque a borda interna do miocárdio ficou apagada, sem que o ventrículo tenha dilatado de fato.</p></div>
+  </div>
+
+  <div class="box b-gold">
+    <h4>Sobre o número</h4>
+    <p style="margin-bottom:0">Existe uma razão calculada entre o volume pós-estresse e o de repouso, mas <b>não fixe um corte único e universal</b>: o valor de referência depende do protocolo, do traçador, do equipamento e da normatização do próprio laboratório. Na prova, o que se cobra é o <b>significado</b> — TID é marcador de doença mais extensa e grave, inclusive quando a perfusão parece pouco alterada. <span class="src conferir" title="Conferir o valor de referência citado na diretriz e no serviço">Conferir SBC 2025</span></p>
+  </div>
+
+  <div class="box b-red">
+    <h4>Por que o TID é o melhor amigo do exame “quase normal”</h4>
+    <p style="margin-bottom:0">Ele não depende do contraste entre vizinhos. Por isso é um dos poucos sinais capazes de <b>denunciar a isquemia balanceada</b> de que trata a estação 13.</p>
+  </div>
+</section>
+
+<div class="recall" data-recall="r4">
+  <span class="kick">Pare e recupere</span>
+  <h3>Antes dos escores</h3>
+  <div class="rq"><span class="q">Por que a doença de três vasos pode gerar um mapa quase normal?</span><button data-rq>Revelar</button><div class="a">Porque o SPECT convencional trabalha com perfusão <b>relativa</b>. Sem uma região de referência preservada, o contraste regional desaparece.</div></div>
+  <div class="rq"><span class="q">TID significa obrigatoriamente que o ventrículo dilatou?</span><button data-rq>Revelar</button><div class="a">Não. Pode ser dilatação verdadeira por disfunção transitória, ou aparência de cavidade maior por isquemia subendocárdica difusa.</div></div>
+  <div class="rq"><span class="q">Cintilografia normal exclui aterosclerose?</span><button data-rq>Revelar</button><div class="a">Não. Ela avalia consequência funcional, não a parede do vaso.</div></div>
+</div>
+
+<!-- ============================ 16 · ESCORES ============================ -->
+<section class="st" id="s16">
+  <span class="kick">Estação 16</span>
+  <h2>SSS, SRS e SDS: o professor dando notas</h2>
+  <p class="lede">Imagine um professor diante de 17 alunos. Ele dá uma nota de 0 a 4 para cada um, primeiro na prova do estresse e depois na de repouso.</p>
+
+  <div class="grid3">
+    <div class="box b-gray" style="margin-top:0"><h4>0 e 1</h4><p style="margin-bottom:0"><b>0</b> normal · <b>1</b> discretamente reduzido</p></div>
+    <div class="box b-gray" style="margin-top:0"><h4>2 e 3</h4><p style="margin-bottom:0"><b>2</b> moderadamente reduzido · <b>3</b> intensamente reduzido</p></div>
+    <div class="box b-gray" style="margin-top:0"><h4>4</h4><p style="margin-bottom:0">ausência ou quase ausência de captação</p></div>
+  </div>
+
+  <div class="grid3" style="margin-top:16px">
+    <div class="card" style="margin:0;border-top:4px solid var(--red)">
+      <h3 style="color:var(--red-deep)">SSS</h3>
+      <p class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Summed Stress Score</p>
+      <p>Soma das 17 notas <b>no estresse</b>.</p>
+      <p style="margin-bottom:0" class="tt">STRESS SOFREU SOMADO</p>
+    </div>
+    <div class="card" style="margin:0;border-top:4px solid var(--blue)">
+      <h3 style="color:var(--blue-deep)">SRS</h3>
+      <p class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Summed Rest Score</p>
+      <p>Soma das 17 notas <b>em repouso</b>.</p>
+      <p style="margin-bottom:0" class="tt">REPOUSO RESTOU SOMADO</p>
+    </div>
+    <div class="card" style="margin:0;border-top:4px solid var(--purple)">
+      <h3 style="color:var(--purple-deep)">SDS</h3>
+      <p class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Summed Difference Score</p>
+      <p><b>SDS = SSS − SRS.</b> Quanto do defeito apareceu ou piorou no estresse.</p>
+      <p style="margin-bottom:0" class="tt">DIFERENÇA = COMPONENTE DINÂMICO</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px">Laboratório dos escores</h3>
+  <p>Toque nos segmentos para dar nota. Cada toque avança 0 → 1 → 2 → 3 → 4 → 0.</p>
+  <figure>
+    <div class="svgbox">
+      <div class="cmp2">
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red-deep)">Estresse</div><svg id="eyeScoreS" viewBox="0 0 220 220" role="img" aria-label="Mapa de notas no estresse, clicável"></svg></div>
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-deep)">Repouso</div><svg id="eyeScoreR" viewBox="0 0 220 220" role="img" aria-label="Mapa de notas em repouso, clicável"></svg></div>
+      </div>
+      <div class="grid3" style="margin-top:12px">
+        <div class="box b-red" style="margin:0;padding:10px 12px"><h4 style="margin:0">SSS <span id="outSSS" style="float:right">0</span></h4></div>
+        <div class="box b-blue" style="margin:0;padding:10px 12px"><h4 style="margin:0">SRS <span id="outSRS" style="float:right">0</span></h4></div>
+        <div class="box b-purple" style="margin:0;padding:10px 12px"><h4 style="margin:0">SDS <span id="outSDS" style="float:right">0</span></h4></div>
+      </div>
+      <p class="small center" id="scoreMsg" style="margin:12px 0 0" aria-live="polite">Dê notas nos dois mapas e observe a diferença.</p>
+      <div class="opts" style="justify-content:center;margin-bottom:0">
+        <button class="btn sm ghost" data-preset="rev">Exemplo: isquemia anterior</button>
+        <button class="btn sm ghost" data-preset="fix">Exemplo: cicatriz inferior</button>
+        <button class="btn sm ghost" data-preset="mix">Exemplo: cicatriz + isquemia periinfarto</button>
+        <button class="btn sm ghost" data-preset="zero">Zerar</button>
+      </div>
+    </div>
+    <figcaption>O SDS é calculado automaticamente. Repare que uma nota alta nos dois mapas não gera SDS.</figcaption>
+  </figure>
+
+  <div class="box b-gold">
+    <h4>Classificação didática tradicional do SSS</h4>
+    <p>Menos de 4 · normal ou minimamente anormal &nbsp;|&nbsp; 4 a 8 · discretamente anormal &nbsp;|&nbsp; 9 a 13 · moderadamente anormal &nbsp;|&nbsp; acima de 13 · francamente anormal.</p>
+    <p style="margin-bottom:0"><b>Valores didáticos tradicionais.</b> Interpretar dentro do contexto do método, do protocolo e da normatização do laboratório — e sempre junto com a função ventricular e o quadro clínico. <span class="src conferir" title="Conferir as faixas e a redação na diretriz vigente">Conferir SBC 2025</span></p>
+  </div>
+
+  <div class="box b-red">
+    <h4>A armadilha dos escores</h4>
+    <p style="margin-bottom:0">SSS elevado <b>não distingue</b> sozinho isquemia de cicatriz — ele soma as duas coisas. Quem separa é o SRS (o que já estava lá) e o SDS (o que apareceu no estresse). Um SSS de 20 com SDS de 2 é um coração majoritariamente cicatricial; um SSS de 20 com SDS de 18 é isquemia extensa. Conduta completamente diferente.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Pergunta para a sala</dt><dd>“SSS 16, SRS 15. Qual é o SDS e o que isso quer dizer?” (SDS 1 — praticamente tudo é fixo.)</dd>
+      <dt>Erro comum do aluno</dt><dd>Achar que o SDS avalia gravidade absoluta. Ele avalia o <b>componente dinâmico</b>.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================ 17 · TPD ============================ -->
+<section class="st" id="s17">
+  <span class="kick">Estação 17</span>
+  <h2>TPD: extensão e gravidade na mesma conta</h2>
+  <p class="lede"><i>Total perfusion deficit</i> — déficit total de perfusão, obtido por quantificação automatizada e expresso como <b>percentual do ventrículo esquerdo</b>.</p>
+
+  <p>A pergunta que o TPD responde tem duas metades: <b>“quanto do mapa está doente”</b> e <b>“quão profundo é o defeito”</b>. Um defeito raso e amplo e um defeito pequeno e profundo podem gerar valores parecidos — e é por isso que o número nunca substitui olhar a imagem.</p>
+
+  <div class="grid3">
+    <div class="box b-red" style="margin-top:0"><h4>TPD estresse</h4><p style="margin-bottom:0">O déficit total na fase de estresse.</p></div>
+    <div class="box b-blue" style="margin-top:0"><h4>TPD repouso</h4><p style="margin-bottom:0">O déficit total na fase de repouso.</p></div>
+    <div class="box b-purple" style="margin-top:0"><h4>Diferença</h4><p style="margin-bottom:0">O <b>componente reversível</b> — o análogo quantitativo do SDS.</p></div>
+  </div>
+
+  <div class="box b-gray">
+    <h4>Relação com os escores</h4>
+    <p style="margin-bottom:0">Os escores somados nascem de uma leitura <b>visual e semiquantitativa</b>, segmento a segmento. O TPD nasce de <b>software</b>, comparando o paciente com bancos de normalidade. São réguas diferentes para a mesma pergunta, e os valores <b>não são intercambiáveis</b> entre si nem entre laboratórios. <span class="src conferir" title="Conferir a nomenclatura e eventuais cortes na diretriz vigente">Conferir SBC 2025</span></p>
+  </div>
+</section>
+
+<!-- ============================ 18 · ISQUEMIA EXTENSA ============================ -->
+<section class="st" id="s18">
+  <span class="kick">Estação 18</span>
+  <h2>Isquemia extensa: um alerta, não uma ordem</h2>
+
+  <div class="box b-gold">
+    <h4>O que é verdade</h4>
+    <p style="margin-bottom:0">Isquemia extensa — tradicionalmente demarcada em torno de <b>10% ou mais do ventrículo esquerdo</b> — foi historicamente associada a <b>maior risco de eventos</b>. Como marcador prognóstico, o achado é robusto e não deve ser minimizado. <span class="src s-hist">Conceito histórico</span></p>
+  </div>
+
+  <div class="box b-red">
+    <h4>O que NÃO é verdade</h4>
+    <p style="margin-bottom:0"><b>Isso não significa cateterismo ou revascularização automáticos.</b> Estudos contemporâneos de estratégia invasiva versus conservadora em pacientes crônicos estáveis com isquemia moderada a grave colocaram em xeque justamente esse automatismo, mostrando que a revascularização não entrega em todos os cenários a redução de eventos que se supunha. <span class="src s-int">Internacional</span> <span class="src conferir" title="Conferir como a Diretriz SBC de SCC 2025 formula a indicação">Conferir SBC 2025</span></p>
+  </div>
+
+  <p>A decisão nasce do conjunto, não do percentual:</p>
+  <div class="grid3">
+    <div class="card" style="margin:0"><h3>Do paciente</h3><ul style="margin:0 0 0 16px;padding:0"><li>Sintomas e limitação</li><li>Resposta ao tratamento clínico otimizado</li><li>Preferências e comorbidades</li></ul></div>
+    <div class="card" style="margin:0"><h3>Do coração</h3><ul style="margin:0 0 0 16px;padding:0"><li>Função ventricular</li><li>Território acometido</li><li>Viabilidade</li></ul></div>
+    <div class="card" style="margin:0"><h3>Da doença</h3><ul style="margin:0 0 0 16px;padding:0"><li>Anatomia e complexidade</li><li>Tronco ou equivalente</li><li>Exequibilidade do procedimento</li></ul></div>
+  </div>
+
+  <div class="box b-purple">
+    <h4>A forma correta de escrever no laudo e de pensar na prova</h4>
+    <p style="margin-bottom:0">“Isquemia induzível extensa, marcador de <b>maior risco</b>, a ser integrada ao quadro clínico, à função ventricular e à anatomia.” O exame informa risco; ele não prescreve conduta.</p>
+  </div>
+</section>
+
+<!-- ============================ 19 · ALTO RISCO ============================ -->
+<section class="st" id="s19">
+  <span class="kick">Estação 19</span>
+  <h2>O coração está sussurrando que algo está errado</h2>
+  <p class="lede">Quando a perfusão regional não conta a história inteira, são estes achados que denunciam doença extensa. Toque em cada grupo.</p>
+
+  <div class="grid2">
+    <button class="opt" data-risco="perf" style="width:100%">Perfusão</button>
+    <button class="opt" data-risco="func" style="width:100%">Função</button>
+    <button class="opt" data-risco="geo" style="width:100%">Geometria</button>
+    <button class="opt" data-risco="acess" style="width:100%">Sinais acessórios</button>
+  </div>
+  <div class="reveal" id="rvRisco"></div>
+
+  <div class="box b-purple">
+    <h4>A regra que amarra a estação</h4>
+    <p style="margin-bottom:0"><b>“Não leia apenas as cores. Leia o coração inteiro.”</b> Um mapa de perfusão pouco impressionante ao lado de FE baixa, TID e resposta hemodinâmica ruim é um exame de <b>alto risco</b>, e não um exame tranquilizador.</p>
+  </div>
+</section>
+
+<!-- ============================ 20 · RADIOFÁRMACOS ============================ -->
+<section class="st" id="s20">
+  <span class="kick">Estação 20</span>
+  <h2>Radiofármacos</h2>
+
+  <div class="grid2">
+    <div class="card" style="margin:0;border-top:4px solid var(--green)">
+      <h3 style="color:var(--green-deep)">Tecnécio-99m</h3>
+      <p class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">sestamibi · tetrofosmina</p>
+      <ul>
+        <li>Amplamente utilizado na prática atual</li>
+        <li>Energia do fóton (≈140 keV) favorável à câmera, com melhor qualidade de imagem</li>
+        <li>Meia-vida física curta (≈6 horas) e disponibilidade por gerador — <b>logística favorável</b></li>
+        <li>Captação proporcional ao fluxo, com retenção mitocondrial dependente de viabilidade</li>
+        <li>Redistribuição desprezível — a imagem “congela” o momento da injeção</li>
+      </ul>
+      <p style="margin-bottom:0" class="small">Essa última característica é a razão de o traçador ser injetado <b>no pico do estresse</b> e as imagens poderem ser feitas depois.</p>
+    </div>
+    <div class="card" style="margin:0;border-top:4px solid var(--gold)">
+      <h3 style="color:var(--gold-deep)">Tálio-201</h3>
+      <p class="small" style="font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">papel histórico importante</p>
+      <ul>
+        <li><b>Redistribuição</b>: análogo do potássio, entra e sai da célula viva ao longo do tempo</li>
+        <li>Essa propriedade permitiu avaliar <b>viabilidade</b> com imagens tardias — daí seu peso histórico</li>
+        <li>Fótons de energia mais baixa → <b>mais atenuação</b> e imagem de qualidade inferior</li>
+        <li>Meia-vida longa e maior dose de radiação ao paciente</li>
+      </ul>
+      <p style="margin-bottom:0" class="small">Uso hoje bem mais restrito, mas cobrado em prova pelo conceito de redistribuição.</p>
+    </div>
+  </div>
+
+  <div class="box b-red">
+    <h4>Correção de uma simplificação frequente</h4>
+    <p style="margin-bottom:0">Não escreva “tálio é o único exame de viabilidade”. Viabilidade pode ser avaliada por <b>PET</b> (metabolismo com FDG), por <b>ressonância cardíaca</b> (realce tardio e reserva contrátil), por <b>SPECT em protocolos apropriados</b> e por <b>ecocardiografia com dobutamina</b> em contextos selecionados. Cada método responde a pergunta por um caminho diferente.</p>
+  </div>
+</section>
+
+<!-- ============================ 21 · EXERCÍCIO × FARMACOLÓGICO ============================ -->
+<section class="st" id="s21">
+  <span class="kick">Estação 21</span>
+  <h2>Exercício ou estresse farmacológico?</h2>
+  <p class="lede">A pergunta não é “qual é melhor”. É “qual é adequado para este paciente e para esta pergunta”.</p>
+
+  <div class="card">
+    <h3 id="arvTit">Passo 1 · O paciente consegue se exercitar adequadamente?</h3>
+    <p id="arvTxt">Capacidade de atingir uma carga suficiente, sem limitação ortopédica, neurológica, vascular ou pulmonar que impeça o esforço.</p>
+    <div class="opts" id="arvOpts"></div>
+    <div class="reveal" id="arvRes"></div>
+    <p style="margin-top:8px"><button class="btn sm ghost" id="arvReset">Recomeçar a árvore</button></p>
+  </div>
+
+  <div class="box b-green">
+    <h4>Por que o exercício, quando possível, é preferido</h4>
+    <p style="margin-bottom:0">Porque ele entrega, de graça, uma camada inteira de informação que o fármaco não entrega: <b>capacidade funcional</b>, sintomas reproduzidos na carga que os provoca, comportamento do <b>ECG</b>, resposta <b>pressórica</b>, resposta <b>cronotrópica</b>, arritmias induzidas e recuperação. Boa parte do valor prognóstico do teste vem daí — ponte direta com os Capítulos 5 e 6. <span class="src s-sbc24">SBC 2024</span></p>
+  </div>
+</section>
+
+<!-- ============================ 22 · VASODILATADORES ============================ -->
+<section class="st" id="s22">
+  <span class="kick">Estação 22</span>
+  <h2>O vasodilatador revela a falta de reserva</h2>
+  <p class="lede">Este é o ponto mais mal compreendido do capítulo, e cai muito.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgVaso" viewBox="0 0 640 250" role="img" aria-label="Artéria normal dilatando muito e artéria distal a estenose com pouca reserva restante"></svg></div>
+    <figcaption><button class="btn sm ghost" id="btnVaso">Administrar o vasodilatador</button></figcaption>
+  </figure>
+
+  <div class="box b-blue">
+    <h4>O mecanismo em três frases</h4>
+    <p>A artéria <b>normal</b> tem reserva intacta: o vasodilatador recruta essa reserva e o fluxo aumenta muito.</p>
+    <p>A região <b>distal a uma estenose importante</b> já gastou parte da reserva para manter o fluxo basal — sobra pouco para recrutar, e o fluxo aumenta menos.</p>
+    <p style="margin-bottom:0">O resultado é <b>heterogeneidade de fluxo</b> entre as regiões, e é essa heterogeneidade que o mapa mostra como defeito.</p>
+  </div>
+
+  <div class="box b-red">
+    <h4>Trava conceitual</h4>
+    <p style="margin-bottom:0">O vasodilatador <b>não produz isquemia</b> por aumento de demanda — ele não faz o coração trabalhar mais. Ele cria disparidade de fluxo. Pode haver defeito de perfusão evidente <b>sem</b> que o paciente esteja isquêmico naquele momento. É a diferença fisiológica que separa vasodilatador de exercício e de dobutamina.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card" style="margin:0;border-top:4px solid var(--blue)">
+      <h3 style="color:var(--blue-deep)">Adenosina</h3>
+      <p>Age <b>diretamente</b> nos receptores de adenosina, sobretudo os <b>A2A</b>, responsáveis pela vasodilatação coronariana.</p>
+      <p style="margin-bottom:0" class="small">Meia-vida muito curta: o efeito começa e termina rápido, o que ajuda no manejo dos efeitos adversos. Efeitos comuns: rubor, desconforto torácico, dispneia, cefaleia, bloqueio atrioventricular transitório.</p>
+    </div>
+    <div class="card" style="margin:0;border-top:4px solid var(--purple)">
+      <h3 style="color:var(--purple-deep)">Dipiridamol</h3>
+      <p>Age <b>indiretamente</b>: aumenta a ação da <b>adenosina endógena</b>, principalmente reduzindo sua recaptação e seu metabolismo. Resultado final igual — <b>hiperemia coronariana</b>.</p>
+      <p style="margin-bottom:0" class="small">Ação mais prolongada que a da adenosina; por isso a reversão farmacológica com aminofilina tem papel prático quando os sintomas persistem.</p>
+    </div>
+  </div>
+
+  <div class="box b-purple">
+    <h4>Imagem mental</h4>
+    <p style="margin-bottom:0">A adenosina <b>aperta a campainha</b> do receptor A2A. O dipiridamol <b>impede que a campainha seja desligada</b>, deixando a adenosina que o corpo já produziu tocando por mais tempo. Duas rotas, o mesmo destino.</p>
+  </div>
+</section>
+
+<!-- ============================ 23 · CAFEÍNA ============================ -->
+<section class="st" id="s23">
+  <span class="kick">Estação 23</span>
+  <h2>A xícara de café em cima do receptor</h2>
+
+  <figure>
+    <div class="svgbox"><svg id="svgCafe" viewBox="0 0 640 200" role="img" aria-label="Cafeína ocupando o receptor A2A e impedindo a ação da adenosina"></svg></div>
+    <figcaption>A cafeína é <b>antagonista</b> dos receptores de adenosina. Ocupada a fechadura, a chave não gira.</figcaption>
+  </figure>
+
+  <div class="box b-red">
+    <h4>Consequência prática</h4>
+    <p style="margin-bottom:0">Metilxantinas podem <b>reduzir a eficácia do estresse vasodilatador</b>. A hiperemia fica aquém do esperado, o contraste entre regiões diminui e o exame pode subestimar a doença — um <b>falso-negativo farmacológico</b>.</p>
+  </div>
+
+  <p>Fontes a rastrear na anamnese pré-exame:</p>
+  <div class="chips" style="margin-bottom:14px">
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">café</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">chá</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">energéticos</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">refrigerantes de cola</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">chocolate</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">chá-mate e guaraná</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">medicamentos com cafeína</span>
+    <span class="chip" style="background:var(--gold-soft);color:var(--gold-deep);border-color:var(--gold)">teofilina e derivados</span>
+  </div>
+
+  <div class="box b-gold">
+    <h4>Sobre o tempo de suspensão</h4>
+    <p style="margin-bottom:0">Existe um período de abstinência recomendado antes do estresse vasodilatador, e ele deve seguir o <b>protocolo do serviço</b> e a diretriz vigente. Não decore um número solto — decore a <b>fisiologia</b>, que é o que a prova cobra e o que sobrevive à mudança de protocolo. <span class="src conferir" title="Conferir o tempo de suspensão recomendado na diretriz e no protocolo local">Conferir SBC 2025</span></p>
+  </div>
+
+  <div class="box b-blue">
+    <h4>Detalhe que fecha o raciocínio</h4>
+    <p style="margin-bottom:0">A mesma farmacologia explica por que a <b>aminofilina</b> — outra metilxantina — serve para <b>reverter</b> os efeitos adversos da adenosina e do dipiridamol. Antagonista é antagonista: atrapalha quando você não quer e resgata quando você quer.</p>
+  </div>
+</section>
+
+<!-- ============================ 24 · DOBUTAMINA ============================ -->
+<section class="st" id="s24">
+  <span class="kick">Estação 24</span>
+  <h2>Dobutamina: o outro caminho</h2>
+  <p class="lede">Fisiologicamente diferente dos vasodilatadores — e é essa diferença que a prova cobra.</p>
+
+  <figure>
+    <div class="svgbox"><svg id="svgDobu" viewBox="0 0 640 190" role="img" aria-label="Coração acelerando com aumento de frequência, contratilidade e demanda"></svg></div>
+    <figcaption><button class="btn sm ghost" id="btnDobu">Aumentar a dose</button></figcaption>
+  </figure>
+
+  <div class="grid3">
+    <div class="box b-red" style="margin-top:0"><h4>↑ Frequência</h4><p style="margin-bottom:0">Encurta a diástole — e a perfusão do VE predomina na diástole.</p></div>
+    <div class="box b-red" style="margin-top:0"><h4>↑ Contratilidade</h4><p style="margin-bottom:0">Mais trabalho por batimento.</p></div>
+    <div class="box b-red" style="margin-top:0"><h4>↑ Demanda</h4><p style="margin-bottom:0">O mecanismo é o mesmo do exercício: aumentar o consumo.</p></div>
+  </div>
+
+  <div class="box b-blue">
+    <h4>Quando entra</h4>
+    <p style="margin-bottom:0">Quando o paciente <b>não consegue se exercitar</b> adequadamente <b>e</b> o vasodilatador é contraindicado — broncoespasmo significativo, por exemplo. É a terceira opção por uma razão prática: exige mais tempo, mais monitorização e é mais desconfortável.</p>
+  </div>
+
+  <div class="box b-gold">
+    <h4>Pegadinha</h4>
+    <p style="margin-bottom:0">“Dobutamina é vasodilatador coronariano direto” é <b>falso</b>. Ela é agonista adrenérgico e age por <b>demanda</b>. No paciente com BRE, isso a coloca no mesmo problema do exercício — taquicardia acentua o falso defeito septal (estação 12).</p>
+  </div>
+</section>
+
+<!-- ============================ 25 · CONTRAINDICAÇÕES ============================ -->
+<section class="st" id="s25">
+  <span class="kick">Estação 25</span>
+  <h2>Onde cada estressor não pode entrar</h2>
+  <p class="lede">Listas decoradas sem contexto viram absolutismos. Toque em cada item e leia o porquê — é o porquê que se recupera sob pressão.</p>
+
+  <h3>Adenosina e dipiridamol</h3>
+  <div class="opts" id="opCiVaso"></div>
+  <div class="reveal" id="rvCiVaso"></div>
+
+  <h3 style="margin-top:22px">Dobutamina</h3>
+  <div class="opts" id="opCiDobu"></div>
+  <div class="reveal" id="rvCiDobu"></div>
+
+  <div class="box b-gray">
+    <h4>Leitura honesta das listas</h4>
+    <p style="margin-bottom:0">Boa parte destes itens é <b>cautela ou contraindicação relativa</b>, dependente da gravidade, do controle clínico e da alternativa disponível. Asma bem controlada e sem broncoespasmo ativo não é a mesma coisa que broncoespasmo em atividade. A pergunta correta nunca é “é proibido?”, e sim “o risco deste estressor supera o benefício da informação, havendo alternativa?”. <span class="src conferir" title="Conferir a lista e a formulação exata na diretriz vigente">Conferir SBC 2025</span></p>
+  </div>
+</section>
+
+<!-- ============================ 26 · DOR DURANTE O VASODILATADOR ============================ -->
+<section class="st" id="s26">
+  <span class="kick">Estação 26</span>
+  <h2>O paciente sentiu dor com a adenosina. Isso prova DAC?</h2>
+
+  <div class="opts" id="opDor">
+    <button class="opt" data-v="sim">Sim, prova</button>
+    <button class="opt" data-v="nao">Não prova</button>
+  </div>
+  <div class="reveal" id="rvDor">
+    <div class="box b-green" style="margin-top:0">
+      <h4>Não prova.</h4>
+      <p>Desconforto torácico, dispneia, rubor e sensação de opressão são <b>efeitos farmacológicos frequentes</b> dos vasodilatadores, e ocorrem em pessoas sem doença coronariana obstrutiva. O sintoma isolado, nesse contexto, tem valor diagnóstico baixo.</p>
+      <p style="margin-bottom:0"><b>Mas atenção ao outro lado:</b> alteração isquêmica relevante do <b>segmento ST</b> durante o vasodilatador <b>deve ser valorizada</b> — é um achado de peso, associado a doença mais grave, e não pode ser descartado como “efeito da droga”.</p>
+    </div>
+  </div>
+
+  <div class="box b-purple">
+    <h4>A regra dos cinco olhares</h4>
+    <p style="margin-bottom:0">Nenhum achado isolado fecha o exame. Integre sempre: <b>ECG · sintomas · pressão arterial · perfusão · função ventricular</b>. Um exame de medicina nuclear é um exame clínico com imagem dentro, não uma imagem com um paciente ao lado.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“A adenosina incomoda quase todo mundo. O que não é de todo mundo é o ST mudando junto.”</dd>
+      <dt>Pegadinha</dt><dd>Questão que oferece “dor durante adenosina confirma isquemia” como alternativa correta. Não confirma.</dd>
+    </dl>
+  </div>
+</section>
+
+<div class="recall" data-recall="r5">
+  <span class="kick">Pare e recupere</span>
+  <h3>Fechando os estressores</h3>
+  <div class="rq"><span class="q">Cafeína faz o quê com a adenosina?</span><button data-rq>Revelar</button><div class="a">Antagoniza os receptores de adenosina (A2A incluído), podendo reduzir a hiperemia e gerar falso-negativo.</div></div>
+  <div class="rq"><span class="q">Dipiridamol age direto no receptor?</span><button data-rq>Revelar</button><div class="a">Não. Ele aumenta a adenosina <b>endógena</b>, sobretudo reduzindo sua recaptação e metabolismo.</div></div>
+  <div class="rq"><span class="q">SSS 22 com SDS 3 — o que você está vendo?</span><button data-rq>Revelar</button><div class="a">Um coração predominantemente <b>cicatricial</b>. Defeito grande, mas quase todo já presente no repouso.</div></div>
+  <div class="rq"><span class="q">Paciente não caminha e tem broncoespasmo ativo. Qual estressor?</span><button data-rq>Revelar</button><div class="a">Dobutamina — exercício está fora e o vasodilatador é contraindicado nesse cenário.</div></div>
+  <div class="rq"><span class="q">Isquemia de 12% do VE indica revascularização?</span><button data-rq>Revelar</button><div class="a">Não automaticamente. É marcador de risco, a ser integrado a sintomas, função, anatomia, tratamento clínico e preferências.</div></div>
+</div>
+
+<hr class="rule">
+
+<hr class="rule">
+
+<!-- ============================ 27 · IAM ============================ -->
+<section class="st" id="s27">
+  <span class="kick">Estação 27</span>
+  <h2>O paciente que infartou</h2>
+  <p class="lede">Aqui a cintilografia deixa de responder “existe isquemia?” e passa a responder outras três perguntas: <b>quanto se perdeu</b>, <b>o que ainda pode ser recuperado</b> e <b>o que sobrou de risco</b>.</p>
+
+  <h3>Cicatriz: o que o defeito fixo informa depois do infarto</h3>
+  <p>No território infartado, o defeito persistente reflete tecido que não capta o traçador — e a <b>extensão</b> desse defeito guarda relação com o tamanho do infarto e com o prognóstico. O GATED acrescenta a camada funcional: motilidade, espessamento, volumes e fração de ejeção, que são justamente as variáveis do remodelamento.</p>
+
+  <div class="box b-red">
+    <h4>A correção que não pode faltar</h4>
+    <p style="margin-bottom:0"><b>Defeito fixo não equivale a infarto transmural.</b> Um infarto subendocárdico pode gerar defeito discreto com espessamento razoavelmente preservado; e um defeito fixo inferior num paciente com infarto prévio documentado ainda pode ter <b>atenuação diafragmática somada por cima</b>, exagerando o que realmente se perdeu. Ter um infarto no prontuário não desliga o raciocínio de artefato — pelo contrário, aumenta a chance de você aceitar o achado sem checar.</p>
+  </div>
+
+  <h3 style="margin-top:24px">Atordoamento × hibernação × cicatriz</h3>
+  <p>Três estados diferentes de uma parede que não contrai. Toque em cada um.</p>
+  <div class="grid3">
+    <button class="opt" data-viab="stun" style="width:100%">Atordoado</button>
+    <button class="opt" data-viab="hib" style="width:100%">Hibernante</button>
+    <button class="opt" data-viab="cic" style="width:100%">Cicatriz</button>
+  </div>
+  <div class="reveal" id="rvViab"></div>
+
+  <div class="box b-purple">
+    <h4>Por que essa distinção decide conduta</h4>
+    <p style="margin-bottom:0">Parede <b>viável</b> e disfuncional pode recuperar contração após revascularização — e o ganho funcional é o argumento para revascularizar. Parede <b>cicatricial</b> não recupera: revascularizar aquele território não devolve a função perdida. É a diferença entre um procedimento com ganho esperado e um procedimento sem alvo.</p>
+  </div>
+
+  <h3 style="margin-top:24px">Isquemia periinfarto: o halo ao redor da cicatriz</h3>
+  <p>O achado que mais muda a leitura de um exame pós-IAM. Ao redor de um defeito persistente, uma borda que <b>piora no estresse</b> indica miocárdio ainda em risco na vizinhança da cicatriz — SDS maior que zero em torno de um SRS já elevado.</p>
+  <figure>
+    <div class="svgbox">
+      <div class="cmp2">
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-deep)">Repouso</div><svg id="eyePeriR" viewBox="0 0 220 220" role="img" aria-label="Cicatriz inferior em repouso"></svg></div>
+        <div class="center"><div class="small" style="font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--red-deep)">Estresse</div><svg id="eyePeriS" viewBox="0 0 220 220" role="img" aria-label="Cicatriz inferior com halo isquêmico ao redor no estresse"></svg></div>
+      </div>
+      <p class="small center" style="margin:10px 0 0">O núcleo não muda — é cicatriz. A borda escurece no estresse — é isquemia periinfarto.</p>
+    </div>
+    <figcaption>Cicatriz e isquemia coexistem com frequência. Ler só o defeito fixo perde metade da informação.</figcaption>
+  </figure>
+
+  <h3 style="margin-top:24px">Quando pedir depois do infarto</h3>
+  <div class="grid2">
+    <div class="box b-green" style="margin-top:0">
+      <h4>Situações em que costuma agregar</h4>
+      <ul style="margin:0 0 0 18px;padding:0">
+        <li>Revascularização <b>incompleta</b>, com lesões não tratadas de significância funcional incerta</li>
+        <li>Suspeita de <b>isquemia residual</b> ou sintomas recorrentes</li>
+        <li>Avaliação de <b>viabilidade</b> em território disfuncional, quando o resultado pode mudar a decisão</li>
+        <li>Estratificação funcional antes de decisão terapêutica relevante</li>
+      </ul>
+    </div>
+    <div class="box b-red" style="margin-top:0">
+      <h4>Situações em que costuma não agregar</h4>
+      <ul style="margin:0 0 0 18px;padding:0">
+        <li>Rotina em paciente <b>assintomático</b> com revascularização completa</li>
+        <li>Repetição periódica sem pergunta clínica definida</li>
+        <li>Quando o resultado, qualquer que seja, <b>não mudaria a conduta</b></li>
+      </ul>
+      <p class="small" style="margin:8px 0 0">O acompanhamento pós-infarto é guiado por sintomas, mudança clínica, risco e suspeita de progressão — não pelo calendário. <span class="src conferir" title="Conferir a formulação da indicação na diretriz vigente">Conferir SBC 2025</span></p>
+    </div>
+  </div>
+
+  <div class="box b-gold">
+    <h4>E na dor torácica aguda?</h4>
+    <p style="margin-bottom:0">A imagem de perfusão <b>em repouso</b>, com o traçador injetado durante a dor, teve papel histórico na triagem da dor torácica aguda — a lógica era congelar o momento sintomático, aproveitando a redistribuição desprezível do tecnécio. Na prática contemporânea, essa não é a estratégia de escolha: ECG seriado e <b>troponina de alta sensibilidade</b>, com os demais métodos de imagem conforme a hipótese, ocupam esse espaço. Se a questão sugerir cintilografia como ferramenta de primeira linha para diagnosticar infarto agudo, desconfie. <span class="src s-hist">Conceito histórico</span></p>
+  </div>
+
+  <h3 style="margin-top:26px">Banco de questões · IAM e cintilografia</h3>
+  <p>Dez questões com feedback imediato. Cada alternativa explica por que está certa ou errada.</p>
+  <div id="quizIAM"></div>
+  <p class="center"><button class="btn ghost sm" id="btnResetIAM">Refazer o banco</button></p>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“Atordoado é o músculo tonto depois do soco: a circulação já voltou, a contração ainda não. Hibernante é o músculo economizando porque a comida é pouca. Cicatriz é o músculo que não está mais lá.”</dd>
+      <dt>Erro comum do aluno</dt><dd>Parar no defeito fixo e não procurar o halo reversível ao redor. A isquemia periinfarto é o achado que mais muda conduta em exame pós-IAM.</dd>
+      <dt>Pergunta para a sala</dt><dd>“Paciente com IAM inferior prévio e defeito fixo inferior no exame. O que ainda pode estar inflando esse defeito?” (atenuação diafragmática somada à cicatriz.)</dd>
+    </dl>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================ 28 · SPECT ============================ -->
+<section class="st" id="s28">
+  <span class="kick">Estação 28</span>
+  <h2>Afinal, o que é SPECT — e o que é “cintilografia”?</h2>
+  <p class="lede">Deixei esta estação para o fim de propósito. Você já sabe ler o exame; agora vale entender o nome da máquina que o produziu, porque cada palavra da sigla carrega uma consequência clínica.</p>
+
+  <h3>Cintilografia: o nome vem do cristal</h3>
+  <p>O traçador emite radiação gama de dentro do paciente. Essa radiação atravessa um <b>colimador</b> — uma placa perfurada que só deixa passar os fótons vindos de certas direções — e atinge um <b>cristal que cintila</b>: cada fóton absorvido produz um lampejo de luz, convertido em sinal elétrico e contado. É desse lampejo, da cintilação, que vem a palavra <b>cintilografia</b>.</p>
+  <p>Por muito tempo, a aquisição era <b>planar</b>: uma projeção única, como uma radiografia de emissão, com todas as paredes sobrepostas. Enxergar qual parede estava hipocaptante era difícil justamente pela superposição. A tomografia resolveu isso — e é aí que entra o SPECT.</p>
+
+  <h3>Desmontando a sigla</h3>
+  <p>Toque em cada bloco.</p>
+  <div class="opts" id="opSigla">
+    <button class="opt" data-w="single">Single</button>
+    <button class="opt" data-w="photon">Photon</button>
+    <button class="opt" data-w="emission">Emission</button>
+    <button class="opt" data-w="ct">Computed Tomography</button>
+  </div>
+  <div class="reveal" id="rvSigla"></div>
+
+  <figure>
+    <div class="svgbox"><svg id="svgSpect" viewBox="0 0 720 250" role="img" aria-label="Detector percorrendo um arco ao redor do tórax e cortes reconstruídos"></svg></div>
+    <figcaption>O detector percorre um arco coletando projeções em vários ângulos; a reconstrução devolve fatias.</figcaption>
+  </figure>
+
+  <div class="box b-blue">
+    <h4>Como as peças se encaixam</h4>
+    <p style="margin-bottom:0"><b>Cintilografia</b> é a família — detectar a radiação emitida pelo traçador. <b>SPECT</b> é o modo tomográfico de adquirir e reconstruir. <b>GATED</b> é a sincronização com o ECG acrescentada por cima. <b>Eixo curto, eixos longos e bull's eye</b> são formas de <i>exibir</i> o que o SPECT reconstruiu. No dia a dia, “a cintilo” costuma nomear o exame inteiro — e o laudo formal, com frequência, escreve “cintilografia miocárdica de perfusão por SPECT”.</p>
+  </div>
+
+  <div class="box b-purple">
+    <h4>A palavra que separa SPECT de PET</h4>
+    <p style="margin-bottom:0">É a primeira: <b>single</b>. No SPECT, cada decaimento entrega <b>um</b> fóton, e a direção precisa ser filtrada por um colimador físico — que descarta a imensa maioria dos fótons e cobra o preço em contagens e em resolução. No PET, a aniquilação do pósitron gera <b>dois</b> fótons que partem em sentidos opostos; detectá-los em coincidência dispensa o colimador e permite <b>quantificação de fluxo em termos absolutos</b>. Daí o PET responder perguntas que o SPECT convencional não responde — inclusive a da isquemia balanceada.</p>
+  </div>
+
+  <div class="box b-red">
+    <h4>Por que isso importa na interpretação</h4>
+    <p style="margin-bottom:0">Porque tudo que acontece <b>entre o coração e o detector</b> entra na imagem. Tecido interposto absorve fótons; movimento durante a aquisição borra; mudança de posição entre as duas aquisições cria diferenças que não são fisiológicas; e a estatística limitada de contagens impõe um ruído próprio. O artefato não é uma exceção rara — é uma consequência previsível do método. Reler a estação 11 com esta estação na cabeça costuma render bastante.</p>
+  </div>
+
+  <div class="profbox">
+    <span class="kick">Modo professor</span>
+    <dl>
+      <dt>Como explicar em 30 segundos</dt><dd>“Cintilografia é o cristal que pisca quando o fóton chega. SPECT é fazer isso de vários ângulos e reconstruir fatias. PET é a versão que conta fótons aos pares e por isso sabe quantificar.”</dd>
+      <dt>Erro comum do aluno</dt><dd>Tratar “cintilografia” e “SPECT” como sinônimos exatos, ou achar que “tomografia” aqui é tomografia computadorizada de raios X. Em SPECT a fonte de radiação está <b>dentro</b> do paciente.</dd>
+      <dt>Pergunta para a sala</dt><dd>“Por que o colimador, que existe para melhorar a imagem, é também o que limita a sensibilidade do método?”</dd>
+    </dl>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================ CONTINUA ============================ -->
+<section class="st" id="continua">
+  <div class="box b-gray">
+    <h4>Este capítulo está sendo construído em blocos</h4>
+    <p style="margin-bottom:0">No ar: da física do traçador até a estação 28. <b>Em construção:</b> quando pedir e quando preferir anatomia, paciente revascularizado, os casos clínicos integrativos, as pegadinhas TEC, o Parque Nuclear do Coração, o banco de flashcards, o mini-simulado, o Hipocampo e a revisão de 5 minutos.</p>
+  </div>
+</section>
+
+</main>
+
+<footer style="background:var(--navy);color:#cfe0ec;padding:30px 0;margin-top:34px">
+  <div class="wrap center">
+    <p style="font-family:var(--disp);font-size:1.1rem;font-style:italic;color:#eaf3f9;max-width:52ch;margin:0 auto 14px">“A cintilografia não pergunta apenas se uma região recebe sangue. Ela pergunta se o coração ainda tem reserva quando a vida exige mais dele.”</p>
+    <p class="sign" style="color:#fff">Dr. André Rossanno</p>
+    <p style="font-size:.8rem;color:#8fb0c7;margin:10px 0 0">memoriapotencial.com.br · Atlas Mental · Síndrome Coronariana Crônica · Capítulo 7</p>
+    <p style="font-size:.75rem;color:#7e9db4;margin:6px 0 0">Material de estudo. Hierarquia de fontes: Diretriz SBC de Síndrome Coronariana Crônica 2025 &gt; Diretriz Brasileira de Ergometria 2024 &gt; documentos internacionais contemporâneos. Pontos marcados com <span class="src conferir">Conferir SBC 2025</span> aguardam checagem contra a redação da diretriz.</p>
+    <p style="margin-top:14px"><button class="btn ghost sm" id="btnReset">Reiniciar progresso</button></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var LS_KEY='atlasCardio_scc_cap7_v1';
+var S={prof:false,mov:false,vistas:{},dif:{},padrao:null,eixo:null};
+try{var raw=localStorage.getItem(LS_KEY); if(raw){S=Object.assign(S,JSON.parse(raw));}}catch(e){}
+function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(S));}catch(e){}}
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+/* ================= GEOMETRIA POLAR ================= */
+var PERF=['#fdf6dd','#f7d774','#e8892a','#c0392b','#2a1f55'];
+var SEG=[
+ {n:1,nome:'Basal anterior',anel:'Basal',ang:0,esp:60,r:[.72,1],terr:'DA'},
+ {n:2,nome:'Basal anterosseptal',anel:'Basal',ang:300,esp:60,r:[.72,1],terr:'DA'},
+ {n:3,nome:'Basal inferosseptal',anel:'Basal',ang:240,esp:60,r:[.72,1],terr:'CD'},
+ {n:4,nome:'Basal inferior',anel:'Basal',ang:180,esp:60,r:[.72,1],terr:'CD'},
+ {n:5,nome:'Basal inferolateral',anel:'Basal',ang:120,esp:60,r:[.72,1],terr:'Cx'},
+ {n:6,nome:'Basal anterolateral',anel:'Basal',ang:60,esp:60,r:[.72,1],terr:'Cx'},
+ {n:7,nome:'Médio anterior',anel:'Médio',ang:0,esp:60,r:[.44,.72],terr:'DA'},
+ {n:8,nome:'Médio anterosseptal',anel:'Médio',ang:300,esp:60,r:[.44,.72],terr:'DA'},
+ {n:9,nome:'Médio inferosseptal',anel:'Médio',ang:240,esp:60,r:[.44,.72],terr:'CD'},
+ {n:10,nome:'Médio inferior',anel:'Médio',ang:180,esp:60,r:[.44,.72],terr:'CD'},
+ {n:11,nome:'Médio inferolateral',anel:'Médio',ang:120,esp:60,r:[.44,.72],terr:'Cx'},
+ {n:12,nome:'Médio anterolateral',anel:'Médio',ang:60,esp:60,r:[.44,.72],terr:'Cx'},
+ {n:13,nome:'Apical anterior',anel:'Apical',ang:0,esp:90,r:[.18,.44],terr:'DA'},
+ {n:14,nome:'Apical septal',anel:'Apical',ang:270,esp:90,r:[.18,.44],terr:'DA'},
+ {n:15,nome:'Apical inferior',anel:'Apical',ang:180,esp:90,r:[.18,.44],terr:'CD'},
+ {n:16,nome:'Apical lateral',anel:'Apical',ang:90,esp:90,r:[.18,.44],terr:'Cx'},
+ {n:17,nome:'Ápice',anel:'Ápice',ang:0,esp:360,r:[0,.18],terr:'DA'}
+];
+var TCOR={DA:'#c0392b',Cx:'#1282A2',CD:'#1e8f5e'};
+var TNOME={DA:'Descendente anterior',Cx:'Circunflexa',CD:'Coronária direita'};
+
+function pt(cx,cy,r,a){var t=a*Math.PI/180;return [cx+r*Math.sin(t), cy-r*Math.cos(t)];}
+function setorPath(cx,cy,R,s){
+  if(s.esp>=360){return 'M '+cx+' '+(cy-R*s.r[1])+' A '+(R*s.r[1])+' '+(R*s.r[1])+' 0 1 1 '+(cx-0.01)+' '+(cy-R*s.r[1])+' Z';}
+  var a1=s.ang-s.esp/2, a2=s.ang+s.esp/2, r1=R*s.r[0], r2=R*s.r[1], la=s.esp>180?1:0;
+  var p1=pt(cx,cy,r2,a1),p2=pt(cx,cy,r2,a2),p3=pt(cx,cy,r1,a2),p4=pt(cx,cy,r1,a1);
+  return 'M '+p1[0].toFixed(2)+' '+p1[1].toFixed(2)+
+   ' A '+r2+' '+r2+' 0 '+la+' 1 '+p2[0].toFixed(2)+' '+p2[1].toFixed(2)+
+   ' L '+p3[0].toFixed(2)+' '+p3[1].toFixed(2)+
+   ' A '+r1+' '+r1+' 0 '+la+' 0 '+p4[0].toFixed(2)+' '+p4[1].toFixed(2)+' Z';
+}
+/* op: {size, scores[18], fill:function(seg), labels:bool, nums:bool, cls} */
+function desenhaPolar(svg,op){
+  if(!svg)return;
+  op=op||{}; var vb=svg.getAttribute('viewBox').split(' ');
+  var W=+vb[2],H=+vb[3],cx=W/2,cy=H/2,R=Math.min(W,H)/2-(op.pad===undefined?14:op.pad);
+  var out='';
+  SEG.forEach(function(s){
+    var f = op.fill? op.fill(s) : PERF[(op.scores&&op.scores[s.n])||0];
+    out+='<path class="seg'+(op.cls?' '+op.cls:'')+'" data-seg="'+s.n+'" d="'+setorPath(cx,cy,R,s)+'" fill="'+f+'" stroke="#ffffff" stroke-width="'+(op.sw||1.4)+'"><title>'+s.n+' · '+s.nome+'</title></path>';
+  });
+  if(op.nums){
+    SEG.forEach(function(s){
+      var rr=R*(s.r[0]+s.r[1])/2, p=pt(cx,cy,s.esp>=360?0:rr,s.ang);
+      out+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="middle" font-size="'+(op.fs||11)+'" font-family="IBM Plex Mono,monospace" font-weight="700" fill="'+(typeof op.numcor==='function'?op.numcor(s):(op.numcor||'#16202b'))+'" pointer-events="none">'+s.n+'</text>';
+    });
+  }
+  if(op.labels){
+    var fs=op.lfs||9, cor=op.lcor||'#5b6b7c';
+    [['ANTERIOR',0],['INFERIOR',180]].forEach(function(l){
+      var p=pt(cx,cy,R+fs+1,l[1]);
+      out+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+fs/3).toFixed(1)+'" text-anchor="middle" font-size="'+fs+'" letter-spacing="1.2" font-family="IBM Plex Mono,monospace" fill="'+cor+'">'+l[0]+'</text>';
+    });
+    [['SEPTAL',270,-90],['LATERAL',90,90]].forEach(function(l){
+      var p=pt(cx,cy,R+fs*0.9,l[1]);
+      out+='<text transform="translate('+p[0].toFixed(1)+','+p[1].toFixed(1)+') rotate('+l[2]+')" text-anchor="middle" font-size="'+fs+'" letter-spacing="1.2" font-family="IBM Plex Mono,monospace" fill="'+cor+'">'+l[0]+'</text>';
+    });
+  }
+  svg.innerHTML=out;
+}
+
+/* ================= HERO + MINI ================= */
+var scHero=[]; for(var i=0;i<18;i++)scHero[i]=0;
+[[1,3],[2,2],[7,3],[8,2],[13,2],[17,1]].forEach(function(a){scHero[a[0]]=a[1];});
+desenhaPolar($('#heroEye'),{scores:scHero,pad:24,labels:false,sw:1.6});
+(function(){var s=$('#heroEye'); if(s){s.innerHTML=s.innerHTML+'<circle cx="130" cy="130" r="118" fill="none" stroke="rgba(127,208,232,.35)" stroke-width="1"/>';}})();
+
+function pintaMini(){
+  var svg=$('#miniEye'); if(!svg)return;
+  var total=$$('section.st').length||1, feitas=Object.keys(S.vistas).length;
+  var frac=Math.min(1,feitas/total);
+  desenhaPolar(svg,{pad:4,sw:.8,fill:function(s){
+    var idx=SEG.indexOf(s)/17;
+    return idx<=frac? '#1282A2' : '#e2e8ef';
+  }});
+  var f=$('#progFill'); if(f)f.style.width=(frac*100).toFixed(0)+'%';
+}
+
+/* ================= ILUSTRAÇÕES ================= */
+function ilustraEstrada(){
+  var s=$('#svgEstrada'); if(!s)return;
+  s.innerHTML=''+
+  '<rect x="0" y="0" width="720" height="210" fill="#fff"/>'+
+  '<text x="180" y="24" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">ANGIOTOMOGRAFIA · A ESTRADA</text>'+
+  '<text x="540" y="24" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">PERFUSÃO · O TRÂNSITO</text>'+
+  '<line x1="360" y1="34" x2="360" y2="196" stroke="#dfe6ed"/>'+
+  /* estrada */
+  '<path d="M40 170 C 120 150 130 90 200 74 C 260 60 300 66 330 62" stroke="#173a5c" stroke-width="20" fill="none" stroke-linecap="round"/>'+
+  '<path d="M40 170 C 120 150 130 90 200 74 C 260 60 300 66 330 62" stroke="#e9eef3" stroke-width="2" fill="none" stroke-dasharray="8 10"/>'+
+  '<path d="M150 108 a 16 16 0 1 0 .1 0" fill="#c0392b" opacity=".9"/>'+
+  '<text x="150" y="146" text-anchor="middle" font-size="11" font-family="Nunito,sans-serif" font-weight="700" fill="#c0392b">placa visível</text>'+
+  '<text x="180" y="192" text-anchor="middle" font-size="12" font-family="Nunito,sans-serif" fill="#16202b">“Onde está o estreitamento?”</text>'+
+  /* trânsito */
+  '<g transform="translate(400,42)">'+
+    '<rect x="0" y="0" width="120" height="120" rx="10" fill="#f6f8fa" stroke="#dfe6ed"/>'+
+    '<rect x="8" y="8" width="50" height="50" rx="6" fill="#f7d774"/>'+
+    '<rect x="62" y="8" width="50" height="50" rx="6" fill="#fdf6dd"/>'+
+    '<rect x="8" y="62" width="50" height="50" rx="6" fill="#c0392b"/>'+
+    '<rect x="62" y="62" width="50" height="50" rx="6" fill="#fdf6dd"/>'+
+    '<text x="33" y="93" text-anchor="middle" font-size="10" font-family="Nunito,sans-serif" font-weight="800" fill="#fff">lento</text>'+
+  '</g>'+
+  '<text x="540" y="192" text-anchor="middle" font-size="12" font-family="Nunito,sans-serif" fill="#16202b">“Qual bairro está sem energia quando exigido?”</text>'+
+  '<g transform="translate(548,60)"><text font-size="11" font-family="Nunito,sans-serif" fill="#5b6b7c"><tspan x="0" dy="0">Mesma cidade.</tspan><tspan x="0" dy="16">Duas perguntas</tspan><tspan x="0" dy="16">diferentes.</tspan></text></g>';
+}
+
+function ilustraTracer(){
+  var s=$('#svgTracer'); if(!s)return;
+  var etapas=[['FLUXO','o traçador viaja no sangue'],['ENTREGA','chega proporcional à perfusão'],['CAPTAÇÃO','só fica onde há célula viva'],['IMAGEM','o detector conta os fótons']];
+  var out='<rect width="720" height="220" fill="#fff"/>';
+  etapas.forEach(function(e,i){
+    var x=20+i*175;
+    out+='<rect x="'+x+'" y="38" width="150" height="96" rx="12" fill="#e6f3f7" stroke="#1282A2"/>';
+    out+='<text x="'+(x+75)+'" y="70" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="12" letter-spacing="1.4" font-weight="700" fill="#0b5468">'+e[0]+'</text>';
+    out+='<foreignObject x="'+(x+10)+'" y="78" width="130" height="50"><div xmlns="http://www.w3.org/1999/xhtml" style="font:12px Nunito,sans-serif;color:#16202b;text-align:center">'+e[1]+'</div></foreignObject>';
+    if(i<3){out+='<path d="M'+(x+152)+' 86 l 18 0 m -6 -5 l 6 5 l -6 5" stroke="#1282A2" stroke-width="2" fill="none"/>';}
+    out+='<circle cx="'+(x+75)+'" cy="152" r="7" fill="#f7d774" stroke="#a8781a"><animate attributeName="r" values="5;9;5" dur="2.4s" begin="'+(i*.6)+'s" repeatCount="indefinite"/></circle>';
+  });
+  out+='<text x="360" y="196" text-anchor="middle" font-size="12" font-family="Nunito,sans-serif" fill="#5b6b7c">Quebre qualquer elo e a região aparece escura.</text>';
+  s.innerHTML=out;
+}
+
+function ilustraSpect(){
+  var s=$('#svgSpect'); if(!s)return;
+  s.innerHTML='<rect width="720" height="250" fill="#fff"/>'+
+  '<g transform="translate(190,125)">'+
+    '<ellipse cx="0" cy="0" rx="70" ry="52" fill="#eef2f6" stroke="#c9d5e0"/>'+
+    '<path d="M-14 -6 c -14 -18 -40 -6 -30 14 c 8 16 30 26 44 34 c 14 -8 36 -18 44 -34 c 10 -20 -16 -32 -30 -14 z" transform="translate(-7,-14) scale(.9)" fill="#c0392b" opacity=".85"/>'+
+    '<g><animateTransform attributeName="transform" type="rotate" from="-100 0 0" to="100 0 0" dur="6s" repeatCount="indefinite"/>'+
+      '<rect x="-34" y="-118" width="68" height="22" rx="5" fill="#173a5c"/>'+
+      '<line x1="0" y1="-96" x2="0" y2="-56" stroke="#1282A2" stroke-width="1.4" stroke-dasharray="4 4"/>'+
+    '</g>'+
+    '<text x="0" y="86" text-anchor="middle" font-size="11.5" font-family="Nunito,sans-serif" fill="#5b6b7c">detector percorre um arco</text>'+
+  '</g>'+
+  '<path d="M300 125 l 34 0 m -10 -7 l 10 7 l -10 7" stroke="#1282A2" stroke-width="2" fill="none"/>'+
+  '<text x="317" y="106" text-anchor="middle" font-size="10" font-family="IBM Plex Mono,monospace" fill="#5b6b7c">reconstrução</text>'+
+  '<g transform="translate(360,52)">'+
+   '<text x="150" y="0" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#5b6b7c">CORTES RECONSTRUÍDOS</text>'+
+   '<g id="spectRings"></g>'+
+  '</g>';
+  var g=s.querySelector('#spectRings'),o='';
+  for(var i=0;i<3;i++){for(var j=0;j<4;j++){
+    var cx=32+j*74, cy=34+i*52;
+    o+='<circle cx="'+cx+'" cy="'+cy+'" r="20" fill="#2a1f55"/>'+
+       '<circle cx="'+cx+'" cy="'+cy+'" r="20" fill="none" stroke="#f7d774" stroke-width="9" opacity="'+(0.55+0.15*i)+'"/>';
+  }}
+  g.innerHTML=o;
+}
+
+function ilustraGated(){
+  var s=$('#svgGated'); if(!s)return;
+  var ecg='M20 120 l 40 0 l 8 -6 l 8 12 l 6 -60 l 8 76 l 8 -22 l 10 0 l 16 -8 l 14 8 l 40 0';
+  var full='';
+  for(var k=0;k<3;k++){ full+= ecg.replace('M20','M'+(20+k*210)) + ' '; }
+  s.innerHTML='<rect width="720" height="230" fill="#fff"/>'+
+  '<path d="'+full+'" stroke="#1e8f5e" stroke-width="2.2" fill="none" stroke-linejoin="round"/>'+
+  '<g font-family="IBM Plex Mono,monospace" font-size="9.5" fill="#5b6b7c">'+
+   '<text x="20" y="150">R</text><text x="230" y="150">R</text><text x="440" y="150">R</text></g>'+
+  '<g>'+[0,1,2,3,4,5,6,7].map(function(i){
+      var x=40+i*82, prog=Math.abs(4-i)/4, rr=13+11*prog, th=4+7*(1-prog);
+      return '<g transform="translate('+x+',188)">'+
+      '<circle r="'+rr.toFixed(1)+'" fill="none" stroke="#c0392b" stroke-width="'+th.toFixed(1)+'"/>'+
+      '<text y="34" text-anchor="middle" font-size="9" font-family="IBM Plex Mono,monospace" fill="#5b6b7c">q'+(i+1)+'</text></g>';
+    }).join('')+'</g>'+
+  '<text x="360" y="30" text-anchor="middle" font-size="12" font-family="Nunito,sans-serif" fill="#16202b">A onda R dispara a divisão do ciclo · cada quadro é um instante da sístole/diástole</text>'+
+  '<text x="40" y="222" font-size="11" font-family="Nunito,sans-serif" fill="#5b6b7c">cavidade menor + parede mais espessa = sístole →</text>';
+}
+
+function ilustraRev(estresse){
+  var s=$('#svgRev'); if(!s)return;
+  var cor= estresse? '#2a1f55':'#fdf6dd';
+  var rot= estresse? 'ESTRESSE':'REPOUSO';
+  s.innerHTML='<rect width="640" height="240" fill="#fff"/>'+
+  '<text x="150" y="26" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">'+rot+'</text>'+
+  '<g transform="translate(150,130)">'+
+    '<circle r="72" fill="#2a1f55"/>'+
+    '<circle r="72" fill="none" stroke="#fdf6dd" stroke-width="30"/>'+
+    '<path d="'+ (function(){var a1=-30*Math.PI/180,a2=30*Math.PI/180;
+        var r1=57,r2=87;
+        var p=function(r,a){return [(r*Math.sin(a)).toFixed(1),(-r*Math.cos(a)).toFixed(1)];};
+        var A=p(r2,a1),B=p(r2,a2),C=p(r1,a2),D=p(r1,a1);
+        return 'M '+A+' A '+r2+' '+r2+' 0 0 1 '+B+' L '+C+' A '+r1+' '+r1+' 0 0 0 '+D+' Z';})() +'" fill="'+cor+'"/>'+
+    '<text y="-96" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono,monospace" fill="#5b6b7c">ANTERIOR</text>'+
+  '</g>'+
+  '<g transform="translate(320,40)">'+
+   '<text x="140" y="0" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#5b6b7c">RESERVA DE FLUXO</text>'+
+   '<line x1="20" y1="130" x2="270" y2="130" stroke="#c9d5e0"/><line x1="20" y1="20" x2="20" y2="130" stroke="#c9d5e0"/>'+
+   '<rect x="60" y="'+(estresse?40:100)+'" width="52" height="'+(estresse?90:30)+'" fill="#1e8f5e" rx="4"/>'+
+   '<rect x="170" y="'+(estresse?96:100)+'" width="52" height="'+(estresse?34:30)+'" fill="#c0392b" rx="4"/>'+
+   '<text x="86" y="148" text-anchor="middle" font-size="10.5" font-family="Nunito,sans-serif" fill="#146c46">região normal</text>'+
+   '<text x="196" y="148" text-anchor="middle" font-size="10.5" font-family="Nunito,sans-serif" fill="#8e2a20">região com estenose</text>'+
+   '<text x="145" y="172" text-anchor="middle" font-size="11.5" font-family="Nunito,sans-serif" fill="#16202b">'+(estresse?'A diferença relativa cria o defeito.':'Fluxo basal semelhante: nada aparece.')+'</text>'+
+  '</g>';
+}
+
+function ilustraMama(){
+  var s=$('#svgMama'); if(!s)return;
+  s.innerHTML='<rect width="320" height="170" fill="#fff"/>'+
+  '<ellipse cx="160" cy="100" rx="104" ry="56" fill="#eef2f6" stroke="#c9d5e0"/>'+
+  '<circle cx="160" cy="104" r="34" fill="#2a1f55"/><circle cx="160" cy="104" r="34" fill="none" stroke="#fdf6dd" stroke-width="14"/>'+
+  '<path d="M160 70 a 34 34 0 0 1 29 17 l -12 7 a 20 20 0 0 0 -17 -10 z" fill="#c0392b" opacity=".9"/>'+
+  '<path d="M108 46 q 52 -34 104 0 q -52 24 -104 0 z" fill="#a8781a" opacity=".55"/>'+
+  '<text x="160" y="34" text-anchor="middle" font-size="11" font-family="Nunito,sans-serif" font-weight="800" fill="#7d5910">tecido interposto</text>'+
+  '<path d="M160 52 l 0 14 m -5 -5 l 5 5 l 5 -5" stroke="#7d5910" stroke-width="2" fill="none"/>'+
+  '<text x="160" y="160" text-anchor="middle" font-size="11" font-family="Nunito,sans-serif" fill="#5b6b7c">sombra anterior / anterolateral</text>';
+}
+function ilustraDiaf(){
+  var s=$('#svgDiaf'); if(!s)return;
+  s.innerHTML='<rect width="320" height="170" fill="#fff"/>'+
+  '<ellipse cx="160" cy="80" rx="104" ry="52" fill="#eef2f6" stroke="#c9d5e0"/>'+
+  '<circle cx="160" cy="76" r="34" fill="#2a1f55"/><circle cx="160" cy="76" r="34" fill="none" stroke="#fdf6dd" stroke-width="14"/>'+
+  '<path d="M160 110 a 34 34 0 0 1 -29 -17 l 12 -7 a 20 20 0 0 0 17 10 z" fill="#c0392b" opacity=".9"/>'+
+  '<path d="M46 148 q 114 -52 228 0 z" fill="#1282A2" opacity=".5"/>'+
+  '<text x="160" y="166" text-anchor="middle" font-size="11" font-family="Nunito,sans-serif" font-weight="800" fill="#0b5468">diafragma / vísceras</text>'+
+  '<path d="M160 132 l 0 -14 m -5 5 l 5 -5 l 5 5" stroke="#0b5468" stroke-width="2" fill="none"/>'+
+  '<text x="160" y="26" text-anchor="middle" font-size="11" font-family="Nunito,sans-serif" fill="#5b6b7c">sombra inferior</text>';
+}
+
+function ilustraBre(){
+  var s=$('#svgBre'); if(!s)return;
+  var tij='';
+  for(var r=0;r<5;r++){for(var c=0;c<4;c++){
+    tij+='<rect x="'+(8+c*30+(r%2?15:0))+'" y="'+(8+r*20)+'" width="26" height="16" rx="2" fill="#8e2a20" opacity=".85" stroke="#fff"/>';
+  }}
+  s.innerHTML='<rect width="640" height="220" fill="#fff"/>'+
+  '<g transform="translate(60,50)">'+
+   '<circle cx="90" cy="60" r="58" fill="#2a1f55"/><circle cx="90" cy="60" r="58" fill="none" stroke="#fdf6dd" stroke-width="24"/>'+
+   '<g transform="translate(0,10)">'+tij+'</g>'+
+   '<text x="90" y="146" text-anchor="middle" font-size="11" font-family="Nunito,sans-serif" fill="#8e2a20" font-weight="800">falso defeito septal</text>'+
+  '</g>'+
+  '<g transform="translate(300,40)">'+
+   ['Ativação septal tardia','Movimento septal anômalo','Espessamento alterado','Defeito de perfusão aparente'].map(function(t,i){
+     return '<g transform="translate(0,'+(i*34)+')">'+
+     '<circle cx="10" cy="10" r="9" fill="#c0392b"/><text x="10" y="14" text-anchor="middle" font-size="10" font-family="IBM Plex Mono,monospace" fill="#fff">'+(i+1)+'</text>'+
+     '<text x="28" y="15" font-size="12.5" font-family="Nunito,sans-serif" fill="#16202b">'+t+'</text>'+
+     (i<3?'<path d="M10 22 l 0 10 m -4 -4 l 4 4 l 4 -4" stroke="#c0392b" stroke-width="1.6" fill="none"/>':'')+'</g>';
+   }).join('')+
+  '</g>';
+}
+
+/* ================= EIXOS ================= */
+var EIXOS={
+ sa:{t:'Eixo curto (short axis)',
+   cap:'Fatias perpendiculares ao eixo longo — o ventrículo vira um anel, da base ao ápice.',
+   txt:'<div class="box b-blue"><h4>Rosquinha com SAL</h4><p style="margin-bottom:0">O corte transversal transforma o ventrículo em um <b>anel</b>. Anterior em cima, inferior embaixo, <b>S</b>eptal à esquerda, <b>L</b>ateral à direita. Cada fatia representa um nível diferente: basal, médio e apical. O ápice verdadeiro não aparece como anel — ele é a ponta, e por isso vira o miolo do bull\'s eye.</p></div>'},
+ vla:{t:'Eixo longo vertical (VLA)',
+   cap:'Plano de corte vertical — exibido deitado, com o ápice à esquerda e a base abrindo à direita.',
+   txt:'<div class="box b-blue"><h4>A → A → I</h4><p><b>A</b>nterior em cima, <b>Á</b>pice à esquerda, <b>I</b>nferior embaixo. É o corte que compara diretamente a parede da fachada com a parede do porão — território provável da DA contra o da CD.</p><p style="margin-bottom:0">Repare que a ferradura fica <b>deitada</b>: “vertical” é o plano em que o coração foi cortado, não a orientação em que a imagem aparece na tela.</p></div>'},
+ hla:{t:'Eixo longo horizontal (HLA)',
+   cap:'Plano de corte horizontal — exibido com o ápice para cima e a base abrindo para baixo.',
+   txt:'<div class="box b-blue"><h4>S → A → L</h4><p><b>S</b>eptal à esquerda, <b>Á</b>pice para cima, <b>L</b>ateral à direita. É o corte que confronta o território provável da DA (septo) com o da Cx (lateral). Junto com o vertical, fecha as quatro paredes.</p><p style="margin-bottom:0">Mesma armadilha de nome do corte anterior: “horizontal” descreve o plano da fatia, e a imagem exibida aparece com a ponta do coração <b>para cima</b>.</p></div>'}
+};
+function desenhaEixo(k){
+  var s=$('#svgEixo'); if(!s)return;
+  var out='<rect width="640" height="300" fill="#fff"/>';
+  if(k==='sa'){
+    out+='<g transform="translate(190,150)">'+
+      '<circle r="86" fill="#2a1f55"/><circle r="86" fill="none" stroke="#fdf6dd" stroke-width="34"/>'+
+      '<text y="-108" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">ANTERIOR</text>'+
+      '<text y="122" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">INFERIOR</text>'+
+      '<text x="-124" y="4" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">SEPTAL</text>'+
+      '<text x="124" y="4" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">LATERAL</text>'+
+      '<text y="6" text-anchor="middle" font-family="Nunito,sans-serif" font-size="15" font-weight="900" fill="#c8b3f0">SAL</text>'+
+     '</g>'+
+     '<g transform="translate(430,60)"><text font-family="Nunito,sans-serif" font-size="13" fill="#16202b"><tspan x="0" dy="0" font-weight="800">Três níveis</tspan><tspan x="0" dy="22">• basal — anel mais largo</tspan><tspan x="0" dy="20">• médio</tspan><tspan x="0" dy="20">• apical — anel menor</tspan><tspan x="0" dy="28" fill="#5b6b7c">O ápice verdadeiro não é anel:</tspan><tspan x="0" dy="18" fill="#5b6b7c">é a ponta do cone.</tspan></text></g>';
+  } else if(k==='vla'){
+    out+='<g transform="translate(215,150)">'+
+      '<path d="M 96 -56 L -18 -56 A 56 56 0 0 0 -18 56 L 96 56" fill="none" stroke="#ecdfae" stroke-width="36" stroke-linecap="round"/>'+
+      '<path d="M 96 -56 L -18 -56 A 56 56 0 0 0 -18 56 L 96 56" fill="none" stroke="#fdf6dd" stroke-width="28" stroke-linecap="round"/>'+
+      '<text x="46" y="-84" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#5b6b7c">ANTERIOR</text>'+
+      '<text x="46" y="94" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#5b6b7c">INFERIOR</text>'+
+      '<text transform="translate(-96,0) rotate(-90)" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#6b4c9a">ÁPICE</text>'+
+      '<text transform="translate(112,0) rotate(90)" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.4" fill="#5b6b7c">BASE</text>'+
+     '</g>'+
+     '<g transform="translate(440,116)"><text font-family="Nunito,sans-serif" font-size="22" font-weight="900" fill="#6b4c9a"><tspan x="0" dy="0">A → A → I</tspan></text><text font-family="Nunito,sans-serif" font-size="12.5" fill="#16202b"><tspan x="0" dy="30">Anterior em cima</tspan><tspan x="0" dy="20">Ápice à esquerda</tspan><tspan x="0" dy="20">Inferior embaixo</tspan></text></g>';
+  } else {
+    out+='<g transform="translate(215,158)">'+
+      '<path d="M -56 92 L -56 -18 A 56 56 0 0 1 56 -18 L 56 92" fill="none" stroke="#ecdfae" stroke-width="36" stroke-linecap="round"/>'+
+      '<path d="M -56 92 L -56 -18 A 56 56 0 0 1 56 -18 L 56 92" fill="none" stroke="#fdf6dd" stroke-width="28" stroke-linecap="round"/>'+
+      '<text x="0" y="-86" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#6b4c9a">ÁPICE</text>'+
+      '<text transform="translate(-96,42) rotate(-90)" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#5b6b7c">SEPTAL</text>'+
+      '<text transform="translate(96,42) rotate(90)" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#5b6b7c">LATERAL</text>'+
+      '<text x="0" y="118" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.4" fill="#5b6b7c">BASE</text>'+
+     '</g>'+
+     '<g transform="translate(440,116)"><text font-family="Nunito,sans-serif" font-size="22" font-weight="900" fill="#6b4c9a"><tspan x="0" dy="0">S → A → L</tspan></text><text font-family="Nunito,sans-serif" font-size="12.5" fill="#16202b"><tspan x="0" dy="30">Septal à esquerda</tspan><tspan x="0" dy="20">Ápice para cima</tspan><tspan x="0" dy="20">Lateral à direita</tspan></text></g>';
+  }
+  s.innerHTML=out;
+  $('#capEixo').textContent=EIXOS[k].cap;
+  $('#eixoTxt').innerHTML=EIXOS[k].txt;
+  S.eixo=k; save();
+}
+
+/* ================= DESDOBRAMENTO DO BULL'S EYE ================= */
+var desdobrado=false;
+function desenhaDesdobra(){
+  var s=$('#svgDesdobra'); if(!s)return;
+  var out='<rect width="640" height="260" fill="#fff"/>';
+  if(!desdobrado){
+    out+='<g transform="translate(200,130)">'+
+      '<path d="M-80 -80 L80 -80 L0 90 Z" fill="#fdf6dd" stroke="#c9d5e0"/>'+
+      '<ellipse cx="0" cy="-80" rx="80" ry="22" fill="#f7d774" stroke="#c9d5e0"/>'+
+      '<text y="-108" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5b6b7c">BASE</text>'+
+      '<text y="112" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#5b6b7c">ÁPICE</text>'+
+      '<line x1="-64" y1="-44" x2="64" y2="-44" stroke="#c9d5e0" stroke-dasharray="4 4"/>'+
+      '<line x1="-40" y1="4" x2="40" y2="4" stroke="#c9d5e0" stroke-dasharray="4 4"/>'+
+    '</g>'+
+    '<text x="470" y="130" text-anchor="middle" font-family="Nunito,sans-serif" font-size="13.5" fill="#5b6b7c">O ventrículo é um cone.<tspan x="470" dy="20">Fatie em anéis…</tspan></text>';
+  } else {
+    out+='<g id="ddG"></g>'+
+    '<text x="470" y="120" text-anchor="middle" font-family="Nunito,sans-serif" font-size="13.5" fill="#16202b">…e deite todos os anéis<tspan x="470" dy="20">no mesmo plano.</tspan><tspan x="470" dy="26" font-weight="800" fill="#6b4c9a">Ápice no centro.</tspan><tspan x="470" dy="20" font-weight="800" fill="#6b4c9a">Base na borda.</tspan></text>';
+  }
+  s.innerHTML=out;
+  if(desdobrado){
+    var g=s.querySelector('#ddG'), tmp=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    tmp.setAttribute('viewBox','0 0 260 260');
+    desenhaPolar(tmp,{scores:[],pad:14,labels:true});
+    g.setAttribute('transform','translate(70,0)');
+    g.innerHTML=tmp.innerHTML;
+  }
+}
+
+/* ================= PADRÕES REPOUSO × ESTRESSE ================= */
+var PAD={
+ A:{rest:{},str:{},t:'Padrão A · perfusão preservada',
+    d:'<div class="box b-green" style="margin-top:0"><h4>Estresse normal + repouso normal.</h4><p>Perfusão relativa preservada nas duas fases. Sem defeito reversível e sem defeito persistente.</p><p style="margin-bottom:0"><b>Cuidado com a conclusão.</b> Isso não é o mesmo que “coronárias normais”. Guarde as estações de isquemia balanceada e de achados de maior risco, mais adiante, antes de escrever qualquer coisa definitiva.</p></div>'},
+ B:{rest:{},str:{1:3,7:3,13:2,2:2,8:2,17:1},t:'Padrão B · defeito reversível',
+    d:'<div class="box b-blue" style="margin-top:0"><h4>Estresse alterado + repouso normal → isquemia induzível.</h4><p>A região tem fluxo suficiente em repouso e perde terreno quando a demanda ou a hiperemia aumentam. É o padrão que caracteriza <b>isquemia induzível</b>.</p><p style="margin-bottom:0">O território acometido aqui (anterior, anterosseptal e apical) é o <b>território provável</b> da descendente anterior — provável, não comprovado.</p></div>'},
+ C:{rest:{4:3,10:3,15:2},str:{4:3,10:3,15:2},t:'Padrão C · defeito persistente',
+    d:'<div class="box b-red" style="margin-top:0"><h4>Estresse alterado + repouso igualmente alterado → defeito fixo.</h4><p><b>Não conclua infarto automaticamente.</b> Três hipóteses continuam abertas:</p><ul style="margin:0 0 8px 18px"><li><b>Cicatriz / infarto prévio</b> — a mais frequente, sobretudo com alteração de movimento e espessamento.</li><li><b>Miocárdio viável disfuncional</b> — músculo vivo, hipoperfundido, com potencial de recuperação.</li><li><b>Artefato</b> — perfusão aparentemente reduzida com função preservada. Repare que este defeito é inferior: peça atenção redobrada.</li></ul><p style="margin-bottom:0">Próxima pergunta obrigatória: <b>a parede engrossa?</b></p></div>'}
+};
+function aplicaPadrao(p){
+  var d=PAD[p]; if(!d)return;
+  var mk=function(o){var a=[];for(var i=0;i<18;i++)a[i]=o[i]||0;return a;};
+  desenhaPolar($('#eyeRest'),{scores:mk(d.rest),pad:20,labels:true,lfs:8,sw:1.2});
+  desenhaPolar($('#eyeStress'),{scores:mk(d.str),pad:20,labels:true,lfs:8,sw:1.2});
+  var r=$('#rvPadrao'); r.innerHTML='<h3>'+d.t+'</h3>'+d.d; r.classList.add('on');
+  $$('#opPadrao .opt').forEach(function(b){b.classList.toggle('ok',b.dataset.p===p);});
+  S.padrao=p; save();
+}
+
+/* ================= 17 SEGMENTOS ================= */
+var modo17='perf', sel17=null;
+function pinta17(){
+  desenhaPolar($('#svg17'),{pad:22,labels:true,nums:true,fs:11.5,
+    fill:function(s){
+      if(modo17==='terr')return TCOR[s.terr];
+      if(modo17==='anel')return {'Basal':'#173a5c','Médio':'#1282A2','Apical':'#7fc7d9','Ápice':'#cfe9f0'}[s.anel];
+      return '#fdf6dd';
+    },
+    numcor: modo17==='perf'?'#16202b':'#ffffff'});
+  if(sel17){var el=$('#svg17 [data-seg="'+sel17+'"]'); if(el)el.classList.add('sel');}
+}
+function mostraSeg(n){
+  var s=SEG.filter(function(x){return x.n===n;})[0]; if(!s)return;
+  sel17=n; pinta17();
+  $('#segNome').textContent=s.n+' · '+s.nome;
+  var extra='';
+  if(s.n===17)extra=' O ápice é o segmento de <b>maior variabilidade</b>: costuma ser atribuído à DA quando ela é longa e envolve a ponta, mas pode receber contribuição da CD ou da Cx.';
+  if([3,4,9,10,15].indexOf(s.n)>=0)extra=' Atribuição sensível à <b>dominância</b> e alvo preferencial da atenuação diafragmática.';
+  if([5,11].indexOf(s.n)>=0)extra=' Fronteira Cx/CD — a dominância decide.';
+  $('#segTxt').innerHTML='Anel <b>'+s.anel.toLowerCase()+'</b> · território mais provável: <b style="color:'+TCOR[s.terr]+'">'+s.terr+'</b> ('+TNOME[s.terr]+').'+extra+' <span class="small">Parede sugere artéria; não prova artéria.</span>';
+}
+/* treino */
+var quizAtivo=false,quizAlvo=null,quizPts=0,quizN=0;
+function novoQuiz(){
+  quizAlvo=SEG[Math.floor(Math.random()*17)];
+  $('#rvQuiz17').innerHTML='<div class="box b-purple" style="margin-top:0"><h4>Toque no segmento: <span style="color:var(--purple-deep)">'+quizAlvo.nome+'</span></h4><p id="quizFb" style="margin-bottom:0" class="small">Acertos: '+quizPts+' / '+quizN+'</p></div>';
+  $('#rvQuiz17').classList.add('on');
+}
+
+/* ================= INSTRUMENTOS / DOMINÂNCIA ================= */
+var INSTR={
+ '1':'<div class="box b-blue" style="margin-top:0"><h4>Prona</h4><p>Repetir a aquisição com o paciente em decúbito ventral <b>muda a relação entre o coração, o diafragma e o tecido mamário</b>, e desloca a região de maior absorção. Um defeito que <b>desaparece ou melhora nitidamente em prona</b> passa a ter a atenuação como explicação muito provável.</p><p style="margin-bottom:0">Limite honesto: a prona também introduz mudanças próprias e não é infalível. Ela é um argumento forte, não uma sentença.</p></div>',
+ '2':'<div class="box b-green" style="margin-top:0"><h4>GATED</h4><p><b>Movimento e espessamento preservados</b> na região hipocaptante sugerem artefato, porque cicatriz transmural não engrossa. Este é o instrumento mais disponível dos três, já que a aquisição sincronizada é rotina na maioria dos serviços.</p><p style="margin-bottom:0">Limite honesto: infarto pequeno ou não transmural pode preservar espessamento razoável.</p></div>',
+ '3':'<div class="box b-purple" style="margin-top:0"><h4>Correção de atenuação</h4><p>Quando o serviço dispõe do recurso (mapa de transmissão ou tomografia associada), o algoritmo compensa a absorção pelos tecidos e o defeito por atenuação tende a normalizar.</p><p style="margin-bottom:0">Limite honesto: <b>a correção também pode introduzir artefatos próprios</b> — erro de registro entre os dois conjuntos de dados, por exemplo. Por isso as imagens corrigidas são interpretadas <b>junto</b> com as não corrigidas, nunca no lugar delas.</p></div>'
+};
+var DOM={
+ dir:'<div class="box b-green" style="margin-top:0"><h4>Dominância direita</h4><p style="margin-bottom:0">A <b>descendente posterior</b> nasce da coronária direita. A CD tende a responder pela parede inferior e pela inferosseptal; a Cx fica com a lateral e parte da inferolateral. É o arranjo mais comum e o que sustenta os mapas didáticos de território.</p></div>',
+ esq:'<div class="box b-blue" style="margin-top:0"><h4>Dominância esquerda</h4><p style="margin-bottom:0">A descendente posterior vem da <b>circunflexa</b>. A Cx passa a irrigar também a parede inferior. Aqui, um defeito inferior isolado que você atribuiria à CD pode ser <b>território da Cx</b> — e a decisão sobre qual artéria investigar muda.</p></div>',
+ cod:'<div class="box b-gold" style="margin-top:0"><h4>Codominância</h4><p style="margin-bottom:0">Contribuição compartilhada para a parede inferior. As fronteiras entre territórios ficam ainda menos previsíveis — mais um motivo para o laudo dizer “território provável de” e a conduta não nascer só do mapa.</p></div>'
+};
+
+
+var SIGLA={
+ single:'<div class="box b-purple" style="margin-top:0"><h4>Single · fóton único</h4><p style="margin-bottom:0">Cada decaimento do radionuclídeo emite <b>um</b> fóton gama, em direção imprevisível. Para saber de onde ele veio, é preciso um <b>colimador</b> físico que descarta quase todos os fótons e aceita só os que chegam alinhados. É esse descarte que limita a contagem e a resolução do método — e o que o PET, contando pares de fótons, não precisa fazer.</p></div>',
+ photon:'<div class="box b-blue" style="margin-top:0"><h4>Photon · radiação gama</h4><p style="margin-bottom:0">O que a câmera detecta é <b>radiação gama</b>, não a droga em si. O fóton atinge um cristal que <b>cintila</b> — produz um lampejo de luz — e esse lampejo vira sinal elétrico e contagem. É literalmente daí que vem a palavra cintilografia.</p></div>',
+ emission:'<div class="box b-green" style="margin-top:0"><h4>Emission · a fonte está dentro</h4><p style="margin-bottom:0">Esta é a palavra que separa a medicina nuclear da radiologia convencional. Na tomografia de raios X, a fonte está <b>fora</b> e a radiação <b>atravessa</b> o paciente (transmissão). Aqui, o paciente <b>é</b> a fonte: a imagem nasce de dentro. Por isso o exame informa função e metabolismo, e não densidade anatômica.</p></div>',
+ ct:'<div class="box b-gold" style="margin-top:0"><h4>Computed Tomography · fatias por reconstrução</h4><p style="margin-bottom:0">Projeções obtidas em vários ângulos alimentam um algoritmo que devolve um <b>volume</b>, e o volume é reorientado ao longo do eixo do ventrículo para gerar o eixo curto e os dois eixos longos. Note que a “tomografia” aqui é o método matemático de reconstrução — não é tomografia computadorizada de raios X.</p></div>'
+};
+
+
+/* ================= PASS 2 · ILUSTRAÇÕES ================= */
+function ilustraCorredores(correndo){
+  var s=$('#svgCorredores'); if(!s)return;
+  var nomes=['DA','Cx','CD'], cores=['#c0392b','#1282A2','#1e8f5e'];
+  var out='<rect width="640" height="200" fill="#fff"/>';
+  out+='<line x1="70" y1="26" x2="70" y2="176" stroke="#c9d5e0" stroke-dasharray="4 4"/>';
+  out+='<line x1="560" y1="26" x2="560" y2="176" stroke="#c9d5e0" stroke-dasharray="4 4"/>';
+  out+='<text x="70" y="18" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono,monospace" fill="#5b6b7c">LARGADA</text>';
+  out+='<text x="560" y="18" text-anchor="middle" font-size="9.5" font-family="IBM Plex Mono,monospace" fill="#5b6b7c">CHEGADA</text>';
+  for(var i=0;i<3;i++){
+    var y=56+i*46;
+    out+='<line x1="70" y1="'+y+'" x2="560" y2="'+y+'" stroke="#eef2f6" stroke-width="16"/>';
+    out+='<text x="40" y="'+(y+5)+'" text-anchor="middle" font-size="13" font-weight="800" font-family="Nunito,sans-serif" fill="'+cores[i]+'">'+nomes[i]+'</text>';
+    out+='<g><circle cx="70" cy="'+y+'" r="11" fill="'+cores[i]+'"/>'+
+      (correndo?'<animateTransform attributeName="transform" type="translate" from="0 0" to="470 0" dur="5s" repeatCount="indefinite"/>':'')+
+      '</g>';
+    out+='<text x="590" y="'+(y+5)+'" font-size="11" font-family="Nunito,sans-serif" fill="#5b6b7c">−50%</text>';
+  }
+  s.innerHTML=out;
+}
+var balTerr={DA:false,Cx:false,CD:false};
+function corAbs(f){ return f>=0.95?PERF[0] : f>=0.8?PERF[1] : f>=0.65?PERF[2] : f>=0.45?PERF[3] : PERF[4]; }
+function atualizaBal(){
+  var fluxo={DA:balTerr.DA?0.5:1, Cx:balTerr.Cx?0.5:1, CD:balTerr.CD?0.5:1};
+  var m=Math.max(fluxo.DA,fluxo.Cx,fluxo.CD);
+  desenhaPolar($('#eyeAbs'),{pad:20,labels:true,lfs:8,sw:1.2,fill:function(sg){return corAbs(fluxo[sg.terr]);}});
+  desenhaPolar($('#eyeRel'),{pad:20,labels:true,lfs:8,sw:1.2,fill:function(sg){return corAbs(fluxo[sg.terr]/m);}});
+  var n=(balTerr.DA?1:0)+(balTerr.Cx?1:0)+(balTerr.CD?1:0), msg;
+  if(n===0)msg='Nenhum território comprometido. Os dois mapas coincidem.';
+  else if(n<3)msg='Ainda existe uma região de referência preservada — por isso o mapa relativo mostra o defeito.';
+  else msg='Os três territórios caíram juntos. O mapa relativo voltou a parecer normal: isto é isquemia balanceada.';
+  $('#balMsg').innerHTML=(n===3?'<b style="color:var(--red-deep)">'+msg+'</b>':msg);
+  $$('#opTerrBal .opt').forEach(function(b){b.classList.toggle('no',!!balTerr[b.dataset.t]);});
+}
+function ilustraTid(pos){
+  var s=$('#svgTid'); if(!s)return;
+  var R=pos?46:34, W=pos?18:26;
+  s.innerHTML='<rect width="640" height="220" fill="#fff"/>'+
+  '<text x="160" y="26" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.6" fill="#5b6b7c">'+(pos?'PÓS-ESTRESSE':'REPOUSO')+'</text>'+
+  '<g transform="translate(160,120)">'+
+    '<circle r="'+(R+W/2)+'" fill="#2a1f55"/>'+
+    '<circle r="'+R+'" fill="none" stroke="#fdf6dd" stroke-width="'+W+'"/>'+
+    '<circle r="'+(R-W/2)+'" fill="#2a1f55" opacity=".9"/>'+
+    '<text y="96" text-anchor="middle" font-size="11.5" font-family="Nunito,sans-serif" fill="#5b6b7c">cavidade '+(pos?'aparentemente maior':'de referência')+'</text>'+
+  '</g>'+
+  '<g transform="translate(300,44)"><text font-family="Nunito,sans-serif" font-size="13" fill="#16202b">'+
+   '<tspan x="0" dy="0" font-weight="800">O que mudou entre as duas imagens</tspan>'+
+   '<tspan x="0" dy="26">• a cavidade cresceu de fato (disfunção transitória)</tspan>'+
+   '<tspan x="0" dy="22">• ou a borda interna apagou (isquemia subendocárdica difusa)</tspan>'+
+   '<tspan x="0" dy="30" font-weight="800" fill="#8e2a20">Nos dois casos: marcador de doença mais extensa.</tspan>'+
+   '</text></g>';
+}
+function ilustraVaso(dado){
+  var s=$('#svgVaso'); if(!s)return;
+  var out='<rect width="640" height="250" fill="#fff"/>';
+  var wN = dado?26:12, wE = dado?15:12;
+  out+='<text x="160" y="26" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#146c46">ARTÉRIA NORMAL</text>'+
+   '<path d="M40 76 L300 76" stroke="#1e8f5e" stroke-width="'+wN+'" stroke-linecap="round"/>'+
+   '<text x="330" y="82" font-size="12.5" font-family="Nunito,sans-serif" fill="#146c46">'+(dado?'reserva recrutada → fluxo sobe muito':'reserva intacta, em repouso')+'</text>';
+  out+='<text x="160" y="150" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" letter-spacing="1.4" fill="#8e2a20">DISTAL A ESTENOSE IMPORTANTE</text>'+
+   '<path d="M40 196 L110 196" stroke="#c0392b" stroke-width="12" stroke-linecap="round"/>'+
+   '<path d="M110 196 L140 196" stroke="#8e2a20" stroke-width="4" stroke-linecap="round"/>'+
+   '<path d="M140 196 L300 196" stroke="#c0392b" stroke-width="'+wE+'" stroke-linecap="round"/>'+
+   '<text x="125" y="176" text-anchor="middle" font-size="10" font-family="Nunito,sans-serif" fill="#8e2a20">estenose</text>'+
+   '<text x="330" y="202" font-size="12.5" font-family="Nunito,sans-serif" fill="#8e2a20">'+(dado?'quase nada a recrutar → fluxo sobe pouco':'reserva já parcialmente gasta para manter o basal')+'</text>';
+  if(dado)out+='<text x="320" y="236" text-anchor="middle" font-size="13" font-weight="800" font-family="Nunito,sans-serif" fill="#6b4c9a">A diferença entre as duas é o defeito na imagem.</text>';
+  s.innerHTML=out;
+}
+function ilustraCafe(){
+  var s=$('#svgCafe'); if(!s)return;
+  s.innerHTML='<rect width="640" height="200" fill="#fff"/>'+
+  '<rect x="40" y="120" width="560" height="18" rx="9" fill="#dfe6ed"/>'+
+  '<text x="320" y="158" text-anchor="middle" font-size="10.5" font-family="IBM Plex Mono,monospace" letter-spacing="1.4" fill="#5b6b7c">MEMBRANA DA CÉLULA MUSCULAR LISA</text>'+
+  '<g transform="translate(200,120)"><path d="M-24 0 a 24 24 0 0 1 48 0 z" fill="#1282A2"/><text y="-32" text-anchor="middle" font-size="11" font-family="IBM Plex Mono,monospace" fill="#0b5468">A2A</text></g>'+
+  '<g transform="translate(200,88)"><path d="M-18 0 h 30 a 10 10 0 0 1 0 20 h -4 a 16 16 0 0 1 -26 -20 z" fill="#7d5910"/>'+
+   '<rect x="-18" y="-14" width="34" height="16" rx="3" fill="#a8781a"/>'+
+   '<text y="-24" text-anchor="middle" font-size="11" font-weight="800" font-family="Nunito,sans-serif" fill="#7d5910">cafeína</text></g>'+
+  '<g transform="translate(430,120)"><path d="M-24 0 a 24 24 0 0 1 48 0 z" fill="#1282A2"/><text y="-32" text-anchor="middle" font-size="11" font-family="IBM Plex Mono,monospace" fill="#0b5468">A2A</text></g>'+
+  '<g transform="translate(430,70)"><circle r="13" fill="#1e8f5e"/><text y="4" text-anchor="middle" font-size="10" font-weight="800" font-family="Nunito,sans-serif" fill="#fff">ADE</text>'+
+   '<path d="M0 18 l 0 16 m -5 -5 l 5 5 l 5 -5" stroke="#1e8f5e" stroke-width="2" fill="none"/></g>'+
+  '<text x="200" y="186" text-anchor="middle" font-size="12" font-weight="800" font-family="Nunito,sans-serif" fill="#8e2a20">receptor ocupado → hiperemia aquém</text>'+
+  '<text x="430" y="186" text-anchor="middle" font-size="12" font-weight="800" font-family="Nunito,sans-serif" fill="#146c46">receptor livre → vasodilatação plena</text>';
+}
+function ilustraDobu(nivel){
+  var s=$('#svgDobu'); if(!s)return;
+  var fc=70+nivel*30, dur=(60/fc).toFixed(2);
+  var out='<rect width="640" height="190" fill="#fff"/>';
+  out+='<g transform="translate(120,92)"><path d="M0 26 c -30 -26 -46 -44 -46 -62 c 0 -16 12 -26 24 -26 c 10 0 18 6 22 14 c 4 -8 12 -14 22 -14 c 12 0 24 10 24 26 c 0 18 -16 36 -46 62 z" fill="#c0392b">'+
+    (nivel>0?'<animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="'+dur+'s" repeatCount="indefinite" additive="sum"/>':'')+'</path></g>';
+  out+='<g transform="translate(230,36)"><text font-family="Nunito,sans-serif" font-size="13.5" fill="#16202b">'+
+   '<tspan x="0" dy="0">Frequência cardíaca <tspan font-weight="800" fill="#c0392b">'+fc+' bpm</tspan></tspan>'+
+   '<tspan x="0" dy="26">Contratilidade <tspan font-weight="800" fill="#c0392b">'+['basal','aumentada','muito aumentada','máxima'][nivel]+'</tspan></tspan>'+
+   '<tspan x="0" dy="26">Demanda de O₂ <tspan font-weight="800" fill="#c0392b">'+['basal','↑','↑↑','↑↑↑'][nivel]+'</tspan></tspan>'+
+   '<tspan x="0" dy="26">Duração da diástole <tspan font-weight="800" fill="#8e2a20">'+['normal','reduzida','bem reduzida','criticamente reduzida'][nivel]+'</tspan></tspan>'+
+   '<tspan x="0" dy="30" font-size="12" fill="#5b6b7c">O mecanismo é o do exercício: aumentar o consumo.</tspan>'+
+   '</text></g>';
+  s.innerHTML=out;
+}
+
+/* ================= PASS 2 · CONTEÚDOS ================= */
+var RISCO={
+ perf:'<div class="box b-red" style="margin-top:0"><h4>Perfusão</h4><ul style="margin:0 0 0 18px;padding:0"><li>Defeitos <b>extensos</b></li><li>Defeitos em <b>múltiplos territórios</b></li><li>Carga isquêmica relevante</li><li>SSS elevado</li></ul></div>',
+ func:'<div class="box b-purple" style="margin-top:0"><h4>Função</h4><ul style="margin:0 0 0 18px;padding:0"><li>Fração de ejeção muito reduzida</li><li><b>Piora da FE após o estresse</b> em relação ao repouso</li><li>Disfunção ventricular e alterações segmentares novas</li></ul><p class="small" style="margin:8px 0 0">A função é a variável que mais frequentemente reclassifica o risco de um exame cuja perfusão parecia intermediária.</p></div>',
+ geo:'<div class="box b-blue" style="margin-top:0"><h4>Geometria</h4><ul style="margin:0 0 0 18px;padding:0"><li><b>TID</b> — dilatação isquêmica transitória (estação 15)</li></ul><p class="small" style="margin:8px 0 0">Único grupo com um item só, e ainda assim indispensável: é o achado que não depende do contraste entre vizinhos.</p></div>',
+ acess:'<div class="box b-gold" style="margin-top:0"><h4>Sinais acessórios</h4><ul style="margin:0 0 0 18px;padding:0"><li><b>Captação pulmonar aumentada</b> do traçador, em protocolos apropriados</li><li><b>Visualização aumentada do ventrículo direito</b></li><li>Resposta hemodinâmica desfavorável — queda pressórica, hipotensão</li><li>Alterações eletrocardiográficas importantes durante o estresse</li><li>Sintomas limitantes e precoces</li></ul><p class="small" style="margin:8px 0 0">Estes achados aparecem no laudo em uma frase curta e são lidos com pressa. São exatamente eles que denunciam a doença extensa quando as cores não denunciam.</p></div>'
+};
+var ARVORE={
+ q1:{t:'Passo 1 · O paciente consegue se exercitar adequadamente?',
+   d:'Capacidade de atingir uma carga suficiente, sem limitação ortopédica, neurológica, vascular ou pulmonar que impeça o esforço.',
+   o:[['Sim','q2'],['Não','q3']]},
+ q2:{t:'Passo 2 · O exercício é apropriado para este paciente?',
+   d:'Ausência de contraindicação ao esforço e de condição em que a taquicardia seja indesejável — lembre do BRE e do marcapasso em estimulação ventricular.',
+   o:[['Sim, é apropriado','fimEx'],['Há BRE ou marcapasso ventricular','fimBre'],['Há contraindicação ao esforço','q3']]},
+ q3:{t:'Passo 3 · Existe contraindicação ao vasodilatador?',
+   d:'Broncoespasmo ativo significativo, bloqueio atrioventricular importante sem marcapasso, bradiarritmia relevante, hipotensão importante, uso recente de metilxantinas sem suspensão adequada.',
+   o:[['Não há contraindicação','fimVaso'],['Sim, há contraindicação','fimDobu']]},
+ fimEx:{fim:'<div class="box b-green" style="margin-top:0"><h4>Estresse por exercício</h4><p style="margin-bottom:0">Preferido sempre que possível. Além da perfusão, você ganha capacidade funcional, sintomas na carga que os provoca, comportamento do ST, resposta pressórica e cronotrópica, arritmias e recuperação — camadas prognósticas que o fármaco não entrega.</p></div>'},
+ fimBre:{fim:'<div class="box b-blue" style="margin-top:0"><h4>Vasodilatador, mesmo que ele consiga caminhar</h4><p style="margin-bottom:0">No BRE e no marcapasso em estimulação ventricular, a taquicardia acentua o falso defeito septal. Aqui, a capacidade de se exercitar não decide: <b>BRE + perfusão = pense em vasodilatação, não em taquicardia</b> (estação 12).</p></div>'},
+ fimVaso:{fim:'<div class="box b-blue" style="margin-top:0"><h4>Vasodilatador: adenosina ou dipiridamol</h4><p style="margin-bottom:0">Confirme a suspensão de metilxantinas conforme o protocolo do serviço e prepare-se para os efeitos adversos esperados — que, como vimos na estação 26, não são critério diagnóstico.</p></div>'},
+ fimDobu:{fim:'<div class="box b-gold" style="margin-top:0"><h4>Dobutamina</h4><p style="margin-bottom:0">Terceira opção, por exigir mais tempo e monitorização: entra quando o paciente não pode se exercitar <b>e</b> o vasodilatador está contraindicado.</p></div>'}
+};
+var CI_VASO=[
+ ['Broncoespasmo ativo significativo','A vasodilatação por adenosina envolve outros subtipos de receptor, e o broncoespasmo é o motivo clássico de exclusão. Note a nuance: <b>asma bem controlada, sem broncoespasmo ativo, não é a mesma situação</b> que doença em atividade ou sibilância no momento do exame.'],
+ ['Bloqueio atrioventricular importante sem marcapasso','A adenosina deprime a condução no nó atrioventricular — é a mesma propriedade que a torna útil na taquicardia supraventricular. Em um paciente já com bloqueio avançado e sem estimulação artificial, isso é risco desnecessário.'],
+ ['Bradiarritmia relevante ou doença do nó sinusal','Mesmo raciocínio: o efeito cronotrópico e dromotrópico negativo se soma a um sistema de condução já frágil.'],
+ ['Hipotensão importante','O vasodilatador reduz a resistência periférica. Em pressões já baixas, a queda adicional é mal tolerada.'],
+ ['Uso recente de metilxantinas','Não é risco — é <b>ineficácia</b>. Cafeína, teofilina e derivados antagonizam o receptor e podem esvaziar o valor diagnóstico do exame (estação 23).'],
+ ['Síndrome coronariana instável recente','Não é o cenário do exame eletivo de perfusão. Instabilidade pede outra rota de avaliação.']
+];
+var CI_DOBU=[
+ ['Arritmias importantes','A dobutamina é agonista adrenérgico e tem potencial arritmogênico próprio, atrial e ventricular.'],
+ ['Síndrome coronariana instável','Aumentar deliberadamente a demanda em um paciente instável é o oposto do que se quer fazer.'],
+ ['Estenose aórtica grave sintomática','Aumento de contratilidade e de frequência em obstrução fixa à via de saída é uma combinação perigosa.'],
+ ['Hipertensão arterial não controlada','O aumento do duplo produto pode levar a pressões proibitivas durante o exame.'],
+ ['Cardiomiopatia hipertrófica com obstrução importante','O inotrópico pode agravar o gradiente na via de saída.'],
+ ['Situações em que a taquicardia é indesejável','Inclui BRE e marcapasso em estimulação ventricular, pelo mesmo motivo do exercício — o falso defeito septal se acentua.']
+];
+
+/* ================= PASS 2 · LABORATÓRIO DOS ESCORES ================= */
+var scS=[],scR=[]; (function(){for(var i=0;i<18;i++){scS[i]=0;scR[i]=0;}})();
+function pintaScores(){
+  var nc=function(arr){return function(s){return arr[s.n]>=3?'#ffffff':'#16202b';};};
+  desenhaPolar($('#eyeScoreS'),{scores:scS,pad:20,labels:true,lfs:8,nums:true,fs:10,sw:1.2,numcor:nc(scS)});
+  desenhaPolar($('#eyeScoreR'),{scores:scR,pad:20,labels:true,lfs:8,nums:true,fs:10,sw:1.2,numcor:nc(scR)});
+  var sss=0,srs=0;
+  for(var i=1;i<=17;i++){sss+=scS[i];srs+=scR[i];}
+  var sds=sss-srs;
+  $('#outSSS').textContent=sss; $('#outSRS').textContent=srs; $('#outSDS').textContent=sds;
+  var faixa = sss<4?'normal ou minimamente anormal' : sss<=8?'discretamente anormal' : sss<=13?'moderadamente anormal':'francamente anormal';
+  var perfil='';
+  if(sss>0){
+    var r=sds/sss;
+    perfil = r>=0.6 ? ' Predomínio de <b>componente isquêmico</b> — a maior parte do defeito apareceu no estresse.'
+           : r<=0.25 ? ' Predomínio de <b>componente fixo</b> — cicatriz, ou atenuação a esclarecer pelo GATED.'
+           : ' <b>Componente misto</b> — parte já estava no repouso, parte apareceu no estresse.';
+  }
+  $('#scoreMsg').innerHTML= sss===0 ? 'Dê notas nos dois mapas e observe a diferença.'
+    : 'SSS '+sss+' · faixa didática: <b>'+faixa+'</b>.'+perfil+(srs>sss?' <b style="color:var(--red-deep)">Atenção: SRS maior que SSS gera SDS negativo — na prática isso costuma indicar variação de leitura ou problema técnico, não “melhora com o estresse”.</b>':'');
+}
+function cicla(arr,n){arr[n]=(arr[n]+1)%5;}
+var PRESETS={
+ zero:{s:{},r:{}},
+ rev:{s:{1:3,2:2,7:3,8:2,13:2},r:{}},
+ fix:{s:{4:3,10:3,15:2},r:{4:3,10:3,15:2}},
+ mix:{s:{4:4,10:4,15:3,5:2,11:2},r:{4:3,10:3,15:2}}
+};
+function aplicaPreset(k){
+  var p=PRESETS[k]; if(!p)return;
+  for(var i=0;i<18;i++){scS[i]=p.s[i]||0;scR[i]=p.r[i]||0;}
+  pintaScores();
+}
+
+/* ================= PASS 2 · BINDINGS ================= */
+function bind2(){
+  /* corredores */
+  var bc=$('#btnCorre'),correndo=false;
+  if(bc)bc.addEventListener('click',function(){correndo=!correndo;ilustraCorredores(correndo);bc.textContent=correndo?'Parar':'Dar a largada';toca('s13');});
+  $$('#opBal .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opBal',b.dataset.v,{ok:['ninguem']}); reveal('#rvBal'); toca('s13');
+  });});
+  $$('#opTerrBal .opt').forEach(function(b){b.addEventListener('click',function(){
+    balTerr[b.dataset.t]=!balTerr[b.dataset.t]; atualizaBal(); toca('s13');
+  });});
+  /* TID */
+  var bt=$('#btnTid'),tidPos=false;
+  if(bt)bt.addEventListener('click',function(){tidPos=!tidPos;ilustraTid(tidPos);bt.textContent=tidPos?'Voltar ao repouso':'Comparar repouso ⇄ pós-estresse';toca('s15');});
+  /* escores */
+  ['#eyeScoreS','#eyeScoreR'].forEach(function(sel,idx){
+    var el=$(sel); if(!el)return;
+    el.addEventListener('click',function(e){
+      var p=e.target.closest?e.target.closest('[data-seg]'):null; if(!p)return;
+      cicla(idx===0?scS:scR,+p.dataset.seg); pintaScores(); toca('s16');
+    });
+  });
+  $$('[data-preset]').forEach(function(b){b.addEventListener('click',function(){aplicaPreset(b.dataset.preset);toca('s16');});});
+  /* risco */
+  $$('[data-risco]').forEach(function(b){b.addEventListener('click',function(){
+    $$('[data-risco]').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+    var r=$('#rvRisco'); r.innerHTML=RISCO[b.dataset.risco]; r.classList.add('on'); toca('s19');
+  });});
+  /* árvore */
+  function passo(k){
+    var n=ARVORE[k]; if(!n)return;
+    if(n.fim){ $('#arvOpts').innerHTML=''; var r=$('#arvRes'); r.innerHTML=n.fim; r.classList.add('on'); return; }
+    $('#arvTit').textContent=n.t; $('#arvTxt').textContent=n.d; $('#arvRes').classList.remove('on');
+    $('#arvOpts').innerHTML=n.o.map(function(o){return '<button class="opt" data-go="'+o[1]+'">'+o[0]+'</button>';}).join('');
+    $$('#arvOpts .opt').forEach(function(b){b.addEventListener('click',function(){passo(b.dataset.go);toca('s21');});});
+  }
+  if($('#arvOpts')){passo('q1'); $('#arvReset').addEventListener('click',function(){passo('q1');});}
+  /* vasodilatador */
+  var bv=$('#btnVaso'),vdado=false;
+  if(bv)bv.addEventListener('click',function(){vdado=!vdado;ilustraVaso(vdado);bv.textContent=vdado?'Voltar ao repouso':'Administrar o vasodilatador';toca('s22');});
+  /* dobutamina */
+  var bd2=$('#btnDobu'),niv=0;
+  if(bd2)bd2.addEventListener('click',function(){niv=(niv+1)%4;ilustraDobu(niv);bd2.textContent=niv===3?'Voltar ao basal':'Aumentar a dose';toca('s24');});
+  /* contraindicações */
+  function montaCI(lista,seloBtns,seloRes,est){
+    var g=$(seloBtns); if(!g)return;
+    g.innerHTML=lista.map(function(x,i){return '<button class="opt" data-ci="'+i+'">'+x[0]+'</button>';}).join('');
+    $$(seloBtns+' .opt').forEach(function(b){b.addEventListener('click',function(){
+      $$(seloBtns+' .opt').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+      var it=lista[+b.dataset.ci], r=$(seloRes);
+      r.innerHTML='<div class="box b-red" style="margin-top:0"><h4>'+it[0]+'</h4><p style="margin-bottom:0">'+it[1]+'</p></div>';
+      r.classList.add('on'); toca(est);
+    });});
+  }
+  montaCI(CI_VASO,'#opCiVaso','#rvCiVaso','s25');
+  montaCI(CI_DOBU,'#opCiDobu','#rvCiDobu','s25');
+  /* dor */
+  $$('#opDor .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opDor',b.dataset.v,{ok:['nao']}); reveal('#rvDor'); toca('s26');
+  });});
+}
+function init2(){
+  ilustraCorredores(false); atualizaBal(); ilustraTid(false); pintaScores();
+  ilustraVaso(false); ilustraCafe(); ilustraDobu(0); bind2();
+}
+
+
+/* ================= HERO INTERATIVO ================= */
+var heroAlvo=null, heroPts=0, heroN=0;
+function sorteiaHero(){
+  var ts=['DA','Cx','CD'];
+  var novo; do{ novo=ts[Math.floor(Math.random()*3)]; }while(novo===heroAlvo&&Math.random()<0.7);
+  heroAlvo=novo;
+  desenhaPolar($('#heroEye'),{pad:24,sw:1.6,fill:function(sg){
+    if(sg.terr!==heroAlvo)return PERF[0];
+    return sg.anel==='Basal'?PERF[3]:sg.anel==='Ápice'?PERF[2]:PERF[3];
+  }});
+  var s=$('#heroEye'); if(s)s.innerHTML=s.innerHTML+'<circle cx="130" cy="130" r="118" fill="none" stroke="rgba(127,208,232,.35)" stroke-width="1"/>';
+  $('#hqP').textContent='Toque em qualquer segmento hipocaptante deste mapa.';
+  $('#hqFb').innerHTML='';
+}
+function respondeHero(n){
+  var sg=SEG.filter(function(x){return x.n===n;})[0]; if(!sg||!heroAlvo)return;
+  heroN++;
+  var certo=(sg.terr===heroAlvo);
+  if(certo)heroPts++;
+  var placar=' <span style="opacity:.7">('+heroPts+'/'+heroN+')</span>';
+  $('#hqFb').innerHTML = certo
+    ? '<b style="color:#8ce8b8">Certo.</b> '+sg.nome+' — território provável da <b style="color:#fff">'+sg.terr+'</b>.'+placar
+    : '<b style="color:#ffb3a7">Esse segmento está claro.</b> '+sg.nome+' pertence ao território provável da '+sg.terr+'; o defeito deste mapa está no território da <b style="color:#fff">'+heroAlvo+'</b>.'+placar;
+}
+
+/* ================= VIABILIDADE ================= */
+var VIAB={
+ stun:'<div class="box b-blue" style="margin-top:0"><h4>Miocárdio atordoado <span class="small" style="font-weight:400">(stunning)</span></h4><p><b>Perfusão já restaurada, contração ainda não.</b> Disfunção contrátil <b>transitória</b> que persiste depois que o fluxo voltou — clássico após reperfusão de um infarto agudo ou após um episódio isquêmico prolongado.</p><p style="margin-bottom:0">No exame: perfusão em repouso normal ou quase normal, com <b>alteração de motilidade e espessamento</b> desproporcional à perfusão. Recupera espontaneamente com o tempo, sem precisar de nova intervenção sobre o vaso.</p></div>',
+ hib:'<div class="box b-purple" style="margin-top:0"><h4>Miocárdio hibernante</h4><p><b>Músculo vivo economizando energia.</b> Disfunção contrátil <b>crônica</b> em território com fluxo cronicamente reduzido: a célula desliga a contração para sobreviver. É viável, e por isso <b>pode recuperar função após revascularização</b>.</p><p style="margin-bottom:0">No exame: defeito de perfusão em repouso <b>com sinais de viabilidade preservada</b> — redistribuição tardia ou melhora após reinjeção com tálio, captação relativa preservada acima de um limiar, metabolismo mantido no PET, ou reserva contrátil à dobutamina em baixa dose.</p></div>',
+ cic:'<div class="box b-red" style="margin-top:0"><h4>Cicatriz</h4><p><b>O músculo não está mais lá.</b> Defeito persistente, geralmente grave, com <b>ausência de espessamento</b> e sem sinais de viabilidade em nenhum dos métodos.</p><p style="margin-bottom:0">Revascularizar esse território não devolve contração. A decisão passa a depender de outros territórios, de isquemia periinfarto associada e do quadro clínico global — não daquela parede.</p></div>'
+};
+
+/* ================= MOTOR DE QUESTÕES ================= */
+function montaQuiz(alvo,banco,chave){
+  var el=$(alvo); if(!el)return;
+  el.innerHTML=banco.map(function(q,i){
+    return '<div class="card qz" data-q="'+i+'">'+
+      '<span class="kick">Questão '+(i+1)+'</span>'+
+      '<p style="font-weight:700">'+q.q+'</p>'+
+      '<div class="opts qzalts">'+q.alts.map(function(a,j){
+        return '<button class="opt" data-a="'+j+'" style="width:100%;text-align:left;font-weight:600">'+a.t+'</button>';
+      }).join('')+'</div>'+
+      '<div class="reveal qzfb"></div>'+
+    '</div>';
+  }).join('');
+  el.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('.qzalts .opt'):null; if(!b)return;
+    var card=b.closest('.qz'), qi=+card.dataset.q, q=banco[qi];
+    if(card.dataset.feito)return;
+    card.dataset.feito='1';
+    var esc=+b.dataset.a, acerto=!!q.alts[esc].ok;
+    Array.prototype.forEach.call(card.querySelectorAll('.qzalts .opt'),function(x,j){
+      x.classList.add(q.alts[j].ok?'ok':'no');
+      if(j===esc)x.style.boxShadow='0 0 0 3px rgba(15,39,64,.18)';
+    });
+    var fb=card.querySelector('.qzfb');
+    fb.innerHTML='<div class="box '+(acerto?'b-green':'b-red')+'" style="margin-top:0"><h4>'+(acerto?'Correto.':'Não foi dessa vez.')+'</h4>'+
+      '<ul style="margin:0 0 8px 18px;padding:0">'+q.alts.map(function(a){
+        return '<li style="margin-bottom:5px"><b>'+(a.ok?'✔':'✘')+' '+a.t+'</b> — '+a.why+'</li>';
+      }).join('')+'</ul>'+
+      (q.rev?'<p style="margin-bottom:0" class="small"><b>Conceito a revisar:</b> '+q.rev+'</p>':'')+'</div>';
+    fb.classList.add('on');
+    S[chave]=S[chave]||{}; S[chave][qi]=acerto?1:0; save(); atualizaPlacar(alvo,banco,chave);
+  });
+  atualizaPlacar(alvo,banco,chave);
+}
+function atualizaPlacar(alvo,banco,chave){
+  var el=$(alvo); if(!el)return;
+  var d=S[chave]||{}, n=Object.keys(d).length, ok=0;
+  Object.keys(d).forEach(function(k){ok+=d[k];});
+  var p=el.querySelector('.qzplacar');
+  if(!p){p=document.createElement('p');p.className='qzplacar small center';el.insertBefore(p,el.firstChild);}
+  p.innerHTML = n===0 ? 'Nenhuma questão respondida ainda.' :
+    '<b>'+ok+' de '+n+'</b> respondidas corretamente · '+n+' de '+banco.length+' concluídas';
+}
+
+var Q_IAM=[
+ {q:'Homem de 64 anos, infarto inferior há 3 anos. Defeito inferior persistente e extenso; no GATED, a parede inferior <b>não espessa</b> e a FEVE é 38%. Qual a leitura mais adequada?',
+  alts:[
+   {t:'Cicatriz inferior com repercussão funcional',ok:true,why:'defeito persistente + ausência de espessamento + disfunção ventricular formam um conjunto coerente com cicatriz estabelecida.'},
+   {t:'Atenuação diafragmática',ok:false,why:'a atenuação tende a cursar com <b>função preservada</b> na parede acometida. Sem espessamento, ela perde muita força.'},
+   {t:'Isquemia induzível inferior',ok:false,why:'isquemia induzível exige <b>reversibilidade</b> — o defeito precisaria melhorar no repouso.'},
+   {t:'Miocárdio atordoado',ok:false,why:'o atordoamento é transitório e ocorre com perfusão já restaurada; aqui a perfusão está persistentemente reduzida há anos.'}],
+  rev:'Defeito fixo × espessamento no GATED (estações 10 e 11).'},
+ {q:'Qual definição corresponde a <b>miocárdio hibernante</b>?',
+  alts:[
+   {t:'Disfunção contrátil crônica em território com fluxo cronicamente reduzido, em músculo viável',ok:true,why:'é a definição: a célula desliga a contração para sobreviver, e pode recuperar com revascularização.'},
+   {t:'Disfunção contrátil transitória com perfusão já normalizada',ok:false,why:'essa é a definição de <b>atordoamento</b>.'},
+   {t:'Ausência de miócitos viáveis com substituição fibrótica',ok:false,why:'isso é cicatriz.'},
+   {t:'Defeito de perfusão que só aparece no estresse',ok:false,why:'isso é isquemia induzível, sem relação obrigatória com disfunção contrátil de repouso.'}],
+  rev:'Atordoamento × hibernação × cicatriz.'},
+ {q:'Paciente reperfundido há 48 horas de um IAM anterior. Perfusão em repouso praticamente normal na parede anterior, mas motilidade e espessamento reduzidos nessa mesma parede. Hipótese principal?',
+  alts:[
+   {t:'Miocárdio atordoado',ok:true,why:'o descompasso clássico: o fluxo voltou (perfusão quase normal), a contração ainda não. Tende a recuperar espontaneamente.'},
+   {t:'Cicatriz transmural',ok:false,why:'cicatriz transmural cursa com defeito de perfusão importante, não com perfusão quase normal.'},
+   {t:'Artefato de atenuação anterior',ok:false,why:'o artefato produziria o padrão inverso — perfusão reduzida com função preservada.'},
+   {t:'Reestenose precoce do stent',ok:false,why:'possível como evento, mas não explica perfusão de repouso preservada com disfunção regional; e não é a hipótese de primeira linha em 48 horas.'}],
+  rev:'Perfusão preservada + função alterada = atordoamento.'},
+ {q:'Cintilografia pós-IAM mostra defeito inferior persistente e, <b>ao redor dele</b>, uma borda que piora no estresse. Como isso se chama e por que importa?',
+  alts:[
+   {t:'Isquemia periinfarto — indica miocárdio ainda em risco na vizinhança da cicatriz',ok:true,why:'é o achado que mais muda conduta em exame pós-infarto: há território recuperável ameaçado ao lado da área perdida.'},
+   {t:'TID',ok:false,why:'TID é aumento aparente da cavidade pós-estresse, não um halo reversível ao redor de um defeito.'},
+   {t:'Isquemia balanceada',ok:false,why:'balanceada é a redução homogênea que apaga o contraste regional — o oposto de um halo localizado.'},
+   {t:'Artefato de reposicionamento entre as aquisições',ok:false,why:'um artefato desse tipo tende a deslocar o defeito inteiro, não a criar uma borda reversível concêntrica.'}],
+  rev:'Isquemia periinfarto: SDS &gt; 0 em torno de um SRS elevado.'},
+ {q:'Paciente assintomático, IAM com angioplastia primária há 8 meses, revascularização completa, em tratamento otimizado. Cintilografia de rotina anual?',
+  alts:[
+   {t:'Não — o acompanhamento é guiado por sintomas, mudança clínica e risco',ok:true,why:'exame periódico sem pergunta clínica definida tende a não mudar conduta e adiciona custo, radiação e achados de significado incerto.'},
+   {t:'Sim, todo paciente pós-stent deve repetir anualmente',ok:false,why:'“fez stent, faz cintilo de rotina” é justamente o automatismo que as diretrizes não sustentam.'},
+   {t:'Sim, porque a reestenose é silenciosa na maioria dos casos',ok:false,why:'a premissa não justifica rastreamento indiscriminado em assintomático com revascularização completa.'},
+   {t:'Só se a FEVE estiver abaixo de 50%',ok:false,why:'FEVE reduzida é um dado relevante, mas não é o critério que transforma o exame em rotina anual.'}],
+  rev:'Quando pedir depois do infarto.',},
+ {q:'SSS 24 e SRS 22 em paciente com infarto prévio. O que isso descreve?',
+  alts:[
+   {t:'Defeito extenso predominantemente fixo, com pequeno componente isquêmico',ok:true,why:'SDS = 2. Quase todo o defeito já estava presente no repouso.'},
+   {t:'Isquemia extensa induzível',ok:false,why:'isquemia extensa exigiria SDS alto, e não 2.'},
+   {t:'Exame normal',ok:false,why:'SSS 24 está bem acima da faixa de normalidade tradicional.'},
+   {t:'Erro de cálculo, porque SRS não pode se aproximar do SSS',ok:false,why:'pode e é comum — é exatamente o padrão do coração cicatricial.'}],
+  rev:'SSS soma tudo; quem separa isquemia de cicatriz é o SDS.'},
+ {q:'Homem obeso, IAM inferior prévio, defeito inferior persistente — mas o GATED mostra espessamento <b>preservado</b> nessa parede. Conduta de raciocínio?',
+  alts:[
+   {t:'Considerar atenuação diafragmática somada, e buscar prona ou correção de atenuação',ok:true,why:'ter infarto no prontuário não desliga o raciocínio de artefato: o defeito pode estar inflado por atenuação.'},
+   {t:'Concluir cicatriz transmural inferior, pelo histórico',ok:false,why:'cicatriz transmural não espessa. O histórico não sobrepõe o achado funcional.'},
+   {t:'Concluir isquemia inferior grave',ok:false,why:'o defeito é persistente, não reversível.'},
+   {t:'Concluir hibernação',ok:false,why:'hibernação cursa com disfunção contrátil — aqui o espessamento está preservado.'}],
+  rev:'O infarto conhecido aumenta o risco de você aceitar o defeito sem checar artefato.'},
+ {q:'Sobre o uso da cintilografia na <b>dor torácica aguda</b> em pronto-socorro:',
+  alts:[
+   {t:'Não é a estratégia de escolha atual; ECG seriado e troponina de alta sensibilidade ocupam esse espaço',ok:true,why:'a imagem de repouso com injeção durante a dor tem valor histórico e uso hoje bem restrito e selecionado.'},
+   {t:'É o exame padrão-ouro para diagnóstico de infarto agudo',ok:false,why:'não é — o diagnóstico de infarto agudo é clínico, eletrocardiográfico e bioquímico.'},
+   {t:'Substitui a troponina quando o ECG é normal',ok:false,why:'nenhum método de imagem substitui o marcador de necrose nessa decisão.'},
+   {t:'Deve ser feita com estresse farmacológico ainda na sala de emergência',ok:false,why:'estresse em quadro potencialmente instável é o cenário exatamente oposto ao indicado.'}],
+  rev:'Cintilografia é ferramenta de doença crônica estável, não de triagem de infarto agudo.'},
+ {q:'Qual achado <b>sugere viabilidade</b> em um território com defeito de perfusão em repouso?',
+  alts:[
+   {t:'Redistribuição tardia ou melhora da captação após reinjeção com tálio',ok:true,why:'a redistribuição é a propriedade que deu ao tálio seu papel histórico em viabilidade — traçador entrando em célula viva ao longo do tempo.'},
+   {t:'Ausência completa de captação nas imagens tardias',ok:false,why:'esse é o padrão que fala a favor de cicatriz.'},
+   {t:'Defeito reversível ao estresse no território oposto',ok:false,why:'informa sobre outro território; nada diz sobre a viabilidade daquele em questão.'},
+   {t:'TID aumentado',ok:false,why:'TID é marcador de doença extensa e grave, não teste de viabilidade.'}],
+  rev:'Viabilidade também por PET, ressonância e eco com dobutamina — o tálio não é o único método.'},
+ {q:'Paciente com IAM anterior extenso prévio: defeitos em múltiplos territórios, FEVE 30% com piora após o estresse e TID presente. Como você classifica esse exame?',
+  alts:[
+   {t:'Achados de alto risco, que devem ser destacados no laudo e integrados à decisão',ok:true,why:'perfusão extensa + função muito reduzida com piora pós-estresse + geometria alterada reúnem três dos quatro grupos de maior risco.'},
+   {t:'Exame de risco intermediário, porque parte do defeito é cicatricial',ok:false,why:'a presença de cicatriz não neutraliza o restante: FEVE muito reduzida e TID são marcadores independentes de risco.'},
+   {t:'Exame de baixo risco se o paciente estiver assintomático',ok:false,why:'ausência de sintomas não reclassifica achados objetivos desta magnitude.'},
+   {t:'Exame não interpretável pela FEVE reduzida',ok:false,why:'FEVE reduzida não invalida o estudo — ela é parte do resultado.'}],
+  rev:'Não leia apenas as cores. Leia o coração inteiro (estação 19).'}
+];
+
+/* ================= INTERAÇÕES ================= */
+function reveal(id){var e=$(id); if(e)e.classList.add('on');}
+function marcaOpt(grupo,sel,corretos){
+  $$(grupo+' .opt').forEach(function(b){
+    b.classList.remove('ok','no','part');
+    var v=b.dataset.v;
+    if(corretos.ok.indexOf(v)>=0)b.classList.add('ok');
+    else if(corretos.part&&corretos.part.indexOf(v)>=0)b.classList.add('part');
+    else b.classList.add('no');
+  });
+}
+function bind(){
+  /* abertura */
+  $$('#opAbre .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opAbre',b.dataset.v,{ok:['nao'],part:['dep']}); reveal('#rvAbre'); ilustraEstrada(); toca('abertura');
+  });});
+  /* padrões */
+  $$('#opPadrao .opt').forEach(function(b){b.addEventListener('click',function(){aplicaPadrao(b.dataset.p);toca('s03');});});
+  /* gato */
+  $$('#opGato .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opGato',b.dataset.v,{ok:['art']}); reveal('#rvGato'); toca('s04');
+  });});
+  /* base */
+  $$('#opBase .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opBase',b.dataset.v,{ok:['p']}); reveal('#rvBase'); toca('s06');
+  });});
+  /* fixo */
+  $$('#opFixo .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opFixo',b.dataset.v,{ok:['nao']}); reveal('#rvFixo'); toca('s10');
+  });});
+  /* bre */
+  $$('#opBre .opt').forEach(function(b){b.addEventListener('click',function(){
+    marcaOpt('#opBre',b.dataset.v,{ok:['nao']}); reveal('#rvBre'); toca('s12');
+  });});
+  /* sigla SPECT */
+  $$('#opSigla .opt').forEach(function(b){b.addEventListener('click',function(){
+    $$('#opSigla .opt').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+    var r=$('#rvSigla'); r.innerHTML=SIGLA[b.dataset.w]; r.classList.add('on'); toca('s28');
+  });});
+  /* instrumentos */
+  $$('#opInstr .opt').forEach(function(b){b.addEventListener('click',function(){
+    $$('#opInstr .opt').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+    var r=$('#rvInstr'); r.innerHTML=INSTR[b.dataset.i]; r.classList.add('on'); toca('s11');
+  });});
+  /* dominância */
+  $$('#opDom .opt').forEach(function(b){b.addEventListener('click',function(){
+    $$('#opDom .opt').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+    var r=$('#rvDom'); r.innerHTML=DOM[b.dataset.d]; r.classList.add('on'); toca('s08');
+  });});
+  /* eixos */
+  $$('[data-eixo]').forEach(function(b){b.addEventListener('click',function(){
+    $$('[data-eixo]').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+    desenhaEixo(b.dataset.eixo); toca('s05');
+  });});
+  /* desdobrar */
+  var bd=$('#btnDesdobra'); if(bd)bd.addEventListener('click',function(){
+    desdobrado=!desdobrado; desenhaDesdobra();
+    bd.textContent=desdobrado?'Voltar ao cone':'Achatar o ventrículo'; toca('s06');
+  });
+  /* reversível */
+  var br=$('#btnRev'),estr=false; if(br)br.addEventListener('click',function(){
+    estr=!estr; ilustraRev(estr); br.textContent=estr?'Voltar ao repouso':'Alternar repouso ⇄ estresse'; toca('s09');
+  });
+  /* 17 segmentos */
+  var sv=$('#svg17');
+  if(sv)sv.addEventListener('click',function(e){
+    var p=e.target.closest?e.target.closest('[data-seg]'):null; if(!p)return;
+    var n=+p.dataset.seg;
+    if(quizAtivo&&quizAlvo){
+      quizN++; if(n===quizAlvo.n){quizPts++;}
+      var acerto=(n===quizAlvo.n);
+      mostraSeg(n);
+      $('#rvQuiz17').innerHTML='<div class="box '+(acerto?'b-green':'b-red')+'" style="margin-top:0"><h4>'+(acerto?'Certo.':'Ainda não.')+'</h4><p>Você tocou em <b>'+SEG.filter(function(x){return x.n===n;})[0].nome+'</b>. O alvo era <b>'+quizAlvo.nome+'</b>.</p><p class="small" style="margin-bottom:8px">Acertos: '+quizPts+' / '+quizN+'</p><button class="btn sm" id="btnQzNext">Próximo segmento</button></div>';
+      $('#btnQzNext').addEventListener('click',novoQuiz);
+    } else { mostraSeg(n); }
+    toca('s07');
+  });
+  var bt=$('#btnPintaTerr'); if(bt)bt.addEventListener('click',function(){
+    modo17=(modo17==='terr')?'perf':'terr'; pinta17();
+    bt.classList.toggle('ok',modo17==='terr'); $('#btnPintaAnel').classList.remove('ok');
+    if(modo17==='terr'){$('#segTxt').innerHTML='<span style="color:'+TCOR.DA+';font-weight:800">■ DA</span> &nbsp; <span style="color:'+TCOR.Cx+';font-weight:800">■ Cx</span> &nbsp; <span style="color:'+TCOR.CD+';font-weight:800">■ CD</span> — atribuição <b>mais provável</b>, sujeita a dominância e variação anatômica.';}
+  });
+  var ba=$('#btnPintaAnel'); if(ba)ba.addEventListener('click',function(){
+    modo17=(modo17==='anel')?'perf':'anel'; pinta17();
+    ba.classList.toggle('ok',modo17==='anel'); $('#btnPintaTerr').classList.remove('ok');
+    if(modo17==='anel'){$('#segTxt').innerHTML='Do escuro para o claro: <b>basal</b> (1–6) → <b>médio</b> (7–12) → <b>apical</b> (13–16) → <b>ápice</b> (17). Base na periferia, ápice no centro.';}
+  });
+  var bq=$('#btnQuiz17'); if(bq)bq.addEventListener('click',function(){
+    quizAtivo=!quizAtivo; bq.classList.toggle('ok',quizAtivo);
+    if(quizAtivo){novoQuiz();}else{$('#rvQuiz17').classList.remove('on');}
+  });
+  /* recall */
+  $$('[data-rq]').forEach(function(b){b.addEventListener('click',function(){
+    var a=b.parentNode.querySelector('.a'); a.classList.toggle('on');
+    b.textContent=a.classList.contains('on')?'Esconder':'Revelar';
+    if(a.classList.contains('on')&&!b.parentNode.querySelector('.diff')){
+      var d=document.createElement('div'); d.className='diff';
+      ['Errei','Difícil','Bom','Fácil'].forEach(function(t){
+        var x=document.createElement('button'); x.textContent=t; x.setAttribute('aria-pressed','false');
+        x.addEventListener('click',function(){
+          Array.prototype.forEach.call(d.children,function(c){c.setAttribute('aria-pressed','false');});
+          x.setAttribute('aria-pressed','true');
+          S.dif[b.parentNode.querySelector('.q').textContent.slice(0,40)]=t; save();
+        });
+        d.appendChild(x);
+      });
+      b.parentNode.appendChild(d);
+    }
+  });});
+  /* nav */
+  $('#btnProf').addEventListener('click',function(){
+    S.prof=!S.prof; document.body.classList.toggle('prof',S.prof);
+    this.setAttribute('aria-pressed',S.prof); save();
+  });
+  $('#btnMov').addEventListener('click',function(){
+    S.mov=!S.mov; document.body.classList.toggle('reduzmov',S.mov);
+    this.setAttribute('aria-pressed',S.mov); save();
+  });
+  $('#btnMenu').addEventListener('click',function(){
+    var m=$('#menuBox'); m.hidden=!m.hidden; this.setAttribute('aria-expanded',!m.hidden);
+    if(!m.hidden)m.scrollIntoView&&m.scrollIntoView({behavior:S.mov?'auto':'smooth',block:'start'});
+  });
+  $('#btnReset').addEventListener('click',function(){
+    if(confirm('Apagar todo o progresso salvo deste capítulo?')){
+      try{localStorage.removeItem(LS_KEY);}catch(e){} location.reload();
+    }
+  });
+}
+
+
+function bind3(){
+  var he=$('#heroEye');
+  if(he)he.addEventListener('click',function(e){
+    var p=e.target.closest?e.target.closest('[data-seg]'):null; if(!p)return;
+    respondeHero(+p.dataset.seg); toca('abertura');
+  });
+  var hn=$('#hqNovo'); if(hn)hn.addEventListener('click',function(){sorteiaHero();});
+  $$('[data-viab]').forEach(function(b){b.addEventListener('click',function(){
+    $$('[data-viab]').forEach(function(x){x.classList.remove('ok');}); b.classList.add('ok');
+    var r=$('#rvViab'); r.innerHTML=VIAB[b.dataset.viab]; r.classList.add('on'); toca('s27');
+  });});
+  var br=$('#btnResetIAM'); if(br)br.addEventListener('click',function(){
+    S.qIAM={}; save(); montaQuiz('#quizIAM',Q_IAM,'qIAM');
+    $('#quizIAM').scrollIntoView({behavior:S.mov?'auto':'smooth',block:'start'});
+  });
+}
+function init3(){
+  sorteiaHero();
+  var peri={4:4,10:4,15:3};
+  var periS={4:4,10:4,15:3,3:2,9:2,5:2,11:2,16:1};
+  var mk=function(o){var a=[];for(var i=0;i<18;i++)a[i]=o[i]||0;return a;};
+  desenhaPolar($('#eyePeriR'),{scores:mk(peri),pad:20,labels:true,lfs:8,sw:1.2});
+  desenhaPolar($('#eyePeriS'),{scores:mk(periS),pad:20,labels:true,lfs:8,sw:1.2});
+  montaQuiz('#quizIAM',Q_IAM,'qIAM');
+  bind3();
+}
+
+/* ================= PROGRESSO ================= */
+function toca(id){ if(!S.vistas[id]){S.vistas[id]=1; save(); pintaMini();} }
+function observa(){
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting&&e.intersectionRatio>0.35){toca(e.target.id);} });
+  },{threshold:[0.35]});
+  $$('section.st').forEach(function(s){io.observe(s);});
+}
+function montaMenu(){
+  var g=$('#menuGrid'); if(!g)return;
+  var o='';
+  $$('section.st').forEach(function(s,i){
+    var h=s.querySelector('h2'); if(!h)return;
+    o+='<a class="btn ghost sm" style="display:block;text-align:left;text-decoration:none" href="#'+s.id+'"><span class="kick" style="margin:0">'+String(i+1).padStart(2,'0')+'</span>'+h.textContent+'</a>';
+  });
+  g.innerHTML=o;
+  $$('#menuGrid a').forEach(function(a){a.addEventListener('click',function(){$('#menuBox').hidden=true;});});
+}
+
+/* ================= INIT ================= */
+function init(){
+  document.body.classList.toggle('prof',!!S.prof);
+  document.body.classList.toggle('reduzmov',!!S.mov);
+  $('#btnProf').setAttribute('aria-pressed',!!S.prof);
+  $('#btnMov').setAttribute('aria-pressed',!!S.mov);
+  ilustraEstrada(); ilustraTracer(); ilustraSpect(); ilustraGated();
+  ilustraRev(false); ilustraMama(); ilustraDiaf(); ilustraBre();
+  desenhaDesdobra(); pinta17();
+  aplicaPadrao(S.padrao||'A');
+  desenhaEixo(S.eixo||'sa');
+  if(S.eixo){var be=$('[data-eixo="'+S.eixo+'"]'); if(be)be.classList.add('ok');}
+  init2(); init3();
+  montaMenu(); bind(); observa(); pintaMini();
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+</body>
+</html>
