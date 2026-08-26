@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suporte Básico de Vida (BLS) — Profa. Márcia · Universidade Ceuma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f2440; --tinta:#12233b; --fundo:#e9edf3; --card:#ffffff;
+  --azul:#1282A2; --azul-claro:#e3f2f6; --azul-fundo:#0b3c4c;
+  --vermelho:#c0392b; --vermelho-claro:#fdecea;
+  --verde:#1e8f5e; --verde-claro:#e7f6ee;
+  --ambar:#c8860d; --ambar-claro:#fdf3dd;
+  --cinza:#5d6b7e; --linha:#d7dee8;
+  --disp:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --assin:'Dancing Script','Trebuchet MS',cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;background:#0c1626;font-family:var(--disp);color:var(--tinta);overflow:hidden}
+body.mapa-on{overflow:auto}
+
+/* ---------- PALCO ---------- */
+#palco{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#slide-wrap{width:1280px;height:720px;transform-origin:center center;position:relative}
+.slide{position:absolute;inset:0;background:var(--fundo);display:none;overflow:hidden;
+  border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.slide.ativo{display:flex}
+
+/* trilho lateral de procedência */
+.trilho{width:118px;flex:0 0 118px;background:var(--navy);color:#fff;padding:18px 12px;
+  display:flex;flex-direction:column;gap:10px}
+.trilho .num{font-family:var(--mono);font-size:26px;font-weight:600;letter-spacing:-1px;color:#8fb4d6}
+.trilho .bloco{font-family:var(--mono);font-size:9.5px;line-height:1.35;text-transform:uppercase;
+  letter-spacing:.8px;color:#c8d8e8;border-top:1px solid rgba(255,255,255,.22);padding-top:8px}
+.chip{font-family:var(--mono);font-size:8.5px;line-height:1.3;padding:4px 6px;border-radius:4px;
+  font-weight:600;letter-spacing:.3px;display:block}
+.chip.g{background:var(--verde);color:#fff}
+.chip.a{background:var(--ambar);color:#fff}
+.chip.r{background:var(--vermelho);color:#fff}
+.chip.b{background:var(--azul);color:#fff}
+.trilho .marca{margin-top:auto;font-family:var(--mono);font-size:8px;color:#7f9ab5;line-height:1.4}
+
+/* corpo do slide */
+.corpo{flex:1;padding:34px 44px 30px;display:flex;flex-direction:column;min-width:0}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;
+  color:var(--azul);font-weight:600;margin-bottom:6px}
+h1.tit{font-size:40px;line-height:1.06;font-weight:900;margin:0 0 4px;letter-spacing:-.8px;color:var(--navy)}
+h2.tit{font-size:31px;line-height:1.1;font-weight:900;margin:0 0 4px;letter-spacing:-.6px;color:var(--navy)}
+.sub{font-size:15.5px;color:var(--cinza);margin:0 0 14px;font-weight:600;line-height:1.35}
+.conteudo{flex:1;font-size:16px;line-height:1.5;overflow:hidden}
+.rodape{border-top:1px solid var(--linha);margin-top:10px;padding-top:8px;
+  font-family:var(--mono);font-size:10px;color:var(--cinza);display:flex;justify-content:space-between;gap:14px}
+
+/* blocos de conteúdo */
+.grade{display:grid;gap:12px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
+.cx{background:var(--card);border:1px solid var(--linha);border-radius:10px;padding:13px 15px;
+  box-shadow:0 1px 0 rgba(15,36,64,.05)}
+.cx h4{margin:0 0 6px;font-size:15px;font-weight:900;color:var(--navy);letter-spacing:-.2px}
+.cx p{margin:0;font-size:14.5px;line-height:1.45}
+.cx.azul{border-left:5px solid var(--azul);background:var(--azul-claro)}
+.cx.verde{border-left:5px solid var(--verde);background:var(--verde-claro)}
+.cx.vermelha{border-left:5px solid var(--vermelho);background:var(--vermelho-claro)}
+.cx.ambar{border-left:5px solid var(--ambar);background:var(--ambar-claro)}
+.cx.navy{background:var(--navy);color:#fff;border:none}
+.cx.navy h4{color:#fff}
+ul.lista{margin:6px 0 0;padding-left:19px}
+ul.lista li{margin-bottom:6px;line-height:1.42}
+ul.lista li::marker{color:var(--azul);font-weight:900}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;padding:2px 7px;
+  border-radius:20px;letter-spacing:.5px;text-transform:uppercase;vertical-align:middle}
+.tag.novo{background:var(--vermelho);color:#fff}
+.tag.mant{background:var(--verde);color:#fff}
+.tag.peg{background:var(--ambar);color:#fff}
+b.az{color:var(--azul)} b.vm{color:var(--vermelho)} b.vd{color:var(--verde)} b.am{color:var(--ambar)}
+.numerao{font-family:var(--mono);font-size:34px;font-weight:600;color:var(--azul);line-height:1}
+.numerao.vm{color:var(--vermelho)} .numerao.vd{color:var(--verde)}
+.rot{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--cinza);font-weight:600}
+
+/* tabela */
+table.tb{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);
+  border-radius:10px;overflow:hidden;border:1px solid var(--linha)}
+table.tb th{background:var(--navy);color:#fff;text-align:left;padding:9px 11px;font-size:12.5px;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+table.tb td{padding:9px 11px;border-top:1px solid var(--linha);line-height:1.35}
+table.tb tr:nth-child(even) td{background:#f7f9fc}
+table.tb td.dest{font-weight:800;color:var(--navy)}
+
+/* fluxo */
+.fluxo{display:flex;align-items:stretch;gap:8px}
+.passo{flex:1;background:var(--card);border:1px solid var(--linha);border-top:5px solid var(--azul);
+  border-radius:9px;padding:11px 12px}
+.passo .p-n{font-family:var(--mono);font-size:11px;color:var(--azul);font-weight:600}
+.passo h5{margin:2px 0 5px;font-size:14.5px;font-weight:900;color:var(--navy);line-height:1.15}
+.passo p{margin:0;font-size:13px;line-height:1.38;color:#3a4a60}
+.passo.vm{border-top-color:var(--vermelho)} .passo.vm .p-n{color:var(--vermelho)}
+.passo.vd{border-top-color:var(--verde)} .passo.vd .p-n{color:var(--verde)}
+.passo.am{border-top-color:var(--ambar)} .passo.am .p-n{color:var(--ambar)}
+.seta{align-self:center;font-size:22px;color:var(--cinza);font-weight:900}
+
+/* capa */
+.capa{background:linear-gradient(135deg,#0b1c33 0%,#123a52 55%,#0f2440 100%);color:#fff}
+.capa .corpo{justify-content:center}
+.capa h1{font-size:72px;line-height:.95;color:#fff;letter-spacing:-2.5px;margin:0}
+.capa .lin{width:120px;height:6px;background:var(--vermelho);margin:20px 0 22px;border-radius:3px}
+.capa .quem{font-size:20px;font-weight:700;color:#dbe8f2}
+.capa .inst{font-family:var(--mono);font-size:12.5px;letter-spacing:2px;color:#8fb4d6;text-transform:uppercase;margin-top:4px}
+.capa .frase{font-family:var(--assin);font-size:30px;color:#ffd27a;margin-top:26px}
+.capa .kicker{color:#7fd4e8}
+.capa .rodape{border-top-color:rgba(255,255,255,.2);color:#8fb4d6}
+
+/* seção divisória */
+.divisor{background:var(--navy);color:#fff}
+.divisor .corpo{justify-content:center}
+.divisor h1{font-size:58px;color:#fff;letter-spacing:-1.8px;margin:0 0 10px}
+.divisor .sub{color:#a9c2da;font-size:19px}
+.divisor .rodape{border-top-color:rgba(255,255,255,.2);color:#8fb4d6}
+.divisor .kicker{color:#7fd4e8}
+
+/* revelar */
+.rev{position:relative}
+body.ocultar .rev > .rev-in{visibility:hidden}
+body.ocultar .rev::after{content:"Responda primeiro — clique ou tecla R para revelar";
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:repeating-linear-gradient(45deg,#dde4ee,#dde4ee 12px,#d3dbe7 12px,#d3dbe7 24px);
+  border:2px dashed var(--cinza);border-radius:10px;font-family:var(--mono);font-size:13px;
+  color:#44536a;cursor:pointer;text-align:center;padding:10px}
+body.ocultar .rev.aberto::after{display:none}
+body.ocultar .rev.aberto > .rev-in{visibility:visible}
+
+/* alternativas */
+.alt{background:var(--card);border:1px solid var(--linha);border-radius:8px;padding:9px 12px;
+  margin-bottom:7px;font-size:14.5px;line-height:1.35;display:flex;gap:10px}
+.alt .l{font-family:var(--mono);font-weight:600;color:var(--cinza)}
+.alt.certa{background:var(--verde-claro);border-color:var(--verde);border-left:5px solid var(--verde)}
+.alt.certa .l{color:var(--verde)}
+.enunciado{background:var(--card);border:1px solid var(--linha);border-left:5px solid var(--navy);
+  border-radius:9px;padding:12px 15px;font-size:14.5px;line-height:1.45;margin-bottom:11px}
+.banca{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--vermelho);
+  letter-spacing:1.4px;text-transform:uppercase}
+
+/* metrônomo / interativos */
+.btn{font-family:var(--mono);font-size:12px;font-weight:600;padding:9px 15px;border-radius:7px;
+  border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer;letter-spacing:.6px}
+.btn:hover{background:var(--azul);border-color:var(--azul)}
+.btn.gh{background:transparent;color:var(--navy)}
+.btn.gh:hover{background:var(--azul);color:#fff}
+.metro{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+#bola{width:64px;height:64px;border-radius:50%;background:var(--vermelho);flex:0 0 64px;
+  transition:transform .07s linear,opacity .12s linear;opacity:.35}
+#bola.bate{transform:scale(1.32);opacity:1}
+input[type=range]{width:230px;accent-color:var(--azul)}
+.relogio{display:flex;align-items:flex-end;gap:4px;height:120px}
+.relogio .bar{flex:1;background:var(--azul);border-radius:3px 3px 0 0;position:relative;transition:height .2s}
+.relogio .bar span{position:absolute;bottom:-17px;left:0;right:0;text-align:center;
+  font-family:var(--mono);font-size:9.5px;color:var(--cinza)}
+.relogio .bar.on{background:var(--vermelho)}
+
+/* barra superior + progresso */
+#barra{position:fixed;top:0;left:0;right:0;height:34px;background:#0c1626;color:#8fb4d6;
+  display:flex;align-items:center;gap:8px;padding:0 10px;font-family:var(--mono);font-size:10.5px;z-index:40}
+#barra button{font-family:var(--mono);font-size:10px;background:transparent;color:#cfe0f0;
+  border:1px solid #2b4055;border-radius:5px;padding:4px 8px;cursor:pointer}
+#barra button:hover,#barra button.on{background:var(--azul);border-color:var(--azul);color:#fff}
+#barra .tit-b{margin-left:auto;color:#5f7d99}
+#prog{position:fixed;bottom:0;left:0;right:0;height:5px;background:#132234;z-index:40;cursor:pointer}
+#prog i{display:block;height:100%;background:var(--vermelho);width:0}
+body.aprs #barra,body.aprs #prog{display:none}
+body.aprs .trilho{display:none}
+body.aprs .corpo{padding:44px 60px 36px}
+body.aprs h1.tit{font-size:46px} body.aprs h2.tit{font-size:36px}
+body.aprs .conteudo{font-size:17.5px}
+body.aprs .cx p,body.aprs ul.lista li{font-size:16px}
+body.aprs .rodape{font-size:11px}
+
+/* notas do professor */
+#notas{position:fixed;right:14px;bottom:16px;width:330px;max-height:46vh;overflow:auto;
+  background:#0c1626;border:1px solid #2b4055;border-radius:10px;padding:14px 16px;color:#d8e6f2;
+  font-size:13px;line-height:1.45;z-index:45;display:none}
+#notas.on{display:block}
+#notas h5{margin:0 0 7px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.4px;
+  text-transform:uppercase;color:#7fd4e8}
+#notas b{color:#ffd27a}
+
+/* mapa */
+#mapa{position:fixed;inset:0;background:#0c1626f2;z-index:60;padding:44px;overflow:auto;display:none}
+#mapa.on{display:block}
+#mapa h3{color:#fff;font-size:22px;margin:0 0 16px}
+#mapa .gm{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px}
+#mapa .it{background:#132234;border:1px solid #2b4055;border-radius:8px;padding:9px 11px;
+  color:#cfe0f0;font-size:12.5px;cursor:pointer;line-height:1.3}
+#mapa .it:hover{border-color:var(--azul);background:#17304a}
+#mapa .it b{color:#7fd4e8;font-family:var(--mono);font-size:11px}
+
+@media print{
+  html,body{overflow:visible;background:#fff}
+  #barra,#prog,#notas,#mapa{display:none}
+  #palco{position:static}#slide-wrap{transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;page-break-after:always;height:720px;box-shadow:none}
+  body.ocultar .rev::after{display:none}
+  body.ocultar .rev > .rev-in{visibility:visible}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body class="ocultar">
+<div id="barra">
+  <button id="bPrev">◀</button><button id="bNext">▶</button>
+  <span id="cont">1 / 38</span>
+  <button id="bOc" class="on">O · ocultar respostas</button>
+  <button id="bNot">N · notas</button>
+  <button id="bMap">M · mapa</button>
+  <button id="bApr">P · apresentar</button>
+  <button id="bFull">F · tela cheia</button>
+  <span class="tit-b">BLS · Profa. Márcia · Universidade Ceuma</span>
+</div>
+<div id="palco"><div id="slide-wrap">
+
+<!-- 01 CAPA -->
+<section class="slide capa" data-bloco="Abertura" data-chips="b|AHA 2025" data-fonte="AHA Guidelines for CPR and ECC, 2025" data-nota="Abra dizendo: <b>hoje ninguém sai daqui sem saber fazer três coisas</b> — reconhecer uma PCR em 10 segundos, comprimir com qualidade e ligar um DEA. Pergunte quem já viu uma PCR de verdade.">
+ <div class="corpo">
+  <div class="kicker">Emergências · Medicina · Universidade Ceuma</div>
+  <h1>Suporte<br>Básico de Vida</h1>
+  <div class="lin"></div>
+  <div class="quem">Profa. Márcia</div>
+  <div class="inst">Universidade Ceuma · Curso de Medicina</div>
+  <div class="frase">Quem chega primeiro decide o desfecho.</div>
+ </div>
+</section>
+
+<!-- 02 COMO FUNCIONA -->
+<section class="slide" data-bloco="Abertura" data-chips="b|Método da aula" data-fonte="Aula presencial — Profa. Márcia" data-nota="Explique os atalhos só uma vez. O modo <b>ocultar respostas</b> está ligado: os alunos respondem antes de ver.">
+ <div class="corpo">
+  <div class="kicker">Como esta aula funciona</div>
+  <h1 class="tit">Você responde antes de eu revelar</h1>
+  <p class="sub">BLS não se aprende assistindo. Cada bloco termina com uma decisão sua.</p>
+  <div class="conteudo">
+   <div class="grade g3">
+    <div class="cx azul"><h4>1 · Reconhecer</h4><p>Segurança, resposta, respiração e pulso — o relógio já está correndo.</p></div>
+    <div class="cx vermelha"><h4>2 · Comprimir</h4><p>Profundidade, frequência, retorno, fração. É aqui que se ganha ou se perde.</p></div>
+    <div class="cx verde"><h4>3 · Ventilar</h4><p>Abrir a via aérea, 30:2, e a regra de nunca hiperventilar.</p></div>
+    <div class="cx ambar"><h4>4 · Desfibrilar</h4><p>DEA em três passos — o único tratamento que reverte a FV.</p></div>
+    <div class="cx"><h4>5 · Especiais</h4><p>Criança, lactente, engasgo, gestante, afogamento, opioide.</p></div>
+    <div class="cx navy"><h4>6 · Fixar</h4><p>Erros que mais aparecem na prática e revisão de 60 segundos.</p></div>
+   </div>
+   <div class="cx ambar" style="margin-top:14px"><h4>Combinado da sala</h4><p>Em todo slide com caixa hachurada, <b>escreva sua conduta antes</b>. Eu só revelo depois que alguém falar em voz alta.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 03 O QUE MUDOU -->
+<section class="slide" data-bloco="Abertura" data-chips="r|Mudou em 2025;;b|AHA 2025" data-fonte="AHA 2025 Guidelines for CPR &amp; ECC (Circulation, 22/10/2025) — destaques" data-nota="Este slide existe porque <b>muito material em circulação ainda é de 2020</b>. Diga aos alunos: se o cartaz do hospital estiver diferente, é porque ainda não foi atualizado. Prazo da AHA para migração das aulas: março de 2026.">
+ <div class="corpo">
+  <div class="kicker">Ponto de partida</div>
+  <h1 class="tit">O que mudou nas diretrizes de 2025</h1>
+  <p class="sub">Primeira revisão completa desde 2020. O essencial do BLS não mudou — mudaram quatro coisas que caem em prova.</p>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx vermelha"><h4>Uma única Cadeia de Sobrevivência <span class="tag novo">novo</span></h4><p>As cadeias separadas (adulto/pediátrica, intra/extra-hospitalar) viraram <b class="vm">uma cadeia universal de 6 elos</b>. Recém-nascido tem cadeia própria.</p></div>
+    <div class="cx vermelha"><h4>Engasgo: tapas nas costas primeiro <span class="tag novo">novo</span></h4><p>Adulto e criança: <b class="vm">5 tapas dorsais + 5 compressões abdominais</b>, alternando, começando pelas costas.</p></div>
+    <div class="cx vermelha"><h4>Naloxona entrou no algoritmo <span class="tag novo">novo</span></h4><p>Suspeita de overdose por opioide agora aparece explicitamente no fluxo do BLS, com algoritmo próprio.</p></div>
+    <div class="cx vermelha"><h4>Lactente: some a técnica dos 2 dedos <span class="tag novo">novo</span></h4><p>Comprimir com <b class="vm">2 polegares</b> ou com a <b class="vm">região tenar de uma mão</b>. Dois dedos não atingem profundidade.</p></div>
+   </div>
+   <div class="cx verde" style="margin-top:12px"><h4>O que NÃO mudou <span class="tag mant">mantido</span></h4><p>Comprimir primeiro (C-A-B) · 100–120/min · pelo menos 5 cm (sem passar de 6) · 30:2 · retorno total do tórax · pausas &lt; 10 s · choque o mais cedo possível.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 04 DIVISOR 1 -->
+<section class="slide divisor" data-bloco="Bloco 1" data-chips="b|Reconhecer" data-fonte="—" data-nota="Transição. Frase de abertura: <b>a PCR não é diagnosticada por exame, é diagnosticada em 10 segundos com a mão e o olho.</b>">
+ <div class="corpo">
+  <div class="kicker">Bloco 1 de 5</div>
+  <h1>Reconhecer</h1>
+  <p class="sub">Segurança · resposta · respiração · pulso — em menos tempo do que leva para pensar.</p>
+ </div>
+</section>
+
+<!-- 05 RELOGIO -->
+<section class="slide" data-bloco="Reconhecer" data-chips="b|Fisiopatologia;;a|Curva ilustrativa" data-fonte="Conceito clássico da desfibrilação precoce: queda de 7–10% de sobrevida por minuto sem RCP" data-nota="Puxe o cursor lentamente e vá narrando: <b>cada minuto que você gasta procurando o carrinho é uma faixa que some.</b> Deixe claro que a curva é ilustrativa — o número que interessa é a ordem de grandeza.">
+ <div class="corpo">
+  <div class="kicker">Por que a pressa</div>
+  <h1 class="tit">O relógio da parada</h1>
+  <p class="sub">Sem RCP, a chance de sobreviver cai algo entre <b class="vm">7% e 10% a cada minuto</b>. A RCP não reverte a parada — ela <b class="vd">segura o relógio</b> até o choque chegar.</p>
+  <div class="conteudo">
+   <div class="relogio" id="relogio"></div>
+   <div style="margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+    <span class="rot">Minutos até a primeira desfibrilação</span>
+    <input type="range" id="slMin" min="0" max="10" value="0">
+    <span class="numerao vm" id="lbMin">0 min</span>
+   </div>
+   <div class="cx azul" style="margin-top:16px"><h4>Traduzindo para o plantão</h4><p>O cérebro tolera cerca de <b class="az">4 a 6 minutos</b> sem fluxo antes da lesão irreversível. Compressão de qualidade gera só <b>~20–30%</b> do débito normal — por isso ela não pode parar.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 06 DEFINICOES -->
+<section class="slide" data-bloco="Reconhecer" data-chips="g|Conceito;;a|Pegadinha" data-fonte="AHA 2025 — Suporte Básico de Vida no adulto" data-nota="Cobre a diferença entre <b>morte súbita e PCR</b>. Pergunte: um paciente em choque profundo com pulso filiforme está em PCR? Não — mas está a caminho.">
+ <div class="corpo">
+  <div class="kicker">Vocabulário que a prova cobra</div>
+  <h1 class="tit">O que é, afinal, uma PCR</h1>
+  <div class="conteudo">
+   <div class="grade g3">
+    <div class="cx azul"><h4>Parada cardiorrespiratória</h4><p>Cessação súbita da atividade mecânica do coração, confirmada por <b>irresponsividade + ausência de respiração normal + ausência de pulso</b>.</p></div>
+    <div class="cx"><h4>Morte súbita cardíaca</h4><p>Morte natural inesperada por causa cardíaca, em geral <b>até 1 hora</b> do início dos sintomas. A PCR é o evento; a morte súbita é o desfecho.</p></div>
+    <div class="cx"><h4>RCE</h4><p>Retorno da circulação espontânea: pulso e pressão de volta. É o objetivo do BLS — não o fim do atendimento.</p></div>
+   </div>
+   <div class="grade g2" style="margin-top:12px">
+    <div class="cx vermelha"><h4>Os 4 ritmos de PCR</h4><p><b class="vm">Chocáveis:</b> fibrilação ventricular (FV) e taquicardia ventricular sem pulso (TVSP).<br><b>Não chocáveis:</b> assistolia e AESP (atividade elétrica sem pulso).</p></div>
+    <div class="cx ambar"><h4>Pegadinha clássica <span class="tag peg">atenção</span></h4><p>No BLS <b>você não precisa nomear o ritmo</b>. O DEA decide se choca. Nomear ritmo é tarefa do ACLS, com monitor.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 07 CADEIA -->
+<section class="slide" data-bloco="Reconhecer" data-chips="r|Mudou em 2025;;b|AHA 2025" data-fonte="AHA 2025 — Cadeia de Sobrevivência universal (adulto e pediátrica, intra e extra-hospitalar)" data-nota="Mostre que os <b>três primeiros elos são BLS puro</b> — e são feitos por quem estiver ali, inclusive leigo. Do quarto elo em diante é ACLS.">
+ <div class="corpo">
+  <div class="kicker">Sistema de atendimento</div>
+  <h1 class="tit">Uma cadeia só, seis elos</h1>
+  <p class="sub">Em 2025 a AHA unificou as cadeias que antes eram separadas. Os três primeiros elos são exatamente o que você aprende hoje.</p>
+  <div class="conteudo">
+   <div class="fluxo">
+    <div class="passo vm"><div class="p-n">ELO 1</div><h5>Reconhecer e acionar</h5><p>Identificar a PCR e chamar ajuda / SAMU 192 ou o código azul.</p></div>
+    <div class="passo vm"><div class="p-n">ELO 2</div><h5>RCP de alta qualidade</h5><p>Comprimir forte, rápido e quase sem pausas.</p></div>
+    <div class="passo vm"><div class="p-n">ELO 3</div><h5>Desfibrilação</h5><p>DEA ou desfibrilador manual, o mais cedo possível.</p></div>
+    <div class="passo"><div class="p-n">ELO 4</div><h5>Ressuscitação avançada</h5><p>Via aérea, drogas, causas reversíveis — ACLS.</p></div>
+    <div class="passo"><div class="p-n">ELO 5</div><h5>Cuidados pós-PCR</h5><p>Alvos de PA, ventilação, temperatura, coronariografia.</p></div>
+    <div class="passo vd"><div class="p-n">ELO 6</div><h5>Recuperação</h5><p>Reabilitação, suporte psicológico ao paciente e à família.</p></div>
+   </div>
+   <div class="grade g2" style="margin-top:14px">
+    <div class="cx azul"><h4>Extra-hospitalar</h4><p>O elo mais frágil é o <b class="az">primeiro</b>: alguém precisa reconhecer e começar. Só cerca de 1 em cada 10 vítimas sobrevive.</p></div>
+    <div class="cx vermelha"><h4>Intra-hospitalar</h4><p>Aqui o elo frágil é a <b class="vm">vigilância</b>: a maioria das PCRs de enfermaria é precedida por horas de deterioração ignorada.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 08 SEGURANCA -->
+<section class="slide" data-bloco="Reconhecer" data-chips="g|AHA 2025;;r|Regra de ouro" data-fonte="AHA 2025 — sequência do BLS no adulto" data-nota="Frase para repetir três vezes: <b>socorrista morto não socorre ninguém.</b> Peça exemplos de cena insegura no Maranhão: fiação, moto no asfalto quente, agressão em andamento.">
+ <div class="corpo">
+  <div class="kicker">Passo 1</div>
+  <h1 class="tit">Segurança da cena — antes de qualquer coisa</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx vermelha"><h4>Olhe para você primeiro</h4><ul class="lista"><li>Trânsito, fiação exposta, água, fogo, gás</li><li>Agressor ainda no local</li><li>Estrutura instável, animais</li><li>Risco biológico — <b class="vm">calce luvas</b>, use barreira para ventilação</li></ul></div>
+    <div class="cx azul"><h4>Depois olhe para o cenário</h4><ul class="lista"><li>Quantas vítimas existem?</li><li>Há alguém que possa ajudar?</li><li>O piso é firme? (colchão prejudica a compressão)</li><li>Onde está o DEA mais próximo?</li></ul></div>
+   </div>
+   <div class="cx ambar" style="margin-top:12px"><h4>No hospital, "segurança" tem outro rosto <span class="tag peg">atenção</span></h4><p>Cama alta demais, grades levantadas, bomba de infusão no caminho, cabeceira encostada na parede. <b class="am">Baixe a cabeceira, abaixe a cama, tire a grade</b> — isso é segurança da cena intra-hospitalar.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 09 CHAMAR -->
+<section class="slide" data-bloco="Reconhecer" data-chips="g|AHA 2025" data-fonte="AHA 2025 — ativação do serviço de emergência e obtenção do DEA" data-nota="Ensine a <b>apontar com o dedo e nomear a pessoa</b>: 'você, de camisa azul, ligue 192 e volte para me dizer'. Difusão de responsabilidade mata.">
+ <div class="corpo">
+  <div class="kicker">Passo 2</div>
+  <h1 class="tit">Não responde? Grite, acione, peça o DEA</h1>
+  <p class="sub">Toque nos ombros e chame alto: "Você está bem?" Sem resposta = vítima irresponsiva.</p>
+  <div class="conteudo">
+   <div class="fluxo">
+    <div class="passo vm"><div class="p-n">A</div><h5>Grite por ajuda</h5><p>Chame quem estiver perto. Você não vai conseguir sozinho.</p></div>
+    <div class="seta">→</div>
+    <div class="passo vm"><div class="p-n">B</div><h5>Acione o serviço</h5><p>SAMU <b>192</b> · Bombeiros <b>193</b> · no hospital, o código de parada. Use o viva-voz do celular e fique com a vítima.</p></div>
+    <div class="seta">→</div>
+    <div class="passo vm"><div class="p-n">C</div><h5>Peça o DEA</h5><p>Nomeie a pessoa e mande buscar o DEA e o material de emergência.</p></div>
+   </div>
+   <div class="grade g2" style="margin-top:14px">
+    <div class="cx azul"><h4>Sozinho, com celular</h4><p>Ligue em <b class="az">viva-voz</b>, não saia de perto e comece a comprimir enquanto fala. O atendente do SAMU orienta RCP por telefone.</p></div>
+    <div class="cx ambar"><h4>Sozinho, sem celular <span class="tag peg">exceção</span></h4><p>Adulto com colapso súbito presenciado: <b class="am">vá buscar ajuda/DEA primeiro</b> (provável FV). Criança, lactente, afogamento ou asfixia: faça <b>2 minutos de RCP antes</b> de sair — aqui a causa costuma ser hipóxia.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 10 PULSO -->
+<section class="slide" data-bloco="Reconhecer" data-chips="g|AHA 2025;;r|10 segundos" data-fonte="AHA 2025 — checagem simultânea de respiração e pulso, máximo 10 segundos" data-nota="Cronometre com o celular na frente da turma: <b>10 segundos é muito menos do que eles imaginam</b>. Faça um aluno demonstrar em outro.">
+ <div class="corpo">
+  <div class="kicker">Passo 3</div>
+  <h1 class="tit">Respiração e pulso, ao mesmo tempo, em ≤ 10 s</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>Respiração — olhe o tórax</h4><p>Procure elevação torácica <b>normal</b>. Sem elevação, ou só <b class="vm">gasping</b>, conta como ausente.</p></div>
+    <div class="cx vermelha"><h4>Pulso — carótida no adulto</h4><p>Dois dedos na cartilagem tireóidea, deslize para o sulco lateral. <b class="vm">Nunca palpe as duas carótidas juntas.</b> Criança: carótida ou femoral. Lactente: <b>braquial</b>.</p></div>
+   </div>
+   <div class="cx ambar" style="margin-top:12px"><h4>Por que 10 segundos e não mais <span class="tag peg">regra</span></h4><p>Profissional treinado erra a palpação em cerca de <b class="am">1 de cada 3 tentativas</b>. Na dúvida sobre o pulso, a diretriz é clara: <b class="vm">trate como PCR e comece a comprimir</b>. O risco de comprimir quem tem pulso é muito menor que o de não comprimir quem não tem.</p></div>
+   <div class="cx" style="margin-top:12px"><h4>Detalhe que a prova adora</h4><p>Para o <b>leigo</b>, a checagem de pulso <b>não é exigida</b>: irresponsivo + respiração ausente ou anormal já é indicação de iniciar compressões. A palpação é do profissional de saúde.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 11 GASPING -->
+<section class="slide" data-bloco="Reconhecer" data-chips="r|Erro mais comum;;a|Pegadinha" data-fonte="AHA 2025 — respiração agônica (gasping) é sinal de PCR" data-nota="Imite o gasping em voz alta — ruído de ronco ou suspiro isolado. Conte que é o motivo nº1 de leigos <b>não</b> iniciarem RCP: 'ele ainda estava respirando'.">
+ <div class="corpo">
+  <div class="kicker">A armadilha número 1</div>
+  <h1 class="tit">Gasping não é respiração</h1>
+  <p class="sub">É respiração agônica: reflexo do tronco encefálico já em hipóxia. Aparece em cerca de <b class="vm">40%</b> das PCRs presenciadas nos primeiros minutos.</p>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx vermelha"><h4>Como o gasping se parece</h4><ul class="lista"><li>Suspiros isolados, lentos e irregulares</li><li>Ruído de ronco, engasgo ou "puxão de ar"</li><li>Boca aberta, sem elevação eficaz do tórax</li><li>Vai <b class="vm">diminuindo</b> a cada minuto até sumir</li></ul></div>
+    <div class="cx verde"><h4>O que fazer</h4><p>Tratar exatamente como <b class="vd">ausência de respiração</b>: iniciar compressões imediatamente.</p><p style="margin-top:8px">Paradoxalmente, gasping é <b>bom sinal prognóstico</b> — indica PCR recente e tronco ainda perfundido. Nunca é motivo para esperar.</p></div>
+   </div>
+   <div class="cx navy" style="margin-top:14px"><h4>Frase para levar para o plantão</h4><p style="font-size:17px">Se está irresponsivo e <b>não respira direito</b>, não existe "vamos observar". Existe comprimir.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 12 TRES SAIDAS -->
+<section class="slide" data-bloco="Reconhecer" data-chips="g|AHA 2025;;b|Algoritmo" data-fonte="AHA 2025 — algoritmo de BLS no adulto para profissionais de saúde" data-nota="Este é o slide-mapa do bloco. Peça que um aluno percorra o fluxo em voz alta com um caso: 'homem de 60 anos cai no corredor'.">
+ <div class="corpo">
+  <div class="kicker">Fechando o bloco 1</div>
+  <h1 class="tit">A checagem tem três saídas — e só três</h1>
+  <div class="conteudo">
+   <div class="fluxo" style="align-items:stretch">
+    <div class="passo vd"><div class="p-n">SAÍDA 1</div><h5>Respira normal + tem pulso</h5><p>Não é PCR. Posição lateral de segurança se não houver trauma, monitorize, procure a causa e aguarde o serviço de emergência.</p></div>
+    <div class="passo am"><div class="p-n">SAÍDA 2</div><h5>Não respira + TEM pulso</h5><p>Parada respiratória. <b>Ventilação de resgate: 1 ventilação a cada 6 s (10/min)</b>. Recheque o pulso a cada 2 min. Suspeita de opioide → naloxona.</p></div>
+    <div class="passo vm"><div class="p-n">SAÍDA 3</div><h5>Não respira + SEM pulso</h5><p>É PCR. <b>Comprima agora</b>: ciclos de 30:2 e DEA assim que chegar.</p></div>
+   </div>
+   <div class="cx ambar" style="margin-top:16px"><h4>Onde os alunos erram <span class="tag peg">atenção</span></h4><p>Na saída 2, muita gente começa a comprimir "por garantia". Se há pulso, comprimir pode induzir arritmia e atrapalha a ventilação que o paciente precisa. E na saída 3, muita gente vai buscar o ambu antes de comprimir — <b class="am">a compressão vem primeiro, sempre (C-A-B)</b>.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 13 DIVISOR 2 -->
+<section class="slide divisor" data-bloco="Bloco 2" data-chips="b|Comprimir" data-fonte="—" data-nota="Transição. Diga: <b>tudo o que vem depois depende de o sangue estar circulando agora.</b>">
+ <div class="corpo">
+  <div class="kicker">Bloco 2 de 5</div>
+  <h1>Comprimir</h1>
+  <p class="sub">A única intervenção do BLS que funciona em todos os ritmos, em todas as idades, o tempo todo.</p>
+ </div>
+</section>
+
+<!-- 14 CINCO NUMEROS -->
+<section class="slide" data-bloco="Comprimir" data-chips="g|AHA 2025;;r|Decorar" data-fonte="AHA 2025 — componentes da RCP de alta qualidade no adulto" data-nota="Estes cinco números são o coração da aula. Faça a turma repetir em voz alta: <b>5, 110, total, 10, 80</b>.">
+ <div class="corpo">
+  <div class="kicker">RCP de alta qualidade</div>
+  <h1 class="tit">Os cinco números que você precisa decorar</h1>
+  <div class="conteudo">
+   <div class="grade g3">
+    <div class="cx vermelha"><div class="numerao vm">≥5 cm</div><div class="rot">Profundidade</div><p style="margin-top:6px">Pelo menos 5 cm no adulto, <b class="vm">sem ultrapassar 6 cm</b>. Raso não gera fluxo; fundo demais causa lesão.</p></div>
+    <div class="cx vermelha"><div class="numerao vm">100–120</div><div class="rot">Por minuto</div><p style="margin-top:6px">Abaixo disso o fluxo cai; acima de 120 não sobra tempo para o coração encher.</p></div>
+    <div class="cx vermelha"><div class="numerao vm">Total</div><div class="rot">Retorno do tórax</div><p style="margin-top:6px">Deixar o tórax voltar por inteiro é o que permite o <b>enchimento</b>. Não se apoie no peito.</p></div>
+    <div class="cx ambar"><div class="numerao">&lt;10 s</div><div class="rot">Pausas máximas</div><p style="margin-top:6px">Checar ritmo, trocar socorrista, intubar — tudo em menos de 10 segundos.</p></div>
+    <div class="cx ambar"><div class="numerao">&gt;80%</div><div class="rot">Fração de compressão</div><p style="margin-top:6px">Porcentagem do tempo de PCR realmente comprimindo. Mínimo aceitável 60%; alvo &gt;80%.</p></div>
+    <div class="cx navy"><h4>Como isso vira nota na prova</h4><p>Enunciados de qualidade de RCP quase sempre pedem a alternativa que reúne <b>frequência + profundidade + retorno + fração</b> na mesma frase.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 15 METRONOMO -->
+<section class="slide" data-bloco="Comprimir" data-chips="b|Prática;;g|100–120/min" data-fonte="AHA 2025 — frequência de 100 a 120 compressões por minuto" data-nota="Ligue o metrônomo e mande <b>todo mundo comprimir a mesa</b> por 30 segundos. Depois pergunte quem cansou. Esse cansaço é o argumento da troca a cada 2 minutos.">
+ <div class="corpo">
+  <div class="kicker">Vamos sentir o ritmo</div>
+  <h1 class="tit">Metrônomo da compressão</h1>
+  <p class="sub">Comprima na mesa junto com o som. Esse é o ritmo que você vai precisar sustentar por 2 minutos sem cair.</p>
+  <div class="conteudo">
+   <div class="metro">
+    <div id="bola"></div>
+    <button class="btn" id="bMetro">▶ Iniciar</button>
+    <input type="range" id="slBpm" min="90" max="130" value="110">
+    <span class="numerao" id="lbBpm">110/min</span>
+   </div>
+   <div class="grade g2" style="margin-top:22px">
+    <div class="cx verde"><h4>Músicas que dão o compasso</h4><p>Qualquer coisa entre 100 e 120 bpm serve como âncora mental — a tradição das aulas de BLS usa <i>Stayin' Alive</i> (~103 bpm). No plantão, use o metrônomo do desfibrilador ou o feedback do monitor.</p></div>
+    <div class="cx ambar"><h4>O erro do adrenalinado <span class="tag peg">atenção</span></h4><p>Sob estresse, a tendência é <b class="am">acelerar</b> para 140–150/min e comprimir raso. Frequência alta com profundidade baixa gera quase nenhum débito. Quem lidera precisa cronometrar em voz alta.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 16 TECNICA -->
+<section class="slide" data-bloco="Comprimir" data-chips="g|AHA 2025;;b|Técnica" data-fonte="AHA 2025 — posicionamento das mãos na metade inferior do esterno" data-nota="Demonstre no manequim ou em um voluntário (sem comprimir!). Enfatize <b>ombro sobre a mão, cotovelo travado, quadril como dobradiça</b>.">
+ <div class="corpo">
+  <div class="kicker">Como o corpo se organiza</div>
+  <h1 class="tit">Mão, ombro, quadril e superfície</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>As mãos</h4><ul class="lista"><li>Região <b class="az">tenar/hipotenar</b> de uma mão na <b>metade inferior do esterno</b> — centro do tórax, entre os mamilos</li><li>Outra mão por cima, dedos entrelaçados e <b>levantados</b> (não pressione as costelas)</li><li>Nunca sobre o apêndice xifoide</li></ul></div>
+    <div class="cx azul"><h4>O corpo</h4><ul class="lista"><li>Ombros na vertical <b class="az">acima</b> das mãos</li><li>Cotovelos totalmente estendidos e travados</li><li>Movimento sai do <b>quadril</b>, não dos braços — quem usa braço cansa em 40 segundos</li><li>Ajoelhe-se ao lado do tórax; na cama, use degrau ou suba na cama</li></ul></div>
+   </div>
+   <div class="grade g2" style="margin-top:12px">
+    <div class="cx vermelha"><h4>Superfície firme</h4><p>Colchão absorve parte da compressão. Use <b class="vm">tábua rígida</b> ou o chão. Cabeceira <b>zerada</b>.</p></div>
+    <div class="cx ambar"><h4>Fraturas de costela <span class="tag peg">atenção</span></h4><p>São <b>esperadas</b> em até 1/3 dos casos, sobretudo em idosos. Ouvir o estalido <b class="am">não é motivo para reduzir a profundidade</b> — reavalie a posição da mão e siga.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 17 RETORNO -->
+<section class="slide" data-bloco="Comprimir" data-chips="b|Fisiologia;;g|AHA 2025" data-fonte="AHA 2025 — retorno total do tórax e fração de compressão torácica" data-nota="Explique a fisiologia: <b>a descompressão é a diástole artificial</b>. Quem se apoia no peito zera o enchimento e a pressão de perfusão coronariana.">
+ <div class="corpo">
+  <div class="kicker">A metade esquecida</div>
+  <h1 class="tit">A descompressão vale tanto quanto a compressão</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>O que acontece quando o tórax sobe</h4><p>A recuperação elástica gera <b class="az">pressão negativa intratorácica</b>, que suga sangue de volta para o coração. É a "diástole" da RCP: sem ela, não há o que ejetar na compressão seguinte.</p><p style="margin-top:8px">É também aqui que se forma a <b>pressão de perfusão coronariana</b> — o determinante mais forte de RCE.</p></div>
+    <div class="cx vermelha"><h4>Apoiar-se no peito ("leaning")</h4><ul class="lista"><li>Reduz o retorno venoso</li><li>Aumenta a pressão intratorácica média</li><li>Derruba a perfusão coronariana e cerebral</li><li>É <b class="vm">invisível</b> sem dispositivo de feedback — por isso a troca a cada 2 min</li></ul></div>
+   </div>
+   <div class="cx verde" style="margin-top:12px"><h4>Fração de compressão torácica</h4><p>Se a PCR durou 20 minutos e você comprimiu por 16, sua fração foi de 80%. <b class="vd">Cada pausa evitável rouba pontos dessa conta</b>: carregue o desfibrilador durante a compressão, prepare a medicação antes da pausa, e troque de socorrista exatamente no momento da checagem de ritmo.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 18 ERROS -->
+<section class="slide" data-bloco="Comprimir" data-chips="a|Pegadinhas;;r|Erros críticos" data-fonte="AHA 2025 — erros que reduzem a qualidade da RCP" data-nota="Peça para a turma apontar qual desses erros eles já viram em estágio. Costuma render bastante discussão.">
+ <div class="corpo">
+  <div class="kicker">O que estraga uma RCP tecnicamente correta</div>
+  <h1 class="tit">Seis erros que matam a qualidade</h1>
+  <div class="conteudo">
+   <div class="grade g3">
+    <div class="cx vermelha"><h4>1 · Comprimir raso</h4><p>O mais comum de todos. Medo de quebrar costela custa fluxo cerebral.</p></div>
+    <div class="cx vermelha"><h4>2 · Acelerar demais</h4><p>Acima de 120/min o ventrículo não enche. Rápido ≠ melhor.</p></div>
+    <div class="cx vermelha"><h4>3 · Apoiar no tórax</h4><p>Impede o retorno completo e zera a diástole artificial.</p></div>
+    <div class="cx ambar"><h4>4 · Pausas longas</h4><p>Conversa, troca desorganizada, checar pulso demais, "esperar o ambu".</p></div>
+    <div class="cx ambar"><h4>5 · Hiperventilar</h4><p>Aumenta a pressão intratorácica, reduz retorno venoso e a sobrevida.</p></div>
+    <div class="cx ambar"><h4>6 · Não trocar</h4><p>Depois de ~2 min a qualidade cai sem que o socorrista perceba.</p></div>
+   </div>
+   <div class="cx navy" style="margin-top:14px"><h4>Regra da troca</h4><p style="font-size:17px">Troque o compressor <b>a cada 2 minutos ou antes, se cansar</b> — aproveitando a checagem de ritmo, em <b>menos de 5 segundos</b>. Quem vai assumir já se posiciona do outro lado do tórax antes da pausa.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 19 DIVISOR 3 -->
+<section class="slide divisor" data-bloco="Bloco 3" data-chips="b|Ventilar" data-fonte="—" data-nota="Transição. Aviso: <b>ventilar é a parte que mais se erra por excesso, não por falta.</b>">
+ <div class="corpo">
+  <div class="kicker">Bloco 3 de 5</div>
+  <h1>Ventilar</h1>
+  <p class="sub">Abrir a via aérea, entregar o volume mínimo suficiente e não roubar tempo da compressão.</p>
+ </div>
+</section>
+
+<!-- 20 VIA AEREA -->
+<section class="slide" data-bloco="Ventilar" data-chips="g|AHA 2025;;r|Trauma" data-fonte="AHA 2025 — abertura de via aérea: inclinação da cabeça/elevação do queixo; tração da mandíbula na suspeita de trauma cervical" data-nota="Explique por que a língua obstrui: no inconsciente, o tônus da musculatura submentoniana some e a língua cai sobre a hipofaringe.">
+ <div class="corpo">
+  <div class="kicker">Antes de soprar</div>
+  <h1 class="tit">Abrir a via aérea</h1>
+  <p class="sub">No paciente inconsciente, a causa nº1 de obstrução é a própria <b>língua</b> caindo sobre a faringe.</p>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>Sem suspeita de trauma</h4><p><b class="az">Inclinação da cabeça + elevação do queixo</b> (<i>head tilt–chin lift</i>): uma mão na testa empurra para trás, dois dedos da outra elevam o queixo pela parte óssea.</p><p style="margin-top:8px">Não comprima o tecido mole abaixo do queixo — piora a obstrução.</p></div>
+    <div class="cx vermelha"><h4>Com suspeita de trauma cervical</h4><p><b class="vm">Tração da mandíbula</b> (<i>jaw thrust</i>) sem estender o pescoço, com estabilização manual da coluna.</p><p style="margin-top:8px">Se a tração não abrir a via aérea, a diretriz autoriza usar a inclinação da cabeça: <b class="vm">via aérea aberta tem prioridade sobre a proteção cervical</b>.</p></div>
+   </div>
+   <div class="cx ambar" style="margin-top:12px"><h4>Corpo estranho visível</h4><p>Retire <b>apenas</b> o que estiver visível e alcançável. <b class="am">Varredura digital às cegas é proibida</b> — empurra o objeto para dentro. Cânula orofaríngea (Guedel) só no paciente <b>sem reflexo de vômito</b>, medida do lábio ao ângulo da mandíbula.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 21 BVM -->
+<section class="slide" data-bloco="Ventilar" data-chips="g|AHA 2025;;r|Não hiperventilar" data-fonte="AHA 2025 — ventilação com bolsa-válvula-máscara durante a RCP" data-nota="Mostre o C-E com a própria mão no ar. Se houver ambu na sala, faça a turma sentir a diferença entre <b>uma pessoa e duas pessoas</b> ventilando.">
+ <div class="corpo">
+  <div class="kicker">Bolsa-válvula-máscara</div>
+  <h1 class="tit">Volume pequeno, tórax subindo, um segundo</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>Técnica C-E</h4><ul class="lista"><li><b class="az">C</b> com polegar e indicador selando a máscara</li><li><b class="az">E</b> com os outros três dedos elevando a mandíbula <b>contra</b> a máscara</li><li>Máscara do dorso do nariz ao sulco mentoniano</li><li><b>Duas pessoas é melhor</b>: uma sela com as duas mãos, outra aperta a bolsa</li></ul></div>
+    <div class="cx verde"><h4>O que é uma boa ventilação</h4><ul class="lista"><li>Duração de <b class="vd">cerca de 1 segundo</b> cada</li><li>Volume só o suficiente para <b>ver o tórax elevar</b> (~500–600 mL no adulto)</li><li>Oxigênio a <b>15 L/min</b> com reservatório sempre que disponível</li><li>Aperte só metade da bolsa de adulto</li></ul></div>
+   </div>
+   <div class="cx vermelha" style="margin-top:12px"><h4>Por que hiperventilar faz mal <span class="tag novo">entenda, não decore</span></h4><p>Volume ou frequência excessivos elevam a pressão intratorácica → <b class="vm">reduzem o retorno venoso</b> → derrubam o débito da compressão. E ainda distendem o estômago, com risco de regurgitação e broncoaspiração. Em RCP, mais ar é literalmente menos vida.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 22 RELACAO -->
+<section class="slide" data-bloco="Ventilar" data-chips="g|AHA 2025;;b|Números" data-fonte="AHA 2025 — relação compressão-ventilação 30:2; com via aérea avançada, 1 ventilação a cada 6 segundos" data-nota="Cobre o quadro inteiro. A linha que mais cai em prova é a de <b>via aérea avançada: compressões contínuas</b>.">
+ <div class="corpo">
+  <div class="kicker">Relação compressão-ventilação</div>
+  <h1 class="tit">30:2, 15:2 e o que muda com o tubo</h1>
+  <div class="conteudo">
+   <table class="tb">
+    <tr><th>Situação</th><th>Relação</th><th>Detalhe operacional</th></tr>
+    <tr><td class="dest">Adulto — 1 ou 2 socorristas</td><td class="dest">30:2</td><td>Ciclos de 30 compressões e 2 ventilações; ~5 ciclos em 2 minutos</td></tr>
+    <tr><td class="dest">Criança/lactente — 1 socorrista</td><td class="dest">30:2</td><td>Mesma relação do adulto quando você está sozinho</td></tr>
+    <tr><td class="dest">Criança/lactente — 2 socorristas</td><td class="dest">15:2</td><td>Mais ventilação porque a causa costuma ser hipóxica</td></tr>
+    <tr><td class="dest">Com via aérea avançada (qualquer idade)</td><td class="dest">Contínuo</td><td><b>Não pare para ventilar</b>: compressões ininterruptas + 1 ventilação a cada 6 s (10/min)</td></tr>
+    <tr><td class="dest">Leigo não treinado</td><td class="dest">Só compressão</td><td><i>Hands-only CPR</i> — compressões contínuas até o DEA ou o socorro chegar</td></tr>
+   </table>
+   <div class="grade g2" style="margin-top:12px">
+    <div class="cx verde"><h4>Por que "só compressão" para leigo</h4><p>Nos primeiros minutos de uma PCR súbita no adulto, o sangue <b class="vd">ainda está oxigenado</b>. Falta bomba, não falta oxigênio. E remover a barreira da ventilação boca a boca aumenta a chance de alguém começar.</p></div>
+    <div class="cx ambar"><h4>Quando a ventilação é indispensável <span class="tag peg">exceção</span></h4><p>Causa <b class="am">hipóxica</b>: afogamento, asfixia, overdose de opioide, obstrução de via aérea e praticamente toda PCR de criança e lactente. Aqui, ventilar faz parte do tratamento.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 23 RESGATE + NALOXONA -->
+<section class="slide" data-bloco="Ventilar" data-chips="r|Mudou em 2025;;g|AHA 2025" data-fonte="AHA 2025 — ventilação de resgate e algoritmo de emergência associada a opioides com naloxona" data-nota="Reforce a diferença: <b>parada respiratória com pulso não é PCR</b>. E que a naloxona nunca substitui a ventilação.">
+ <div class="corpo">
+  <div class="kicker">Saída 2 do algoritmo</div>
+  <h1 class="tit">Tem pulso, mas não respira</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx ambar"><h4>Ventilação de resgate</h4><ul class="lista"><li><b class="am">1 ventilação a cada 6 segundos</b> = 10/min no adulto</li><li>Criança e lactente: <b>1 a cada 2–3 segundos</b> = 20–30/min</li><li>Cada ventilação em ~1 segundo, tórax subindo</li><li><b>Recheque o pulso a cada 2 minutos</b> — sumiu o pulso, entra em RCP</li></ul></div>
+    <div class="cx vermelha"><h4>Suspeita de opioide <span class="tag novo">algoritmo próprio em 2025</span></h4><ul class="lista"><li>Pupilas puntiformes, bradipneia, contexto de uso</li><li><b class="vm">Naloxona</b> intranasal ou IM, podendo repetir</li><li>Se não há pulso: <b>é PCR — RCP e DEA vêm primeiro</b>; a naloxona é adjuvante, nunca substitui</li><li>Mantenha a vigilância: a naloxona dura menos que muitos opioides e o paciente pode voltar a parar</li></ul></div>
+   </div>
+   <div class="cx azul" style="margin-top:12px"><h4>Posição lateral de segurança</h4><p>Só para quem <b class="az">respira normalmente e tem pulso</b>, sem suspeita de trauma. Protege a via aérea contra aspiração enquanto a ajuda não chega — e o paciente deve ser reavaliado continuamente.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 24 DIVISOR 4 -->
+<section class="slide divisor" data-bloco="Bloco 4" data-chips="b|Desfibrilar" data-fonte="—" data-nota="Transição. Frase: <b>compressão ganha tempo; só o choque devolve o ritmo.</b>">
+ <div class="corpo">
+  <div class="kicker">Bloco 4 de 5</div>
+  <h1>Desfibrilar</h1>
+  <p class="sub">O único tratamento capaz de reverter uma fibrilação ventricular — e ele cabe numa maleta que qualquer leigo consegue usar.</p>
+ </div>
+</section>
+
+<!-- 25 POR QUE CHOQUE -->
+<section class="slide" data-bloco="Desfibrilar" data-chips="b|Fisiopatologia;;g|AHA 2025" data-fonte="AHA 2025 — desfibrilação precoce na FV/TVSP" data-nota="Use a metáfora do <b>estádio</b>: FV é a torcida gritando cada uma no seu tempo; o choque é o apagão de 1 segundo que faz todo mundo calar e o locutor recomeçar.">
+ <div class="corpo">
+  <div class="kicker">O que o choque faz</div>
+  <h1 class="tit">Desfibrilar é silenciar, não "ligar" o coração</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>Na FV, o coração treme</h4><p>Milhares de focos despolarizam de forma caótica: não há sístole organizada, não há débito. O choque <b class="az">despolariza toda a massa miocárdica de uma vez</b>, criando um silêncio elétrico que permite ao nó sinusal reassumir.</p><p style="margin-top:8px">Por isso o choque <b>não funciona</b> na assistolia: não há o que silenciar.</p></div>
+    <div class="cx vermelha"><h4>Por que a pressa</h4><ul class="lista"><li>A FV degenera progressivamente para <b class="vm">assistolia</b></li><li>Quanto mais tempo em FV, menor a chance de o choque converter</li><li>A RCP <b>preserva a FV</b> "grossa", mantendo-a chocável por mais tempo</li><li>Comprimir enquanto o DEA não chega é o que torna o choque útil</li></ul></div>
+   </div>
+   <div class="cx verde" style="margin-top:12px"><h4>Onde estão os DEAs</h4><p>Aeroportos, shoppings, academias, estádios, escolas, aeronaves. Legislação brasileira exige DEA em locais de grande circulação. <b class="vd">Saber onde está o DEA do seu prédio, da sua faculdade e do seu hospital é conteúdo de BLS.</b></p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 26 DEA 3 PASSOS -->
+<section class="slide" data-bloco="Desfibrilar" data-chips="g|AHA 2025;;b|Prático" data-fonte="AHA 2025 — uso do desfibrilador externo automático" data-nota="Diga a frase que tira o medo: <b>o DEA nunca choca quem não precisa</b> — ele analisa o ritmo e só libera a carga se houver FV/TVSP.">
+ <div class="corpo">
+  <div class="kicker">Desfibrilador externo automático</div>
+  <h1 class="tit">O DEA tem três passos. Só três.</h1>
+  <div class="conteudo">
+   <div class="fluxo">
+    <div class="passo vm"><div class="p-n">PASSO 1</div><h5>Ligue o aparelho</h5><p>Aperte o botão. A partir daí o próprio DEA fala o que fazer, em português, em voz alta.</p></div>
+    <div class="seta">→</div>
+    <div class="passo vm"><div class="p-n">PASSO 2</div><h5>Cole as pás</h5><p>Tórax <b>seco e desnudo</b>. Siga o desenho das pás. As compressões continuam enquanto alguém cola.</p></div>
+    <div class="seta">→</div>
+    <div class="passo vm"><div class="p-n">PASSO 3</div><h5>Afaste e choque</h5><p>Na análise, <b>ninguém toca na vítima</b>. Se indicado, aperte o botão e retome a compressão <b>imediatamente</b>.</p></div>
+   </div>
+   <div class="grade g2" style="margin-top:16px">
+    <div class="cx verde"><h4>Leigo pode usar? <span class="tag mant">sim</span></h4><p>O DEA foi desenhado para leigos: analisa o ritmo, decide sozinho e só permite o choque se for chocável. Comandos por voz e por imagem. <b class="vd">Não usar é o único erro grave possível.</b></p></div>
+    <div class="cx ambar"><h4>Enquanto o DEA analisa <span class="tag peg">atenção</span></h4><p>A análise dura poucos segundos e <b class="am">exige parada das compressões</b> — é a única pausa obrigatória. Volte a comprimir no instante seguinte ao choque, sem checar pulso.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 27 PAS -->
+<section class="slide" data-bloco="Desfibrilar" data-chips="g|AHA 2025;;a|Situações especiais" data-fonte="AHA 2025 — posicionamento de pás e circunstâncias especiais no uso do DEA" data-nota="Este slide costuma render perguntas: peito cabeludo, marca-passo, adesivo de nitrato, piscina. Deixe tempo.">
+ <div class="corpo">
+  <div class="kicker">Onde colar e o que atrapalha</div>
+  <h1 class="tit">As pás e as sete situações que confundem</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx azul"><h4>Posição padrão (anterolateral)</h4><p>Uma pá <b class="az">infraclavicular direita</b>, ao lado do esterno; a outra na <b class="az">linha axilar média esquerda</b>, abaixo e lateral ao mamilo. O coração precisa ficar <b>entre</b> as duas.</p><p style="margin-top:8px">Alternativa aceita: <b>anteroposterior</b> (tórax anterior + dorso), útil em lactentes e tórax pequeno.</p></div>
+    <div class="cx"><h4>Sete situações</h4><ul class="lista">
+      <li><b>Tórax molhado:</b> seque antes — água conduz e dispersa a corrente</li>
+      <li><b>Vítima na água/poça:</b> retire dela; superfície molhada não impede o choque se o tórax estiver seco</li>
+      <li><b>Muitos pelos:</b> pressione firme; se não colar, arranque com a própria pá e use o segundo par</li>
+      <li><b>Marca-passo/CDI:</b> cole a pá a pelo menos <b>8 cm</b> do gerador</li>
+      <li><b>Adesivo de medicação:</b> remova e limpe a pele</li>
+      <li><b>Superfície metálica:</b> afaste ou isole a vítima</li>
+      <li><b>Criança &lt; 8 anos:</b> pás pediátricas/atenuador; <b class="vm">se não houver, use as de adulto</b></li>
+    </ul></div>
+   </div>
+   <div class="cx vermelha" style="margin-top:12px"><h4>Segurança do choque</h4><p>Antes de apertar, olhe e anuncie em voz alta: <b class="vm">"Eu estou afastado, vocês estão afastados, oxigênio afastado — CHOQUE!"</b> Ninguém pode estar tocando a vítima, a maca ou o soro.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 28 DEPOIS DO CHOQUE -->
+<section class="slide" data-bloco="Desfibrilar" data-chips="r|Erro clássico;;g|AHA 2025" data-fonte="AHA 2025 — retomada imediata das compressões após o choque" data-nota="Pergunte antes de revelar: <b>o que você faz no segundo seguinte ao choque?</b> A resposta quase sempre vem errada — 'checo o pulso'.">
+ <div class="corpo">
+  <div class="kicker">Os 2 minutos seguintes</div>
+  <h1 class="tit">Chocou. E agora?</h1>
+  <div class="conteudo">
+   <div class="cx" style="margin-bottom:12px"><h4>Pergunte-se antes de virar o slide</h4><p>O DEA aplicou um choque. Qual é a sua próxima ação, exatamente?</p></div>
+   <div class="rev" id="rev-choque"><div class="rev-in">
+    <div class="grade g2">
+     <div class="cx verde"><h4>Retome as compressões IMEDIATAMENTE</h4><p>Sem checar pulso, sem olhar o monitor, sem comemorar. Após o choque o coração fica <b class="vd">atordoado</b>: mesmo quando o ritmo volta, o débito leva minutos para se recuperar. Comprimir sustenta esse intervalo.</p></div>
+     <div class="cx vermelha"><h4>O ciclo então é</h4><p><b class="vm">Choque → 2 minutos de RCP → o DEA reanalisa</b> → novo choque se indicado. Repita até o serviço avançado assumir, o paciente se mover/despertar ou você não conseguir mais continuar com segurança.</p></div>
+    </div>
+    <div class="cx ambar" style="margin-top:12px"><h4>E se o DEA disser "choque não indicado"?</h4><p>Também retome a RCP imediatamente por 2 minutos. <b class="am">"Choque não indicado" não significa que o paciente está bem</b> — significa assistolia, AESP ou ritmo organizado, e todos exigem compressão até a reavaliação.</p></div>
+   </div></div>
+  </div>
+ </div>
+</section>
+
+<!-- 29 DIVISOR 5 -->
+<section class="slide divisor" data-bloco="Bloco 5" data-chips="b|Especiais" data-fonte="—" data-nota="Transição. Diga que aqui moram as questões que separam nota 7 de nota 10.">
+ <div class="corpo">
+  <div class="kicker">Bloco 5 de 5</div>
+  <h1>Situações especiais</h1>
+  <p class="sub">Criança, lactente, engasgo, gestante, afogamento — o algoritmo é o mesmo; os detalhes é que mudam.</p>
+ </div>
+</section>
+
+<!-- 30 IDADES -->
+<section class="slide" data-bloco="Especiais" data-chips="r|Mudou em 2025;;g|AHA 2025" data-fonte="AHA 2025 — BLS pediátrico; eliminação da técnica de dois dedos no lactente" data-nota="Chame atenção para a linha do lactente: <b>dois dedos saiu</b>. É a mudança pediátrica mais cobrável de 2025.">
+ <div class="corpo">
+  <div class="kicker">Comparação direta</div>
+  <h1 class="tit">Adulto × criança × lactente</h1>
+  <div class="conteudo">
+   <table class="tb">
+    <tr><th></th><th>Adulto (pós-puberdade)</th><th>Criança (1 ano → puberdade)</th><th>Lactente (&lt; 1 ano)</th></tr>
+    <tr><td class="dest">Técnica</td><td>2 mãos</td><td>1 ou 2 mãos, conforme o porte</td><td><b class="vm">2 polegares</b> ou região tenar de 1 mão <span class="tag novo">2025</span></td></tr>
+    <tr><td class="dest">Profundidade</td><td>≥ 5 cm (máx. 6)</td><td>≈ 5 cm — 1/3 do diâmetro AP</td><td>≈ 4 cm — 1/3 do diâmetro AP</td></tr>
+    <tr><td class="dest">Frequência</td><td colspan="3" style="text-align:center"><b>100–120/min em todas as idades</b></td></tr>
+    <tr><td class="dest">Relação</td><td>30:2</td><td>30:2 sozinho · <b>15:2</b> em dupla</td><td>30:2 sozinho · <b>15:2</b> em dupla</td></tr>
+    <tr><td class="dest">Local</td><td>Metade inferior do esterno</td><td>Metade inferior do esterno</td><td>Logo <b>abaixo</b> da linha intermamilar</td></tr>
+    <tr><td class="dest">Pulso</td><td>Carótida</td><td>Carótida ou femoral</td><td><b class="vm">Braquial</b></td></tr>
+    <tr><td class="dest">Ventilação de resgate</td><td>1 a cada 6 s</td><td colspan="2" style="text-align:center">1 a cada 2–3 s (20–30/min)</td></tr>
+   </table>
+   <div class="cx ambar" style="margin-top:12px"><h4>A lógica por trás <span class="tag peg">entenda</span></h4><p>PCR de adulto costuma ser <b>elétrica</b> (FV) → prioridade é choque. PCR de criança costuma ser <b class="am">hipóxica</b> (respiratória progressiva) → prioridade é ventilar e chamar ajuda depois de 2 min de RCP se estiver sozinho.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 31 OVACE -->
+<section class="slide" data-bloco="Especiais" data-chips="r|Mudou em 2025;;b|OVACE" data-fonte="AHA 2025 — obstrução grave de via aérea por corpo estranho: ciclos de 5 tapas dorsais + 5 compressões abdominais, começando pelas costas" data-nota="Este é o slide mais diferente do material antigo. Diga: <b>se o cartaz do seu hospital começa pelo Heimlich, ele é pré-2025.</b>">
+ <div class="corpo">
+  <div class="kicker">Engasgo em quem ainda está consciente</div>
+  <h1 class="tit">OVACE: agora começa pelas costas</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx verde"><h4>Obstrução LEVE</h4><ul class="lista"><li>Consegue tossir com força, falar, respirar</li><li><b class="vd">Não intervenha</b> — incentive a tosse e fique ao lado</li><li>A tosse gera mais pressão que qualquer manobra</li></ul></div>
+    <div class="cx vermelha"><h4>Obstrução GRAVE</h4><ul class="lista"><li>Tosse fraca ou ausente, sem som, estridor</li><li><b class="vm">Sinal universal</b>: mãos ao redor do pescoço</li><li>Cianose, agitação, incapacidade de falar</li><li>Pergunte: "Você está engasgado?" — se acenar que sim, aja</li></ul></div>
+   </div>
+   <div class="cx vermelha" style="margin-top:12px"><h4>Sequência 2025 — adulto e criança <span class="tag novo">mudou</span></h4><p><b class="vm">5 tapas dorsais</b> (região interescapular, base da mão, vítima inclinada para frente) <b>→ 5 compressões abdominais</b> (Heimlich, acima da cicatriz umbilical, movimento em J) <b>→ repita</b> até desobstruir ou a vítima ficar irresponsiva.</p><p style="margin-top:8px">Motivo da mudança: séries observacionais mostraram <b>melhor taxa de desobstrução e menos lesões</b> quando se começa pelos tapas dorsais.</p></div>
+   <div class="cx navy" style="margin-top:12px"><h4>Ficou irresponsivo no meio da manobra</h4><p style="font-size:16.5px">Desça a vítima ao chão, <b>acione o serviço de emergência e inicie RCP</b>. A cada abertura da via aérea para ventilar, <b>olhe a boca</b> e retire o objeto se estiver visível — nunca às cegas. A compressão torácica gera pressão suficiente para deslocar o corpo estranho.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 32 OVACE LACTENTE / GESTANTE -->
+<section class="slide" data-bloco="Especiais" data-chips="r|Mudou em 2025;;a|Nunca abdominal" data-fonte="AHA 2025 — OVACE no lactente: 5 tapas dorsais + 5 compressões torácicas com a região tenar de uma mão" data-nota="Enfatize: <b>lactente nunca leva compressão abdominal</b> — risco de lesão hepática. E gestante/obeso: compressão torácica no lugar da abdominal.">
+ <div class="corpo">
+  <div class="kicker">Quando o Heimlich não serve</div>
+  <h1 class="tit">Lactente, gestante e grande obeso</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx vermelha"><h4>Lactente (&lt; 1 ano)</h4><ul class="lista">
+     <li><b class="vm">5 tapas dorsais</b> com o bebê em decúbito ventral sobre o antebraço, cabeça mais baixa que o tronco, apoiando a mandíbula</li>
+     <li>Vire e aplique <b class="vm">5 compressões torácicas</b> — pela diretriz de 2025, com a <b>região tenar de uma mão</b> (ou dois polegares) <span class="tag novo">2025</span></li>
+     <li>Alterne até desobstruir ou o bebê ficar irresponsivo</li>
+     <li><b>Jamais compressão abdominal</b> — fígado desprotegido</li>
+    </ul></div>
+    <div class="cx ambar"><h4>Gestante e grande obeso</h4><ul class="lista">
+     <li>Quando não se consegue abraçar o abdome, ou há útero gravídico volumoso</li>
+     <li><b class="am">Compressões torácicas</b> no lugar das abdominais: mãos sobre a metade inferior do esterno, tração para trás</li>
+     <li>Os 5 tapas dorsais continuam sendo o primeiro passo</li>
+    </ul></div>
+   </div>
+   <div class="cx azul" style="margin-top:12px"><h4>Depois que o objeto sai</h4><p>Toda vítima que recebeu compressão abdominal ou torácica deve ser <b class="az">avaliada em serviço de saúde</b>: risco de lesão de vísceras, fratura de costela e de corpo estranho residual em via aérea distal.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 33 GESTANTE / AFOGAMENTO -->
+<section class="slide" data-bloco="Especiais" data-chips="g|AHA 2025;;b|Circunstâncias especiais" data-fonte="AHA 2025 — circunstâncias especiais: gestação, afogamento, hipotermia" data-nota="Aqui você faz a ponte para o ACLS sem entrar nele: cite a cesariana perimortem em 5 min apenas como horizonte, sem detalhar.">
+ <div class="corpo">
+  <div class="kicker">Três cenários que mudam a mecânica</div>
+  <h1 class="tit">Gestante, afogamento e hipotermia</h1>
+  <div class="conteudo">
+   <div class="grade g3">
+    <div class="cx vermelha"><h4>Gestante</h4><ul class="lista">
+     <li>A partir de ~20 semanas (útero na cicatriz umbilical), o útero comprime a <b class="vm">veia cava</b> e derruba o retorno venoso</li>
+     <li><b class="vm">Deslocamento uterino lateral contínuo para a esquerda</b>, com uma ou duas mãos, durante toda a RCP</li>
+     <li>Mantenha a paciente em <b>decúbito dorsal</b> — inclinar o corpo piora a compressão</li>
+     <li>Via aérea difícil é a regra: escolha o profissional mais experiente</li>
+    </ul></div>
+    <div class="cx azul"><h4>Afogamento</h4><ul class="lista">
+     <li>Causa <b class="az">hipóxica</b>: aqui a ventilação é prioridade</li>
+     <li>Retire da água e inicie ventilações de resgate assim que for seguro</li>
+     <li><b>Não</b> tente drenar água do pulmão nem faça compressão abdominal para "esvaziar"</li>
+     <li>Vômito é frequente: prepare-se para lateralizar e aspirar</li>
+    </ul></div>
+    <div class="cx"><h4>Hipotermia</h4><ul class="lista">
+     <li>Pulso e respiração podem ficar <b>muito lentos e difíceis</b> de detectar: estenda a checagem</li>
+     <li>Inicie RCP e <b>reaqueça</b> enquanto ressuscita</li>
+     <li>Máxima clássica: <b class="vd">ninguém está morto até estar aquecido e morto</b></li>
+     <li>Manuseie com cuidado — o miocárdio frio é irritável</li>
+    </ul></div>
+   </div>
+   <div class="cx ambar" style="margin-top:12px"><h4>Além do BLS <span class="tag peg">horizonte</span></h4><p>Na PCR materna sem retorno da circulação, o time avançado considera a <b class="am">cesariana perimortem em torno de 5 minutos</b> — decisão de ACLS, mas que só é possível se o BLS estiver impecável desde o primeiro minuto.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- 34 EQUIPE -->
+<section class="slide" data-bloco="Especiais" data-chips="g|AHA 2025;;b|Trabalho em equipe" data-fonte="AHA 2025 — equipes de alto desempenho e comunicação em circuito fechado" data-nota="Encerre o bloco pedindo que a turma monte a equipe: aponte 6 alunos e distribua os papéis em voz alta.">
+ <div class="corpo">
+  <div class="kicker">De socorrista único a equipe</div>
+  <h1 class="tit">Papéis definidos, comunicação em circuito fechado</h1>
+  <div class="conteudo">
+   <div class="grade g3">
+    <div class="cx vermelha"><h4>Compressor</h4><p>Comprime e <b>conta em voz alta</b>. Troca a cada 2 min.</p></div>
+    <div class="cx azul"><h4>Via aérea</h4><p>Abre, ventila com BVM, prepara adjuvantes.</p></div>
+    <div class="cx ambar"><h4>Desfibrilador</h4><p>Cola as pás, opera o aparelho, dá o comando de afastar.</p></div>
+    <div class="cx"><h4>Acesso e medicações</h4><p>IV/IO e drogas — já é função do suporte avançado.</p></div>
+    <div class="cx"><h4>Cronometrista/anotador</h4><p>Marca os 2 minutos, registra horários e avisa o líder.</p></div>
+    <div class="cx navy"><h4>Líder</h4><p>Não comprime. Distribui funções, decide, dá feedback e enxerga o conjunto.</p></div>
+   </div>
+   <div class="cx verde" style="margin-top:14px"><h4>Comunicação em circuito fechado</h4><p>Ordem <b class="vd">nominal</b> ("João, assuma as compressões") → confirmação de quem recebeu ("Assumindo as compressões") → aviso de conclusão ("Compressões em andamento"). Sem isso, ordens caem no vazio e tarefas ficam duplicadas.</p></div>
+  </div>
+ </div>
+</section>
+
+
+
+
+
+
+
+<!-- 38 PEGADINHAS -->
+<section class="slide" data-bloco="Fixar" data-chips="a|Atenção;;r|Erros comuns" data-fonte="Compilado dos erros mais frequentes no atendimento à PCR" data-nota="Se o tempo estiver curto, este é o slide que você não pode pular. Peça um exemplo real de estágio para cada item.">
+ <div class="corpo">
+  <div class="kicker">Confusões mais comuns</div>
+  <h1 class="tit">Dez erros que derrubam gente boa</h1>
+  <div class="conteudo">
+   <div class="grade g2" style="font-size:14.5px">
+    <div class="cx ambar"><p><b class="am">1.</b> Gasping <b>não</b> é respiração — é PCR.</p></div>
+    <div class="cx ambar"><p><b class="am">2.</b> Na dúvida sobre o pulso em 10 s, <b>comprima</b>.</p></div>
+    <div class="cx ambar"><p><b class="am">3.</b> Leigo <b>não precisa</b> checar pulso.</p></div>
+    <div class="cx ambar"><p><b class="am">4.</b> Depois do choque, RCP <b>imediata</b> — não se checa pulso.</p></div>
+    <div class="cx ambar"><p><b class="am">5.</b> "Choque não indicado" também exige 2 min de RCP.</p></div>
+    <div class="cx ambar"><p><b class="am">6.</b> Com via aérea avançada, <b>não existe 30:2</b>: compressão contínua.</p></div>
+    <div class="cx ambar"><p><b class="am">7.</b> Criança &lt; 8 anos sem pá pediátrica: <b>use a de adulto</b>.</p></div>
+    <div class="cx ambar"><p><b class="am">8.</b> Varredura digital às cegas: <b>nunca</b>, em nenhuma idade.</p></div>
+    <div class="cx ambar"><p><b class="am">9.</b> Gestante em PCR: decúbito dorsal + <b>deslocamento uterino</b>, não inclinar o corpo.</p></div>
+    <div class="cx ambar"><p><b class="am">10.</b> Hiperventilar reduz a sobrevida — <b>ar demais é sangue de menos</b>.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 39 REVISAO -->
+<section class="slide" data-bloco="Fixar" data-chips="b|Revisão de 60 s" data-fonte="Síntese da aula" data-nota="Cronometre 60 segundos de verdade e leia em voz alta. Fecha a aula com sensação de domínio.">
+ <div class="corpo">
+  <div class="kicker">Se você só levar uma coisa</div>
+  <h1 class="tit">Revisão de 60 segundos</h1>
+  <div class="conteudo">
+   <div class="grade g2">
+    <div class="cx navy"><h4>A sequência</h4><p style="font-size:16px">Segurança → não responde → grite, acione, peça o DEA → respiração e pulso em 10 s → sem pulso: <b>comprima</b> 30:2 → DEA assim que chegar → choque se indicado → RCP imediata por 2 min → repita.</p></div>
+    <div class="cx"><h4>Os números</h4><p style="font-size:16px"><b class="vm">≥5 cm</b> (máx. 6) · <b class="vm">100–120/min</b> · retorno total · pausas <b>&lt; 10 s</b> · fração <b>&gt; 80%</b> · troca a cada <b>2 min</b> · com tubo, <b>1 ventilação a cada 6 s</b>.</p></div>
+    <div class="cx vermelha"><h4>O que mudou em 2025</h4><p style="font-size:16px">Cadeia <b>única</b> de 6 elos · engasgo começa por <b>5 tapas dorsais</b> · <b>naloxona</b> no algoritmo · lactente <b>sem</b> técnica de dois dedos.</p></div>
+    <div class="cx verde"><h4>A atitude</h4><p style="font-size:16px">A pior conduta possível em uma PCR é <b class="vd">não fazer nada por medo de errar</b>. Compressão imperfeita salva; hesitação não.</p></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 40 REFERENCIAS -->
+<section class="slide capa" data-bloco="Encerramento" data-chips="b|Fontes" data-fonte="Referências da aula" data-nota="Deixe este slide no projetor enquanto tira dúvidas.">
+ <div class="corpo">
+  <div class="kicker">Obrigada</div>
+  <h1 style="font-size:52px">Suporte Básico<br>de Vida</h1>
+  <div class="lin"></div>
+  <div style="font-size:14.5px;line-height:1.6;color:#dbe8f2;max-width:820px">
+   <b>Referências</b><br>
+   1. American Heart Association. 2025 Guidelines for Cardiopulmonary Resuscitation and Emergency Cardiovascular Care. <i>Circulation</i>, 22 out. 2025.<br>
+   2. AHA. Highlights of the 2025 AHA Guidelines for CPR and ECC — cpr.heart.org.<br>
+   3. AHA. 2020 Guidelines for CPR and ECC (base dos algoritmos ainda em circulação).<br>
+   4. Sociedade Brasileira de Cardiologia. Diretriz de Ressuscitação Cardiopulmonar e Cuidados de Emergência.
+  </div>
+  <div class="quem" style="margin-top:22px">Profa. Márcia</div>
+  <div class="inst">Universidade Ceuma · Curso de Medicina</div>
+ </div>
+</section>
+
+</div></div>
+<div id="prog"><i></i></div>
+<div id="notas"><h5>Notas da professora</h5><div id="notas-txt"></div></div>
+<div id="mapa"><h3>Mapa da aula — clique para ir ao slide</h3><div class="gm" id="mapa-g"></div></div>
+<script>
+(function(){
+"use strict";
+var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+var total = slides.length, idx = 0;
+var wrap = document.getElementById('slide-wrap');
+
+/* ---- monta trilho e rodapé ---- */
+slides.forEach(function(s,i){
+  var tr = document.createElement('div');
+  tr.className = 'trilho';
+  var chips = (s.dataset.chips||'').split(';;').filter(Boolean).map(function(c){
+    var p = c.split('|'); var cls = (p.length>1? p[0] : 'b').trim();
+    var txt = (p.length>1? p[1] : p[0]);
+    return '<span class="chip '+cls+'">'+txt+'</span>';
+  }).join('');
+  tr.innerHTML = '<div class="num">'+String(i+1).padStart(2,'0')+'</div>'+
+    '<div class="bloco">'+(s.dataset.bloco||'')+'</div>'+chips+
+    '<div class="marca">BLS<br>Ceuma<br>2026</div>';
+  s.insertBefore(tr, s.firstChild);
+  var corpo = s.querySelector('.corpo');
+  var rp = document.createElement('div');
+  rp.className = 'rodape';
+  rp.innerHTML = '<span>Suporte Básico de Vida · Profa. Márcia — Universidade Ceuma</span>'+
+                 '<span>'+(s.dataset.fonte||'')+'</span>';
+  corpo.appendChild(rp);
+});
+
+/* ---- escala do palco ---- */
+function escala(){
+  var w = window.innerWidth, h = window.innerHeight;
+  var topo = document.body.classList.contains('aprs') ? 0 : 40;
+  var k = Math.min((w-24)/1280, (h-topo-18)/720);
+  wrap.style.transform = 'scale('+k+')';
+}
+window.addEventListener('resize', escala);
+
+/* ---- navegação ---- */
+var elCont = document.getElementById('cont');
+var elProg = document.querySelector('#prog i');
+var elNotas = document.getElementById('notas-txt');
+function mostra(n){
+  idx = Math.max(0, Math.min(total-1, n));
+  slides.forEach(function(s,i){ s.classList.toggle('ativo', i===idx); });
+  elCont.textContent = (idx+1)+' / '+total;
+  elProg.style.width = ((idx+1)/total*100)+'%';
+  elNotas.innerHTML = slides[idx].dataset.nota || '<i>Sem nota para este slide.</i>';
+  paraMetro();
+  escala();
+}
+document.getElementById('bPrev').onclick = function(){ mostra(idx-1); };
+document.getElementById('bNext').onclick = function(){ mostra(idx+1); };
+document.getElementById('prog').onclick = function(e){
+  mostra(Math.floor(e.clientX/window.innerWidth*total));
+};
+
+/* ---- botões ---- */
+var bOc = document.getElementById('bOc'), bNot = document.getElementById('bNot'),
+    bMap = document.getElementById('bMap'), bApr = document.getElementById('bApr'),
+    bFull = document.getElementById('bFull');
+function togOcultar(){
+  document.body.classList.toggle('ocultar');
+  bOc.classList.toggle('on', document.body.classList.contains('ocultar'));
+}
+function togNotas(){
+  var n = document.getElementById('notas');
+  n.classList.toggle('on'); bNot.classList.toggle('on', n.classList.contains('on'));
+}
+function togMapa(){
+  var m = document.getElementById('mapa');
+  m.classList.toggle('on'); bMap.classList.toggle('on', m.classList.contains('on'));
+}
+function togApres(){
+  document.body.classList.toggle('aprs');
+  bApr.classList.toggle('on', document.body.classList.contains('aprs'));
+  escala();
+}
+function togFull(){
+  if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){}).call(document.documentElement); }
+  else { (document.exitFullscreen||function(){}).call(document); }
+}
+bOc.onclick=togOcultar; bNot.onclick=togNotas; bMap.onclick=togMapa; bApr.onclick=togApres; bFull.onclick=togFull;
+
+function revelar(){
+  var s = slides[idx];
+  var r = s.querySelectorAll('.rev');
+  for(var i=0;i<r.length;i++){ r[i].classList.add('aberto'); }
+}
+document.addEventListener('click', function(e){
+  var alvo = e.target.closest ? e.target.closest('.rev') : null;
+  if(alvo && document.body.classList.contains('ocultar')) alvo.classList.add('aberto');
+});
+
+document.addEventListener('keydown', function(e){
+  var k = e.key.toLowerCase();
+  if(k==='arrowright'||k===' '||k==='pagedown'){ e.preventDefault(); mostra(idx+1); }
+  else if(k==='arrowleft'||k==='pageup'){ e.preventDefault(); mostra(idx-1); }
+  else if(k==='home'){ mostra(0); } else if(k==='end'){ mostra(total-1); }
+  else if(k==='r'){ revelar(); }
+  else if(k==='o'){ togOcultar(); }
+  else if(k==='n'){ togNotas(); }
+  else if(k==='m'){ togMapa(); }
+  else if(k==='p'){ togApres(); }
+  else if(k==='f'){ togFull(); }
+  else if(k==='escape'){ document.getElementById('mapa').classList.remove('on'); bMap.classList.remove('on'); }
+});
+
+/* ---- swipe ---- */
+var x0=null;
+document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', function(e){
+  if(x0===null) return;
+  var dx = e.changedTouches[0].clientX - x0;
+  if(Math.abs(dx)>60){ mostra(idx + (dx<0?1:-1)); }
+  x0=null;
+}, {passive:true});
+
+/* ---- mapa ---- */
+var gm = document.getElementById('mapa-g');
+slides.forEach(function(s,i){
+  var t = s.querySelector('h1, h2');
+  var d = document.createElement('div');
+  d.className='it';
+  d.innerHTML = '<b>'+String(i+1).padStart(2,'0')+'</b> · '+(t? t.textContent.replace(/\s+/g,' ').trim() : (s.dataset.bloco||''));
+  d.onclick = function(){ mostra(i); togMapa(); };
+  gm.appendChild(d);
+});
+
+/* ---- relógio da PCR ---- */
+var rel = document.getElementById('relogio');
+if(rel){
+  var barras=[];
+  for(var m=1;m<=10;m++){
+    var b = document.createElement('div');
+    b.className='bar';
+    var v = Math.max(4, 75 - (m-1)*8);          /* curva ilustrativa: ~8 pontos por minuto */
+    b.style.height = v + '%';
+    b.innerHTML = '<span>'+m+'</span>';
+    rel.appendChild(b); barras.push(b);
+  }
+  var sl = document.getElementById('slMin'), lb = document.getElementById('lbMin');
+  sl.addEventListener('input', function(){
+    var n = parseInt(sl.value,10);
+    lb.textContent = n + ' min';
+    barras.forEach(function(b,i){ b.classList.toggle('on', i < n); });
+  });
+}
+
+/* ---- metrônomo ---- */
+var ac=null, timer=null, bola=document.getElementById('bola'), bpm=110;
+function clique(){
+  if(!ac) return;
+  var t = ac.currentTime;
+  var o = ac.createOscillator(), g = ac.createGain();
+  o.type='square'; o.frequency.setValueAtTime(950,t);
+  g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(0.35,t+0.005);
+  g.gain.exponentialRampToValueAtTime(0.0001,t+0.06);
+  o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t+0.08);
+  if(bola){ bola.classList.add('bate'); setTimeout(function(){ bola.classList.remove('bate'); },90); }
+}
+function paraMetro(){
+  if(timer){ clearInterval(timer); timer=null; }
+  var b = document.getElementById('bMetro');
+  if(b) b.textContent = '▶ Iniciar';
+}
+var bMetro = document.getElementById('bMetro');
+if(bMetro){
+  bMetro.onclick = function(){
+    if(timer){ paraMetro(); return; }
+    if(!ac){ var AC = window.AudioContext||window.webkitAudioContext; if(AC) ac = new AC(); }
+    if(ac && ac.state==='suspended') ac.resume();
+    clique();
+    timer = setInterval(clique, 60000/bpm);
+    bMetro.textContent = '■ Parar';
+  };
+  var slB = document.getElementById('slBpm'), lbB = document.getElementById('lbBpm');
+  slB.addEventListener('input', function(){
+    bpm = parseInt(slB.value,10);
+    lbB.textContent = bpm + '/min';
+    if(timer){ clearInterval(timer); timer = setInterval(clique, 60000/bpm); }
+  });
+}
+
+mostra(0); escala();
+})();
+</script>
+</body>
+</html>
