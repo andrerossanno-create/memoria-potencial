@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecocardiograma sob Estresse — Atlas Mental · Síndrome Coronariana Crônica · Cap. 8</title>
+<meta name="description" content="Aula digital interativa de ecocardiografia sob estresse para o TEC 2026. Atlas Mental — Dr. André Rossanno.">
+<!--
+  ATLAS MENTAL · SÍNDROME CORONARIANA CRÔNICA · CAPÍTULO 8
+  ECOCARDIOGRAMA SOB ESTRESSE — "O CORAÇÃO PODE MENTIR PARADO"
+  Autor: Dr. André Rossanno · memoriapotencial.com.br
+  Arquivo único, offline, sem bibliotecas externas, sem imagens.
+  LS_KEY: atlasCardio_scc_cap8_v1
+  Fontes: Diretriz SBC/DIC de Ecocardiografia de Estresse 2026 (principal) +
+          Diretriz Brasileira de Síndrome Coronariana Crônica SBC 2025 (posicionamento do método).
+  Badges .conferir marcam pontos numéricos que dependem da redação literal da diretriz.
+-->
+<style>
+:root{
+  --navy:#12263f;          /* estrutura e conceito */
+  --navy-2:#1d3557;
+  --azul:#10758f;          /* Azul Atlas (contraste seguro para texto branco) */
+  --azul-claro:#e6f2f6;
+  --verm:#c0392b;          /* isquemia, risco, erro */
+  --verm-claro:#fdecea;
+  --verde:#1e8f5e;         /* normal, resposta adequada, acerto */
+  --verde-claro:#e8f6ef;
+  --ouro:#8a6100;          /* pegadinha TEC */
+  --ouro-bg:#fff6da;
+  --ouro-borda:#e3b53d;
+  --roxo:#6b4fa0;          /* viabilidade / reserva contrátil */
+  --roxo-claro:#f0ebfa;
+  --cinza:#5b6673;         /* técnico */
+  --cinza-claro:#eef1f4;
+  --fundo:#f6f8fa;
+  --papel:#ffffff;
+  --linha:#dde3e9;
+  --sombra:0 1px 2px rgba(18,38,63,.06),0 6px 18px rgba(18,38,63,.07);
+  --raio:14px;
+  --disp:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --mono:'IBM Plex Mono','Consolas',monospace;
+  --assin:'Dancing Script','Segoe Script',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--fundo);color:var(--navy);
+  font-family:var(--disp);font-size:17.5px;line-height:1.62;
+  -webkit-text-size-adjust:100%;overflow-x:hidden;
+}
+body.reduzmov *{animation-duration:.001s!important;transition-duration:.001s!important}
+img,svg{max-width:100%}
+b,strong{color:var(--navy)}
+p{margin:.7em 0}
+a{color:var(--azul)}
+.wrap{max-width:940px;margin:0 auto;padding:0 16px}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--linha)}
+.nav-in{max-width:940px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:10px}
+.marca{display:flex;align-items:center;gap:9px;font-weight:900;font-size:14.5px;letter-spacing:.2px;min-width:0}
+.marca span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini-ve{width:30px;height:34px;flex:0 0 auto}
+.mini-ve path{transition:fill .5s}
+.nav-btn{margin-left:auto;flex:0 0 auto;border:1px solid var(--linha);background:var(--papel);color:var(--navy);
+  font-family:var(--disp);font-weight:800;font-size:13.5px;padding:7px 12px;border-radius:999px;cursor:pointer}
+.nav-btn:hover{border-color:var(--azul);color:var(--azul)}
+.barra{height:4px;background:var(--cinza-claro)}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--azul),var(--verm));transition:width .35s}
+
+/* painel */
+.painel{position:fixed;inset:0;z-index:80;background:rgba(18,38,63,.55);display:none;padding:0}
+.painel.on{display:block}
+.painel-cx{background:var(--papel);max-width:520px;margin:0 auto;height:100%;overflow-y:auto;padding:18px 18px 60px;
+  box-shadow:var(--sombra)}
+.painel h3{margin:.2em 0 .5em;font-size:19px}
+.painel a.idx{display:block;padding:9px 10px;border-bottom:1px solid var(--linha);text-decoration:none;color:var(--navy);font-weight:700;font-size:15px}
+.painel a.idx:hover{background:var(--azul-claro)}
+.painel a.idx i{font-family:var(--mono);font-style:normal;color:var(--cinza);margin-right:8px;font-size:13px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.tg{border:1px solid var(--linha);background:var(--papel);border-radius:999px;padding:8px 13px;font-family:var(--disp);
+  font-weight:800;font-size:13.5px;cursor:pointer;color:var(--navy)}
+.tg.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ---------- HERO ---------- */
+.hero{background:radial-gradient(ellipse at 50% 30%,#1d3557 0%,#0d1b2e 70%);color:#eaf1f8;padding:46px 0 40px;position:relative;overflow:hidden}
+.hero b,.hero strong{color:inherit}
+.hero .kick{font-family:var(--mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#8fb8d0}
+.hero h1{font-size:clamp(30px,7.2vw,54px);line-height:1.05;margin:.25em 0 .1em;font-weight:900;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:#f2b705}
+.hero .sub{color:#b9cede;font-size:17px;max-width:640px}
+.hero-coracao{display:block;margin:14px auto 6px;width:min(230px,60vw)}
+@keyframes bate{0%,100%{transform:scale(1)}12%{transform:scale(1.07)}24%{transform:scale(1)}}
+.bate{transform-origin:center;animation:bate 1.15s ease-in-out infinite}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero-chips a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#eaf1f8;
+  padding:7px 13px;border-radius:999px;font-size:13.5px;font-weight:700;text-decoration:none;transition:.18s}
+.hero-chips a:hover,.hero-chips a:focus{background:#f2b705;color:#12263f;border-color:#f2b705}
+.hero-chips a:active{transform:translateY(1px)}
+.assin{font-family:var(--assin);font-size:26px;color:#f2b705;margin-top:16px}
+
+/* ---------- SEÇÕES ---------- */
+section{padding:34px 0 6px;scroll-margin-top:76px}
+[id]{scroll-margin-top:76px}
+.sechead{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--navy);padding-bottom:6px;margin:8px 0 18px}
+.sechead .n{font-family:var(--mono);font-size:13px;color:var(--verm);font-weight:700}
+.sechead h2{font-size:clamp(21px,4.4vw,29px);margin:0;font-weight:900;letter-spacing:-.3px}
+h3{font-size:19.5px;margin:1.3em 0 .3em}
+.cx{background:var(--papel);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 17px;margin:14px 0;box-shadow:var(--sombra)}
+.cx.azul{border-left:5px solid var(--azul)}
+.cx.verm{border-left:5px solid var(--verm);background:var(--verm-claro)}
+.cx.verde{border-left:5px solid var(--verde);background:var(--verde-claro)}
+.cx.roxo{border-left:5px solid var(--roxo);background:var(--roxo-claro)}
+.cx.cinza{border-left:5px solid var(--cinza);background:var(--cinza-claro)}
+.rot{font-family:var(--mono);font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--cinza);display:block;margin-bottom:4px}
+.peg{background:var(--ouro-bg);border:1px solid var(--ouro-borda);border-left:5px solid var(--ouro-borda);
+  border-radius:var(--raio);padding:14px 16px;margin:16px 0}
+.peg .rot{color:var(--ouro);font-weight:800}
+.fonte{background:#eef4f7;border:1px dashed var(--azul);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:15.5px;color:var(--navy-2)}
+.fonte .rot{color:var(--azul)}
+.conferir{display:inline-block;background:#fff;border:1px dashed var(--ouro-borda);color:var(--ouro);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.6px;padding:2px 7px;border-radius:6px;vertical-align:middle;margin-left:5px}
+.ancora{font-size:clamp(19px,4.6vw,27px);font-weight:900;line-height:1.25;text-align:center;color:var(--navy);
+  background:linear-gradient(180deg,#fff,#eef4f7);border:2px solid var(--navy);border-radius:var(--raio);
+  padding:20px 16px;margin:20px 0}
+.ancora small{display:block;font-size:14px;font-weight:700;color:var(--cinza);margin-top:8px;line-height:1.45}
+.filo{background:var(--navy);color:#e9f0f7;border-radius:var(--raio);padding:18px 18px;margin:20px 0;text-align:center}
+.filo b,.filo strong{color:inherit}
+.filo p{font-size:19px;font-style:italic;margin:0}
+.filo .a{font-family:var(--assin);color:#f2b705;font-size:21px;margin-top:6px;display:block}
+.mini{font-size:14.5px;color:var(--cinza)}
+ul.lst{margin:.5em 0;padding-left:1.1em}
+ul.lst li{margin:.35em 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}.cmp2{grid-template-columns:1fr 1fr}}
+.btn{font-family:var(--disp);font-weight:800;font-size:15px;border-radius:999px;padding:10px 17px;cursor:pointer;
+  border:2px solid var(--navy);background:var(--navy);color:#fff;transition:.18s}
+.btn:hover{background:var(--azul);border-color:var(--azul)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:#fff;color:var(--navy)}
+.btn.ghost:hover{background:var(--azul-claro);color:var(--navy);border-color:var(--azul)}
+.btn.pq{font-size:13.5px;padding:7px 13px}
+button:focus-visible,a:focus-visible,input:focus-visible,.opt:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.oculto{display:none!important}
+.revelo{border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin-top:10px;background:#fbfdfe}
+
+/* revisão rápida */
+body.revisao .longa{display:none}
+body.revisao .so-revisao{display:block}
+.so-revisao{display:none}
+/* modo professor */
+.profbox{display:none;background:#0f2033;color:#dbe7f2;border-radius:12px;padding:14px 15px;margin:12px 0;font-size:15.5px}
+.profbox b,.profbox strong{color:#f2b705}
+body.prof .profbox{display:block}
+body.prof .prof-hide{filter:blur(5px);opacity:.55}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Navegação do capítulo">
+  <div class="nav-in">
+    <div class="marca">
+      <svg class="mini-ve" viewBox="0 0 60 70" aria-hidden="true">
+        <path id="mv1" d="M30 4 C44 4 54 16 54 32 L44 32 C44 20 38 13 30 13 Z" fill="#dde3e9"/>
+        <path id="mv2" d="M54 32 C54 48 44 64 30 66 L30 55 C38 53 44 44 44 32 Z" fill="#dde3e9"/>
+        <path id="mv3" d="M30 66 C16 64 6 48 6 32 L16 32 C16 44 22 53 30 55 Z" fill="#dde3e9"/>
+        <path id="mv4" d="M6 32 C6 16 16 4 30 4 L30 13 C22 13 16 20 16 32 Z" fill="#dde3e9"/>
+      </svg>
+      <span>Cap. 8 · Ecoestresse</span>
+    </div>
+    <button class="nav-btn" onclick="abrePainel()" aria-haspopup="dialog">Índice e ajustes</button>
+  </div>
+  <div class="barra"><i id="barraProg"></i></div>
+</nav>
+
+<div class="painel" id="painel" role="dialog" aria-label="Índice e ajustes" onclick="if(event.target===this)fechaPainel()">
+  <div class="painel-cx">
+    <button class="btn ghost pq" style="float:right" onclick="fechaPainel()">Fechar ✕</button>
+    <h3>Ajustes</h3>
+    <div class="toggles">
+      <button class="tg" id="tgRev" onclick="toggleRevisao()">🧠 Revisão rápida</button>
+      <button class="tg" id="tgProf" onclick="toggleProf()">👩‍🏫 Modo professor</button>
+      <button class="tg" id="tgMov" onclick="toggleMov()">🎞️ Reduzir movimento</button>
+      <button class="tg" onclick="mePegue()">🎯 Me pegue na prova</button>
+      <button class="tg" onclick="if(confirm('Apagar todo o progresso deste capítulo?')){localStorage.removeItem(LS_KEY);location.reload()}">♻️ Reiniciar progresso</button>
+    </div>
+    <h3>Índice</h3>
+    <div id="idxLista"></div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick">Atlas Mental · Síndrome Coronariana Crônica · Capítulo 8</div>
+    <h1>O coração pode<br><em>mentir parado.</em></h1>
+    <svg class="hero-coracao" viewBox="0 0 240 200" role="img" aria-label="Coração esquemático com uma parede que deixa de se mover sob estresse">
+      <g class="bate" id="heroBate">
+        <path d="M120 178 C40 122 18 86 18 60 C18 34 38 16 62 16 C84 16 104 30 120 52 C136 30 156 16 178 16 C202 16 222 34 222 60 C222 86 200 122 120 178 Z"
+              fill="#22405f" stroke="#4d7ea8" stroke-width="3"/>
+        <path id="heroParede" d="M150 44 C176 56 186 84 172 112 C166 124 154 132 142 134 L134 112 C144 110 152 104 156 94 C162 80 158 62 142 54 Z"
+              fill="#4d7ea8" opacity=".85"/>
+      </g>
+      <text id="heroTxt" x="120" y="196" text-anchor="middle" fill="#8fb8d0" font-size="13" font-family="monospace">REPOUSO — tudo parece normal</text>
+    </svg>
+    <p class="sub">Ecocardiograma de repouso normal. ECG sem evidência diagnóstica de isquemia. E o paciente sente dor ao subir três lances de escada. <b>Onde está a doença?</b></p>
+    <div class="hero-chips">
+      <a href="#s01">Cascata isquêmica</a>
+      <a href="#s04">O que eu procuro na tela</a>
+      <a href="#s06">Exercício × dobutamina</a>
+      <a href="#s10">Padrões de resposta</a>
+      <a href="#s12">Alto risco</a>
+      <a href="#s17">Palácio Hotel Eco</a>
+      <a href="#s19">Arena TEC</a>
+    </div>
+    <div class="assin">— Dr. André Rossanno</div>
+  </div>
+</header>
+
+<!-- ======================= ABERTURA DINÂMICA ======================= -->
+<section id="abertura">
+ <div class="wrap">
+  <div class="cx azul">
+    <span class="rot">Antes de qualquer explicação</span>
+    <h3 style="margin-top:0">Homem de 58 anos. Dor no peito ao subir três lances de escada. Em repouso, está tudo normal.</h3>
+    <p>ECG de repouso sem evidência diagnóstica de isquemia. Ecocardiograma de repouso sem alteração segmentar. Exame físico sem achados. E, ainda assim, a dor volta toda vez que ele sobe a escada.</p>
+    <p><b>Escolha a hipótese que você defenderia agora:</b></p>
+    <div id="hipoteses" class="grid2"></div>
+    <div id="hipFeed" class="revelo oculto"></div>
+    <div id="portaConceitual" class="oculto">
+      <div class="ancora" style="margin-top:18px">
+        O repouso pergunta: <span style="color:var(--azul)">como o coração está?</span><br>
+        O estresse pergunta: <span style="color:var(--verm)">o que acontece quando ele precisa de reserva?</span>
+        <small>Talvez você não estivesse fazendo a pergunta errada. Talvez estivesse fazendo a pergunta certa no momento errado.</small>
+      </div>
+      <div class="filo">
+        <p>“A fisiologia não é uma fotografia. É um filme.”</p>
+        <span class="a">— Dr. André Rossanno</span>
+      </div>
+      <p style="text-align:center"><button class="btn" onclick="irPara('#mapa')">Abrir o mapa do capítulo ↓</button></p>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= MAPA MENTAL ======================= -->
+<section id="mapa">
+ <div class="wrap">
+  <div class="sechead"><span class="n">MAPA</span><h2>Os seis territórios deste capítulo</h2></div>
+  <p class="mini">Toque em um território para ir até ele. O mapa fica sempre a um toque de distância pelo botão flutuante 🗺️.</p>
+  <div class="grid3" id="mapaGrid"></div>
+ </div>
+</section>
+
+<!-- ======================= 01 CASCATA ======================= -->
+<section id="s01">
+ <div class="wrap">
+  <div class="sechead"><span class="n">01</span><h2>A cascata isquêmica</h2></div>
+
+  <div class="cx">
+    <span class="rot">Preveja antes de ler</span>
+    <p><b>Um paciente desenvolve isquemia durante o esforço. Qual fenômeno tende a aparecer primeiro?</b></p>
+    <div id="cascPrev" class="grid2"></div>
+    <div id="cascPrevFeed" class="revelo oculto"></div>
+  </div>
+
+  <div id="cascBloco" class="oculto">
+    <p class="longa">A isquemia não chega inteira, de uma vez. Ela deixa pegadas em sequência. Cada degrau desta escada é um exame diferente olhando para o mesmo fenômeno em um momento diferente.</p>
+    <div class="cx">
+      <span class="rot">Construa a cascata, um degrau por vez</span>
+      <div id="cascadaVis"></div>
+      <p style="text-align:center;margin-top:12px">
+        <button class="btn" id="btnCasc" onclick="proxDegrau()">Revelar o próximo degrau ↓</button>
+        <button class="btn ghost pq" onclick="resetCascada()">Recomeçar</button>
+      </p>
+    </div>
+
+    <div class="ancora">A PAREDE PODE GRITAR ANTES DE O ST FALAR.
+      <small>Leia com precisão: a cascata explica <b>por que</b> a alteração mecânica regional pode preceder a alteração do ST e a angina. Não é uma promessa de que o ecoestresse enxergará sempre a isquemia antes do ECG em todo paciente.</small></div>
+
+    <div class="peg">
+      <span class="rot">⚠️ Pegadinha TEC</span>
+      <p>A cascata é um <b>modelo didático de sequência</b>, não um cronômetro rígido. Existe isquemia silenciosa (o degrau da angina nunca aparece) e existe paciente que sente dor cedo. O que a prova cobra é a <b>ordem conceitual</b> — e que a alteração contrátil regional vem <b>antes</b> do ST e da dor.</p>
+    </div>
+
+    <h3>Mnemônico: MECA</h3>
+    <div class="cx cinza">
+      <p style="font-size:19px;margin:.2em 0"><b>M</b> — Metabolismo e perfusão &nbsp;🔥<br>
+      <b>E</b> — Enchimento e relaxamento (diástole) &nbsp;🧘<br>
+      <b>C</b> — Contratilidade regional &nbsp;💪<br>
+      <b>A</b> — Alteração elétrica + Angina &nbsp;⚡😖</p>
+      <p class="mini">O ecoestresse mora no <b>C</b>. O teste ergométrico mora no <b>A</b>. A cintilografia mora no <b>M</b>. Três exames, três degraus da mesma escada.</p>
+    </div>
+
+    <div class="cx azul">
+      <span class="rot">Tente reconstruir sem olhar</span>
+      <p>Toque nos degraus <b>na ordem em que aparecem</b>. Errou? A ordem se desfaz e você tenta de novo.</p>
+      <div id="mecaJogo"></div>
+      <p id="mecaFeed" class="mini"></p>
+      <p><button class="btn ghost pq" onclick="montaMeca()">Embaralhar de novo</button></p>
+    </div>
+
+    <div class="quizslot" data-q="q1"></div>
+
+    <div class="filo">
+      <p>“Reserva só pode ser conhecida quando é solicitada.”</p>
+      <span class="a">— Dr. André Rossanno</span>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 02 FÁBRICA ======================= -->
+<section id="s02">
+ <div class="wrap">
+  <div class="sechead"><span class="n">02</span><h2>Por que funciona: a fábrica cardíaca</h2></div>
+  <p class="longa">O miocárdio é uma fábrica. O oxigênio chega em caminhões. A coronária é a estrada. Em repouso, a fábrica pede pouco — e quase toda estrada consegue entregar pouco.</p>
+
+  <div class="cx">
+    <span class="rot">Laboratório</span>
+    <div class="grid2" style="align-items:center">
+      <div>
+        <p><b>1. Escolha a estrada:</b></p>
+        <div class="toggles" style="margin:6px 0 14px">
+          <button class="tg on" id="fabN" onclick="setEstrada('normal')">🛣️ Coronária normal</button>
+          <button class="tg" id="fabE" onclick="setEstrada('estreita')">🚧 Coronária com estenose limitante</button>
+        </div>
+        <p><b>2. Escolha a situação:</b></p>
+        <div class="toggles" style="margin:6px 0">
+          <button class="tg on" id="fabR" onclick="setCarga('repouso')">😌 Repouso</button>
+          <button class="tg" id="fabS" onclick="setCarga('estresse')">🏃 Estresse</button>
+        </div>
+      </div>
+      <div>
+        <svg id="fabricaSvg" viewBox="0 0 320 190" role="img" aria-label="Fábrica cardíaca: caminhões de oxigênio percorrendo a estrada coronariana"></svg>
+      </div>
+    </div>
+    <div id="fabricaFeed" class="revelo"></div>
+  </div>
+
+  <div class="ancora" style="border-color:var(--verm);color:var(--verm)">
+    DEMANDA ↑ &nbsp;→&nbsp; RESERVA CORONARIANA INSUFICIENTE &nbsp;→&nbsp; ISQUEMIA
+    <small style="color:var(--cinza)">É por isso que um coração pode parecer perfeitamente normal em repouso e desenvolver alteração segmentar apenas durante o estresse. A placa não apareceu no meio do exame — a <b>reserva</b> é que foi exigida.</small>
+  </div>
+
+  <div class="cx roxo">
+    <span class="rot">A pergunta que o teste funcional faz</span>
+    <p>O teste funcional não pergunta <b>“existe uma placa?”</b> — isso é pergunta de método anatômico. Ele pergunta: <b>“essa doença consegue limitar funcionalmente o miocárdio quando a demanda aumenta?”</b></p>
+    <p class="mini">Ponte com o Capítulo 4: anatomia mostra a estrada; função mostra o trânsito na hora do pico.</p>
+  </div>
+
+  <div class="quizslot" data-q="q2"></div>
+
+  <div class="profbox">
+    <b>Como eu explicaria em 30 segundos:</b> "Todo mundo passa no teste fácil. O exame de estresse cria o teste difícil."<br>
+    <b>Pergunta para os alunos:</b> "Se a estenose é de 90% mas o paciente não faz esforço nenhum, o ecoestresse dele em repouso é normal — a coronária está boa?"<br>
+    <b>Erro provável:</b> confundir <em>ausência de isquemia induzível</em> com <em>ausência de doença coronariana</em>.
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 03 MECÂNICA ANTES DO ST ======================= -->
+<section id="s03">
+ <div class="wrap">
+  <div class="sechead"><span class="n">03</span><h2>Por que olhar a parede, e não só o ST</h2></div>
+  <p>Se a sequência é <b>perfusão → diástole → contratilidade → ST → dor</b>, existe uma janela em que a parede já está sofrendo e o segmento ST ainda não se moveu. O teste ergométrico interroga sobretudo o degrau elétrico. O ecoestresse interroga o degrau mecânico regional — um degrau antes.</p>
+
+  <div class="cx cinza longa">
+    <span class="rot">Precisão que a prova cobra</span>
+    <ul class="lst">
+      <li>“Mais sensível” não é uma promessa individual: é uma explicação fisiológica de por que a alteração mecânica <b>pode</b> preceder a elétrica.</li>
+      <li>Um ECG basal não interpretável (BRE, marca-passo, pré-excitação, alterações de repolarização) não anula o exame de imagem — ele anula a leitura do ST. É exatamente aí que o método de imagem entra. <span class="conferir">Conferir SBC 2026</span></li>
+      <li>Alteração segmentar não é sinônimo automático de isquemia: miocardite, Takotsubo, doenças infiltrativas, BRE e marca-passo produzem alteração da contratilidade fora do contexto isquêmico (ponte com o Cap. 3).</li>
+    </ul>
+  </div>
+
+  <div class="quizslot" data-q="q3"></div>
+ </div>
+</section>
+
+<!-- ======================= 04 O QUE PROCURO ======================= -->
+<section id="s04">
+ <div class="wrap">
+  <div class="sechead"><span class="n">04</span><h2>O que eu procuro na tela</h2></div>
+  <p>Uma coisa só, dita de três maneiras: <b>espessamento e movimento de cada segmento</b> em repouso e sob estresse — e o que mudou entre as duas fases.</p>
+
+  <div class="grid3">
+    <div class="cx verde"><b>Resposta normal</b><p class="mini">Todos os segmentos aumentam o espessamento e a excursão. O ventrículo fica hipercinético e a função global melhora.</p></div>
+    <div class="cx verm"><b>Isquemia induzível</b><p class="mini">Um ou mais segmentos <b>pioram</b>: nova hipocinesia, nova acinesia ou piora de alteração já existente.</p></div>
+    <div class="cx roxo"><b>Reserva contrátil</b><p class="mini">Segmento hipocinético em repouso que <b>melhora</b> com baixa dose — há músculo vivo ali dentro.</p></div>
+  </div>
+
+  <div class="cx">
+    <span class="rot">Laboratório · corte transversal do VE</span>
+    <p><b>Qual parede adoeceu só quando aumentamos a demanda?</b> Compare as duas fases e toque na parede culpada.</p>
+    <div class="toggles" style="margin:6px 0 10px">
+      <button class="tg on" id="vwSax" onclick="setVista('sax')">Eixo curto paraesternal</button>
+      <button class="tg" id="vw4c" onclick="setVista('4c')">Apical 4 câmaras</button>
+    </div>
+    <div class="cmp2" id="veLab">
+      <div style="background:#070c12;border-radius:10px;padding:6px 4px">
+        <p style="text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:#7f8d99;margin:0 0 2px">REPOUSO</p>
+        <svg id="veRepouso" viewBox="0 0 200 200" role="img" aria-label="Imagem ecocardiográfica esquemática do ventrículo esquerdo em repouso"></svg>
+      </div>
+      <div style="background:#070c12;border-radius:10px;padding:6px 4px">
+        <p style="text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:#f19a92;margin:0 0 2px">ESTRESSE</p>
+        <svg id="veEstresse" viewBox="0 0 200 200" role="img" aria-label="Imagem ecocardiográfica esquemática do ventrículo esquerdo no estresse"></svg>
+      </div>
+    </div>
+    <div id="veAviso"></div>
+    <div id="veFeed" class="revelo">Toque no segmento que <b>piorou</b> no estresse.</div>
+    <p class="mini">Imagem esquemática no padrão do ultrassom: setor escuro, sangue preto, miocárdio em cinza com textura e <b>espessamento animado</b> a cada sístole — no estresse, o coração bate mais rápido. As cores são <b>realce didático sobre a imagem</b>: verde = engrossou mais, vermelho = deixou de engrossar. Não é mapa polar de perfusão.</p>
+    <p class="mini"><b>Orientação:</b> eixo curto exibido na convenção da ASE, a mesma do mapa polar — <b>anterior em cima, septo à esquerda, inferior embaixo, lateral à direita</b>, com o VD cavalgando o septo e a parede anterior. Os seis segmentos do nível médio aparecem nomeados na própria imagem: ANT · ANTLAT · INFLAT · INF · INFSEPT · ANTSEPT. Na máquina, a rotação do transdutor pode entregar a imagem girada — quem se orienta pelo VD e pelo septo, e não pelo "que está em cima", não erra a parede.</p>
+    <p style="text-align:center"><button class="btn ghost pq" onclick="novoCasoVE()">Sortear outro caso</button>
+      <span class="mini" id="vePlacar"></span></p>
+  </div>
+
+  <div class="peg">
+    <span class="rot">⚠️ Pegadinha TEC</span>
+    <p>Hipercinesia no estresse é <b>o esperado</b>. O achado anormal não é “a parede se mexeu muito”, e sim <b>“esta parede se mexeu menos do que se mexia, ou menos do que as vizinhas passaram a se mexer”</b>. A comparação é sempre <b>repouso × estresse</b>, no mesmo paciente.</p>
+  </div>
+
+  <div class="quizslot" data-q="q4"></div>
+
+  <div class="filo">
+    <p>“Não basta perguntar se uma parede se move. Pergunte como ela reage quando o coração precisa trabalhar.”</p>
+    <span class="a">— Dr. André Rossanno</span>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 05 TERRITÓRIO ======================= -->
+<section id="s05">
+ <div class="wrap">
+  <div class="sechead"><span class="n">05</span><h2>Parede e artéria: uma correspondência provável, não uma lei</h2></div>
+  <p>Localizar ajuda a conversar com o hemodinamicista e a interpretar a angiografia. Toque para pintar os territórios prováveis:</p>
+  <div class="cx">
+    <div class="toggles">
+      <button class="tg" onclick="pintaTerritorio('da')">Pintar território da DA</button>
+      <button class="tg" onclick="pintaTerritorio('cx')">Pintar território da Cx</button>
+      <button class="tg" onclick="pintaTerritorio('cd')">Pintar território da CD</button>
+      <button class="tg" onclick="pintaTerritorio(null)">Limpar</button>
+    </div>
+    <svg id="veTerritorio" viewBox="0 0 200 200" style="max-width:270px;display:block;margin:0 auto;background:#070c12;border-radius:10px" role="img" aria-label="Territórios coronarianos prováveis no corte transversal do ventrículo esquerdo"></svg>
+    <p class="mini" id="terrLegenda" style="text-align:center;min-height:1.4em"></p>
+  </div>
+  <div class="cx cinza">
+    <span class="rot">Trava científica</span>
+    <p>Territórios coronarianos têm <b>variabilidade anatômica</b> (dominância, tamanho da DA, artéria distal que “dá a volta” no ápice, circulação colateral). A localização ecocardiográfica sugere o vaso provável — <b>não</b> é correspondência rígida. Laudo honesto descreve <b>segmentos</b> e sugere território; não decreta artéria.</p>
+  </div>
+  <div class="quizslot" data-q="q5"></div>
+ </div>
+</section>
+
+<!-- ======================= 06 COMO PROVOCAR ======================= -->
+<section id="s06">
+ <div class="wrap">
+  <div class="sechead"><span class="n">06</span><h2>Como provocar o coração</h2></div>
+  <p>Antes de escolher o agente, responda a uma pergunta clínica — não uma preferência de serviço:</p>
+
+  <div class="cx azul">
+    <p style="font-size:20px;font-weight:900;text-align:center;margin:.2em 0">Este paciente consegue exercitar-se de forma adequada e segura?</p>
+    <div class="cmp2" style="margin-top:12px">
+      <button class="btn ghost" style="width:100%;border-radius:12px;padding:14px" onclick="bifurca('sim')">SIM →<br><span class="mini">consegue caminhar/pedalar</span></button>
+      <button class="btn ghost" style="width:100%;border-radius:12px;padding:14px" onclick="bifurca('nao')">NÃO →<br><span class="mini">limitação física, ortopédica, neurológica…</span></button>
+    </div>
+    <div id="bifFeed" class="revelo oculto"></div>
+  </div>
+
+  <div class="ancora">SE ELE PODE EXERCITAR-SE, O CORAÇÃO CONTA MAIS PARTES DA HISTÓRIA.
+    <small>Exercício entrega, além da imagem: sintomas, comportamento da FC, da PA, do ECG e a <b>capacidade funcional</b> — informação prognóstica que nenhuma droga reproduz. Isso é um <b>princípio de escolha</b>, não uma regra absoluta: indicação, segurança e objetivo clínico decidem.</small></div>
+
+  <div class="peg">
+    <span class="rot">⚠️ Pegadinha TEC</span>
+    <p>A dobutamina responde muito bem à pergunta “<b>há isquemia induzível?</b>”. Ela <b>não</b> mede aptidão cardiorrespiratória. Trocar exercício por droga em quem caminha bem é jogar fora metade da informação prognóstica.</p>
+  </div>
+
+  <div class="quizslot" data-q="q6"></div>
+ </div>
+</section>
+
+<!-- ======================= 07 MODALIDADES FÍSICAS ======================= -->
+<section id="s07">
+ <div class="wrap">
+  <div class="sechead"><span class="n">07</span><h2>Esteira × bicicleta × cicloergômetro de maca</h2></div>
+
+  <div class="cmp2">
+    <div class="cx">
+      <b>🏃 Esteira</b>
+      <p class="mini" style="font-family:var(--mono);font-size:13px">correr → parar → deitar → adquirir</p>
+      <p class="mini">A imagem do “pico” é, na verdade, a imagem <b>logo após</b> o pico. A alteração contrátil pode começar a se resolver enquanto o transdutor ainda está sendo posicionado.</p>
+    </div>
+    <div class="cx">
+      <b>🚴 Bicicleta / cicloergômetro de maca</b>
+      <p class="mini" style="font-family:var(--mono);font-size:13px">pedalar + adquirir ao mesmo tempo</p>
+      <p class="mini">Permite imagens <b>durante</b> diferentes níveis de carga — inclusive em carga baixa, onde mora o achado mais preocupante.</p>
+    </div>
+  </div>
+
+  <div class="ancora">“Na esteira, corremos atrás da imagem.<br>Na bicicleta, podemos observar enquanto a carga acontece.”</div>
+
+  <div class="cx cinza">
+    <span class="rot">Comparação enxuta</span>
+    <div id="tabModal"></div>
+    <p class="mini">Disponibilidade, familiaridade da equipe e conforto do paciente entram na decisão real. <span class="conferir">Conferir SBC 2026</span></p>
+  </div>
+
+  <div class="quizslot" data-q="q7"></div>
+ </div>
+</section>
+
+<!-- ======================= 08 DOBUTAMINA ======================= -->
+<section id="s08">
+ <div class="wrap">
+  <div class="sechead"><span class="n">08</span><h2>DOBU, o personal trainer farmacológico</h2></div>
+  <p>Quando o paciente não pode correr, a demanda é criada por dentro. A dobutamina é um agonista adrenérgico com efeito predominantemente β₁:</p>
+
+  <div class="cx azul">
+    <div id="cadeiaDobu"></div>
+    <p style="text-align:center"><button class="btn pq" onclick="proxDobu()" id="btnDobu">Avançar um elo →</button>
+      <button class="btn ghost pq" onclick="resetDobu()">Recomeçar</button></p>
+  </div>
+
+  <h3>O protocolo, do jeito que se faz</h3>
+  <div class="cx">
+    <div id="protoDobu"></div>
+    <p class="mini">Progressão habitual em etapas de <b>3 minutos</b>, com monitorização contínua de ECG, PA, sintomas e aquisição de imagens em repouso, baixa dose, doses intermediárias e pico. <span class="conferir">Conferir SBC 2026</span></p>
+    <p class="mini"><b>Atropina</b> pode ser associada quando a frequência-alvo não é alcançada com a dose máxima de dobutamina e não há contraindicação — a droga faz o cronotropismo que a dobutamina sozinha não conseguiu. <span class="conferir">Conferir SBC 2026</span></p>
+  </div>
+
+  <div class="cx roxo">
+    <span class="rot">Duas doses, duas perguntas diferentes</span>
+    <p><b>Baixa dose</b> pergunta: <i>existe músculo vivo aqui?</i> (reserva contrátil)<br>
+       <b>Pico</b> pergunta: <i>existe fluxo suficiente para sustentar esse músculo quando eu exigir?</i> (isquemia)</p>
+    <p class="mini">Guarde isso. É a chave de leitura de todos os padrões da seção 10 — e de todo o urso hibernante.</p>
+  </div>
+
+  <div class="quizslot" data-q="q8"></div>
+ </div>
+</section>
+
+<!-- ======================= 09 FREQUÊNCIA ALVO ======================= -->
+<section id="s09">
+ <div class="wrap">
+  <div class="sechead"><span class="n">09</span><h2>A frequência cardíaca alvo</h2></div>
+
+  <div class="cx">
+    <span class="rot">Calculadora</span>
+    <label for="idadeFC"><b>Idade do paciente:</b></label>
+    <input id="idadeFC" type="number" min="12" max="105" value="60" inputmode="numeric"
+      style="font-family:var(--mono);font-size:18px;padding:8px 10px;border:2px solid var(--linha);border-radius:10px;width:110px;margin-left:8px"
+      oninput="calcFC()">
+    <div id="fcSaida" style="margin-top:14px"></div>
+    <p class="mini">220 − idade é uma <b>estimativa populacional</b>, com margem de erro individual relevante. Ela orienta o alvo; não é um veredito fisiológico. <span class="conferir">Conferir SBC 2026</span></p>
+  </div>
+
+  <div class="peg">
+    <span class="rot">⚠️ Pegadinha TEC</span>
+    <p>Paciente de 60 anos atinge <b>136 bpm</b> no ecoestresse com dobutamina, sem critérios prévios de interrupção. 220 − 60 = 160; 85% = 136.</p>
+    <p><b>Esse exame é “submáximo” e precisa continuar?</b> <span id="pegFCbtn"><button class="btn ghost pq" onclick="revela('pegFC')">Ver resposta</button></span></p>
+    <div id="pegFC" class="revelo oculto">
+      <p><b>Não.</b> 136 bpm <b>é</b> a FC-alvo de 85% da máxima prevista para 60 anos. O exame atingiu o alvo — chamá-lo de “submáximo/inconclusivo” é um erro de leitura da própria meta. <span class="conferir">Conferir SBC 2026</span></p>
+      <p class="mini">Cuidado com a outra ponta: exame <b>interrompido antes do alvo</b> e <b>sem</b> alteração de contratilidade não é “negativo” — é <b>não diagnóstico</b>. E o inverso também vale: se a alteração contrátil surgiu antes do alvo, o exame já respondeu à pergunta e o alvo perde a importância.</p>
+    </div>
+  </div>
+
+  <div class="quizslot" data-q="q9"></div>
+
+  <div class="profbox">
+    <b>Pergunta para os alunos:</b> "Quem usa betabloqueador chega à FC-alvo com facilidade? E o que isso muda na interpretação?"<br>
+    <b>Erro provável:</b> tratar 85% como um botão de parada — quando o critério de interrupção pode chegar muito antes (nova alteração contrátil, arritmia, sintomas, hipertensão importante).
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 10 PADRÕES ======================= -->
+<section id="s10">
+ <div class="wrap">
+  <div class="sechead"><span class="n">10</span><h2>Os quatro padrões de resposta contrátil</h2></div>
+  <p>Toda a interpretação do ecoestresse com dobutamina cabe em três colunas — <b>repouso</b>, <b>baixa dose</b> e <b>pico</b> — e no que o segmento faz entre elas. Toque em um padrão para abri-lo.</p>
+
+  <div class="cx">
+    <div id="padroesGrid"></div>
+    <div id="padraoDet" class="revelo">Toque em um dos quatro padrões acima.</div>
+  </div>
+
+  <div class="peg">
+    <span class="rot">⚠️ Pegadinha TEC</span>
+    <p>O que separa o padrão 2 do padrão 3 <b>não é a alteração</b> — nos dois há isquemia. É <b>o quanto de estímulo foi preciso</b> para revelá-la. Quanto menor a provocação necessária, menor a reserva funcional e maior a preocupação.</p>
+  </div>
+
+  <div class="quizslot" data-q="q10"></div>
+ </div>
+</section>
+
+<!-- ======================= 11 URSO + LABORATÓRIO ======================= -->
+<section id="s11">
+ <div class="wrap">
+  <div class="sechead"><span class="n">11</span><h2>O urso hibernante e a resposta bifásica</h2></div>
+
+  <div class="cx roxo">
+    <div class="grid3" style="text-align:center">
+      <div><div style="font-size:44px">🐻💤</div><b>Repouso</b><p class="mini">Segmento hipocinético. Parece morto — mas está economizando.</p></div>
+      <div><div style="font-size:44px">🐻👀💪</div><b>Baixa dose</b><p class="mini">Acordou. Contrai melhor. <b>Existe reserva contrátil.</b></p></div>
+      <div><div style="font-size:44px">🐻🥴</div><b>Pico</b><p class="mini">Exigimos mais e o fluxo não sustenta. Piora de novo.</p></div>
+    </div>
+    <div class="ancora" style="border-color:var(--roxo);color:var(--roxo);margin-bottom:0">
+      ACORDOU = HÁ RESERVA CONTRÁTIL.<br>PIOROU QUANDO EXIGIMOS MAIS = HÁ ISQUEMIA.
+      <small style="color:var(--cinza)">A metáfora organiza a memória. A definição científica é esta: melhora da contratilidade segmentar em baixa dose seguida de piora em doses mais altas — <b>resposta bifásica</b> — é o comportamento que, no contexto clínico adequado, mais sugere <b>miocárdio disfuncional viável dependente de fluxo limitado</b>. <span class="conferir">Conferir SBC 2026</span></small>
+    </div>
+  </div>
+
+  <div class="cx cinza longa">
+    <span class="rot">Não simplifique demais</span>
+    <ul class="lst">
+      <li>Melhora sustentada até o pico, sem piora, fala a favor de <b>reserva contrátil</b> — não é o padrão bifásico clássico.</li>
+      <li>Ausência de qualquer melhora com baixa dose sugere <b>ausência de reserva contrátil</b> naquele segmento; “cicatriz” é uma <b>inferência</b>, e depende do contexto (extensão, ECG, história de infarto, outros métodos).</li>
+      <li>Viabilidade demonstrada não é, por si só, indicação automática de revascularização — a decisão é clínica e multifatorial.</li>
+    </ul>
+  </div>
+
+  <div class="cx">
+    <span class="rot">Laboratório de dobutamina</span>
+    <p>Um segmento hipocinético em repouso. Mova a dose e observe. Depois <b>diga o que você viu</b> — a explicação só abre depois da sua resposta.</p>
+    <div style="text-align:center">
+      <svg id="labSvg" viewBox="0 0 260 150" style="max-width:340px" role="img" aria-label="Segmento miocárdico respondendo à dobutamina"></svg>
+    </div>
+    <label for="doseSlider" class="mini"><b>Dobutamina</b></label>
+    <input id="doseSlider" type="range" min="0" max="3" step="1" value="0" style="width:100%" oninput="moveDose()" aria-label="Dose de dobutamina">
+    <div class="mini" style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px">
+      <span>repouso</span><span>baixa</span><span>intermediária</span><span>pico</span>
+    </div>
+    <div id="labOpcoes" class="grid2" style="margin-top:14px"></div>
+    <div id="labFeed" class="revelo">Chegue ao pico antes de responder.</div>
+    <p style="text-align:center"><button class="btn ghost pq" onclick="novoCasoLab()">Sortear outro caso</button> <span class="mini" id="labPlacar"></span></p>
+  </div>
+
+  <div class="cx azul">
+    <span class="rot">Pare e responda antes de abrir</span>
+    <p><b>Segmento hipocinético em repouso. Baixa dose melhora a contratilidade. Alta dose piora novamente. O que isso significa?</b></p>
+    <button class="btn ghost pq" onclick="revela('revBif')">Revelar raciocínio</button>
+    <div id="revBif" class="revelo oculto">
+      <p>Há <b>reserva contrátil</b> (o músculo respondeu ao estímulo inotrópico → está vivo) <b>e</b> há <b>isquemia</b> (quando a demanda subiu, o fluxo não acompanhou). Reserva contrátil + isquemia = <b>resposta bifásica</b>, compatível com miocárdio viável em território dependente de fluxo limitado, no contexto clínico apropriado.</p>
+    </div>
+  </div>
+
+  <div class="quizslot" data-q="q11"></div>
+  <div class="quizslot" data-q="q12"></div>
+ </div>
+</section>
+
+<!-- ======================= 12 ALTO RISCO ======================= -->
+<section id="s12">
+ <div class="wrap">
+  <div class="sechead"><span class="n">12</span><h2>Quando o exame grita alto risco</h2></div>
+  <p>Não decore sete caixas soltas. Faça <b>uma pergunta com três braços</b>:</p>
+  <div class="ancora" style="border-color:var(--verm)">A ISQUEMIA É EXTENSA, PRECOCE OU GLOBAL?</div>
+
+  <h3>🌍 Extensa</h3>
+  <div class="cx verm">
+    <p>Quanto mais território perde contratilidade, pior o prognóstico. A Diretriz de Síndrome Coronariana Crônica (SBC 2025) trata a alteração induzida em <b>≥3 dos 16 segmentos</b> do VE como marcador de isquemia de <b>alto risco</b>, associada a risco anual de eventos <b>&gt;3%</b>. <span class="conferir">Conferir SBC 2025</span></p>
+    <div class="ancora" style="border-color:var(--verm);color:var(--verm);margin:14px 0 4px">3 SEGMENTOS → TERRITÓRIO DE &gt;3%/ANO
+      <small style="color:var(--cinza)">Isto é uma <b>âncora de memorização</b>, não uma fórmula fisiológica: o “3” do numerador e o “3%” não têm relação matemática. A coincidência serve à memória, não ao raciocínio.</small></div>
+    <p class="mini">Envolvimento de <b>múltiplos territórios</b> coronarianos pesa junto com o número de segmentos.</p>
+  </div>
+
+  <h3>⏱️ Precoce</h3>
+  <div class="cx verm">
+    <p>Alteração que aparece em <b>baixa carga</b>, <b>baixa dose</b> ou com <b>FC relativamente baixa</b> significa que pouca provocação já esgotou a reserva.</p>
+    <div class="cmp2" style="margin:12px 0">
+      <div class="cx" style="margin:0"><b>Paciente A</b><p class="mini">Isquemia apenas no pico, 1 segmento.</p></div>
+      <div class="cx" style="margin:0"><b>Paciente B</b><p class="mini">Isquemia já na baixa dose, 1 segmento.</p></div>
+    </div>
+    <p><b>Quem preocupa mais — e por quê?</b> Formule sua resposta antes de abrir.</p>
+    <button class="btn ghost pq" onclick="revela('revAB')">Revelar</button>
+    <div id="revAB" class="revelo oculto">
+      <p><b>Paciente B.</b> Mesma extensão, reservas completamente diferentes. Em A, foi preciso levar o coração ao limite para expor a limitação. Em B, um empurrão pequeno bastou — o que sobra de reserva funcional é pouco. <b>O gatilho necessário informa tanto quanto o achado.</b></p>
+    </div>
+  </div>
+
+  <h3>🫀 Global</h3>
+  <div class="cx verm">
+    <p>Aqui o problema deixa de parecer “uma parede” e passa a ser o ventrículo inteiro.</p>
+    <div class="cmp2">
+      <div>
+        <p class="mini" style="text-align:center;font-weight:800;margin:0">RESPOSTA NORMAL</p>
+        <svg id="veGlobalN" viewBox="0 0 160 190" role="img" aria-label="Ventrículo com resposta global normal ao estresse"></svg>
+      </div>
+      <div>
+        <p class="mini" style="text-align:center;font-weight:800;margin:0">RESPOSTA GLOBAL ANORMAL</p>
+        <svg id="veGlobalA" viewBox="0 0 160 190" role="img" aria-label="Ventrículo com resposta global isquêmica ao estresse"></svg>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:8px"><button class="btn pq" onclick="animaGlobal()">Aplicar o estresse</button></p>
+    <ul class="lst">
+      <li><b>Normal:</b> contratilidade aumenta, volumes diastólico e sistólico finais <b>diminuem</b>, FE sobe de forma marcada.</li>
+      <li><b>Isquêmica global:</b> FE <b>cai</b> ou não aumenta adequadamente, com <b>dilatação</b> da cavidade durante o estresse. <span class="conferir">Conferir SBC 2026</span></li>
+    </ul>
+  </div>
+
+  <h3>☠️ O mapa de alto risco</h3>
+  <div class="cx" id="mapaRisco"></div>
+
+  <div class="quizslot" data-q="q13"></div>
+  <div class="quizslot" data-q="q14"></div>
+
+  <div class="filo">
+    <p>“Doença funcional pode permanecer silenciosa enquanto a demanda é pequena.”</p>
+    <span class="a">— Dr. André Rossanno</span>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 13 CONTRAINDICAÇÕES ======================= -->
+<section id="s13">
+ <div class="wrap">
+  <div class="sechead"><span class="n">13</span><h2>Quando não provocar</h2></div>
+  <div class="ancora" style="border-color:var(--verm);color:var(--verm)">NÃO PROVOQUE UM CORAÇÃO QUE JÁ ESTÁ EM GUERRA.</div>
+  <p>Cinco lógicas organizam a lista inteira. Toque para abrir:</p>
+  <div class="cx" id="ciGrupos"></div>
+  <p class="mini">Lista agrupada a partir das contraindicações descritas para o ecoestresse farmacológico com dobutamina. Use sempre a redação vigente da diretriz; não extrapole para situações vizinhas. <span class="conferir">Conferir SBC 2026</span></p>
+
+  <div class="cx azul">
+    <span class="rot">Você faria dobutamina neste paciente?</span>
+    <div id="ciJogo"></div>
+    <div id="ciFeed" class="revelo">Escolha SIM ou NÃO em cada cenário.</div>
+    <p class="mini" id="ciPlacar"></p>
+  </div>
+
+  <div class="peg">
+    <span class="rot">⚠️ Pegadinha TEC</span>
+    <p>“Contraindicado” quase nunca significa “esse paciente nunca poderá fazer o exame”. Significa <b>não agora</b>: instabilidade tratada, pressão controlada, quadro agudo resolvido — e a janela reabre. A prova gosta de misturar <b>contraindicação absoluta</b> com <b>momento inadequado</b>.</p>
+  </div>
+
+  <div class="quizslot" data-q="q15"></div>
+ </div>
+</section>
+
+<!-- ======================= 14 JANELA ACÚSTICA ======================= -->
+<section id="s14">
+ <div class="wrap">
+  <div class="sechead"><span class="n">14</span><h2>O calcanhar de Aquiles: janela e operador</h2></div>
+  <div class="cx">
+    <span class="rot">Cena</span>
+    <p>Paciente com indicação impecável de ecoestresse. Durante a aquisição, vários segmentos da parede lateral não são adequadamente visualizados.</p>
+    <p><b>O problema é fisiológico ou técnico?</b></p>
+    <div class="cmp2">
+      <button class="btn ghost" onclick="janela('fisio')">Fisiológico</button>
+      <button class="btn ghost" onclick="janela('tec')">Técnico</button>
+    </div>
+    <div id="janFeed" class="revelo oculto"></div>
+  </div>
+  <div class="cx cinza">
+    <ul class="lst">
+      <li><b>Qualidade de imagem</b> é parte do resultado: segmento não visualizado não é segmento normal.</li>
+      <li><b>Agente de realce ultrassonográfico (contraste)</b> é recomendado quando dois ou mais segmentos contíguos não são adequadamente visualizados no plano apical, para melhorar a acurácia. <span class="conferir">Conferir SBC 2026</span></li>
+      <li><b>Experiência do operador</b> altera sensibilidade e especificidade de forma tão relevante quanto qualquer característica do paciente.</li>
+      <li>Obesidade, DPOC/enfisema e deformidades torácicas são os suspeitos habituais de janela difícil.</li>
+    </ul>
+  </div>
+  <div class="quizslot" data-q="q16"></div>
+ </div>
+</section>
+
+<!-- ======================= 15 ECO × CINTILO ======================= -->
+<section id="s15">
+ <div class="wrap">
+  <div class="sechead"><span class="n">15</span><h2>Ecoestresse ou cintilografia?</h2></div>
+  <p>A pergunta errada é “qual é melhor”. A pergunta certa é <b>“qual pergunta eu estou fazendo, neste paciente, neste serviço?”</b></p>
+
+  <div class="cmp2">
+    <div class="cx azul"><b>🫀 Ecoestresse</b><p class="mini">Olha a <b>mecânica</b>: espessamento e movimento regional. Degrau <b>C</b> da cascata.</p></div>
+    <div class="cx roxo"><b>☢️ Cintilografia</b><p class="mini">Olha a <b>perfusão</b>: distribuição relativa do radiofármaco. Degrau <b>M</b> da cascata.</p></div>
+  </div>
+  <p class="mini" style="text-align:center">Dois métodos funcionais válidos, olhando degraus diferentes da mesma escada — por isso podem discordar sem que um deles esteja “errado”.</p>
+
+  <div class="cx">
+    <span class="rot">Qual método responde melhor?</span>
+    <p>Arraste mentalmente e depois confira: toque na necessidade e veja o comentário.</p>
+    <div id="ecoCintGrid"></div>
+    <div id="ecoCintFeed" class="revelo">Toque em uma necessidade clínica.</div>
+  </div>
+
+  <div class="ancora">“O melhor exame não existe fora do paciente.”</div>
+
+  <div class="cx cinza">
+    <span class="rot">A palavra que precisa ficar enorme</span>
+    <p style="font-size:26px;font-weight:900;text-align:center;letter-spacing:2px;margin:.2em 0">EXPERTISE</p>
+    <p class="mini">A escolha entre métodos funcionais não se resolve com dois números abstratos de sensibilidade e especificidade colhidos de metanálises. Entram: o paciente, a pergunta clínica, a qualidade técnica local, a experiência de quem faz e de quem lauda, a disponibilidade, o custo, a radiação e as contraindicações. Um exame teoricamente excelente, executado e interpretado mal, perde o encanto rapidamente.</p>
+  </div>
+
+  <div class="quizslot" data-q="q17"></div>
+ </div>
+</section>
+
+<!-- ======================= 16 INFOGRÁFICO ======================= -->
+<section id="s16">
+ <div class="wrap">
+  <div class="sechead"><span class="n">16</span><h2>O capítulo inteiro em uma imagem</h2></div>
+  <div class="cx" style="background:linear-gradient(180deg,#0f2033,#16304c);color:#e9f0f7;border:none">
+    <p style="text-align:center;font-family:var(--mono);letter-spacing:2px;font-size:12px;color:#8fb8d0;margin:0">INFOGRÁFICO CENTRAL</p>
+    <h3 style="text-align:center;color:#f2b705;margin:.2em 0 .6em;font-size:clamp(20px,5vw,30px)">O CORAÇÃO PODE MENTIR PARADO</h3>
+    <div style="text-align:center;font-size:52px">🫀</div>
+    <div class="grid2" id="infoGrid"></div>
+    <div style="text-align:center;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2)">
+      <div style="font-size:clamp(20px,5.4vw,30px);font-weight:900;color:#f2b705">≥3 SEGMENTOS</div>
+      <div class="mini" style="color:#b9cede">extensa · precoce · global — os três braços que transformam um achado em prognóstico</div>
+    </div>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 17 PALÁCIO ======================= -->
+<section id="s17">
+ <div class="wrap">
+  <div class="sechead"><span class="n">17</span><h2>🏰 Hotel Eco — o palácio da memória</h2></div>
+  <p>Cinco ambientes. Percorra na ordem, sempre a mesma. Da próxima vez que precisar reconstruir o capítulo, caminhe pelo hotel em vez de tentar lembrar da lista.</p>
+  <div class="grid2" id="hotelGrid"></div>
+  <div id="hotelDet" class="revelo">Toque em uma sala para entrar.</div>
+  <p class="mini" id="hotelProg"></p>
+ </div>
+</section>
+
+<!-- ======================= 18 RECUPERAÇÃO ATIVA ======================= -->
+<section id="s18">
+ <div class="wrap">
+  <div class="sechead"><span class="n">18</span><h2>Feche os olhos e responda</h2></div>
+  <p>Responda mentalmente, em voz alta se puder, <b>antes</b> de abrir. A tentativa de lembrar é o que fixa — não a leitura da resposta.</p>
+  <div id="recupGrid"></div>
+
+  <h3>⏱️ Teste de 60 segundos</h3>
+  <div class="cx">
+    <p>Sete peças para reconstruir. O cronômetro é opcional — mas a pressão ajuda.</p>
+    <p><button class="btn" id="btn60" onclick="inicia60()">Começar 60 segundos</button>
+       <span id="cron60" style="font-family:var(--mono);font-size:26px;font-weight:900;margin-left:12px">60</span></p>
+    <div id="lista60"></div>
+    <div id="res60" class="revelo oculto"></div>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 19 ARENA TEC ======================= -->
+<section id="s19">
+ <div class="wrap">
+  <div class="sechead"><span class="n">19</span><h2>Arena TEC</h2></div>
+  <p class="mini">Questões <b>estilo TEC</b>, escritas para este capítulo. Não são questões oficiais da prova. As que apareceram ao longo do texto também contam no seu placar.</p>
+  <div class="toggles" id="arenaFiltro"></div>
+  <div id="arenaLista"></div>
+ </div>
+</section>
+
+<!-- ======================= 20 HIPOCAMPO ======================= -->
+<section id="s20">
+ <div class="wrap">
+  <div class="sechead"><span class="n">20</span><h2>📕 Meu caderno de erros</h2></div>
+  <div class="cx">
+    <div id="dash" class="grid3"></div>
+    <p style="text-align:center"><button class="btn ghost pq" onclick="renderCaderno()">Atualizar</button>
+      <button class="btn ghost pq" onclick="mePegue()">🎯 Me pegue na prova</button></p>
+  </div>
+  <div id="caderno"></div>
+
+  <h3>Revisão espaçada</h3>
+  <div class="cx cinza">
+    <p class="mini">Marque conforme fizer. Fica salvo neste aparelho.</p>
+    <div id="checklist"></div>
+  </div>
+
+  <h3>Resumo de bolso</h3>
+  <div class="cx verde">
+    <p>🔥→🧘→💪→⚡→😖 &nbsp;·&nbsp; cascata (MECA)<br>
+    🏃 pode correr? corra &nbsp;·&nbsp; 💉 não pode? DOBU<br>
+    🙂→💪→💪 normal &nbsp;·&nbsp; 🙂→💪→🥴 isquemia &nbsp;·&nbsp; 🐻💤→🐻💪→🐻🥴 bifásica<br>
+    ☠️ extensa (≥3/16) · precoce (baixa carga) · global (FE cai + VE dilata)<br>
+    📡 eco = mecânica &nbsp;·&nbsp; ☢️ cintilo = perfusão</p>
+  </div>
+ </div>
+</section>
+
+<!-- ======================= 21 FILOSOFIA ======================= -->
+<section id="s21">
+ <div class="wrap">
+  <div class="sechead"><span class="n">21</span><h2>Filosofia do Atlas</h2></div>
+  <div id="filoSorteio"></div>
+  <p style="text-align:center">
+    <button class="btn" onclick="sorteiaFrase()">Sortear uma frase para começar a revisão</button>
+    <button class="btn ghost pq" onclick="verTodasFrases()">Ver todas</button>
+    <button class="btn ghost pq" onclick="projetaFrase()">Projetar</button>
+  </p>
+  <div id="filoTodas" class="oculto"></div>
+ </div>
+</section>
+
+<div id="projetor" class="oculto" style="position:fixed;inset:0;z-index:95;background:#0d1b2e;color:#eaf1f8;display:flex;
+  align-items:center;justify-content:center;padding:8vw;text-align:center;cursor:pointer" onclick="fechaProjetor()">
+  <div><p id="projTxt" style="font-size:clamp(24px,5.4vw,44px);font-style:italic;line-height:1.3"></p>
+  <span style="font-family:var(--assin);color:#f2b705;font-size:26px">— Dr. André Rossanno</span>
+  <p class="mini" style="color:#8fb8d0;margin-top:20px">toque para fechar</p></div>
+</div>
+
+<!-- ======================= FINAL ======================= -->
+<section id="final" style="padding-bottom:60px">
+ <div class="wrap">
+  <div class="cx" style="background:radial-gradient(ellipse at 50% 0%,#1d3557,#0d1b2e);color:#e9f0f7;border:none;text-align:center;padding:30px 18px">
+    <p class="mini" style="color:#8fb8d0">Voltemos ao paciente do começo.</p>
+    <div id="finalCena" style="min-height:150px"></div>
+    <button class="btn pq" id="btnFinal" onclick="proxFinal()" style="background:#f2b705;border-color:#f2b705;color:#12263f">Avançar ▶</button>
+    <div id="finalFrases" class="oculto">
+      <p style="font-size:clamp(19px,4.6vw,27px);font-weight:900;color:#f2b705;margin-top:22px">A FISIOLOGIA NÃO É UMA FOTOGRAFIA. É UM FILME.</p>
+      <p style="font-size:17px;color:#cfe0ee">O eco de repouso mostra <b style="color:#fff">como o coração está</b>.<br>O ecoestresse pergunta <b style="color:#fff">quanto de reserva ele possui</b> — e o que acontece quando essa reserva é exigida.</p>
+      <p style="font-size:clamp(20px,5vw,30px);font-weight:900;line-height:1.2;margin-top:26px">NÃO PERGUNTE APENAS COMO O CORAÇÃO ESTÁ.<br><span style="color:#f2b705">PERGUNTE O QUE ACONTECE QUANDO ELE PRECISA FAZER MAIS.</span></p>
+      <div style="font-family:var(--assin);color:#f2b705;font-size:28px;margin-top:18px">— Dr. André Rossanno</div>
+    </div>
+  </div>
+  <p class="mini" style="text-align:center">
+    <b>Fontes:</b> Diretriz SBC/DIC sobre Ecocardiografia de Estresse (2026) · Diretriz Brasileira de Síndrome Coronariana Crônica (SBC, 2025).<br>
+    Os selos <span class="conferir">Conferir</span> marcam pontos numéricos e de redação que devem ser reconferidos no texto vigente da diretriz antes de publicar.<br>
+    Atlas Mental · memoriapotencial.com.br · © 2026 — uso comercial proibido.
+  </p>
+ </div>
+</section>
+
+<button id="fabMapa" onclick="irPara('#mapa')" aria-label="Abrir o mapa do capítulo"
+  style="position:fixed;right:14px;bottom:16px;z-index:55;border:none;background:var(--navy);color:#fff;width:46px;height:46px;
+  border-radius:50%;font-size:20px;cursor:pointer;opacity:.9;box-shadow:0 6px 18px rgba(18,38,63,.35)">🗺️</button>
+
+<script>
+/* ============================================================
+   ATLAS MENTAL · SCC · CAP.8 — ECOCARDIOGRAMA SOB ESTRESSE
+   Estado, persistência e utilidades
+   ============================================================ */
+const LS_KEY='atlasCardio_scc_cap8_v1';
+let ST={vistas:[],resp:{},erros:[],check:{},salas:[],placarVE:[0,0],placarLab:[0,0],placarCI:[0,0]};
+function salva(){try{localStorage.setItem(LS_KEY,JSON.stringify(ST))}catch(e){}}
+function carrega(){try{const r=localStorage.getItem(LS_KEY);if(r)ST=Object.assign(ST,JSON.parse(r))}catch(e){}}
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s))}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function irPara(h){const el=$(h);if(el&&el.scrollIntoView)el.scrollIntoView({behavior:'smooth',block:'start'});fechaPainel()}
+function revela(id){const e=$('#'+id);if(e)e.classList.remove('oculto')}
+
+/* ---------- painel, modos ---------- */
+function abrePainel(){$('#painel').classList.add('on')}
+function fechaPainel(){$('#painel').classList.remove('on')}
+function toggleRevisao(){document.body.classList.toggle('revisao');$('#tgRev').classList.toggle('on',document.body.classList.contains('revisao'))}
+function toggleProf(){document.body.classList.toggle('prof');$('#tgProf').classList.toggle('on',document.body.classList.contains('prof'))}
+function toggleMov(){document.body.classList.toggle('reduzmov');$('#tgMov').classList.toggle('on',document.body.classList.contains('reduzmov'))}
+
+/* ---------- índice + progresso ---------- */
+const SECOES=[
+ ['#abertura','Abertura — o paciente que dói na escada'],
+ ['#mapa','Mapa do capítulo'],
+ ['#s01','01 · A cascata isquêmica'],
+ ['#s02','02 · A fábrica cardíaca'],
+ ['#s03','03 · Por que olhar a parede'],
+ ['#s04','04 · O que eu procuro na tela'],
+ ['#s05','05 · Parede e artéria'],
+ ['#s06','06 · Como provocar o coração'],
+ ['#s07','07 · Esteira × bicicleta × maca'],
+ ['#s08','08 · DOBU, o personal trainer'],
+ ['#s09','09 · A frequência alvo'],
+ ['#s10','10 · Os quatro padrões'],
+ ['#s11','11 · O urso hibernante'],
+ ['#s12','12 · Alto risco'],
+ ['#s13','13 · Quando não provocar'],
+ ['#s14','14 · Janela e operador'],
+ ['#s15','15 · Eco × cintilografia'],
+ ['#s16','16 · Infográfico central'],
+ ['#s17','17 · Hotel Eco'],
+ ['#s18','18 · Recuperação ativa'],
+ ['#s19','19 · Arena TEC'],
+ ['#s20','20 · Caderno de erros'],
+ ['#s21','21 · Filosofia do Atlas'],
+ ['#final','Encerramento']
+];
+function montaIndice(){
+  $('#idxLista').innerHTML=SECOES.map(function(s,i){
+    return '<a class="idx" href="'+s[0]+'" onclick="fechaPainel()"><i>'+String(i+1).padStart(2,'0')+'</i>'+esc(s[1])+'</a>';
+  }).join('');
+}
+function marcaVista(id){if(ST.vistas.indexOf(id)<0){ST.vistas.push(id);salva();atualizaProgresso()}}
+function atualizaProgresso(){
+  const pc=Math.round(100*ST.vistas.length/SECOES.length);
+  $('#barraProg').style.width=Math.min(100,pc)+'%';
+  const cores=['#10758f','#1e8f5e','#e3b53d','#c0392b'];
+  for(let i=1;i<=4;i++){
+    const p=document.getElementById('mv'+i);
+    if(p)p.setAttribute('fill', pc>=i*25-12 ? cores[i-1] : '#dde3e9');
+  }
+}
+function observaSecoes(){
+  if(!('IntersectionObserver' in window))return;
+  const io=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting)marcaVista('#'+e.target.id)})
+  },{rootMargin:'-25% 0px -55% 0px'});
+  SECOES.forEach(function(s){const el=$(s[0]);if(el)io.observe(el)});
+}
+
+/* ---------- hero ---------- */
+function heroCiclo(){
+  const par=$('#heroParede'),txt=$('#heroTxt');if(!par)return;
+  let fase=0;
+  setInterval(function(){
+    if(document.body.classList.contains('reduzmov'))return;
+    fase=1-fase;
+    if(fase){par.setAttribute('fill','#c0392b');par.setAttribute('opacity','.9');
+      txt.textContent='ESTRESSE — uma parede deixa de acompanhar';txt.setAttribute('fill','#f19a92');
+      $('#heroBate').style.animationDuration='.55s';}
+    else{par.setAttribute('fill','#4d7ea8');par.setAttribute('opacity','.85');
+      txt.textContent='REPOUSO — tudo parece normal';txt.setAttribute('fill','#8fb8d0');
+      $('#heroBate').style.animationDuration='1.15s';}
+  },3400);
+}
+
+/* ============================================================
+   ABERTURA — hipóteses antes da explicação
+   ============================================================ */
+const HIPOTESES=[
+ {t:'Não há doença coronariana — a dor é de outra origem',
+  f:'Possível, mas prematuro. Um eco e um ECG de repouso normais não afastam doença coronariana: eles apenas dizem que, <b>naquele instante de baixa demanda</b>, a oferta era suficiente.',ok:false},
+ {t:'A doença existe, mas só se manifesta quando a demanda aumenta',
+  f:'É a hipótese que organiza todo este capítulo. A limitação de fluxo pode ser irrelevante em repouso e decisiva quando o miocárdio precisa de reserva.',ok:true},
+ {t:'O ecocardiograma de repouso foi mal feito',
+  f:'Qualidade técnica importa muito (voltaremos a isso na seção 14) — mas um eco de repouso impecável também pode ser normal aqui. O problema não é a imagem: é o <b>momento</b> em que ela foi feita.',ok:false},
+ {t:'Como o ECG não é diagnóstico, não há como investigar',
+  f:'Ao contrário: é exatamente quando o ST não ajuda que os métodos de imagem ganham espaço. A pergunta muda de "o ST muda?" para "a parede muda?".',ok:false}
+];
+function montaHipoteses(){
+  $('#hipoteses').innerHTML=HIPOTESES.map(function(h,i){
+    return '<button class="btn ghost" style="text-align:left;border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.35" onclick="respHipotese('+i+')">'+esc(h.t)+'</button>';
+  }).join('');
+}
+function respHipotese(i){
+  const h=HIPOTESES[i],fd=$('#hipFeed');
+  fd.classList.remove('oculto');
+  fd.style.borderLeft='5px solid '+(h.ok?'var(--verde)':'var(--cinza)');
+  fd.innerHTML='<b>'+(h.ok?'Você foi ao ponto.':'Vale pensar mais um pouco.')+'</b><p>'+h.f+'</p>';
+  $('#portaConceitual').classList.remove('oculto');
+}
+
+/* ============================================================
+   MAPA MENTAL
+   ============================================================ */
+const TERRITORIOS=[
+ ['🧠','Por que funciona?','#s01','cascata isquêmica e reserva coronariana'],
+ ['🫀','O que estou procurando?','#s04','contratilidade segmentar, repouso × estresse'],
+ ['🏃','Como provocar o estresse?','#s06','exercício, esteira, bicicleta, maca'],
+ ['💉','Dobutamina e respostas','#s08','protocolo, FC-alvo e os quatro padrões'],
+ ['☠️','Quando é alto risco?','#s12','extensa · precoce · global'],
+ ['⚖️','Eco ou outro método?','#s15','a pergunta certa para este paciente']
+];
+function montaMapa(){
+  $('#mapaGrid').innerHTML=TERRITORIOS.map(function(t){
+    return '<a href="'+t[2]+'" class="cx" style="text-decoration:none;display:block;margin:0;transition:.18s">'+
+      '<div style="font-size:30px">'+t[0]+'</div><b style="color:var(--navy)">'+esc(t[1])+'</b>'+
+      '<p class="mini" style="margin:.2em 0 0">'+esc(t[3])+'</p></a>';
+  }).join('');
+}
+
+/* ============================================================
+   01 · CASCATA
+   ============================================================ */
+const CASC_PREV=[
+ {t:'Angina',f:'É o último degrau, e às vezes nem aparece (isquemia silenciosa).',ok:false},
+ {t:'Infradesnivelamento do ST',f:'Vem depois da alteração mecânica. É o degrau que o teste ergométrico enxerga.',ok:false},
+ {t:'Alteração segmentar da contratilidade',f:'Quase lá: é o degrau que o ecoestresse enxerga — mas ainda não é o primeiro.',ok:false},
+ {t:'Alteração metabólica e de perfusão',f:'Exato. O desequilíbrio oferta/demanda começa no nível celular e de fluxo — é o degrau que a cintilografia e o PET enxergam.',ok:true}
+];
+function montaCascPrev(){
+  $('#cascPrev').innerHTML=CASC_PREV.map(function(o,i){
+    return '<button class="btn ghost" style="border-radius:12px;font-size:15px" onclick="respCascPrev('+i+')">'+esc(o.t)+'</button>';
+  }).join('');
+}
+function respCascPrev(i){
+  const o=CASC_PREV[i],fd=$('#cascPrevFeed');
+  fd.classList.remove('oculto');
+  fd.style.borderLeft='5px solid '+(o.ok?'var(--verde)':'var(--verm)');
+  fd.innerHTML='<b>'+(o.ok?'Correto.':'Ainda não.')+'</b> '+o.f;
+  $('#cascBloco').classList.remove('oculto');
+}
+const DEGRAUS=[
+ ['🔥','Alteração metabólica e de perfusão','A oferta deixa de acompanhar a demanda no nível celular. Nada disso é visível no ECG ou no movimento da parede ainda.','var(--roxo)'],
+ ['🧘','Disfunção diastólica regional','O relaxamento é o processo mais caro em ATP. É o primeiro fenômeno mecânico a sofrer.','var(--azul)'],
+ ['💪','Alteração sistólica regional','O segmento perde espessamento e excursão: nova hipocinesia ou acinesia. <b>Aqui mora o ecoestresse.</b>','var(--verm)'],
+ ['⚡','Alteração do segmento ST','O fenômeno elétrico chega depois. <b>Aqui mora o teste ergométrico.</b>','var(--ouro)'],
+ ['😖','Angina','O sintoma é o último degrau — e pode simplesmente não aparecer.','var(--cinza)']
+];
+let cascN=0;
+function renderCascada(){
+  $('#cascadaVis').innerHTML=DEGRAUS.map(function(d,i){
+    const on=i<cascN;
+    return '<div style="display:flex;gap:12px;align-items:flex-start;padding:10px 12px;margin:6px 0;border-radius:12px;'+
+      'border-left:5px solid '+(on?d[3]:'var(--linha)')+';background:'+(on?'#fbfdfe':'#f2f5f7')+';'+
+      'opacity:'+(on?'1':'.45')+';transition:.3s">'+
+      '<div style="font-size:26px;line-height:1">'+(on?d[0]:'❔')+'</div><div><b>'+(on?esc(d[1]):'degrau '+(i+1))+'</b>'+
+      (on?'<p class="mini" style="margin:.15em 0 0">'+d[2]+'</p>':'')+'</div></div>'+
+      (i<DEGRAUS.length-1?'<div style="text-align:center;color:var(--cinza);line-height:.6">↓</div>':'');
+  }).join('');
+  $('#btnCasc').textContent = cascN>=DEGRAUS.length ? 'Cascata completa ✓' : 'Revelar o próximo degrau ↓';
+  $('#btnCasc').disabled = cascN>=DEGRAUS.length;
+}
+function proxDegrau(){if(cascN<DEGRAUS.length){cascN++;renderCascada()}}
+function resetCascada(){cascN=0;renderCascada()}
+
+/* MECA — reconstruir na ordem */
+const MECA=[['🔥','Metabolismo / perfusão'],['🧘','Enchimento / relaxamento'],['💪','Contratilidade'],['⚡','Alteração elétrica'],['😖','Angina']];
+let mecaOrdem=[],mecaFeitos=[];
+function montaMeca(){
+  mecaFeitos=[];
+  mecaOrdem=MECA.map(function(m,i){return i});
+  for(let i=mecaOrdem.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=mecaOrdem[i];mecaOrdem[i]=mecaOrdem[j];mecaOrdem[j]=t}
+  renderMeca();$('#mecaFeed').textContent='';
+}
+function renderMeca(){
+  $('#mecaJogo').innerHTML='<div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0">'+
+    mecaOrdem.map(function(idx){
+      const feito=mecaFeitos.indexOf(idx)>=0;
+      return '<button class="btn ghost pq" style="border-radius:12px;'+(feito?'background:var(--verde-claro);border-color:var(--verde);':'')+'" onclick="cliqueMeca('+idx+')">'+
+        MECA[idx][0]+' '+esc(MECA[idx][1])+(feito?' ✓':'')+'</button>';
+    }).join('')+'</div>'+
+    '<div class="mini">Sequência montada: '+(mecaFeitos.length?mecaFeitos.map(function(i){return MECA[i][0]}).join(' → '):'—')+'</div>';
+}
+function cliqueMeca(idx){
+  if(mecaFeitos.indexOf(idx)>=0)return;
+  if(idx===mecaFeitos.length){
+    mecaFeitos.push(idx);renderMeca();
+    if(mecaFeitos.length===MECA.length)$('#mecaFeed').innerHTML='<b style="color:var(--verde)">Cascata reconstruída. 🔥 → 🧘 → 💪 → ⚡ → 😖</b>';
+  }else{
+    mecaFeitos=[];renderMeca();
+    $('#mecaFeed').innerHTML='<b style="color:var(--verm)">Fora de ordem.</b> Comece de novo — o primeiro degrau é sempre o que nenhum exame de movimento enxerga.';
+  }
+}
+
+/* ============================================================
+   02 · FÁBRICA CARDÍACA
+   ============================================================ */
+let fabEstrada='normal',fabCarga='repouso';
+function setEstrada(v){fabEstrada=v;$('#fabN').classList.toggle('on',v==='normal');$('#fabE').classList.toggle('on',v==='estreita');renderFabrica()}
+function setCarga(v){fabCarga=v;$('#fabR').classList.toggle('on',v==='repouso');$('#fabS').classList.toggle('on',v==='estresse');renderFabrica()}
+function renderFabrica(){
+  const precisa = fabCarga==='repouso'?10:30;
+  const entrega = fabCarga==='repouso'?10:(fabEstrada==='normal'?30:15);
+  const larg = fabEstrada==='normal'?26:10;
+  const nCam = Math.max(1,Math.round(entrega/5));
+  let cams='';
+  for(let i=0;i<nCam;i++){cams+='<text x="'+(26+i*20)+'" y="'+(fabEstrada==='normal'?96:96)+'" font-size="15">🚚</text>'}
+  $('#fabricaSvg').innerHTML=
+    '<rect x="0" y="0" width="320" height="190" fill="#f4f8fa" rx="10"/>'+
+    '<rect x="8" y="'+(88-larg/2+8)+'" width="230" height="'+larg+'" fill="#c9d6e0" rx="5"/>'+
+    (fabEstrada==='estreita'?'<rect x="120" y="86" width="34" height="16" fill="#c0392b" opacity=".8" rx="3"/><text x="137" y="76" font-size="11" text-anchor="middle" fill="#c0392b">estenose</text>':'')+
+    cams+
+    '<rect x="242" y="52" width="70" height="86" rx="8" fill="'+(entrega>=precisa?'#1e8f5e':'#c0392b')+'" opacity=".14" stroke="'+(entrega>=precisa?'#1e8f5e':'#c0392b')+'"/>'+
+    '<text x="277" y="86" font-size="26" text-anchor="middle">🏭</text>'+
+    '<text x="277" y="112" font-size="11" text-anchor="middle" fill="#12263f">precisa '+precisa+'</text>'+
+    '<text x="277" y="126" font-size="11" text-anchor="middle" fill="#12263f">recebe '+entrega+'</text>';
+  const ok=entrega>=precisa;
+  const txt = ok
+    ? (fabCarga==='repouso'
+        ? '<b style="color:var(--verde)">Tudo funciona.</b> Em repouso, a fábrica pede pouco — e mesmo uma estrada estreitada entrega o suficiente. <b>É por isso que o exame de repouso pode ser normal em quem tem doença coronariana importante.</b>'
+        : '<b style="color:var(--verde)">Reserva preservada.</b> A demanda triplicou e a estrada conseguiu acompanhar: fluxo sobe, contratilidade sobe, o segmento fica hipercinético.')
+    : '<b style="color:var(--verm)">Isquemia.</b> A fábrica pede 30 e a estrada só entrega 15. A diferença aparece como perda de espessamento e movimento naquele segmento — <b>nova hipocinesia induzida pelo estresse</b>.';
+  $('#fabricaFeed').innerHTML=txt;
+}
+
+/* ============================================================
+   04/05 · IMAGEM ECOCARDIOGRÁFICA ESQUEMÁTICA
+   Setor de ultrassom, sangue preto, miocárdio cinza com speckle,
+   espessamento animado (SMIL). Duas janelas: eixo curto e apical 4C.
+   ============================================================ */
+const SEGS=[
+ {id:'ant', nome:'Anterior',        ang:-90, terr:'da'},
+ {id:'antl',nome:'Anterolateral',   ang:-30, terr:'cx'},
+ {id:'infl',nome:'Inferolateral',   ang: 30, terr:'cx'},
+ {id:'inf', nome:'Inferior',        ang: 90, terr:'cd'},
+ {id:'infs',nome:'Inferosseptal',   ang:150, terr:'cd'},
+ {id:'ants',nome:'Anterosseptal',   ang:210, terr:'da'}
+];
+const ECO_FUNDO='#070c12', ECO_MIO='#9fb0bd', ECO_HIPO='#c0392b', ECO_HIPER='#3f8f6e';
+function pol(cx,cy,r,g){const a=g*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]}
+function cunha(cx,cy,ri,re,a0,a1){
+  const p1=pol(cx,cy,re,a0),p2=pol(cx,cy,re,a1),p3=pol(cx,cy,ri,a1),p4=pol(cx,cy,ri,a0);
+  return 'M'+p1[0].toFixed(1)+' '+p1[1].toFixed(1)+
+    ' A'+re+' '+re+' 0 0 1 '+p2[0].toFixed(1)+' '+p2[1].toFixed(1)+
+    ' L'+p3[0].toFixed(1)+' '+p3[1].toFixed(1)+
+    ' A'+ri+' '+ri+' 0 0 0 '+p4[0].toFixed(1)+' '+p4[1].toFixed(1)+' Z';
+}
+/* ruído tipo speckle, determinístico (não pisca a cada render) */
+let _spk=null;
+function speckle(){
+  if(_spk)return _spk;
+  let s='',seed=7;
+  const rnd=function(){seed=(seed*1103515245+12345)%2147483648;return seed/2147483648};
+  for(let i=0;i<190;i++){
+    const x=(rnd()*200).toFixed(1),y=(rnd()*200).toFixed(1),o=(0.03+rnd()*0.09).toFixed(2);
+    s+='<circle cx="'+x+'" cy="'+y+'" r="'+(0.5+rnd()*0.9).toFixed(1)+'" fill="#ffffff" opacity="'+o+'"/>';
+  }
+  _spk='<g pointer-events="none">'+s+'</g>';
+  return _spk;
+}
+function setor(){
+  return '<rect x="0" y="0" width="200" height="200" fill="#03070b"/>'+
+         '<path d="M100 -14 L-40 198 Q100 238 240 198 Z" fill="'+ECO_FUNDO+'"/>'+
+         '<circle cx="100" cy="112" r="96" fill="#0b131c" opacity=".55"/>';
+}
+function anima(dia,sis,dur){
+  if(document.body.classList.contains('reduzmov'))return '';
+  return '<animate attributeName="d" values="'+dia+';'+sis+';'+sis+';'+dia+'" keyTimes="0;0.35;0.5;1" dur="'+dur+'s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0 0 1 1;0.4 0 0.2 1"/>';
+}
+function corSeg(st){return st==='hipo'?ECO_HIPO:(st==='hiper'?ECO_HIPER:ECO_MIO)}
+function opSeg(st){return st==='hipo'?'.58':(st==='hiper'?'.42':'.8')}
+
+/* rótulos dos seis segmentos, na convenção de exibição da ASE
+   (mesma orientação do mapa polar: anterior em cima, septo à esquerda) */
+const SAX_LBL=[
+ {ang:-90,l:'ANT',dx:0,dy:-4},
+ {ang:-30,l:'ANTLAT',dx:3,dy:0},
+ {ang:30, l:'INFLAT',dx:3,dy:3},
+ {ang:90, l:'INF',dx:0,dy:10},
+ {ang:150,l:'INFSEPT',dx:-3,dy:3},
+ {ang:210,l:'ANTSEPT',dx:-6,dy:0}
+];
+function rotulosSAX(cx,cy){
+  let s='';
+  SAX_LBL.forEach(function(r){
+    const p=pol(cx,cy,r.ang===-90||r.ang===90?70:66,r.ang);
+    const anc = r.ang===-90||r.ang===90 ? 'middle' : (Math.cos(r.ang*Math.PI/180)<0?'end':'start');
+    s+='<text x="'+(p[0]+r.dx).toFixed(0)+'" y="'+(p[1]+r.dy).toFixed(0)+'" font-size="6.8" font-family="monospace" letter-spacing=".4" text-anchor="'+anc+'" fill="#7f8d99" pointer-events="none">'+r.l+'</text>';
+  });
+  s+='<text x="8" y="13" font-size="6" font-family="monospace" text-anchor="start" fill="#46535f" pointer-events="none">EIXO CURTO · NÍVEL MÉDIO</text>';
+  return s;
+}
+/* ---------- JANELA 1: EIXO CURTO PARAESTERNAL ---------- */
+function ecoSAX(svgId,estados,clicavel,dur){
+  const cx=100,cy=112,re=54;
+  let s=setor();
+  /* ventrículo direito: crescente sobre a parede anterior/anterosseptal */
+  const rvOut=pol(cx,cy,68,150),rvOut2=pol(cx,cy,68,282),rvIn=pol(cx,cy,55,282),rvIn2=pol(cx,cy,55,150);
+  s+='<path d="M'+rvOut[0].toFixed(1)+' '+rvOut[1].toFixed(1)+' A68 68 0 0 1 '+rvOut2[0].toFixed(1)+' '+rvOut2[1].toFixed(1)+
+     ' L'+rvIn[0].toFixed(1)+' '+rvIn[1].toFixed(1)+' A55 55 0 0 0 '+rvIn2[0].toFixed(1)+' '+rvIn2[1].toFixed(1)+' Z" fill="#04090e" stroke="#6d7a86" stroke-width="1.2" opacity=".75"/>';
+  s+='<text x="'+pol(cx,cy,61,180)[0].toFixed(0)+'" y="'+(pol(cx,cy,61,180)[1]+3).toFixed(0)+'" font-size="8" fill="#8d99a4" text-anchor="middle" pointer-events="none">VD</text>';
+  /* cavidade do VE (sangue = preto) */
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+re+'" fill="#050a0f"/>';
+  SEGS.forEach(function(sg){
+    const st=estados[sg.id]||'normal';
+    const riD=38;
+    const riS = st==='hipo'?35.5 : (st==='hiper'?24:28.5);
+    const dD=cunha(cx,cy,riD,re,sg.ang-30,sg.ang+30);
+    const dS=cunha(cx,cy,riS,re,sg.ang-30,sg.ang+30);
+    s+='<path d="'+dD+'" fill="'+corSeg(st)+'" opacity="'+opSeg(st)+'" stroke="#dfe8ee" stroke-width=".5" stroke-opacity=".28"'+
+       (clicavel?' style="cursor:pointer" onclick="cliqueSeg(\''+sg.id+'\')" tabindex="0" role="button" aria-label="'+sg.nome+'"':' pointer-events="none"')+'>'+
+       anima(dD,dS,dur)+'</path>';
+  });
+  s+=speckle();
+  s+=rotulosSAX(cx,cy);
+  const el=document.getElementById(svgId);if(el)el.innerHTML=s;
+}
+
+/* ---------- JANELA 2: APICAL 4 CÂMARAS ---------- */
+const A4C_BANDAS=['sept','ap','lat'];
+function _contorno(stB,sist){
+  /* devolve pontos internos (endocárdio) e normais externas */
+  const cx=112,yA=56,yBd=156,yBs=148;
+  const yB = sist?yBs:yBd;
+  const Wd=40,Ws=30;
+  const pts=[],bands=[];
+  const wpt=function(t,band){
+    const usaSis = sist && !(stB[band]==='hipo');
+    const W = usaSis?Ws:Wd;
+    return W*Math.pow(Math.max(0.10,t),0.5);
+  };
+  const banda=function(t,lado){return t<=0.28?'ap':(lado<0?'sept':'lat')};
+  for(let t=1;t>=0.10;t-=0.05){const b=banda(t,-1);pts.push([cx-wpt(t,b),yA+(yB-yA)*t]);bands.push(b)}
+  /* cúpula apical */
+  const wA=wpt(0.10,'ap');
+  for(let k=1;k<=7;k++){
+    const u=k/8, x0=cx-wA,x1=cx+wA,ym=yA+(yB-yA)*0.10;
+    const bx=(1-u)*(1-u)*x0+2*(1-u)*u*cx+u*u*x1;
+    const by=(1-u)*(1-u)*ym+2*(1-u)*u*(yA-10)+u*u*ym;
+    pts.push([bx,by]);bands.push('ap');
+  }
+  for(let t=0.10;t<=1.0001;t+=0.05){const b=banda(t,1);pts.push([cx+wpt(t,b),yA+(yB-yA)*t]);bands.push(b)}
+  return {pts:pts,bands:bands,cx:cx,cy:(yA+yB)/2,yB:yB};
+}
+function _pathBanda(c,st,sist,banda){
+  const th = function(b){
+    const base = sist ? ((st[b]==='hipo')?8:(st[b]==='hiper'?14:12)) : 8;
+    return base;
+  };
+  const idx=[];c.bands.forEach(function(b,i){if(b===banda)idx.push(i)});
+  if(!idx.length)return '';
+  const i0=Math.max(0,idx[0]-1),i1=Math.min(c.pts.length-1,idx[idx.length-1]+1);
+  const dentro=[],fora=[];
+  for(let i=i0;i<=i1;i++){
+    const p=c.pts[i];
+    const pa=c.pts[Math.max(0,i-1)],pb=c.pts[Math.min(c.pts.length-1,i+1)];
+    let nx=(pb[1]-pa[1]),ny=-(pb[0]-pa[0]);
+    const m=Math.hypot(nx,ny)||1;nx/=m;ny/=m;
+    if((p[0]-c.cx)*nx+(p[1]-c.cy)*ny<0){nx=-nx;ny=-ny}
+    const t=th(banda);
+    dentro.push(p);fora.push([p[0]+nx*t,p[1]+ny*t]);
+  }
+  let d='M'+dentro.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L');
+  d+=' L'+fora.slice().reverse().map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L')+' Z';
+  return d;
+}
+function eco4C(svgId,st,clicavel,dur){
+  const cD=_contorno(st,false),cS=_contorno(st,true);
+  let s=setor();
+  /* cavidades escuras */
+  const cavD='M'+cD.pts.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L')+' Z';
+  s+='<path d="'+cavD+'" fill="#050a0f"/>';
+  /* átrios */
+  s+='<path d="M78 '+(cD.yB+4)+' Q112 '+(cD.yB+34)+' 148 '+(cD.yB+4)+' Z" fill="#050a0f" stroke="#3a4854" stroke-width="1" opacity=".85"/>'+
+     '<path d="M40 '+(cD.yB+4)+' Q62 '+(cD.yB+30)+' 74 '+(cD.yB+4)+' Z" fill="#050a0f" stroke="#3a4854" stroke-width="1" opacity=".85"/>'+
+     '<text x="113" y="'+(cD.yB+18)+'" font-size="7.5" text-anchor="middle" fill="#7f8d99">AE</text>'+
+     '<text x="57" y="'+(cD.yB+16)+'" font-size="7" text-anchor="middle" fill="#7f8d99">AD</text>';
+  /* ventrículo direito, à esquerda do septo */
+  s+='<path d="M'+(cD.cx-50).toFixed(0)+' '+(cD.yB-2)+' L'+(cD.cx-82).toFixed(0)+' '+(cD.yB-2)+' Q'+(cD.cx-64).toFixed(0)+' '+(yA=cD.cy-30).toFixed(0)+' '+(cD.cx-48).toFixed(0)+' '+(cD.cy-30).toFixed(0)+' Z" fill="#04090e" stroke="#6d7a86" stroke-width="1.1" opacity=".7"/>'+
+     '<text x="'+(cD.cx-62).toFixed(0)+'" y="'+(cD.cy+18).toFixed(0)+'" font-size="8" text-anchor="middle" fill="#8d99a4">VD</text>';
+  /* anel mitral e tricúspide */
+  s+='<path d="M'+(cD.cx-34).toFixed(0)+' '+(cD.yB+1)+' L'+(cD.cx-10).toFixed(0)+' '+(cD.yB+9)+'" stroke="#c8d3db" stroke-width="1.4" opacity=".7"/>'+
+     '<path d="M'+(cD.cx+34).toFixed(0)+' '+(cD.yB+1)+' L'+(cD.cx+10).toFixed(0)+' '+(cD.yB+9)+'" stroke="#c8d3db" stroke-width="1.4" opacity=".7"/>';
+  A4C_BANDAS.forEach(function(b){
+    const dD=_pathBanda(cD,st,false,b),dS=_pathBanda(cS,st,true,b);
+    const e=st[b]||'normal';
+    s+='<path d="'+dD+'" fill="'+corSeg(e)+'" opacity="'+opSeg(e)+'" stroke="#dfe8ee" stroke-width=".5" stroke-opacity=".25"'+
+       (clicavel?' style="cursor:pointer" onclick="cliqueSeg4(\''+b+'\')" tabindex="0" role="button"':' pointer-events="none"')+'>'+
+       anima(dD,dS,dur)+'</path>';
+  });
+  s+=speckle();
+  s+='<text x="112" y="'+(cD.cy-6)+'" font-size="8" text-anchor="middle" fill="#9fb0bd" pointer-events="none">VE</text>'+
+     '<text x="100" y="22" font-size="7.5" text-anchor="middle" fill="#7f8d99">ÁPICE</text>'+
+     '<text x="66" y="'+(cD.yB-10).toFixed(0)+'" font-size="7" text-anchor="end" fill="#7f8d99">septo</text>'+
+     '<text x="162" y="'+(cD.yB-10).toFixed(0)+'" font-size="7" text-anchor="start" fill="#7f8d99">lateral</text>';
+  const el=document.getElementById(svgId);if(el)el.innerHTML=s;
+}
+
+/* ---------- caso do laboratório ---------- */
+let casoVE=null,vistaVE='sax';
+function estados4C(doentes,fase){
+  const st={sept:'normal',ap:'normal',lat:'normal'};
+  if(fase==='estresse'){
+    st.sept = doentes.some(function(d){return d==='ants'||d==='infs'})?'hipo':'hiper';
+    st.lat  = doentes.some(function(d){return d==='antl'||d==='infl'})?'hipo':'hiper';
+    st.ap='hiper';
+  }
+  return st;
+}
+function visivel4C(doentes){return doentes.some(function(d){return d!=='ant'&&d!=='inf'})}
+function renderVE(){
+  if(!casoVE)return;
+  const rep={},est={};
+  SEGS.forEach(function(s){rep[s.id]='normal';est[s.id]=casoVE.doentes.indexOf(s.id)>=0?'hipo':'hiper'});
+  if(vistaVE==='sax'){
+    ecoSAX('veRepouso',rep,false,1.0);
+    ecoSAX('veEstresse',est,true,0.55);
+  }else{
+    eco4C('veRepouso',estados4C(casoVE.doentes,'repouso'),false,1.0);
+    eco4C('veEstresse',estados4C(casoVE.doentes,'estresse'),true,0.55);
+  }
+  const av=$('#veAviso');
+  if(av)av.innerHTML = (vistaVE==='4c'&&!visivel4C(casoVE.doentes))
+    ? '<div class="peg" style="margin:10px 0"><span class="rot">⚠️ Detalhe que a prova adora</span>A parede alterada deste caso <b>não aparece nesta janela</b>. A apical 4 câmaras mostra septo, ápice e parede lateral — anterior e inferior pedem outro corte. <b>Segmento não avaliado não é segmento normal.</b></div>'
+    : '';
+}
+function setVista(v){
+  vistaVE=v;
+  $('#vwSax').classList.toggle('on',v==='sax');
+  $('#vw4c').classList.toggle('on',v==='4c');
+  $('#veFeed').innerHTML = v==='sax'
+    ? 'Toque no segmento que <b>piorou</b> no estresse.'
+    : 'Toque na parede que <b>piorou</b> no estresse (septo, ápice ou lateral).';
+  renderVE();
+}
+function novoCasoVE(){
+  const n=1+Math.floor(Math.random()*3);
+  const i0=Math.floor(Math.random()*SEGS.length);
+  const doentes=[];
+  for(let k=0;k<n;k++)doentes.push(SEGS[(i0+k)%SEGS.length].id);
+  casoVE={doentes:doentes,resp:false};
+  renderVE();
+  $('#veFeed').innerHTML='Compare as duas imagens e toque na parede que <b>piorou</b> no estresse. '+
+    '<span class="mini">(neste caso há '+n+' segmento'+(n>1?'s':'')+' comprometido'+(n>1?'s':'')+')</span>';
+  atualizaPlacarVE();
+}
+function _contaResp(acerto){
+  if(!casoVE.resp){casoVE.resp=true;ST.placarVE[1]++;if(acerto)ST.placarVE[0]++;salva()}
+  atualizaPlacarVE();
+}
+function cliqueSeg(id){
+  if(!casoVE)return;
+  const acerto=casoVE.doentes.indexOf(id)>=0;
+  const seg=SEGS.filter(function(s){return s.id===id})[0];
+  _contaResp(acerto);
+  const terrNome={da:'descendente anterior',cx:'circunflexa',cd:'coronária direita'}[seg.terr];
+  $('#veFeed').innerHTML = acerto
+    ? '<b style="color:var(--verde)">Isso.</b> O segmento <b>'+seg.nome.toLowerCase()+'</b> era normal em repouso e, no estresse, deixou de espessar: <b>isquemia induzível</b>. Território provável: '+terrNome+' — provável, não certo (seção 05).'
+    : '<b style="color:var(--verm)">Não é esse.</b> O segmento '+seg.nome.toLowerCase()+' <b>espessou mais</b> no estresse, que é a resposta esperada. Procure a parede que ficou parada e fina enquanto as vizinhas engrossaram.';
+}
+function cliqueSeg4(b){
+  if(!casoVE)return;
+  const st=estados4C(casoVE.doentes,'estresse');
+  const acerto=st[b]==='hipo';
+  _contaResp(acerto);
+  const nomes={sept:'septal (anterosseptal e inferosseptal)',ap:'apical',lat:'lateral (anterolateral e inferolateral)'};
+  if(acerto){
+    $('#veFeed').innerHTML='<b style="color:var(--verde)">Isso.</b> A parede <b>'+nomes[b]+'</b> perdeu espessamento no estresse: <b>isquemia induzível</b> nesse território.';
+  }else if(!visivel4C(casoVE.doentes)){
+    $('#veFeed').innerHTML='<b style="color:var(--verm)">A pegadinha é outra.</b> Neste caso a parede comprometida é anterior ou inferior — <b>ela não é avaliada na apical 4 câmaras</b>. Volte ao eixo curto (ou pense em apical 2 câmaras) antes de concluir que o exame é normal.';
+  }else{
+    $('#veFeed').innerHTML='<b style="color:var(--verm)">Não é essa.</b> A parede '+nomes[b]+' engrossou mais no estresse — resposta esperada. Olhe a outra parede.';
+  }
+}
+function atualizaPlacarVE(){$('#vePlacar').textContent=' Acertos: '+ST.placarVE[0]+'/'+ST.placarVE[1]}
+
+/* ---------- territórios coronarianos ---------- */
+function pintaTerritorio(t){
+  const cx=100,cy=112,re=54;
+  const cores={da:'#c0392b',cx:'#6b4fa0',cd:'#10758f'};
+  let s=setor();
+  s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+re+'" fill="#050a0f"/>';
+  SEGS.forEach(function(sg){
+    const on=t&&sg.terr===t;
+    s+='<path d="'+cunha(cx,cy,38,re,sg.ang-30,sg.ang+30)+'" fill="'+(on?cores[t]:ECO_MIO)+'" opacity="'+(on?'.75':'.5')+'" stroke="#dfe8ee" stroke-width=".5" stroke-opacity=".25"/>';
+  });
+  s+=speckle();
+  s+=rotulosSAX(cx,cy);
+  const el=$('#veTerritorio');if(el)el.innerHTML=s;
+  const leg={da:'DA — parede anterior e anterosseptal (e o ápice, na maioria das vezes).',
+             cx:'Cx — paredes anterolateral e inferolateral.',
+             cd:'CD — parede inferior e inferosseptal; na dominância direita, também porções basais.'};
+  $('#terrLegenda').innerHTML=t?leg[t]+' <b>Provável</b> — sujeito a dominância e variação anatômica.':'';
+}
+
+/* ============================================================
+   06 · BIFURCAÇÃO
+   ============================================================ */
+function bifurca(v){
+  const fd=$('#bifFeed');fd.classList.remove('oculto');
+  if(v==='sim'){
+    fd.style.borderLeft='5px solid var(--verde)';
+    fd.innerHTML='<b>Considere o estresse físico.</b><p>Além da imagem, você ganha: sintomas reproduzidos, comportamento da FC e da PA, ECG de esforço, capacidade funcional e a resposta ecocardiográfica em cada carga. É a história completa.</p>'+
+      '<p class="mini">"Consegue" não é só ter pernas: é atingir carga suficiente para tornar o exame diagnóstico. Quem caminha pouco e para por cansaço de descondicionamento pode entregar um exame não diagnóstico.</p>';
+  }else{
+    fd.style.borderLeft='5px solid var(--roxo)';
+    fd.innerHTML='<b>Considere o estresse farmacológico.</b><p>Limitação ortopédica, neurológica, vascular periférica, pneumopatia, descondicionamento importante, uso de betabloqueador que impede atingir carga — nesses cenários a dobutamina cria a demanda que as pernas não criam.</p>'+
+      '<p class="mini">E há o outro lado: se a pergunta é <b>viabilidade</b>, a baixa dose de dobutamina responde algo que o exercício não responde.</p>';
+  }
+}
+
+/* ============================================================
+   07 · TABELA DE MODALIDADES
+   ============================================================ */
+const MODAL=[
+ ['Imagem durante o estresse','Não — adquirida logo após parar','Sim — durante a carga'],
+ ['Capacidade funcional','Sim, bem estabelecida','Sim'],
+ ['Disponibilidade','Alta na maioria dos serviços','Menor'],
+ ['Facilidade para o paciente','Familiar, mas exige coordenação para deitar rápido','Exige coordenação de pedalada; fadiga de coxa pode limitar'],
+ ['Principal limitação','Intervalo entre pico e aquisição','Menos disponível; carga pode ser limitada pela musculatura']
+];
+function montaTabModal(){
+  $('#tabModal').innerHTML=MODAL.map(function(l){
+    return '<div style="border-bottom:1px solid var(--linha);padding:8px 0">'+
+      '<div class="rot" style="margin:0 0 4px">'+esc(l[0])+'</div>'+
+      '<div class="cmp2"><div><b>🏃 Esteira</b><p class="mini" style="margin:.1em 0">'+esc(l[1])+'</p></div>'+
+      '<div><b>🚴 Bicicleta/maca</b><p class="mini" style="margin:.1em 0">'+esc(l[2])+'</p></div></div></div>';
+  }).join('');
+}
+
+/* ============================================================
+   08 · DOBUTAMINA
+   ============================================================ */
+const CADEIA=[
+ ['💉','Dobutamina (β₁ predominante)'],
+ ['💪','Inotropismo ↑'],
+ ['⏱️','Cronotropismo ↑'],
+ ['🔥','Consumo miocárdico de O₂ ↑'],
+ ['🚚','Demanda coronariana ↑'],
+ ['🥴','Se a reserva não acompanha: isquemia se manifesta']
+];
+let dobuN=1;
+function renderDobu(){
+  $('#cadeiaDobu').innerHTML=CADEIA.map(function(c,i){
+    const on=i<dobuN;
+    return '<div style="display:inline-flex;align-items:center;gap:8px;background:'+(on?'#fff':'#eef1f4')+';border:1px solid '+(on?'var(--azul)':'var(--linha)')+
+      ';border-radius:999px;padding:7px 13px;margin:4px 4px;opacity:'+(on?1:.45)+';transition:.3s">'+
+      '<span style="font-size:18px">'+(on?c[0]:'·')+'</span><b style="font-size:14.5px">'+(on?esc(c[1]):'…')+'</b></div>'+
+      (i<CADEIA.length-1?'<span style="color:var(--cinza)">→</span>':'');
+  }).join('');
+  $('#btnDobu').disabled=dobuN>=CADEIA.length;
+  $('#btnDobu').textContent=dobuN>=CADEIA.length?'Cadeia completa ✓':'Avançar um elo →';
+}
+function proxDobu(){if(dobuN<CADEIA.length){dobuN++;renderDobu()}}
+function resetDobu(){dobuN=1;renderDobu()}
+const PROTO=[
+ ['5','baixa dose','Pergunta da viabilidade: existe reserva contrátil neste segmento hipocinético?','var(--roxo)'],
+ ['10','baixa/intermediária','Ainda pouca demanda. Alteração que aparece aqui é alteração precoce — leia a seção 12.','var(--azul)'],
+ ['20','intermediária','A FC começa a subir de forma consistente.','var(--azul)'],
+ ['30','alta','Demanda alta. Territórios com reserva limitada começam a falhar.','var(--verm)'],
+ ['40','pico','Pergunta da isquemia: o fluxo sustenta este músculo quando eu exijo o máximo?','var(--verm)']
+];
+function montaProto(){
+  $('#protoDobu').innerHTML='<div style="display:flex;flex-wrap:wrap;gap:8px">'+PROTO.map(function(p,i){
+    return '<button class="btn ghost pq" style="border-radius:12px;border-color:'+p[3]+';color:'+p[3]+'" onclick="verProto('+i+')">'+p[0]+' µg/kg/min</button>';
+  }).join('')+'</div><div id="protoDet" class="revelo" style="margin-top:10px">Toque em uma etapa.</div>';
+}
+function verProto(i){
+  const p=PROTO[i];
+  $('#protoDet').innerHTML='<b style="color:'+p[3]+'">'+p[0]+' µg/kg/min — '+p[1]+'</b><p style="margin:.3em 0 0">'+p[2]+'</p>';
+}
+
+/* ============================================================
+   09 · FC ALVO
+   ============================================================ */
+function calcFC(){
+  const idade=parseInt($('#idadeFC').value,10);
+  if(!idade||idade<12||idade>105){$('#fcSaida').innerHTML='<span class="mini">Digite uma idade entre 12 e 105 anos.</span>';return}
+  const fcmax=220-idade,alvo=Math.round(fcmax*0.85);
+  $('#fcSaida').innerHTML=
+    '<div class="cmp2"><div class="cx" style="margin:0;text-align:center"><span class="rot">FC máxima estimada</span>'+
+    '<div style="font-family:var(--mono);font-size:30px;font-weight:900">'+fcmax+'</div><span class="mini">220 − '+idade+'</span></div>'+
+    '<div class="cx verde" style="margin:0;text-align:center"><span class="rot">85% da máxima prevista</span>'+
+    '<div style="font-family:var(--mono);font-size:30px;font-weight:900;color:var(--verde)">'+alvo+'</div><span class="mini">FC-alvo do exame</span></div></div>';
+}
+
+/* ============================================================
+   10 · PADRÕES DE RESPOSTA
+   ============================================================ */
+const PADROES=[
+ {n:'1',t:'Normal',cor:'var(--verde)',f:['🙂','💪','💪💪'],
+  l:['normal','melhora','melhora ainda mais'],
+  d:'O segmento acompanha cada aumento de demanda. Espessamento e excursão crescem progressivamente e a função global melhora. <b>É o que se espera de um território com reserva preservada.</b>'},
+ {n:'2',t:'Isquemia induzida',cor:'var(--verm)',f:['🙂','💪','🥴'],
+  l:['normal','normal ou melhora','piora'],
+  d:'O músculo acompanha enquanto a oferta consegue crescer. No pico, a demanda ultrapassa o que a coronária limitante entrega e aparece <b>nova hipocinesia ou acinesia</b> naquele segmento. Este é o achado clássico de isquemia induzível.'},
+ {n:'3',t:'Isquemia precoce / de baixa carga',cor:'var(--verm)',f:['🙂','🥴','🥴🥴'],
+  l:['normal','já piora','piora mais'],
+  d:'A alteração aparece com <b>pouco estímulo</b>: baixa dose, baixa carga, FC ainda baixa. Mesma alteração do padrão 2, gravidade diferente — <b>quanto menor o estímulo necessário para provocar a alteração, menor a reserva funcional</b> daquele território.'},
+ {n:'4',t:'Disfunção com reserva contrátil',cor:'var(--roxo)',f:['😴','💪','🥴 ou 💪'],
+  l:['hipocinético','melhora','depende'],
+  d:'Já começa alterado em repouso e <b>melhora com baixa dose</b>: há músculo vivo, com reserva contrátil. O que acontece no pico decide o resto da frase — se <b>piora</b>, é a <b>resposta bifásica</b> (viabilidade + isquemia); se <b>sustenta a melhora</b>, fala a favor de viabilidade sem isquemia demonstrada naquele território.'}
+];
+function montaPadroes(){
+  $('#padroesGrid').innerHTML='<div class="grid2">'+PADROES.map(function(p,i){
+    return '<button class="cx" style="text-align:left;cursor:pointer;margin:0;border-left:5px solid '+p.cor+';font-family:var(--disp);font-size:15.5px" onclick="verPadrao('+i+')">'+
+      '<span class="rot">Padrão '+p.n+'</span><b style="color:'+p.cor+';font-size:17px">'+esc(p.t)+'</b>'+
+      '<div style="font-size:20px;margin-top:6px">'+p.f[0]+' → '+p.f[1]+' → '+p.f[2]+'</div></button>';
+  }).join('')+'</div>';
+}
+function verPadrao(i){
+  const p=PADROES[i];
+  $('#padraoDet').innerHTML='<div class="grid3" style="text-align:center;margin-bottom:10px">'+
+    ['REPOUSO','BAIXA DOSE','PICO'].map(function(c,k){
+      return '<div class="cx" style="margin:0;padding:10px"><span class="rot">'+c+'</span><div style="font-size:26px">'+p.f[k]+'</div><span class="mini">'+p.l[k]+'</span></div>';
+    }).join('')+'</div><b style="color:'+p.cor+'">Padrão '+p.n+' — '+esc(p.t)+'</b><p style="margin:.3em 0 0">'+p.d+'</p>';
+}
+
+/* ============================================================
+   11 · LABORATÓRIO DE DOBUTAMINA
+   ============================================================ */
+const LAB_CASOS=[
+ {id:'normal',esp:[56,44,42,40],rot:['normal','melhora','melhora','hipercinético'],
+  cert:0,exp:'Contratilidade cresce a cada etapa e não piora em nenhum momento: <b>resposta normal</b>. Reserva coronariana preservada naquele território.'},
+ {id:'isq',esp:[56,46,52,72],rot:['normal','melhora','já não acompanha','hipocinético'],
+  cert:1,exp:'Normal em repouso, acompanha o início e <b>piora no pico</b>: <b>isquemia induzida</b>. A oferta parou de crescer antes da demanda.'},
+ {id:'bif',esp:[70,50,58,76],rot:['hipocinético','melhorou','começa a ceder','piorou'],
+  cert:2,exp:'Hipocinético em repouso, <b>melhora com baixa dose</b> (há reserva contrátil) e <b>piora no pico</b> (o fluxo não sustenta): <b>resposta bifásica</b> — viabilidade associada a isquemia, no contexto clínico apropriado.'},
+ {id:'semres',esp:[72,71,72,73],rot:['hipocinético','sem mudança','sem mudança','sem mudança'],
+  cert:3,exp:'Não houve melhora em nenhuma etapa: <b>ausência de reserva contrátil</b> naquele segmento. É uma inferência de tecido sem resposta inotrópica — a leitura final depende do contexto (extensão, história de infarto, outros métodos).'}
+];
+const LAB_OPC=['Resposta normal','Isquemia induzida','Resposta bifásica (viável + isquêmico)','Ausência de reserva contrátil'];
+let labCaso=null,labResp=false;
+function novoCasoLab(){
+  labCaso=LAB_CASOS[Math.floor(Math.random()*LAB_CASOS.length)];
+  labResp=false;$('#doseSlider').value=0;
+  $('#labFeed').innerHTML='Leve a dose até o <b>pico</b> observando a parede. Depois escolha a interpretação.';
+  $('#labOpcoes').innerHTML=LAB_OPC.map(function(o,i){
+    return '<button class="btn ghost" style="border-radius:12px;font-size:14.5px" onclick="respLab('+i+')">'+esc(o)+'</button>';
+  }).join('');
+  moveDose();atualizaPlacarLab();
+}
+function moveDose(){
+  if(!labCaso)return;
+  const d=parseInt($('#doseSlider').value,10);
+  const esp=labCaso.esp[d];
+  const cor = d===0 ? (esp>60?'#6b4fa0':'#4d7ea8') : (esp>=labCaso.esp[0]?'#c0392b':(esp<=46?'#1e8f5e':'#4d7ea8'));
+  const nomes=['repouso','baixa dose','dose intermediária','pico'];
+  $('#labSvg').innerHTML=
+    '<rect x="0" y="0" width="260" height="150" fill="#f4f8fa" rx="10"/>'+
+    '<path d="M30 30 Q130 6 230 30 L230 '+(30+ (110-esp)/1.4 )+' Q130 '+(6+(110-esp)/1.4+22)+' 30 '+(30+(110-esp)/1.4)+' Z" fill="'+cor+'" opacity=".8"/>'+
+    '<path d="M30 120 Q130 144 230 120" fill="none" stroke="#c9d6e0" stroke-width="3"/>'+
+    '<text x="130" y="140" font-size="11" text-anchor="middle" fill="#5b6673">'+nomes[d]+' — '+labCaso.rot[d]+'</text>'+
+    '<text x="130" y="20" font-size="9" text-anchor="middle" fill="#5b6673">espessamento da parede</text>';
+}
+function respLab(i){
+  if(!labCaso)return;
+  if(parseInt($('#doseSlider').value,10)<3){$('#labFeed').innerHTML='<b>Chegue ao pico primeiro.</b> O que separa os quatro padrões acontece entre a baixa dose e o pico.';return}
+  const ok=i===labCaso.cert;
+  if(!labResp){labResp=true;ST.placarLab[1]++;if(ok)ST.placarLab[0]++;if(!ok)registraErro('Padrões de resposta contrátil (laboratório de dobutamina)');salva()}
+  $('#labFeed').innerHTML='<b style="color:'+(ok?'var(--verde)':'var(--verm)')+'">'+(ok?'Correto.':'Não é esse padrão.')+'</b><p>'+labCaso.exp+'</p>'+
+    (ok?'':'<p class="mini">Releia a sequência do caso: '+labCaso.rot.join(' → ')+'</p>');
+  atualizaPlacarLab();
+}
+function atualizaPlacarLab(){$('#labPlacar').textContent=' Acertos: '+ST.placarLab[0]+'/'+ST.placarLab[1]}
+
+/* ============================================================
+   12 · RESPOSTA GLOBAL + MAPA DE RISCO
+   ============================================================ */
+function veGlobal(id,dia,sis,fe,cor,rot){
+  const el=document.getElementById(id);if(!el)return;
+  el.innerHTML=
+    '<rect x="0" y="0" width="160" height="190" fill="#f4f8fa" rx="10"/>'+
+    '<ellipse cx="80" cy="88" rx="'+dia+'" ry="'+(dia*1.25)+'" fill="none" stroke="#c9d6e0" stroke-width="3" stroke-dasharray="4 3"/>'+
+    '<ellipse cx="80" cy="88" rx="'+sis+'" ry="'+(sis*1.25)+'" fill="'+cor+'" opacity=".25" stroke="'+cor+'" stroke-width="3"/>'+
+    '<text x="80" y="160" font-size="13" text-anchor="middle" fill="'+cor+'" font-weight="bold">FE '+fe+'</text>'+
+    '<text x="80" y="178" font-size="10" text-anchor="middle" fill="#5b6673">'+rot+'</text>';
+}
+function resetGlobal(){
+  veGlobal('veGlobalN',46,32,'60%','#1e8f5e','repouso');
+  veGlobal('veGlobalA',46,32,'60%','#c0392b','repouso');
+}
+function animaGlobal(){
+  veGlobal('veGlobalN',38,18,'75%','#1e8f5e','estresse — volumes ↓, FE ↑');
+  veGlobal('veGlobalA',54,44,'40%','#c0392b','estresse — cavidade dilata, FE ↓');
+}
+const RISCO=[
+ ['🌍','EXTENSO','≥3 dos 16 segmentos · múltiplos territórios','var(--verm)'],
+ ['⏱️','PRECOCE','baixa carga · baixa dose · FC baixa','var(--ouro)'],
+ ['🫀','GLOBAL','FE cai ou não sobe · dilatação do VE no estresse','var(--roxo)']
+];
+function montaMapaRisco(){
+  $('#mapaRisco').innerHTML='<p style="text-align:center;font-size:22px;font-weight:900;color:var(--verm);margin:.2em 0">☠️ ECOESTRESSE DE ALTO RISCO</p>'+
+    '<div class="grid3">'+RISCO.map(function(r){
+      return '<div class="cx" style="margin:0;text-align:center;border-left:5px solid '+r[3]+'"><div style="font-size:30px">'+r[0]+'</div>'+
+        '<b style="color:'+r[3]+'">'+r[1]+'</b><p class="mini" style="margin:.2em 0 0">'+esc(r[2])+'</p></div>';
+    }).join('')+'</div>'+
+    '<p class="mini" style="text-align:center;margin-top:10px">Três braços, uma pergunta. Guarde o mapa: ele volta nas questões.</p>';
+}
+
+/* ============================================================
+   13 · CONTRAINDICAÇÕES
+   ============================================================ */
+const CI_GRUPOS=[
+ {t:'🔥 Coronária instável agora',i:['Infarto muito recente','Angina instável'],
+  p:'O exame provoca demanda. Provocar demanda sobre uma placa instável é agir contra o paciente. Estabilize primeiro; a janela reabre depois.'},
+ {t:'⚡ Ritmo fora de controle',i:['Arritmia não controlada, com sintomas ou instabilidade hemodinâmica'],
+  p:'A dobutamina é arritmogênica. Somar estímulo adrenérgico a um ritmo já instável troca uma dúvida diagnóstica por um evento.'},
+ {t:'💥 Pressão perigosamente alta',i:['Hipertensão grave em repouso (por exemplo, PA acima de 200/110 mmHg)'],
+  p:'Aumentar inotropismo e cronotropismo sobre uma pressão dessas eleva o consumo de O₂ e o risco vascular ao mesmo tempo. Trate e reagende.'},
+ {t:'🦠 Coração inflamado ou infectado',i:['Miocardite e pericardite agudas','Endocardite ativa'],
+  p:'Inflamação aguda do miocárdio e do pericárdio muda a resposta ao estímulo e agrega risco. Endocardite ativa acrescenta risco embólico.'},
+ {t:'🚧 Obstrução e trombo',i:['Estenose aórtica grave sintomática','Cardiomiopatia hipertrófica obstrutiva','Trombo ventricular recente ou móvel','Tromboembolismo pulmonar / infarto pulmonar'],
+  p:'Em obstruções fixas ou dinâmicas graves, aumentar contratilidade e reduzir o tempo de enchimento piora a hemodinâmica; com trombo móvel entra o risco embólico.'}
+];
+function montaCI(){
+  $('#ciGrupos').innerHTML=CI_GRUPOS.map(function(g,i){
+    return '<button class="btn ghost" style="display:block;width:100%;text-align:left;border-radius:12px;margin:6px 0;font-size:15.5px" onclick="verCI('+i+')">'+esc(g.t)+' <span class="mini">('+g.i.length+')</span></button>';
+  }).join('')+'<div id="ciDet" class="revelo">Toque em uma lógica para abrir os itens.</div>';
+}
+function verCI(i){
+  const g=CI_GRUPOS[i];
+  $('#ciDet').innerHTML='<b>'+esc(g.t)+'</b><ul class="lst">'+g.i.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul><p class="mini">'+g.p+'</p>';
+}
+const CI_CASOS=[
+ {t:'Homem de 62 anos, dor torácica há 2 dias, troponina em ascensão.',ok:false,f:'Quadro coronariano agudo em evolução. Não é hora de provocar demanda — é hora de tratar.'},
+ {t:'Mulher de 70 anos, estenose aórtica grave sintomática, quer investigar DAC antes da cirurgia.',ok:false,f:'Estenose aórtica grave sintomática contraindica o estresse com dobutamina nesse cenário. A investigação coronariana segue por outra via.'},
+ {t:'Homem de 58 anos, hipertenso, PA de 168/96 mmHg no dia do exame, assintomático.',ok:true,f:'Não é a hipertensão grave que contraindica o exame. O limite fica bem acima disso (em torno de 200/110 mmHg em repouso). Documente a PA e siga a monitorização.'},
+ {t:'Mulher de 45 anos, dor torácica pleurítica, febre, atrito pericárdico e supra difuso do ST.',ok:false,f:'Pericardite aguda. Coração inflamado não se provoca.'},
+ {t:'Homem de 66 anos com miocardiopatia dilatada, FE 28%, estável, para avaliar viabilidade.',ok:true,f:'Cenário clássico de baixa dose de dobutamina para pesquisa de reserva contrátil. Estabilidade clínica é a condição.'},
+ {t:'Homem de 71 anos, infarto anterior extenso há 5 dias, trombo apical móvel ao eco.',ok:false,f:'Duas contraindicações somadas: infarto muito recente e trombo móvel, com risco embólico.'},
+ {t:'Mulher de 54 anos, obesa, não consegue caminhar por artrose de joelho, quadro estável, dor típica aos mínimos esforços domésticos.',ok:true,f:'Indicação típica de estresse farmacológico. Se a janela for difícil, planeje agente de realce (seção 14).'},
+ {t:'Homem de 60 anos com taquicardia ventricular não sustentada recorrente e sintomática, sem tratamento.',ok:false,f:'Arritmia não controlada com sintomas. Estímulo adrenérgico aqui é combustível.'}
+];
+function montaCIjogo(){
+  $('#ciJogo').innerHTML=CI_CASOS.map(function(c,i){
+    return '<div style="border-bottom:1px solid var(--linha);padding:10px 0">'+
+      '<p style="margin:0 0 6px">'+esc(c.t)+'</p>'+
+      '<button class="btn ghost pq" onclick="respCI('+i+',true)">SIM, faria</button> '+
+      '<button class="btn ghost pq" onclick="respCI('+i+',false)">NÃO faria</button>'+
+      '<div class="mini" id="ciR'+i+'"></div></div>';
+  }).join('');
+  atualizaPlacarCI();
+}
+function respCI(i,r){
+  const c=CI_CASOS[i],ok=(r===c.ok);
+  const el=$('#ciR'+i);
+  if(!el.dataset.feito){el.dataset.feito='1';ST.placarCI[1]++;if(ok)ST.placarCI[0]++;else registraErro('Contraindicações do ecoestresse com dobutamina');salva()}
+  el.innerHTML='<b style="color:'+(ok?'var(--verde)':'var(--verm)')+'">'+(ok?'Correto — ':'Reveja — ')+'</b>'+c.f;
+  $('#ciFeed').innerHTML='<b>Regra que organiza tudo:</b> não provoque um coração que já está em guerra. E lembre: quase sempre é <b>não agora</b>, não <b>nunca</b>.';
+  atualizaPlacarCI();
+}
+function atualizaPlacarCI(){$('#ciPlacar').textContent='Acertos: '+ST.placarCI[0]+'/'+ST.placarCI[1]}
+
+/* ============================================================
+   14 · JANELA
+   ============================================================ */
+function janela(v){
+  const fd=$('#janFeed');fd.classList.remove('oculto');
+  if(v==='tec'){
+    fd.style.borderLeft='5px solid var(--verde)';
+    fd.innerHTML='<b>Técnico.</b><p>A fisiologia do paciente não mudou; o que falhou foi a <b>capacidade de ver</b>. E isso não é detalhe: um segmento não visualizado não é um segmento normal. Ele é uma <b>informação ausente</b> — e informação ausente no ecoestresse costuma significar exame menos acurado, não exame negativo.</p>';
+  }else{
+    fd.style.borderLeft='5px solid var(--verm)';
+    fd.innerHTML='<b>Não neste caso.</b><p>Nada aqui indica que a parede lateral esteja doente: ela simplesmente não foi vista. Confundir <b>não visualizado</b> com <b>normal</b> é um dos erros mais caros do método — e é exatamente por isso que existe recomendação de agente de realce quando dois ou mais segmentos contíguos não são adequadamente visualizados no plano apical.</p>';
+  }
+}
+
+/* ============================================================
+   15 · ECO × CINTILOGRAFIA
+   ============================================================ */
+const ECOCINT=[
+ ['Preciso evitar radiação ionizante','eco','O ecoestresse não usa radiação — vantagem real, especialmente em jovens, mulheres em idade fértil e exames repetidos.'],
+ ['A janela acústica é muito ruim','cint','Obesidade importante, enfisema, tórax difícil: aqui a perfusão pode entregar mais do que a mecânica. Antes de desistir do eco, considere agente de realce.'],
+ ['Quero avaliar reserva contrátil e viabilidade com dobutamina','eco','A baixa dose de dobutamina responde a pergunta da reserva contrátil de forma direta.'],
+ ['Quero avaliar valva, pericárdio e função ventricular no mesmo exame','eco','O eco entrega anatomia e função no mesmo estudo — vantagem prática subestimada.'],
+ ['Preciso quantificar a extensão da isquemia por perfusão','cint','A perfusão é o degrau "M" da cascata e a cintilografia foi construída para quantificá-la.'],
+ ['O paciente tem BRE e não consegue caminhar','cint','Cenário clássico de estresse farmacológico com vasodilatador na cintilografia — mas o método de imagem depende de janela, disponibilidade e expertise local.']
+];
+function montaEcoCint(){
+  $('#ecoCintGrid').innerHTML=ECOCINT.map(function(e,i){
+    return '<button class="btn ghost" style="display:block;width:100%;text-align:left;border-radius:12px;margin:6px 0;font-size:15px" onclick="verEcoCint('+i+')">'+esc(e[0])+'</button>';
+  }).join('');
+}
+function verEcoCint(i){
+  const e=ECOCINT[i];
+  const nome=e[1]==='eco'?'🫀 Ecoestresse pende a favor':'☢️ Cintilografia pende a favor';
+  const cor=e[1]==='eco'?'var(--azul)':'var(--roxo)';
+  $('#ecoCintFeed').innerHTML='<b style="color:'+cor+'">'+nome+'</b><p style="margin:.3em 0 0">'+e[2]+'</p>'+
+    '<p class="mini">"Pende a favor" não é "sempre". Expertise e disponibilidade locais podem inverter a escolha.</p>';
+}
+
+/* ============================================================
+   16 · INFOGRÁFICO
+   ============================================================ */
+const INFO=[
+ ['🔥 CASCATA','🔥 perfusão → 🧘 diástole → 💪 sístole → ⚡ ST → 😖 angina'],
+ ['🏃 PROVOCAÇÃO','exercício (esteira · bicicleta · maca) ou 💉 dobutamina'],
+ ['👁️ RESPOSTA','normal → hipercinesia · isquemia → nova alteração contrátil · reserva → melhora com baixa dose · bifásica → melhora e depois piora'],
+ ['☠️ ALTO RISCO','extensa (≥3/16) · precoce (baixa carga) · global (FE ↓ + VE dilata)']
+];
+function montaInfo(){
+  $('#infoGrid').innerHTML=INFO.map(function(b){
+    return '<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px;margin-top:12px">'+
+      '<b style="color:#f2b705;letter-spacing:1px">'+b[0]+'</b><p style="margin:.3em 0 0;font-size:15px;color:#dbe7f2">'+b[1]+'</p></div>';
+  }).join('');
+}
+
+/* ============================================================
+   17 · HOTEL ECO
+   ============================================================ */
+const HOTEL=[
+ ['1','🪜 A escada da isquemia','🔥 → 🧘 → 💪 → ⚡ → 😖','No chão do saguão, cinco degraus. Você sobe pisando na ordem: perfusão, relaxamento, contração, ST, dor. Quem entra no hotel sempre sobe por aqui.'],
+ ['2','🏋️ A academia','🏃 esteira · 🚴 bicicleta · 💉 DOBU','Três aparelhos e um personal trainer de seringa na mão. Na parede: "se ele pode se exercitar, o coração conta mais partes da história".'],
+ ['3','🐻 O quarto do urso','🐻💤 → 🐻💪 → 🐻🥴','O urso dorme. Baixa dose e ele acorda: há reserva contrátil. Exija mais e ele cai: há isquemia. Bifásica = viável + isquêmico.'],
+ ['4','🧱 O corredor das três paredes','💥💥💥','Três paredes caem no corredor. No teto, em vermelho: ≥3 de 16 segmentos = alto risco, risco anual >3%.'],
+ ['5','🎥 A sala das duas câmeras','📡 movimento · ☢️ perfusão','Duas câmeras apontadas para o mesmo coração. Uma filma o movimento da parede; a outra fotografa o trânsito do fluxo. Degraus diferentes da mesma escada.']
+];
+function montaHotel(){
+  $('#hotelGrid').innerHTML=HOTEL.map(function(h,i){
+    const vis=ST.salas.indexOf(i)>=0;
+    return '<button class="cx" id="sala'+i+'" style="text-align:left;cursor:pointer;margin:0;font-family:var(--disp);font-size:15.5px;'+
+      (vis?'border-left:5px solid var(--verde);':'')+'" onclick="entraSala('+i+')">'+
+      '<span class="rot">Sala '+h[0]+(vis?' · visitada ✓':'')+'</span><b>'+esc(h[1])+'</b>'+
+      '<div style="font-size:19px;margin-top:4px">'+h[2]+'</div></button>';
+  }).join('');
+  $('#hotelProg').textContent='Salas percorridas: '+ST.salas.length+'/5';
+}
+function entraSala(i){
+  if(ST.salas.indexOf(i)<0){ST.salas.push(i);salva()}
+  const h=HOTEL[i];
+  $('#hotelDet').innerHTML='<b>'+esc(h[1])+'</b><div style="font-size:24px;margin:6px 0">'+h[2]+'</div><p style="margin:0">'+esc(h[3])+'</p>';
+  montaHotel();
+}
+
+/* ============================================================
+   18 · RECUPERAÇÃO ATIVA + TESTE DE 60s
+   ============================================================ */
+const RECUP=[
+ ['Qual é a ordem da cascata isquêmica?','Perfusão e metabolismo → disfunção diastólica → alteração sistólica regional → alteração do ST → angina. MECA: 🔥 🧘 💪 ⚡ 😖.'],
+ ['O que o ecoestresse detecta, exatamente?','Mudança do espessamento e do movimento de cada segmento entre repouso e estresse — o degrau mecânico regional da cascata.'],
+ ['O que significa nova hipocinesia induzida pelo estresse?','Isquemia induzível naquele território: a demanda subiu e a oferta não acompanhou.'],
+ ['O que significa resposta bifásica?','Melhora em baixa dose (reserva contrátil, músculo vivo) seguida de piora em dose alta (isquemia): viabilidade + isquemia.'],
+ ['Quais três ideias organizam o alto risco?','Extensa (≥3 de 16 segmentos, múltiplos territórios) · precoce (baixa carga/dose/FC) · global (FE cai ou não sobe, com dilatação do VE).'],
+ ['Qual a diferença conceitual entre eco e cintilografia?','Eco olha mecânica (contratilidade regional); cintilografia olha perfusão. Degraus diferentes da mesma cascata — por isso podem discordar.']
+];
+function montaRecup(){
+  $('#recupGrid').innerHTML=RECUP.map(function(r,i){
+    return '<div class="cx"><b>'+esc(r[0])+'</b><br><button class="btn ghost pq" style="margin-top:8px" onclick="revela(\'rec'+i+'\')">Mostrar resposta</button>'+
+      '<div id="rec'+i+'" class="revelo oculto">'+esc(r[1])+'</div></div>';
+  }).join('');
+}
+const PECAS60=['A cascata (5 degraus)','As modalidades de estresse','A resposta normal','A isquemia induzível','A resposta bifásica','Os três braços do alto risco','Eco × cintilografia'];
+let cron=null,tempo60=60;
+function montaLista60(){
+  $('#lista60').innerHTML=PECAS60.map(function(p,i){
+    return '<label style="display:block;padding:7px 0;border-bottom:1px solid var(--linha);cursor:pointer">'+
+      '<input type="checkbox" id="p60_'+i+'" style="margin-right:8px;transform:scale(1.25)"> '+esc(p)+'</label>';
+  }).join('');
+}
+function inicia60(){
+  if(cron){clearInterval(cron);cron=null}
+  tempo60=60;$('#cron60').textContent=tempo60;$('#res60').classList.add('oculto');
+  PECAS60.forEach(function(p,i){const c=$('#p60_'+i);if(c)c.checked=false});
+  $('#btn60').textContent='Rodando…';
+  cron=setInterval(function(){
+    tempo60--;$('#cron60').textContent=tempo60;
+    if(tempo60<=0){clearInterval(cron);cron=null;fim60()}
+  },1000);
+}
+function fim60(){
+  let n=0;PECAS60.forEach(function(p,i){const c=$('#p60_'+i);if(c&&c.checked)n++});
+  $('#btn60').textContent='Começar 60 segundos';
+  const el=$('#res60');el.classList.remove('oculto');
+  el.innerHTML='<b>'+n+' de 7 peças reconstruídas.</b> '+
+    (n>=6?'Você domina o mapa do capítulo. Volte em 7 dias só pelas pegadinhas.':
+     n>=4?'Boa base. Refaça as seções 10 a 12 — é lá que costuma faltar a peça.':
+          'Ainda vale reler devagar. Comece pelo Hotel Eco (seção 17): o palácio segura o que a lista não segura.');
+}
+
+/* ============================================================
+   BANCO DE QUESTÕES (estilo TEC — não são questões oficiais)
+   ============================================================ */
+const QUESTOES=[
+{id:'q1',cat:'cascata',txt:'Paciente desenvolve isquemia durante o esforço. Considerando a cascata isquêmica, qual sequência é a mais adequada?',
+ alts:['Angina → ST → contratilidade → perfusão','Perfusão/metabolismo → diástole → contratilidade regional → ST → angina','ST → contratilidade → angina → perfusão','Contratilidade → perfusão → diástole → angina'],
+ ok:1,com:'A cascata começa no desequilíbrio de perfusão e metabolismo, passa pela disfunção diastólica, chega à alteração sistólica regional e só então produz alteração elétrica e sintoma.',
+ por:['Inverte a cascata: coloca o sintoma como primeiro evento.','—','O ST não precede a alteração mecânica regional.','A alteração contrátil não precede a alteração de perfusão: ela é consequência dela.'],
+ peg:'A cascata é modelo de sequência, não cronômetro: existe isquemia silenciosa, em que o último degrau nunca aparece.'},
+
+{id:'q2',cat:'conceito',txt:'Qual afirmativa traduz melhor o que um teste funcional de estresse pergunta?',
+ alts:['Existe placa aterosclerótica nas coronárias?','A doença consegue limitar funcionalmente o miocárdio quando a demanda aumenta?','Qual é o percentual exato de estenose do vaso?','Há calcificação coronariana?'],
+ ok:1,com:'O teste funcional interroga a reserva: o que acontece com a oferta quando a demanda sobe. Presença e grau de placa são perguntas anatômicas.',
+ por:['Pergunta anatômica — responde melhor por angioTC ou coronariografia.','—','Quantificação anatômica, não funcional.','Marcador anatômico de aterosclerose, sem informação funcional direta.'],
+ peg:'Exame funcional negativo para isquemia não significa coronárias sem doença — significa ausência de limitação funcional demonstrada naquele momento.'},
+
+{id:'q3',cat:'conceito',txt:'Paciente com ECG basal não interpretável para isquemia (bloqueio de ramo esquerdo) e capacidade de exercício preservada. Qual a principal vantagem de associar imagem ao estresse?',
+ alts:['Elimina a necessidade de monitorização da PA','Permite avaliar a contratilidade regional, independente da leitura do segmento ST','Torna desnecessária a avaliação de sintomas','Reduz o custo do exame'],
+ ok:1,com:'Quando o ST não é interpretável, o método de imagem responde por outro degrau da cascata: o mecânico regional. O exame não deixa de existir — muda o que se lê nele.',
+ por:['A monitorização segue obrigatória.','—','Sintomas continuam sendo dado clínico relevante.','Imagem tende a aumentar, não reduzir, o custo.'],
+ peg:'BRE também produz movimento septal anômalo por si só. Interpretar alteração septal em BRE exige cautela — o achado tem diferenciais.'},
+
+{id:'q4',cat:'interpretacao',txt:'Durante o ecoestresse, um segmento previamente normal torna-se hipocinético no pico. Isso representa:',
+ alts:['Necrose miocárdica obrigatoriamente','Viabilidade isolada','Isquemia induzível','Resposta fisiológica esperada'],
+ ok:2,com:'Segmento normal em repouso que perde espessamento e movimento sob estresse é a definição operacional de isquemia induzível.',
+ por:['Necrose se manifestaria como alteração já presente em repouso, sem melhora com estímulo inotrópico.','Viabilidade se discute em segmento já alterado em repouso.','—','A resposta esperada é hipercinesia, não piora.'],
+ peg:'Nem toda alteração segmentar é isquêmica: miocardite, Takotsubo, doenças infiltrativas, BRE e marca-passo entram no diferencial.'},
+
+{id:'q5',cat:'interpretacao',txt:'Sobre a relação entre segmento alterado e artéria culpada no ecoestresse, é correto afirmar:',
+ alts:['A correspondência é fixa e permite nomear a artéria com segurança','A correspondência é provável, sujeita a variação anatômica e dominância','Não existe qualquer relação entre parede e território','A relação só vale se houver infarto prévio'],
+ ok:1,com:'Localizar orienta a conversa com o hemodinamicista, mas dominância, extensão da DA e colaterais tornam a correspondência probabilística.',
+ por:['Rigidez que a anatomia não sustenta.','—','Existe relação, apenas não é absoluta.','A relação independe de infarto prévio.'],
+ peg:'Laudo maduro descreve segmentos e sugere território provável; não decreta artéria.'},
+
+{id:'q6',cat:'indicacao',txt:'Paciente com dor aos esforços, ECG basal com alterações que dificultam a interpretação e boa capacidade de exercício. Qual a vantagem adicional do ecoestresse com exercício em relação ao farmacológico?',
+ alts:['Avalia apenas perfusão','Permite avaliar contratilidade e ainda fornece capacidade funcional, sintomas e resposta hemodinâmica','Exige radiação ionizante','Não fornece informação prognóstica'],
+ ok:1,com:'O exercício entrega a resposta ecocardiográfica somada a sintomas, FC, PA, ECG e capacidade funcional — informação prognóstica que a droga não reproduz.',
+ por:['Perfusão é o alvo da cintilografia; o eco olha mecânica.','—','O ecoestresse não usa radiação ionizante.','O exame tem valor prognóstico bem estabelecido.'],
+ peg:'Escolher dobutamina em quem caminha bem é abrir mão de metade da informação — sem ganho diagnóstico correspondente.'},
+
+{id:'q7',cat:'metodos',txt:'Qual é a principal limitação do protocolo em esteira em relação ao cicloergômetro no ecoestresse?',
+ alts:['Não permite avaliar capacidade funcional','As imagens do pico são adquiridas após a interrupção do exercício','Não permite monitorização do ECG','Exige contraste em todos os casos'],
+ ok:1,com:'Na esteira, o paciente precisa parar e deitar para a aquisição: há um intervalo entre o pico real e a imagem, no qual a alteração pode começar a se resolver.',
+ por:['A esteira avalia capacidade funcional muito bem.','—','A monitorização eletrocardiográfica é padrão.','Contraste é indicado por janela inadequada, não pela modalidade.'],
+ peg:'A bicicleta permite imagens durante a carga — inclusive em carga baixa, onde mora o achado mais preocupante.'},
+
+{id:'q8',cat:'dobutamina',txt:'Sobre o mecanismo da dobutamina no ecoestresse, é correto afirmar:',
+ alts:['Provoca vasodilatação coronariana direta com roubo de fluxo, sem alterar a demanda','Aumenta inotropismo e cronotropismo, elevando o consumo miocárdico de oxigênio','Reduz a frequência cardíaca e o consumo de oxigênio','Age exclusivamente sobre receptores alfa-1 periféricos'],
+ ok:1,com:'A dobutamina cria demanda: mais força, mais frequência, mais consumo de O₂. A isquemia aparece quando a oferta não acompanha esse aumento.',
+ por:['Esse é o raciocínio dos vasodilatadores (dipiridamol, adenosina), usado sobretudo em perfusão.','—','O efeito é o oposto: a FC sobe.','O efeito predominante é β₁.'],
+ peg:'Vasodilatador e dobutamina não são intercambiáveis: um explora heterogeneidade de fluxo, o outro cria demanda e permite avaliar reserva contrátil em baixa dose.'},
+
+{id:'q9',cat:'dobutamina',txt:'Homem de 60 anos realiza ecoestresse com dobutamina e atinge 136 bpm, sem critérios de interrupção prévios e sem alteração da contratilidade. A conduta correta é:',
+ alts:['Considerar o exame submáximo e continuar aumentando a dose','Reconhecer que 136 bpm corresponde à FC-alvo de 85% da máxima prevista para a idade','Laudar como exame inconclusivo por não atingir 100% da FC máxima','Repetir o exame com exercício no mesmo dia'],
+ ok:1,com:'220 − 60 = 160; 85% = 136 bpm. O paciente atingiu a FC-alvo — chamar isso de submáximo é erro de leitura da própria meta.',
+ por:['Não há motivo para prosseguir: o alvo foi alcançado.','—','A meta é 85% da prevista, não 100%.','Não há indicação de repetir um exame que atingiu o alvo.'],
+ peg:'A armadilha oposta também cai: exame interrompido ANTES do alvo e sem alteração contrátil não é negativo — é NÃO diagnóstico.'},
+
+{id:'q10',cat:'interpretacao',txt:'Durante um ecoestresse normal, espera-se:',
+ alts:['Aumento do volume sistólico final','Dilatação progressiva do ventrículo esquerdo','Aumento da contratilidade com redução dos volumes ventriculares e elevação da FE','Queda da fração de ejeção'],
+ ok:2,com:'A resposta global normal ao estresse combina hipercinesia, redução dos volumes diastólico e sistólico finais e aumento marcado da fração de ejeção.',
+ por:['O volume sistólico final diminui na resposta normal.','Dilatação durante o estresse é achado de resposta isquêmica global.','—','A FE deve subir.'],
+ peg:'FE que "apenas não sobe" já é anormal — não é preciso que ela caia para chamar a atenção.'},
+
+{id:'q11',cat:'viabilidade',txt:'Segmento hipocinético em repouso que melhora com baixa dose de dobutamina e piora em dose alta caracteriza:',
+ alts:['Cicatriz transmural','Resposta normal','Resposta bifásica, sugerindo viabilidade associada a isquemia','Ausência de reserva contrátil'],
+ ok:2,com:'Melhora em baixa dose demonstra reserva contrátil (músculo vivo); a piora em dose alta demonstra limitação de fluxo. Juntas, formam a resposta bifásica.',
+ por:['Cicatriz transmural não melhora com estímulo inotrópico.','A resposta normal parte de contratilidade normal em repouso.','—','Ausência de reserva seria ausência de qualquer melhora.'],
+ peg:'Viabilidade demonstrada não é, por si só, indicação automática de revascularização — a decisão é clínica e multifatorial.'},
+
+{id:'q12',cat:'viabilidade',txt:'Segmento hipocinético em repouso que NÃO apresenta qualquer melhora em baixa dose de dobutamina indica, mais adequadamente:',
+ alts:['Isquemia induzível clássica','Ausência de reserva contrátil naquele segmento','Resposta bifásica','Resposta hipercinética tardia'],
+ ok:1,com:'Sem resposta ao estímulo inotrópico, o que se descreve é ausência de reserva contrátil. Chamar isso diretamente de "cicatriz" é uma inferência que depende do contexto clínico e de outros métodos.',
+ por:['Isquemia induzível pressupõe piora de segmento que estava normal ou que havia melhorado.','—','Bifásica exige melhora seguida de piora.','Não é um padrão descrito.'],
+ peg:'"Defeito que não melhora" e "tecido morto" não são sinônimos automáticos — o achado é funcional, a conclusão é contextual.'},
+
+{id:'q13',cat:'altorisco',txt:'Qual achado do ecoestresse caracteriza isquemia de alto risco segundo a Diretriz Brasileira de Síndrome Coronariana Crônica?',
+ alts:['Alteração induzida em um único segmento no pico','Alteração de contratilidade induzida em ≥3 dos 16 segmentos','Aumento da FE durante o estresse','Redução do volume sistólico final'],
+ ok:1,com:'Alteração induzida em ≥3 de 16 segmentos é tratada como marcador de alto risco, associada a risco anual de eventos maior que 3%.',
+ por:['Um segmento isolado não configura, por si, carga isquêmica de alto risco.','—','Aumento da FE é resposta normal.','Redução do volume sistólico final é resposta normal.'],
+ peg:'"3 segmentos → mais de 3% ao ano" é âncora de memória, não relação matemática.'},
+
+{id:'q14',cat:'altorisco',txt:'Paciente com FE preservada em repouso desenvolve, durante o estresse, dilatação da cavidade ventricular e queda da FE. A interpretação mais adequada é:',
+ alts:['Artefato de aquisição','Resposta isquêmica global','Resposta normal exagerada','Miocárdio hibernante'],
+ ok:1,com:'Queda da FE associada a dilatação da cavidade durante o estresse caracteriza resposta isquêmica global: não é "uma parede doente", é o ventrículo inteiro perdendo a batalha oferta-demanda.',
+ por:['Achado consistente e reprodutível não se explica por artefato.','—','Na resposta normal os volumes diminuem e a FE sobe.','Hibernação se manifesta como disfunção em repouso com reserva contrátil.'],
+ peg:'Esse é um dos achados que mais mudam conduta — e um dos que mais passam despercebidos por quem só procura "a parede".'},
+
+{id:'q15',cat:'contraindicacao',txt:'Em qual situação o ecoestresse com dobutamina está contraindicado?',
+ alts:['Hipertensão de 160/95 mmHg em paciente assintomático','Miocardite aguda','Miocardiopatia dilatada estável em investigação de viabilidade','Incapacidade de caminhar por artrose de joelho'],
+ ok:1,com:'Miocardite aguda é inflamação miocárdica ativa: provocar demanda nesse contexto agrega risco sem benefício diagnóstico proporcional.',
+ por:['160/95 mmHg está abaixo do patamar de hipertensão grave que contraindica o exame.','—','É justamente uma indicação clássica de baixa dose.','É indicação de estresse farmacológico, não contraindicação.'],
+ peg:'A maioria das contraindicações significa "não agora", e não "nunca": estabilizado o quadro, a janela reabre.'},
+
+{id:'q16',cat:'metodos',txt:'Durante o ecoestresse, dois segmentos contíguos da parede apical não são adequadamente visualizados. A conduta recomendada é:',
+ alts:['Assumir que os segmentos são normais','Utilizar agente de realce ultrassonográfico para melhorar a definição endocárdica','Laudar como isquemia nesses segmentos','Interromper o exame imediatamente'],
+ ok:1,com:'Diante de dois ou mais segmentos contíguos inadequadamente visualizados no plano apical, o agente de realce é recomendado para melhorar a acurácia.',
+ por:['Segmento não visualizado não é segmento normal.','—','Também não se presume alteração: presumir nos dois sentidos é erro.','Não há motivo de segurança para interromper.'],
+ peg:'Janela e operador são o calcanhar de Aquiles do método — e explicam boa parte da variação de acurácia entre serviços.'},
+
+{id:'q17',cat:'metodos',txt:'Sobre a comparação entre ecoestresse e cintilografia miocárdica de perfusão, assinale a mais adequada:',
+ alts:['A cintilografia é sempre superior por quantificar isquemia','O ecoestresse é sempre superior por não usar radiação','São métodos funcionais que avaliam degraus diferentes da cascata; a escolha é individualizada','Não devem ser usados em síndrome coronariana crônica'],
+ ok:2,com:'Eco avalia mecânica; cintilografia avalia perfusão. Paciente, pergunta clínica, janela, radiação, disponibilidade e expertise decidem — não uma hierarquia fixa.',
+ por:['"Sempre" não sobrevive à prática clínica.','Ausência de radiação é vantagem real, mas não torna o método universalmente superior.','—','Ambos são métodos consagrados na avaliação funcional da SCC.'],
+ peg:'Por olharem degraus diferentes da mesma cascata, os dois métodos podem discordar sem que nenhum esteja "errado".'},
+
+{id:'q18',cat:'caso',txt:'Homem de 68 anos, diabético, dispneia aos esforços sem dor torácica, ECG com alterações inespecíficas, não consegue caminhar por neuropatia. Qual estratégia responde melhor à pergunta "há isquemia induzível?"',
+ alts:['Teste ergométrico em esteira','Ecoestresse com dobutamina','Novo ecocardiograma de repouso','Holter de 24 horas'],
+ ok:1,com:'Sem condições de exercício, o estresse farmacológico cria a demanda. A dispneia, aqui, pode ser equivalente anginoso — investigar isquemia é legítimo.',
+ por:['Ele não consegue caminhar: o teste seria não diagnóstico.','—','Repetir o exame de repouso não responde à pergunta da reserva.','Holter investiga arritmia, não isquemia induzível.'],
+ peg:'Dispneia como equivalente anginoso é frequente em diabéticos e idosos — e é a apresentação que mais atrasa diagnóstico.'},
+
+{id:'q19',cat:'altorisco',txt:'Dois pacientes têm alteração de contratilidade em um único segmento. No paciente A, a alteração surge apenas no pico; no paciente B, já na baixa dose. É correto afirmar:',
+ alts:['Os exames têm o mesmo significado prognóstico','O paciente B tem menor reserva funcional e maior preocupação','O paciente A é o mais grave por ter atingido o pico','A comparação não é possível'],
+ ok:1,com:'A carga necessária para provocar a alteração informa sobre a reserva: quanto menor o estímulo, menor a reserva funcional daquele território.',
+ por:['Extensão igual não significa gravidade igual.','—','Atingir o pico é o esperado; o que preocupa é a alteração aparecer antes.','A comparação é justamente o ponto de aprendizado.'],
+ peg:'Extensão e precocidade são eixos independentes de risco: um exame pode ser preocupante por qualquer um dos dois.'},
+
+{id:'q20',cat:'conceito',txt:'Por que um paciente com doença coronariana obstrutiva pode ter ecocardiograma de repouso completamente normal?',
+ alts:['Porque a placa se forma apenas durante o esforço','Porque em repouso a oferta ainda é suficiente para a demanda daquele momento','Porque o eco não enxerga o ventrículo esquerdo em repouso','Porque a doença coronariana não altera a contratilidade em nenhum cenário'],
+ ok:1,com:'Em baixa demanda, mesmo uma estrada estreitada entrega o necessário. A limitação só se revela quando a reserva é solicitada.',
+ por:['A placa é crônica; o que muda com o esforço é a demanda.','—','O eco de repouso avalia muito bem o VE — apenas em outra condição fisiológica.','A isquemia altera a contratilidade; a questão é quando.'],
+ peg:'É o mesmo raciocínio que explica o teste ergométrico normal em repouso: o exame não cria a doença, cria as condições para que ela se revele.'},
+
+{id:'q21',cat:'dobutamina',txt:'Durante ecoestresse com dobutamina, a associação de atropina é habitualmente considerada quando:',
+ alts:['A pressão arterial sobe demais','A frequência cardíaca alvo não é atingida com a dose máxima de dobutamina, na ausência de contraindicação','Surge nova alteração de contratilidade','O paciente refere dor torácica leve'],
+ ok:1,com:'A atropina complementa o cronotropismo quando a dobutamina isolada não leva o paciente à FC-alvo e não há contraindicação ao seu uso.',
+ por:['Hipertensão importante é motivo para interromper, não para acrescentar estímulo.','—','Nova alteração contrátil geralmente encerra o exame: a pergunta já foi respondida.','Dor deve ser avaliada no contexto, não tratada com mais estímulo.'],
+ peg:'Atropina resolve a frequência que faltou — não transforma um exame tecnicamente ruim em exame diagnóstico.'},
+
+{id:'q22',cat:'interpretacao',txt:'Um laudo descreve "hipercinesia de todas as paredes no pico do estresse, sem novas alterações segmentares". A leitura correta é:',
+ alts:['Exame compatível com isquemia extensa','Resposta contrátil normal ao estresse','Resposta isquêmica global','Exame não diagnóstico por excesso de contratilidade'],
+ ok:1,com:'Hipercinesia difusa com redução dos volumes e aumento da FE é exatamente a resposta esperada de um coração com reserva preservada.',
+ por:['Isquemia se expressa como piora regional, não como hipercinesia.','—','A resposta global anormal cursa com FE que cai ou não sobe e dilatação.','Hipercinesia é achado normal, não limitação técnica.'],
+ peg:'Um exame sem isquemia induzível não é um exame sem informação: ele carrega valor prognóstico próprio.'},
+
+{id:'q23',cat:'caso',txt:'Mulher de 63 anos, infarto anterior há 8 meses, FE 32%, hipocinesia anterior e apical em repouso, sintomática. A pergunta clínica é: há músculo que pode se recuperar? Qual estratégia responde diretamente?',
+ alts:['Ecoestresse com exercício em esteira','Ecoestresse com dobutamina em baixa dose, buscando reserva contrátil','Teste ergométrico convencional','Ecocardiograma de repouso seriado'],
+ ok:1,com:'A baixa dose de dobutamina é a ferramenta desenhada para a pergunta da reserva contrátil — e a evolução até doses maiores mostra se aquele músculo vivo depende de fluxo limitado.',
+ por:['O exercício não interroga a reserva contrátil da mesma forma.','—','O teste ergométrico avalia o degrau elétrico, não a viabilidade.','Repetir o repouso não acrescenta a informação buscada.'],
+ peg:'Viabilidade é achado fisiológico, não prescrição: mostrar músculo vivo não determina, sozinho, revascularizar.'},
+
+{id:'q24',cat:'contraindicacao',txt:'Paciente com dor torácica em repouso nas últimas 48 horas, ECG dinâmico e troponina elevada é encaminhado para ecoestresse com dobutamina. A conduta correta é:',
+ alts:['Realizar o exame com protocolo abreviado','Não realizar o exame: o quadro sugere síndrome coronariana aguda em evolução','Realizar apenas a baixa dose','Realizar com atropina desde o início'],
+ ok:1,com:'Instabilidade coronariana em curso é contraindicação: o exame provoca demanda exatamente quando o objetivo clínico é reduzi-la.',
+ por:['Abreviar o protocolo não elimina o risco de provocar demanda.','—','Mesmo a baixa dose aumenta o consumo de oxigênio.','Atropina só acrescenta estímulo cronotrópico ao risco.'],
+ peg:'A prova gosta de disfarçar SCA em roupa de "investigação eletiva de dor torácica". Leia sempre a linha do tempo dos sintomas.'},
+
+{id:'q25',cat:'cascata',txt:'Qual método funcional interroga o degrau mais precoce da cascata isquêmica?',
+ alts:['Teste ergométrico (segmento ST)','Ecoestresse (contratilidade regional)','Cintilografia de perfusão (perfusão relativa)','Avaliação apenas dos sintomas'],
+ ok:2,com:'Perfusão e metabolismo formam o primeiro degrau; o método que os interroga diretamente é o de perfusão.',
+ por:['O ST é um degrau tardio.','A mecânica regional vem depois da perfusão.','—','O sintoma é o último degrau, quando aparece.'],
+ peg:'Interrogar um degrau mais precoce não significa, automaticamente, "ser melhor": significa responder a outra pergunta, com outras limitações.'},
+
+{id:'q26',cat:'caso',txt:'Homem de 55 anos, assintomático, boa capacidade funcional, faz ecoestresse por rastreamento a pedido próprio. Exame normal. Qual a leitura mais adequada?',
+ alts:['O resultado normal exclui doença coronariana','O resultado normal indica ausência de isquemia induzível demonstrável naquele momento, com bom valor prognóstico','O exame estava indicado por ser rastreamento em assintomático','Deve-se repetir anualmente'],
+ ok:1,com:'Exame funcional normal indica ausência de isquemia induzível demonstrável, com bom valor prognóstico — o que não é o mesmo que coronárias livres de doença.',
+ por:['Normal para isquemia não é normal para anatomia.','—','Rastreamento em assintomático de baixo risco não é indicação estabelecida.','Repetição anual sem indicação clínica não se sustenta.'],
+ peg:'Aqui mora o encontro com o Cassino de Bayes: em quem tem probabilidade pré-teste muito baixa, um exame positivo tem grande chance de ser falso-positivo.'}
+];
+const CATS={cascata:'Cascata',conceito:'Conceito',interpretacao:'Interpretação',indicacao:'Indicação',contraindicacao:'Contraindicação',dobutamina:'Dobutamina',viabilidade:'Viabilidade',altorisco:'Alto risco',metodos:'Métodos',caso:'Caso clínico'};
+const LETRAS=['A','B','C','D'];
+
+function htmlQuestao(q){
+  return '<div class="cx" id="box_'+q.id+'" style="border-left:5px solid var(--navy)">'+
+   '<span class="rot">Questão estilo TEC · '+esc(CATS[q.cat]||q.cat)+'</span>'+
+   '<p style="margin:.2em 0 .6em"><b>'+esc(q.txt)+'</b></p>'+
+   '<div id="alts_'+q.id+'">'+q.alts.map(function(a,i){
+      return '<button class="opt btn ghost" style="display:block;width:100%;text-align:left;border-radius:12px;margin:6px 0;font-size:15px;line-height:1.35" onclick="responde(\''+q.id+'\','+i+')"><b>'+LETRAS[i]+')</b> '+esc(a)+'</button>';
+   }).join('')+'</div>'+
+   '<div id="fb_'+q.id+'"></div></div>';
+}
+function responde(id,i){
+  const q=QUESTOES.filter(function(x){return x.id===id})[0];if(!q)return;
+  const ok=i===q.ok;
+  ST.resp[id]={i:i,ok:ok};
+  if(!ok)registraErro(CATS[q.cat]+' — questão '+id.toUpperCase());
+  salva();
+  $$('#alts_'+id+' .opt').forEach(function(b,k){
+    b.disabled=true;
+    if(k===q.ok){b.style.borderColor='var(--verde)';b.style.background='var(--verde-claro)'}
+    else if(k===i){b.style.borderColor='var(--verm)';b.style.background='var(--verm-claro)'}
+    else{b.style.opacity='.55'}
+  });
+  $('#fb_'+id).innerHTML=
+    '<div class="revelo" style="border-left:5px solid '+(ok?'var(--verde)':'var(--verm)')+'">'+
+    '<b style="color:'+(ok?'var(--verde)':'var(--verm)')+'">'+(ok?'Correto.':'Incorreto.')+' Resposta: '+LETRAS[q.ok]+'.</b>'+
+    '<p>'+q.com+'</p>'+
+    '<p class="mini"><b>Por que as outras não servem:</b><br>'+
+      q.alts.map(function(a,k){return k===q.ok?'':'<b>'+LETRAS[k]+')</b> '+q.por[k]}).filter(Boolean).join('<br>')+'</p>'+
+    '<div class="peg" style="margin:10px 0 0"><span class="rot">⚠️ Pegadinha TEC</span>'+q.peg+'</div>'+
+    '<p style="margin:10px 0 0"><button class="btn ghost pq" onclick="tentaDeNovo(\''+id+'\')">Tentar novamente</button></p></div>';
+  atualizaDash();
+}
+function tentaDeNovo(id){
+  const q=QUESTOES.filter(function(x){return x.id===id})[0];
+  const box=$('#box_'+id);if(!box)return;
+  box.outerHTML=htmlQuestao(q);
+}
+function montaQuestoesInline(){
+  $$('.quizslot').forEach(function(slot){
+    const q=QUESTOES.filter(function(x){return x.id===slot.dataset.q})[0];
+    if(q)slot.innerHTML=htmlQuestao(q);
+  });
+}
+const ARENA_IDS=['q18','q19','q20','q21','q22','q23','q24','q25','q26'];
+let arenaCat='todas';
+function montaArena(){
+  const cats=['todas'].concat(Object.keys(CATS).filter(function(c){
+    return ARENA_IDS.some(function(id){return QUESTOES.filter(function(q){return q.id===id})[0].cat===c})
+  }));
+  $('#arenaFiltro').innerHTML=cats.map(function(c){
+    return '<button class="tg'+(c===arenaCat?' on':'')+'" onclick="filtraArena(\''+c+'\')">'+(c==='todas'?'Todas':esc(CATS[c]))+'</button>';
+  }).join('');
+  $('#arenaLista').innerHTML=ARENA_IDS.map(function(id){
+    const q=QUESTOES.filter(function(x){return x.id===id})[0];
+    if(arenaCat!=='todas'&&q.cat!==arenaCat)return '';
+    return htmlQuestao(q);
+  }).join('');
+}
+function filtraArena(c){arenaCat=c;montaArena()}
+
+/* ============================================================
+   CADERNO DE ERROS · CHECKLIST · DASHBOARD
+   ============================================================ */
+function registraErro(conceito){
+  const ex=ST.erros.filter(function(e){return e.c===conceito})[0];
+  if(ex){ex.n++}else{ST.erros.push({c:conceito,n:1})}
+  salva();
+}
+function renderCaderno(){
+  atualizaDash();
+  if(!ST.erros.length){
+    $('#caderno').innerHTML='<div class="cx verde">Nenhum erro registrado ainda. Quando errar uma questão ou um laboratório, o conceito aparece aqui — e é por ele que você começa a revisão.</div>';
+    return;
+  }
+  const ord=ST.erros.slice().sort(function(a,b){return b.n-a.n});
+  $('#caderno').innerHTML='<div class="cx verm"><span class="rot">Conceitos a revisar (do mais errado para o menos)</span>'+
+    ord.map(function(e){
+      return '<div style="display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--linha);padding:7px 0">'+
+        '<span>'+esc(e.c)+'</span><b style="color:var(--verm);font-family:var(--mono)">'+e.n+'×</b></div>';
+    }).join('')+
+    '<p class="mini" style="margin-top:10px">Estude só esta lista na próxima revisão. É mais curta que o capítulo e mais útil que ele.</p></div>';
+}
+function atualizaDash(){
+  const resp=Object.keys(ST.resp).length;
+  let ac=0;Object.keys(ST.resp).forEach(function(k){if(ST.resp[k].ok)ac++});
+  const pc=Math.round(100*ST.vistas.length/SECOES.length);
+  const d=$('#dash');if(!d)return;
+  d.innerHTML=[
+    ['Progresso do capítulo',Math.min(100,pc)+'%'],
+    ['Questões respondidas',resp+' de '+QUESTOES.length],
+    ['Acertos',resp?ac+' ('+Math.round(100*ac/resp)+'%)':'—']
+  ].map(function(x){
+    return '<div class="cx" style="margin:0;text-align:center"><span class="rot">'+x[0]+'</span>'+
+      '<div style="font-family:var(--mono);font-size:26px;font-weight:900">'+x[1]+'</div></div>';
+  }).join('');
+}
+const CHECK=[
+ ['hoje','Hoje','Refazer o laboratório de dobutamina até acertar os quatro padrões seguidos'],
+ ['hoje2','Hoje','Reconstruir a cascata (MECA) sem olhar'],
+ ['amanha','Amanhã','Percorrer o Hotel Eco inteiro de memória, sala por sala'],
+ ['amanha2','Amanhã','Refazer só as questões do caderno de erros'],
+ ['d7','Em 7 dias','Teste de 60 segundos + as pegadinhas douradas'],
+ ['d7b','Em 7 dias','Explicar em voz alta a diferença entre isquemia induzível, reserva contrátil e resposta bifásica']
+];
+function montaChecklist(){
+  $('#checklist').innerHTML=CHECK.map(function(c){
+    const on=!!ST.check[c[0]];
+    return '<label style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--linha);cursor:pointer">'+
+      '<input type="checkbox" '+(on?'checked':'')+' onchange="marcaCheck(\''+c[0]+'\',this.checked)" style="transform:scale(1.25);margin-top:4px">'+
+      '<span><span class="rot" style="display:inline;margin-right:6px">'+c[1]+'</span>'+esc(c[2])+'</span></label>';
+  }).join('');
+}
+function marcaCheck(k,v){ST.check[k]=v;salva()}
+
+/* ============================================================
+   PEGADINHAS · "ME PEGUE NA PROVA"
+   ============================================================ */
+const PEGVF=[
+ {t:'A alteração mecânica regional pode preceder a alteração do segmento ST e a angina.',v:true,e:'É a lógica da cascata isquêmica — e o motivo de existir imagem no estresse.'},
+ {t:'Alteração induzida em ≥3 de 16 segmentos é apenas um dado descritivo, sem peso prognóstico.',v:false,e:'É marcador de alto risco, associado a risco anual de eventos >3%.'},
+ {t:'Resposta bifásica é melhora em baixa dose seguida de piora em dose alta.',v:true,e:'Viabilidade associada a isquemia, no contexto clínico apropriado.'},
+ {t:'Isquemia que aparece em baixa carga preocupa menos do que a que aparece no pico.',v:false,e:'É o contrário: quanto menor o estímulo necessário, menor a reserva funcional.'},
+ {t:'O ecoestresse utiliza radiação ionizante.',v:false,e:'Não utiliza — é uma das suas vantagens práticas.'},
+ {t:'A dobutamina fornece avaliação confiável da aptidão cardiorrespiratória.',v:false,e:'Ela responde à pergunta da isquemia; capacidade funcional é informação do exercício.'},
+ {t:'Atingir 85% da FC máxima prevista significa que o exame ficou submáximo.',v:false,e:'85% é a FC-alvo. Atingi-la é atingir a meta, não falhar nela.'},
+ {t:'Segmento não visualizado pode ser considerado normal.',v:false,e:'Informação ausente não é informação normal — considere agente de realce.'},
+ {t:'A experiência do serviço influencia a acurácia do ecoestresse.',v:true,e:'Expertise altera sensibilidade e especificidade tanto quanto características do paciente.'},
+ {t:'Na resposta normal ao estresse, os volumes ventriculares aumentam e a FE cai.',v:false,e:'Na resposta normal os volumes caem e a FE sobe de forma marcada.'},
+ {t:'Correspondência entre segmento alterado e artéria culpada é absoluta.',v:false,e:'É provável, sujeita a dominância e variação anatômica.'},
+ {t:'Exame interrompido antes da FC-alvo, sem alteração contrátil, deve ser laudado como negativo.',v:false,e:'É não diagnóstico. "Negativo" afirma algo que o exame não chegou a testar.'}
+];
+function mePegue(){
+  fechaPainel();
+  const p=PEGVF[Math.floor(Math.random()*PEGVF.length)];
+  let ov=$('#pegOverlay');
+  if(!ov){
+    ov=document.createElement('div');ov.id='pegOverlay';
+    ov.style.cssText='position:fixed;inset:0;z-index:90;background:rgba(13,27,46,.72);display:flex;align-items:center;justify-content:center;padding:18px';
+    document.body.appendChild(ov);
+  }
+  ov.style.display='flex';
+  ov.innerHTML='<div class="cx" style="max-width:460px;margin:0"><span class="rot">🎯 Me pegue na prova</span>'+
+    '<p style="font-size:17px"><b>'+esc(p.t)+'</b></p>'+
+    '<div class="cmp2"><button class="btn ghost" onclick="respPeg(true,'+p.v+')">Verdadeiro</button>'+
+    '<button class="btn ghost" onclick="respPeg(false,'+p.v+')">Falso</button></div>'+
+    '<div id="pegFeedOv" class="revelo" data-e="'+esc(p.e)+'">Escolha uma opção.</div>'+
+    '<p style="text-align:center;margin:12px 0 0"><button class="btn pq" onclick="mePegue()">Outra</button> '+
+    '<button class="btn ghost pq" onclick="document.getElementById(\'pegOverlay\').style.display=\'none\'">Fechar</button></p></div>';
+}
+function respPeg(r,v){
+  const el=$('#pegFeedOv'),ok=(r===v);
+  if(!ok)registraErro('Pegadinhas do capítulo (verdadeiro/falso)');
+  el.style.borderLeft='5px solid '+(ok?'var(--verde)':'var(--verm)');
+  el.innerHTML='<b style="color:'+(ok?'var(--verde)':'var(--verm)')+'">'+(ok?'Correto.':'Errou essa.')+'</b> '+el.dataset.e;
+}
+
+/* ============================================================
+   FILOSOFIA
+   ============================================================ */
+const FRASES=[
+ 'A fisiologia não é uma fotografia. É um filme.',
+ 'Reserva só pode ser conhecida quando é solicitada.',
+ 'Doença funcional pode permanecer silenciosa enquanto a demanda é pequena.',
+ 'O exame não cria a doença. Ele cria as condições para que ela se revele.',
+ 'Não basta perguntar se uma parede se move. Pergunte como ela reage quando o coração precisa trabalhar.',
+ 'O repouso conta como o coração está. O esforço conta o que ele ainda pode.',
+ 'Todo coração passa no teste fácil.',
+ 'A parede pode gritar antes de o ST falar — mas gritar não é sinônimo de ser ouvido.',
+ 'Quem quebra cedo tem pouca reserva. O gatilho informa tanto quanto o achado.',
+ 'Um segmento que não foi visto não é um segmento normal.',
+ 'O melhor exame não existe fora do paciente.',
+ 'Método nenhum é melhor que a pergunta que o motivou.',
+ 'Entre a placa e o sintoma existe um espaço inteiro chamado reserva.',
+ 'O urso que acorda prova que estava vivo, não que está seguro.',
+ 'Extensão diz quanto. Precocidade diz quão frágil. Globalidade diz quão perto do limite.',
+ 'Normal para isquemia não é normal para anatomia — e nunca foi.',
+ 'Exame interrompido não é exame negativo: é uma pergunta que ficou pela metade.',
+ 'A cascata é um modelo, e todo modelo é uma promessa parcial de ordem.',
+ 'Interpretar imagem é decidir o que ainda não se vê com clareza suficiente.',
+ 'Você não estuda ecoestresse para saber descrever o exame. Estuda para conseguir vê-lo na sua cabeça.'
+];
+function sorteiaFrase(){
+  const f=FRASES[Math.floor(Math.random()*FRASES.length)];
+  $('#filoSorteio').innerHTML='<div class="filo"><p>“'+esc(f)+'”</p><span class="a">— Dr. André Rossanno</span></div>';
+}
+function verTodasFrases(){
+  const el=$('#filoTodas');
+  if(el.classList.contains('oculto')){
+    el.innerHTML='<div class="cx">'+FRASES.map(function(f,i){
+      return '<p style="border-bottom:1px solid var(--linha);padding:8px 0;margin:0"><span class="rot" style="display:inline;margin-right:8px">'+String(i+1).padStart(2,'0')+'</span>'+esc(f)+'</p>';
+    }).join('')+'</div>';
+    el.classList.remove('oculto');
+  }else{el.classList.add('oculto')}
+}
+function projetaFrase(){
+  const f=FRASES[Math.floor(Math.random()*FRASES.length)];
+  $('#projTxt').textContent='“'+f+'”';
+  $('#projetor').classList.remove('oculto');
+}
+function fechaProjetor(){$('#projetor').classList.add('oculto')}
+
+/* ============================================================
+   ENCERRAMENTO
+   ============================================================ */
+const CENAS=[
+ '<p style="font-size:17px">Ele volta ao consultório. O ECG de repouso continua sem evidência diagnóstica de isquemia. O ecocardiograma de repouso continua sem alteração segmentar.</p><div style="font-size:40px">🫀 😐 📄</div>',
+ '<p style="font-size:17px">Desta vez, não perguntamos como o coração está. Pedimos reserva.</p><div style="font-size:40px">🏃 💉 ⏱️</div>',
+ '<p style="font-size:17px">E então a parede anterior deixa de acompanhar. Nova hipocinesia, induzida pelo estresse, em território anterior.</p><div style="font-size:40px">🫀 🔴 📉</div><p class="mini" style="color:#b9cede">A doença não apareceu no meio do exame. Ela sempre esteve lá — esperando a pergunta certa.</p>'
+];
+let cenaN=0;
+function renderFinal(){
+  $('#finalCena').innerHTML=CENAS.slice(0,cenaN+1).map(function(c){return '<div style="margin:14px 0">'+c+'</div>'}).join('');
+}
+function proxFinal(){
+  if(cenaN<CENAS.length-1){cenaN++;renderFinal()}
+  else{$('#finalFrases').classList.remove('oculto');$('#btnFinal').style.display='none'}
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function restauraRespostas(){
+  Object.keys(ST.resp).forEach(function(id){
+    if($('#box_'+id))responde2(id,ST.resp[id].i);
+  });
+}
+function responde2(id,i){
+  const q=QUESTOES.filter(function(x){return x.id===id})[0];if(!q)return;
+  const ok=i===q.ok;
+  $$('#alts_'+id+' .opt').forEach(function(b,k){
+    b.disabled=true;
+    if(k===q.ok){b.style.borderColor='var(--verde)';b.style.background='var(--verde-claro)'}
+    else if(k===i){b.style.borderColor='var(--verm)';b.style.background='var(--verm-claro)'}
+    else{b.style.opacity='.55'}
+  });
+  $('#fb_'+id).innerHTML='<div class="revelo" style="border-left:5px solid '+(ok?'var(--verde)':'var(--verm)')+'">'+
+    '<b style="color:'+(ok?'var(--verde)':'var(--verm)')+'">'+(ok?'Correto.':'Incorreto.')+' Resposta: '+LETRAS[q.ok]+'.</b>'+
+    '<p>'+q.com+'</p><div class="peg" style="margin:10px 0 0"><span class="rot">⚠️ Pegadinha TEC</span>'+q.peg+'</div>'+
+    '<p style="margin:10px 0 0"><button class="btn ghost pq" onclick="tentaDeNovo(\''+id+'\')">Tentar novamente</button></p></div>';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  carrega();
+  montaIndice();montaMapa();montaHipoteses();
+  montaCascPrev();renderCascada();montaMeca();
+  renderFabrica();
+  novoCasoVE();pintaTerritorio(null);
+  montaTabModal();renderDobu();montaProto();calcFC();
+  montaPadroes();novoCasoLab();
+  resetGlobal();montaMapaRisco();
+  montaCI();montaCIjogo();montaEcoCint();montaInfo();montaHotel();
+  montaRecup();montaLista60();
+  montaQuestoesInline();montaArena();restauraRespostas();
+  montaChecklist();renderCaderno();
+  sorteiaFrase();renderFinal();
+  atualizaProgresso();observaSecoes();heroCiclo();
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){fechaPainel();fechaProjetor();const o=$('#pegOverlay');if(o)o.style.display='none'}});
+});
+</script>
+</body>
+</html>
