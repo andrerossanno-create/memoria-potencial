@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Capítulo 9 — AngioTC × RMC | O Duelo da Imagem Cardíaca | Atlas Mental Cardio</title>
+<meta name="description" content="Atlas Mental Cardio — Capítulo 9: Angiotomografia de coronárias e Ressonância Magnética Cardíaca. Anatomia × tecido, estenose × isquemia, perfusão, realce tardio e viabilidade. Dr. André Rossanno.">
+<style>
+/* ============================================================
+   ATLAS MENTAL CARDIO · CAP. 9 · AngioTC × RMC
+   Identidade: fundo claro · CIANO = AngioTC/estrada/anatomia
+   MAGENTA = RMC/tecido · NAVY = conceito · DOURADO = pegadinha TEC
+   VERDE = acerto · VERMELHO = risco/erro
+   ============================================================ */
+:root{
+  --papel:#f6f7f9;
+  --papel2:#ffffff;
+  --tinta:#12202e;
+  --tinta2:#42566b;
+  --navy:#123a5c;
+  --linha:#dde3ea;
+
+  --tc:#0a7d95;          /* ciano AngioTC (contraste AA com branco) */
+  --tc-claro:#e4f4f7;
+  --tc-forte:#065f74;
+
+  --rm:#8e2b8e;          /* magenta RMC */
+  --rm-claro:#f7e8f7;
+  --rm-forte:#6d1f6d;
+
+  --ouro:#8a6300;
+  --ouro-bg:#fdf5df;
+  --verde:#1d7a4c;
+  --verde-bg:#e6f5ec;
+  --vermelho:#b3261e;
+  --vermelho-bg:#fdeceb;
+
+  --escuro:#0b1a24;
+  --r:16px;
+  --sombra:0 1px 2px rgba(16,32,48,.06), 0 8px 24px rgba(16,32,48,.07);
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--papel);color:var(--tinta);
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:17.5px;line-height:1.62;overflow-x:hidden;
+}
+img,svg{max-width:100%}
+b,strong{color:var(--navy)}
+/* superfícies escuras/coloridas: b/strong herdam a cor (regra de contraste do Atlas) */
+.escuro b,.escuro strong,.porta b,.porta strong,.hero b,.hero strong,
+.fim b,.fim strong,.filo b,.filo strong,.ring b,.ring strong{color:inherit}
+.escuro .caixa-clara,.porta .caixa-clara{color:var(--tinta)}
+.escuro .caixa-clara b,.porta .caixa-clara b{color:var(--navy)}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--linha);
+}
+.nav-in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:10px}
+.marca{font-weight:800;font-size:14px;letter-spacing:.04em;color:var(--navy);white-space:nowrap;overflow:hidden}
+.marca-full{display:inline}
+.so-mob{display:none}
+@media(max-width:560px){.so-mob{display:inline}}
+@media(max-width:560px){.marca{font-size:12px;letter-spacing:.02em}.marca-full{display:none}
+ .btn-menu{padding:7px 10px;font-size:12.5px}.dm{width:23px;height:23px;font-size:12px}.nav-in{gap:7px;padding:8px 10px}}
+.marca span{color:var(--tc)}
+.marca i{font-style:normal;color:var(--rm)}
+.duelo-mini{display:flex;align-items:center;gap:4px;margin-left:auto}
+.dm{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;
+    border:2px solid var(--linha);background:#fff;transition:.25s}
+.dm.on{transform:scale(1.12)}
+.dm.tc.on{border-color:var(--tc);background:var(--tc-claro)}
+.dm.rm.on{border-color:var(--rm);background:var(--rm-claro)}
+.btn-menu{
+  border:1px solid var(--linha);background:#fff;color:var(--navy);font-weight:700;
+  border-radius:10px;padding:7px 12px;font-size:13.5px;cursor:pointer;white-space:nowrap
+}
+.btn-menu:hover{border-color:var(--navy)}
+.barra{height:3px;background:var(--linha)}
+.barra > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--tc),var(--rm));transition:width .3s}
+
+.painel{display:none;max-width:1080px;margin:0 auto;padding:14px;background:#fff;border-bottom:1px solid var(--linha)}
+.painel.on{display:block}
+.painel h4{margin:0 0 8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2)}
+.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px;margin-bottom:14px}
+.idx a{font-size:14px;color:var(--navy);text-decoration:none;padding:6px 8px;border-radius:8px;border:1px solid transparent}
+.idx a:hover{background:var(--papel);border-color:var(--linha)}
+.idx a em{font-style:normal;color:var(--tinta2);font-variant-numeric:tabular-nums;margin-right:6px}
+.ajustes{display:flex;flex-wrap:wrap;gap:8px}
+.tog{border:1px solid var(--linha);background:#fff;border-radius:999px;padding:8px 14px;font-size:14px;
+     cursor:pointer;font-weight:600;color:var(--tinta)}
+.tog[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ---------- ESTRUTURA ---------- */
+main{max-width:920px;margin:0 auto;padding:0 16px 80px}
+section{padding:46px 0;border-top:1px solid var(--linha);scroll-margin-top:76px}
+section:first-of-type{border-top:0}
+.eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--tinta2);margin-bottom:6px}
+.eyebrow .n{font-variant-numeric:tabular-nums;color:var(--tc)}
+h1{font-size:clamp(30px,7vw,52px);line-height:1.06;margin:.1em 0 .3em;letter-spacing:-.02em;font-weight:800}
+h2{font-size:clamp(23px,4.6vw,33px);line-height:1.15;margin:.1em 0 .5em;letter-spacing:-.015em;color:var(--navy)}
+h3{font-size:19px;margin:1.5em 0 .4em;color:var(--navy)}
+p{margin:.7em 0}
+.lead{font-size:19.5px;color:var(--tinta2)}
+ul,ol{padding-left:1.15em}
+li{margin:.35em 0}
+
+.card{background:var(--papel2);border:1px solid var(--linha);border-radius:var(--r);padding:18px;box-shadow:var(--sombra);margin:16px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:10px} /* NÃO colapsa no celular */
+.cmp2>*{min-width:0}
+.grid2>*{min-width:0}
+.portas>*{min-width:0}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+
+.tag{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+     padding:3px 9px;border-radius:999px;vertical-align:middle}
+.tag.tc{background:var(--tc-claro);color:var(--tc-forte)}
+.tag.rm{background:var(--rm-claro);color:var(--rm-forte)}
+.tag.ouro{background:var(--ouro-bg);color:var(--ouro)}
+
+.box{border-radius:var(--r);padding:16px 18px;margin:16px 0;border:1px solid}
+.box h4{margin:0 0 .35em;font-size:16.5px}
+.box.tc{background:var(--tc-claro);border-color:#bfe3ea}
+.box.tc h4{color:var(--tc-forte)}
+.box.rm{background:var(--rm-claro);border-color:#e6c9e6}
+.box.rm h4{color:var(--rm-forte)}
+.box.ouro{background:var(--ouro-bg);border-color:#ecd9a0}
+.box.ouro h4{color:var(--ouro)}
+.box.verde{background:var(--verde-bg);border-color:#bfe3cd}
+.box.verde h4{color:var(--verde)}
+.box.vermelho{background:var(--vermelho-bg);border-color:#f2c9c6}
+.box.vermelho h4{color:var(--vermelho)}
+
+.frase{font-size:clamp(20px,4.2vw,27px);line-height:1.25;font-weight:800;letter-spacing:-.01em;
+       text-align:center;margin:26px 0;color:var(--navy)}
+.frase small{display:block;font-size:14px;font-weight:600;color:var(--tinta2);letter-spacing:.02em;margin-top:8px}
+
+.escuro{background:var(--escuro);color:#e8eef3;border-radius:var(--r);padding:24px 20px;margin:20px 0}
+.escuro h3,.escuro h2{color:#fff}
+.caixa-clara{background:#fff;border-radius:12px;padding:14px 16px;margin:12px 0}
+
+/* ---------- BOTÕES / INTERAÇÃO ---------- */
+.btn{
+  border:1px solid var(--navy);background:var(--navy);color:#fff;border-radius:11px;
+  padding:11px 17px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:transform .12s,filter .2s
+}
+.btn:hover{filter:brightness(1.12)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:#fff;color:var(--navy)}
+.btn.tc{background:var(--tc);border-color:var(--tc)}
+.btn.rm{background:var(--rm);border-color:var(--rm)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--tc);outline-offset:2px}
+
+.opt{
+  display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--linha);
+  border-radius:12px;padding:13px 15px;margin:8px 0;font-size:16px;cursor:pointer;font-family:inherit;
+  color:var(--tinta);line-height:1.42
+}
+.opt:hover{border-color:var(--navy)}
+.opt.certo{border-color:var(--verde);background:var(--verde-bg)}
+.opt.errado{border-color:var(--vermelho);background:var(--vermelho-bg)}
+.opt.marcada{border-width:2px}
+.opt b{display:inline-block;min-width:1.4em}
+.fb{display:none;border-radius:12px;padding:14px 16px;margin-top:10px;font-size:15.5px;border:1px solid}
+.fb.on{display:block}
+.fb.ok{background:var(--verde-bg);border-color:#bfe3cd}
+.fb.no{background:var(--vermelho-bg);border-color:#f2c9c6}
+.fb .pega{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(0,0,0,.15);color:var(--ouro);font-weight:700}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.chip{border:1.5px solid var(--linha);background:#fff;border-radius:999px;padding:8px 14px;font-size:14.5px;
+      cursor:pointer;font-family:inherit;font-weight:600;color:var(--tinta)}
+.chip:hover{border-color:var(--navy)}
+.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip.on.tc{background:var(--tc);border-color:var(--tc)}
+.chip.on.rm{background:var(--rm);border-color:var(--rm)}
+
+.reveal{display:none;margin-top:12px}
+.reveal.on{display:block;animation:sobe .4s ease}
+@keyframes sobe{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+input[type=range]{width:100%;accent-color:var(--tc);height:30px}
+.slider-val{font-family:var(--mono);font-size:15px;color:var(--tinta2)}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+th,td{border:1px solid var(--linha);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--papel);font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta2)}
+.tabela-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* badges de fonte */
+.conferir,.conferido{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;
+  padding:2px 7px;border-radius:6px;vertical-align:middle;line-height:1.7;max-width:100%}
+.conferir{background:var(--ouro-bg);color:var(--ouro);border:1px solid #ecd9a0}
+.conferido{background:var(--verde-bg);color:var(--verde);border:1px solid #bfe3cd}
+
+/* modo professor */
+.profbox{display:none;border-left:4px solid var(--rm);background:#fbf3fb;border-radius:0 12px 12px 0;
+         padding:14px 16px;margin:14px 0;font-size:15px}
+body.prof .profbox{display:block}
+.profbox h5{margin:0 0 .3em;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--rm-forte)}
+.profbox p{margin:.45em 0}
+
+/* reduzir movimento */
+body.calmo *{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:radial-gradient(120% 90% at 50% 0%,#16303f 0%,var(--escuro) 60%);
+  color:#e9f0f5;margin:0 -16px;padding:52px 20px 44px;text-align:center
+}
+.hero .kicker{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:#7fb6c6;font-weight:800}
+.hero h1{color:#fff}
+.hero .sub{color:#a8c3d1;font-size:17px;max-width:38ch;margin:0 auto}
+.hero .assin{margin-top:18px;font-size:13.5px;color:#7f98a8;letter-spacing:.05em}
+
+.portas{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:600px;margin:26px auto 0}
+.porta{
+  border-radius:14px;padding:18px 12px;cursor:pointer;font-family:inherit;text-align:center;
+  border:2px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:#e9f0f5;transition:.2s
+}
+.porta:hover{transform:translateY(-3px)}
+.porta .ico{font-size:30px;display:block;margin-bottom:6px}
+.porta .nm{display:block;font-weight:800;font-size:17px;letter-spacing:.02em}
+.porta .de{display:block;font-size:13.5px;color:#a8c3d1;margin-top:5px;line-height:1.35}
+.porta.a{border-color:rgba(41,182,209,.55)}
+.porta.a:hover,.porta.a.on{background:rgba(41,182,209,.18);border-color:#29b6d1}
+.porta.b{border-color:rgba(209,122,209,.5)}
+.porta.b:hover,.porta.b.on{background:rgba(209,122,209,.16);border-color:#d17ad1}
+
+.batida{display:block;margin:0 auto 12px}
+.batida .pulso{animation:bate 1.15s ease-in-out infinite;transform-origin:center}
+@keyframes bate{0%,100%{transform:scale(1)}12%{transform:scale(1.07)}24%{transform:scale(1)}36%{transform:scale(1.045)}48%{transform:scale(1)}}
+
+/* ---------- ARENA ---------- */
+.ring{background:linear-gradient(135deg,#062b35 0%,#0b1a24 50%,#2b0b2b 100%);color:#e9f0f5;
+      border-radius:var(--r);padding:22px 18px;margin:20px 0}
+.ring h3{color:#fff;margin-top:0}
+.cantos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.cantos{grid-template-columns:1fr}}
+.canto{border-radius:12px;padding:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.canto h4{margin:0 0 2px;font-size:18px}
+.canto.a h4{color:#5fd3ea}
+.canto.b h4{color:#e9a6e9}
+.canto .esp{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#93aebc;font-weight:800;margin-bottom:10px}
+.canto ul{padding-left:1.05em;margin:.4em 0;font-size:15px;color:#cfe0ea}
+
+/* mapa/estrada SVG */
+.svg-wrap{background:#fff;border:1px solid var(--linha);border-radius:var(--r);padding:10px;margin:14px 0;overflow:hidden}
+.svg-wrap.dark{background:var(--escuro);border-color:#22323f}
+
+.legenda{font-size:13.5px;color:var(--tinta2);margin-top:6px}
+.mono{font-family:var(--mono)}
+.big-num{font-size:clamp(44px,12vw,86px);font-weight:800;line-height:1;letter-spacing:-.04em}
+
+.placar{font-size:14px;color:var(--tinta2);font-weight:700}
+hr.fina{border:0;border-top:1px dashed var(--linha);margin:26px 0}
+.rodape{max-width:920px;margin:0 auto;padding:26px 16px 60px;font-size:13.5px;color:var(--tinta2);border-top:1px solid var(--linha)}
+.rodape b{color:var(--navy)}
+@media print{.nav,.painel,.btns,.btn{display:none!important}body{font-size:12pt}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="marca"><span class="marca-full">ATLAS MENTAL CARDIO · </span>CAP. <span>9</span> · ANGIOTC <i>×</i> RMC</div>
+    <div class="duelo-mini" aria-hidden="true">
+      <span class="dm tc" id="dmTC" title="Lente da estrada — AngioTC">🛣️</span>
+      <span class="dm rm" id="dmRM" title="Lente do tecido — RMC">🫀</span>
+    </div>
+    <button class="btn-menu" id="btnPainel" aria-expanded="false" aria-controls="painel"><span class="marca-full">Índice e ajustes</span><span class="so-mob">Índice</span></button>
+  </div>
+  <div class="barra"><i id="barraProg"></i></div>
+</header>
+
+<div class="painel" id="painel">
+  <h4>Estações</h4>
+  <nav class="idx" id="idx"></nav>
+  <h4>Ajustes</h4>
+  <div class="ajustes">
+    <button class="tog" id="togProf" aria-pressed="false">👩‍🏫 Modo professor</button>
+    <button class="tog" id="togCalmo" aria-pressed="false">🌙 Reduzir movimento</button>
+    <button class="tog" id="btnContinuar">↩️ Continuar de onde parei</button>
+    <button class="tog" id="btnZerar">🧹 Zerar meu progresso</button>
+  </div>
+</div>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="s0" data-t="Abertura — as duas portas">
+  <div class="hero">
+    <svg class="batida" width="82" height="82" viewBox="0 0 100 100" aria-hidden="true">
+      <g class="pulso">
+        <path d="M50 82C30 66 16 54 16 39.5 16 28 25 20 34.5 20c6 0 11.5 3 15.5 8 4-5 9.5-8 15.5-8C75 20 84 28 84 39.5 84 54 70 66 50 82z"
+              fill="none" stroke="#5fd3ea" stroke-width="3"/>
+        <path d="M50 82C30 66 16 54 16 39.5 16 28 25 20 34.5 20c6 0 11.5 3 15.5 8v54z" fill="rgba(95,211,234,.10)"/>
+        <path d="M50 28c4-5 9.5-8 15.5-8C75 20 84 28 84 39.5 84 54 70 66 50 82z" fill="rgba(209,122,209,.12)"/>
+      </g>
+    </svg>
+    <div class="kicker">Atlas Mental Cardio · Síndrome Coronariana Crônica</div>
+    <h1>AngioTC <span style="color:#c98fd6">×</span> RMC</h1>
+    <p class="sub" style="font-size:19px;color:#cfe0ea">O duelo da imagem cardíaca.<br>Antes de escolher o exame, escolha a pergunta.</p>
+
+    <div class="card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#dce8f0;text-align:left;max-width:600px;margin:26px auto 0;box-shadow:none">
+      <p style="margin:0"><b style="color:#fff">Na sua frente há um paciente.</b> Dor torácica aos esforços. ECG de repouso sem diagnóstico. Ecocardiograma que não explicou nada de forma definitiva.</p>
+      <p style="margin:.6em 0 0">Duas portas se acendem. <b style="color:#fff">Você só pode abrir uma.</b></p>
+    </div>
+
+    <div class="portas">
+      <button class="porta a" data-porta="a">
+        <span class="ico">🛣️</span>
+        <span class="nm">PORTA A</span>
+        <span class="de">Um tomógrafo. Atrás dele, a árvore coronariana em 3D.</span>
+      </button>
+      <button class="porta b" data-porta="b">
+        <span class="ico">🫀</span>
+        <span class="nm">PORTA B</span>
+        <span class="de">Uma ressonância. Atrás dela, o coração cortado: perfusão, edema, cicatriz.</span>
+      </button>
+    </div>
+
+    <div class="reveal" id="revPorta" style="max-width:620px;margin:18px auto 0;text-align:left">
+      <div class="card" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#e9f0f5;box-shadow:none">
+        <p style="margin:0;font-size:19px;font-weight:800;color:#fff">A porta não era a pergunta.</p>
+        <p style="margin:.6em 0 0">Você acabou de fazer o que quase todo mundo faz: escolheu <b style="color:#fff">a ferramenta</b> antes de escolher <b style="color:#fff">o que precisa descobrir</b>.</p>
+        <p style="margin:.6em 0 0">Este capítulo inteiro gira em torno de uma única frase — e ela vai voltar até doer:</p>
+        <p style="margin:1em 0 0;font-size:21px;font-weight:800;color:#f0c66a;text-align:center">A pergunta vem primeiro.<br>O exame vem depois.</p>
+      </div>
+    </div>
+
+    <div class="assin">Dr. André Rossanno</div>
+  </div>
+</section>
+
+<!-- ============ 01 · O PRIMEIRO DESAFIO ============ -->
+<section id="s1" data-t="O primeiro desafio">
+  <div class="eyebrow"><span class="n">01</span> · O primeiro desafio</div>
+  <h2>O que você quer descobrir?</h2>
+
+  <div class="card">
+    <p style="margin:0"><b>Homem, 54 anos.</b> Dor precordial em aperto aos esforços moderados, com alívio ao repouso. Hipertenso, dislipidêmico. Sem DAC previamente conhecida. Probabilidade pré-teste intermediária.</p>
+  </div>
+
+  <p class="lead">Antes de pensar em exame, responda: qual é a primeira coisa que você quer saber?</p>
+
+  <div id="q1"></div>
+
+  <div class="reveal" id="rev1">
+    <div class="box tc">
+      <h4>Anatomia e fisiologia não são a mesma pergunta</h4>
+      <p style="margin:0">Existe uma estrada doente? — isso é <b>anatomia</b>.<br>
+      Essa estrada está fazendo o músculo sofrer? — isso é <b>fisiologia</b>.</p>
+    </div>
+
+    <div class="cmp2" style="margin:14px 0">
+      <div class="box tc" style="margin:0">
+        <h4>🛣️ Anatomia</h4>
+        <p style="margin:0;font-size:15px">AngioTC de coronárias<br>Cinecoronariografia</p>
+        <p style="margin:.5em 0 0;font-size:14px;color:var(--tc-forte)"><b style="color:inherit">Mostra a estrada.</b></p>
+      </div>
+      <div class="box rm" style="margin:0">
+        <h4>🔥 Fisiologia</h4>
+        <p style="margin:0;font-size:15px">Ecoestresse<br>Cintilografia<br>RMC de estresse</p>
+        <p style="margin:.5em 0 0;font-size:14px;color:var(--rm-forte)"><b style="color:inherit">Mostra o trânsito.</b></p>
+      </div>
+    </div>
+
+    <div class="box ouro">
+      <h4>⚠️ Mas a fronteira não é mais um muro</h4>
+      <p style="margin:0">A própria tomografia pode carregar informação funcional. A Diretriz SCC SBC 2025 destaca que a análise da <b>reserva de fluxo fracionada pela tomografia</b> permite, <b>a partir de uma única aquisição</b>, avaliar anatomia <em>e</em> dados funcionais. <span class="conferido">SBC 2025 ✓</span></p>
+      <p style="margin:.6em 0 0">E a RMC não é só tecido: ela também dá volumes, função global e segmentar, e perfusão.</p>
+      <p style="margin:.6em 0 0"><b>Aprenda a âncora primeiro. Depois descubra que ela tem nuance.</b></p>
+    </div>
+
+    <div class="profbox">
+      <h5>Modo professor</h5>
+      <p><b>Como eu explicaria em 30 s:</b> "estenose é substantivo, isquemia é verbo. Um exame te mostra o objeto; o outro te mostra o objeto <em>agindo</em> sobre o músculo."</p>
+      <p><b>Pergunta para os alunos:</b> "se eu te der a angiografia perfeita de um paciente, você consegue me dizer se ele tem isquemia?"</p>
+      <p><b>Erro provável:</b> o aluno responde "todas as anteriores são a mesma coisa" achando que é pegadinha de linguagem. Não é: é a espinha do capítulo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · A ARENA ============ -->
+<section id="s2" data-t="A arena — dois especialistas">
+  <div class="eyebrow"><span class="n">02</span> · A arena</div>
+  <h2>Dois especialistas, não duas aulas</h2>
+  <p class="lead">Eles não são concorrentes brigando pelo mesmo prêmio. São dois peritos que respondem a perguntas diferentes — e é por isso que o duelo, no fim, vira parceria.</p>
+
+  <div class="ring">
+    <div class="cantos">
+      <div class="canto a">
+        <div class="esp">Canto 1</div>
+        <h4>🛣️ ANGIOTC</h4>
+        <p style="margin:.2em 0 .6em;color:#cfe0ea;font-size:15px">Perita em <b style="color:#5fd3ea">anatomia coronariana</b>.</p>
+        <ul>
+          <li>anatomia das coronárias</li>
+          <li>presença e extensão da aterosclerose</li>
+          <li>placa: quanta, onde, de que tipo</li>
+          <li>calcificação e carga calcificada</li>
+          <li>grau de estenose luminal</li>
+          <li>remodelamento e características de alto risco</li>
+          <li>excluir DAC obstrutiva com segurança</li>
+        </ul>
+        <p style="margin:.6em 0 0;font-size:15px;color:#5fd3ea"><b style="color:inherit">Pergunta: "como está a coronária?"</b></p>
+      </div>
+      <div class="canto b">
+        <div class="esp">Canto 2</div>
+        <h4>🫀 RMC</h4>
+        <p style="margin:.2em 0 .6em;color:#cfe0ea;font-size:15px">Perita em <b style="color:#e9a6e9">miocárdio</b>.</p>
+        <ul>
+          <li>contrai? (cine — função global e segmentar)</li>
+          <li>perfunde? (perfusão de primeira passagem)</li>
+          <li>tem reserva contrátil? (dobutamina)</li>
+          <li>está edemaciado? (T2)</li>
+          <li>está fibrosado / cicatrizado? (realce tardio)</li>
+          <li>ainda é viável? (transmuralidade)</li>
+        </ul>
+        <p style="margin:.6em 0 0;font-size:15px;color:#e9a6e9"><b style="color:inherit">Pergunta: "o que está acontecendo com o miocárdio?"</b></p>
+      </div>
+    </div>
+    <p style="margin:16px 0 0;text-align:center;font-size:16px;color:#cfe0ea">
+      🛣️ <b style="color:#5fd3ea">A AngioTC olha a estrada.</b> &nbsp;·&nbsp; 🫀 <b style="color:#e9a6e9">A RMC interroga o miocárdio.</b>
+    </p>
+  </div>
+
+  <div class="box ouro">
+    <h4>🎯 Guarde como âncora, não como dogma</h4>
+    <p style="margin:0">"Estrada × miocárdio" é a melhor porta de entrada que existe para separar os dois métodos. Mas é uma <b>âncora didática</b>. A RMC também vê anatomia (inclusive origem e trajeto proximal das coronárias); a AngioTC também diz coisas que vão muito além de medir o lúmen. Você vai encontrar as duas nuances ainda neste capítulo.</p>
+  </div>
+</section>
+
+<!-- ============ 03 · GOOGLE MAPS CORONARIANO ============ -->
+<section id="s3" data-t="Mapa × trânsito · FFR-CT">
+  <div class="eyebrow"><span class="n">03</span> · A metáfora-mãe</div>
+  <h2>O Google Maps coronariano</h2>
+  <p class="lead">A AngioTC entrega o mapa das estradas. Mapa mostra onde a pista estreitou. Mapa não mostra o trânsito.</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 640 210" id="svgEstrada" role="img" aria-label="Estrada coronariana com estreitamento ajustável e camada de trânsito">
+      <defs>
+        <linearGradient id="asf" x1="0" x2="1"><stop offset="0" stop-color="#2c3e4c"/><stop offset="1" stop-color="#1b2b36"/></linearGradient>
+      </defs>
+      <rect x="0" y="0" width="640" height="210" fill="#f2f5f7"/>
+      <path id="pista" d="M20 105 C 160 105, 200 105, 320 105 S 480 105, 620 105" stroke="url(#asf)" stroke-width="70" fill="none" stroke-linecap="round"/>
+      <path id="faixa" d="M20 105 H 620" stroke="#e9c46a" stroke-width="3" stroke-dasharray="16 14" fill="none"/>
+      <g id="placaG">
+        <ellipse id="placa" cx="320" cy="105" rx="52" ry="10" fill="#c9b48a"/>
+        <ellipse id="placa2" cx="320" cy="105" rx="52" ry="10" fill="none" stroke="#8a7448" stroke-width="1.5"/>
+      </g>
+      <g id="carros" opacity="0"></g>
+      <text x="320" y="30" id="rotEstrada" text-anchor="middle" font-size="15" font-weight="700" fill="#12202e">Estenose de 0%</text>
+      <text x="320" y="190" id="rotTransito" text-anchor="middle" font-size="14" fill="#42566b">Toque em “Ativar FFR-CT” para ver o trânsito</text>
+    </svg>
+  </div>
+
+  <label for="slEst" style="font-weight:700;display:block">Quanto a pista estreitou?</label>
+  <input type="range" id="slEst" min="0" max="90" step="5" value="0">
+  <div class="slider-val" id="valEst">0% — pista livre</div>
+
+  <div class="btns">
+    <button class="btn tc" id="btnFFR">🚦 Ativar FFR-CT</button>
+    <button class="btn ghost" id="btnPergunta">Uma pista 60% estreitada sempre congestiona?</button>
+  </div>
+
+  <div class="reveal" id="revPergunta">
+    <div class="box vermelho">
+      <h4>Não necessariamente</h4>
+      <p style="margin:0">O mesmo grau de estreitamento pode congestionar tudo numa pista movimentada e não incomodar ninguém numa estrada vazia. No coração, o que decide não é só a geometria: é a demanda, a microcirculação, as colaterais, a extensão do território a jusante.</p>
+      <p style="margin:.6em 0 0"><b>Mapa = anatomia. Trânsito = fisiologia.</b></p>
+    </div>
+  </div>
+
+  <div class="box tc">
+    <h4>🚦 FFR-CT — quando o mapa ganha trânsito</h4>
+    <p style="margin:0">A partir de uma <b>única aquisição tomográfica</b>, calcula-se a reserva de fluxo fracionada de forma não invasiva. Anatomia e informação funcional no mesmo exame.</p>
+    <p style="margin:.6em 0 0">A Diretriz SCC SBC 2025 registra que a utilidade da reserva de fluxo fracionada pela tomografia foi comprovada em estudos randomizados e em metanálise recente, e que suas <b>maiores limitações práticas continuam sendo a disponibilidade ampla e o custo</b>. <span class="conferido">SBC 2025 ✓</span></p>
+    <p style="margin:.6em 0 0">A mesma diretriz cita o SYNTAX III <em>Revolution</em>: a tomografia pode ajudar a definir quem é melhor candidato a tratamento percutâneo ou cirúrgico — e a inclusão da análise da reserva de fluxo fracionada foi fundamental para isso. <span class="conferido">SBC 2025 ✓</span></p>
+  </div>
+
+  <div class="profbox">
+    <h5>Modo professor</h5>
+    <p><b>Analogia para o quadro:</b> desenhe uma estrada com um funil no meio. Pergunte: "esse funil causa fila?" Ninguém consegue responder sem saber quantos carros passam por ali. Essa impossibilidade <em>é</em> o conteúdo.</p>
+    <p><b>Ponte com o Cap. 4:</b> isso é Bayes aplicado à anatomia — o achado só ganha significado dentro de um contexto.</p>
+  </div>
+</section>
+
+<!-- ============ 04 · O PORTEIRO ============ -->
+<section id="s4" data-t="O porteiro da coronária (VPN)">
+  <div class="eyebrow"><span class="n">04</span> · O superpoder clássico</div>
+  <h2>O porteiro da coronária</h2>
+
+  <p class="lead">Historicamente, em que a AngioTC é especialmente poderosa?</p>
+  <div id="q4"></div>
+
+  <div class="reveal" id="rev4">
+    <div class="box tc">
+      <h4>Alto poder para <em>excluir</em> DAC obstrutiva</h4>
+      <p style="margin:0">A Diretriz SCC SBC 2025 diz, com todas as letras, que desde os períodos iniciais da aplicação clínica do método ele se destacava pelo <b>elevado poder preditivo negativo</b>, mostrando-se eficaz para descartar com segurança a presença de doença coronariana obstrutiva. <span class="conferido">SBC 2025 ✓</span></p>
+    </div>
+
+    <p style="text-align:center;font-size:15px;color:var(--tinta2);margin-top:22px">Imagine um segurança enorme na porta do coração:</p>
+    <div class="escuro" style="text-align:center">
+      <p style="margin:0;font-size:20px">🧍‍♂️🚪 &nbsp; <b>"Aqui dentro não tem DAC obstrutiva relevante. Pode ir embora."</b></p>
+      <p style="margin:.8em 0 0;color:#a8c3d1;font-size:15px">Ele é excelente para dizer quem <em>não</em> tem. Ele não foi feito para cravar quanta isquemia uma lesão de 62% está produzindo.</p>
+      <p style="margin:1.1em 0 0;font-size:19px;color:#f0c66a"><b style="color:inherit">TC tem vocação para o TCHAU.</b></p>
+    </div>
+
+    <div class="box ouro">
+      <h4>⚠️ Mas cuidado com a simplificação preguiçosa</h4>
+      <p style="margin:0">"AngioTC serve <em>só</em> para excluir" — <b>errado</b>, e cada vez mais errado.</p>
+      <p style="margin:.6em 0 0">A SBC 2025 registra que, <b>à medida que a tecnologia e a experiência aumentaram, houve aumento do poder preditivo positivo</b>, que pode ser ainda maior quando se utiliza a análise não invasiva da reserva de fluxo coronária. <span class="conferido">SBC 2025 ✓</span></p>
+      <p style="margin:.6em 0 0">Hoje ela caracteriza também: <b>a luz</b> do vaso, <b>a parede</b>, as <b>placas</b> e suas características, a <b>carga aterosclerótica</b>, a <b>distribuição anatômica</b> e a anatomia de alto risco.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · SCOT-HEART ============ -->
+<section id="s5" data-t="SCOT-HEART — a lanterna não apaga incêndio">
+  <div class="eyebrow"><span class="n">05</span> · Por que encontrar placa muda o paciente</div>
+  <h2>A câmera não trata</h2>
+  <p class="lead">No SCOT-HEART, pacientes com dor torácica estável foram randomizados para cuidado habitual <em>versus</em> cuidado habitual + AngioTC. Em 5 anos:</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 260" id="svgScot" role="img" aria-label="Gráfico de barras: morte por doença coronariana ou IAM não fatal em 5 anos, 3,9% no cuidado padrão e 2,3% com AngioTC">
+      <line x1="70" y1="215" x2="530" y2="215" stroke="#dde3ea" stroke-width="2"/>
+      <line x1="70" y1="30" x2="70" y2="215" stroke="#dde3ea" stroke-width="2"/>
+      <text x="70" y="24" font-size="12" fill="#42566b">%</text>
+      <g id="scotBars">
+        <rect class="sb" x="150" y="215" width="90" height="0" fill="#8fa3b3" rx="4"/>
+        <rect class="sb" x="330" y="215" width="90" height="0" fill="#0a7d95" rx="4"/>
+      </g>
+      <text x="195" y="238" text-anchor="middle" font-size="13.5" fill="#12202e">Cuidado padrão</text>
+      <text x="375" y="238" text-anchor="middle" font-size="13.5" fill="#0a7d95" font-weight="700">+ AngioTC</text>
+      <text id="scotV1" x="195" y="215" text-anchor="middle" font-size="17" font-weight="800" fill="#12202e" opacity="0">3,9%</text>
+      <text id="scotV2" x="375" y="215" text-anchor="middle" font-size="17" font-weight="800" fill="#0a7d95" opacity="0">2,3%</text>
+      <text x="300" y="256" text-anchor="middle" font-size="12.5" fill="#42566b">Morte por doença coronariana ou IAM não fatal em 5 anos · HR 0,59</text>
+    </svg>
+  </div>
+
+  <div class="btns"><button class="btn ghost" id="btnScot">A tomografia tratou a aterosclerose?</button></div>
+
+  <div class="reveal" id="revScot">
+    <div class="box vermelho">
+      <h4>NÃO</h4>
+      <p style="margin:0">Ela <b>reclassificou a realidade</b>. Encontrou aterosclerose que a estratégia convencional deixaria invisível — e isso mudou a conduta.</p>
+    </div>
+    <div class="escuro" style="text-align:center">
+      <p style="margin:0;font-size:17px;line-height:2">
+        🔦 <b>ANGIOTC</b><br>↓<br>
+        <b>RECONHECE A DOENÇA</b><br>↓<br>
+        <b>RECLASSIFICA O PACIENTE</b><br>↓<br>
+        <b>INTENSIFICA A PREVENÇÃO</b><br>↓<br>
+        <span style="color:#7fe0a8"><b style="color:inherit">MENOS EVENTOS</b></span>
+      </p>
+      <p style="margin:1.2em 0 0;font-size:19px;color:#f0c66a"><b style="color:inherit">A lanterna não apaga incêndio.<br>Mas quem vê o incêndio chama os bombeiros.</b></p>
+    </div>
+    <div class="box ouro">
+      <h4>🎯 Pegadinha TEC</h4>
+      <p style="margin:0">Alternativa clássica: "a AngioTC reduziu eventos porque melhora o fluxo coronariano / trata a placa". Falso. Ela é um <b>exame diagnóstico</b>: reduz eventos por via indireta, mudando o que o médico faz depois. Ela não é uma estatina disfarçada de tomógrafo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · SBC 2025 · RISCO PRÉ-TESTE ============ -->
+<section id="s6" data-t="SBC 2025 — a TC gosta do meio">
+  <div class="eyebrow"><span class="n">06</span> · Diretriz brasileira</div>
+  <h2>A TC gosta do meio</h2>
+  <p class="lead">Toque em cada porta de risco pré-teste e veja onde a AngioTC é protagonista — e onde ela é apenas uma opção possível.</p>
+
+  <div class="chips" id="chipsRisco">
+    <button class="chip" data-r="baixo">🚪 Risco baixo</button>
+    <button class="chip" data-r="int">🚪 Intermediário</button>
+    <button class="chip" data-r="alto">🚪 Intermediário-alto</button>
+  </div>
+  <div id="boxRisco"></div>
+
+  <div class="box tc">
+    <h4>A frase da própria diretriz</h4>
+    <p style="margin:0">"Nos casos de risco intermediário e intermediário-alto, a tomografia alcança seus melhores resultados." <span class="conferido">SBC 2025 ✓</span></p>
+    <p style="margin:.6em 0 0">E, no mesmo trecho: "a principal contribuição da tomografia é vista nos grupos de <b>probabilidade intermediária</b>". <span class="conferido">SBC 2025 ✓</span></p>
+  </div>
+
+  <div class="box ouro">
+    <h4>📐 As faixas de probabilidade pré-teste <span class="conferir">Conferir tabela SBC 2025</span></h4>
+    <div class="tabela-wrap">
+    <table>
+      <tr><th>PPT</th><th>Caminho sugerido</th></tr>
+      <tr><td class="mono">5 – 15%</td><td>avaliar individualmente — ajustar a PPT ou angioTC</td></tr>
+      <tr><td class="mono">15 – 85%</td><td>teste funcional <em>ou</em> anatômico</td></tr>
+      <tr><td class="mono">&gt; 85%</td><td>estratificação invasiva</td></tr>
+    </table>
+    </div>
+    <p style="margin:.5em 0 0;font-size:14.5px">Números conferidos contra fonte secundária da diretriz; as <b>classes e níveis das Tabelas 10 e 11</b> só existem em imagem no documento original — confira no PDF antes de publicar.</p>
+  </div>
+
+  <div class="box vermelho">
+    <h4>⚠️ Não vire um decorador de faixas</h4>
+    <p style="margin:0">A diretriz é explícita: modelos mais antigos <b>superestimam</b> a chance de estenoses significativas, e alguns autores defendem calcular o risco <b>antes</b> de pedir a angioTC diante de suspeita de SCC. <span class="conferido">SBC 2025 ✓</span> A faixa não substitui o raciocínio — ela o organiza. (Ponte com o Cap. 4, o Cassino de Bayes.)</p>
+  </div>
+
+  <div class="profbox">
+    <h5>Modo professor</h5>
+    <p><b>Pergunta para os alunos:</b> "por que um exame com VPN altíssimo é ruim em quem tem probabilidade pré-teste altíssima?" — porque quase não sobra dúvida para ele resolver; o resultado negativo vira improvável e o paciente já merecia estratificação invasiva.</p>
+  </div>
+</section>
+
+<!-- ============ 07 · FREQUÊNCIA CARDÍACA ============ -->
+<section id="s7" data-t="Frequência cardíaca — a foto do beija-flor">
+  <div class="eyebrow"><span class="n">07</span> · Por que baixar a FC</div>
+  <h2>Fotografando um beija-flor</h2>
+  <p class="lead">Antes da explicação, pense: por que a frequência cardíaca precisa cair para uma boa angioTC?</p>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 180" id="svgFoto" role="img" aria-label="Coronária que borra conforme a frequência cardíaca sobe">
+      <defs>
+        <filter id="borra" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur id="blurN" in="SourceGraphic" stdDeviation="0"/>
+        </filter>
+      </defs>
+      <rect x="0" y="0" width="560" height="180" fill="#0b1a24" rx="12"/>
+      <g filter="url(#borra)">
+        <path d="M60 40 C 190 40, 210 95, 300 95 S 430 130, 505 130" stroke="#5fd3ea" stroke-width="14" fill="none" stroke-linecap="round"/>
+        <path d="M300 95 C 340 60, 380 45, 470 48" stroke="#5fd3ea" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <circle cx="300" cy="95" r="7" fill="#e9f0f5"/>
+      </g>
+      <text x="280" y="168" id="rotFC" text-anchor="middle" font-size="14" fill="#a8c3d1">FC 60 bpm — imagem nítida 📸</text>
+    </svg>
+  </div>
+
+  <label for="slFC" style="font-weight:700;display:block">Frequência cardíaca durante a aquisição</label>
+  <input type="range" id="slFC" min="50" max="120" step="5" value="60">
+  <div class="slider-val" id="valFC">60 bpm</div>
+
+  <div class="box tc">
+    <h4>A lógica, não a lista</h4>
+    <p style="margin:0">A coronária é pequena e está grudada num órgão que não fica quieto. Quanto mais rápido o coração se move, <b>menor a janela temporal</b> para adquirir uma imagem limpa — e mais artefato de movimento.</p>
+    <p style="margin:.6em 0 0"><span class="big-num" style="color:var(--tc)">&lt;65</span> <b>bpm</b> é a âncora prática da aula.</p>
+  </div>
+
+  <div class="box ouro">
+    <h4>⚠️ Não transforme 65 numa fronteira biológica</h4>
+    <p style="margin:0">O alvo depende do <b>equipamento e do protocolo</b>. Em avaliações mais exigentes — avaliação de stent, por exemplo — protocolos contemporâneos costumam mirar controle ainda mais rigoroso, frequentemente abaixo de 60 bpm. <span class="conferir">Conferir Diretriz SBC/CBR TC e RM 2024</span></p>
+  </div>
+
+  <p class="frase">"65: o coração posa para a foto."<small>âncora prática, não lei da natureza</small></p>
+</section>
+
+<!-- ============ 08 · INIMIGOS DA IMAGEM ============ -->
+<section id="s8" data-t="O estúdio fotográfico coronariano">
+  <div class="eyebrow"><span class="n">08</span> · Os inimigos da imagem</div>
+  <h2>A fotografia impossível</h2>
+  <p class="lead">Não decore uma lista. Entenda uma única lógica: tudo que <b>move demais</b>, <b>obscurece a luz</b>, <b>reduz resolução</b> ou <b>aumenta ruído</b> estraga a angioTC.</p>
+
+  <p style="font-size:15.5px;color:var(--tinta2)">Um paciente entrou no estúdio. Toque em cada elemento e descubra por qual dos quatro mecanismos ele sabota a foto.</p>
+  <div class="chips" id="chipsInimigos"></div>
+  <div id="boxInimigo" class="card" style="min-height:96px">
+    <p style="margin:0;color:var(--tinta2)">Toque em um dos sabotadores acima.</p>
+  </div>
+  <div class="placar" id="placarInimigos">Sabotadores revelados: 0 / 7</div>
+
+  <div class="reveal" id="revInimigos">
+    <div class="escuro" style="text-align:center">
+      <p style="margin:0;font-size:19px"><b>"ASSIM NÃO TEM TOMÓGRAFO QUE FAÇA MILAGRE!"</b></p>
+      <p style="margin:.8em 0 0;color:#a8c3d1">Você acabou de memorizar praticamente todas as limitações técnicas da angioTC — sem decorar nenhuma lista.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 · BLOOMING ============ -->
+<section id="s9" data-t="Blooming do cálcio">
+  <div class="eyebrow"><span class="n">09</span> · O vilão clássico</div>
+  <h2>O cálcio floresce</h2>
+
+  <div class="svg-wrap dark">
+    <svg viewBox="0 0 560 200" id="svgBloom" role="img" aria-label="Corte de coronária mostrando placa calcificada que aumenta visualmente com o efeito blooming">
+      <rect x="0" y="0" width="560" height="200" fill="#0b1a24"/>
+      <circle cx="280" cy="100" r="72" fill="none" stroke="#3a5566" stroke-width="12"/>
+      <circle id="luz" cx="280" cy="100" r="60" fill="#5fd3ea" opacity=".28"/>
+      <g id="calcio">
+        <path id="calcioP" d="M280 40 a60 60 0 0 1 42 17 l-14 14 a40 40 0 0 0 -28 -11 z" fill="#f2e3b8"/>
+      </g>
+      <text x="280" y="186" id="rotBloom" text-anchor="middle" font-size="14" fill="#a8c3d1">Placa calcificada real — a luz ainda parece ampla</text>
+    </svg>
+  </div>
+
+  <div class="btns"><button class="btn tc" id="btnBloom">☢️ Ligar o tomógrafo</button></div>
+
+  <div class="reveal" id="revBloomQ">
+    <p class="lead" style="margin-top:18px">O cálcio "floresceu" na imagem. O que acontece com a <b>luz aparente</b> do vaso?</p>
+    <div id="q9"></div>
+  </div>
+
+  <div class="reveal" id="rev9">
+    <div class="escuro" style="text-align:center">
+      <p style="margin:0;font-size:17px;line-height:1.9">
+        🪨 <b>CÁLCIO</b><br>↓<br><b>BLOOMING</b><br>↓<br><b>A LUZ PARECE MENOR</b><br>↓<br>
+        <span style="color:#ffb4ad"><b style="color:inherit">A ESTENOSE PODE PARECER MAIOR</b></span>
+      </p>
+    </div>
+    <div class="box ouro">
+      <h4>🎯 A formulação elegante para prova</h4>
+      <p style="margin:0">Calcificação intensa <b>dificulta a avaliação luminal</b> e pode levar à <b>superestimação</b> da gravidade da estenose. Não é que o exame "erre sempre": é que ele perde confiabilidade justamente onde há mais pedra.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · CAC ≠ ANGIOTC ============ -->
+<section id="s10" data-t="Escore de cálcio ≠ AngioTC">
+  <div class="eyebrow"><span class="n">10</span> · Duas mesas, dois exames</div>
+  <h2>Escore de cálcio não é angioTC</h2>
+  <p class="lead">São dois exames de tomografia — e duas perguntas completamente diferentes. Classifique cada característica na mesa certa.</p>
+
+  <div class="cmp2" style="margin:16px 0">
+    <div class="box tc" style="margin:0">
+      <h4>🪨 Escore de cálcio</h4>
+      <p style="margin:0;font-size:14.5px"><b style="color:inherit">SEM contraste.</b> Pergunta: <em>quanto cálcio coronariano existe?</em></p>
+    </div>
+    <div class="box rm" style="margin:0">
+      <h4>💉 AngioTC coronária</h4>
+      <p style="margin:0;font-size:14.5px"><b style="color:inherit">COM contraste.</b> Pergunta: <em>como estão anatomia, luz, parede e placas?</em></p>
+    </div>
+  </div>
+
+  <p style="font-size:15.5px;color:var(--tinta2)">Toque na característica e escolha a mesa:</p>
+  <div id="jogoCAC"></div>
+  <div class="placar" id="placarCAC">0 / 8 classificadas</div>
+
+  <div class="box tc">
+    <h4>O que a SBC 2025 diz sobre o escore de cálcio</h4>
+    <p style="margin:0">É descrito como <b>utilíssimo</b> na avaliação de pacientes de moderado risco e assintomáticos, e para programar a prevenção farmacológica na prevenção primária. Método simples, sem contraste, com imagem obtida em menos de 10 minutos. <span class="conferido">SBC 2025 ✓</span></p>
+    <p style="margin:.6em 0 0">A diretriz observa ainda que, em ensaios populacionais, a maior parte dos eventos ocorreu em quem tinha cálcio detectável — <b>84% dos eventos adversos maiores em pacientes com escore &gt; 0 no estudo PROMISE</b>. <span class="conferido">SBC 2025 ✓</span></p>
+  </div>
+
+  <div class="box ouro">
+    <h4>⚠️ Zero pedra não é zero placa</h4>
+    <p style="margin:0">A própria diretriz alerta: <b>pode haver obstruções significativas mesmo na ausência de calcificação arterial</b>, e esse critério deve ser usado com cautela, <b>em especial nos pacientes de moderado para alto risco</b>. <span class="conferido">SBC 2025 ✓</span></p>
+    <p style="margin:.6em 0 0">Placa não calcificada existe. E é justamente a que o escore de cálcio não enxerga.</p>
+  </div>
+
+  <div class="box vermelho">
+    <h4>⚠️ Não empilhe conceitos na mesma caixa</h4>
+    <p style="margin:0;font-size:19px;text-align:center;font-weight:800">
+      CARGA DE PLACA<br><span style="color:var(--vermelho)">≠</span><br>LOCAL DA ESTENOSE<br><span style="color:var(--vermelho)">≠</span><br>REPERCUSSÃO FUNCIONAL
+    </p>
+    <p style="margin:.9em 0 0">Por isso um escore de cálcio elevado <b>não é equivalente anatômico</b> de uma lesão de tronco. Ele fala de <em>quanta</em> aterosclerose calcificada existe e de risco — não de <em>onde</em> está a estenose nem do que ela faz com o músculo.</p>
+  </div>
+</section>
+
+<!-- ============ 11 · TRONCO 50 / GALHO 70 ============ -->
+<section id="s11" data-t="Tronco 50 · galho 70">
+  <div class="eyebrow"><span class="n">11</span> · Os dois números anatômicos</div>
+  <h2>Tronco 50, galho 70</h2>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 560 240" id="svgArvore" role="img" aria-label="Árvore coronariana: tronco com corte de 50% e galhos com corte de 70%">
+      <rect width="560" height="240" fill="#fff"/>
+      <path d="M280 235 V 130" stroke="#5a4632" stroke-width="34" stroke-linecap="round"/>
+      <path d="M280 140 C 250 100, 190 92, 150 70" stroke="#5a4632" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <path d="M280 140 C 310 100, 370 92, 410 70" stroke="#5a4632" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <path d="M280 150 C 300 118, 320 104, 330 60" stroke="#5a4632" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <g id="corteTronco" opacity="0">
+        <rect x="263" y="176" width="34" height="9" fill="#b3261e"/>
+        <text x="310" y="184" font-size="18" font-weight="800" fill="#b3261e">50%</text>
+        <text x="310" y="202" font-size="12.5" fill="#42566b">tronco da coronária esquerda</text>
+      </g>
+      <g id="corteGalho" opacity="0">
+        <rect x="180" y="80" width="16" height="8" fill="#b3261e" transform="rotate(28 188 84)"/>
+        <rect x="368" y="80" width="16" height="8" fill="#b3261e" transform="rotate(-28 376 84)"/>
+        <text x="120" y="52" font-size="18" font-weight="800" fill="#b3261e">70%</text>
+        <text x="418" y="52" font-size="18" font-weight="800" fill="#b3261e">70%</text>
+        <text x="280" y="30" text-anchor="middle" font-size="12.5" fill="#42566b">demais coronárias</text>
+      </g>
+    </svg>
+  </div>
+
+  <div id="q11"></div>
+
+  <div class="reveal" id="rev11">
+    <div class="box tc">
+      <h4>Por que o tronco é diferente</h4>
+      <p style="margin:0">Cortar metade do tronco de uma árvore ameaça a copa inteira. O tronco da coronária esquerda irriga um território enorme — por isso o limiar anatômico de gravidade é <b>mais baixo</b>.</p>
+      <p style="margin:.6em 0 0">A própria Diretriz SCC 2025, ao discutir estratégia conservadora, cita como critério de exclusão a <b>lesão grave no tronco da coronária esquerda (≥ 50% à angioTC)</b>. <span class="conferido">SBC 2025 ✓</span></p>
+      <p style="margin:.6em 0 0">Nas demais coronárias, a referência anatômica clássica de obstrução significativa é <b>≥ 70%</b>. <span class="conferir">Conferir SBC 2025 · tabela anatômica</span></p>
+    </div>
+    <p class="frase">🌳 TRONCO 50 &nbsp;·&nbsp; 🌿 GALHO 70</p>
+    <div class="profbox">
+      <h5>Modo professor</h5>
+      <p><b>Erro provável:</b> o aluno inverte os números sob pressão. Ancore pela árvore, não pela tabela: quanto mais território a jusante, menor o número que já assusta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 · STENT E ENXERTO ============ -->
+<section id="s12" data-t="Stent × enxerto">
+  <div class="eyebrow"><span class="n">12</span> · Paciente já revascularizado</div>
+  <h2>O canudo e a ponte</h2>
+  <p class="lead">"AngioTC não serve para avaliar stent" — essa frase é curta demais para ser verdadeira.</p>
+
+  <div class="cmp2">
+    <div class="box tc" style="margin:0">
+      <h4>🥤 Stent</h4>
+      <p style="margin:0;font-size:15px">O metal produz artefato e dificulta ver a luz <b style="color:inherit">dentro</b> da prótese. Quanto menor o diâmetro, pior.</p>
+      <p style="margin:.6em 0 0;font-size:15px">Âncora clássica: avaliação mais favorável em stents <b style="color:inherit">≥ 3 mm</b>, com protocolo adequado. <span class="conferir">Conferir SBC/CBR TC e RM 2024</span></p>
+    </div>
+    <div class="box rm" style="margin:0">
+      <h4>🌉 Enxerto cirúrgico</h4>
+      <p style="margin:0;font-size:15px">Maiores, relativamente menos móveis, mais fáceis de seguir anatomicamente.</p>
+      <p style="margin:.6em 0 0;font-size:15px">Boa ferramenta para avaliar <b style="color:inherit">patência de enxertos</b> após CRM, sobretudo quando essa é a pergunta principal. <span class="conferir">Conferir SBC/CBR TC e RM 2024</span></p>
+    </div>
+  </div>
+
+  <div class="escuro" style="text-align:center">
+    <p style="margin:0;font-size:17px">🥤 Canudo estreito cheio de metal: <b>"socorro."</b></p>
+    <p style="margin:.5em 0 0;font-size:17px">🌉 Ponte larga atravessando a cidade: <b>"estou vendo tudo."</b></p>
+    <p style="margin:1em 0 0;font-size:19px;color:#f0c66a"><b style="color:inherit">STENT GRANDE, TC ENXERGA GRANDE. &nbsp;·&nbsp; TC ADORA PONTE.</b></p>
+  </div>
+
+  <div class="box ouro">
+    <h4>⚠️ 3 mm não é proibição</h4>
+    <p style="margin:0">Scanners e técnicas contemporâneas permitem avaliação de stents menores em situações selecionadas. O número é um <b>marcador de favorabilidade</b>, não uma placa de "proibido entrar".</p>
+  </div>
+</section>
+
+<!-- ============ 13 · A FRASE-MARTELO ============ -->
+<section id="s13" data-t="Estenose ≠ isquemia">
+  <div class="eyebrow"><span class="n">13</span> · A porta que fecha o lado da estrada</div>
+  <h2>Estenose eu vejo. Isquemia eu provo.</h2>
+
+  <div class="card">
+    <p style="margin:0"><b>De volta ao nosso paciente de 54 anos.</b> A angioTC foi feita e mostrou uma lesão de <b>60% no terço médio da descendente anterior</b>.</p>
+  </div>
+
+  <p class="lead">Um candidato responde: "há isquemia miocárdica significativa". Ele acertou?</p>
+  <div id="q13"></div>
+
+  <div class="reveal" id="rev13">
+    <div class="escuro" style="text-align:center;padding:36px 20px">
+      <p style="margin:0;font-size:clamp(26px,7vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.1">
+        ESTENOSE <span style="color:#ffb4ad">≠</span> ISQUEMIA
+      </p>
+      <p style="margin:1.2em 0 0;font-size:20px;color:#f0c66a"><b style="color:inherit">Estenose eu vejo.<br>Isquemia eu provo.</b></p>
+    </div>
+
+    <div class="box tc">
+      <h4>O exame demonstrou o quê, exatamente?</h4>
+      <p style="margin:0">Uma <b>estenose anatômica</b>. Ele não demonstrou automaticamente repercussão fisiológica. A pergunta seguinte muda de natureza — e é aí que a estrada acaba e o miocárdio começa.</p>
+    </div>
+
+    <div class="box rm">
+      <h4>🫀 A próxima pergunta pertence à outra perita</h4>
+      <p style="margin:0">"Essa lesão está fazendo o músculo sofrer?"</p>
+      <p style="margin:.6em 0 0">A partir daqui entram os métodos que provocam e observam o miocárdio — e a RMC de estresse entra em cena com um argumento forte: a Diretriz SCC SBC 2025 afirma que a <b>RMC com estresse farmacológico apresenta maior acurácia diagnóstica comparada à cintilografia do miocárdio e ao ecocardiograma com estresse</b>, e que sua elevada resolução espacial permite identificar defeitos de perfusão <b>no subendocárdio</b>. <span class="conferido">SBC 2025 ✓</span></p>
+    </div>
+
+    <div class="box verde">
+      <h4>➡️ Fim do Pass 1</h4>
+      <p style="margin:0">Você fechou a <b>ala da estrada</b>. O paciente continua na maca, com uma lesão intermediária e uma pergunta nova.</p>
+      <p style="margin:.6em 0 0">No <b>Pass 2</b>: a ala do tecido — cine, perfusão, T2/edema, realce tardio, padrões isquêmico × não isquêmico, a régua da transmuralidade, a zona cinzenta 25–50% e a Grande Ponte que liga placa → fluxo → isquemia → disfunção → necrose.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PASS-2-AQUI -->
+
+</main>
+
+<footer class="rodape">
+  <p><b>Atlas Mental Cardio · Capítulo 9 — AngioTC × RMC: o duelo da imagem cardíaca.</b> Dr. André Rossanno. Material educacional; não substitui a leitura das diretrizes nem o julgamento clínico.</p>
+  <p><b>Fonte principal:</b> Diretriz de Síndrome Coronariana Crônica – 2025. Arq Bras Cardiol. 2025;122(9):e20250619. DOI 10.36660/abc.20250619.<br>
+  <b>Complementar:</b> Diretriz de Tomografia Computadorizada e Ressonância Magnética Cardiovascular da SBC e do Colégio Brasileiro de Radiologia – 2024. ESC 2024 apenas como contexto.</p>
+  <p><b>Legenda dos selos:</b> <span class="conferido">SBC 2025 ✓</span> conferido no texto integral da diretriz. <span class="conferir">Conferir</span> depende de tabela publicada apenas como imagem ou de outra diretriz — verificar no PDF antes de publicar.</p>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var LS="atlasCardio_scc_cap9_v1";
+var S={sec:"",resp:{},revelados:[],cac:{}};
+try{var raw=localStorage.getItem(LS); if(raw){S=Object.assign(S,JSON.parse(raw));}}catch(e){}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}}
+function $(s,c){return (c||document).querySelector(s);}
+function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
+function mostra(id){var el=$("#"+id); if(el) el.classList.add("on");}
+
+/* ---------- ÍNDICE ---------- */
+var secs=$$("main section");
+var idx=$("#idx");
+secs.forEach(function(s,i){
+  var a=document.createElement("a");
+  a.href="#"+s.id;
+  a.innerHTML='<em>'+String(i).padStart(2,"0")+'</em>'+(s.dataset.t||s.id);
+  a.addEventListener("click",function(){$("#painel").classList.remove("on");$("#btnPainel").setAttribute("aria-expanded","false");});
+  idx.appendChild(a);
+});
+$("#btnPainel").addEventListener("click",function(){
+  var p=$("#painel"), on=p.classList.toggle("on");
+  this.setAttribute("aria-expanded",on?"true":"false");
+});
+
+/* ---------- AJUSTES ---------- */
+function tog(btnId,cls,key){
+  var b=$("#"+btnId);
+  if(S[key]){document.body.classList.add(cls);b.setAttribute("aria-pressed","true");}
+  b.addEventListener("click",function(){
+    var on=document.body.classList.toggle(cls);
+    b.setAttribute("aria-pressed",on?"true":"false");
+    S[key]=on;save();
+  });
+}
+tog("togProf","prof","prof");
+tog("togCalmo","calmo","calmo");
+$("#btnContinuar").addEventListener("click",function(){
+  var el=S.sec?document.getElementById(S.sec):null;
+  if(el){el.scrollIntoView({behavior:document.body.classList.contains("calmo")?"auto":"smooth"});}
+  $("#painel").classList.remove("on");
+});
+$("#btnZerar").addEventListener("click",function(){
+  if(!confirm("Apagar suas respostas e o progresso deste capítulo?"))return;
+  try{localStorage.removeItem(LS);}catch(e){}
+  location.reload();
+});
+
+/* ---------- PROGRESSO ---------- */
+var barra=$("#barraProg");
+function prog(){
+  var h=document.documentElement;
+  var t=h.scrollHeight-h.clientHeight;
+  barra.style.width=(t>0?Math.min(100,(h.scrollTop||document.body.scrollTop)/t*100):0)+"%";
+}
+window.addEventListener("scroll",prog,{passive:true});prog();
+
+var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      if(e.target.tagName==="SECTION"){S.sec=e.target.id;save();
+        var i=secs.indexOf(e.target);
+        $("#dmTC").classList.toggle("on", i<=13);
+        $("#dmRM").classList.toggle("on", i>=13);
+      }
+      if(e.target.id==="svgScot"){animaScot();}
+    }
+  });
+},{threshold:.25}):null;
+if(io){secs.forEach(function(s){io.observe(s);}); io.observe($("#svgScot"));}
+else{$("#dmTC").classList.add("on");animaScot();}
+
+/* ---------- MOTOR DE QUESTÕES ---------- */
+function quiz(host,cfg){
+  var el=typeof host==="string"?$("#"+host):host;
+  if(!el)return;
+  var id=cfg.id;
+  var wrap=document.createElement("div");
+  cfg.opts.forEach(function(o,i){
+    var b=document.createElement("button");
+    b.className="opt";b.type="button";
+    b.innerHTML="<b>"+"ABCDE"[i]+")</b> "+o.t;
+    b.addEventListener("click",function(){escolhe(i);});
+    wrap.appendChild(b);
+  });
+  var fb=document.createElement("div");fb.className="fb";
+  wrap.appendChild(fb);
+  el.appendChild(wrap);
+
+  function escolhe(i){
+    var btns=$$(".opt",wrap);
+    btns.forEach(function(b,j){
+      b.classList.remove("certo","errado","marcada");
+      if(cfg.opts[j].ok) b.classList.add("certo");
+      else if(j===i) b.classList.add("errado");
+      if(j===i) b.classList.add("marcada");
+    });
+    var ok=!!cfg.opts[i].ok;
+    fb.className="fb on "+(ok?"ok":"no");
+    var html="<b>"+(ok?"Correto.":"Não é essa.")+"</b> "+(cfg.opts[i].fb||"");
+    if(!ok){
+      var c=cfg.opts.filter(function(o){return o.ok;})[0];
+      html+="<br><br><b>A resposta é "+"ABCDE"[cfg.opts.indexOf(c)]+":</b> "+(c.fb||"");
+    }
+    if(cfg.pega) html+='<span class="pega">🎯 PEGADINHA: '+cfg.pega+'</span>';
+    fb.innerHTML=html;
+    S.resp[id]=i;save();
+    if(cfg.rev) mostra(cfg.rev);
+  }
+  if(typeof S.resp[id]==="number") escolhe(S.resp[id]);
+}
+
+/* ---------- HERO · DUAS PORTAS ---------- */
+$$(".porta").forEach(function(p){
+  p.addEventListener("click",function(){
+    $$(".porta").forEach(function(x){x.classList.remove("on");});
+    p.classList.add("on");
+    mostra("revPorta");
+    S.porta=p.dataset.porta;save();
+  });
+});
+if(S.porta){var pv=document.querySelector('.porta[data-porta="'+S.porta+'"]'); if(pv){pv.classList.add("on");mostra("revPorta");}}
+
+/* ---------- 01 ---------- */
+quiz("q1",{id:"q1",rev:"rev1",
+  opts:[
+   {t:"Existe aterosclerose ou obstrução na coronária dele?",
+    fb:"É uma pergunta legítima e é <b>anatômica</b>. Só que ela não é a mesma coisa que perguntar se o músculo está sofrendo."},
+   {t:"Existe isquemia miocárdica?",
+    fb:"Também legítima — e é <b>fisiológica</b>. Repare que ela pode ter resposta diferente da anterior no mesmo paciente."},
+   {t:"Qual artéria está comprometida?",
+    fb:"Anatômica de novo, e mais específica ainda: pressupõe que já existe comprometimento."},
+   {t:"Nenhuma das anteriores é a primeira pergunta — antes disso preciso decidir <em>qual delas</em> quero responder.",ok:true,
+    fb:"É esse o ponto do capítulo. Não existe exame campeão absoluto; existe o exame que responde melhor à pergunta <b>daquele</b> paciente naquele momento. Anatomia e fisiologia são perguntas distintas, e escolher a errada custa tempo, dinheiro e, às vezes, a conduta."}],
+  pega:"as alternativas A, B e C não estão &quot;erradas&quot; — elas são armadilhas de foco. Um bom candidato percebe que o enunciado pergunta o que se quer <em>descobrir</em>, não qual exame pedir."
+});
+
+/* ---------- 03 · ESTRADA ---------- */
+var sl=$("#slEst"), pista=$("#pista"), placa=$("#placa"), placa2=$("#placa2");
+var rotE=$("#rotEstrada"), rotT=$("#rotTransito"), valE=$("#valEst"), carros=$("#carros"), ffrOn=false;
+function pintaEstrada(){
+  var v=+sl.value;
+  var w=70-(70*0.72)*(v/100);
+  pista.setAttribute("stroke-width",w.toFixed(1));
+  var ry=1+ (v/100)*22;
+  placa.setAttribute("ry",ry.toFixed(1)); placa2.setAttribute("ry",ry.toFixed(1));
+  placa.setAttribute("cy",105-ry/2); placa2.setAttribute("cy",105-ry/2);
+  rotE.textContent="Estenose de "+v+"%";
+  valE.textContent = v+"% — "+(v===0?"pista livre":(v<50?"estreitou, mas o mapa não diz o resto":(v<70?"lesão intermediária: o mapa ficou insuficiente":"anatomicamente importante nos galhos")));
+  if(ffrOn) pintaTransito(v);
+}
+function pintaTransito(v){
+  carros.setAttribute("opacity","1");
+  carros.innerHTML="";
+  var n=9, lento=v>=70, medio=v>=50&&v<70;
+  for(var i=0;i<n;i++){
+    var x=40+i*62, r=document.createElementNS("http://www.w3.org/2000/svg","rect");
+    r.setAttribute("x",x);r.setAttribute("y",96);r.setAttribute("width",22);r.setAttribute("height",12);
+    r.setAttribute("rx",3);
+    r.setAttribute("fill", (x>250&&x<400&&(lento||medio))?"#b3261e":"#e9f0f5");
+    carros.appendChild(r);
+  }
+  rotT.textContent = lento
+    ? "FFR-CT: fluxo comprometido — o trânsito parou no ponto do estreitamento"
+    : (medio ? "FFR-CT: zona de dúvida — é exatamente aqui que a informação funcional decide"
+             : "FFR-CT: trânsito preservado apesar do estreitamento");
+  rotT.setAttribute("fill", lento?"#b3261e":(medio?"#8a6300":"#1d7a4c"));
+}
+sl.addEventListener("input",pintaEstrada);
+$("#btnFFR").addEventListener("click",function(){
+  ffrOn=!ffrOn;
+  this.textContent = ffrOn?"🗺️ Voltar só ao mapa":"🚦 Ativar FFR-CT";
+  if(!ffrOn){carros.setAttribute("opacity","0");rotT.textContent="Toque em “Ativar FFR-CT” para ver o trânsito";rotT.setAttribute("fill","#42566b");}
+  else pintaTransito(+sl.value);
+});
+$("#btnPergunta").addEventListener("click",function(){mostra("revPergunta");});
+pintaEstrada();
+
+/* ---------- 04 ---------- */
+quiz("q4",{id:"q4",rev:"rev4",
+  opts:[
+   {t:"Em quantificar com precisão o grau de isquemia produzido por uma lesão.",
+    fb:"Não. Isso é território de método funcional. A angioTC mede a estrada, não o sofrimento do músculo."},
+   {t:"Em <b>descartar com segurança</b> doença coronariana obstrutiva.",ok:true,
+    fb:"Sim — o elevado valor preditivo negativo é a marca registrada do método desde o início da sua aplicação clínica, e é reconhecido assim pela Diretriz SCC SBC 2025."},
+   {t:"Em substituir a cinecoronariografia em todos os cenários.",
+    fb:"Não. Ela é um exame anatômico não invasivo, com limitações técnicas próprias, e não elimina o estudo invasivo quando ele está indicado."},
+   {t:"Em avaliar viabilidade miocárdica.",
+    fb:"Não. Viabilidade é pergunta de tecido — e é justamente onde a outra perita deste capítulo entra em cena."}],
+  pega:"muita gente marca a alternativa &quot;substitui o cateterismo&quot; porque a angioTC é anatômica como ele. Anatômico não invasivo ≠ anatômico invasivo."
+});
+
+/* ---------- 05 · SCOT-HEART ---------- */
+var scotFeito=false;
+function animaScot(){
+  if(scotFeito)return; scotFeito=true;
+  var bars=$$("#scotBars .sb"), alvos=[3.9,2.3], vals=[$("#scotV1"),$("#scotV2")];
+  var esc=185/5, calmo=document.body.classList.contains("calmo");
+  bars.forEach(function(b,i){
+    var h=alvos[i]*esc, y=215-h, t0=null;
+    function fim(){b.setAttribute("height",h.toFixed(1));b.setAttribute("y",y.toFixed(1));
+      vals[i].setAttribute("y",(y-8).toFixed(1));vals[i].setAttribute("opacity","1");}
+    if(calmo||!window.requestAnimationFrame){fim();return;}
+    function step(t){
+      if(t0===null)t0=t;
+      var k=Math.min(1,(t-t0)/700);
+      b.setAttribute("height",(h*k).toFixed(1));
+      b.setAttribute("y",(215-h*k).toFixed(1));
+      if(k<1) requestAnimationFrame(step); else fim();
+    }
+    requestAnimationFrame(step);
+  });
+}
+$("#btnScot").addEventListener("click",function(){mostra("revScot");});
+
+/* ---------- 06 · RISCO ---------- */
+var RISCO={
+ baixo:{cor:"tc",t:"🚪 Risco pré-teste BAIXO",
+  h:"A angioTC <b>pode</b> entrar, mas não é a rainha absoluta.",
+  l:["Como <b>primeira opção</b> diagnóstica na dor torácica: recomendação de menor grau. <span class='conferir'>Classe/nível: conferir Tabela 10 · SBC 2025</span>",
+     "Depois de um <b>teste funcional incerto ou conflitante</b>: recomendação um pouco mais forte. <span class='conferir'>Conferir Tabela 10 · SBC 2025</span>",
+     "Vale considerar o <b>escore de cálcio antes</b> de prosseguir com exames, conforme a própria diretriz. <span class='conferido'>SBC 2025 ✓</span>"]},
+ int:{cor:"tc",t:"🚪 Risco pré-teste INTERMEDIÁRIO",
+  h:"Tapete vermelho. É aqui que a diretriz diz que a tomografia alcança seus melhores resultados.",
+  l:["Como <b>exame inicial</b> para diagnóstico ou estratificação de DAC obstrutiva em quem não tem diagnóstico anatômico prévio. <span class='conferir'>Classe/nível: conferir Tabela 11 · SBC 2025</span>",
+     "Após teste funcional incerto ou conflitante, como <b>alternativa ao estudo invasivo</b>. <span class='conferir'>Conferir Tabela 11 · SBC 2025</span>",
+     "A diretriz afirma que a <b>principal contribuição</b> da tomografia é vista nos grupos de probabilidade intermediária. <span class='conferido'>SBC 2025 ✓</span>"]},
+ alto:{cor:"tc",t:"🚪 Risco pré-teste INTERMEDIÁRIO-ALTO",
+  h:"Tapete vermelho de novo — mas com o olho na porta de saída.",
+  l:["Mesmas duas indicações fortes do grupo intermediário. <span class='conferir'>Conferir Tabela 11 · SBC 2025</span>",
+     "Quanto mais a probabilidade sobe, mais cedo o raciocínio caminha para <b>estratificação invasiva</b>.",
+     "Atenção: é justamente no paciente de moderado para alto risco que a diretriz manda <b>desconfiar do cálcio zero</b>. <span class='conferido'>SBC 2025 ✓</span>"]}
+};
+var boxR=$("#boxRisco");
+$$("#chipsRisco .chip").forEach(function(c){
+  c.classList.add("tc");
+  c.addEventListener("click",function(){
+    $$("#chipsRisco .chip").forEach(function(x){x.classList.remove("on");});
+    c.classList.add("on");
+    var d=RISCO[c.dataset.r];
+    boxR.innerHTML='<div class="box '+d.cor+'"><h4>'+d.t+'</h4><p style="margin:0 0 .5em">'+d.h+'</p><ul style="margin:0">'+
+      d.l.map(function(x){return "<li>"+x+"</li>";}).join("")+'</ul></div>';
+    S.risco=c.dataset.r;save();
+  });
+});
+if(S.risco){var cr=document.querySelector('#chipsRisco .chip[data-r="'+S.risco+'"]'); if(cr)cr.click();}
+
+/* ---------- 07 · FC ---------- */
+var slFC=$("#slFC"), blurN=$("#blurN"), rotFC=$("#rotFC"), valFC=$("#valFC");
+slFC.addEventListener("input",function(){
+  var v=+slFC.value;
+  var b=Math.max(0,(v-60)/10)*1.5;
+  blurN.setAttribute("stdDeviation",b.toFixed(2));
+  valFC.textContent=v+" bpm";
+  rotFC.textContent = v<65 ? ("FC "+v+" bpm — imagem nítida 📸 🐢")
+    : (v<85 ? ("FC "+v+" bpm — começa a borrar") : ("FC "+v+" bpm — borrão 🐦💨"));
+  rotFC.setAttribute("fill", v<65?"#7fe0a8":(v<85?"#f0c66a":"#ffb4ad"));
+});
+
+/* ---------- 08 · INIMIGOS ---------- */
+var INIM=[
+ {n:"💓 FC elevada",m:"MOVIMENTO",d:"Menos janela temporal por ciclo. A coronária se desloca durante a aquisição e a imagem borra."},
+ {n:"🥁 Arritmia importante",m:"MOVIMENTO",d:"A sincronização com o ECG assume ciclos regulares. Batimentos irregulares desalinham as fatias."},
+ {n:"🪨 Calcificação extensa",m:"OBSCURECE A LUZ",d:"<b>Blooming</b>: o cálcio parece maior do que é e invade visualmente a luz, dificultando avaliar o lúmen."},
+ {n:"⚖️ Obesidade importante",m:"RUÍDO",d:"Mais atenuação do feixe, menor relação sinal-ruído, imagem granulada."},
+ {n:"🌬️ Apneia inadequada",m:"MOVIMENTO",d:"Movimento respiratório durante a aquisição — o mesmo problema da FC, em outro eixo."},
+ {n:"🔬 Vasos muito finos",m:"RESOLUÇÃO",d:"A resolução espacial passa a ser o fator limitante: o vaso é menor que a capacidade do método de resolvê-lo."},
+ {n:"🩹 Artefato metálico / stent pequeno",m:"OBSCURECE A LUZ",d:"O metal produz artefato e impede ver a luz dentro da prótese — pior quanto menor o diâmetro."}
+];
+var chi=$("#chipsInimigos"), boxI=$("#boxInimigo"), plI=$("#placarInimigos");
+S.inim=S.inim||[];
+INIM.forEach(function(o,i){
+  var b=document.createElement("button");
+  b.className="chip";b.type="button";b.textContent=o.n;
+  b.addEventListener("click",function(){
+    $$("#chipsInimigos .chip").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");
+    boxI.innerHTML='<p style="margin:0 0 .3em"><span class="tag tc">'+o.m+'</span></p><p style="margin:0;font-size:16px"><b>'+o.n+'</b> — '+o.d+'</p>';
+    if(S.inim.indexOf(i)<0){S.inim.push(i);save();}
+    plI.textContent="Sabotadores revelados: "+S.inim.length+" / "+INIM.length;
+    if(S.inim.length===INIM.length) mostra("revInimigos");
+  });
+  chi.appendChild(b);
+});
+plI.textContent="Sabotadores revelados: "+S.inim.length+" / "+INIM.length;
+if(S.inim.length===INIM.length) mostra("revInimigos");
+
+/* ---------- 09 · BLOOMING ---------- */
+var bloomOn=false;
+$("#btnBloom").addEventListener("click",function(){
+  bloomOn=!bloomOn;
+  var p=$("#calcioP"), luz=$("#luz"), rot=$("#rotBloom");
+  if(bloomOn){
+    p.setAttribute("transform","translate(280 100) scale(1.85) translate(-280 -100)");
+    p.setAttribute("filter","");
+    p.setAttribute("opacity",".92");
+    luz.setAttribute("r","44");
+    rot.textContent="BLOOMING — o cálcio floresce e invade visualmente a luz";
+    rot.setAttribute("fill","#f0c66a");
+    this.textContent="↩️ Desligar";
+    mostra("revBloomQ");
+  }else{
+    p.setAttribute("transform","");p.setAttribute("opacity","1");
+    luz.setAttribute("r","60");
+    rot.textContent="Placa calcificada real — a luz ainda parece ampla";
+    rot.setAttribute("fill","#a8c3d1");
+    this.textContent="☢️ Ligar o tomógrafo";
+  }
+});
+quiz("q9",{id:"q9",rev:"rev9",
+  opts:[
+   {t:"A luz vai parecer <b>maior</b> do que é.",fb:"Ao contrário: o cálcio ocupa espaço visual que na verdade é lúmen."},
+   {t:"A luz vai parecer <b>menor</b> do que é.",ok:true,
+    fb:"O cálcio &quot;floresce&quot; e invade a imagem do lúmen. Consequência prática: a estenose pode ser <b>superestimada</b> e o exame perde confiabilidade justamente nos segmentos mais calcificados."},
+   {t:"Nada muda — o software corrige automaticamente.",fb:"Existem técnicas de mitigação, mas o blooming continua sendo uma limitação real e reconhecida do método."}],
+  pega:"o candidato confunde a direção do erro. Grave a cadeia: cálcio → blooming → luz parece menor → estenose parece maior."
+});
+
+/* ---------- 10 · CAC × ANGIOTC ---------- */
+var CAC=[
+ {t:"Não usa contraste iodado",r:"cac"},
+ {t:"Usa contraste iodado",r:"tc"},
+ {t:"Quantifica a carga de cálcio coronariano",r:"cac"},
+ {t:"Avalia a luz, a parede e as placas",r:"tc"},
+ {t:"Útil sobretudo no assintomático de risco moderado, para decidir prevenção",r:"cac"},
+ {t:"Estima o grau de obstrução quando ela existe",r:"tc"},
+ {t:"Não enxerga placa não calcificada",r:"cac"},
+ {t:"Permite caracterizar composição e achados de alto risco da placa",r:"tc"}
+];
+var jogo=$("#jogoCAC"), plC=$("#placarCAC");
+S.cac=S.cac||{};
+CAC.forEach(function(o,i){
+  var row=document.createElement("div");
+  row.className="card";row.style.margin="10px 0";row.style.padding="12px 14px";
+  row.innerHTML='<p style="margin:0 0 8px;font-size:16px">'+o.t+'</p>';
+  var bs=document.createElement("div");bs.className="btns";bs.style.margin="0";
+  ["cac","tc"].forEach(function(k){
+    var b=document.createElement("button");
+    b.className="btn ghost";b.type="button";b.style.padding="8px 14px";b.style.fontSize="14.5px";
+    b.textContent = k==="cac"?"🪨 Escore de cálcio":"💉 AngioTC";
+    b.addEventListener("click",function(){
+      var ok = (k===o.r);
+      $$("button",bs).forEach(function(x){x.style.background="#fff";x.style.color="var(--navy)";x.style.borderColor="var(--linha)";});
+      b.style.background = ok?"var(--verde-bg)":"var(--vermelho-bg)";
+      b.style.color = ok?"var(--verde)":"var(--vermelho)";
+      b.style.borderColor = ok?"var(--verde)":"var(--vermelho)";
+      var fb=$(".fb",row);
+      fb.className="fb on "+(ok?"ok":"no");
+      fb.innerHTML = ok ? "<b>Isso.</b> Vai para a mesa "+(o.r==="cac"?"do escore de cálcio (sem contraste).":"da angioTC (com contraste).")
+                        : "<b>Essa é da outra mesa.</b> Pertence "+(o.r==="cac"?"ao escore de cálcio — pergunta &quot;quanto cálcio existe?&quot;.":"à angioTC — pergunta &quot;como está a anatomia, a luz e a placa?&quot;.");
+      S.cac[i]=ok?1:0;save();
+      plC.textContent=Object.keys(S.cac).length+" / "+CAC.length+" classificadas";
+    });
+    bs.appendChild(b);
+  });
+  row.appendChild(bs);
+  var fb=document.createElement("div");fb.className="fb";row.appendChild(fb);
+  jogo.appendChild(row);
+});
+plC.textContent=Object.keys(S.cac).length+" / "+CAC.length+" classificadas";
+
+/* ---------- 11 · ÁRVORE ---------- */
+quiz("q11",{id:"q11",rev:"rev11",
+  opts:[
+   {t:"Tronco 70% · demais coronárias 50%",fb:"Invertido. É o contrário: o tronco assusta com um número <b>menor</b>."},
+   {t:"Tronco 50% · demais coronárias 70%",ok:true,
+    fb:"Correto. O tronco irriga um território enorme — metade dele já é anatomicamente grave. Nos galhos, a referência clássica de obstrução significativa é 70%."},
+   {t:"50% em qualquer coronária",fb:"Não. Aplicar 50% aos galhos superestima gravidade em vasos de território menor."},
+   {t:"70% em qualquer coronária",fb:"Não. Aplicar 70% ao tronco atrasa perigosamente a decisão de um paciente com lesão grave de tronco."}],
+  pega:"a inversão dos dois números é uma das trocas mais fáceis de fazer sob pressão. Ancore pela árvore: quanto maior o território a jusante, menor o número que já preocupa."
+});
+$("#svgArvore").addEventListener("click",revelaArvore);
+function revelaArvore(){
+  $("#corteTronco").setAttribute("opacity","1");
+  $("#corteGalho").setAttribute("opacity","1");
+}
+if(typeof S.resp.q11==="number") revelaArvore();
+var q11wrap=$("#q11");
+q11wrap.addEventListener("click",function(){setTimeout(revelaArvore,200);});
+
+/* ---------- 13 ---------- */
+quiz("q13",{id:"q13",rev:"rev13",
+  opts:[
+   {t:"Sim — 60% na DA é obstrução significativa, portanto há isquemia.",
+    fb:"Não. Ele misturou duas coisas: o grau anatômico e a repercussão funcional. Uma lesão de 60% pode ou não limitar o fluxo, e isso depende de fatores que a imagem anatômica não mede."},
+   {t:"Não — o exame demonstrou uma estenose anatômica; a repercussão funcional é outra pergunta.",ok:true,
+    fb:"Exato. A angioTC viu a estrada. Para afirmar isquemia é preciso <b>provar</b> — com método funcional, fisiologia invasiva ou informação funcional derivada da própria tomografia."},
+   {t:"Não — 60% nunca causa isquemia.",
+    fb:"Erro simétrico ao primeiro. Dizer &quot;nunca causa&quot; é tão dogmático quanto dizer &quot;sempre causa&quot;. A resposta correta é: não se conclui pela anatomia isolada."},
+   {t:"Sim, desde que o escore de cálcio esteja elevado.",
+    fb:"Não. Carga de cálcio fala de aterosclerose e de risco — não demonstra isquemia naquele território."}],
+  pega:"as alternativas A e C são a mesma armadilha em espelho. Toda vez que uma alternativa transforma um número anatômico em conclusão fisiológica automática, desconfie."
+});
+
+})();
+</script>
+</body>
+</html>
