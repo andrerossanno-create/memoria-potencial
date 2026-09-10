@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas Mental · SCC Cap.13A — Antianginosos: como escolher a droga pelo paciente</title>
+<!--
+  ATLAS MENTAL — SÉRIE SÍNDROME CORONARIANA CRÔNICA
+  Capítulo 13A — Tratamento antianginoso (BB · BCC · nitratos)
+  Arquivo único, offline, sem libs, sem imagens, sem URL externa.
+  LS_KEY: atlasCardio_scc_cap13a_v1
+  Nome público no repo: scc-capitulo13a-antianginosos-hemodinamicos.html
+  Assinatura visual: PAINEL DE TRÊS MOSTRADORES (FE · PA · FC)
+  Assinatura cognitiva: "Qual alavanca este paciente me deixa puxar?"
+-->
+<style>
+:root{
+  --navy:#12263f; --navy2:#1d3557; --papel:#f7f9fb; --card:#ffffff;
+  --linha:#dbe3ec; --texto:#22303f; --suave:#5b6b7c;
+  --verm:#c62828; --verm-b:#fdecec;
+  --verde:#1e8f5e; --verde-b:#e8f7ef;
+  --azul:#10758f; --azul-b:#e6f2f6;
+  --ouro:#a8760a; --ouro-b:#fdf4e0;
+  --roxo:#6a4c93;
+  --r:14px; --r2:10px;
+  --f:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --m:'IBM Plex Mono','Courier New',monospace;
+  --s:'Dancing Script',cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--f); color:var(--texto); background:var(--papel);
+  line-height:1.6; font-size:17px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+b,strong{color:var(--navy)}
+h1,h2,h3{line-height:1.2;margin:0 0 10px}
+p{margin:0 0 12px}
+a{color:var(--azul)}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+
+/* ---------- NAV + PAINEL DE TRÊS MOSTRADORES ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(18,38,63,.97);color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.nav>.in{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:10px}
+.nav .marca{font-weight:900;font-size:.9rem;letter-spacing:.02em;white-space:nowrap}
+.nav .marca span{display:block;font-weight:600;font-size:.68rem;opacity:.75}
+.nav .espaco{flex:1}
+.nav button{font-family:var(--f);cursor:pointer}
+.btn-idx{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:700}
+.btn-idx:hover{background:rgba(255,255,255,.22)}
+.mostradores{display:flex;gap:6px}
+.mos{width:52px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);
+  border-radius:9px;padding:3px 4px;text-align:center;line-height:1.1}
+.mos .rot{font-family:var(--m);font-size:.55rem;opacity:.7;letter-spacing:.04em}
+.mos .val{font-weight:900;font-size:.82rem;color:#fff}
+.mos.trava{border-color:var(--verm);background:rgba(198,40,40,.32)}
+.mos.livre{border-color:#57d39b;background:rgba(30,143,94,.3)}
+@media(max-width:520px){.nav .marca span{display:none}.mos{width:46px}}
+@media(max-width:420px){
+  .nav>.in{padding:8px 10px;gap:6px}
+  .nav .marca{font-size:.78rem}
+  .mostradores{gap:4px}
+  .mos{width:38px;padding:2px}
+  .mos .rot{font-size:.5rem}.mos .val{font-size:.74rem}
+  .btn-idx{padding:6px 10px;font-size:.72rem}
+}
+
+.painel{display:none;background:#0f2035;color:#fff;border-bottom:1px solid rgba(255,255,255,.14)}
+.painel.abre{display:block}
+.painel .in{max-width:960px;margin:0 auto;padding:14px 16px}
+.painel h4{margin:0 0 8px;font-size:.78rem;font-family:var(--m);opacity:.7;font-weight:600}
+.painel ol{margin:0 0 14px;padding-left:20px;columns:2;font-size:.85rem}
+@media(max-width:600px){.painel ol{columns:1}}
+.painel ol a{color:#cfe6ee;text-decoration:none}
+.painel ol a:hover{text-decoration:underline}
+.ajustes{display:flex;flex-wrap:wrap;gap:8px}
+.ajustes button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:7px 13px;font-size:.78rem;font-weight:700}
+.ajustes button[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff}
+
+.barra{height:4px;background:rgba(255,255,255,.14)}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--azul),#57d39b);
+  transition:width .3s}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(160deg,#12263f,#1d3557 60%,#123a4a);color:#fff;padding:34px 0 30px}
+.hero .cap{font-family:var(--m);font-size:.72rem;letter-spacing:.08em;color:#8fd0e4;margin-bottom:8px}
+.hero h1{font-size:2rem;font-weight:900;color:#fff;margin-bottom:6px}
+@media(max-width:600px){.hero h1{font-size:1.55rem}}
+.hero .sub{font-size:1.02rem;opacity:.9;max-width:62ch;margin-bottom:16px}
+.hero b,.hero strong{color:#fff}
+.pergunta{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+  border-left:4px solid #8fd0e4;border-radius:var(--r2);padding:14px 16px;max-width:56ch}
+.pergunta .qfrase{font-size:1.12rem;font-weight:900;color:#fff;margin:0}
+.pergunta .n{font-size:.86rem;opacity:.82;margin:6px 0 0}
+
+/* ---------- SEÇÕES ---------- */
+section{padding:30px 0;border-top:1px solid var(--linha)}
+.sechead{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.sechead .num{font-family:var(--m);font-size:.8rem;color:var(--azul);font-weight:700;flex:none}
+.sechead h2{font-size:1.35rem;font-weight:900;color:var(--navy);margin:0}
+@media(max-width:600px){.sechead h2{font-size:1.15rem}}
+.lead{color:var(--suave);max-width:70ch}
+
+.card{background:var(--card);border:1px solid var(--linha);border-radius:var(--r);padding:16px;margin:12px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.cmp2:not(.duo){grid-template-columns:1fr}}
+.cmp2>*{min-width:0}
+@media(max-width:400px){.cmp2.duo{gap:7px}.cmp2.duo .card{padding:11px}.cmp2.duo .chip{font-size:.74rem;padding:4px 9px}}
+
+.caixa{border-radius:var(--r2);padding:13px 15px;margin:12px 0;border:1px solid}
+.caixa h4{margin:0 0 6px;font-size:.95rem}
+.c-verm{background:var(--verm-b);border-color:#f3c7c7}.c-verm h4{color:var(--verm)}
+.c-verde{background:var(--verde-b);border-color:#bfe6d2}.c-verde h4{color:var(--verde)}
+.c-azul{background:var(--azul-b);border-color:#bcdbe4}.c-azul h4{color:var(--azul)}
+.c-ouro{background:var(--ouro-b);border-color:#eddcae}.c-ouro h4{color:var(--ouro)}
+.caixa p:last-child{margin-bottom:0}
+
+.badge{display:inline-block;font-family:var(--m);font-size:.66rem;font-weight:700;
+  padding:2px 7px;border-radius:999px;vertical-align:middle}
+.conferir{background:var(--ouro-b);color:var(--ouro);border:1px solid #eddcae}
+
+.ancora{font-family:var(--m);font-weight:700;letter-spacing:.02em;color:var(--navy);
+  background:var(--ouro-b);border:1px dashed #e0c88a;border-radius:8px;padding:3px 9px;
+  display:inline-block;font-size:.82rem}
+
+.chip{display:inline-block;border:1px solid var(--linha);background:#fff;border-radius:999px;
+  padding:5px 12px;font-size:.83rem;font-weight:700;color:var(--navy);margin:3px 3px 0 0}
+
+/* ---------- ABERTURA: TRÊS TRAVAS ---------- */
+.travas{background:linear-gradient(150deg,#0f2035,#173650);border-radius:var(--r);
+  padding:18px;color:#fff;margin:16px 0}
+.travas b,.travas strong{color:#fff}
+.travas h3{color:#fff;font-size:1.1rem}
+.travas .obs{font-size:.85rem;opacity:.8}
+.slid{margin:12px 0}
+.slid label{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.85rem;font-weight:700;margin-bottom:4px}
+.slid label .v{font-family:var(--m);font-size:1rem;color:#8fd0e4}
+.slid input[type=range]{display:block;width:100%;margin:0;accent-color:#57d39b;height:26px}
+.presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.presets button{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:7px 12px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:var(--f)}
+.presets button:hover{background:rgba(255,255,255,.2)}
+.presets button.on{background:#fff;color:var(--navy);border-color:#fff}
+.saida{margin-top:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r2);padding:13px}
+.saida .t{font-family:var(--m);font-size:.68rem;letter-spacing:.06em;opacity:.7;margin-bottom:7px}
+.droga{display:inline-block;border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:700;
+  margin:3px 4px 0 0;border:1px solid}
+.droga.ok{background:rgba(30,143,94,.26);border-color:#57d39b;color:#d8f7e8}
+.droga.dois{background:rgba(16,117,143,.3);border-color:#7dc7dc;color:#dbf0f6}
+.droga.no{background:rgba(198,40,40,.22);border-color:#e08585;color:#f8d9d9;
+  text-decoration:line-through;opacity:.75}
+.motivo{font-size:.85rem;opacity:.88;margin-top:9px;border-top:1px solid rgba(255,255,255,.16);padding-top:9px}
+
+/* ---------- FAMÍLIAS ---------- */
+.fam{border:1px solid var(--linha);border-radius:var(--r);background:#fff;padding:14px;
+  cursor:pointer;text-align:left;font-family:var(--f);font-size:1rem;color:var(--texto);width:100%}
+.fam:hover{border-color:var(--azul);box-shadow:0 2px 10px rgba(16,117,143,.12)}
+.fam .nome{font-weight:900;color:var(--navy);font-size:1rem}
+.fam .tag{font-family:var(--m);font-size:.66rem;color:var(--suave)}
+.fam.aqui{border-left:5px solid var(--azul)}
+.fam.la{opacity:.62;border-left:5px dashed var(--suave);cursor:default}
+.fam .corpo{display:none;margin-top:10px;font-size:.9rem;border-top:1px solid var(--linha);padding-top:9px}
+.fam.aberto .corpo{display:block}
+
+.seta{font-family:var(--m);color:var(--azul);font-weight:700}
+.cadeia{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0}
+.elo{background:var(--azul-b);border:1px solid #bcdbe4;color:var(--navy);border-radius:9px;
+  padding:8px 12px;font-weight:800;font-size:.88rem;opacity:.28;transition:opacity .35s}
+.elo.on{opacity:1}
+.elo.alvo{background:var(--verde-b);border-color:#bfe6d2}
+
+table.t{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+table.t th,table.t td{border:1px solid var(--linha);padding:8px 9px;text-align:left;vertical-align:top}
+table.t th{background:#eef3f8;color:var(--navy);font-weight:800}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.prof-hide{display:none}
+body.prof .prof-hide{display:block}
+.profbox{background:#f2f6fa;border:1px dashed var(--navy2);border-radius:var(--r2);padding:12px;margin:10px 0}
+.profbox h4{margin:0 0 6px;color:var(--navy2);font-size:.9rem;font-family:var(--m)}
+body.redmov *{animation:none!important;transition:none!important}
+
+footer{background:var(--navy);color:#fff;padding:26px 0;margin-top:10px;text-align:center}
+footer .ass{font-family:var(--s);font-size:1.5rem}
+footer .site{font-size:.8rem;opacity:.7}
+/* ---------- MATRIZ DO TRATAMENTO DA ANGINA ---------- */
+.matriz{display:grid;grid-template-columns:64px 1fr 1fr;gap:6px;margin:14px 0}
+.mx-cab{border-radius:8px;padding:8px;text-align:center;font-weight:900;color:#fff;font-size:.82rem}
+.mx-fe1{background:var(--navy2)} .mx-fe2{background:#8e1f2b}
+.mx-sub{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mx-sub .r{border-radius:7px;padding:5px;text-align:center;font-weight:800;font-size:.7rem;color:#fff}
+.mx-fe1 .r{background:#2c4f77} .mx-fe2 .r{background:#a83240}
+.mx-lat{border-radius:8px;background:var(--navy2);color:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-weight:900;font-size:.78rem;padding:6px 2px;text-align:center}
+.mx-lat.baixa{background:#5b6b7c}
+.mx-cel{border:1px solid var(--linha);border-radius:9px;background:#fff;padding:8px;
+  cursor:pointer;text-align:left;font-family:var(--f);width:100%;transition:box-shadow .2s,border-color .2s}
+.mx-cel:hover{border-color:var(--azul)}
+.mx-cel.acesa{border-color:var(--azul);border-width:2px;box-shadow:0 0 0 4px rgba(16,117,143,.14)}
+.mx-cel .g{background:var(--verde-b);border:1px solid #bfe6d2;border-radius:7px;padding:6px 7px;
+  font-size:.76rem;font-weight:800;color:#14603f;margin-bottom:5px;line-height:1.35}
+.mx-cel .a{background:var(--azul-b);border:1px solid #bcdbe4;border-radius:7px;padding:6px 7px;
+  font-size:.74rem;color:#0d5468;line-height:1.35}
+.mx-cel .vazio{font-size:.72rem;color:var(--suave);font-style:italic}
+.mx-par{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.legenda{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--suave);margin-top:8px}
+.legenda i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+@media(max-width:640px){
+  .matriz{grid-template-columns:1fr;gap:6px}
+  .mx-lat{display:none}
+  .mx-cab.mx-col2{display:none}
+  .mx-cab.mx-fe1{background:var(--navy2);position:sticky;top:52px;z-index:5}
+  .mx-cab.mx-fe1 .fe-t{display:none}
+  .mx-cab.mx-fe1::before{content:"As duas colunas são a pressão";font-size:.74rem;opacity:.85}
+  .mx-par::before{
+    content:attr(data-rot);grid-column:1 / -1;background:var(--navy2);color:#fff;
+    border-radius:7px;padding:6px 8px;font-weight:900;font-size:.74rem;text-align:center;margin-top:8px}
+  .mx-par.mx-col2::before{background:#8e1f2b}
+  .mx-cel .g{font-size:.73rem}.mx-cel .a{font-size:.71rem}
+}
+.vizinha{background:#f2f6fa;border:1px solid var(--linha);border-radius:var(--r2);padding:12px;margin-top:10px;font-size:.9rem}
+.vizinha:empty{display:none}
+
+/* ---------- eixo horizontal ---------- */
+.eixo{border-left:4px solid var(--azul);background:#fff;border:1px solid var(--linha);
+  border-left:4px solid var(--azul);border-radius:var(--r2);padding:12px 14px;margin:10px 0}
+.eixo .k{font-weight:900;color:var(--navy);font-size:.95rem}
+.eixo .d{font-size:.88rem;color:var(--suave)}
+
+/* ---------- comorbidades ---------- */
+.como{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+@media(max-width:640px){.como{grid-template-columns:1fr}}
+.co{border:1px solid var(--linha);background:#fff;border-radius:var(--r2);padding:11px 13px;
+  cursor:pointer;text-align:left;font-family:var(--f);font-size:.92rem;width:100%}
+.co:hover{border-color:var(--azul)}
+.co .cond{font-weight:800;color:var(--navy)}
+.co .resp{display:none;margin-top:7px;font-weight:800;color:var(--verde);font-size:.9rem}
+.co .pq{display:none;margin-top:4px;font-size:.83rem;color:var(--suave);font-weight:400}
+.co.rev .resp,.co.rev .pq{display:block}
+.co .dica{font-size:.75rem;color:var(--azul);font-family:var(--m)}
+.co.rev .dica{display:none}
+
+/* ---------- armadilhas ---------- */
+.arm{border:1px solid #f3c7c7;background:var(--verm-b);border-radius:var(--r);padding:14px;margin:11px 0}
+.arm h4{margin:0 0 6px;color:var(--verm);font-size:1rem}
+.arm.boa{border-color:#bfe6d2;background:var(--verde-b)}
+.arm.boa h4{color:var(--verde)}
+.arm p:last-child{margin-bottom:0}
+.stop{background:#7f1d1d;color:#fff;border-radius:var(--r);padding:16px;margin:12px 0;text-align:center}
+.stop b,.stop strong{color:#fff}
+.stop .tt{font-size:1.25rem;font-weight:900;letter-spacing:.02em}
+.stop button{margin-top:10px;background:#fff;color:#7f1d1d;border:0;border-radius:999px;
+  padding:9px 18px;font-weight:900;font-family:var(--f);cursor:pointer;font-size:.9rem}
+.stop .resposta{display:none;margin-top:12px;font-size:.92rem;text-align:left;
+  background:rgba(255,255,255,.12);border-radius:var(--r2);padding:12px}
+.stop.revelado .resposta{display:block}
+.stop.revelado button{display:none}
+
+/* ---------- PALÁCIO ---------- */
+.salas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.salas{grid-template-columns:1fr}}
+.sala{border-radius:var(--r);padding:16px;color:#fff;min-height:150px;display:flex;flex-direction:column}
+.sala h4{margin:0 0 4px;font-size:1.02rem;color:#fff}
+.sala .placa{font-family:var(--m);font-size:.68rem;letter-spacing:.06em;opacity:.75;margin-bottom:8px}
+.sala p{font-size:.87rem;margin:0 0 8px}
+.sala b,.sala strong{color:#fff}
+.s1{background:linear-gradient(155deg,#1d3557,#2c4f77)}
+.s2{background:linear-gradient(155deg,#14603f,#1e8f5e)}
+.s3{background:linear-gradient(155deg,#0d5468,#10758f)}
+.sala .alarme{margin-top:auto;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+  border-radius:8px;padding:7px 9px;font-size:.78rem;font-weight:800}
+
+/* ---------- CASOS ---------- */
+.caso{border:1px solid var(--linha);background:#fff;border-radius:var(--r);padding:15px;margin:11px 0}
+.caso .cab{font-family:var(--m);font-size:.7rem;color:var(--azul);letter-spacing:.05em;margin-bottom:5px}
+.caso .vin{font-size:.95rem;margin-bottom:9px}
+.caso .perg{font-weight:800;color:var(--navy);margin-bottom:9px}
+.caso button.rev{background:var(--navy);color:#fff;border:0;border-radius:999px;padding:8px 16px;
+  font-weight:800;font-size:.83rem;cursor:pointer;font-family:var(--f)}
+.caso .resp{display:none;margin-top:11px;border-top:1px solid var(--linha);padding-top:10px;font-size:.9rem}
+.caso.aberto .resp{display:block}
+.caso.aberto button.rev{display:none}
+.caso .tag{display:inline-block;background:var(--ouro-b);color:var(--ouro);border:1px solid #eddcae;
+  border-radius:999px;padding:2px 9px;font-size:.7rem;font-family:var(--m);font-weight:700;margin-top:7px}
+
+/* ---------- QUIZ ---------- */
+.filtros{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.filtros button{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:6px 13px;
+  font-size:.79rem;font-weight:700;cursor:pointer;font-family:var(--f);color:var(--navy)}
+.filtros button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.q{border:1px solid var(--linha);background:#fff;border-radius:var(--r);padding:15px;margin:11px 0}
+.q .cab{font-family:var(--m);font-size:.7rem;color:var(--suave);margin-bottom:6px}
+.q .enun{font-weight:700;color:var(--navy);margin-bottom:10px}
+.alt{display:block;width:100%;text-align:left;border:1px solid var(--linha);background:#fff;
+  border-radius:var(--r2);padding:10px 12px;margin-bottom:7px;font-size:.9rem;cursor:pointer;
+  font-family:var(--f);color:var(--texto);line-height:1.45}
+.alt:hover{border-color:var(--azul)}
+.alt .l{font-weight:900;color:var(--navy);margin-right:6px}
+.q.resp .alt{cursor:default}
+.q.resp .alt.certa{border-color:var(--verde);background:var(--verde-b)}
+.q.resp .alt.errada{border-color:#f3c7c7;background:var(--verm-b);opacity:.85}
+.q .porque{display:none;margin-top:10px;border-top:1px solid var(--linha);padding-top:10px;font-size:.87rem}
+.q.resp .porque{display:block}
+.q .porque li{margin-bottom:5px}
+.q .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.q .meta span{font-size:.75rem;border-radius:999px;padding:3px 10px;border:1px solid}
+.q .meta .chave{background:var(--azul-b);border-color:#bcdbe4;color:#0d5468}
+.q .meta .peg{background:var(--verm-b);border-color:#f3c7c7;color:var(--verm)}
+.q .meta .anc{background:var(--ouro-b);border-color:#eddcae;color:var(--ouro);font-family:var(--m);font-weight:700}
+.placar{background:var(--navy);color:#fff;border-radius:var(--r);padding:13px 16px;
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:.9rem}
+.placar b{color:#8fd0e4;font-size:1.15rem}
+.placar button{margin-left:auto;background:rgba(255,255,255,.15);color:#fff;
+  border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 14px;font-weight:700;
+  font-size:.8rem;cursor:pointer;font-family:var(--f)}
+
+/* ---------- FLASHCARDS ---------- */
+.fc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+@media(max-width:780px){.fc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.fc-grid{grid-template-columns:1fr}}
+.fc{perspective:1000px;min-height:128px;cursor:pointer;background:none;border:0;padding:0;font-family:var(--f)}
+.fc .in{position:relative;width:100%;height:100%;min-height:128px;transition:transform .5s;
+  transform-style:preserve-3d}
+.fc.vira .in{transform:rotateY(180deg)}
+.fc .f,.fc .v{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r2);
+  padding:12px;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:.87rem;line-height:1.4;border:1px solid}
+.fc .f{background:#fff;border-color:var(--linha);color:var(--navy);font-weight:800}
+.fc .v{background:var(--navy);border-color:var(--navy);color:#fff;transform:rotateY(180deg);font-weight:600}
+
+/* ---------- HIPOCAMPO ---------- */
+.hipo{background:#0f2035;color:#fff;border-radius:var(--r);padding:18px}
+.hipo h3{color:#fff}
+.hipo b,.hipo strong{color:#fff}
+.hipo .num{display:flex;gap:20px;flex-wrap:wrap;margin:10px 0 14px}
+.hipo .num div{font-size:.78rem;opacity:.75}
+.hipo .num div b{display:block;font-size:1.5rem;color:#8fd0e4;opacity:1}
+.fila{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:var(--r2);
+  padding:12px;font-size:.88rem}
+.fila ul{margin:6px 0 0;padding-left:18px}
+.check{margin-top:14px}
+.check label{display:flex;gap:9px;align-items:flex-start;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--r2);padding:10px 12px;margin-bottom:7px;
+  font-size:.88rem;cursor:pointer}
+.check input{margin-top:3px;accent-color:#57d39b;width:17px;height:17px;flex:none}
+.check label.feito{opacity:.55;text-decoration:line-through}
+
+/* ---------- FILOSOFIA ---------- */
+.filo{background:linear-gradient(160deg,#12263f,#1d3557);border-radius:var(--r);padding:20px;color:#fff}
+.filo b,.filo strong{color:#fff}
+.frase{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-left:4px solid var(--ouro);
+  border-radius:var(--r2);padding:16px;font-size:1.06rem;line-height:1.55;min-height:82px}
+.frase .ass{display:block;margin-top:9px;font-family:var(--s);font-size:1.25rem;color:#f0d69a}
+.filo .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.filo .btns button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:8px 15px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:var(--f)}
+.filo .todas{display:none;margin-top:13px;font-size:.9rem}
+.filo .todas.abre{display:block}
+.filo .todas li{margin-bottom:7px;opacity:.9}
+.projetor{position:fixed;inset:0;z-index:200;background:#0b1626;display:none;
+  align-items:center;justify-content:center;padding:8vw;text-align:center}
+.projetor.abre{display:flex}
+.projetor p{color:#fff;font-size:clamp(1.3rem,4.6vw,2.6rem);font-weight:800;line-height:1.35;max-width:22ch}
+.projetor .fechar{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);color:#fff;
+  border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px;font-weight:700;
+  cursor:pointer;font-family:var(--f)}
+
+/* ---------- 60 SEGUNDOS ---------- */
+.rev60{border:1px solid var(--linha);background:#fff;border-radius:var(--r);padding:16px}
+.rev60 ol{margin:0;padding-left:20px}
+.rev60 li{margin-bottom:7px;font-size:.92rem}
+
+.fim{background:linear-gradient(160deg,#0d5468,#12263f);border-radius:var(--r);padding:24px;color:#fff;text-align:center}
+.fim b,.fim strong{color:#fff}
+.fim h3{color:#fff;font-size:1.3rem}
+.fim .grande{font-family:var(--m);font-size:1.05rem;letter-spacing:.05em;color:#8fd0e4;font-weight:700;margin:12px 0}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="in">
+    <div class="marca">SCC · Cap.13A<span>Antianginosos</span></div>
+    <div class="espaco"></div>
+    <div class="mostradores" id="mosNav" aria-label="Travas do paciente corrente">
+      <div class="mos" id="mFE"><div class="rot">FE</div><div class="val">60</div></div>
+      <div class="mos" id="mPA"><div class="rot">PA</div><div class="val">138</div></div>
+      <div class="mos" id="mFC"><div class="rot">FC</div><div class="val">92</div></div>
+    </div>
+    <button class="btn-idx" id="btnIdx" aria-expanded="false">Índice e ajustes</button>
+  </div>
+  <div class="barra"><i id="barra"></i></div>
+</nav>
+
+<div class="painel" id="painel">
+  <div class="in">
+    <h4>Índice</h4>
+    <ol id="indice"></ol>
+    <h4>Ajustes</h4>
+    <div class="ajustes">
+      <button id="tProf" aria-pressed="false">Modo professor</button>
+      <button id="tMov" aria-pressed="false">Reduzir movimento</button>
+      <button id="tReset">Reiniciar progresso</button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="cap">Síndrome Coronariana Crônica · Capítulo 13A</div>
+    <h1>Como escolher o antianginoso pelo paciente</h1>
+    <p class="sub">Betabloqueadores, antagonistas dos canais de cálcio e nitratos. O Capítulo 12 fechou portas para o próximo evento. Este aqui não promete isso: antianginoso trata sintoma — e a escolha certa depende menos da droga do que de três números do paciente.</p>
+    <div class="pergunta">
+      <p class="qfrase">Qual alavanca este paciente me deixa puxar?</p>
+      <p class="n">Angina é desequilíbrio entre oferta e demanda de oxigênio. Todo antianginoso existe para puxar uma dessas duas alavancas — mas só as que a fração de ejeção, a pressão e a frequência deste paciente permitirem.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== ABERTURA DINÂMICA ===================== -->
+<section id="s01">
+  <div class="sechead"><span class="num">01</span><h2>O mesmo paciente, três travas</h2></div>
+  <p class="lead">Homem de 63 anos, coronariopata conhecido, angina aos esforços apesar do tratamento otimizado do Capítulo 12. Antes de qualquer explicação: mexa nos três controles e veja a lista de drogas encolher e crescer sozinha.</p>
+
+  <div class="travas">
+    <h3>Ajuste o paciente</h3>
+    <p class="obs">Nada aqui foi explicado ainda. A ideia é você sentir, na mão, que a escolha do antianginoso é um problema de espaço hemodinâmico disponível.</p>
+
+    <div class="slid">
+      <label for="rFE">Fração de ejeção <span class="v" id="vFE">60%</span></label>
+      <input type="range" id="rFE" min="20" max="70" value="60" step="1">
+    </div>
+    <div class="slid">
+      <label for="rPAS">Pressão sistólica <span class="v" id="vPA">138 × 78</span></label>
+      <input type="range" id="rPAS" min="90" max="180" value="138" step="1">
+    </div>
+    <div class="slid">
+      <label for="rFC">Frequência cardíaca <span class="v" id="vFC">92 bpm</span></label>
+      <input type="range" id="rFC" min="40" max="120" value="92" step="1">
+    </div>
+
+    <div class="presets" id="presets">
+      <button data-fe="60" data-pa="138" data-fc="92">Taquicárdico e hipertenso</button>
+      <button data-fe="60" data-pa="118" data-fc="51">Bradicárdico, PA justa</button>
+      <button data-fe="35" data-pa="104" data-fc="88">ICFER com PA baixa</button>
+      <button data-fe="35" data-pa="110" data-fc="58">ICFER e FC baixa</button>
+    </div>
+
+    <div class="saida">
+      <div class="t">O QUE CABE NESTE PACIENTE</div>
+      <div id="listaDrogas"></div>
+      <div class="motivo" id="motivo"></div>
+    </div>
+  </div>
+
+  <p class="lead" style="margin-top:14px"><em>“A droga certa não é a mais potente. É a que cabe no espaço que o paciente ainda tem.”</em> — Dr. André Rossanno</p>
+</section>
+
+<!-- ===================== N1 — RECONHECIMENTO ===================== -->
+<section id="s02">
+  <div class="sechead"><span class="num">02</span><h2>Quem é quem no armário antianginoso</h2></div>
+  <p class="lead">Seis famílias. Três delas mexem na hemodinâmica e são o assunto deste capítulo. As outras chegam no 13B — e existem justamente para os pacientes em que não sobrou espaço hemodinâmico.</p>
+
+  <div class="grid3" id="familias"></div>
+
+  <div class="caixa c-azul">
+    <h4>Por que a divisão importa desde já</h4>
+    <p>As três famílias acesas aqui compram alívio ao custo de pressão, frequência ou ambas. As três apagadas não cobram esse preço. Quando você chegar à matriz, essa diferença vai explicar sozinha metade das células.</p>
+  </div>
+</section>
+
+<section id="s03">
+  <div class="sechead"><span class="num">03</span><h2>Betabloqueador: o mecânico do motor</h2></div>
+  <p class="lead">O betabloqueador não abre a estrada. Ele faz o motor gastar menos.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <p style="margin-bottom:8px"><span class="ancora">BB = BATE BAIXO</span></p>
+      <table class="t">
+        <tr><td>Frequência cardíaca</td><td><b>↓</b></td></tr>
+        <tr><td>Contratilidade</td><td><b>↓</b></td></tr>
+        <tr><td>Resposta pressórica ao esforço</td><td><b>↓</b></td></tr>
+        <tr><td>Tempo de diástole</td><td><b>↑</b></td></tr>
+      </table>
+      <p style="font-size:.9rem;margin:8px 0 0">Somando tudo: <b>↓ demanda miocárdica de O₂</b>. E o aumento do tempo diastólico melhora a janela de perfusão do ventrículo esquerdo — ponte com o Capítulo 1.</p>
+    </div>
+    <div class="card">
+      <p style="font-weight:800;color:var(--navy);margin-bottom:6px">Quem são</p>
+      <p style="font-size:.86rem;margin-bottom:4px"><b>Cardiosseletivos</b></p>
+      <div><span class="chip">atenolol</span><span class="chip">bisoprolol</span><span class="chip">metoprolol</span><span class="chip">nebivolol</span></div>
+      <p style="font-size:.86rem;margin:12px 0 4px"><b>Não seletivos</b></p>
+      <div><span class="chip">propranolol</span><span class="chip">pindolol</span><span class="chip">nadolol</span><span class="chip">carvedilol</span><span class="chip">labetalol</span></div>
+    </div>
+  </div>
+
+  <div class="caixa c-verm">
+    <h4>Erro clássico de prova</h4>
+    <p>Marcar betabloqueador como “vasodilatador coronariano”. Ele não é. O efeito antianginoso nasce da <b>redução de demanda</b>, não da abertura do vaso. Quem abre vaso são os outros dois.</p>
+  </div>
+
+  <div class="caixa c-ouro">
+    <h4>Sintoma não é prognóstico <span class="badge conferir">Conferir SBC 2025</span></h4>
+    <p>Betabloqueador tem história própria de desfecho na ICFER e no pós-infarto — mas essa história é do Capítulo 12, não deste. E o <b>REDUCE-AMI</b> mostrou ausência de benefício no pós-IAM com fração de ejeção preservada. Aqui o betabloqueador entra como antianginoso: para tirar dor.</p>
+  </div>
+</section>
+
+<section id="s04">
+  <div class="sechead"><span class="num">04</span><h2>Os dois mundos do cálcio</h2></div>
+  <p class="lead">“Bloqueador de canal de cálcio” não é uma resposta. São duas espécies com comportamentos quase opostos, e trocar uma pela outra na prova é a pegadinha mais barata do tema.</p>
+
+  <div class="cmp2 duo">
+    <div class="card" style="border-top:4px solid var(--verde)">
+      <p style="font-weight:900;color:var(--verde);margin-bottom:4px">Di-hidropiridínicos</p>
+      <p style="margin-bottom:8px"><span class="ancora">DHP = VASO</span></p>
+      <div><span class="chip">anlodipino</span><span class="chip">nifedipino</span><span class="chip">levanlodipino</span></div>
+      <p style="font-size:.88rem;margin-top:10px">Vasodilatação arterial e periférica. ↓ resistência vascular, ↓ PA, ↓ pós-carga. <b>Praticamente não freia o coração.</b></p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--verm)">
+      <p style="font-weight:900;color:var(--verm);margin-bottom:4px">Não di-hidropiridínicos</p>
+      <p style="margin-bottom:8px"><span class="ancora">VERA + DILTIA = CORAÇÃO DEVAGAR</span></p>
+      <div><span class="chip">verapamil</span><span class="chip">diltiazem</span></div>
+      <p style="font-size:.88rem;margin-top:10px">↓ FC, ↓ condução AV, ↓ contratilidade. Trabalham <b>dentro</b> do coração — e é daí que vêm as duas contraindicações que mais caem.</p>
+    </div>
+  </div>
+
+  <div class="caixa c-azul">
+    <h4>A imagem que resolve</h4>
+    <p>O anlodipino é o prefeito que alarga a avenida. O verapamil e o diltiazem estão na sala de controle do nó AV, segurando o ritmo com as duas mãos. Guarde essa sala: em dois minutos ela vai disparar um alarme.</p>
+  </div>
+</section>
+
+<section id="s05">
+  <div class="sechead"><span class="num">05</span><h2>Nitrato: o encanador</h2></div>
+  <p class="lead">Toque na cadeia para acompanhá-la passo a passo.</p>
+
+  <div class="cadeia" id="cadeiaNO">
+    <span class="elo" data-i="0">NITRATO</span><span class="seta">→</span>
+    <span class="elo" data-i="1">NO</span><span class="seta">→</span>
+    <span class="elo" data-i="2">guanilato ciclase</span><span class="seta">→</span>
+    <span class="elo" data-i="3">GMPc</span><span class="seta">→</span>
+    <span class="elo alvo" data-i="4">relaxamento vascular</span>
+  </div>
+  <div class="presets" style="margin-bottom:10px">
+    <button id="btnCadeia" style="background:var(--azul);border-color:var(--azul)">Percorrer a cadeia</button>
+  </div>
+
+  <div class="caixa c-verde">
+    <h4>O braço que quase ninguém lembra</h4>
+    <p>O GMPc não produz só vasodilatação. Ele também tem <b>efeito antiplaquetário</b>. Isso não transforma o nitrato em antiagregante e não substitui nada do Capítulo 12 — mas é o tipo de detalhe do material-base que aparece numa alternativa e derruba quem só decorou “nitrato dilata veia”.</p>
+  </div>
+
+  <p><span class="ancora">NITRATO = NO → GMPc</span></p>
+</section>
+
+<!-- ===================== N2 — COMPREENSÃO ===================== -->
+<section id="s06">
+  <div class="sechead"><span class="num">06</span><h2>Os dois braços do nitrato</h2></div>
+  <p class="lead">O material-base separa o efeito antianginoso do nitrato em duas metades. Vale a pena guardar exatamente assim, porque a prova costuma perguntar por uma delas isolada.</p>
+
+  <div class="cmp2 duo">
+    <div class="card" style="border-top:4px solid var(--azul)">
+      <p style="font-weight:900;color:var(--azul)">Aumenta a oferta de O₂</p>
+      <p style="font-size:.9rem;margin:0">Vasodilatação coronariana.</p>
+    </div>
+    <div class="card" style="border-top:4px solid var(--verde)">
+      <p style="font-weight:900;color:var(--verde)">Diminui o consumo de O₂</p>
+      <p style="font-size:.9rem;margin:0">Venodilatação periférica <b>reduz a pré-carga</b>.<br>Arteriodilatação periférica <b>reduz a pós-carga</b>.</p>
+    </div>
+  </div>
+
+  <div class="caixa c-ouro">
+    <h4>Onde a redação importa</h4>
+    <p>Nas doses usuais a venodilatação <b>predomina</b> — e é por isso que a âncora do nitrato é pré-carga. Predomina não é “exclusivamente”: o nitrato também mexe na pós-carga e na coronária. Quem escreve “o nitrato age exclusivamente no leito venoso” escreveu errado.</p>
+  </div>
+
+  <p><span class="ancora">NITRATO = REDUZ PRÉ-CARGA</span></p>
+</section>
+
+<section id="s07">
+  <div class="sechead"><span class="num">07</span><h2>Por que o nitrato perde força na angina estável</h2></div>
+  <p class="lead">Cinco mecanismos contrarregulatórios trabalham contra a molécula ao longo do uso. Eles são a base fisiológica da tolerância — que vira uma armadilha inteira mais adiante.</p>
+
+  <div class="card">
+    <div><span class="chip">↑ sistema simpático</span><span class="chip">↑ sistema renina-angiotensina-aldosterona</span><span class="chip">↑ endotelina</span><span class="chip">↑ produção de superóxido</span><span class="chip">↑ atividade da fosfodiesterase</span></div>
+    <p style="font-size:.89rem;margin:12px 0 0">Repare no último item: se a fosfodiesterase sobe, o GMPc é degradado mais depressa e o efeito murcha. É a mesma enzima que vai reaparecer — pelo lado oposto — na armadilha do sildenafil.</p>
+  </div>
+
+  <div class="profbox prof-hide">
+    <h4>Como eu explicaria em 30 segundos</h4>
+    <p>“O nitrato entrega GMPc. O corpo responde aumentando quem consome GMPc e quem faz vasoconstrição. Dá pra vencer isso por um tempo, não pra sempre — por isso o nitrato precisa de uma janela diária de folga.”</p>
+  </div>
+</section>
+
+<!-- ===================== N3 — MOTOR DECISÓRIO ===================== -->
+<section id="s08">
+  <div class="sechead"><span class="num">08</span><h2>A matriz do tratamento da angina</h2></div>
+  <p class="lead">Oito células. Três perguntas. Verde é primeira linha, azul é segunda. A célula acesa acompanha os controles da abertura — volte lá e mexa nos sliders para ver a matriz responder. Toque em qualquer célula para entender por que ela não é a vizinha.</p>
+
+  <div class="matriz" id="matriz">
+    <div></div>
+    <div class="mx-cab mx-fe1"><span class="fe-t">FE ≥ 50%</span>
+      <div class="mx-sub" style="margin-top:5px"><div class="r">PA ≥ 120/70</div><div class="r">PA &lt; 120/70</div></div>
+    </div>
+    <div class="mx-cab mx-fe2 mx-col2"><span class="fe-t">FE &lt; 50%</span>
+      <div class="mx-sub" style="margin-top:5px"><div class="r">PA ≥ 120/70</div><div class="r">PA &lt; 120/70</div></div>
+    </div>
+
+    <div class="mx-lat">FC ≥ 70</div>
+    <div class="mx-par" data-rot="FE ≥ 50%  ·  FC ≥ 70"><button class="mx-cel" data-k="A1" type="button"></button><button class="mx-cel" data-k="A2" type="button"></button></div>
+    <div class="mx-par mx-col2" data-rot="FE &lt; 50%  ·  FC ≥ 70"><button class="mx-cel" data-k="B1" type="button"></button><button class="mx-cel" data-k="B2" type="button"></button></div>
+
+    <div class="mx-lat baixa">FC &lt; 70</div>
+    <div class="mx-par" data-rot="FE ≥ 50%  ·  FC &lt; 70"><button class="mx-cel" data-k="A3" type="button"></button><button class="mx-cel" data-k="A4" type="button"></button></div>
+    <div class="mx-par mx-col2" data-rot="FE &lt; 50%  ·  FC &lt; 70"><button class="mx-cel" data-k="B3" type="button"></button><button class="mx-cel" data-k="B4" type="button"></button></div>
+  </div>
+
+  <div class="legenda">
+    <span><i style="background:var(--verde-b);border:1px solid #bfe6d2"></i>primeira linha</span>
+    <span><i style="background:var(--azul-b);border:1px solid #bcdbe4"></i>segunda linha</span>
+    <span><i style="background:#fff;border:2px solid var(--azul)"></i>célula do paciente corrente</span>
+  </div>
+
+  <div class="vizinha" id="vizinha"></div>
+
+  <div class="caixa c-ouro">
+    <h4>Os dois asteriscos <span class="badge conferir">Conferir SBC 2025</span></h4>
+    <p><b>*</b> aparece no BCC não di-hidropiridínico da célula de fração preservada com pressão e frequência folgadas. <b>**</b> aparece no betabloqueador das duas células de fração reduzida com frequência baixa. Os asteriscos existem no material original; a redação literal de cada um precisa ser conferida na diretriz antes de publicar. O sentido clínico de ambos é o mesmo e cabe na cabeça sem a nota: <b>não-DHP exige ventrículo bom</b>, e <b>betabloqueador na ICFER com FC baixa continua indicado, mas titulado com cuidado</b> — nesse caso ele está ali pelo prognóstico, não pela angina.</p>
+  </div>
+
+  <div class="profbox prof-hide">
+    <h4>Pergunta para os alunos</h4>
+    <p>“Por que a coluna da pressão baixa perde quase todas as opções, mas nunca fica vazia?” — porque sobram exatamente as duas drogas que não cobram pressão: ranolazina e trimetazidina. A matriz não é uma lista; é uma conta de espaço hemodinâmico.</p>
+  </div>
+</section>
+
+<section id="s09">
+  <div class="sechead"><span class="num">09</span><h2>A leitura horizontal que faz a matriz caber na cabeça</h2></div>
+  <p class="lead">Ninguém decora oito células. Decora-se o eixo que as gerou: o que cada droga cobra do paciente.</p>
+
+  <div class="eixo">
+    <div class="k">Reduzem pressão <em>e</em> frequência</div>
+    <div class="d">Betabloqueador · antagonista do cálcio não di-hidropiridínico</div>
+  </div>
+  <div class="eixo">
+    <div class="k">Reduz frequência, mas <em>não</em> a pressão</div>
+    <div class="d">Ivabradina</div>
+  </div>
+  <div class="eixo">
+    <div class="k">Não reduzem <em>nem</em> pressão <em>nem</em> frequência</div>
+    <div class="d">Trimetazidina · ranolazina</div>
+  </div>
+
+  <div class="caixa c-verde">
+    <h4>O que esse eixo entrega de graça</h4>
+    <p>Com ele você reconstrói a matriz inteira sem tê-la memorizado. Pressão apertada elimina a primeira linha do eixo. Frequência baixa elimina as duas primeiras. Sobra o rodapé — que é exatamente o conteúdo do Capítulo 13B.</p>
+  </div>
+
+  <p><span class="ancora">FE · PA · FC = AS TRÊS TRAVAS</span></p>
+</section>
+
+<section id="s10">
+  <div class="sechead"><span class="num">10</span><h2>Quando a comorbidade escolhe por você</h2></div>
+  <p class="lead">Nem sempre a decisão vem dos três números. Às vezes uma condição associada já fecha a porta. Responda mentalmente antes de tocar.</p>
+  <div class="como" id="comorb"></div>
+
+  <div class="caixa c-azul">
+    <h4>O padrão por trás da lista</h4>
+    <p>Leia a coluna das respostas: quase toda vez que o problema é <b>lentidão, broncoespasmo, perfusão periférica ou humor</b>, a resposta é antagonista do cálcio. Quase toda vez que o problema é <b>excesso de estímulo adrenérgico</b> — taquiarritmia, hipertireoidismo, ventrículo fraco — a resposta é betabloqueador. Não é uma tabela de oito itens; são duas ideias.</p>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="sechead"><span class="num">11</span><h2>Vasoespasmo: aqui a lógica se inverte</h2></div>
+  <p class="lead">A coronária não está entupida. Está sendo estrangulada. Reduzir demanda não resolve um vaso que se fecha sozinho — é preciso abri-lo.</p>
+
+  <div class="grid2">
+    <div class="caixa c-verde" style="margin:0">
+      <h4>Protagonista</h4>
+      <p><b>Antagonista dos canais de cálcio.</b> É a classe central da angina vasoespástica.</p>
+    </div>
+    <div class="caixa c-azul" style="margin:0">
+      <h4>Segunda linha</h4>
+      <p><b>Nitrato</b>, na angina vasoespástica <b>que não melhorou com o antagonista do cálcio</b>. É a indicação literal do material.</p>
+    </div>
+  </div>
+
+  <div class="caixa c-verm">
+    <h4>A pegadinha</h4>
+    <p>Marcar betabloqueador porque “é antianginoso”. No vasoespasmo ele não é a escolha de rotina. Isso é regra de escolha, não anátema: o paciente vasoespástico que precisa de betabloqueador por outra indicação não fica proibido de recebê-lo — mas a droga que trata o mecanismo é o antagonista do cálcio.</p>
+  </div>
+
+  <p><span class="ancora">VASOESPASMO = PENSE ACC</span></p>
+</section>
+
+<section id="s12">
+  <div class="sechead"><span class="num">12</span><h2>Ponte miocárdica: abrir vaso não resolve compressão</h2></div>
+  <p class="lead">O segmento coronariano mergulha sob uma faixa de músculo e é comprimido durante a sístole. O problema não é tônus; é uma mão apertando o cano de fora.</p>
+
+  <div class="stop" id="stopPonte">
+    <div class="tt">NÃO USAR NITRATO SE PONTE MIOCÁRDICA</div>
+    <p style="margin:8px 0 0;font-size:.92rem">O paciente tem dor. O nitrato está na sua mão.</p>
+    <button type="button">Por que não posso dar?</button>
+    <div class="resposta">
+      <p><b>Porque o mecanismo da dor não é vasoconstrição.</b> A compressão é sistólica e externa ao vaso. Vasodilatar não desfaz o aperto muscular — e ainda reduz o volume ventricular e o calibre de sustentação do segmento, de modo que a compressão pode ficar mais evidente, não menos.</p>
+      <p style="margin-bottom:0">É o caso mais didático do capítulo inteiro: <b>a droga certa para “angina” pode ser a errada para <em>esta</em> angina</b>. Antes de escolher a classe, entenda o mecanismo.</p>
+    </div>
+  </div>
+
+  <p><span class="ancora">PONTE MIOCÁRDICA = NITRATO NÃO</span></p>
+</section>
+
+<section id="s13">
+  <div class="sechead"><span class="num">13</span><h2>Nitratos na prática: o que existe na farmácia</h2></div>
+  <p class="lead">Apresentações e doses exatamente como no material-base.</p>
+
+  <div class="tscroll">
+  <table class="t">
+    <tr><th>Fármaco</th><th>Via / liberação</th><th>Dose</th></tr>
+    <tr><td rowspan="3"><b>Dinitrato de isossorbida</b></td><td>Sublingual</td><td>2,5 mg ou 5 mg</td></tr>
+    <tr><td>Liberação usual</td><td>5 mg ou 10 mg</td></tr>
+    <tr><td>Liberação prolongada</td><td>40 mg</td></tr>
+    <tr><td rowspan="3"><b>Mononitrato de isossorbida</b></td><td>Sublingual</td><td>5 mg</td></tr>
+    <tr><td>Liberação usual</td><td>20 mg ou 40 mg</td></tr>
+    <tr><td>Liberação prolongada</td><td>50 mg</td></tr>
+    <tr><td><b>Propatilnitrato</b></td><td>—</td><td>10 mg</td></tr>
+  </table>
+  </div>
+
+  <div class="caixa c-verde">
+    <h4>O uso que muita gente não sabe que existe</h4>
+    <p>O nitrato sublingual não serve só para apagar incêndio. Ele é o <b>fármaco de escolha para prevenir episódios de angina em atividades específicas</b>: o paciente que sabe que a dor vem ao subir a ladeira ou antes da relação sexual pode usá-lo <b>antes</b> do esforço. Isso é profilaxia pontual, e é uma resposta de prova.</p>
+  </div>
+</section>
+
+<!-- ===================== N4 — ARMADILHAS ===================== -->
+<section id="s14">
+  <div class="sechead"><span class="num">14</span><h2>Armadilhas</h2></div>
+  <p class="lead">As seis que decidem questão. Cinco erram o paciente; uma é uma boa associação que muita gente evita por medo.</p>
+
+  <div class="arm">
+    <h4>1 · Betabloqueador + verapamil ou diltiazem</h4>
+    <p>Os dois reduzem frequência, condução AV e contratilidade. Somados: bradicardia, bloqueio atrioventricular, hipotensão e depressão miocárdica.</p>
+    <p style="margin-bottom:0"><span class="ancora">DOIS PÉS NO FREIO</span></p>
+  </div>
+
+  <div class="arm boa">
+    <h4>2 · Betabloqueador + anlodipino</h4>
+    <p style="margin-bottom:0">Essa combinação é racional. Alvos diferentes: o betabloqueador freia o coração, o di-hidropiridínico abre o vaso. É a associação a considerar quando o paciente segue com angina apesar do betabloqueador — e não verapamil ou diltiazem.</p>
+  </div>
+
+  <div class="arm">
+    <h4>3 · Nifedipino de liberação rápida</h4>
+    <p style="margin-bottom:0">Evitar. Queda pressórica abrupta e ativação reflexa — taquicardia sobre um coração isquêmico é exatamente o que não se quer. A torneira aberta de uma vez.</p>
+  </div>
+
+  <div class="arm">
+    <h4>4 · Edema do anlodipino</h4>
+    <p>Paciente em anlodipino aparece com edema de tornozelos. A pergunta que a prova faz: <b>“entro com furosemida?”</b></p>
+    <p><b>Não resolve o mecanismo.</b> A arteríola pré-capilar está muito dilatada, a pressão hidrostática capilar sobe e o líquido escapa para o interstício. Não há excesso de volume corporal para o diurético retirar — o volume está no lugar errado, não em excesso. As saídas racionais são reduzir a dose, trocar de classe ou associar um vasodilatador venoso.</p>
+    <p style="margin-bottom:0"><span class="ancora">ANLODIPINO + EDEMA ≠ RETENÇÃO HÍDRICA</span></p>
+  </div>
+
+  <div class="stop" id="stopPDE5">
+    <div class="tt">5 · “Doutor, eu tomei sildenafil.”</div>
+    <p style="margin:8px 0 0;font-size:.92rem">Ele está com dor torácica. O nitrato sublingual está na sua mão.</p>
+    <button type="button">Dar o nitrato?</button>
+    <div class="resposta">
+      <p><b>Não.</b> O inibidor de fosfodiesterase-5 impede a degradação do GMPc; o nitrato aumenta a produção de GMPc. Somados, o GMPc acumula, a vasodilatação vira sistêmica e profunda, e o resultado é hipotensão grave.</p>
+      <p>O material traz: tomou sildenafil, <b>ao menos 24 horas</b> antes de fazer nitrato — e vice-versa.</p>
+      <p style="margin-bottom:0"><b>Trave certo:</b> 24 horas é o número da aula para a sildenafila. O intervalo <b>depende do inibidor usado</b> — moléculas de meia-vida mais longa exigem mais tempo. Nunca transforme “24 h” em regra única para todos os PDE5. <span class="badge conferir">Conferir SBC 2025</span></p>
+    </div>
+  </div>
+
+  <div class="arm">
+    <h4>6 · Tolerância aos nitratos</h4>
+    <p>Uso contínuo, sem janela, e o efeito murcha — pelos cinco mecanismos da estação 07. A solução é um intervalo diário livre de nitrato.</p>
+    <p style="margin-bottom:0">Não decore “12 horas entre os comprimidos” como regra rígida. Decore o conceito: <span class="ancora">NITRATO PRECISA DORMIR</span></p>
+  </div>
+</section>
+
+<section id="s15">
+  <div class="sechead"><span class="num">15</span><h2>Insuficiência cardíaca com fração reduzida: o que falta na lista</h2></div>
+  <p class="lead">O material traz um mapa dos antianginosos que <em>podem</em> ser usados na ICFER. Antes de ver a análise, olhe a lista e responda: <b>quem não está aqui?</b></p>
+
+  <div class="card">
+    <div><span class="chip">Betabloqueadores aprovados para ICFER</span><span class="chip">Di-hidropiridínicos</span><span class="chip">Nitratos</span><span class="chip">Trimetazidina</span><span class="chip">Ivabradina</span></div>
+  </div>
+
+  <div class="caixa c-verm">
+    <h4>A ausência é a resposta</h4>
+    <p><b>Verapamil e diltiazem não estão na lista.</b> Não é esquecimento: é inotropismo negativo sobre um ventrículo que já não empurra. O coração fraco tentando mover uma pedra, e o verapamil dizendo “empurre com menos força”.</p>
+    <p style="margin-bottom:0">Repare também que o di-hidropiridínico <b>está</b> na lista. Anlodipino e verapamil são ambos “bloqueadores de cálcio”, e aqui um entra e o outro não. É a estação 04 cobrando o preço de quem não separou as duas espécies.</p>
+  </div>
+
+  <p><span class="ancora">ICFER = CUIDADO COM VERA/DILTIA</span></p>
+</section>
+
+<!-- ===================== N5 — PALÁCIO ===================== -->
+<section id="s16">
+  <div class="sechead"><span class="num">16</span><h2>Hospital Coronário: três salas</h2></div>
+  <p class="lead">Uma caminhada mental de trinta segundos que devolve o capítulo inteiro. Percorra sempre na mesma ordem: garagem, cidade, casa de máquinas.</p>
+
+  <div class="salas">
+    <div class="sala s1">
+      <h4>Sala 1 · Garagem</h4>
+      <div class="placa">BETABLOQUEADORES</div>
+      <p>Um coração-Ferrari em alta rotação. O bisoprolol pisa no freio e o motor gasta menos combustível. Ninguém alargou a pista.</p>
+      <div class="alarme">Placa na parede: BATE BAIXO</div>
+    </div>
+    <div class="sala s2">
+      <h4>Sala 2 · Cidade do Cálcio</h4>
+      <div class="placa">DUAS PORTAS, DOIS MUNDOS</div>
+      <p>À esquerda, a Avenida DHP: o anlodipino alarga a via. À direita, a sala de controle, onde verapamil e diltiazem seguram o nó AV com as duas mãos.</p>
+      <div class="alarme">Se um betabloqueador entra na sala da direita: DOIS FREIOS</div>
+    </div>
+    <div class="sala s3">
+      <h4>Sala 3 · Casa de máquinas</h4>
+      <div class="placa">NITRATOS</div>
+      <p>O encanador abre a comporta venosa e esvazia a mochila que o coração carregava. Na tubulação, a placa: NO → GMPc.</p>
+      <div class="alarme">Duas placas na saída: PDE5 e PONTE MIOCÁRDICA. E uma cama: o nitrato precisa dormir.</div>
+    </div>
+  </div>
+
+  <div class="caixa c-azul">
+    <h4>Como usar o palácio na prova</h4>
+    <p>Diante da vinheta, não tente lembrar da matriz. Entre no hospital e pergunte em qual sala o paciente cabe: ele precisa que o motor gaste menos, que a rua fique mais larga, ou que a mochila fique mais leve? A matriz é o mapa do prédio; o palácio é a caminhada.</p>
+  </div>
+</section>
+
+<!-- ===================== N6 — RECUPERAÇÃO ATIVA ===================== -->
+<section id="s17">
+  <div class="sechead"><span class="num">17</span><h2>Recuperação ativa: as pegadinhas</h2></div>
+  <p class="lead">Quinze afirmações. Decida verdadeiro ou falso antes de conferir — errar aqui é mais barato do que errar na prova.</p>
+  <div id="pegs"></div>
+  <div class="placar" id="placarPeg" style="margin-top:12px">
+    <span>Pegadinhas: <b id="pegOk">0</b> certas de <b id="pegTot">0</b> respondidas</span>
+    <button type="button" id="pegReset">Zerar</button>
+  </div>
+</section>
+
+<!-- ===================== N7 — CASOS ===================== -->
+<section id="s18">
+  <div class="sechead"><span class="num">18</span><h2>Dez pacientes</h2></div>
+  <p class="lead">Leia, decida em voz alta, só então revele. A vinheta é o formato da prova e é o formato do plantão.</p>
+  <div id="casos"></div>
+</section>
+
+<section id="s19">
+  <div class="sechead"><span class="num">19</span><h2>Arena TEC</h2></div>
+  <p class="lead">Vinte e cinco questões. Cada resposta traz por que a certa está certa, por que cada outra está errada, a palavra-chave da vinheta, a pegadinha e a âncora.</p>
+
+  <div class="placar">
+    <span>Acertos: <b id="qOk">0</b></span>
+    <span>Respondidas: <b id="qTot">0</b> de <b id="qN">0</b></span>
+    <button type="button" id="qReset">Zerar respostas</button>
+  </div>
+
+  <div class="filtros" id="filtros"></div>
+  <div id="quiz"></div>
+</section>
+
+<section id="s20">
+  <div class="sechead"><span class="num">20</span><h2>Flashcards</h2></div>
+  <p class="lead">Quarenta e cinco cartas. Toque para virar. Recupere antes de olhar — a carta só funciona se você tentar responder primeiro.</p>
+  <div class="filtros" id="fcFiltros"></div>
+  <div class="fc-grid" id="flashcards"></div>
+</section>
+
+<section id="s21">
+  <div class="sechead"><span class="num">21</span><h2>Hipocampo</h2></div>
+  <div class="hipo">
+    <h3>O que ainda não entrou</h3>
+    <div class="num">
+      <div><b id="hAc">0</b>acertos na arena</div>
+      <div><b id="hEr">0</b>erros na arena</div>
+      <div><b id="hPeg">0</b>pegadinhas certas</div>
+      <div><b id="hSec">0%</b>do capítulo percorrido</div>
+    </div>
+    <div class="fila" id="fila">Responda algumas questões da arena e a sua fila de revisão aparece aqui.</div>
+    <div class="check" id="checklist"></div>
+  </div>
+</section>
+
+<section id="s22">
+  <div class="sechead"><span class="num">22</span><h2>Revisão de 60 segundos</h2></div>
+  <div class="rev60">
+    <ol>
+      <li>Angina é oferta contra demanda. Todo antianginoso puxa uma dessas duas alavancas.</li>
+      <li>A escolha nasce de três travas: <b>fração de ejeção, pressão e frequência</b>.</li>
+      <li>Betabloqueador reduz demanda: frequência, contratilidade, resposta ao esforço — e alonga a diástole. Não é vasodilatador coronariano.</li>
+      <li>Cálcio são dois mundos: di-hidropiridínico abre vaso; verapamil e diltiazem freiam o coração.</li>
+      <li>Nitrato é NO → GMPc: aumenta oferta pela coronária e reduz consumo pela pré-carga, com arteriodilatação somando pós-carga.</li>
+      <li>Eixo que gera a matriz: BB e não-DHP cobram pressão e frequência; ivabradina cobra só frequência; trimetazidina e ranolazina não cobram nada.</li>
+      <li>Betabloqueador mais verapamil ou diltiazem: dois pés no freio. Betabloqueador mais anlodipino: associação racional.</li>
+      <li>Vasoespasmo é do antagonista do cálcio; nitrato entra se o antagonista não resolveu.</li>
+      <li>Ponte miocárdica: nitrato não trata compressão externa.</li>
+      <li>Sildenafil e nitrato não se encontram — e o intervalo depende do inibidor usado.</li>
+      <li>Edema do anlodipino é hemodinâmica capilar, não hipervolemia.</li>
+      <li>ICFER: verapamil e diltiazem fora da lista; di-hidropiridínico dentro.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="s23">
+  <div class="sechead"><span class="num">23</span><h2>Filosofia do Atlas</h2></div>
+  <div class="filo">
+    <div class="frase" id="frase"></div>
+    <div class="btns">
+      <button type="button" id="fSorteia">Sortear outra</button>
+      <button type="button" id="fTodas">Ver todas</button>
+      <button type="button" id="fProj">Projetar</button>
+    </div>
+    <div class="todas" id="todas"><ul id="listaFrases"></ul></div>
+  </div>
+</section>
+
+<section id="s24">
+  <div class="sechead"><span class="num">24</span><h2>Âncoras que não podem ser esquecidas</h2></div>
+  <div class="card">
+    <span class="ancora">BB = BATE BAIXO</span> <span class="ancora">DHP = VASO</span>
+    <span class="ancora">VERA/DILTIA = CORAÇÃO DEVAGAR</span> <span class="ancora">BB + VERA/DILTIA = DOIS FREIOS</span>
+    <span class="ancora">VASOESPASMO = PENSE ACC</span> <span class="ancora">NITRATO = NO → GMPc</span>
+    <span class="ancora">NITRATO = REDUZ PRÉ-CARGA</span> <span class="ancora">PDE5 + NITRATO = HARD STOP</span>
+    <span class="ancora">NITRATO PRECISA DORMIR</span> <span class="ancora">PONTE MIOCÁRDICA = NITRATO NÃO</span>
+    <span class="ancora">ICFER = CUIDADO COM VERA/DILTIA</span> <span class="ancora">ANLODIPINO + EDEMA ≠ RETENÇÃO HÍDRICA</span>
+    <span class="ancora">FE · PA · FC = AS TRÊS TRAVAS</span>
+  </div>
+
+  <div class="fim">
+    <h3>Fim do Capítulo 13A</h3>
+    <p>Você não precisa recitar farmacologia. Precisa olhar três números e saber, em segundos, o que cabe e o que machuca.</p>
+    <p class="grande">QUAL ALAVANCA ESTE PACIENTE ME DEIXA PUXAR?</p>
+    <p style="font-size:.9rem;opacity:.85;margin-bottom:0">No <b>Capítulo 13B</b>: o que fazer quando as três travas estão fechadas — ivabradina, trimetazidina, ranolazina e nicorandil.</p>
+  </div>
+</section>
+
+<div class="projetor" id="projetor">
+  <button class="fechar" type="button" id="projFechar">Fechar</button>
+  <p id="projTexto"></p>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ass">Dr. André Rossanno</p>
+    <p class="site">memoriapotencial.com.br · Atlas Mental</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var LS_KEY = "atlasCardio_scc_cap13a_v1";
+var estado = {prof:false, redmov:false, visto:{}, paciente:{fe:60, pa:138, fc:92}, quiz:{}, pegs:{}, check:{}};
+
+function salva(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(estado)); }catch(e){} }
+function carrega(){
+  try{
+    var r = localStorage.getItem(LS_KEY);
+    if(r){ var o = JSON.parse(r); if(o && typeof o === "object"){
+      estado.prof = !!o.prof; estado.redmov = !!o.redmov;
+      estado.visto = o.visto || {};
+      estado.quiz = o.quiz || {};
+      estado.pegs = o.pegs || {};
+      estado.check = o.check || {};
+      if(o.paciente) estado.paciente = o.paciente;
+    }}
+  }catch(e){}
+}
+
+/* ---------- índice + progresso ---------- */
+function montaIndice(){
+  var secs = document.querySelectorAll("main section");
+  var ol = document.getElementById("indice");
+  ol.innerHTML = "";
+  for(var i=0;i<secs.length;i++){
+    var h = secs[i].querySelector("h2");
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + secs[i].id;
+    a.textContent = h ? h.textContent : secs[i].id;
+    li.appendChild(a); ol.appendChild(li);
+  }
+}
+function progresso(){
+  var secs = document.querySelectorAll("main section");
+  var total = secs.length, feito = 0;
+  for(var i=0;i<secs.length;i++){ if(estado.visto[secs[i].id]) feito++; }
+  var pct = total ? Math.round(feito*100/total) : 0;
+  document.getElementById("barra").style.width = pct + "%";
+  return pct;
+}
+function observaSecoes(){
+  if(!("IntersectionObserver" in window)) return;
+  var io = new IntersectionObserver(function(ents){
+    for(var i=0;i<ents.length;i++){
+      if(ents[i].isIntersecting){
+        estado.visto[ents[i].target.id] = true;
+        salva(); progresso();
+      }
+    }
+  }, {threshold:.35});
+  var secs = document.querySelectorAll("main section");
+  for(var i=0;i<secs.length;i++) io.observe(secs[i]);
+}
+
+/* ---------- ajustes ---------- */
+function aplicaAjustes(){
+  document.body.classList.toggle("prof", estado.prof);
+  document.body.classList.toggle("redmov", estado.redmov);
+  document.getElementById("tProf").setAttribute("aria-pressed", estado.prof ? "true":"false");
+  document.getElementById("tMov").setAttribute("aria-pressed", estado.redmov ? "true":"false");
+}
+
+/* ---------- MOTOR DE ESCOLHA (usado na abertura e, depois, na matriz) ---------- */
+/* Regras fiéis à matriz do material: FE >=/< 50, PA >=/< 120x70, FC >=/< 70 */
+function classifica(p){
+  return {
+    feBaixa: p.fe < 50,
+    paBaixa: p.pa < 120,
+    fcBaixa: p.fc < 70
+  };
+}
+function decide(p){
+  var c = classifica(p), primeira = [], segunda = [], fora = [];
+  if(!c.feBaixa){
+    if(!c.paBaixa && !c.fcBaixa){
+      primeira = ["BCC não-DHP*","Betabloqueador"];
+      segunda  = ["BCC DHP","Ivabradina","Nitrato","Ranolazina","Trimetazidina"];
+    } else if(c.paBaixa && !c.fcBaixa){
+      primeira = ["Betabloqueador","Ivabradina","Ranolazina","Trimetazidina"];
+      segunda  = [];
+    } else if(!c.paBaixa && c.fcBaixa){
+      primeira = ["BCC DHP"];
+      segunda  = ["Nitrato","Ranolazina","Trimetazidina"];
+    } else {
+      primeira = ["Ranolazina","Trimetazidina"];
+      segunda  = [];
+    }
+  } else {
+    if(!c.fcBaixa){
+      primeira = ["Betabloqueador","Ivabradina"];
+      segunda  = c.paBaixa ? ["Ranolazina","Trimetazidina"]
+                           : ["BCC DHP","Nitrato","Ranolazina","Trimetazidina"];
+    } else {
+      primeira = ["Betabloqueador**"];
+      segunda  = c.paBaixa ? ["Ranolazina","Trimetazidina"]
+                           : ["BCC DHP","Nitrato","Ranolazina","Trimetazidina"];
+    }
+  }
+  if(c.feBaixa) fora.push("Verapamil / diltiazem");
+  if(c.fcBaixa) fora.push("Empilhar mais um cronotrópico negativo");
+  if(c.paBaixa) fora.push("Quem derruba mais a pressão");
+  return {c:c, primeira:primeira, segunda:segunda, fora:fora};
+}
+function textoMotivo(d, p){
+  var t = [];
+  t.push(d.c.feBaixa ? "FE " + p.fe + "% — ventrículo comprometido: inotrópico negativo sai de cena."
+                     : "FE " + p.fe + "% — o ventrículo aguenta.");
+  t.push(d.c.paBaixa ? "PA sistólica " + p.pa + " — não sobra pressão para gastar."
+                     : "PA sistólica " + p.pa + " — há margem pressórica.");
+  t.push(d.c.fcBaixa ? "FC " + p.fc + " bpm — não sobra frequência para frear."
+                     : "FC " + p.fc + " bpm — há frequência para frear.");
+  return t.join(" ");
+}
+
+/* ---------- abertura ---------- */
+function padraoPAD(pas){ return Math.round(pas*0.56); }
+function pintaMostradores(p){
+  var c = classifica(p);
+  var mFE = document.getElementById("mFE"), mPA = document.getElementById("mPA"), mFC = document.getElementById("mFC");
+  mFE.querySelector(".val").textContent = p.fe;
+  mPA.querySelector(".val").textContent = p.pa;
+  mFC.querySelector(".val").textContent = p.fc;
+  mFE.className = "mos " + (c.feBaixa ? "trava" : "livre");
+  mPA.className = "mos " + (c.paBaixa ? "trava" : "livre");
+  mFC.className = "mos " + (c.fcBaixa ? "trava" : "livre");
+}
+function renderAbertura(){
+  var p = estado.paciente;
+  document.getElementById("vFE").textContent = p.fe + "%";
+  document.getElementById("vPA").textContent = p.pa + " × " + padraoPAD(p.pa);
+  document.getElementById("vFC").textContent = p.fc + " bpm";
+  pintaMostradores(p);
+
+  var d = decide(p), html = "", i;
+  for(i=0;i<d.primeira.length;i++) html += '<span class="droga ok">' + d.primeira[i] + '</span>';
+  for(i=0;i<d.segunda.length;i++) html += '<span class="droga dois">' + d.segunda[i] + '</span>';
+  for(i=0;i<d.fora.length;i++) html += '<span class="droga no">' + d.fora[i] + '</span>';
+  document.getElementById("listaDrogas").innerHTML = html;
+  document.getElementById("motivo").textContent = textoMotivo(d, p);
+
+  var bs = document.querySelectorAll("#presets button");
+  for(i=0;i<bs.length;i++){
+    var on = (+bs[i].getAttribute("data-fe") === p.fe && +bs[i].getAttribute("data-pa") === p.pa && +bs[i].getAttribute("data-fc") === p.fc);
+    bs[i].classList.toggle("on", on);
+  }
+  salva();
+}
+
+/* ---------- famílias ---------- */
+var FAMILIAS = [
+  {n:"Betabloqueadores", tag:"neste capítulo", aqui:true,
+   c:"Reduz frequência e contratilidade. Custa pressão e custa frequência."},
+  {n:"Antagonistas do cálcio", tag:"neste capítulo", aqui:true,
+   c:"Duas espécies: di-hidropiridínicos abrem vaso; verapamil e diltiazem freiam o coração."},
+  {n:"Nitratos", tag:"neste capítulo", aqui:true,
+   c:"Venodilatação predominante, redução de pré-carga e vasodilatação coronariana."},
+  {n:"Ivabradina", tag:"vai para o 13B", aqui:false,
+   c:"Reduz frequência sem tocar na pressão. Canal If, nó sinusal."},
+  {n:"Trimetazidina", tag:"vai para o 13B", aqui:false,
+   c:"Hemodinamicamente neutra: não reduz pressão nem frequência."},
+  {n:"Ranolazina, nicorandil e outros", tag:"vai para o 13B", aqui:false,
+   c:"Ranolazina também é neutra. O alopurinol aparece na aula só para sair da lista."}
+];
+function montaFamilias(){
+  var box = document.getElementById("familias");
+  box.innerHTML = "";
+  for(var i=0;i<FAMILIAS.length;i++){
+    var f = FAMILIAS[i];
+    var el = document.createElement(f.aqui ? "button" : "div");
+    el.className = "fam " + (f.aqui ? "aqui" : "la");
+    el.innerHTML = '<div class="nome">' + f.n + '</div><div class="tag">' + f.tag + '</div>' +
+                   '<div class="corpo">' + f.c + '</div>';
+    if(f.aqui){
+      el.setAttribute("type","button");
+      el.addEventListener("click", function(){ this.classList.toggle("aberto"); });
+    } else {
+      el.querySelector(".corpo").style.display = "block";
+    }
+    box.appendChild(el);
+  }
+}
+
+/* ---------- cadeia do nitrato ---------- */
+function percorreCadeia(){
+  var elos = document.querySelectorAll("#cadeiaNO .elo");
+  for(var i=0;i<elos.length;i++) elos[i].classList.remove("on");
+  var k = 0;
+  var passo = function(){
+    if(k < elos.length){ elos[k].classList.add("on"); k++; setTimeout(passo, estado.redmov ? 0 : 420); }
+  };
+  passo();
+}
+
+/* ---------- init ---------- */
+function init(){
+  carrega();
+  aplicaAjustes();
+  montaIndice();
+  montaFamilias();
+  observaSecoes();
+  progresso();
+
+  document.getElementById("btnIdx").addEventListener("click", function(){
+    var p = document.getElementById("painel");
+    var ab = p.classList.toggle("abre");
+    this.setAttribute("aria-expanded", ab ? "true" : "false");
+  });
+  document.getElementById("tProf").addEventListener("click", function(){
+    estado.prof = !estado.prof; aplicaAjustes(); salva();
+  });
+  document.getElementById("tMov").addEventListener("click", function(){
+    estado.redmov = !estado.redmov; aplicaAjustes(); salva();
+  });
+  document.getElementById("tReset").addEventListener("click", function(){
+    estado.visto = {}; estado.paciente = {fe:60, pa:138, fc:92};
+    estado.quiz = {}; estado.pegs = {}; estado.check = {};
+    if(window.montaQuiz){ montaQuiz(); montaPegs(); montaChecklist(); pintaHipocampo(); }
+    document.getElementById("rFE").value = 60;
+    document.getElementById("rPAS").value = 138;
+    document.getElementById("rFC").value = 92;
+    renderAbertura(); progresso(); salva();
+  });
+
+  var rFE = document.getElementById("rFE"), rPA = document.getElementById("rPAS"), rFC = document.getElementById("rFC");
+  rFE.value = estado.paciente.fe; rPA.value = estado.paciente.pa; rFC.value = estado.paciente.fc;
+  var muda = function(){
+    estado.paciente = {fe:+rFE.value, pa:+rPA.value, fc:+rFC.value};
+    renderAbertura();
+    if(window.aoMudarPaciente) window.aoMudarPaciente();
+  };
+  rFE.addEventListener("input", muda);
+  rPA.addEventListener("input", muda);
+  rFC.addEventListener("input", muda);
+
+  var bs = document.querySelectorAll("#presets button");
+  for(var i=0;i<bs.length;i++){
+    bs[i].addEventListener("click", function(){
+      rFE.value = this.getAttribute("data-fe");
+      rPA.value = this.getAttribute("data-pa");
+      rFC.value = this.getAttribute("data-fc");
+      muda();
+    });
+  }
+
+  document.getElementById("btnCadeia").addEventListener("click", percorreCadeia);
+
+  renderAbertura();
+}
+if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", init); } else { init(); }
+
+/* ===================== PASS 2 — MATRIZ ===================== */
+var CELULAS = {
+  A1:{fe:"≥50", pa:"≥120/70", fc:"≥70",
+      g:["BCC não-DHP*","ou Betabloqueador"],
+      a:["BCC DHP","Ivabradina","Nitrato","Ranolazina","Trimetazidina"],
+      pq:"Sobra pressão e sobra frequência: é a única célula em que você pode gastar as duas coisas. Por isso é a mais generosa da matriz."},
+  A2:{fe:"≥50", pa:"<120/70", fc:"≥70",
+      g:["Betabloqueador","Ivabradina","Ranolazina","Trimetazidina"],
+      a:[],
+      pq:"A pressão não permite mais gastos, mas a frequência sim. Saem os que derrubam PA sem compensação; ficam quem freia com pouco custo pressórico e os dois neutros."},
+  A3:{fe:"≥50", pa:"≥120/70", fc:"<70",
+      g:["BCC DHP"],
+      a:["Nitrato","Ranolazina","Trimetazidina"],
+      pq:"Frequência baixa tira da mesa todo mundo que freia — betabloqueador, verapamil, diltiazem e a própria ivabradina. Sobra pressão para gastar, e quem gasta pressão sem frear é o di-hidropiridínico."},
+  A4:{fe:"≥50", pa:"<120/70", fc:"<70",
+      g:["Ranolazina","Trimetazidina"],
+      a:[],
+      pq:"A célula mais apertada da matriz: nem pressão nem frequência disponíveis. Só restam as drogas hemodinamicamente neutras — e é exatamente para este paciente que o Capítulo 13B existe."},
+  B1:{fe:"<50", pa:"≥120/70", fc:"≥70",
+      g:["Betabloqueador","Ivabradina"],
+      a:["BCC DHP","Nitrato","Ranolazina","Trimetazidina"],
+      pq:"Ventrículo comprometido elimina verapamil e diltiazem por inotropismo negativo. Com frequência alta, betabloqueador e ivabradina assumem a primeira linha."},
+  B2:{fe:"<50", pa:"<120/70", fc:"≥70",
+      g:["Betabloqueador","Ivabradina"],
+      a:["Ranolazina","Trimetazidina"],
+      pq:"Mesma primeira linha da célula ao lado, porque a frequência alta continua sendo o alvo. O que muda é a segunda linha: a pressão baixa derruba di-hidropiridínico e nitrato."},
+  B3:{fe:"<50", pa:"≥120/70", fc:"<70",
+      g:["Betabloqueador**"],
+      a:["BCC DHP","Nitrato","Ranolazina","Trimetazidina"],
+      pq:"Aqui o betabloqueador aparece apesar da frequência baixa — e o asterisco existe justamente por isso. Nesta célula ele está em cena pelo prognóstico da ICFER, com titulação cuidadosa, não pelo alívio da angina."},
+  B4:{fe:"<50", pa:"<120/70", fc:"<70",
+      g:["Betabloqueador**"],
+      a:["Ranolazina","Trimetazidina"],
+      pq:"O paciente mais difícil da matriz: ventrículo fraco, pressão justa e frequência baixa. O betabloqueador permanece pela ICFER, com o mesmo cuidado da célula vizinha, e o alívio da angina fica com as drogas neutras."}
+};
+function chaveDoPaciente(p){
+  var c = classifica(p);
+  var letra = c.feBaixa ? "B" : "A";
+  var col = c.fcBaixa ? (c.paBaixa ? "4" : "3") : (c.paBaixa ? "2" : "1");
+  return letra + col;
+}
+function montaMatriz(){
+  var cels = document.querySelectorAll(".mx-cel");
+  for(var i=0;i<cels.length;i++){
+    var k = cels[i].getAttribute("data-k"), d = CELULAS[k], h = "";
+    h += '<div class="g">' + d.g.join("<br>") + '</div>';
+    h += d.a.length ? '<div class="a">' + d.a.join(" · ") + '</div>'
+                    : '<div class="vazio">sem segunda linha nesta célula</div>';
+    cels[i].innerHTML = h;
+    cels[i].addEventListener("click", function(){
+      var kk = this.getAttribute("data-k"), dd = CELULAS[kk];
+      document.getElementById("vizinha").innerHTML =
+        '<b>FE ' + dd.fe + ' · PA ' + dd.pa + ' · FC ' + dd.fc + '</b><br>' + dd.pq;
+    });
+  }
+  acendeMatriz();
+}
+function acendeMatriz(){
+  var k = chaveDoPaciente(estado.paciente);
+  var cels = document.querySelectorAll(".mx-cel");
+  for(var i=0;i<cels.length;i++){
+    cels[i].classList.toggle("acesa", cels[i].getAttribute("data-k") === k);
+  }
+}
+
+/* ===================== COMORBIDADES ===================== */
+var COMORB = [
+  {c:"Bradicardia ou doença do nó AV", r:"Anlodipino ou nifedipina",
+   p:"Di-hidropiridínico não freia o coração — é o único bloqueador de cálcio seguro aqui."},
+  {c:"Taquiarritmias", r:"Betabloqueador",
+   p:"Controla a resposta ventricular e trata a angina com a mesma droga."},
+  {c:"Insuficiência cardíaca com FE reduzida", r:"Betabloqueador",
+   p:"O aprovado para ICFER: a única classe que alivia a angina e ainda tem história de prognóstico."},
+  {c:"Hipertensão arterial", r:"Betabloqueador ou antagonista do cálcio",
+   p:"As duas classes derrubam pressão. A escolha entre elas volta a ser decidida pela frequência."},
+  {c:"DPOC ou asma", r:"Antagonista do cálcio",
+   p:"Evita o risco de broncoespasmo — e é o caminho quando o betabloqueador seria o preferido pela frequência."},
+  {c:"Hipertireoidismo", r:"Betabloqueador",
+   p:"Excesso adrenérgico é exatamente o alvo da classe."},
+  {c:"Claudicação intermitente", r:"Antagonista do cálcio",
+   p:"Preserva a perfusão periférica."},
+  {c:"Depressão grave", r:"Antagonista do cálcio",
+   p:"Afasta a discussão sobre sintomas depressivos atribuídos ao betabloqueador."}
+];
+function montaComorb(){
+  var box = document.getElementById("comorb");
+  box.innerHTML = "";
+  for(var i=0;i<COMORB.length;i++){
+    var o = COMORB[i];
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "co";
+    b.innerHTML = '<div class="cond">' + o.c + '</div>' +
+                  '<div class="dica">tocar para revelar</div>' +
+                  '<div class="resp">' + o.r + '</div>' +
+                  '<div class="pq">' + o.p + '</div>';
+    b.addEventListener("click", function(){ this.classList.add("rev"); });
+    box.appendChild(b);
+  }
+}
+
+/* ===================== HARD STOPS ===================== */
+function ligaStop(id){
+  var el = document.getElementById(id);
+  if(!el) return;
+  var b = el.querySelector("button");
+  b.addEventListener("click", function(){ el.classList.add("revelado"); });
+}
+
+/* ===================== ENGATE NO INIT DO PASS 1 ===================== */
+window.aoMudarPaciente = function(){ acendeMatriz(); };
+/* ===================== PASS 3 — BANCOS ===================== */
+
+var PEGADINHAS = [
+  {a:"Betabloqueador alivia a angina principalmente por vasodilatação coronariana.", v:false,
+   e:"O núcleo é redução de demanda: menos frequência, menos contratilidade, mais tempo de diástole."},
+  {a:"Anlodipino e verapamil pertencem à mesma classe, então se comportam de modo semelhante.", v:false,
+   e:"Mesma classe, espécies opostas: o di-hidropiridínico abre vaso, o não-DHP freia o coração."},
+  {a:"Verapamil e diltiazem reduzem a condução pelo nó atrioventricular.", v:true,
+   e:"Por isso a soma com betabloqueador produz bradicardia e bloqueio."},
+  {a:"Nas doses usuais, o nitrato age exclusivamente no leito venoso.", v:false,
+   e:"A venodilatação predomina, mas há arteriodilatação periférica e vasodilatação coronariana."},
+  {a:"O nitrato aumenta o GMPc por meio do óxido nítrico e da guanilato ciclase.", v:true,
+   e:"Cadeia inteira: nitrato → NO → guanilato ciclase → GMPc → relaxamento."},
+  {a:"O efeito do nitrato inclui ação antiplaquetária mediada pelo GMPc.", v:true,
+   e:"Está no material-base e costuma aparecer como alternativa correta pouco lembrada."},
+  {a:"Edema maleolar em uso de anlodipino significa hipervolemia e exige diurético.", v:false,
+   e:"É pressão hidrostática capilar aumentada por dilatação da arteríola pré-capilar. Diurético não corrige o mecanismo."},
+  {a:"Na angina vasoespástica, o betabloqueador é a escolha de rotina.", v:false,
+   e:"O protagonista é o antagonista do cálcio; o nitrato entra se o antagonista não resolveu."},
+  {a:"Nitrato é a estratégia de rotina para angina por ponte miocárdica.", v:false,
+   e:"A compressão é sistólica e externa ao vaso; vasodilatar não desfaz o aperto."},
+  {a:"Quem usou sildenafil pode receber nitrato sublingual se a dor for intensa.", v:false,
+   e:"Combinação proibida pelo risco de hipotensão grave. Respeitar o intervalo, que depende do inibidor."},
+  {a:"O intervalo de 24 horas entre sildenafil e nitrato vale igualmente para todos os inibidores de PDE5.", v:false,
+   e:"24 h é o número da aula para a sildenafila. Inibidores de meia-vida mais longa exigem mais tempo."},
+  {a:"Tolerância aos nitratos é evitada com um intervalo diário livre da droga.", v:true,
+   e:"O conceito é a janela de folga. Não decorar 12 horas como regra rígida."},
+  {a:"Nifedipino de liberação rápida é uma boa opção na angina estável.", v:false,
+   e:"Evitar: hipotensão abrupta e taquicardia reflexa sobre coração isquêmico."},
+  {a:"Na insuficiência cardíaca com fração reduzida, verapamil e diltiazem devem acender alerta.", v:true,
+   e:"Inotropismo negativo sobre ventrículo que já não empurra. Não constam da lista de usáveis na ICFER."},
+  {a:"Nitrato sublingual serve apenas para abortar a crise, nunca para preveni-la.", v:false,
+   e:"É o fármaco de escolha para prevenir angina antes de uma atividade específica."}
+];
+
+var CASOS = [
+  {t:"Angina com frequência alta",
+   v:"Homem de 63 anos, doença coronariana crônica, angina aos esforços. FC 92 bpm, PA 138 × 78 mmHg, fração de ejeção 60%.",
+   p:"Qual classe tem perfil particularmente interessante?",
+   r:"<b>Betabloqueador</b> — ou antagonista do cálcio não di-hidropiridínico, já que há fração preservada, pressão folgada e frequência para frear. É a célula mais generosa da matriz.",
+   k:"FC alta com pressão e ventrículo folgados"},
+  {t:"Angina persistente sob betabloqueador",
+   v:"Mulher de 67 anos, angina, FC 51 bpm, já em bisoprolol na dose tolerada. Segue sintomática. PA 118 × 70 mmHg.",
+   p:"Qual associação tende a ser mais racional?",
+   r:"Associar um <b>di-hidropiridínico</b>, como o anlodipino, e não verapamil ou diltiazem. Com FC 51 não há frequência para gastar: empilhar cronotrópico negativo é o erro clássico.",
+   k:"não empilhar freio sobre freio"},
+  {t:"Dor de madrugada, em repouso",
+   v:"Homem de 48 anos, tabagista, episódios de dor torácica em repouso, sobretudo de madrugada, com documentação de espasmo coronariano.",
+   p:"Qual classe é central?",
+   r:"<b>Antagonista do cálcio.</b> Se persistir apesar dele, o nitrato entra como segunda linha. Marcar betabloqueador automaticamente porque “é antianginoso” é a pegadinha.",
+   k:"vasoespasmo"},
+  {t:"Ventrículo fraco e angina",
+   v:"Homem de 71 anos, fração de ejeção 30%, angina aos médios esforços, FC 88 bpm, PA 124 × 72 mmHg. O colega sugere diltiazem.",
+   p:"O que deve acender alerta?",
+   r:"<b>Verapamil e diltiazem</b>, por inotropismo negativo. Não constam da lista de antianginosos usáveis na ICFER. Aqui a primeira linha é betabloqueador, e a ivabradina o acompanha.",
+   k:"ICFER"},
+  {t:"O comprimido azul",
+   v:"Homem de 58 anos chega com dor torácica. Relata que tomou sildenafil há poucas horas. O nitrato sublingual está disponível.",
+   p:"Qual a conduta?",
+   r:"<b>Não administrar nitrato.</b> O inibidor de PDE5 bloqueia a degradação do GMPc e o nitrato aumenta sua produção: hipotensão grave. Respeitar o intervalo — que depende do inibidor usado.",
+   k:"PDE5"},
+  {t:"Tornozelos inchados",
+   v:"Mulher de 64 anos em anlodipino há dois meses, com bom controle da angina, retorna com edema maleolar bilateral, sem dispneia, sem estase jugular, sem ganho de peso relevante.",
+   p:"Adicionar diurético resolve?",
+   r:"<b>Não necessariamente.</b> O mecanismo é aumento da pressão hidrostática capilar por dilatação da arteríola pré-capilar — não há excesso de volume corporal. Reduzir dose, trocar de classe ou associar vasodilatador venoso são as saídas racionais.",
+   k:"edema não é hipervolemia"},
+  {t:"A ladeira de todo dia",
+   v:"Homem de 60 anos, angina previsível toda vez que sobe a rampa da garagem. Fora disso, assintomático.",
+   p:"Existe estratégia farmacológica pontual?",
+   r:"Sim: <b>nitrato sublingual antes do esforço</b>. É o fármaco de escolha para prevenir episódios de angina em atividades específicas — profilaxia pontual, não apenas resgate.",
+   k:"profilaxia antes da atividade"},
+  {t:"Angina e doença pulmonar",
+   v:"Homem de 69 anos, DPOC com componente broncoespástico, angina aos esforços, FC 84 bpm, PA 142 × 84 mmHg, fração preservada.",
+   p:"Como a comorbidade muda a escolha?",
+   r:"Pelo mapa das comorbidades, DPOC ou asma direciona para <b>antagonista do cálcio</b>. A frequência alta pediria betabloqueador, mas a comorbidade fecha essa porta primeiro.",
+   k:"comorbidade fecha a porta antes dos três números"},
+  {t:"Distúrbio de condução",
+   v:"Mulher de 75 anos, angina, eletrocardiograma com bloqueio atrioventricular de primeiro grau e FC 54 bpm, fração preservada, PA 146 × 80 mmHg.",
+   p:"Que classe é a mais segura?",
+   r:"<b>Di-hidropiridínico</b> — anlodipino ou nifedipina. Bradicardia ou doença do nó AV é exatamente o cenário em que o não-DHP e o betabloqueador saem de cena.",
+   k:"doença do nó AV"},
+  {t:"Sem espaço nenhum",
+   v:"Homem de 78 anos, fração de ejeção 32%, PA 102 × 60 mmHg, FC 58 bpm em betabloqueador otimizado. Mantém angina limitante.",
+   p:"O que ainda cabe?",
+   r:"Praticamente só as drogas <b>hemodinamicamente neutras</b>: ranolazina e trimetazidina. O betabloqueador permanece pela indicação da ICFER, não pelo alívio. É a célula mais apertada da matriz — e o motivo de existir o Capítulo 13B.",
+   k:"as três travas fechadas"}
+];
+
+var QUESTOES = [
+  {c:"mecanismo", q:"Qual é o principal mecanismo antianginoso do betabloqueador?",
+   alt:["Vasodilatação coronariana direta","Redução da demanda miocárdica de oxigênio","Aumento do GMPc no músculo liso","Bloqueio dos canais de cálcio tipo L"],
+   ok:1, pq:["Betabloqueador não é vasodilatador coronariano.","Menos frequência, menos contratilidade, menos resposta ao esforço e mais diástole.","Essa é a via do nitrato.","Essa é a via dos antagonistas do cálcio."],
+   k:"demanda", p:"Trocar redução de demanda por vasodilatação.", a:"BB = BATE BAIXO"},
+  {c:"mecanismo", q:"O aumento do tempo de diástole produzido pelo betabloqueador importa porque:",
+   alt:["Reduz a pós-carga","Melhora a janela de perfusão do ventrículo esquerdo","Aumenta a contratilidade","Diminui o retorno venoso"],
+   ok:1, pq:["Pós-carga é assunto de arteriodilatação.","A perfusão do ventrículo esquerdo predomina na diástole — ponte com o Capítulo 1.","O betabloqueador reduz a contratilidade.","Retorno venoso é assunto do nitrato."],
+   k:"diástole", p:"Esquecer que a alavanca da oferta também é tempo.", a:"BB = BATE BAIXO"},
+  {c:"mecanismo", q:"O anlodipino atua predominantemente:",
+   alt:["No nó atrioventricular","No leito venoso","No vaso arterial periférico","Na mitocôndria do miócito"],
+   ok:2, pq:["Isso é verapamil e diltiazem.","Isso é nitrato.","Vasodilatação arterial, queda de resistência e de pós-carga.","Isso é trimetazidina, e fica no 13B."],
+   k:"DHP", p:"Tratar todo bloqueador de cálcio como igual.", a:"DHP = VASO"},
+  {c:"mecanismo", q:"Verapamil e diltiazem produzem, além de vasodilatação:",
+   alt:["Aumento da contratilidade","Redução da frequência, da condução AV e da contratilidade","Venodilatação seletiva","Aumento do GMPc"],
+   ok:1, pq:["Ao contrário: são inotrópicos negativos.","É o tripé que explica todas as suas contraindicações.","Venodilatação é do nitrato.","GMPc é do nitrato."],
+   k:"não-DHP", p:"Confundir com di-hidropiridínico.", a:"VERA/DILTIA = CORAÇÃO DEVAGAR"},
+  {c:"mecanismo", q:"O segundo mensageiro aumentado pelos nitratos é:",
+   alt:["AMPc","GMPc","Cálcio intracelular","Inositol trifosfato"],
+   ok:1, pq:["AMPc é via adrenérgica.","Nitrato → NO → guanilato ciclase → GMPc → relaxamento.","O GMPc reduz a disponibilidade de cálcio no músculo liso.","Não é a via."],
+   k:"GMPc", p:"Trocar GMPc por AMPc.", a:"NITRATO = NO → GMPc"},
+  {c:"mecanismo", q:"Qual carga é predominantemente reduzida pelo nitrato nas doses usuais?",
+   alt:["Pós-carga","Pré-carga","Nenhuma das duas","Ambas igualmente"],
+   ok:1, pq:["Há arteriodilatação, mas não é o efeito predominante.","Venodilatação periférica reduz o retorno venoso e a tensão parietal.","Reduz sim.","Predomina a pré-carga — mas não é exclusivo."],
+   k:"pré-carga", p:"Escrever que a ação é exclusivamente venosa.", a:"NITRATO = REDUZ PRÉ-CARGA"},
+  {c:"mecanismo", q:"Além da vasodilatação, o GMPc elevado pelo nitrato produz:",
+   alt:["Efeito antiplaquetário","Efeito inotrópico positivo","Bloqueio do nó AV","Aumento da frequência intrínseca"],
+   ok:0, pq:["Consta no material-base e é a alternativa correta pouco lembrada.","Não há inotropismo positivo relevante.","Nitrato não age no nó AV.","A taquicardia eventual é reflexa, não intrínseca."],
+   k:"antiplaquetário", p:"Descartar por parecer boa demais.", a:"NITRATO = NO → GMPc"},
+  {c:"escolha", q:"Homem de 63 anos, angina, FC 92 bpm, PA 138 × 78, fração 60%. Qual classe é de primeira linha?",
+   alt:["Ranolazina","Betabloqueador","Nitrato de liberação prolongada","Trimetazidina"],
+   ok:1, pq:["Neutra: reservada para quem não tem espaço hemodinâmico.","Frequência alta com pressão e ventrículo folgados: célula generosa da matriz.","Nitrato é segunda linha nessa célula.","Também é segunda linha aqui."],
+   k:"FC alta", p:"Ir direto para o nitrato porque “é angina”.", a:"FE · PA · FC = AS TRÊS TRAVAS"},
+  {c:"escolha", q:"Mulher de 67 anos, angina apesar de bisoprolol, FC 51 bpm. Qual associação é mais racional?",
+   alt:["Diltiazem","Verapamil","Anlodipino","Aumentar o bisoprolol"],
+   ok:2, pq:["Somaria bradicardia e bloqueio AV.","Mesmo problema, com inotropismo negativo somado.","Alvo diferente: abre vaso sem frear mais o coração.","Com FC 51 não há frequência para gastar."],
+   k:"bradicardia sob betabloqueador", p:"Empilhar cronotrópico negativo.", a:"BB + VERA/DILTIA = DOIS FREIOS"},
+  {c:"escolha", q:"Paciente com angina vasoespástica documentada. A classe central é:",
+   alt:["Betabloqueador","Antagonista do cálcio","Nitrato de liberação prolongada","Ivabradina"],
+   ok:1, pq:["Não é a escolha de rotina no vasoespasmo.","É o protagonista da angina vasoespástica.","Entra como segunda linha, se o antagonista não resolveu.","Não trata espasmo."],
+   k:"vasoespasmo", p:"Reflexo de marcar betabloqueador em qualquer angina.", a:"VASOESPASMO = PENSE ACC"},
+  {c:"escolha", q:"Na angina vasoespástica que não melhorou com antagonista do cálcio, o material indica:",
+   alt:["Trocar por betabloqueador","Associar nitrato","Suspender toda medicação antianginosa","Associar verapamil ao anlodipino"],
+   ok:1, pq:["O betabloqueador não é a rota do vasoespasmo.","É a indicação literal de segunda linha nessa situação.","Não há base para isso.","Não é a conduta descrita no material."],
+   k:"segunda linha do vasoespasmo", p:"Ignorar que o nitrato tem lugar aqui.", a:"VASOESPASMO = PENSE ACC"},
+  {c:"escolha", q:"Angina em paciente com fração de ejeção 30%. Qual agente deve acender alerta?",
+   alt:["Anlodipino","Nitrato","Verapamil","Betabloqueador aprovado para ICFER"],
+   ok:2, pq:["Consta da lista de usáveis na ICFER.","Também consta.","Inotropismo negativo — ausente da lista de usáveis na ICFER.","É a primeira linha nessa população."],
+   k:"ICFER", p:"Tratar anlodipino e verapamil como equivalentes.", a:"ICFER = CUIDADO COM VERA/DILTIA"},
+  {c:"escolha", q:"Paciente com angina, bradicardia sinusal e bloqueio AV de primeiro grau. A escolha mais segura é:",
+   alt:["Diltiazem","Metoprolol","Anlodipino ou nifedipina","Verapamil"],
+   ok:2, pq:["Reduz a condução AV.","Reduz frequência e condução.","Di-hidropiridínico praticamente não freia o coração.","Mesmo problema do diltiazem."],
+   k:"doença do nó AV", p:"Esquecer que o mapa das comorbidades já responde.", a:"DHP = VASO"},
+  {c:"escolha", q:"Paciente com angina e DPOC com componente broncoespástico. O mapa das comorbidades direciona para:",
+   alt:["Betabloqueador não seletivo","Antagonista do cálcio","Nitrato exclusivamente","Ivabradina exclusivamente"],
+   ok:1, pq:["É justamente o que se quer evitar.","Resposta do material para DPOC ou asma.","Não é a resposta do mapa.","Não é a resposta do mapa."],
+   k:"DPOC", p:"Decidir só pela frequência e ignorar a comorbidade.", a:"FE · PA · FC = AS TRÊS TRAVAS"},
+  {c:"escolha", q:"Paciente com angina e hipertireoidismo. A comorbidade favorece:",
+   alt:["Antagonista do cálcio","Betabloqueador","Nitrato","Nenhuma classe em especial"],
+   ok:1, pq:["Não é a resposta do mapa aqui.","Excesso adrenérgico é o alvo natural da classe.","Nitrato não trata o excesso adrenérgico.","O mapa é explícito."],
+   k:"hipertireoidismo", p:"Assumir que toda comorbidade empurra para o cálcio.", a:"FE · PA · FC = AS TRÊS TRAVAS"},
+  {c:"escolha", q:"Fração preservada, PA 106 × 62, FC 58 bpm, angina limitante. O que a matriz oferece?",
+   alt:["Betabloqueador e nitrato","Antagonista do cálcio di-hidropiridínico","Ranolazina e trimetazidina","Verapamil isolado"],
+   ok:2, pq:["A frequência baixa impede o freio e a pressão não sustenta o nitrato.","A pressão apertada tira o di-hidropiridínico.","É a célula em que só sobram as drogas neutras.","Frearia ainda mais um paciente já lento."],
+   k:"as três travas fechadas", p:"Insistir em uma classe hemodinâmica onde não há espaço.", a:"FE · PA · FC = AS TRÊS TRAVAS"},
+  {c:"armadilha", q:"Qual combinação exige maior cautela por somar efeitos no nó AV?",
+   alt:["Betabloqueador + anlodipino","Betabloqueador + verapamil","Nitrato + anlodipino","Nitrato + betabloqueador"],
+   ok:1, pq:["Alvos diferentes: é associação racional.","Bradicardia, bloqueio AV, hipotensão e depressão miocárdica.","Não somam efeito no nó AV.","Também não somam no nó AV."],
+   k:"dois freios", p:"Confundir com a associação boa.", a:"BB + VERA/DILTIA = DOIS FREIOS"},
+  {c:"armadilha", q:"Sobre a associação betabloqueador + anlodipino, é correto afirmar:",
+   alt:["É proibida por somar bradicardia","Pode ser racional porque atuam em alvos diferentes","Só é aceita na ICFER","Aumenta o risco de bloqueio AV total"],
+   ok:1, pq:["O anlodipino praticamente não freia.","Freio cardíaco de um lado, abertura vascular do outro.","Não há essa restrição.","Não é o perfil do di-hidropiridínico."],
+   k:"alvos diferentes", p:"Evitar por medo, confundindo com o não-DHP.", a:"BB + VERA/DILTIA = DOIS FREIOS"},
+  {c:"armadilha", q:"Por que se evita nifedipino de liberação rápida?",
+   alt:["Por bradicardia grave","Por hipotensão abrupta e ativação reflexa","Por bloqueio AV","Por inotropismo negativo intenso"],
+   ok:1, pq:["Di-hidropiridínico não causa bradicardia.","A queda pressórica brusca dispara taquicardia reflexa sobre coração isquêmico.","Não é efeito do di-hidropiridínico.","Não é o mecanismo principal aqui."],
+   k:"liberação rápida", p:"Atribuir ao nifedipino efeitos do verapamil.", a:"DHP = VASO"},
+  {c:"armadilha", q:"Edema maleolar em paciente estável usando anlodipino indica:",
+   alt:["Hipervolemia, que exige diurético","Alteração da hemodinâmica capilar por vasodilatação arteriolar","Insuficiência cardíaca descompensada obrigatoriamente","Trombose venosa profunda até prova em contrário"],
+   ok:1, pq:["Não há excesso de volume corporal a retirar.","Arteríola pré-capilar dilatada eleva a pressão hidrostática e o líquido escapa.","O enunciado descreve paciente estável, sem sinais congestivos.","Bilateral e sem outros sinais não sugere isso."],
+   k:"edema do anlodipino", p:"Prescrever furosemida por reflexo.", a:"ANLODIPINO + EDEMA ≠ RETENÇÃO HÍDRICA"},
+  {c:"armadilha", q:"Paciente usou sildenafil e chega com dor torácica. Sobre o nitrato:",
+   alt:["Pode ser dado se a dor for intensa","Não deve ser administrado, pelo risco de hipotensão grave","Pode ser dado por via oral, nunca sublingual","Só é contraindicado se a PA estiver abaixo de 100"],
+   ok:1, pq:["A intensidade da dor não muda a farmacologia.","PDE5 impede a degradação do GMPc e o nitrato aumenta sua produção.","A via não resolve a interação.","A contraindicação não depende do valor pressórico inicial."],
+   k:"PDE5", p:"Achar que a urgência libera a combinação.", a:"PDE5 + NITRATO = HARD STOP"},
+  {c:"armadilha", q:"Sobre o intervalo entre inibidor de PDE5 e nitrato, a leitura mais correta é:",
+   alt:["24 horas é regra universal para todos os inibidores","O intervalo depende do inibidor utilizado","Basta aguardar a normalização da pressão","Não existe intervalo recomendado"],
+   ok:1, pq:["24 h é o número citado para a sildenafila, não regra única.","Moléculas de meia-vida mais longa exigem mais tempo.","Pressão normal não significa fim do efeito.","Existe, e é justamente o ponto."],
+   k:"intervalo depende do fármaco", p:"Transformar o número da aula em regra para todos.", a:"PDE5 + NITRATO = HARD STOP"},
+  {c:"armadilha", q:"Sobre a tolerância aos nitratos:",
+   alt:["Não existe com apresentações orais","É evitada por um intervalo diário livre de nitrato","É evitada dobrando a dose","Só ocorre com o uso sublingual"],
+   ok:1, pq:["Ocorre com uso contínuo, independentemente da via.","O conceito é a janela diária de folga.","Dobrar a dose acelera a tolerância.","É justamente o uso contínuo que a produz."],
+   k:"janela livre", p:"Decorar “12 horas” como regra rígida universal.", a:"NITRATO PRECISA DORMIR"},
+  {c:"armadilha", q:"Angina atribuída a ponte miocárdica. Sobre o nitrato:",
+   alt:["É a primeira escolha","Não é a estratégia de rotina, porque não trata compressão externa","Deve ser usado em dose dobrada","Só é contraindicado por via sublingual"],
+   ok:1, pq:["Não trata o mecanismo.","A compressão é sistólica e externa; vasodilatar não desfaz o aperto.","Dobrar a dose não muda o mecanismo.","A via não é o problema."],
+   k:"ponte miocárdica", p:"Aplicar a regra geral da angina a um mecanismo diferente.", a:"PONTE MIOCÁRDICA = NITRATO NÃO"},
+  {c:"armadilha", q:"O eixo que reconstrói a matriz separa as drogas por:",
+   alt:["Custo e disponibilidade","O que cada uma cobra de pressão e de frequência","Meia-vida plasmática","Via de eliminação"],
+   ok:1, pq:["Não é o critério da matriz.","Reduzem PA e FC; reduzem só FC; não reduzem nenhuma das duas.","Não é o eixo.","Não é o eixo."],
+   k:"leitura horizontal", p:"Tentar decorar as oito células isoladamente.", a:"FE · PA · FC = AS TRÊS TRAVAS"}
+];
+
+var FLASHCARDS = [
+  {t:"mecanismo", f:"BB: quatro efeitos que reduzem demanda", v:"↓FC · ↓contratilidade · ↓resposta pressórica ao esforço · ↑tempo de diástole"},
+  {t:"mecanismo", f:"BB é vasodilatador coronariano?", v:"Não. O núcleo do efeito é redução de demanda."},
+  {t:"mecanismo", f:"Betabloqueadores cardiosseletivos", v:"Atenolol, bisoprolol, metoprolol, nebivolol"},
+  {t:"mecanismo", f:"Betabloqueadores não seletivos relevantes", v:"Propranolol, pindolol, nadolol, carvedilol, labetalol"},
+  {t:"mecanismo", f:"Di-hidropiridínicos: quem são", v:"Anlodipino, nifedipino, levanlodipino"},
+  {t:"mecanismo", f:"Não di-hidropiridínicos: quem são", v:"Verapamil e diltiazem"},
+  {t:"mecanismo", f:"DHP atua predominantemente onde?", v:"No vaso: vasodilatação arterial, ↓resistência, ↓PA, ↓pós-carga"},
+  {t:"mecanismo", f:"Verapamil e diltiazem: tripé de efeitos", v:"↓FC · ↓condução AV · ↓contratilidade"},
+  {t:"mecanismo", f:"Cadeia do nitrato", v:"Nitrato → NO → guanilato ciclase → GMPc → relaxamento vascular"},
+  {t:"mecanismo", f:"Efeito do GMPc além da vasodilatação", v:"Efeito antiplaquetário"},
+  {t:"mecanismo", f:"Nitrato: como aumenta a oferta de O₂", v:"Vasodilatação coronariana"},
+  {t:"mecanismo", f:"Nitrato: como reduz o consumo de O₂", v:"Venodilatação ↓pré-carga e arteriodilatação ↓pós-carga"},
+  {t:"mecanismo", f:"Qual carga o nitrato reduz predominantemente?", v:"Pré-carga — predomina, não é exclusivo"},
+  {t:"mecanismo", f:"Cinco mecanismos que fazem o nitrato perder força na angina estável", v:"↑simpático · ↑SRAA · ↑endotelina · ↑superóxido · ↑fosfodiesterase"},
+  {t:"mecanismo", f:"Por que o ↑fosfodiesterase importa", v:"Degrada o GMPc mais rápido — e é a mesma enzima do outro lado da armadilha do sildenafil"},
+  {t:"escolha", f:"As três travas do paciente", v:"Fração de ejeção · pressão arterial · frequência cardíaca"},
+  {t:"escolha", f:"Cortes usados na matriz", v:"FE 50% · PA 120 × 70 mmHg · FC 70 bpm"},
+  {t:"escolha", f:"Quem reduz PA e FC", v:"Betabloqueador e antagonista do cálcio não di-hidropiridínico"},
+  {t:"escolha", f:"Quem reduz FC mas não PA", v:"Ivabradina"},
+  {t:"escolha", f:"Quem não reduz nem PA nem FC", v:"Trimetazidina e ranolazina"},
+  {t:"escolha", f:"FE ≥50, PA folgada, FC ≥70: primeira linha", v:"BCC não-DHP ou betabloqueador"},
+  {t:"escolha", f:"FE ≥50, PA folgada, FC <70: primeira linha", v:"BCC di-hidropiridínico"},
+  {t:"escolha", f:"FE ≥50, PA <120/70, FC <70: o que sobra", v:"Ranolazina e trimetazidina"},
+  {t:"escolha", f:"FE <50 e FC ≥70: primeira linha", v:"Betabloqueador e ivabradina"},
+  {t:"escolha", f:"FE <50 e FC <70: primeira linha", v:"Betabloqueador, com asterisco — presente pelo prognóstico, titulado com cuidado"},
+  {t:"escolha", f:"Bradicardia ou doença do nó AV", v:"Anlodipino ou nifedipina"},
+  {t:"escolha", f:"Taquiarritmias", v:"Betabloqueador"},
+  {t:"escolha", f:"Insuficiência cardíaca com FE reduzida", v:"Betabloqueador"},
+  {t:"escolha", f:"Hipertensão arterial", v:"Betabloqueador ou antagonista do cálcio"},
+  {t:"escolha", f:"DPOC ou asma", v:"Antagonista do cálcio"},
+  {t:"escolha", f:"Hipertireoidismo", v:"Betabloqueador"},
+  {t:"escolha", f:"Claudicação intermitente", v:"Antagonista do cálcio"},
+  {t:"escolha", f:"Depressão grave", v:"Antagonista do cálcio"},
+  {t:"escolha", f:"Classe central da angina vasoespástica", v:"Antagonista do cálcio"},
+  {t:"escolha", f:"Vasoespasmo que não melhorou com ACC", v:"Nitrato como segunda linha"},
+  {t:"escolha", f:"Antianginoso de escolha antes de uma atividade específica", v:"Nitrato sublingual, como profilaxia pontual"},
+  {t:"escolha", f:"Antianginosos usáveis na ICFER", v:"BB aprovados para ICFER, di-hidropiridínicos, nitratos, trimetazidina, ivabradina"},
+  {t:"escolha", f:"Quem falta na lista da ICFER — e por quê", v:"Verapamil e diltiazem, por inotropismo negativo"},
+  {t:"armadilha", f:"BB + verapamil ou diltiazem: o que pode acontecer", v:"Bradicardia, bloqueio AV, hipotensão, depressão miocárdica"},
+  {t:"armadilha", f:"BB + anlodipino", v:"Associação racional: alvos diferentes"},
+  {t:"armadilha", f:"Por que evitar nifedipino de liberação rápida", v:"Hipotensão abrupta e ativação reflexa"},
+  {t:"armadilha", f:"Edema do anlodipino: mecanismo", v:"Dilatação da arteríola pré-capilar → ↑pressão hidrostática capilar → extravasamento"},
+  {t:"armadilha", f:"Nitrato + inibidor de PDE5", v:"Não. Acúmulo de GMPc e hipotensão grave. O intervalo depende do inibidor usado."},
+  {t:"armadilha", f:"Como evitar tolerância ao nitrato", v:"Intervalo diário livre de nitrato"},
+  {t:"armadilha", f:"Ponte miocárdica e nitrato", v:"Não é a estratégia de rotina: a compressão é sistólica e externa ao vaso"}
+];
+
+var FRASES = [
+  "A droga certa não é a mais potente. É a que cabe no espaço que o paciente ainda tem.",
+  "Antes de escolher a classe, entenda o mecanismo. A mesma dor pode pedir remédios opostos.",
+  "Angina é uma conta entre oferta e demanda. Toda a farmacologia deste capítulo é aritmética.",
+  "Quem decora oito células esquece. Quem entende o eixo reconstrói.",
+  "Frequência e pressão são orçamento. Nenhuma droga gasta o que o paciente não tem.",
+  "O betabloqueador não alarga a estrada. Ele convence o motor a andar mais devagar.",
+  "Dois pés no freio não param o carro melhor. Quebram a transmissão.",
+  "Bloqueador de cálcio não é resposta. É pergunta: qual dos dois?",
+  "O nitrato esvazia a mochila que o coração carregava. Não abre a porta que está trancada.",
+  "Aliviar sintoma é um objetivo legítimo. Confundi-lo com prognóstico não é.",
+  "Toda contraindicação famosa é apenas um mecanismo levado a sério.",
+  "Quando o edema aparece, pergunte de onde veio o líquido antes de decidir para onde mandá-lo.",
+  "O paciente sem espaço hemodinâmico não é um paciente sem opção.",
+  "Regra de rotina não é proibição eterna. Saber a diferença separa quem estuda de quem decora.",
+  "O número que você memoriza precisa vir com o nome do fármaco a que pertence.",
+  "Prova cobra reflexo; plantão cobra motivo. Estude para os dois.",
+  "A ausência em uma lista costuma ensinar mais que a presença.",
+  "Uma boa âncora não substitui o raciocínio. Ela devolve o raciocínio quando o tempo é curto.",
+  "Antianginoso é conversa com um coração que está negociando oxigênio.",
+  "Escolher bem é saber, em segundos, o que cabe e o que machuca."
+];
+
+var CHECKLIST = [
+  "Hoje: refazer a matriz de memória, só com o eixo das três travas.",
+  "Hoje: percorrer o Hospital Coronário mentalmente, sem olhar a tela.",
+  "Amanhã: repetir a Arena TEC apenas nas questões que errei.",
+  "Amanhã: explicar em voz alta por que anlodipino entra na ICFER e verapamil não.",
+  "Em 7 dias: refazer os dez casos sem revelar as respostas.",
+  "Em 7 dias: revisar as seis armadilhas e as treze âncoras."
+];
+
+/* ===================== MOTORES ===================== */
+function e3(id){ return document.getElementById(id); }
+
+/* --- pegadinhas --- */
+function montaPegs(){
+  var box = e3("pegs");
+  box.innerHTML = "";
+  for(var i=0;i<PEGADINHAS.length;i++){
+    var o = PEGADINHAS[i];
+    var d = document.createElement("div");
+    d.className = "q"; d.setAttribute("data-i", i);
+    d.innerHTML = '<div class="cab">PEGADINHA ' + (i+1) + ' de ' + PEGADINHAS.length + '</div>' +
+      '<div class="enun">' + o.a + '</div>' +
+      '<button class="alt" type="button" data-v="1"><span class="l">V</span>Verdadeiro</button>' +
+      '<button class="alt" type="button" data-v="0"><span class="l">F</span>Falso</button>' +
+      '<div class="porque"></div>';
+    box.appendChild(d);
+  }
+  box.addEventListener("click", function(ev){
+    var b = ev.target.closest ? ev.target.closest(".alt") : null;
+    if(!b) return;
+    var q = b.parentNode;
+    if(q.classList.contains("resp")) return;
+    var i = +q.getAttribute("data-i"), o = PEGADINHAS[i];
+    var marcou = b.getAttribute("data-v") === "1";
+    var certo = marcou === o.v;
+    q.classList.add("resp");
+    var alts = q.querySelectorAll(".alt");
+    for(var j=0;j<alts.length;j++){
+      var ehV = alts[j].getAttribute("data-v") === "1";
+      alts[j].classList.add(ehV === o.v ? "certa" : "errada");
+    }
+    q.querySelector(".porque").innerHTML =
+      '<b>' + (o.v ? "Verdadeiro" : "Falso") + ".</b> " + o.e;
+    estado.pegs[i] = certo ? 1 : 0;
+    salva(); pintaPlacarPeg(); pintaHipocampo();
+  });
+  pintaPlacarPeg();
+}
+function pintaPlacarPeg(){
+  var ok=0, tot=0;
+  for(var k in estado.pegs){ if(estado.pegs.hasOwnProperty(k)){ tot++; if(estado.pegs[k]) ok++; } }
+  e3("pegOk").textContent = ok; e3("pegTot").textContent = tot;
+}
+
+/* --- casos --- */
+function montaCasos(){
+  var box = e3("casos"); box.innerHTML = "";
+  for(var i=0;i<CASOS.length;i++){
+    var o = CASOS[i];
+    var d = document.createElement("div");
+    d.className = "caso";
+    d.innerHTML = '<div class="cab">CASO ' + (i+1) + '</div>' +
+      '<div class="vin"><b>' + o.t + '.</b> ' + o.v + '</div>' +
+      '<div class="perg">' + o.p + '</div>' +
+      '<button class="rev" type="button">Revelar</button>' +
+      '<div class="resp">' + o.r + '<div class="tag">palavra-chave: ' + o.k + '</div></div>';
+    d.querySelector(".rev").addEventListener("click", function(){
+      this.parentNode.classList.add("aberto");
+    });
+    box.appendChild(d);
+  }
+}
+
+/* --- arena --- */
+var filtroQ = "todas";
+function montaFiltros(){
+  var cats = ["todas","mecanismo","escolha","armadilha"];
+  var box = e3("filtros"); box.innerHTML = "";
+  for(var i=0;i<cats.length;i++){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = cats[i];
+    b.setAttribute("data-c", cats[i]);
+    if(cats[i] === filtroQ) b.className = "on";
+    b.addEventListener("click", function(){
+      filtroQ = this.getAttribute("data-c");
+      montaFiltros(); montaQuiz();
+    });
+    box.appendChild(b);
+  }
+}
+function montaQuiz(){
+  var box = e3("quiz"); box.innerHTML = "";
+  var n = 0;
+  for(var i=0;i<QUESTOES.length;i++){
+    var o = QUESTOES[i];
+    if(filtroQ !== "todas" && o.c !== filtroQ) continue;
+    n++;
+    var d = document.createElement("div");
+    d.className = "q"; d.setAttribute("data-i", i);
+    var h = '<div class="cab">' + o.c.toUpperCase() + ' · questão ' + (i+1) + '</div>' +
+            '<div class="enun">' + o.q + '</div>';
+    var L = ["A","B","C","D"];
+    for(var j=0;j<o.alt.length;j++){
+      h += '<button class="alt" type="button" data-j="' + j + '"><span class="l">' + L[j] + '</span>' + o.alt[j] + '</button>';
+    }
+    h += '<div class="porque"></div>';
+    d.innerHTML = h;
+    box.appendChild(d);
+    if(typeof estado.quiz[i] === "number") revelaQ(d, i, estado.quiz[i]);
+  }
+  e3("qN").textContent = QUESTOES.length;
+  box.onclick = function(ev){
+    var b = ev.target.closest ? ev.target.closest(".alt") : null;
+    if(!b) return;
+    var q = b.parentNode;
+    if(q.classList.contains("resp")) return;
+    var i = +q.getAttribute("data-i"), j = +b.getAttribute("data-j");
+    estado.quiz[i] = j; salva();
+    revelaQ(q, i, j); pintaPlacarQ(); pintaHipocampo();
+  };
+  pintaPlacarQ();
+}
+function revelaQ(q, i, escolhido){
+  var o = QUESTOES[i];
+  q.classList.add("resp");
+  var alts = q.querySelectorAll(".alt");
+  var L = ["A","B","C","D"], h = "<ul>";
+  for(var j=0;j<alts.length;j++){
+    alts[j].classList.add(j === o.ok ? "certa" : "errada");
+    h += "<li><b>" + L[j] + (j === o.ok ? " (correta)" : "") + ":</b> " + o.pq[j] + "</li>";
+  }
+  h += "</ul>";
+  h += '<div class="meta"><span class="chave">palavra-chave: ' + o.k + '</span>' +
+       '<span class="peg">pegadinha: ' + o.p + '</span>' +
+       '<span class="anc">' + o.a + '</span></div>';
+  if(escolhido !== o.ok){
+    h = '<p><b>Você marcou ' + L[escolhido] + '. A correta é ' + L[o.ok] + '.</b></p>' + h;
+  }
+  q.querySelector(".porque").innerHTML = h;
+}
+function pintaPlacarQ(){
+  var ok=0, tot=0;
+  for(var k in estado.quiz){
+    if(estado.quiz.hasOwnProperty(k)){ tot++; if(estado.quiz[k] === QUESTOES[k].ok) ok++; }
+  }
+  e3("qOk").textContent = ok; e3("qTot").textContent = tot;
+}
+
+/* --- flashcards --- */
+var filtroFC = "todos";
+function montaFcFiltros(){
+  var cats = ["todos","mecanismo","escolha","armadilha"];
+  var box = e3("fcFiltros"); box.innerHTML = "";
+  for(var i=0;i<cats.length;i++){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = cats[i];
+    b.setAttribute("data-c", cats[i]);
+    if(cats[i] === filtroFC) b.className = "on";
+    b.addEventListener("click", function(){
+      filtroFC = this.getAttribute("data-c");
+      montaFcFiltros(); montaFlash();
+    });
+    box.appendChild(b);
+  }
+}
+function montaFlash(){
+  var box = e3("flashcards"); box.innerHTML = "";
+  for(var i=0;i<FLASHCARDS.length;i++){
+    var o = FLASHCARDS[i];
+    if(filtroFC !== "todos" && o.t !== filtroFC) continue;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "fc";
+    b.innerHTML = '<div class="in"><div class="f">' + o.f + '</div><div class="v">' + o.v + '</div></div>';
+    b.addEventListener("click", function(){ this.classList.toggle("vira"); });
+    box.appendChild(b);
+  }
+}
+
+/* --- hipocampo --- */
+function pintaHipocampo(){
+  var ok=0, er=0, i;
+  for(var k in estado.quiz){
+    if(estado.quiz.hasOwnProperty(k)){
+      if(estado.quiz[k] === QUESTOES[k].ok) ok++; else er++;
+    }
+  }
+  var pok=0;
+  for(var m in estado.pegs){ if(estado.pegs.hasOwnProperty(m) && estado.pegs[m]) pok++; }
+  e3("hAc").textContent = ok; e3("hEr").textContent = er; e3("hPeg").textContent = pok;
+  e3("hSec").textContent = progresso() + "%";
+
+  var temas = {};
+  for(var k2 in estado.quiz){
+    if(estado.quiz.hasOwnProperty(k2) && estado.quiz[k2] !== QUESTOES[k2].ok){
+      var a = QUESTOES[k2].a;
+      temas[a] = (temas[a] || 0) + 1;
+    }
+  }
+  var lista = [];
+  for(var t in temas){ if(temas.hasOwnProperty(t)) lista.push({t:t, n:temas[t]}); }
+  lista.sort(function(x,y){ return y.n - x.n; });
+  if(!lista.length){
+    e3("fila").innerHTML = er ? "Sem âncoras pendentes." :
+      "Responda algumas questões da arena e a sua fila de revisão aparece aqui.";
+  } else {
+    var h = "<b>Suas âncoras com erro — revise estas primeiro:</b><ul>";
+    for(i=0;i<lista.length;i++){ h += "<li>" + lista[i].t + " — " + lista[i].n + (lista[i].n>1?" erros":" erro") + "</li>"; }
+    e3("fila").innerHTML = h + "</ul>";
+  }
+}
+function montaChecklist(){
+  var box = e3("checklist"); box.innerHTML = "";
+  for(var i=0;i<CHECKLIST.length;i++){
+    var lab = document.createElement("label");
+    lab.setAttribute("data-i", i);
+    var inp = document.createElement("input");
+    inp.type = "checkbox"; inp.checked = !!estado.check[i];
+    if(inp.checked) lab.className = "feito";
+    inp.addEventListener("change", function(){
+      var j = +this.parentNode.getAttribute("data-i");
+      estado.check[j] = this.checked;
+      this.parentNode.classList.toggle("feito", this.checked);
+      salva();
+    });
+    lab.appendChild(inp);
+    lab.appendChild(document.createTextNode(CHECKLIST[i]));
+    box.appendChild(lab);
+  }
+}
+
+/* --- filosofia --- */
+function sorteiaFrase(){
+  var i = Math.floor(Math.random() * FRASES.length);
+  e3("frase").innerHTML = FRASES[i] + '<span class="ass">— Dr. André Rossanno</span>';
+  e3("frase").setAttribute("data-i", i);
+}
+function montaFilosofia(){
+  sorteiaFrase();
+  var ul = e3("listaFrases"); ul.innerHTML = "";
+  for(var i=0;i<FRASES.length;i++){
+    var li = document.createElement("li");
+    li.textContent = FRASES[i];
+    ul.appendChild(li);
+  }
+  e3("fSorteia").addEventListener("click", sorteiaFrase);
+  e3("fTodas").addEventListener("click", function(){
+    var t = e3("todas"); var ab = t.classList.toggle("abre");
+    this.textContent = ab ? "Esconder" : "Ver todas";
+  });
+  e3("fProj").addEventListener("click", function(){
+    var i = +e3("frase").getAttribute("data-i");
+    e3("projTexto").textContent = FRASES[i];
+    e3("projetor").classList.add("abre");
+  });
+  e3("projFechar").addEventListener("click", function(){
+    e3("projetor").classList.remove("abre");
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape") e3("projetor").classList.remove("abre");
+  });
+}
+
+/* ===================== START DO PASS 3 ===================== */
+(function(){
+  var start = function(){
+    if(!estado.quiz) estado.quiz = {};
+    if(!estado.pegs) estado.pegs = {};
+    if(!estado.check) estado.check = {};
+    montaPegs();
+    montaCasos();
+    montaFiltros();
+    montaQuiz();
+    montaFcFiltros();
+    montaFlash();
+    montaChecklist();
+    montaFilosofia();
+    pintaHipocampo();
+    e3("qReset").addEventListener("click", function(){
+      estado.quiz = {}; salva(); montaQuiz(); pintaHipocampo();
+    });
+    e3("pegReset").addEventListener("click", function(){
+      estado.pegs = {}; salva(); montaPegs(); pintaHipocampo();
+    });
+    montaIndice();
+  };
+  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", start); }
+  else { start(); }
+})();
+
+(function(){
+  var start = function(){
+    montaMatriz();
+    montaComorb();
+    ligaStop("stopPonte");
+    ligaStop("stopPDE5");
+  };
+  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", start); }
+  else { start(); }
+})();
+
+</script>
+</body>
+</html>
