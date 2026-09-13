@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas Mental · SCC Cap.13B — Ivabradina, trimetazidina, ranolazina e nicorandil</title>
+<!--
+  ATLAS MENTAL — SÉRIE SÍNDROME CORONARIANA CRÔNICA
+  Capítulo 13B — Quando as três travas estão fechadas
+  Arquivo único, offline, sem libs, sem imagens, sem URL externa.
+  LS_KEY: atlasCardio_scc_cap13b_v1
+  Nome público: scc-capitulo13b-ivabradina-trimetazidina-ranolazina-nicorandil.html
+  Assinatura visual: SIMULADOR DE DUAS AGULHAS (PA e FC)
+  Assinatura cognitiva: "O que esta droga cobra do paciente?"
+-->
+<style>
+
+:root{
+  --navy:#12263f; --navy2:#1d3557; --papel:#f7f9fb; --card:#ffffff;
+  --linha:#dbe3ec; --texto:#22303f; --suave:#5b6b7c;
+  --verm:#c62828; --verm-b:#fdecec;
+  --verde:#1e8f5e; --verde-b:#e8f7ef;
+  --azul:#10758f; --azul-b:#e6f2f6;
+  --ouro:#a8760a; --ouro-b:#fdf4e0;
+  --roxo:#6a4c93;
+  --r:14px; --r2:10px;
+  --f:'Nunito','Trebuchet MS',Arial,sans-serif;
+  --m:'IBM Plex Mono','Courier New',monospace;
+  --s:'Dancing Script',cursive;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--f); color:var(--texto); background:var(--papel);
+  line-height:1.6; font-size:17px; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+b,strong{color:var(--navy)}
+h1,h2,h3{line-height:1.2;margin:0 0 10px}
+p{margin:0 0 12px}
+a{color:var(--azul)}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+
+/* ---------- NAV + PAINEL DE TRÊS MOSTRADORES ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(18,38,63,.97);color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.nav>.in{max-width:960px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:10px}
+.nav .marca{font-weight:900;font-size:.9rem;letter-spacing:.02em;white-space:nowrap}
+.nav .marca span{display:block;font-weight:600;font-size:.68rem;opacity:.75}
+.nav .espaco{flex:1}
+.nav button{font-family:var(--f);cursor:pointer}
+.btn-idx{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;padding:7px 14px;font-size:.8rem;font-weight:700}
+.btn-idx:hover{background:rgba(255,255,255,.22)}
+.mostradores{display:flex;gap:6px}
+.mos{width:52px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);
+  border-radius:9px;padding:3px 4px;text-align:center;line-height:1.1}
+.mos .rot{font-family:var(--m);font-size:.55rem;opacity:.7;letter-spacing:.04em}
+.mos .val{font-weight:900;font-size:.82rem;color:#fff}
+.mos.trava{border-color:var(--verm);background:rgba(198,40,40,.32)}
+.mos.livre{border-color:#57d39b;background:rgba(30,143,94,.3)}
+@media(max-width:520px){.nav .marca span{display:none}.mos{width:46px}}
+@media(max-width:420px){
+  .nav>.in{padding:8px 10px;gap:6px}
+  .nav .marca{font-size:.78rem}
+  .mostradores{gap:4px}
+  .mos{width:38px;padding:2px}
+  .mos .rot{font-size:.5rem}.mos .val{font-size:.74rem}
+  .btn-idx{padding:6px 10px;font-size:.72rem}
+}
+
+.painel{display:none;background:#0f2035;color:#fff;border-bottom:1px solid rgba(255,255,255,.14)}
+.painel.abre{display:block}
+.painel .in{max-width:960px;margin:0 auto;padding:14px 16px}
+.painel h4{margin:0 0 8px;font-size:.78rem;font-family:var(--m);opacity:.7;font-weight:600}
+.painel ol{margin:0 0 14px;padding-left:20px;columns:2;font-size:.85rem}
+@media(max-width:600px){.painel ol{columns:1}}
+.painel ol a{color:#cfe6ee;text-decoration:none}
+.painel ol a:hover{text-decoration:underline}
+.ajustes{display:flex;flex-wrap:wrap;gap:8px}
+.ajustes button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:7px 13px;font-size:.78rem;font-weight:700}
+.ajustes button[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff}
+
+.barra{height:4px;background:rgba(255,255,255,.14)}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--azul),#57d39b);
+  transition:width .3s}
+
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(160deg,#12263f,#1d3557 60%,#123a4a);color:#fff;padding:34px 0 30px}
+.hero .cap{font-family:var(--m);font-size:.72rem;letter-spacing:.08em;color:#8fd0e4;margin-bottom:8px}
+.hero h1{font-size:2rem;font-weight:900;color:#fff;margin-bottom:6px}
+@media(max-width:600px){.hero h1{font-size:1.55rem}}
+.hero .sub{font-size:1.02rem;opacity:.9;max-width:62ch;margin-bottom:16px}
+.hero b,.hero strong{color:#fff}
+.pergunta{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+  border-left:4px solid #8fd0e4;border-radius:var(--r2);padding:14px 16px;max-width:56ch}
+.pergunta .qfrase{font-size:1.12rem;font-weight:900;color:#fff;margin:0}
+.pergunta .n{font-size:.86rem;opacity:.82;margin:6px 0 0}
+
+/* ---------- SEÇÕES ---------- */
+section{padding:30px 0;border-top:1px solid var(--linha)}
+.sechead{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.sechead .num{font-family:var(--m);font-size:.8rem;color:var(--azul);font-weight:700;flex:none}
+.sechead h2{font-size:1.35rem;font-weight:900;color:var(--navy);margin:0}
+@media(max-width:600px){.sechead h2{font-size:1.15rem}}
+.lead{color:var(--suave);max-width:70ch}
+
+.card{background:var(--card);border:1px solid var(--linha);border-radius:var(--r);padding:16px;margin:12px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.cmp2:not(.duo){grid-template-columns:1fr}}
+.cmp2>*{min-width:0}
+@media(max-width:400px){.cmp2.duo{gap:7px}.cmp2.duo .card{padding:11px}.cmp2.duo .chip{font-size:.74rem;padding:4px 9px}}
+
+.caixa{border-radius:var(--r2);padding:13px 15px;margin:12px 0;border:1px solid}
+.caixa h4{margin:0 0 6px;font-size:.95rem}
+.c-verm{background:var(--verm-b);border-color:#f3c7c7}.c-verm h4{color:var(--verm)}
+.c-verde{background:var(--verde-b);border-color:#bfe6d2}.c-verde h4{color:var(--verde)}
+.c-azul{background:var(--azul-b);border-color:#bcdbe4}.c-azul h4{color:var(--azul)}
+.c-ouro{background:var(--ouro-b);border-color:#eddcae}.c-ouro h4{color:var(--ouro)}
+.caixa p:last-child{margin-bottom:0}
+
+.badge{display:inline-block;font-family:var(--m);font-size:.66rem;font-weight:700;
+  padding:2px 7px;border-radius:999px;vertical-align:middle}
+.conferir{background:var(--ouro-b);color:var(--ouro);border:1px solid #eddcae}
+
+.ancora{font-family:var(--m);font-weight:700;letter-spacing:.02em;color:var(--navy);
+  background:var(--ouro-b);border:1px dashed #e0c88a;border-radius:8px;padding:3px 9px;
+  display:inline-block;font-size:.82rem}
+
+.chip{display:inline-block;border:1px solid var(--linha);background:#fff;border-radius:999px;
+  padding:5px 12px;font-size:.83rem;font-weight:700;color:var(--navy);margin:3px 3px 0 0}
+
+/* ---------- ABERTURA: TRÊS TRAVAS ---------- */
+.travas{background:linear-gradient(150deg,#0f2035,#173650);border-radius:var(--r);
+  padding:18px;color:#fff;margin:16px 0}
+.travas b,.travas strong{color:#fff}
+.travas h3{color:#fff;font-size:1.1rem}
+.travas .obs{font-size:.85rem;opacity:.8}
+.slid{margin:12px 0}
+.slid label{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:.85rem;font-weight:700;margin-bottom:4px}
+.slid label .v{font-family:var(--m);font-size:1rem;color:#8fd0e4}
+.slid input[type=range]{display:block;width:100%;margin:0;accent-color:#57d39b;height:26px}
+.presets{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.presets button{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:7px 12px;font-size:.76rem;font-weight:700;cursor:pointer;font-family:var(--f)}
+.presets button:hover{background:rgba(255,255,255,.2)}
+.presets button.on{background:#fff;color:var(--navy);border-color:#fff}
+.saida{margin-top:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r2);padding:13px}
+.saida .t{font-family:var(--m);font-size:.68rem;letter-spacing:.06em;opacity:.7;margin-bottom:7px}
+.droga{display:inline-block;border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:700;
+  margin:3px 4px 0 0;border:1px solid}
+.droga.ok{background:rgba(30,143,94,.26);border-color:#57d39b;color:#d8f7e8}
+.droga.dois{background:rgba(16,117,143,.3);border-color:#7dc7dc;color:#dbf0f6}
+.droga.no{background:rgba(198,40,40,.22);border-color:#e08585;color:#f8d9d9;
+  text-decoration:line-through;opacity:.75}
+.motivo{font-size:.85rem;opacity:.88;margin-top:9px;border-top:1px solid rgba(255,255,255,.16);padding-top:9px}
+
+/* ---------- FAMÍLIAS ---------- */
+.fam{border:1px solid var(--linha);border-radius:var(--r);background:#fff;padding:14px;
+  cursor:pointer;text-align:left;font-family:var(--f);font-size:1rem;color:var(--texto);width:100%}
+.fam:hover{border-color:var(--azul);box-shadow:0 2px 10px rgba(16,117,143,.12)}
+.fam .nome{font-weight:900;color:var(--navy);font-size:1rem}
+.fam .tag{font-family:var(--m);font-size:.66rem;color:var(--suave)}
+.fam.aqui{border-left:5px solid var(--azul)}
+.fam.la{opacity:.62;border-left:5px dashed var(--suave);cursor:default}
+.fam .corpo{display:none;margin-top:10px;font-size:.9rem;border-top:1px solid var(--linha);padding-top:9px}
+.fam.aberto .corpo{display:block}
+
+.seta{font-family:var(--m);color:var(--azul);font-weight:700}
+.cadeia{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0}
+.elo{background:var(--azul-b);border:1px solid #bcdbe4;color:var(--navy);border-radius:9px;
+  padding:8px 12px;font-weight:800;font-size:.88rem;opacity:.28;transition:opacity .35s}
+.elo.on{opacity:1}
+.elo.alvo{background:var(--verde-b);border-color:#bfe6d2}
+
+table.t{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0}
+table.t th,table.t td{border:1px solid var(--linha);padding:8px 9px;text-align:left;vertical-align:top}
+table.t th{background:#eef3f8;color:var(--navy);font-weight:800}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.prof-hide{display:none}
+body.prof .prof-hide{display:block}
+.profbox{background:#f2f6fa;border:1px dashed var(--navy2);border-radius:var(--r2);padding:12px;margin:10px 0}
+.profbox h4{margin:0 0 6px;color:var(--navy2);font-size:.9rem;font-family:var(--m)}
+body.redmov *{animation:none!important;transition:none!important}
+
+footer{background:var(--navy);color:#fff;padding:26px 0;margin-top:10px;text-align:center}
+footer .ass{font-family:var(--s);font-size:1.5rem}
+footer .site{font-size:.8rem;opacity:.7}
+
+
+/* ---------- SIMULADOR DE DUAS AGULHAS ---------- */
+.agulhas{background:linear-gradient(150deg,#0f2035,#173650);border-radius:var(--r);padding:18px;color:#fff;margin:16px 0}
+.agulhas h3{color:#fff;font-size:1.1rem}
+.agulhas b,.agulhas strong{color:#fff}
+.agulhas .obs{font-size:.85rem;opacity:.82}
+.mostr{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.mtr{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:var(--r2);
+  padding:14px;text-align:center}
+.mtr .rot{font-family:var(--m);font-size:.68rem;letter-spacing:.07em;opacity:.72}
+.mtr .barra2{height:12px;background:rgba(255,255,255,.14);border-radius:99px;margin:11px 0 8px;overflow:hidden}
+.mtr .barra2 i{display:block;height:100%;width:100%;border-radius:99px;background:#57d39b;transition:width .6s ease}
+.mtr.cai .barra2 i{background:#ffb4b4}
+.mtr .est{font-weight:900;font-size:1.05rem}
+.mtr.cai .est{color:#ffb4b4}
+.mtr.igual .est{color:#8fd0e4}
+.escolhas{display:flex;flex-wrap:wrap;gap:7px}
+.escolhas button{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:8px 14px;font-size:.8rem;font-weight:800;cursor:pointer;font-family:var(--f)}
+.escolhas button:hover{background:rgba(255,255,255,.2)}
+.escolhas button.on{background:#fff;color:var(--navy);border-color:#fff}
+.leitura{margin-top:13px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r2);padding:13px;font-size:.9rem;min-height:74px}
+.leitura .tt{font-weight:900;margin-bottom:5px}
+
+/* mini agulhas no nav */
+.mini{display:flex;gap:6px}
+.mini .p{width:56px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);
+  border-radius:9px;padding:3px 4px;text-align:center;line-height:1.1}
+.mini .p .rot{font-family:var(--m);font-size:.55rem;opacity:.7}
+.mini .p .val{font-weight:900;font-size:.82rem}
+.mini .p.cai{border-color:#e08585;background:rgba(198,40,40,.3)}
+.mini .p.cai .val{color:#ffc9c9}
+.mini .p.igual{border-color:#7dc7dc;background:rgba(16,117,143,.3)}
+.mini .p.igual .val{color:#bfe7f2}
+@media(max-width:520px){.mini .p{width:48px}}
+@media(max-width:420px){.mini{gap:4px}.mini .p{width:42px;padding:2px}.mini .p .rot{font-size:.5rem}.mini .p .val{font-size:.74rem}}
+
+/* ---------- FICHA DE DROGA ---------- */
+.ficha{border:1px solid var(--linha);background:#fff;border-radius:var(--r);overflow:hidden;margin:12px 0}
+.ficha .top{padding:13px 16px;color:#fff}
+.ficha .top .nome{font-size:1.15rem;font-weight:900;color:#fff}
+.ficha .top .sub{font-size:.83rem;opacity:.88}
+.f-iva .top{background:linear-gradient(135deg,#1d3557,#2c6f8f)}
+.f-tri .top{background:linear-gradient(135deg,#14603f,#1e8f5e)}
+.f-ran .top{background:linear-gradient(135deg,#0d5468,#10758f)}
+.f-nic .top{background:linear-gradient(135deg,#7a4a12,#a8760a)}
+.ficha .corpo{padding:14px 16px}
+.ficha table.t{margin:0}
+.selo{display:inline-block;border-radius:999px;padding:3px 11px;font-size:.74rem;font-weight:800;
+  border:1px solid;margin:3px 4px 0 0}
+.s-pa{background:var(--azul-b);border-color:#bcdbe4;color:#0d5468}
+.s-fc{background:var(--verde-b);border-color:#bfe6d2;color:#14603f}
+.s-al{background:var(--verm-b);border-color:#f3c7c7;color:var(--verm)}
+
+/* ---------- MNEMONICOS DE QT ---------- */
+.mnem{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.mnem{grid-template-columns:1fr}}
+.mnem .bl{border:1px solid var(--linha);background:#fff;border-radius:var(--r2);padding:13px}
+.mnem .pal{font-family:var(--m);font-size:1.5rem;font-weight:800;color:var(--ouro);letter-spacing:.14em;margin-bottom:8px}
+.mnem li{margin-bottom:4px;font-size:.89rem}
+.mnem li b{color:var(--ouro);font-family:var(--m)}
+.mnem ul{list-style:none;padding:0;margin:0}
+
+/* ---------- DOIS DESFECHOS ---------- */
+.duplo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:600px){.duplo{grid-template-columns:1fr}}
+.dl{border-radius:var(--r);padding:15px;color:#fff}
+.dl.nao{background:linear-gradient(150deg,#7f1d1d,#a83240)}
+.dl.sim{background:linear-gradient(150deg,#14603f,#1e8f5e)}
+.dl b,.dl strong{color:#fff}
+.dl .ctx{font-family:var(--m);font-size:.7rem;letter-spacing:.06em;opacity:.8}
+.dl .res{font-size:1.02rem;font-weight:900;margin:5px 0}
+.dl p{font-size:.87rem;margin:0}
+
+/* ---------- MATRIZ DO TRATAMENTO DA ANGINA ---------- */
+.matriz{display:grid;grid-template-columns:64px 1fr 1fr;gap:6px;margin:14px 0}
+.mx-cab{border-radius:8px;padding:8px;text-align:center;font-weight:900;color:#fff;font-size:.82rem}
+.mx-fe1{background:var(--navy2)} .mx-fe2{background:#8e1f2b}
+.mx-sub{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mx-sub .r{border-radius:7px;padding:5px;text-align:center;font-weight:800;font-size:.7rem;color:#fff}
+.mx-fe1 .r{background:#2c4f77} .mx-fe2 .r{background:#a83240}
+.mx-lat{border-radius:8px;background:var(--navy2);color:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;font-weight:900;font-size:.78rem;padding:6px 2px;text-align:center}
+.mx-lat.baixa{background:#5b6b7c}
+.mx-cel{border:1px solid var(--linha);border-radius:9px;background:#fff;padding:8px;
+  cursor:pointer;text-align:left;font-family:var(--f);width:100%;transition:box-shadow .2s,border-color .2s}
+.mx-cel:hover{border-color:var(--azul)}
+.mx-cel.acesa{border-color:var(--azul);border-width:2px;box-shadow:0 0 0 4px rgba(16,117,143,.14)}
+.mx-cel .g{background:var(--verde-b);border:1px solid #bfe6d2;border-radius:7px;padding:6px 7px;
+  font-size:.76rem;font-weight:800;color:#14603f;margin-bottom:5px;line-height:1.35}
+.mx-cel .a{background:var(--azul-b);border:1px solid #bcdbe4;border-radius:7px;padding:6px 7px;
+  font-size:.74rem;color:#0d5468;line-height:1.35}
+.mx-cel .vazio{font-size:.72rem;color:var(--suave);font-style:italic}
+.mx-par{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.legenda{display:flex;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--suave);margin-top:8px}
+.legenda i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+@media(max-width:640px){
+  .matriz{grid-template-columns:1fr;gap:6px}
+  .mx-lat{display:none}
+  .mx-cab.mx-col2{display:none}
+  .mx-cab.mx-fe1{background:var(--navy2);position:sticky;top:52px;z-index:5}
+  .mx-cab.mx-fe1 .fe-t{display:none}
+  .mx-cab.mx-fe1::before{content:"As duas colunas são a pressão";font-size:.74rem;opacity:.85}
+  .mx-par::before{
+    content:attr(data-rot);grid-column:1 / -1;background:var(--navy2);color:#fff;
+    border-radius:7px;padding:6px 8px;font-weight:900;font-size:.74rem;text-align:center;margin-top:8px}
+  .mx-par.mx-col2::before{background:#8e1f2b}
+  .mx-cel .g{font-size:.73rem}.mx-cel .a{font-size:.71rem}
+}
+.vizinha{background:#f2f6fa;border:1px solid var(--linha);border-radius:var(--r2);padding:12px;margin-top:10px;font-size:.9rem}
+.vizinha:empty{display:none}
+
+/* ---------- eixo horizontal ---------- */
+.eixo{border-left:4px solid var(--azul);background:#fff;border:1px solid var(--linha);
+  border-left:4px solid var(--azul);border-radius:var(--r2);padding:12px 14px;margin:10px 0}
+.eixo .k{font-weight:900;color:var(--navy);font-size:.95rem}
+.eixo .d{font-size:.88rem;color:var(--suave)}
+
+/* ---------- armadilhas ---------- */
+.arm{border:1px solid #f3c7c7;background:var(--verm-b);border-radius:var(--r);padding:14px;margin:11px 0}
+.arm h4{margin:0 0 6px;color:var(--verm);font-size:1rem}
+.arm.boa{border-color:#bfe6d2;background:var(--verde-b)}
+.arm.boa h4{color:var(--verde)}
+.arm p:last-child{margin-bottom:0}
+.stop{background:#7f1d1d;color:#fff;border-radius:var(--r);padding:16px;margin:12px 0;text-align:center}
+.stop b,.stop strong{color:#fff}
+.stop .tt{font-size:1.25rem;font-weight:900;letter-spacing:.02em}
+.stop button{margin-top:10px;background:#fff;color:#7f1d1d;border:0;border-radius:999px;
+  padding:9px 18px;font-weight:900;font-family:var(--f);cursor:pointer;font-size:.9rem}
+.stop .resposta{display:none;margin-top:12px;font-size:.92rem;text-align:left;
+  background:rgba(255,255,255,.12);border-radius:var(--r2);padding:12px}
+.stop.revelado .resposta{display:block}
+.stop.revelado button{display:none}
+
+/* ---------- PALÁCIO ---------- */
+.salas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.salas{grid-template-columns:1fr}}
+.sala{border-radius:var(--r);padding:16px;color:#fff;min-height:150px;display:flex;flex-direction:column}
+.sala h4{margin:0 0 4px;font-size:1.02rem;color:#fff}
+.sala .placa{font-family:var(--m);font-size:.68rem;letter-spacing:.06em;opacity:.75;margin-bottom:8px}
+.sala p{font-size:.87rem;margin:0 0 8px}
+.sala b,.sala strong{color:#fff}
+.s1{background:linear-gradient(155deg,#1d3557,#2c4f77)}
+.s2{background:linear-gradient(155deg,#14603f,#1e8f5e)}
+.s3{background:linear-gradient(155deg,#0d5468,#10758f)}
+.sala .alarme{margin-top:auto;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+  border-radius:8px;padding:7px 9px;font-size:.78rem;font-weight:800}
+
+
+/* ---------- CASOS ---------- */
+.caso{border:1px solid var(--linha);background:#fff;border-radius:var(--r);padding:15px;margin:11px 0}
+.caso .cab{font-family:var(--m);font-size:.7rem;color:var(--azul);letter-spacing:.05em;margin-bottom:5px}
+.caso .vin{font-size:.95rem;margin-bottom:9px}
+.caso .perg{font-weight:800;color:var(--navy);margin-bottom:9px}
+.caso button.rev{background:var(--navy);color:#fff;border:0;border-radius:999px;padding:8px 16px;
+  font-weight:800;font-size:.83rem;cursor:pointer;font-family:var(--f)}
+.caso .resp{display:none;margin-top:11px;border-top:1px solid var(--linha);padding-top:10px;font-size:.9rem}
+.caso.aberto .resp{display:block}
+.caso.aberto button.rev{display:none}
+.caso .tag{display:inline-block;background:var(--ouro-b);color:var(--ouro);border:1px solid #eddcae;
+  border-radius:999px;padding:2px 9px;font-size:.7rem;font-family:var(--m);font-weight:700;margin-top:7px}
+
+/* ---------- QUIZ ---------- */
+.filtros{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.filtros button{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:6px 13px;
+  font-size:.79rem;font-weight:700;cursor:pointer;font-family:var(--f);color:var(--navy)}
+.filtros button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.q{border:1px solid var(--linha);background:#fff;border-radius:var(--r);padding:15px;margin:11px 0}
+.q .cab{font-family:var(--m);font-size:.7rem;color:var(--suave);margin-bottom:6px}
+.q .enun{font-weight:700;color:var(--navy);margin-bottom:10px}
+.alt{display:block;width:100%;text-align:left;border:1px solid var(--linha);background:#fff;
+  border-radius:var(--r2);padding:10px 12px;margin-bottom:7px;font-size:.9rem;cursor:pointer;
+  font-family:var(--f);color:var(--texto);line-height:1.45}
+.alt:hover{border-color:var(--azul)}
+.alt .l{font-weight:900;color:var(--navy);margin-right:6px}
+.q.resp .alt{cursor:default}
+.q.resp .alt.certa{border-color:var(--verde);background:var(--verde-b)}
+.q.resp .alt.errada{border-color:#f3c7c7;background:var(--verm-b);opacity:.85}
+.q .porque{display:none;margin-top:10px;border-top:1px solid var(--linha);padding-top:10px;font-size:.87rem}
+.q.resp .porque{display:block}
+.q .porque li{margin-bottom:5px}
+.q .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.q .meta span{font-size:.75rem;border-radius:999px;padding:3px 10px;border:1px solid}
+.q .meta .chave{background:var(--azul-b);border-color:#bcdbe4;color:#0d5468}
+.q .meta .peg{background:var(--verm-b);border-color:#f3c7c7;color:var(--verm)}
+.q .meta .anc{background:var(--ouro-b);border-color:#eddcae;color:var(--ouro);font-family:var(--m);font-weight:700}
+.placar{background:var(--navy);color:#fff;border-radius:var(--r);padding:13px 16px;
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:.9rem}
+.placar b{color:#8fd0e4;font-size:1.15rem}
+.placar button{margin-left:auto;background:rgba(255,255,255,.15);color:#fff;
+  border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 14px;font-weight:700;
+  font-size:.8rem;cursor:pointer;font-family:var(--f)}
+
+/* ---------- FLASHCARDS ---------- */
+.fc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+@media(max-width:780px){.fc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.fc-grid{grid-template-columns:1fr}}
+.fc{perspective:1000px;min-height:128px;cursor:pointer;background:none;border:0;padding:0;font-family:var(--f)}
+.fc .in{position:relative;width:100%;height:100%;min-height:128px;transition:transform .5s;
+  transform-style:preserve-3d}
+.fc.vira .in{transform:rotateY(180deg)}
+.fc .f,.fc .v{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r2);
+  padding:12px;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:.87rem;line-height:1.4;border:1px solid}
+.fc .f{background:#fff;border-color:var(--linha);color:var(--navy);font-weight:800}
+.fc .v{background:var(--navy);border-color:var(--navy);color:#fff;transform:rotateY(180deg);font-weight:600}
+
+/* ---------- HIPOCAMPO ---------- */
+.hipo{background:#0f2035;color:#fff;border-radius:var(--r);padding:18px}
+.hipo h3{color:#fff}
+.hipo b,.hipo strong{color:#fff}
+.hipo .num{display:flex;gap:20px;flex-wrap:wrap;margin:10px 0 14px}
+.hipo .num div{font-size:.78rem;opacity:.75}
+.hipo .num div b{display:block;font-size:1.5rem;color:#8fd0e4;opacity:1}
+.fila{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:var(--r2);
+  padding:12px;font-size:.88rem}
+.fila ul{margin:6px 0 0;padding-left:18px}
+.check{margin-top:14px}
+.check label{display:flex;gap:9px;align-items:flex-start;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--r2);padding:10px 12px;margin-bottom:7px;
+  font-size:.88rem;cursor:pointer}
+.check input{margin-top:3px;accent-color:#57d39b;width:17px;height:17px;flex:none}
+.check label.feito{opacity:.55;text-decoration:line-through}
+
+/* ---------- FILOSOFIA ---------- */
+.filo{background:linear-gradient(160deg,#12263f,#1d3557);border-radius:var(--r);padding:20px;color:#fff}
+.filo b,.filo strong{color:#fff}
+.frase{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-left:4px solid var(--ouro);
+  border-radius:var(--r2);padding:16px;font-size:1.06rem;line-height:1.55;min-height:82px}
+.frase .ass{display:block;margin-top:9px;font-family:var(--s);font-size:1.25rem;color:#f0d69a}
+.filo .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.filo .btns button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);
+  border-radius:999px;padding:8px 15px;font-weight:700;font-size:.82rem;cursor:pointer;font-family:var(--f)}
+.filo .todas{display:none;margin-top:13px;font-size:.9rem}
+.filo .todas.abre{display:block}
+.filo .todas li{margin-bottom:7px;opacity:.9}
+.projetor{position:fixed;inset:0;z-index:200;background:#0b1626;display:none;
+  align-items:center;justify-content:center;padding:8vw;text-align:center}
+.projetor.abre{display:flex}
+.projetor p{color:#fff;font-size:clamp(1.3rem,4.6vw,2.6rem);font-weight:800;line-height:1.35;max-width:22ch}
+.projetor .fechar{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);color:#fff;
+  border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px;font-weight:700;
+  cursor:pointer;font-family:var(--f)}
+
+/* ---------- 60 SEGUNDOS ---------- */
+.rev60{border:1px solid var(--linha);background:#fff;border-radius:var(--r);padding:16px}
+.rev60 ol{margin:0;padding-left:20px}
+.rev60 li{margin-bottom:7px;font-size:.92rem}
+
+.fim{background:linear-gradient(160deg,#0d5468,#12263f);border-radius:var(--r);padding:24px;color:#fff;text-align:center}
+.fim b,.fim strong{color:#fff}
+.fim h3{color:#fff;font-size:1.3rem}
+.fim .grande{font-family:var(--m);font-size:1.05rem;letter-spacing:.05em;color:#8fd0e4;font-weight:700;margin:12px 0}
+
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="in">
+    <div class="marca">SCC · Cap.13B<span>Quando não há espaço</span></div>
+    <div class="espaco"></div>
+    <div class="mini" id="miniNav" aria-label="Custo hemodinâmico da droga selecionada">
+      <div class="p igual" id="pPA"><div class="rot">PA</div><div class="val">=</div></div>
+      <div class="p igual" id="pFC"><div class="rot">FC</div><div class="val">=</div></div>
+    </div>
+    <button class="btn-idx" id="btnIdx" aria-expanded="false">Índice e ajustes</button>
+  </div>
+  <div class="barra"><i id="barra"></i></div>
+</nav>
+
+<div class="painel" id="painel">
+  <div class="in">
+    <h4>Índice</h4>
+    <ol id="indice"></ol>
+    <h4>Ajustes</h4>
+    <div class="ajustes">
+      <button id="tProf" aria-pressed="false">Modo professor</button>
+      <button id="tMov" aria-pressed="false">Reduzir movimento</button>
+      <button id="tReset">Reiniciar progresso</button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="cap">Síndrome Coronariana Crônica · Capítulo 13B</div>
+    <h1>Quando as três travas estão fechadas</h1>
+    <p class="sub">Ivabradina, trimetazidina, ranolazina e nicorandil. O Capítulo 13A terminou num paciente sem espaço: fração de ejeção baixa, pressão justa, frequência lenta — e angina limitante mesmo assim. A célula mais apertada da matriz não estava vazia. Estas são as drogas que moram nela.</p>
+    <div class="pergunta">
+      <p class="qfrase">O que esta droga cobra do paciente?</p>
+      <p class="n">No 13A a pergunta era qual alavanca dava para puxar. Aqui ela vira o avesso: entre as drogas que sobraram, qual cobra pressão, qual cobra frequência, e qual não cobra nada.</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ===================== ABERTURA ===================== -->
+<section id="s01">
+  <div class="sechead"><span class="num">01</span><h2>O simulador de duas agulhas</h2></div>
+  <p class="lead">Duas barras: pressão arterial e frequência cardíaca. Escolha uma droga e veja o que ela move. Antes de qualquer explicação — o capítulo inteiro nasce do que você vai ver aqui.</p>
+
+  <div class="agulhas">
+    <h3>Escolha a droga</h3>
+    <p class="obs">As barras representam o que a droga faz com a pressão e com a frequência deste paciente. Barra que encolhe é custo hemodinâmico; barra que fica é espaço preservado.</p>
+
+    <div class="escolhas" id="escolhas"></div>
+
+    <div class="mostr">
+      <div class="mtr igual" id="mtrPA">
+        <div class="rot">PRESSÃO ARTERIAL</div>
+        <div class="barra2"><i></i></div>
+        <div class="est">—</div>
+      </div>
+      <div class="mtr igual" id="mtrFC">
+        <div class="rot">FREQUÊNCIA CARDÍACA</div>
+        <div class="barra2"><i></i></div>
+        <div class="est">—</div>
+      </div>
+    </div>
+
+    <div class="leitura" id="leitura"></div>
+  </div>
+
+  <div class="caixa c-azul">
+    <h4>O que você acabou de ver</h4>
+    <p>Betabloqueador e não di-hidropiridínico derrubam as duas barras. Ivabradina derruba só uma. Trimetazidina e ranolazina não derrubam nenhuma. O nicorandil — repare bem — <b>derruba a pressão</b>: ele não pertence ao grupo dos neutros, embora esteja neste capítulo.</p>
+  </div>
+
+  <p class="lead" style="margin-top:14px"><em>“Toda droga cobra alguma coisa. Saber o preço é metade da prescrição.”</em> — Dr. André Rossanno</p>
+</section>
+
+<!-- ===================== N1 — RECONHECIMENTO ===================== -->
+<section id="s02">
+  <div class="sechead"><span class="num">02</span><h2>Os quatro deste capítulo — e o que saiu da lista</h2></div>
+  <p class="lead">Quatro drogas com quatro mecanismos completamente diferentes entre si. A única coisa que as une é a vaga que ocupam: entram quando as classes hemodinâmicas do 13A não cabem, ou não bastam.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <p style="font-weight:900;color:var(--navy);margin-bottom:6px">Onde cada uma age</p>
+      <table class="t">
+        <tr><td><b>Ivabradina</b></td><td>Canal I<sub>f</sub> do nó sinusal</td></tr>
+        <tr><td><b>Trimetazidina</b></td><td>Metabolismo do miócito</td></tr>
+        <tr><td><b>Ranolazina</b></td><td>Metabolismo e canal de sódio</td></tr>
+        <tr><td><b>Nicorandil</b></td><td>Canal de potássio e óxido nítrico</td></tr>
+      </table>
+    </div>
+    <div class="caixa c-verm" style="margin:0">
+      <h4>Alopurinol: fora</h4>
+      <p>Aparece na aula apenas para sair da lista: <b>não é mais considerado um antianginoso eficaz</b>. Se ele aparecer numa alternativa como opção antianginosa, é distrator.</p>
+      <p style="margin-bottom:0">Guarde a ausência com a mesma força com que você guarda as presenças. Na prova, saber o que saiu vale tanto quanto saber o que entrou.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== IVABRADINA ===================== -->
+<section id="s03">
+  <div class="sechead"><span class="num">03</span><h2>Ivabradina: o freio que não mexe na pressão</h2></div>
+
+  <div class="ficha f-iva">
+    <div class="top">
+      <div class="nome">Ivabradina</div>
+      <div class="sub">Inibidor do canal iônico I<sub>f</sub> · atua inibindo o nó sinusal</div>
+    </div>
+    <div class="corpo">
+      <p><b>Só reduz frequência cardíaca.</b> Não altera pressão arterial, não altera contratilidade miocárdica, não altera condução intracardíaca. É a única droga do arsenal antianginoso com esse perfil — e é exatamente por isso que ela existe.</p>
+      <div>
+        <span class="selo s-fc">↓ frequência</span>
+        <span class="selo s-pa">pressão preservada</span>
+        <span class="selo s-pa">contratilidade preservada</span>
+        <span class="selo s-pa">condução preservada</span>
+      </div>
+
+      <div class="caixa c-verde" style="margin-top:14px">
+        <h4>Quando ela entra</h4>
+        <p style="margin-bottom:0">Pacientes com doença coronariana que <b>não toleram betabloqueador</b>, ou que permanecem com <b>frequência acima de 60–75 bpm apesar do bloqueador</b>.</p>
+      </div>
+
+      <div class="caixa c-verm">
+        <h4>A trava absoluta</h4>
+        <p style="margin-bottom:0"><b>Não usar ivabradina se o ritmo for diferente de sinusal.</b> A droga age no nó sinusal — fora do ritmo sinusal, não há onde agir. Fibrilação atrial encerra a conversa.</p>
+      </div>
+
+      <div class="grid2" style="margin-top:12px">
+        <div class="caixa c-ouro" style="margin:0">
+          <h4>Dose máxima</h4>
+          <p style="margin-bottom:0"><b>7,5 mg duas vezes ao dia.</b></p>
+        </div>
+        <div class="caixa c-azul" style="margin:0">
+          <h4>Efeito adverso característico</h4>
+          <p style="margin-bottom:0"><b>Fosfenos</b> — pontos luminosos ao sair de ambientes escuros. O mesmo canal I<sub>f</sub> existe na retina.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p><span class="ancora">IVABRADINA = FREIO SEM CUSTO PRESSÓRICO</span></p>
+</section>
+
+<section id="s04">
+  <div class="sechead"><span class="num">04</span><h2>A ivabradina tem dois desfechos, não um</h2></div>
+  <p class="lead">Esta é a distinção que a prova cobra, e a que mais gente erra por decorar meia frase. A mesma droga responde coisas opostas conforme o paciente tenha ou não insuficiência cardíaca associada.</p>
+
+  <div class="duplo">
+    <div class="dl nao">
+      <div class="ctx">DAC CRÔNICA SEM IC ASSOCIADA</div>
+      <div class="res">Não reduz desfechos</div>
+      <p>Ela continua reduzindo frequência e aliviando angina — mas não é disso que estamos falando. Aqui ela é antianginoso, não droga de prognóstico.</p>
+    </div>
+    <div class="dl sim">
+      <div class="ctx">DAC CRÔNICA COM ICFER ASSOCIADA</div>
+      <div class="res">Reduz desfechos</div>
+      <p>É o território do <b>SHIFT</b>, discutido na aula de insuficiência cardíaca. Reduz hospitalizações — e é por isso que ela aparece na primeira linha das células de fração reduzida da matriz.</p>
+    </div>
+  </div>
+
+  <div class="caixa c-ouro">
+    <h4>Além da aula <span class="badge conferir">Conferir SBC 2025</span></h4>
+    <p>O material-base diz que a ivabradina <b>não reduz desfechos</b> na coronariopatia crônica sem insuficiência cardíaca. A literatura tem uma versão mais dura dessa mesma história: no <b>SIGNIFY</b>, o subgrupo com angina limitante apresentou <b>sinal de dano</b>, não apenas ausência de benefício. Não é a mesma afirmação — e a diferença muda a conduta.</p>
+    <p style="margin-bottom:0">No mesmo terreno: a associação de <b>ivabradina com verapamil ou diltiazem</b> é proscrita, por interação farmacocinética e somação de bradicardia. Isso não aparece na aula. Confira ambos na diretriz antes de fechar como definitivo.</p>
+  </div>
+</section>
+
+<!-- ===================== TRIMETAZIDINA ===================== -->
+<section id="s05">
+  <div class="sechead"><span class="num">05</span><h2>Trimetazidina: mudar o combustível, não o motor</h2></div>
+  <p class="lead">Todas as drogas do 13A mexiam na mecânica: frequência, contratilidade, calibre do vaso. A trimetazidina não toca em nada disso. Ela muda o que o miócito queima.</p>
+
+  <div class="ficha f-tri">
+    <div class="top">
+      <div class="nome">Trimetazidina</div>
+      <div class="sub">Bloqueia a oxidação de ácidos graxos · antianginoso de segunda linha</div>
+    </div>
+    <div class="corpo">
+      <div class="grid2">
+        <div>
+          <p style="font-weight:800;color:var(--navy);margin-bottom:6px">O que ela faz na isquemia</p>
+          <ul style="margin:0;padding-left:19px;font-size:.92rem">
+            <li>Bloqueia a oxidação de ácidos graxos</li>
+            <li>Reduz radicais livres durante a isquemia</li>
+            <li>Reduz o acúmulo de cálcio na isquemia</li>
+            <li>Preserva ATP</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-weight:800;color:var(--navy);margin-bottom:6px">O que ela não faz</p>
+          <div>
+            <span class="selo s-pa">não reduz PA</span>
+            <span class="selo s-pa">não reduz FC</span>
+          </div>
+          <p style="font-size:.9rem;margin-top:10px"><b>Hemodinamicamente neutra.</b> É a grande vantagem: pode ser usada quando a pressão está no limite ou a frequência já está baixa. E <b>pode ser usada na ICFER</b>.</p>
+        </div>
+      </div>
+
+      <div class="caixa c-ouro" style="margin-top:14px">
+        <h4>Além da aula <span class="badge conferir">Conferir SBC 2025</span></h4>
+        <p style="margin-bottom:0">A aula não menciona, mas existe restrição regulatória por <b>sintomas extrapiramidais</b> — parkinsonismo, tremor, síndrome das pernas inquietas —, com recomendação de suspender diante desses sintomas e cautela em idosos e em doença de Parkinson. É pegadinha clássica de prova e merece conferência na fonte.</p>
+      </div>
+    </div>
+  </div>
+
+  <p><span class="ancora">TRIMETAZIDINA = TROCA O COMBUSTÍVEL</span></p>
+</section>
+
+<!-- ===================== RANOLAZINA ===================== -->
+<section id="s06">
+  <div class="sechead"><span class="num">06</span><h2>Ranolazina: sódio dentro, cálcio atrás</h2></div>
+
+  <div class="ficha f-ran">
+    <div class="top">
+      <div class="nome">Ranolazina</div>
+      <div class="sub">Desvia o metabolismo de ácidos graxos para glicose · inibe o canal de sódio</div>
+    </div>
+    <div class="corpo">
+      <p>Dois mecanismos que a aula apresenta juntos:</p>
+      <ol style="margin:0 0 12px;padding-left:19px;font-size:.93rem">
+        <li><b>Desvia o metabolismo</b> de ácidos graxos para glicose — mais ATP por oxigênio consumido.</li>
+        <li><b>Reduz a sobrecarga de cálcio ao inibir o canal de sódio.</b> Menos sódio dentro da célula significa menos cálcio retido atrás dele, e um miócito isquêmico que relaxa melhor na diástole.</li>
+      </ol>
+      <div>
+        <span class="selo s-pa">não reduz PA</span>
+        <span class="selo s-pa">não reduz FC</span>
+        <span class="selo s-al">aumenta o QT</span>
+      </div>
+
+      <div class="caixa c-azul" style="margin-top:14px">
+        <h4>MERLIN-TIMI 36</h4>
+        <p style="margin-bottom:0">O ensaio testou a ranolazina em pacientes com <b>síndrome coronariana aguda sem supradesnivelamento</b>. A leitura que interessa: ela <b>melhora sintomas isquêmicos, mas não reduziu desfechos cardiovasculares maiores</b>. Alívio, não prognóstico.</p>
+      </div>
+
+      <div class="caixa c-verde">
+        <h4>A ressalva com asterisco — e ela cai</h4>
+        <p style="margin-bottom:0">A ranolazina <b>aumenta o intervalo QT</b>. Mas o próprio MERLIN traz a outra metade da frase: <b>não aumentou arritmias</b>. Prolongamento de QT medido no eletrocardiograma e arritmia clínica não são a mesma coisa — e quem só decorou “aumenta QT” marca a alternativa errada.</p>
+      </div>
+
+      <div class="caixa c-verm">
+        <h4>Onde o QT vira problema de verdade</h4>
+        <p style="margin-bottom:0">No paciente que já usa outras drogas que prolongam o QT. Aí a soma importa — e é por isso que as duas listas abaixo existem.</p>
+      </div>
+
+      <p style="font-size:.9rem;margin-top:12px"><b>Efeitos adversos mais comuns:</b> constipação, tontura e cefaleia.</p>
+    </div>
+  </div>
+</section>
+
+<section id="s07">
+  <div class="sechead"><span class="num">07</span><h2>As duas listas do QT</h2></div>
+  <p class="lead">Os dois mnemônicos da aula. Não são da ranolazina: são a companhia que torna a ranolazina uma decisão, e não um automatismo.</p>
+
+  <div class="mnem">
+    <div class="bl">
+      <div class="pal">PAPERS</div>
+      <ul>
+        <li><b>P</b>sicotrópicos</li>
+        <li><b>A</b>miodarona</li>
+        <li><b>P</b>rocinético (cisaprida)</li>
+        <li><b>E</b>scitalopram</li>
+        <li><b>R</b>emédio para depressão (amitriptilina, venlafaxina)</li>
+        <li><b>S</b>otalol</li>
+      </ul>
+    </div>
+    <div class="bl">
+      <div class="pal">CARDIO</div>
+      <ul>
+        <li><b>C</b>loroquina</li>
+        <li><b>A</b>zitromicina</li>
+        <li><b>R</b>itonavir / lopinavir</li>
+        <li><b>D</b>HE — os 3 hipo</li>
+        <li><b>I</b>traconazol</li>
+        <li><b>O</b>floxacino</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="caixa c-ouro">
+    <h4>O item que esconde três</h4>
+    <p style="margin-bottom:0">O <b>D</b> de CARDIO é distúrbio hidroeletrolítico, e vale por três: <b>hipocalemia, hipomagnesemia e hipocalcemia</b>. É o único item da lista que você corrige com um frasco — e o primeiro que deve ser checado antes de culpar a droga.</p>
+  </div>
+</section>
+
+<!-- ===================== NICORANDIL ===================== -->
+<section id="s08">
+  <div class="sechead"><span class="num">08</span><h2>Nicorandil: o que não pertence ao grupo dos neutros</h2></div>
+
+  <div class="ficha f-nic">
+    <div class="top">
+      <div class="nome">Nicorandil</div>
+      <div class="sub">Abre canais de potássio · aumenta a síntese de óxido nítrico</div>
+    </div>
+    <div class="corpo">
+      <p>Dois mecanismos somados que produzem <b>vasodilatação coronariana e periférica</b>. Pelo braço do óxido nítrico, ele se parece com um nitrato; pelo braço do canal de potássio, não.</p>
+      <div>
+        <span class="selo s-al">↓ pré-carga</span>
+        <span class="selo s-al">↓ pós-carga</span>
+        <span class="selo s-fc">vasodilatação coronariana</span>
+      </div>
+
+      <div class="caixa c-verm" style="margin-top:14px">
+        <h4>Por que ele é o intruso deste capítulo</h4>
+        <p style="margin-bottom:0">Reduzir pré e pós-carga significa <b>mexer na pressão</b>. O nicorandil está aqui por ser pouco usado, não por ser hemodinamicamente neutro. Se a questão perguntar quais antianginosos não alteram pressão nem frequência, a resposta é <b>trimetazidina e ranolazina</b> — o nicorandil fica de fora.</p>
+      </div>
+
+      <div class="caixa c-ouro">
+        <h4>Além da aula <span class="badge conferir">Conferir SBC 2025</span></h4>
+        <p style="margin-bottom:0">A aula não cita, mas o efeito adverso mais característico do nicorandil são as <b>ulcerações</b> — oral, gastrointestinal e perianal —, que costumam ser confundidas com outras causas e melhoram com a suspensão. Vale conferir na fonte antes de ensinar como definitivo.</p>
+      </div>
+    </div>
+  </div>
+
+  <p><span class="ancora">NICORANDIL = POTÁSSIO + NO, E MEXE NA PRESSÃO</span></p>
+</section>
+
+<!-- ===================== N3 — A MATRIZ DE VOLTA ===================== -->
+<section id="s09">
+  <div class="sechead"><span class="num">09</span><h2>A matriz vista pelo outro lado</h2></div>
+  <p class="lead">No Capítulo 13A você escolhia o paciente e a matriz respondia com as drogas. Aqui é o inverso: escolha uma droga deste capítulo e veja <b>onde ela mora</b>. O desenho que aparece diz mais sobre a droga do que qualquer lista de indicações.</p>
+
+  <div class="escolhas" id="escolhasMx" style="margin-bottom:12px"></div>
+
+  <div class="matriz" id="matriz">
+    <div></div>
+    <div class="mx-cab mx-fe1"><span class="fe-t">FE ≥ 50%</span>
+      <div class="mx-sub" style="margin-top:5px"><div class="r">PA ≥ 120/70</div><div class="r">PA &lt; 120/70</div></div>
+    </div>
+    <div class="mx-cab mx-fe2 mx-col2"><span class="fe-t">FE &lt; 50%</span>
+      <div class="mx-sub" style="margin-top:5px"><div class="r">PA ≥ 120/70</div><div class="r">PA &lt; 120/70</div></div>
+    </div>
+
+    <div class="mx-lat">FC ≥ 70</div>
+    <div class="mx-par" data-rot="FE ≥ 50%  ·  FC ≥ 70"><button class="mx-cel" data-k="A1" type="button"></button><button class="mx-cel" data-k="A2" type="button"></button></div>
+    <div class="mx-par mx-col2" data-rot="FE &lt; 50%  ·  FC ≥ 70"><button class="mx-cel" data-k="B1" type="button"></button><button class="mx-cel" data-k="B2" type="button"></button></div>
+
+    <div class="mx-lat baixa">FC &lt; 70</div>
+    <div class="mx-par" data-rot="FE ≥ 50%  ·  FC &lt; 70"><button class="mx-cel" data-k="A3" type="button"></button><button class="mx-cel" data-k="A4" type="button"></button></div>
+    <div class="mx-par mx-col2" data-rot="FE &lt; 50%  ·  FC &lt; 70"><button class="mx-cel" data-k="B3" type="button"></button><button class="mx-cel" data-k="B4" type="button"></button></div>
+  </div>
+
+  <div class="legenda">
+    <span><i style="background:var(--verde-b);border:1px solid #bfe6d2"></i>primeira linha</span>
+    <span><i style="background:var(--azul-b);border:1px solid #bcdbe4"></i>segunda linha</span>
+    <span><i style="background:#fff;border:2px solid var(--azul)"></i>onde a droga escolhida aparece</span>
+  </div>
+
+  <div class="vizinha" id="vizinha"></div>
+
+  <div class="caixa c-verde">
+    <h4>O que o desenho conta</h4>
+    <p>A <b>ivabradina</b> desenha uma faixa: aparece sempre que a frequência está alta, com ou sem pressão folgada, com ou sem ventrículo bom. É o retrato de uma droga que só cobra frequência.</p>
+    <p style="margin-bottom:0"><b>Ranolazina</b> e <b>trimetazidina</b> preenchem a matriz inteira — as oito células. Nenhuma outra droga do arsenal faz isso, e o motivo é simples: quem não cobra nada nunca é excluída por falta de espaço.</p>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="sechead"><span class="num">10</span><h2>Quem pode entrar na insuficiência cardíaca</h2></div>
+  <p class="lead">A lista do material-base, agora com os quatro deste capítulo no lugar certo. Olhe antes de ler a análise: dois dos quatro estão aqui, dois não.</p>
+
+  <div class="card">
+    <div>
+      <span class="chip">Betabloqueadores aprovados para ICFER</span><span class="chip">Di-hidropiridínicos</span><span class="chip">Nitratos</span><span class="chip">Trimetazidina</span><span class="chip">Ivabradina</span>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="caixa c-verde" style="margin:0">
+      <h4>Estão na lista</h4>
+      <p style="margin-bottom:0"><b>Trimetazidina</b>, por ser neutra e não pedir nada de um ventrículo que já não empurra. <b>Ivabradina</b>, que além de caber tem história própria de desfecho nessa população.</p>
+    </div>
+    <div class="caixa c-ouro" style="margin:0">
+      <h4>Não estão — e é diferente de estarem proibidas</h4>
+      <p style="margin-bottom:0"><b>Ranolazina</b> e <b>nicorandil</b> não constam desta lista da aula. Ausência de menção não é o mesmo que contraindicação: é ausência de recomendação formal nesse cenário. Não transforme uma coisa na outra.</p>
+    </div>
+  </div>
+
+  <div class="caixa c-verm">
+    <h4>E os que continuam fora</h4>
+    <p style="margin-bottom:0"><b>Verapamil e diltiazem</b> seguem ausentes, pelo mesmo motivo do 13A: inotropismo negativo. Essa ausência, sim, tem peso de alerta.</p>
+  </div>
+</section>
+
+<!-- ===================== N4 — ARMADILHAS ===================== -->
+<section id="s11">
+  <div class="sechead"><span class="num">11</span><h2>Armadilhas</h2></div>
+  <p class="lead">Sete. Quase todas nascem de decorar metade de uma frase.</p>
+
+  <div class="arm">
+    <h4>1 · “Ivabradina não reduz desfechos”</h4>
+    <p>Frase incompleta. <b>Não reduz na coronariopatia crônica sem insuficiência cardíaca associada.</b> Com ICFER associada, reduz — é o terreno do SHIFT.</p>
+    <p style="margin-bottom:0">Quem decora a metade errada erra nas duas direções: tira a droga de quem se beneficia e mantém em quem não se beneficia.</p>
+  </div>
+
+  <div class="arm">
+    <h4>2 · Ivabradina fora do ritmo sinusal</h4>
+    <p style="margin-bottom:0">A droga age no <b>nó sinusal</b>. Em fibrilação atrial não há nó sinusal comandando — não há onde agir. Se a vinheta trouxer ritmo diferente do sinusal, ivabradina sai da lista antes de qualquer outra consideração.</p>
+  </div>
+
+  <div class="arm">
+    <h4>3 · “Ranolazina aumenta o QT, logo é arritmogênica”</h4>
+    <p>O MERLIN-TIMI 36 traz a outra metade: aumentou o QT e <b>não aumentou arritmias</b>. Prolongamento eletrocardiográfico e evento clínico não são sinônimos.</p>
+    <p style="margin-bottom:0">O cuidado real é a <b>soma</b> com outras drogas que prolongam o QT — e aí valem PAPERS e CARDIO.</p>
+  </div>
+
+  <div class="arm">
+    <h4>4 · Confundir alívio com prognóstico</h4>
+    <p style="margin-bottom:0">A ranolazina <b>melhora sintomas isquêmicos</b> e não reduziu desfechos cardiovasculares maiores. Vale para quase tudo neste capítulo: são drogas de sintoma. O prognóstico ficou no Capítulo 12.</p>
+  </div>
+
+  <div class="arm">
+    <h4>5 · Achar que o nicorandil é neutro</h4>
+    <p style="margin-bottom:0">Ele reduz <b>pré e pós-carga</b>. Está neste capítulo por ser pouco usado, não por não cobrar pressão. Quando a pergunta for “quais não alteram PA nem FC”, a dupla é <b>trimetazidina e ranolazina</b>.</p>
+  </div>
+
+  <div class="arm">
+    <h4>6 · Alopurinol como antianginoso</h4>
+    <p style="margin-bottom:0">Saiu. A aula o menciona exatamente para dizer que <b>não é mais considerado eficaz</b> nessa indicação. Alternativa com alopurinol tratando angina é distrator.</p>
+  </div>
+
+  <div class="stop" id="stopSinusal">
+    <div class="tt">7 · A vinheta que parece fácil</div>
+    <p style="margin:8px 0 0;font-size:.92rem">Mulher de 74 anos, doença coronariana, angina limitante. Não tolerou betabloqueador. Frequência 96 bpm, pressão 108 × 64. O eletrocardiograma mostra <b>fibrilação atrial</b>.</p>
+    <button type="button">Ivabradina resolve?</button>
+    <div class="resposta">
+      <p><b>Não.</b> Tudo na vinheta empurra para a ivabradina: frequência alta, intolerância ao betabloqueador, pressão que não permite mais gastos. É exatamente assim que a pegadinha funciona — ela constrói o cenário perfeito e depois esconde o ritmo numa linha só.</p>
+      <p style="margin-bottom:0">Sem ritmo sinusal, a droga não tem alvo. Restam as neutras: <b>ranolazina e trimetazidina</b> — atenção ao QT se houver companhia das listas PAPERS e CARDIO.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== N5 — PALÁCIO ===================== -->
+<section id="s12">
+  <div class="sechead"><span class="num">12</span><h2>A Ala Metabólica do Hospital Coronário</h2></div>
+  <p class="lead">O Capítulo 13A tinha três salas: a garagem, a cidade do cálcio e a casa de máquinas. Esta é a ala nova — para onde vai o paciente que não coube em nenhuma delas.</p>
+
+  <div class="salas">
+    <div class="sala s1">
+      <h4>Sala 1 · Marca-passo natural</h4>
+      <div class="placa">IVABRADINA</div>
+      <p>Um relojoeiro mexe apenas no nó sinusal e retarda o pêndulo. A pressão do prédio não muda, a força da bomba não muda, a fiação não muda.</p>
+      <div class="alarme">Se o relógio não for o sinusal, o relojoeiro vai embora. E ao sair, vê pontos de luz.</div>
+    </div>
+    <div class="sala s2">
+      <h4>Sala 2 · Refinaria</h4>
+      <div class="placa">TRIMETAZIDINA E RANOLAZINA</div>
+      <p>Ninguém toca no motor: trocam o combustível. Menos gordura, mais glicose, mais ATP por oxigênio queimado. A ranolazina ainda fecha uma comporta de sódio, e o cálcio para de se acumular atrás dela.</p>
+      <div class="alarme">Na saída da refinaria, um eletrocardiograma na parede com o QT medido.</div>
+    </div>
+    <div class="sala s3">
+      <h4>Sala 3 · Sala do potássio</h4>
+      <div class="placa">NICORANDIL</div>
+      <p>Duas torneiras abrem juntas: uma de potássio, outra de óxido nítrico. Os vasos relaxam, a pré e a pós-carga caem.</p>
+      <div class="alarme">Placa na porta: esta sala mexe na pressão — não pertence à refinaria dos neutros.</div>
+    </div>
+  </div>
+
+  <div class="caixa c-azul">
+    <h4>A caminhada completa</h4>
+    <p style="margin-bottom:0">Garagem → cidade do cálcio → casa de máquinas → <b>ala metabólica</b>. Quatro paradas, e a lógica da série inteira: as três primeiras cobram hemodinâmica, a última quase não cobra. Diante da vinheta, ande nessa ordem e pare onde o paciente couber.</p>
+  </div>
+</section>
+
+<!-- ===================== N6 — RECUPERAÇÃO ATIVA ===================== -->
+<section id="s13">
+  <div class="sechead"><span class="num">13</span><h2>Recuperação ativa: as pegadinhas</h2></div>
+  <p class="lead">Quinze afirmações. Decida verdadeiro ou falso antes de conferir.</p>
+  <div id="pegs"></div>
+  <div class="placar" id="placarPeg" style="margin-top:12px">
+    <span>Pegadinhas: <b id="pegOk">0</b> certas de <b id="pegTot">0</b> respondidas</span>
+    <button type="button" id="pegReset">Zerar</button>
+  </div>
+</section>
+
+<!-- ===================== N7 — CASOS ===================== -->
+<section id="s14">
+  <div class="sechead"><span class="num">14</span><h2>Oito pacientes</h2></div>
+  <p class="lead">Dois deles são o mesmo paciente com uma linha trocada. Repare no que muda.</p>
+  <div id="casos"></div>
+</section>
+
+<section id="s15">
+  <div class="sechead"><span class="num">15</span><h2>Arena TEC</h2></div>
+  <p class="lead">Vinte questões, com o porquê de cada alternativa, palavra-chave, pegadinha e âncora.</p>
+  <div class="placar">
+    <span>Acertos: <b id="qOk">0</b></span>
+    <span>Respondidas: <b id="qTot">0</b> de <b id="qN">0</b></span>
+    <button type="button" id="qReset">Zerar respostas</button>
+  </div>
+  <div class="filtros" id="filtros"></div>
+  <div id="quiz"></div>
+</section>
+
+<section id="s16">
+  <div class="sechead"><span class="num">16</span><h2>Flashcards</h2></div>
+  <p class="lead">Trinta e cinco cartas. Tente responder antes de virar.</p>
+  <div class="filtros" id="fcFiltros"></div>
+  <div class="fc-grid" id="flashcards"></div>
+</section>
+
+<section id="s17">
+  <div class="sechead"><span class="num">17</span><h2>Hipocampo</h2></div>
+  <div class="hipo">
+    <h3>O que ainda não entrou</h3>
+    <div class="num">
+      <div><b id="hAc">0</b>acertos na arena</div>
+      <div><b id="hEr">0</b>erros na arena</div>
+      <div><b id="hPeg">0</b>pegadinhas certas</div>
+      <div><b id="hSec">0%</b>do capítulo percorrido</div>
+    </div>
+    <div class="fila" id="fila">Responda algumas questões da arena e a sua fila de revisão aparece aqui.</div>
+    <div class="check" id="checklist"></div>
+  </div>
+</section>
+
+<section id="s18">
+  <div class="sechead"><span class="num">18</span><h2>Revisão de 60 segundos</h2></div>
+  <div class="rev60">
+    <ol>
+      <li>Este capítulo é o que sobra quando as três travas do 13A estão fechadas.</li>
+      <li><b>Ivabradina</b>: canal I<sub>f</sub>, nó sinusal. Reduz só a frequência. Não toca em pressão, contratilidade nem condução.</li>
+      <li>Ivabradina exige <b>ritmo sinusal</b>, tem dose máxima de 7,5 mg 2×/dia e causa <b>fosfenos</b>.</li>
+      <li>Ivabradina tem <b>dois desfechos</b>: sem insuficiência cardíaca, não reduz; com ICFER, reduz.</li>
+      <li><b>Trimetazidina</b>: bloqueia a oxidação de ácidos graxos, reduz radicais livres e acúmulo de cálcio, preserva ATP. Neutra e usável na ICFER.</li>
+      <li><b>Ranolazina</b>: desvia o metabolismo para glicose e inibe o canal de sódio, reduzindo a sobrecarga de cálcio. Também neutra.</li>
+      <li>Ranolazina aumenta o QT, <b>mas não aumentou arritmias no MERLIN</b>. O cuidado é a soma — PAPERS e CARDIO.</li>
+      <li>MERLIN-TIMI 36: síndrome coronariana aguda sem supra, com melhora de sintomas e <b>sem redução de desfechos maiores</b>.</li>
+      <li><b>Nicorandil</b>: canais de potássio mais óxido nítrico, reduzindo pré e pós-carga. <b>Não é neutro.</b></li>
+      <li><b>Alopurinol</b> saiu: não é mais considerado antianginoso eficaz.</li>
+      <li>Na matriz: ivabradina desenha a faixa da frequência alta; trimetazidina e ranolazina ocupam as oito células.</li>
+      <li>Na ICFER, dos quatro, entram <b>ivabradina e trimetazidina</b>.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="s19">
+  <div class="sechead"><span class="num">19</span><h2>Filosofia do Atlas</h2></div>
+  <div class="filo">
+    <div class="frase" id="frase"></div>
+    <div class="btns">
+      <button type="button" id="fSorteia">Sortear outra</button>
+      <button type="button" id="fTodas">Ver todas</button>
+      <button type="button" id="fProj">Projetar</button>
+    </div>
+    <div class="todas" id="todas"><ul id="listaFrases"></ul></div>
+  </div>
+</section>
+
+<section id="s20">
+  <div class="sechead"><span class="num">20</span><h2>Âncoras que não podem ser esquecidas</h2></div>
+  <div class="card">
+    <span class="ancora">IVABRADINA = FREIO SEM CUSTO PRESSÓRICO</span>
+    <span class="ancora">IVABRADINA EXIGE RITMO SINUSAL</span>
+    <span class="ancora">IVABRADINA = FOSFENOS</span>
+    <span class="ancora">IVABRADINA TEM DOIS DESFECHOS</span>
+    <span class="ancora">TRIMETAZIDINA = TROCA O COMBUSTÍVEL</span>
+    <span class="ancora">RANOLAZINA = SÓDIO DENTRO, CÁLCIO ATRÁS</span>
+    <span class="ancora">RANOLAZINA: ALÍVIO, NÃO PROGNÓSTICO</span>
+    <span class="ancora">QT: O PROBLEMA É A COMPANHIA</span>
+    <span class="ancora">NEUTRAS = TRIMETAZIDINA E RANOLAZINA</span>
+    <span class="ancora">NICORANDIL = POTÁSSIO + NO, E MEXE NA PRESSÃO</span>
+    <span class="ancora">ALOPURINOL SAIU DA LISTA</span>
+    <span class="ancora">ICFER = BB APROVADO, DHP, NITRATO, TRIMETAZIDINA, IVABRADINA</span>
+  </div>
+
+  <div class="fim">
+    <h3>Fim do Capítulo 13</h3>
+    <p>O 13A ensinou a ler o espaço do paciente. O 13B ensinou o que fazer quando não há espaço nenhum.</p>
+    <p class="grande">O QUE ESTA DROGA COBRA DO PACIENTE?</p>
+    <p style="font-size:.9rem;opacity:.85;margin-bottom:0">A seguir na série: <b>ANOCA e INOCA na prática</b> — a angina que não obedece à coronária.</p>
+  </div>
+</section>
+
+<div class="projetor" id="projetor">
+  <button class="fechar" type="button" id="projFechar">Fechar</button>
+  <p id="projTexto"></p>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="ass">Dr. André Rossanno</p>
+    <p class="site">memoriapotencial.com.br · Atlas Mental</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var LS_KEY = "atlasCardio_scc_cap13b_v1";
+var estado = {prof:false, redmov:false, visto:{}, droga:"iva", foco:"iva", quiz:{}, pegs:{}, check:{}};
+
+function salva(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(estado)); }catch(e){} }
+function carrega(){
+  try{
+    var r = localStorage.getItem(LS_KEY);
+    if(r){ var o = JSON.parse(r); if(o && typeof o === "object"){
+      estado.prof = !!o.prof; estado.redmov = !!o.redmov;
+      estado.visto = o.visto || {};
+      estado.quiz = o.quiz || {};
+      estado.pegs = o.pegs || {};
+      estado.check = o.check || {};
+      if(o.droga) estado.droga = o.droga;
+      if(o.foco) estado.foco = o.foco;
+    }}
+  }catch(e){}
+}
+
+function montaIndice(){
+  var secs = document.querySelectorAll("main section");
+  var ol = document.getElementById("indice");
+  ol.innerHTML = "";
+  for(var i=0;i<secs.length;i++){
+    var h = secs[i].querySelector("h2");
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + secs[i].id;
+    a.textContent = h ? h.textContent : secs[i].id;
+    li.appendChild(a); ol.appendChild(li);
+  }
+}
+function progresso(){
+  var secs = document.querySelectorAll("main section");
+  var total = secs.length, feito = 0;
+  for(var i=0;i<secs.length;i++){ if(estado.visto[secs[i].id]) feito++; }
+  var pct = total ? Math.round(feito*100/total) : 0;
+  document.getElementById("barra").style.width = pct + "%";
+  return pct;
+}
+function observaSecoes(){
+  if(!("IntersectionObserver" in window)) return;
+  var io = new IntersectionObserver(function(ents){
+    for(var i=0;i<ents.length;i++){
+      if(ents[i].isIntersecting){ estado.visto[ents[i].target.id] = true; salva(); progresso(); }
+    }
+  }, {threshold:.35});
+  var secs = document.querySelectorAll("main section");
+  for(var i=0;i<secs.length;i++) io.observe(secs[i]);
+}
+function aplicaAjustes(){
+  document.body.classList.toggle("prof", estado.prof);
+  document.body.classList.toggle("redmov", estado.redmov);
+  document.getElementById("tProf").setAttribute("aria-pressed", estado.prof ? "true":"false");
+  document.getElementById("tMov").setAttribute("aria-pressed", estado.redmov ? "true":"false");
+}
+
+/* ===================== SIMULADOR DE DUAS AGULHAS ===================== */
+var DROGAS = {
+  bb:  {n:"Betabloqueador", pa:"cai", fc:"cai", aqui:false,
+        t:"Cobra as duas coisas. É a classe do Capítulo 13A — e é justamente ela que não cabe no paciente sem espaço."},
+  ndhp:{n:"Verapamil / diltiazem", pa:"cai", fc:"cai", aqui:false,
+        t:"Também cobra as duas, e ainda cobra contratilidade. Fora da insuficiência cardíaca com fração reduzida."},
+  iva: {n:"Ivabradina", pa:"igual", fc:"cai", aqui:true,
+        t:"Cobra frequência e só. Não altera pressão, contratilidade nem condução intracardíaca — mas exige ritmo sinusal."},
+  tri: {n:"Trimetazidina", pa:"igual", fc:"igual", aqui:true,
+        t:"Não cobra nada: hemodinamicamente neutra. Trabalha no metabolismo do miócito, não na mecânica do coração."},
+  ran: {n:"Ranolazina", pa:"igual", fc:"igual", aqui:true,
+        t:"Também neutra. O preço dela não é hemodinâmico — é o intervalo QT, e a companhia que o paciente já toma."},
+  nic: {n:"Nicorandil", pa:"cai", fc:"igual", aqui:true,
+        t:"O intruso: reduz pré e pós-carga, então cobra pressão. Está neste capítulo por ser pouco usado, não por ser neutro."}
+};
+var ORDEM = ["bb","ndhp","iva","tri","ran","nic"];
+
+function montaEscolhas(){
+  var box = document.getElementById("escolhas");
+  box.innerHTML = "";
+  for(var i=0;i<ORDEM.length;i++){
+    var k = ORDEM[i];
+    var b = document.createElement("button");
+    b.type = "button"; b.setAttribute("data-k", k);
+    b.textContent = DROGAS[k].n;
+    b.addEventListener("click", function(){
+      estado.droga = this.getAttribute("data-k");
+      pintaSimulador(); salva();
+    });
+    box.appendChild(b);
+  }
+}
+function pintaSimulador(){
+  var k = estado.droga, d = DROGAS[k];
+  var bs = document.querySelectorAll("#escolhas button");
+  for(var i=0;i<bs.length;i++){
+    bs[i].classList.toggle("on", bs[i].getAttribute("data-k") === k);
+  }
+  var pares = [["mtrPA", d.pa, "PA"], ["mtrFC", d.fc, "FC"]];
+  for(i=0;i<pares.length;i++){
+    var el = document.getElementById(pares[i][0]);
+    var cai = pares[i][1] === "cai";
+    el.className = "mtr " + (cai ? "cai" : "igual");
+    el.querySelector(".barra2 i").style.width = cai ? "45%" : "100%";
+    el.querySelector(".est").textContent = cai ? "cai" : "preservada";
+  }
+  document.getElementById("pPA").className = "p " + (d.pa === "cai" ? "cai" : "igual");
+  document.getElementById("pPA").querySelector(".val").textContent = d.pa === "cai" ? "↓" : "=";
+  document.getElementById("pFC").className = "p " + (d.fc === "cai" ? "cai" : "igual");
+  document.getElementById("pFC").querySelector(".val").textContent = d.fc === "cai" ? "↓" : "=";
+
+  document.getElementById("leitura").innerHTML =
+    '<div class="tt">' + d.n + (d.aqui ? "" : " — Capítulo 13A") + "</div>" + d.t;
+}
+
+function init(){
+  carrega();
+  aplicaAjustes();
+  montaIndice();
+  montaEscolhas();
+  pintaSimulador();
+  observaSecoes();
+  progresso();
+
+  document.getElementById("btnIdx").addEventListener("click", function(){
+    var ab = document.getElementById("painel").classList.toggle("abre");
+    this.setAttribute("aria-expanded", ab ? "true" : "false");
+  });
+  document.getElementById("tProf").addEventListener("click", function(){
+    estado.prof = !estado.prof; aplicaAjustes(); salva();
+  });
+  document.getElementById("tMov").addEventListener("click", function(){
+    estado.redmov = !estado.redmov; aplicaAjustes(); salva();
+  });
+  document.getElementById("tReset").addEventListener("click", function(){
+    estado.visto = {}; estado.droga = "iva"; estado.quiz = {}; estado.pegs = {}; estado.check = {};
+    pintaSimulador(); progresso(); salva();
+    if(window.montaQuiz){ montaQuiz(); montaPegs(); montaChecklist(); pintaHipocampo(); }
+  });
+}
+if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", init); } else { init(); }
+
+/* ===================== PASS 2 — MATRIZ INVERTIDA ===================== */
+var CELULAS = {
+  A1:{fe:"≥50", pa:"≥120/70", fc:"≥70",
+      g:["BCC não-DHP*","ou Betabloqueador"],
+      a:["BCC DHP","Ivabradina","Nitrato","Ranolazina","Trimetazidina"]},
+  A2:{fe:"≥50", pa:"<120/70", fc:"≥70",
+      g:["Betabloqueador","Ivabradina","Ranolazina","Trimetazidina"], a:[]},
+  A3:{fe:"≥50", pa:"≥120/70", fc:"<70",
+      g:["BCC DHP"], a:["Nitrato","Ranolazina","Trimetazidina"]},
+  A4:{fe:"≥50", pa:"<120/70", fc:"<70",
+      g:["Ranolazina","Trimetazidina"], a:[]},
+  B1:{fe:"<50", pa:"≥120/70", fc:"≥70",
+      g:["Betabloqueador","Ivabradina"], a:["BCC DHP","Nitrato","Ranolazina","Trimetazidina"]},
+  B2:{fe:"<50", pa:"<120/70", fc:"≥70",
+      g:["Betabloqueador","Ivabradina"], a:["Ranolazina","Trimetazidina"]},
+  B3:{fe:"<50", pa:"≥120/70", fc:"<70",
+      g:["Betabloqueador**"], a:["BCC DHP","Nitrato","Ranolazina","Trimetazidina"]},
+  B4:{fe:"<50", pa:"<120/70", fc:"<70",
+      g:["Betabloqueador**"], a:["Ranolazina","Trimetazidina"]}
+};
+var ORDEM_MX = ["A1","A2","A3","A4","B1","B2","B3","B4"];
+
+var FOCO = {
+  iva:{n:"Ivabradina",
+       t:"Aparece nas quatro células de frequência alta — e em nenhuma das de frequência baixa. Faz sentido: a droga existe para frear, e não há o que frear num paciente já lento. Repare que ela atravessa a fronteira da fração de ejeção sem perder posição."},
+  tri:{n:"Trimetazidina",
+       t:"Oito de oito. Nenhuma trava a exclui, porque ela não pede pressão nem frequência emprestada. É o retrato da neutralidade hemodinâmica."},
+  ran:{n:"Ranolazina",
+       t:"Também oito de oito, pelo mesmo motivo. A diferença entre ela e a trimetazidina não está na matriz — está no intervalo QT e na companhia que o paciente já toma."},
+  nic:{n:"Nicorandil",
+       t:"Nenhuma célula. O nicorandil não aparece nesta matriz do material-base — o que não significa que não exista, e sim que ele não entrou no algoritmo desenhado por ela. É mais um motivo para tratá-lo à parte."}
+};
+
+function montaMatriz(){
+  var cels = document.querySelectorAll(".mx-cel");
+  for(var i=0;i<cels.length;i++){
+    var k = cels[i].getAttribute("data-k"), d = CELULAS[k], h = "";
+    h += '<div class="g">' + d.g.join("<br>") + '</div>';
+    h += d.a.length ? '<div class="a">' + d.a.join(" · ") + '</div>'
+                    : '<div class="vazio">sem segunda linha nesta célula</div>';
+    cels[i].innerHTML = h;
+    cels[i].addEventListener("click", function(){
+      var kk = this.getAttribute("data-k"), dd = CELULAS[kk];
+      var todas = dd.g.concat(dd.a).join(" · ");
+      document.getElementById("vizinha").innerHTML =
+        "<b>FE " + dd.fe + " · PA " + dd.pa + " · FC " + dd.fc + "</b><br>" + todas;
+    });
+  }
+}
+function montaEscolhasMx(){
+  var box = document.getElementById("escolhasMx");
+  box.innerHTML = "";
+  var ks = ["iva","tri","ran","nic"];
+  for(var i=0;i<ks.length;i++){
+    var b = document.createElement("button");
+    b.type = "button"; b.setAttribute("data-k", ks[i]);
+    b.textContent = FOCO[ks[i]].n;
+    b.addEventListener("click", function(){
+      estado.foco = this.getAttribute("data-k");
+      acendeMatriz(); salva();
+    });
+    box.appendChild(b);
+  }
+}
+function nomeDaDroga(k){
+  return k === "iva" ? "Ivabradina" : k === "tri" ? "Trimetazidina" :
+         k === "ran" ? "Ranolazina" : "Nicorandil";
+}
+function acendeMatriz(){
+  var k = estado.foco || "iva";
+  var nome = nomeDaDroga(k);
+  var cels = document.querySelectorAll(".mx-cel");
+  var quantas = 0;
+  for(var i=0;i<cels.length;i++){
+    var kk = cels[i].getAttribute("data-k"), d = CELULAS[kk];
+    var tem = d.g.concat(d.a).join(" · ").indexOf(nome) !== -1;
+    cels[i].classList.toggle("acesa", tem);
+    if(tem) quantas++;
+  }
+  var bs = document.querySelectorAll("#escolhasMx button");
+  for(i=0;i<bs.length;i++){ bs[i].classList.toggle("on", bs[i].getAttribute("data-k") === k); }
+  document.getElementById("vizinha").innerHTML =
+    "<b>" + FOCO[k].n + " — " + quantas + (quantas === 1 ? " célula" : " células") + " de 8</b><br>" + FOCO[k].t;
+}
+
+function ligaStop(id){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.querySelector("button").addEventListener("click", function(){ el.classList.add("revelado"); });
+}
+
+(function(){
+  var start = function(){
+    if(!estado.foco) estado.foco = "iva";
+    montaMatriz();
+    montaEscolhasMx();
+    acendeMatriz();
+    ligaStop("stopSinusal");
+  };
+  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", start); }
+  else { start(); }
+})();
+
+/* ===================== PASS 3 — BANCOS ===================== */
+
+var PEGADINHAS = [
+  {a:"A ivabradina reduz a frequência cardíaca e também a pressão arterial.", v:false,
+   e:"Só a frequência. Não altera pressão, contratilidade nem condução intracardíaca."},
+  {a:"A ivabradina age inibindo o canal iônico If no nó sinusal.", v:true,
+   e:"É o mecanismo, e é o que explica a exigência de ritmo sinusal."},
+  {a:"A ivabradina pode ser usada em paciente com fibrilação atrial e resposta ventricular alta.", v:false,
+   e:"Fora do ritmo sinusal não há alvo para a droga."},
+  {a:"A dose máxima da ivabradina é 7,5 mg duas vezes ao dia.", v:true,
+   e:"Número da aula, e do tipo que aparece em alternativa."},
+  {a:"Fosfenos são efeito adverso característico da ivabradina.", v:true,
+   e:"Pontos luminosos ao sair de ambientes escuros — o canal If também existe na retina."},
+  {a:"A ivabradina reduz desfechos na doença coronariana crônica sem insuficiência cardíaca associada.", v:false,
+   e:"Nesse cenário, não. Com ICFER associada, sim — território do SHIFT."},
+  {a:"A trimetazidina reduz a pressão arterial de forma leve, mas consistente.", v:false,
+   e:"Não reduz pressão nem frequência. Neutralidade hemodinâmica é justamente a vantagem dela."},
+  {a:"A trimetazidina bloqueia a oxidação de ácidos graxos e preserva ATP durante a isquemia.", v:true,
+   e:"Ela também reduz radicais livres e o acúmulo de cálcio na isquemia."},
+  {a:"A trimetazidina pode ser usada em paciente com fração de ejeção reduzida.", v:true,
+   e:"Consta da lista de antianginosos usáveis na ICFER."},
+  {a:"A ranolazina reduz a sobrecarga de cálcio ao inibir o canal de sódio.", v:true,
+   e:"Menos sódio dentro da célula significa menos cálcio retido atrás dele."},
+  {a:"A ranolazina reduziu desfechos cardiovasculares maiores no MERLIN-TIMI 36.", v:false,
+   e:"Melhorou sintomas isquêmicos, sem redução de desfechos maiores. Alívio, não prognóstico."},
+  {a:"Como a ranolazina aumenta o intervalo QT, ela aumentou a incidência de arritmias no MERLIN.", v:false,
+   e:"Aumentou o QT e não aumentou arritmias. O cuidado real é a soma com outras drogas que prolongam o QT."},
+  {a:"Constipação, tontura e cefaleia estão entre os efeitos adversos mais comuns da ranolazina.", v:true,
+   e:"Trio da aula."},
+  {a:"O nicorandil é hemodinamicamente neutro, como a trimetazidina e a ranolazina.", v:false,
+   e:"Ele reduz pré e pós-carga: mexe na pressão. Está neste capítulo por ser pouco usado, não por ser neutro."},
+  {a:"O alopurinol permanece indicado como antianginoso de segunda linha.", v:false,
+   e:"A aula o cita exatamente para dizer que não é mais considerado eficaz nessa indicação."}
+];
+
+var CASOS = [
+  {t:"Frequência alta e pressão no limite",
+   v:"Homem de 68 anos, doença coronariana crônica, angina aos esforços. FC 94 bpm, PA 104 × 62 mmHg, fração de ejeção 58%, ritmo sinusal. Não tolerou betabloqueador por fadiga intensa.",
+   p:"Qual droga tem o perfil mais adequado?",
+   r:"<b>Ivabradina.</b> Há frequência para frear e não há pressão para gastar — exatamente o nicho da droga que reduz FC sem tocar na PA. O ritmo sinusal está confirmado, e a intolerância ao betabloqueador é a indicação formal.",
+   k:"FC alta com PA apertada e ritmo sinusal"},
+  {t:"O mesmo paciente, outro ritmo",
+   v:"Mesma paciente do caso anterior, mas o eletrocardiograma mostra fibrilação atrial com resposta ventricular de 96 bpm.",
+   p:"A conduta muda?",
+   r:"Muda inteiramente. <b>Ivabradina sai</b>: sem ritmo sinusal, não há alvo. Restam as neutras — <b>ranolazina e trimetazidina</b> —, conferindo o intervalo QT e as demais drogas em uso antes de escolher a ranolazina.",
+   k:"ritmo não sinusal"},
+  {t:"Sem espaço nenhum",
+   v:"Homem de 79 anos, fração de ejeção 30%, PA 100 × 58 mmHg, FC 56 bpm em betabloqueador otimizado, ritmo sinusal. Angina limitante às atividades básicas.",
+   p:"O que ainda cabe?",
+   r:"<b>Ranolazina ou trimetazidina.</b> A frequência baixa impede acrescentar cronotrópico negativo — inclusive a ivabradina —, e a pressão não permite vasodilatador. As duas neutras são as únicas que atravessam as três travas fechadas.",
+   k:"as três travas fechadas"},
+  {t:"A companhia importa",
+   v:"Mulher de 66 anos, angina, em uso de amiodarona por fibrilação atrial prévia e de escitalopram por depressão. Fração preservada, PA 112 × 68, FC 62 bpm.",
+   p:"Ranolazina é uma boa escolha aqui?",
+   r:"Exige cautela. Amiodarona e escitalopram estão nas listas de prolongamento do QT, e a ranolazina somaria um terceiro. Não é proibição automática, mas o <b>eletrocardiograma com medida do QT</b> e a revisão dos eletrólitos vêm antes da prescrição. A <b>trimetazidina</b> é a alternativa neutra que não acrescenta esse risco.",
+   k:"soma de QT"},
+  {t:"Angina, ICFER e frequência alta",
+   v:"Homem de 71 anos, fração de ejeção 32%, ritmo sinusal, FC 88 bpm em betabloqueador na dose máxima tolerada, PA 118 × 70. Mantém angina.",
+   p:"Qual associação faz sentido?",
+   r:"<b>Ivabradina.</b> É a célula da matriz em que ela ocupa a primeira linha ao lado do betabloqueador. E, diferentemente do cenário sem insuficiência cardíaca, aqui a droga tem história própria de desfecho — o SHIFT.",
+   k:"ICFER com FC alta"},
+  {t:"O tremor que apareceu depois",
+   v:"Mulher de 77 anos, em trimetazidina há oito meses por angina, retorna com tremor de repouso e lentificação da marcha, atribuídos pela família ao envelhecimento.",
+   p:"O que precisa ser considerado?",
+   r:"A possibilidade de <b>sintomas extrapiramidais associados à trimetazidina</b>. Não é o conteúdo da aula — é a restrição regulatória descrita na literatura, com recomendação de suspender diante desses sintomas e cautela em idosos. Ponto a conferir na diretriz, mas que não pode passar em branco diante desse quadro.",
+   k:"parkinsonismo pela trimetazidina"},
+  {t:"Alívio ou prognóstico?",
+   v:"Residente pergunta se acrescentar ranolazina ao paciente coronariano reduz risco de infarto e morte cardiovascular.",
+   p:"Como responder?",
+   r:"<b>Não é o que a evidência mostra.</b> No MERLIN-TIMI 36, a ranolazina melhorou sintomas isquêmicos sem reduzir desfechos cardiovasculares maiores. Ela entra para tirar dor. Prognóstico é o assunto do Capítulo 12, e vem das estatinas, dos antiplaquetários e do resto da Fortaleza.",
+   k:"sintoma ≠ desfecho"},
+  {t:"O intruso",
+   v:"Numa lista de opções para paciente com pressão de 98 × 60 mmHg, um colega sugere nicorandil por ser “um dos antianginosos que não mexem na hemodinâmica”.",
+   p:"A premissa está correta?",
+   r:"<b>Não.</b> O nicorandil abre canais de potássio e aumenta a síntese de óxido nítrico, reduzindo <b>pré e pós-carga</b>. Ele mexe na pressão — e numa PA de 98 × 60 isso é justamente o que não se quer. Os que não mexem são trimetazidina e ranolazina.",
+   k:"nicorandil não é neutro"}
+];
+
+var QUESTOES = [
+  {c:"mecanismo", q:"O mecanismo de ação da ivabradina é:",
+   alt:["Bloqueio de canais de cálcio tipo L","Inibição do canal iônico If no nó sinusal","Aumento do GMPc no músculo liso","Bloqueio beta-adrenérgico seletivo"],
+   ok:1, pq:["Essa é a via dos antagonistas do cálcio.","Canal If, nó sinusal — e daí vem a exigência de ritmo sinusal.","Essa é a via dos nitratos e, em parte, do nicorandil.","A ivabradina não age em receptor beta."],
+   k:"canal If", p:"Confundir com betabloqueador porque as duas reduzem FC.", a:"IVABRADINA = FREIO SEM CUSTO PRESSÓRICO"},
+  {c:"mecanismo", q:"Sobre os efeitos hemodinâmicos da ivabradina, é correto afirmar:",
+   alt:["Reduz FC e PA","Reduz FC, sem alterar PA, contratilidade ou condução","Reduz PA sem alterar FC","Reduz contratilidade de forma dose-dependente"],
+   ok:1, pq:["A pressão não é afetada.","É exatamente o perfil que a torna única no arsenal.","Ela não reduz pressão.","Não há inotropismo negativo relevante."],
+   k:"só frequência", p:"Atribuir a ela os efeitos do betabloqueador.", a:"IVABRADINA = FREIO SEM CUSTO PRESSÓRICO"},
+  {c:"mecanismo", q:"A trimetazidina atua principalmente:",
+   alt:["Bloqueando a oxidação de ácidos graxos","Bloqueando o canal de sódio tardio","Abrindo canais de potássio","Inibindo o nó sinusal"],
+   ok:0, pq:["Com redução de radicais livres, menos acúmulo de cálcio na isquemia e preservação de ATP.","Esse é o mecanismo da ranolazina.","Esse é o mecanismo do nicorandil.","Esse é o da ivabradina."],
+   k:"metabolismo", p:"Trocar trimetazidina por ranolazina.", a:"TRIMETAZIDINA = TROCA O COMBUSTÍVEL"},
+  {c:"mecanismo", q:"A ranolazina reduz a sobrecarga de cálcio no miócito isquêmico ao:",
+   alt:["Bloquear canais de cálcio tipo L","Inibir o canal de sódio","Abrir canais de potássio","Aumentar o GMPc"],
+   ok:1, pq:["Não é bloqueador de cálcio.","Menos sódio dentro da célula significa menos cálcio retido atrás dele.","Esse é o nicorandil.","Essa é a via do nitrato."],
+   k:"canal de sódio", p:"Assumir que quem reduz cálcio bloqueia canal de cálcio.", a:"RANOLAZINA = SÓDIO DENTRO, CÁLCIO ATRÁS"},
+  {c:"mecanismo", q:"O nicorandil produz vasodilatação por:",
+   alt:["Abrir canais de potássio e aumentar a síntese de óxido nítrico","Bloquear receptores alfa-adrenérgicos","Inibir a enzima conversora de angiotensina","Bloquear o canal If"],
+   ok:0, pq:["Dois mecanismos somados, com redução de pré e pós-carga.","Não é o mecanismo.","Não é o mecanismo.","Esse é o da ivabradina."],
+   k:"potássio + NO", p:"Tratá-lo como neutro por estar entre os pouco usados.", a:"NICORANDIL = POTÁSSIO + NO, E MEXE NA PRESSÃO"},
+  {c:"mecanismo", q:"Quais antianginosos não reduzem nem pressão nem frequência?",
+   alt:["Ivabradina e trimetazidina","Trimetazidina e ranolazina","Ranolazina e nicorandil","Nicorandil e ivabradina"],
+   ok:1, pq:["A ivabradina reduz frequência.","São as duas verdadeiramente neutras.","O nicorandil reduz pré e pós-carga.","Os dois cobram alguma coisa."],
+   k:"neutralidade hemodinâmica", p:"Incluir o nicorandil entre os neutros.", a:"NEUTRAS = TRIMETAZIDINA E RANOLAZINA"},
+  {c:"escolha", q:"Homem com DAC, angina, FC 94 bpm, PA 104 × 62, ritmo sinusal, intolerante a betabloqueador. A melhor opção é:",
+   alt:["Verapamil","Ivabradina","Anlodipino","Nitrato de liberação prolongada"],
+   ok:1, pq:["Reduziria frequência e pressão, e a pressão não permite.","Reduz frequência sem custo pressórico — o nicho exato da droga.","Derrubaria ainda mais a pressão.","Também cobra pressão."],
+   k:"FC alta com PA apertada", p:"Escolher pela frequência sem olhar a pressão.", a:"IVABRADINA = FREIO SEM CUSTO PRESSÓRICO"},
+  {c:"escolha", q:"A indicação formal da ivabradina na doença coronariana inclui pacientes que:",
+   alt:["Estão em fibrilação atrial com resposta alta","Não toleram betabloqueador ou mantêm FC acima de 60–75 bpm apesar dele","Têm bloqueio atrioventricular total","Usam verapamil em dose plena"],
+   ok:1, pq:["Fora do ritmo sinusal a droga não tem alvo.","É a indicação descrita no material.","Não é o cenário da droga.","Associação a evitar, por somação de bradicardia e interação."],
+   k:"intolerância ao betabloqueador", p:"Ignorar a exigência de ritmo sinusal.", a:"IVABRADINA EXIGE RITMO SINUSAL"},
+  {c:"escolha", q:"Paciente com angina, fração de ejeção 30%, ritmo sinusal e FC 88 bpm em betabloqueador otimizado. Qual associação a matriz coloca em primeira linha?",
+   alt:["Verapamil","Ivabradina","Diltiazem","Nifedipino de ação rápida"],
+   ok:1, pq:["Inotropismo negativo em ventrículo comprometido.","Primeira linha ao lado do betabloqueador nas células de fração reduzida com FC alta.","Mesmo problema do verapamil.","Evitado pela hipotensão e ativação reflexa."],
+   k:"ICFER com FC alta", p:"Buscar um segundo freio entre os bloqueadores de cálcio.", a:"IVABRADINA = FREIO SEM CUSTO PRESSÓRICO"},
+  {c:"escolha", q:"Fração de ejeção 30%, PA 100 × 58, FC 56 bpm sob betabloqueador, angina limitante. O que ainda cabe?",
+   alt:["Ivabradina","Nitrato de liberação prolongada","Ranolazina ou trimetazidina","Diltiazem"],
+   ok:2, pq:["A frequência baixa impede acrescentar cronotrópico negativo.","A pressão não sustenta vasodilatador.","As neutras atravessam as três travas fechadas.","Contraindicado pelo inotropismo negativo nessa fração."],
+   k:"três travas fechadas", p:"Achar que ivabradina serve para toda frequência.", a:"NEUTRAS = TRIMETAZIDINA E RANOLAZINA"},
+  {c:"escolha", q:"Entre os quatro deste capítulo, quais constam da lista de antianginosos usáveis na ICFER apresentada na aula?",
+   alt:["Ivabradina e trimetazidina","Ranolazina e nicorandil","Apenas a ivabradina","Os quatro"],
+   ok:0, pq:["São os dois presentes na lista.","Não constam dessa lista.","A trimetazidina também consta.","Ranolazina e nicorandil não aparecem."],
+   k:"lista da ICFER", p:"Confundir ausência de menção com contraindicação.", a:"ICFER = BB APROVADO, DHP, NITRATO, TRIMETAZIDINA, IVABRADINA"},
+  {c:"escolha", q:"Paciente em amiodarona e escitalopram desenvolve angina. Qual cuidado a ranolazina exige?",
+   alt:["Nenhum, já que ela não é arritmogênica","Avaliar o intervalo QT e os eletrólitos antes de prescrever","Suspender a amiodarona obrigatoriamente","Reduzir a dose do escitalopram pela metade"],
+   ok:1, pq:["O risco não é a droga isolada, é a soma.","As três prolongam o QT; eletrocardiograma e eletrólitos vêm antes.","Não é conduta automática.","Não é conduta automática."],
+   k:"soma de QT", p:"Ler 'não aumentou arritmias' como ausência de qualquer cuidado.", a:"QT: O PROBLEMA É A COMPANHIA"},
+  {c:"desfecho", q:"Sobre a ivabradina na DAC crônica, a leitura correta é:",
+   alt:["Reduz desfechos em qualquer coronariopata","Não reduz desfechos quando não há insuficiência cardíaca associada","Reduz mortalidade em todos os cenários","Não tem efeito antianginoso"],
+   ok:1, pq:["Depende do cenário.","Com ICFER associada, reduz — território do SHIFT.","A afirmação é ampla demais.","Ela alivia angina; a discussão é sobre desfechos."],
+   k:"com ou sem IC", p:"Decorar metade da frase.", a:"IVABRADINA TEM DOIS DESFECHOS"},
+  {c:"desfecho", q:"O MERLIN-TIMI 36 avaliou a ranolazina em qual população?",
+   alt:["Angina estável crônica","Síndrome coronariana aguda sem supradesnivelamento","Insuficiência cardíaca com fração preservada","Pós-operatório de revascularização"],
+   ok:1, pq:["Não foi a população do ensaio.","É a população estudada.","Não foi a população.","Não foi a população."],
+   k:"MERLIN-TIMI 36", p:"Assumir que todo estudo de antianginoso é em angina estável.", a:"RANOLAZINA: ALÍVIO, NÃO PROGNÓSTICO"},
+  {c:"desfecho", q:"Qual foi o achado do MERLIN-TIMI 36 quanto a desfechos cardiovasculares maiores?",
+   alt:["Redução significativa","Sem redução significativa","Aumento significativo","O estudo não avaliou desfechos"],
+   ok:1, pq:["Não foi o resultado.","Houve melhora de sintomas isquêmicos, sem redução de desfechos maiores.","Não houve aumento.","Avaliou, sim."],
+   k:"sintoma ≠ desfecho", p:"Transferir o alívio para o prognóstico.", a:"RANOLAZINA: ALÍVIO, NÃO PROGNÓSTICO"},
+  {c:"armadilha", q:"Sobre o intervalo QT e a ranolazina no MERLIN:",
+   alt:["Aumentou o QT e aumentou arritmias","Aumentou o QT e não aumentou arritmias","Não alterou o QT","Reduziu o QT"],
+   ok:1, pq:["Não foi o achado.","É a ressalva com asterisco que a aula destaca.","Ela aumenta o QT.","Não reduz."],
+   k:"QT sem arritmia", p:"Concluir arritmia a partir do prolongamento eletrocardiográfico.", a:"QT: O PROBLEMA É A COMPANHIA"},
+  {c:"armadilha", q:"Paciente com angina e fibrilação atrial de resposta alta, intolerante a betabloqueador. Sobre a ivabradina:",
+   alt:["É a escolha ideal pela frequência elevada","Não deve ser usada, por não haver ritmo sinusal","Pode ser usada em dose reduzida","Só é contraindicada se houver bloqueio AV associado"],
+   ok:1, pq:["A frequência alta é o distrator perfeito da questão.","A droga age no nó sinusal; fora dele, não há alvo.","A dose não resolve a ausência de alvo.","A contraindicação é o ritmo, não o bloqueio."],
+   k:"ritmo não sinusal", p:"Deixar a frequência alta decidir sozinha.", a:"IVABRADINA EXIGE RITMO SINUSAL"},
+  {c:"armadilha", q:"Qual afirmação sobre o nicorandil está correta?",
+   alt:["É hemodinamicamente neutro","Reduz pré e pós-carga","Reduz apenas a frequência cardíaca","Age inibindo o canal If"],
+   ok:1, pq:["Não é: ele mexe na pressão.","Efeito da vasodilatação coronariana e periférica que ele produz.","Não é o efeito dele.","Esse é o da ivabradina."],
+   k:"o intruso", p:"Assumir que tudo neste capítulo é neutro.", a:"NICORANDIL = POTÁSSIO + NO, E MEXE NA PRESSÃO"},
+  {c:"armadilha", q:"Sobre o alopurinol como antianginoso:",
+   alt:["É opção de segunda linha","Não é mais considerado eficaz nessa indicação","É primeira linha no vasoespasmo","Substitui a trimetazidina na ICFER"],
+   ok:1, pq:["Saiu da lista.","É exatamente o motivo de a aula mencioná-lo.","Não tem esse papel.","Não tem esse papel."],
+   k:"saiu da lista", p:"Marcar por lembrar que ele já foi citado em aulas antigas.", a:"ALOPURINOL SAIU DA LISTA"},
+  {c:"armadilha", q:"Qual efeito adverso é característico da ivabradina?",
+   alt:["Constipação","Fosfenos","Edema maleolar","Tosse seca"],
+   ok:1, pq:["Esse é da ranolazina.","Pontos luminosos ao sair de ambientes escuros — o canal If também existe na retina.","Esse é do di-hidropiridínico.","Esse é do inibidor da ECA."],
+   k:"fosfenos", p:"Trocar os efeitos adversos entre as drogas do capítulo.", a:"IVABRADINA = FOSFENOS"}
+];
+
+var FLASHCARDS = [
+  {t:"mecanismo", f:"Mecanismo da ivabradina", v:"Inibidor do canal iônico I<sub>f</sub>, atuando no nó sinusal"},
+  {t:"mecanismo", f:"O que a ivabradina reduz — e o que ela não toca", v:"Reduz só a FC. Não altera PA, contratilidade nem condução intracardíaca"},
+  {t:"mecanismo", f:"Por que a ivabradina exige ritmo sinusal", v:"Ela age no nó sinusal; fora dele não há alvo"},
+  {t:"mecanismo", f:"Dose máxima da ivabradina", v:"7,5 mg 2×/dia"},
+  {t:"mecanismo", f:"Efeito adverso característico da ivabradina", v:"Fosfenos — pontos luminosos ao sair de ambientes escuros"},
+  {t:"mecanismo", f:"Indicação da ivabradina na DAC", v:"Não tolera betabloqueador, ou mantém FC acima de 60–75 bpm apesar dele"},
+  {t:"mecanismo", f:"Mecanismo da trimetazidina", v:"Bloqueia a oxidação de ácidos graxos"},
+  {t:"mecanismo", f:"Quatro efeitos da trimetazidina na isquemia", v:"Bloqueia oxidação de AG · reduz radicais livres · reduz acúmulo de cálcio · preserva ATP"},
+  {t:"mecanismo", f:"Grande vantagem da trimetazidina", v:"Neutralidade hemodinâmica: não reduz PA nem FC"},
+  {t:"mecanismo", f:"Trimetazidina na ICFER", v:"Pode ser usada — consta da lista"},
+  {t:"mecanismo", f:"Os dois mecanismos da ranolazina", v:"Desvia o metabolismo de ácidos graxos para glicose · inibe o canal de sódio, reduzindo a sobrecarga de cálcio"},
+  {t:"mecanismo", f:"Efeitos hemodinâmicos da ranolazina", v:"Nenhum: não reduz PA nem FC"},
+  {t:"mecanismo", f:"Efeitos adversos mais comuns da ranolazina", v:"Constipação, tontura e cefaleia"},
+  {t:"mecanismo", f:"Mecanismo do nicorandil", v:"Abre canais de potássio e aumenta a síntese de óxido nítrico"},
+  {t:"mecanismo", f:"Efeito hemodinâmico do nicorandil", v:"Reduz pré e pós-carga — ele mexe na pressão"},
+  {t:"mecanismo", f:"Alopurinol como antianginoso", v:"Não é mais considerado eficaz nessa indicação"},
+  {t:"escolha", f:"Quem reduz FC mas não PA", v:"Ivabradina"},
+  {t:"escolha", f:"Quem não reduz nem PA nem FC", v:"Trimetazidina e ranolazina"},
+  {t:"escolha", f:"Quem é o intruso do capítulo, e por quê", v:"Nicorandil: reduz pré e pós-carga, logo cobra pressão"},
+  {t:"escolha", f:"Em quantas células da matriz a ivabradina aparece", v:"Nas quatro de frequência alta — e em nenhuma de frequência baixa"},
+  {t:"escolha", f:"Em quantas células aparecem ranolazina e trimetazidina", v:"Nas oito: quem não cobra nada nunca é excluído por falta de espaço"},
+  {t:"escolha", f:"Antianginosos usáveis na ICFER", v:"BB aprovados para ICFER · di-hidropiridínicos · nitratos · trimetazidina · ivabradina"},
+  {t:"escolha", f:"Dos quatro deste capítulo, quais constam da lista da ICFER", v:"Ivabradina e trimetazidina"},
+  {t:"escolha", f:"Paciente com FE baixa, PA justa e FC baixa: o que sobra", v:"Ranolazina e trimetazidina"},
+  {t:"escolha", f:"Angina + ICFER + FC alta em betabloqueador otimizado", v:"Associar ivabradina — primeira linha nessa célula"},
+  {t:"desfecho", f:"Ivabradina na DAC crônica sem IC associada", v:"Não reduz desfechos"},
+  {t:"desfecho", f:"Ivabradina na DAC crônica com ICFER associada", v:"Reduz desfechos — território do SHIFT"},
+  {t:"desfecho", f:"População do MERLIN-TIMI 36", v:"Síndrome coronariana aguda sem supradesnivelamento"},
+  {t:"desfecho", f:"Resultado do MERLIN-TIMI 36", v:"Melhora de sintomas isquêmicos, sem redução de desfechos cardiovasculares maiores"},
+  {t:"desfecho", f:"Ranolazina, QT e arritmia no MERLIN", v:"Aumentou o QT e não aumentou arritmias"},
+  {t:"armadilha", f:"PAPERS — drogas que aumentam o QT", v:"Psicotrópicos · Amiodarona · Procinético (cisaprida) · Escitalopram · Remédio para depressão · Sotalol"},
+  {t:"armadilha", f:"CARDIO — drogas que aumentam o QT", v:"Cloroquina · Azitromicina · Ritonavir/lopinavir · DHE (os 3 hipo) · Itraconazol · Ofloxacino"},
+  {t:"armadilha", f:"Os três hipo do D de CARDIO", v:"Hipocalemia, hipomagnesemia e hipocalcemia"},
+  {t:"armadilha", f:"Ivabradina em fibrilação atrial", v:"Não usar: sem ritmo sinusal não há alvo"},
+  {t:"armadilha", f:"Ausência da ranolazina na lista da ICFER significa contraindicação?", v:"Não: significa ausência de recomendação formal naquele cenário"}
+];
+
+var FRASES = [
+  "Toda droga cobra alguma coisa. Saber o preço é metade da prescrição.",
+  "O paciente sem espaço hemodinâmico não é um paciente sem opção.",
+  "Quem não cobra nada nunca é excluído por falta de espaço.",
+  "Meia frase decorada erra nas duas direções: tira de quem precisa e mantém em quem não precisa.",
+  "Prolongar o QT no traçado e provocar arritmia no paciente são afirmações diferentes.",
+  "A frequência alta é o distrator perfeito: ela empurra você para a droga certa no paciente errado.",
+  "Antes de culpar a droga pelo QT, olhe o potássio, o magnésio e o cálcio.",
+  "Ausência de menção não é contraindicação. São coisas diferentes e devem ser ditas com palavras diferentes.",
+  "A mesma droga responde coisas opostas conforme o paciente tenha ou não insuficiência cardíaca.",
+  "Estar entre os pouco usados não faz de ninguém hemodinamicamente neutro.",
+  "Saber o que saiu da lista vale tanto quanto saber o que entrou.",
+  "Aliviar a dor é um objetivo legítimo. Chamá-lo de prognóstico não é.",
+  "Quando o motor não pode desacelerar, resta trocar o combustível.",
+  "A matriz não é uma tabela: é o desenho do que cada droga cobra.",
+  "Um efeito adverso característico vale por meia questão de prova.",
+  "O ritmo do eletrocardiograma decide antes de qualquer número da vinheta.",
+  "Estudar farmacologia é aprender o que cada molécula pede em troca.",
+  "Toda vez que a lista encolhe, o mecanismo é que decide quem fica.",
+  "A droga que serve para todos os pacientes costuma ser a que serve pouco a cada um.",
+  "O plantão cobra a escolha; a prova cobra o motivo. Estude para os dois."
+];
+
+var CHECKLIST = [
+  "Hoje: dizer em voz alta o que cada uma das quatro drogas cobra de PA e de FC.",
+  "Hoje: refazer o desenho da ivabradina na matriz — quais células acendem e por quê.",
+  "Amanhã: repetir a Arena TEC só nas questões que errei.",
+  "Amanhã: recitar PAPERS e CARDIO sem olhar, e lembrar dos três hipo.",
+  "Em 7 dias: refazer os oito casos sem revelar as respostas.",
+  "Em 7 dias: revisar as sete armadilhas e as âncoras dos dois capítulos, 13A e 13B."
+];
+
+/* ===================== MOTORES ===================== */
+function e3(id){ return document.getElementById(id); }
+
+/* --- pegadinhas --- */
+function montaPegs(){
+  var box = e3("pegs");
+  box.innerHTML = "";
+  for(var i=0;i<PEGADINHAS.length;i++){
+    var o = PEGADINHAS[i];
+    var d = document.createElement("div");
+    d.className = "q"; d.setAttribute("data-i", i);
+    d.innerHTML = '<div class="cab">PEGADINHA ' + (i+1) + ' de ' + PEGADINHAS.length + '</div>' +
+      '<div class="enun">' + o.a + '</div>' +
+      '<button class="alt" type="button" data-v="1"><span class="l">V</span>Verdadeiro</button>' +
+      '<button class="alt" type="button" data-v="0"><span class="l">F</span>Falso</button>' +
+      '<div class="porque"></div>';
+    box.appendChild(d);
+  }
+  box.addEventListener("click", function(ev){
+    var b = ev.target.closest ? ev.target.closest(".alt") : null;
+    if(!b) return;
+    var q = b.parentNode;
+    if(q.classList.contains("resp")) return;
+    var i = +q.getAttribute("data-i"), o = PEGADINHAS[i];
+    var marcou = b.getAttribute("data-v") === "1";
+    var certo = marcou === o.v;
+    q.classList.add("resp");
+    var alts = q.querySelectorAll(".alt");
+    for(var j=0;j<alts.length;j++){
+      var ehV = alts[j].getAttribute("data-v") === "1";
+      alts[j].classList.add(ehV === o.v ? "certa" : "errada");
+    }
+    q.querySelector(".porque").innerHTML =
+      '<b>' + (o.v ? "Verdadeiro" : "Falso") + ".</b> " + o.e;
+    estado.pegs[i] = certo ? 1 : 0;
+    salva(); pintaPlacarPeg(); pintaHipocampo();
+  });
+  pintaPlacarPeg();
+}
+function pintaPlacarPeg(){
+  var ok=0, tot=0;
+  for(var k in estado.pegs){ if(estado.pegs.hasOwnProperty(k)){ tot++; if(estado.pegs[k]) ok++; } }
+  e3("pegOk").textContent = ok; e3("pegTot").textContent = tot;
+}
+
+/* --- casos --- */
+function montaCasos(){
+  var box = e3("casos"); box.innerHTML = "";
+  for(var i=0;i<CASOS.length;i++){
+    var o = CASOS[i];
+    var d = document.createElement("div");
+    d.className = "caso";
+    d.innerHTML = '<div class="cab">CASO ' + (i+1) + '</div>' +
+      '<div class="vin"><b>' + o.t + '.</b> ' + o.v + '</div>' +
+      '<div class="perg">' + o.p + '</div>' +
+      '<button class="rev" type="button">Revelar</button>' +
+      '<div class="resp">' + o.r + '<div class="tag">palavra-chave: ' + o.k + '</div></div>';
+    d.querySelector(".rev").addEventListener("click", function(){
+      this.parentNode.classList.add("aberto");
+    });
+    box.appendChild(d);
+  }
+}
+
+/* --- arena --- */
+var filtroQ = "todas";
+function montaFiltros(){
+  var cats = ["todas","mecanismo","escolha","desfecho","armadilha"];
+  var box = e3("filtros"); box.innerHTML = "";
+  for(var i=0;i<cats.length;i++){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = cats[i];
+    b.setAttribute("data-c", cats[i]);
+    if(cats[i] === filtroQ) b.className = "on";
+    b.addEventListener("click", function(){
+      filtroQ = this.getAttribute("data-c");
+      montaFiltros(); montaQuiz();
+    });
+    box.appendChild(b);
+  }
+}
+function montaQuiz(){
+  var box = e3("quiz"); box.innerHTML = "";
+  var n = 0;
+  for(var i=0;i<QUESTOES.length;i++){
+    var o = QUESTOES[i];
+    if(filtroQ !== "todas" && o.c !== filtroQ) continue;
+    n++;
+    var d = document.createElement("div");
+    d.className = "q"; d.setAttribute("data-i", i);
+    var h = '<div class="cab">' + o.c.toUpperCase() + ' · questão ' + (i+1) + '</div>' +
+            '<div class="enun">' + o.q + '</div>';
+    var L = ["A","B","C","D"];
+    for(var j=0;j<o.alt.length;j++){
+      h += '<button class="alt" type="button" data-j="' + j + '"><span class="l">' + L[j] + '</span>' + o.alt[j] + '</button>';
+    }
+    h += '<div class="porque"></div>';
+    d.innerHTML = h;
+    box.appendChild(d);
+    if(typeof estado.quiz[i] === "number") revelaQ(d, i, estado.quiz[i]);
+  }
+  e3("qN").textContent = QUESTOES.length;
+  box.onclick = function(ev){
+    var b = ev.target.closest ? ev.target.closest(".alt") : null;
+    if(!b) return;
+    var q = b.parentNode;
+    if(q.classList.contains("resp")) return;
+    var i = +q.getAttribute("data-i"), j = +b.getAttribute("data-j");
+    estado.quiz[i] = j; salva();
+    revelaQ(q, i, j); pintaPlacarQ(); pintaHipocampo();
+  };
+  pintaPlacarQ();
+}
+function revelaQ(q, i, escolhido){
+  var o = QUESTOES[i];
+  q.classList.add("resp");
+  var alts = q.querySelectorAll(".alt");
+  var L = ["A","B","C","D"], h = "<ul>";
+  for(var j=0;j<alts.length;j++){
+    alts[j].classList.add(j === o.ok ? "certa" : "errada");
+    h += "<li><b>" + L[j] + (j === o.ok ? " (correta)" : "") + ":</b> " + o.pq[j] + "</li>";
+  }
+  h += "</ul>";
+  h += '<div class="meta"><span class="chave">palavra-chave: ' + o.k + '</span>' +
+       '<span class="peg">pegadinha: ' + o.p + '</span>' +
+       '<span class="anc">' + o.a + '</span></div>';
+  if(escolhido !== o.ok){
+    h = '<p><b>Você marcou ' + L[escolhido] + '. A correta é ' + L[o.ok] + '.</b></p>' + h;
+  }
+  q.querySelector(".porque").innerHTML = h;
+}
+function pintaPlacarQ(){
+  var ok=0, tot=0;
+  for(var k in estado.quiz){
+    if(estado.quiz.hasOwnProperty(k)){ tot++; if(estado.quiz[k] === QUESTOES[k].ok) ok++; }
+  }
+  e3("qOk").textContent = ok; e3("qTot").textContent = tot;
+}
+
+/* --- flashcards --- */
+var filtroFC = "todos";
+function montaFcFiltros(){
+  var cats = ["todos","mecanismo","escolha","desfecho","armadilha"];
+  var box = e3("fcFiltros"); box.innerHTML = "";
+  for(var i=0;i<cats.length;i++){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = cats[i];
+    b.setAttribute("data-c", cats[i]);
+    if(cats[i] === filtroFC) b.className = "on";
+    b.addEventListener("click", function(){
+      filtroFC = this.getAttribute("data-c");
+      montaFcFiltros(); montaFlash();
+    });
+    box.appendChild(b);
+  }
+}
+function montaFlash(){
+  var box = e3("flashcards"); box.innerHTML = "";
+  for(var i=0;i<FLASHCARDS.length;i++){
+    var o = FLASHCARDS[i];
+    if(filtroFC !== "todos" && o.t !== filtroFC) continue;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "fc";
+    b.innerHTML = '<div class="in"><div class="f">' + o.f + '</div><div class="v">' + o.v + '</div></div>';
+    b.addEventListener("click", function(){ this.classList.toggle("vira"); });
+    box.appendChild(b);
+  }
+}
+
+/* --- hipocampo --- */
+function pintaHipocampo(){
+  var ok=0, er=0, i;
+  for(var k in estado.quiz){
+    if(estado.quiz.hasOwnProperty(k)){
+      if(estado.quiz[k] === QUESTOES[k].ok) ok++; else er++;
+    }
+  }
+  var pok=0;
+  for(var m in estado.pegs){ if(estado.pegs.hasOwnProperty(m) && estado.pegs[m]) pok++; }
+  e3("hAc").textContent = ok; e3("hEr").textContent = er; e3("hPeg").textContent = pok;
+  e3("hSec").textContent = progresso() + "%";
+
+  var temas = {};
+  for(var k2 in estado.quiz){
+    if(estado.quiz.hasOwnProperty(k2) && estado.quiz[k2] !== QUESTOES[k2].ok){
+      var a = QUESTOES[k2].a;
+      temas[a] = (temas[a] || 0) + 1;
+    }
+  }
+  var lista = [];
+  for(var t in temas){ if(temas.hasOwnProperty(t)) lista.push({t:t, n:temas[t]}); }
+  lista.sort(function(x,y){ return y.n - x.n; });
+  if(!lista.length){
+    e3("fila").innerHTML = er ? "Sem âncoras pendentes." :
+      "Responda algumas questões da arena e a sua fila de revisão aparece aqui.";
+  } else {
+    var h = "<b>Suas âncoras com erro — revise estas primeiro:</b><ul>";
+    for(i=0;i<lista.length;i++){ h += "<li>" + lista[i].t + " — " + lista[i].n + (lista[i].n>1?" erros":" erro") + "</li>"; }
+    e3("fila").innerHTML = h + "</ul>";
+  }
+}
+function montaChecklist(){
+  var box = e3("checklist"); box.innerHTML = "";
+  for(var i=0;i<CHECKLIST.length;i++){
+    var lab = document.createElement("label");
+    lab.setAttribute("data-i", i);
+    var inp = document.createElement("input");
+    inp.type = "checkbox"; inp.checked = !!estado.check[i];
+    if(inp.checked) lab.className = "feito";
+    inp.addEventListener("change", function(){
+      var j = +this.parentNode.getAttribute("data-i");
+      estado.check[j] = this.checked;
+      this.parentNode.classList.toggle("feito", this.checked);
+      salva();
+    });
+    lab.appendChild(inp);
+    lab.appendChild(document.createTextNode(CHECKLIST[i]));
+    box.appendChild(lab);
+  }
+}
+
+/* --- filosofia --- */
+function sorteiaFrase(){
+  var i = Math.floor(Math.random() * FRASES.length);
+  e3("frase").innerHTML = FRASES[i] + '<span class="ass">— Dr. André Rossanno</span>';
+  e3("frase").setAttribute("data-i", i);
+}
+function montaFilosofia(){
+  sorteiaFrase();
+  var ul = e3("listaFrases"); ul.innerHTML = "";
+  for(var i=0;i<FRASES.length;i++){
+    var li = document.createElement("li");
+    li.textContent = FRASES[i];
+    ul.appendChild(li);
+  }
+  e3("fSorteia").addEventListener("click", sorteiaFrase);
+  e3("fTodas").addEventListener("click", function(){
+    var t = e3("todas"); var ab = t.classList.toggle("abre");
+    this.textContent = ab ? "Esconder" : "Ver todas";
+  });
+  e3("fProj").addEventListener("click", function(){
+    var i = +e3("frase").getAttribute("data-i");
+    e3("projTexto").textContent = FRASES[i];
+    e3("projetor").classList.add("abre");
+  });
+  e3("projFechar").addEventListener("click", function(){
+    e3("projetor").classList.remove("abre");
+  });
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape") e3("projetor").classList.remove("abre");
+  });
+}
+
+/* ===================== START DO PASS 3 ===================== */
+(function(){
+  var start = function(){
+    if(!estado.quiz) estado.quiz = {};
+    if(!estado.pegs) estado.pegs = {};
+    if(!estado.check) estado.check = {};
+    montaPegs();
+    montaCasos();
+    montaFiltros();
+    montaQuiz();
+    montaFcFiltros();
+    montaFlash();
+    montaChecklist();
+    montaFilosofia();
+    pintaHipocampo();
+    e3("qReset").addEventListener("click", function(){
+      estado.quiz = {}; salva(); montaQuiz(); pintaHipocampo();
+    });
+    e3("pegReset").addEventListener("click", function(){
+      estado.pegs = {}; salva(); montaPegs(); pintaHipocampo();
+    });
+    montaIndice();
+  };
+  if(document.readyState === "loading"){ document.addEventListener("DOMContentLoaded", start); }
+  else { start(); }
+})();
+
+
+</script>
+</body>
+</html>
