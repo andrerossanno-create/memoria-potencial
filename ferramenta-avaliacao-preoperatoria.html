@@ -251,6 +251,18 @@ body.sem-anexo .anexo{display:none}
   .dasi tr{display:table-row}
 }
 
+/* ---------- modo PDF (captura direta, sem diálogo de impressão) ---------- */
+body.modo-pdf{background:#fff;font-size:10pt}
+body.modo-pdf .barra,body.modo-pdf .aviso-tela,body.modo-pdf .so-tela{display:none !important}
+body.modo-pdf .folha{box-shadow:none;margin:0;padding:0;max-width:none;width:186mm;background:#fff}
+body.modo-pdf .anexo{border-top:0}
+body.modo-pdf h1{font-size:15pt}
+body.modo-pdf .ln,body.modo-pdf input.ln{border-bottom:1px solid #8b9aa5}
+body.modo-pdf input[readonly]{background:#eef5f8}
+.ta-pdf{white-space:pre-wrap;word-break:break-word}
+#pdfAviso{position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;background:rgba(22,35,46,.78);color:#fff;
+  display:none;align-items:center;justify-content:center;font-weight:800;font-size:18px;text-align:center;padding:20px}
+
 /* ---------- impressão ---------- */
 @page{size:A4;margin:11mm 12mm}
 @media print{
@@ -271,14 +283,15 @@ body.sem-anexo .anexo{display:none}
 
 <div class="barra">
   <span class="marca">Formulário pré-operatório · v1 · etapa 1 do projeto</span>
-  <button class="btn" onclick="window.print()">Imprimir / Salvar em PDF</button>
-  <button class="btn" id="btnResumo">Imprimir só o resumo</button>
-  <button class="btn fantasma" id="btnAnexo">Anexos na impressão: incluir</button>
+  <button class="btn" id="btnPdf">Baixar PDF</button>
+  <button class="btn" id="btnPdfResumo">Baixar PDF só do resumo</button>
+  <button class="btn fantasma" id="btnAnexo">Anexos no PDF: incluir</button>
+  <button class="btn fantasma" id="btnImprimir">Imprimir</button>
   <button class="btn fantasma" id="btnLimpar">Apagar dados deste dispositivo</button>
 </div>
 
 <div class="aviso-tela">
-  <b>Como usar.</b> Imprima em branco para preencher à mão no ambulatório ou preencha na tela — os campos calculados (idade, IMC, DASI, METs, RCRI) se atualizam sozinhos e o que você digita fica salvo <b>apenas neste dispositivo/navegador</b>, sem servidor. Os campos marcados com <span style="color:#1282A2">◆</span> são os que o motor de decisão da etapa seguinte não consegue funcionar sem. Este formulário <b>coleta</b>: ele não classifica risco nem recomenda exames. O campo de assinatura sai em branco — quem imprime assina. No fim há dois anexos de referência (qual escore usar; risco do procedimento) que podem ser tirados da impressão pelo botão da barra.
+  <b>Como usar.</b> Baixe o PDF em branco (ou imprima) para preencher à mão no ambulatório, ou preencha na tela e baixe o PDF já preenchido — os campos calculados (idade, IMC, DASI, METs, RCRI) se atualizam sozinhos e o que você digita fica salvo <b>apenas neste dispositivo/navegador</b>, sem servidor. Os campos marcados com <span style="color:#1282A2">◆</span> são os que o motor de decisão da etapa seguinte não consegue funcionar sem. Este formulário <b>coleta</b>: ele não classifica risco nem recomenda exames. O campo de assinatura sai em branco — quem imprime assina. No fim há dois anexos de referência (qual escore usar; risco do procedimento) que podem ser tirados do PDF e da impressão pelo botão da barra.
 </div>
 
 <div class="folha">
@@ -980,7 +993,7 @@ body.sem-anexo .anexo{display:none}
 
   function pintarBotaoAnexo(){
     var oculto = document.body.classList.contains("sem-anexo");
-    btnAnexo.textContent = "Anexos na impressão: " + (oculto ? "excluir" : "incluir");
+    btnAnexo.textContent = "Anexos no PDF: " + (oculto ? "excluir" : "incluir");
     btnAnexo.setAttribute("aria-pressed", oculto ? "false" : "true");
   }
 
@@ -1232,16 +1245,193 @@ body.sem-anexo .anexo{display:none}
     }
   }
 
-  /* ---------- imprimir só o resumo ---------- */
-  document.getElementById("btnResumo").addEventListener("click", function(){
+  /* ---------- imprimir (alternativa ao PDF direto) ---------- */
+  function imprimirResumo(){
     montarResumo();
     document.body.classList.add("so-resumo");
     window.print();
     setTimeout(function(){ document.body.classList.remove("so-resumo"); }, 1200);
-  });
+  }
+  document.getElementById("btnImprimir").addEventListener("click", function(){ window.print(); });
   window.addEventListener("afterprint", function(){
     document.body.classList.remove("so-resumo");
   });
+
+  /* ============================================================
+     BAIXAR PDF DIRETO — sem janela de impressão.
+     Cada seção do formulário é fotografada (html2canvas) e
+     montada em páginas A4 (jsPDF), sem cortar seção no meio.
+     As duas bibliotecas são baixadas da internet só no primeiro
+     clique; sem conexão, cai para a impressão do navegador.
+     ============================================================ */
+  var LIBS_PDF = [
+    "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+  ];
+  var gerandoPdf = false;
+
+  function carregarScript(src){
+    return new Promise(function(ok, falha){
+      var t = document.createElement("script");
+      t.src = src; t.onload = ok;
+      t.onerror = function(){ falha(new Error("Falha ao carregar " + src)); };
+      document.head.appendChild(t);
+    });
+  }
+  function carregarLibsPdf(){
+    if(window.html2canvas && window.jspdf) return Promise.resolve();
+    return Promise.all(LIBS_PDF.map(carregarScript));
+  }
+  function avisoPdf(txt){
+    var a = document.getElementById("pdfAviso");
+    if(!a){ a = document.createElement("div"); a.id = "pdfAviso"; document.body.appendChild(a); }
+    a.textContent = txt || "";
+    a.style.display = txt ? "flex" : "none";
+  }
+  function dataBr(iso){
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    return m ? m[3] + "/" + m[2] + "/" + m[1] : (iso || "");
+  }
+  function nomeArquivoPdf(soResumo){
+    var nome = (document.getElementById("nome").value || "").trim()
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase();
+    var h = new Date();
+    var d = h.getFullYear() + "-" + ("0" + (h.getMonth()+1)).slice(-2) + "-" + ("0" + h.getDate()).slice(-2);
+    return "avaliacao-preoperatoria" + (soResumo ? "-resumo" : "") + (nome ? "-" + nome : "") + "-" + d + ".pdf";
+  }
+
+  function baixarPdf(soResumo){
+    if(gerandoPdf) return;
+    gerandoPdf = true;
+    avisoPdf("Gerando o PDF…");
+    var vivos = Array.prototype.slice.call(document.querySelectorAll(".folha input, .folha textarea"));
+    var LARG = 186, MX = 12, MY = 11, ALT = 297 - 2*MY;
+    var pdf = null, y = 0;
+
+    function finalizar(){
+      document.body.classList.remove("modo-pdf");
+      avisoPdf("");
+      gerandoPdf = false;
+    }
+
+    carregarLibsPdf().then(function(){
+      montarResumo();
+      document.body.classList.add("modo-pdf");
+      return new Promise(function(r){ setTimeout(r, 80); });   /* deixa o layout assentar */
+    }).then(function(){
+      var folha = document.querySelector(".folha");
+      var semAnexo = document.body.classList.contains("sem-anexo");
+      var blocos = [];
+      Array.prototype.forEach.call(folha.children, function(el){
+        var cl = el.classList;
+        if(cl.contains("so-tela")) return;
+        if(soResumo){ if(!(cl.contains("cab") || cl.contains("resumo") || cl.contains("rodape"))) return; }
+        else if(cl.contains("anexo") && semAnexo) return;
+        blocos.push(el);
+      });
+
+      var opts = {
+        scale: 2, backgroundColor: "#ffffff", logging: false, useCORS: true, windowWidth: 1000,
+        onclone: function(doc){
+          var clones = doc.querySelectorAll(".folha input, .folha textarea");
+          vivos.forEach(function(v, i){
+            var c = clones[i]; if(!c) return;
+            if(v.tagName === "TEXTAREA"){
+              var d = doc.createElement("div");
+              d.className = v.className + " ta-pdf";
+              d.style.cssText = "border:1px solid #8b9aa5;padding:6px;line-height:1.5;font-size:13.5px;" +
+                "width:100%;box-sizing:border-box;font-family:inherit;color:#16232e;min-height:" + v.offsetHeight + "px";
+              d.textContent = v.value;
+              c.parentNode.replaceChild(d, c);
+            } else if(v.type === "checkbox"){
+              if(v.checked) c.setAttribute("checked", ""); else c.removeAttribute("checked");
+            } else if(v.type === "date"){
+              c.type = "text"; c.setAttribute("value", dataBr(v.value)); c.value = dataBr(v.value);
+            } else {
+              c.setAttribute("value", v.value);
+            }
+          });
+        }
+      };
+
+      pdf = new window.jspdf.jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
+
+      /* acha uma linha totalmente em branco logo acima do ponto de corte,
+         para não fatiar texto no meio quando uma seção grande atravessa a página */
+      function corteLimpo(cv, pxCorte){
+        var janela = Math.round(40 * cv.width / LARG);            /* procura até 40 mm acima */
+        var ini = Math.max(1, pxCorte - janela);
+        var alt = pxCorte - ini;
+        if(alt < 2) return pxCorte;
+        var dados;
+        try{ dados = cv.getContext("2d").getImageData(0, ini, cv.width, alt).data; }catch(e){ return pxCorte; }
+        for(var r = alt - 1; r >= 0; r--){
+          var branca = true, base = r * cv.width * 4;
+          for(var x = 0; x < cv.width; x += 2){
+            var k = base + x * 4;
+            if(dados[k] < 248 || dados[k+1] < 248 || dados[k+2] < 248){ branca = false; break; }
+          }
+          if(branca) return ini + r;
+        }
+        return pxCorte;
+      }
+
+      function colocar(cv, ehAnexo){
+        if(!cv.width || !cv.height) return;
+        var h = cv.height * LARG / cv.width;
+        /* bloco pequeno/médio que não cabe no resto da página vai inteiro para a próxima */
+        if(y > 0 && (ehAnexo || (y + h > ALT && h <= ALT * 0.6))){ pdf.addPage(); y = 0; }
+        var pxPorMm = cv.width / LARG;
+        var pxIni = 0;
+        while(pxIni < cv.height - 1){
+          var disp = ALT - y;
+          if(disp < 25){ pdf.addPage(); y = 0; disp = ALT; }
+          var pxFim = Math.min(cv.height, pxIni + Math.floor(disp * pxPorMm));
+          if(pxFim < cv.height) pxFim = corteLimpo(cv, pxFim);
+          if(pxFim <= pxIni + 5) pxFim = Math.min(cv.height, pxIni + Math.floor(disp * pxPorMm));
+          var pxAlt = pxFim - pxIni, fatia = pxAlt / pxPorMm;
+          var pedaco = document.createElement("canvas");
+          pedaco.width = cv.width; pedaco.height = pxAlt;
+          var ctx = pedaco.getContext("2d");
+          ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, pedaco.width, pedaco.height);
+          ctx.drawImage(cv, 0, pxIni, cv.width, pxAlt, 0, 0, cv.width, pxAlt);
+          pdf.addImage(pedaco.toDataURL("image/jpeg", 0.95), "JPEG", MX, MY + y, LARG, fatia);
+          y += fatia; pxIni = pxFim;
+          if(pxIni < cv.height - 1){ pdf.addPage(); y = 0; }
+        }
+        y += 2;
+      }
+
+      var cadeia = Promise.resolve();
+      blocos.forEach(function(el, i){
+        cadeia = cadeia.then(function(){
+          avisoPdf("Gerando o PDF… " + (i+1) + " de " + blocos.length);
+          return window.html2canvas(el, opts).then(function(cv){
+            colocar(cv, el.classList.contains("anexo") || (!soResumo && el.classList.contains("resumo")));
+          });
+        });
+      });
+      return cadeia;
+    }).then(function(){
+      var n = pdf.getNumberOfPages();
+      for(var p = 1; p <= n; p++){
+        pdf.setPage(p);
+        pdf.setFontSize(8); pdf.setTextColor(110, 124, 134);
+        pdf.text("Página " + p + " de " + n, 105, 292, { align: "center" });
+      }
+      pdf.save(nomeArquivoPdf(soResumo));
+      finalizar();
+    }).catch(function(e){
+      finalizar();
+      try{ console.error(e); }catch(_){}
+      alert("Não consegui gerar o PDF direto (talvez sem internet para carregar a biblioteca). Vou abrir a impressão do navegador — escolha \"Salvar como PDF\".");
+      if(soResumo) imprimirResumo(); else window.print();
+    });
+  }
+
+  document.getElementById("btnPdf").addEventListener("click", function(){ baixarPdf(false); });
+  document.getElementById("btnPdfResumo").addEventListener("click", function(){ baixarPdf(true); });
 
   carregar();
   recalcular();
