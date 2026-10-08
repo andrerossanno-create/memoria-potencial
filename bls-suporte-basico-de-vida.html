@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suporte Básico de Vida (BLS) — Profa. Márcia · Universidade Ceuma</title>
+<title>Suporte Básico de Vida (BLS) — Dr. André Rossanno</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -197,6 +197,188 @@ body.aprs .rodape{font-size:11px}
 #mapa .it b{color:#7fd4e8;font-family:var(--mono);font-size:11px}
 
 
+/* ---------- CAMADA INTERATIVA / MEMORIZAÇÃO ---------- */
+.chip.p{background:#6b46c1;color:#fff}
+#pts{font-family:var(--mono);font-size:11px;color:#ffd27a;font-weight:600;padding:0 6px;transition:transform .25s;display:inline-block}
+#pts.pulso{transform:scale(1.4)}
+.btn.verde{background:var(--verde);border-color:var(--verde)}
+.btn.verde:hover{background:#17794e;border-color:#17794e}
+.btn.verm{background:var(--vermelho);border-color:var(--vermelho)}
+.btn.verm:hover{background:#a52f23;border-color:#a52f23}
+.btn.big{font-size:15px;padding:13px 22px}
+.btn:disabled{opacity:.45;cursor:default}
+.comp{height:100%}
+@keyframes treme{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pop{0%{transform:scale(.92);opacity:.4}100%{transform:scale(1);opacity:1}}
+
+/* quiz e caso */
+.qz{display:flex;flex-direction:column;gap:9px}
+.qz-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.qz-dots{display:flex;gap:6px}
+.qz-dots i{width:12px;height:12px;border-radius:50%;background:#c7d0dd;display:block;transition:background .2s}
+.qz-dots i.atual{background:var(--azul);transform:scale(1.25)}
+.qz-dots i.ok{background:var(--verde)}
+.qz-dots i.err{background:var(--vermelho)}
+.vida-w{margin-left:auto;display:flex;align-items:center;gap:9px}
+.vida{width:230px;height:13px;background:#d3dbe7;border-radius:8px;overflow:hidden}
+.vida i{display:block;height:100%;background:var(--verde);border-radius:8px;transition:width .5s,background .5s}
+.vida i.med{background:var(--ambar)} .vida i.baixa{background:var(--vermelho)}
+.qz-cena{background:var(--navy);color:#fff;border-radius:10px;padding:13px 17px;font-size:16.5px;line-height:1.45}
+.qz-cena b{color:#ffd27a}
+.qz-ops{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qz-op{text-align:left;background:var(--card);border:2px solid var(--linha);border-radius:9px;padding:9px 12px;
+  font:600 14.5px/1.35 var(--disp);color:var(--tinta);cursor:pointer;display:flex;gap:9px;
+  transition:border-color .15s,background .15s}
+.qz-op:hover:not(:disabled){border-color:var(--azul);background:var(--azul-claro)}
+.qz-op .l{font-family:var(--mono);font-weight:600;color:var(--cinza)}
+.qz-op.err{border-color:var(--vermelho);background:var(--vermelho-claro);animation:treme .35s}
+.qz-op.ok{border-color:var(--verde);background:var(--verde-claro)}
+.qz-op:disabled{cursor:default}
+.qz-fb{border-radius:9px;padding:9px 13px;font-size:14.5px;line-height:1.42;display:none}
+.qz-fb.on{display:block}
+.qz-fb.ok{background:var(--verde-claro);border-left:5px solid var(--verde)}
+.qz-fb.err{background:var(--vermelho-claro);border-left:5px solid var(--vermelho)}
+.qz-nav{display:flex;justify-content:flex-end;gap:8px;min-height:36px}
+.qz-fim{text-align:center;padding:22px 10px}
+.qz-fim .numerao{font-size:64px}
+.qz-fim p{font-size:16.5px;max-width:760px;margin:12px auto 18px;line-height:1.5}
+
+/* mão dos cinco números */
+.mao-w{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:start}
+.mao{display:flex;align-items:flex-end;gap:7px}
+.dedo{flex:1;border:none;border-radius:46px 46px 12px 12px;color:#fff;cursor:pointer;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;padding:16px 4px 10px;gap:3px;font-family:var(--disp);
+  transition:transform .15s,box-shadow .15s;min-width:0}
+.dedo:hover{transform:translateY(-4px)}
+.dedo.sel{box-shadow:0 0 0 4px #ffd27a;transform:translateY(-6px)}
+.dedo .dn{font-family:var(--mono);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;opacity:.9}
+.dedo .dp{font-size:14px;font-weight:900;line-height:1.1;text-align:center}
+.dedo .dv{font-family:var(--mono);font-size:21px;font-weight:600;margin-top:auto;padding-top:6px}
+.dedo .ds{font-size:10.5px;line-height:1.15;text-align:center;opacity:.92;min-height:24px}
+.palma{height:46px;border-radius:8px 8px 26px 26px;background:var(--navy);color:#c8d8e8;display:flex;align-items:center;
+  justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;margin-top:4px}
+.mao-det{min-height:200px}
+.mao-det .numerao{font-size:44px}
+.mao-ctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* bata o ritmo */
+.tap-w{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:center}
+.tap-pad{width:270px;height:270px;border-radius:50%;border:none;background:radial-gradient(circle at 35% 30%,#e0584a,#a52f23);
+  color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  font-family:var(--disp);box-shadow:0 10px 26px rgba(192,57,43,.35);touch-action:manipulation;user-select:none;
+  -webkit-user-select:none;transition:transform .06s}
+.tap-pad b{font-size:28px;font-weight:900;letter-spacing:-.5px}
+.tap-pad small{font-family:var(--mono);font-size:10.5px;opacity:.85;max-width:190px;text-align:center;line-height:1.3}
+.tap-pad.bate{transform:scale(.94)}
+.tap-pad.vent{background:radial-gradient(circle at 35% 30%,#3aa5c4,#0f6a85);box-shadow:0 10px 26px rgba(18,130,162,.35)}
+.gauge{position:relative;height:26px;background:#d3dbe7;border-radius:13px;margin:8px 0 4px}
+.gauge .zona{position:absolute;left:40%;width:20%;top:0;bottom:0;background:var(--verde);opacity:.85}
+.gauge .agulha{position:absolute;top:-5px;bottom:-5px;width:5px;background:var(--navy);border-radius:3px;left:0;transition:left .15s}
+.gauge-l{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--cinza)}
+.tap-st{font-size:17px;font-weight:800;min-height:46px;line-height:1.3}
+.tap-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+
+/* DEA */
+.dea-w{display:grid;grid-template-columns:290px 1fr;gap:22px;align-items:start}
+.torso-box{position:relative;border-radius:12px;background:#dfe6ef;padding:6px}
+.torso{width:100%;height:auto;display:block}
+.torso .zona{fill:rgba(18,130,162,.08);stroke:var(--azul);stroke-width:2;stroke-dasharray:5 4;cursor:pointer}
+.torso .zona:hover{fill:rgba(18,130,162,.28)}
+.torso .zona.usada{display:none}
+.torso .pa{fill:#1e8f5e;stroke:#fff;stroke-width:2;opacity:.92}
+.torso-box.flash{animation:flash .6s}
+@keyframes flash{0%{background:#fff7c2}30%{background:#fff}100%{background:#dfe6ef}}
+.torso-leg{font-size:11.5px;color:var(--cinza);margin-top:6px;line-height:1.35}
+.dea-tela{background:#0e2a1f;color:#7dffb0;font-family:var(--mono);font-size:15px;border-radius:10px;padding:13px 16px;
+  min-height:62px;line-height:1.4;border:3px solid #1b4a37}
+.dea-tela.alerta{color:#ffd27a;border-color:#6b5b1b;background:#2a2410}
+.dea-ctrl{margin-top:12px;display:flex;flex-direction:column;gap:9px}
+.dea-fb{font-size:14.5px;line-height:1.42;border-radius:9px;padding:8px 12px;display:none}
+.dea-fb.on{display:block}
+.dea-fb.ok{background:var(--verde-claro);border-left:5px solid var(--verde)}
+.dea-fb.err{background:var(--vermelho-claro);border-left:5px solid var(--vermelho)}
+.chk{display:flex;gap:8px;flex-wrap:wrap}
+.chk button{font:700 14px var(--disp);padding:9px 13px;border-radius:8px;border:2px solid var(--linha);background:var(--card);cursor:pointer;color:var(--tinta)}
+.chk button.on{background:var(--verde-claro);border-color:var(--verde);color:var(--verde)}
+.opc{display:flex;flex-direction:column;gap:7px}
+
+/* tiro rápido (faixa etária) e ordem */
+.tiro{display:flex;flex-direction:column;gap:11px}
+.tiro-card{background:var(--navy);color:#fff;border-radius:12px;padding:22px 26px;font-size:24px;font-weight:800;line-height:1.3;min-height:104px;
+  display:flex;align-items:center;animation:pop .25s}
+.tiro-btns{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.tiro-btns button{font:800 15px var(--disp);padding:13px 6px;border-radius:9px;border:2px solid var(--navy);background:var(--card);color:var(--navy);cursor:pointer}
+.tiro-btns button:hover:not(:disabled){background:var(--azul);color:#fff;border-color:var(--azul)}
+.tiro-btns button.ok{background:var(--verde);color:#fff;border-color:var(--verde)}
+.tiro-btns button.err{background:var(--vermelho);color:#fff;border-color:var(--vermelho);animation:treme .35s}
+.tiro-btns button:disabled{cursor:default}
+.ordem-g{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.ord{position:relative;text-align:left;background:var(--card);border:2px solid var(--linha);border-radius:10px;padding:12px 12px 10px;
+  cursor:pointer;font-family:var(--disp);color:var(--tinta);min-height:92px;transition:border-color .15s,background .15s}
+.ord:hover:not(.feito){border-color:var(--azul);background:var(--azul-claro)}
+.ord b{display:block;font-size:15.5px;line-height:1.2;font-weight:900;color:var(--navy)}
+.ord span{display:block;font-size:12.5px;color:var(--cinza);margin-top:4px;line-height:1.3}
+.ord.err{animation:treme .35s;border-color:var(--vermelho)}
+.ord.feito{border-color:var(--verde);background:var(--verde-claro);cursor:default}
+.ord .nb{position:absolute;top:-9px;right:-7px;width:28px;height:28px;border-radius:50%;background:var(--verde);color:#fff;
+  font:600 14px/28px var(--mono);text-align:center;display:none}
+.ord.feito .nb{display:block}
+
+/* rota do plantão */
+.rota-w{display:flex;flex-direction:column;gap:10px}
+.rota-g{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}
+.est{background:var(--card);border:2px solid var(--linha);border-radius:10px;padding:8px 4px 7px;cursor:pointer;text-align:center;
+  font-family:var(--disp);color:var(--tinta);position:relative}
+.est:hover{border-color:var(--azul)}
+.est .em{font-size:34px;line-height:1.1;display:block}
+.est .en{font-family:var(--mono);font-size:10px;color:var(--cinza);display:block;margin-top:2px;letter-spacing:.4px}
+.est .et{font-size:11.5px;font-weight:800;line-height:1.15;display:block;margin-top:2px}
+.est.vis{background:var(--azul-claro);border-color:var(--azul)}
+.est.sel{border-color:var(--vermelho);box-shadow:0 0 0 3px rgba(192,57,43,.25)}
+.rota-det{background:var(--card);border:1px solid var(--linha);border-left:6px solid var(--vermelho);border-radius:10px;padding:13px 17px;min-height:128px;font-size:15.5px;line-height:1.5}
+.rota-det .abs{font-size:17.5px;font-weight:700;color:var(--navy)}
+.rota-det .anc{margin-top:8px;background:var(--verde-claro);border-radius:8px;padding:8px 12px}
+.rota-ctl{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+
+/* flashcards */
+.fc-w{display:flex;flex-direction:column;gap:11px;align-items:stretch}
+.fc{min-height:210px;border-radius:14px;padding:26px 32px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;
+  align-items:center;text-align:center;border:2px solid var(--navy);background:var(--card);user-select:none;-webkit-user-select:none}
+.fc .fc-r{font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--cinza);margin-bottom:10px}
+.fc .fc-t{font-size:27px;font-weight:900;line-height:1.25;color:var(--navy)}
+.fc.verso{background:var(--verde-claro);border-color:var(--verde)}
+.fc.verso .fc-t{font-size:21px;font-weight:700;color:var(--tinta);line-height:1.4}
+.fc-bar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.fc-st{font-family:var(--mono);font-size:12px;color:var(--cinza)}
+.fc-bt{display:flex;gap:9px}
+
+@media (max-width:900px), (max-aspect-ratio:1/1){
+  .qz-ops,.mao-w,.tap-w,.dea-w{grid-template-columns:1fr}
+  .tiro-btns{grid-template-columns:1fr 1fr}
+  .ordem-g{grid-template-columns:1fr 1fr}
+  .rota-g{grid-template-columns:repeat(4,1fr)}
+  .tap-pad{width:210px;height:210px;margin:0 auto}
+  .tiro-card{font-size:19px;padding:16px 18px}
+  .vida{width:130px}
+  .mao{gap:4px}
+  .dedo .dp{font-size:11.5px} .dedo .dv{font-size:15px}
+  .tap-stats{grid-template-columns:1fr}
+  .fc .fc-t{font-size:21px}
+  .torso-box{max-width:230px;margin:0 auto}
+}
+body.mv .qz-ops,body.mv .mao-w,body.mv .tap-w,body.mv .dea-w{grid-template-columns:1fr}
+body.mv .tiro-btns{grid-template-columns:1fr 1fr}
+body.mv .ordem-g{grid-template-columns:1fr 1fr}
+body.mv .rota-g{grid-template-columns:repeat(4,1fr)}
+body.mv .tap-pad{width:210px;height:210px;margin:0 auto}
+body.mv .tiro-card{font-size:19px;padding:16px 18px}
+body.mv .vida{width:130px}
+body.mv .tap-stats{grid-template-columns:1fr}
+body.mv .fc .fc-t{font-size:21px}
+body.mv .comp{height:auto}
+body.mv .torso-box{max-width:230px;margin:0 auto}
+
+
 /* ---------- MODO VERTICAL / TELA ESTREITA ---------- */
 body.mv{overflow:auto}
 body.mv #palco{position:static;display:block;padding:40px 0 22px}
@@ -283,30 +465,39 @@ body.mv .rodape{flex-direction:column;gap:4px}
 <body class="ocultar">
 <div id="barra">
   <button id="bPrev">◀</button><button id="bNext">▶</button>
-  <span id="cont">1 / 38</span>
+  <span id="cont">1 / 51</span><span id="pts" title="Pontos desta sessão">★ 0</span>
   <button id="bOc" class="on">O · ocultar respostas</button>
   <button id="bNot">N · notas</button>
   <button id="bMap">M · mapa</button>
   <button id="bApr">P · apresentar</button>
   <button id="bFull">F · tela cheia</button>
-  <span class="tit-b">BLS · Profa. Márcia · Universidade Ceuma</span>
+  <span class="tit-b">BLS · Dr. André Rossanno</span>
 </div>
 <div id="palco"><div id="slide-wrap">
 
 <!-- 01 CAPA -->
 <section class="slide capa" data-bloco="Abertura" data-chips="b|AHA 2025" data-fonte="AHA Guidelines for CPR and ECC, 2025" data-nota="Abra dizendo: <b>hoje ninguém sai daqui sem saber fazer três coisas</b> — reconhecer uma PCR em 10 segundos, comprimir com qualidade e ligar um DEA. Pergunte quem já viu uma PCR de verdade.">
  <div class="corpo">
-  <div class="kicker">Emergências · Medicina · Universidade Ceuma</div>
+  <div class="kicker">Emergências · Medicina</div>
   <h1>Suporte<br>Básico de Vida</h1>
   <div class="lin"></div>
-  <div class="quem">Profa. Márcia</div>
-  <div class="inst">Universidade Ceuma · Curso de Medicina</div>
+  <div class="quem">Dr. André Rossanno</div>
+  <div class="inst">Cardiologia · Medicina Intensiva</div>
   <div class="frase">Quem chega primeiro decide o desfecho.</div>
  </div>
 </section>
 
+<!-- NOVO · CASO INTERATIVO -->
+<section class="slide" data-bloco="Abertura" data-chips="p|Interativo;;a|Caso dramático" data-fonte="Caso fictício para fixação — condutas conforme AHA 2025" data-nota="Leia a cena em voz alta e <b>deixe a turma votar antes de tocar numa alternativa</b>. A barra de chance cai a cada erro — é de propósito: hesitar é o vilão. Errou? Peça que a turma explique o porquê antes de você mostrar a correção. Este caso reaparece, em partes, ao longo da aula.">
+ <div class="corpo">
+  <div class="kicker">Antes da teoria · o caso do shopping</div>
+  <h1 class="tit">Domingo, 14h32. Alguém cai na sua frente.</h1>
+  <div class="conteudo"><div class="comp" data-comp="caso"></div></div>
+ </div>
+</section>
+
 <!-- 02 COMO FUNCIONA -->
-<section class="slide" data-bloco="Abertura" data-chips="b|Método da aula" data-fonte="Aula presencial — Profa. Márcia" data-nota="Explique os atalhos só uma vez. O modo <b>ocultar respostas</b> está ligado: os alunos respondem antes de ver.">
+<section class="slide" data-bloco="Abertura" data-chips="b|Método da aula" data-fonte="Aula presencial — Dr. André Rossanno" data-nota="Explique os atalhos só uma vez. O modo <b>ocultar respostas</b> está ligado: os alunos respondem antes de ver.">
  <div class="corpo">
   <div class="kicker">Como esta aula funciona</div>
   <h1 class="tit">Você responde antes de eu revelar</h1>
@@ -320,7 +511,7 @@ body.mv .rodape{flex-direction:column;gap:4px}
     <div class="cx"><h4>5 · Especiais</h4><p>Criança, lactente, engasgo, gestante, afogamento, opioide.</p></div>
     <div class="cx navy"><h4>6 · Fixar</h4><p>Erros que mais aparecem na prática e revisão de 60 segundos.</p></div>
    </div>
-   <div class="cx ambar" style="margin-top:14px"><h4>Combinado da sala</h4><p>Em todo slide com caixa hachurada, <b>escreva sua conduta antes</b>. Eu só revelo depois que alguém falar em voz alta.</p></div>
+   <div class="cx ambar" style="margin-top:14px"><h4>Combinado da sala</h4><p>Em todo slide com caixa hachurada, <b>escreva sua conduta antes</b>. Eu só revelo depois que alguém falar em voz alta.</p><p style="margin-top:6px">Slides com a etiqueta <b>Interativo</b> pedem toque: decida, erre, leia o porquê — e junte <b>★ pontos</b>.</p></div>
   </div>
  </div>
 </section>
@@ -497,6 +688,26 @@ body.mv .rodape{flex-direction:column;gap:4px}
  </div>
 </section>
 
+<!-- NOVO · MONTE O ALGORITMO -->
+<section class="slide" data-bloco="Reconhecer" data-chips="p|Interativo;;b|Sequência" data-fonte="AHA 2025 — sequência do BLS no adulto para profissionais de saúde" data-nota="Divida a turma em duas equipes e deixe cada uma montar a sequência. <b>A ordem é o que cai em prova.</b> A dica só aparece quando erram — de propósito, para que o erro seja corrigido na hora.">
+ <div class="corpo">
+  <div class="kicker">Teste de memória · sequência</div>
+  <h1 class="tit">Monte o algoritmo na ordem certa</h1>
+  <p class="sub">Toque nos cartões na ordem em que as ações acontecem. Errou? Uma dica aparece — e o erro fica contado.</p>
+  <div class="conteudo"><div class="comp" data-comp="ordem"></div></div>
+ </div>
+</section>
+
+<!-- NOVO · CHECKPOINT 1 -->
+<section class="slide" data-bloco="Reconhecer" data-chips="p|Interativo;;r|Recuperação ativa" data-fonte="Checkpoint do bloco 1 — conteúdo dos slides anteriores" data-nota="Pergunte antes que alguém toque: <b>qual é a resposta e por quê?</b> Só então deixe a alternativa ser escolhida. Recuperar da memória fixa mais do que reler.">
+ <div class="corpo">
+  <div class="kicker">Checkpoint 1 · recuperação ativa</div>
+  <h1 class="tit">O que você reteve de Reconhecer?</h1>
+  <p class="sub">Três perguntas, sem consulta. Errou? Leia o porquê e tente de novo — o erro corrigido é o que mais fixa.</p>
+  <div class="conteudo"><div class="comp" data-comp="quiz" data-q="b1"></div></div>
+ </div>
+</section>
+
 <!-- 13 DIVISOR 2 -->
 <section class="slide divisor" data-bloco="Bloco 2" data-chips="b|Comprimir" data-fonte="—" data-nota="Transição. Diga: <b>tudo o que vem depois depende de o sangue estar circulando agora.</b>">
  <div class="corpo">
@@ -524,6 +735,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
  </div>
 </section>
 
+<!-- NOVO · MÃO DOS CINCO NÚMEROS -->
+<section class="slide" data-bloco="Comprimir" data-chips="p|Interativo;;a|Mnemônico" data-fonte="Mnemônico próprio para os cinco números da RCP de alta qualidade (AHA 2025)" data-nota="Peça que cada aluno <b>levante a própria mão</b> e nomeie os dedos com os números, em voz alta, sem olhar. Depois ligue o modo teste: os números somem e a turma precisa recuperar. Fecha dizendo: a mão que comprime é a mão que lembra.">
+ <div class="corpo">
+  <div class="kicker">Âncora de memória</div>
+  <h1 class="tit">A mão que comprime tem cinco dedos — e cinco números</h1>
+  <p class="sub">Toque em cada dedo. Depois ligue o <b>modo teste</b>: os números somem e você precisa lembrar.</p>
+  <div class="conteudo"><div class="comp" data-comp="mao"></div></div>
+ </div>
+</section>
+
 <!-- 15 METRONOMO -->
 <section class="slide" data-bloco="Comprimir" data-chips="b|Prática;;g|100–120/min" data-fonte="AHA 2025 — frequência de 100 a 120 compressões por minuto" data-nota="Ligue o metrônomo e mande <b>todo mundo comprimir a mesa</b> por 30 segundos. Depois pergunte quem cansou. Esse cansaço é o argumento da troca a cada 2 minutos.">
  <div class="corpo">
@@ -542,6 +763,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
     <div class="cx ambar"><h4>O erro do adrenalinado <span class="tag peg">atenção</span></h4><p>Sob estresse, a tendência é <b class="am">acelerar</b> para 140–150/min e comprimir raso. Frequência alta com profundidade baixa gera quase nenhum débito. Quem lidera precisa cronometrar em voz alta.</p></div>
    </div>
   </div>
+ </div>
+</section>
+
+<!-- NOVO · BATA O RITMO -->
+<section class="slide" data-espaco="1" data-bloco="Comprimir" data-chips="p|Interativo;;g|100–120/min" data-fonte="AHA 2025 — frequência 100–120/min, relação 30:2 e pausas menores que 10 segundos" data-nota="Esconda o metrônomo e peça que a turma bata o ritmo <b>de cabeça</b>. A maioria acelera. O medidor mostra a verdade. A pausa entre o 30º toque e o próximo é a pausa real da RCP: meta &lt; 10 s. Na barra de espaço, o toque funciona no notebook.">
+ <div class="corpo">
+  <div class="kicker">Prática · sem metrônomo</div>
+  <h1 class="tit">Bata o ritmo, sopre duas vezes, volte rápido</h1>
+  <p class="sub">30 toques no ritmo que você acha que é 100–120/min. Depois 2 sopros — e retome. A pausa está sendo cronometrada.</p>
+  <div class="conteudo"><div class="comp" data-comp="tap"></div></div>
  </div>
 </section>
 
@@ -594,6 +825,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
    </div>
    <div class="cx navy" style="margin-top:14px"><h4>Regra da troca</h4><p style="font-size:17px">Troque o compressor <b>a cada 2 minutos ou antes, se cansar</b> — aproveitando a checagem de ritmo, em <b>menos de 5 segundos</b>. Quem vai assumir já se posiciona do outro lado do tórax antes da pausa.</p></div>
   </div>
+ </div>
+</section>
+
+<!-- NOVO · CHECKPOINT 2 -->
+<section class="slide" data-bloco="Comprimir" data-chips="p|Interativo;;r|Recuperação ativa" data-fonte="Checkpoint do bloco 2 — conteúdo dos slides anteriores" data-nota="Aqui vale pedir que a turma recite os cinco números <b>antes</b> de ver as alternativas. Se alguém errar a fração, volte à mão dos cinco números.">
+ <div class="corpo">
+  <div class="kicker">Checkpoint 2 · recuperação ativa</div>
+  <h1 class="tit">O que você reteve de Comprimir?</h1>
+  <p class="sub">Os números primeiro, o raciocínio depois.</p>
+  <div class="conteudo"><div class="comp" data-comp="quiz" data-q="b2"></div></div>
  </div>
 </section>
 
@@ -674,6 +915,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
  </div>
 </section>
 
+<!-- NOVO · CHECKPOINT 3 -->
+<section class="slide" data-bloco="Ventilar" data-chips="p|Interativo;;r|Recuperação ativa" data-fonte="Checkpoint do bloco 3 — conteúdo dos slides anteriores" data-nota="A pergunta do hiperventilar é a mais valiosa: peça que a turma explique a <b>fisiologia</b> em voz alta, não só escolha a alternativa.">
+ <div class="corpo">
+  <div class="kicker">Checkpoint 3 · recuperação ativa</div>
+  <h1 class="tit">O que você reteve de Ventilar?</h1>
+  <p class="sub">Menos ar, mais vida — mas só se você souber o porquê.</p>
+  <div class="conteudo"><div class="comp" data-comp="quiz" data-q="b3"></div></div>
+ </div>
+</section>
+
 <!-- 24 DIVISOR 4 -->
 <section class="slide divisor" data-bloco="Bloco 4" data-chips="b|Desfibrilar" data-fonte="—" data-nota="Transição. Frase: <b>compressão ganha tempo; só o choque devolve o ritmo.</b>">
  <div class="corpo">
@@ -719,6 +970,15 @@ body.mv .rodape{flex-direction:column;gap:4px}
  </div>
 </section>
 
+<!-- NOVO · SIMULADOR DE DEA -->
+<section class="slide" data-bloco="Desfibrilar" data-chips="p|Interativo;;b|Simulação" data-fonte="AHA 2025 — uso do DEA; posição anterolateral das pás" data-nota="Chame um voluntário para operar na frente da turma e deixe os outros <b>soprarem as respostas</b>. O ponto crítico é o passo de afastar: três falas — eu, vocês, oxigênio. O simulador não deixa o choque sair sem a conferência.">
+ <div class="corpo">
+  <div class="kicker">Simulação · passo a passo</div>
+  <h1 class="tit">Simulador de DEA: ligue, cole, afaste, choque</h1>
+  <div class="conteudo"><div class="comp" data-comp="dea"></div></div>
+ </div>
+</section>
+
 <!-- 27 PAS -->
 <section class="slide" data-bloco="Desfibrilar" data-chips="g|AHA 2025;;a|Situações especiais" data-fonte="AHA 2025 — posicionamento de pás e circunstâncias especiais no uso do DEA" data-nota="Este slide costuma render perguntas: peito cabeludo, marca-passo, adesivo de nitrato, piscina. Deixe tempo.">
  <div class="corpo">
@@ -760,6 +1020,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
  </div>
 </section>
 
+<!-- NOVO · CHECKPOINT 4 -->
+<section class="slide" data-bloco="Desfibrilar" data-chips="p|Interativo;;r|Recuperação ativa" data-fonte="Checkpoint do bloco 4 — conteúdo dos slides anteriores" data-nota="Lembre que o DEA decide o ritmo — o aluno de BLS <b>não precisa nomear</b>. Se errarem a criança sem pá pediátrica, reforce: não usar é o único erro grave.">
+ <div class="corpo">
+  <div class="kicker">Checkpoint 4 · recuperação ativa</div>
+  <h1 class="tit">O que você reteve de Desfibrilar?</h1>
+  <p class="sub">Choque, pás e o segundo seguinte ao choque.</p>
+  <div class="conteudo"><div class="comp" data-comp="quiz" data-q="b4"></div></div>
+ </div>
+</section>
+
 <!-- 29 DIVISOR 5 -->
 <section class="slide divisor" data-bloco="Bloco 5" data-chips="b|Especiais" data-fonte="—" data-nota="Transição. Diga que aqui moram as questões que separam nota 7 de nota 10.">
  <div class="corpo">
@@ -787,6 +1057,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
    </table>
    <div class="cx ambar" style="margin-top:12px"><h4>A lógica por trás <span class="tag peg">entenda</span></h4><p>PCR de adulto costuma ser <b>elétrica</b> (FV) → prioridade é choque. PCR de criança costuma ser <b class="am">hipóxica</b> (respiratória progressiva) → prioridade é ventilar e chamar ajuda depois de 2 min de RCP se estiver sozinho.</p></div>
   </div>
+ </div>
+</section>
+
+<!-- NOVO · TIRO RÁPIDO -->
+<section class="slide" data-bloco="Especiais" data-chips="p|Interativo;;a|Intercalação" data-fonte="Comparação adulto × criança × lactente — AHA 2025" data-nota="Jogo de velocidade: <b>uma frase, uma faixa etária</b>. Misturar as faixas é de propósito (intercalação): o cérebro aprende a diferença, não só o fato. Repare na pegadinha da técnica de dois dedos.">
+ <div class="corpo">
+  <div class="kicker">Intercalação · diferencie rápido</div>
+  <h1 class="tit">Tiro rápido: adulto, criança ou lactente?</h1>
+  <p class="sub">Doze frases misturadas. Uma tentativa por frase — e uma delas já saiu das diretrizes.</p>
+  <div class="conteudo"><div class="comp" data-comp="faixa"></div></div>
  </div>
 </section>
 
@@ -886,6 +1166,16 @@ body.mv .rodape{flex-direction:column;gap:4px}
 
 
 
+<!-- NOVO · CHECKPOINT 5 -->
+<section class="slide" data-bloco="Especiais" data-chips="p|Interativo;;r|Recuperação ativa" data-fonte="Checkpoint do bloco 5 — conteúdo dos slides anteriores" data-nota="É o bloco das pegadinhas de 2025: OVACE começando pelas costas e lactente sem dois dedos. Se a turma errar, volte ao slide de OVACE antes de seguir.">
+ <div class="corpo">
+  <div class="kicker">Checkpoint 5 · recuperação ativa</div>
+  <h1 class="tit">O que você reteve das Situações especiais?</h1>
+  <p class="sub">Aqui moram as questões que separam nota 7 de nota 10.</p>
+  <div class="conteudo"><div class="comp" data-comp="quiz" data-q="b5"></div></div>
+ </div>
+</section>
+
 <!-- 38 PEGADINHAS -->
 <section class="slide" data-bloco="Fixar" data-chips="a|Atenção;;r|Erros comuns" data-fonte="Compilado dos erros mais frequentes no atendimento à PCR" data-nota="Se o tempo estiver curto, este é o slide que você não pode pular. Peça um exemplo real de estágio para cada item.">
  <div class="corpo">
@@ -908,6 +1198,36 @@ body.mv .rodape{flex-direction:column;gap:4px}
  </div>
 </section>
 
+<!-- NOVO · ROTA DO PLANTÃO -->
+<section class="slide" data-bloco="Fixar" data-chips="p|Interativo;;a|Palácio de memória" data-fonte="Técnica dos loci aplicada à sequência do BLS — conteúdo conforme AHA 2025" data-nota="Percorra as oito estações <b>na ordem</b>, deixando a turma rir das imagens absurdas — o absurdo é o que fixa. Depois ligue o modo teste: só a imagem aparece e a turma recita a conduta. Peça que cada um refaça a rota mentalmente a caminho do plantão.">
+ <div class="corpo">
+  <div class="kicker">Palácio de memória · UTI imaginária</div>
+  <h1 class="tit">Rota do plantão: a aula inteira em oito estações</h1>
+  <p class="sub">Cada estação é uma imagem absurda amarrada a uma conduta. Percorra a rota; depois ligue o <b>modo teste</b>.</p>
+  <div class="conteudo"><div class="comp" data-comp="rota"></div></div>
+ </div>
+</section>
+
+<!-- NOVO · BARALHO -->
+<section class="slide" data-bloco="Fixar" data-chips="p|Interativo;;b|Repetição espaçada" data-fonte="Baralho de revisão — conteúdo conforme AHA 2025" data-nota="Os cartões que você errar <b>voltam no fim da fila</b> e ficam guardados neste aparelho para a próxima abertura. Peça que cada aluno faça o baralho no celular em casa, no dia seguinte e uma semana depois.">
+ <div class="corpo">
+  <div class="kicker">Repetição espaçada</div>
+  <h1 class="tit">Baralho de revisão — 28 cartas</h1>
+  <p class="sub">Toque na carta para virar. Errou? Ela volta no fim da fila e fica guardada para a próxima vez.</p>
+  <div class="conteudo"><div class="comp" data-comp="flash"></div></div>
+ </div>
+</section>
+
+<!-- NOVO · SIMULADO RELÂMPAGO -->
+<section class="slide" data-bloco="Fixar" data-chips="p|Interativo;;r|Tudo misturado" data-fonte="Simulado de fixação — conteúdo de toda a aula, conforme AHA 2025" data-nota="Último teste. As perguntas misturam todos os blocos de propósito. <b>Cronometre a turma</b>: o tempo aparece no resultado. Quem errar mais de três, volte ao baralho.">
+ <div class="corpo">
+  <div class="kicker">Simulado relâmpago · tudo misturado</div>
+  <h1 class="tit">Dez perguntas, todos os blocos</h1>
+  <p class="sub">Sem dica de bloco: o cérebro precisa decidir qual regra se aplica. É assim que a prova cobra.</p>
+  <div class="conteudo"><div class="comp" data-comp="quiz" data-q="final"></div></div>
+ </div>
+</section>
+
 <!-- 39 REVISAO -->
 <section class="slide" data-bloco="Fixar" data-chips="b|Revisão de 60 s" data-fonte="Síntese da aula" data-nota="Cronometre 60 segundos de verdade e leia em voz alta. Fecha a aula com sensação de domínio.">
  <div class="corpo">
@@ -927,7 +1247,7 @@ body.mv .rodape{flex-direction:column;gap:4px}
 <!-- 40 REFERENCIAS -->
 <section class="slide capa" data-bloco="Encerramento" data-chips="b|Fontes" data-fonte="Referências da aula" data-nota="Deixe este slide no projetor enquanto tira dúvidas.">
  <div class="corpo">
-  <div class="kicker">Obrigada</div>
+  <div class="kicker">Obrigado</div>
   <h1 style="font-size:52px">Suporte Básico<br>de Vida</h1>
   <div class="lin"></div>
   <div style="font-size:14.5px;line-height:1.6;color:#dbe8f2;max-width:820px">
@@ -937,20 +1257,20 @@ body.mv .rodape{flex-direction:column;gap:4px}
    3. AHA. 2020 Guidelines for CPR and ECC (base dos algoritmos ainda em circulação).<br>
    4. Sociedade Brasileira de Cardiologia. Diretriz de Ressuscitação Cardiopulmonar e Cuidados de Emergência.
   </div>
-  <div class="quem" style="margin-top:22px">Profa. Márcia</div>
-  <div class="inst">Universidade Ceuma · Curso de Medicina</div>
+  <div class="quem" style="margin-top:22px">Dr. André Rossanno</div>
+  <div class="inst">Cardiologia · Medicina Intensiva</div>
  </div>
 </section>
 
 </div></div>
 <div id="prog"><i></i></div>
-<div id="notas"><h5>Notas da professora</h5><div id="notas-txt"></div></div>
+<div id="notas"><h5>Notas do professor</h5><div id="notas-txt"></div></div>
 <div id="mapa"><h3>Mapa da aula — clique para ir ao slide</h3><div class="gm" id="mapa-g"></div></div>
 <script>
 (function(){
 "use strict";
 var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-var total = slides.length, idx = 0;
+var total = slides.length, idx = 0, hooks = [], espacoFn = null;
 var wrap = document.getElementById('slide-wrap');
 
 /* ---- monta trilho e rodapé ---- */
@@ -964,12 +1284,12 @@ slides.forEach(function(s,i){
   }).join('');
   tr.innerHTML = '<div class="num">'+String(i+1).padStart(2,'0')+'</div>'+
     '<div class="bloco">'+(s.dataset.bloco||'')+'</div>'+chips+
-    '<div class="marca">BLS<br>Ceuma<br>2026</div>';
+    '<div class="marca">BLS<br>Atlas Mental<br>2026</div>';
   s.insertBefore(tr, s.firstChild);
   var corpo = s.querySelector('.corpo');
   var rp = document.createElement('div');
   rp.className = 'rodape';
-  rp.innerHTML = '<span>Suporte Básico de Vida · Profa. Márcia — Universidade Ceuma</span>'+
+  rp.innerHTML = '<span>Suporte Básico de Vida · Dr. André Rossanno</span>'+
                  '<span>'+(s.dataset.fonte||'')+'</span>';
   corpo.appendChild(rp);
 });
@@ -997,6 +1317,7 @@ function mostra(n){
   elProg.style.width = ((idx+1)/total*100)+'%';
   elNotas.innerHTML = slides[idx].dataset.nota || '<i>Sem nota para este slide.</i>';
   paraMetro();
+  for(var hi=0;hi<hooks.length;hi++){ hooks[hi](idx); }
   escala();
 }
 document.getElementById('bPrev').onclick = function(){ mostra(idx-1); };
@@ -1044,6 +1365,7 @@ document.addEventListener('click', function(e){
 
 document.addEventListener('keydown', function(e){
   var k = e.key.toLowerCase();
+  if(k===' ' && slides[idx].getAttribute('data-espaco') && tapAcao){ e.preventDefault(); if(!e.repeat) tapAcao(); return; }
   if(k==='arrowright'||k===' '||k==='pagedown'){ e.preventDefault(); mostra(idx+1); }
   else if(k==='arrowleft'||k==='pageup'){ e.preventDefault(); mostra(idx-1); }
   else if(k==='home'){ mostra(0); } else if(k==='end'){ mostra(total-1); }
@@ -1132,6 +1454,748 @@ if(bMetro){
     if(timer){ clearInterval(timer); timer = setInterval(clique, 60000/bpm); }
   });
 }
+
+/* =====================================================================
+   CAMADA INTERATIVA — memorização ativa (caso, quizzes, mnemônicos,
+   simulador de DEA, baralho). Tudo roda no navegador, sem servidor.
+   ===================================================================== */
+function mk(tag,cls,html){var e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e;}
+function emb(a){a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t;} return a;}
+var PTS=0, elPts=document.getElementById('pts'), LET='ABCDEFGH';
+function ganha(n){
+  if(!n) return;
+  PTS+=n; elPts.textContent='★ '+PTS; elPts.classList.add('pulso');
+  setTimeout(function(){ elPts.classList.remove('pulso'); },350);
+}
+function guarda(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function le(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+/* ------------------------------------------------------------------
+   MOTOR DE PERGUNTAS (caso e checkpoints)
+   ------------------------------------------------------------------ */
+function quiz(box,cfg){
+  var itens=cfg.itens, N=itens.length, rodada=0, st;
+  function classeVida(v){ return v>=70?'':(v>=45?'med':'baixa'); }
+  function novo(){
+    rodada++;
+    st={i:0, ok1:0, vida:100, res:[], feito:false, errou:false, t0:Date.now(), vi:null, vp:null};
+    desenha();
+  }
+  function desenha(){
+    box.innerHTML='';
+    var it=itens[st.i], w=mk('div','qz'), top=mk('div','qz-top');
+    top.appendChild(mk('span','rot',(cfg.rotulo||'Pergunta')+' '+(st.i+1)+' de '+N));
+    var dots=mk('div','qz-dots');
+    for(var k=0;k<N;k++){
+      dots.appendChild(mk('i', k===st.i?'atual':(st.res[k]===1?'ok':(st.res[k]===0?'err':''))));
+    }
+    top.appendChild(dots);
+    if(cfg.vida){
+      var vw=mk('div','vida-w');
+      vw.appendChild(mk('span','rot','Chance de bom desfecho*'));
+      var v=mk('div','vida'), vi=mk('i',classeVida(st.vida)); vi.style.width=st.vida+'%'; v.appendChild(vi);
+      vw.appendChild(v);
+      var vp=mk('span','rot',st.vida+'%'); vw.appendChild(vp);
+      top.appendChild(vw); st.vi=vi; st.vp=vp;
+    }
+    w.appendChild(top);
+    w.appendChild(mk('div','qz-cena',it.c));
+    var ops=mk('div','qz-ops'); w.appendChild(ops);
+    var fb=mk('div','qz-fb'); w.appendChild(fb);
+    var nav=mk('div','qz-nav'), bn=mk('button','btn','Próxima ▶'); bn.style.display='none'; nav.appendChild(bn); w.appendChild(nav);
+    box.appendChild(w);
+    st.feito=false; st.errou=false;
+    emb(it.op.map(function(_,j){return j;})).forEach(function(j,pos){
+      var b=mk('button','qz-op','<span class="l">'+LET.charAt(pos)+'</span><span>'+it.op[j]+'</span>');
+      b.onclick=function(){
+        if(st.feito) return;
+        if(j===it.ok){
+          st.feito=true; b.classList.add('ok');
+          if(!st.errou){ st.ok1++; st.res[st.i]=1; if(rodada===1) ganha(cfg.pts||10); }
+          else { st.res[st.i]=0; }
+          dots.children[st.i].className = st.res[st.i]===1?'ok':'err';
+          fb.className='qz-fb on ok'; fb.innerHTML='<b class="vd">✔ Certo.</b> '+it.ex;
+          Array.prototype.forEach.call(ops.children,function(c){ c.disabled=true; });
+          bn.style.display=''; bn.textContent=(st.i<N-1)?'Próxima ▶':'Ver resultado ▶';
+        } else {
+          b.classList.add('err'); b.disabled=true;
+          if(!st.errou){
+            st.errou=true; st.res[st.i]=0; dots.children[st.i].className='err';
+            if(cfg.vida){
+              st.vida=Math.max(10,st.vida-cfg.perda);
+              st.vi.style.width=st.vida+'%'; st.vi.className=classeVida(st.vida); st.vp.textContent=st.vida+'%';
+            }
+          }
+          fb.className='qz-fb on err';
+          fb.innerHTML='<b class="vm">✘ Ainda não.</b> '+((it.fb&&it.fb[j])||'Releia a pergunta e tente outra alternativa.');
+        }
+      };
+      ops.appendChild(b);
+    });
+    bn.onclick=function(){ if(st.i<N-1){ st.i++; desenha(); } else { fim(); } };
+  }
+  function fim(){
+    box.innerHTML='';
+    var w=mk('div','qz-fim'), seg=Math.round((Date.now()-st.t0)/1000);
+    var msg = cfg.msgFim ? cfg.msgFim(st) :
+      (st.ok1===N ? 'Perfeito — de primeira. Siga em frente.' :
+       (st.ok1>=Math.ceil(N/2) ? 'Bom. Releia os pontos em que você tropeçou e refaça se quiser.' :
+        'Vale revisitar este bloco — e passar pelo baralho — antes de seguir.'));
+    w.innerHTML='<div class="numerao '+(st.ok1===N?'vd':(st.ok1<N/2?'vm':''))+'">'+st.ok1+' / '+N+'</div>'+
+      '<div class="rot">acertos de primeira'+(cfg.tempo?' · tempo '+Math.floor(seg/60)+' min '+(seg%60)+' s':'')+'</div>'+
+      '<p>'+msg+'</p>';
+    var br=mk('button','btn gh','↻ Refazer (embaralha as alternativas)'); br.onclick=novo; w.appendChild(br);
+    box.appendChild(w);
+  }
+  novo();
+}
+
+/* ---- dados: caso dramático ---- */
+var CASO=[
+ {c:'Praça de alimentação lotada. Um homem de uns <b>58 anos</b>, na fila do caixa, desaba de lado no piso. O copo cai, o barulho para. Você está a dois metros. <b>O que você faz primeiro?</b>',
+  op:['Corro e começo compressões sem olhar mais nada','Olho a cena (está segura?), toco os ombros e chamo alto: “Você está bem?”','Levanto as pernas dele para melhorar a circulação','Pergunto se há médico no local e espero a resposta'],
+  ok:1,
+  fb:['Comprimir sem saber se ele está em PCR pode ferir quem só desmaiou — e você nem olhou a cena.','','Elevar as pernas não trata PCR e gasta o relógio. Primeiro: ele responde?','Esperar um “médico” é difusão de responsabilidade. Você já pode agir: comece reconhecendo.'],
+  ex:'Cena segura, toque nos ombros, chamado alto. Ele <b>não responde</b>. É assim que se começa — leva 5 segundos.'},
+ {c:'Ele <b>não responde</b>. Em volta, vinte pessoas olhando e filmando. Ninguém se mexe. <b>Como você aciona ajuda?</b>',
+  op:['Digo a todos: “Alguém chame uma ambulância!”','Aponto uma pessoa: “Você, de camisa azul — ligue 192 e traga o DEA!”','Saio correndo para procurar o DEA e o deixo no chão','Espero um minuto: muita gente desmaia e acorda sozinha'],
+  ok:1,
+  fb:['Pedido genérico não funciona: cada um acha que outro vai ligar. É preciso <b>apontar e nomear</b> a pessoa.','','Você ainda nem checou respiração e pulso, e deixou a vítima sozinha. Mande alguém buscar o DEA.','Cada minuto sem RCP tira cerca de 7–10% da chance de sobrevida. Esperar não é neutro.'],
+  ex:'Apontar, nomear e dar a ordem completa (192 + DEA) elimina a difusão de responsabilidade.'},
+ {c:'“Camisa azul” está ligando. Você olha o tórax: <b>suspiros lentos, com ronco, um a cada vários segundos</b>. Procura a carótida por 10 segundos e <b>não sente um pulso com segurança</b>. O que isso significa?',
+  op:['Ele respira: coloco em posição lateral de segurança','É gasping, não respiração; na dúvida sobre o pulso, trato como PCR e comprimo','Espero mais 30 segundos para ter certeza do pulso','Começo com respiração boca a boca antes de comprimir'],
+  ok:1,
+  fb:['Gasping não é respiração: é reflexo agônico. Posição lateral é para quem respira normalmente <b>e tem pulso</b>.','','Passar de 10 segundos atrasa a RCP. Na dúvida, comprima.','A sequência é C-A-B: a compressão vem <b>primeiro</b>.'],
+  ex:'Gasping conta como respiração ausente. Na dúvida em 10 s, trate como PCR. <b>Comprima agora.</b>'},
+ {c:'Você ajoelha ao lado do tórax, mãos no centro do peito. <b>Como você comprime?</b>',
+  op:['Bem rápido, uns 150/min, para ganhar tempo','Pelo menos 5 cm (sem passar de 6), 100–120/min, deixando o tórax voltar por inteiro','Suave, uns 3 cm, para não quebrar costelas','Comprimo e me apoio levemente no peito entre uma e outra para não cansar'],
+  ok:1,
+  fb:['Acima de 120/min o coração não tem tempo de encher: rápido não é melhor.','','Raso não gera fluxo. Costela fraturada é esperada e não é motivo para reduzir a profundidade.','Apoiar no tórax impede o retorno e derruba a perfusão coronariana (“leaning”).'],
+  ex:'≥5 cm, 100–120/min, retorno total, pausas &lt;10 s. Um minuto depois, “camisa azul” volta com o DEA.'},
+ {c:'O DEA chegou, as pás estão coladas e o aparelho fala: <b>“Analisando… choque indicado. Afaste-se.”</b> Você está ajoelhado ao lado dele. <b>O que faz antes de apertar o botão?</b>',
+  op:['Aperto agora: a voz já avisou','Digo “Eu estou afastado, vocês estão afastados, oxigênio afastado”, confiro que ninguém toca nele e aperto','Peço que todos o segurem firme para ele não se mexer','Cancelo o choque: ele parece estar respirando'],
+  ok:1,
+  fb:['A voz só autoriza o choque; <b>quem confere a segurança é você</b>.','','Quem toca na vítima durante o choque também recebe a descarga.','Gasping não é respiração. O DEA indicou choque: siga o aparelho.'],
+  ex:'Conferir <b>eu, vocês, oxigênio</b> e ninguém tocando na vítima, na maca ou no soro. Só então o choque.'},
+ {c:'O choque foi aplicado. O monitor do DEA mostra um ritmo organizado por um instante. <b>Qual é a sua próxima ação, exatamente?</b>',
+  op:['Checo o pulso no pescoço para ver se voltou','Retomo as compressões imediatamente por 2 minutos, até o DEA reanalisar','Paro e espero o SAMU chegar para não atrapalhar','Dou duas ventilações e espero um minuto para ele reagir'],
+  ok:1,
+  fb:['Checar o pulso agora rouba segundos de compressão. Após o choque o coração fica atordoado e precisa de fluxo.','','Parar as compressões é o erro mais perigoso: o coração ainda não sustenta o débito sozinho.','Não é a sequência: após o choque, volta-se à compressão sem esperar.'],
+  ex:'Choque → <b>RCP imediata por 2 minutos</b> → o DEA reanalisa. Sem checar pulso, sem comemorar.'}
+];
+function msgCaso(st){
+  var ok=st.ok1;
+  var fim = ok===6 ? 'Seis em seis, de primeira. O SAMU chega e assume com ele em RCE — a chance de bom desfecho nunca saiu do máximo.' :
+            (ok>=4 ? 'Ele chega ao hospital com circulação espontânea, mas cada hesitação custou tempo. Veja onde você errou e refaça.' :
+             'Cada erro aqui custou tempo real de relógio. Refaça o caso: é para errar aqui e acertar no plantão.');
+  return fim+'<br><span class="rot">*Chance de bom desfecho: barra ilustrativa, não é uma probabilidade medida.</span>';
+}
+
+/* ---- dados: checkpoints e simulado ---- */
+var QD={
+ b1:[
+  {c:'Homem irresponsivo, com suspiros lentos e ronco a cada poucos segundos. Qual é a interpretação correta?',
+   op:['Respiração normal: coloco em posição lateral','Gasping: conta como respiração ausente — tratar como PCR','Convulsão: aguardo o fim da crise','Respiração boa, mas superficial: apenas observo'],
+   ok:1, fb:['Posição lateral é para quem respira normalmente e tem pulso.','','Não há sinal de convulsão no enunciado.','Observar adia a RCP; gasping não é respiração.'],
+   ex:'Gasping é respiração agônica. Irresponsivo + sem respiração normal = comprimir.'},
+  {c:'Profissional de saúde palpa a carótida por 10 s e fica <b>na dúvida</b> sobre o pulso. Conduta?',
+   op:['Aguardar mais 30 s e repalpar','Tratar como PCR e comprimir','Dar duas ventilações e repalpar','Palpar as duas carótidas ao mesmo tempo para confirmar'],
+   ok:1, fb:['Mais de 10 s atrasa a RCP.','','Comprimir vem primeiro (C-A-B).','Nunca se palpam as duas carótidas juntas.'],
+   ex:'Na dúvida em 10 segundos: comprima. O risco de comprimir quem tem pulso é menor que o de não comprimir quem não tem.'},
+  {c:'Adulto <b>não respira</b>, mas <b>tem pulso</b>. O que fazer?',
+   op:['Iniciar compressões 30:2','1 ventilação a cada 6 s e rechecar o pulso a cada 2 min','Posição lateral de segurança e aguardar','Esperar o DEA sem intervir'],
+   ok:1, fb:['Com pulso presente, comprimir pode induzir arritmia.','','Posição lateral é para quem respira normalmente.','Parada respiratória exige ventilação de resgate já.'],
+   ex:'É parada respiratória, não PCR: ventilação de resgate (10/min) e recheque do pulso a cada 2 min. Opioide? Naloxona.'}
+ ],
+ b2:[
+  {c:'Qual conjunto descreve RCP de alta qualidade no adulto?',
+   op:['≥5 cm (máx. 6), 100–120/min, retorno total, pausas &lt;10 s','3 cm, 140/min, apoio leve no tórax','5–6 cm, 80–100/min, pausas longas para checar pulso','≥5 cm, 100–120/min, apoiando no tórax entre as compressões'],
+   ok:0, fb:['','Raso e rápido demais: baixo débito.','Frequência baixa e pausas longas derrubam a fração.','Apoiar no tórax impede o retorno total.'],
+   ex:'Profundidade, frequência, retorno total, pausas curtas e fração alta — os cinco números.'},
+  {c:'O compressor está exausto aos 2 minutos e a qualidade caiu. Quando e como trocar?',
+   op:['Só quando ele pedir','A cada 2 min (ou antes, se cansar), na checagem de ritmo, em menos de 5 s','A cada 5 min, parando tudo','Nunca: trocar atrapalha o ritmo'],
+   ok:1, fb:['A queda de qualidade é invisível para quem comprime.','','Parar tudo estraga a fração de compressão.','A troca planejada é justamente o que protege a qualidade.'],
+   ex:'Quem vai assumir já se posiciona do outro lado; a troca acontece na checagem de ritmo, em &lt;5 s.'},
+  {c:'Qual é a <b>fração de compressão</b> a buscar?',
+   op:['&gt;80% do tempo de PCR (mínimo aceitável 60%)','&gt;40%','100%, sem exceção','Não importa, só a frequência'],
+   ok:0, fb:['','Abaixo do mínimo aceitável.','Impossível: há pausas necessárias (análise do DEA, ventilação).','A fração é um dos cinco números da RCP de alta qualidade.'],
+   ex:'Fração é a proporção do tempo realmente comprimindo. Cada pausa evitável rouba pontos dela.'}
+ ],
+ b3:[
+  {c:'Paciente com <b>via aérea avançada</b> (tubo). Qual a relação compressão-ventilação?',
+   op:['30:2','15:2','Compressões contínuas + 1 ventilação a cada 6 s','1 ventilação a cada 2 s, parando as compressões'],
+   ok:2, fb:['30:2 vale sem via aérea avançada.','15:2 é de criança com dois socorristas, sem tubo.','','Parar as compressões a cada ventilação com tubo não é necessário.'],
+   ex:'Com via aérea avançada não existe 30:2: compressão contínua e 10 ventilações por minuto.'},
+  {c:'Suspeita de lesão cervical em uma vítima de queda. Como abrir a via aérea?',
+   op:['Inclinação da cabeça com elevação do queixo, sempre','Tração da mandíbula; se não abrir, usar a inclinação da cabeça','Varredura digital às cegas antes de tudo','Não abrir a via aérea: o risco cervical é maior'],
+   ok:1, fb:['Em suspeita de trauma começa-se pela tração.','','Varredura digital às cegas é proibida: empurra o objeto.','Via aérea aberta tem prioridade sobre a proteção cervical.'],
+   ex:'Tração da mandíbula primeiro; se não funcionar, a diretriz autoriza a inclinação da cabeça.'},
+  {c:'Por que <b>hiperventilar</b> reduz a sobrevida na RCP?',
+   op:['Porque o oxigênio em excesso é tóxico em minutos','Aumenta a pressão intratorácica, reduz o retorno venoso e o débito','Porque derruba o CO₂ a zero e para o coração','Porque o ambu quebra costelas'],
+   ok:1, fb:['Não é o mecanismo central.','','Não é esse o mecanismo.','Sem relação com o ambu.'],
+   ex:'Ar demais é sangue de menos: pressão intratorácica alta atrapalha o enchimento do coração. E ainda distende o estômago.'}
+ ],
+ b4:[
+  {c:'O DEA diz <b>“choque não indicado”</b>. Qual a conduta?',
+   op:['Checar o pulso e, se ausente, aguardar o SAMU','Retomar a RCP imediatamente por 2 minutos','Tirar as pás e parar','Aplicar o choque manualmente mesmo assim'],
+   ok:1, fb:['A checagem rouba compressão.','','O paciente continua em parada.','O DEA só libera choque em ritmo chocável.'],
+   ex:'“Não indicado” não quer dizer paciente bem: pode ser assistolia ou AESP. RCP por 2 min e reanálise.'},
+  {c:'Paciente com <b>marca-passo</b> implantado. Onde ficam as pás?',
+   op:['Sobre o gerador, firmes','A pelo menos 8 cm do gerador','Não se usa DEA nesses pacientes','Só na posição anteroposterior'],
+   ok:1, fb:['Sobre o gerador pode danificá-lo e reduzir a eficácia.','','Pode-se usar DEA; apenas afaste a pá.','A distância é a regra, não a posição.'],
+   ex:'Pá a ≥8 cm do gerador do marca-passo ou do CDI.'},
+  {c:'Criança de 5 anos em PCR e só há pás de adulto. Conduta?',
+   op:['Não usar o DEA','Usar as pás de adulto','Esperar o SAMU trazer pás pediátricas','Cortar as pás ao meio'],
+   ok:1, fb:['Não usar é o único erro grave.','','Esperar atrasa o choque.','Nunca se improvisa cortando as pás.'],
+   ex:'Abaixo de 8 anos prefere-se pá pediátrica; se não houver, use a de adulto.'}
+ ],
+ b5:[
+  {c:'Adulto consciente, com obstrução <b>grave</b> da via aérea. Qual a sequência de 2025?',
+   op:['5 compressões abdominais e depois 5 tapas dorsais','5 tapas dorsais + 5 compressões abdominais, alternando','Varredura digital e, se falhar, Heimlich','Aguardar a tosse e observar por 2 minutos'],
+   ok:1, fb:['A ordem de 2025 começa pelas costas.','','Varredura às cegas é proibida.','Observar só vale para obstrução leve, com tosse eficaz.'],
+   ex:'Começa pelas costas: 5 tapas dorsais, depois 5 compressões abdominais. Repete até desobstruir ou a vítima ficar irresponsiva.'},
+  {c:'Lactente engasgado grave. Qual manobra <b>nunca</b> se faz?',
+   op:['Tapas dorsais','Compressões torácicas','Compressão abdominal','Verificar a boca'],
+   ok:2, fb:['Os tapas dorsais são o primeiro passo.','As compressões torácicas fazem parte do protocolo.','','Olhar a boca é correto — sem varredura às cegas.'],
+   ex:'Jamais compressão abdominal no lactente: fígado desprotegido. São 5 tapas dorsais + 5 compressões torácicas.'},
+  {c:'Gestante com ~28 semanas em PCR. O que muda?',
+   op:['Inclinar o corpo todo para a direita','Deslocamento uterino lateral contínuo para a esquerda, mantendo decúbito dorsal','Compressões mais fracas, para proteger o feto','Aguardar a equipe obstétrica sem comprimir'],
+   ok:1, fb:['Inclinar o corpo piora a qualidade da compressão.','','A mãe é a prioridade: a RCP é a mesma.','Não se interrompe a RCP.'],
+   ex:'O útero comprime a veia cava: desloque-o para a esquerda, com as mãos, durante toda a RCP.'}
+ ],
+ final:[
+  {c:'Quantos elos tem a cadeia de sobrevivência de 2025?',
+   op:['5, separados em adulto e pediátrica','Uma cadeia universal de 6 elos','3: reconhecer, comprimir e chocar','4, com o pós-PCR no final'],
+   ok:1, fb:['Isso era o modelo anterior.','','Os 3 primeiros elos são o BLS, mas a cadeia tem 6.','Ficaram 6 elos.'],
+   ex:'Reconhecer/acionar, RCP, desfibrilação, ressuscitação avançada, pós-PCR e recuperação.'},
+  {c:'O <b>leigo</b> precisa checar o pulso antes de comprimir?',
+   op:['Sim, por 10 segundos','Não: irresponsivo + respiração ausente ou anormal já indica iniciar','Só em criança','Só se houver DEA'],
+   ok:1, fb:['Isso é para o profissional.','','Também não é exigido em criança.','Independe do DEA.'],
+   ex:'A palpação de pulso é do profissional de saúde.'},
+  {c:'Lactente em PCR. Qual técnica de compressão em 2025?',
+   op:['Dois dedos no esterno','Dois polegares ou região tenar de uma mão','Calcanhar da mão, com as duas mãos','Um dedo no centro'],
+   ok:1, fb:['A técnica dos dois dedos saiu das diretrizes.','','Para o lactente, não.','Sem fundamento.'],
+   ex:'Dois dedos não atingem a profundidade de ≈4 cm.'},
+  {c:'Onde se palpa o pulso no <b>lactente</b>?',
+   op:['Carótida','Femoral','Braquial','Radial'],
+   ok:2, fb:['O pescoço curto dificulta.','Para criança maior.','','Difícil e inseguro em PCR.'],
+   ex:'Pulso braquial no lactente.'},
+  {c:'Qual é a relação compressão-ventilação em <b>criança com dois socorristas</b>?',
+   op:['30:2','15:2','5:1','Compressão contínua'],
+   ok:1, fb:['É a relação do socorrista único.','','Relação antiga.','Só com via aérea avançada.'],
+   ex:'Com dois socorristas em criança/lactente: 15:2.'},
+  {c:'Acabou de dar o choque. Qual é o próximo passo?',
+   op:['Checar o pulso','RCP imediata por 2 minutos','Aguardar o DEA reanalisar parado','Dar 2 ventilações e esperar'],
+   ok:1, fb:['A checagem rouba compressão.','','Sem fluxo o coração não se recupera.','Não é a sequência.'],
+   ex:'Choque → compressões já, sem checar pulso.'},
+  {c:'Suspeita de overdose de opioide e <b>sem pulso</b>. Qual a prioridade?',
+   op:['Naloxona e aguardar','RCP e DEA primeiro; naloxona é adjuvante','Somente ventilar','Posição lateral'],
+   ok:1, fb:['A naloxona nunca substitui a RCP.','','Sem pulso a prioridade é comprimir.','Só para quem respira e tem pulso.'],
+   ex:'Naloxona entrou no algoritmo em 2025, mas sem pulso a RCP e o DEA vêm primeiro.'},
+  {c:'Você está sozinho, sem celular, e um <b>adulto</b> sofre colapso súbito presenciado. O que fazer?',
+   op:['2 minutos de RCP e depois buscar ajuda','Buscar ajuda e o DEA primeiro (provável FV)','Ventilar antes de comprimir','Esperar alguém aparecer'],
+   ok:1, fb:['Isso vale para criança, lactente, afogamento e asfixia.','','Comprimir vem primeiro.','Esperar não é conduta.'],
+   ex:'Adulto: busque ajuda/DEA primeiro. Criança, lactente, afogamento ou asfixia: 2 min de RCP antes.'},
+  {c:'Vítima de <b>hipotermia</b> grave, sem sinais claros de vida. A conduta é:',
+   op:['Não iniciar: já está morta','Iniciar RCP e reaquecer enquanto ressuscita','Só reaquecer, sem comprimir','Aguardar sinais de vida por 20 min'],
+   ok:1, fb:['Ninguém está morto até estar aquecido e morto.','','Sem circulação, a compressão é necessária.','O atraso é prejudicial.'],
+   ex:'Estenda a checagem do pulso, inicie a RCP e reaqueça. Manuseie com cuidado.'},
+  {c:'No <b>afogamento</b>, qual é a prioridade?',
+   op:['Compressão abdominal para esvaziar o pulmão','Ventilação de resgate assim que seguro (causa hipóxica)','Apenas compressões','Esperar o resgate sem intervir'],
+   ok:1, fb:['Não se tenta drenar água do pulmão.','','Aqui a ventilação faz parte do tratamento.','Atraso em causa hipóxica é fatal.'],
+   ex:'A causa é a hipóxia: ventile cedo; prepare-se para vômito.'}
+ ]
+};
+
+/* ------------------------------------------------------------------
+   MÃO DOS CINCO NÚMEROS
+   ------------------------------------------------------------------ */
+var DEDOS=[
+ {d:'Polegar',p:'Profundidade',v:'≥5 cm',s:'máx. 6 cm',cor:'#c0392b',h:175,
+  img:'O polegar é um <b>carimbo gigante</b>: afunda 5 cm no peito — e nunca passa de 6.'},
+ {d:'Indicador',p:'Frequência',v:'100–120',s:'por minuto',cor:'#1282A2',h:225,
+  img:'O indicador <b>aponta o compasso</b> do DJ: <i>Stayin’ Alive</i>, nem mais rápido, nem mais lento.'},
+ {d:'Médio',p:'Retorno',v:'Total',s:'o tórax sobe inteiro',cor:'#1e8f5e',h:250,
+  img:'O dedo mais alto lembra: o peito precisa <b>subir até o topo</b> antes da próxima descida.'},
+ {d:'Anelar',p:'Pausas',v:'&lt;10 s',s:'o compromisso',cor:'#c8860d',h:218,
+  img:'A aliança é um <b>compromisso</b>: você não larga a vítima por mais de 10 segundos.'},
+ {d:'Mindinho',p:'Fração',v:'&gt;80%',s:'do tempo comprimindo',cor:'#0f2440',h:165,
+  img:'O mindinho cochicha o segredo: <b>quase o tempo todo</b> — pelo menos 80% — a mão está no peito.'}
+];
+function iniciaMao(box){
+  var modo='estudo', ab={}, sel=-1;
+  function desenha(){
+    box.innerHTML='';
+    var w=mk('div','mao-w'), esq=mk('div'), mao=mk('div','mao');
+    DEDOS.forEach(function(f,i){
+      var vis = (modo==='estudo') || ab[i];
+      var b=mk('button','dedo'+(i===sel?' sel':''),
+        '<span class="dn">'+f.d+'</span>'+
+        (vis? '<span class="dp">'+f.p+'</span><span class="dv">'+f.v+'</span><span class="ds">'+f.s+'</span>'
+            : '<span class="dp">?</span><span class="dv">?</span><span class="ds">&nbsp;</span>'));
+      b.style.height=f.h+'px'; b.style.background=f.cor;
+      b.onclick=function(){ sel=i; ab[i]=true; desenha(); };
+      mao.appendChild(b);
+    });
+    esq.appendChild(mao); esq.appendChild(mk('div','palma','a mão de compressão'));
+    var dir=mk('div'), det=mk('div','cx mao-det');
+    if(sel<0){
+      det.innerHTML='<h4>Como usar</h4><p>Toque em um dedo. Em cada um mora um dos cinco números da RCP de alta qualidade — com uma imagem absurda para ajudar a lembrar.</p>'+
+        '<p style="margin-top:8px"><b>Frase-síntese:</b> <b class="az">P</b>rofundo, <b class="az">F</b>irme, <b class="az">R</b>etorna, <b class="az">P</b>ouca pausa, <b class="az">F</b>ração alta.</p>';
+    } else {
+      var f=DEDOS[sel];
+      det.className='cx mao-det '+(['vermelha','azul','verde','ambar','navy'][sel]);
+      det.innerHTML='<div class="rot">'+f.d+' · '+f.p+'</div><div class="numerao">'+f.v+'</div><p style="margin-top:8px">'+f.img+'</p>';
+    }
+    dir.appendChild(det);
+    var ctl=mk('div','mao-ctl'), bt=mk('button','btn',modo==='estudo'?'Ligar modo teste':'Voltar ao modo estudo');
+    bt.onclick=function(){ modo=(modo==='estudo')?'teste':'estudo'; ab={}; sel=-1; desenha(); };
+    ctl.appendChild(bt);
+    if(modo==='teste'){
+      var br=mk('button','btn gh','Revelar todos'); br.onclick=function(){ DEDOS.forEach(function(_,i){ ab[i]=true; }); desenha(); };
+      ctl.appendChild(br);
+      ctl.appendChild(mk('span','rot','Qual parâmetro e qual número mora em cada dedo?'));
+    }
+    dir.appendChild(ctl);
+    w.appendChild(esq); w.appendChild(dir); box.appendChild(w);
+  }
+  desenha();
+}
+
+/* ------------------------------------------------------------------
+   BATA O RITMO (30:2 com pausa cronometrada)
+   ------------------------------------------------------------------ */
+var tapReinicia=null, tapAcao=null;
+function iniciaTap(box){
+  box.innerHTML=
+   '<div class="tap-w"><div><button class="tap-pad" type="button"><b>COMPRIMIR</b><small>toque aqui · ou barra de espaço</small></button></div>'+
+   '<div><div class="rot">Compressão do ciclo</div><div class="numerao" id="tapN">0 / 30</div>'+
+   '<div class="gauge"><div class="zona"></div><div class="agulha" id="tapAg"></div></div>'+
+   '<div class="gauge-l"><span>60</span><span>100</span><span>120</span><span>160 /min</span></div>'+
+   '<div class="tap-st" id="tapSt">Comece a tocar no ritmo que você acha que é 100–120/min.</div>'+
+   '<div class="tap-stats"><div class="cx"><div class="rot">Ritmo atual</div><div class="numerao" id="tapB">—</div></div>'+
+   '<div class="cx"><div class="rot">Última pausa</div><div class="numerao" id="tapP">—</div></div>'+
+   '<div class="cx"><div class="rot">Ciclos no alvo</div><div class="numerao" id="tapC">0 / 0</div></div></div>'+
+   '<div style="margin-top:10px"><button class="btn gh" id="tapR" type="button">↻ Reiniciar</button></div></div></div>';
+  var pad=box.querySelector('.tap-pad'), elN=box.querySelector('#tapN'), elAg=box.querySelector('#tapAg'),
+      elSt=box.querySelector('#tapSt'), elB=box.querySelector('#tapB'), elP=box.querySelector('#tapP'), elC=box.querySelector('#tapC');
+  var n,ts,fase,sopros,tFim,ciclos,alvo;
+  function zera(){
+    n=0; ts=[]; fase='comp'; sopros=0; tFim=0; ciclos=0; alvo=0;
+    elN.textContent='0 / 30'; elB.textContent='—'; elP.textContent='—'; elP.className='numerao'; elC.textContent='0 / 0';
+    elAg.style.left='0'; elSt.textContent='Comece a tocar no ritmo que você acha que é 100–120/min.';
+    pad.className='tap-pad'; pad.innerHTML='<b>COMPRIMIR</b><small>toque aqui · ou barra de espaço</small>';
+  }
+  function padVent(){
+    pad.className='tap-pad vent';
+    pad.innerHTML = sopros<2 ? '<b>SOPRAR</b><small>'+sopros+' / 2 ventilações · a pausa está contando</small>'
+                             : '<b>COMPRIMIR</b><small>duas ventilações feitas — volte já!</small>';
+  }
+  function acao(){
+    var t=performance.now();
+    if(fase==='vent' && sopros<2){
+      sopros++; padVent();
+      elSt.textContent = sopros<2 ? 'Primeiro sopro. Falta mais um.' : 'Dois sopros feitos. Volte a comprimir AGORA — a pausa está contando.';
+      return;
+    }
+    if(fase==='vent'){
+      var p=(t-tFim)/1000;
+      elP.textContent=p.toFixed(1).replace('.',',')+' s';
+      elP.className='numerao '+(p<10?'vd':'vm');
+      fase='comp'; n=0; ts=[]; sopros=0;
+      pad.className='tap-pad'; pad.innerHTML='<b>COMPRIMIR</b><small>toque aqui · ou barra de espaço</small>';
+      elSt.innerHTML = p<10 ? '<span class="vd">Pausa de '+p.toFixed(1).replace('.',',')+' s — dentro da meta (&lt;10 s).</span>' :
+                              '<span class="vm">Pausa longa demais: '+p.toFixed(1).replace('.',',')+' s. A meta é &lt;10 s.</span>';
+    }
+    ts.push(t); n++;
+    pad.classList.add('bate'); setTimeout(function(){ pad.classList.remove('bate'); },70);
+    elN.textContent=n+' / 30';
+    if(ts.length>=3){
+      var k=Math.min(ts.length-1,8), dt=(ts[ts.length-1]-ts[ts.length-1-k])/k, bpm=60000/dt;
+      elB.textContent=Math.round(bpm)+'/min';
+      elAg.style.left=(Math.max(60,Math.min(160,bpm))-60)+'%';
+      elSt.innerHTML = bpm<100 ? '<span class="am">Devagar — acelere um pouco.</span>' :
+                       (bpm<=120 ? '<span class="vd">No ritmo ✔ — segure assim.</span>' :
+                        '<span class="vm">Rápido demais — o coração não enche.</span>');
+    }
+    if(n===30){
+      var avg=29*60000/(ts[29]-ts[0]); ciclos++;
+      var dentro=(avg>=100 && avg<=120);
+      if(dentro){ alvo++; ganha(10); }
+      elC.textContent=alvo+' / '+ciclos;
+      elSt.innerHTML='<b>Ciclo '+ciclos+': média de '+Math.round(avg)+'/min — '+(dentro?'<span class="vd">no alvo ✔</span>':(avg<100?'<span class="am">abaixo do alvo</span>':'<span class="vm">acima do alvo</span>'))+'.</b> Agora, 2 sopros.';
+      fase='vent'; sopros=0; tFim=t; padVent();
+    }
+  }
+  pad.addEventListener('pointerdown',function(e){ e.preventDefault(); acao(); });
+  pad.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); acao(); } });
+  box.querySelector('#tapR').onclick=zera;
+  tapAcao=acao; tapReinicia=zera; zera();
+}
+
+/* ------------------------------------------------------------------
+   MONTE O ALGORITMO
+   ------------------------------------------------------------------ */
+var ORDEM=[
+ {t:'Segurança da cena',s:'Você, o cenário, luvas',d:'Antes de tocar na vítima: olhe para você e para a cena.'},
+ {t:'Checar resposta',s:'Tocar nos ombros e chamar alto',d:'Ainda sem procurar pulso: ela responde?'},
+ {t:'Gritar, acionar 192, pedir o DEA',s:'Nomeie a pessoa',d:'Não responde — você não consegue sozinho.'},
+ {t:'Respiração e pulso em ≤10 s',s:'Ao mesmo tempo',d:'Ajuda a caminho. Agora, o diagnóstico de PCR em segundos.'},
+ {t:'Comprimir 30:2',s:'Sem pulso: comece agora',d:'Sem pulso e sem respiração normal: o que vem primeiro (C-A-B)?'},
+ {t:'DEA: ligar e colar as pás',s:'Sem parar a compressão',d:'O DEA chegou — mas as compressões continuam enquanto alguém prepara.'},
+ {t:'Afastar e chocar',s:'Eu, vocês, oxigênio',d:'Pás coladas e análise feita: segurança antes do botão.'},
+ {t:'Retomar a RCP por 2 min',s:'Sem checar pulso',d:'O choque foi dado. O próximo segundo já conta.'}
+];
+function iniciaOrdem(box){
+  var prox, erros, primeira=true;
+  function monta(){
+    prox=0; erros=0; box.innerHTML='';
+    var g=mk('div','ordem-g'), fb=mk('div','qz-fb'); fb.style.marginTop='10px';
+    emb(ORDEM.map(function(_,i){return i;})).forEach(function(i){
+      var o=ORDEM[i], b=mk('button','ord','<span class="nb"></span><b>'+o.t+'</b><span>'+o.s+'</span>');
+      b.onclick=function(){
+        if(b.classList.contains('feito')) return;
+        if(i===prox){
+          prox++; b.classList.add('feito'); b.querySelector('.nb').textContent=prox;
+          if(prox===ORDEM.length){
+            var pt=Math.max(5,20-3*erros);
+            if(primeira){ ganha(pt); primeira=false; }
+            fb.className='qz-fb on ok';
+            fb.innerHTML='<b class="vd">✔ Algoritmo completo.</b> '+(erros===0?'Sem nenhum erro.':erros+' erro'+(erros>1?'s':'')+' no caminho.')+' Repita a sequência em voz alta, de cabeça.';
+            var br=mk('button','btn gh','↻ Embaralhar de novo'); br.style.marginLeft='12px'; br.onclick=monta; fb.appendChild(br);
+          } else { fb.className='qz-fb'; }
+        } else {
+          erros++; b.classList.remove('err'); void b.offsetWidth; b.classList.add('err');
+          fb.className='qz-fb on err';
+          fb.innerHTML='<b class="vm">✘ Ainda não.</b> Dica para o <b>próximo passo</b>: '+ORDEM[prox].d;
+        }
+      };
+      g.appendChild(b);
+    });
+    box.appendChild(g); box.appendChild(fb);
+  }
+  monta();
+}
+
+/* ------------------------------------------------------------------
+   SIMULADOR DE DEA
+   ------------------------------------------------------------------ */
+var deaTimers=[], deaReinicia=null;
+function iniciaDEA(box){
+  var ZONAS={
+   A:{x:92,y:134,ok:1,m:'Infraclavicular <b>direita</b> da vítima — correto ✔ (lembre: a direita dela fica à sua esquerda).'},
+   B:{x:236,y:226,ok:1,m:'Linha axilar média <b>esquerda</b>, abaixo do mamilo — correto ✔'},
+   C:{x:150,y:176,m:'No esterno: as pás precisam ficar <b>dos dois lados</b> do coração, não sobre o osso.'},
+   D:{x:150,y:268,m:'No abdome: longe do coração — a corrente não atravessa o miocárdio.'},
+   E:{x:218,y:122,m:'Ombro esquerdo: alto e lateral demais. A segunda pá vai na linha axilar média, abaixo do mamilo.'},
+   F:{x:62,y:226,m:'Flanco direito: as duas pás do mesmo lado. O coração precisa ficar <b>entre</b> as pás.'}
+  };
+  var etapa, pas, erros, primeira=true, chk;
+  function limpaTimers(){ deaTimers.forEach(clearTimeout); deaTimers=[]; }
+  function svg(){
+    var s='<svg class="torso" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tórax da vítima deitada, vista de frente">'+
+     '<ellipse cx="150" cy="38" rx="30" ry="34" fill="#f3d9c4" stroke="#b58b6b" stroke-width="2"/>'+
+     '<rect x="136" y="68" width="28" height="26" fill="#f3d9c4" stroke="#b58b6b" stroke-width="2"/>'+
+     '<path d="M34 124 Q40 98 100 94 L200 94 Q260 98 266 124 L254 344 Q150 374 46 344 Z" fill="#f6dfcd" stroke="#b58b6b" stroke-width="2"/>'+
+     '<path d="M108 106 Q150 118 192 106" fill="none" stroke="#cfa98a" stroke-width="2"/>'+
+     '<line x1="150" y1="116" x2="150" y2="232" stroke="#d6b79c" stroke-width="2" stroke-dasharray="3 4"/>'+
+     '<circle cx="108" cy="196" r="6" fill="#d9a98c"/><circle cx="192" cy="196" r="6" fill="#d9a98c"/>'+
+     '<circle cx="150" cy="306" r="4" fill="#d9a98c"/>';
+    Object.keys(ZONAS).forEach(function(k){
+      var z=ZONAS[k];
+      s+='<circle class="zona" data-z="'+k+'" cx="'+z.x+'" cy="'+z.y+'" r="26"/>';
+    });
+    s+='<g id="pas"></g></svg>';
+    return s;
+  }
+  function monta(){
+    limpaTimers(); etapa=0; pas={}; erros=0; chk=[0,0,0]; box.innerHTML='';
+    var w=mk('div','dea-w'), esq=mk('div'), tb=mk('div','torso-box'); tb.innerHTML=svg();
+    esq.appendChild(tb);
+    esq.appendChild(mk('div','torso-leg','Vítima deitada, vista de frente: o lado <b>direito dela</b> está à sua <b>esquerda</b>. Os círculos tracejados são pontos onde você pode tocar.'));
+    var dir=mk('div'), tela=mk('div','dea-tela','DEA desligado.'), ctrl=mk('div','dea-ctrl'), fb=mk('div','dea-fb');
+    dir.appendChild(tela); dir.appendChild(ctrl); dir.appendChild(fb);
+    w.appendChild(esq); w.appendChild(dir); box.appendChild(w);
+    function msg(cls,h){ fb.className='dea-fb on '+cls; fb.innerHTML=h; }
+    function semMsg(){ fb.className='dea-fb'; fb.innerHTML=''; }
+    function setTela(h,alerta){ tela.className='dea-tela'+(alerta?' alerta':''); tela.innerHTML=h; }
+    function passo(n,h){ ctrl.innerHTML='<div class="rot">Passo '+n+'</div>'+(h||''); }
+    function e0(){
+      etapa=0; setTela('DEA desligado.'); passo(1,'<div>Aperte o botão para ligar. A partir daí o aparelho fala em português o que fazer.</div>');
+      var b=mk('button','btn verde big','⏻ LIGAR O DEA'); b.style.alignSelf='flex-start';
+      b.onclick=function(){ semMsg(); setTela('“Ligado. Exponha o tórax e cole as pás.”'); e1(); };
+      ctrl.appendChild(b);
+    }
+    function e1(){
+      etapa=1; passo(2,'<div>Toque no tórax nos <b>dois pontos</b> onde as pás devem ir. As compressões continuam enquanto você cola. <b id="npas">0 / 2</b> pás coladas.</div>');
+    }
+    function e2(){
+      etapa=2; passo(3,'<div>O aparelho está analisando. <b class="vm">Ninguém toca na vítima.</b></div>');
+      setTela('ANALISANDO O RITMO…<br>NÃO TOQUE NA VÍTIMA',true);
+      deaTimers.push(setTimeout(function(){
+        setTela('CHOQUE INDICADO.<br>AFASTE-SE.',true); e3();
+      },2600));
+    }
+    function e3(){
+      etapa=3; passo(3,'<div>Confira em voz alta, um por um, e só então aperte o botão.</div>');
+      var c=mk('div','chk');
+      ['Eu estou afastado','Vocês estão afastados','O oxigênio está afastado'].forEach(function(t,i){
+        var b=mk('button','',t); b.onclick=function(){ chk[i]=chk[i]?0:1; b.className=chk[i]?'on':''; };
+        c.appendChild(b);
+      });
+      ctrl.appendChild(c);
+      var bc=mk('button','btn verm big','⚡ APLICAR O CHOQUE'); bc.style.alignSelf='flex-start';
+      bc.onclick=function(){
+        if(!(chk[0]&&chk[1]&&chk[2])){
+          erros++; msg('err','<b class="vm">✘ Cedo demais.</b> Você apertou antes de confirmar que ninguém toca na vítima, na maca ou no soro. Confira os <b>três itens</b> primeiro.');
+          return;
+        }
+        semMsg(); tb.classList.remove('flash'); void tb.offsetWidth; tb.classList.add('flash');
+        setTela('CHOQUE APLICADO.',false); e4();
+      };
+      ctrl.appendChild(bc);
+    }
+    function e4(){
+      etapa=4; passo(4,'<div><b>E agora?</b> Qual é a sua próxima ação, exatamente?</div>');
+      var o=mk('div','opc');
+      [['Checar o pulso no pescoço',0,'Checar pulso agora rouba segundos de compressão. Após o choque o coração fica atordoado e precisa de fluxo.'],
+       ['Retomar as compressões imediatamente, por 2 minutos',1,''],
+       ['Esperar 1 minuto para ver se ele reage',0,'Sem compressão o coração não sustenta o débito. Cada segundo parado conta.']].forEach(function(a){
+        var b=mk('button','qz-op','<span class="l">▸</span><span>'+a[0]+'</span>');
+        b.onclick=function(){
+          if(a[1]){
+            Array.prototype.forEach.call(o.children,function(c){ c.disabled=true; });
+            b.classList.add('ok'); setTela('COMPRIMA. REANÁLISE EM 2:00.',false);
+            if(primeira){ ganha(Math.max(5,20-5*erros)); primeira=false; }
+            msg('ok','<b class="vd">✔ Ciclo completo.</b> Choque → RCP imediata por 2 minutos → o DEA reanalisa. '+(erros?erros+' erro(s) no caminho.':'Sem erros.'));
+            var br=mk('button','btn gh','↻ Recomeçar a simulação'); br.onclick=monta; ctrl.appendChild(br);
+            etapa=5;
+          } else { b.classList.add('err'); b.disabled=true; erros++; msg('err','<b class="vm">✘ Ainda não.</b> '+a[2]); }
+        };
+        o.appendChild(b);
+      });
+      ctrl.appendChild(o);
+    }
+    tb.addEventListener('click',function(e){
+      var z=e.target.getAttribute && e.target.getAttribute('data-z');
+      if(!z || etapa!==1) return;
+      var d=ZONAS[z];
+      if(!d.ok){ erros++; msg('err','<b class="vm">✘ Ponto errado.</b> '+d.m); return; }
+      if(pas[z]) return;
+      pas[z]=1; e.target.classList.add('usada');
+      var g=tb.querySelector('#pas'), el=document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+      el.setAttribute('class','pa'); el.setAttribute('cx',d.x); el.setAttribute('cy',d.y); el.setAttribute('rx',25); el.setAttribute('ry',17);
+      el.setAttribute('transform','rotate('+(z==='A'?-25:25)+' '+d.x+' '+d.y+')');
+      g.appendChild(el);
+      var n=Object.keys(pas).length; ctrl.querySelector('#npas').textContent=n+' / 2';
+      msg('ok','<b class="vd">✔</b> '+d.m);
+      if(n===2){ deaTimers.push(setTimeout(function(){ semMsg(); e2(); },900)); }
+    });
+    e0();
+  }
+  deaReinicia=monta; monta();
+}
+
+/* ------------------------------------------------------------------
+   TIRO RÁPIDO: ADULTO, CRIANÇA OU LACTENTE?
+   ------------------------------------------------------------------ */
+var FAIXA=[
+ {t:'Dois polegares ou região tenar de uma mão',r:'Lactente',e:'Para o lactente: dois polegares circundando o tórax ou região tenar de uma mão.'},
+ {t:'Pulso braquial',r:'Lactente',e:'No lactente, o pulso se palpa no braço (braquial).'},
+ {t:'Profundidade ≈ 4 cm (1/3 do diâmetro anteroposterior)',r:'Lactente',e:'Lactente: cerca de 4 cm, 1/3 do diâmetro AP.'},
+ {t:'Profundidade ≈ 5 cm (1/3 do diâmetro anteroposterior)',r:'Criança',e:'Criança: cerca de 5 cm, 1/3 do diâmetro AP.'},
+ {t:'Uma ou duas mãos, conforme o porte',r:'Criança',e:'Na criança escolhe-se uma ou duas mãos conforme o tamanho.'},
+ {t:'Pulso: carótida ou femoral',r:'Criança',e:'Na criança: carótida ou femoral.'},
+ {t:'Duas mãos, ≥5 cm sem passar de 6, na metade inferior do esterno',r:'Adulto',e:'Adulto: duas mãos, pelo menos 5 cm, máximo 6.'},
+ {t:'Ventilação de resgate: 1 a cada 6 segundos (10/min)',r:'Adulto',e:'Criança e lactente: 1 a cada 2–3 s (20–30/min).'},
+ {t:'Frequência de 100–120 compressões por minuto',r:'Todos',e:'A frequência é a mesma em todas as idades.'},
+ {t:'Relação 30:2 quando você está sozinho',r:'Todos',e:'Socorrista único: 30:2 em adulto, criança e lactente.'},
+ {t:'Compressão com a técnica dos dois dedos',r:'Saiu em 2025',e:'A técnica dos dois dedos saiu das diretrizes: não atinge a profundidade.'},
+ {t:'No engasgo: jamais compressão abdominal',r:'Lactente',e:'No lactente: 5 tapas dorsais + 5 compressões torácicas, nunca abdominais.'}
+];
+function iniciaFaixa(box){
+  var fila, i, acertos, primeira=true, seq;
+  function monta(){
+    fila=emb(FAIXA); i=0; acertos=0; seq=0; desenha();
+  }
+  function desenha(){
+    box.innerHTML='';
+    if(i>=fila.length){
+      var f=mk('div','qz-fim');
+      f.innerHTML='<div class="numerao '+(acertos>=10?'vd':(acertos<6?'vm':''))+'">'+acertos+' / '+fila.length+'</div><div class="rot">acertos em uma tentativa</div>'+
+        '<p>'+(acertos>=10?'Você separa bem as faixas etárias.':'Releia a tabela de adulto × criança × lactente e jogue de novo.')+'</p>';
+      var br=mk('button','btn gh','↻ Jogar de novo'); br.onclick=monta; f.appendChild(br); box.appendChild(f); return;
+    }
+    var it=fila[i], w=mk('div','tiro');
+    var top=mk('div','qz-top'); top.appendChild(mk('span','rot','Frase '+(i+1)+' de '+fila.length));
+    top.appendChild(mk('span','rot','Sequência: '+seq+(seq>=3?' 🔥':''))); w.appendChild(top);
+    w.appendChild(mk('div','tiro-card',it.t));
+    var bt=mk('div','tiro-btns'), fb=mk('div','qz-fb');
+    ['Adulto','Criança','Lactente','Todos','Saiu em 2025'].forEach(function(n){
+      var b=mk('button','',n);
+      b.onclick=function(){
+        Array.prototype.forEach.call(bt.children,function(c){ c.disabled=true; if(c.textContent===it.r) c.classList.add('ok'); });
+        if(n===it.r){ acertos++; seq++; if(primeira) ganha(2); fb.className='qz-fb on ok'; fb.innerHTML='<b class="vd">✔</b> '+it.e; }
+        else { b.classList.add('err'); seq=0; fb.className='qz-fb on err'; fb.innerHTML='<b class="vm">✘ Era “'+it.r+'”.</b> '+it.e; }
+        var nx=mk('button','btn','Próxima ▶'); nx.style.marginTop='8px';
+        nx.onclick=function(){ i++; if(i>=fila.length) primeira=false; desenha(); };
+        fb.appendChild(document.createElement('br')); fb.appendChild(nx);
+      };
+      bt.appendChild(b);
+    });
+    w.appendChild(bt); w.appendChild(fb); box.appendChild(w);
+  }
+  monta();
+}
+
+/* ------------------------------------------------------------------
+   ROTA DO PLANTÃO (palácio de memória)
+   ------------------------------------------------------------------ */
+var ROTA=[
+ {e:'🐊',n:'Porta da UTI',a:'Um <b>jacaré de capacete e luvas</b> barra a porta e só deixa entrar quem olhou os fios soltos do chão.',c:'<b>Segurança da cena:</b> olhe para você e para o cenário; calce luvas.'},
+ {e:'🛏️',n:'Leito 1',a:'Um paciente de <b>pijama dourado</b> ronca como um trator e não reage aos tapinhas nos ombros.',c:'<b>Resposta:</b> toque nos ombros e chame alto. Não responde = irresponsivo.'},
+ {e:'📞',n:'Telefone vermelho',a:'Um <b>telefone gigante grita “192!”</b> e aponta o fone para uma pessoa de camisa azul.',c:'<b>Grite, acione, peça o DEA</b> — aponte e nomeie a pessoa.'},
+ {e:'⏱️',n:'Relógio de parede',a:'Um <b>peixe de boca aberta</b> (gasping) olha um relógio que só tem dez segundos.',c:'<b>Respiração + pulso em ≤10 s.</b> Gasping não é respiração; na dúvida, comprima.'},
+ {e:'🐘',n:'Maca do DJ',a:'Um <b>elefante DJ</b> toca <i>Stayin’ Alive</i> e afunda o peito 5 cm no compasso — e deixa subir tudo antes da batida seguinte.',c:'<b>≥5 cm (máx. 6) · 100–120/min · retorno total · pausas &lt;10 s · fração &gt;80%.</b>'},
+ {e:'🎈',n:'Balão-ambu',a:'Um <b>balão que só aceita meio sopro</b>, de um segundo, até o tórax subir — e se enche demais, estoura.',c:'<b>30:2</b> · ~1 s por ventilação · não hiperventile · com tubo: 1 a cada 6 s.'},
+ {e:'🤖',n:'Armário verde',a:'Um <b>robô gentil</b> que fala português pede: “ligue, cole, afaste”.',c:'<b>DEA em 3 passos:</b> ligar → colar as pás → afastar e chocar.'},
+ {e:'⚡',n:'Fim do corredor',a:'<b>Três bailarinos pulam para trás</b> (eu, vocês, oxigênio); cai o raio — e o elefante DJ volta a tocar no <b>mesmo segundo</b>.',c:'<b>Afaste → choque → RCP imediata por 2 min</b>, sem checar pulso.'}
+];
+function iniciaRota(box){
+  var modo='estudo', vis={}, sel=-1, rev={};
+  function desenha(){
+    box.innerHTML='';
+    var w=mk('div','rota-w'), g=mk('div','rota-g');
+    ROTA.forEach(function(r,i){
+      var b=mk('button','est'+(vis[i]?' vis':'')+(i===sel?' sel':''),
+        '<span class="em">'+r.e+'</span><span class="en">estação '+(i+1)+'</span><span class="et">'+r.n+'</span>');
+      b.onclick=function(){ sel=i; vis[i]=true; desenha(); };
+      g.appendChild(b);
+    });
+    w.appendChild(g);
+    var det=mk('div','rota-det');
+    if(sel<0){ det.innerHTML='<div class="abs">Toque numa estação, da esquerda para a direita.</div><p style="margin-top:6px">Cada uma tem uma imagem absurda — e a conduta que ela esconde. Imagine-se andando por esse corredor no próximo plantão.</p>'; }
+    else {
+      var r=ROTA[sel], mostra=(modo==='estudo')||rev[sel];
+      det.innerHTML='<div class="rot">Estação '+(sel+1)+' · '+r.n+'</div><div class="abs">'+r.a+'</div>'+
+        (mostra?'<div class="anc">'+r.c+'</div>':'<div class="anc" style="background:#eef1f6">Qual era a conduta desta estação? Diga em voz alta e depois revele.</div>');
+      if(!mostra){
+        var bv=mk('button','btn sm','Revelar conduta'); bv.style.marginTop='8px';
+        bv.onclick=function(){ rev[sel]=true; desenha(); }; det.appendChild(bv);
+      }
+    }
+    w.appendChild(det);
+    var ctl=mk('div','rota-ctl');
+    var bt=mk('button','btn',modo==='estudo'?'Ligar modo teste':'Voltar ao modo estudo');
+    bt.onclick=function(){ modo=(modo==='estudo')?'teste':'estudo'; rev={}; desenha(); };
+    ctl.appendChild(bt);
+    var nv=Object.keys(vis).length;
+    ctl.appendChild(mk('span','rot','Estações visitadas: '+nv+' / '+ROTA.length));
+    if(nv===ROTA.length && !desenha.pt){ desenha.pt=1; ganha(10); }
+    w.appendChild(ctl); box.appendChild(w);
+  }
+  desenha();
+}
+
+/* ------------------------------------------------------------------
+   BARALHO DE REVISÃO (repetição espaçada)
+   ------------------------------------------------------------------ */
+var CARTAS=[
+ ['Cadeia de sobrevivência 2025: quantos elos?','Uma só, de 6 elos: reconhecer/acionar · RCP · desfibrilação · avançada · pós-PCR · recuperação.'],
+ ['Tempo máximo para checar respiração e pulso?','10 segundos, ao mesmo tempo. Na dúvida: comprima.'],
+ ['Gasping é…?','Respiração agônica = respiração ausente. Trate como PCR.'],
+ ['Profundidade da compressão no adulto','≥5 cm, sem passar de 6 cm.'],
+ ['Frequência das compressões','100–120/min, em todas as idades.'],
+ ['Fração de compressão: alvo?','&gt;80% (mínimo aceitável 60%).'],
+ ['Pausa máxima nas compressões','&lt;10 segundos.'],
+ ['Quando trocar o compressor?','A cada 2 min (ou antes, se cansar), na checagem de ritmo, em &lt;5 s.'],
+ ['Retorno do tórax','Total. Não se apoie (leaning): é a “diástole” da RCP.'],
+ ['Relação compressão-ventilação no adulto','30:2 (um ou dois socorristas).'],
+ ['Relação em criança/lactente com 2 socorristas','15:2.'],
+ ['Com via aérea avançada…','Compressões contínuas + 1 ventilação a cada 6 s (10/min).'],
+ ['Adulto com pulso, mas sem respirar','1 ventilação a cada 6 s; recheque o pulso a cada 2 min.'],
+ ['Ventilação de resgate em criança/lactente','1 a cada 2–3 s (20–30/min).'],
+ ['Via aérea com suspeita de trauma cervical','Tração da mandíbula; se não abrir, incline a cabeça (via aérea &gt; coluna).'],
+ ['DEA em três passos','Ligar → colar as pás → afastar e chocar.'],
+ ['Pás perto de marca-passo/CDI','A pelo menos 8 cm do gerador.'],
+ ['Criança &lt;8 anos sem pás pediátricas','Use as de adulto. Não usar é o único erro grave.'],
+ ['Imediatamente após o choque','RCP por 2 minutos, sem checar pulso.'],
+ ['DEA diz “choque não indicado”','Retome a RCP por 2 min — não significa paciente bem.'],
+ ['OVACE em adulto e criança (2025)','5 tapas dorsais + 5 compressões abdominais, alternando — começando pelas costas.'],
+ ['OVACE no lactente','5 tapas dorsais + 5 compressões torácicas (tenar/2 polegares). Nunca abdominal.'],
+ ['Gestante em PCR','Deslocamento uterino lateral contínuo à esquerda; mantenha decúbito dorsal.'],
+ ['Lactente: técnica e local de compressão','2 polegares ou região tenar de 1 mão, logo abaixo da linha intermamilar, ≈4 cm. “Dois dedos” saiu em 2025.'],
+ ['Onde se palpa o pulso no lactente?','Artéria braquial.'],
+ ['O leigo precisa checar o pulso?','Não. Irresponsivo + sem respiração normal → comprimir.'],
+ ['Suspeita de opioide e sem pulso','RCP e DEA primeiro; a naloxona é adjuvante e nunca substitui.'],
+ ['Sozinho, sem celular: adulto × criança','Adulto com colapso súbito: busque ajuda/DEA primeiro. Criança, lactente, afogamento, asfixia: 2 min de RCP antes.']
+];
+function iniciaFlash(box){
+  var fila, atual, verso, certas, erradas, vistas, fraco;
+  function lerFraco(){ var s=le('bls_fraco'); try{ return s?JSON.parse(s):[]; }catch(e){ return []; } }
+  function monta(){
+    fraco=lerFraco(); vistas={}; certas=0; erradas=0; verso=false;
+    var ids=CARTAS.map(function(_,i){return i;}), pri=emb(ids.filter(function(i){return fraco.indexOf(i)>=0;})), res=emb(ids.filter(function(i){return fraco.indexOf(i)<0;}));
+    fila=pri.concat(res); desenha();
+  }
+  function desenha(){
+    box.innerHTML='';
+    if(!fila.length){
+      var f=mk('div','qz-fim');
+      f.innerHTML='<div class="numerao vd">'+certas+' / '+CARTAS.length+'</div><div class="rot">dominadas de primeira</div>'+
+        '<p>'+(erradas? 'As '+erradas+' que você errou ficaram guardadas neste aparelho: na próxima abertura elas vêm primeiro.' : 'Baralho completo, sem erros. Volte amanhã para revisar.')+'</p>';
+      var br=mk('button','btn gh','↻ Recomeçar o baralho'); br.onclick=monta; f.appendChild(br); box.appendChild(f); return;
+    }
+    atual=fila[0];
+    var w=mk('div','fc-w'), c=mk('div','fc'+(verso?' verso':''));
+    c.innerHTML='<div class="fc-r">'+(verso?'Resposta':'Pergunta · toque para virar')+'</div><div class="fc-t">'+CARTAS[atual][verso?1:0]+'</div>';
+    c.onclick=function(){ verso=!verso; desenha(); };
+    w.appendChild(c);
+    var bar=mk('div','fc-bar'), st=mk('div','fc-st','Na fila: '+fila.length+' · Acertos: '+certas+' · Erros: '+erradas+(fraco.length?' · Guardadas: '+fraco.length:''));
+    bar.appendChild(st);
+    var bt=mk('div','fc-bt');
+    var be=mk('button','btn verm','✘ Errei'), ba=mk('button','btn verde','✔ Acertei');
+    be.disabled=ba.disabled=!verso;
+    be.onclick=function(){
+      var id=fila.shift();
+      if(!vistas[id]){ vistas[id]=1; erradas++; }
+      if(fraco.indexOf(id)<0) fraco.push(id);
+      guarda('bls_fraco',JSON.stringify(fraco));
+      fila.push(id); verso=false; desenha();
+    };
+    ba.onclick=function(){
+      var id=fila.shift();
+      if(!vistas[id]){ vistas[id]=1; certas++; ganha(1); }
+      var k=fraco.indexOf(id); if(k>=0){ fraco.splice(k,1); guarda('bls_fraco',JSON.stringify(fraco)); }
+      verso=false; desenha();
+    };
+    bt.appendChild(be); bt.appendChild(ba); bar.appendChild(bt); w.appendChild(bar);
+    box.appendChild(w);
+  }
+  monta();
+}
+
+/* ---- inicialização de todos os componentes ---- */
+Array.prototype.forEach.call(document.querySelectorAll('.comp'),function(box){
+  var t=box.getAttribute('data-comp');
+  if(t==='caso') quiz(box,{itens:CASO,vida:true,perda:12,rotulo:'Decisão',pts:10,msgFim:msgCaso});
+  else if(t==='quiz'){
+    var q=box.getAttribute('data-q');
+    quiz(box,{itens:QD[q],pts:(q==='final'?5:8),tempo:(q==='final'),rotulo:(q==='final'?'Pergunta':'Pergunta')});
+  }
+  else if(t==='mao') iniciaMao(box);
+  else if(t==='tap') iniciaTap(box);
+  else if(t==='ordem') iniciaOrdem(box);
+  else if(t==='dea') iniciaDEA(box);
+  else if(t==='faixa') iniciaFaixa(box);
+  else if(t==='rota') iniciaRota(box);
+  else if(t==='flash') iniciaFlash(box);
+});
+/* limpeza ao trocar de slide */
+hooks.push(function(){
+  if(tapReinicia) tapReinicia();
+  if(deaReinicia) deaReinicia();
+});
 
 mostra(0); escala();
 })();
