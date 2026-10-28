@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Antibióticos — do alvo ao raciocínio clínico | Dr. André Rossanno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b2a43;--ink:#17344b;--atlas:#1282A2;--bg:#f3f8fb;--line:#d3e2ec;--green:#1f9d6a;--amber:#c98f00;--red:#d64545;--hist:#9a6a2f;--muted:#587084;--fs:1}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:'Nunito',system-ui,sans-serif;color:var(--ink);background:#dbe7ef;overflow:hidden}
+.wrap{position:fixed;inset:0 0 46px 0;overflow:hidden}
+.stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;background:var(--bg);transform-origin:center;box-shadow:0 10px 40px rgba(11,42,67,.25);overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide.active{display:flex;animation:fin .3s ease}
+@keyframes fin{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}*{transition:none!important}}
+.rail{width:46px;flex:none;background:var(--rc,#0b2a43);color:#fff;display:flex;align-items:center;justify-content:center}
+.rail span{writing-mode:vertical-rl;transform:rotate(180deg);font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.2em;white-space:nowrap}
+.body{flex:1;min-width:0;padding:26px 44px 56px 40px;overflow:auto;font-size:calc(19px*var(--fs));line-height:1.42;position:relative}
+.proj .rail{display:none}.proj .body{font-size:calc(22px*var(--fs))}
+h1,h2,h3,h4{margin:0;color:var(--navy);line-height:1.15}
+h2{font-size:1.65em;font-weight:800;margin-bottom:.35em}
+h3{font-size:1.1em;font-weight:800;margin-bottom:.25em}
+h4{font-size:.95em;font-weight:800;margin-bottom:.2em}
+.kicker{font:600 .62em 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--rc);margin-bottom:.4em}
+p{margin:.3em 0 .5em}
+.lead{font-size:1.15em;font-weight:600}
+.muted{color:var(--muted)}.small{font-size:.8em}.tiny{font-size:.68em}
+.src{position:absolute;left:40px;right:44px;bottom:12px;font:400 .6em 'IBM Plex Mono',monospace;color:var(--muted);border-top:1px dashed var(--line);padding-top:6px}
+.sig{font-family:'Dancing Script',cursive;font-weight:600;font-size:1.6em;color:var(--atlas)}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g12{grid-template-columns:1.2fr 1fr}.g21{grid-template-columns:1fr 1.2fr}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 17px}
+.card.g{border-left:6px solid var(--green)}.card.a{border-left:6px solid var(--amber)}.card.r{border-left:6px solid var(--red)}.card.b{border-left:6px solid var(--atlas)}.card.h{border-left:6px solid var(--hist)}.card.n{border-left:6px solid var(--navy)}
+.card.dark{background:var(--navy);color:#e8f3f9;border-color:var(--navy)}.card.dark h3,.card.dark h4{color:#fff}
+.chip{display:inline-block;font:600 .62em 'IBM Plex Mono',monospace;padding:.18em .7em;border-radius:99px;background:#e3f0f6;color:#0d5d77;letter-spacing:.03em;vertical-align:middle;margin-right:.3em}
+.chip.fact{background:#d9f3e8;color:#0e6b47}.chip.unc{background:#fff1c8;color:#7a5600}.chip.red{background:#f9dcdc;color:#9c2b2b}.chip.navy{background:var(--navy);color:#fff}
+.btn{font:700 .8em 'Nunito',sans-serif;background:var(--atlas);color:#fff;border:0;border-radius:10px;padding:.5em 1em;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}.btn.ghost{background:#e3f0f6;color:#0d5d77}.btn.sm{font-size:.7em;padding:.35em .8em}
+.btn[disabled]{opacity:.45;cursor:default}
+ul,ol{margin:.2em 0 .4em;padding-left:1.2em}li{margin:.15em 0}
+table{border-collapse:collapse;width:100%;font-size:.82em}
+th,td{border:1px solid var(--line);padding:.35em .6em;text-align:left;vertical-align:top}
+th{background:#e8f2f8;color:var(--navy);font-weight:800}
+code,.mono{font-family:'IBM Plex Mono',monospace;font-size:.88em}
+.big{font-size:1.5em;font-weight:800;color:var(--navy)}
+.anchor{background:var(--navy);color:#fff;border-radius:12px;padding:.55em 1em;font-weight:800;font-size:1.02em}
+.anchor b{color:#7fd6ee}
+.pegadinha{background:#fff7dd;border:1px solid #f0d78a;border-left:6px solid var(--amber);border-radius:12px;padding:.5em 1em}
+.pegadinha:before{content:"PEGADINHA · ";font:600 .72em 'IBM Plex Mono',monospace;color:#8a6200}
+/* curtain */
+.curtain{position:relative;border-radius:12px;overflow:hidden;margin:.4em 0}
+.curtain .cv{background:repeating-linear-gradient(135deg,#0b2a43,#0b2a43 12px,#12395a 12px,#12395a 24px);color:#fff;font-weight:800;text-align:center;padding:.9em 1em;cursor:pointer;border-radius:12px}
+.curtain .cb{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.6em 1em}
+.curtain.open .cv{display:none}.curtain.open .cb{display:block}
+/* matrix */
+.mx td,.mx th{text-align:center;padding:.3em .35em;font-size:.82em}.mx td:first-child,.mx th:first-child{text-align:left;font-weight:800}
+.mx tbody tr{cursor:pointer}.mx tbody tr.sel td:first-child{background:#d6ecf5}
+.mx th.ch{cursor:pointer}.mx th.ch.sel{background:#bfe0ee}
+.v2{background:#d9f3e8;color:#0e6b47;font-weight:800}.v1{background:#fff1c8;color:#7a5600;font-weight:800}.v0{background:#f6e2e2;color:#a33;font-weight:800}
+.mxnote{margin-top:.5em;background:#fff;border:1px solid var(--line);border-left:6px solid var(--atlas);border-radius:10px;padding:.45em .9em;min-height:2.6em;font-size:.88em}
+.legend{font-size:.7em;color:var(--muted);margin:.3em 0}
+/* quiz */
+.qz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.qz .qh{display:flex;justify-content:space-between;font:600 .66em 'IBM Plex Mono',monospace;color:var(--muted);margin-bottom:.4em}
+.qz .qq{font-weight:800;font-size:1.02em;margin-bottom:.5em}
+.qz .op{display:block;width:100%;text-align:left;background:#f3f8fb;border:2px solid var(--line);border-radius:10px;padding:.5em .8em;margin:.3em 0;font:600 .88em 'Nunito',sans-serif;color:var(--ink);cursor:pointer}
+.qz .op:hover{border-color:var(--atlas)}
+.qz .op.ok{background:#d9f3e8;border-color:var(--green)}.qz .op.bad{background:#f9dcdc;border-color:var(--red)}
+.qz .fb{display:none;margin-top:.5em;padding:.5em .9em;border-radius:10px;background:#eef6fb;border-left:6px solid var(--atlas);font-size:.88em}
+.qz.done .fb{display:block}.qz.done .op{pointer-events:none}
+/* case */
+.case .steps{list-style:none;padding:0;margin:.3em 0}
+.case .steps li{background:#fff;border:1px solid var(--line);border-left:6px solid var(--navy);border-radius:12px;padding:.55em .9em;margin:.4em 0;display:none;font-size:.98em}
+.case .steps li.show{display:block;animation:fin .3s}
+.case .after{display:none}.case .after.show{display:block}
+.case textarea{width:100%;min-height:3.4em;border:2px solid var(--line);border-radius:10px;padding:.5em;font:600 .85em 'Nunito',sans-serif;color:var(--ink);resize:vertical}
+.six{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:.4em 0}
+.six label{background:#fff;border:1px solid var(--line);border-radius:8px;padding:.3em .6em;font-size:.78em;cursor:pointer;display:flex;gap:.4em;align-items:flex-start}
+.keyq{background:#e9f6fb;border:1px solid #b6dbe9;border-left:6px solid var(--atlas);border-radius:12px;padding:.5em 1em;font-weight:800;margin:.5em 0}
+.reopen .cv{background:repeating-linear-gradient(135deg,#9a6a2f,#9a6a2f 12px,#a8783d 12px,#a8783d 24px)}
+/* timeline etc */
+.tl{display:flex;flex-wrap:wrap;gap:6px;margin:.4em 0}
+.tl button{font:700 .78em 'IBM Plex Mono',monospace;background:#fff;border:2px solid var(--line);border-radius:10px;padding:.35em .7em;cursor:pointer;color:var(--ink)}
+.tl button.on{background:var(--hist);border-color:var(--hist);color:#fff}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:.3em 0 .5em}
+.tabs button{font:800 .8em 'Nunito',sans-serif;background:#fff;border:2px solid var(--line);border-radius:10px;padding:.4em .85em;cursor:pointer;color:var(--ink)}
+.tabs button.on{background:var(--atlas);border-color:var(--atlas);color:#fff}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.7em 1em;min-height:5em}
+.beds{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:.4em 0}
+.beds button{background:#fff;border:2px solid var(--line);border-radius:12px;padding:.5em .3em;cursor:pointer;font:800 .78em 'Nunito',sans-serif;color:var(--ink);text-align:center}
+.beds button b{display:block;font:600 1.6em 'IBM Plex Mono',monospace;color:var(--atlas)}
+.beds button.on{background:var(--navy);color:#fff;border-color:var(--navy)}.beds button.on b{color:#7fd6ee}
+svg text{font-family:'Nunito',sans-serif}
+.hot{cursor:pointer}.hot circle.hc{fill:#fff;stroke:var(--navy);stroke-width:3}.hot.on circle.hc{fill:var(--amber);stroke:#7a5600}
+.hot text{font-weight:800;font-size:15px;fill:var(--navy);pointer-events:none}
+.cover{display:flex;flex-direction:column;justify-content:center;height:100%}
+.cover h1{font-size:4.2em;font-weight:800;letter-spacing:-.02em}
+.cover .sub{font-size:1.5em;font-weight:700;color:var(--atlas)}
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-weight:800}
+.flow span.s{background:#fff;border:2px solid var(--atlas);border-radius:10px;padding:.25em .7em}
+.flow i{font-style:normal;color:var(--atlas)}
+/* bars & overlays */
+.bar{position:fixed;left:0;right:0;bottom:0;height:46px;background:#0b2a43;display:flex;align-items:center;gap:8px;padding:0 12px;color:#cfe3ef;font:600 12px 'IBM Plex Mono',monospace;z-index:50}
+.bar button{background:#17456a;color:#e8f3f9;border:0;border-radius:8px;padding:6px 10px;font:700 12px 'IBM Plex Mono',monospace;cursor:pointer}
+.bar button:hover{background:#1f5a88}
+.prog{flex:1;height:10px;background:#1c4565;border-radius:6px;cursor:pointer;position:relative}
+.prog i{display:block;height:100%;background:#2fb3d6;border-radius:6px;width:0}
+.notes{position:fixed;left:0;right:0;bottom:46px;max-height:38%;overflow:auto;background:#0b2a43;color:#e8f3f9;padding:14px 26px;font-size:15px;line-height:1.45;display:none;z-index:40;border-top:4px solid #2fb3d6}
+.notes b{color:#7fd6ee}
+body.shownotes .notes{display:block}
+.index{position:fixed;inset:0 0 46px 0;background:rgba(11,42,67,.97);color:#fff;display:none;overflow:auto;padding:26px 34px;z-index:60}
+.index.on{display:block}
+.index h3{color:#7fd6ee;font:600 13px 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;margin:16px 0 6px}
+.index .ix{display:flex;flex-wrap:wrap;gap:6px}
+.index .ix button{background:#17456a;color:#fff;border:0;border-radius:8px;padding:7px 11px;font:700 13px 'Nunito',sans-serif;cursor:pointer;text-align:left}
+.index .ix button:hover{background:#2fb3d6}
+@media print{html,body{overflow:visible;height:auto}.wrap{position:static}.stage{position:static;transform:none!important;width:auto;height:auto;box-shadow:none}.slide{display:flex!important;position:relative;height:720px;page-break-after:always}.bar,.notes,.index{display:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="stage" id="stage">
+
+<!-- ============ ABERTURA ============ -->
+<section class="slide" id="s-cover" data-sec="Abertura" data-title="Capa" data-c="navy" data-notes="<b>Abertura (1 min).</b> Diga: hoje não vamos decorar tabelas. Vamos aprender a perguntar: <b>qual é o alvo, qual é o bicho, qual é o foco, o que reavaliar</b>. Cada bloco começa por um paciente. Mostre a lista de atalhos no slide 3.">
+<div class="body" style="padding-left:64px"><div class="cover">
+<div class="kicker">Aula · primeiro contato com antibióticos</div>
+<h1>Antibióticos:<br>do alvo ao raciocínio clínico</h1>
+<div class="sub">Primeiro o mecanismo. Depois o nome. Sempre o paciente.</div>
+<p class="muted" style="margin-top:1.1em">Casos · história · mecanismos · classes · pegadinhas · memorização</p>
+<div class="sig">Dr. André Rossanno</div>
+<div class="small muted">Base: aula «Antibióticos» (PDF do autor) · revisada e atualizada com fontes de 2019–2025 · 28/10/2026</div>
+</div></div></section>
+
+<section class="slide" id="s-method" data-sec="Abertura" data-title="Como a aula funciona" data-c="navy" data-notes="<b>Método.</b> Cada bloco segue: caso dramático → pergunta (cortina) → mecanismo → âncora → quiz com feedback → pegadinha. As cortinas (tecla R) abrem as respostas: peça que o aluno escreva ANTES de abrir — é o efeito de teste. Clique nos blocos do mapa para saltar.">
+<div class="body">
+<div class="kicker">Roteiro</div>
+<h2>Como esta aula funciona</h2>
+<div class="flow" style="margin:.2em 0 .8em"><span class="s">1 · Caso</span><i>→</i><span class="s">2 · Você pensa</span><i>→</i><span class="s">3 · Mecanismo</span><i>→</i><span class="s">4 · Âncora</span><i>→</i><span class="s">5 · Quiz</span><i>→</i><span class="s">6 · Pegadinha</span></div>
+<p class="lead">Nove blocos. Clique para saltar:</p>
+<div class="grid g3" style="margin-top:.3em">
+<button class="btn ghost" data-go="s-b1" style="text-align:left">1 · Casos clínicos<br><span class="tiny">9 pacientes antes de qualquer classe</span></button>
+<button class="btn ghost" data-go="s-b2" style="text-align:left">2 · História com valor didático<br><span class="tiny">fato × curiosidade</span></button>
+<button class="btn ghost" data-go="s-b3" style="text-align:left">3 · Alvos e microbiologia<br><span class="tiny">mecanismo antes dos nomes</span></button>
+<button class="btn ghost" data-go="s-b4" style="text-align:left">4 · β-lactâmicos<br><span class="tiny">penicilinas, cefalosporinas, carbapenêmicos</span></button>
+<button class="btn ghost" data-go="s-b5" style="text-align:left">5 · Quinolonas<br><span class="tiny">cipro × levo × moxi</span></button>
+<button class="btn ghost" data-go="s-b6" style="text-align:left">6 · Anaeróbios<br><span class="tiny">clindamicina e metronidazol</span></button>
+<button class="btn ghost" data-go="s-b7" style="text-align:left">7 · Sulfametoxazol-trimetoprima<br><span class="tiny">as duas portas do folato</span></button>
+<button class="btn ghost" data-go="s-b8" style="text-align:left">8 · Polimixinas<br><span class="tiny">último recurso, não rotina</span></button>
+<button class="btn ghost" data-go="s-b9" style="text-align:left">9 · Memorização e pegadinhas<br><span class="tiny">palácio, arena e chefão final</span></button>
+</div>
+<div class="src">Comandos do aluno: «explica de outro jeito» → abra a cortina de analogia · «dá um caso» → bloco 1 · «faz uma pegadinha» → bloco 9 · «resume» → último slide</div>
+</div></section>
+
+<section class="slide" id="s-rules" data-sec="Abertura" data-title="Regras do jogo" data-c="navy" data-notes="<b>Transparência.</b> Explique as cores do trilho lateral: verde = conduta/diretriz; azul = mecanismo; âmbar = caso/pegadinha; vermelho = correção do material antigo; marrom = história. Chips FATO / INCERTO separam história documentada de curiosidade. Reforce: o deck NÃO é prescrição.">
+<div class="body">
+<div class="kicker">Regras do jogo</div>
+<h2>Educação, não prescrição</h2>
+<div class="grid g2">
+<div class="card n"><h3>O que esta aula faz</h3>
+<ul><li>Ensina o <b>raciocínio</b>: alvo → espectro → foco → cultura → reavaliação.</li>
+<li><b>Não prescreve</b> para paciente real: escolha depende de cultura, gravidade, alergia, função renal e protocolo da CCIH local.</li>
+<li><b>Doses</b> só aparecem com população, via e fonte. Na dúvida: protocolo local / infectologista.</li></ul></div>
+<div class="card n"><h3>Como ler o trilho colorido</h3>
+<p class="small"><span class="chip" style="background:#1f9d6a;color:#fff">verde</span> conduta / diretriz &nbsp; <span class="chip" style="background:#1282A2;color:#fff">azul</span> mecanismo<br>
+<span class="chip" style="background:#c98f00;color:#fff">âmbar</span> caso / pegadinha &nbsp; <span class="chip" style="background:#d64545;color:#fff">vermelho</span> correção do PDF antigo<br>
+<span class="chip" style="background:#9a6a2f;color:#fff">marrom</span> história</p>
+<p class="small"><span class="chip fact">FATO</span> bem documentado &nbsp; <span class="chip unc">INCERTO</span> relato contestado ou sem fonte sólida</p></div>
+</div>
+<div class="card" style="margin-top:12px"><h3>Atalhos</h3>
+<p class="small mono">← → espaço: navegar &nbsp;·&nbsp; <b>R</b> abre cortinas &nbsp;·&nbsp; <b>N</b> notas do professor &nbsp;·&nbsp; <b>G</b> índice &nbsp;·&nbsp; <b>P</b> modo projetar &nbsp;·&nbsp; <b>F</b> tela cheia &nbsp;·&nbsp; <b>+ −</b> tamanho da letra &nbsp;·&nbsp; <b>M</b> reduzir movimento</p></div>
+<div class="src">Hierarquia de fontes: diretrizes e notas técnicas do Ministério da Saúde (quando existem) → sociedades brasileiras → IDSA/ESCMID/consensos internacionais → revisões. Lacunas de fonte brasileira estão sinalizadas.</div>
+</div></section>
+
+<!-- ============ BLOCO 1 — CASOS ============ -->
+<section class="slide" id="s-b1" data-sec="Bloco 1 · Casos" data-title="Seis perguntas antes da receita" data-c="amber" data-notes="<b>Bloco 1.</b> Estas seis perguntas são o esqueleto de TODOS os casos. Peça que a turma as recite. A ideia central: o nome do antibiótico é a última etapa, não a primeira. Cada caso a seguir é um paciente curto, revelado em camadas — use o botão ‘Revelar próximo dado’ e deixe a turma escrever a hipótese antes de abrir a cortina.">
+<div class="body">
+<div class="kicker">Bloco 1 · Comece pelos pacientes</div>
+<h2>Seis perguntas valem mais que uma tabela</h2>
+<div class="grid g3" id="six">
+<div class="card a"><h3>1 · Há infecção?</h3><p class="small">Febre sem foco não é automaticamente bacteriana. Inflamação ≠ infecção; colonização ≠ infecção.</p></div>
+<div class="card a"><h3>2 · Qual o foco?</h3><p class="small">O sítio decide os suspeitos: urina, pulmão, pele, abdome, SNC… e se precisa de drenagem.</p></div>
+<div class="card a"><h3>3 · Quem são os suspeitos?</h3><p class="small">Comunidade ou hospital? Uso prévio de antibiótico? Dispositivos? Perfil local de resistência?</p></div>
+<div class="card a"><h3>4 · Preciso de cultura?</h3><p class="small">Colher <b>antes</b> do antibiótico, sem atrasar o tratamento de quem está grave.</p></div>
+<div class="card a"><h3>5 · Qual alvo / espectro importa?</h3><p class="small">Parede, ribossomo, DNA, folato, membrana: o mecanismo explica o espectro e as falhas.</p></div>
+<div class="card a"><h3>6 · O que reavaliar?</h3><p class="small">48–72 h: clínica, exames, culturas. Descalonar, trocar, drenar, parar.</p></div>
+</div>
+<div class="keyq">Antes do nome do antibiótico, vem o nome do problema.</div>
+<p class="muted small">Agora: 9 pacientes. Em cada um, escreva sua hipótese antes de abrir a cortina.</p>
+<div class="src">Estrutura de raciocínio baseada no material-fonte («Terapia antimicrobiana», «Nem toda infecção necessita de antibiótico», «Avaliação do efeito em 48–72 h»).</div>
+</div></section>
+
+<section class="slide" id="c-c1" data-sec="Bloco 1 · Casos" data-title="Caso 1 · Pneumonia" data-c="amber" data-notes="<b>Caso 1.</b> Armadilha: ‘pneumonia = ceftriaxona’. Mostre que o β-lactâmico não cobre atípicos (sem parede ou intracelulares). A SBPT 2018 reitera β-lactâmico OU macrolídeo em monoterapia para PAC leve; gravidade muda tudo. Não prescreva doses.">
+<div class="body"><div class="case" data-case="c1"></div></div></section>
+
+<section class="slide" id="c-c2" data-sec="Bloco 1 · Casos" data-title="Caso 2 · Infecção urinária" data-c="amber" data-notes="<b>Caso 2.</b> Pergunta de prova clássica (PUC-RS 2013): E. coli. O ganho didático é a diferença entre quinolonas: urina × pulmão. Moxifloxacino não é opção confiável para ITU (~20% excretado inalterado vs >40% de cipro/levo).">
+<div class="body"><div class="case" data-case="c2"></div></div></section>
+
+<section class="slide" id="c-c3" data-sec="Bloco 1 · Casos" data-title="Caso 3 · Abscesso e anaeróbios" data-c="amber" data-notes="<b>Caso 3.</b> ‘Infecção anaeróbia’ não significa metronidazol sozinho. Foco intra-abdominal é polimicrobiano. Controle de foco (drenagem) pesa tanto quanto o antibiótico.">
+<div class="body"><div class="case" data-case="c3"></div></div></section>
+
+<section class="slide" id="c-c4" data-sec="Bloco 1 · Casos" data-title="Caso 4 · Infecção dentária e clindamicina" data-c="amber" data-notes="<b>Caso 4.</b> Antes do antibiótico: tratar o foco (dente/pus). A clindamicina é uma opção, não ‘o antibiótico de quem é alérgico’. Investigar o rótulo de alergia: muitos não se confirmam.">
+<div class="body"><div class="case" data-case="c4"></div></div></section>
+
+<section class="slide" id="c-c5" data-sec="Bloco 1 · Casos" data-title="Caso 5 · Clostridioides difficile" data-c="amber" data-notes="<b>Caso 5.</b> Aqui o PDF e muitas provas antigas estão defasados: metronidazol deixou de ser primeira linha (IDSA/SHEA 2017 e 2021). Fidaxomicina é a preferida; vancomicina VO é alternativa. O metronidazol reaparece como IV adjunto na forma fulminante.">
+<div class="body"><div class="case" data-case="c5"></div></div></section>
+
+<section class="slide" id="c-c6" data-sec="Bloco 1 · Casos" data-title="Caso 6 · Pneumocystis jirovecii" data-c="amber" data-notes="<b>Caso 6.</b> Pneumocystis é fungo atípico: penicilinas/cefalosporinas não têm alvo. SMX-TMP é o tratamento; corticoide se PaO₂ &lt; 70 mmHg (MSD). Diferencie tratamento (dose terapêutica) de profilaxia (dose baixa diária).">
+<div class="body"><div class="case" data-case="c6"></div></div></section>
+
+<section class="slide" id="c-c7" data-sec="Bloco 1 · Casos" data-title="Caso 7 · Gram-negativo multirresistente" data-c="amber" data-notes="<b>Caso 7.</b> O reflexo ‘resistente a carbapenêmico → polimixina’ é o erro a desfazer. A pergunta certa: QUAL carbapenemase? Para KPC e para MBL as opções preferidas mudam (IDSA 2024).">
+<div class="body"><div class="case" data-case="c7"></div></div></section>
+
+<section class="slide" id="c-c8" data-sec="Bloco 1 · Casos" data-title="Caso 8 · Suspeita de Pseudomonas" data-c="amber" data-notes="<b>Caso 8.</b> PAV: ceftriaxona NÃO cobre Pseudomonas. A turma precisa saber listar quais β-lactâmicos cobrem (voltaremos com o passaporte da Pseudomonas, bloco 4).">
+<div class="body"><div class="case" data-case="c8"></div></div></section>
+
+<section class="slide" id="c-c9" data-sec="Bloco 1 · Casos" data-title="Caso 9 · ESBL ou carbapenemase?" data-c="amber" data-notes="<b>Caso 9.</b> Fenótipo resistente a ceftriaxona/ceftazidima/cefepima e sensível a carbapenêmico = ESBL → carbapenêmico (IDSA 2024). Resistente também ao meropenem = pense em carbapenemase e identifique qual.">
+<div class="body"><div class="case" data-case="c9"></div></div></section>
+
+<!-- ============ BLOCO 2 — HISTÓRIA ============ -->
+<section class="slide" id="s-b2" data-sec="Bloco 2 · História" data-title="Oito histórias que explicam usos de hoje" data-c="hist" data-notes="<b>História com função.</b> Cada aba termina com um chip: FATO DOCUMENTADO ou RELATO INCERTO. Peça que o aluno diga o que cada história ensina: sulfa = pró-droga (in vitro × in vivo); cilastatina = farmacocinética muda espectro útil; polimixina = toxicidade e retomada; clindamicina = C. difficile; quinolona = nasceu de um subproduto; metronidazol = anaeróbios por acaso (relato incerto).">
+<div class="body">
+<div class="kicker">Bloco 2 · História com valor didático</div>
+<h2>Cada história explica um uso de hoje</h2>
+<div data-hist></div>
+<div class="src">Fontes: relatos históricos consolidados (Nobel 1939 e 1945; Bartlett 1978; Liu et al. 2016, mcr-1) · divergências de datas sinalizadas · síntese do autor</div>
+</div></section>
+
+<section class="slide" id="s-b2b" data-sec="Bloco 2 · História" data-title="O que a história ensina" data-c="hist" data-notes="<b>Síntese.</b> Cinco lições. Depois faça o quiz de história. Reforce: curiosidade só vale se a conexão com a prática for explícita.">
+<div class="body">
+<div class="kicker">O que a história ensina</div>
+<h2>Cinco pontes entre passado e prática</h2>
+<div class="grid g2">
+<div class="card h"><h3>Sulfa → pró-droga</h3><p class="small">Prontosil não funcionava in vitro. Moral: <b>o que o laboratório mostra nem sempre é o que acontece no paciente</b> (e vice-versa).</p></div>
+<div class="card h"><h3>Imipenem + cilastatina → farmacocinética</h3><p class="small">O fármaco era degradado pelo rim. A solução foi <b>proteger a molécula</b>, não mudar o alvo.</p></div>
+<div class="card h"><h3>Polimixina → toxicidade e retomada</h3><p class="small">Abandonada pelo dano renal, voltou quando faltaram opções. <b>Último recurso</b> exige cuidado, não pressa.</p></div>
+<div class="card h"><h3>Clindamicina → C. difficile</h3><p class="small">Um antibiótico pode curar a infecção e <b>criar outra</b> ao devastar a microbiota (Bartlett, 1978).</p></div>
+</div>
+<div class="anchor" style="margin-top:12px">Toda classe nasceu de um problema, e <b>carrega o problema que gerou</b> como pegadinha.</div>
+<div class="src">Síntese a partir dos fatos documentados da lâmina anterior</div>
+</div></section>
+
+<section class="slide" id="q-hist" data-sec="Bloco 2 · História" data-title="Quiz de história" data-c="hist" data-notes="Três perguntas. Use o feedback para reforçar a diferença entre fato documentado e relato incerto.">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>Fato ou curiosidade?</h2>
+<div class="qz" data-quiz="hist" data-title="HISTÓRIA"></div>
+</div></section>
+
+<!-- ============ BLOCO 3 — ALVOS ============ -->
+<section class="slide" id="s-b3" data-sec="Bloco 3 · Alvos" data-title="A bactéria como fábrica com alvos" data-c="blue" data-notes="<b>Mecanismo antes dos nomes.</b> Clique nos cinco pontos numerados. Imagem: a bactéria é uma fábrica com muro, portaria, linha de montagem, arquivo central e dutos metabólicos. Cada antibiótico sabota uma parte.">
+<div class="body">
+<div class="kicker">Bloco 3 · Mecanismos antes dos nomes</div>
+<h2>A bactéria é uma fábrica com cinco alvos</h2>
+<div class="grid" style="grid-template-columns:1.25fr 1fr;align-items:start">
+<svg viewBox="0 0 700 330" width="100%" role="img" aria-label="Bacilo com cinco pontos de ataque">
+<rect x="50" y="60" width="600" height="210" rx="105" fill="#fff" stroke="#0b2a43" stroke-width="10"/>
+<rect x="64" y="74" width="572" height="182" rx="92" fill="#eaf5fa" stroke="#1282A2" stroke-width="4"/>
+<path d="M300 165 q20-50 40 0 t40 0 t40 0 t40 0" fill="none" stroke="#0b2a43" stroke-width="5"/>
+<g fill="#1282A2"><circle cx="170" cy="130" r="7"/><circle cx="195" cy="170" r="7"/><circle cx="160" cy="200" r="7"/><circle cx="215" cy="118" r="7"/><circle cx="235" cy="200" r="7"/></g>
+<path d="M470 120 l30 20 l-10 30 l30 15" fill="none" stroke="#c98f00" stroke-width="5" stroke-dasharray="6 5"/>
+<g class="hot" data-info="<b>1 · Parede.</b> β-lactâmicos (penicilinas, cefalosporinas, carbapenêmicos) e glicopeptídeos (vancomicina) impedem a construção do <b>peptidoglicano</b>. A bactéria perde o 'muro' e estoura. <i>Exemplo: amoxicilina, ceftriaxona, meropenem.</i>"><circle class="hc" cx="46" cy="165" r="19"/><text x="46" y="171" text-anchor="middle">1</text></g>
+<g class="hot" data-info="<b>2 · Membrana.</b> Polimixinas desorganizam a membrana externa (LPS) de Gram-negativos; daptomicina age na membrana de Gram-positivos. <i>Exemplo: colistina, polimixina B.</i>"><circle class="hc" cx="350" cy="62" r="19"/><text x="350" y="68" text-anchor="middle">2</text></g>
+<g class="hot" data-info="<b>3 · Ribossomos.</b> A 'linha de montagem' de proteínas. 30S: aminoglicosídeos, tetraciclinas. 50S: macrolídeos, <b>clindamicina</b>, linezolida. <i>Exemplo: azitromicina, clindamicina.</i>"><circle class="hc" cx="190" cy="150" r="19"/><text x="190" y="156" text-anchor="middle">3</text></g>
+<g class="hot" data-info="<b>4 · DNA.</b> Quinolonas bloqueiam DNA-girase e topoisomerase IV (replicação). O <b>metronidazol</b>, depois de ativado em microrganismos de baixo potencial redox, danifica o DNA. <i>Exemplo: ciprofloxacino, metronidazol.</i>"><circle class="hc" cx="360" cy="215" r="19"/><text x="360" y="221" text-anchor="middle">4</text></g>
+<g class="hot" data-info="<b>5 · Folato.</b> Via metabólica que fabrica os 'tijolinhos' do DNA. Sulfametoxazol e trimetoprima bloqueiam <b>duas etapas consecutivas</b>. <i>Exemplo: SMX-TMP no Pneumocystis.</i>"><circle class="hc" cx="530" cy="150" r="19"/><text x="530" y="156" text-anchor="middle">5</text></g>
+<text x="350" y="305" text-anchor="middle" font-size="14" fill="#587084">1 parede · 2 membrana · 3 ribossomos · 4 DNA · 5 folato</text>
+</svg>
+<div><div class="panel" id="bactinfo" style="min-height:9.5em"><p class="lead">Clique num número do desenho.</p><p class="small muted">Antes de saber o nome do antibiótico, pergunte: <b>qual parte da fábrica ele sabota?</b></p></div>
+<div class="anchor" style="margin-top:10px">Alvo explica espectro, toxicidade e resistência.</div></div>
+</div>
+<div class="src">Esquema didático · mecanismos: material-fonte e farmacologia básica</div>
+</div></section>
+
+<section class="slide" id="s-gram" data-sec="Bloco 3 · Alvos" data-title="Gram+, Gram− e atípicos" data-c="blue" data-notes="<b>Parede.</b> A espessura do peptidoglicano e a presença de membrana externa explicam por que antibióticos entram diferente. Destaque a correção: Legionella tem peptidoglicano; o motivo de β-lactâmicos falharem é intracelularidade e outros fatores, não ausência de parede.">
+<div class="body">
+<div class="kicker">Bloco 3 · O mapa da parede</div>
+<h2>Gram-positivo, Gram-negativo e atípico</h2>
+<div class="tabbed">
+<div class="tabs"><button data-t="gp">Gram-positivos</button><button data-t="gn">Gram-negativos</button><button data-t="at">Atípicos</button></div>
+<div class="pane panel" data-t="gp"><p><b>Peptidoglicano grosso, sem membrana externa.</b> A droga chega fácil ao alvo.</p><p class="small">Exemplos comuns: <i>S. aureus</i>, <i>S. pneumoniae</i>, <i>S. pyogenes</i>, enterococos.</p><div class="anchor">Muro grosso, porta aberta.</div></div>
+<div class="pane panel" data-t="gn"><p><b>Peptidoglicano fino + membrana externa (LPS) com porinas.</b> Mais barreira: porinas alteradas, bombas de efluxo e β-lactamases dificultam.</p><p class="small">Exemplos comuns: <i>E. coli</i>, <i>Klebsiella</i>, <i>Pseudomonas</i>, <i>Acinetobacter</i>.</p><div class="anchor">Muro fino, <b>fosso com guarda</b>.</div></div>
+<div class="pane panel" data-t="at"><p><b>Atípicos:</b> <i>Mycoplasma</i> (sem parede), <i>Chlamydophila</i> e <i>Legionella</i> (vivem dentro de células). β-lactâmicos falham; macrolídeos, doxiciclina e quinolonas respiratórias chegam e agem.</p><div class="card r"><span class="chip red">CORREÇÃO DO PDF</span> O material trata <i>Legionella</i> como bactéria sem peptidoglicano. Ela <b>tem</b> peptidoglicano; a falha dos β-lactâmicos se deve ao ambiente intracelular e à baixa penetração, não à ausência de parede.</div></div>
+</div>
+<div class="src">Material-fonte (diferenças de parede) · correção sobre Legionella: microbiologia padrão</div>
+</div></section>
+
+<section class="slide" id="s-sites" data-sec="Bloco 3 · Alvos" data-title="Quem mora onde" data-c="blue" data-notes="<b>Mapa de suspeitos.</b> O sítio decide os candidatos. Peça ao aluno um exemplo para cada linha antes de passar ao próximo slide.">
+<div class="body">
+<div class="kicker">Bloco 3 · Quem mora onde</div>
+<h2>O sítio decide os suspeitos</h2>
+<div class="grid g3">
+<div class="card b"><h3>Pele</h3><p class="small"><i>S. aureus</i> (MSSA/MRSA), <i>S. pyogenes</i>. Erisipela: estreptococo.</p></div>
+<div class="card b"><h3>Pulmão (comunidade)</h3><p class="small"><i>S. pneumoniae</i>, <i>H. influenzae</i>, atípicos.</p></div>
+<div class="card b"><h3>Urina</h3><p class="small"><i>E. coli</i> à frente; <i>Klebsiella</i>, <i>Enterococcus</i>, <i>Proteus</i>.</p></div>
+<div class="card b"><h3>Abdome</h3><p class="small">Enterobactérias + <b>anaeróbios</b> (<i>B. fragilis</i>) + enterococos.</p></div>
+<div class="card b"><h3>Boca / dente</h3><p class="small">Estreptococos orais + anaeróbios orais.</p></div>
+<div class="card b"><h3>SNC (meningite)</h3><p class="small">Pneumococo, meningococo; <i>Listeria</i> em extremos de idade e imunossupressão.</p></div>
+<div class="card b"><h3>UTI / hospital</h3><p class="small"><i>Pseudomonas</i>, <i>Acinetobacter</i>, ESBL, MRSA — depende do perfil local.</p></div>
+<div class="card b"><h3>Fungo oportunista</h3><p class="small"><i>Pneumocystis jirovecii</i> em CD4 baixo.</p></div>
+<div class="card b"><h3>Intestino pós-antibiótico</h3><p class="small"><i>Clostridioides difficile</i>.</p></div>
+</div>
+<div class="src">Material-fonte («bugs por sítio») · exemplos mais comuns; não são lista exaustiva</div>
+</div></section>
+
+<section class="slide" id="s-res" data-sec="Bloco 3 · Alvos" data-title="Quatro jeitos de driblar" data-c="blue" data-notes="<b>Resistência.</b> Quatro mecanismos do material-fonte. Associe cada um a um exemplo concreto: PBP alterada = MRSA/pneumococo; β-lactamase = ESBL/KPC; porinas = Pseudomonas com perda de OprD; efluxo = multirresistência.">
+<div class="body">
+<div class="kicker">Bloco 3 · Resistência</div>
+<h2>Quatro jeitos de driblar um β-lactâmico</h2>
+<div class="grid g2">
+<div class="card b"><h3>1 · Trocar o alvo</h3><p class="small">PBP alterada. <b>Exemplos:</b> MRSA (PBP2a), pneumococo resistente à penicilina.</p></div>
+<div class="card b"><h3>2 · Destruir a droga</h3><p class="small">β-lactamases. <b>Exemplos:</b> penicilinase do <i>S. aureus</i>, ESBL, carbapenemases.</p></div>
+<div class="card b"><h3>3 · Fechar a porta</h3><p class="small">Porinas alteradas em Gram-negativos: menos droga entra.</p></div>
+<div class="card b"><h3>4 · Expulsar a droga</h3><p class="small">Bombas de efluxo: a droga é lançada para fora.</p></div>
+</div>
+<div class="keyq">Pergunta de recuperação: o pneumococo resistente à penicilina usa qual dos quatro?</div>
+<div class="curtain"><div class="cv">▶ Abrir resposta</div><div class="cb"><b>Alvo trocado (PBP alterada).</b> Por isso o clavulanato não resolve: não há β-lactamase para inibir.</div></div>
+<div class="src">Material-fonte (mecanismos de resistência aos β-lactâmicos)</div>
+</div></section>
+
+<section class="slide" id="s-mic" data-sec="Bloco 3 · Alvos" data-title="Antibiograma e CIM" data-c="blue" data-notes="<b>Antibiograma/CIM.</b> CIM é a menor concentração que inibe o crescimento visível. S/I/R depende do ponto de corte, do sítio e do fármaco. Destaque a correção vermelha: tabelas de pontos de corte envelhecem (CLSI 2008 no PDF).">
+<div class="body">
+<div class="kicker">Bloco 3 · Ler o antibiograma</div>
+<h2>CIM: quanto de droga precisa?</h2>
+<div class="grid g2">
+<div class="card b"><h3>O que é CIM</h3><p class="small">Menor concentração do antibiótico que inibe o crescimento visível da bactéria. <b>CIM baixa</b> = sensível; <b>CIM alta</b> = resistente.</p><p class="small"><b>S / I / R</b> não é só o número: depende do ponto de corte, do sítio de infecção e da dose.</p></div>
+<div class="card a"><h3>Exemplo clássico (material-fonte)</h3><p class="small">Pneumococo e penicilina (pontos de corte do CLSI 2008, infecção não meníngea): CIM ≤2 sensível; CIM = 4 intermediário; CIM ≥8 resistente. O material associa cada faixa a ajustes de dose da penicilina cristalina.</p></div>
+</div>
+<div class="card r" style="margin-top:12px"><span class="chip red">CORREÇÃO / ATUALIZAÇÃO</span> Pontos de corte são <b>revistos periodicamente</b> (CLSI; no Brasil, BrCAST/EUCAST). A tabela de 2008 do PDF serve para entender o <b>raciocínio</b>; para decidir, use a edição vigente e o laudo do seu laboratório.</div>
+<div class="keyq" style="margin-top:12px">Dois laudos: CIM 0,06 e CIM 4. Qual bactéria é mais resistente?</div>
+<div class="curtain"><div class="cv">▶ Abrir resposta</div><div class="cb">A de <b>CIM 4</b>: precisa de mais droga para ser inibida. Mas só dá para concluir S/I/R com o ponto de corte do fármaco e do sítio.</div></div>
+<div class="src">Material-fonte (antibiograma, CIM) · CLSI 2008 como citado no PDF · conferir CLSI/BrCAST vigentes</div>
+</div></section>
+
+<section class="slide" id="s-rational" data-sec="Bloco 3 · Alvos" data-title="Uso racional" data-c="green" data-notes="<b>Uso racional.</b> Quatro ideias do material-fonte. Ênfase: nem toda infecção precisa de antibiótico; reavaliar em 48-72 h; descalonar; entender falha clínica.">
+<div class="body">
+<div class="kicker">Bloco 3 · Uso racional</div>
+<h2>Antes e depois da prescrição</h2>
+<div class="grid g3">
+<div class="card g"><h3>Nem toda infecção precisa</h3><ul class="small"><li>Abscesso de parede: <b>drenar</b></li><li>Bacteriúria assintomática (exceções: gestantes, pré-prótese de quadril, antes de imunossupressão intensa)</li><li>Diarreia infecciosa autolimitada</li><li>Flebite química</li></ul></div>
+<div class="card g"><h3>Reavaliar em 48–72 h</h3><ul class="small"><li>Curva febril</li><li>Leucograma, PCR</li><li>Sinais do sítio infectado</li><li><b>Resultado de culturas: descalonar</b></li></ul></div>
+<div class="card g"><h3>Por que falha?</h3><ul class="small"><li>Diagnóstico errado</li><li>Falta de adesão</li><li><b>Foco não controlado</b> (abscesso, coleção)</li><li>Corpo estranho/prótese</li><li>Resistência</li></ul></div>
+</div>
+<div class="anchor" style="margin-top:12px">Amplo espectro ≠ melhor opção: <b>estreito o bastante, curto o bastante</b>.</div>
+<div class="src">Material-fonte («Nem toda infecção necessita de antibiótico»; «Avaliação do efeito em 48–72 h»; «Falhas clínicas»)</div>
+</div></section>
+
+<section class="slide" id="q-mech" data-sec="Bloco 3 · Alvos" data-title="Quiz de mecanismos" data-c="blue" data-notes="Três perguntas sobre mecanismos. Se errarem, volte ao slide da fábrica de cinco alvos.">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>Alvo × fármaco</h2>
+<div class="qz" data-quiz="mech" data-title="MECANISMOS"></div>
+</div></section>
+
+<!-- ============ BLOCO 4 — β-LACTÂMICOS ============ -->
+<section class="slide" id="s-b4" data-sec="Bloco 4 · β-lactâmicos" data-title="Pedreiro sabotado" data-c="green" data-notes="<b>Imagem mental.</b> Peptidoglicano é o muro; as PBPs são os pedreiros que ligam os tijolos; o β-lactâmico entra no canteiro e gruda nos pedreiros: o muro fica sem cimento e a bactéria estoura. Só funciona em bactéria em crescimento (que está construindo parede). Mantenha a pergunta: onde isso falha? (sem parede, intracelular, PBP trocada, enzima destruidora).">
+<div class="body">
+<div class="kicker">Bloco 4 · β-lactâmicos</div>
+<h2>Pedreiros sabotados: como o β-lactâmico mata</h2>
+<div class="grid g2">
+<div class="card b"><h3>Mecanismo</h3><p>Ligam-se às <b>PBPs</b> (penicillin-binding proteins) e impedem a ligação cruzada do peptidoglicano. Parede incompleta + pressão interna = <b>lise</b>.</p>
+<p class="small muted">Por isso age melhor em bactéria <b>em crescimento</b>.</p></div>
+<div class="card g"><h3>Família</h3><p>Penicilinas · cefalosporinas · monobactâmicos (aztreonam) · carbapenêmicos.</p><p class="small muted">Quatro sub-ramos do mesmo ‘anel’, com espectros muito diferentes.</p></div>
+</div>
+<div class="anchor" style="margin-top:12px">Imagem: <b>pedreiros sem cimento</b> → muro desaba → bactéria estoura.</div>
+<div class="grid g3" style="margin-top:12px">
+<div class="card r"><h3>Sem parede</h3><p class="small"><i>Mycoplasma</i>: sem alvo.</p></div>
+<div class="card r"><h3>PBP trocada</h3><p class="small">MRSA, pneumococo resistente.</p></div>
+<div class="card r"><h3>Enzima destrói</h3><p class="small">ESBL, carbapenemases.</p></div>
+</div>
+<div class="src">Material-fonte (estrutura dos β-lactâmicos, PBPs) · farmacologia básica</div>
+</div></section>
+
+<section class="slide" id="s-pen" data-sec="Bloco 4 · β-lactâmicos" data-title="Penicilinas naturais" data-c="green" data-notes="<b>Penicilinas naturais.</b> A diferença é farmacocinética, não espectro: cristalina (EV, 4 h), procaína (IM, 12 h, em desuso), benzatina (IM, dias a semanas), V (VO). Exemplos comuns: erisipela, sífilis, febre reumática. Tabela de doses do material-fonte com ressalva.">
+<div class="body">
+<div class="kicker">Bloco 4 · Penicilinas naturais</div>
+<h2>Mesma molécula, quatro ‘velocidades’</h2>
+<table><thead><tr><th>Forma</th><th>Via</th><th>Duração no sangue</th><th>Exemplo clássico</th></tr></thead><tbody>
+<tr><td>G cristalina</td><td>EV</td><td>~4 h (4/4 h)</td><td>Meningite meningocócica, endocardite, neurossífilis</td></tr>
+<tr><td>G procaína</td><td>IM</td><td>~12 h</td><td><span class="chip red">em desuso</span> gonococo resistente</td></tr>
+<tr><td>G benzatina</td><td>IM</td><td>~15–30 dias</td><td>Sífilis recente; profilaxia de febre reumática</td></tr>
+<tr><td>V (fenoximetil)</td><td>VO</td><td>~6 h</td><td>Amigdalite estreptocócica (absorção oral ruim)</td></tr></tbody></table>
+<div class="grid g2" style="margin-top:12px">
+<div class="card g"><h3>Espectro (tendência)</h3><p class="small">Estreptococos (pneumococo, pyogenes, viridans), <i>E. faecalis</i> (às vezes), meningococo, espiroquetas (<i>Treponema</i>, <i>Leptospira</i>), anaeróbios Gram-positivos.</p></div>
+<div class="card a"><h3>Doses do material-fonte (cristalina, EV)</h3><p class="small">Total diário em múltiplos de 6 (4/4 h): 6 mi (tétano, leptospirose) · 12 mi (estreptococos) · 18 mi (anaeróbios) · 24 mi (endocardite) · 30 mi (meningites). <b>Adulto, função renal normal; confirmar em protocolo local.</b></p></div>
+</div>
+<div class="card r" style="margin-top:10px"><span class="chip red">ATUALIZAÇÃO</span> <b>Tétano:</b> o Manual do MS (2021) usa penicilina G cristalina <b>2 MUI IV 4/4 h</b> (12 MUI/dia) <i>ou</i> metronidazol 500 mg IV 8/8 h, por 7–10 dias. A linha «6 mi» do PDF diverge — não decorar.</div>
+<div class="src">Material-fonte (farmacocinética, doses) · Ministério da Saúde, nota técnica/manual de tétano (2021)</div>
+</div></section>
+
+<section class="slide" id="s-oxa" data-sec="Bloco 4 · β-lactâmicos" data-title="Oxacilina e o MRSA" data-c="green" data-notes="<b>Oxacilina.</b> Resistente à penicilinase estafilocócica (cadeia lateral volumosa). MSSA = padrão. MRSA = PBP2a (gene mecA): afinidade muito baixa por quase todos os β-lactâmicos. Exceção: ceftarolina.">
+<div class="body">
+<div class="kicker">Bloco 4 · Antiestafilocócicas</div>
+<h2>Oxacilina: boa para MSSA, cega para MRSA</h2>
+<div class="grid g2">
+<div class="card g"><h3>MSSA</h3><p class="small">Penicilina natural falha porque o <i>S. aureus</i> produz <b>penicilinase</b>. A oxacilina é desenhada para resistir a ela. É o padrão para MSSA (bacteremia, endocardite, partes moles graves).</p></div>
+<div class="card r"><h3>MRSA</h3><p class="small">A bactéria troca a PBP por <b>PBP2a</b> (mecA). Oxacilina, cefalosporinas e carbapenêmicos perdem o alvo. Alternativas incluem vancomicina, daptomicina, linezolida e <b>ceftarolina</b> (única cefalosporina com atividade).</p></div>
+</div>
+<div class="pegadinha" style="margin-top:12px">«Oxacilina em dose maior cobre MRSA.» <b>Não.</b> MRSA é, por definição, resistente à oxacilina.</div>
+<div class="keyq" style="margin-top:12px">Anchor: <b>MSSA = oxacilina; MRSA = outra porta.</b></div>
+<div class="src">Material-fonte (penicilinas antiestafilocócicas) · farmacologia básica</div>
+</div></section>
+
+<section class="slide" id="s-amox" data-sec="Bloco 4 · β-lactâmicos" data-title="Amoxicilina, ampicilina e inibidores" data-c="green" data-notes="<b>Aminopenicilinas e inibidores.</b> Espectro maior em Gram-negativos simples (E. coli, Salmonella, Haemophilus) e Listeria/enterococo. Inibidores (clavulanato, sulbactam, tazobactam) são substratos suicidas: grudam na β-lactamase e a inativam, mas NÃO resolvem PBP trocada nem carbapenemases.">
+<div class="body">
+<div class="kicker">Bloco 4 · Aminopenicilinas e inibidores</div>
+<h2>Amoxicilina, ampicilina e o ‘escudo’ do inibidor</h2>
+<div class="grid g2">
+<div class="card g"><h3>Amoxi / ampicilina</h3><p class="small">Estreptococos, <b>enterococos</b>, meningococo, <i>E. coli</i>, <i>Salmonella</i>, hemófilos, <b><i>Listeria</i></b>. Usos comuns: amigdalite, otite, sinusite, pneumonia, ITU na gestante, meningite por <i>Listeria</i>, endocardite por viridans ou <i>E. faecalis</i>.</p><p class="tiny muted">10–12% dos hemófilos produzem β-lactamase (PDF).</p></div>
+<div class="card b"><h3>Inibidores de β-lactamase</h3><p class="small">Clavulanato, sulbactam, tazobactam: <b>substratos suicidas</b>, grudam na enzima e a destroem. Pouca atividade própria.</p><p class="small">Combinações: amox+clav · amp+sulbactam · pip+tazobactam.</p></div>
+</div>
+<div class="grid g3" style="margin-top:12px">
+<div class="card r"><h3>Limite 1</h3><p class="small">Não resolvem <b>PBP trocada</b> (pneumococo resistente, MRSA).</p></div>
+<div class="card r"><h3>Limite 2</h3><p class="small">Não cobrem enterobactérias do grupo <b>CESP</b> (Citrobacter, Enterobacter, Serratia, Proteus) que têm β-lactamases não inibidas.</p></div>
+<div class="card r"><h3>Limite 3</h3><p class="small">Não inativam <b>carbapenemases</b> de forma confiável.</p></div>
+</div>
+<div class="anchor" style="margin-top:10px">Amoxi-clav: respiratório, pele, mordedura de cão (<i>Pasteurella</i>). Amp-sulbactam: <i>Acinetobacter</i> (pelo sulbactam).</div>
+<div class="src">Material-fonte (aminopenicilinas, amoxicilina-clavulanato, ampicilina-sulbactam) · farmacologia básica</div>
+</div></section>
+
+<section class="slide" id="s-pip" data-sec="Bloco 4 · β-lactâmicos" data-title="Piperacilina-tazobactam" data-c="green" data-notes="<b>Pip-tazo.</b> Ampla cobertura: MSSA, anaeróbios, enterobactérias e Pseudomonas. Mas amplo espectro não é melhor. IDSA 2024: não recomendada para ESBL (MERINO).">
+<div class="body">
+<div class="kicker">Bloco 4 · Antipseudomonas</div>
+<h2>Piperacilina-tazobactam: o canivete suíço</h2>
+<div class="grid g2">
+<div class="card g"><h3>Espectro</h3><p class="small">Cocos Gram-positivos (MSSA), anaeróbios Gram+ e Gram−, <b>enterobactérias</b>, <b>Pseudomonas</b>.</p><h3 style="margin-top:.5em">Usos clássicos</h3><p class="small">Infecção hospitalar, PAV, grandes queimados, intra-abdominal grave.</p></div>
+<div class="card a"><h3>Dose do material-fonte</h3><p class="small">4,5 g EV 6/6 h ou 8/8 h, com correção para função renal. <b>Adulto; confirmar em protocolo local.</b></p></div>
+</div>
+<div class="card r" style="margin-top:12px"><span class="chip red">ATUALIZAÇÃO · IDSA 2024</span> Para infecções por Enterobacterales produtores de ESBL fora do trato urinário, <b>pip-tazo não é recomendada</b>, mesmo se testada «sensível». No MERINO (JAMA 2018), mortalidade em 30 dias foi maior com pip-tazo que com meropenem em bacteremia por <i>E. coli</i>/<i>Klebsiella</i> resistentes à ceftriaxona.</div>
+<div class="pegadinha" style="margin-top:12px">Pip-tazo tem Pseudomonas — mas <b>não cobre MRSA</b> e não é boa para ESBL.</div>
+<div class="src">Material-fonte · IDSA Guidance on AMR Gram-negative infections (2024) · Harris et al., MERINO, JAMA (2018)</div>
+</div></section>
+
+<section class="slide" id="s-ceph" data-sec="Bloco 4 · β-lactâmicos" data-title="Cefalosporinas: não é escada" data-c="green" data-notes="<b>Cefalosporinas.</b> Gerações são uma tendência, não uma escada perfeita. Ceftriaxona (3ª): pneumococo, meningococo, enterobactérias, sem Pseudomonas. Ceftazidima (3ª): antipseudomonas, mas fraca em Gram-positivos. Cefepima (4ª): Gram+ razoável + Pseudomonas. Ceftarolina (5ª): MRSA. Pontos cegos por mecanismo: Listeria, enterococos, atípicos, MRSA.">
+<div class="body">
+<div class="kicker">Bloco 4 · Cefalosporinas</div>
+<h2>Gerações são tendência, não escada</h2>
+<div class="tabbed">
+<div class="tabs"><button data-t="g1">1ª</button><button data-t="g2">2ª</button><button data-t="g3">3ª: ceftriaxona</button><button data-t="g3b">3ª: ceftazidima</button><button data-t="g4">4ª: cefepima</button><button data-t="g5">5ª: ceftarolina</button></div>
+<div class="pane panel" data-t="g1"><p><b>Cefazolina, cefalexina.</b> Gram-positivos (estreptococos, MSSA) + algumas enterobactérias.</p><p class="small">Exemplo: profilaxia cirúrgica, celulite simples.</p></div>
+<div class="pane panel" data-t="g2"><p><b>Cefuroxima.</b> Intermediária: um pouco mais de Gram-negativos e hemófilos.</p></div>
+<div class="pane panel" data-t="g3"><p><b>Ceftriaxona.</b> Pneumococo, meningococo, muitas enterobactérias, gonococo. <b>Sem Pseudomonas.</b> Dose única diária (meia-vida longa).</p><p class="small">Exemplo: meningite, pneumonia grave, gonorreia.</p></div>
+<div class="pane panel" data-t="g3b"><p><b>Ceftazidima.</b> Antipseudomonas, boa em Gram-negativos. <b>Fraca contra Gram-positivos</b> (pneumococo, MSSA).</p><p class="small">Mesma ‘geração’ que a ceftriaxona, perfil completamente diferente.</p></div>
+<div class="pane panel" data-t="g4"><p><b>Cefepima.</b> Gram-positivos razoáveis + Gram-negativos amplos + <b>Pseudomonas</b>. Falha em ESBL e MRSA.</p></div>
+<div class="pane panel" data-t="g5"><p><b>Ceftarolina.</b> <b>MRSA sim.</b> Pseudomonas, enterococo, ESBL e <i>B. fragilis</i> não.</p></div>
+</div>
+<div class="card r" style="margin-top:12px"><h3>Pontos cegos de TODAS (por mecanismo)</h3><p class="small"><b>Atípicos</b> (sem parede/intracelulares) · <b><i>Listeria</i></b> e <b>enterococos</b> (PBP de baixa afinidade) · <b>MRSA</b> (PBP2a; exceção: ceftarolina).</p></div>
+<div class="src">Material-fonte · farmacologia básica · espectro da ceftarolina: bula/revisões</div>
+</div></section>
+
+<section class="slide" id="s-carb" data-sec="Bloco 4 · β-lactâmicos" data-title="Carbapenêmicos" data-c="green" data-notes="<b>Carbapenêmicos.</b> Meropenem e imipenem são amplíssimos (Pseudomonas inclusa); ertapenem é mais estreito (sem Pseudomonas e Acinetobacter). Imipenem tem risco convulsivo e é associado à cilastatina. Carbapenêmicos reduzem nível de valproato. Reserva estratégica.">
+<div class="body">
+<div class="kicker">Bloco 4 · Carbapenêmicos</div>
+<h2>Meropenem, imipenem e ertapenem</h2>
+<div class="tabbed">
+<div class="tabs"><button data-t="m">Meropenem</button><button data-t="i">Imipenem-cilastatina</button><button data-t="e">Ertapenem</button></div>
+<div class="pane panel" data-t="m"><p><b>Amplo:</b> Gram-negativos incluindo Pseudomonas, anaeróbios, Gram-positivos suscetíveis. Estável à desidropeptidase-I (não precisa de cilastatina).</p><p class="small">Exemplo: sepse grave hospitalar, ESBL fora da urina (IDSA 2024).</p></div>
+<div class="pane panel" data-t="i"><p><b>Amplo também.</b> Degradado pela desidropeptidase-I renal; por isso vem com <b>cilastatina</b>. Maior risco de convulsão em dose alta/insuficiência renal.</p></div>
+<div class="pane panel" data-t="e"><p><b>Espectro mais estreito:</b> ESBL e anaeróbios sim; <b>Pseudomonas e Acinetobacter não</b>. Dose única diária (alta ligação a proteínas), conveniente para pacientes não críticos.</p></div>
+</div>
+<div class="grid g2" style="margin-top:12px">
+<div class="card r"><h3>Pegadinha</h3><p class="small">«Todo carbapenêmico cobre Pseudomonas.» <b>Ertapenem não.</b></p></div>
+<div class="card b"><h3>Cuidado farmacológico</h3><p class="small">Carbapenêmicos <b>reduzem o nível sérico de valproato</b> (interação importante).</p></div>
+</div>
+<div class="src">Material-fonte · farmacologia padrão · IDSA 2024 para ESBL</div>
+</div></section>
+
+<section class="slide" id="s-mx" data-sec="Bloco 4 · β-lactâmicos" data-title="Matriz de cobertura" data-c="green" data-notes="<b>Matriz interativa.</b> Clique numa linha para ler o resumo do fármaco; clique numa coluna para ver quem cobre a bactéria. Matriz didática: tendências, não regras. Peça que o aluno preveja a célula antes de ver.">
+<div class="body">
+<div class="kicker">Bloco 4 · Cobertura em um olhar</div>
+<h2>Quem cobre quem? (matriz didática)</h2>
+<div data-matrix></div>
+<div class="src">Síntese didática do autor a partir do material-fonte e de IDSA 2024 · não substitui antibiograma</div>
+</div></section>
+
+<section class="slide" id="s-esbl" data-sec="Bloco 4 · β-lactâmicos" data-title="ESBL × carbapenemase (fluxograma)" data-c="green" data-notes="<b>Fluxograma ramificado.</b> Comece pela pergunta mais simples: resistente a ceftriaxona e sensível a meropenem? A partir dele o aluno escolhe o caminho. Reforce a mensagem: ESBL → carbapenêmico; carbapenemase → identifique a enzima.">
+<div class="body">
+<div class="kicker">Bloco 4 · Raciocínio ramificado</div>
+<h2>ESBL × carbapenemase: o que perguntar</h2>
+<div data-tree="gn"></div>
+<div class="grid g2" style="margin-top:12px">
+<div class="card b"><h3>ESBL</h3><p class="small">Destrói penicilinas e cefalosporinas de amplo espectro; é inibida por clavulanato <i>in vitro</i>; carbapenêmico a ultrapassa.</p></div>
+<div class="card r"><h3>Carbapenemase</h3><p class="small">Destrói também o carbapenêmico. KPC, MBL (NDM/VIM/IMP) e OXA-48 exigem condutas diferentes.</p></div>
+</div>
+<div class="src">IDSA Guidance on AMR Gram-negative infections (2024) · MERINO (2018) · uso educacional, não prescritivo</div>
+</div></section>
+
+<section class="slide" id="q-beta" data-sec="Bloco 4 · β-lactâmicos" data-title="Quiz β-lactâmicos" data-c="green" data-notes="Quatro perguntas sobre as pegadinhas centrais dos β-lactâmicos.">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>Pegadinhas dos β-lactâmicos</h2>
+<div class="qz" data-quiz="beta" data-title="β-LACTÂMICOS"></div>
+</div></section>
+
+<!-- ============ BLOCO 5 — QUINOLONAS ============ -->
+<section class="slide" id="s-b5" data-sec="Bloco 5 · Quinolonas" data-title="Quinolonas: desenrolando o DNA" data-c="blue" data-notes="<b>Quinolonas.</b> Imagem: o DNA é um fio enrolado como cordão de telefone; a girase corta e alivia a tensão; a topoisomerase IV separa as cópias. A quinolona trava essas tesouras. Tendência: Gram-negativos → girase; Gram-positivos → topoisomerase IV.">
+<div class="body">
+<div class="kicker">Bloco 5 · Quinolonas</div>
+<h2>DNA-girase e topoisomerase IV: as tesouras do DNA</h2>
+<div class="grid g2">
+<div class="card b"><h3>DNA-girase</h3><p class="small">Alivia a torção do DNA durante a replicação. Alvo principal em Gram-negativos.</p></div>
+<div class="card b"><h3>Topoisomerase IV</h3><p class="small">Separa os cromossomos-filhos. Alvo principal em Gram-positivos.</p></div>
+</div>
+<div class="anchor" style="margin-top:12px">Imagem: <b>cordão de telefone enrolado</b> — a quinolona trava a tesoura que desembaraça.</div>
+<div class="keyq" style="margin-top:12px">Âncoras (tendências, não regras absolutas)</div>
+<div class="grid g3">
+<div class="card n"><h3>Ciprofloxacino</h3><p class="small">Tende a <b>Gram-negativos</b>; antipseudomonas <i>quando sensível</i>.</p></div>
+<div class="card n"><h3>Levofloxacino</h3><p class="small">Perfil <b>respiratório</b> (pneumococo, atípicos), com atividade em Gram-negativos.</p></div>
+<div class="card n"><h3>Moxifloxacino</h3><p class="small">Respiratório e anaeróbios mais ativo; <b>não confiável para ITU</b> (~20% urinário inalterado).</p></div>
+</div>
+<div class="src">Farmacologia padrão · EBM Consult (moxifloxacino) · atividade antipseudomonas «quando sensível»: antibiograma</div>
+</div></section>
+
+<section class="slide" id="s-quin2" data-sec="Bloco 5 · Quinolonas" data-title="Quinolonas: riscos e pegadinhas" data-c="blue" data-notes="<b>Riscos.</b> Tendinopatia/ruptura, neuropatia periférica e SNC, QT longo, disglicemia, aneurisma/dissecção aórtica (alertas FDA 2018). Evitar quando há alternativa em infecções leves. Pergunta: o que tem em comum com o idoso diabético em corticoide?">
+<div class="body">
+<div class="kicker">Bloco 5 · Quinolonas</div>
+<h2>Eficazes, mas com ‘pegada’ de efeitos adversos</h2>
+<div class="grid g2">
+<div class="card r"><h3>Efeitos importantes</h3><ul class="small"><li><b>Tendinopatia / ruptura</b> (maior risco: idosos, corticoide)</li><li><b>Neuropatia</b> periférica e efeitos no SNC</li><li><b>QT longo</b></li><li><b>Disglicemia</b> (hipo/hiperglicemia)</li><li><b>Aneurisma/dissecção de aorta</b></li></ul></div>
+<div class="card g"><h3>Quando pensar</h3><ul class="small"><li>Levofloxacino/moxifloxacino: pneumonia (conforme gravidade e alternativas)</li><li>Ciprofloxacino/levofloxacino: ITU complicada <i>por antibiograma</i></li><li>Alternativas existem em infecções leves: <b>preferir menos tóxicos</b></li></ul></div>
+</div>
+<div class="pegadinha" style="margin-top:12px">«Moxifloxacino na pielonefrite porque cobre tudo.» <b>Não</b>: pouca excreção urinária inalterada.</div>
+<div class="pegadinha" style="margin-top:8px">«Cipro é a quinolona respiratória.» <b>Não</b>: o perfil respiratório é de levo e moxi.</div>
+<div class="src">Alertas de segurança da FDA (2016, 2018) · farmacologia padrão</div>
+</div></section>
+
+<section class="slide" id="q-quin" data-sec="Bloco 5 · Quinolonas" data-title="Quiz quinolonas" data-c="blue" data-notes="Duas perguntas; usar o feedback para reforçar a regra «tendência, não lei».">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>Quinolonas</h2>
+<div class="qz" data-quiz="quin" data-title="QUINOLONAS"></div>
+</div></section>
+
+<!-- ============ BLOCO 6 — ANAERÓBIOS ============ -->
+<section class="slide" id="s-b6" data-sec="Bloco 6 · Anaeróbios" data-title="O que são anaeróbios" data-c="blue" data-notes="<b>Anaeróbios.</b> Vivem onde falta oxigênio: boca, cólon, vagina, tecidos necróticos, abscessos. Pistas: odor fétido, gás, necrose, perfuração de víscera, trauma, aspiração. Infecção anaeróbia raramente é monomicrobiana.">
+<div class="body">
+<div class="kicker">Bloco 6 · Anaeróbios</div>
+<h2>Onde falta oxigênio, eles prosperam</h2>
+<div class="grid g3">
+<div class="card b"><h3>Onde moram</h3><p class="small">Boca e gengiva · cólon · vagina · tecidos necróticos · abscessos.</p></div>
+<div class="card b"><h3>Pistas clínicas</h3><p class="small">Pus <b>fétido</b>, gás, necrose, perfuração de víscera, aspiração, trauma.</p></div>
+<div class="card b"><h3>Exemplos comuns</h3><p class="small"><i>Bacteroides fragilis</i> (cólon), <i>Prevotella</i>/<i>Fusobacterium</i> (boca), <i>Clostridium</i> (inclui <i>C. difficile</i> e <i>C. tetani</i>).</p></div>
+</div>
+<div class="card r" style="margin-top:12px"><h3>Pegadinha central</h3><p>«Infecção anaeróbia» não significa que todo abscesso ou infecção abdominal precise do mesmo antibiótico. A maioria é <b>polimicrobiana</b>: é preciso cobrir também as aeróbias (ex.: <i>E. coli</i>) — e <b>drenar</b>.</p></div>
+<div class="anchor" style="margin-top:12px">Pus com cheiro ruim = <b>anaeróbio no recinto</b>. Mas não está sozinho.</div>
+<div class="src">Microbiologia padrão · material-fonte (anaeróbios Gram-positivos, abscessos) · STOP-IT (NEJM 2015)</div>
+</div></section>
+
+<section class="slide" id="s-cm" data-sec="Bloco 6 · Anaeróbios" data-title="Clindamicina × metronidazol" data-c="blue" data-notes="<b>Comparação.</b> Clindamicina: ribossomo 50S, bacteriostático (em geral), cobre Gram-positivos (estrep., MSSA e alguns MRSA comunitários por sensibilidade) e anaeróbios selecionados, resistência crescente (B. fragilis), risco de C. difficile. Metronidazol: pró-droga ativada em baixo potencial redox, dano ao DNA, anaeróbios + protozoários (Trichomonas, Giardia, Entamoeba), sem aeróbios, bom em abscesso cerebral pelo acesso ao SNC.">
+<div class="body">
+<div class="kicker">Bloco 6 · Duas drogas, duas lógicas</div>
+<h2>Clindamicina × metronidazol</h2>
+<table><thead><tr><th></th><th>Clindamicina</th><th>Metronidazol</th></tr></thead><tbody>
+<tr><td><b>Alvo</b></td><td>Ribossomo 50S (lincosamida)</td><td>Dano ao DNA após ativação em microrganismos de baixo potencial redox</td></tr>
+<tr><td><b>Cobre</b></td><td>Gram-positivos (estreptococos, <i>S. aureus</i> suscetível) e anaeróbios selecionados</td><td>Muitos anaeróbios e alguns protozoários (<i>Trichomonas</i>, <i>Giardia</i>, <i>Entamoeba</i>)</td></tr>
+<tr><td><b>Não cobre</b></td><td>Enterobactérias; <i>B. fragilis</i> com resistência crescente</td><td><b>Aeróbios</b> (ex.: <i>E. coli</i>, estreptococos aeróbios)</td></tr>
+<tr><td><b>Risco-assinatura</b></td><td><i>C. difficile</i> (clássico)</td><td>Efeito dissulfiram-like, neuropatia com uso prolongado, gosto metálico</td></tr>
+<tr><td><b>Âncora</b></td><td>«Gram+ e boca, com cuidado»</td><td>«Anaeróbio sim, aeróbio nunca sozinho»</td></tr></tbody></table>
+<div class="grid g2" style="margin-top:12px">
+<div class="card a"><h3>Cobertura combinada</h3><p class="small">Abscesso abdominal: Gram-negativos + anaeróbios. Metronidazol sozinho não basta; clindamicina sozinha também não.</p></div>
+<div class="card a"><h3>Dente / partes moles</h3><p class="small">Penicilina/amoxicilina costuma cobrir Gram+ e anaeróbios orais; clindamicina é alternativa com ressalvas.</p></div>
+</div>
+<div class="src">Farmacologia padrão · material-fonte · relato da associação clindamicina-C. difficile: Bartlett (1978)</div>
+</div></section>
+
+<section class="slide" id="s-cdiff" data-sec="Bloco 6 · Anaeróbios" data-title="C. difficile: o PDF e a atualização" data-c="red" data-notes="<b>Correção importante.</b> O material-fonte coloca metronidazol como tratamento de C. difficile. Desde 2017 (IDSA/SHEA) e reforçado em 2021, a droga preferida é a fidaxomicina; vancomicina oral é alternativa; metronidazol só se as outras não estiverem disponíveis em quadro não grave. Avisar que não encontrei diretriz brasileira vigente específica.">
+<div class="body">
+<div class="kicker">Bloco 6 · Correção do material antigo</div>
+<h2>C. difficile: metronidazol deixou de ser primeira linha</h2>
+<div class="grid g2">
+<div class="card r"><span class="chip red">ANTES</span><h3>O que muitos materiais antigos ensinam</h3><p class="small">«Metronidazol para quadro leve; vancomicina oral para o grave.»</p></div>
+<div class="card g"><span class="chip fact">IDSA/SHEA 2021</span><h3>O que valia em 2021</h3><ul class="small"><li><b>Fidaxomicina</b> preferida (200 mg 2×/dia, 10 dias)</li><li><b>Vancomicina VO</b> alternativa (125 mg 4×/dia, 10 dias)</li><li><b>Metronidazol</b> só se nenhum disponível e quadro não grave</li><li><b>Fulminante:</b> vancomicina VO em dose alta ± retal <b>+ metronidazol IV</b> (500 mg 8/8 h)</li></ul></div>
+</div>
+<div class="grid g3" style="margin-top:12px">
+<div class="card b"><h3>Mecanismo</h3><p class="small">Antibiótico destrói microbiota → esporos germinam → toxinas A e B.</p></div>
+<div class="card b"><h3>Primeiro passo</h3><p class="small">Suspender o antibiótico desencadeante se possível.</p></div>
+<div class="card a"><h3>Brasil</h3><p class="small">Não encontrei diretriz brasileira vigente específica; usar protocolo da CCIH.</p></div>
+</div>
+<div class="src">McDonald et al., IDSA/SHEA (2017) · atualização focada IDSA/SHEA (2021) · doses: adultos, função renal normal; confirmar protocolo local</div>
+</div></section>
+
+<section class="slide" id="q-anae" data-sec="Bloco 6 · Anaeróbios" data-title="Quiz anaeróbios" data-c="blue" data-notes="Três perguntas: metronidazol, C. diff e controle de foco.">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>Anaeróbios</h2>
+<div class="qz" data-quiz="anae" data-title="ANAERÓBIOS"></div>
+</div></section>
+
+<!-- ============ BLOCO 7 — SMX-TMP ============ -->
+<section class="slide" id="s-b7" data-sec="Bloco 7 · SMX-TMP" data-title="As duas portas da fábrica de folato" data-c="blue" data-notes="<b>Imagem.</b> Fábrica de folato com duas portas em sequência: a primeira (DHPS) bloqueada pela sulfa, a segunda (DHFR) pela trimetoprima. Bloqueio em série = sinergismo. A célula humana não faz folato (obtém da dieta) e a DHFR humana é pouco afetada pela trimetoprima: seletividade.">
+<div class="body">
+<div class="kicker">Bloco 7 · Sulfametoxazol-trimetoprima</div>
+<h2>Duas portas em sequência</h2>
+<svg viewBox="0 0 900 200" width="100%" role="img" aria-label="Via do folato bloqueada em duas etapas">
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0b2a43"/></marker></defs>
+<rect x="10" y="60" width="140" height="70" rx="12" fill="#fff" stroke="#0b2a43" stroke-width="3"/><text x="80" y="92" text-anchor="middle" font-size="16" font-weight="800">PABA</text><text x="80" y="114" text-anchor="middle" font-size="12" fill="#587084">matéria-prima</text>
+<line x1="150" y1="95" x2="250" y2="95" stroke="#0b2a43" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="250" y="40" width="30" height="110" rx="6" fill="#d64545"/><text x="265" y="30" text-anchor="middle" font-size="14" font-weight="800" fill="#d64545">PORTA 1 · DHPS</text><text x="265" y="170" text-anchor="middle" font-size="13" font-weight="800">SULFA</text>
+<line x1="280" y1="95" x2="390" y2="95" stroke="#0b2a43" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="390" y="60" width="150" height="70" rx="12" fill="#fff" stroke="#0b2a43" stroke-width="3"/><text x="465" y="92" text-anchor="middle" font-size="16" font-weight="800">Di-hidrofolato</text><text x="465" y="114" text-anchor="middle" font-size="12" fill="#587084">intermediário</text>
+<line x1="540" y1="95" x2="640" y2="95" stroke="#0b2a43" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="640" y="40" width="30" height="110" rx="6" fill="#c98f00"/><text x="655" y="30" text-anchor="middle" font-size="14" font-weight="800" fill="#c98f00">PORTA 2 · DHFR</text><text x="655" y="170" text-anchor="middle" font-size="13" font-weight="800">TRIMETOPRIMA</text>
+<line x1="670" y1="95" x2="760" y2="95" stroke="#0b2a43" stroke-width="4" marker-end="url(#ar)"/>
+<rect x="760" y="60" width="130" height="70" rx="12" fill="#0b2a43"/><text x="825" y="92" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">Tetra-hidrofolato</text><text x="825" y="114" text-anchor="middle" font-size="12" fill="#cfe3ef">→ DNA, RNA</text>
+</svg>
+<div class="anchor" style="margin-top:10px">Bloqueio <b>em série</b> da mesma esteira: sulfa fecha a porta 1; trimetoprima, a porta 2.</div>
+<div class="src">Farmacologia padrão (DHPS/DHFR) · UNMC SMX-TMP</div>
+</div></section>
+
+<section class="slide" id="s-sulfa2" data-sec="Bloco 7 · SMX-TMP" data-title="SMX-TMP: usos, limites e riscos" data-c="blue" data-notes="<b>SMX-TMP.</b> Usos: ITU (por antibiograma), Pneumocystis (tratamento e profilaxia), Nocardia, toxoplasmose (profilaxia/alternativa), MRSA comunitário em partes moles leves com cautela. Limites: não presumir cobertura de estreptococo do grupo A; resistência de E. coli variável. Riscos: hipercalemia (trimetoprima ≈ amilorida), aumento de creatinina por inibição da secreção tubular, rash/Stevens-Johnson, mielotoxicidade, interação com warfarina, IECA/BRA, espironolactona.">
+<div class="body">
+<div class="kicker">Bloco 7 · SMX-TMP</div>
+<h2>Usos, limites e riscos</h2>
+<div class="grid g3">
+<div class="card g"><h3>Usos relevantes</h3><ul class="small"><li><i>Pneumocystis</i>: tratamento <b>e</b> profilaxia</li><li>ITU, <i>conforme antibiograma</i></li><li><i>Nocardia</i>, algumas infecções por MRSA comunitário (leves)</li></ul></div>
+<div class="card a"><h3>Tratar × prevenir</h3><p class="small">Tratamento: dose alta por peso e função renal, ~21 dias (HIV). Profilaxia: dose <b>bem menor</b>, diária, com CD4 baixo. <b>Não confundir.</b></p></div>
+<div class="card r"><h3>Riscos</h3><ul class="small"><li><b>Hipercalemia</b> (trimetoprima age como amilorida: bloqueia ENaC)</li><li><b>Renal:</b> ajuste de dose; sobe creatinina</li><li>Rash grave, mielotoxicidade</li><li>Interações: <b>IECA/BRA/espironolactona</b>, varfarina</li></ul></div>
+</div>
+<div class="card r" style="margin-top:12px"><h3>Pegadinha de espectro</h3><p class="small">Não presumir cobertura de <b>todo estreptococo</b> ou de <b>toda infecção de pele</b>. Erisipela/celulite estreptocócica pedem β-lactâmico.</p></div>
+<div class="src">UNMC SMX-TMP (blog educacional) · MSD Manual · doses: protocolo local/farmacêutico clínico</div>
+</div></section>
+
+<section class="slide" id="q-sulfa" data-sec="Bloco 7 · SMX-TMP" data-title="Quiz SMX-TMP" data-c="blue" data-notes="Três perguntas: portas, hipercalemia, espectro.">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>SMX-TMP</h2>
+<div class="qz" data-quiz="sulfa" data-title="SMX-TMP"></div>
+</div></section>
+
+<!-- ============ BLOCO 8 — POLIMIXINAS ============ -->
+<section class="slide" id="s-b8" data-sec="Bloco 8 · Polimixinas" data-title="Polimixinas: último recurso" data-c="red" data-notes="<b>Polimixinas.</b> Catiônicas, ligam-se ao LPS (lipídeo A) e desorganizam a membrana externa de Gram-negativos. Não cobrem Gram-positivos, Proteus, Serratia, Burkholderia, Morganella (resistência intrínseca). Nefro e neurotoxicidade. Colistina (colistimetato, pró-droga) vs polimixina B (ativa): diferenças práticas pelo consenso 2019: PB para infecção invasiva (sem ajuste renal na manutenção), colistina para ITU baixa; colistina mais nefrotóxica. mcr-1: resistência por plasmídeo.">
+<div class="body">
+<div class="kicker">Bloco 8 · Polimixinas</div>
+<h2>Polimixinas: arma restrita, não rotina</h2>
+<div class="grid g2">
+<div class="card b"><h3>Como agem</h3><p class="small">Moléculas com carga positiva ligam-se ao <b>LPS</b> da membrana externa de Gram-negativos e a desorganizam. Por isso não agem em Gram-positivos.</p></div>
+<div class="card r"><h3>Limites de espectro</h3><p class="small">Resistência intrínseca em <i>Proteus</i>, <i>Serratia</i>, <i>Morganella</i>, <i>Burkholderia</i>. <b>mcr-1</b> (plasmídeo, 2015) ameaça o recurso.</p></div>
+</div>
+<table style="margin-top:10px"><thead><tr><th></th><th>Colistina (colistimetato)</th><th>Polimixina B</th></tr></thead><tbody>
+<tr><td><b>Perfil prático</b></td><td>Pró-droga; mais nefrotóxica</td><td>Já ativa; indicada em infecção invasiva (consenso 2019)</td></tr>
+<tr><td><b>Ajuste renal</b></td><td>Requer ajuste</td><td>Manutenção sem ajuste renal (consenso 2019)</td></tr>
+<tr><td><b>Urina baixa</b></td><td>Preferível (excreção renal)</td><td>Pouca concentração urinária</td></tr></tbody></table>
+<div class="pegadinha" style="margin-top:10px">«Resistente a carbapenêmico → polimixina.» <b>Não automático</b>: IDSA 2024 prefere agentes novos conforme a carbapenemase; polimixina é último recurso, com toxicidade renal e neurológica.</div>
+<div class="src">Tsuji et al., consenso internacional de polimixinas (2019) · IDSA AMR guidance (2024) · Liu et al., mcr-1 (2016) · doses: não apresentadas — usar protocolo/consultoria</div>
+</div></section>
+
+<section class="slide" id="q-poli" data-sec="Bloco 8 · Polimixinas" data-title="Quiz polimixinas" data-c="red" data-notes="Duas perguntas rápidas.">
+<div class="body">
+<div class="kicker">Quiz · recuperação ativa</div>
+<h2>Polimixinas</h2>
+<div class="qz" data-quiz="poli" data-title="POLIMIXINAS"></div>
+</div></section>
+
+<!-- ============ BLOCO 9 — MEMORIZAÇÃO ============ -->
+<section class="slide" id="s-b9" data-sec="Bloco 9 · Memorização" data-title="Palácio de memória por classe" data-c="amber" data-notes="<b>Memorização.</b> Para cada classe: imagem mental (exagerada e fiel ao mecanismo), frase-âncora, lógica, pegadinha, pergunta de recuperação ativa e caso. Peça que o aluno feche os olhos e descreva a imagem antes de ler a âncora. Sem mnemônicos artificiais.">
+<div class="body">
+<div class="kicker">Bloco 9 · Memorizar o mecanismo</div>
+<h2>Uma imagem, uma frase, uma pegadinha</h2>
+<div class="tabbed">
+<div class="tabs"><button data-t="p">Penicilinas</button><button data-t="c">Cefalosporinas</button><button data-t="k">Carbapenêmicos</button><button data-t="q">Quinolonas</button><button data-t="cl">Clindamicina</button><button data-t="mt">Metronidazol</button><button data-t="s">SMX-TMP</button><button data-t="pm">Polimixinas</button></div>
+<div class="pane panel" data-t="p"><div><b>Imagem:</b> pedreiros sem cimento, parede desaba. <b>Âncora:</b> «sabotam o muro». <b>Lógica:</b> só age em quem constrói parede. <div class="pegadinha">Oxacilina não cobre MRSA.</div><b>Retomada:</b> por que a penicilina não resolve Mycoplasma? <b>Caso:</b> caso 1.</div></div>
+<div class="pane panel" data-t="c"><div><b>Imagem:</b> chaves de gerações diferentes. <b>Âncora:</b> «geração é tendência». <b>Lógica:</b> pontos cegos por mecanismo. <div class="pegadinha">Ceftriaxona ≠ ceftazidima para Pseudomonas.</div><b>Retomada:</b> quais pontos cegos TODAS compartilham? <b>Caso:</b> caso 8.</div></div>
+<div class="pane panel" data-t="k"><div><b>Imagem:</b> martelo grande que quebra ESBL. <b>Âncora:</b> «amplo, mas não onipotente». <b>Lógica:</b> carbapenemase o desarma. <div class="pegadinha">Ertapenem não cobre Pseudomonas.</div><b>Retomada:</b> ESBL ou carbapenemase? <b>Caso:</b> casos 7 e 9.</div></div>
+<div class="pane panel" data-t="q"><div><b>Imagem:</b> tesoura do DNA travada. <b>Âncora:</b> «cipro urina, levo pulmão, moxi não bexiga». <b>Lógica:</b> farmacocinética + espectro. <div class="pegadinha">Moxifloxacino e ITU.</div><b>Retomada:</b> por que moxi falha na urina? <b>Caso:</b> caso 2.</div></div>
+<div class="pane panel" data-t="cl"><div><b>Imagem:</b> freio na linha de montagem 50S + microbiota devastada. <b>Âncora:</b> «cura uma, causa outra». <b>Lógica:</b> alvo ribossomal e dano à flora. <div class="pegadinha">Clindamicina e C. difficile.</div><b>Retomada:</b> quando evitar? <b>Caso:</b> caso 4.</div></div>
+<div class="pane panel" data-t="mt"><div><b>Imagem:</b> lanterna que só acende no escuro. <b>Âncora:</b> «anaeróbio sim, aeróbio nunca sozinho». <b>Lógica:</b> ativação em baixo potencial redox. <div class="pegadinha">Metronidazol sozinho em abscesso abdominal.</div><b>Retomada:</b> o que ele não cobre? <b>Caso:</b> caso 3.</div></div>
+<div class="pane panel" data-t="s"><div><b>Imagem:</b> fábrica com duas portas em série. <b>Âncora:</b> «porta 1 sulfa, porta 2 trimetoprima». <b>Lógica:</b> bloqueio sequencial. <div class="pegadinha">Hipercalemia (trimetoprima ≈ amilorida).</div><b>Retomada:</b> tratamento × profilaxia no Pneumocystis? <b>Caso:</b> caso 6.</div></div>
+<div class="pane panel" data-t="pm"><div><b>Imagem:</b> detergente que dissolve a gordura da membrana externa. <b>Âncora:</b> «último recurso, rim em risco». <b>Lógica:</b> LPS de Gram-negativos. <div class="pegadinha">Polimixina não é automática no CRE.</div><b>Retomada:</b> por que não primeira linha em KPC? <b>Caso:</b> caso 7.</div></div>
+</div>
+<div class="src">Síntese didática do autor · imagens exageradas fiéis ao mecanismo (sem siglas artificiais)</div>
+</div></section>
+
+<section class="slide" id="q-old" data-sec="Bloco 9 · Memorização" data-title="Questões antigas, corrigidas" data-c="red" data-notes="<b>Questões do PDF.</b> Quatro questões antigas. Duas continuam válidas (benzatina em sífilis tardia, PBP do pneumococo); duas pedem atualização (tétano com opção de metronidazol; neurossífilis 14 dias).">
+<div class="body">
+<div class="kicker">Bloco 9 · Questões do material-fonte</div>
+<h2>Provas antigas: o que ainda vale?</h2>
+<div class="qz" data-quiz="old" data-title="PROVAS ANTIGAS"></div>
+<div class="src">Provas citadas no PDF (UNICAMP 2006, SES-SC 2008, UFPR 2009) · Ministério da Saúde (tétano 2021; IST 2022-2023)</div>
+</div></section>
+
+<section class="slide" id="q-arena" data-sec="Bloco 9 · Memorização" data-title="Arena final: 12 pegadinhas" data-c="amber" data-notes="<b>Arena final.</b> Doze perguntas, uma para cada pegadinha pedida. Use em dupla ou em torneio. Anote os erros: são o roteiro de revisão.">
+<div class="body">
+<div class="kicker">Boss final</div>
+<h2>Arena: 12 pegadinhas</h2>
+<div class="qz" data-quiz="arena" data-title="ARENA"></div>
+</div></section>
+
+<section class="slide" id="s-fix" data-sec="Fechamento" data-title="O que corrigi no PDF" data-c="red" data-notes="<b>Resumo de correções.</b> Cinco pontos. Todos têm fonte; um é lacuna (não achei diretriz brasileira vigente de C. diff).">
+<div class="body">
+<div class="kicker">Transparência</div>
+<h2>O que atualizei no material antigo</h2>
+<table><thead><tr><th>Item no PDF</th><th>Atualização</th><th>Fonte (ano)</th></tr></thead><tbody>
+<tr><td><i>Legionella</i> sem peptidoglicano</td><td>Tem peptidoglicano; falha dos β-lactâmicos é por ambiente intracelular</td><td>Microbiologia padrão</td></tr>
+<tr><td>Tétano: penicilina 6 mi/dia</td><td>Penicilina G cristalina 2 MUI 4/4 h <i>ou</i> metronidazol 500 mg 8/8 h, 7–10 dias</td><td>MS, manual de tétano (2021)</td></tr>
+<tr><td>Neurossífilis: 24 mi/dia por 21 dias</td><td>18–24 mi/dia por 14 dias</td><td>MS, PCDT de IST (2022–2023)</td></tr>
+<tr><td>C. difficile: metronidazol</td><td>Fidaxomicina preferida; vancomicina VO alternativa</td><td>IDSA/SHEA (2017, 2021)</td></tr>
+<tr><td>Pip-tazo em ESBL</td><td>Não recomendada; carbapenêmico</td><td>MERINO (2018); IDSA (2024)</td></tr>
+<tr><td>Pontos de corte CLSI 2008</td><td>Conferir CLSI/BrCAST vigentes</td><td>—</td></tr>
+<tr><td>Penicilina procaína</td><td>Em desuso (já assinalado no PDF)</td><td>Material-fonte</td></tr></tbody></table>
+<div class="src">Tudo que é conduta traz fonte e ano · lacuna: não localizei diretriz brasileira vigente específica para C. difficile · uso educacional</div>
+</div></section>
+
+<section class="slide" id="s-sum" data-sec="Fechamento" data-title="Resumo em uma página" data-c="navy" data-notes="<b>Resumo final.</b> Cinco frases. Peça que cada aluno diga uma frase em voz alta.">
+<div class="body">
+<div class="kicker">Resumo</div>
+<h2>O que levar desta aula</h2>
+<div class="grid g2">
+<div class="card n"><h3>1</h3><p>Antes do nome do antibiótico, <b>seis perguntas</b>: infecção? foco? suspeitos? cultura? alvo/espectro? reavaliação?</p></div>
+<div class="card n"><h3>2</h3><p>O <b>mecanismo explica o espectro</b>, a toxicidade e a resistência.</p></div>
+<div class="card n"><h3>3</h3><p><b>Gerações e classes são tendências.</b> Ceftriaxona ≠ ceftazidima. Ertapenem ≠ meropenem. Moxi ≠ cipro.</p></div>
+<div class="card n"><h3>4</h3><p><b>Controle de foco</b> pesa tanto quanto o antibiótico.</p></div>
+<div class="card n"><h3>5</h3><p>Amplo espectro ≠ melhor. <b>Estreito o bastante, curto o bastante, reavaliado em 48–72 h.</b></p></div>
+<div class="card dark"><h3>Pergunta final</h3><p>Se você tivesse que explicar à enfermeira por que ESBL não se trata com ceftriaxona, qual imagem usaria?</p></div>
+</div>
+<div class="sig" style="margin-top:14px">Dr. André Rossanno</div>
+</div></section>
+
+<section class="slide" id="s-refs" data-sec="Fechamento" data-title="Referências" data-c="navy" data-notes="Referências com ano. Doses e condutas só como educação; confirmar protocolo local.">
+<div class="body">
+<div class="kicker">Referências</div>
+<h2>Fontes (com ano)</h2>
+<ul class="small">
+<li>Material-fonte: aula «Antibióticos» (PDF do autor; com provas UNICAMP 2006, SES-SC 2008, UFPR 2009, PUC-RS 2013).</li>
+<li>McDonald LC et al. IDSA/SHEA <i>C. difficile</i> guideline (2017); atualização focada (2021).</li>
+<li>IDSA Guidance on the Treatment of Antimicrobial-Resistant Gram-Negative Infections (2024).</li>
+<li>Harris PNA et al. MERINO. JAMA (2018).</li>
+<li>Sawyer RG et al. STOP-IT. N Engl J Med (2015).</li>
+<li>Tsuji BT et al. International consensus guidelines for the optimal use of polymyxins. Pharmacotherapy (2019).</li>
+<li>Liu YY et al. mcr-1. Lancet Infect Dis (2016).</li>
+<li>Bartlett JG et al. Antibiotic-associated pseudomembranous colitis due to <i>C. difficile</i> (1978).</li>
+<li>SBPT. Diretrizes de pneumonia adquirida na comunidade (2018). Metanálise em rede, J Gen Intern Med (2024).</li>
+<li>Ministério da Saúde: manual/nota técnica de tétano (2021); PCDT de IST (2022–2023).</li>
+<li>FDA: alertas de segurança de fluoroquinolonas (2016, 2018).</li>
+<li>EBM Consult (moxifloxacino); UNMC (SMX-TMP); MSD Manual (<i>Pneumocystis</i>).</li>
+</ul>
+<div class="card r"><span class="chip red">AVISO</span> Aula educacional. Doses e esquemas citados são de adultos com função renal normal e devem ser confirmados em protocolo local, bula e CCIH. Não é prescrição.</div>
+</div></section>
+
+</div></div>
+<script>
+/* ===== DADOS ===== */
+var CASES={
+c1:{n:1,t:"Pneumonia: o que cobrir?",
+steps:["<b>Mulher, 58 anos</b>, hipertensa. Tosse produtiva e febre (38,6 °C) há 3 dias.","FR 24 irpm, SpO₂ 93% em ar ambiente, PA normal, sem confusão. Raio-X: <b>consolidação no lobo inferior direito</b>.","Mora com um neto que tem «tosse seca há 2 semanas». Sem internação nem antibiótico nos últimos 90 dias."],
+think:"Quem são os suspeitos? Um β-lactâmico sozinho basta?",
+ans:"<ul><li><b>Evidência de infecção:</b> sim (febre, tosse, consolidação).</li><li><b>Foco:</b> pulmão, adquirida na comunidade.</li><li><b>Suspeitos:</b> <i>S. pneumoniae</i> (o mais comum) e <b>atípicos</b> (<i>Mycoplasma</i>, <i>Chlamydophila</i>, <i>Legionella</i>) — o neto com tosse seca arrasta suspeita de Mycoplasma.</li><li><b>Mecanismo que importa:</b> β-lactâmico age na <b>parede</b>. <i>Mycoplasma</i> não tem parede; <i>Chlamydophila</i> vive dentro da célula. Sem alvo ou sem acesso, o β-lactâmico falha.</li><li><b>Cultura:</b> depende da gravidade (internação, UTI); em caso leve ambulatorial, geralmente não muda a conduta.</li><li><b>Reavaliar:</b> febre, FR, SpO₂ e tolerância em 48–72 h.</li></ul>",
+pr:"A escolha segue a gravidade. A SBPT (2018) reiterou β-lactâmico <i>ou</i> macrolídeo em monoterapia como primeira linha na PAC de baixa gravidade; em internados, esquemas combinados são discutidos nas diretrizes. <b>Confirme no protocolo local.</b>",
+src:"SBPT, diretriz de PAC (2018) · metanálise em rede, J Gen Intern Med (2024)",
+q:{q:"Por que a ceftriaxona sozinha não cobre <i>Mycoplasma pneumoniae</i>?",o:["Porque a ceftriaxona não penetra no pulmão","Porque o Mycoplasma não tem parede celular — o alvo do β-lactâmico não existe","Porque o Mycoplasma produz ESBL","Porque ceftriaxona só age em Gram-positivos"],a:1,f:"Sem peptidoglicano não há PBP nem parede para o β-lactâmico atacar. Aqui o <b>mecanismo explica o espectro</b>."}},
+c2:{n:2,t:"Infecção urinária e as quinolonas",
+steps:["<b>Mulher, 29 anos</b>. Disúria e polaciúria há 2 dias, sem febre.","Volta no 3º dia: febre 39 °C, dor lombar, punho-percussão (Giordano) positiva.","Urocultura: <b><i>E. coli</i> &gt; 100.000 UFC/mL</b>."],
+think:"Cistite e pielonefrite são o mesmo problema? Qual quinolona você confiaria na urina?",
+ans:"<ul><li><b>Infecção:</b> sim. <b>Foco:</b> trato urinário — baixo (cistite) e depois alto (pielonefrite).</li><li><b>Suspeito número 1:</b> <i>E. coli</i>.</li><li><b>Cultura:</b> sim na pielonefrite (e quando há falha, gestação, homem, recorrência).</li><li><b>Mecanismo/espectro:</b> quinolonas inibem <b>DNA-girase e topoisomerase IV</b>. Ciprofloxacino e levofloxacino têm excreção renal importante e atingem boa concentração urinária; <b>moxifloxacino elimina só ~20% inalterado na urina</b> — não é opção confiável para ITU.</li><li><b>Reavaliar:</b> resposta em 48–72 h e antibiograma.</li></ul>",
+pr:"Mesmo quando «funcionam», quinolonas têm efeitos adversos importantes (tendinopatia, neuropatia, QT, disglicemia, aneurisma/dissecção de aorta). A FDA (2016 e 2018) orienta reservá-las quando não há alternativa em ITU não complicada. Cistite simples tem outras opções — <b>conferir protocolo local e perfil de resistência</b>.",
+src:"Moxifloxacino e excreção urinária: EBM Consult · alertas FDA 2016/2018 · prova PUC-RS 2013 (material-fonte)",
+q:{q:"Qual quinolona <b>não</b> é opção confiável para infecção urinária?",o:["Ciprofloxacino","Levofloxacino","Moxifloxacino","Todas são igualmente boas"],a:2,f:"Moxifloxacino tem pouca eliminação urinária como fármaco ativo (~20%). <b>Âncora:</b> moxi = pulmão, não bexiga."}},
+c3:{n:3,t:"Abscesso: quem mora ali?",
+steps:["<b>Homem, 45 anos</b>. Dor em fossa ilíaca direita há 5 dias, febre, anorexia.","TC: <b>apendicite perfurada com abscesso pericecal de 5 cm</b>. Hemodinamicamente estável, leucocitose.","Na drenagem sai <b>pus de odor fétido</b>."],
+think:"Que bactérias vivem no cólon? Metronidazol sozinho resolve?",
+ans:"<ul><li><b>Foco:</b> intra-abdominal, de origem colônica.</li><li><b>Suspeitos:</b> flora mista — <b>enterobactérias</b> (<i>E. coli</i>), <b>anaeróbios</b> (<i>Bacteroides fragilis</i>) e estreptococos/enterococos.</li><li><b>O pus fétido</b> é pista clássica de anaeróbios.</li><li><b>Controle de foco</b> (drenar/operar) pesa tanto quanto o antibiótico.</li><li><b>Metronidazol</b> cobre anaeróbios, mas <b>não cobre <i>E. coli</i></b> (aeróbia). É preciso associar cobertura Gram-negativa ou usar um β-lactâmico que cubra os dois lados.</li><li><b>Cultura:</b> do líquido do abscesso, sempre que possível.</li><li><b>Reavaliar:</b> após controle de foco adequado, a duração pode ser curta — no estudo STOP-IT (NEJM 2015), ~4 dias foi comparável a tratar até a resolução clínica.</li></ul>",
+pr:"«Infecção anaeróbia» não é sinônimo de «um antibiótico só». O esquema depende da gravidade, de onde veio o paciente (comunidade × hospital) e do protocolo local.",
+src:"Sawyer et al., STOP-IT, N Engl J Med (2015) · material-fonte (aula sobre anaeróbios)",
+q:{q:"O que o metronidazol <b>não</b> cobre neste abscesso?",o:["Bacteroides fragilis","Anaeróbios em geral","Escherichia coli (aeróbia)","Nada: cobre tudo"],a:2,f:"Metronidazol é ativo contra anaeróbios (e alguns protozoários). Bactérias aeróbias como <i>E. coli</i> exigem outro agente."}},
+c4:{n:4,t:"Dente, face e clindamicina",
+steps:["<b>Mulher, 34 anos</b>. Dor no dente 36 há 4 dias, edema de face à direita, febre baixa.","Cárie extensa, <b>coleção gengival</b> flutuante. Sem trismo, sem disfagia, sem dispneia.","Relata «alergia à penicilina» na infância: «manchas na pele», sem detalhes."],
+think:"O que vem antes do antibiótico? Clindamicina é automática em «alérgico»?",
+ans:"<ul><li><b>Foco:</b> dentário. <b>Tratar o foco</b> (drenagem, abordagem odontológica) é a base.</li><li><b>Suspeitos:</b> estreptococos orais e <b>anaeróbios orais</b> (<i>Prevotella</i>, <i>Fusobacterium</i>, <i>Peptostreptococcus</i>). A penicilina G citada no material-fonte cobre cocos Gram-positivos anaeróbios de boca.</li><li><b>Sinais de alarme</b> (trismo, disfagia, dispneia, extensão para pescoço): emergência — via aérea e espaços profundos.</li><li><b>Clindamicina</b> é uma opção quando há alergia verdadeira, mas a resistência vem aumentando e ela é o antibiótico mais associado à <i>C. difficile</i>.</li><li><b>Investigar o rótulo de alergia:</b> muitos relatos antigos de «mancha na pele» não se confirmam.</li></ul>",
+pr:"Rótulo de alergia mal investigado empurra o paciente para fármacos mais tóxicos ou de espectro pior. A decisão final depende da alergia real, da gravidade e do protocolo.",
+src:"Material-fonte (penicilina G e anaeróbios orais) · Bartlett 1978 (clindamicina e C. difficile)",
+q:{q:"Qual é a medida mais importante neste caso?",o:["Escolher o antibiótico de maior espectro","Tratar o foco (drenar/abordar o dente) e avaliar sinais de gravidade","Pedir hemocultura em todos os casos","Iniciar clindamicina porque ela é a «droga de quem tem alergia»"],a:1,f:"Antibiótico não substitui drenagem. E clindamicina não é automática: tem resistência crescente e risco de <i>C. difficile</i>."}},
+c5:{n:5,t:"C. difficile e a falsa certeza do metronidazol",
+steps:["<b>Homem, 72 anos</b>, internado há 8 dias por pneumonia; fez 5 dias de antibiótico.","Diarreia líquida (≥3 evacuações/dia), dor abdominal, febre. Leucócitos: <b>18.000</b>; creatinina 1,0.","Teste de fezes para <i>C. difficile</i> positivo."],
+think:"O que fazer? Metronidazol ainda é primeira linha?",
+ans:"<ul><li><b>Mecanismo da doença:</b> o antibiótico prévio destrói a microbiota protetora; esporos de <i>C. difficile</i> germinam e produzem toxinas A e B.</li><li><b>Gravidade (IDSA 2017):</b> leucócitos ≥15.000 ou creatinina &gt;1,5 = grave.</li><li><b>Tratamento (IDSA/SHEA 2021):</b> <b>fidaxomicina</b> é preferida (200 mg 2×/dia, 10 dias); <b>vancomicina oral</b> é alternativa aceitável (125 mg 4×/dia, 10 dias). <b>Metronidazol</b> só se nenhum dos dois estiver disponível e o quadro for não grave.</li><li><b>Fulminante</b> (hipotensão, íleo, megacólon): vancomicina VO em dose alta ± retal, <b>mais metronidazol IV</b> (500 mg a cada 8 h).</li><li><b>Reavaliar:</b> suspender o antibiótico desencadeante sempre que possível.</li></ul>",
+pr:"Doses acima: adultos, função renal normal, fonte IDSA/SHEA — <b>confirmar em protocolo local</b>. Não encontrei diretriz brasileira vigente específica; fica o alerta para consultar a CCIH.",
+src:"McDonald et al., IDSA/SHEA (2017) e atualização focada (2021)",
+q:{q:"Em 2021, qual é o papel do metronidazol oral na ICD não grave?",o:["Primeira linha","Só se fidaxomicina e vancomicina oral não estiverem disponíveis","Contraindicado em qualquer situação","Substitui a retirada do antibiótico desencadeante"],a:1,f:"IDSA/SHEA 2021 moveu o metronidazol para alternativa. Ele reaparece como <b>adjuvante IV</b> no quadro fulminante."}},
+c6:{n:6,t:"Pneumocystis e as duas portas do folato",
+steps:["<b>Homem, 38 anos</b>, sem acompanhamento médico. Tosse seca há 3 semanas, dispneia progressiva.","SpO₂ 86% ao esforço. Raio-X: <b>infiltrado intersticial bilateral difuso</b>. LDH elevado.","Teste anti-HIV positivo; <b>CD4 = 40 células/mm³</b>."],
+think:"Quem é o suspeito? Uma cefalosporina resolve? Qual a diferença entre tratar e prevenir?",
+ans:"<ul><li><b>Suspeito:</b> <i>Pneumocystis jirovecii</i> — um <b>fungo atípico</b>, sem parede com peptidoglicano. Penicilinas e cefalosporinas não têm alvo.</li><li><b>Diagnóstico:</b> PCR/imunofluorescência em escarro induzido ou lavado broncoalveolar; β-D-glucano ajuda.</li><li><b>Mecanismo/droga:</b> <b>sulfametoxazol-trimetoprima</b> bloqueia duas etapas da produção de folato.</li><li><b>Tratar ≠ prevenir:</b> tratamento usa dose terapêutica por peso e função renal (habitualmente 21 dias nas diretrizes de HIV); profilaxia usa dose <b>bem menor</b>, diária, quando o CD4 é baixo.</li><li><b>Corticoide adjuvante</b> em hipoxemia importante (PaO₂ &lt;70 mmHg).</li><li><b>Reavaliar:</b> potássio, creatinina, hemograma.</li></ul>",
+pr:"Dose terapêutica depende de peso e função renal: <b>protocolo/farmacêutico clínico</b>. Não é prescrição.",
+src:"MSD Manual · diretrizes de HIV/oportunistas (confirmar PCDT vigente) · UNMC blog de SMX-TMP",
+q:{q:"Qual afirmação é correta?",o:["A profilaxia usa a mesma dose do tratamento","O Pneumocystis responde bem à penicilina","SMX-TMP bloqueia duas etapas sucessivas da síntese de folato","Hipercalemia é impossível com SMX-TMP"],a:2,f:"Sulfametoxazol inibe a DHPS; trimetoprima inibe a DHFR — <b>duas portas</b> da mesma fábrica. Trimetoprima ainda age como amilorida e pode causar hipercalemia."}},
+c7:{n:7,t:"Gram-negativo multirresistente e polimixina",
+steps:["<b>Mulher, 66 anos</b>, UTI há 3 semanas. Choque séptico, hemocultura: <i>Klebsiella pneumoniae</i>.","Antibiograma: <b>resistente a meropenem</b>, ceftriaxona, cefepima, piperacilina-tazobactam.","Teste molecular: <b>gene blaKPC</b>."],
+think:"O reflexo é «então vai polimixina»?",
+ans:"<ul><li><b>Mecanismo:</b> <b>carbapenemase tipo KPC</b> — enzima que hidrolisa o carbapenêmico. Não é o mesmo que ESBL.</li><li><b>Pergunta-chave:</b> qual carbapenemase? Para KPC e para metalo-β-lactamase (NDM, VIM, IMP) as opções preferidas mudam.</li><li><b>IDSA 2024:</b> para KPC, preferem-se <b>ceftazidima-avibactam, meropenem-vaborbactam ou imipenem-relebactam</b>. Polimixinas <b>não</b> são a primeira escolha em CRE por eficácia incerta e toxicidade.</li><li><b>No Brasil</b> o acesso a esses agentes é desigual: a decisão passa por CCIH e infectologista.</li><li><b>Se a polimixina for necessária:</b> o consenso internacional de 2019 propõe usá-la em esquemas planejados (dose de ataque, ajuste, em geral combinada em infecção grave).</li></ul>",
+pr:"Polimixina é <b>recurso restrito, não rotina</b>: depende de cultura, foco, alternativas mais seguras e orientação especializada.",
+src:"IDSA Guidance on AMR Gram-negative infections (2024) · Tsuji et al., consenso polimixinas (2019)",
+q:{q:"Bacilo Gram-negativo resistente ao meropenem: qual a conduta de raciocínio?",o:["Polimixina automática","Identificar o mecanismo (KPC, MBL, OXA-48) antes de escolher","Aumentar a dose de ceftriaxona","Trocar para cefepima"],a:1,f:"O mecanismo manda. KPC e MBL respondem a agentes diferentes (IDSA 2024)."}},
+c8:{n:8,t:"Infecção grave com suspeita de Pseudomonas",
+steps:["<b>Homem, 70 anos</b>, DPOC, intubado há 6 dias. Febre nova, secreção traqueal purulenta.","Infiltrado novo no raio-X; PaO₂/FiO₂ caiu. Hemodinâmica instável.","Já recebeu ceftriaxona no início da internação; prontuário antigo cita <i>Pseudomonas</i> em escarro."],
+think:"Quais β-lactâmicos cobrem Pseudomonas? Quais NÃO?",
+ans:"<ul><li><b>Diagnóstico:</b> pneumonia associada à ventilação (PAV).</li><li><b>Suspeitos:</b> <i>Pseudomonas aeruginosa</i>, <i>Acinetobacter</i>, enterobactérias e <i>S. aureus</i> (incluindo MRSA, conforme o hospital).</li><li><b>Cultura:</b> aspirado traqueal/LBA <b>antes</b> do antibiótico, sem atrasar quem está grave.</li><li><b>Passaporte da <i>Pseudomonas</i> (β-lactâmicos):</b> piperacilina-tazobactam, ceftazidima, cefepima, meropenem e imipenem. <b>Ceftriaxona e ertapenem NÃO</b>.</li><li><b>Reavaliar:</b> em 48–72 h; descalonar pela cultura e pela clínica.</li></ul>",
+pr:"A escolha final depende do perfil da UTI (antibiograma local), alergia e função renal.",
+src:"Material-fonte (piperacilina-tazobactam: «infecções hospitalares, PAV, grandes queimados»)",
+q:{q:"Qual destes <b>não</b> tem atividade confiável contra Pseudomonas?",o:["Cefepima","Meropenem","Ceftriaxona","Piperacilina-tazobactam"],a:2,f:"Ceftriaxona não cobre Pseudomonas; ceftazidima e cefepima sim. Não confunda os dois."}},
+c9:{n:9,t:"ESBL ou carbapenemase?",
+steps:["<b>Homem, 80 anos</b>, cateter vesical de demora. Febre e hipotensão: urossepse.","Urocultura: <i>E. coli</i> <b>resistente</b> a ceftriaxona, ceftazidima e cefepima; <b>sensível</b> a meropenem e ertapenem; sensível a piperacilina-tazobactam.","Em outro paciente, a mesma bactéria vem <b>resistente também ao meropenem</b>."],
+think:"O que é ESBL? A sensibilidade a pip-tazo no laudo vale?",
+ans:"<ul><li><b>1º paciente:</b> padrão de <b>ESBL</b> — enzima que hidrolisa cefalosporinas de amplo espectro; o carbapenêmico a ultrapassa.</li><li><b>IDSA 2024:</b> infecções fora do trato urinário por Enterobacterales produtores de ESBL → <b>carbapenêmico</b>; piperacilina-tazobactam <b>não</b> é recomendada, mesmo «sensível».</li><li><b>Por quê?</b> No estudo MERINO (JAMA 2018), em bacteremia por <i>E. coli</i>/<i>Klebsiella</i> ceftriaxona-resistente, a mortalidade em 30 dias foi maior com pip-tazo (12,3%) que com meropenem (3,7%).</li><li><b>2º paciente:</b> resistente ao meropenem = <b>carbapenemase</b>. Inibidores clássicos (clavulanato, tazobactam) não resolvem. Identifique a enzima (voltar ao caso 7).</li></ul>",
+pr:"ITU baixa tem outras opções orais conforme antibiograma — conferir protocolo e sítio.",
+src:"IDSA Guidance AMR Gram-negativos (2024) · Harris et al., MERINO, JAMA (2018)",
+q:{q:"Bacteremia por E. coli ESBL, «sensível» a pip-tazo no laudo. O que fazer?",o:["Usar pip-tazo, pois está sensível","Preferir carbapenêmico (IDSA 2024)","Usar ceftriaxona em dose alta","Usar polimixina"],a:1,f:"MERINO mostrou desvantagem do pip-tazo; IDSA 2024 recomenda carbapenêmico fora do trato urinário."}}
+};
+
+var QZ={
+hist:[
+{q:"A sulfa Prontosil funcionava in vivo, mas não in vitro. Qual era a explicação?",o:["Era uma pró-droga: no organismo gerava sulfanilamida","A bactéria produzia a enzima ativadora","Era um erro de laboratório","Só funcionava em camundongos"],a:0,f:"Trefouël e colaboradores (Instituto Pasteur, 1935) mostraram que o fragmento ativo era a sulfanilamida."},
+{q:"O que levou a imipenem a ser dado com cilastatina?",o:["A cilastatina amplia o espectro","A cilastatina inibe a desidropeptidase-I renal que degradava o imipenem","A cilastatina é antifúngica","A cilastatina reduz alergia"],a:1,f:"Tienamicina era instável; o imipenem é degradado por desidropeptidase-I renal, por isso se associa a cilastatina."},
+{q:"Qual é uma curiosidade com <b>relato incerto</b>?",o:["Nobel de 1945 a Fleming, Florey e Chain","Descoberta da ação anaeróbia do metronidazol por observação num paciente com gengivite","Descoberta do ácido nalidíxico em 1962","Revisão da polimixina por mcr-1 em 2015"],a:1,f:"A história do paciente com gengivite (1962) é muito contada, mas os detalhes variam."}],
+mech:[
+{q:"Qual alvo o β-lactâmico ataca?",o:["Ribossomo 30S","DNA-girase","Síntese do peptidoglicano (PBPs)","Membrana externa"],a:2,f:"β-lactâmicos se ligam às PBPs e impedem a ligação cruzada do peptidoglicano."},
+{q:"Quinolonas atrapalham...",o:["a síntese da parede","enzimas necessárias à replicação do DNA","a ligação ao ribossomo","a síntese de folato"],a:1,f:"DNA-girase e topoisomerase IV: sem elas o DNA não se desenrola/separa."},
+{q:"Qual par alvo × fármaco está <b>errado</b>?",o:["Polimixina × membrana externa Gram-negativa","Clindamicina × ribossomo 50S","SMX-TMP × parede celular","Metronidazol × dano ao DNA após ativação"],a:2,f:"SMX-TMP atua no <b>folato</b>, não na parede."}],
+beta:[
+{q:"A oxacilina é boa contra MSSA. E contra MRSA?",o:["Também, em dose alta","Não: MRSA tem PBP2a, que a oxacilina não alcança","Sim, se associada a clavulanato","Sim, se IV"],a:1,f:"MRSA tem PBP2a (mecA): afinidade muito baixa por quase todos os β-lactâmicos — exceção: ceftarolina."},
+{q:"A ceftarolina cobre...",o:["MRSA, mas não Pseudomonas","Pseudomonas, mas não MRSA","Ambos","Nenhum"],a:0,f:"Ceftarolina: MRSA sim; Pseudomonas, Enterococcus, ESBL e B. fragilis não."},
+{q:"Ertapenem × meropenem:",o:["São idênticos","Ertapenem não cobre Pseudomonas nem Acinetobacter","Ertapenem é mais ativo contra Pseudomonas","Meropenem não cobre anaeróbios"],a:1,f:"Ertapenem é carbapenêmico de espectro mais estreito: sem Pseudomonas, sem Acinetobacter, pouco para enterococo."},
+{q:"Piperacilina-tazobactam inativa uma carbapenemase?",o:["Sim, o tazobactam resolve","Não: inibidores clássicos não bloqueiam carbapenemases de forma confiável","Só em dose alta","Só em Gram-positivos"],a:1,f:"Inibidores de β-lactamase têm limites: não são «chave mestra» contra carbapenemases."}],
+quin:[
+{q:"Ciprofloxacino: âncora principal?",o:["Gram-negativos, com atividade antipseudomonas quando sensível","Pneumococo e atípicos acima de tudo","Anaeróbios","MRSA"],a:0,f:"Tendência — não regra. Sempre confirme no antibiograma."},
+{q:"Efeito adverso de classe das fluoroquinolonas:",o:["Tendinopatia/ruptura de tendão","Síndrome do homem vermelho","Hipercalemia","Nefrite intersticial isolada"],a:0,f:"Também neuropatia, QT longo, disglicemia, aneurisma/dissecção aórtica (alertas FDA)."}],
+anae:[
+{q:"Qual afirmação sobre metronidazol é correta?",o:["Cobre bem E. coli","Atua em muitos anaeróbios e alguns protozoários, mas não em aeróbios","Primeira linha para C. difficile em 2021","Cobre MRSA"],a:1,f:"Metronidazol é ativado em microrganismos de baixo potencial redox; aeróbios ficam sem cobertura."},
+{q:"Qual antibiótico é o mais clássico desencadeador de C. difficile?",o:["Clindamicina","Gentamicina","Nitrofurantoína","Fosfomicina"],a:0,f:"Relatada desde os anos 1970 (Bartlett 1978). Mas qualquer antibiótico pode desencadear."},
+{q:"Abscesso intra-abdominal por perfuração: a base do tratamento é...",o:["Só antibiótico","Controle de foco + cobertura de Gram-negativos e anaeróbios","Só metronidazol","Só observação"],a:1,f:"Antibiótico não substitui drenagem."}],
+sulfa:[
+{q:"As «duas portas» do folato são...",o:["DHPS e DHFR","PBP e transpeptidase","Girase e topoisomerase","30S e 50S"],a:0,f:"Sulfametoxazol → DHPS; trimetoprima → DHFR. Sinergismo sequencial."},
+{q:"A trimetoprima pode causar hipercalemia porque...",o:["Bloqueia canais epiteliais de sódio (ENaC), como a amilorida","Destrói hemácias","Inibe a Na-K ATPase","Causa acidose lática"],a:0,f:"Bloqueio do ENaC no néfron distal reduz a excreção de K⁺."},
+{q:"Pode-se presumir que SMX-TMP cobre todo estreptococo ou toda infecção de pele?",o:["Sim","Não: a cobertura de S. pyogenes é pouco confiável e depende do agente","Sim, só em MRSA","Sim, em erisipela"],a:1,f:"Não presuma cobertura estreptocócica; para erisipela usa-se β-lactâmico."}],
+poli:[
+{q:"Qual é o principal alvo das polimixinas?",o:["Ribossomo","Membrana externa (lipopolissacarídeo) de Gram-negativos","DNA-girase","Parede de Gram-positivos"],a:1,f:"Carga positiva da polimixina liga-se ao LPS e desorganiza a membrana."},
+{q:"Qual é verdadeira?",o:["Colistina e polimixina B são idênticas em todos os aspectos","Ambas podem causar nefrotoxicidade e neurotoxicidade","Polimixinas são primeira linha em KPC","Polimixinas cobrem Gram-positivos"],a:1,f:"Há diferenças práticas (consenso 2019), mas a toxicidade renal é a pegadinha central."}],
+old:[
+{q:"(UNICAMP 2006) No tratamento do tétano o antibiótico de escolha é:",o:["Tetraciclina","Gentamicina","Penicilina","Cefalosporina"],a:2,f:"Gabarito histórico: penicilina. <b>Atualização:</b> o Manual do MS (2021) aceita penicilina G cristalina <i>ou</i> metronidazol (adultos: penicilina 2 MUI IV a cada 4 h ou metronidazol 500 mg IV a cada 8 h, 7–10 dias; confirmar protocolo)."},
+{q:"(SES-SC 2008) Esquema para sífilis latente tardia ou de duração ignorada:",o:["Ceftriaxona + benzatina 1,2 MUI dose única","Benzatina 2 doses semanais de 2,4 MUI","Benzatina 3 doses semanais de 2,4 MUI","Cristalina 2–3 MUI IV 4/4 h"],a:2,f:"<b>Ainda vale</b>: 2,4 MUI IM semanal × 3 semanas (total 7,2 MUI) — PCDT de IST do MS (2022)."},
+{q:"(UFPR 2009) Neurossífilis: o material cita 24 MUI/dia por <b>21 dias</b>. Hoje?",o:["21 dias continua","18–24 MUI/dia por 14 dias (3–4 MUI IV a cada 4 h ou infusão contínua)","Dose única de benzatina","Ceftriaxona oral"],a:1,f:"<b>Correção:</b> o MS atualizou para 14 dias (cristalina 18–24 MUI/dia). Confirmar o PCDT vigente."},
+{q:"(UFPR 2009) Principal mecanismo de resistência do pneumococo à penicilina:",o:["Plasmídeo","Bomba de efluxo","β-lactamase","Alteração das PBPs"],a:3,f:"No pneumococo, o mecanismo é PBP alterada — por isso amoxicilina-clavulanato não resolve o problema do pneumococo resistente."}],
+arena:[
+{q:"Ceftriaxona × ceftazidima para <i>Pseudomonas</i>:",o:["Ceftriaxona cobre; ceftazidima não","Ceftazidima cobre; ceftriaxona não","Ambas cobrem","Nenhuma cobre"],a:1,f:"Ceftazidima (e cefepima) cobrem Pseudomonas; ceftriaxona não."},
+{q:"Oxacilina × MRSA:",o:["Funciona em dose alta","Falha: PBP2a","Funciona se IV","É a droga de escolha"],a:1,f:"MRSA = oxacilina-resistente por definição."},
+{q:"Ceftarolina × Pseudomonas:",o:["Cobre","Não cobre","Só em dose alta","Só com aminoglicosídeo"],a:1,f:"A ceftarolina cobre MRSA, mas não Pseudomonas."},
+{q:"Ertapenem × meropenem:",o:["Ertapenem cobre Pseudomonas","Ertapenem NÃO cobre Pseudomonas; meropenem sim","Os dois são equivalentes","Meropenem não cobre anaeróbios"],a:1,f:"Ertapenem é mais estreito."},
+{q:"Inibidor de β-lactamase × carbapenemase:",o:["Resolve","Não resolve de forma confiável","Resolve se for tazobactam","Resolve em Gram-positivos"],a:1,f:"Carbapenemases (KPC, MBL, OXA-48) exigem estratégias específicas."},
+{q:"Ciprofloxacino × quinolonas respiratórias:",o:["Cipro é a «respiratória»","Levo/moxi têm perfil respiratório; cipro tende a Gram-negativos","Todas iguais","Cipro cobre atípicos melhor que levo"],a:1,f:"Tendência de espectro."},
+{q:"Moxifloxacino e ITU:",o:["Excelente","Não é opção confiável","Só na pielonefrite","Só em idosos"],a:1,f:"~20% eliminação urinária inalterada."},
+{q:"Clindamicina e <i>C. difficile</i>:",o:["Não há relação","É um dos antibióticos mais associados","Protege","Só em crianças"],a:1,f:"Qualquer antibiótico pode causar; clindamicina é clássica."},
+{q:"Metronidazol e aeróbios:",o:["Cobre","Não cobre","Cobre só E. coli","Cobre só MRSA"],a:1,f:"Só anaeróbios e alguns protozoários."},
+{q:"SMX-TMP e potássio:",o:["Reduz K⁺","Pode causar hipercalemia","Não altera","Só causa hipocalemia"],a:1,f:"Trimetoprima tem efeito tipo amilorida."},
+{q:"Polimixinas e rim:",o:["Seguras","Nefrotóxicas","Eliminadas sem risco","Só nefrotóxicas em crianças"],a:1,f:"Nefro e neurotoxicidade; colistina tende a ser mais nefrotóxica."},
+{q:"«Amplo espectro» significa «melhor opção»?",o:["Sim","Não: seleciona resistência e prejudica a microbiota","Sim, na UTI","Sim, nas ITUs"],a:1,f:"A melhor opção é a mais <b>estreita</b> que cobre o suspeito, pelo menor tempo necessário."}]
+};
+
+var MX={cols:["Estrep./pneumo","MSSA","MRSA","Pseudomonas","Enterobact. sem ESBL","ESBL","B. fragilis"],
+rows:[
+["Penicilina G",[2,0,0,0,0,0,1],"Penicilina G: estreptococos e pneumococo sensível; sem MSSA (penicilinase), sem Gram-negativos relevantes."],
+["Oxacilina",[1,2,0,0,0,0,0],"Oxacilina: MSSA. MRSA não, por PBP2a. Fraca em Gram-negativos."],
+["Amox-clav",[2,2,0,0,1,0,1],"Amoxicilina-clavulanato: boa em respiratório, pele e anaeróbios Gram-positivos. Sem Pseudomonas; Enterobacterales variável (CESP produzem β-lactamases não inibidas)."],
+["Pip-tazo",[2,2,0,2,2,1,2],"Pip-tazo: amplo, inclui Pseudomonas. ESBL: pode parecer sensível mas IDSA 2024 não recomenda (MERINO)."],
+["Ceftriaxona",[2,2,0,0,2,0,0],"Ceftriaxona: pneumococo, meningococo, muitas enterobactérias. Sem Pseudomonas, sem enterococo, sem Listeria, sem atípicos."],
+["Ceftazidima",[1,0,0,2,2,0,0],"Ceftazidima: antipseudomonas, pouca atividade em Gram-positivos."],
+["Cefepima",[2,2,0,2,2,0,0],"Cefepima: Gram-negativos amplos + Pseudomonas, boa em Gram-positivos; falha em ESBL e MRSA."],
+["Ceftarolina",[2,2,2,0,1,0,0],"Ceftarolina: MRSA sim. Pseudomonas/Enterococcus/ESBL/B. fragilis não."],
+["Ertapenem",[2,2,0,0,2,2,2],"Ertapenem: ESBL e anaeróbios ok, mas sem Pseudomonas/Acinetobacter."],
+["Meropenem",[2,2,0,2,2,2,2],"Meropenem: amplíssimo; falha em MRSA e nas carbapenemases. Reserva é estratégica."]]};
+
+var TREES={gn:{start:"n1",nodes:{
+n1:{t:"<b>Enterobacterales resistente a ceftriaxona.</b> E ao meropenem?",o:[["Sensível ao meropenem","n2"],["Resistente ao meropenem","n3"]]},
+n2:{t:"Padrão compatível com <b>ESBL</b> (AmpC é outra história). Qual o sítio?",o:[["Trato urinário (ITU)","l1"],["Fora do trato urinário","l2"]]},
+n3:{t:"<b>Pense em carbapenemase.</b> Qual enzima foi detectada?",o:[["KPC","l3"],["MBL (NDM, VIM, IMP)","l4"],["OXA-48-like","l5"],["Ainda não sei","l6"]]},
+l1:{leaf:1,tone:"g",t:"ITU: opções por antibiograma (TMP-SMX, cipro/levo se sensíveis; nitrofurantoína só cistite). Carbapenêmico se resistente aos outros ou grave. <i>IDSA 2024.</i>"},
+l2:{leaf:1,tone:"g",t:"<b>Carbapenêmico</b> (meropenem, imipenem; ertapenem em não crítico). <b>Pip-tazo não recomendada</b>, mesmo «sensível». <i>IDSA 2024 / MERINO.</i>"},
+l3:{leaf:1,tone:"g",t:"KPC: <b>ceftazidima-avibactam, meropenem-vaborbactam ou imipenem-relebactam</b> preferidos. <i>IDSA 2024.</i> Disponibilidade no Brasil: CCIH."},
+l4:{leaf:1,tone:"g",t:"MBL: <b>ceftazidima-avibactam + aztreonam</b> ou <b>cefiderocol</b>. <i>IDSA 2024.</i>"},
+l5:{leaf:1,tone:"g",t:"OXA-48-like: <b>ceftazidima-avibactam</b> preferido. <i>IDSA 2024.</i>"},
+l6:{leaf:1,tone:"a",t:"Peça a identificação do mecanismo. Decisão com <b>CCIH/infectologista</b>. <b>Polimixina não é escolha automática</b> (eficácia incerta e toxicidade)."}}}};
+
+var HIST={
+pen:[["Penicilinas","Fleming observa o halo de inibição de Penicillium sobre Staphylococcus (1928, St Mary's, Londres). Florey, Chain e Heatley (Oxford) purificam e testam em humanos no início dos anos 1940. Nobel de 1945: Fleming, Florey e Chain. Produção em larga escala na Segunda Guerra.","fact","Os detalhes da cena do «placa esquecida durante as férias» são muito contados e variam entre autores."],
+ ["Sulfonamidas","Domagk (Bayer) testa o corante Prontosil (1932; publicação em 1935). O Instituto Pasteur mostra que o ativo é a sulfanilamida: Prontosil era uma pró-droga. Nobel de 1939 a Domagk (impedido de receber na época).","fact","A história de Domagk tratando a própria filha é muito repetida; fontes divergem."],
+ ["Cefalosporinas","Giuseppe Brotzu isola Cephalosporium em esgoto na costa da Sardenha (data citada como 1945 ou 1948). Oxford (Abraham, Newton) isola cefalosporina C (anos 1950). O núcleo 7-ACA (1959–61) permitiu fármacos semissintéticos e as «gerações».","fact","Divergência de datas nas fontes (1945 × 1948) para o isolamento."],
+ ["Carbapenêmicos","Tienamicina (Streptomyces cattleya, Merck, 1976) era instável. O derivado imipenem foi associado a cilastatina (inibe a desidropeptidase-I renal). Meropenem veio nos anos 1990; ertapenem, no início dos anos 2000.","fact",""],
+ ["Quinolonas","O ácido nalidíxico (1962) surgiu de um subproduto da síntese de cloroquina. Fluoração do anel (norfloxacino, ciprofloxacino nas décadas de 1980) criou as fluoroquinolonas; levo e moxi vieram depois.","fact","Datas variam conforme a fonte (patente × aprovação)."],
+ ["Polimixinas","Descobertas em 1947 (Paenibacillus polymyxa); colistina isolada em 1949-50 no Japão. Abandonadas por nefro/neurotoxicidade, retomaram espaço com bactérias multirresistentes. O gene mcr-1, que confere resistência por plasmídeo, foi descrito em 2015 (China).","fact","Datas 1947 × 1949 citadas de forma divergente."],
+ ["Clindamicina","A lincomicina vem de Streptomyces lincolnensis (Lincoln, Nebraska, 1962). A clindamicina é seu derivado semissintético (1966–67), com melhor atividade. Nos anos 1970 associou-se à colite pseudomembranosa; Bartlett (1978) identificou o C. difficile como causa.","fact",""],
+ ["Metronidazol","Azomicina (Streptomyces) em 1955 originou os nitroimidazólicos; metronidazol foi lançado para Trichomonas (1959). A atividade contra anaeróbios foi percebida quando uma paciente tratada para tricomoníase teve melhora de gengivite (cerca de 1962).","unc","O episódio da gengivite é um relato clássico mas sem detalhes padronizados — trate como curiosidade."]]
+};
+
+/* ===== UTIL ===== */
+function $(s,r){return (r||document).querySelector(s)}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function load(k,d){try{var v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}}
+var COLORS={navy:'#0b2a43',amber:'#c98f00',green:'#1f9d6a',blue:'#1282A2',red:'#d64545',hist:'#9a6a2f'};
+
+/* ===== BUILD ===== */
+var slides=$$('.slide'),cur=0,stage=$('#stage');
+slides.forEach(function(s,i){
+  var c=COLORS[s.getAttribute('data-c')||'navy'];
+  s.style.setProperty('--rc',c);
+  var r=document.createElement('div');r.className='rail';
+  r.innerHTML='<span>'+(s.getAttribute('data-sec')||'')+'</span>';
+  s.insertBefore(r,s.firstChild);
+  var src=s.getAttribute('data-src');
+});
+
+/* casos */
+function mkQuiz(box,set,title){
+  var i=0,sc=0;
+  function draw(){
+    var q=set[i];box.classList.remove('done');
+    var h='<div class="qh"><span>'+(title||'QUIZ')+'</span><span>'+(i+1)+' / '+set.length+'</span></div><div class="qq">'+q.q+'</div>';
+    q.o.forEach(function(o,k){h+='<button class="op" data-k="'+k+'">'+o+'</button>'});
+    h+='<div class="fb"></div>';
+    box.innerHTML=h;
+    $$('.op',box).forEach(function(b){b.onclick=function(){
+      var k=+b.getAttribute('data-k');
+      if(k===q.a){b.classList.add('ok');sc++;}else{b.classList.add('bad');$$('.op',box)[q.a].classList.add('ok');}
+      var fb=$('.fb',box);fb.innerHTML=(k===q.a?'<b>Certo.</b> ':'<b>Quase. </b>')+q.f;
+      if(i<set.length-1)fb.innerHTML+='<br><button class="btn sm" style="margin-top:.5em">Próxima ▶</button>';
+      else fb.innerHTML+='<br><b>Resultado: '+sc+' / '+set.length+'</b> <button class="btn sm ghost" style="margin-left:.6em">Refazer</button>';
+      box.classList.add('done');
+      var nb=$('.btn',fb);nb.onclick=function(){ if(i<set.length-1){i++;}else{i=0;sc=0;} draw(); };
+    }});
+  }
+  draw();
+}
+$$('.qz[data-quiz]').forEach(function(b){var id=b.getAttribute('data-quiz');mkQuiz(b,QZ[id],b.getAttribute('data-title')||'QUIZ')});
+
+$$('.case[data-case]').forEach(function(b){
+  var d=CASES[b.getAttribute('data-case')];
+  var h='<div class="kicker">Caso '+d.n+' de 9</div><h2>'+d.t+'</h2><ol class="steps">';
+  d.steps.forEach(function(s){h+='<li>'+s+'</li>'});
+  h+='</ol><button class="btn rv">Revelar o primeiro dado</button>';
+  h+='<div class="after"><div class="keyq">Pense: '+d.think+'</div><textarea placeholder="Escreva sua hipótese antes de abrir a cortina…"></textarea>';
+  h+='<div class="curtain"><div class="cv">▶ Abrir a análise do caso (tecla R)</div><div class="cb">'+d.ans+'<p class="small" style="margin:.4em 0 0">'+d.pr+'</p><p class="tiny muted">Fonte: '+d.src+'</p></div></div>';
+  h+='<div class="qz" data-inline="1"></div></div>';
+  b.innerHTML=h;
+  var lis=$$('.steps li',b),n=0,btn=$('.rv',b);
+  btn.onclick=function(){
+    lis[n].classList.add('show');n++;
+    if(n<lis.length){btn.textContent='Revelar o próximo dado ('+(n+1)+'/'+lis.length+')';}
+    else{btn.style.display='none';$('.after',b).classList.add('show');mkQuiz($('.qz',b),[d.q],'CASO '+d.n);}
+  };
+});
+
+/* curtains */
+$$('.curtain').forEach(function(c){var v=$('.cv',c);if(v)v.onclick=function(){c.classList.add('open')}});
+
+/* tabs */
+$$('.tabbed').forEach(function(t){
+  var bs=$$('.tabs button,.tl button',t),ps=$$('.pane',t);
+  function sel(k){bs.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-t')===k)});ps.forEach(function(p){p.style.display=p.getAttribute('data-t')===k?'block':'none'})}
+  bs.forEach(function(b){b.onclick=function(){sel(b.getAttribute('data-t'))}});
+  if(bs[0])sel(bs[0].getAttribute('data-t'));
+});
+
+/* historia (gerada) */
+$$('[data-hist]').forEach(function(box){
+  var h='<div class="tabbed"><div class="tl">';
+  HIST.pen.forEach(function(x,i){h+='<button data-t="h'+i+'">'+x[0]+'</button>'});
+  h+='</div>';
+  HIST.pen.forEach(function(x,i){
+    h+='<div class="pane panel" data-t="h'+i+'"><h3>'+x[0]+'</h3><p>'+x[1]+'</p>'
+     +'<span class="chip '+x[2]+'">'+(x[2]==='fact'?'FATO DOCUMENTADO':'RELATO INCERTO')+'</span>'
+     +(x[3]?'<span class="small muted"> '+x[3]+'</span>':'')+'</div>';
+  });
+  h+='</div>';
+  box.innerHTML=h;
+  var t=$('.tabbed',box),bs=$$('.tl button',t),ps=$$('.pane',t);
+  function sel(k){bs.forEach(function(b){b.classList.toggle('on',b.getAttribute('data-t')===k)});ps.forEach(function(p){p.style.display=p.getAttribute('data-t')===k?'block':'none'})}
+  bs.forEach(function(b){b.onclick=function(){sel(b.getAttribute('data-t'))}});sel('h0');
+});
+
+/* matriz */
+$$('[data-matrix]').forEach(function(box){
+  var T=['✕ não confiável','~ varia / depende','● geralmente ativo'],cls=['v0','v1','v2'],sym=['✕','~','●'];
+  var h='<table class="mx"><thead><tr><th>Antibiótico</th>';
+  MX.cols.forEach(function(c,j){h+='<th class="ch" data-c="'+j+'">'+c+'</th>'});
+  h+='</tr></thead><tbody>';
+  MX.rows.forEach(function(r,i){h+='<tr data-r="'+i+'"><td>'+r[0]+'</td>';r[1].forEach(function(v){h+='<td class="'+cls[v]+'">'+sym[v]+'</td>'});h+='</tr>'});
+  h+='</tbody></table><div class="legend">● geralmente ativo · ~ varia / depende do antibiograma · ✕ não confiável. Matriz didática, não substitui antibiograma nem protocolo.</div><div class="mxnote">Clique numa linha (fármaco) ou numa coluna (bactéria).</div>';
+  box.innerHTML=h;var note=$('.mxnote',box);
+  $$('tbody tr',box).forEach(function(tr){tr.onclick=function(){$$('tbody tr',box).forEach(function(x){x.classList.remove('sel')});tr.classList.add('sel');note.innerHTML=MX.rows[+tr.getAttribute('data-r')][2]}});
+  var cn=["Estreptococos e pneumococo: penicilina e ceftriaxona são âncoras (pneumococo resistente exige atenção às PBPs).","MSSA: oxacilina é o padrão; penicilina G falha por penicilinase.","MRSA: PBP2a. Dos β-lactâmicos da tabela, apenas a ceftarolina age.","Pseudomonas: o «passaporte» tem pip-tazo, ceftazidima, cefepima e meropenem. Ceftriaxona e ertapenem não entram.","Enterobacterales sem ESBL: ceftriaxona e cefepima funcionam; ampicilina isolada e penicilina não.","ESBL: carbapenêmico é a escolha (IDSA 2024). Cefalosporinas de 3ª e 4ª gerações falham; pip-tazo é desencorajada.","B. fragilis: anaeróbio de intestino — carbapenêmicos, pip-tazo e metronidazol; ceftriaxona e cefepima não."];
+  $$('th.ch',box).forEach(function(th){th.onclick=function(){$$('th.ch',box).forEach(function(x){x.classList.remove('sel')});th.classList.add('sel');note.innerHTML=cn[+th.getAttribute('data-c')]}});
+});
+
+/* arvore */
+$$('[data-tree]').forEach(function(box){
+  var T=TREES[box.getAttribute('data-tree')],stack=[T.start];
+  function draw(){
+    var id=stack[stack.length-1],n=T.nodes[id];
+    var h='<div class="panel" style="min-height:0"><div class="small muted mono">Passo '+stack.length+'</div><p class="lead">'+n.t+'</p>';
+    if(n.leaf){h+='<div class="'+(n.tone==='g'?'card g':'card a')+'" style="margin-top:.3em">Conclusão de raciocínio (educacional).</div>'}
+    else n.o.forEach(function(o){h+='<button class="btn ghost" style="margin:.2em .3em .2em 0" data-n="'+o[1]+'">'+o[0]+'</button>'});
+    h+='</div><div style="margin-top:.4em">'+(stack.length>1?'<button class="btn sm" data-back="1">◀ Voltar</button> ':'')+'<button class="btn sm ghost" data-reset="1">Recomeçar</button></div>';
+    box.innerHTML=h;
+    $$('[data-n]',box).forEach(function(b){b.onclick=function(){stack.push(b.getAttribute('data-n'));draw()}});
+    var bk=$('[data-back]',box);if(bk)bk.onclick=function(){stack.pop();draw()};
+    $('[data-reset]',box).onclick=function(){stack=[T.start];draw()};
+  }
+  draw();
+});
+
+/* hotspots */
+$$('.hot').forEach(function(h){h.onclick=function(){
+  $$('.hot').forEach(function(x){x.classList.remove('on')});h.classList.add('on');
+  var box=$('#bactinfo');if(box)box.innerHTML=h.getAttribute('data-info');
+}});
+
+/* navegação */
+var bar=document.createElement('div');bar.className='bar';
+bar.innerHTML='<button id="bPrev">◀</button><button id="bNext">▶</button><div class="prog" id="prog"><i></i></div><span id="cnt">1/1</span><button id="bNotes">N notas</button><button id="bIdx">G índice</button><button id="bProj">P projetar</button><button id="bFs">F tela cheia</button><button id="bMov">M movimento</button><button id="bA1">A−</button><button id="bA2">A+</button>';
+document.body.appendChild(bar);
+var notes=document.createElement('div');notes.className='notes';document.body.appendChild(notes);
+var idx=document.createElement('div');idx.className='index';document.body.appendChild(idx);
+
+function buildIndex(){
+  var secs={},order=[];slides.forEach(function(s,i){var k=s.getAttribute('data-sec');if(!secs[k]){secs[k]=[];order.push(k)}secs[k].push([i,s.getAttribute('data-title')||('Slide '+(i+1))])});
+  var h='<h3>Índice — clique para saltar (G ou Esc fecham)</h3>';
+  order.forEach(function(k){h+='<h3>'+k+'</h3><div class="ix">';secs[k].forEach(function(x){h+='<button data-i="'+x[0]+'">'+(x[0]+1)+' · '+x[1]+'</button>'});h+='</div>'});
+  idx.innerHTML=h;$$('button',idx).forEach(function(b){b.onclick=function(){go(+b.getAttribute('data-i'));idx.classList.remove('on')}});
+}
+function go(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach(function(s,k){s.classList.toggle('active',k===cur)});
+  $('#cnt').textContent=(cur+1)+'/'+slides.length;
+  $('.prog i').style.width=((cur+1)/slides.length*100)+'%';
+  notes.innerHTML=slides[cur].getAttribute('data-notes')||'<b>Sem notas nesta lâmina.</b>';
+  var bd=$('.body',slides[cur]);if(bd)bd.scrollTop=0;
+  save('atb_slide',cur);
+}
+function fit(){
+  var w=window.innerWidth,h=window.innerHeight-46,s=Math.min(w/1280,h/720);
+  stage.style.transform='translate(-50%,-50%) scale('+s+')';
+}
+window.addEventListener('resize',fit);fit();
+function toggleCurtains(){var cs=$$('.curtain',slides[cur]);var anyClosed=cs.some(function(c){return !c.classList.contains('open')});cs.forEach(function(c){c.classList.toggle('open',anyClosed)})}
+function toggleNotes(){document.body.classList.toggle('shownotes')}
+function toggleIdx(){idx.classList.toggle('on')}
+function toggleProj(){document.body.classList.toggle('proj');save('atb_proj',document.body.classList.contains('proj')?'1':'0')}
+function toggleFs(){var d=document;if(!d.fullscreenElement){(d.documentElement.requestFullscreen||function(){}).call(d.documentElement)}else{d.exitFullscreen()}}
+var st=document.createElement('style');st.textContent='body.rm *{animation:none!important;transition:none!important}';document.head.appendChild(st);
+function toggleMov(){document.body.classList.toggle('rm')}
+var fs=parseFloat(load('atb_fs','1'))||1;
+function setFs(v){fs=Math.max(.8,Math.min(1.5,v));document.documentElement.style.setProperty('--fs',fs);save('atb_fs',fs)}
+setFs(fs);
+$('#bPrev').onclick=function(){go(cur-1)};$('#bNext').onclick=function(){go(cur+1)};
+$('#bNotes').onclick=toggleNotes;$('#bIdx').onclick=toggleIdx;$('#bProj').onclick=toggleProj;$('#bFs').onclick=toggleFs;$('#bMov').onclick=toggleMov;
+$('#bA1').onclick=function(){setFs(fs-.1)};$('#bA2').onclick=function(){setFs(fs+.1)};
+$('#prog').onclick=function(e){var r=this.getBoundingClientRect();go(Math.floor((e.clientX-r.left)/r.width*slides.length))};
+$$('[data-go]').forEach(function(b){b.onclick=function(){var k=slides.map(function(s){return s.id}).indexOf(b.getAttribute('data-go'));if(k>=0)go(k)}});
+document.addEventListener('keydown',function(e){
+  var t=e.target.tagName;if(t==='TEXTAREA'||t==='INPUT')return;
+  var k=e.key;
+  if(k==='ArrowRight'||k===' '||k==='PageDown'){e.preventDefault();go(cur+1)}
+  else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();go(cur-1)}
+  else if(k==='Home')go(0);else if(k==='End')go(slides.length-1);
+  else if(k==='r'||k==='R')toggleCurtains();
+  else if(k==='n'||k==='N')toggleNotes();
+  else if(k==='g'||k==='G'||k==='i'||k==='I')toggleIdx();
+  else if(k==='Escape')idx.classList.remove('on');
+  else if(k==='p'||k==='P')toggleProj();
+  else if(k==='f'||k==='F')toggleFs();
+  else if(k==='m'||k==='M')toggleMov();
+  else if(k==='+'||k==='=')setFs(fs+.1);
+  else if(k==='-')setFs(fs-.1);
+  else if(k==='0')setFs(1);
+});
+var tx=null;
+document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){if(tx==null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>70)go(cur+(dx<0?1:-1));tx=null},{passive:true});
+if(load('atb_proj','0')==='1')document.body.classList.add('proj');
+buildIndex();
+go(parseInt(load('atb_slide','0'),10)||0);
+
+</script>
+</body></html>
